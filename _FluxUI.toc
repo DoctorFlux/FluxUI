@@ -198,19 +198,19 @@ Bars\Stance\Forms.lua
 Bars\Stance\Layout.lua
 Bars\Stance\Watch.lua
 
-# Legacy FLUX_API for HUD modules not rewritten yet (paths must not collide with Core\API).
-Legacy\API\FluxAPI.lua
-Legacy\API\Client.lua
-Legacy\API\Events.lua
-Legacy\API\Capabilities.lua
-Legacy\API\Timers.lua
-Legacy\API\Secrets.lua
-Legacy\API\Auras.lua
-Legacy\API\Actions.lua
-Legacy\API\CVars.lua
-Legacy\API\UI.lua
-Legacy\API\RetailSecrets.lua
-Legacy\API\FluxAPI_Boot.lua
+# FLUX_API for HUD modules not rewritten yet. Kept beside Core\API so the filenames do not collide.
+Core\FluxAPI\FluxAPI.lua
+Core\FluxAPI\Client.lua
+Core\FluxAPI\Events.lua
+Core\FluxAPI\Capabilities.lua
+Core\FluxAPI\Timers.lua
+Core\FluxAPI\Secrets.lua
+Core\FluxAPI\Auras.lua
+Core\FluxAPI\Actions.lua
+Core\FluxAPI\CVars.lua
+Core\FluxAPI\UI.lua
+Core\FluxAPI\RetailSecrets.lua
+Core\FluxAPI\FluxAPI_Boot.lua
 
 Other\FluxPerfDebug.lua
 Other\FluxPerfCapture.lua

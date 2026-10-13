@@ -363,7 +363,7 @@ do
 	end
 end
 has(capSrc, "function Cap.AllowBlizzardActionBarSettingsReplace", "Settings replace is Classic-family only")
-local legacyCap = read("../Legacy/API/Capabilities.lua")
+local legacyCap = read("../Core/FluxAPI/Capabilities.lua")
 has(legacyCap, "Cap.GetFluxBlizzardActionBarUIMode", "Legacy mode probe uses Core Cap")
 has(legacyCap, "isMists", "Legacy fallback includes MoP")
 has(legacyCap, "FLUX_API.skipFluxThreatMeterLayouts = isRetail and isPostDF and not isCamelot", "Forever keeps Details threat meter presets")
@@ -376,7 +376,7 @@ if legacyCap:find("FLUX_API.hasBlizzardObjectiveTrackerScroll = isRetail and isP
 	failures[#failures + 1] = "Legacy Forever must not be excluded from the objective-tracker scroll viewport"
 end
 do
-	local legacyClient = read("../Legacy/API/Client.lua")
+	local legacyClient = read("../Core/FluxAPI/Client.lua")
 	has(legacyClient, "ns.API.hasBlizzardObjectiveTrackerScroll = isRetail and isPostDF", "Legacy Client live and Forever share the objective-tracker scroll viewport")
 	if legacyClient:find("ns.API.hasBlizzardObjectiveTrackerScroll = isRetail and isPostDF and not isCamelot", 1, true) then
 		failures[#failures + 1] = "Legacy Client must not exclude Forever from the objective-tracker scroll viewport"
@@ -515,7 +515,7 @@ do
 	end
 end
 
-local legacyAuras = read("../Legacy/API/Auras.lua")
+local legacyAuras = read("../Core/FluxAPI/Auras.lua")
 has(legacyAuras, "pcall(C_UnitAuras.GetAuraSlots", "Legacy SafeGetAuraSlots is pcall'd")
 has(legacyAuras, "pcall(C_UnitAuras.GetAuraDataBySlot", "Legacy SafeGetAuraDataBySlot is pcall'd")
 has(legacyAuras, "pcall(C_UnitAuras.GetAuraDataByAuraInstanceID", "Legacy GetAuraDataByAuraInstanceID is pcall'd")
@@ -677,7 +677,7 @@ do
 		failures[#failures + 1] = "camelot portrait camera must not SetCamera(0)"
 	end
 end
-local legacyUI = read("../Legacy/API/UI.lua")
+local legacyUI = read("../Core/FluxAPI/UI.lua")
 has(legacyUI, "if FLUX_API.isCamelot or FLUX_API.isForever then", "Forever skips pre-DF SetupPortraitModel wrap")
 has(legacyUI, "function FluxRemoveFrameFromEditMode", "FluxRemoveFrameFromEditMode")
 has(legacyUI, "frame.ignoreFramePositionManager = true", "Edit Mode opt-out is ignoreFramePositionManager only")
@@ -989,13 +989,13 @@ if ufSharedSrc:find('UnitDisplayName(self.unit) or "Unknown"', 1, true) then
 	failures[#failures + 1] = "unit frames must not paint Unknown when the name is missing"
 end
 
-local actionsSrc = read("../Legacy/API/Actions.lua")
+local actionsSrc = read("../Core/FluxAPI/Actions.lua")
 has(actionsSrc, "FLUX_API.isCamelot or FLUX_API.isForever", "legacy ComboFrame UI disabled on camelot")
 has(actionsSrc, "FLUX_API.isCamelot and C_Spell.GetSpellSubtext", "legacy GetSpellInfo keeps Forever rank subtext")
 
-has(read("../Legacy/API/Client.lua"), "IsSpellBookItemLowRank", "legacy per-rank spells follow the Forever low-rank API")
-has(read("../Legacy/API/Client.lua"), "isClassicEra or isTBC or isWrath", "legacy Era/Anniversary/Wrath get per-rank spell bar features")
-has(read("../Legacy/API/Client.lua"), "FluxClient.isCamelot ~= nil", "legacy camelot trusts Core Client on live Midnight")
+has(read("../Core/FluxAPI/Client.lua"), "IsSpellBookItemLowRank", "legacy per-rank spells follow the Forever low-rank API")
+has(read("../Core/FluxAPI/Client.lua"), "isClassicEra or isTBC or isWrath", "legacy Era/Anniversary/Wrath get per-rank spell bar features")
+has(read("../Core/FluxAPI/Client.lua"), "FluxClient.isCamelot ~= nil", "legacy camelot trusts Core Client on live Midnight")
 
 local cscEra = read("../CharacterInfo/StatsEra.lua")
 has(cscEra, "if not CharacterFrame or not CharacterAttributesFrame then", "Era CreateMenu guards missing attributes frame")

@@ -199,13 +199,13 @@ Reachable files: 525. Missing references: 0.
 | `Inventory/Syndicator/Adapter.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 2 | 1 | 0 |
 | `Inventory/Tooltip.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 0 | 4 |
 | `Layout/UnifiedBorder.lua` | Retail, Forever, Era, Anniversary | 1 | 0 | 3 | 4 | 6 |
-| `Legacy/API/Actions.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 5 | 0 |
-| `Legacy/API/Auras.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 1 | 0 |
-| `Legacy/API/Capabilities.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 3 | 0 |
-| `Legacy/API/Events.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 4 | 0 |
-| `Legacy/API/FluxAPI_Boot.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 1 | 0 |
-| `Legacy/API/Timers.lua` | Retail, Forever, Era, Anniversary | 3 | 1 | 1 | 0 | 0 |
-| `Legacy/API/UI.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 6 | 8 | 0 |
+| `Core/FluxAPI/Actions.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 5 | 0 |
+| `Core/FluxAPI/Auras.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 1 | 0 |
+| `Core/FluxAPI/Capabilities.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 3 | 0 |
+| `Core/FluxAPI/Events.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 4 | 0 |
+| `Core/FluxAPI/FluxAPI_Boot.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 1 | 0 |
+| `Core/FluxAPI/Timers.lua` | Retail, Forever, Era, Anniversary | 3 | 1 | 1 | 0 | 0 |
+| `Core/FluxAPI/UI.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 6 | 8 | 0 |
 | `libs/AceAddon-3.0/AceAddon-3.0.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 2 | 0 |
 | `libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua` | Retail, Forever, Era, Anniversary | 5 | 0 | 0 | 0 | 0 |
 | `libs/AceDB-3.0/AceDB-3.0.lua` | Retail, Forever, Era, Anniversary | 0 | 0 | 0 | 1 | 0 |
@@ -405,10 +405,10 @@ A listed driver may run only during a cast, drag, hover, or bounded initializati
 - `Inventory/Restock/Bank/FluxBankRestockMoveExec.lua:1590` (OnUpdate): `frame:SetScript("OnUpdate", onUpdate)`
 - `Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua:408` (OnUpdate): `PurchaseLoopFrame:SetScript("OnUpdate", M.onUpdate)`
 - `Layout/UnifiedBorder.lua:809` (OnUpdate): `watcherFrame:SetScript("OnUpdate", function(self, elapsed)`
-- `Legacy/API/Timers.lua:18` (OnUpdate): `frame:SetScript("OnUpdate", function(self, dt)`
-- `Legacy/API/Timers.lua:37` (OnUpdate): `frame:SetScript("OnUpdate", function(self, dt)`
-- `Legacy/API/Timers.lua:64` (Ticker): `function ns.API.NewTicker(duration, callback, iterations)`
-- `Legacy/API/Timers.lua:100` (OnUpdate): `f:SetScript("OnUpdate", function(_, el)`
+- `Core/FluxAPI/Timers.lua:18` (OnUpdate): `frame:SetScript("OnUpdate", function(self, dt)`
+- `Core/FluxAPI/Timers.lua:37` (OnUpdate): `frame:SetScript("OnUpdate", function(self, dt)`
+- `Core/FluxAPI/Timers.lua:64` (Ticker): `function ns.API.NewTicker(duration, callback, iterations)`
+- `Core/FluxAPI/Timers.lua:100` (OnUpdate): `f:SetScript("OnUpdate", function(_, el)`
 - `libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua:1796` (OnUpdate): `AceConfigDialog.frame:SetScript("OnUpdate", RefreshOnUpdate)`
 - `libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua:1802` (OnUpdate): `AceConfigDialog.frame:SetScript("OnUpdate", RefreshOnUpdate)`
 - `libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua:1813` (OnUpdate): `AceConfigDialog.frame:SetScript("OnUpdate", RefreshOnUpdate)`

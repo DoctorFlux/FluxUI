@@ -2250,7 +2250,7 @@ has(defaultsSrc, "BlizzardSettings.Write.Run(\"resetCategory:\"", "category Defa
 local cvarSrc = read("../Core/API/CVar.lua")
 has(cvarSrc, "Client.isRetail and Client.isPostDF == false", "post-DF blocks nameplate SetCVar")
 has(cvarSrc, "UpdateAuraScale → RefreshAuras → Layout → GetScaledRect", "CVar block cites nameplate aura Layout")
-local legacyCvarSrc = read("../Legacy/API/CVars.lua")
+local legacyCvarSrc = read("../Core/FluxAPI/CVars.lua")
 has(legacyCvarSrc, "api.isRetail and api.isPostDF == false", "legacy FluxSetCVar blocks post-DF nameplate")
 local ebsUtil = read("../ExtraButtonSystem/Engine/Util.lua")
 has(ebsUtil, "NEVER hooksecurefunc SetCooldown / CooldownFrame_Set", "no shared Cooldown hook (nameplate SetAura)")
@@ -2377,7 +2377,7 @@ do
 	if read("../RaidFrame/FluxRaidCompat.lua"):find("_G.UnitFrame_UpdateTooltip =", 1, true) then
 		failures[#failures + 1] = "must not replace UnitFrame_UpdateTooltip"
 	end
-	local legacyUI = read("../Legacy/API/UI.lua")
+	local legacyUI = read("../Core/FluxAPI/UI.lua")
 	for _, needle in ipairs({ "WithSecretCUFSkipped", "GuardExitEditMode", "ApplyMultipleToFrames = ", "ScaleTextToFit = " }) do
 		if legacyUI:find(needle, 1, true) then
 			failures[#failures + 1] = "Edit Mode must not swap compact-frame functions: " .. needle

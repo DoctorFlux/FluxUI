@@ -161,9 +161,9 @@ else
 	end
 end
 
-local ui = read("../Legacy/API/UI.lua")
+local ui = read("../Core/FluxAPI/UI.lua")
 if ui == "" then
-	failures[#failures + 1] = "read Legacy/API/UI.lua failed"
+	failures[#failures + 1] = "read Core/FluxAPI/UI.lua failed"
 else
 	has(ui, "local function FluxClientIsForever()", "Forever micromenu helper")
 	has(ui, "local function FluxClientHasLFDMicroFeature()", "Forever LFD micro uses a client-specific probe")
