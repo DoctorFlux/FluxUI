@@ -1540,7 +1540,7 @@ local function HandleJunkButtonClick()
     end
     GameTooltip:Hide()
     -- Flux junk (marks / inferior / rules) plus Blizzard junk-coin greys
-    -- sell in this click. Retail also mops remaining greys via SellAllJunkItems.
+    -- share one pending-sale queue on every client.
     if FV and FV.SellGrayManual then
         FV.SellGrayManual()
     end
@@ -1948,17 +1948,6 @@ local function SetupRetailSellJunkBypass()
         end)
     end
     junkBtn:SetScript("OnClick", HandleJunkButtonClick)
-    if hooksecurefunc and not uiState.sellAllJunkConfirmedHooked
-        and _G.MerchantFrame_OnSellAllJunkButtonConfirmed then
-        uiState.sellAllJunkConfirmedHooked = true
-        hooksecurefunc("MerchantFrame_OnSellAllJunkButtonConfirmed", function()
-            -- XML confirm path still only sells Blizzard greys; Flux marks
-            -- need the leftover sell loop (hardware event is this confirm).
-            if FV and FV.SellGrayManual then
-                FV.SellGrayManual()
-            end
-        end)
-    end
     if junkBtn.fluxClickHooked then
         return
     end

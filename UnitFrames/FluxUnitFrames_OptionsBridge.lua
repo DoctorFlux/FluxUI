@@ -143,6 +143,13 @@ function FluxUnitFrames_ShouldShowClassPower()
     return FluxUnitFrames_DisplayEnabled("player", "classPower")
 end
 
+function FluxUnitFrames_GetClassPowerScale()
+    local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+    local scale = tonumber(db and db.classPowerScale) or 1
+    if scale ~= scale then scale = 1 end
+    return math.max(0.5, math.min(2, scale))
+end
+
 function FluxUnitFrames_ShouldShowLevel(unit)
     return FluxUnitFrames_DisplayEnabled(unit, "level")
 end

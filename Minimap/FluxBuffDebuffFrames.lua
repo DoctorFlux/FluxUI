@@ -1,140 +1,67 @@
 -- FluxBuffDebuffFrames.lua
--- Player buffs and debuffs beside the minimap are Blizzard's BuffFrame and DebuffFrame.
--- Flux does not move those system frames and does not write an Edit Mode layout.
--- Moving the system frame taints it, and Edit Mode enter then fails the party-frame
--- secret health-color compare. The collapse button is shifted right with the icon row,
--- and only while that frame is still on the stock screen anchor. Edit Mode can still move the
--- system frame. The nudge is skipped while Edit Mode is open.
---
--- Live and Forever stock anchors are -255 / -270. Classic Era and Anniversary are -187 / -202.
--- The 15px gap between those pairs is kept. Debuffs have no collapse button, so the shift
--- sits on AuraContainer. That anchor is cleared back to zero whenever the debuff row
--- refreshes. Re-applying from a timer lets the row jump. The shift is an absolute offset
--- from that zero anchor and is put back before the frame is drawn, so it cannot stack
--- and the row stays put.
-
+-- Use Blizzard's actual BuffFrame and DebuffFrame. Flux only places the two
+-- system frames; all aura buttons, events, styling and behavior stay Blizzard's.
 local M = FluxBuffDebuffFrames or {}
 FluxBuffDebuffFrames = M
 
-local GAP = 10
-local STOCK = {
-    { buff = -255, debuff = -270 },
-    { buff = -187, debuff = -202 },
-}
+local GAP, TOP, DEBUFF_X, DEBUFF_Y = 10, -10, -15, -145
+local hooked = setmetatable({}, { __mode = "k" })
+local scheduled, editModeActive = false, false
 
-local function MapWidth()
-    if FLUX_API and FLUX_API.isLegacyClient then
-        return 175
-    end
-    return 190
+local function Blocked()
+    return InCombatLockdown() or editModeActive or (FluxEditModeBusy and FluxEditModeBusy())
 end
 
-local function EditModeOpen()
-    local mgr = EditModeManagerFrame
-    if not mgr then
-        return false
-    end
-    if mgr.editModeActive then
-        return true
-    end
-    return mgr.IsShown and mgr:IsShown()
+local function Place(frame, x, y)
+    if not frame then return end
+    -- Edit Mode's SetPoint/ClearAllPoints overrides alter snapping/layout data.
+    -- Use its saved widget methods so positioning does not write that state.
+    local clear = frame.ClearAllPointsBase or frame.ClearAllPoints
+    local point = frame.SetPointBase or frame.SetPoint
+    local scale = frame.GetScale and frame:GetScale() or 1
+    if scale == 0 then return end
+    clear(frame)
+    point(frame, "TOPRIGHT", UIParent, "TOPRIGHT", x / scale, y / scale)
 end
 
--- Same delta for buffs and debuffs, taken from whichever stock pair this frame is on.
-local function StockShift(frame, key)
-    if not frame or not frame.GetPoint then
-        return nil
-    end
-    local point, _, relPoint, x = frame:GetPoint(1)
-    if point ~= "TOPRIGHT" or relPoint ~= "TOPRIGHT" or type(x) ~= "number" then
-        return nil
-    end
-    local target = -(MapWidth() + GAP)
-    for i = 1, #STOCK do
-        if math.abs(x - STOCK[i][key]) < 1 then
-            return target - STOCK[i].buff
-        end
-    end
-    return nil
+function M:PositionBuffFrames()
+    if Blocked() then self._pending = true; return end
+    local minimap = _G.FluxMinimap
+    local width = minimap and minimap.GetNormalWidth and minimap:GetNormalWidth() or 190
+    -- EnforcePosition docks the normal minimap at screen x=0.
+    local x = -(width + GAP)
+    -- Screen anchors, independent of Minimap and its embedded parent/size.
+    -- Preserve Blizzard's 15px horizontal and 145px vertical row separation.
+    Place(_G.BuffFrame, x, TOP)
+    Place(_G.DebuffFrame, x + DEBUFF_X, TOP + DEBUFF_Y)
+    self._pending = nil
 end
 
-local function PointOffset(region)
-    if not region or not region.GetPoint or not region.SetPoint then
-        return nil
-    end
-    local point, rel, relPoint, x, y = region:GetPoint(1)
-    if not point or not rel or not relPoint then
-        return nil
-    end
-    if type(x) ~= "number" then
-        x = 0
-    end
-    if type(y) ~= "number" then
-        y = 0
-    end
-    return point, rel, relPoint, x, y
-end
-
--- Blizzard anchors this child at x = 0. Set that x to the shift once.
--- Any other offset is a custom anchor and is left alone, so a missed
--- remember cannot keep adding the shift.
-local function PinFromZero(region, shift)
-    if shift == 0 then
-        return
-    end
-    local point, rel, relPoint, x, y = PointOffset(region)
-    if not point then
-        return
-    end
-    if math.abs(x - shift) < 1 or math.abs(x) > 1 then
-        return
-    end
-    region:SetPoint(point, rel, relPoint, shift, y)
-end
-
--- A previous pass shifted the icon row off the collapse button.
-local function ReleaseShifted(region, shift)
-    if shift == 0 then
-        return
-    end
-    local point, rel, relPoint, x, y = PointOffset(region)
-    if not point then
-        return
-    end
-    if math.abs(x - shift) < 1 then
-        region:SetPoint(point, rel, relPoint, 0, y)
-    end
-end
-
-local function NudgeFrame(frame, key)
-    local shift = StockShift(frame, key)
-    if not shift then
-        return
-    end
-    local button = frame.CollapseAndExpandButton
-    if button and button.GetPoint and button.SetPoint then
-        ReleaseShifted(frame.AuraContainer, shift)
-        PinFromZero(button, shift)
-        return
-    end
-    PinFromZero(frame.AuraContainer, shift)
+local function Schedule()
+    if scheduled then return end
+    scheduled = true
+    C_Timer.After(0, function()
+        scheduled = false
+        M:RefreshBlizzardAuraFrames()
+    end)
 end
 
 function M:RefreshBlizzardAuraFrames()
+    for _, frame in pairs({ _G.BuffFrame, _G.DebuffFrame }) do
+        if frame.ApplySystemAnchor and not hooked[frame] then
+            hooked[frame] = true
+            -- Lua layout method only. Defer our placement until Blizzard's pass
+            -- ends; never hook widget methods or call the native aura updater.
+            hooksecurefunc(frame, "ApplySystemAnchor", Schedule)
+        end
+    end
+    self:PositionBuffFrames()
 end
 
 function M:TryInstallBlizzardAuraSqueezeHooks()
 end
 
 function M:RefreshBlizzardBuffDebuffSqueeze()
-end
-
-function M:PositionBuffFrames()
-    if EditModeOpen() then
-        return
-    end
-    pcall(NudgeFrame, BuffFrame, "buff")
-    pcall(NudgeFrame, DebuffFrame, "debuff")
 end
 
 function M:HookConsolidatedBuffs()
@@ -163,13 +90,21 @@ if FluxMinimap then
 end
 
 local watcher = CreateFrame("Frame")
-watcher:RegisterEvent("PLAYER_ENTERING_WORLD")
-watcher:RegisterEvent("PLAYER_REGEN_ENABLED")
-watcher:SetScript("OnEvent", function()
-    M:PositionBuffFrames()
+for _, event in ipairs({ "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "PLAYER_REGEN_ENABLED", "ADDON_LOADED", "EDIT_MODE_LAYOUT_APPLIED", "UI_SCALE_CHANGED", "DISPLAY_SIZE_CHANGED" }) do
+    if not C_EventUtils or C_EventUtils.IsEventValid(event) then watcher:RegisterEvent(event) end
+end
+watcher:SetScript("OnEvent", function(_, event, name)
+    if event == "ADDON_LOADED" and name ~= "Blizzard_BuffFrame" then return end
+    Schedule()
 end)
-watcher:SetScript("OnUpdate", function()
-    M:PositionBuffFrames()
-end)
+if EventRegistry and EventRegistry.RegisterCallback then
+    EventRegistry:RegisterCallback("EditMode.Enter", function()
+        editModeActive = true
+    end)
+    EventRegistry:RegisterCallback("EditMode.Exit", function()
+        editModeActive = false
+        Schedule()
+    end)
+end
 
 _G.FluxBuffDebuffFrames = M

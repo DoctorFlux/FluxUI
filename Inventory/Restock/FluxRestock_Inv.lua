@@ -466,12 +466,16 @@ local function NormalizeItemInfo(info)
     elseif info.isLocked == true or info.locked == true then
         locked = true
     end
-    local noValue = false
-    if Secrets and Secrets.SafeBooleanTest then
-        noValue = Secrets.SafeBooleanTest(info.hasNoValue, false) == true
-            or Secrets.SafeBooleanTest(info.noValue, false) == true
-    elseif info.hasNoValue == true or info.noValue == true then
-        noValue = true
+    -- Legacy clients may omit this field. Unknown vendor value must not be
+    -- normalized to "sellable", especially before item data has loaded.
+    local noValue
+    if info.hasNoValue ~= nil or info.noValue ~= nil then
+        if Secrets and Secrets.SafeBooleanTest then
+            noValue = Secrets.SafeBooleanTest(info.hasNoValue, false) == true
+                or Secrets.SafeBooleanTest(info.noValue, false) == true
+        else
+            noValue = info.hasNoValue == true or info.noValue == true
+        end
     end
     return {
         itemID = itemID,

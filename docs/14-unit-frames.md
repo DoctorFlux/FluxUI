@@ -35,6 +35,10 @@ Layout placement of player + target can be stacked or side-by-side via the Layou
 - Weapon swing timer on the player cast-bar slot (Classic Era / TBC Anniversary / Wrath: CLEU-accurate; Forever: `PLAYER_SWING` / `C_SwingTimer`, including wand, bow, gun, throw, and crossbow)
 - Flight-path duration awareness on taxi tooltips and cast-bar progress
 - Portrait combat feedback
+- Forever rogues and Cat Form druids: native red combo-point artwork above the
+  player frame, following target-bound points. Target unit-frame pips are disabled.
+  Empty sockets stay visible at zero points while the class/form is eligible.
+  Restricted combat counts go directly to display widgets without Lua comparisons.
 - BigDebuffs-friendly portrait/aura layout when that addon is present
 - Class/spec icon click for dual-spec or specialization flyout
 - Transmog click helper on player
@@ -55,6 +59,12 @@ Layout placement of player + target can be stacked or side-by-side via the Layou
 - **Reset unit frame options to defaults**
 
 ### Per-unit (defaults)
+
+- **Player class power size:** 50–200%, default 100%. Scales every unit-frame
+  class resource, including Classic/Forever combo rows, arcane charges, holy
+  power, runes, chi, shards, essence, and totems. Changes wait until combat ends.
+  Forever's player combo row is 20% smaller at the default size; nameplates use
+  their independent size and position.
 - **Player:** portrait on · W 325 · H 100 · split 60%
 - **Target:** portrait on · empty placeholder on · W 500 / H 100 (or follow Player in side-by-side) · split 60% · auras size 35 · lock own debuff on · own min 75% · spacing 2 · max buffs 32 / debuffs 16 · threat position Portrait (default)
 - **ToT:** W 125 · H 60 · split 60%

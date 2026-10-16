@@ -136,6 +136,7 @@ FluxOptionsDefaults = {
         },
         -- Unit frames: see FluxOptions:GetUnitFrameDB (scope independent of General).
         unitFrames = {
+            classPowerScale = 1,
             useFluxPlayer = true,
             useFluxTarget = true,
             useFluxTargetOfTarget = true,
@@ -428,6 +429,7 @@ FluxOptionsDefaults = {
         unitFramesSettingsScope = "account",
         unitFramesCharInitialized = false,
         unitFrames = {
+            classPowerScale = 1,
             useFluxPlayer = true,
             useFluxTarget = true,
             useFluxTargetOfTarget = true,

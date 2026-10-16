@@ -1,6 +1,6 @@
 --[[
     ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua
-    Display-only ammo / thrown weapon count for Combat Grid.
+    Display-only ammo count / durable thrown weapon condition for Combat Grid.
     Shows when ammo is equipped in the ammo slot or a thrown weapon is in the ranged slot; hidden otherwise.
 ]]
 
@@ -84,6 +84,24 @@ local function ShouldHoldItemIdentity()
     return false
 end
 
+local function GetDisplayCount(itemID)
+    local client = _G.Flux and _G.Flux.Client or _G.FLUX_API
+    if client and (client.isCamelot or client.isForever) and itemID and IsThrownWeapon(itemID)
+        and GetInventoryItemDurability then
+        local slot = GetInventorySlotIdSafe("RangedSlot")
+        -- Read the equipped instance, never a spare of the same weapon in bags.
+        if slot and GetInventoryItemID("player", slot) == itemID then
+            local ok, current, maximum = pcall(GetInventoryItemDurability, slot)
+            local secret = issecretvalue and (issecretvalue(current) or issecretvalue(maximum))
+            if ok and not secret and type(current) == "number" and type(maximum) == "number"
+                and current >= 0 and maximum > 0 then
+                return current, true
+            end
+        end
+    end
+    return GetTotalItemCount(itemID), false
+end
+
 --- Resolve equipped ammo (ammo slot) or thrown in ranged; nil if neither applies.
 local function GetDisplayItemID()
     local ammoSlot = GetInventorySlotIdSafe("AmmoSlot")
@@ -134,9 +152,11 @@ local function StripSecureItemUse(btn)
     return true
 end
 
-local function ApplyCount(btn, count, itemID)
+local function ApplyCount(btn, count, itemID, durability)
     if btn.SetCount then
-        btn:SetCount(count or 0, itemID and { live = true, itemId = itemID } or nil)
+        -- Remaining durability must survive FullRefresh / inventory paint. The
+        -- live item-count override would replace it with bag stacks or charges.
+        btn:SetCount(count or 0, (itemID and not durability) and { live = true, itemId = itemID } or nil)
         return
     end
     if btn.WCount then
@@ -182,11 +202,11 @@ function Module.Create(grid)
     local function RefreshCountOnly()
         if not btn then return end
         local itemID = GetDisplayItemID()
-        local count = 0
+        local count, durability = 0, false
         if itemID then
-            count = GetTotalItemCount(itemID)
+            count, durability = GetDisplayCount(itemID)
         end
-        ApplyCount(btn, count, itemID)
+        ApplyCount(btn, count, itemID, durability)
     end
 
     local function _CombatRefresh()
@@ -272,7 +292,8 @@ function Module.Create(grid)
         if btn.SetAction then btn:SetAction("item", itemID) end
         if btn.SetLocked then btn:SetLocked(true) end
 
-        ApplyCount(btn, GetTotalItemCount(itemID), itemID)
+        local count, durability = GetDisplayCount(itemID)
+        ApplyCount(btn, count, itemID, durability)
 
         if btn.FullRefresh then btn:FullRefresh() end
 
@@ -317,8 +338,15 @@ function Module.Create(grid)
     eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
     eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
     eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+    eventFrame:RegisterEvent("UPDATE_INVENTORY_DURABILITY")
 
     eventFrame:SetScript("OnEvent", function(_, event)
+        if event == "UPDATE_INVENTORY_DURABILITY" then
+            -- Hits and repairs update the number immediately, including combat.
+            -- Only paint text: never rebind or alter secure attributes here.
+            RefreshCountOnly()
+            return
+        end
         if event == "PLAYER_REGEN_ENABLED" then
             StopCombatRefreshTicker()
             local pu = Module._pendingUpdate

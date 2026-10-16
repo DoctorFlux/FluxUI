@@ -28,7 +28,6 @@ local embeddedState = {
     originalSize = nil,
     originalPosition = nil,
     normalMinimapWidth = nil,  -- Store normal minimap width for quest tracker
-    hookedFrames = {},  -- Store which action bars have been hooked to prevent negative scales
 }
 
 -- Combat-safe queue for minimap positioning operations
@@ -587,12 +586,11 @@ function FluxMinimap:EnforcePosition()
     Minimap:SetPoint(CONFIG.Position[1], CONFIG.Position[2], CONFIG.Position[3], 0, topOffset)
     Minimap:SetScale(CONFIG.Scale)
     
-    -- If we have a cluster (Retail), often the cluster holds the position
+    -- Blizzard reads the cluster's height during protected action-bar layout.
+    -- Keep its native anchors/size independent of the movable/embedded minimap.
     if MinimapCluster then
         MinimapCluster:EnableMouse(false) -- Disable cluster mouse interaction
         MinimapCluster:SetMovable(false)
-        MinimapCluster:ClearAllPoints()
-        MinimapCluster:SetAllPoints(Minimap) -- Just snap it to minimap or hide it
         MinimapCluster:Hide() -- Hide the cluster which usually contains the border/zone text
         
         -- But we need the Minimap frame itself to be shown
@@ -885,7 +883,7 @@ function FluxMinimap:PositionIndicators()
         GuildInstanceDifficulty:Show()
     end
 
-    -- 4. Reposition buff frames consistently (Using SetPointBase to bypass Edit Mode)
+    -- 4. Shared positioning helper for the objective tracker.
     
     -- Helper to Safely Set Point, bypassing Edit Mode hooks if possible
     -- This avoids "fighting" with Edit Mode and prevents infinite loops/flickering
@@ -902,13 +900,6 @@ function FluxMinimap:PositionIndicators()
     end
     FluxMinimap.SafeSetPoint = SafeSetPoint -- Export for use elsewhere
 
-    if self.PositionBuffFrames then
-        self:PositionBuffFrames()
-    end
-    if FluxBuffDebuffFrames and FluxBuffDebuffFrames.HookConsolidatedBuffs then
-        FluxBuffDebuffFrames:HookConsolidatedBuffs()
-    end
-    
     -- 5. Expansion Landing Page
     -- Retail: ExpansionLandingPageMinimapButton
     -- SL: GarrisonLandingPageMinimapButton
@@ -2088,101 +2079,6 @@ end
 -- EMBED / RESTORE FUNCTIONS
 -- ----------------------------------------------------------------------------
 
---- Protect action bars from negative scale values
--- Edit Mode may miscalculate action bar scale (e.g. -0.21) causing "Scale must be > 0" errors.
--- We must hook even when bars are visible to intercept these bad values.
--- @param enable If true, wrap SetScale to prevent negative values; if false, restore original
-function FluxMinimap:ProtectActionBarScales(enable)
-    local barsToProtect = {
-        "MultiBarRight",
-        "MultiBarLeft", 
-        "MultiBarBottomRight",
-        "MultiBarBottomLeft"
-    }
-    
-    for _, barName in ipairs(barsToProtect) do
-        local bar = _G[barName]
-        if bar and bar.SetScale then
-            -- Check if bar is hidden or managed by EditMode - if so, don't hook SetScale
-            -- Calling SetScale on EditMode-managed frames triggers SetScaleBase() which is protected
-            local shouldSkip = false
-            
-            -- Check if bar is hidden (should be hidden by HideBlizzardBars)
-            -- Check if parent is UIHider frame (either FluxUIHider or FluxUIHiderClassic)
-            local parent = bar:GetParent()
-            if parent then
-                local parentName = parent:GetName()
-                if parentName == "FluxUIHider" or parentName == "FluxUIHiderClassic" then
-                    shouldSkip = true
-                end
-                -- Also check if parent is the global UIHider if available
-                if not shouldSkip then
-                    local globalUIHider = _G["FluxUIHider"] or _G["FluxUIHiderClassic"]
-                    if globalUIHider and parent == globalUIHider then
-                        shouldSkip = true
-                    end
-                end
-            end
-            
-            -- Do NOT skip Edit Mode / visible bars - we must hook them to intercept negative scale
-            -- values (e.g. -0.21 from UpdateRightActionBarPositions) which cause "Scale must be > 0" errors.
-            
-            -- Skip hooking if frame is hidden (parented to UIHider)
-            if shouldSkip then
-                -- These bars should be hidden anyway, or are managed by EditMode
-                -- We don't need to protect their scales, and hooking would cause errors
-                -- Skip to next bar
-            else
-            if enable then
-                -- Wrap SetScale to intercept negative values before they cause errors
-                if not embeddedState.hookedFrames[barName] then
-                    -- Store original SetScale function
-                    embeddedState.hookedFrames[barName] = bar.SetScale
-                    
-                    -- Replace with wrapped version that clamps negative values
-                    -- Use pcall to handle cases where SetScale might be protected
-                    local success, err = pcall(function()
-                        bar.SetScale = function(self, scale)
-                            if InCombatLockdown() then
-                                return
-                            end
-                            if FLUX_API.SecureUIPanelsBlockInsecureWork and FLUX_API.SecureUIPanelsBlockInsecureWork() then
-                                return embeddedState.hookedFrames[barName](self, scale)
-                            end
-                            -- Always clamp invalid scale - Edit Mode can pass negative values (e.g. -0.21)
-                            if type(scale) == "number" and scale <= 0 then
-                                scale = 0.01
-                            end
-                            embeddedState.hookedFrames[barName](self, scale)
-                        end
-                    end)
-                    
-                    -- If wrapping failed (e.g., secure function), do not hooksecurefunc SetScale.
-                    -- That C method is shared; nameplate RefreshList SetScale would taint Layout.
-                    if not success then
-                        embeddedState.hookedFrames[barName] = nil
-                    end
-                end
-            else
-                -- Restore original SetScale function
-                if embeddedState.hookedFrames[barName] then
-                    if type(embeddedState.hookedFrames[barName]) == "function" then
-                        -- Restore original function only if not in combat
-                        if not InCombatLockdown() then
-                            pcall(function()
-                                bar.SetScale = embeddedState.hookedFrames[barName]
-                            end)
-                        end
-                    end
-                    -- Clear the hook record (hooksecurefunc hooks can't be removed)
-                    embeddedState.hookedFrames[barName] = nil
-                end
-            end
-            end -- end else block for shouldSkip check
-        end
-    end
-end
-
 -- MinimapCluster is an Edit Mode system; Edit Mode shows it inside its pass.
 local function KeepMinimapClusterHidden()
     local cluster = _G.MinimapCluster
@@ -2349,8 +2245,6 @@ function FluxMinimap:EmbedInFrame(parentFrame)
         self:UpdateQuestTrackerPosition()
     end
 
-    -- Protect action bars from negative scale values caused by Edit Mode miscalculations
-    self:ProtectActionBarScales(true)
     
     -- Ensure proper sizing after embedding (especially important on login/reload)
     -- Use a watcher to re-apply sizing if parent frame size changes or wasn't ready initially
@@ -2531,8 +2425,6 @@ function FluxMinimap:RestoreToNormal()
         end
     end
     
-    -- Remove action bar scale protection (no longer needed when minimap is restored)
-    self:ProtectActionBarScales(false)
 
     -- Notify FluxMinimapButtons of embedding state change
     if FluxMinimapButtons and FluxMinimapButtons.OnEmbedStateChanged then

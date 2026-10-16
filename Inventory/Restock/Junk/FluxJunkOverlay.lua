@@ -167,6 +167,9 @@ local function SlotIsJunkForDisplay(bag, slot, itemID)
     if not itemID or not fj then
         return false
     end
+    if fj.IsSlotProtectedFromSell and fj.IsSlotProtectedFromSell(bag, slot) then
+        return false
+    end
     local info = GetContainerItemInfo(bag, slot)
     if fj.IsJunkForDisplay then
         return fj.IsJunkForDisplay(itemID, info) and true or false
@@ -186,6 +189,7 @@ local function ApplyNativeJunkIcon(button, shown)
         if junkIcon.SetAtlas then
             junkIcon:SetAtlas(JUNK_COIN_ATLAS, true)
         end
+        junkIcon:SetDrawLayer("OVERLAY", 7)
         junkIcon:Show()
     else
         junkIcon:Hide()
@@ -194,7 +198,7 @@ local function ApplyNativeJunkIcon(button, shown)
 end
 
 local function NewGlow(button)
-    local glow = button:CreateTexture(nil, "OVERLAY")
+    local glow = button:CreateTexture(nil, "OVERLAY", nil, 6)
     glow:SetTexture("Interface/Buttons/UI-ActionButton-Border")
     glow:SetVertexColor(R, G, B, 0.7)
     glow:SetBlendMode("ADD")
@@ -206,7 +210,7 @@ end
 
 local function NewIcon(button)
     local fj = FJ()
-    local icon = button:CreateTexture(nil, "OVERLAY")
+    local icon = button:CreateTexture(nil, "OVERLAY", nil, 7)
     icon:SetTexture((fj and fj.COIN_ICON) or "Interface/Buttons/UI-GroupLoot-Coin-Up")
     icon:SetPoint("TOPLEFT", 2, -2)
     icon:SetSize(15, 15)
@@ -441,28 +445,26 @@ local function ForEachItemButton(frame, call)
     if not frame or not call then
         return
     end
+    local seen = {}
+    local function Visit(button)
+        if button and not seen[button] then
+            seen[button] = true
+            call(button)
+        end
+    end
     if frame.EnumerateValidItems then
-        local ok = pcall(function()
+        pcall(function()
             for _, button in frame:EnumerateValidItems() do
-                if button then
-                    call(button)
-                end
+                Visit(button)
             end
         end)
-        if ok then
-            return
-        end
     end
     if frame.Items then
         for i = 1, #frame.Items do
-            local button = frame.Items[i]
-            if button then
-                call(button)
-            end
+            Visit(frame.Items[i])
         end
-        return
     end
-    IterateNamedItemButtons(frame, call)
+    IterateNamedItemButtons(frame, Visit)
 end
 
 -- ---------------------------------------------------------------------------

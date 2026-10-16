@@ -1,6 +1,6 @@
 -- UnitFrames/FluxLegacyComboPoints.lua
--- Pre-Dragonflight / Classic: Blizzard ComboFrame + ComboPoint1..N on target, duplicate row above player.
--- Mirrors TPerl_Target approach (ComboFrame reparent, layout, ComboFrame_Update + shine animations).
+-- Classic player combo row using Blizzard's native ComboPointTemplate artwork.
+-- Target unit frames remain untouched; nameplates own their separate target row.
 local addonName, ns = ...
 
 ns.LegacyComboPoints = {}
@@ -16,17 +16,10 @@ local PLAYER_COMBO_ROW_SCALE = 2.75
 -- Vertical: BOTTOM of row to TOP of outer border — lower Y moves the row down (closer to the frame)
 local PLAYER_COMBO_Y_OFFSET = 0
 
--- Target: scale combo pips on portrait. Anchor TOPLEFT→TOPLEFT (not TOP→TOP): centering on TOP
--- placed half the row over the HP bar when portrait is on the right; insets keep pips inside the portrait.
-local TARGET_COMBO_SCALE = 1.4
-local TARGET_COMBO_LEFT_INSET = 4
-local TARGET_COMBO_TOP_INSET = -12
-
 local playerComboHost
 local playerComboPoints = {}
 local lastPlayerComboCount = -1
 local legacyEventFrame
-local targetComboHooked
 
 local function GetAnchor(parentFrame)
     if parentFrame and parentFrame.outerBorderFrame then
@@ -36,6 +29,7 @@ local function GetAnchor(parentFrame)
 end
 
 local function PlayerShouldShowComboUI()
+    if FluxUnitFrames_ShouldShowClassPower and not FluxUnitFrames_ShouldShowClassPower() then return false end
     local _, c = UnitClass("player")
     if c == "ROGUE" then
         return true
@@ -69,78 +63,27 @@ local function GetComboMax()
     return 5
 end
 
-local function EnsurePlayerFrameUnit()
-    local pf = _G.PlayerFrame
-    if not pf then return end
-    if UnitHasVehicleUI and UnitHasVehicleUI("player") then
-        pf.unit = "vehicle"
-    else
-        pf.unit = "player"
-    end
+local function SuppressTargetCombo()
+    if InCombatLockdown() then return end
+    local frame = _G.ComboFrame
+    if not frame then return end
+    -- Classic's ComboFrame is parented to UIParent, so hiding TargetFrame does
+    -- not hide its pips. Stop this independent target row; keep native methods
+    -- and PlayerFrame.unit untouched. Flux owns the player/nameplate displays.
+    if frame.UnregisterAllEvents then frame:UnregisterAllEvents() end
+    if frame.Hide then frame:Hide() end
 end
 
--- Layout ComboPoint1..5 inside ComboFrame (TPerl "top" arrangement for classic 5-pip row)
--- Anchored inside the portrait top so pips sit within the border, above the model
-local function LayoutBlizzardComboFrameTop(portraitFrame)
-    local cf = _G.ComboFrame
-    if not cf or not portraitFrame then return end
-
-    cf:ClearAllPoints()
-    cf:SetPoint("TOPLEFT", portraitFrame, "TOPLEFT", TARGET_COMBO_LEFT_INSET, TARGET_COMBO_TOP_INSET)
-
-    for i = 1, 9 do
-        local cp = _G["ComboPoint" .. i]
-        if cp and cp.ClearAllPoints then
-            cp:ClearAllPoints()
-            if i < 6 then
-                cp:SetAlpha(1)
-            elseif cp.SetAlpha then
-                cp:SetAlpha(0.5)
-            end
-        end
+local function ClearPoint(point)
+    if UIFrameFadeRemoveFrame then
+        if point.Highlight then UIFrameFadeRemoveFrame(point.Highlight) end
+        if point.Shine then UIFrameFadeRemoveFrame(point.Shine) end
     end
-
-    local ComboPoint1 = _G.ComboPoint1
-    local ComboPoint2 = _G.ComboPoint2
-    local ComboPoint3 = _G.ComboPoint3
-    local ComboPoint4 = _G.ComboPoint4
-    local ComboPoint5 = _G.ComboPoint5
-    if not (ComboPoint1 and ComboPoint2 and ComboPoint3 and ComboPoint4 and ComboPoint5) then return end
-
-    ComboPoint1:SetPoint("TOPLEFT", cf, "TOPLEFT", 0, 0)
-    ComboPoint2:SetPoint("LEFT", ComboPoint1, "RIGHT", 0, 1)
-    ComboPoint3:SetPoint("LEFT", ComboPoint2, "RIGHT", 0, 1)
-    ComboPoint4:SetPoint("LEFT", ComboPoint3, "RIGHT", 0, -1)
-    ComboPoint5:SetPoint("LEFT", ComboPoint4, "RIGHT", 0, -1)
-
-    if _G.ComboPoint6 and _G.ComboPoint2 then
-        _G.ComboPoint6:SetPoint("TOPLEFT", _G.ComboPoint2, "BOTTOMLEFT", 0, 0)
-    end
-    if _G.ComboPoint7 and _G.ComboPoint3 then
-        _G.ComboPoint7:SetPoint("TOPLEFT", _G.ComboPoint3, "BOTTOMLEFT", 0, 0)
-    end
-    if _G.ComboPoint8 and _G.ComboPoint4 then
-        _G.ComboPoint8:SetPoint("TOPLEFT", _G.ComboPoint4, "BOTTOMLEFT", 0, 0)
-    end
+    if point.Highlight then point.Highlight:SetAlpha(0) end
+    if point.Shine then point.Shine:SetAlpha(0) end
 end
 
--- ComboFrame must be a child of PortraitFrame with level above PlayerModel (portrait+2 in shared).
--- Sibling-of-portrait on the unit frame loses to the 3D model's draw order; model is not a normal 2D sibling.
-local function ApplyTargetComboFrameLayer(cf, parentFrame, portrait)
-    if not cf or not parentFrame or not portrait then return end
-    local model = parentFrame.Portrait
-    local lvl
-    if model and model.GetFrameLevel then
-        lvl = model:GetFrameLevel() + 12
-    else
-        lvl = portrait:GetFrameLevel() + 10
-    end
-    cf:SetFrameStrata("DIALOG")
-    cf:SetFrameLevel(lvl)
-    cf:SetScale(TARGET_COMBO_SCALE)
-end
-
--- Player mirror row: same template, local last-count for shine
+-- Empty native sockets remain visible, including zero points and no target.
 local function UpdatePlayerComboRow()
     if not playerComboHost then return end
     if not PlayerShouldShowComboUI() then
@@ -155,20 +98,6 @@ local function UpdatePlayerComboRow()
     local maxPts = math.min(GetComboMax(), numPts)
     local comboPoints = GetComboCount()
 
-    if comboPoints <= 0 then
-        for i = 1, numPts do
-            local cp = playerComboPoints[i]
-            if cp then
-                if cp.Highlight then cp.Highlight:SetAlpha(0) end
-                if cp.Shine then cp.Shine:SetAlpha(0) end
-                cp:Hide()
-            end
-        end
-        playerComboHost:Hide()
-        lastPlayerComboCount = comboPoints
-        return
-    end
-
     if not playerComboHost:IsShown() then
         playerComboHost:Show()
         if UIFrameFadeIn then
@@ -177,11 +106,11 @@ local function UpdatePlayerComboRow()
     end
 
     local prevLast = lastPlayerComboCount or 0
-    for i = 1, maxPts do
+    for i = 1, numPts do
         local cp = playerComboPoints[i]
         if not cp then break end
-        if i <= comboPoints then
-            cp:Show()
+        cp:SetShown(i <= maxPts)
+        if i <= comboPoints and i <= maxPts then
             if i > prevLast and cp.Highlight and cp.Shine and UIFrameFade and ComboPointShineFadeIn then
                 local fadeInfo = {}
                 fadeInfo.mode = "IN"
@@ -189,46 +118,30 @@ local function UpdatePlayerComboRow()
                 fadeInfo.finishedFunc = ComboPointShineFadeIn
                 fadeInfo.finishedArg1 = cp.Shine
                 UIFrameFade(cp.Highlight, fadeInfo)
+            elseif cp.Highlight then
+                cp.Highlight:SetAlpha(1)
             end
         else
-            if cp.Highlight then cp.Highlight:SetAlpha(0) end
-            if cp.Shine then cp.Shine:SetAlpha(0) end
-            cp:Hide()
+            ClearPoint(cp)
         end
     end
 
     lastPlayerComboCount = comboPoints
 end
 
-local function RefreshTargetComboFrame()
-    local cf = _G.ComboFrame
-    if not cf then return end
-    EnsurePlayerFrameUnit()
-    cf.unit = (UnitHasVehicleUI and UnitHasVehicleUI("player")) and "vehicle" or "player"
-    if ComboFrame_UpdateMax then
-        pcall(ComboFrame_UpdateMax, cf)
-    end
-    if ComboFrame_Update then
-        pcall(ComboFrame_Update, cf)
-    end
-    local pf = cf.FluxLegacyTargetUnitFrame
-    if pf and pf.PortraitFrame then
-        LayoutBlizzardComboFrameTop(pf.PortraitFrame)
-        ApplyTargetComboFrameLayer(cf, pf, pf.PortraitFrame)
-    end
-end
-
 function ns.LegacyComboPoints.RefreshAll()
     if not ns.API or not ns.API.ShouldUseLegacyComboFrameUI or not ns.API.ShouldUseLegacyComboFrameUI() then
         return
     end
+    SuppressTargetCombo()
+    if playerComboHost and not InCombatLockdown() then
+        playerComboHost:SetScale(PLAYER_COMBO_ROW_SCALE * (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1))
+    end
     if not PlayerShouldShowComboUI() then
         if playerComboHost then playerComboHost:Hide() end
-        if _G.ComboFrame then _G.ComboFrame:Hide() end
         return
     end
     UpdatePlayerComboRow()
-    RefreshTargetComboFrame()
 end
 
 local function RegisterLegacyComboEvents()
@@ -237,7 +150,6 @@ local function RegisterLegacyComboEvents()
 
     local function onEvent(self, event, ...)
         if not ns.API.ShouldUseLegacyComboFrameUI() then return end
-        if not PlayerShouldShowComboUI() then return end
 
         if event == "UNIT_POWER_FREQUENT" or event == "UNIT_POWER_UPDATE" then
             local unit, powerType = ...
@@ -252,7 +164,9 @@ local function RegisterLegacyComboEvents()
 
     legacyEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
     legacyEventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
+    legacyEventFrame:RegisterEvent("COMBO_TARGET_CHANGED")
     legacyEventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+    legacyEventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
     legacyEventFrame:RegisterEvent("UNIT_ENTERED_VEHICLE")
     legacyEventFrame:RegisterEvent("UNIT_EXITED_VEHICLE")
 
@@ -265,6 +179,11 @@ local function RegisterLegacyComboEvents()
         legacyEventFrame:RegisterEvent("UNIT_POWER_UPDATE")
         legacyEventFrame:RegisterEvent("UNIT_MAXPOWER")
     end
+end
+
+if ns.API and ns.API.ShouldUseLegacyComboFrameUI and ns.API.ShouldUseLegacyComboFrameUI() then
+    RegisterLegacyComboEvents()
+    SuppressTargetCombo()
 end
 
 -- Fallback when bounds are not ready yet (login / first frame)
@@ -298,26 +217,6 @@ local function ApplyPlayerComboHostSizeFromPoints()
 
     playerComboHost:SetSize(w, h)
     return true
-end
-
-local function HookComboFrameParent(targetRootFrame)
-    local cf = _G.ComboFrame
-    if not cf or targetComboHooked or not targetRootFrame then return end
-    targetComboHooked = true
-
-    local origSetParent = cf.SetParent
-    if type(origSetParent) ~= "function" then
-        return
-    end
-    local parenting
-    cf.SetParent = function(self, parent)
-        if parenting or parent == targetRootFrame then
-            return origSetParent(self, parent)
-        end
-        parenting = true
-        origSetParent(self, targetRootFrame)
-        parenting = nil
-    end
 end
 
 local function InitPlayerComboRow(parentFrame)
@@ -385,10 +284,12 @@ local function InitPlayerComboRow(parentFrame)
     -- Do NOT Hide() here: that raced with Initialize's C_Timer.After(0, RefreshAll) and cleared the row.
     local function finishLayout()
         if not playerComboHost then return end
+        if InCombatLockdown() then return end
+        playerComboHost:SetScale(1)
         if not ApplyPlayerComboHostSizeFromPoints() then
             playerComboHost:SetSize(PLAYER_COMBO_HOST_FALLBACK_W, PLAYER_COMBO_HOST_FALLBACK_H)
         end
-        playerComboHost:SetScale(PLAYER_COMBO_ROW_SCALE)
+        playerComboHost:SetScale(PLAYER_COMBO_ROW_SCALE * (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1))
         ns.LegacyComboPoints.RefreshAll()
     end
 
@@ -400,42 +301,12 @@ local function InitPlayerComboRow(parentFrame)
     end
 end
 
-local function InitTargetComboFrame(parentFrame)
-    local cf = _G.ComboFrame
-    local portrait = parentFrame and parentFrame.PortraitFrame
-    if not cf or not portrait then return end
-
-    -- Child of PortraitFrame so layering competes with PlayerModel; level set above model in ApplyTargetComboFrameLayer
-    HookComboFrameParent(portrait)
-
-    cf:SetParent(portrait)
-    ApplyTargetComboFrameLayer(cf, parentFrame, portrait)
-
-    LayoutBlizzardComboFrameTop(portrait)
-
-    EnsurePlayerFrameUnit()
-    if cf then
-        cf.unit = (UnitHasVehicleUI and UnitHasVehicleUI("player")) and "vehicle" or "player"
-    end
-    if ComboFrame_UpdateMax then
-        pcall(ComboFrame_UpdateMax, cf)
-    end
-
-    cf.FluxLegacyTargetUnitFrame = parentFrame
-
-    if not cf.FluxLegacyComboLayoutHook then
-        cf.FluxLegacyComboLayoutHook = true
-        cf:HookScript("OnShow", function()
-            if parentFrame.PortraitFrame then
-                LayoutBlizzardComboFrameTop(parentFrame.PortraitFrame)
-                ApplyTargetComboFrameLayer(cf, parentFrame, parentFrame.PortraitFrame)
-            end
-        end)
-    end
-end
-
 function ns.LegacyComboPoints.Initialize(parentFrame)
-    if not parentFrame or not parentFrame.unit then return end
+    if not parentFrame or parentFrame.unit ~= "player" then return end
+    if ns.ForeverComboPoints then
+        ns.ForeverComboPoints.Initialize(parentFrame)
+        return
+    end
     -- Era and Anniversary still have PlayerFrameBottomManagedFramesContainer.
     -- That container is not the combo UI; ComboFrame is. Forever must not enter
     -- here: ComboFrame_Update compares secret GetComboPoints once the frame is tainted.
@@ -446,13 +317,7 @@ function ns.LegacyComboPoints.Initialize(parentFrame)
 
     RegisterLegacyComboEvents()
 
-    if parentFrame.unit == "player" then
-        InitPlayerComboRow(parentFrame)
-    elseif parentFrame.unit == "target" then
-        InitTargetComboFrame(parentFrame)
-    else
-        return
-    end
+    InitPlayerComboRow(parentFrame)
 
     C_Timer.After(0.15, function()
         ns.LegacyComboPoints.RefreshAll()

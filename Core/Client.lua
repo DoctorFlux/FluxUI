@@ -41,19 +41,21 @@ end
 -- Live Midnight vs Forever. Both can sit in Interface\AddOns under _retail_.
 -- wow-ui-source-live CharacterFrame: CharacterStatsPane only.
 -- wow-ui-source-forever CharacterFrame: CharacterStatsPaneScrollBox + Pet.
--- TOC [AllowLoadGameType camelot] is authoritative. A 12.x client without that
--- TOC file is live even if a ScrollBox of the Forever name exists (that probe
--- misfires on live and wrongly enables Classic spell ranks).
+-- The Camelot module validates its runtime before setting its flag. Also bound
+-- detection here: a stray TOC flag or similarly named widget/API cannot turn
+-- a 12.x Retail build into Forever.
 local tocCamelot = ns._isCamelotGameType == true
 local foreverTimer = C_Timer and type(C_Timer.NewTimedSignalMap) == "function"
 local foreverStatsPane = rawget(_G, "CharacterStatsPaneScrollBox") ~= nil
 	and rawget(_G, "CharacterStatsPanePetScrollBox") ~= nil
 local foreverBuild = IsProject(WOW_PROJECT_MAINLINE) and majorVersion > 0 and majorVersion < 10
-local isCamelot = not isAnyClassicProject and (
+local isCamelot = not isAnyClassicProject and majorVersion < 12 and (
 	tocCamelot
 	or foreverBuild
 	or (majorVersion < 12 and (foreverTimer or foreverStatsPane))
 )
+-- Some modules read the namespace flag directly; keep it canonical as well.
+ns._isCamelotGameType = isCamelot
 
 local isRetail = IsProject(WOW_PROJECT_MAINLINE) or isCamelot
 

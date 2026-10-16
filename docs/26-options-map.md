@@ -298,6 +298,8 @@ Player · Target · Target of target · Focus* · Focus target* · Pet · Pet ta
 - Nameplate Progressive, Flash, Health Bar Color, and Threat warning are on **Nameplates**, not this page
 
 ### Player
+
+- **Class power size** — 50–200%, default **100%**; applies to every unit-frame class resource after combat.
 - Show portrait strip — **on**
 - Width **325** (150–600) · Height **100** (40–200)
 - Health / resource split % — **60** (35–85)

@@ -56,14 +56,16 @@ local function GetCarriedBagIDs()
 end
 
 local function GetTotalFreeBagSlots()
-    local inv = Inv()
-    if inv and inv.GetTotalFreeBagSlots then
-        return inv.GetTotalFreeBagSlots({ includeReagent = true, includeKeyring = false }) or 0
+    -- Use the same count as Blizzard's bag window/header. The inventory total
+    -- includes reagent storage, which cannot hold ordinary backpack items.
+    if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
+        return C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
     end
-    local keyring = _G.KEYRING_CONTAINER or -2
+    local keyring = _G.KEYRING_CONTAINER or (Enum and Enum.BagIndex and Enum.BagIndex.Keyring) or -2
+    local reagent = _G.REAGENTBAG_CONTAINER or (Enum and Enum.BagIndex and Enum.BagIndex.ReagentBag) or 5
     local total = 0
     for _, bag in ipairs(GetCarriedBagIDs()) do
-        if bag ~= keyring then
+        if bag ~= keyring and bag ~= reagent then
             total = total + GetFreeSlotsSafe(bag)
         end
     end
@@ -106,9 +108,11 @@ local function GetBagQualityColor(bagID)
         if GetInventoryItemQuality then
             quality = GetInventoryItemQuality("player", invID)
         end
-        if quality then
-            local r, g, b = GetItemQualityColor(quality)
-            return r, g, b
+        -- Retail exposes this under C_Item; older clients keep the global.
+        local getQualityColor = C_Item and C_Item.GetItemQualityColor or GetItemQualityColor
+        if quality ~= nil and getQualityColor then
+            local r, g, b = getQualityColor(quality)
+            if r and g and b then return r, g, b end
         end
     end
     return 1, 1, 1
@@ -606,7 +610,7 @@ local clickHandler = {
             tooltip:AddLine("<Right Click> Equip Bags", 0.6, 0.6, 0.6)
         end
         
-        -- Calculate total free space (all carried bags, not backpack-only)
+        -- Match the bag window's ordinary storage count (excludes reagent/keyring).
         local totalFree = GetTotalFreeBagSlots()
         
         tooltip:AddLine(" ")

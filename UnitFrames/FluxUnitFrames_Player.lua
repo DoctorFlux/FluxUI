@@ -112,14 +112,13 @@ local function InitializePlayerFrame()
         ST.AttachToCastBar(frame.CastBar, "player")
     end
     
-    -- Hide Blizzard Player Frame (Conservative Approach for Classic Taint)
-        if FluxUnitFrames_SuppressBlizzardUnitFrame and FluxUnitFrames_ShouldUseFlux("player") then
+    -- Hide Blizzard artwork while keeping its native player/vehicle updates.
+    if FluxUnitFrames_SuppressBlizzardUnitFrame and FluxUnitFrames_ShouldUseFlux("player") then
         FluxUnitFrames_SuppressBlizzardUnitFrame("player")
     elseif PlayerFrame then
-        PlayerFrame:UnregisterAllEvents()
-        
+        -- Keep Blizzard's player/vehicle unit and aura updates in native code.
         if not InCombatLockdown() and PlayerFrame.SetAlpha then
-           PlayerFrame:SetAlpha(0)
+            PlayerFrame:SetAlpha(0)
         end
         
         -- Do NOT call SetParent(hidden) or Hide() — PlayerFrame is an Edit Mode
@@ -244,7 +243,6 @@ function FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
             return
         end
         if PlayerFrame then
-            PlayerFrame:UnregisterAllEvents()
             if not InCombatLockdown() and PlayerFrame.SetAlpha then
                 PlayerFrame:SetAlpha(0)
             end
@@ -256,19 +254,15 @@ function FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
         if not pf then
             return
         end
-        pcall(function()
-            if _G.PlayerFrame_OnLoad then
-                PlayerFrame_OnLoad(pf)
-            end
-        end)
+        -- Restore suspended overlay events without calling OnLoad, which would
+        -- rewrite PlayerFrame.unit and the native handler state under Flux.
+        if FluxUnitFrames_SetBlizzardPlayerPredictionMuted then
+            FluxUnitFrames_SetBlizzardPlayerPredictionMuted(false)
+        end
         if not InCombatLockdown() then
             if pf.SetAlpha then
                 pf:SetAlpha(1)
             end
-            pf:Show()
-        end
-        if _G.PlayerFrame_Update then
-            pcall(PlayerFrame_Update)
         end
     end
 

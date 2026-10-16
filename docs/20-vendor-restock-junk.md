@@ -33,6 +33,12 @@ Per-character automation on merchant/bank open:
 
 - Auto repair (optional guild bank first)
 - Auto sell junk
+- Sellable gray items share the same rule in the Junk list, bag indicators, and
+  sell queue, regardless of item level or bind type. Useful marks, restock
+  targets, conjured consumables, and saved gear protections remain respected.
+- Selling tracks pending stacks across bag updates. Each attempt uses one
+  container API path; it does not also sell through the cursor or start a
+  competing native bulk sale. A final live scan picks up relocated junk.
 - Auto restock listed items to targets
 - Auto bank restock (refill bags from bank toward targets when bank opens)
 - Inventory foundation supplies counts, classification, and movers ([21-inventory-foundation.md](21-inventory-foundation.md))

@@ -713,6 +713,29 @@ local HUD_HEALTH_ATLAS = "UI-HUD-UnitFrame-Player-PortraitOn-Bar-Health"
 local HUD_BAR_ROOT = "UI-HUD-UnitFrame-Player-PortraitOn"
 local FluxPowerBarColor
 
+-- Forever changed the artwork behind these Retail atlas names. Standalone
+-- Retail fills also avoid StatusBar resetting a manually cropped sheet's UVs.
+do
+    local RETAIL_BAR_PATH = "Interface\\AddOns\\_FluxUI\\Media\\UnitFrames\\Retail\\"
+    local RETAIL_BAR_FILES = {
+        [HUD_BAR_ROOT .. "-Bar-Health"] = "Health",
+        [HUD_BAR_ROOT .. "-Bar-Mana"] = "Mana",
+        [HUD_BAR_ROOT .. "-Bar-Mana-Status"] = "ManaStatus",
+        [HUD_BAR_ROOT .. "-Bar-Energy"] = "Energy",
+        [HUD_BAR_ROOT .. "-Bar-Focus"] = "Focus",
+        [HUD_BAR_ROOT .. "-Bar-Rage"] = "Rage",
+        [HUD_BAR_ROOT .. "-Bar-RunicPower"] = "RunicPower",
+        [HUD_BAR_ROOT .. "-ClassResource-Bar-Mana"] = "ClassResourceMana",
+        [HUD_BAR_ROOT .. "-ClassResource-Bar-Energy"] = "ClassResourceEnergy",
+    }
+
+    function UF.GetHudBarTexture(atlas)
+        local client = ns.Flux and ns.Flux.Client or rawget(_G, "FLUX_API")
+        local file = client and client.isForever and RETAIL_BAR_FILES[atlas]
+        return file and (RETAIL_BAR_PATH .. file .. ".tga") or atlas
+    end
+end
+
 -- Live Midnight and Forever use the HUD unit-frame atlases. Era, Anniversary, and Mists stay on UI-StatusBar.
 function UF.UsesHudUnitBars()
     local client = ns.Flux and ns.Flux.Client
@@ -728,6 +751,7 @@ end
 
 local function AtlasExists(name)
     if not name or name == "" then return false end
+    if UF.GetHudBarTexture(name) ~= name then return true end
     if not (C_Texture and C_Texture.GetAtlasInfo) then return false end
     local ok, info = pcall(C_Texture.GetAtlasInfo, name)
     return ok and info ~= nil
@@ -1172,7 +1196,7 @@ function UF.ApplyResourceBarStyle(bar, unit, powerToken, powerType, altR, altG, 
             tintAlt = altR and true or false
         end
         if AtlasExists(atlas) then
-            bar:SetStatusBarTexture(atlas)
+            bar:SetStatusBarTexture(UF.GetHudBarTexture(atlas))
             bar._fluxBarAtlas = atlas
             bar._fluxHudAtlas = true
             if tintAlt and altR and not ValueIsSecret(altR) then
@@ -1297,13 +1321,13 @@ local function ApplyHealthBarArt(health)
     local loss = health.AnimatedLossBar
     if hud then
         if not health._fluxHudHealth then
-            health:SetStatusBarTexture(HUD_HEALTH_ATLAS)
+            health:SetStatusBarTexture(UF.GetHudBarTexture(HUD_HEALTH_ATLAS))
             health._fluxHudHealth = true
         end
         health:SetStatusBarColor(1, 1, 1)
         if loss then
             if not loss._fluxHudHealth then
-                loss:SetStatusBarTexture(HUD_HEALTH_ATLAS)
+                loss:SetStatusBarTexture(UF.GetHudBarTexture(HUD_HEALTH_ATLAS))
                 loss._fluxHudHealth = true
             end
             loss:SetStatusBarColor(1, 0, 0, 1)

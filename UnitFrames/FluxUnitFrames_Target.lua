@@ -178,12 +178,6 @@ local function InitializeTargetFrame()
     -- Outer Border (even more outer with background backdrop)
     local outerBorder = UF.CreateOuterBorder(frame)
 
-    -- Classic Era / Anniversary combo pips sit on the target portrait.
-    -- Forever and live use RogueComboPointBarFrame / DruidComboPointBarFrame instead.
-    if ns.LegacyComboPoints and ns.LegacyComboPoints.Initialize then
-        ns.LegacyComboPoints.Initialize(frame)
-    end
-
     -- Threat strip (between mode) needs outer chrome before aura panels pin to it.
     if UF.LayoutThreatBar and frame.ThreatBar then
         UF.LayoutThreatBar(frame)

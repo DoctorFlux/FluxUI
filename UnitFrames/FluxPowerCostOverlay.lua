@@ -142,7 +142,11 @@ function PCO.ApplySegmentArt(bar)
     if not seg or not UF then return end
     local info = bar._fluxPowerInfo
     local atlas = UF.GetPowerStatusAtlas and UF.GetPowerStatusAtlas(info)
-    if atlas and seg.SetAtlas then
+    local texture = atlas and UF.GetHudBarTexture and UF.GetHudBarTexture(atlas)
+    if texture and texture ~= atlas then
+        seg:SetTexture(texture)
+        seg:SetTexCoord(0, 1, 0, 1)
+    elseif atlas and seg.SetAtlas then
         seg:SetAtlas(atlas)
     else
         seg:SetTexture(TEXTURE_BAR)
@@ -198,7 +202,8 @@ end
 
 local function MatchGhostArt(bar, ghost)
     if bar._fluxBarAtlas and ghost.SetStatusBarTexture then
-        ghost:SetStatusBarTexture(bar._fluxBarAtlas)
+        local atlas = bar._fluxBarAtlas
+        ghost:SetStatusBarTexture(UF.GetHudBarTexture and UF.GetHudBarTexture(atlas) or atlas)
         ghost:SetStatusBarColor(1, 1, 1)
     else
         ghost:SetStatusBarTexture(TEXTURE_BAR)

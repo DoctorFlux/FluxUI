@@ -339,6 +339,7 @@ UnitFrames\FluxUnitFrames_PetAuraTooltip.lua
 UnitFrames\FluxUnitFrames_PetTarget.lua
 UnitFrames\FluxUnitFrames_FluxVsBlizzardRuntime.lua
 UnitFrames\FluxUnitFrames_BigDebuffs.lua
+UnitFrames\FluxForeverComboPoints.lua
 UnitFrames\FluxClassPower.lua
 UnitFrames\FluxLegacyComboPoints.lua
 
@@ -452,6 +453,7 @@ CharacterInfo\PaperDollEquipFlyout.lua
 CharacterInfo\Init.lua
 Other\FluxDurationBars.lua
 NamePlates\Core.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
+NamePlates\ComboPoints.lua [AllowLoadGameType vanilla, tbc, classic, camelot]
 NamePlates\Threat.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\Level.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\Countdown.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]

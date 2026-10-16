@@ -625,31 +625,45 @@ local function InstallForeverCategoryCollapse()
 	end)
 end
 
+local foreverItemLevelRow
+
 local function EnsureForeverItemLevelStat()
 	if not IsForeverCharacterPane() then
 		return
 	end
-	local cats = rawget(_G, "PAPERDOLL_STATCATEGORIES")
-	local info = rawget(_G, "PAPERDOLL_STATINFO")
-	if type(cats) ~= "table" or type(info) ~= "table" or type(info.ITEMLEVEL) ~= "table" then
-		return
+	local pane = rawget(_G, "CharacterStatsPaneScrollBox")
+	if not pane then return end
+	-- CharacterFrame:OnShow refreshes these native categories before asking
+	-- the player bars to show numeric text. Inserting into cat.stats taints that
+	-- native path. Keep item level in the pane's reserved footer instead, with
+	-- no native category/provider edits and no call to the native UpdateStats.
+	if not foreverItemLevelRow then
+		local row = CreateFrame("Frame", "FluxForeverItemLevelRow", pane)
+		row:SetHeight(16)
+		row:SetPoint("BOTTOMLEFT", pane, "BOTTOMLEFT", 14, 7)
+		row:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", -30, 7)
+		row.Label = row:CreateFontString(nil, "ARTWORK", "GameFontNormalSmall")
+		row.Label:SetPoint("LEFT")
+		row.Label:SetText(_G.STAT_AVERAGE_ITEM_LEVEL or "Item Level")
+		row.Value = row:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+		row.Value:SetPoint("RIGHT")
+		row:RegisterEvent("PLAYER_AVG_ITEM_LEVEL_UPDATE")
+		row:SetScript("OnEvent", EnsureForeverItemLevelStat)
+		foreverItemLevelRow = row
 	end
-	for i = 1, #cats do
-		local cat = cats[i]
-		if cat and cat.unit == "player" and type(cat.stats) == "table" then
-			for s = 1, #cat.stats do
-				local stat = cat.stats[s]
-				if type(stat) == "table" and stat.stat == "ITEMLEVEL" then
-					return
-				end
-			end
-			table.insert(cat.stats, 1, { stat = "ITEMLEVEL" })
-			break
-		end
+	local _, equipped = GetAverageItemLevel()
+	foreverItemLevelRow.numericValue = nil
+	if issecretvalue and issecretvalue(equipped) then
+		foreverItemLevelRow.Value:SetText("")
+	elseif type(equipped) == "number" then
+		foreverItemLevelRow.numericValue = equipped
+		foreverItemLevelRow.Value:SetFormattedText("%.1f", equipped)
+	else
+		foreverItemLevelRow.Value:SetText("")
 	end
-	local box = rawget(_G, "CharacterStatsPaneScrollBox")
-	if box and type(box.UpdateStats) == "function" then
-		pcall(box.UpdateStats, box)
+	local info = rawget(_G, "FluxInfoFrame")
+	if info and info.HookForeverScrollBoxStatFrame then
+		info.HookForeverScrollBoxStatFrame(foreverItemLevelRow, "itemLevel")
 	end
 end
 
@@ -706,6 +720,7 @@ function BindForeverStatRows()
 	if not IsForeverCharacterPane() then
 		return
 	end
+	EnsureForeverItemLevelStat()
 	local player = rawget(_G, "CharacterStatsPaneScrollBox")
 	local pet = rawget(_G, "CharacterStatsPanePetScrollBox")
 	ApplyCollapsedCategories(player)

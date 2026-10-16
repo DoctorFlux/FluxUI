@@ -92,4 +92,9 @@ function Compat.InitJunk()
     if fj and fj.RegisterListChanged then
         fj.RegisterListChanged(ScheduleRefresh)
     end
+    if fj and fj.RegisterVisualRefresh then
+        -- Item data arriving can turn a previously unknown gray into junk
+        -- without changing a manual list or moving any bag slots.
+        fj.RegisterVisualRefresh(ScheduleRefresh)
+    end
 end

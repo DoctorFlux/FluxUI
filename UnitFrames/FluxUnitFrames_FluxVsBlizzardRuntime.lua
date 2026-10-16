@@ -206,12 +206,76 @@ local function unmuteBlizzardUnitFrameVisuals(frame)
     frame._fluxMutedVisuals = nil
 end
 
+-- Hidden player overlays still receive cast/health events at alpha 0. Their Lua
+-- fill calculation divides by secret max power/health. Suspend only these unused
+-- overlays, retaining the native vehicle/art events and the original handlers.
+-- Registration snapshots live outside the Blizzard frame and preserve unit filters.
+local playerOverlayEvents = {
+    "UNIT_SPELLCAST_START", "UNIT_SPELLCAST_STOP", "UNIT_SPELLCAST_FAILED", "UNIT_SPELLCAST_SUCCEEDED",
+    "UNIT_MAXHEALTH", "UNIT_HEAL_PREDICTION", "UNIT_ABSORB_AMOUNT_CHANGED",
+    "UNIT_HEAL_ABSORB_AMOUNT_CHANGED", "UNIT_MAX_HEALTH_MODIFIERS_CHANGED",
+}
+local savedPlayerOverlayEvents
+local savedPlayerContent
+function FluxUnitFrames_SetBlizzardPlayerPredictionMuted(muted)
+    local frame = _G.PlayerFrame
+    if not frame or not frame.IsEventRegistered then return end
+    -- Alpha 0 still runs both bars' OnUpdate secret comparisons. The stock
+    -- content container has no show/hide scripts, and native player art never
+    -- shows it explicitly. Hide that ancestor to stop the bars' updates while
+    -- preserving every original script and the root's player/vehicle events.
+    -- In particular, do not detach and later reattach native OnUpdate scripts.
+    local content = frame.PlayerFrameContent
+    if content and not workBlocked() then
+        if muted then
+            if not savedPlayerContent then
+                savedPlayerContent = { frame = content, shown = content:IsShown() }
+            end
+            content:Hide()
+        elseif savedPlayerContent then
+            if savedPlayerContent.shown then savedPlayerContent.frame:Show() end
+            savedPlayerContent = nil
+        end
+    end
+    if muted then
+        savedPlayerOverlayEvents = savedPlayerOverlayEvents or {}
+        for _, event in ipairs(playerOverlayEvents) do
+            local registration = { frame:IsEventRegistered(event) }
+            if registration[1] then
+                -- Native vehicle changes may re-register a different unit.
+                savedPlayerOverlayEvents[event] = registration
+                frame:UnregisterEvent(event)
+            end
+        end
+    elseif savedPlayerOverlayEvents then
+        for event, registration in pairs(savedPlayerOverlayEvents) do
+            if #registration > 1 then
+                frame:RegisterUnitEvent(event, unpack(registration, 2))
+            else
+                frame:RegisterEvent(event)
+            end
+        end
+        savedPlayerOverlayEvents = nil
+    end
+end
+
 -- PlayerFrame (and other unit frames) are Edit Mode systems. Hide() taints
 -- shown-state; wrapping SetParent taints ApplySystemAnchor → SetClampRectInsets
 -- on spec/level (PLAYER_SPECIALIZATION_CHANGED → UpdateLayoutInfo).
--- Keep the parent shown at alpha 0; hide bars/portraits and drop their OnUpdate.
+-- Keep the parent shown at alpha 0. Other unit frames also mute child visuals;
+-- the native player frame must keep its events and child scripts intact for auras.
 local function muteBlizzardUnitFrame(frame)
     if not frame then
+        return
+    end
+    if frame == _G.PlayerFrame then
+        -- Native auras depend on this frame's unit, including vehicle changes.
+        -- Keep native vehicle/art events and child scripts. Cast/health overlays
+        -- belong to the visible Flux frame while the Blizzard artwork is hidden.
+        FluxUnitFrames_SetBlizzardPlayerPredictionMuted(true)
+        if not workBlocked() and frame.SetAlpha then
+            frame:SetAlpha(0)
+        end
         return
     end
     if frame.UnregisterAllEvents then
@@ -232,6 +296,11 @@ local function unmuteBlizzardUnitFrame(frame)
         return
     end
     if workBlocked() then
+        return
+    end
+    if frame == _G.PlayerFrame then
+        FluxUnitFrames_SetBlizzardPlayerPredictionMuted(false)
+        frame:SetAlpha(1)
         return
     end
     unmuteBlizzardUnitFrameVisuals(frame)
@@ -277,6 +346,8 @@ local function ensureResuppressWatch()
     end
     resuppressFrame = CreateFrame("Frame")
     resuppressFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+    resuppressFrame:RegisterEvent("UNIT_ENTERED_VEHICLE")
+    resuppressFrame:RegisterEvent("UNIT_EXITED_VEHICLE")
     pcall(resuppressFrame.RegisterEvent, resuppressFrame, "PLAYER_SPECIALIZATION_CHANGED")
     resuppressFrame:SetScript("OnEvent", function()
         local function reassert()
@@ -325,11 +396,6 @@ local function refreshBlizzardPlayerSide()
         return
     end
     unmuteBlizzardUnitFrame(_G.PlayerFrame)
-    pcall(function()
-        if _G.PlayerFrame_Update then
-            PlayerFrame_Update()
-        end
-    end)
 end
 
 local function refreshBlizzardFocusSide()
@@ -503,6 +569,9 @@ function FluxUnitFrames_ApplyFluxVsBlizzardRuntime()
     end
 
     FluxUnitFrames_RefreshBothSidesAfterToggle()
+    if ns.ForeverComboPoints then
+        ns.ForeverComboPoints.RefreshAll(true)
+    end
     if C_Timer and C_Timer.After then
         C_Timer.After(0, FluxUnitFrames_RefreshBothSidesAfterToggle)
         C_Timer.After(0.5, FluxUnitFrames_SuppressAllBlizzardUnitFramesWhenFluxEnabled)

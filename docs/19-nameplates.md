@@ -14,6 +14,10 @@ On Live Midnight, keep Blizzard threat/level plates and only replace aura countd
 - Red border feedback when an enemy player targets you
 - Optional “Lvl. N” (or skull) on Modern-style plates
 - Smaller buff/debuff countdown digits for readability (same 12px overlay on every client)
+- Era / Anniversary / Forever rogues and Cat Form druids: the client's native
+  combo-point artwork above the current target's health bar, with threat below.
+  Empty sockets stay visible at zero points; other nameplates receive no row.
+  The compact row is centered close above the health bar.
 
 Flux does **not** invent a full nameplate replacement suite (no Plater clone as the product goal).
 
@@ -22,6 +26,9 @@ Flux does **not** invent a full nameplate replacement suite (no Plater clone as 
 - Does not set nameplate CVars as its primary job (defaults packs may still recommend packs separately)
 - Overlays stay parented so they follow world draw order
 - Does not wrap or replace the entire aura list pipeline
+- Combo points follow target changes, point transfers (Forever), form changes,
+  and plate removal/reuse. Forever shares the secret-safe unit-frame renderer;
+  the overlay does not depend on enabling Flux's player/target frames.
 - **Classic family (Era / Anniversary / Classic):** Flux threat overlays plus “Lvl. N” (Modern style) and 75% aura countdown digits. Classic family wins if a camelot probe misfires.
 - **Retail post-DF / Midnight (live):** no Flux threat or Lvl overlay (Blizzard plates). Aura countdown uses the same taint-safe 12px Flux overlay as Classic; Settings preview plates are skipped.
 - **Forever:** secret-safe Flux threat rank/% overlay, no Lvl overlay, same 12px aura countdown overlay (preview plates skipped).

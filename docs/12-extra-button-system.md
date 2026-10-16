@@ -12,6 +12,9 @@ Compact combat consumables row, typically:
 - Healing potion, bandage, healthstone
 - Mana potion, mana gem
 - Ammo (where relevant)
+- Forever's durable throwing weapons show remaining durability (for example
+  `150`) instead of stacks/charges. Hits and repairs refresh the display in
+  combat; the display-only ammo icon stays bright.
 - Optional Single-Button Assistant (often off by default)
 
 Visibility: **Off / Auto / Always** (auto hides when irrelevant). Dedicated Flux keybinds.

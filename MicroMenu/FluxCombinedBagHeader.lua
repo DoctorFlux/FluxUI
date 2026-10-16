@@ -1,7 +1,6 @@
--- In-bag bag slots for Live and Forever.
--- Forever shows GamepadBagBar. Live does not reuse Blizzard's round bag
--- buttons; it draws its own square item slots. The item grid stays Blizzard's.
--- Forever's gamepad UI keeps Blizzard's bag untouched.
+-- In-bag equipped bag slots for Live and Forever's mouse UI. Both use owned
+-- square slots: Forever's native gamepad buttons now belong to its item grid,
+-- and are not laid out at all in mouse mode. Gamepad mode stays Blizzard's.
 local addonName, ns = ...
 local Flux = ns.Flux or _G.Flux
 
@@ -33,6 +32,11 @@ local LIVE_SLOTS = {
 
 local function UsesAltBag()
 	return _G.FluxUI_UsesAlternativeBagUI and _G.FluxUI_UsesAlternativeBagUI()
+end
+
+local function ForeverClient()
+	local client = Flux and Flux.Client
+	return client and (client.isForever or client.isCamelot) or false
 end
 
 local function RetailHeaderClient()
@@ -133,12 +137,21 @@ local function ReagentBagID()
 	end
 end
 
+local function KeyringBagID()
+	return _G.KEYRING_CONTAINER or (Enum and Enum.BagIndex and Enum.BagIndex.Keyring)
+end
+
 local function WantLiveSlot(info)
 	if info.reagent then
 		info.bagID = ReagentBagID()
 		return info.bagID ~= nil and _G.CharacterReagentBag0Slot ~= nil
 	end
 	if info.kind == "key" then
+		if ForeverClient() then
+			info.bagID = KeyringBagID()
+			return info.bagID ~= nil and _G.ToggleBag ~= nil
+				and (not C_ActionBar or not C_ActionBar.ShouldShowKeyring or C_ActionBar.ShouldShowKeyring())
+		end
 		if not _G.KeyRingButton then
 			return false
 		end
@@ -184,7 +197,7 @@ local function UpdateOwnedSlot(button)
 		return
 	end
 	if button.kind == "backpack" then
-		SetSlotIcon(button, BACKPACK_ICON)
+		SetSlotIcon(button, ForeverClient() and "Interface\\Icons\\ui-hud-actionbar-bag" or BACKPACK_ICON)
 		local count = button.Count
 		if not count and button.CreateFontString then
 			count = button:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
@@ -204,11 +217,19 @@ local function UpdateOwnedSlot(button)
 		return
 	end
 	if button.kind == "key" then
+		if ForeverClient() then
+			local icon = button.icon or button.Icon
+			icon:SetAtlas("UI-HUD-ActionBar-Keyring-Small")
+			icon:Show()
+		end
 		return
 	end
 	local inv = button.invID or InventoryIDForBag(button.bagID)
 	button.invID = inv
 	local texture = inv and GetInventoryItemTexture and GetInventoryItemTexture("player", inv)
+	if not texture and ForeverClient() then
+		texture = "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+	end
 	SetSlotIcon(button, texture)
 	if button.togglesBag and button.openMark and button.openMark.SetShown then
 		local open = _G.IsBagOpen and IsBagOpen(button.bagID)
@@ -247,11 +268,15 @@ local function ShowSlotTooltip(button)
 		if _G.NUM_FREE_SLOTS then
 			GameTooltip:AddLine(NUM_FREE_SLOTS:format(free), 1, 1, 1)
 		end
+	elseif button.kind == "key" then
+		GameTooltip:SetText(_G.KEYRING or "Keyring", 1, 1, 1)
+	elseif button.reagent and ForeverClient() then
+		GameTooltip:SetText(_G.REAGENT_BAG or "Reagent Bag", 1, 1, 1)
+		local name = C_Container and C_Container.GetBagName and C_Container.GetBagName(button.bagID)
+		GameTooltip:AddLine(name or _G.EQUIP_CONTAINER_REAGENT or "Equip Reagent Bag", 1, 1, 1)
 	elseif button.bagID ~= nil and C_Container and C_Container.GetBagName then
 		local name = C_Container.GetBagName(button.bagID)
 		GameTooltip:SetText(name and name ~= "" and name or ("Bag " .. button.bagID), 1, 1, 1)
-	elseif button.kind == "key" then
-		GameTooltip:SetText(_G.KEYRING or "Keyring", 1, 1, 1)
 	end
 	GameTooltip:Show()
 end
@@ -268,8 +293,14 @@ local function OnOwnedSlotClick(self)
 			PutKeyInKeyRing()
 			return
 		end
-		local key = _G.KEYRING_CONTAINER
+		local key = self.bagID or KeyringBagID()
 		if key and _G.ToggleBag then
+			-- Blizzard's ToggleBag returns immediately while showKeyring is off.
+			-- Only an explicit click changes the preference, never startup/layout.
+			if ForeverClient() and _G.GetCVarBool and not GetCVarBool("showKeyring") then
+				local setCVar = C_CVar and C_CVar.SetCVar or _G.SetCVar
+				if setCVar then setCVar("showKeyring", "1") end
+			end
 			ToggleBag(key)
 		end
 		return
@@ -307,9 +338,84 @@ local function CreateSquareButton(parent)
 	return button
 end
 
+-- Match Blizzard's distinct drag handlers: a failed drop must leave the
+-- cursor alone, and dragging a reagent bag must pick it up rather than toggle it.
+local function OnOwnedSlotDragStart(self)
+	if self.kind ~= "bag" or not _G.PickupBagFromSlot then
+		return
+	end
+	local inv = self.invID or InventoryIDForBag(self.bagID)
+	if inv then
+		PickupBagFromSlot(inv)
+	end
+end
+
+local function OnOwnedSlotReceiveDrag(self)
+	if self.kind == "key" then
+		if _G.CursorHasItem and CursorHasItem() and _G.PutKeyInKeyRing then
+			PutKeyInKeyRing()
+		end
+		return
+	end
+	if self.kind ~= "bag" then
+		OnOwnedSlotClick(self)
+		return
+	end
+	local inv = self.invID or InventoryIDForBag(self.bagID)
+	if inv and _G.PutItemInBag then
+		PutItemInBag(inv)
+		UpdateOwnedSlot(self)
+	end
+end
+
+local function StyleForeverSlot(button, info)
+	-- Atlas choices from Camelot's BaseBagSlotButtonMixin,
+	-- CharacterReagentBagMixin and KeyRingMixin:GetSlotAtlases().
+	-- Keep native 45px geometry and scale the complete control. The keyring
+	-- frame is 33x45, with a 27x40 inset; stretching it square distorts the art.
+	local keyring = info.kind == "key"
+	local atlas = info.reagent and "UI-HUD-ActionBar-IconFrame"
+		or (keyring and "UI-HUD-ActionBar-IconFrame-Small")
+		or "ui-hud-actionbar-iconframe-bags"
+	button:SetSize(keyring and 33 or 45, 45)
+	button:SetScale(SLOT_SCALE)
+	button:SetNormalAtlas(atlas)
+	button:SetPushedAtlas(atlas)
+	button:SetHighlightAtlas(atlas)
+	for _, tex in ipairs({ button:GetNormalTexture(), button:GetPushedTexture() }) do
+		tex:ClearAllPoints()
+		tex:SetPoint("TOPLEFT", button, "TOPLEFT", 0, 0)
+		tex:SetSize(keyring and 33 or 46, 45)
+	end
+	local highlight = button:GetHighlightTexture()
+	highlight:ClearAllPoints()
+	highlight:SetAllPoints(button)
+	highlight:SetBlendMode("ADD")
+	highlight:SetAlpha(0.4)
+	local icon = button.icon or button.Icon
+	icon:ClearAllPoints()
+	icon:SetSize(keyring and 27 or 40, 40)
+	icon:SetPoint("CENTER", button, "CENTER", 0, 0)
+	local mask = button:CreateMaskTexture()
+	mask:SetAtlas("UI-HUD-ActionBar-IconFrame-Mask")
+	-- This 64px mask includes padding around its visible opening. Fitting the
+	-- whole padded image to the icon clips the icon a second time.
+	mask:SetSize(64, 64)
+	mask:SetPoint("CENTER", icon, "CENTER", 0, 0)
+	icon:AddMaskTexture(mask)
+	button.SquareMask = mask
+	if info.reagent then
+		local marker = button:CreateTexture(nil, "OVERLAY", nil, 6)
+		marker:SetAtlas("bags-icon-reagents")
+		marker:SetSize(12, 12)
+		marker:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 1, 1)
+		button.ReagentMarker = marker
+	end
+end
+
 local function CreateOwnedSlot(parent, info)
 	local button
-	if info.kind == "key" then
+	if info.kind == "key" and not ForeverClient() then
 		button = CreateFrame("Button", nil, parent)
 		button:SetNormalTexture("Interface\\Buttons\\UI-Button-KeyRing")
 		button:SetHighlightTexture("Interface\\Buttons\\UI-Button-KeyRing-Highlight", "ADD")
@@ -332,8 +438,12 @@ local function CreateOwnedSlot(parent, info)
 	button:SetSize(info.w, info.h)
 	button.kind = info.kind
 	button.bagID = info.bagID
+	button.reagent = info.reagent
 	button.togglesBag = info.reagent and true or false
-	button.invID = InventoryIDForBag(info.bagID)
+	button.invID = info.kind == "bag" and InventoryIDForBag(info.bagID) or nil
+	if ForeverClient() then
+		StyleForeverSlot(button, info)
+	end
 	if info.reagent and not button.openMark then
 		local mark = button:CreateTexture(nil, "OVERLAY")
 		mark:SetAllPoints()
@@ -345,8 +455,8 @@ local function CreateOwnedSlot(parent, info)
 	button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	button:RegisterForDrag("LeftButton")
 	button:SetScript("OnClick", OnOwnedSlotClick)
-	button:SetScript("OnDragStart", OnOwnedSlotClick)
-	button:SetScript("OnReceiveDrag", OnOwnedSlotClick)
+	button:SetScript("OnDragStart", OnOwnedSlotDragStart)
+	button:SetScript("OnReceiveDrag", OnOwnedSlotReceiveDrag)
 	button:SetScript("OnEnter", function(self)
 		HighlightCombinedBag(self.bagID or 0, true)
 		ShowSlotTooltip(self)
@@ -436,7 +546,7 @@ local function LayoutLiveSlots()
 end
 
 local function EnsureLiveHeader(bag)
-	if header or _G.GamepadBagBar then
+	if header or (_G.GamepadBagBar and not ForeverClient()) then
 		return
 	end
 	header = CreateFrame("Frame", "FluxCombinedBagHeader", bag)
@@ -589,7 +699,7 @@ end
 -- is 46px pinned to the top-left, so the icon and border sit off the row.
 -- Match the neighbor slot's size and let UpdateTextures place the art.
 local function ShowGamepadFreeCount(bar)
-	if Off() then
+	if Off() or ForeverClient() then
 		return
 	end
 	local backpack = bar and (bar.BackpackButton or _G.GamepadBackpackButton)
@@ -615,7 +725,7 @@ local function ShowGamepadFreeCount(bar)
 	count:Show()
 end
 
-if hooksecurefunc and _G.GamepadBackpackButton and GamepadBackpackButton.UpdateFreeSlots then
+if not ForeverClient() and hooksecurefunc and _G.GamepadBackpackButton and GamepadBackpackButton.UpdateFreeSlots then
 	hooksecurefunc(GamepadBackpackButton, "UpdateFreeSlots", function(self)
 		ShowGamepadFreeCount(self:GetParent())
 	end)
@@ -695,6 +805,9 @@ local function GamepadBarPlaced(bar, bag)
 end
 
 local function ApplyGamepadBar(bag)
+	if ForeverClient() then
+		return false
+	end
 	local bar = _G.GamepadBagBar
 	if not bar then
 		return false

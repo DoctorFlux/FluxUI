@@ -322,6 +322,18 @@ local function AddTextAndBars(bucket, unit, order, flags)
     end
     if flags.classPower then
         bucket[unit .. "ClassPower"] = FlagToggle(unit, "classPower", "Class power", "Combo points, runes, essence, and the other class resource bars.", nextOrder())
+        bucket[unit .. "ClassPowerScale"] = {
+            type = "range", name = "Class power size (%)", order = nextOrder(),
+            desc = "Scale relative to the default size (100%). Includes combo points, arcane charges, holy power, runes, chi, shards, essence, and totems. Applies after combat; nameplates keep their own size.",
+            min = 50, max = 200, step = 5,
+            get = function()
+                return (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1) * 100
+            end,
+            set = function(_, value)
+                GetDB().classPowerScale = math.max(50, math.min(200, tonumber(value) or 100)) / 100
+                if ns.ClassPower and ns.ClassPower.ApplyVisibility then ns.ClassPower.ApplyVisibility() end
+            end,
+        }
     end
 end
 

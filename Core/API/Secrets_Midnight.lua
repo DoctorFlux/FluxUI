@@ -1,5 +1,7 @@
 -- Secrets_Midnight.lua — secret-value backend (Retail Midnight + Forever camelot).
 local addonName, ns = ...
+local Client = ns.Flux and ns.Flux.Client
+if Client and not (Client.isRetail or Client.isCamelot) then return end
 
 local pcall = pcall
 local _canaccessvalue = canaccessvalue
@@ -8,6 +10,7 @@ local _canaccesssecrets = canaccesssecrets
 local _issecrettable = issecrettable
 local _canaccesstable = canaccesstable
 
+ns._secretsBackendKind = "midnight"
 ns._secretsBackend = {
 	CanAccessValue = function(value)
 		if _canaccessvalue then

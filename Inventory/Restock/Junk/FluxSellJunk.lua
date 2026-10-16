@@ -21,7 +21,7 @@ local SELL_BATCH_SIZE = 6
 local CLICK_BURST_SIZE = 40
 local CONTINUE_DELAY = 0.15
 local BUSY_BACKOFF = 0.4
-local STALE_PENDING_PASSES = 8
+local PENDING_RETRY_DELAY = 2
 
 local sellState = {
     active = false,
@@ -79,70 +79,16 @@ local function IsMerchantOpen()
     return inv and inv.IsMerchantOpen() or (MerchantFrame and MerchantFrame:IsShown()) or false
 end
 
-local function NativeJunkCount()
-    local fj = FJ()
-    if fj and fj.NativeJunkCount then
-        return fj.NativeJunkCount()
-    end
-    if C_MerchantFrame and C_MerchantFrame.GetNumJunkItems then
-        local Secrets = _G.Flux and _G.Flux.Secrets
-        if Secrets and Secrets.SafeGetNumber then
-            return Secrets.SafeGetNumber(C_MerchantFrame.GetNumJunkItems(), 0)
-        end
-        return tonumber(C_MerchantFrame.GetNumJunkItems()) or 0
-    end
-    return 0
-end
-
-local function TryNativeSellAllJunk()
-    if not (C_MerchantFrame and C_MerchantFrame.SellAllJunkItems) then
-        return false
-    end
-    if C_MerchantFrame.IsSellAllJunkEnabled and not C_MerchantFrame.IsSellAllJunkEnabled() then
-        return false
-    end
-    if NativeJunkCount() <= 0 then
-        return false
-    end
-    local ok = pcall(C_MerchantFrame.SellAllJunkItems)
-    return ok == true
-end
-
 local function SameItemID(a, b)
     a, b = tonumber(a), tonumber(b)
     return a ~= nil and a == b
 end
 
--- If UseContainerItem no-ops (DF+ extra nils, Midnight secret args), drop the
--- stack on merchant slot 0 — the same sell as putting a bag item on the vendor.
-local function SellSlotViaMerchantCursor(inv, bag, slot)
-    if not inv or not PickupMerchantItem then
-        return
-    end
-    if CursorHasItem and CursorHasItem() then
-        return
-    end
-    local live = inv.GetContainerItemInfo(bag, slot)
-    if not live or not live.itemID then
-        return
-    end
-    inv.PickupContainerItem(bag, slot)
-    pcall(PickupMerchantItem, 0)
-    if CursorHasItem and CursorHasItem() and ClearCursor then
-        pcall(ClearCursor)
-    end
-end
-
 local function SellContainerSlot(inv, bag, slot)
+    -- The inventory facade chooses the supported modern/legacy API. Bag
+    -- updates are asynchronous: unchanged slot data does not mean failure.
+    -- Never submit a second sale or move the stack to the cursor here.
     inv.UseContainerItem(bag, slot)
-    -- Direct C API in case the facade still no-ops on DF+.
-    if C_Container and C_Container.UseContainerItem then
-        pcall(C_Container.UseContainerItem, bag, slot)
-    end
-    local live = inv.GetContainerItemInfo(bag, slot)
-    if live and live.itemID then
-        SellSlotViaMerchantCursor(inv, bag, slot)
-    end
 end
 
 -- ---------------------------------------------------------------------------
@@ -167,20 +113,6 @@ local function ScheduleContinue(delay)
     end)
 end
 
-local function ClearPendingStillPresent()
-    local inv = Inv()
-    if not inv then
-        wipe(sellState.pendingSells)
-        return
-    end
-    for key, pending in pairs(sellState.pendingSells) do
-        local live = inv.GetContainerItemInfo(pending.bag, pending.slot)
-        if live and SameItemID(live.itemID, pending.itemID) then
-            sellState.pendingSells[key] = nil
-        end
-    end
-end
-
 function SJ.RunBatch(mode)
     local inv = Inv()
     local ic = IC()
@@ -188,6 +120,7 @@ function SJ.RunBatch(mode)
     if not inv or not IsMerchantOpen() then
         return 0, 0, 0
     end
+    if CursorHasItem and CursorHasItem() then return 0, 0, 1 end
     if GetTime() < (sellState.busyUntil or 0) then
         local remaining = 0
         if next(sellState.pendingSells) then
@@ -231,37 +164,51 @@ function SJ.RunBatch(mode)
 
     local attempted = 0
     for bag, slot, itemID in iterFn(mode) do
+        if not sellState.active or not IsMerchantOpen() then break end
+        if GetTime() < sellState.busyUntil then
+            remaining = remaining + 1
+            break
+        end
         local live = inv.GetContainerItemInfo(bag, slot)
         if not live or not SameItemID(live.itemID, itemID) then
             if fj and fj.RemoveJunkSlotFromWorklist then
                 fj.RemoveJunkSlotFromWorklist(bag, slot, mode)
             end
         elseif not live.locked then
-            if fj and fj.IsSlotProtectedFromSell and fj.IsSlotProtectedFromSell(bag, slot) then
-                remaining = remaining + 1
+            if (fj.IsSlotProtectedFromSell and fj.IsSlotProtectedFromSell(bag, slot))
+                or (fj.IsJunk and not fj.IsJunk(itemID, live))
+                or (mode == "inferiorOnly" and fj.IsUpgradeInferior and not fj.IsUpgradeInferior(itemID)) then
+                fj.RemoveJunkSlotFromWorklist(bag, slot, mode)
             else
                 local price = ic and ic.GetSellPrice(itemID) or 0
-                -- Cached sellPrice can be 0 before item info lands; still sell
-                -- unless the slot is flagged as having no vendor value.
-                if price > 0 or live.noValue ~= true then
+                local knownNoValue = live.noValue == true
+                if live.noValue == nil and price == 0 and ic and ic.GetInfo then
+                    local info = ic.GetInfo(itemID)
+                    knownNoValue = info and info.sellPrice == 0 or false
+                end
+                -- A zero cached price can mean item data has not loaded.
+                -- Sell using explicit slot metadata; never guess at a legacy
+                -- client's missing vendor-value flag or delete an unknown item.
+                if price > 0 or live.noValue == false then
                     local slotKey = bag .. "_" .. slot
                     if sellState.pendingSells[slotKey] then
                         remaining = remaining + 1
                     elseif attempted < batchLimit then
-                        SellContainerSlot(inv, bag, slot)
                         sellState.pendingSells[slotKey] = {
                             bag = bag,
                             slot = slot,
                             itemID = itemID,
                             price = price,
                             count = live.count or 1,
+                            sentAt = GetTime(),
                         }
+                        SellContainerSlot(inv, bag, slot)
                         attempted = attempted + 1
                         inv.NotifyAutomationPulse(0.4)
                     else
                         remaining = remaining + 1
                     end
-                elseif filters.destroy ~= false and destroyed == 0 and mode ~= "inferiorOnly" then
+                elseif knownNoValue and filters.destroy ~= false and destroyed == 0 and mode ~= "inferiorOnly" then
                     inv.PickupContainerItem(bag, slot)
                     if DeleteCursorItem then
                         DeleteCursorItem()
@@ -390,6 +337,9 @@ function SJ.Start(mode, opts)
     end
     opts = type(opts) == "table" and opts or {}
     mode = mode or "all"
+    if sellState.active and sellState.mode == "all" and mode == "inferiorOnly" then
+        return true -- the full queue already includes inferior items
+    end
     local fj = FJ()
     if mode == "inferiorOnly" and fj and fj.SetUpgradeInferiorKindFilter then
         fj.SetUpgradeInferiorKindFilter(opts.kinds)
@@ -398,9 +348,8 @@ function SJ.Start(mode, opts)
     end
     sellState.kindFilter = mode == "inferiorOnly" and opts.kinds or nil
     if sellState.active and sellState.mode == mode and mode ~= "inferiorOnly" then
-        -- Resume a stuck session: clear failed pendings and force another pass.
-        ClearPendingStillPresent()
-        sellState.busyUntil = 0
+        -- A repeated click may speed up the next batch, but must not resubmit
+        -- requests that the merchant has not acknowledged yet.
         sellState.stallPasses = 0
         sellState.allowClickBurst = true
         local still = SJ.ContinueIfNeeded()
@@ -409,24 +358,23 @@ function SJ.Start(mode, opts)
         end
         return still
     end
-    if sellState.active and sellState.mode ~= mode then
-        CancelContinue()
-        sellState.active = false
+    if not sellState.active then
+        sellState.saleTotal = 0
+        sellState.passes = 0
+        sellState.stallPasses = 0
+        sellState.busyUntil = 0
+        wipe(sellState.removedItemIDs)
+        wipe(sellState.pendingSells)
+        sellState.moneyAtStart = GetMoney()
     end
+    -- Upgrading an inferior-only pass to Sell All preserves its in-flight
+    -- requests and proceeds with the larger worklist.
     sellState.active = true
     sellState.mode = mode
-    sellState.saleTotal = 0
-    sellState.passes = 0
-    sellState.stallPasses = 0
-    sellState.busyUntil = 0
-    wipe(sellState.removedItemIDs)
-    wipe(sellState.pendingSells)
-    sellState.moneyAtStart = GetMoney()
     sellState.rebuildWorklist = nil
-    -- Sell Flux-classified junk (explicit marks, inferior, unusable, greys)
-    -- on this click. Post-DF UseContainerItem / cursor pickup need the
-    -- hardware event; deferring behind SellAllJunkItems left marked
-    -- (non-grey) stacks unsold. Native greys are a same-click mop-up.
+    -- One queue handles marked items and gray junk on every client. Running
+    -- SellAllJunkItems alongside it races its pending per-slot requests and
+    -- bypasses Flux's useful/restock/gear-set protections.
     sellState.allowClickBurst = true
     if fj and fj.InvalidateJunkWorklist then
         fj.InvalidateJunkWorklist(true)
@@ -439,9 +387,6 @@ function SJ.Start(mode, opts)
         ui.MarkJunkStatsDirty()
     end
     local still = SJ.ContinueIfNeeded()
-    if mode == "all" then
-        TryNativeSellAllJunk()
-    end
     if still then
         ScheduleContinue(CONTINUE_DELAY)
     end
@@ -480,17 +425,23 @@ function SJ.ContinueIfNeeded()
     local inv = Inv()
     for key, pending in pairs(sellState.pendingSells) do
         local live = inv and inv.GetContainerItemInfo(pending.bag, pending.slot)
-        if live and SameItemID(live.itemID, pending.itemID) then
-            pending.stalePasses = (pending.stalePasses or 0) + 1
-            if pending.stalePasses >= STALE_PENDING_PASSES then
-                sellState.pendingSells[key] = nil
-            end
+        if live and SameItemID(live.itemID, pending.itemID) and not live.locked
+            and GetTime() - pending.sentAt >= PENDING_RETRY_DELAY then
+            sellState.pendingSells[key] = nil
         end
     end
     local sold, destroyed, remaining = SJ.RunBatch(sellState.mode)
+    if sold > 0 or destroyed > 0 then sellState.passes = 0 end
     if remaining == 0 and not next(sellState.pendingSells) and not SJ.HasRemaining(sellState.mode) then
-        FinishSellSession(true)
-        return false
+        -- Sorting/equipping bags can move a queued stack. Verify the live bag
+        -- contents once the queue drains, rather than leaving relocated junk.
+        local fj = FJ()
+        if fj and fj.InvalidateJunkWorklist then fj.InvalidateJunkWorklist(true) end
+        if fj and fj.EnsureJunkWorklist then fj.EnsureJunkWorklist(sellState.mode) end
+        if not SJ.HasRemaining(sellState.mode) then
+            FinishSellSession(true)
+            return false
+        end
     end
     if sold == 0 and destroyed == 0 and not next(sellState.pendingSells) then
         sellState.stallPasses = sellState.stallPasses + 1
@@ -510,13 +461,12 @@ function SJ.IsSelling()
     return sellState.active
 end
 
---- Merchant returned ERR_OBJECT_IS_BUSY (or similar). Drop failed pendings and
---- retry after a short backoff so the loop does not wait forever for bag events.
+--- Merchant returned ERR_OBJECT_IS_BUSY. Keep other requests pending while
+--- backing off; an error for one stack does not cancel earlier requests.
 function SJ.OnMerchantBusy()
     if not sellState.active then
         return
     end
-    ClearPendingStillPresent()
     sellState.busyUntil = GetTime() + BUSY_BACKOFF
     sellState.stallPasses = 0
     ScheduleContinue(BUSY_BACKOFF)

@@ -32,16 +32,16 @@ end
 -- so per-rank spellbook features stay off.
 local isCamelot
 if FluxClient and FluxClient.isCamelot ~= nil then
-    isCamelot = FluxClient.isCamelot == true
+    isCamelot = not isAnyClassicProject and majorVersion < 12 and FluxClient.isCamelot == true
 else
     local tocCamelot = ns._isCamelotGameType == true
     local foreverTimer = C_Timer and type(C_Timer.NewTimedSignalMap) == "function"
     local foreverStatsPane = rawget(_G, "CharacterStatsPaneScrollBox") ~= nil
         and rawget(_G, "CharacterStatsPanePetScrollBox") ~= nil
     local foreverBuild = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) and majorVersion > 0 and majorVersion < 10
-    isCamelot = tocCamelot
+    isCamelot = not isAnyClassicProject and majorVersion < 12 and (tocCamelot
         or foreverBuild
-        or (majorVersion < 12 and (foreverTimer or foreverStatsPane))
+        or foreverTimer or foreverStatsPane)
 end
 isCamelot = isCamelot and not isAnyClassicProject
 local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE) or isCamelot

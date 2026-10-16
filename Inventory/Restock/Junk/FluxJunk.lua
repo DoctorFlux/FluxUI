@@ -5,7 +5,7 @@
 
     Data:
       * settings.junkList[itemID] = true (junk) | false (protected) | nil
-      * BASE_WHITELIST: item IDs that default to protected
+      * BASE_WHITELIST: default protection for non-gray items
       * inferiorSet[itemID]: tier-inferior / conjure-inferior consumables,
         maintained by FluxRestockTiers (pure itemID set, no scanning here)
       * ruleCache[itemID]: memoized automatic-rule verdict per rule generation
@@ -32,16 +32,14 @@ local MISC = Enum.ItemClass.Miscellaneous
 local COMPANION = Enum.ItemMiscellaneousSubclass.CompanionPet
 local MOUNT = Enum.ItemMiscellaneousSubclass.Mount
 local FISHING_POLE = Enum.ItemWeaponSubclass.Fishingpole
-local BIND_EQUIP = Enum.ItemBind.OnEquip
 
 local POOR, UNCOMMON, RARE, EPIC = 0, 2, 3, 4
 
-local SHOULDER_BREAKPOINT = (LE_EXPANSION_LEVEL_CURRENT and LE_EXPANSION_LEVEL_CURRENT > 2) and 15 or 25
-local INTRO_BREAKPOINT = (LE_EXPANSION_LEVEL_CURRENT and LE_EXPANSION_LEVEL_CURRENT > 2) and 5 or 15
-
 FJ.COIN_ICON = "Interface/Buttons/UI-GroupLoot-Coin-Up"
 
--- Items that are never junk unless the user explicitly marks them.
+-- Default protection for non-gray items. Sellable gray items follow the gray
+-- rule even when this legacy list includes them (for example Rabbit's Foot).
+-- An explicit Useful mark still protects every quality.
 local BASE_WHITELIST = {
     [90561] = false, [12709] = false, [2459] = false, [29532] = false, [29530] = false,
     [39878] = false, [40586] = false, [48954] = false, [48955] = false, [48956] = false,
@@ -118,10 +116,21 @@ function FJ.IsExplicitJunk(id)
     return GetListValue(id) == true
 end
 
-local function IsProtected(id)
+local function IsProtected(id, slotInfo)
     local v = GetListValue(id)
     if v == false then return true end
-    if v == nil and BASE_WHITELIST[id] == false then return true end
+    if v == nil and BASE_WHITELIST[id] == false then
+        local quality = slotInfo and slotInfo.quality
+        local ic = IC()
+        if quality == nil and ic and ic.GetQuality then quality = ic.GetQuality(id) end
+        local secrets = _G.Flux and _G.Flux.Secrets
+        if secrets and secrets.SafeGetNumber then
+            quality = secrets.SafeGetNumber(quality, -1)
+        elseif issecretvalue and issecretvalue(quality) then
+            return true
+        end
+        return quality ~= POOR
+    end
     return false
 end
 
@@ -341,6 +350,8 @@ function FJ.OnItemDataLoaded(itemID)
     itemID = tonumber(itemID)
     if not itemID then return end
     FJ.InvalidateItemRules(itemID)
+    FJ.InvalidateJunkSlotCount()
+    FJ.InvalidateJunkTabListCache()
     FJ.NotifyVisualRefresh(itemID)
 end
 
@@ -494,34 +505,13 @@ local function EvaluateRules(id)
     local subClassID = info.subClassID
     local equipLoc = info.equipLoc
     local sellPrice = info.sellPrice or 0
-    local bind = info.bindType
     local valuable = sellPrice > 0
 
     if quality == POOR then
-        if not valuable then
-            return false
-        end
-        if bind == BIND_EQUIP then
-            return false
-        end
-        if IsConjuredConsumableExempt(id, info) then
-            return false
-        end
-        if classID == ARMOR or classID == WEAPON then
-            if equipLoc == "INVTYPE_TABARD" or equipLoc == "INVTYPE_BODY" or subClassID == FISHING_POLE then
-                return false
-            end
-            if IsUncollectedAppearance(id, info.link) then
-                return false
-            end
-            local level = info.itemLevel or 0
-            local location = GetItemLocation(id)
-            if location and C_Item and C_Item.GetCurrentItemLevel then
-                level = C_Item.GetCurrentItemLevel(location) or level
-            end
-            return (equipLoc ~= "INVTYPE_SHOULDER" and level > INTRO_BREAKPOINT) or level > SHOULDER_BREAKPOINT
-        end
-        return true
+        -- Sellable gray gear is junk at every level and bind type, matching
+        -- the vendor coin and sell queue. Lists/restock/gear-set protections
+        -- are checked by the callers before any sale.
+        return valuable and not IsConjuredConsumableExempt(id, info)
     end
 
     if (classID == ARMOR or classID == WEAPON) and valuable
@@ -588,30 +578,11 @@ local function EvaluateRulesForDisplay(id)
     local filters = FJ.GetFilters()
     local quality = info.quality
     local classID = info.classID
-    local subClassID = info.subClassID
-    local equipLoc = info.equipLoc
     local sellPrice = info.sellPrice or 0
     local valuable = sellPrice > 0
-    local bind = info.bindType
 
     if quality == POOR then
-        if not valuable then
-            return false
-        end
-        if bind == BIND_EQUIP then
-            return false
-        end
-        if IsConjuredConsumableExempt(id, info) then
-            return false
-        end
-        if classID == ARMOR or classID == WEAPON then
-            if equipLoc == "INVTYPE_TABARD" or equipLoc == "INVTYPE_BODY" or subClassID == FISHING_POLE then
-                return false
-            end
-            local level = info.itemLevel or 0
-            return (equipLoc ~= "INVTYPE_SHOULDER" and level > INTRO_BREAKPOINT) or level > SHOULDER_BREAKPOINT
-        end
-        return true
+        return valuable and not IsConjuredConsumableExempt(id, info)
     end
 
     if classID == CONSUMABLES then
@@ -659,10 +630,10 @@ end
 -- THE JUNK CHECK
 -- ---------------------------------------------------------------------------
 
-function FJ.IsJunk(id)
+function FJ.IsJunk(id, slotInfo)
     id = tonumber(id)
     if not id then return false end
-    if IsProtected(id) then
+    if IsProtected(id, slotInfo) then
         return false
     end
     -- Explicit user junk still wins; never auto-junk conjured food/water
@@ -679,13 +650,13 @@ function FJ.IsJunk(id)
     if inferiorSet[id] then
         return true
     end
-    return RuleVerdict(id)
+    return RuleVerdict(id) or FJ.IsBlizzardVendorJunk(id, slotInfo)
 end
 
 function FJ.IsJunkForDisplay(id, slotInfo)
     id = tonumber(id)
     if not id then return false end
-    if IsProtected(id) then
+    if IsProtected(id, slotInfo) then
         return false
     end
     if GetListValue(id) == true then
@@ -703,7 +674,7 @@ function FJ.IsJunkForDisplay(id, slotInfo)
     if DisplayRuleVerdict(id) then
         return true
     end
-    -- Same greys Sell Junk already sells (BoE / low-ilvl grey gear).
+    -- Live slot metadata can identify gray junk before item data is cached.
     return FJ.IsBlizzardVendorJunk(id, slotInfo)
 end
 
@@ -746,11 +717,15 @@ local function SlotHasNoValue(slotInfo)
     return nil
 end
 
---- Blizzard junk-coin: poor quality with a vendor price. Flux extra grey
---- rules (BoE / tabard / ilvl) do not apply. Explicit "useful" still wins.
+--- Poor quality with a vendor price. Explicit "useful", restock targets,
+--- quest items and conjured consumables remain protected from automatic sales.
 function FJ.IsBlizzardVendorJunk(itemID, slotInfo)
     itemID = SecretNumber(itemID, 0)
-    if not itemID or itemID <= 0 or IsProtected(itemID) then
+    if not itemID or itemID <= 0 or IsProtected(itemID, slotInfo) then
+        return false
+    end
+    if IsQuestItem(itemID) then return false end
+    if GetListValue(itemID) ~= true and (IsManualRestockItem(itemID) or FJ.IsConjuredConsumable(itemID)) then
         return false
     end
     local quality = slotInfo and slotInfo.quality
@@ -878,11 +853,8 @@ end
 function FJ.IterateJunk()
     local inv = Inv()
     return MakeBagSlotIterator(function(itemID, bag, slot)
-        if FJ.IsJunk(itemID) then
-            return true
-        end
         local info = inv and inv.GetContainerItemInfo(bag, slot)
-        return FJ.IsBlizzardVendorJunk(itemID, info)
+        return FJ.IsJunk(itemID, info)
     end)
 end
 
@@ -1409,17 +1381,8 @@ function FJ.GetUsefulList()
     return cachedUsefulList
 end
 
-local function IsAutoJunkInBags(itemID)
-    if FJ.IsExplicitUseful(itemID) or FJ.IsExplicitJunk(itemID) then
-        return false
-    end
-    if IsManualRestockItem(itemID) then
-        return false
-    end
-    if inferiorSet[itemID] then
-        return true
-    end
-    return RuleVerdict(itemID)
+local function IsAutoJunkInBags(itemID, slotInfo)
+    return not FJ.IsExplicitJunk(itemID) and FJ.IsJunk(itemID, slotInfo)
 end
 
 function FJ.GetAutoJunkList()
@@ -1430,8 +1393,8 @@ function FJ.GetAutoJunkList()
         return list
     end
     RecordJunkScan("junk:autoListScan")
-    local iter = MakeBagSlotIterator(function(itemID)
-        return IsAutoJunkInBags(itemID)
+    local iter = MakeBagSlotIterator(function(itemID, bag, slot)
+        return IsAutoJunkInBags(itemID, inv.GetContainerItemInfo(bag, slot))
     end)
     for _, _, itemID in iter do
         if not seen[itemID] then
@@ -1484,10 +1447,7 @@ function FJ.IsAutoJunk(id)
     if not FJ.HasItemInPlayerBags(id) then
         return false
     end
-    if inferiorSet[id] then
-        return true
-    end
-    return RuleVerdict(id)
+    return FJ.IsJunk(id)
 end
 
 --- Called when a manual restock target changes so overlays / sell counts update.

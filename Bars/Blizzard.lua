@@ -354,17 +354,14 @@ local function AlphaUnusedBars()
 	end
 end
 
--- Flux owns stance/form. ParkUnusedBar must not SetAlpha these bars (EditMode
--- SetSize taint). Hide them with a secure visibility driver instead of Hide /
--- SetAlpha on the bar. RegisterStateDriver → SecureStateDriverManager:SetAttribute
--- is blocked in combat from addon code (pcall does not eat ADDON_ACTION_BLOCKED).
--- Register OOC; a constant "hide" driver does not re-evaluate on form change, so
--- every branch is still hide but the conditions match ActionBarController
--- Show/Update and the secure engine re-applies after ShowOverride without a
--- combat re-register. Classic/anniversary still flash for a frame: driver Hide
--- runs, then StanceBar:Show / UIParent_ManageFramePositions SetBackgroundArtShown.
--- Parent to a hidden frame so Show cannot paint (backup UIHider). Retail skips
--- SetParent (StanceButton SetShown / EditMode SetSize taint).
+-- Flux owns stance/form. A native "visibility" driver calls bar:Hide() every
+-- 0.2s, including while already hidden. On Retail that is HideOverride, which
+-- enters Edit Mode layout and the protected RightManagedFrameContainer:SetSize.
+-- Use restricted frame-handle Hide instead: Blizzard's HANDLE:Hide calls the
+-- captured C widget method, bypassing HideOverride. Protected stance buttons
+-- notify us when their parent becomes visible; the parent's own OnShow cannot
+-- be used because the Edit Mode bar is not explicitly protected.
+-- Classic/Forever retain the existing hidden-parent behavior.
 local STOCK_STANCE_BARS = {
 	"StanceBar",
 	"StanceBarFrame",
@@ -376,14 +373,48 @@ local STOCK_STANCE_ART = {
 	"BackgroundArtRight",
 }
 
-local STOCK_STANCE_VISIBILITY =
-	"[petbattle] hide; [overridebar] hide; [vehicleui] hide; [possessbar] hide; "
-	.. "[bonusbar:1] hide; [bonusbar:2] hide; [bonusbar:3] hide; [bonusbar:4] hide; [bonusbar:5] hide; "
-	.. "[form:0] hide; [form:1] hide; [form:2] hide; [form:3] hide; [form:4] hide; "
-	.. "[form:5] hide; [form:6] hide; [form:7] hide; [form:8] hide; [form:9] hide; [form:10] hide; "
-	.. "[combat] hide; hide"
-
 local stanceHider
+local retailStanceRecords = setmetatable({}, { __mode = "k" })
+local STANCE_SHOW_PRE = [[ return nil, true ]]
+local STANCE_SHOW_POST = [[
+    local bar = control:GetFrameRef("bar")
+    if bar then bar:Hide(true) end
+]]
+local STANCE_INITIAL_HIDE = [[
+    local bar = self:GetFrameRef("bar")
+    if bar then bar:Hide(true) end
+]]
+
+local function SecureHideRetailStanceBar(bar)
+	if InLockdown() then return "pending" end
+	local record = retailStanceRecords[bar]
+	if not record then
+		local ok, header = pcall(CreateFrame, "Frame", nil, UIParent, "SecureHandlerBaseTemplate")
+		if not ok or not header then return "failed" end
+		-- All methods here belong to the Flux-owned header, never the stock bar.
+		header:Hide()
+		if not header.SetFrameRef or not header.WrapScript or not header.Execute then return "failed" end
+		if not pcall(header.SetFrameRef, header, "bar", bar) then return "failed" end
+		record = { header = header, buttons = setmetatable({}, { __mode = "k" }) }
+		retailStanceRecords[bar] = record
+	end
+	local found, failed = false, false
+	for _, button in ipairs(bar.actionButtons or {}) do
+		-- SecureHandlers needs an explicitly protected self handle. Blizzard's
+		-- StanceButtonTemplate inherits SecureFrameTemplate; its parent does not.
+		local explicit = button.IsProtected and select(2, button:IsProtected())
+		if explicit and not (button.IsForbidden and button:IsForbidden()) then
+			found = true
+			if not record.buttons[button] then
+				local ok = pcall(record.header.WrapScript, record.header, button, "OnShow", STANCE_SHOW_PRE, STANCE_SHOW_POST)
+				if ok then record.buttons[button] = true else failed = true end
+			end
+		end
+	end
+	if not pcall(record.header.Execute, record.header, STANCE_INITIAL_HIDE) then return "failed" end
+	if failed then return "failed" end
+	return found and "secured" or "pending"
+end
 
 local function IsClassicFamily()
 	local C = Flux.Client
@@ -459,10 +490,9 @@ local function HideStockStanceBars()
 	for i = 1, #STOCK_STANCE_BARS do
 		local bar = _G[STOCK_STANCE_BARS[i]]
 		if type(bar) == "table" then
-			-- Never RegisterStateDriver in combat: SecureStateDriverManager:SetAttribute.
-			-- Forever: do not register at all (taints the manager; Hide then hits EditMode).
-			if not locked and type(RegisterStateDriver) == "function" and not UseStanceHider() then
-				pcall(RegisterStateDriver, bar, "visibility", STOCK_STANCE_VISIBILITY)
+			-- Never install secure handlers in combat (SecureHandlersUpdateFrame:SetAttribute).
+			if not locked and not UseStanceHider() then
+				SecureHideRetailStanceBar(bar)
 			end
 			ParkStockStanceBar(bar)
 			HideClassicStanceArt(bar)
@@ -506,8 +536,8 @@ end
 -- caller, and vehicle enter then hits RightManagedFrameContainer:SetSize in
 -- UIParent_ManageFramePositions. Queue leftover from our own frame on PEW,
 -- regen, shapeshift, possess, bonus/vehicle/override, page, pet-battle close.
--- Leftover pass is alpha / collector vacuum + stance driver: no shown-state,
--- no SetPoint, no objective-tracker calls (ManageFramePositions).
+-- Leftover pass is alpha / collector vacuum + secure stance suppression:
+-- no native Lua Show/Hide or SetPoint; no objective-tracker calls.
 local leftoverQueued = false
 
 local function ApplyLeftoverNow()
@@ -570,12 +600,14 @@ local function WatchLeftoverEvents()
 		leftoverWatch:RegisterEvent(STOCK_STANCE_LEFTOVER_EVENTS[i])
 	end
 	if IsRetailPostDF() then
+		leftoverWatch:RegisterEvent("ADDON_LOADED")
 		pcall(leftoverWatch.RegisterEvent, leftoverWatch, "ACTIONBAR_SHOW_BOTTOMLEFT")
 		if EventRegistry and EventRegistry.RegisterCallback then
 			EventRegistry:RegisterCallback("EditMode.Exit", Blizzard.QueueLeftoverMouse)
 		end
 	end
-	leftoverWatch:SetScript("OnEvent", function()
+	leftoverWatch:SetScript("OnEvent", function(_, event, name)
+		if event == "ADDON_LOADED" and name ~= "Blizzard_ActionBar" then return end
 		Blizzard.QueueLeftoverMouse()
 	end)
 end
@@ -853,7 +885,7 @@ function Blizzard.Reassert()
 end
 
 --- Drag grid only re-shows stock buttons. Hide them again without the collector
---- sweep, stance driver, and art pass that Reassert does on a real layout.
+--- sweep, secure stance suppression, and art pass used by a real layout.
 function Blizzard.QuietGrid()
 	local function Dim(frame)
 		if type(frame) == "table" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then

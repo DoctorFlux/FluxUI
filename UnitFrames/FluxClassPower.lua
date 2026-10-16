@@ -293,7 +293,7 @@ local function AnchorAbovePlayer(frame, parentFrame, scale)
     frame:SetFrameLevel((anchor:GetFrameLevel() or 0) + 20)
     -- Do not replace SetScale. UpdatePower compares secret numbers, and a
     -- wrapped SetScale taints the rest of that Blizzard call.
-    frame:SetScale(scale)
+    frame:SetScale(scale * (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1))
     frame:ClearAllPoints()
     frame:SetPoint("BOTTOM", anchor, "TOP", 0, UNIVERSAL_POWER_BAR_Y_OFFSET)
 end
@@ -326,7 +326,7 @@ local function PositionTotemFrame(parentFrame)
         return
     end
     totemFrame:SetParent(anchorFrame)
-    totemFrame:SetScale(TOTEM_FRAME_SCALE)
+    totemFrame:SetScale(TOTEM_FRAME_SCALE * (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1))
     totemFrame:ClearAllPoints()
     totemFrame:SetPoint("BOTTOMRIGHT", anchorFrame, "TOPLEFT", TOTEM_FRAME_X_OFFSET, TOTEM_FRAME_Y_OFFSET)
 end
@@ -377,7 +377,7 @@ local function AnchorPowerContainer(container, parentFrame)
     container:SetParent(UIParent)
     container:SetFrameStrata("MEDIUM")
     container:SetFrameLevel((anchor:GetFrameLevel() or 0) + 20)
-    container:SetScale(UNIVERSAL_POWER_BAR_SCALE)
+    container:SetScale(UNIVERSAL_POWER_BAR_SCALE * (FluxUnitFrames_GetClassPowerScale and FluxUnitFrames_GetClassPowerScale() or 1))
     container:ClearAllPoints()
     container:SetPoint("BOTTOM", anchor, "TOP", 0, UNIVERSAL_POWER_BAR_Y_OFFSET)
     container:Show()
@@ -391,6 +391,9 @@ local function AnchorPowerContainer(container, parentFrame)
 end
 
 local function TryLegacyCombo(parentFrame)
+    if ns.ForeverComboPoints then
+        ns.ForeverComboPoints.Initialize(parentFrame)
+    end
     if not (ns.API and ns.API.ShouldUseLegacyComboFrameUI and ns.API.ShouldUseLegacyComboFrameUI()) then
         return
     end
@@ -413,6 +416,10 @@ local function SchedulePosition(parentFrame, delay)
 end
 
 function ns.ClassPower.ApplyVisibility()
+    if ns.ForeverComboPoints then
+        ns.ForeverComboPoints.RefreshAll(true)
+    end
+    if ns.LegacyComboPoints then ns.LegacyComboPoints.RefreshAll() end
     local show = not FluxUnitFrames_ShouldShowClassPower or FluxUnitFrames_ShouldShowClassPower()
     if not show then
         if InCombatLockdown() then
@@ -547,13 +554,12 @@ function ns.ClassPower.Initialize(parentFrame)
                 table.insert(framesToDisable, _G.PlayerFrame.powerBarAlt)
             end
         end
-        local Blizz = ns.Flux and ns.Flux.Blizz
-        if not Blizz then
-            return
-        end
+        -- Unregister only. Reparenting or HookScript OnShow runs
+        -- PlayerFrame_ToPlayerArt -> BuffFrame:Update under Flux, which taints
+        -- BuffFrame so combat UNIT_AURA fails the secret hasAurasToUpdate test.
         for _, frame in ipairs(framesToDisable) do
-            if not Blizz.IsHidden(frame) then
-                Blizz.Hide(frame)
+            if frame.UnregisterAllEvents then
+                pcall(frame.UnregisterAllEvents, frame)
             end
         end
     end

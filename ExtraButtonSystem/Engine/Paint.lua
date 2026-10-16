@@ -2348,6 +2348,15 @@ function Paint.UpdateUsable(btn)
 		ApplyPlaceholderIcon(btn)
 		return
 	end
+	-- Ammo is a display-only equipped-item indicator, not an item-use action.
+	-- IsUsableItem can return false for infinite/durability-based throwing knives.
+	if btn.IgnoreUsabilityVisual then
+		btn._outOfRange = false
+		btn._fluxRankDesaturated = false
+		if btn.Widget then btn.Widget._fluxRankDesaturated = false end
+		ApplyUsableVisual(btn, 1, 1, 1, false)
+		return
+	end
 	if not btn.ActionType or btn.ActionValue == nil then
 		btn._fluxRankDesaturated = false
 		if btn.Widget then
@@ -3536,6 +3545,10 @@ end
 
 function Paint.UpdateRange(btn)
 	if not btn then
+		return
+	end
+	if btn.IgnoreUsabilityVisual then
+		btn._outOfRange = false
 		return
 	end
 	local inRange, keepLast = ProbeRange(btn)
