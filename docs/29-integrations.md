@@ -1,0 +1,70 @@
+# Integrations and ownership boundaries
+
+FluxUI detects companion addons, adapts their data or frames, and sometimes changes their settings or methods. An addon appearing in a probe list or comment does not establish an active integration. This chapter separates source-backed integrations, native load-on-demand dependencies, coexistence behavior, and historical references.
+
+## Detection and loading
+
+[`Core/Optional.lua`](../Core/Optional.lua), `Optional.Get`, returns `loaded`, `ready` and an API reference for Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Masque and Clicked. Syndicator has an explicit API-readiness call; most other probes equate readiness with load/global presence. This is a read-time snapshot, not a central integration installer. Individual bridges still own their hooks/retries.
+
+[`_FluxUI.toc`](../_FluxUI.toc) lists Blizzard_UnitFrame, Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Blizzard_CompactRaidFrames and SpellActivationOverlay as optional dependencies. It additionally declares **Blizzard_CombatLog as a dependency for Camelot**. Other Blizzard modules can be requested or discovered by individual features; an optional dependency declaration does not make every native facility exist on every client.
+
+The following matrix describes code in this working tree, not tested compatibility with every version of each companion addon.
+
+| Integration | What Flux owns or changes | Absent/unsupported behavior | Source and detailed reference |
+|---|---|---|---|
+| Syndicator | Adapts cache updates into `Flux.Inventory` snapshots; proxies account store, summaries, gold/currency queries. Yields duplicate inventory tooltip lines. | Built-in scanners/store; readiness timeout can select built-in source for that session. | [`Adapter.lua`](../Inventory/Syndicator/Adapter.lua), [`Store.lua`](../Inventory/Store.lua); [Inventory](21-inventory-foundation.md). |
+| Baganator | Junk/set/consumable categories, item shields/context/click guards, bank button/live-state bridge; persistent category/corner config and global item/cursor wrappers. | Native bags and Flux's supported native overlays/Classic combined window. | [`BaganatorCompat/Loader.lua`](../BaganatorCompat/Loader.lua); [Baganator](24-baganator-compat.md). |
+| Details / DetailsFramework | Meter instances, layout/chrome/position enforcement and a Flux threat plugin. Forever compatibility can change source/parser mode when combat-log capability exists. | Available native Blizzard meter fallback; otherwise no damage-meter backend. | [`FluxDetails.lua`](../Battlezonemap/FluxDetails.lua), [`FluxDetailsForever.lua`](../Battlezonemap/FluxDetailsForever.lua), [`FluxThreat.lua`](../Battlezonemap/FluxThreat.lua); [Flux Window](10-flux-window.md). |
+| BigDebuffs | Flux unit anchors and draw-layer/frame-level adjustments; raid integration only on supported classic-style aura hosts; unit aura-category preference changes. | Flux/native aura presentation continues without BigDebuffs. | [`unit bridge`](../UnitFrames/FluxUnitFrames_BigDebuffs.lua), [`raid bridge`](../RaidFrame/FluxRaidFrame_BigDebuffs.lua); [Unit Frames](14-unit-frames.md), [Raid Frames](15-raid-frames.md). |
+| TacoTip | Prefer available TacoTip GearScore calculation and suppress duplicate Classic paperdoll ilvl/GS widgets where Flux provides its own. | Flux's calculation/display path remains. | [`GearScore.lua`](../CharacterInfo/GearScore.lua), [`TacoTip.lua`](../CharacterInfo/TacoTip.lua); [Character Info](27-character-info.md). |
+| ConsolePort / ConsolePort_Bar / ConsolePort_Menu | Suppress competing status/performance/micro-menu surfaces and reassert micro-button ownership; preserve broader action/ring systems. | Compatibility loader returns without applying suppression. | [`ConsoleportCompat/Loader.lua`](../ConsoleportCompat/Loader.lua); sections below and [Micro Menu](17-micromenu.md). |
+| Questie | Reanchor/resize/style its tracker and line interactions around Flux minimap/embed state; writes tracker width. | Native objective-tracker path remains separately managed. | [`FluxQuestie.lua`](../Minimap/FluxQuestie.lua); [Minimap](18-minimap-and-trackers.md). |
+| HereBeDragons pin libraries | Route supported world-map pin owners/templates onto Flux battlefield map, with tooltip/interaction support. Questie/TomTom-style sources can participate through those libraries. | Unsupported/provider-specific pins may be absent; no promise every world-map child is mirrored. | [`PinRouter.lua`](../Battlezonemap/FluxBattlefieldMapPinRouter.lua), [`PinTooltips.lua`](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua), [`WorldFeatures.lua`](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua); [Flux Window](10-flux-window.md). |
+| SpellActivationOverlay | Read/community-glow integration and membership tracking for the Flux button-feedback layer, with late binding retries. | Native supported glow events/APIs remain the available path. | [`Core/ButtonFX/Glow.lua`](../Core/ButtonFX/Glow.lua), `Glow.Start`; [Action Bars](11-action-bars.md). |
+| Clicked | Flux mouseover routing avoids claiming ordinary Blizzard frames/ClickCastFrames discovery when Clicked is loaded; Flux-owned frames still register. | Flux registers its supported native-frame/click-cast discovery path. | [`FluxMouseoverKeybind.lua`](../Binding/Input/FluxMouseoverKeybind.lua), `IsClickedLoaded`, `RegisterAllMouseoverFrames`; [Binding](13-binding-system.md). |
+| Clique / ClickCastFrames | Compatibility discovery/header surface for external click-cast consumers, including a minimal Clique table when none exists. | Flux can supply the shim/header itself. This is not evidence of a complete independent Clique implementation. | [`FluxMouseoverKeybind.lua`](../Binding/Input/FluxMouseoverKeybind.lua), `HookClickCastFrames`; [Binding](13-binding-system.md). |
+| AlreadyKnown standalone | Built-in Already Known runtime declines ownership when standalone addon is loaded; contains a nil-only legacy settings import. | Flux's supported retail/Classic known-item tint backend is active when enabled. | [`FluxAlreadyKnownShared.lua`](../Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua); [Vendor](20-vendor-restock-junk.md). |
+| Bagnon / Bagnonium | Alternative-bag detection avoids selected native bag chrome and Flux Classic combined-bag ownership. | Native/Flux-supported bag path applies. | [`Core/FluxAPI/UI.lua`](../Core/FluxAPI/UI.lua), `FluxUI_UsesAlternativeBagUI`; [Inventory](21-inventory-foundation.md). |
+| Masque | Optional probe exists; no active Flux Masque group/skin registration was found in the loaded source audit. | No additional skin behavior follows from this probe alone. | [`Core/Optional.lua`](../Core/Optional.lua). |
+
+## Syndicator and Baganator are different contracts
+
+Syndicator supplies facts; Baganator supplies bag views and configuration. The Syndicator adapter listens for readiness and cache changes, publishes the shared inventory context and avoids a competing account ledger. The Baganator bridge consumes Flux junk/Respec/preset state and can run only the features whose APIs and dependencies are ready. Neither a Baganator view nor Syndicator's cached count automatically authorizes moving a bank item.
+
+Baganator ownership includes modifications to its active category/section order and corner settings. It also globally wraps `C_Item.GetItemGUID`, `C_Item.DoesItemExist` and `SellCursorItem` for its caching/protection integration. These changes are documented in [Baganator](24-baganator-compat.md); describing the integration as passive decoration would hide meaningful behavior.
+
+## Meter backend and Forever Details compatibility
+
+`FluxDetails:Embed`, `Hide`, `ApplyPostLoginState`, layout refresh and stabilization methods host Details instances within Flux. Flux enforces geometry, chrome, row display and plugin placement while Details remains the combat-meter implementation. The Flux threat pane is a Details RAID plugin backed by shared threat APIs, not a separate home-grown damage parser.
+
+`FluxDetailsForever.lua` first requires Forever/Camelot, usable Details/DetailsFramework tables and `Cap.hasCombatLogUnfiltered`. In that gated path it replaces `DetailsFramework.IsAddonApocalypseWow` to return false, `Details:IsUsingBlizzardAPI` to return false, and available private update/parser decisions; it points instances at Details data, releases possessed native meter windows and ensures the parser's combat-log registration. Startup retries wait for Details readiness. If combat-log capability is unavailable, this compatibility path returns and leaves the Blizzard-meter source path intact. These are actual method/source changes, not merely a skin.
+
+[`FluxBlizzardMeter.lua`](../Battlezonemap/FluxBlizzardMeter.lua) hosts native damage panes when the facility exists and Details is absent. The native backend has a three-pane limit and distinct API/layout behavior. Forever gamepad hosting can anchor panes without reparenting their native container to avoid the native dropdown/gamepad path being tainted. See [Flux Window](10-flux-window.md) for backend selection, tabs and layouts.
+
+## BigDebuffs and character statistics
+
+The unit bridge installs the `FluxUI` anchor entry for player/target/focus/pet. It chooses a portrait, class/spec slot or corner fallback and adjusts frame levels/draw layers so the icon remains visible over Flux chrome. Available BigDebuffs unit aura-category settings are set true before a deferred refresh; this changes companion preferences. Its initial guard returns if BigDebuffs or Flux unit-frame state is missing, so it should not be described as a universally late-retrying bridge.
+
+The raid bridge has an addon-load retry and updates only valid Flux raid units where BigDebuffs raid settings/filters permit it. It deliberately skips private-aura containers and refuses to invent fake debuff slots there; Classic-style aura rows provide the real anchor. BigDebuffs priority/selection and Flux/private-aura ownership therefore remain different facilities.
+
+TacoTip integration is gated to Flux's Classic paperdoll chrome. It hides TacoTip's duplicate personal item-level/GearScore widgets after refresh/show and can use TacoTip's GearScore table when available. Retail/Forever pane/stat-pin handling follows its own client backend. None of this replaces the whole native CharacterFrame; see [Character Info](27-character-info.md).
+
+## ConsolePort suppression lifecycle
+
+`ConsoleportCompat/Loader.lua` watches ConsolePort, ConsolePort_Bar and ConsolePort_Menu on addon load/login. `RunOrDefer(key, fn)` runs immediately out of combat or stores the most recent function for a key; `FlushDeferred` snapshots the queue and calls deferred work with `pcall` after combat. This queue is runtime-only and separate from SavedVariables/profile storage.
+
+[`StatusBarHooks.lua`](../ConsoleportCompat/StatusBarHooks.lua) gathers named/heuristically identified ConsolePort status/XP/rep/honor/watch-bar frames plus toolbar XP/performance bars, then unregisters their events, disables mouse, reparents them to a hidden parent and hides them. Show hooks reassert suppression outside combat. The heuristic is actual code behavior; it is broader than one fixed XP bar name.
+
+[`MicroMenuHooks.lua`](../ConsoleportCompat/MicroMenuHooks.lua) sanitizes popout `micromenu`/`eye` properties, wraps `SetProps`, replaces `MoveMicroButtons`, hides the competing menu/trigger/ring and selected popout controls, and reparents ConsolePort-owned micro buttons back to native MicroMenu ownership. Native update hooks are skipped for Forever's sensitive gamepad path. This is active suppression, not a Flux-native controller interface or a guarantee that all ConsolePort systems are isolated from future upstream changes.
+
+## Questie, map providers, and native UI dependencies
+
+Questie startup imports tracker, line-pool, header/base and fade modules. It hooks tracker updates and expand/collapse interactions, responds to Flux minimap embedding/restoration, sets width/anchors and forwards clickable zone/header/line behavior. It writes `Questie.db.profile.TrackerWidth`, so tracker layout is not purely transient. Supported HereBeDragons libraries are separately inspected by the battlefield map pin router; having Questie installed does not make every pin provider compatible.
+
+Native Blizzard modules are feature dependencies rather than external companion addons. Unit/raid frames, spellbook, talents, bags, bank, auction, map and meter surfaces may appear late. Their owners use capability probes, TOC game-type gates, `ADDON_LOADED`, available mixins/templates and load-on-demand calls. Missing frame/API and forbidden/secret/protected execution remain separate reasons a bridge may decline work. Consult [client matrix](02-multi-client-matrix.md), [runtime/load order](07-runtime-architecture.md) and [source coverage](30-source-coverage.md) for the precise loaded implementation.
+
+Vendored libraries such as Ace3, LibKeyBound, LibCustomGlow, Unfit and the search/tab helpers are packaged implementation dependencies, not optional companion installs. Some older library trees remain shipped but unloaded; [Assets](34-assets.md) and the load graph distinguish them. Reference-addon inspirations and borrowed resources have their own provenance; a familiar design name in a comment is not an external runtime dependency.
+
+## Evidence limits
+
+The matrix is backed by local source and the inspected working tree. It describes who installs hooks, mutates configuration and owns state. It does not certify every installed addon combination, upstream version, native UI load timing, combat/taint behavior, rendering result or frame-time cost. [Verification](41-verification.md) separates executed local checks from required in-game observations; [API/events](33-api-and-events.md) and [commands](31-commands-and-bindings.md) enumerate the inspectable interfaces.

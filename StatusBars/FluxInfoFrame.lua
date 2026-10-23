@@ -135,6 +135,7 @@ local function GetInfoFrameCharDB()
     if db.spellDisplayMode ~= "off" and db.spellDisplayMode ~= "sp" and db.spellDisplayMode ~= "heal" and db.spellDisplayMode ~= "both" then
         db.spellDisplayMode = "off"
     end
+    InfoFrame._FoldCamelotCombatPins(db)
     return db
 end
 
@@ -180,6 +181,213 @@ local function _SafeCall(fn, ...)
     local ok, v = pcall(fn, ...)
     if ok then return v end
     return nil
+end
+
+function InfoFrame._IsCamelotClient()
+    local client = _G.Flux and _G.Flux.Client
+    if client and client.isCamelot ~= nil then
+        return client.isCamelot == true
+    end
+    if WOW_PROJECT_CAMELOT and WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
+        return true
+    end
+    local api = rawget(_G, "FLUX_API")
+    return api and (api.isCamelot or api.isForever) and true or false
+end
+
+-- Forever shares these stats across melee, ranged, and spells. Keep the
+-- existing registry keys so saved pins and Respec snapshots remain compatible.
+do
+    local aliases = {
+        meleeCrit = "crit", rangedCrit = "crit", spellCrit = "crit",
+        critical_strike = "crit", melee_crit = "crit", ranged_crit = "crit", spell_crit = "crit",
+        meleeHit = "meleeHit", rangedHit = "meleeHit", spellHit = "meleeHit",
+        hit = "meleeHit", hit_chance = "meleeHit",
+        melee_hit = "meleeHit", ranged_hit = "meleeHit", spell_hit = "meleeHit",
+        meleeHaste = "haste", rangedHaste = "haste", spellHaste = "haste",
+        melee_haste = "haste", ranged_haste = "haste", spell_haste = "haste",
+    }
+
+    function InfoFrame._CamelotCombatStatKey(key)
+        if InfoFrame._IsCamelotClient() then
+            return aliases[key] or key
+        end
+        return key
+    end
+
+    function InfoFrame._FoldCamelotCombatPins(db)
+        if not InfoFrame._IsCamelotClient() then return end
+        local pins = db.pinnedStats
+        for alias, key in pairs(aliases) do
+            if alias ~= key and pins[alias] ~= nil then
+                if pins[alias] then pins[key] = true end
+                pins[alias] = nil
+            end
+        end
+        local migrateOrder = false
+        for _, key in ipairs(type(db.statOrder) == "table" and db.statOrder or {}) do
+            if aliases[key] and aliases[key] ~= key then
+                migrateOrder = true
+                break
+            end
+        end
+        if migrateOrder then
+            local order, seen = {}, {}
+            for _, key in ipairs(db.statOrder) do
+                key = aliases[key] or key
+                if not seen[key] then
+                    seen[key] = true
+                    order[#order + 1] = key
+                end
+            end
+            db.statOrder = order
+        end
+    end
+end
+
+-- Match Camelot's PaperDollFrameStats.lua without calling native row setters
+-- (those run in the protected character-window show path).
+function InfoFrame._CamelotCombatStatValue(key)
+    local restricted = false
+    local function plain(value)
+        if issecretvalue and issecretvalue(value) then
+            restricted = true
+            return nil
+        end
+        if type(value) == "number" then return value end
+    end
+    local function number(fn, ...)
+        if type(fn) ~= "function" then return nil end
+        local ok, value = pcall(fn, ...)
+        if not ok then
+            restricted = true
+            return nil
+        end
+        local result = plain(value)
+        if result == nil then restricted = true end
+        return result
+    end
+    local best
+    local function include(value)
+        if value ~= nil then
+            best = best and math.max(best, value) or value
+        end
+    end
+    if key == "crit" then
+        include(number(GetCritChance))
+        include(number(GetRangedCritChance))
+        include(number(GetSpellCritChance))
+    elseif key == "haste" then
+        include(number(GetMeleeHaste))
+        include(number(UnitSpellHaste, "player"))
+        if type(GetRangedHaste) == "function" then
+            local ok, base, ammo = pcall(GetRangedHaste)
+            if ok then
+                base, ammo = plain(base), plain(ammo)
+                if base ~= nil then include(base + (ammo or 0)) end
+            else
+                restricted = true
+            end
+        end
+        if best == nil then include(number(GetHaste)) end
+    elseif key == "meleeHit" then
+        local function hit(ratingIndex, modifier)
+            local rating = type(ratingIndex) == "number" and number(GetCombatRatingBonus, ratingIndex) or nil
+            local mod = number(modifier)
+            if rating ~= nil or mod ~= nil then include((rating or 0) + (mod or 0)) end
+        end
+        hit(_G.CR_HIT_MELEE, GetHitModifier)
+        hit(_G.CR_HIT_MELEE, GetOffhandHitModifier)
+        hit(_G.CR_HIT_RANGED, GetRangedHitModifier)
+        hit(_G.CR_HIT_SPELL, GetSpellHitModifier)
+    end
+    -- A lower, readable channel is not the combined stat when another channel
+    -- is restricted. Let the display show unavailable until all values recover.
+    if restricted then return nil end
+    return best
+end
+
+-- Secret stat values can be displayed by the native text renderer. Keep them
+-- out of the strings that Lua measures, merges, or uses for tooltip hit testing.
+function InfoFrame._CamelotLiveCombatText(key)
+    local label = STAT_REGISTRY[key].label
+    local function display(fmt, sample, ...)
+        return { format = label .. ": |cffffffff" .. fmt .. "|r",
+            sample = label .. ": |cffffffff" .. sample .. "|r", args = { ... } }
+    end
+    -- A visible native row already contains the combined total, including hit
+    -- rating/modifiers and ranged ammo haste. Read it without changing the row.
+    local root = _G.CharacterStatsPaneScrollBox
+    if root and root.IsVisible and root:IsVisible() then
+        local box = root.ScrollBox
+        local view = box and box.GetView and box:GetView()
+        local rows = view and view.GetFrames and view:GetFrames()
+        if type(rows) == "table" then
+            for _, row in ipairs(rows) do
+                local data = row.GetElementData and row:GetElementData()
+                local name = data and data.name
+                local matches = (key == "crit" and name == "CRITCHANCE")
+                    or (key == "haste" and name == "HASTE")
+                    or (key == "meleeHit" and name == "HITCHANCE")
+                if matches and data.unit == "player" and row.Value and row.Value.GetText then
+                    local text = row.Value:GetText()
+                    if (issecretvalue and issecretvalue(text)) or (type(text) == "string" and text ~= "") then
+                        return display("%s", "999.99%", text)
+                    end
+                end
+            end
+        end
+    end
+    local function live(fn, ...)
+        local value = _SafeCall(fn, ...)
+        if (issecretvalue and issecretvalue(value)) or type(value) == "number" then return value end
+    end
+    if key == "crit" or key == "haste" then
+        -- Forever shares these channels. Forward the current value directly;
+        -- do not compare secret melee/ranged/spell values to choose a maximum.
+        local value
+        if key == "crit" then value = live(GetCritChance)
+        else value = live(GetMeleeHaste) end
+        if (issecretvalue and issecretvalue(value)) or type(value) == "number" then
+            return display("%.2f%%", "999.99%", value)
+        end
+    elseif key == "meleeHit" then
+        local rating = live(GetCombatRatingBonus, _G.CR_HIT_MELEE or 6)
+        local modifier = live(GetHitModifier)
+        if ((issecretvalue and issecretvalue(rating)) or type(rating) == "number")
+            and ((issecretvalue and issecretvalue(modifier)) or type(modifier) == "number") then
+            -- Lua cannot add two secret numbers. With no visible native total,
+            -- show both live contributions rather than an old or partial total.
+            return display("%.2f%% + %.2f%%", "999.99% + 999.99%", rating, modifier)
+        end
+    end
+end
+
+function InfoFrame._RenderCamelotLiveText(fs)
+    local displays = InfoFrame._camelotLiveCombatText
+    local entry = fs and fs._fluxEntryRef
+    if not displays or not entry or not fs.SetFormattedText then return end
+    local text = entry.text or ""
+    local replacements = {}
+    for _, key in ipairs(entry.keys or { entry.key }) do
+        local live = displays[key]
+        if live then
+            local first, last = text:find(live.sample, 1, true)
+            if first then replacements[#replacements + 1] = { first = first, last = last, live = live } end
+        end
+    end
+    if #replacements == 0 then return end
+    table.sort(replacements, function(a, b) return a.first < b.first end)
+    local parts, args, cursor = {}, {}, 1
+    local function literal(value) return (value:gsub("%%", "%%%%")) end
+    for _, replacement in ipairs(replacements) do
+        parts[#parts + 1] = literal(text:sub(cursor, replacement.first - 1))
+        parts[#parts + 1] = replacement.live.format
+        for _, value in ipairs(replacement.live.args) do args[#args + 1] = value end
+        cursor = replacement.last + 1
+    end
+    parts[#parts + 1] = literal(text:sub(cursor))
+    fs:SetFormattedText(table.concat(parts), (unpack or table.unpack)(args))
 end
 
 -- Accept hex colors in different formats and normalize to 6-char rgb.
@@ -355,17 +563,6 @@ STAT_REGISTRY["versatility"] = {
     end,
     fmt = "%.2f%%",
 }
-
-function InfoFrame._IsCamelotClient()
-    if WOW_PROJECT_CAMELOT and WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
-        return true
-    end
-    local api = rawget(_G, "FLUX_API")
-    if api and (api.isCamelot or api.isForever) then
-        return true
-    end
-    return false
-end
 
 --- Forever cloth "Spell Damage" / "Spell Healing" are Classic Era spell power, not two extra stats.
 function InfoFrame._ClassicSpellPinKey(key)
@@ -799,16 +996,6 @@ STAT_REGISTRY["meleeHit"] = {
             local ok, v = pcall(_G.CSC_GetTotalMeleeHitPercent, "player")
             if ok and type(v) == "number" then return v end
         end
-        local api = _G.FLUX_API
-        if api and (api.isCamelot or api.isForever) and type(GetCombatRatingBonus) == "function" then
-            local melee = (tonumber(_SafeCall(GetCombatRatingBonus, _G.CR_HIT_MELEE)) or 0)
-                + (tonumber(_SafeCall(GetHitModifier)) or 0)
-            local ranged = (tonumber(_SafeCall(GetCombatRatingBonus, _G.CR_HIT_RANGED)) or 0)
-                + (tonumber(_SafeCall(GetRangedHitModifier)) or 0)
-            local spell = (tonumber(_SafeCall(GetCombatRatingBonus, _G.CR_HIT_SPELL)) or 0)
-                + (tonumber(_SafeCall(GetSpellHitModifier)) or 0)
-            return math.max(melee, ranged, spell)
-        end
         if type(GetCombatRatingBonus) == "function" and type(_G.CR_HIT_MELEE) == "number" then
             local rating = tonumber(_SafeCall(GetCombatRatingBonus, _G.CR_HIT_MELEE)) or 0
             local mod = tonumber(_SafeCall(GetHitModifier)) or 0
@@ -971,7 +1158,7 @@ STAT_REGISTRY["rangedCrit"] = {
 do
     local pid = rawget(_G, "WOW_PROJECT_ID")
     local mainline = rawget(_G, "WOW_PROJECT_MAINLINE")
-    if type(pid) == "number" and type(mainline) == "number" and pid == mainline then
+    if InfoFrame._IsCamelotClient() or (type(pid) == "number" and type(mainline) == "number" and pid == mainline) then
         local mc = STAT_REGISTRY["meleeCrit"]
         local rc = STAT_REGISTRY["rangedCrit"]
         local sc = STAT_REGISTRY["crit"]
@@ -1009,6 +1196,17 @@ STAT_REGISTRY["rangedHit"] = {
     end,
     fmt = "%.2f%%",
 }
+
+if InfoFrame._IsCamelotClient() then
+    for _, key in ipairs({ "crit", "haste", "meleeHit" }) do
+        STAT_REGISTRY[key].get = function() return InfoFrame._CamelotCombatStatValue(key) end
+    end
+    STAT_REGISTRY.meleeHit.label = "Hit"
+    STAT_REGISTRY.meleeCrit = STAT_REGISTRY.crit
+    STAT_REGISTRY.rangedCrit = STAT_REGISTRY.crit
+    STAT_REGISTRY.spellHit = STAT_REGISTRY.meleeHit
+    STAT_REGISTRY.rangedHit = STAT_REGISTRY.meleeHit
+end
 
 STAT_REGISTRY["meleeArmorPenetration"] = {
     label = "M.APen",
@@ -1340,6 +1538,13 @@ end
 local linePool = {}
 local activeLines = {}
 local activeLineCount = 0
+
+function InfoFrame._RefreshCamelotLiveText()
+    if not InfoFrame._camelotLiveCombatText then return end
+    for _, fs in ipairs(linePool) do
+        if fs:IsShown() then InfoFrame._RenderCamelotLiveText(fs) end
+    end
+end
 local _lastLayoutMode = nil
 local _lastLayoutW = nil
 local _lastLayoutH = nil
@@ -2126,6 +2331,8 @@ local function MeasureStableIntegratedClusterWidth()
     for i = 1, activeLineCount do
         local key = activeLines[i].key
         local wc = worstCaseTexts[key]
+        local live = InfoFrame._camelotLiveCombatText and InfoFrame._camelotLiveCombatText[key]
+        wc = wc or (live and live.sample)
         if wc then
             activeLines[i].fs:SetText(wc)
         else
@@ -2142,7 +2349,9 @@ local function MeasureStableIntegratedClusterWidth()
     end
     local w = math.max(math.ceil(total + 24), 120)
     for i = 1, activeLineCount do
-        activeLines[i].fs:SetText(saved[i] or "")
+        local text = saved[i]
+        if issecretvalue and issecretvalue(text) then activeLines[i].fs:SetText(text)
+        else activeLines[i].fs:SetText(text or "") end
     end
     return w
 end
@@ -2412,10 +2621,23 @@ local function _GetKeyText(key)
             if type(reg.get) == "function" then
                 val, colorHex = reg.get()
             end
-            if val == nil and InfoFrame.ReadForeverDisplayText then
+            local sharedCombatStat = InfoFrame._IsCamelotClient()
+                and (key == "crit" or key == "haste" or key == "meleeHit")
+            if sharedCombatStat then
+                InfoFrame._camelotLiveCombatText = InfoFrame._camelotLiveCombatText or {}
+                local live = val == nil and InfoFrame._CamelotLiveCombatText(key) or nil
+                local previous = InfoFrame._camelotLiveCombatText[key]
+                if (previous and previous.sample) ~= (live and live.sample) then
+                    cachedStableIntegratedClusterWidth = nil
+                    InfoFrame._screenTopLeftWidth = nil
+                end
+                InfoFrame._camelotLiveCombatText[key] = live
+                if live then return live.sample, live.sample end
+            end
+            if val == nil and not sharedCombatStat and InfoFrame.ReadForeverDisplayText then
                 val = InfoFrame.ReadForeverDisplayText(key)
             end
-            if val == nil then
+            if val == nil and not sharedCombatStat then
                 local cache = InfoFrame._foreverStatCache
                 if cache and cache[key] ~= nil then
                     val = cache[key]
@@ -3240,6 +3462,7 @@ function _RebuildTooltipStatFrameCache()
     _tooltipKeyToStatFrameAt = GetTime() or 0
     local function registerStatKey(c, key)
         key = _CanonicalIlvlGsRegistryKey(key) or key
+        key = InfoFrame._CamelotCombatStatKey(key)
         if not key or not c then return end
         if not _tooltipKeyToStatFrame[key] then
             _tooltipKeyToStatFrame[key] = c
@@ -3442,6 +3665,7 @@ end
 
 function _ShowInfoTooltipForKey(ownerFs, statKey)
     statKey = _CanonicalIlvlGsRegistryKey(statKey) or statKey
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if not statKey or _TOOLTIP_DISABLED_KEYS[statKey] then
         GameTooltip:Hide()
         _HideFluxInfoTooltipAnchor()
@@ -3601,6 +3825,7 @@ _BindInfoFrameEntryTooltip = function(fs, entry, fontPath, fontSize)
             _ShowInfoTooltipForKey(self, "durability")
         end
     end)
+    InfoFrame._RenderCamelotLiveText(fs)
 end
 
 _ClearInfoFrameEntryTooltip = function(fs)
@@ -3659,6 +3884,7 @@ local function ReleaseAllPooledFontStrings()
 end
 
 function InfoFrame.StatLabel(key)
+    key = InfoFrame._CamelotCombatStatKey(key)
     if key == "spellPower" and InfoFrame._IsCamelotClient and InfoFrame._IsCamelotClient() then
         local mode = GetInfoFrameCharDB().spellDisplayMode or "off"
         if mode == "heal" then
@@ -3975,6 +4201,7 @@ local function UpdateStats()
     local fh = frame:GetHeight() or 0
     local layoutChanged = (mode ~= _lastLayoutMode) or (fw ~= _lastLayoutW) or (fh ~= _lastLayoutH)
     if not textChanged and not layoutChanged then
+        InfoFrame._RefreshCamelotLiveText()
         return
     end
     _lastLayoutMode = mode
@@ -3997,6 +4224,7 @@ local function UpdateStats()
     else
         _ApplyVerticalDynamicMergeLayout()
     end
+    InfoFrame._RefreshCamelotLiveText()
 end
 
 --- Pins that track combat ratings / auras (not FPS/dur/ping-only).
@@ -4354,6 +4582,8 @@ function InfoFrame._LayoutScreenTopLeft()
             if fs.SetWidth then fs:SetWidth(0) end
             local key = activeLines[i].key
             local wc = worstCaseTexts[key]
+            local live = InfoFrame._camelotLiveCombatText and InfoFrame._camelotLiveCombatText[key]
+            wc = wc or (live and live.sample)
             if not wc then
                 local reg = STAT_REGISTRY[key]
                 local label = (reg and reg.label) or key
@@ -4366,7 +4596,9 @@ function InfoFrame._LayoutScreenTopLeft()
             end
         end
         for i = 1, activeLineCount do
-            activeLines[i].fs:SetText(saved[i] or "")
+            local text = saved[i]
+            if issecretvalue and issecretvalue(text) then activeLines[i].fs:SetText(text)
+            else activeLines[i].fs:SetText(text or "") end
         end
         local width = math.min(320, math.max(120, math.ceil(maxW + INFO_FRAME_TEXT_PAD_X * 2 + 18)))
         InfoFrame._screenTopLeftWidth = width
@@ -4602,9 +4834,18 @@ updateFrame:RegisterEvent("MASTERY_UPDATE")
 updateFrame:RegisterEvent("SPELL_POWER_CHANGED")
 pcall(function() updateFrame:RegisterUnitEvent("UNIT_STATS", "player") end)
 updateFrame:RegisterEvent("PLAYER_DAMAGE_DONE_MODS")
+if InfoFrame._IsCamelotClient() then
+    updateFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+    updateFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+    updateFrame:RegisterUnitEvent("UNIT_SPELL_HASTE", "player")
+end
 -- Note: Durability % is cached ~1s; equip/inventory alerts invalidate the cache.
 
 updateFrame:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_REGEN_ENABLED" and InfoFrame._rebuildAfterCombat then
+        InfoFrame._rebuildAfterCombat = nil
+        InfoFrame.ForceRebuild()
+    end
     if event == "PLAYER_EQUIPMENT_CHANGED" or event == "UPDATE_INVENTORY_ALERTS" then
         InvalidateDurabilityCache()
     end
@@ -4934,6 +5175,10 @@ end
 
 --- Rebuild dynamic lines from charDB and force a full layout refresh.
 function InfoFrame.ForceRebuild()
+    if InfoFrame._IsCamelotClient() and InCombatLockdown() then
+        InfoFrame._rebuildAfterCombat = true
+        return
+    end
     if not frame then return end
     RebuildInfoLines()
     if GetPlacement() == "statusIntegrated" and _G.FluxStatusBarUpdateLayout then
@@ -4954,6 +5199,7 @@ end
 --- Toggle a pinned stat on/off. Called from character panel click hooks.
 function InfoFrame.TogglePinnedStat(statKey)
     statKey = InfoFrame._ClassicSpellPinKey(statKey) or _CanonicalIlvlGsRegistryKey(statKey) or statKey
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if statKey == "moveSpeed" or statKey == "movement_speed" then
         statKey = "speed"
     end
@@ -5029,6 +5275,7 @@ end
 --- Check if a stat is currently pinned.
 function InfoFrame.IsStatPinned(statKey)
     local db = GetInfoFrameCharDB()
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if statKey == "spellPower" or statKey == "spellPowerOnly" then
         local mode = db.spellDisplayMode or "off"
         if InfoFrame._UseClassicSpellPowerLine() then
@@ -5366,6 +5613,7 @@ local function HookRetailStatFrame(statFrame)
 end
 
 local function RefreshRetailPinIndicators()
+    if InfoFrame._IsCamelotClient() and InCombatLockdown() then return end
     if _retailPaperDollItemLevelStatFrame and _retailPaperDollItemLevelStatFrame.GetParent then
         local sf = _retailPaperDollItemLevelStatFrame
         if sf:GetParent() then
@@ -5390,7 +5638,7 @@ local function RefreshRetailPinIndicators()
         if map and elementData and type(elementData.name) == "string" then
             key = map[elementData.name] or key
         end
-        key = key or GetRetailStatKey(statFrame)
+        key = InfoFrame._CamelotCombatStatKey(key or GetRetailStatKey(statFrame))
         if key then
             statFrame._FluxInfoStatKey = key
             HookRetailStatFrame(statFrame)
@@ -5684,7 +5932,7 @@ local function RefreshClassicPinIndicators()
                     queue[#queue + 1] = c
                     local _, labelText = _GetStatLabelRegionAndText(c)
                     if labelText and _StatFrameHasValueRegion(c) then
-                        local key = GetClassicStatKey(c)
+                        local key = InfoFrame._CamelotCombatStatKey(GetClassicStatKey(c))
                         if key then
                             c._FluxInfoStatKey = key
                             HookClassicStatFrame(c)
@@ -5700,6 +5948,7 @@ end
 --- All Character / PaperDoll / stats-pane frames matching this Flux registry key (for CSC tooltip parity).
 function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
     statKey = _CanonicalIlvlGsRegistryKey(statKey) or statKey
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if not statKey then return {} end
     if allowRetry == nil then allowRetry = true end
     local now = GetTime() or 0
@@ -5727,7 +5976,7 @@ function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
     local function resolvedKeyForFrame(c)
         local k = c._FluxInfoStatKey
         if k then
-            return _CanonicalIlvlGsRegistryKey(k) or k
+            return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
         end
         if FLUX_API and FLUX_API.isRetail then
             k = GetRetailStatKey(c)
@@ -5735,7 +5984,7 @@ function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
         if not k then
             k = GetClassicStatKey(c)
         end
-        return _CanonicalIlvlGsRegistryKey(k) or k
+        return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
     end
 
     local qSeen = {}
@@ -5791,7 +6040,9 @@ end
 
 RefreshAllPinIndicators = function()
     RefreshRetailPinIndicators()
-    RefreshClassicPinIndicators()
+    if not InfoFrame._IsCamelotClient() then
+        RefreshClassicPinIndicators()
+    end
 end
 
 function InfoFrame.RefreshAllPinIndicators()
@@ -5871,8 +6122,10 @@ end
 
 --- Forever ScrollBox row: map PAPERDOLL_STATINFO name (or label) into STAT_REGISTRY and pin.
 function InfoFrame.ReadForeverDisplayText(statKey)
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if type(statKey) ~= "string" or statKey == "" then return nil end
     local function strip(text)
+        if issecretvalue and issecretvalue(text) then return nil end
         if type(text) ~= "string" or text == "" then return nil end
         text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|T.-|t", "")
         text = text:match("^%s*(.-)%s*$") or text
@@ -5913,18 +6166,29 @@ function InfoFrame.ReadForeverDisplayText(statKey)
         end
     end
     local texts = InfoFrame._foreverStatText
-    if texts and texts[statKey] then
-        return texts[statKey]
+    if texts then
+        return strip(texts[statKey])
     end
     return nil
 end
 
 function InfoFrame.RememberPinnedStatValue(statKey, numericValue, statFrame)
+    statKey = InfoFrame._CamelotCombatStatKey(statKey)
     if type(statKey) ~= "string" or statKey == "" then return end
     InfoFrame._foreverStatCache = InfoFrame._foreverStatCache or {}
     InfoFrame._foreverStatText = InfoFrame._foreverStatText or {}
+    if issecretvalue and issecretvalue(numericValue) then
+        InfoFrame._foreverStatCache[statKey] = nil
+        InfoFrame._foreverStatText[statKey] = nil
+        return
+    end
     if statFrame and statFrame.Value and statFrame.Value.GetText then
         local text = statFrame.Value:GetText()
+        if issecretvalue and issecretvalue(text) then
+            InfoFrame._foreverStatCache[statKey] = nil
+            InfoFrame._foreverStatText[statKey] = nil
+            return
+        end
         if type(text) == "string" and text ~= "" then
             text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|T.-|t", "")
             text = text:match("^%s*(.-)%s*$") or text
@@ -5943,6 +6207,7 @@ function InfoFrame.RememberPinnedStatValue(statKey, numericValue, statFrame)
         return
     end
     local stored = InfoFrame._foreverStatText[statKey]
+    if issecretvalue and issecretvalue(stored) then return end
     if stored then
         local n = tonumber((stored:gsub("%%", ""):gsub(",", "")))
         if n then
@@ -5953,14 +6218,21 @@ end
 
 function InfoFrame.HookForeverScrollBoxStatFrame(statFrame, registryKey)
     if not statFrame then return end
+    if InfoFrame._IsCamelotClient() and InCombatLockdown() then return end
     local _, labelText = _GetStatLabelRegionAndText(statFrame)
     registryKey = InfoFrame._ClassicSpellPinKey(registryKey) or InfoFrame._ClassicSpellPinKey(labelText) or registryKey
     if type(registryKey) ~= "string" or registryKey == "" then
         registryKey = GetRetailStatKey(statFrame)
-    elseif not STAT_REGISTRY[registryKey] then
+    end
+    registryKey = InfoFrame._CamelotCombatStatKey(registryKey)
+    if not registryKey then return end
+    if not STAT_REGISTRY[registryKey] then
         EnsureDynamicStatInRegistry(registryKey, labelText or registryKey)
     end
-    if not registryKey then return end
+    if InfoFrame._IsCamelotClient() and (registryKey == "crit" or registryKey == "haste" or registryKey == "meleeHit")
+        and statFrame.Label and statFrame.Label.SetText then
+        statFrame.Label:SetText(InfoFrame.StatLabel(registryKey))
+    end
     statFrame._FluxInfoStatKey = registryKey
     HookRetailStatFrame(statFrame)
     UpdatePinIndicator(statFrame, registryKey)
@@ -5990,10 +6262,18 @@ function InfoFrame._StartCamelotCharacterWatch()
     InfoFrame._camelotCharacterWatch = true
     local watch = CreateFrame("Frame")
     local wasShown = false
+    local pending = false
     watch:SetScript("OnUpdate", function()
         local frame = _G.CharacterFrame
         local shown = frame and frame.IsShown and frame:IsShown() and true or false
-        if shown and not wasShown then
+        local inCombat = InCombatLockdown()
+        if shown and (not wasShown or inCombat) then
+            pending = true
+        elseif not shown then
+            pending = false
+        end
+        if pending and not inCombat then
+            pending = false
             local list = InfoFrame._afterCharacterShown
             for i = 1, #list do
                 pcall(list[i])
@@ -6016,7 +6296,6 @@ function InfoFrame.InstallCharacterInfoPinHooks()
             InfoFrame.AfterCharacterShown(function()
                 _InvalidateTooltipStatFrameCache()
                 RefreshRetailPinIndicators()
-                RefreshClassicPinIndicators()
             end)
         end
         return

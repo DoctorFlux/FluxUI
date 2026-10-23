@@ -816,7 +816,7 @@ local function SnapshotStackCount(itemId)
 end
 
 local function LiveChargeCount(itemId)
-	if not itemId then
+	if not itemId or SnapshotStackCount(itemId) <= 0 then
 		return 0
 	end
 	-- Same SoT as combat-grid GemUses / BagCount (not C_Item, which can lag).
@@ -918,7 +918,15 @@ local function DisplayItemCount(itemId, opts)
 	opts = opts or {}
 	-- Flux window / minimap / Extra tab: charged copies show remaining uses.
 	local copies = SnapshotStackCount(itemId)
+	local charged = Flux.Item and Flux.Item.UsesConsumableCharges and Flux.Item.UsesConsumableCharges(itemId, opts.kind)
+	if charged == false then
+		return copies
+	end
 	local uses = LiveChargeCount(itemId)
+	-- A charged item can leave a leftover stack of 1, 0 charges.
+	if charged and copies > 0 and uses <= 0 and BagsAreReliable() then
+		return 0
+	end
 	if copies > 1 then
 		if opts.preferCopies then
 			return copies
@@ -1108,6 +1116,15 @@ local function ConsumableKindButton(btn)
 	) and true or false
 end
 
+local function CountKind(btn)
+	return btn._fluxConsumableKind
+		or (btn.IsFoodButton and "food") or (btn.IsWaterButton and "water")
+		or (btn.IsBandageButton and "bandage")
+		or ((btn.IsHealPotionButton or btn.IsHealingPotionButton) and "healPotion")
+		or (btn.IsManaPotionButton and "manaPotion")
+		or (btn.IsHealthstoneButton and "healthstone") or (btn.IsManaGemButton and "managem")
+end
+
 -- Food/water kind flags stay on while Recuperate is bound. That face is a spell.
 local function KindItemCountFace(btn)
 	if not ConsumableKindButton(btn) then
@@ -1155,10 +1172,14 @@ function Paint.UpdateCount(btn)
 		btn._liveCountItemId = nil
 		return SetCountText(count, nil, btn)
 	end
+	-- A load-screen latch also owns combat-swap faces until bags settle.
+	if btn._forcedCount ~= nil and not btn._forcedCountLive and KindItemCountFace(btn) then
+		return SetCountText(count, btn._forcedCount, btn)
+	end
 	-- Combat-swap macro: digit follows the [combat] face, not the home latch.
 	if btn._fluxCombatSwapBody then
 		if btn.MacroMode == "item" and btn.ItemId then
-			local n = DisplayItemCount(btn.ItemId, { preferCopies = true })
+			local n = DisplayItemCount(btn.ItemId, { preferCopies = true, kind = CountKind(btn) })
 			if n == nil then
 				n = 0
 			end
@@ -1181,6 +1202,7 @@ function Paint.UpdateCount(btn)
 	if btn._forcedCountLive and btn._liveCountItemId and KindItemCountFace(btn) then
 		local n = DisplayItemCount(btn._liveCountItemId, {
 			preferCopies = ConsumableKindButton(btn),
+			kind = CountKind(btn),
 		})
 		if n == nil then
 			n = SnapshotStackCount(btn._liveCountItemId)
@@ -1188,6 +1210,7 @@ function Paint.UpdateCount(btn)
 		if n == nil and ConsumableKindButton(btn) then
 			n = 0
 		end
+		btn._forcedCount = n
 		local changed = SetCountText(count, n, btn)
 		UpdateMacroNameOverlay(btn)
 		return changed
@@ -1199,7 +1222,7 @@ function Paint.UpdateCount(btn)
 	end
 	if KindItemCountFace(btn) then
 		local itemId = btn.ItemId or btn._liveCountItemId or MacroShownItem(btn)
-		local n = DisplayItemCount(itemId, { preferCopies = true })
+		local n = DisplayItemCount(itemId, { preferCopies = true, kind = CountKind(btn) })
 		if n == nil then
 			n = 0
 		end
@@ -2227,52 +2250,20 @@ local function EmptyConsumableUnusable(btn, itemId)
 	if btn.IsManaGemButton then
 		return not AnyManaGemHasRemainingUse()
 	end
-	-- The digit on the button is the source of truth (ApplyGemCount writes 0
-	-- after FullRefresh, while C_Item / the bag snapshot can still say 1).
-	if btn._forcedCount ~= nil and tonumber(btn._forcedCount) == 0 then
-		return true
-	end
-	if btn._lastCountText == "0" then
-		return true
-	end
-	-- Two bag copies stay usable while any copy remains (do not wait for summed uses).
-	if itemId and SnapshotStackCount(itemId) > 1 then
-		return false
-	end
-	if ConsumableKindButton(btn) then
-		if btn.WCount and btn.WCount.GetText then
-			local ok, text = pcall(btn.WCount.GetText, btn.WCount)
-			if ok and text == "0" then
-				return true
-			end
-		end
-	end
 	if not itemId then
 		return false
 	end
 	if HasToy(itemId) or ItemIsEquipped(itemId) then
 		return false
 	end
-	local copies = SnapshotStackCount(itemId)
-	-- Two bag copies stay usable while any copy remains (do not wait for summed uses).
-	if copies > 1 then
-		return false
-	end
-	local charges = LiveChargeCount(itemId)
 	local kind = ConsumableKindButton(btn) or IsConsumableItemId(itemId)
 	if not kind then
 		return false
 	end
-	-- Zone load: charge APIs are 0 while the stack is still in the snapshot.
-	if not BagsAreReliable() and copies > 0 then
-		return false
-	end
-	if charges > 0 then
-		return false
-	end
-	-- Unique emerald / sapphire / Mana Gem: leftover stack of 1, 0 charges.
-	-- Vanilla single-use gems never reach here (IsManaGemButton returned above).
-	return true
+	-- Read the same count as the digit, rather than stale text/forced-count caches
+	-- or a charge query that reports zero for ordinary single-use consumables.
+	local n = DisplayItemCount(itemId, { preferCopies = ConsumableKindButton(btn), kind = CountKind(btn) })
+	return n ~= nil and n <= 0
 end
 
 local function MountEnvBlocked()
@@ -3720,7 +3711,9 @@ function Paint.FlushCounts(ctx)
 		if doBags then
 			-- A spell reagent is not in changedItemIDs. Refresh every bag pulse.
 			local id = (not spellFace) and changedIDs and CountItemId(btn)
-			if not (id and not changedIDs[id]) then
+			local usesCharges = id and Flux.Item and Flux.Item.UsesConsumableCharges
+				and Flux.Item.UsesConsumableCharges(id, CountKind(btn))
+			if not (id and not changedIDs[id] and usesCharges ~= true) then
 				local changed = Paint.UpdateCount(btn)
 				-- 0-count gems must re-tint even when the digit did not change.
 				if changed or ConsumableKindButton(btn) then

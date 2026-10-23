@@ -1,102 +1,54 @@
-# Unit frames
+# Individual unit frames
 
-## Purpose
+Flux owns custom player, target, target-of-target, focus, focus-target, pet and pet-target frames. Each unit can use Flux or Blizzard presentation. `ns.UnitFrames` (`UF`) contains shared rendering/helpers; unit files construct and bind individual frames. Raid/party cells are a [separate system](15-raid-frames.md).
 
-Provide Flux-styled (or optional Blizzard) frames for the player and important units—readable health/power, cast, auras, and threat—without requiring a second all-in-one UI pack.
+## Ownership and frame lifecycle
 
-## What the player sees
+[Shared.lua](../UnitFrames/FluxUnitFrames_Shared.lua) provides `CreateBaseFrame`, health/power/additional-resource creation, portraits, borders, highlights, tooltips, partitioning, sizing, threat and common updates. Individual [Player](../UnitFrames/FluxUnitFrames_Player.lua), [Target](../UnitFrames/FluxUnitFrames_Target.lua), Focus/FocusTarget, TargetOfTarget and Pet/PetTarget files select unit behavior and expose `FluxUnitFrames_ApplyRuntime<Unit>` entrypoints.
 
-Custom Flux frames (or Blizzard defaults, per toggle) for:
+Watched-unit visibility distinguishes a real resolved unit from the optional empty target placeholder. Target/ToT refresh together; focus/pet dependents follow their parent units. Pet-target is a narrow vertical health strip rather than a full-size target copy.
 
-- Player
-- Target
-- Target of target
-- Focus
-- Focus target
-- Pet
-- Pet target
+[FluxVsBlizzardRuntime.lua](../UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua) coordinates switching without reload: suppress/mute the appropriate Blizzard frame/widget updates, restore the requested side and refresh related anchors. It watches target/focus/pet/vehicle/world changes and replays blocked work after combat. Per-unit visibility is not a request to indiscriminately destroy Blizzard frames/events.
 
-Typical chrome per unit:
+[OptionsBridge.lua](../UnitFrames/FluxUnitFrames_OptionsBridge.lua) interprets account/character settings through `GetUnitFrameDB`, supplies feature/display predicates and applies frame sizes, portraits, aura layouts, threat, partitions and overall geometry. Placement-specific stored sizes convert to effective dimensions; shared horizontal squeeze is applied without changing the saved dimensions. Layout placement has its own scope; see [layout](06-layout.md).
 
-- Optional portrait strip (2D or 3D where available)
-- Stacked health / main resource / optional alternate power
-- Cast bar
-- Auras on target/focus (configurable density)
-- Threat chrome on target/focus
-- Satellite widgets: class power, combo points, swing timer, flight progress on taxi, etc.
+## Health, resources and feedback
 
-Layout placement of player + target can be stacked or side-by-side via the Layout tab.
+Health and power use compatible native APIs, class/resource art and supported percent/display helpers. Shared code owns heal prediction, absorbs/heal absorbs, dead/ghost/AFK labels, disconnect behavior, class/reaction colors, full-resource pulses and secondary resources. Health/power text, level/class/PvP/combat/raid indicators, portrait combat feedback and mouseover highlights are separately gated options.
 
-## Behaviors
+Secret values must flow to supported display widgets rather than ordinary arithmetic/comparisons. A numeric-looking return is not automatically safe. Shared polling rejects unusable cached values. One poll frame replaces per-unit OnUpdate loops: default health cadence is 0.2s and threat 0.5s, with demand/visibility and combat gating. Event updates still supply the primary state changes. `FluxUI_GetUnitFramePollStats()` exposes the poll inventory.
 
-- Heal prediction and absorb display where the client supports them
-- Health-loss and power-cost overlays for feedback
-- MP5 tick overlay on older clients
-- Weapon swing timer on the player cast-bar slot (Classic Era / TBC Anniversary / Wrath: CLEU-accurate; Forever: `PLAYER_SWING` / `C_SwingTimer`, including wand, bow, gun, throw, and crossbow)
-- Flight-path duration awareness on taxi tooltips and cast-bar progress
-- Portrait combat feedback
-- Forever rogues and Cat Form druids: native red combo-point artwork above the
-  player frame, following target-bound points. Target unit-frame pips are disabled.
-  Empty sockets stay visible at zero points while the class/form is eligible.
-  Restricted combat counts go directly to display widgets without Lua comparisons.
-- BigDebuffs-friendly portrait/aura layout when that addon is present
-- Class/spec icon click for dual-spec or specialization flyout
-- Transmog click helper on player
-- Empty-target placeholder outline
-- On Midnight / Forever: health/power/cast remain **display-oriented** under secret-value rules ([03-midnight-constraints.md](03-midnight-constraints.md))
-- Target/focus threat bars read `Flux.Threat` (Forever APIs: situation, lead situation, lead %, detailed values). Rank/% hide when secret; tanking percent prefers lead % over raw %. Numeric % follows the game `threatShowNumeric` option.
+| Helper | Behavior |
+|---|---|
+| [HealthLossOverlay](../UnitFrames/FluxHealthLossOverlay.lua) | Trailing damage feedback attached around health value changes; can disable on unsupported bars. |
+| [PowerCostOverlay](../UnitFrames/FluxPowerCostOverlay.lua) | Cost prediction, segment art and post-value synchronization around resource updates. |
+| [MP5Overlay](../UnitFrames/FluxMP5Overlay.lua) | Older-client mana tick/five-second-rule presentation with relevant power/cast events. |
+| [PortraitCombatFeedback](../UnitFrames/FluxPortraitCombatFeedback.lua) | Combat-event text/tint in the portrait region. |
+| [ClassPower](../UnitFrames/FluxClassPower.lua) | Supported class resources, position and class-power scale. |
+| [ForeverComboPoints](../UnitFrames/FluxForeverComboPoints.lua) / [LegacyComboPoints](../UnitFrames/FluxLegacyComboPoints.lua) | Native-style player combo rows on applicable client/class/form paths, including target-bound points and secret-safe Forever display. |
 
-## Options / customization
+Player resource rows and nameplate combo rows are independent presentations. ClassPower primarily anchors Blizzard's own supported resource bars above the Flux player frame; the legacy/Forever combo modules supply their separate owned rows. Class-power scale affects unit-frame resources; nameplates have separate geometry. Eligibility and capability gates determine which renderer is active.
 
-**Unit frames** tab in `/fluxui` (full rows: [26-options-map.md](26-options-map.md)). Placement of player/target: [06-layout.md](06-layout.md).
+## Cast, swing and flight timers
 
-### General
-- **Unit frame settings scope** — Account-wide | Character-specific (default Account-wide)
-- Flux vs Blizzard toggles (all on): Player · Target · ToT · Focus* · Focus target* · Pet · Pet target
-- Features (on): 3D portraits · Health loss · Power cost · MP5 ticks · Swing timer (Era / Anniversary / Wrath / Forever) · Flight path timers / cast bar / taxi tooltips
-- **Threat bar visibility** — Always | In group or raid only (**default**) | Never
-- **Show threat percentage** — on (game CVar `threatShowNumeric`; also used on nameplates)
-- **Reset unit frame options to defaults**
+[FluxCastBar.lua](../UnitFrames/FluxCastBar.lua) handles unit casting/channel/empower presentation, latency/timing, interrupt feedback, text and border style. `CreateCastBar`, `RefreshCastForUnit`, `StartCustomTimer` and `StopCustomTimer` serve unit frames and custom timer consumers. `SyncBlizzardCastBars()` avoids simultaneous conflicting presentation.
 
-### Per-unit (defaults)
+[SwingTimer](../UnitFrames/FluxSwingTimer.lua) shares the player's cast-bar slot. Real casts can claim it; `HideForCastBarClaim` and `OnCastBarSlotReleased` coordinate ownership. Applicable Classic clients use combat-log/weapon events; Forever uses its supported swing APIs/events, including ranged/wand/throw variants. Cata/Mists and Live should not be assumed to have the same legacy swing path merely because the file loads.
 
-- **Player class power size:** 50–200%, default 100%. Scales every unit-frame
-  class resource, including Classic/Forever combo rows, arcane charges, holy
-  power, runes, chi, shards, essence, and totems. Changes wait until combat ends.
-  Forever's player combo row is 20% smaller at the default size; nameplates use
-  their independent size and position.
-- **Player:** portrait on · W 325 · H 100 · split 60%
-- **Target:** portrait on · empty placeholder on · W 500 / H 100 (or follow Player in side-by-side) · split 60% · auras size 35 · lock own debuff on · own min 75% · spacing 2 · max buffs 32 / debuffs 16 · threat position Portrait (default)
-- **ToT:** W 125 · H 60 · split 60%
-- **Focus:** portrait on · W 119 · H 50 · aura size 20 · same lock/spacing/max · threat Portrait
-- **Pet:** portrait on · cast bar **off** · auras on mouseover **on** · W 100 · H 50 · split 60%
-- **Pet target:** W 23 (vertical strip; height matches pet)
+[FlightPath](../UnitFrames/FluxFlightPath.lua) adds taxi duration tooltips and cast-bar progress, with a route-time database selected by client-specific XML. Lookup prefers faction-scoped account overrides, then supplied static data; character storage remembers node names. `GetFlightTimeForNodes`, `SetOverride` and `ClearOverride` expose this boundary. Flight timing is measured/learned rather than guaranteed exact; missing routes remain unknown. Data is attributed to RestedXP and has separate licensing; see [assets](34-assets.md).
 
-## Relationships
+## Auras, threat and integrations
 
-- Accent/cast borders → [04-visual-system.md](04-visual-system.md)
-- Squeeze near Flux Window → [05-defaults-and-bindings.md](05-defaults-and-bindings.md)
-- Mouseover cast / keybind fix with bars → [11-action-bars.md](11-action-bars.md)
-- Raid is separate compact system → [15-raid-frames.md](15-raid-frames.md)
-- Vehicle exit / duration bars / loot rolls often anchor near player → [25-other-qol.md](25-other-qol.md)
-- Inspiration → TPerl Classic/Retail in [90-reference-inspirations.md](90-reference-inspirations.md)
+[Auras.lua](../UnitFrames/FluxUnitFrames_Auras.lua) owns target/focus containers, layout, icon counts, tooltips and refresh. [AurasOwn.lua](../UnitFrames/FluxUnitFrames_AurasOwn.lua) identifies/sorts player/pet/vehicle debuffs and computes locked-own sizing with secret/access checks. Buff/debuff density, spacing, own-debuff minimum scale and independent per-unit configuration come through the options bridge.
 
-## Client availability
+On supported Midnight/Forever clients, [AurasEngine.lua](../UnitFrames/FluxUnitFrames_AurasEngine.lua) loads Blizzard_AuraContainer and uses engine-owned aura enumeration. Flux styles/configures the supplied buttons; it does not depend on tainted Lua successfully enumerating restricted target auras in combat. `UseEngineAuras`, `AttachEngineAuras`, `SyncEngineAuras` and `PokeEngineAuras` select/reconcile that path. Other clients use the owned Lua-rendered path. This differs from the raid private-aura-container implementation.
 
-| Client | Availability |
-|--------|--------------|
-| Era | Full Classic feature set (swing, MP5, dual-spec click) |
-| Anniversary | Full |
-| Classic | Full unit chrome; swing timer N/A on post-Cata track (Cata / MoP) |
-| Midnight | Full Flux chrome; swing timer N/A; secret-safe display for combat numbers including threat bars; Retail talent/spec click |
-| Forever | Same as Midnight for threat bars; swing timer available (`PLAYER_SWING` melee and ranged) |
+Target/focus threat uses `Flux.Threat`, including available Forever lead/situation APIs. Visibility, location and percentage display are independent options; restricted rank/percentage values are omitted or displayed safely. Numeric percentage follows game `threatShowNumeric`, also used by nameplates. [BigDebuffs integration](../UnitFrames/FluxUnitFrames_BigDebuffs.lua) handles portrait/corner placement and frame levels without making that addon mandatory.
 
-## Rewrite intent notes
+[PetAuraTooltip](../UnitFrames/FluxUnitFrames_PetAuraTooltip.lua) adds pet auras on hover with tooltip ownership and deferred refresh. [PlayerSpecClick](../UnitFrames/FluxUnitFrames_PlayerSpecClick.lua) supplies specialization/profile flyouts, selected-profile state and Respec interactions; choosing/arming a profile differs from loading it. [PlayerTransmogClick](../UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua) provides supported outfit/transmog interactions and appropriate click/flyout state.
 
-TPerl informs **dense but readable** unit chrome (portraits, auras, threat adjacency)—not a pixel clone. Prefer per-unit Flux-vs-Blizzard toggles so healers can mix preferences.
+## Failure and verification model
 
-## Explicit non-goals
+Unknown/secret units, unsupported APIs, unresolved aura data and unavailable features are gated rather than treated as ordinary zeroes. Secure geometry/toggle work defers outside combat. Mock tests cover selected aura, combo, scale and style contracts; they cannot verify actual secure execution.
 
-- Replacing raid/party compact frames (see Raid frames).
-- Built-in boss frames suite as a v1 requirement.
-- Combat decision overlays that branch on secret health thresholds on Midnight.
+In game, test switching each unit to/from Blizzard, changing targets rapidly, empty placeholders, pet replacement, vehicles, portrait mode, all supported resource types, heal/absorb display, aura sorting and restricted combat, shared cast/swing/flight ownership, hover routing and BigDebuffs absent/present. Exact controls/defaults are in [options](26-options-map.md); remaining uncertainty belongs in [verification](41-verification.md).

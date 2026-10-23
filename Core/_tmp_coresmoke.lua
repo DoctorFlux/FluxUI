@@ -540,14 +540,15 @@ if read("../UnitFrames/FluxBlizzardUnitFrameSecrets.lua") ~= "" then
 end
 
 local buffDebuffSrc = read("../Minimap/FluxBuffDebuffFrames.lua")
-has(buffDebuffSrc, "Blizzard's BuffFrame and DebuffFrame", "minimap auras are the native BuffFrame")
 has(buffDebuffSrc, "function M:PositionBuffFrames()", "PositionBuffFrames stays callable")
 has(buffDebuffSrc, "function M:RefreshBlizzardAuraFrames()", "RefreshBlizzardAuraFrames stays callable")
-if buffDebuffSrc:find("AttachEngineAuras", 1, true) or buffDebuffSrc:find("FluxTryInstallEnginePlayerAuras", 1, true) or buffDebuffSrc:find("_fluxBuffFrameArt", 1, true) then
-	failures[#failures + 1] = "minimap must not install a second player aura row"
-end
-if buffDebuffSrc:find("SetAlpha", 1, true) then
-	failures[#failures + 1] = "minimap must not alpha-hide BuffFrame"
+has(buffDebuffSrc, "frame.ClearAllPointsBase", "native aura positioning bypasses Edit Mode snapping writes")
+has(buffDebuffSrc, 'hooksecurefunc(frame, "ApplySystemAnchor", Schedule)', "native layout changes defer the positioning pass")
+has(buffDebuffSrc, '"TOPRIGHT", UIParent, "TOPRIGHT"', "player auras are anchored to the screen")
+for _, needle in ipairs({ "AttachEngineAuras", "CustomAuraContainerTemplate", "AuraButtonArtTemplate", "AddAuraGroup", "SetParent", "UnregisterAllEvents", "SetAlpha", "GetAuraDataByIndex", "GetAuraSlots", "auraInstanceID" }) do
+	if buffDebuffSrc:find(needle, 1, true) then
+		failures[#failures + 1] = "native player auras must keep their original frames, visibility, events and rendering: " .. needle
+	end
 end
 if buffDebuffSrc:find("UpdateGridLayout", 1, true) then
 	failures[#failures + 1] = "minimap must not wrap BuffFrame UpdateGridLayout"
@@ -558,11 +559,12 @@ end
 if buffDebuffSrc:find("C_EditMode", 1, true) or buffDebuffSrc:find("SaveLayouts", 1, true) or buffDebuffSrc:find("SetActiveLayout", 1, true) or buffDebuffSrc:find("MakeNewLayout", 1, true) or buffDebuffSrc:find("SelectLayout", 1, true) then
 	failures[#failures + 1] = "minimap must not write an Edit Mode layout (taints CompactUnitFrame_UpdateHealthColor)"
 end
-if buffDebuffSrc:find("RegisterStateDriver", 1, true) or buffDebuffSrc:find("SetPointBase", 1, true) or buffDebuffSrc:find("SecureHandlerSetFrameRef", 1, true) then
-	failures[#failures + 1] = "minimap must not anchor BuffFrame or DebuffFrame (taints Edit Mode party-frame health colors)"
+if buffDebuffSrc:find("RegisterStateDriver", 1, true) or buffDebuffSrc:find("SecureHandlerSetFrameRef", 1, true) then
+	failures[#failures + 1] = "native aura positioning must not add state drivers or restricted snippets"
 end
-has(buffDebuffSrc, "AuraContainer", "buff row shift is on the icon container, not the Edit Mode system frame")
-has(buffDebuffSrc, "editModeActive", "container shift does not run while Edit Mode is open")
+if buffDebuffSrc:find("BuffFrame:SetPoint", 1, true) or buffDebuffSrc:find("DebuffFrame:SetPoint", 1, true) or buffDebuffSrc:find("AuraContainer:SetPoint", 1, true) or buffDebuffSrc:find('SetScript("OnUpdate"', 1, true) or buffDebuffSrc:find("HookScript", 1, true) then
+	failures[#failures + 1] = "minimap must not move or HookScript BuffFrame (taints secret hasAurasToUpdate)"
+end
 if buffDebuffSrc:find("ReloadUI", 1, true) or buffDebuffSrc:find("C_UI.Reload", 1, true) then
 	failures[#failures + 1] = "minimap must not call ReloadUI (ADDON BLOCKED from the enforcer)"
 end
@@ -850,7 +852,7 @@ end
 
 local clientSrc = read("Client.lua")
 has(clientSrc, "isCamelot", "Client detects camelot/Forever")
-has(clientSrc, "_isCamelotGameType == true", "TOC camelot game type is authoritative")
+has(clientSrc, "_isCamelotGameType == true", "Client reads the runtime-validated Camelot flag")
 has(clientSrc, "NewTimedSignalMap", "Forever timer API is not treated as live Midnight")
 has(clientSrc, "CharacterStatsPanePetScrollBox", "Forever stats pane is the ScrollBox pair from wow-ui-source-forever")
 has(clientSrc, "majorVersion < 12", "12.x live ignores CharacterStatsPaneScrollBox")
@@ -868,7 +870,7 @@ has(slashSrc, "isLiveMidnight", "/fluxapi prints live Midnight vs Forever")
 has(slashSrc, "spellRanks", "/fluxapi prints per-rank spellbook flag")
 
 local camelotSrc = read("Client_Camelot.lua")
-has(camelotSrc, "_isCamelotGameType = true", "camelot TOC file sets the flag")
+has(camelotSrc, "_isCamelotGameType = true", "Camelot module sets its flag after its runtime guard")
 has(camelotSrc, "SpellRankSubtext", "Forever GetSpellInfo keeps Classic rank subtext")
 
 has(capSrc, "hasRestrictedClosures = not Client.isCamelot", "closures disabled on camelot")

@@ -1,92 +1,68 @@
-# Multi-client matrix
+# Client detection and implementation matrix
 
-## Purpose
+This is a source-confirmed routing matrix, not a live-client certification. "Implemented" means a selected code path exists. See [41-verification.md](41-verification.md) for source/mock/in-game distinctions.
 
-FluxUI must feel like **one product** on four Blizzard client families. This matrix records what each system is expected to do per client so the rewrite does not silently assume Retail-only or Classic-only behavior.
+## Targets and families
 
-## Client families
+[_FluxUI.toc](../_FluxUI.toc) advertises interface numbers `120100, 16001, 11509, 20506, 50504` and names Midnight, Forever, Era, Anniversary and MoP Classic. Metadata is not evidence of the newest available game patch.
 
-| Short name | Meaning | Blizzard UI reference tree (concept) |
-|------------|---------|--------------------------------------|
-| **Era** | Classic Era | `wow-ui-source-classic_era` |
-| **Anniversary** | TBC Anniversary / Classic Anniversary | `wow-ui-source-classic_anniversary` |
-| **Classic** | Classic 2019 track (currently MoP-era) | `wow-ui-source-classic` |
-| **Midnight** | Retail Midnight, currently patch **12.1.0** | `wow-ui-source-live` |
-| **Forever** | Camelot / Forever (Midnight-family UI; treated as `Client.isCamelot`) | `wow-ui-source-forever` |
+| Runtime | Detection in [Client.lua](../Core/Client.lua) | Module family |
+|---|---|---|
+| Era | `WOW_PROJECT_CLASSIC`. | `era` |
+| Anniversary/TBC | `WOW_PROJECT_BURNING_CRUSADE_CLASSIC`; `isTBC` and `isAnniversary` share this classification. | `anniversary` |
+| Mists progression | Mists project; retained Wrath/Cata handling shares the family. | `classic` |
+| Live Midnight | Mainline, major version ≥12, not Forever. | `midnight` |
+| Forever/Camelot | Non-Classic runtime below major 12 with validated Camelot flag, legacy mainline version, timed-signal API or matching stats-pane evidence. | `midnight` |
 
-Legend: **Full** = feature works as designed · **Partial** = subset / display-only / different backend · **N/A** = not applicable on that client
+Wrath/Cata branches remain in wrappers/filters; that alone does not establish separate currently supported packages. Forever sets `isRetail`, `isMidnight` and `isPostDF` despite a legacy-looking version. `gameType` is `camelot`, `classic` or `live`.
 
-Forever ships in the Midnight column below unless a row calls it out (nameplate threat overlays, swing timer, secrets backend, **bank UI**).
+[Client_Camelot.lua](../Core/Client_Camelot.lua) validates the runtime before adding compatibility globals. TOC filtering alone is insufficient. The [client guard smoke](../Core/_tmp_clientguardsmoke.lua) includes mocked Retail 12.1.5 and stray Forever-looking APIs/flags; that version is a test input, not a deployment assertion.
 
-Forever’s bank is War Within `BankFrame`/`BankPanel` names with **classic bags-in-bank** layout (`C_Bank.ShouldUsePlayerBagsInBank()`): 8-column pages, bag slots on the frame, character vs warband via right-side page tabs (up to 9+9 tab bag IDs). Live Midnight keeps named tabs and a bottom TabSystem. Flux inventory must enumerate tabs until nil and keep restock/junk/window-mover off that Camelot chrome.
+## Flag compatibility
 
-## Matrix by system
+| Flag | `Flux.Client` | Legacy `FLUX_API` |
+|---|---|---|
+| `isClassic` | Wrath/Cata/Mists. | Era. |
+| `isClassicEra` | Era. | Era. |
+| `isAnyClassic` | Era/TBC/Wrath/Cata/Mists. | Same set. |
+| `isForever`/`isCamelot` | Forever. | Follows validated Core classification where available. |
+| `isPostDF` | Major ≥10 or Forever. | Same broad policy. |
 
-| System | Era | Anniversary | Classic | Midnight |
-|--------|-----|-------------|---------|----------|
-| Visual border / accent | Full | Full | Full | Full |
-| Unified bottom envelope | Full | Full | Full | Full |
-| Defaults / CVar packs | Partial (gated packs) | Partial | Partial | Partial (safer deferral; some packs blocked) |
-| Flux keybind pack | Full | Full | Full | Full (Assisted Combat where present) |
-| Scale / horizontal squeeze | Full | Full | Full | Full |
-| Flux Window shell | Full | Full | Full | Full |
-| Map ↔ Minimap embed | Full | Full | Full | Full |
-| Map pins mirroring | Partial | Partial | Partial | Partial (provider-dependent) |
-| Meter: Details embed | Full if Details | Full if Details | Full if Details | Full if Details |
-| Meter: Blizzard native | N/A | N/A | N/A | Partial (when Details absent) |
-| Threat pane in meter | Details path | Details path | Details path | Details path via `Flux.Threat`; skip secret values; no Classic `/100` on Midnight/Forever |
-| Action bar 19-col + minirows | Full | Full | Full | Full |
-| Stance / form paging | Full | Full | Full | Full |
-| Vehicle / possess paging | Full | Full | Full | Full |
-| Skyriding / dragonriding page | N/A | N/A | N/A | Full |
-| Pet bar | Full | Full | Full | Full |
-| Proc / cast glow feedback | Full (Classic-style) | Full | Full | Partial (Retail glow language; identity continuity still required) |
-| Corner badges | Full | Full | Full | Full |
-| Extra Ability HUD re-anchor | N/A | N/A | N/A | Full |
-| Combat / NonCombat grids | Full | Full | Full | Full |
-| Trinket menu | Full | Full | Full | Full |
-| Binding editor / conditions | Full | Full | Full | Full (no mid-combat rebuild from secret data) |
-| Unit frames Flux vs Blizzard | Full | Full | Full | Full (display-safe combat numbers) |
-| Swing timer | Full | Full | N/A (post-Cata track) | N/A (post-DF retail) |
-| Flight path cast progress | Full | Full | Full | Partial / client-dependent |
-| Raid frames | Full | Full | Full | Full (status text display-safe) |
-| Status bars gold/XP/rep | Full | Full | Full | Full |
-| Honor / Arena on gold strip | Full where exists | Full where exists | Full where exists | Partial / often N/A |
-| Account gold ledger | Partial | Partial | Partial | Full (post-DF account gold story) |
-| Micro menu replacement | Full | Full | Full | Full |
-| Minimap square + embed | Full | Full | Full | Full |
-| Objective tracker dock | Partial | Partial | Partial | Full (scroll body post-DF) |
-| Nameplate threat / level overlays | Full | Full | Full | Live Midnight: informational / Blizzard plates. Forever: secret-safe Flux threat overlay (no level). Aura countdown overlay on all four. |
-| Vendor / junk / restock | Full | Full | Full | Full |
-| Already Known tint | Full | Full | Full | Full |
-| Bank restock | Full | Full | Full | Full (warband-aware). Forever: bags-in-bank restock button by the search box, not bottom-left over bag slots |
-| Salvage overlay | Full | Full | Full | Full |
-| Respec profiles (Classic talents) | Full | Full | Full | N/A for Classic trees |
-| Respec Retail loadouts | N/A | N/A | N/A | Full |
-| Respec action-bar snapshot | Full | Full | Full | Skipped on loadout clients |
-| SoD rune presets | N/A / SoD only | N/A | SoD-like only | N/A |
-| Baganator bridges | If present | If present | If present | If present |
-| Window mover (Blizzard windows) | Full | Full | Full | Full (secret-safe apply). Forever BankFrame: drag only, no scale / SetPoint fight against growing bags-in-bank height |
-| Character Info overlays | Full (CSC + paperdoll extras) | Full (TBC CSC + paperdoll extras) | Partial (pane hooks; no Vanilla CSC) | Full (Live `CharacterStatsPane` / Forever ScrollBox row Init pin + ilvl format) |
-| ConsolePort coexistence | If present | If present | If present | If present |
+The legacy [Client.lua](../Core/FluxAPI/Client.lua) exports separate namespace/API flags. Do not treat identically named properties as interchangeable.
 
-## Cross-cutting rules
+## Major implementation paths
 
-1. **Capability first** — Each feature asks “does this client have the game systems?” before assuming UI.
-2. **Same labels, different guts** — Players see the same Flux Window tabs and option names; backends may differ (e.g. meter).
-3. **Midnight combat display** — Health, power, threat ranks, cast progress, and similar may be shown, but Flux must not use them for combat decision branching. Details: [03-midnight-constraints.md](03-midnight-constraints.md).
-4. **Optional deps** — Details, Baganator, BigDebuffs, Questie, TacoTip, Compact Raid Frames, ConsolePort change richness, not whether Flux loads.
+| System | Era | TBC | Mists | Live Midnight | Forever |
+|---|---|---|---|---|---|
+| Kernel/options/accent/layout | Shared. | Shared. | Shared. | Settings safety. | Variable-setup delay and gamepad variants. |
+| Bars/grids/trinkets/pet/stance | Classic paths. | Classic paths. | Classic paths. | Modern actions/secure wraps. | No restricted closures; alternate click/state handling. |
+| Rank controls | Enabled. | Enabled. | Disabled. | Disabled. | Low-rank API probe; modern book location. |
+| Skyriding | Off. | Off. | Off. | Capability on. | Explicitly excluded. |
+| Swing overlay | Enabled, API/event probe. | Enabled. | Disabled. | Disabled post-DF. | Native swing path when available. |
+| Focus | Native ability/frame probe. | Probe. | Probe. | Probe. | Probe. |
+| Aura enumeration | Available API/fallback. | Same. | Same. | Secret-access gates and specialized display. | Same backend family; distinct aura/UI handling. |
+| Unit/raid frames | Classic paths. | Classic paths. | Progression paths. | Secret-safe display/native paths. | Separate token/recycled-row/aura handling. |
+| Nameplate threat/level | Custom path when C_NamePlate exists. | Same. | Same. | Threat path supported; level explicitly disabled. | Threat and level paths supported, with secret guards. |
+| Aura countdown | Capability path. | Same. | Same. | Native/secret-safe durations. | Capability path. |
+| Tracker scroll | Legacy docking. | Legacy. | Legacy. | Post-DF viewport. | Waits for native initialization/nonzero height. |
+| Meter | Details if installed. | Details. | Details. | Details or available native backend. | Details/Forever threat path; actual backend probe. |
+| Threat normalization | Accessible values, Classic /100. | Same. | Same. | No /100; generic secret rows can skip. | Dedicated secret display rows, no /100. |
+| Bank | Legacy slots/bags/keyring. | Same. | Progression/reagent probe. | Unified character/account tabs where available. | Unified API with bags-in-bank layout/sentinels. |
+| Flux combined bag | Unless alternative UI. | Unless alternative UI. | No Era/TBC replacement branch. | Native/alternative integration. | Native/gamepad-sensitive integration. |
+| Vendor/restock/junk/Salvage | Available operations. | Same. | Same. | Bank/tooltip-specific routes. | Bank/gamepad-specific routes. |
+| Respec | Classic talent/bar/gear paths. | Classic paths. | Progression API paths. | Retail loadouts; different bar snapshot policy. | Native system probes; not every live feature follows isRetail. |
+| Character Info | Classic stats/paperdoll. | TBC stats/paperdoll. | Native/progression hooks. | CharacterStatsPane rows. | ScrollBox rows and shared combat stat pins. |
+| WindowMover | Catalog probes. | Same. | Same. | Modern geometry/exclusions. | Dynamic bank drag-only in keyboard mode; all catalog entries skipped in native gamepad mode. |
+| Companion integrations | Conditional. | Conditional. | Conditional. | Conditional. | Conditional, additional safeguards. |
 
-## Relationships
+Sources: [Capabilities.lua](../Core/Capabilities.lua), [legacy capabilities](../Core/FluxAPI/Capabilities.lua), [Threat.lua](../Core/API/Threat.lua), [Classic combined bag](../Inventory/Builtin/FluxClassicCombinedBag.lua). Details belong to [system chapters](00-README.md).
 
-- Product story → [01-product-overview.md](01-product-overview.md)
-- Midnight limits → [03-midnight-constraints.md](03-midnight-constraints.md)
-- Per-system detail → docs `10`–`25`
+## Forever details retained from the working tree
 
-## Rewrite intent notes
+**Shared stats:** [FluxInfoFrame.lua](../StatusBars/FluxInfoFrame.lua), `_CamelotCombatStatKey`/`_FoldCamelotCombatPins`, uses one Hit/Crit/Haste value and pin per stat, folding older melee/ranged/spell pins while preserving order. [RetailPane.lua](../CharacterInfo/RetailPane.lua) hooks recycled ScrollBox row initialization. Other clients retain their own providers/pin behavior.
 
-Design one options surface and one HUD layout language. Gate expansion-specific pieces (skyriding, warband bank, Retail talent loadouts, Blizzard damage meter) behind clear client rows in this matrix—not behind silent failure.
+**Bank:** `Cap.UsesPlayerBagsInBank` probes the native function with Camelot fallback. BankFrame/BankPanel names do not imply live Midnight's named tabs. Sentinels are not scan containers; Forever's account sentinel can share -3 with the traditional reagent constant. `EnumerateBankTabIDs` combines purchased/enum IDs until absent, capped at 32, without hardcoding five tabs. The restock button anchors near search rather than over bottom bag slots, and WindowMover avoids scale/point fights with growing bank height. See [inventory](21-inventory-foundation.md) and [windows](28-window-mover.md).
 
-## Explicit non-goals
+**Gamepad:** native input-style API/enum and shown-bar probes distinguish HUD style from hardware connection. A style change prints a reload request because bag/tracker hooks were chosen at load. Click proxies, dropdowns, native collectors and protected panels add further constraints. WindowMover.ShouldSkip currently skips every catalog entry in Forever gamepad mode, not only bags.
 
-- Separate addon packages per client (unless packaging later requires it; the **concept** is one product).
+TOC gates, client flags, capabilities, runtime checks and addon readiness all participate. Some probes refresh after login. Existence does not prove safe/populated behavior in every UI/combat state. See [03-midnight-constraints.md](03-midnight-constraints.md) and [07-runtime-architecture.md](07-runtime-architecture.md).

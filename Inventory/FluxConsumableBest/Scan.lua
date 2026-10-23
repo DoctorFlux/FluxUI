@@ -77,9 +77,15 @@ local function BankIsOpen()
     return false
 end
 
+local function KnownNonConsumable(itemID)
+    local IC = _G.FluxItemClass
+    local static = IC and IC.GetStatic and IC.GetStatic(itemID)
+    return static and static.classID ~= nil and static.classID ~= 0
+end
+
 local function QueuePending(itemID, allowLoad)
     itemID = tonumber(itemID)
-    if not itemID or pendingSet[itemID] then
+    if not itemID or pendingSet[itemID] or KnownNonConsumable(itemID) then
         return
     end
     if #pendingQueue >= PENDING_CAP then
@@ -240,6 +246,12 @@ local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
     end
     itemID = tonumber(itemID)
     if not itemID then
+        return classifyBudget
+    end
+    -- Match Classify's static class rejection before spending a load/classify
+    -- slot. Gear and crafting materials must not fill the pending queue.
+    if KnownNonConsumable(itemID) then
+        ClearPendingLoad(itemID)
         return classifyBudget
     end
     if IC and IC.IsLoaded and not IC.IsLoaded(itemID) then

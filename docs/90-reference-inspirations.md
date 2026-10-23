@@ -1,96 +1,49 @@
-# Reference inspirations
+# Dependencies, ports and reference provenance
 
-## Purpose
+Runtime dependencies, embedded libraries, explicit ports and design references are different relationships. Local comments establish attribution/intent, not a complete historical or license audit. See [assets](34-assets.md), [source coverage](30-source-coverage.md) and [integrations](29-integrations.md).
 
-Name the external addons that informed FluxUI’s **intent**, and state what to borrow conceptually for the rewrite. This is not permission to copy code.
+## Runtime companions and embedded libraries
 
-## Core inspirations by Flux system
+[_FluxUI.toc](../_FluxUI.toc) lists Blizzard_UnitFrame, Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Blizzard_CompactRaidFrames and SpellActivationOverlay as optional dependencies. A Camelot-filtered dependency metadata entry names Blizzard_CombatLog. [Core/Optional.lua](../Core/Optional.lua) also probes Masque and Clicked; a probe is not proof of a complete integration. Syndicator readiness is separate from loaded state.
 
-### Action bars — Bartender4 (+ modern glow packages)
+| Loaded code | Role/provenance |
+|---|---|
+| [LibStub](../libs/LibStub/LibStub.lua) | Versioned library registry. |
+| [Unfit](../libs/Unfit-1.0/Unfit-1.0.lua) | Item suitability; attribution/embedding terms are in its header. |
+| [LibCustomGlow](../libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua) | Glow rendering; credits LibButtonGlow work; local [MIT license](../libs/LibCustomGlow-1.0/LICENSE). |
+| [CallbackHandler](../libs/CallbackHandler-1.0/CallbackHandler-1.0.lua) | Library callback support. |
+| [LibKeyBound](../libs/LibKeyBound-1.0/lib.xml) | Hover-and-key binding mode; authorship/version in source. |
+| AceAddon/AceDB/AceDBOptions/AceEvent/AceConsole/AceGUI/AceConfig | Addon/profile/options/widget services loaded through XML. |
+| [C_Everywhere](../libs/C_Everywhere/C_Everywhere.xml) | Economy API compatibility; included Tests.lua currently immediately returns. |
+| [CustomSearch](../libs/CustomSearch-1.0/CustomSearch-1.0.lua) | Search parsing; local attribution/embedding terms. |
+| [ItemSearch](../libs/ItemSearch-1.3/ItemSearch-1.3.xml) | Item query API/filters. |
+| [SecureTabs](../libs/SecureTabs-2.0/SecureTabs-2.0.lua) | Tab support with local distribution header. |
 
-**Borrow:** One authoritative bar owner; stance/form/vehicle/override paging; hide Blizzard bars; polished button feedback; optional glow continuity under paging.
+Other library directories, including LibActionButton, LibButtonGlow, LibClassicSpellActionCount, LibDualSpec and LibDBIcon, are not automatically active. Check TOC/XML reachability; installed addons can separately provide libraries through LibStub.
 
-**Flux-specific:** 19-column layout with page-2 on the same row; SHIFT/CTRL minirows; smart promotion; corner badges; sealed console squeeze with grids/trinkets.
+## Explicit source relationships
 
-Refs: `Bartender4ModernGlowEffects`, `Bartender4 Fixed`.
+| Area | Local evidence |
+|---|---|
+| Binding strings | [Locale.lua](../Binding/UI/Locale.lua) identifies verbatim Clicked enUS keys and Flux additions. |
+| Binding UI/media | Adapted widgets/media and Clicked-style vocabulary coexist with Flux-owned current document/compile/placement layers. Installed Clicked does not own this state. |
+| Secure click/effects | [Click.lua](../Core/ButtonFX/Click.lua) calls its ButtonForge-derived contract verbatim; other Core comments cite ButtonForge icon/rank/cooldown/checked/event patterns. |
+| Vendor bulk purchase | [FluxBuyEmAll.lua](../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua) identifies a BuyEmAllClassic port, with local XML/localization. |
+| Chat copy | [FluxChatCopyPaste.lua](../Other/FluxChatCopyPaste.lua) identifies a ChatCopyPaste port and named authors. |
+| Equip flyout | [FluxEquipSlotFlyout.lua](../Other/FluxEquipSlotFlyout.lua) describes ItemRack-style behavior and a copied docking table. |
+| Flight route data | [FluxFlightPath.lua](../UnitFrames/FluxFlightPath.lua) and the per-client data headers credit RestedXP Guides, CC BY-NC-SA 4.0, adapted for FluxUI. |
+| Salvage | [FluxSalvage.lua](../Salvage/FluxSalvage.lua) says Molinari-style; that alone establishes an interaction comparison, not complete ancestry. |
+| Flyouts | TOC names a UFO pattern; active code is FlyoutEngine, not leftover Flyout files. |
+| Bars | TOC names an Ellesmere-style engine/preserved Flux visuals; old concept docs named Bartender4. Exact upstream ancestry is not inferred from style comments. |
 
-### Extra buttons & binding badges — ButtonForge
+Earlier documentation also cited Scrap/Restocker, Syndicator/Baganator and TPerl as product references. Those comparisons can explain intent, but loaded source defines current behavior. The previous blanket "intent only/no vendoring" wording did not reflect embedded libraries and explicit ports.
 
-**Borrow:** First-class custom buttons for spells/items/macros; flyouts; clear keybindability; category-like organization; badge-like secondary faces.
+No complete pinned upstream revision manifest was found. This documents known local evidence without inferring every similar feature's origin.
 
-**Flux-specific:** Opinionated Combat vs NonCombat grids, trinket menu, four utility slots, Flux Window Buttons tab, shared VFX with the main bar.
+## Blizzard references and asset tooling
 
-Refs: ButtonForge Classic Era, post-Dragonflight, TBC Anniversary.
+Comments name reference trees wow-ui-source-classic_era, classic_anniversary, classic, live and forever. These names describe comparisons, not automatically present dependencies or version guarantees.
 
-### Binding documents — Clicked (+ ClickedMedia)
+[export_retail_unit_bars.py](tools/export_retail_unit_bars.py) records nine standalone fill exports from Blizzard FileDataID 4642466, build 12.1.0.69299, atlas 2074 and an exact SHA-256. It validates the BLP input and writes alpha-aware resampled power-of-two TGA files, defaulting to Media/UnitFrames/Retail. It is an asset-production utility, not a read-only docs check.
 
-**Borrow:** Conditional casting as editable documents; targets/forms/conditions/multi-cast; key visualization clarity; spellbook-driven binding creation.
-
-**Flux-specific:** Chord routing into 19-col + minirows; deep Bar & Badges integration; Respec snapshot of bindings.
-
-Refs: `Clicked`, `ClickedMedia`.
-
-### Vendor / junk / restock — Scrap + Restocker
-
-**Borrow (Scrap):** Junk classification rules, bag indicators, Useful/Junk lists, safe sell, merchant integration.
-
-**Borrow (Restocker):** Target quantities, reagent lists, bank refill toward targets, merchant restock automation.
-
-**Flux-specific:** Tier consumables tied to Extra Buttons and ConsumableBest; Already Known; BuyEmAll-style bulk buy; respec gear protection interplay.
-
-Refs: `Scrap`, `Restocker`.
-
-### Inventory facts & bag views — Syndicator + Baganator
-
-**Borrow (Syndicator):** Shared factual inventory/character economy index mindset; gold across characters.
-
-**Borrow (Baganator):** Category sections, transfer UX, bag/bank views that other systems can decorate.
-
-**Flux-specific:** Flux-owned foundation for restock/junk/respec even when Baganator is absent; dedicated compat bridges when it is present.
-
-Refs: `Baganator`, `Syndicator`.
-
-### Unit frames — TPerl
-
-**Borrow:** Dense readable unit chrome; portraits; aura panels; threat adjacency; pet/ToT/focus family completeness.
-
-**Flux-specific:** Per-unit Flux-vs-Blizzard toggles; Layout placement with the sealed HUD; Midnight display-safe combat numbers; flight/swing/class-power satellites as client allows.
-
-Refs: `TPerl_Classic2019`, `TPerl_Retail`.
-
-### Salvage interaction — Molinari-style
-
-**Borrow:** Modifier-held overlay → click to process profession actions on bag items.
-
-**Flux-specific:** Integrated protection with respec sets; options under Flux Salvage tab; inventory-aware eligibility.
-
-### Other noted ports (intent only)
-
-- Chat copy/paste convenience (ChatCopyPaste-style)
-- Equip flyouts (ItemRack-style)
-- BuyEmAll-style vendor bulk purchase UI
-- Already Known tint behavior
-
-## Blizzard UI reference trees
-
-Use these to understand **what each client ships**, not to paste into Flux:
-
-| Client | Reference tree |
-|--------|----------------|
-| Classic Era | `wow-ui-source-classic_era` |
-| TBC Anniversary | `wow-ui-source-classic_anniversary` |
-| Classic (MoP-era) | `wow-ui-source-classic` |
-| Retail Midnight | `wow-ui-source-live` |
-
-## How to use this doc during the rewrite
-
-1. Read the Flux system doc first (`10`–`25`).
-2. Skim the matching inspiration row here for the **player feeling** to preserve.
-3. Implement new code against current client UI sources and Midnight constraints.
-4. Never treat reference addon source as a patch base.
-
-## Explicit non-goals
-
-- Vendoring reference-addon code into Flux.
-- Matching reference addon options pixel-for-pixel.
-- Supporting every optional dependency as required.
+The [asset index](34-assets.md) covers textures/fonts/localization/data. This docs pass preserves vendor/runtime/license files.

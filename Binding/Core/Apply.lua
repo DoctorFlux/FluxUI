@@ -2348,32 +2348,60 @@ if pcall(spellDataEv.RegisterEvent, spellDataEv, "SPELL_DATA_LOAD_RESULT") then
     end)
 end
 
---- Any binding stores multi-cast extras? (bag/equip refresh for skip-empty.)
-local function HasAnyMacroExtrasConfigured()
+-- Bag quantities do not change a multicast macro until an extra becomes
+-- available/unavailable. Recompiling every binding for every mail attachment
+-- was especially expensive with a populated binding database.
+local extrasInventorySignature
+local function MacroExtrasInventorySignature()
+    local states = {}
     for _, b in pairs(DB.All()) do
         for _, sub in pairs(b.forms or {}) do
             local extras = sub and sub.macro and sub.macro.extras
-            if type(extras) == "table" and #extras > 0 then
-                return true
+            for _, e in ipairs(type(extras) == "table" and extras or {}) do
+                local id = type(e) == "table" and tonumber(e.id)
+                if id and e.type == "item" and states["i" .. id] == nil then
+                    states["i" .. id] = DB.IsMacroExtraAvailable(e) and "1" or "0"
+                elseif id and e.type == "slot" and states["s" .. id] == nil then
+                    states["s" .. id] = tostring(GetInventoryItemID and GetInventoryItemID("player", id)
+                        or (GetInventoryItemTexture and GetInventoryItemTexture("player", id)) or 0)
+                end
             end
         end
     end
-    return false
+    local parts = {}
+    for key, value in pairs(states) do parts[#parts + 1] = key .. "=" .. value end
+    table.sort(parts)
+    return table.concat(parts, ";")
+end
+
+local function RefreshMacroExtrasInventory()
+    local signature = MacroExtrasInventorySignature()
+    if signature == extrasInventorySignature then return end
+    local previous = extrasInventorySignature
+    extrasInventorySignature = signature
+    if signature ~= "" or (previous and previous ~= "") then
+        MarkPlanDirty()
+        ScheduleApply()
+    end
 end
 
 local bagExtrasEv = CreateFrame("Frame")
 local bagExtrasPending = false
-bagExtrasEv:RegisterEvent("BAG_UPDATE")
-bagExtrasEv:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+local inventory = ns.Flux and ns.Flux.Inventory
+if inventory and inventory.Register then
+    inventory.Register("FluxBindingExtras", RefreshMacroExtrasInventory, {
+        tier = "scan", regions = { "bags", "equip" }, deferHeavy = true,
+    })
+else
+    bagExtrasEv:RegisterEvent("BAG_UPDATE")
+    bagExtrasEv:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+end
 bagExtrasEv:SetScript("OnEvent", function()
     if bagExtrasPending then return end
     bagExtrasPending = true
     local function flush()
         bagExtrasPending = false
-        if HasAnyMacroExtrasConfigured() then
-            MarkPlanDirty()
-            ScheduleApply()
-        end
+        RefreshMacroExtrasInventory()
     end
     if C_Timer and C_Timer.After then
         C_Timer.After(0.2, flush)

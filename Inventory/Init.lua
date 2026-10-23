@@ -386,15 +386,13 @@ function Inv.NotifyBagStorm(seconds)
 	end
 end
 
---- BAG_UPDATE_DELAYED: the batch landed. Drop the storm so heavy listeners
---- (Best / food / water) run on the just-flushed snapshot instead of waiting
---- another 0.25s per BAG_UPDATE.
+--- The snapshot landed. Keep the existing settle timer as the sole owner of
+--- callbacks: running them here too doubled work on every mail attachment.
 function Inv.EndBagStorm()
 	if bagStormUntil <= Now() and not stormSettleTimer then
 		return
 	end
 	bagStormUntil = 0
-	FireStormSettled()
 end
 
 --- One-shot callback once the current storm settles.
@@ -481,10 +479,14 @@ local TIER_RANK = { instant = 1, light = 2, scan = 3, heavy = 4 }
 local DEBOUNCE = 0.05
 local DEBOUNCE_BANK_OPEN = 0.12
 local DEBOUNCE_STORM = 0.18
+local HEAVY_MAX_WAIT = 0.6
 
 --- How long the heavy queue waits after the last enqueue before draining. The
 --- snapshot refresh and sync listeners are never held behind this.
 local function CurrentDebounce()
+	if Inv.IsMailboxOpen() or merchantOpen then
+		return DEBOUNCE_STORM
+	end
 	if Inv.IsBagStorm() then
 		return DEBOUNCE_STORM
 	end
@@ -510,9 +512,16 @@ local heavyQueue = {}
 local heavyOrder = {}
 local heavyArmed = false
 local heavyFrame
-local heavyDrainAt = 0
 local HEAVY_MAX_PER_FRAME = 2
 local HEAVY_BUDGET_MS = 1.5
+
+local function CancelHeavy(key)
+	if not heavyQueue[key] then return end
+	heavyQueue[key] = nil
+	for i = #heavyOrder, 1, -1 do
+		if heavyOrder[i] == key then table.remove(heavyOrder, i) end
+	end
+end
 
 local function NormalizeRegions(regions)
 	if type(regions) ~= "table" then
@@ -559,21 +568,23 @@ local function IsSyncListener(entry)
 end
 
 local function ProcessHeavyQueue(self)
-	-- Hold until the storm settles: one rebuild after a 5-item loot, not five.
-	if Now() < heavyDrainAt then
-		return
-	end
 	local processed = 0
 	local started = debugprofilestop and debugprofilestop() or nil
-	while processed < HEAVY_MAX_PER_FRAME and #heavyOrder > 0 do
-		local key = table.remove(heavyOrder, 1)
+	local index = 1
+	while processed < HEAVY_MAX_PER_FRAME and index <= #heavyOrder do
+		local key = heavyOrder[index]
 		local job = heavyQueue[key]
-		heavyQueue[key] = nil
-		if job and job.fn then
-			Flux.Safecall(job.fn, job.ctx)
-			processed = processed + 1
-			if started and (debugprofilestop() - started) >= HEAVY_BUDGET_MS then
-				break
+		if job and Now() < job.at then
+			index = index + 1
+		else
+			table.remove(heavyOrder, index)
+			heavyQueue[key] = nil
+			if job and listeners[key] and listeners[key].fn == job.fn then
+				Flux.Safecall(job.fn, job.ctx)
+				processed = processed + 1
+				if started and (debugprofilestop() - started) >= HEAVY_BUDGET_MS then
+					break
+				end
 			end
 		end
 	end
@@ -583,15 +594,54 @@ local function ProcessHeavyQueue(self)
 	end
 end
 
---- Coalesce by key: a listener queued twice before it runs only runs once, with
---- the newest ctx.
+local function UnionSets(a, b)
+	local out = CopyKeySet(a) or {}
+	for key in pairs(b or {}) do out[key] = true end
+	return out
+end
+
+local function CopyContext(ctx)
+	local out = {}
+	for key, value in pairs(ctx) do
+		out[key] = type(value) == "table" and CopyKeySet(value) or value
+	end
+	return out
+end
+
+local function MergeContext(a, b)
+	local out = CopyContext(b)
+	out.regions = UnionSets(a.regions, b.regions)
+	out.changeKind, out.addedItemIDs, out.removedItemIDs = Inv.MergeChangeKind(
+		a.changeKind, a.addedItemIDs, a.removedItemIDs, b.changeKind, b.addedItemIDs, b.removedItemIDs)
+	-- Missing metadata for a relevant region means unknown, not an empty set.
+	for _, field in ipairs({ "dirtyBags", "touchedItemIDs", "changedItemIDs" }) do
+		local aRelevant = a.regions.bags or (field == "dirtyBags" and (a.regions.bank or a.regions.warband))
+		local bRelevant = b.regions.bags or (field == "dirtyBags" and (b.regions.bank or b.regions.warband))
+		if (aRelevant and a[field] == nil) or (bRelevant and b[field] == nil) then
+			out[field] = nil
+		else
+			out[field] = UnionSets(a[field], b[field])
+		end
+	end
+	out.force = a.force or b.force
+	return out
+end
+
+-- Each listener has a quiet deadline and a maximum wait. New mail must not
+-- starve an unrelated queued listener, and a count-only pulse must not erase
+-- an earlier identity change or its dirty bags.
 local function EnqueueHeavy(entry, ctx)
 	local key = entry.key
-	if not heavyQueue[key] then
+	local job = heavyQueue[key]
+	local now = Now()
+	if not job then
 		heavyOrder[#heavyOrder + 1] = key
+		job = { fn = entry.fn, ctx = CopyContext(ctx), first = now }
+		heavyQueue[key] = job
+	else
+		job.ctx = MergeContext(job.ctx, ctx)
 	end
-	heavyQueue[key] = { fn = entry.fn, ctx = ctx }
-	heavyDrainAt = Now() + CurrentDebounce()
+	job.at = math.min(now + CurrentDebounce(), job.first + HEAVY_MAX_WAIT)
 	if heavyArmed then
 		return
 	end
@@ -652,6 +702,16 @@ local function MergeDirty(into, src)
 	return into
 end
 
+local function TakeBagItemSets()
+	local source = Inv.source == "syndicator" and Inv.Syndicator or (Inv.Builtin and Inv.Builtin.Bags)
+	if Inv.source == "syndicator" and source and source.TakeBagsItemSets then
+		return source.TakeBagsItemSets()
+	end
+	if source and source.TakeItemSets then
+		return source.TakeItemSets()
+	end
+end
+
 function Inv.Notify(tokens)
 	local regions = TokensToRegions(tokens)
 	if not next(regions) then
@@ -660,10 +720,12 @@ function Inv.Notify(tokens)
 
 	local changeKind, added, removed = "none", nil, nil
 	local dirtyBags
+	local touchedItemIDs, changedItemIDs
 	if regions.bags then
 		local kind, add, rem, dirty = BagsChangeMeta()
 		changeKind, added, removed = Inv.MergeChangeKind(changeKind, added, removed, kind, add, rem)
 		dirtyBags = MergeDirty(dirtyBags, dirty)
+		touchedItemIDs, changedItemIDs = TakeBagItemSets()
 	end
 	if regions.bank or regions.warband then
 		local kind, add, rem, dirty = BankChangeMeta()
@@ -682,22 +744,35 @@ function Inv.Notify(tokens)
 		addedItemIDs = added,
 		removedItemIDs = removed,
 		dirtyBags = dirtyBags,
+		touchedItemIDs = touchedItemIDs,
+		changedItemIDs = changedItemIDs,
 		force = force,
 	}
 
-	-- During a storm, or when item identity actually changed, heavy listeners go
-	-- on the budgeted queue instead of all firing in this frame.
-	local deferNow = force ~= true
-		and (changeKind == "identityChanged" or (Inv.ShouldDeferHeavyWork and Inv.ShouldDeferHeavyWork()))
+	-- Counts stay inline. Scan work uses the budgeted queue, including the
+	-- eventual scan owed by Classic/Syndicator light notifications.
 	local tierRank = TIER_RANK[tier] or TIER_RANK.scan
 
 	for _, entry in pairs(listeners) do
 		local wantRank = TIER_RANK[entry.tier] or TIER_RANK.scan
-		if tierRank >= wantRank and RegionMatches(entry.regions, regions) then
-			if deferNow and entry.deferHeavy and not IsSyncListener(entry) then
-				EnqueueHeavy(entry, ctx)
-			else
-				Flux.Safecall(entry.fn, ctx)
+		if RegionMatches(entry.regions, regions) then
+			local deferred = entry.deferHeavy or wantRank >= TIER_RANK.scan
+			if force ~= true and deferred and not IsSyncListener(entry) then
+				-- Classic/Syndicator light notifications also owe scan listeners
+				-- a later pass. Keep count/overlay listeners inline below.
+				local queued = ctx
+				if tierRank < wantRank then
+					queued = CopyContext(ctx)
+					queued.tier = entry.tier
+				end
+				EnqueueHeavy(entry, queued)
+			elseif tierRank >= wantRank then
+				-- Deliver earlier pending regions too: a forced mail refresh
+				-- must not drop a bag change waiting on the same listener.
+				local job = heavyQueue[entry.key]
+				local delivered = job and MergeContext(job.ctx, ctx) or ctx
+				CancelHeavy(entry.key)
+				Flux.Safecall(entry.fn, delivered)
 			end
 		end
 	end
@@ -705,13 +780,14 @@ end
 
 --- opts.tier      "instant" | "light" | "scan" | "heavy" (default "scan")
 --- opts.regions   list or set of region names; omitted means every pulse
---- opts.deferHeavy run on the frame-budgeted queue during storms / identity changes
+--- opts.deferHeavy run on the frame-budgeted queue (also the default for scan/heavy)
 --- opts.sync      always run inline (count text, overlays)
 function Inv.Register(key, fn, opts)
 	if type(key) ~= "string" or type(fn) ~= "function" then
 		return
 	end
 	opts = opts or {}
+	CancelHeavy(key)
 	listeners[key] = {
 		key = key,
 		fn = fn,
@@ -726,14 +802,7 @@ Inv.RegisterListener = Inv.Register
 
 function Inv.Unregister(key)
 	listeners[key] = nil
-	if heavyQueue[key] then
-		heavyQueue[key] = nil
-		for i = #heavyOrder, 1, -1 do
-			if heavyOrder[i] == key then
-				table.remove(heavyOrder, i)
-			end
-		end
-	end
+	CancelHeavy(key)
 end
 
 --- Read-only view for /fluxinv.
@@ -765,6 +834,7 @@ end
 -- Portal/zone: snapshot may be ready but empty/wrong for a beat.
 -- Grid buttons freeze identity until IsReliable() rises.
 local snapshotUnreliable = false
+local unreliableGeneration = 0
 local unreliableMarkedAt = 0
 local uniqueAtUnreliable = 0
 local settleGen = nil
@@ -797,7 +867,12 @@ end
 
 --- True when a populated bag snapshot collapsed to empty/near-empty (load-screen flicker).
 function Inv.SnapshotLooksCollapsed()
-	if uniqueAtUnreliable <= 0 then
+	if not snapshotUnreliable or uniqueAtUnreliable <= 0 then
+		return false
+	end
+	-- Callers consult collapse before IsReliable, so this predicate must also
+	-- expire. Otherwise Best keeps holding and never reaches the clearing path.
+	if ((GetTime and GetTime()) or 0) - unreliableMarkedAt >= COLLAPSED_MAX_SEC then
 		return false
 	end
 	local n = BagUniqueCount()
@@ -812,6 +887,18 @@ function Inv.MarkUnreliable(_reason)
 	unreliableMarkedAt = (GetTime and GetTime()) or 0
 	settleGen = nil
 	settleAt = 0
+	unreliableGeneration = unreliableGeneration + 1
+	local gen = unreliableGeneration
+	if C_Timer and C_Timer.After then
+		local function ExpireHold()
+			if gen == unreliableGeneration and snapshotUnreliable then
+				Inv.IsReliable()
+			end
+		end
+		-- Publish recovery even if the last bag event was the empty snapshot.
+		C_Timer.After(UNRELIABLE_MAX_SEC + 0.01, ExpireHold)
+		C_Timer.After(COLLAPSED_MAX_SEC + 0.01, ExpireHold)
+	end
 end
 
 local function BackpackSlotCount()
@@ -888,7 +975,7 @@ local function TryClearUnreliable()
 	local collapsed = Inv.SnapshotLooksCollapsed()
 	local maxSec = collapsed and COLLAPSED_MAX_SEC or UNRELIABLE_MAX_SEC
 	local cleared = false
-	if unreliableMarkedAt > 0 and (now - unreliableMarkedAt) >= maxSec then
+	if (now - unreliableMarkedAt) >= maxSec then
 		snapshotUnreliable = false
 		settleGen = nil
 		settleAt = 0
@@ -906,6 +993,8 @@ local function TryClearUnreliable()
 		end
 	end
 	if cleared then
+		uniqueAtUnreliable = 0
+		unreliableMarkedAt = 0
 		Inv.Notify({ bags = true })
 	end
 end
@@ -1286,8 +1375,7 @@ function Inv.Start()
 		end
 		Flux.Events.Register("MAIL_SHOW", OnMailboxOpened)
 		Flux.Events.Register("MAIL_INBOX_UPDATE", function()
-			Inv.SetMailboxOpen(true)
-			Inv.NotifyBagStorm()
+			if Inv.IsMailboxOpen() then Inv.NotifyBagStorm() end
 		end)
 		Flux.Events.Register("MAIL_CLOSED", OnMailboxClosed)
 		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, kind)

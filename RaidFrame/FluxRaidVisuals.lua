@@ -358,6 +358,15 @@ local function QueuePrivateAuraSync(frame)
     end
 end
 
+local function SetFluxPrivateAuraAnchorSettings(host)
+    host._fluxNativeSetPrivateAuraAnchorSettings(host)
+    if host.optionTable and host.optionTable.displayOnlyDispellableDebuffs then
+        -- Blizzard's normal debuff row keeps boss/role/priority exceptions.
+        -- Restrict icons to its HARMFUL|RAID dispel row for Flux's strict toggle.
+        host:SetAttribute("ignore-debuffs", true)
+    end
+end
+
 function FluxRaidVisuals.ConfigurePrivateAuras(frame)
     if not frame or frame._fluxRaidMini then
         return false
@@ -366,33 +375,70 @@ function FluxRaidVisuals.ConfigurePrivateAuras(frame)
         return false
     end
     local mixin = rawget(_G, "ContainerPrivateAuraBehaviorMixin")
-    if mixin and Mixin and not frame._fluxPrivateAuraMixed then
-        pcall(Mixin, frame, mixin)
+    local host = frame._fluxPrivateAuraHost
+    if not host then
+        if not mixin or not Mixin then return false end
+        if InCombatLockdown and InCombatLockdown() then
+            QueuePrivateAuraSync(frame)
+            return true
+        end
+        -- Blizzard owns this child's OnAttributeChanged. The secure unit button
+        -- has Flux's unit hook, which cannot also be the private-aura handler.
+        host = frame.auraHost or CreateFrame("Frame", nil, frame)
+        host:SetAllPoints(frame)
+        host:EnableMouse(false)
+        if not pcall(Mixin, host, mixin) then return false end
+        host._fluxNativeSetPrivateAuraAnchorSettings = host.SetPrivateAuraAnchorSettings
+        host.SetPrivateAuraAnchorSettings = SetFluxPrivateAuraAnchorSettings
+        frame._fluxPrivateAuraHost = host
         frame._fluxPrivateAuraMixed = true
-    end
-    if not frame._fluxPrivateAuraMixed then
-        return false
     end
     local auraSize = FluxRaidVisuals.AURA_ICON_HEIGHT or NATIVE_UNIT_FRAME_AURA_SIZE
     local borderScale = GetFluxAuraIconScale()
-    if frame.SetAuraSize then pcall(frame.SetAuraSize, frame, auraSize) end
-    if frame.SetDebuffAuraSize then pcall(frame.SetDebuffAuraSize, frame, auraSize) end
-    if frame.SetBuffAuraSize then pcall(frame.SetBuffAuraSize, frame, auraSize) end
-    if frame.SetBorderScale then pcall(frame.SetBorderScale, frame, borderScale) end
-    if frame.SetDebuffBorderScale then pcall(frame.SetDebuffBorderScale, frame, borderScale) end
-    if frame.SetBuffBorderScale then pcall(frame.SetBuffBorderScale, frame, borderScale) end
+    if host.SetAuraSize then pcall(host.SetAuraSize, host, auraSize) end
+    if host.SetDebuffAuraSize then pcall(host.SetDebuffAuraSize, host, auraSize) end
+    if host.SetBuffAuraSize then pcall(host.SetBuffAuraSize, host, auraSize) end
+    if host.SetBorderScale then pcall(host.SetBorderScale, host, borderScale) end
+    if host.SetDebuffBorderScale then pcall(host.SetDebuffBorderScale, host, borderScale) end
+    if host.SetBuffBorderScale then pcall(host.SetBuffBorderScale, host, borderScale) end
     ApplyFluxAuraOrganization(frame)
+    ApplyFluxAuraOrganization(host)
     FluxRaidVisuals.EnsureAuraMaxSlots(frame)
+    host.maxBuffs, host.maxDebuffs, host.maxDispelDebuffs = frame.maxBuffs, frame.maxDebuffs, frame.maxDispelDebuffs
     if CompactRaidGroupTypeEnum then
         frame.groupType = frame.groupType or CompactRaidGroupTypeEnum.Raid
     end
+    host.groupType = frame.groupType
     frame.optionTable = FluxRaidVisuals.GetFluxRaidOptionTable()
+    host.optionTable = frame.optionTable
+    host.displayedUnit = frame.displayedUnit or frame.unit
     local pbh = frame.powerBar and frame.powerBar:IsShown() and (FluxRaidVisuals.POWER_BAR_HEIGHT or 0) or 0
     frame.powerBarUsedHeight = pbh
-    if frame.SetPowerBarUsedHeight then
-        pcall(frame.SetPowerBarUsedHeight, frame, pbh)
+    if host.SetPowerBarUsedHeight then
+        pcall(host.SetPowerBarUsedHeight, host, pbh)
     end
     return true
+end
+
+function FluxRaidVisuals.UpdatePrivateAuraUnit(frame)
+    if not frame then return end
+    if InCombatLockdown and InCombatLockdown() then
+        QueuePrivateAuraSync(frame)
+        return
+    end
+    local host = frame._fluxPrivateAuraHost
+    if not host then return end
+    if frame._fluxNeedsPrivateAuraSync then
+        FluxRaidVisuals.SyncPrivateAuraSettings(frame, false, true)
+        return
+    end
+    local unit = frame.displayedUnit or frame.unit
+    host.displayedUnit = unit
+    -- Live/Forever use this field; Era/Anniversary use the third argument.
+    -- Neither may preserve an anchor when its unit changes (including nil).
+    host.avoidPrivateAuraAnchorChange = nil
+    local ok = pcall(host.SetPrivateAuraAnchorUnit, host, unit, unit ~= nil and not host.anchorID, false)
+    frame._fluxNeedsPrivateAuraSync = not ok or nil
 end
 
 --- Settings-only attribute push. avoidRebuild=true does not tear down an existing anchor.
@@ -405,24 +451,19 @@ function FluxRaidVisuals.SyncPrivateAuraSettings(frame, force, avoidRebuild)
         QueuePrivateAuraSync(frame)
         return
     end
-    if avoidRebuild then
-        frame.avoidPrivateAuraAnchorChange = true
-    end
-    local push = frame.TriggerPrivateAuraSettingsUpdate
-    if push then
-        if securecallfunction then
-            pcall(securecallfunction, push, frame)
-        else
-            pcall(push, frame)
-        end
-    end
+    local host = frame._fluxPrivateAuraHost
+    if not host then return end
     local unit = frame.displayedUnit or frame.unit
-    if unit and frame.UpdatePrivateAuras and (force or not avoidRebuild) then
-        pcall(frame.UpdatePrivateAuras, frame, true)
-    elseif unit and frame.SetPrivateAuraAnchorUnit and not frame.anchorID then
-        pcall(frame.SetPrivateAuraAnchorUnit, frame, unit, true)
+    host.avoidPrivateAuraAnchorChange = nil
+    local ok
+    if avoidRebuild and host.anchorID and host.privateAuraUnit == unit then
+        -- The public settings trigger preserves the anchor on every client.
+        ok = pcall(host.TriggerPrivateAuraSettingsUpdate, host)
+    else
+        local forceUpdate = force or not avoidRebuild or (unit ~= nil and not host.anchorID)
+        ok = pcall(host.SetPrivateAuraAnchorUnit, host, unit, forceUpdate, false)
     end
-    frame._fluxNeedsPrivateAuraSync = nil
+    frame._fluxNeedsPrivateAuraSync = not ok or nil
 end
 
 function FluxRaidVisuals.PushAuraDisplayToFrame(frame)

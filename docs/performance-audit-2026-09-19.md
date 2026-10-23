@@ -1,3 +1,5 @@
+> **Historical audit, retained for context.** This report records the 19 September 2026 investigation and source layout. Its counts, named old implementations, claimed fixes and checks are historical assertions, not a fresh validation of the 22 October working tree. The referenced `tests/performance_inventory.py` and `tests/performance_regression.py` were subsequently removed; do not use those commands as current instructions. `Other/FluxNamePlates.lua` was replaced by the current `NamePlates/` subsystem. Use the [current driver inventory](performance-driver-inventory.md), [shared diagnostics](08-shared-services.md), [findings](40-findings.md) and [verification procedures](41-verification.md) for current evidence.
+
 # Performance audit — 2026-09-19
 
 ## Finding and limits

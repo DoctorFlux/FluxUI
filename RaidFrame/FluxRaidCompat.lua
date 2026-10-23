@@ -330,6 +330,7 @@ function FluxRaidCompat.HasPrivateAuraContainer()
         and rawget(_G, "CompactRaidGroupTypeEnum") ~= nil
         and C_UnitAuras
         and type(C_UnitAuras.AddPrivateAuraAnchor) == "function"
+        and type(C_UnitAuras.RemovePrivateAuraAnchor) == "function"
 end
 
 function FluxRaidCompat.HasRangeAlphaBoolean(frame)

@@ -2144,9 +2144,12 @@ if blizzard:find("bar.Hide = Noop", 1, true) then
 end
 has(blizzard, "IsControllerUpdateBar", "StanceBar/PossessActionBar keep stock Update for UpdateAll")
 has(blizzard, "HideStockStanceBars", "stock stance/form bar is still hidden")
-has(blizzard, "STOCK_STANCE_VISIBILITY", "stock StanceBar visibility driver is named")
-has(blizzard, 'RegisterStateDriver, bar, "visibility", STOCK_STANCE_VISIBILITY', "stock StanceBar uses secure visibility hide")
-has(blizzard, "[form:", "stock StanceBar driver re-hides on form change")
+has(blizzard, "SecureHideRetailStanceBar", "stock StanceBar uses restricted frame-handle hiding")
+has(blizzard, 'button, "OnShow", STANCE_SHOW_PRE, STANCE_SHOW_POST', "stock stance buttons securely re-hide their parent")
+has(blizzard, "bar:Hide(true)", "restricted stance hide avoids setting native state attributes")
+if blizzard:find('RegisterStateDriver, bar, "visibility"', 1, true) then
+	failures[#failures + 1] = "stock StanceBar must not use the repeating native visibility driver"
+end
 has(blizzard, "BackgroundArtLeft", "classic shapeshift wood art is hidden")
 has(blizzard, "FluxStanceHider", "classic stance uses a dedicated hidden parent")
 has(blizzard, "isAnyClassic", "classic stance parent is gated off retail")
@@ -2158,16 +2161,16 @@ do
 		failures[#failures + 1] = "HideStockStanceBars exists"
 	else
 		if not body:find("InLockdown", 1, true) then
-			failures[#failures + 1] = "HideStockStanceBars must not RegisterStateDriver in combat (SecureStateDriverManager SetAttribute)"
+			failures[#failures + 1] = "HideStockStanceBars must not install secure handlers in combat"
 		end
-		has(body, "SecureStateDriverManager:SetAttribute", "stance driver cites the combat SetAttribute block")
+		has(body, "SecureHandlersUpdateFrame:SetAttribute", "stance handlers cite the combat SetAttribute block")
 		if body:find("SetAlpha", 1, true) then
 			failures[#failures + 1] = "HideStockStanceBars must not SetAlpha StanceBar (EditMode SetSize taint)"
 		end
 		if body:find("bar.Hide = Noop", 1, true) then
 			failures[#failures + 1] = "HideStockStanceBars must not replace Hide"
 		end
-		has(body, "RegisterStateDriver", "HideStockStanceBars RegisterStateDriver")
+		has(body, "SecureHideRetailStanceBar", "HideStockStanceBars installs secure stance suppression")
 		has(body, "ParkStockStanceBar", "HideStockStanceBars parks classic stance")
 		has(body, "HideClassicStanceArt", "HideStockStanceBars hides classic stance art")
 	end

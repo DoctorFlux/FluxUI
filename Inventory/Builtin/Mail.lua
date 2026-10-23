@@ -16,7 +16,10 @@ local pendingOutgoing
 local pendingFrame
 local lastFingerprint
 local scanFrame
-local scanScheduled = false
+local scan, scanAt, firstQueued
+local retryCount = 0
+local QUIET_TIME, MAX_WAIT = 0.15, 0.6
+local MAX_CALLS_PER_FRAME, BUDGET_MS = 48, 1
 
 local MAIL_EXPIRY = 30 * 24 * 60 * 60
 local MAX_SEND = tonumber(_G.ATTACHMENTS_MAX_SEND) or 12
@@ -32,10 +35,6 @@ local function MaxReceiveSlots()
 		n = attach
 	end
 	return n
-end
-
-local function Request()
-	Flux.Scheduler.Request("inventory", "mail")
 end
 
 local function NumericID(value)
@@ -120,15 +119,8 @@ local function CaptureAttachment(into, mailIndex, attachIndex, expiration)
 	if not itemID then
 		return
 	end
-	-- Check if item data is cached to avoid lag
-	if C_Item and C_Item.IsItemDataCachedByID and not C_Item.IsItemDataCachedByID(itemID) then
-		-- Item data not cached yet, request it for next scan
-		if C_Item.RequestLoadItemDataByID then
-			C_Item.RequestLoadItemDataByID(itemID)
-		end
-		-- Skip this item for now, will be picked up on next scan
-		return
-	end
+	-- ID and quantity are sufficient for storage. Asking for item data here
+	-- caused auction mail to continually reload metadata and rescan the inbox.
 	into[#into + 1] = {
 		itemID = itemID,
 		itemCount = tonumber(count) or 1,
@@ -136,123 +128,102 @@ local function CaptureAttachment(into, mailIndex, attachIndex, expiration)
 		quality = quality,
 		expirationTime = expiration,
 	}
+	return true
 end
 
 function Mail.IsOpen()
 	return mailboxOpen and true or false
 end
 
---- Scan inbox into the mail snapshot. Returns true when the list changed.
---- opts.force: persist even after MAIL_CLOSED so the last take is not dropped.
-function Mail.Refresh(opts)
-	if Store.UsesSyndicator() then
-		return false
+local function Now()
+	return (GetTime and GetTime()) or 0
+end
+
+local ArmInboxScan
+local function StepScan(self)
+	if Now() < scanAt then return end
+	if not scan then
+		scan = { list = {}, index = 1, n = GetInboxNumItems() or 0,
+			maxAttach = MaxReceiveSlots(), now = (time and time()) or 0 }
+		firstQueued = nil
 	end
-	opts = type(opts) == "table" and opts or nil
-	if not mailboxOpen and not (opts and opts.force) then
-		return false
-	end
-	if not GetInboxNumItems then
-		return false
-	end
-	local list = {}
-	local n = GetInboxNumItems() or 0
-	local maxAttach = MaxReceiveSlots()
-	local now = (time and time()) or 0
-	local hadUncachedItems = false
-	for mailIndex = 1, n do
-		local daysLeft, hasItem = 0, nil
-		if GetInboxHeaderInfo then
-			local _, _, _, _, _, _, headerDays, headerHas = GetInboxHeaderInfo(mailIndex)
-			daysLeft = headerDays or 0
-			hasItem = headerHas
-		end
-		if MailHasAttachments(hasItem) then
-			local expiration = now + math.floor((tonumber(daysLeft) or 0) * 24 * 60 * 60)
-			local beforeCount = #list
-			for attachIndex = 1, maxAttach do
-				CaptureAttachment(list, mailIndex, attachIndex, expiration)
+	local job = scan
+	local calls, startedAt = 0, debugprofilestop and debugprofilestop()
+	while job.index <= job.n and calls < MAX_CALLS_PER_FRAME do
+		if not job.attach then
+			local daysLeft, hasItem
+			if GetInboxHeaderInfo then
+				local _, _, _, _, _, _, days, has = GetInboxHeaderInfo(job.index)
+				daysLeft, hasItem = days, has
 			end
-			-- If no items were captured but mail has attachments, data might be uncached
-			if #list == beforeCount and C_Item and C_Item.IsItemDataCachedByID then
-				hadUncachedItems = true
+			calls = calls + 1
+			if MailHasAttachments(hasItem) then
+				job.expiration = job.now + math.floor((tonumber(daysLeft) or 0) * 86400)
+				job.attach, job.captured = 1, 0
+				job.expected = tonumber(hasItem) or 1
+			else
+				job.index = job.index + 1
+			end
+		else
+			if CaptureAttachment(job.list, job.index, job.attach, job.expiration) then
+				job.captured = job.captured + 1
+			end
+			calls = calls + 1
+			job.attach = job.attach + 1
+			if job.attach > job.maxAttach then
+				if job.captured < math.min(job.expected, job.maxAttach) then job.incomplete = true end
+				job.index, job.attach = job.index + 1, nil
 			end
 		end
+		if startedAt and debugprofilestop() - startedAt >= BUDGET_MS then break end
 	end
-	-- If we had uncached items, schedule another scan for when they load
-	if hadUncachedItems and mailboxOpen then
-		if C_Timer and C_Timer.After then
-			C_Timer.After(0.5, function()
-				if mailboxOpen then
-					Mail.Refresh()
-					Request()
-				end
-			end)
+	if job.index <= job.n then return end
+	scan = nil
+	self:SetScript("OnUpdate", nil)
+	-- Never publish a partial inbox or recurse through Scheduler -> Refresh.
+	-- Truly missing IDs get at most two retries, not an expanding timer tree.
+	if job.incomplete then
+		if mailboxOpen and retryCount < 2 then
+			retryCount = retryCount + 1
+			ArmInboxScan(nil, true)
+			scanAt = Now() + 0.5
 		end
-	end
-	local fp = FingerprintList(list)
-	if fp == lastFingerprint then
-		return false
-	end
-	lastFingerprint = fp
-	ApplyList(list)
-	return true
-end
-
-local function EnsureScanFrame()
-	if scanFrame then
-		return scanFrame
-	end
-	scanFrame = CreateFrame("Frame")
-	scanFrame:SetScript("OnUpdate", function(self)
-		self:SetScript("OnUpdate", nil)
-		scanScheduled = false
-		Request()
-	end)
-	return scanFrame
-end
-
-local function CancelScheduledScan()
-	scanScheduled = false
-	if scanFrame then
-		scanFrame:SetScript("OnUpdate", nil)
-	end
-end
-
-local function ArmInboxScan()
-	if scanScheduled then
 		return
 	end
-	scanScheduled = true
-	local frame = EnsureScanFrame()
-	-- Scan on next frame, similar to Syndicator's approach
-	frame:SetScript("OnUpdate", function(self)
-		self:SetScript("OnUpdate", nil)
-		scanScheduled = false
-		Request()
-	end)
+	local fp = FingerprintList(job.list)
+	if fp ~= lastFingerprint then
+		lastFingerprint = fp
+		ApplyList(job.list)
+		Inv.Notify({ mail = true })
+	end
+end
+
+ArmInboxScan = function(force, retry)
+	if Store.UsesSyndicator() or not GetInboxNumItems or (not mailboxOpen and not force) then return end
+	local now = Now()
+	firstQueued = firstQueued or now
+	scanAt = math.min(now + QUIET_TIME, firstQueued + MAX_WAIT)
+	-- An inbox event can shift every mail index. Discard an interrupted scan;
+	-- only a complete view from one event generation may become the snapshot.
+	scan = nil
+	if not retry then retryCount = 0 end
+	scanFrame = scanFrame or CreateFrame("Frame")
+	scanFrame:SetScript("OnUpdate", StepScan)
+end
+
+--- Queue a bounded scan; publication notifies listeners after the snapshot lands.
+function Mail.Refresh(opts)
+	ArmInboxScan(type(opts) == "table" and opts.force)
+	return false
 end
 
 local function PersistThenClose()
 	if not mailboxOpen then
 		return
 	end
-	CancelScheduledScan()
+	-- Finish the last take, even if close arrives before the pending scan starts.
+	ArmInboxScan(true)
 	mailboxOpen = false
-	-- Defer the final scan to next frame to avoid lag spike on close
-	if C_Timer and C_Timer.After then
-		C_Timer.After(0, function()
-			local changed = Mail.Refresh({ force = true })
-			if changed then
-				Request()
-			end
-		end)
-	else
-		local changed = Mail.Refresh({ force = true })
-		if changed then
-			Request()
-		end
-	end
 end
 
 local function CaptureSendAttachments()
@@ -316,9 +287,9 @@ function Mail.Start()
 	if Flux.Events and Flux.Events.Register then
 		Flux.Events.Register("MAIL_SHOW", function()
 			mailboxOpen = true
+			ArmInboxScan()
 		end)
 		Flux.Events.Register("MAIL_INBOX_UPDATE", function()
-			mailboxOpen = true
 			ArmInboxScan()
 		end)
 		Flux.Events.Register("MAIL_CLOSED", PersistThenClose)
@@ -326,6 +297,7 @@ function Mail.Start()
 			local e = Enum and Enum.PlayerInteractionType
 			if e and kind == e.MailInfo then
 				mailboxOpen = true
+				ArmInboxScan()
 			end
 		end)
 		Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", function(_, kind)

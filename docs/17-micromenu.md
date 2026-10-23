@@ -1,68 +1,51 @@
-# Micro menu
+# Micromenu, bag controls and addon buttons
 
-## Purpose
+`FluxMicroMenu` replaces the visible micro-button row with a configurable container of native Blizzard buttons, Flux actions, learned professions and selected minimap-addon shortcuts. [FluxMicroMenu.lua](../MicroMenu/FluxMicroMenu.lua) owns creation/discovery, button art, native/custom hover effects, layout and rebuild. It initially anchors top-left; Layout can select another placement.
 
-Replace Blizzard’s micro bar with a Flux micro strip that still opens character/spellbook/social systems—plus Flux extras for bags, macros, orphaned minimap icons, config, reload, queue eye, and professions.
+## Runtime composition
 
-## What the player sees
+The core probes actual native buttons, caches discovery and invalidates it when new UI becomes available. Missing client buttons are omitted. Modern/Forever HUD shells and Classic shells use different geometry even when some atlas files exist on both clients. Class portrait/spec glow and custom icon mouseover are separate style paths. `CreateMicroButton`, `GetDiscoveredMicroButtonNames`, `GetDefaultUnifiedRowIds`, `RefreshLayout` and `Rebuild` are the main consumer APIs.
 
-Replacement micro bar buttons such as:
+Native button reparenting/visibility and protected geometry can defer until combat ends; `needsUpdate` and refresh/rebuild paths reconcile afterward. Level/talent/portrait events update relevant faces. Layout coordinates with chat, the unit-frame column, minimap embedding, status bars and the unified border, rather than assigning each button an independent saved screen anchor.
 
-- Character, Spellbook, Talent, Achievement, Quest, Guild, LFG, Collections, Store, MainMenu, Help (as available per client)
-- Flux extras: **Bags** (free slots), **Macros**, **Addon (+)** popup for remaining minimap icons, **Config**, **Reload**, **LFG eye** when queue UI exists
-- Optional **profession** buttons or a professions flyout
+## Unified order and three different scopes
 
-Placement modes:
+[FluxMicroMenuConfig.lua](../MicroMenu/FluxMicroMenuConfig.lua) merges rows under stable IDs:
 
-- Horizontal top-left
-- Vertical beside chat
-- Collapsible strip on the minimap edge
+| Row ID | Source |
+|---|---|
+| Native/global name | Blizzard or Flux micro button. |
+| `M2M:<sourceName>` | Named minimap-addon button. |
+| `TSK:<skillKey>` | Individual learned profession. |
+| `FluxTradeSkillFlyoutMicroButton` | Profession flyout opener. |
 
-## Behaviors
+Native visibility cycles **Account / Character / Off** using `FluxUI_DB.MicroMenu.native` and `_FluxUI_CharSavedVars.MicroMenu.native`. Unified ordering follows the **Micro Menu tab's scope**, using the corresponding `unifiedOrderList` and version/initialization fields. Layout placement scope does not select this order. Minimap shortcuts retain their own MinimapToMicro data; professions are always character-specific. These controls must not be described as one universal scope switch.
 
-- Hides Blizzard micro menu while Flux owns it
-- Scans minimap buttons and can **promote** them onto the bar or into the Addon popup
-- Profession buttons are always character-scoped
-- When stacked with status bars, gold/XP/rep share the micro bar’s width
-- ConsolePort micromenu takeover is disabled while Flux micro is authoritative ([25-other-qol.md](25-other-qol.md))
-- Config button can open Ace options or a standalone config surface
+Normalization migrates older row IDs, removes inappropriate queue-status rows, deduplicates minimap sources, inserts new canonical defaults and preserves valid order. Scope changes copy the relevant order. The [configuration UI](../MicroMenu/FluxMicroMenuConfigUI.lua), embedded by [its AceGUI widget](../MicroMenu/AceGUIWidget-FluxMicroMenuEmbed.lua), renders preview slots, drag ordering, mode cycling, drop targets and reset controls. Right/middle-click on a preview cycles visibility; drag indices refer to the full unified order, not just the filtered visible row.
 
-## Options / customization
+## Flux action buttons
 
-**MicroMenu** tab + **Layout** placement — catalog: [26-options-map.md](26-options-map.md), [06-layout.md](06-layout.md).
+| Loaded feature | Role |
+|---|---|
+| [Reload](../MicroMenu/FluxReloadMicroButton.lua) | Reload UI shortcut. |
+| [Macro](../MicroMenu/FluxMacroMicroButton.lua) | Opens macro UI through supported client loading. |
+| [Config](../MicroMenu/FluxConfigMicroButton.lua) | Opens Flux options. |
+| [LFG](../MicroMenu/FluxLFGMicroButton.lua) | Uses available group-finder UI, queue/applicant state and client fallback when a native row is unavailable. |
+| [Bag](../MicroMenu/FluxBagMicroButton.lua) | Bag toggle, free ordinary-bag space and equipped bag-slot popup. |
+| [Addon](../MicroMenu/FluxAddonMicroButton.lua) | Collects suitable addon/minimap buttons into a clamped popup. |
 
-- **Micro menu bar scope** — Account-wide | Character-specific (default Account-wide): size, spacing, order — **not** Layout placement
-- Per-button visibility under icon: Off → Account → Character → Off
-- Embedded order/visibility editor
-- **Enable trade skill micro buttons** — on (always character)
-- **Layout mode** — Per-profession | Fixed split (**default**) | Global
-- Global style (if Global): All individual (**default**) | One flyout | Both
-- Per-profession: Individual | In flyout | Off (primaries individual, secondaries flyout)
-- **Button size** — **0.9** (0.5–1.5) · **Spacing offset** — **−2** (−12…16)
-- **Reset layout to defaults** — size/spacing only
-- Layout defaults: Beside chat, **2** buttons per row
+The bag count excludes keyring/reagent storage when representing ordinary backpack capacity and prefers Blizzard's total-free API where available. Carried-bag IDs come from inventory compatibility. Left-click toggles bags; right-click opens equipped-bag slots when those slots do not already live inside the bag window. The tooltip supplies ordinary free space and per-bag breakdowns. Changing equipped bags affects popup geometry and counts.
 
-## Relationships
+[FluxCombinedBagHeader.lua](../MicroMenu/FluxCombinedBagHeader.lua) adds **owned square equipped-bag slots inside native combined bags** on supported Live/Forever mouse UI, reserving room between search/sort and the item grid. Alternative bag UIs and Forever gamepad mode skip this intervention. This is a header extension, not the shared inventory scanner or the Classic combined-bag implementation.
 
-- Width pairing with [16-status-bars.md](16-status-bars.md)
-- Minimap edge placement ↔ [18-minimap-and-trackers.md](18-minimap-and-trackers.md)
-- Accent chrome → [04-visual-system.md](04-visual-system.md)
-- Options embed widgets → [26-options-map.md](26-options-map.md)
+## Minimap-addon collection and profession buttons
 
-## Client availability
+[FluxMinimapToMicro.lua](../MicroMenu/FluxMinimapToMicro.lua) discovers named minimap buttons, resolves friendly names/icons, builds micro proxies and forwards supported source interactions. Per-source account/character/off state and ordering determine whether the source appears directly on the row or remains in the addon popup. It cooperates with `FluxAddonSystem` to prevent duplicate representation. Sources created late need rescanning; unnamed/unsupported sources may not be eligible.
 
-| Client | Availability |
-|--------|--------------|
-| Era | Full with Era micro set |
-| Anniversary | Full |
-| Classic | Full |
-| Midnight | Full with Retail micro set (Collections/Store/etc. as present) |
+[FluxTradeSkillMicro.lua](../MicroMenu/FluxTradeSkillMicro.lua) enumerates learned professions with compatible spellbook/API fallbacks, keys them stably and opens the relevant skill UI. `_FluxUI_CharSavedVars.MicroMenu.tradeSkills` stores `enabled`, layout mode, global style and per-skill placement. Modes support per-profession configuration, fixed split or global individual/flyout/both behavior. An older account copy can seed character settings. Spell/skill events refresh discovery; movement closes transient popups and combat can defer structural changes.
 
-## Rewrite intent notes
+## Verification and integration
 
-Micro menu is **navigation chrome**, not another action bar. The Addon (+) escape hatch matters: players should not lose third-party minimap buttons when Flux cleans the minimap.
+ConsolePort micromenu takeover is suppressed by its own optional compatibility layer. See [integrations](29-integrations.md), [layout](06-layout.md) and [options](26-options-map.md).
 
-## Explicit non-goals
-
-- Reimplementing every Blizzard panel.
-- Forcing all minimap icons onto the main micro row (popup is intentional).
+Check account/character/off independently from order scope, newly learned skills, late addon buttons, proxy clicks/tooltips, popup clamping, free-space counts, bag replacement, combined-bag search/sort clearance, three layout placements and combat rebuild deferral. The micromenu/bag-slot mock harnesses exercise selected contracts; actual native button clicks, gamepad and optional-addon coexistence need in-game verification.

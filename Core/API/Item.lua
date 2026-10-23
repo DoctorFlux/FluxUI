@@ -157,6 +157,40 @@ local MANA_GEM_IDS = {
 	[5514] = true,
 }
 
+local CHARGED_MANA_GEM_IDS = { [36799] = true, [33312] = true, [22044] = true }
+local STACK_CONSUMABLE_KINDS = { food = true, water = true, bandage = true, healPotion = true, manaPotion = true }
+
+-- nil leaves other item types on their normal use-count policy. Kind context
+-- also works before item data is cached, when GetItemInfo cannot identify food.
+function Item.UsesConsumableCharges(itemID, kind)
+	itemID = tonumber(itemID)
+	if not itemID then
+		return nil
+	end
+	if MANA_GEM_IDS[itemID] then
+		return CHARGED_MANA_GEM_IDS[itemID] == true
+	end
+	local Best = _G.FluxConsumableBest
+	local Score = Best and Best.Score
+	local stone = kind == "healthstone" or (Score and Score.HealthstoneRank and Score.HealthstoneRank(itemID) > 0)
+	if stone then
+		local client = Flux.Client or {}
+		-- Forever uses the original single-use ranks on a modern engine.
+		return not (client.isCamelot or client.isEra or client.isAnniversary or client.isWrath or client.isCata)
+	end
+	if STACK_CONSUMABLE_KINDS[kind] then
+		return false
+	end
+	local name, _, _, _, _, _, _, maxStack, _, _, _, classID, subclassID = Item.GetInfo(itemID)
+	local consumableClass = (Enum and Enum.ItemClass and Enum.ItemClass.Consumable) or 0
+	if name and classID == consumableClass and (
+		(tonumber(maxStack) or 0) > 1 or subclassID == 1 or subclassID == 5 or subclassID == 7
+	) then
+		return false
+	end
+	return nil
+end
+
 -- Mana gem / emerald / potion: IsConsumableItem plus item class 0, so unique
 -- charged gems still count as consumable when the API says they are not.
 function Item.IsConsumable(item)

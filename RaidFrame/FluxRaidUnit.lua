@@ -16,6 +16,7 @@ local ROLE_ATLAS = {
 }
 
 local rangePollTicker = nil
+local EnsureRangePoll
 
 local function IsSecret(v)
     return Compat.IsSecret and Compat.IsSecret(v)
@@ -522,37 +523,27 @@ local function ReadAura(unit, index, filter)
 end
 
 local function FillAuraButton(button, aura, dispellableOnly)
-    if not button then return end
+    if not button then return false end
     if not aura or IsSecret(aura.icon) or not aura.icon then
         button:Hide()
-        return
+        return false
     end
-    if dispellableOnly and aura.isHarmful then
+    if dispellableOnly then
         local can = aura.canActivePlayerDispel
-        if IsSecret(can) or can ~= true then
+        if IsSecret(can) or can == false then
             button:Hide()
-            return
+            return false
         end
     end
     pcall(button.icon.SetTexture, button.icon, aura.icon)
     button:Show()
+    return true
 end
 
 function FluxRaid_UpdateAuras(frame)
     if not frame or frame._fluxRaidMini then return end
     if frame._fluxPrivateAuraMixed or (FluxRaidVisuals.ConfigurePrivateAuras and FluxRaidVisuals.ConfigurePrivateAuras(frame)) then
-        local unit = UnitOf(frame)
-        frame.displayedUnit = unit
-        if InCombatLockdown and InCombatLockdown() then
-            frame._fluxNeedsPrivateAuraSync = true
-            if FluxRaid_QueueConfigureAndRefresh then
-                FluxRaid_QueueConfigureAndRefresh()
-            end
-            return
-        end
-        if unit and frame.SetPrivateAuraAnchorUnit then
-            pcall(frame.SetPrivateAuraAnchorUnit, frame, unit, false)
-        end
+        FluxRaidVisuals.UpdatePrivateAuraUnit(frame)
         return
     end
     EnsureClassicAuraButtons(frame)
@@ -568,14 +559,17 @@ function FluxRaid_UpdateAuras(frame)
             for i = 1, maxN do list[i]:Hide() end
             return
         end
+        if harmful and dispellableOnly then
+            filter = "HARMFUL|RAID"
+        end
         for i = 1, 40 do
             if shown >= maxN then break end
             local aura = ReadAura(unit, i, filter)
             if not aura then break end
             if IsSecret(aura) then break end
-            aura.isHarmful = harmful
-            shown = shown + 1
-            FillAuraButton(list[shown], aura, harmful and dispellableOnly)
+            if FillAuraButton(list[shown + 1], aura, harmful and dispellableOnly) then
+                shown = shown + 1
+            end
         end
         for i = shown + 1, maxN do
             list[i]:Hide()
@@ -749,6 +743,9 @@ function FluxRaid_BindUnit(frame, unit)
             pcall(frame.UnregisterAllEvents, frame)
         end
         frame.unitExists = false
+        if frame._fluxPrivateAuraMixed then
+            FluxRaidVisuals.UpdatePrivateAuraUnit(frame)
+        end
     end
     State.frameArray[frame] = frame
 end
@@ -961,7 +958,7 @@ function FluxRaid_RefreshSelfDisplayNames()
     end)
 end
 
-local function EnsureRangePoll(frame)
+EnsureRangePoll = function(frame)
     if rangePollTicker or not C_Timer or not C_Timer.NewTicker then return end
     if frame and Compat.HasRangeAlphaBoolean(frame) then return end
     rangePollTicker = C_Timer.NewTicker(1.0, function()

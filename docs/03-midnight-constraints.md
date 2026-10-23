@@ -1,68 +1,77 @@
-# Midnight constraints (product limits)
+# Secrets, protected actions and modern-client boundaries
 
-## Purpose
+This chapter describes current guard mechanisms, not certification against every live patch. Live Midnight and Forever require distinct paths despite shared family flags; see [02-multi-client-matrix.md](02-multi-client-matrix.md).
 
-Retail Midnight (patch family **12.0.x → 12.1.0**) introduced **secret values** and related combat restrictions. This document states what that means for FluxUI as a **product**: what players can still get, what must become display-only, and what must not be promised on Midnight.
+## Different constraints
 
-Living references (do not freeze patch trivia into the rewrite):
+| Constraint | Consequence |
+|---|---|
+| Secret/inaccessible values | A value may be accepted by display methods while unsafe for Lua comparison, branching, formatting, cache keys or traversal. |
+| Protected actions/lockdown | Public inputs do not permit arbitrary secure attribute, parenting, visibility or binding changes during combat. |
+| Shared Blizzard taint | Methods/hooks/state written by addon code can affect later native work. A pcall does not remove taint. |
 
-- [Patch 12.0.0/API changes](https://warcraft.wiki.gg/wiki/Patch_12.0.0/API_changes)
-- [Patch 12.0.1/API changes](https://warcraft.wiki.gg/wiki/Patch_12.0.1/API_changes)
-- [Patch 12.0.5/API changes](https://warcraft.wiki.gg/wiki/Patch_12.0.5/API_changes)
-- [Patch 12.0.7/API changes](https://warcraft.wiki.gg/wiki/Patch_12.0.7/API_changes)
-- [Patch 12.1.0/API changes](https://warcraft.wiki.gg/wiki/Patch_12.1.0/API_changes)
-- [Secret Values](https://warcraft.wiki.gg/wiki/Secret_Values)
+Unknown range/usability is not known false. Secret display payload is not definitely absent. Out-of-combat work can still contaminate shared state.
 
-Current shipping target when this bible was written: **12.1.0**.
+## Backends and contracts
 
-## What secret values mean for players
+[Secrets.lua](../Core/API/Secrets.lua) exports `Flux.Secrets`/`Flux.API.Secrets`. [Secrets_Midnight.lua](../Core/API/Secrets_Midnight.lua) guards native access APIs for Retail/Forever; [Secrets_Classic.lua](../Core/API/Secrets_Classic.lua) supplies accessible stubs elsewhere. Runtime guards prevent an unfiltered Classic file replacing the restricted backend.
 
-Blizzard’s stated aim is to limit addons doing complex **decision-making** from combat information, while still allowing **look-and-feel** customization.
+| Helpers | Contract |
+|---|---|
+| IsSecretValue/CanAccessValue | Separate checks; a secret can still be unsuitable as a Lua cache key even when access appears allowed. |
+| IsSecretTable/CanAccessTable | Check traversal separately from ordinary table type. |
+| SafeAccessibleString/SafeGetNumber | Return nil or fallback instead of using secret/inaccessible identity/numeric values. |
+| KeepLastNumber | Retains prior usable geometry/display numbers when the latest value cannot be read. |
+| SafeCompare | Nil means unsafe/unknown, distinct from false. |
+| SafeEqualForCache | Unknown does not become an equal cache hit. |
+| SafeBooleanTest/NormalizeTriBool | Avoid ordinary secret boolean tests and preserve unknown where needed. |
+| GUID helpers | Accessible identity and guarded target/focus change detection. |
+| SafeCountKey/SafeLooksEmpty | Avoid formatting/comparing secrets for caches; secret content is not definitely empty. |
+| AuraUpdateInfoIsNoop/HasSecrets | Distinguish ordinary empty diffs from metadata unsafe to if-test/iterate. |
 
-For FluxUI that translates to:
+Legacy [Secrets.lua](../Core/FluxAPI/Secrets.lua) exposes related but separate globals/ns.API functions. `AurasRestricted` consults available C_Secrets APIs and modern combat state; it deliberately is not simply "not CanAccessSecrets", since a tainted context can deny broad access while specialized queries remain useful.
 
-| Allowed intent | Disallowed intent |
-|----------------|-------------------|
-| Show health, power, cast, and aura chrome that looks good | Compare combat numbers to choose cooldowns, targets, or rotations |
-| Theme bars, borders, fonts, layouts | Branch UI logic on “is health below X%” using secret combat data |
-| Pass display values into engine-accepted progress/color surfaces | Build custom combat meters from restricted combat-log registration |
-| Keep bindings and macros authored **out of combat** | Rebuild secure combat behavior mid-fight from secret unit state |
+## Display and aura paths
 
-## Product rules for the rewrite
+Health/power adapters, including legacy functions named SafeUnitHealth, can pass raw values through. "Safe" in a name does not make the return a public Lua number.
 
-1. **Display is first-class** — Unit frames, raid frames, cast bars, and status text may continue to *look* like Flux, using paths the game allows for showing secret-aware values.
-2. **No combat AI** — Flux does not become a combat assistant that reads secret health/power/auras to decide actions. Assisted Combat, if present, is Blizzard’s feature surfaced as a bind—not Flux logic.
-3. **Author ahead of time** — Binding conditions, restock lists, junk rules, and respec profiles are configured outside the secret decision problem; they must not depend on reading forbidden combat state to recompile mid-fight.
-4. **Meters and threat** — Prefer embedding Details! or Blizzard’s native Midnight meter. Flux’s job is layout, skinning, and tab hosting—not inventing a CLEU-based meter.
-5. **Nameplates** — Classic-style threat rank / level overlays that require branching on combat data stay **Classic / pre-Midnight**. On Midnight, do not promise custom threat decision overlays; stick to safe display or leave Blizzard plates alone.
-6. **Settings safety** — Some Retail options/CVar writes that historically tainted nameplate or raid preview UIs should be treated as carefully deferred or skipped; players still get Flux defaults where safe.
-7. **Classic unchanged in spirit** — Era, Anniversary, and Classic clients keep fuller logic where those clients still allow it. Midnight constraints are not an excuse to gut Classic features.
+- Frames use native text/status-bar/color/duration surfaces and guarded Lua logic, sometimes preserving a prior public layout value.
+- Cooldown/charge wrappers preserve secret counts/timers and native duration objects. [Charges.lua](../Core/ButtonFX/Charges.lua) only uses public scalars for signature skips.
+- Generic aura slot/index/instance reads require access. Specialized `GetPlayerAuraBySpellID` deliberately is not gated the same way: it can return a nonsecret aura or nil when broad enumeration is restricted.
+- `GetAuraDuration` rejects secret/inaccessible instance IDs before querying native duration objects. Metadata helpers protect aura diff traversal.
+- Button proc/cast/reticle presentation uses owned visuals and shown-face identities. Any Assisted Combat identity/highlight is provided through Blizzard APIs, not a Flux-authored rotation decision system.
 
-## Impact by Flux system (summary)
+See [shared services](08-shared-services.md), [unit frames](14-unit-frames.md), [raid frames](15-raid-frames.md) and [nameplates](19-nameplates.md).
 
-| System | Midnight product stance |
-|--------|-------------------------|
-| Action bars / glows / badges | Keep look, paging, and feedback; do not invent secret-based rotation helpers |
-| Binding | Keep Clicked-style authoring; apply outside combat; no secret-driven mid-fight rebuild |
-| Unit / raid frames | Keep Flux chrome; health/power/status are display-oriented |
-| Nameplates | No Classic-style branching overlays; informational options only |
-| Meter tab | Details or Blizzard embed; layout editor; no home-grown CLEU meter |
-| Vendor / restock / junk | Unaffected in principle (inventory/merchant, not combat secrets) |
-| Salvage / Respec / Micro / Minimap | Unaffected in principle |
+## Threat distinctions
 
-## Relationships
+[Threat.lua](../Core/API/Threat.lua) preserves multi-return query payloads inside protected calls and separates accessible numeric operations from display passthrough. Classic /100 normalization is excluded on Midnight/Forever.
 
-- Client matrix → [02-multi-client-matrix.md](02-multi-client-matrix.md)
-- Frames → [14-unit-frames.md](14-unit-frames.md), [15-raid-frames.md](15-raid-frames.md), [19-nameplates.md](19-nameplates.md)
-- Meter hosting → [10-flux-window.md](10-flux-window.md)
-- Binding philosophy → [13-binding-system.md](13-binding-system.md)
+Current NamePlates.Core.IsThreatSupported requires C_NamePlate but does not exclude live Midnight; IsLevelSupported excludes live only, so Forever still has a level path. Both modern runtimes use secret guards. Forever has specific frame/nameplate/meter display paths; dedicated meter rows retain secret payloads where generic rows can be skipped. `DisplayNumber` handles readable lead sentinel values and passes secrets through to accepted displays. `GetForeverFrameDisplay` currently selects scaled percentage, with raw fallback; `GetForeverNameplateStatus` separately chooses status.
 
-## Rewrite intent notes
+Older header comments mention raw/lead behavior that differs from current function bodies. Do not generalize one threat formula to every consumer or treat old prose as executable truth.
 
-Treat Midnight as a **capability gate**, not a second product. Document player-visible “works / display-only / unavailable” in each system doc. Re-check wiki patch notes when Blizzard loosens or tightens which displays accept secrets.
+## Combat and secure execution
 
-## Explicit non-goals
+[Combat.lua](../Core/Engine/Combat.lua) defers structure to regen. [Scheduler.lua](../Core/Engine/Scheduler.lua) separates layout/display/eval/structural/inventory. Display-context repaint does not inherently require recompiling bindings.
 
-- Teaching how to bypass secret values
-- Promising pre-Midnight WeakAura-style combat decision packs inside Flux
-- Freezing a single patch’s API list as permanent gospel without revalidation
+Forever sets `hasRestrictedClosures=false`. [Restricted.lua](../Core/Engine/Restricted.lua) skips snippets/Execute/WrapScript and uses a Flux-owned event-assisted 0.2-second watcher, pausing structural operations during lockdown. Unit/pet owners can keep frames shown and fade alpha instead of attempting protected Show in combat.
+
+[Click.lua](../Core/ButtonFX/Click.lua) separates Forever visible mouse-up hosts from key-down proxies. [MouseoverCast.lua](../Core/Engine/MouseoverCast.lua) uses click-time units on wrap clients, native checkmouseovercast on Forever. Current Forever SyncCVar skips native CVar writes; Blizzard's checkbox owns it. Older opening comments are less precise.
+
+## Blizzard integration mechanisms
+
+| Area | Mechanism |
+|---|---|
+| Settings | [Write.lua](../BlizzardSettings/Write.lua) queues curated packs while Settings is shown/in combat; suppresses Settings.SetValue/NotifyUpdate on modern Retail/Forever. Low-level CVar calls alone do not defer for the panel. |
+| CVar adapters | Block selected coupled plate/raid/target-cast settings; threat bitfields have a specific allowed route. |
+| Action collectors | [Action.lua](../Core/API/Action.lua) detaches/suppresses Flux registration to avoid owned scripts tainting later native entries; Forever gamepad collectors have a further no-touch policy. |
+| Blizzard hiding | [Hide.lua](../Blizzard/Hide.lua) defers protected parenting and waits for Edit Mode. Removed events are not generically restored without reload. |
+| Edit Mode | [legacy UI.lua](../Core/FluxAPI/UI.lua) queues post-exit layout, mutes owned selection chrome and suppresses the manager's spec-change layout event. |
+| Native panel clicks | [SecureClickProxy.lua](../Core/SecureClickProxy.lua) overlays a separately parented secure click/macro button, with hover polling outside that secure button. |
+| Dropdowns | [FluxBlizzardDropdown.lua](../Core/FluxBlizzardDropdown.lua) selects classic menus for Forever gamepad Flux menus. |
+| Forever compatibility | [Client_Camelot.lua](../Core/Client_Camelot.lua) installs missing item/PVP/aura aliases, adapts spell rank info and parks stock ComboFrame callbacks only after runtime validation. |
+
+Other integrations globally wrap item-identity/cursor operations and alter companion state. An addon-wide "never modifies globals/Blizzard methods" claim would be false; see [29-integrations.md](29-integrations.md) and [40-findings.md](40-findings.md).
+
+Mock secret objects do not reproduce the full native secure engine. Live acceptance includes combat/instances, cursor and target hops, channels/empower/procs, Settings previews, Edit Mode, gamepad style/native panels and companions. A successful pcall does not alone prove a child transfer or absence of taint. See [41-verification.md](41-verification.md).

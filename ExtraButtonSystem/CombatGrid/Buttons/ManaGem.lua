@@ -88,7 +88,7 @@ local function GemUses(itemID)
         return 0
     end
     local Bridge = FluxEBSConsumableBridge
-    return Bridge.BagCount(itemID, { charges = true }) or 0
+    return Bridge.BagCount(itemID, { charges = true, kind = "managem" }) or 0
 end
 
 local function GemDisplay(itemID)
@@ -98,7 +98,7 @@ local function GemDisplay(itemID)
     end
     local Bridge = FluxEBSConsumableBridge
     if Bridge.DisplayItemCount then
-        return Bridge.DisplayItemCount(itemID, { preferCopies = true }) or 0
+        return Bridge.DisplayItemCount(itemID, { preferCopies = true, kind = "managem" }) or 0
     end
     return GemUses(itemID)
 end

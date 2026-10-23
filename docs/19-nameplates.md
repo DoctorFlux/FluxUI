@@ -1,84 +1,33 @@
-# Nameplates
+# Nameplate overlays and chrome
 
-## Purpose
+`Flux.NamePlates` adds threat/level/combo/countdown presentation around existing Blizzard nameplates. It does not create a replacement nameplate suite. Current behavior is defined by [Core.lua](../NamePlates/Core.lua), [Threat.lua](../NamePlates/Threat.lua), [Level.lua](../NamePlates/Level.lua), [Countdown.lua](../NamePlates/Countdown.lua) and [ComboPoints.lua](../NamePlates/ComboPoints.lua).
 
-On Classic-family clients, add light Flux overlays to Blizzard nameplates—threat tint/rank, targeting feedback, optional level text, and clearer aura countdown digits—without replacing the nameplate system wholesale.
+## Lifecycle and ownership
 
-On Forever (camelot), show a secret-safe threat rank/% overlay that uses the same numeric as the target frame (`UnitThreatPercentageOfLead` while tanking; `threatShowNumeric`). Leave Blizzard Progressive / Flash / Health Bar Color to the game's Nameplates options.
+Core tracks `activeUnits` from `NAME_PLATE_UNIT_ADDED/REMOVED`, reconciles existing plates on entering world and dispatches module `Added`, `Removed`, `Refresh` and periodic `Poll` methods. One hidden/visible driver runs only while plates are active. Group/combat changes refresh policies. Module errors route to the error handler without abandoning every module.
 
-On Live Midnight, keep Blizzard threat/level plates and only replace aura countdown digits with the same Flux overlay as Classic.
+Flux text/border hosts parent to the nameplate itself, not UnitFrame/its children, and release to UIParent on removal. Preview unit tokens are excluded. Unit tokens, object access and displayed values are checked for secrets where applicable. Reuse/removal must clear retained per-unit state and tint.
 
-## What the player sees (Classic / pre-Dragonflight intent)
+**The file header's broad claim that nothing writes Blizzard regions is not true of the complete current implementation.** `TintPlateChrome`/`ResetPlateChrome` recolor native borders, level indicators and selection regions. Level/countdown code fades native artwork/digits, and client-specific Core code changes selected anchors/visibility. This reference describes those actual side effects rather than treating the header as an enforced invariant; see [findings](40-findings.md).
 
-- Blizzard nameplates with Flux **threat border tint** and rank / percentage under health where configured
-- Red border feedback when an enemy player targets you
-- Optional “Lvl. N” (or skull) on Modern-style plates
-- Smaller buff/debuff countdown digits for readability (same 12px overlay on every client)
-- Era / Anniversary / Forever rogues and Cat Form druids: the client's native
-  combo-point artwork above the current target's health bar, with threat below.
-  Empty sockets stay visible at zero points; other nameplates receive no row.
-  The compact row is centered close above the health bar.
+## Threat and level
 
-Flux does **not** invent a full nameplate replacement suite (no Plater clone as the product goal).
+Threat polls at 0.25s. Account settings in `FluxUI_DB.nameplateThreat` default to NPC border on, enemy-player-targeting-you on and group-only visibility. `always|group|never` controls whether the overlay participates. Enemy players targeting the player receive red chrome; NPCs consult `Flux.Threat` for eligibility, values/status, rank and colors. A short 0.6s grace avoids immediate visual clearing on transient missing threat. Native numeric-threat policy also gates text.
 
-## Behaviors
+`IsThreatSupported()` currently checks for `C_NamePlate`; it does **not** categorically exclude Live. Effective results still depend on `Flux.Threat` returning eligible, displayable information. Forever uses its specialized frame/status display helpers. Consequently the old claim “Live countdown only” was too strong for current code; supporting a path statically is also not proof that live combat APIs provide numeric data.
 
-- Does not set nameplate CVars as its primary job (defaults packs may still recommend packs separately)
-- Overlays stay parented so they follow world draw order
-- Does not wrap or replace the entire aura list pipeline
-- Combo points follow target changes, point transfers (Forever), form changes,
-  and plate removal/reuse. Forever shares the secret-safe unit-frame renderer;
-  the overlay does not depend on enabling Flux's player/target frames.
-- **Classic family (Era / Anniversary / Classic):** Flux threat overlays plus “Lvl. N” (Modern style) and 75% aura countdown digits. Classic family wins if a camelot probe misfires.
-- **Retail post-DF / Midnight (live):** no Flux threat or Lvl overlay (Blizzard plates). Aura countdown uses the same taint-safe 12px Flux overlay as Classic; Settings preview plates are skipped.
-- **Forever:** secret-safe Flux threat rank/% overlay, no Lvl overlay, same 12px aura countdown overlay (preview plates skipped).
+Level polls at 0.25s. `IsLevelSupported()` excludes Live and permits other clients with nameplates, including Forever. The “Lvl. N”/skull overlay is omitted for simplified, minion, minus and name-only plates and when using Classic health-bar artwork that keeps native level presentation. Difficulty color uses native content-difficulty helpers where possible. Restricted levels can pass to formatted display instead of numeric comparisons. The setting defaults enabled.
 
-## Options / customization
+Core additionally fades Forever native level art, extends supported health geometry and repositions CC/loss-of-control icons. Forever health readouts move inside the bar with style-dependent center/right alignment. Live hides native level frames without extending the bar. These update paths skip Settings-open/preview contexts. They are more invasive than an additive text host and require live taint checks.
 
-**Nameplates** tab in `/fluxui` (full rows: [26-options-map.md](26-options-map.md)):
+## Countdown and target combo resources
 
-### Post–Dragonflight / Midnight (live)
-Threat/level extras stay informational — retail uses Blizzard plates. Buff/debuff countdown uses the Flux overlay (same size as Classic).
+Countdown polls at 0.1s. Flux-owned text hosts overlay native aura cooldowns at a fixed `16 * 0.75 = 12px`. Native digits are faded with text-color alpha only after a Flux label is available; Flux does not set their font/scale or replace aura mixins. It reuses native labels, including secret strings supported by SetText, or computes time only when values are readable and duration is at most 60 seconds. Computed labels use whole seconds above ten and tenths below. Missing labels restore native digits. Size is a code constant, not a live options slider.
 
-### Forever
-- **Threat visibility** — In group only (**default**) | Always | Never
-- **NPC threat rank/%** — on
-- **Show threat percentage** — on (game `threatShowNumeric`)
-- **Enemy player targeting you** — on
-- Blizzard Progressive / Flash / Health Bar Color remain in the game Nameplates options
-- Aura countdown size is a fixed product constant (reload); no live slider in options today
+Combo points load only for the TOC-listed Vanilla/TBC/classic/camelot game types. The current-target-only row uses Flux-owned client artwork and shared Forever rendering where supported, without requiring the Flux player/target frame enabled. It follows target, point/form and plate reuse/removal events. Other plates receive no combo row; eligibility keeps zero-point sockets for supported rogue/Cat forms.
 
-### Classic / pre-DF
-- **Threat visibility** — In group only (**default**) | Always | Never
-- **NPC threat border + rank/%** — on
-- **Enemy player targeting you** — on
-- **Show level overlay (Modern style)** — on
-- Aura countdown size is a fixed product constant (reload); no live slider in options today
+## Configuration and validation
 
-Recommended nameplate CVar packs may still come from `/fluxdefaults` ([05-defaults-and-bindings.md](05-defaults-and-bindings.md)).
+`FluxNamePlates_RefreshFromDB` and `FluxNamePlateThreat_RefreshFromDB` apply option changes. Numeric percentage shares game `threatShowNumeric` with unit frames. Nameplate CVar defaults are a separate explicit [defaults feature](05-defaults-and-bindings.md), not something every overlay refresh should be assumed to rewrite.
 
-## Relationships
-
-- Defaults nameplate packs → [05-defaults-and-bindings.md](05-defaults-and-bindings.md)
-- Secret-value policy → [03-midnight-constraints.md](03-midnight-constraints.md)
-- Matrix row → [02-multi-client-matrix.md](02-multi-client-matrix.md)
-
-## Client availability
-
-| Client | Availability |
-|--------|--------------|
-| Era | Full (threat, Lvl overlay, 12px countdown) |
-| Anniversary | Full (threat, Lvl overlay, 12px countdown) |
-| Classic | Full (threat, Lvl overlay, 12px countdown) |
-| Midnight | Countdown overlay only — no Flux threat / Lvl |
-| Forever | Secret-safe rank/% overlay + countdown overlay; no Lvl |
-
-## Rewrite intent notes
-
-Nameplates are a **Classic comfort feature**. Do not block the Midnight rewrite on rebuilding threat AI overlays. If Midnight later exposes safe display hooks, treat them as additive.
-
-## Explicit non-goals
-
-- Plater / ThreatPlates feature parity.
-- Combat branching on secret nameplate values on Midnight.
-- Hiding Blizzard nameplates to draw a fully custom unit stack in the world.
+Verify each supported style/client, secret numeric text, group policy, player target detection, threat clearing/reuse, native border restoration, minion omissions, zero/transfer combo points, countdown recovery and Settings previews. Current comments, old docs and capability gates disagree in places; observed behavior belongs in [verification](41-verification.md), not inferred “full support” claims.

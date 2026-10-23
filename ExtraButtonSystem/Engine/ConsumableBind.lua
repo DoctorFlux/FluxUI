@@ -130,7 +130,7 @@ local function Spells()
     return inv and inv.Spells
 end
 
-local function BagCount(itemID, includeCharges)
+local function BagCount(itemID, includeCharges, kind)
     itemID = tonumber(itemID)
     if not itemID then
         return 0
@@ -146,14 +146,18 @@ local function BagCount(itemID, includeCharges)
         stacks = inv.Bags.GetCount(itemID) or 0
     end
     stacks = tonumber(stacks) or 0
-    if not includeCharges then
+    local Item = _G.Flux and _G.Flux.Item
+    if not includeCharges or (Item and Item.UsesConsumableCharges and Item.UsesConsumableCharges(itemID, kind) == false) then
         return stacks
+    end
+    if stacks <= 0 then
+        return 0
     end
     local live = stacks
     if inv.GetLiveCount then
-        live = inv.GetLiveCount(itemID, { charges = true, includeBank = false }) or stacks
+        live = inv.GetLiveCount(itemID, { charges = true, includeBank = false, bank = false, warband = false }) or stacks
     elseif inv.Index and inv.Index.GetLiveCount then
-        live = inv.Index.GetLiveCount(itemID, { charges = true, includeBank = false }) or stacks
+        live = inv.Index.GetLiveCount(itemID, { charges = true, includeBank = false, bank = false, warband = false }) or stacks
     end
     live = tonumber(live) or 0
     -- Charge APIs return 0 on zone load while the stack is still in the snapshot.
@@ -183,7 +187,7 @@ local function FilterLiveOwned(list, preferCharges, kind)
         local rec = list[i]
         local id = rec and tonumber(rec.itemID)
         if id then
-            local n = BagCount(id, preferCharges)
+            local n = BagCount(id, preferCharges, kind)
             local recKind = (rec and rec.kind) or kind
             local blocked = Score and Score.IsBlockedForBest and Score.IsBlockedForBest(id, recKind)
             if n > 0 and not blocked then
@@ -203,7 +207,7 @@ end
 
 function Bridge.BagCount(itemID, opts)
     opts = opts or {}
-    return BagCount(itemID, opts.charges == true)
+    return BagCount(itemID, opts.charges == true, opts.kind)
 end
 
 -- Extra digit. preferCopies: combat gem/HS bag copies. Else charged copies
@@ -223,7 +227,10 @@ function Bridge.DisplayItemCount(itemID, opts)
         end
     end
     local copies = BagCount(itemID, false)
-    local uses = BagCount(itemID, true)
+    local uses = BagCount(itemID, true, opts.kind)
+    if uses <= 0 and not SoftHolding() and not SnapshotCollapsed() then
+        return 0
+    end
     if copies > 1 then
         if opts.preferCopies then
             return copies
@@ -500,7 +507,7 @@ function Bridge.GetBestOwned(kind, opts)
     local fromBest = nil
     local best = B.GetBest and B.GetBest(kind)
     if best and best.itemID and (best.source ~= "vendor") and (best.source ~= "create") then
-        local n = BagCount(best.itemID, preferCharges)
+        local n = BagCount(best.itemID, preferCharges, kind)
         if n > 0 and not blockedForBest(best.itemID) then
             fromBest = {}
             for k, v in pairs(best) do
@@ -533,7 +540,7 @@ function Bridge.GetBestOwned(kind, opts)
         local refID = ref and (ref.itemID or ref.id)
         refID = tonumber(refID)
         if refID then
-            local n = BagCount(refID, preferCharges)
+            local n = BagCount(refID, preferCharges, kind)
             if n > 0 and not blockedForBest(refID) then
                 fromBest = {
                     itemID = refID,
@@ -597,7 +604,7 @@ function Bridge.GetBestOwned(kind, opts)
             return fromLadder
         end
         if Score and Score.IsBetter and Score.IsBetter(fromBest, fromLadder, compareOpts) then
-            local n = BagCount(fromBest.itemID, preferCharges)
+            local n = BagCount(fromBest.itemID, preferCharges, kind)
             if n > 0 then
                 fromBest.count = n
                 return fromBest
@@ -608,7 +615,7 @@ function Bridge.GetBestOwned(kind, opts)
     end
     local pick = fromLadder or fromBest
     if pick and pick.itemID and not SoftHolding() then
-        local n = BagCount(pick.itemID, preferCharges)
+        local n = BagCount(pick.itemID, preferCharges, kind)
         if n <= 0 then
             return nil
         end
@@ -692,7 +699,7 @@ function Bridge.GetOwnedLadder(kind, opts)
                 local stone = tier[i]
                 local id = stone and tonumber(stone.id)
                 if id then
-                    local n = BagCount(id, preferCharges)
+                    local n = BagCount(id, preferCharges, kind)
                     if n > 0 then
                         local rank = (Score.HealthstoneRank and Score.HealthstoneRank(id)) or (#tier - i + 1)
                         out[#out + 1] = {
@@ -801,7 +808,7 @@ function Bridge.GetOwnedLadder(kind, opts)
                             and Score.EffectiveFromClassify(cls, maxHP, maxMana)
                             or (cls.effective or 0)
                     end
-                    local n = preferCharges and BagCount(itemID, true) or bagN
+                    local n = preferCharges and BagCount(itemID, true, kind) or bagN
                     if n > 0 and effective > 0 then
                         local maxStack = (Score and Score.GetMaxStack and Score.GetMaxStack(itemID)) or 0
                         out[#out + 1] = {
@@ -2512,7 +2519,8 @@ local function RefreshConsumableFaces()
         local spec = FACE_MODULES[i]
         local module = _G[spec.key]
         local btn = module and module.Button
-        if module and btn then
+        local swapSpec = SWAP_PARTNER[spec.kind]
+        if module and btn and (btn._fluxCombatSwapBody or (swapSpec and Bridge.GetConsumableCombatSwap(swapSpec.setting))) then
             if inCombat then
                 if module.RefreshCountOnly then
                     module.RefreshCountOnly()
@@ -2578,36 +2586,16 @@ function Bridge.QueueConsumableFaceRefresh()
 end
 
 do
-    local function queue(ctx)
-        local BestMod = _G.FluxConsumableBest
-        -- Best's own notify passes a generation number. A bag pulse passes ctx.
-        -- Era/Anniversary only emits a light bag pulse, so this listener is light
-        -- and inline. A new conjure still has to recompute Best before the button
-        -- can switch items; a 0 stack is handled by the face pass itself.
-        local fromBest = type(ctx) == "number"
-        if not fromBest and BestMod and BestMod.RequestRecompute then
-            local conjure = BestMod.IsConjureArmActive and BestMod.IsConjureArmActive()
-            if conjure or (type(ctx) == "table" and (ctx.changeKind == "identityChanged" or ctx.force)) then
-                BestMod.RequestRecompute({ reason = "buttonFace", force = true, delay = 0.05 })
-            end
-        end
+    local function queue()
+        -- Best now receives light bag pulses itself and owns the recompute.
         Bridge.QueueConsumableFaceRefresh()
     end
     local BestMod = _G.FluxConsumableBest
     if BestMod and BestMod.RegisterListener then
         BestMod.RegisterListener("FluxConsumableFaces", queue)
     end
-    local inv = _G.FluxInv
-    if inv and inv.RegisterListener then
-        -- tier light: Era DELAYED pulses are light and never reach scan listeners.
-        -- sync: do not sit on the heavy queue. Era does not end the bag storm,
-        -- so a deferred scan listener never runs after conjure or a last use.
-        inv.RegisterListener("FluxConsumableFaces", queue, {
-            tier = "light",
-            regions = { "bags" },
-            sync = true,
-        })
-    end
+    -- Per-button light listeners own counts. Swap partners refresh once Best
+    -- publishes, rather than selecting four items again after every bag pulse.
 end
 
 do
@@ -2701,6 +2689,7 @@ function Refresh.Attach(opts)
     btn._fluxIsolatedTooltip = true
     btn._fluxPlaceholderIcon = opts.placeholderIcon
     btn._fluxPlaceholderLabel = opts.placeholderLabel
+    btn._fluxConsumableKind = kind
     Module.Button = btn
     Module._kind = kind
     Module._trackedItemID = nil
@@ -2814,7 +2803,7 @@ function Refresh.Attach(opts)
         if itemID then
             local B = Bridge()
             if B and B.DisplayItemCount then
-                count = B.DisplayItemCount(itemID, { preferCopies = charges }) or count
+                count = B.DisplayItemCount(itemID, { preferCopies = charges, kind = kind }) or count
             end
             btn:SetCount(count, { live = true, itemId = itemID })
         else
@@ -3251,25 +3240,42 @@ function Refresh.Attach(opts)
         end)
     end
 
+    local craftRefreshQueued = false
+    local craftLastPulse, craftStarted = 0, 0
+    local function ScheduleCraftRefresh()
+        craftLastPulse = GetTime and GetTime() or 0
+        if craftRefreshQueued then
+            return
+        end
+        craftRefreshQueued = true
+        craftStarted = craftLastPulse
+        local function run()
+            local now = GetTime and GetTime() or 0
+            local remaining = craftLastPulse + 0.10 - now
+            if remaining > 0.001 and now - craftStarted < 0.30 and C_Timer and C_Timer.After then
+                Bridge().After(math.min(remaining, 0.30 - (now - craftStarted)), run)
+                return
+            end
+            craftRefreshQueued = false
+            if InCombat() then
+                Module._pendingUpdate = true
+                return
+            end
+            ApplyRightClick()
+        end
+        Bridge().After(0.10, run)
+    end
+
     local BestMod = _G.FluxConsumableBest
     if BestMod and BestMod.RegisterListener then
         BestMod.RegisterListener(listenerKey, function()
-            if opts.reapplyCraftOnBag then
-                if btn._fluxCombatSwapBody then
-                    RefreshCountOnly()
-                end
-                ScheduleUpdate()
+            if InCombat() then
+                RefreshCountOnly()
+                Module._pendingUpdate = true
                 return
             end
-            local B = Bridge()
-            local id = Module._trackedItemID or Module._latchItemID
-            if id and B and B.GetBestOwned then
-                local best = B.GetBestOwned(kind, { charges = charges })
-                if best and best.itemID == id then
-                    RefreshCountOnly()
-                    return
-                end
-            end
+            -- Selection stays off the publisher's callback stack and coalesces
+            -- through the grid. Count-only bag events never enter this path.
             ScheduleUpdate()
         end)
     end
@@ -3278,8 +3284,23 @@ function Refresh.Attach(opts)
     if inv and inv.RegisterListener then
         local regions = opts.listenerRegions or { "bags" }
         inv.RegisterListener(listenerKey, function(ctx)
+            local B = Bridge()
+            local id = SwapFaceItemID() or Module._trackedItemID or Module._latchItemID
+            local changed = ctx and ctx.changedItemIDs
+            local countChanged = id and (charges or not changed or changed[id])
+            local depleted = false
+            if B and countChanged then
+                local n = B.BagCount(id, { charges = charges, kind = kind }) or 0
+                depleted = n <= 0 and Module._observedEmptyItemID ~= id
+                Module._observedEmptyItemID = n <= 0 and id or nil
+                if n > 0 and not SwapFaceItemID() then
+                    CommitLatch(id, n)
+                end
+                -- Count writes only. In particular, an empty slot must not call
+                -- RefreshCountOnly -> Update -> classify every carried item.
+                ApplyCount(id, n)
+            end
             if InCombat() then
-                RefreshCountOnly()
                 Module._pendingUpdate = true
                 return
             end
@@ -3290,54 +3311,17 @@ function Refresh.Attach(opts)
                 ScheduleUpdate()
                 return
             end
-            -- Craft buttons: bag mat changes must rebind RC craft vs restock promptly.
-            -- The coalesced combat update often skips when the potion itself did not
-            -- change, which left food/water counts stuck on these buttons.
             if opts.reapplyCraftOnBag then
-                if btn._fluxCombatSwapBody then
-                    RefreshCountOnly()
+                local Craft = CraftApi()
+                if not Craft or not Craft.BagChangesAffectKind or Craft.BagChangesAffectKind(kind, changed) then
+                    ScheduleCraftRefresh()
                 end
+            end
+            if depleted or Module._pendingUpdate or (ctx and ctx.force) then
                 ScheduleUpdate()
-                return
             end
-            -- Stack size only: refresh counts; still promote/demote if best identity moved.
-            if ctx and ctx.changeKind == "countOnly" and not ctx.force then
-                local B = Bridge()
-                local id = Module._trackedItemID or Module._latchItemID
-                if not id then
-                    ScheduleUpdate()
-                    return
-                end
-                if id and B and B.BagCount then
-                    local n = B.BagCount(id, { charges = charges }) or 0
-                    if n <= 0 then
-                        ScheduleUpdate()
-                        return
-                    end
-                    local best = B.GetBestOwned and B.GetBestOwned(kind, { charges = charges })
-                    if best and best.itemID and best.itemID ~= id then
-                        ScheduleUpdate()
-                        return
-                    end
-                end
-                RefreshCountOnly()
-                return
-            end
-            local B = Bridge()
-            if not B then
-                ScheduleUpdate()
-                return
-            end
-            local id = Module._trackedItemID or Module._latchItemID
-            if id and (B.BagCount(id, { charges = charges }) or 0) > 0 then
-                local best = B.GetBestOwned(kind, { charges = charges })
-                if best and best.itemID == id then
-                    RefreshCountOnly()
-                    return
-                end
-            end
-            ScheduleUpdate()
-        end, { tier = "scan", regions = regions, deferHeavy = true })
+            -- Newly owned/better items arrive through Best's batched publish.
+        end, { tier = "light", regions = regions, sync = true })
     end
 
     local leave = CreateFrame("Frame")

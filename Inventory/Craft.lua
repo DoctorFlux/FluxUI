@@ -639,6 +639,21 @@ function Craft.InvalidateCanCraftCache()
     wipe(bestCraftCache)
 end
 
+-- Cached recipe dependencies let HUD bag listeners skip unrelated loot/restacks.
+-- Unknown or incomplete recipe data stays conservative until the next scan.
+function Craft.BagChangesAffectKind(kind, changedItemIDs)
+    local cached = bestCraftCache[kind]
+    if not changedItemIDs or not cached or not cached.reagentIDs then
+        return true
+    end
+    for id in pairs(changedItemIDs) do
+        if cached.reagentIDs[id] then
+            return true
+        end
+    end
+    return false
+end
+
 function Craft.GetBestCraftable(kind)
     kind = kind and tostring(kind) or nil
     if kind ~= "healPotion" and kind ~= "manaPotion" and kind ~= "bandage" then
@@ -666,7 +681,23 @@ function Craft.GetBestCraftable(kind)
             best = top
         end
     end
-    bestCraftCache[kind] = { bagGen = bagGen, best = best or false }
+    local reagentIDs = {}
+    for _, recipe in ipairs(list) do
+        if not recipe.reagents or #recipe.reagents == 0 then
+            reagentIDs = nil
+            break
+        end
+        for _, reagent in ipairs(recipe.reagents) do
+            local id = ReagentItemID(reagent)
+            if not id then
+                reagentIDs = nil
+                break
+            end
+            reagentIDs[id] = true
+        end
+        if not reagentIDs then break end
+    end
+    bestCraftCache[kind] = { bagGen = bagGen, best = best or false, reagentIDs = reagentIDs }
     return best
 end
 

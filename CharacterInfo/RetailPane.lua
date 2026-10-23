@@ -720,6 +720,7 @@ function BindForeverStatRows()
 	if not IsForeverCharacterPane() then
 		return
 	end
+    if InCombatLockdown and InCombatLockdown() then return end
 	EnsureForeverItemLevelStat()
 	local player = rawget(_G, "CharacterStatsPaneScrollBox")
 	local pet = rawget(_G, "CharacterStatsPanePetScrollBox")
@@ -750,6 +751,7 @@ function BindForeverStatRows()
 			end
 			return
 		end
+		if scrollBox == pet then return end
 		if row.bonusDamage then
 			WrapSpellDamageRow(row)
 		end

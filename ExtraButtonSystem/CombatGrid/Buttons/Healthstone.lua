@@ -119,7 +119,7 @@ local function StoneUses(itemID)
         return 0
     end
     local Bridge = FluxEBSConsumableBridge
-    return Bridge.BagCount(itemID, { charges = true }) or 0
+    return Bridge.BagCount(itemID, { charges = true, kind = "healthstone" }) or 0
 end
 
 local function StoneDisplay(itemID)
@@ -129,7 +129,7 @@ local function StoneDisplay(itemID)
     end
     local Bridge = FluxEBSConsumableBridge
     if Bridge.DisplayItemCount then
-        return Bridge.DisplayItemCount(itemID, { preferCopies = true }) or 0
+        return Bridge.DisplayItemCount(itemID, { preferCopies = true, kind = "healthstone" }) or 0
     end
     return StoneUses(itemID)
 end
@@ -284,7 +284,7 @@ local function AttachHealthstone(btn)
 
         local best = Bridge.GetBestOwned("healthstone", { charges = true })
         if best and best.itemID then
-            local n = Bridge.BagCount(best.itemID, { charges = true }) or 0
+            local n = Bridge.BagCount(best.itemID, { charges = true, kind = "healthstone" }) or 0
             if n <= 0 then
                 best = nil
                 local ladder = Bridge.GetOwnedLadder and Bridge.GetOwnedLadder("healthstone", { charges = true })
@@ -292,7 +292,7 @@ local function AttachHealthstone(btn)
                     for i = 1, #ladder do
                         local rec = ladder[i]
                         local id = rec and tonumber(rec.itemID)
-                        local bagN = id and Bridge.BagCount(id, { charges = true }) or 0
+                        local bagN = id and Bridge.BagCount(id, { charges = true, kind = "healthstone" }) or 0
                         if bagN > 0 then
                             best = rec
                             best.count = bagN

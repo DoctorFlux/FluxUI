@@ -7,8 +7,8 @@ local Adapter = Inv.Syndicator
 local bound = false
 local waiting = false
 local lastMailFingerprint
-local mailDebounceGen = 0
 local MAIL_DEBOUNCE = 0.2
+local mailPending, mailFirst, mailDue
 
 -- Last rebuild classification per region, so Syndicator and builtin hand
 -- listeners the same ctx (changeKind / added / removed / dirtyBags).
@@ -486,6 +486,25 @@ local function Request(token)
 	Flux.Scheduler.Request("inventory", token)
 end
 
+local function FlushMail()
+	local now = (GetTime and GetTime()) or 0
+	if now < mailDue and C_Timer and C_Timer.After then
+		C_Timer.After(mailDue - now, FlushMail)
+		return
+	end
+	mailPending = false
+	if Adapter.RebuildMail() then Request("mail") end
+end
+
+local function QueueMail()
+	local now = (GetTime and GetTime()) or 0
+	if not mailPending then mailFirst = now end
+	mailDue = math.min(now + MAIL_DEBOUNCE, mailFirst + 0.6)
+	if mailPending then return end
+	mailPending = true
+	if C_Timer and C_Timer.After then C_Timer.After(MAIL_DEBOUNCE, FlushMail) else FlushMail() end
+end
+
 -- At the bank every drag is a cache update. Light pulse next frame (counts,
 -- overlays); scan-tier listeners run once the moves settle.
 local bankMovePending
@@ -590,21 +609,7 @@ local function Bind()
 		if Inv.NotifyBagStorm then
 			Inv.NotifyBagStorm()
 		end
-		mailDebounceGen = mailDebounceGen + 1
-		local gen = mailDebounceGen
-		local function flushMail()
-			if gen ~= mailDebounceGen then
-				return
-			end
-			if Adapter.RebuildMail() then
-				Request("mail")
-			end
-		end
-		if C_Timer and C_Timer.After then
-			C_Timer.After(MAIL_DEBOUNCE, flushMail)
-		else
-			flushMail()
-		end
+		QueueMail()
 	end)
 	cb:RegisterCallback("VoidCacheUpdate", function(_, character)
 		if not IsCurrentCharacter(character) then

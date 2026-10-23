@@ -1,113 +1,132 @@
-# Respec (profiles and presets)
+# Respec: profiles, presets, apply orchestration, and protection
 
-## Purpose
+`FluxRespec` saves and loads a character's gear, talents/loadout, runes where supported, bar/stance configuration, consumable preset link, utility slots, bindings, and Info preferences. It hosts its UI in the Flux Window's **Respec** tab. This is separate from Ace configuration profiles: changing an Ace profile is not the same action as loading a Respec gameplay profile.
 
-Let a character store and load named **playstyle profiles**—gear, talents/loadouts, SoD runes, action bars (Classic), consumables, utility, bindings, and Info Frame pins—from the Flux Window Respec tab, with strong protection so set pieces are not sold or disenchanted by accident.
+## Runtime ownership and stored model
 
-## What the player sees
+[`FluxRespec_Core.lua`](../Respec/FluxRespec_Core.lua), `EnsureStore`, initializes `_FluxUI_CharSavedVars.respec` with `profiles`, selected `activeName`, settings, and optional unit-frame armed/checkpoint state. `settings.protectGearSetItems` defaults true. `CreateProfile`, `CaptureInto`, `SetSection`, rename/duplicate/delete methods and the callback bus belong here. Client facilities are probed in [`FluxRespec_Compat.lua`](../Respec/FluxRespec_Compat.lua); the SoD check calls the engraving-enabled API rather than inferring runes from a version number.
 
-### Profiles
-Named per-character profiles that **Save** a snapshot of checked parts:
+A profile contains timestamps, client tag, icon, section snapshots, linked preset names, and `includes`. Relevant shapes are:
 
-- Gear (enchant/gem/rune-aware identity)
-- Talents — Classic tree learn / dual-spec swap; Retail talent loadouts on Midnight
-- SoD runes (where applicable)
-- Action bars (Classic; stance-bar order only on Retail loadout clients)
-- Consumables preset name (links to NC consumable presets)
-- Utility / binding snapshots
-- Info Frame pins (character-panel pinned stats plus FPS / durability / ping)
+| Field | Stored meaning |
+|---|---|
+| `equipment[slotID]` | `{ itemID, itemLink, itemKey }` or `{ empty = true }`; identity can retain enchant/gem/rune distinctions. |
+| `talents` on Classic path | Character class, talent group, nested point ranks and saved spec icon. |
+| `talents` on loadout path | `kind = loadout`, class/spec identity, loadout name, starter/no-named-loadout/spec-only flags, export string and optional configuration hash. |
+| `bars` | Classic action-slot entries plus stance order/hidden/custom slots; on talent-loadout clients the capture is stance layout only. |
+| `runes` | Equipped engravings by eligible slot on SoD-capable clients. |
+| `consumables` | Active noncombat consumables preset **name**, not a copied list of that preset's items. |
+| `utilitySlots` | Utility assignment snapshot; `spellBookSlots` remains a supported older alias. |
+| `spellBindings` | Binding-system snapshot, with V3 validation on restore. Nil means never captured and does not mean clear live bindings. |
+| `infoFrame` | Info Frame pin/order/toggle snapshot through its serialization API. |
+| `runePreset`, `equipmentPreset` | UI links to separately named presets, defaulting to the reserved `default` selection. |
 
-**Save and Load are masked.** Each section and each gear/rune slot has a checkbox. Unchecked parts are not written on Save (last saved data stays) and are not applied on Load (your current setup stays). Example: only Finger 1/2 + Trinket 1/2 checked → Save updates jewelry only, Load swaps jewelry only.
+Equipment presets live under `_FluxUI_CharSavedVars.equipmentPresets`; rune presets under `.runePresets`. Their `presets` maps and active selection are separate from `respec.profiles`, but remain **per character** despite older code comments calling them global. Equipment presets store gear. Rune presets can bundle runes, utility and talent-tagged bars with dual-spec-aware selection. The reserved `default` means a live/default selection, not an ordinary named preset to persist or delete.
 
-Toggling a checkbox is stored immediately; you do not need to press Save just to change the mask. With **No profile** selected, the same checks stay enabled and become the mask for the next Save (new profile).
+Trainer reset price memory and `loadCheckpointProfile`/`loadCheckpointStep` also live in the Respec store. These fields let the UI describe a remaining step after interruption; they are not a serialization of the live callback state machine or an instruction to perform protected work automatically after reload.
 
-Load equips from bags (and bank when the bank is open). Two rings or trinkets with the same name each need their own copy — Flux matches by item id / enchant, not the display name.
+## Include masks and saving
 
-On Retail and Forever, a profile’s gear also maps to a **Blizzard equipment set** of the same name (16-character cap). The profile dropdown and spec icon use that set’s icon.
+[`FluxRespec_Includes.lua`](../Respec/FluxRespec_Includes.lua) owns eight section flags: equipment, talents, bars, runes, consumables, utility slots, spell bindings, and Info Frame. Gear/rune slots have separate include maps. Section defaults are true; slot migration preserves older omitted shirt/tabard behavior where necessary. Checkbox changes persist immediately and emit update events. A draft mask is retained for creating a new profile from **No profile**.
 
-### Presets
-- **Equipment presets** — named gear-only sets (save/equip), with the same per-slot include checks; on Retail/Forever they share a Blizzard equipment set of the same name (icon in the Gear dropdown)
-- **Rune presets** (SoD) — runes plus bars/utility bundle; per-rune include checks; may switch dual-spec
+`CaptureInto` captures checked sections and merges only checked gear/rune slots, preserving prior snapshot data for unchecked parts. Loading applies the same mask. For example, selecting only rings and trinkets updates/swaps those slots without touching armor. A saved empty entry means intentionally unequip; an absent entry can mean uncaptured/legacy omission. Two-handed main-hand handling can suppress an incompatible off-hand requirement.
 
-### UI surfaces
-- Flux Window **Respec** tab as the home UI (same overlay layout: header + gear strip + summary rows)
-- Section checkboxes on Gear, Runes, Consumables, Talents, Utility slots, Spell bindings, Action Bars, Info Frame
-- Corner checkboxes on gear and rune icons (right-click also toggles)
-- Gear availability: equipped / bags / bank / missing (included slots only)
-- Shield overlays on protected bag/equipped pieces; paperdoll guards; tooltip notes
-- Baganator categories/sections for profiles and protection when present
+Selecting a profile sets the selection and links preset names. It does not immediately apply saved Info pins or switch the consumable list. `Apply.Run` performs those included changes on the actual Load click. The unit-frame spec flyout maintains additional armed-profile state so selecting, showing a matching icon, and initiating a load remain distinct interactions.
 
-## Behaviors
+## Apply pipeline
 
-### Load Profile orchestrator (player story)
-Typical order: Info Frame (if included) → talents + gear in parallel → rune engrave clicks → bars → consumables → utility → bindings.
+[`FluxRespec_Apply.lua`](../Respec/FluxRespec_Apply.lua), `Apply.Run(name)`, validates the profile, normalizes masks, sets active state, applies included Info preferences, links presets, and emits `APPLY_START(name)`. It immediately switches the included consumable preset before starting parallel setup; a later consumable step reconciles it again if needed. Matching sections are skipped.
 
-- Skips sections and slots that are unchecked, and steps that already match
-- On set-capable clients: `UseEquipmentSet` when the linked set would not touch an unchecked slot, then Flux fills leftovers from bags (enchants, duplicate jewelry, bank)
-- Trainer-needed messaging when Classic talents require it
-- Combat-deferred application
-- Bank withdraw only on explicit Equip/Load (no silent auto-withdraw on bank open)
-- Selecting a profile in the dropdown does **not** apply Info Frame pins or the consumable list; Load does
+```mermaid
+flowchart TD
+    L[Load selected profile] --> I[Apply included Info and consumable selection]
+    I --> C{Already fully matched?}
+    C -->|Yes| D[Finish and clear checkpoint]
+    C -->|No| T[Talents or specialization/loadout]
+    C -->|No| G[Gear and explicit bank withdrawal]
+    C -->|No| R[SoD rune queue with user engrave clicks]
+    T --> J[Join successful talent, gear and rune phases]
+    G --> J
+    R --> J
+    J --> B[Classic action slots or loadout-client stance layout]
+    B --> P[Consumable preset reconciliation]
+    P --> U[Utility assignments]
+    U --> S[Binding snapshot and badges]
+    S --> D
+    T --> F[Abort on required setup failure]
+    G --> F
+```
 
-### Save Profile
-- Recaptures only checked sections and slots from the live character
-- Unchecked snapshot fields keep their last saved data
-- No profile: Save creates a profile using the include mask you already toggled
-- Gear included on Retail/Forever: create or update a Blizzard set of the same name; unchecked slots are ignored on that set (left alone)
+Parallel setup tracks talent, gear and rune completion separately; bars wait until all required phases succeed and the active rune queue is empty. Callbacks carry an apply-state identity, preventing completion from an older load from advancing a newer one. Loading another profile while waiting for runes can cancel the old queue; an unrelated concurrent load otherwise reports that one is already in progress. Repeated clicks can advance the current rune queue rather than starting another pipeline.
 
-### Blizzard equipment sets (Retail / Forever)
-`C_EquipmentSet` — max **10** sets, names **16** letters. Era / Anniversary stay Flux pickup-equip.
+Checkpoints are recorded for `parallel`, `bars`, and `bindings`. Completion, abort or cancellation clears them. `Apply.Cancel` drops running state, clears the checkpoint and emits cancellation. `IsRunning`, `IsWaitingForRuneEngrave`, `IsEngraveButtonMode`, `WillSwitchSpec`, `NextStepLabel` and matching queries drive the main button label, status and unit-frame affordance.
 
-- **Same name:** Flux profile/preset name is the Blizzard set name (truncated to 16). Character-pane sets are **imported into the Gear dropdown** on login (name, icon, items) even if Flux never saved them; Save updates that set.
-- **Cap full:** a *new* name cannot create a set. Flux keeps its snapshot and equips from bags. Updating an adopted/existing set does not need a free slot.
-- **Icon:** profile spec picker (and preset first-equipped-item icon) is pushed into the Blizzard set; the Gear/profile dropdowns show the live set icon and name. Renaming in the character pane renames the Flux profile/preset to match.
-- **Delete:** Flux deletes the Blizzard set only if Flux created it. Adopted pre-existing sets are unlinked, not deleted.
-- A profile and a preset that share a name share one Blizzard set (last Save wins).
-- Extra Button equipment-set actions (`/equipset`) are unchanged.
+Talent failure can abort with trainer-needed, wrong-class, combat, timeout, cancelled spec switch, missing APIs or another backend reason. A failed parallel gear phase also stops advancement. Later optional steps are more permissive: utility failures and invalid/legacy binding snapshots can warn and continue. In particular, the binding callback's false path warns and calls `SetStatus("Load failed.")`, then calls `FinishSuccess`. `SetStatus` is currently a no-op, so that call does not establish a visible failure label. The completion callback can emit `APPLY_DONE(true, DONE)` despite the binding failure. Treat that event as current pipeline completion behavior, not proof that every saved section was restored. No changes to that behavior are made by this documentation.
 
-### Protection (default on)
-Blocks vendor sell, sell-junk, and disenchant on bag/equipped pieces needed by any saved profile/preset (items still stored in the snapshot, including currently unchecked slots). Integrates with Vendor/Junk and Salvage.
+Combat handling is stage-specific. Talents/gear can decline and ask for a new Load out of combat; a binding snapshot returning `IN_COMBAT` can remain pending until its callback completes. This is not a blanket guarantee that an entire interrupted profile automatically resumes after combat.
 
-## Options / customization
+## Talents, loadouts, runes, and bars
 
-Respec UI lives primarily in the Flux Window **Respec** tab (not a huge Ace options subtree). Related options:
+| Backend | Current responsibilities and boundaries |
+|---|---|
+| [`FluxRespec_Talents.lua`](../Respec/FluxRespec_Talents.lua) | Capture/compare talent ranks, find a matching group, switch dual spec, compute learn deltas, and learn in a paced/event-aware loop. Class/trainer/reset/combat gates can stop the load. Trainer prompts remember the last observed reset cost and synchronize the queued reset interaction. |
+| [`FluxRespec_TalentsRetail.lua`](../Respec/FluxRespec_TalentsRetail.lua) | Select specialization, named loadout, starter build or export/import route according to the saved snapshot and available APIs. Asynchronous readiness/events, cancellation generation and finite switch waits protect stale callbacks. A short post-apply match grace covers lagging client APIs. |
+| [`FluxRespec_Runes.lua`](../Respec/FluxRespec_Runes.lua) | Capture engraving, diff slots, build/clear the rune queue and cast the next eligible engraving through player interaction. Gear prerequisites can block the queue head; enqueuing is not equivalent to completing every engraving. |
+| [`FluxRespec_ActionBars.lua`](../Respec/FluxRespec_ActionBars.lua) | Collect/capture Classic action slots, compare and restore differing entries, and capture/apply stance order/hidden/custom slots. Macro identity can be resolved by name; mount/pet/equipment-set entries have their own pickup routes. Loadout clients leave ordinary action slots to Blizzard's loadout ownership. |
+| [`FluxRespec_PresetBundle.lua`](../Respec/FluxRespec_PresetBundle.lua) / [`FluxRespec_RunePresets.lua`](../Respec/FluxRespec_RunePresets.lua) | Talent-tagged preset bars/utility bundles, matching-spec quick switches and explicit confirmation when the preset's saved talent tree matches neither spec. Loadout clients skip preset ordinary-bar restoration. |
+| [`FluxRespec_AtieshDualSpecFix.lua`](../Respec/FluxRespec_AtieshDualSpecFix.lua) | Watches actual dual-spec transitions to temporarily unequip/re-equip Atiesh, with interruption/timeout handling. It does not run an Atiesh swap merely on login. |
 
-- FluxWindow tab chips include Respec ([10-flux-window.md](10-flux-window.md), [26-options-map.md](26-options-map.md))
-- Binding tab **Bindings source** can target Respec profiles; Preview saves to Respec only; Sticky across Respec
-- Vendor/Junk/Salvage respect gear-set **protection** (default on in Respec product behavior)
-- Consumable preset names link to NonCombat consumables / Extra Buttons
-- Slash: `/fluxrespec`
+The UI's **Engrave next** and secure slot clicks are hardware interaction surfaces; timers/events coordinate queue state but do not grant arbitrary protected casting. `Compat.SecureUIPanelsBlockRespecWork` also gates work around client secure panel ownership.
 
-Profile/preset CRUD, icons, apply-mask checks, Blizzard set sync, apply flow, and protection toggles are in the Respec surface itself.
+## Gear identity, availability, and equipment-set bridge
 
-## Relationships
+[`FluxRespec_Equipment.lua`](../Respec/FluxRespec_Equipment.lua) captures item keys, matches wanted identities, allocates duplicate requirements, chooses swaps and reports equipped/bags/bank/missing status. Matching uses slot compatibility and saved identity rather than item display names. Two equal-name rings need two allocated copies; enchant/gem/rune-specific wants can be stricter than an item-ID match. Empty-slot and two-handed/off-hand rules prevent treating every absence identically.
 
-- Hosted in [10-flux-window.md](10-flux-window.md)
-- Bars snapshot → [11-action-bars.md](11-action-bars.md)
-- Bindings snapshot → [13-binding-system.md](13-binding-system.md)
-- Consumables / utility slots → [12-extra-button-system.md](12-extra-button-system.md)
-- Pinned stats → character panel + [16-status-bars.md](16-status-bars.md) Info Frame
-- Gear facts → [21-inventory-foundation.md](21-inventory-foundation.md)
-- Sell/DE guards → [20-vendor-restock-junk.md](20-vendor-restock-junk.md), [22-salvage.md](22-salvage.md)
-- Bag UI bridge → [24-baganator-compat.md](24-baganator-compat.md)
+`ApplyWithCallback` coordinates the swap queue and live continuation after equipment/bag events. Open-bank retrieval is initiated from explicit Equip/Load actions; bank-open discovery alone does not silently withdraw the active profile's gear. [`FluxRespec_Inv.lua`](../Respec/FluxRespec_Inv.lua) distinguishes cached bank knowledge from `CanTakeFromBank`, so a last-visit record can report bank availability without enabling a real withdrawal. Slot-level status is computed for included requirements, while protection later considers all retained saved gear.
 
-## Client availability
+[`FluxRespec_EquipmentSets.lua`](../Respec/FluxRespec_EquipmentSets.lua) bridges available `C_EquipmentSet` facilities. The code caps managed names at sixteen characters and uses the API's set quota where available, with ten as its fallback. On clients without usable equipment sets, Flux's own snapshot/equip path remains.
 
-| Client | Availability |
-|--------|--------------|
-| Era | Classic talents + bars + gear + consumables/bindings |
-| Anniversary | Same family; SoD runes only when engraving is enabled |
-| Forever | Retail-style loadouts + stance-bar layout + Blizzard equipment-set sync |
-| Midnight | Retail loadouts + gear + consumables/bindings + Blizzard equipment-set sync; skip Classic bar slot snapshot |
+| Situation | Implemented behavior |
+|---|---|
+| Existing same-name set | Resolve/adopt it, retaining ownership metadata so adoption is different from creation. |
+| New name and free quota | Create/update the linked set with the saved include/ignored-slot policy. |
+| Quota full | Keep the Flux snapshot and use Flux gear application rather than discarding the profile. |
+| External Blizzard sets | Import into equipment preset choices and reconcile names/icons/items on relevant set events. |
+| Rename/icon change | Push or reconcile the corresponding linked metadata while suppressing recursive sync work. |
+| Delete | Delete a linked Blizzard set only when Flux owns its creation; an adopted set is unlinked. |
+| Profile/preset share name | They can resolve the same Blizzard set; subsequent saves update that shared set. |
+| Loading masked gear | `WouldViolateWanted` prevents `UseEquipmentSet` from changing an unchecked requirement, then Flux handles remaining slot work. |
 
-## Rewrite intent notes
+`TryApply` has event/callback and timeout completion handling; a submitted equipment-set request is not immediately considered verified. The gear picker, icon picker and dropdowns expose the linked live set name/icon without replacing Blizzard's Equipment Manager UI.
 
-Respec is an **orchestrated, maskable save and load**, not five unrelated buttons. Protection is part of the feature, not an afterthought—Scrap/Restocker automation must never eat a saved set.
+## Saved-gear protection
 
-## Explicit non-goals
+[`FluxRespec_GearSetIndex.lua`](../Respec/FluxRespec_GearSetIndex.lua) indexes retained equipment snapshots from **all** profiles and named equipment presets. Its identity and allocation logic protects the required copies across bag/equipped locations. Unchecking a slot's current apply mask does not erase its saved snapshot or remove it from protection. Allocation freshness follows inventory/equipment/profile changes; callers can query a saved-set identity separately from whether a particular live slot is allocated.
 
-- Replacing Raidbots or full sim-driven gear planners.
-- Auto-swapping profiles from secret combat state on Midnight.
-- Forcing ItemRack-style always-on player-frame set flyouts (Flux has a separate equip flyout QoL).
-- Snapshotting Extra Button **category grids** (utility slots only).
-- Replacing Blizzard’s character-pane Equipment Manager UI.
+[`FluxRespec_GearSetLock.lua`](../Respec/FluxRespec_GearSetLock.lua) supplies `IsSlotProtected`, `IsInventorySlotProtected`, merchant/disenchant context predicates, context snapshots, blocked-action feedback and click guards. Enabled state is `respec.settings.protectGearSetItems`. Protection is context-sensitive: moving/equipping ordinary saved gear and selling/disenchanting it are different actions. Native bag buttons, paperdoll equip/unequip guards, junk selling, salvage and Baganator integrate at their respective boundaries.
+
+[`FluxRespec_GearSetTooltip.lua`](../Respec/FluxRespec_GearSetTooltip.lua) explains set membership; [`FluxRespec_GearSetOverlay.lua`](../Respec/FluxRespec_GearSetOverlay.lua) and [`FluxRespec_GearSetEquipGuard.lua`](../Respec/FluxRespec_GearSetEquipGuard.lua) supply visual/manual guards. The protection index is shared so every bag slot need not independently traverse every saved profile. This is protection for operations the addon intercepts/cooperates with, not a claim of server-side item locking.
+
+## UI, events, and public entry points
+
+[`FluxRespec_Register.lua`](../Respec/FluxRespec_Register.lua), `Register.AddTab`, idempotently registers the Flux Window tab, retrying after login/world entry until the host exists. [`FluxRespec_UI.lua`](../Respec/FluxRespec_UI.lua) owns profile/preset dropdowns, Save/Load/Delete/rename interactions, section masks, summaries, gear/rune controls and the load/engrave status. UI shared/rows/gear/runes files attach focused helpers; dedicated gear/rune/icon pickers supply the selection surfaces.
+
+`FluxRespec.On(event, fn)` appends a callback; `Fire` calls registered listeners with `pcall`. There is no matching public unsubscription method in this bus. Important payloads include:
+
+| Event | Payload |
+|---|---|
+| `READY` / `PROFILES_CHANGED` | No required arguments; consumers re-query store state. |
+| `ACTIVE_CHANGED` | Selected name or nil. |
+| `PROFILE_CREATED`, `PROFILE_SAVED` | Name and profile table. |
+| `PROFILE_UPDATED` | Name and section/field label. |
+| `PROFILE_RENAMED` / `PROFILE_DELETED` | Old/new name, or deleted name. |
+| `APPLY_START` / `APPLY_DONE` | Name; or completion boolean and reason. See the binding-failure limitation above. |
+| `TALENTS_APPLIED`, `RUNES_APPLIED`, `CONSUMABLES_APPLIED` | Backend success and reason where supplied. |
+| `EQUIPMENT_APPLIED` | Gear success boolean. |
+| `RUNE_QUEUE_CHANGED`, `GEAR_SET_INDEX_CHANGED`, `GEAR_SET_LOCK_CHANGED` | Invalidation/refresh notifications; query current module state. |
+
+Other preset/equipment-set events refresh their dropdowns, category bridges and related indicators. Profile changes also refresh the player spec-click affordance. The complete registrations are in [API/events](33-api-and-events.md).
+
+`/fluxrespec` and `/respec` support `list`, `save <name>`, `load <name>`, and `delete <name>`; empty/other input prints usage in the current handler. The Flux Window tab is the normal interactive surface. [Commands](31-commands-and-bindings.md), [saved variables](32-saved-variables.md), [Bindings](13-binding-system.md), [Info/status](16-status-bars.md) and [Baganator](24-baganator-compat.md) document the surrounding contracts.
+
+Local source/mocks establish ordering, masks and callback behavior; they cannot prove successful protected talent learning, secure engraving, gear movement, server permissions or taint safety on every client. A completed pipeline has no automatic rollback of earlier gear/talent changes if a later stage fails.

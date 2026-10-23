@@ -1,0 +1,170 @@
+[
+  {
+    "source": "Core/Flux.lua",
+    "contains": "function Flux.AfterLoad(fn)"
+  },
+  {
+    "source": "Core/Flux.lua",
+    "contains": "function Flux.AfterLogin(fn)"
+  },
+  {
+    "source": "Core/Module.lua",
+    "contains": "function Module.Register(name, spec)"
+  },
+  {
+    "source": "Core/Module.lua",
+    "contains": "function Module.EnableEligible()"
+  },
+  {
+    "source": "Core/Engine/Events.lua",
+    "contains": "function Events.Register(eventName, fn)"
+  },
+  {
+    "source": "Core/Engine/Events.lua",
+    "contains": "function Events.RegisterUnit(eventName, unit, fn)"
+  },
+  {
+    "source": "Core/Engine/Events.lua",
+    "contains": "pcall(fn, event, ...)"
+  },
+  {
+    "source": "Core/Engine/Scheduler.lua",
+    "contains": "function Scheduler.Request(tier, token, fn, reason)"
+  },
+  {
+    "source": "Core/Engine/Scheduler.lua",
+    "contains": "local INVENTORY_MAX_PER_FLUSH = 8"
+  },
+  {
+    "source": "Core/Engine/Scheduler.lua",
+    "contains": "local ORDER = { \"layout\", \"display\", \"eval\", \"structural\", \"inventory\" }"
+  },
+  {
+    "source": "Core/Engine/Combat.lua",
+    "contains": "function Combat.Defer(key, fn)"
+  },
+  {
+    "source": "Core/Engine/Combat.lua",
+    "contains": "function Combat.RegenDefer(fn, heavy)"
+  },
+  {
+    "source": "Core/Engine/Ticker.lua",
+    "contains": "function Ticker.Add(key, fn)"
+  },
+  {
+    "source": "Core/Engine/Ticker.lua",
+    "contains": "function Ticker.Remove(key)"
+  },
+  {
+    "source": "Core/Engine/Timer.lua",
+    "contains": "function Timer.After(duration, callback)"
+  },
+  {
+    "source": "Core/Engine/Timer.lua",
+    "contains": "function Timer.NewTicker(duration, callback, iterations)"
+  },
+  {
+    "source": "Core/Engine/Identity.lua",
+    "contains": "function Identity.Publish(key, kind, id)"
+  },
+  {
+    "source": "Core/Engine/Identity.lua",
+    "contains": "function Identity.OnChange(fn)"
+  },
+  {
+    "source": "Core/Engine/Identity.lua",
+    "contains": "\"badge:\""
+  },
+  {
+    "source": "Core/Engine/Range.lua",
+    "contains": "function Range.RegisterSweep(key, needFn, sweepFn)"
+  },
+  {
+    "source": "Core/Engine/Context.lua",
+    "contains": "function Context.Subscribe(fn)"
+  },
+  {
+    "source": "Core/Engine/Context.lua",
+    "contains": "function Context.Request(force, opts)"
+  },
+  {
+    "source": "Core/Engine/SpellBook.lua",
+    "contains": "function SpellBook.OnChanged(key, fn)"
+  },
+  {
+    "source": "Core/Engine/Modifier.lua",
+    "contains": "function Modifier.Register(key, callback, opts)"
+  },
+  {
+    "source": "Inventory/Init.lua",
+    "contains": "function Inv.Register(key, fn, opts)"
+  },
+  {
+    "source": "Inventory/Init.lua",
+    "contains": "function Inv.Notify(tokens)"
+  },
+  {
+    "source": "Inventory/Init.lua",
+    "contains": "function Inv.IsReliable()"
+  },
+  {
+    "source": "Inventory/Init.lua",
+    "contains": "function Inv.CanTakeFromBank()"
+  },
+  {
+    "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
+    "contains": "local function DropLegacyStores()"
+  },
+  {
+    "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
+    "contains": "_G.FluxRestockDB = nil"
+  },
+  {
+    "source": "Binding/Core/DB.lua",
+    "contains": "DB.VERSION = 3"
+  },
+  {
+    "source": "Binding/Core/DB.lua",
+    "contains": "function DB.SetDocumentOverride(doc)"
+  },
+  {
+    "source": "Binding/Core/DB.lua",
+    "contains": "function DB.EnsureLive()"
+  },
+  {
+    "source": "Respec/FluxRespec_Core.lua",
+    "contains": "function R.On(event, fn)"
+  },
+  {
+    "source": "Respec/FluxRespec_Core.lua",
+    "contains": "function R.Fire(event, ...)"
+  },
+  {
+    "source": "AddonOptions/FluxOptions.lua",
+    "contains": "function FluxOptions:RegisterModuleOptions(key, optionsTableOrBuilder)"
+  },
+  {
+    "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+    "contains": "local MAX_SLOTS = 4"
+  },
+  {
+    "source": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+    "contains": "local MOD_ORDER = { SHIFT = 1, CTRL = 2, ALT = 3 }"
+  },
+  {
+    "source": "ExtraButtonSystem/FlyoutEngine/Favorites.lua",
+    "contains": "local FAVORITES_SAVED_VAR = \"FluxFlyoutFavorites_Data\""
+  },
+  {
+    "source": "Salvage/FluxSalvage_Settings.lua",
+    "contains": "function S.ModifierActive()"
+  },
+  {
+    "source": "Other/FluxPerfDebug.lua",
+    "contains": "SlashCmdList[\"FLUXPERF\"] = function(msg)"
+  },
+  {
+    "source": "WindowMover/Init.lua",
+    "contains": "SLASH_FLUXWINDOWS1 = \"/fluxwindows\""
+  }
+]

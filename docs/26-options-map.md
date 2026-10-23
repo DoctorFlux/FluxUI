@@ -1,511 +1,241 @@
-# Options map (`/fluxui`)
+# Options map and settings behavior
 
-## Purpose
+Open `/fluxui` or `/fluxoptions` to toggle the standalone settings shell. `/fluxui bliz` / `blizzard` opens the native settings route; `/fluxui raidpreview` toggles the raid preview. The Blizzard addon category also contains a button into the standalone shell.
 
-One player-facing options app for the whole overhaul. This doc is the **full catalog** of tabs, labels, defaults, and scopes so the rewrite can rebuild every control without guessing.
+The catalog, builders and renderer are separate layers. **Sidebar labels below come from the current catalog**, not old chapter names or builder-internal names. [Catalog](../AddonOptions/FluxOptionsCatalog.lua), [bootstrap/accessors](../AddonOptions/FluxOptions.lua), [shell](../AddonOptions/FluxOptionsShell.lua), [renderer](../AddonOptions/FluxOptionsRender.lua).
 
-Mined from the pre–major-rewrite backup’s AddonOptions + Action Bars options surfaces.
+## Complete-reference companions
 
-**Open:** `/fluxui` · `/fluxoptions`  
-**Window:** sidebar groups, about 1000×680, status line shows version + client  
-**Also:** Micro Menu **Config** button; `/fluxui raidpreview` for raid world preview  
-**`/fluxui bliz`:** opens the same window. On older clients, Blizzard’s AddOns list has a button that opens it. Post-DF retail does not register a Settings canvas.
+- [Setting definition inventory](reference/settings-details.md): every extracted option constructor, factory call and custom-widget registration; exact ranges, getter/setter/action expressions, hidden/disabled gates and source lines.
+- [Literal AceDB defaults](reference/defaults.md): every literal leaf in the defaults table, including per-unit display fields.
+- [Custom widget controls](35-custom-widget-controls.md): controls inside preview/editor embeds, which cannot be understood from an Ace `dialogControl` placeholder.
+- [Saved schemas](32-saved-variables.md): feature-owned defaults, migrations and stores outside AceDB.
+- [Command reference](31-commands-and-bindings.md): configuration actions exposed only through slash commands.
+- [Binding](13-binding-system.md), [Respec](23-respec.md), and [extra buttons](12-extra-button-system.md): authoring controls in those separate feature windows.
 
-**No separate “Defaults” tab.** Per-page reset buttons + **Profiles**. Account/character game-setting bootstrap uses `/fluxdefaults` (see [05-defaults-and-bindings.md](05-defaults-and-bindings.md)).
+The inventories preserve **source definitions**, including templates expanded per unit/skill/row. Their count is not the number of visible controls for one character. Full field expressions are stored in [inventory.json](reference/inventory.json); shortened excerpts in the Markdown keep it readable.
 
-## Sidebar
+## Actual sidebar
 
-**General** — General, Windows, Profiles  
-**HUD** — Layout, Action Bars (Bars, Bindings, Extra, Stance), Status Bars, Micro Menu, Chat  
-**Frames** — Unit Frames (General, Player, Target, Target of Target, Focus, Pet, Pet Target), Nameplates, Raid Frames  
-**Tools** — Flux Window, Vendor & Restock, Salvage, Binding
+| Group | Page order | Main implementation |
+|---|---|---|
+| General | General → Nameplates → Windows → Profiles | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
+| HUD | Layout → Action Bars → Status Bars → Info → Micro Menu → Chat → Unit Frames → Flux Window | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
+| Tools | Inventory → Binding | [catalog](../AddonOptions/FluxOptionsCatalog.lua) |
 
-Search filters the sidebar by page name and the open page by control label. Action Bars → Bars keeps range/update intervals behind **More options**.
+Party/raid settings are merged into Unit Frames. Vendor/restock/junk and salvage belong to Inventory. Info and Chat have their own pages. There is no separate sidebar Frames group, Raid page, Salvage page or Defaults page in this catalog.
 
-Nameplate Progressive, Flash, Health Bar Color, and Threat warning are on **Nameplates** only.
+## Rendering and application
 
-## Shared scope model
+Builders or prebuilt tables register through `FluxOptions:RegisterModuleOptions(key,optionsTableOrBuilder)`. The shell builds the selected page/subpage and renders native rows from Ace-style tables. Embedded custom controls remain AceGUI widgets. Profiles comes from bundled AceDBOptions.
 
-| Scope control | Affects | Independent of General? |
-|---------------|---------|-------------------------|
-| General → Settings scope | Active Ace profile (Account-wide vs Character-specific) | — |
-| Layout scope | Placement only | Yes |
-| Micro menu bar scope | Size, spacing, drag order | Yes (not Layout placement) |
-| Action bar scope | Action Bars tab storage | Yes; **stance order always character** |
-| Status bar settings scope | Currency on/off, height, hide XP | Yes; **item currency always character** |
-| Unit frame settings scope | All Unit frames sub-tabs | Yes |
-| Raid frame settings scope | Raid frames Flux options | Yes |
-| Vendor & restock / Info Frame / Honor·Arena | Character | N/A |
-| Salvage | Salvage saved settings | N/A |
+The renderer evaluates functions and handler methods; inherits get/set/func/confirm/validate/hidden/disabled down option paths; and respects dialog/gui overrides. Availability therefore depends on both the control and its parent. A source-defined toggle is not proof it is visible or editable on every client.
 
-Character-scoped module data is **not** duplicated by Ace profile copy (called out on Unit/Raid scope descriptions).
+Group/header order can be overridden by the catalog. The header named **Performance** is placed behind “More options.” A setting callback may update storage, repaint, request queued layout/application or trigger a feature rebuild; writing a field alone is not a universal refresh mechanism. Source callback/gate expressions are in the inventory. Protected changes must follow the owning feature's combat deferral.
 
----
+## Scopes and default stores
 
-## 1. General
+| Setting family | Effective storage / missing-value default |
+|---|---|
+| General profile | AceDB profile selected by General scope: shared `Default` or character profile. `settingsScope="account"`; accent class, custom RGB white. |
+| Action Bars | Independent account/character selector; effective `profile.actionbars` or `char.actionbars`. Default account. Stance order/hidden/custom slots are always `db.char.actionbars`. |
+| Layout | Independent `profile.layout` / `char.layout`, default account. |
+| Windows | Independent `profile.windowMover` / `char.windowMover`, default account. |
+| Micro Menu bar geometry/order | Independent `profile.microMenu` / `char.microMenu`, default account. Per-row Off/Account/Character visibility is a different mechanism; professions are always true character storage. |
+| Status Bars | Independent `profile.statusBars` / `char.statusBars`, default account. Honor/Arena are true character settings; item currency is always AceDB `char.itemCurrency`. |
+| Unit Frames | Independent `profile.unitFrames` / `char.unitFrames`, default account. |
+| Party / raid | Independent `profile.raidFrames` / `char.raidFrames`, default account even though displayed inside Unit Frames. |
+| Info content | Always `_FluxUI_CharSavedVars.infoFrame`; its location/cell placement is Layout-scoped. |
+| Nameplates | Actual feature store `FluxUI_DB.nameplateThreat`, plus shared threat/CVar accessors; not a General-profile-only setting. |
+| Chat | AceDB `global.chatCopyPaste`, account-wide and independent of selected profile. |
+| Inventory automation/junk/restock | Mostly `_FluxUI_CharSavedVars.Restock`; feature-specific exceptions below. |
+| Salvage | Account `FluxSalvageDB`. |
+| Flux Window / meter | True character saved fields/layout owned by FluxWindowFrame/FluxMeterLayout. |
+| Binding | Per-character Binding v3 document; KeyVisualizer presentation preferences are AceDB global. |
 
-### Settings
-- **Settings scope** — Account-wide | Character-specific — **default: Account-wide**  
-  Account shares; character copies account on first switch. Action Bars has its own scope.
+Independent scopes copy current shared values on first character initialization according to their owner; switching General's profile is not a command to switch all independent selectors. Hearth/mount also have their own shared character-mode flag and stores. Use [persistence](09-persistence.md) for copy/reset semantics.
 
-### Appearance
-Accent applies to chrome across the HUD (options window stays neutral).
-- **Accent** — Class color | Default atlas (no tint) | Custom color — **default: Class color**
-- **Custom accent color** — shown only if Custom — default white
+## General pages
 
-### Info Frame
-Always **per-character**. Pin extra stats via Character Info left-click.
-- **Show FPS** — **on**
-- **Show Durability** — **on**
-- **Show Ping** — **on**
-- **Clear pinned stats** (confirm)
+### General
 
-→ Placement of Info Frame is on **Layout**. Contents also described in [16-status-bars.md](16-status-bars.md). Accent → [04-visual-system.md](04-visual-system.md).
+| Control | Values / behavior |
+|---|---|
+| Settings scope | Account-wide / Character-specific. Selects General's active Ace profile via the owner rather than changing every feature's scope. |
+| Accent | Class color (default), Default atlas, Custom. Calls the shared appearance refresh. |
+| Custom accent color | RGB picker, defaults white; conditionally relevant to Custom accent. |
 
----
+Source: [General builder](../AddonOptions/FluxOptionsGeneral.lua).
 
-## 2. Layout
+### Nameplates
 
-Full detail: [06-layout.md](06-layout.md).
+| Control | Values / default / effect |
+|---|---|
+| Threat visibility | always / group / never; group default. |
+| NPC threat border + rank/% | Enabled default; actual display still depends on supported/accessible threat data. |
+| Show threat percentage | Shared numeric-threat accessor used by both nameplates and target/focus threat bars; fallback enabled. |
+| Enemy player targeting you | Enabled default. |
+| Blizzard Progressive / Flash / Health Bar Color | Separate bitfield controls for native `nameplateThreatDisplay`, not the same as Flux's overlay. |
+| Threat warning | Native CVar modes 0 Off, 1 Party, 2 Raid, 3 Always; hidden if unavailable. Getter reflects current CVar. |
+| Modern-style level overlay | Enabled default; only added when level support is reported and ignored in Classic health-bar style. Current code rejects Live Midnight for this overlay but permits Forever. |
+| Aura countdown size | Informational text directs editing `FLUX_NAMEPLATE_AURA_COUNTDOWN_SCALE` (default 0.75) then reload. No size slider is exposed here. |
 
-- **Layout scope** — Account-wide | Character-specific — **default: Account-wide**
-- **Reset layout to defaults**
-- Click-to-place preview (colored / faded / gray reference)
-- Defaults: Micro beside chat (2 columns) · Status screen bottom · Player/Target side by side · Stance beside player · Info on action strip
-- **Buttons per row** 1–8 when Micro is multi-column — **default: 2**
+Source: [Nameplates builder](../AddonOptions/FluxOptionsNameplates.lua), [threat API](../Core/API/Threat.lua), [actual behavior](19-nameplates.md). Do not treat the older concept restriction table as current runtime policy.
 
----
+### Windows
 
-## Windows
+Defaults: enabled, scaling, save position, save scale and screen clamping **on**; lock and require modifier **off**; modifier Shift; snap 0.
 
-Drag and scale Blizzard windows (Character, bags, map, auction, popups). Flux HUD placement stays on **Layout**.
+Controls expose all of those flags, Shift/Ctrl/Alt selection (disabled until modifier is required), snap 0–64 pixels, and Reset all window positions. Left-drag moves, right-drag scales (50%–250%), middle-click resets. Reset clears saves; reopening lets native layout restore positioning. This page does not drag the Flux HUD. Current Forever gamepad mode skips mover catalog attachment.
 
-- **Windows scope** — Account-wide | Character-specific
-- **Enable window mover**, lock, scaling, save position, save scale, clamp to screen
-- **Require modifier to drag** and modifier key
-- **Snap size**
-- **Reset all window positions**
+Source: [Windows builder](../AddonOptions/FluxOptionsWindows.lua), [WindowMover](28-window-mover.md).
 
----
+### Profiles
 
-## 3. FluxWindow
+Bundled AceDBOptions supplies current profile display, choose existing/new profile, copy from another profile, delete profile and reset profile controls, with its confirmation and current-profile exclusions. These operate on AceDB profiles; they do not erase all standalone saved roots, Binding v3 or every character-only feature.
 
-→ [10-flux-window.md](10-flux-window.md)
+Source: [AceDBOptions](../libs/AceDBOptions-3.0/AceDBOptions-3.0.lua), [profile owner](../AddonOptions/FluxOptions.lua).
 
-### Tabs
-- Drag chips to reorder; click chip to on/off (**at least one stays on**)
-- **Reset tabs** — restores **Map → Meter → Respec → Buttons**, all on
-
-### Meter layout
-- Shown if Details! is loaded, or Midnight Blizzard damage meter is available
-- Details: full layout editor (presets, saved layouts, panes, drag splits)
-- Blizzard meter: same editor + note “Max 3 panes · no threat meter · data may be unavailable…”
-- If neither: gray note that meter options appear when a backend is available
-
----
-
-## 4. Action Bars
-
-→ [11-action-bars.md](11-action-bars.md), [12-extra-button-system.md](12-extra-button-system.md)
-
-### Scope
-- **Action bar scope** — Account-wide | Character-specific — **default: Account-wide**
-
-### Key Bindings
-- Hover button, press key; Esc clears
-- **Enter Binding Mode** (blocked in combat)
-
-### Reset keybindings
-- **Reset keybindings to Flux defaults** (confirm; blocked in combat)
+## HUD pages
 
 ### Layout
-- **Minirow position** — Top | Bottom — **default: Top**
-
-### Action Bar VFX *(pre–Dragonflight / Classic clients)*
-- **Enable action bar VFX** — **default: on**
-
-### Mouseover casting
-- Matches spell book setting
-- **Mouseover cast** — **default: on**
-
-### Auto Rank up *(Classic Era / TBC / Wrath-style clients)*
-- **Auto rank up** — **default: off**
-- **Rank up all spells**
-- Blacklisted spells panel
-
-### Performance
-Behind **More options** on Bars. Lower interval = faster updates, more CPU.
-- **Range check interval** — **0.25** (0.1–1.0)
-- **Extra button range interval** — **0.18**
-- **Mouseover update interval** — **0.07** (0.04–0.2)
-- **Macro usable interval** — **0.05** (0 = off)
-- **Action usable interval** — **0** (0 = off)  
-  Note: macro buttons won’t move minirows unless needed
-
-### Stance bar slot order
-Always **per character**. Drag reorder; right-click hide/show. **Reset stance bar order to default**.
-
-### Extra buttons (visibility)
-Modes: **O**=Off, **A**=Auto, **+**=Always, **H**=Hidden. **Reset extra button visibility to defaults**.
-
-| Label | Default |
-|-------|---------|
-| Single-Button Assistant | Off |
-| Bandage | Auto |
-| Healing Potion | Auto |
-| Mana Potion | Auto |
-| Mana Gem | Auto |
-| Healthstone | Auto |
-| Ammo | Auto |
-| Hearthstone / Teleport | Always |
-| Mount | Auto |
-| Class Teleport | Auto |
-| Food | Always |
-| Water | Always |
-| Consumables | Always (Hidden / Always) |
-| Trinket Menu | Auto |
-
-### Non-combat flyout panel
-Per character: click hide, drag reorder, right-click favorite.
-
-### Utility slots
-Drag spell/item/macro/mount/toy; Shift/Ctrl/Alt for modifier variants; drag off to clear.
-
----
-
-## 5. Vendor & restock
-
-→ [20-vendor-restock-junk.md](20-vendor-restock-junk.md)  
-Scope: **this character**.
-
-### Automation
-| Control | Default |
-|---------|---------|
-| Auto repair | off |
-| Bulk buy at vendor | on |
-| Confirm large bulk purchases | on (same idea as `/buyemall confirm`) |
-| Guild bank first | off (hidden if guild repair N/A) |
-| Auto sell junk | off |
-| Auto restock | off |
-| Auto bank restock | off |
-
-### Restock targets
-Drag grids; bags/target colors; coin = count bank; `+N` = bank amount. **Clear all restock targets** (confirm).
-
-### Junk detection
-| Control | Default |
-|---------|---------|
-| Low-level consumables | on |
-| Unusable equipment | on |
-| Sell non-conjured food & water | on |
-| Destroy unsellable junk | on |
-| Safe batch sell | on |
-
-Legend: **M** = manual, **A** = auto-marked.
-
-### Bag indicators
-- Junk glow on bag slots — **on**
-- Junk coin icon on bag slots — **on**
-
-### Already known items
-Disabled note if standalone AlreadyKnown is loaded.
-- **Tint already-known items** — **on**
-- **Monochrome tint** — **off**
-- **Tint color** — default green
-
----
-
-## 6. Salvage
-
-→ [22-salvage.md](22-salvage.md)
-
-- **Enable salvage overlay** — **on**
-- **Modifier key** — Alt | Alt+Ctrl | Alt+Shift — **default: Alt**
-- Slash: `/fsalvage` · `/fluxsalvage`
-
----
-
-## 7. Raid frames
-
-→ [15-raid-frames.md](15-raid-frames.md)
-
-### Settings
-- **Raid frame settings scope** — Account-wide | Character-specific — **default: Account-wide**
 
-### Flux raid / party frames
-- **Use Flux compact raid / party frames** — **on**
-- **Class-colored names** — **off**
-- **Reset raid frame options to defaults** (does not reset Blizzard CVars below)
+The page exposes Layout scope, a confirmed reset, and an interactive preview. Defaults:
 
-### World Preview
-Full-size world preview; demo fills empty slots; hidden after login/reload. Slash: `/fluxui raidpreview`.
-- **Show / Hide Preview**
-- **Roster size** — 5…40 step 5 — **default 40**
-- **Show MT column** — **on**
-- **MT slots** — 1–8 — **default 2**
-- Demo Auras: **Buffs** on · **Buff count** 3 · **Debuffs** on · **Debuff count** 5
+| Field | Default / alternatives |
+|---|---|
+| Micro Menu placement | 2: beside chat; alternatives top-left horizontal and minimap strip. Beside-chat/minimap grid defaults two columns; minimap strip collapsed. |
+| Status placement | 3: screen-bottom full width; alternatives stacked under micro menu and above action strip. |
+| Player/target placement | 2: side by side; alternative player above strip and target top-center. |
+| Stance placement | 1: beside player; alternative standalone anchor. |
+| Info placement | `actionStrip`; alternatives `statusIntegrated`, `minimapTop`, `screenTopLeft`. |
+| Info status cell | `start`; alternatives `middle`, `end`. On stacked bars these mean top/after first/bottom rather than horizontal columns. |
 
-### Frame sizing (Flux)
-| Slider | Default |
-|--------|---------|
-| Member frame width scale | 1 |
-| Member frame height scale | 1.2 |
-| Power bar height scale | 1 |
-| Aura icon scale | 1.4 |
-| Raid manager strip scale | 0.9 |
+Preview click/drag interactions and relayout dependencies: [Layout](06-layout.md), [widget controls](35-custom-widget-controls.md), [builder](../AddonOptions/FluxOptionsLayout.lua), [preview](../AddonOptions/FluxLayoutPreviewUI.lua).
 
-### Transparency (Flux)
-| Slider | Default |
-|--------|---------|
-| Frame base opacity | 1 |
-| Opacity when in range | 0.9 |
-| Opacity when out of range / offline | 0.44 |
-| Buff / debuff icon opacity | 1 |
+### Action Bars
 
-### Dispel Highlight
-- **Dispel highlight border** — **on**
+The catalog relabels internal Bar subpage as **Bars**. Other subpages are Bindings, Extra and Stance. Their builders assemble through [FluxOptionsActionBars](../AddonOptions/FluxOptionsActionBars.lua).
 
-### Blizzard raid frame CVars (mirrored)
-- Class colors · Power bars · Health text (`none` / `health` / `perc` / `healthandpercent`) · Show buffs · Show debuffs
-- **Aura focus** — Debuff focused (**default**) | Buff focused
-- **Only dispellable debuffs**
+| Subpage | Controls / defaults |
+|---|---|
+| Bars | Independent scope; minirows Top (default) / Bottom; old-client cast/target VFX on; mouseover cast on; auto rank-up off and explicit Rank up all spells; spell blacklist embed. VFX and rank controls have client-specific hidden gates. |
+| Bindings | Enter Binding Mode; confirmed Reset keybindings to Flux defaults. These affect live/native bindings separately from authored Binding v3 rows. |
+| Extra | Reset visibility; per-button visibility widget; food/water→potions-in-combat and potions→food/water-out-of-combat independently off; NC flyout ordering/hiding/favorites; four modifier-aware utility slots. |
+| Stance | Reset stance order; character-only native/custom stance slot ordering, hide/remove and assignment editor. |
 
-Target/mouseover highlight colors exist as product defaults but are **not** exposed as options rows today—rewrite may choose to expose them.
+Mouseover casting delegates to the actual MouseoverCast implementation; its current Forever CVar synchronization is skipped. Old builder descriptions saying the toggle always writes that CVar are not sufficient evidence. See [shared services](08-shared-services.md), [bars](11-action-bars.md), [findings](40-findings.md).
 
----
+Performance controls apply immediately through `Bars.ApplyPerformanceSettings`:
 
-## 8. Unit frames
+| Field | Default seconds | Slider min–max / step |
+|---|---:|---|
+| rangeCheckInterval | 0.25 | 0.10–1.00 / 0.05 |
+| extraButtonRangeCheckInterval | 0.18 | 0.10–1.00 / 0.05 |
+| mouseoverUpdateInterval | 0.07 | 0.04–0.20 / 0.01 |
+| macroUsableMinInterval | 0.05 | 0–0.50 / 0.01 |
+| actionUsableMinInterval | 0 | 0–0.50 / 0.01 |
 
-→ [14-unit-frames.md](14-unit-frames.md)
+Visibility defaults are listed in [literal defaults](reference/defaults.md). The policy has Off/Auto/Always choices for most rows; Mana Gem/class teleport restrict to Off/Auto and Consumables uses Hidden/Always. Current options IDs exclude Assisted Combat even though its policy/default remains in code. Food/Water normalize Auto to Always; non-mana users also normalize some Always states to Auto. The declared defaults are hearth/food/water/consumables always and most other rows auto. Effective cycles follow normalization, not just the declared mode array. See [widget rules](35-custom-widget-controls.md) for per-row restrictions.
 
-Nested sub-tabs: General · Player · Target · Target of target · Focus · Pet · Pet target.
+### Status Bars
 
-### General → Settings
-- **Unit frame settings scope** — Account-wide | Character-specific — **default: Account-wide**
+| Control family | Defaults / scope / action |
+|---|---|
+| Scope, gold strip, hide non-XP strip, height | Independent Status scope; gold shown; hide-exp false; height 18 with range 10–40. Reset restores owned strip options. |
+| Honor / Arena | Both false, true character `PVPTracking`; availability follows the PvP feature gate. Setter synchronizes status-bar tracking. |
+| Account gold ledger | Dynamic stored-character select and confirmed delete; operates on the ledger, not an Ace profile reset. |
+| Inventory tooltip | Items, currencies, equipped, guild, blank line and race icons enabled; Shift-only, connected-realms-only and same-faction-only disabled. Writes effective Status settings. |
+| Item currency | Ace `char.itemCurrency.enabled=true`; cursor-assigned item rows and reorder/clear embed. Current owner caps total rows at 40 and appends a trailing empty row while capacity remains, not the stale six-item introductory text. Row visibility is normalized from item ID. |
 
-### Flux vs Blizzard (all **on** by default)
-Player · Target · Target of target · Focus* · Focus target* · Pet · Pet target  
-(*Focus rows hidden if the client has no focus unit)
+Source: [Status builder](../AddonOptions/FluxOptionsStatusBars.lua), [item-currency owner](../StatusBars/FluxItemCurrencyTracking.lua), [widget controls](35-custom-widget-controls.md), [system](16-status-bars.md).
 
-**Reset unit frame options to defaults**
+### Info
 
-### Features (defaults **on** unless noted)
-- 3D portraits
-- Health loss overlay · Power cost overlay · MP5 / mana tick overlay (player) · Weapon swing timer (player; toggle hidden on post-DF retail and post-Cata classic)
-- Flight path timers · Flight path cast bar (player) · Flight path taxi map tooltips
-- **Threat bar visibility** — Always | In group or raid only (**default**) | Never
-- **Show threat percentage** — **on** (game `threatShowNumeric`; nameplates use the same option)
-- Nameplate Progressive, Flash, Health Bar Color, and Threat warning are on **Nameplates**, not this page
+Show FPS and Ping default on; Durability off. Clear pinned stats removes the pinned list after confirmation. Drag rows to change stat order. These content fields are always character-specific. Cell position selects start/middle/end in the Layout store; the panel's overall placement is changed on Layout.
 
-### Player
+Pinning starts from Character Info rows rather than a separate comprehensive select in this page. Source: [Info builder](../AddonOptions/FluxOptionsInfo.lua), [InfoFrame](../StatusBars/FluxInfoFrame.lua), [Character Info](27-character-info.md).
 
-- **Class power size** — 50–200%, default **100%**; applies to every unit-frame class resource after combat.
-- Show portrait strip — **on**
-- Width **325** (150–600) · Height **100** (40–200)
-- Health / resource split % — **60** (35–85)
+### Micro Menu
 
-### Target
-- Show portrait strip — **on**
-- Empty target placeholder — **on**
-- Side-by-side Layout: size follows Player (Width/Height hidden); else Width **500** · Height **100**
-- Health split **60%**
-- **Auras:** buff/debuff size **35**; lock own debuff **on**; own min scale **75%**; spacing **2**; max buffs **32**; max debuffs **16**
-- **Threat:** visibility (same choices); position Portrait overlay (**default**) | Between chrome and auras | Left/Right (vertical)
+| Control | Behavior / default |
+|---|---|
+| Bar scope | Independent size/spacing/unified-order scope; does not change per-row visibility or Layout placement. |
+| Embedded row editor | Drag reorder; per-row Off/Account/Character visibility cycles. Account row defaults differ between native and captured minimap buttons. |
+| Button size | 0.9; range 0.5–1.5, step 0.05. |
+| Spacing offset | -2; range -12–16, step 1. |
+| Reset layout | Restores the layout settings through its owner; full factory reset is also available via `/fluxmicro resetall`. |
+| Profession enablement | On, always true character storage. |
+| Profession layout | `fixedSplit` default; alternatives `perProfession` and `global`. |
+| Global profession style | `allIndividual` default; alternatives one flyout / both, relevant in global mode. |
+| Per-profession placement | Dynamically built learned-skill controls: Individual / In flyout / Off. Primary skills default individual, others flyout. Rebuilds when learned skills change. |
 
-### Target of target
-- Width **125** · Height **60** · Health split **60%**
+Source: [builder](../AddonOptions/FluxOptionsMicroMenu.lua), [profession owner](../MicroMenu/FluxTradeSkillMicro.lua), [system](17-micromenu.md).
 
-### Focus *(if available)*
-- Portrait **on** · Width **119** · Height **50** · split **60%**
-- Auras: sizes **20**; lock **on**; min scale **75%**; spacing **2**; max 32/16
-- Threat position (same choices; default Portrait)
+### Chat
 
-### Pet
-- Portrait **on** · Show cast bar **off** · Show auras on mouseover **on**
-- Width **100** · Height **50** · split **60%**
+Eight account-global toggles: Social, Channels, Guild, Character Info/durability, Bags, Copy Chat, FluxUI Options, Chat Menu. All default on; individual rows can be disabled when their target button is unavailable. Hiding the chat gear does not remove slash access or the separate micromenu configuration button.
 
-### Pet target
-- Width **23** (12–48) — vertical strip; height matches pet
+The wider chat-copy schema also contains URL color/message color/fade/max-line fields, but this page exposes the button toggles; absence of a control here is different from absence of an internal setting. [Chat builder](../AddonOptions/FluxOptionsChat.lua), [defaults](reference/defaults.md), [QoL](25-other-qol.md).
 
----
+### Unit Frames, including party/raid
 
-## 9. Nameplates
+Master Player/Target/Target-of-target/Focus/Focus-target/Pet/Pet-target switches default on, with focus-capability gates. Unit Frames and Party/raid have separate scope/reset controls. `useFluxRaidFrames` defaults on. Settings switch runtime ownership through the appropriate coordinator; see [unit frames](14-unit-frames.md) and [raid frames](15-raid-frames.md).
 
-→ [19-nameplates.md](19-nameplates.md)
+Shared unit options include 3D portraits, portrait combat tint, health-loss/power-cost/MP5 overlays, weapon swing timer and flight timers/bar/tooltips, all default on where supported. Pet cast bar defaults off. Threat visibility defaults group; numeric threat is shared with Nameplates.
 
-Blizzard nameplate threat (Progressive, Flash, Health Bar Color, Threat warning) is edited here only.
+Per-unit groups expose applicable portrait, cast bar/time, health/power text, level/class/PvP/combat/raid indicators, mouseover, prediction/absorb and class-resource controls. Their exact per-unit defaults differ and are fully listed under `profile.unitFrames.display` and `char.unitFrames.display` in [defaults](reference/defaults.md). A generated toggle helper's true fallback is not a substitute for checking those seeded defaults.
 
-### Post–Dragonflight / Midnight retail
-Threat/level extras are Classic / Forever only; post-DF uses Blizzard plates.
+| Sizing / aura controls | Rules |
+|---|---|
+| Width/height | Unit-specific slider limits and default dimensions; side-by-side placement uses effective pixels and converts to stored design dimensions (0.7 conversion), with placement-specific buckets. |
+| Health/resource partition | 35–85%, default 60%; stored as fractions. |
+| Class power size | 50–200%, default 100%; displayed as percentage, stored as scale. |
+| Target/focus buff/debuff size | 14–56; seeded target 35 / focus 20. |
+| Aura spacing | 0–12, default 2. |
+| Max buffs / debuffs | 8–40 / 4–24; seeded 32 / 16. |
+| Own-debuff sizing | Lock on, minimum scale 75%; slider 50–100%. |
+| Threat position | Target/focus portrait or alternative supported position; visibility is a shared setting mirrored in multiple control locations. |
+| Pet | Separate portrait/cast/tooltip-aura controls and width/height; pet-target has a compact width control. |
 
-**Buff / debuff countdown**
-- Size is a fixed product constant (reload to apply); no live slider in options today.
+Party/raid controls include class-colored names; preview toggle, roster size, MT-column/slot count and demo buff/debuff toggles/counts; member width/height, power and aura scale, manager scale; frame/range/aura opacity; dispel/aggro/target/mouseover highlights; roles/groups/range fade; class colors/power/prediction; health text; buffs/debuffs, aura focus and dispellable-only filtering.
 
-### Forever
-**Threat**
-- **Threat visibility** — In group only (**default**) | Always | Never
-- **NPC threat rank/%** — **on**
-- **Show threat percentage** — **on** (game `threatShowNumeric`)
-- **Enemy player targeting you** — **on**
+Important seeded raid values: width 1, height 1.2, power 1, aura 1.4, manager 0.9; base alpha 1, in-range 0.9, out-of-range 0.44, aura alpha 1; preview roster 40, MT enabled/count 2, buff/debuff demos enabled/counts 3/5; aura focus debuff. Exact ranges and gates: [definition inventory](reference/settings-details.md). Source: [merged Unit Frames builder](../AddonOptions/FluxOptionsUnitFrames.lua), [party/raid builder](../AddonOptions/FluxOptionsRaidFrame.lua).
 
-**Buff / debuff countdown**
-- Size is a fixed product constant (reload to apply); no live slider in options today.
+### Flux Window
 
-### Pre-DF / Classic
-**Threat**
-- **Threat visibility** — In group only (**default**) | Always | Never
-- **NPC threat border + rank/%** — **on**
-- **Enemy player targeting you** — **on**
+Tab chips drag to reorder and click to enable/disable, retaining at least one tab. Reset restores Map → Meter → Respec → Buttons, all enabled. Meter editor is conditional on a usable backend. Details takes precedence; native Blizzard layouts use their own pane types/limits (maximum three panes, no threat pane). Presets, named layouts, pane types and split dragging are widget-owned.
 
-**Level**
-- **Show level overlay (Modern style)** — **on**
+Source: [builder](../AddonOptions/FluxOptionsBattlezone.lua), [widget controls](35-custom-widget-controls.md), [Flux Window](10-flux-window.md).
 
-**Buff / debuff countdown**
-- Size is a fixed product constant (reload to apply); no live slider in options today.
+## Tools pages
 
----
+### Inventory
 
-## 10. Status Bars
+The page merges vendor/junk automation, item tinting, restock targets and salvage. The native toggles are built from descriptor sections rather than relying on the registered legacy-style grid widget.
 
-→ [16-status-bars.md](16-status-bars.md)
+| Control family | Defaults / dependencies |
+|---|---|
+| Auto repair, auto sell, auto restock, auto bank restock | Off in fresh Restock settings. Guild repair first defaults off/personal and is conditionally shown/disabled by capability and repair enablement. |
+| Bulk buy / large-purchase confirmation | Both enabled in true character fields. Confirmation toggle disabled if bulk buy is off. |
+| Junk rules | Low-level consumables, unusable equipment, inferior non-conjured food/water treatment, destroying unsellable junk and safe batch selling default enabled. Action also depends on selling, item classification and protection. |
+| Junk indicators | Bag glow and coin icons default on; callbacks refresh caches/overlays. |
+| Already-known tint | Enabled, green RGB 0/1/0, monochrome off. Setter notifies supported merchant/auction/guild views. |
+| Restock target editor | Dynamic items, food/water/combat tiers and consumable targets/presets; scope/store varies by row kind. Confirmed Clear all restock targets calls the relevant owner. |
+| Salvage | Account-wide overlay enabled; modifier Alt, Alt+Ctrl or Alt+Shift. Profession/spell/rank/protection gates still apply. |
 
-Intro: shared height; placement on Layout; item tracking always per character.
+All interaction/default details for quantities, inferior marking, time thresholds, searches, presets, manual junk overrides and row clearing are in [custom widget controls](35-custom-widget-controls.md). Automation flags do not bypass protection, live-bank checks or required user/protected clicks. [Builder](../AddonOptions/FluxOptionsVendor.lua), [salvage builder](../AddonOptions/FluxOptionsSalvage.lua), [defaults/schema](32-saved-variables.md), [economy](20-vendor-restock-junk.md).
 
-- **Status bar settings scope** — Account-wide | Character-specific — **default: Account-wide**
-- **Show currency (gold) bar** — **on**
-- **Hide experience bar when not gaining XP** — **off**
-- **Bar height** — **18** (10–40)
-- **Reset status bar options to defaults**
+### Binding
 
-### Account gold (multi-character tooltip)
-- **Stored character** (dropdown)
-- **Delete selected character from ledger** (confirm)
+Embeds the binding browser in a full-height options area. The browser/editor/keyboard visualizer provide action discovery, authored binding rows, targeting/load/action/macro/badge/form controls and application. These are not additional General-profile fields; the active document is per-character Binding v3.
 
-### Inventory awareness
-When Syndicator is loaded, location lines on tooltips come from that addon (these toggles are disabled).
-- **Show item locations on tooltips** — on
-- **Show currency locations on tooltips** — on (hidden on Era)
-- **Only while Shift is held** — off
-- **Connected realms only** — off
-- **Same faction only** — off
-- **Include equipped items** — on
-- **Include guild bank** — on (hidden when the client has no guild bank)
-- **Blank line before inventory block** — on
-- **Show race / gender icons** — on
+See [binding system](13-binding-system.md), [custom controls](35-custom-widget-controls.md), [schema](32-saved-variables.md), [builder](../AddonOptions/FluxOptionsBinding.lua).
 
-### Honor & Arena *(clients that support)*
-Per character.
-- **Show Honor on status bar** — **off**
-- **Show Arena Points on status bar** — **off**
+## Reset and verification rules
 
-### Item currency (bag counts)
-Always **per character**.
-- **Show item currency on gold strip** — **on**
-- Slot grid (drag/reorder/assign/clear) — default one empty slot
+Each reset affects its named owner and selected scope. Resetting Layout, WindowMover, status settings, stance order, flyout layout, visibility, a profile, restock targets, or the defaults pack are distinct operations. Flyout order/hide reset deliberately preserves favorites. General/AceDB reset does not imply all character roots were erased.
 
----
+Some labels/descriptions are stale even within current source (for example six item-currency counts and broad Forever mouseover-CVar wording). This chapter follows the actual owner/callback implementation and records discrepancies in [findings](40-findings.md).
 
-## Chat
-
-Show or hide buttons on the chat column. A button is hidden from this page when that button does not exist on the client.
-
-- Social, Channels, Guild, Character Info, Bags, Copy Chat, FluxUI Options, Chat Menu
-
-URL color, message color, fade, and max lines are stored on `global.chatCopyPaste` and are not rows yet.
-
----
-
-## 11. MicroMenu
-
-→ [17-micromenu.md](17-micromenu.md)
-
-Intro: drag order; under-icon strip cycles **Off → Account → Character → Off** (separate from bar scope).
-
-### Micro menu bar scope
-Account-wide | Character-specific — **default: Account-wide**  
-(size, spacing, unified order; **not** Layout placement; trade skills always character)
-
-### Editor
-Embedded micro menu config preview (order + visibility).
-
-### Trade skills *(always character)*
-- **Enable trade skill micro buttons** — **on**
-- **Layout mode** — Per-profession | Fixed split (primary + secondary flyout) (**default**) | Global
-- **Global style** (if Global) — All individual (**default**) | One flyout | Both
-- Per-profession: Individual button | In flyout | Off (primaries → individual, secondaries → flyout by default)
-
-### Size
-- **Button size** — **0.9** (0.5–1.5)
-- **Spacing offset** — **−2** (−12…16)
-- **Reset layout to defaults** — size 90%, spacing −2 only
-
----
-
-## 12. Binding
-
-→ [13-binding-system.md](13-binding-system.md)
-
-Full embedded browser/editor (not Ace rows).
-
-Chrome labels include:
-- **Bindings source** — Live (current) / Respec profiles
-- Filters: All · Unbound · Default · Customized · On bar / Stance / Extra / Multi-cast · Bar / EBS key only
-- **Search...** · sort **ABC** / **Key** · **Show on keyboard**
-- Notes: Preview saves to Respec only; Sticky across Respec survives Load/Apply
-- Unbound hint; Equipment slots / Pet category tabs
-
-**Keyboard visualizer** (account-wide prefs):
-- Checks: **Loaded** (on) · **Empty** (off) · **Extra** (on) · **Mouse** (on)
-- Source: All | Binding | Bars | Extra
-- Layout **QWERTY**, size **100**
-- Status may reference `/fluxbind viz`
-
-Deep editor areas: Cast · Multi-cast · Conditions · Targets · Forms · Status · Bar & Badges (and related).
-
----
-
-## 13. Profiles
-
-Ace **Profiles** tab: create / copy / delete / reset for the active Ace profile. Does not clone every character-only module store.
-
----
-
-## Player-facing commands (product)
-
-| Command | Role |
-|---------|------|
-| `/fluxui` · `/fluxoptions` | Open options |
-| `/fluxui bliz` · `blizzard` | Same FluxUI options window |
-| `/fluxui raidpreview` | Raid world preview |
-| `/fluxwindow` | Flux Window helpers |
-| `/fluxrespec` | Respec helpers |
-| `/fsalvage` · `/fluxsalvage` | Salvage toggle / status / options |
-| `/flyout` | Custom flyout macros |
-| `/buyemall` · `/buyemall confirm` | Bulk buy / confirm large buys |
-| `/alreadyknown` | Already Known helpers |
-| `/fluxhearth` · `/fluxconsumables` · `/fluxtrinket` | Extra-button helpers |
-| `/fluxbind viz` | Key visualizer |
-| `/fluxdefaults` | Apply Flux game-setting / key packs |
-
-Debug / performance traces are out of scope for the rewrite bible.
-
----
-
-## Stored but not exposed as options rows today
-
-- Chat copy/paste colors, fade, and max lines (`global.chatCopyPaste`)
-- Raid target/mouseover highlight colors (defaults only)
-
-Rewrite may expose these under Other / Raid if desired.
-
-## Relationships
-
-- Every system doc’s Options section should match this catalog
-- Layout detail → [06-layout.md](06-layout.md)
-- Defaults packs → [05-defaults-and-bindings.md](05-defaults-and-bindings.md)
-
-## Explicit non-goals
-
-- Hiding critical toggles behind undocumented slash commands only
-- Separate Classic-only vs Retail-only options addons
-- Documenting library/Ace internals
+No settings were toggled in a live client during this reverse engineering. [Verification](41-verification.md) defines client-specific preview, persistence, reset, reload and combat checks.

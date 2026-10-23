@@ -1,77 +1,57 @@
-# Flux Window (Map / Meter / Respec / Buttons)
+# Flux Window, Battlezone map and meters
 
-## Purpose
+The Flux Window is the bottom-right host for Map/Minimap, Meter, Respec and Buttons. It owns tab visibility, order and the shared content rectangle; each hosted system owns its contents. The main controller is global `FluxWindowFrame` in [FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua). The loaded map/meter adapters are part of this system, not independent windows.
 
-Provide a fixed **bottom-right hub** for map awareness, damage/threat meters, respec presets, and extra buttons—so those tools live in one docked console instead of floating panels fighting the action strip.
+## Host and tab lifecycle
 
-## What the player sees
+`GetFrame()` lazily creates the bordered frame. Initial dimensions are `300 * 1.35` by `200 * 1.35`; later layout/options calls can resize it. The host follows the status-bar bottom lift and participates in the bottom HUD envelope. `GetContentFrame()` exposes its interior.
 
-- A bordered window roughly Battlefield Map–sized (slightly enlarged), docked bottom-right—not freely dragged around the screen.
-- Chat-style **tabs** (default order):
-  1. **Map** — Zone battlefield map; click again toggles **Map ↔ Minimap** embed. Mode remembered per character.
-  2. **Meter** — Damage/threat layout host.
-  3. **Respec** — Gear / talent / bars / runes / consumables profiles UI.
-  4. **Buttons** — Extra Buttons host surface.
-- Accent-tinted active tab; tab order and enable/disable are configurable (at least one tab stays on).
-- Window sits above the action-bar strata and can lift with bottom status-bar chrome so strips do not collide.
-- Optional **Map Pins**: world-map-like icons (quests, custom pin providers) mirrored onto the battlezone map when enabled.
+`AddTab(name, onShow, onHide, tooltipText)` creates a tab/content frame. `SwitchToTab(name)` hides previous content and runs the new show callback. `RemoveTab`, `GetTabContent`, `GetActiveTab` and `GetManagedTabNames` support consumers. `SetTabEnabled`, `SetTabOrder`, `MoveTabInOrder` and `ApplyTabConfig` reconcile persisted configuration with available tabs. A missing meter backend can remove Meter without implying a broken host.
 
-## Behaviors
+Map switches between battlefield map and embedded normal minimap. Embedding changes minimap parent, geometry and controls; disabling Map calls `ReleaseMinimapEmbedIfMapDisabled()` to restore it. Respec and Buttons install their own surfaces. Conditional binding authoring lives in **Options → Binding**, not a standard fifth window tab. See [Respec](23-respec.md), [extra buttons](12-extra-button-system.md) and [binding](13-binding-system.md).
 
-### Map tab
-- Embeds Blizzard’s battlefield / zone map into the window (hides the standalone battlefield map tab).
-- Toggle embeds the Flux minimap instead.
-- Combat mouse blocker over tainted pin layers where needed.
-- Pin mirroring and third-party pin routing (HereBeDragons / Questie / TomTom-style) when the world map is closed—provider-dependent; some addons that only parent to the world map may not appear.
+Clicking the already-active Map tab toggles Map/Minimap mode and saves it; clicking it from another tab returns to the existing mode. Clicking the active Meter tab cycles layouts; right-click opens the layout menu and middle-click resets meter data outside combat. Tab-button handlers reject combat interactions. Failed map initialization/embedding shows a diagnostic fallback label rather than silently creating a different map.
 
-### Meter tab
-- **Preferred backend:** Details! when loaded (Flux profile/layout enforcement, optional threat plugin pane).
-- **Fallback on Midnight:** Blizzard’s native damage meter when Details is absent (capped pane count; no Flux threat plugin).
-- Layout presets and custom multi-pane grids; right-click opens meter layout options; middle-click cycles presets.
-- Details path can accent-tint a WoW-like skin to match Flux borders.
+```mermaid
+flowchart LR
+    O[Options and tab configuration] --> H[FluxWindowFrame]
+    H --> M[Map mode]
+    M --> B[BattlefieldMapFrame]
+    M --> N[FluxMinimap embed]
+    H --> T[Meter backend]
+    T --> D[Details]
+    T --> Z[Blizzard Damage Meter]
+    H --> R[Respec UI]
+    H --> E[Extra button categories]
+    H --> L[Shared HUD layout and border]
+```
 
-### Respec / Buttons tabs
-- Host UIs owned by [23-respec.md](23-respec.md) and [12-extra-button-system.md](12-extra-button-system.md).
+## Battlefield map
 
-### Layout interaction
-- When open at low UI scale, becomes the **right hard edge** for horizontal squeeze of the bottom strip ([05-defaults-and-bindings.md](05-defaults-and-bindings.md)).
-- Unified border may fill the gap between trinkets and the window ([04-visual-system.md](04-visual-system.md)).
+[FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) manages initialization, show/hide, parent, scaling, refresh and cleanup. Public methods include `Initialize`, `SetScaling`, `UpdateLayout`, `IsActive`, `GetMapFrame` and `SetWorldMapFeaturesEnabled`. It uses available Blizzard map UI. Addon, entering-world/zone and combat events handle late construction and changing context.
 
-## Options / customization
+| Layer | Responsibility |
+|---|---|
+| [Providers](../Battlezonemap/FluxBattlefieldMapProviders.lua) | Attach available world-map providers for quests, waypoints, POIs, vignettes, flight points, gossip, dig sites and dungeon entrances; track additions and required pin frame levels. |
+| [World features](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua) | Enable policy, supported-provider activation, compatible feature clones, combat-unsafe-provider removal and visible-map synchronization. |
+| [Pin router](../Battlezonemap/FluxBattlefieldMapPinRouter.lua) / [tooltips](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | Route compatible HereBeDragons/Questie pins on clients lacking Blizzard quest providers, preserving pin templates and tooltips. |
 
-**FluxWindow** tab in `/fluxui` (full rows: [26-options-map.md](26-options-map.md)):
+WorldMapFrame has priority while open. HBD routing requires world features enabled, the Flux battlefield map active and a suitable source provider. Router installation retries on addon/zone transitions and schedules catch-up passes for late populations. Provider lists are capability candidates, not a guarantee every client supplies them. `GetRouteLabel`, `IsHBDAvailable` and tooltip diagnostics expose the selected path.
 
-- Tab chips: drag to reorder; click to on/off (**at least one stays on**)
-- **Reset tabs** → Map → Meter → Respec → Buttons, all on
-- Meter layout editor when Details! or Midnight Blizzard meter is present (presets, saved layouts, panes, drag splits; Blizzard capped at 3 panes, no threat)
-- Map ↔ Minimap mode is per character from the Map tab itself
-- Map Pins / world features when available on the map surface
+## Meter backend and layout editor
 
-## Relationships
+[FluxMeterLayout.lua](../Battlezonemap/FluxMeterLayout.lua) selects **Details when loaded, otherwise an available Blizzard meter**. Neither backend means no Meter tab. Backend-specific settings hold working/user layouts. Details has 11 built-in layouts; Blizzard has 6 and at most three session panes. Geometry uses top/bottom rows, up to three columns per row and normalized fractions; the row split is limited to 0.25–0.75.
 
-- Visual chrome → [04-visual-system.md](04-visual-system.md)
-- Squeeze → [05-defaults-and-bindings.md](05-defaults-and-bindings.md), [11-action-bars.md](11-action-bars.md), [12-extra-button-system.md](12-extra-button-system.md)
-- Minimap embed twin → [18-minimap-and-trackers.md](18-minimap-and-trackers.md)
-- Respec content → [23-respec.md](23-respec.md)
-- Extra Ability HUD often re-anchors near this window → [25-other-qol.md](25-other-qol.md)
-- Options tab “FluxWindow” → [26-options-map.md](26-options-map.md)
-- Midnight meter policy → [03-midnight-constraints.md](03-midnight-constraints.md)
+The editor applies built-ins, changes pane contents/column counts/fractions, saves new named layouts, overwrites, renames and deletes user layouts. `BuildCatalog()` supplies Details attributes/plugins or native meter kinds. `ScheduleReembed()` coalesces changes; `SyncGeometryFromLayout()` can update existing panes. This is separate from moving the entire host.
 
-## Client availability
+[FluxDetails.lua](../Battlezonemap/FluxDetails.lua) creates enough instances, embeds them, suppresses instance chrome and refreshes after profile/instance changes. [WoWSkin tint](../Battlezonemap/FluxDetailsWoWSkinTint.lua) reapplies class tint. [Forever adaptation](../Battlezonemap/FluxDetailsForever.lua) handles its backend differences. [FluxThreat.lua](../Battlezonemap/FluxThreat.lua) supplies the Flux threat plugin using roster, target and threat-list updates; this is distinct from unit-frame/nameplate threat overlays.
 
-| Client | Availability |
-|--------|--------------|
-| Era | Shell + Map/Minimap/Respec/Buttons; Meter if Details |
-| Anniversary | Same |
-| Classic | Same |
-| Midnight | Same + Blizzard meter fallback; threat pane via Details only; display policies for combat data |
+[FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) discovers native session APIs and embeds supported session windows, accepting current secondary-window and older variants. Forever gamepad mode anchors it to the Flux window **without reparenting**, because reparenting taints native gamepad dropdown interaction. Both backend reset APIs require being out of combat.
 
-## Rewrite intent notes
+## Settings and diagnosis
 
-The hub is **docked and tabbed by design**. Free-moving widgets that recreate Map/Meter/Respec elsewhere fight the sealed console metaphor. Meter ownership is “host and layout,” not “build a parser.”
+Layout, General and Battlezone builders provide placement/tab/map/meter controls; [options](26-options-map.md) records exact labels/scopes. Runtime tab arrays, active tab and embed state are distinct from persisted tab configuration. Meter layout storage is separate again.
 
-## Explicit non-goals
+`/fluxwindow show|hide|toggle` (also `/fw`) controls the host; empty input currently does nothing. `tab <name>` changes tabs outside combat; `addtab`/`removetab` are developer helpers. Inspect `GetActiveTab()` and `FluxMeterLayout.GetMeterBackend()` for wrong contents. Missing pins can mean disabled world features, world-map priority, unavailable providers or absent source pins. A blank meter can mean backend readiness rather than geometry.
 
-- Replacing the full world map experience.
-- A Flux-authored combat log meter.
-- More than one competing floating battlefield map.
+Protected work is guarded/deferred on combat transitions. In-game verification must cover tab switching, map pan/zoom, Questie/HBD restoration, late meter loading and Forever gamepad dropdowns. Source guards alone do not prove taint safety; see [verification](41-verification.md).

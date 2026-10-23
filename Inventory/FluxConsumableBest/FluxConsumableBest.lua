@@ -10,6 +10,50 @@ local Best = FluxConsumableBest
 local recomputePending = false
 local pendingOpts = nil
 local RECOMPUTE_DELAY = 0.3
+local inventoryQueued = false
+local inventoryOpts
+local inventoryLastPulse = 0
+local inventoryStarted = 0
+
+-- Counts paint on the inventory pulse. Selection gets one scan after the burst,
+-- with a bounded wait so continuous looting still promotes new consumables.
+local function QueueInventoryScan(regions, addedItemIDs)
+    if addedItemIDs and Best.MergePendingAdded then
+        Best.MergePendingAdded(addedItemIDs)
+    end
+    local now = GetTime and GetTime() or 0
+    inventoryLastPulse = now
+    local bagsOnly = regions and regions.bags and not regions.bank and not regions.warband or false
+    if not inventoryOpts then
+        inventoryOpts = { reason = "inv", regions = regions, bagsOnly = bagsOnly, force = true, delay = 0 }
+    elseif not bagsOnly then
+        inventoryOpts.bagsOnly = false
+        inventoryOpts.regions = regions
+    end
+    Best._dirty = true
+    if inventoryQueued then
+        return
+    end
+    inventoryQueued = true
+    inventoryStarted = now
+    local function Run()
+        local time = GetTime and GetTime() or 0
+        local remaining = inventoryLastPulse + 0.10 - time
+        if remaining > 0.001 and time - inventoryStarted < 0.30 and C_Timer and C_Timer.After then
+            C_Timer.After(math.min(remaining, 0.30 - (time - inventoryStarted)), Run)
+            return
+        end
+        inventoryQueued = false
+        local opts = inventoryOpts
+        inventoryOpts = nil
+        Best.RequestRecompute(opts)
+    end
+    if C_Timer and C_Timer.After then
+        C_Timer.After(0.10, Run)
+    else
+        Run()
+    end
+end
 
 -- Must stay aligned with Scan.PENDING_ONLY_REASONS. Pending-only pulses skip the
 -- unique bag walk; a login GET_ITEM_INFO storm must not rename an inv scan.
@@ -39,10 +83,13 @@ local function MergeRecomputeOpts(into, incoming)
     if incoming.immediate then
         into.immediate = true
     end
-    if incoming.regions and not into.regions then
-        into.regions = incoming.regions
+    if incoming.regions then
+        local regions = {}
+        for region, enabled in pairs(into.regions or {}) do regions[region] = enabled end
+        for region, enabled in pairs(incoming.regions) do regions[region] = enabled end
+        into.regions = regions
     end
-    if incoming.bagsOnly ~= nil and into.bagsOnly == nil then
+    if incoming.bagsOnly == false or (incoming.bagsOnly ~= nil and into.bagsOnly == nil) then
         into.bagsOnly = incoming.bagsOnly
     end
     local newReason = incoming.reason
@@ -289,9 +336,6 @@ local function OnInventoryPulse(info)
     local Flux = _G.Flux
     local api = Flux and Flux.Inventory
     local regions = info and info.regions
-    if Best.MergePendingAdded then
-        Best.MergePendingAdded(info and info.addedItemIDs)
-    end
     -- Mail / currency / guild: counts for those regions are not consumable identity.
     if regions and not regions.bags and not regions.bank and not regions.warband then
         return
@@ -306,16 +350,15 @@ local function OnInventoryPulse(info)
     end
     local conjureArm = Best.IsConjureArmActive and Best.IsConjureArmActive()
     if info and info.changeKind == "countOnly" and not conjureArm then
-        local loginScan = Best.IsLoginScanActive and Best.IsLoginScanActive()
-        local need = Best._dirty
-            or (Best.GetClassifyQueueCount and Best.GetClassifyQueueCount() > 0)
-            or (Best.GetPendingLoadCount and Best.GetPendingLoadCount() > 0)
-            or (loginScan and (not Best._runtime or (Best.HasEmptyRelevantKind and Best.HasEmptyRelevantKind())))
+        -- Item-data/classify backlog has its own bounded resume callbacks.
+        -- Ordinary stack updates must not restart those full scans or extend
+        -- an already queued scan on every unrelated item change.
+        local need = Best._dirty and not inventoryQueued and not recomputePending
         if not need and Best._runtime then
             for _, kind in ipairs(Best.KINDS or {}) do
                 local rec = Best._runtime[kind]
                 local id = rec and tonumber(rec.itemID)
-                if id then
+                if id and (rec.source == "owned" or not rec.source) then
                     local n = 0
                     if api and api.GetCount then
                         n = api.GetCount(id, { bags = true, bank = false, warband = false }) or 0
@@ -328,15 +371,44 @@ local function OnInventoryPulse(info)
             end
         end
         if need then
-            Best.RequestRecompute({ reason = "invCountPending", regions = regions })
+            QueueInventoryScan(regions, info and info.addedItemIDs)
         end
         return
     end
     if conjureArm then
-        Best.RequestRecompute({ reason = "conjure", regions = regions, force = true, delay = 0.05 })
+        QueueInventoryScan(regions, info and info.addedItemIDs)
         return
     end
-    Best.RequestRecompute({ reason = "inv", regions = regions })
+    if info and info.changeKind == "identityChanged" and not info.force then
+        local relevant = false
+        -- Item class is a cached/static lookup, never a tooltip parse here.
+        local IC = _G.FluxItemClass
+        for id in pairs(info.addedItemIDs or {}) do
+            local static = IC and IC.GetStatic and IC.GetStatic(id)
+            if not static or static.classID == nil or static.classID == 0 then
+                relevant = true
+                break
+            end
+        end
+        if not relevant then
+            for _, rec in pairs(Best._runtime or {}) do
+                if rec.itemID and info.removedItemIDs and info.removedItemIDs[rec.itemID]
+                    and (rec.source == "owned" or not rec.source) then
+                    relevant = true
+                    break
+                end
+            end
+        end
+        if not relevant and (info.addedItemIDs or info.removedItemIDs) then
+            return
+        end
+    end
+    -- A slot move/restack changes neither ownership nor ranking. Unknown/full
+    -- snapshots still scan, including recovery after a load-screen hold.
+    if info and info.changedItemIDs and not next(info.changedItemIDs) and not info.force and not Best._dirty then
+        return
+    end
+    QueueInventoryScan(regions, info and info.addedItemIDs)
 end
 
 local function OnPlayerLevelUp()
@@ -368,15 +440,15 @@ function Best.Init()
     local api = Flux and Flux.Inventory
     if api and api.Register then
         api.Register("FluxConsumableBest", OnInventoryPulse, {
-            tier = "scan",
+            tier = "light",
             regions = { "bags", "bank", "warband" },
-            deferHeavy = true,
+            sync = true,
         })
     elseif _G.FluxInv and _G.FluxInv.RegisterListener then
         _G.FluxInv.RegisterListener("FluxConsumableBest", OnInventoryPulse, {
-            tier = "scan",
+            tier = "light",
             regions = { "bags", "bank", "warband" },
-            deferHeavy = true,
+            sync = true,
         })
     end
 

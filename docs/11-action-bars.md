@@ -1,94 +1,59 @@
 # Action bars
 
-## Purpose
+`Flux.Bars` owns the bottom strip, secure click surfaces, pet/stance bars and hover-to-bind mode. Blizzard action slots store content; Flux-owned widgets provide presentation and clicks. [Init.lua](../Bars/Init.lua) is the entrypoint. Current TOC loading, rather than older engine terminology in comments, establishes the implementation.
 
-Own the primary combat button strip: one smart bottom bar that pages with forms, stealth, vehicles, and (on Midnight) skyriding—while keeping SHIFT/CTRL layers, proc feedback, and corner badges readable under heavy key mashing.
+## Structure and startup
 
-## What the player sees
+There are **19 columns**: 12 page-dependent native columns and 7 static columns. Every column has main, `sec` and `tert` hosts: 57 surfaces. `Bars.hosts[column]`, `GetHost`, `GetMain`, `ForEach` and `ForEachHost` are the registry/traversal API. Minis are half-size.
 
-- A single **19-column** bottom bar: **12 main page slots + 7 “page 2” slots** on the same row (not Blizzard’s multi-bar strip layout).
-- Each column can expose a **main button** plus **SHIFT and CTRL minirows** (secondary / tertiary), above or below the main row.
-- **Smart promotion**: empty main faces can show content promoted from minirows so the bar stays compact until hover/drag expands layers.
-- Class-colored / accent Flux border chrome on the strip.
-- Up to **three corner badges per action slot** previewing alternate actions the main face is not currently showing.
-- Separate **pet bar** (5×2) and **hybrid stance bar** (true forms + spell extras), placed near the player frame or stacked with status/window when the player frame is off.
-- Vehicle exit control near the player frame; Retail Extra Ability HUD re-anchored near the Flux Window rather than fighting the bottom chrome.
-- Blizzard default action bars are hidden/suppressed while Flux owns the strip.
-- Blizzard’s own Key Bindings UI treats the strip as **Action Buttons 1–19** under the primary Action Bar header. Extra-bar show/hide options are suppressed on Classic-family clients because Flux owns one 19-column bar, not Blizzard’s multi-bar layout. Midnight still names buttons 13–19 correctly; extra-bar *sections* in Key Bindings may remain so Retail Settings preview stays untainted.
-- **The Flux strip stays on screen in a vehicle.** Vehicle, possess, and override abilities page onto those same 12 columns. Blizzard’s vehicle/override bar stays Blizzard-owned (not hidden by Flux) so vehicle chrome keeps working; Flux must not Hide or EnableMouse it, or taint rides into its `SetAttribute` path.
+`Start()` runs once outside combat: prepare stock bars; start vehicle handling; create strip/state headers; build main/mini hosts; install clicks/drivers/watches; start program-face translation, cast effects and layout; apply slots/options. [Hosts.lua](../Bars/Hosts.lua) chooses modern `ActionBarButtonTemplate` or Classic `ActionButtonTemplate`. Stock `ActionButton1–12` stay suppressed. Columns 13–19 borrow Blizzard commands exposed by `Hosts.BindingCommand()` while displayed labels remain Action Buttons 13–19.
 
-## Behaviors
+Initial visual constants are 44px buttons, 0 padding, 4px margin, 1.24 scale and 4px vertical offset. [Strip.lua](../Bars/Strip.lua) adds shared squeeze/scaling and gamepad adjustments. Effective geometry also depends on current layout/options.
 
-### Paging and combat states
-Secure state flipping (Bartender-style intent) for the first 12 columns across:
+## Pages, modifiers and promotion
 
-- Stances / forms (bonus bars)
-- Stealth-augmented forms (e.g. prowl / shadow dance feel)
-- Vehicle / possess / override
-- Dragonriding / skyriding-style bonus page (Midnight)
-- Optional modifier temporary page switches
+[SlotMath.lua](../Bars/SlotMath.lua) is the pure model; [State.lua](../Bars/State.lua) reproduces it in restricted handlers. They must agree.
 
-Vehicle/possess content pages **onto Flux buttons** (keys stay on Flux). The native driver uses a Bartender-style `possess` token resolved at page time with `GetVehicleBarIndex()`, so SHIFT/CTRL minirow invert follows the live vehicle page. The Flux strip does not hide to “make room.” Blizzard’s override/vehicle bar is left alone so it can show and update; hiding it taints layout.
+| At-rest surface | Columns 1–12 | Columns 13–19 |
+|---|---|---|
+| Main | `(page - 1) * 12 + column` | Slots 13–19 |
+| SHIFT mini | Slots 61–72 | Slots 49–55 |
+| CTRL mini | Slots 25–36 | Slots 37–43 |
 
-### Feedback (glow / cast / checked)
-Identity-owned visual feedback so effects follow the **spell or item the player sees**, across:
+**Native page** covers ordinary page, forms/stances, stealth variants, vehicle/possess/override and supported skyriding states. Six headers cover main/sec/tert × dynamic/static columns. **Modifier selection** resolves at keypress from pre-stamped SHIFT/CTRL attributes through `SecureButton_GetModifiedAttribute`. It does not wait for the modifier state driver. A modifier hub/child updates keep visible identities and `host.slot` synchronized. This distinction is essential when combat starts with a modifier held.
 
-- Main ↔ SHIFT/CTRL mini paging
-- Bar ↔ corner badge swaps
-- Macro condition flips
+[Layout.lua](../Bars/Layout.lua) packs occupied columns left and promotes mini content into empty mains. One available mini can serve both modifier paths; two minis can use promoted-main/remaining-mini behavior. Hover, drag and binding mode expand the compact view. `ApplyMappings()` changes slot relationships; `ApplyVisual()` changes anchors/visibility. Structural Show/Hide/SetPoint work defers through combat; already-created surfaces have safe reveal/alpha paths.
 
-Includes proc / SAO-style glow, cast/channel/interrupt/reticle overlays where the client supports them, and checked/active state—with **continuity across paging** so animations do not restart awkwardly mid-mash.
+## Input and compiled overlays
 
-### Input
-- **Binding mode**: hover a button, press a key; works on main bar, minirows, pet, stance, combat/NC grids, trinkets; dims unused columns.
-- **Mouseover cast**: keybinds cast on the unit under the cursor (synced with Blizzard mouseover preference).
-- Mouse-button / wheel keys still fire correctly while hovering unit frames.
-- Horizontal **squeeze** with grids/trinkets when the Flux Window crowds the right edge.
+[Clicks.lua](../Bars/Clicks.lua) routes keys as `KeyBind` clicks onto the main host. Shared `Flux.ButtonFX.Click` controls mouse/key-down/hold-release behavior, with empower attributes reasserted as required. Binding changes invalidate key caches.
 
-### Stance and pet
-- Stance: drag reorder and hide/show slots per character; dedup so the same ability is not shown twice as form + extra; pet bar repositions when stance layout changes.
-- Pet: shows with pet, hides in vehicle UI; participates in binding mode; shares VFX language.
+[BindingMode.lua](../Bars/BindingMode.lua) adapts LibKeyBound: hover a main/mini/pet/stance/combat/noncombat/utility/trinket surface and press a key. It registers appropriate commands, forces relevant empty slots visible and dims unrelated columns. Activation is combat-locked. This simple assignment mode is separate from [conditional binding authoring](13-binding-system.md).
 
-## Options / customization
+[SlotProgram.lua](../Bars/SlotProgram.lua) stores compiled programs by **action slot ID**. Simple peer/badge conditionals can use temporary visible-host macro attributes; sequence/petattack/multi-cast programs delegate through hidden `FluxSlotClick_<slot>` secure buttons. `ApplyMap`, `ApplyHoverMap`, reassert and queue-flush methods skip unchanged programs. Native slot content remains distinct from these overlays.
 
-**Action Bars** tab in `/fluxui` (full rows: [26-options-map.md](26-options-map.md)):
+[ProgramFace.lua](../Bars/ProgramFace.lua) translates displayed macro identity so icon/count/cooldown/usability/range and badges follow the apparent action. It indexes body requirements and receives shared context updates. [MacrotextDisplay.lua](../Bars/MacrotextDisplay.lua) is an adapter to `Flux.Context`, not an independent mouseover scanner.
 
-- **Action bar scope** — Account-wide | Character-specific (default Account-wide)
-- **Enter Binding Mode** · **Reset keybindings to Flux defaults** (combat-locked)
-- **Minirow position** — Top (default) | Bottom
-- **Enable action bar VFX** — on (pre-DF / Classic clients)
-- **Mouseover cast** — on (matches spell book)
-- Classic: **Auto rank up** (off) · **Rank up all spells** · blacklist panel
-- Performance intervals: range **0.25**, extra-button range **0.18**, mouseover **0.07**, macro usable **0.05**, action usable **0** (0 = off)
-- Stance bar slot order — always per character; drag reorder; right-click hide/show; reset
-- Extra button visibility grid + NC flyout panel + utility slots (see [12-extra-button-system.md](12-extra-button-system.md))
-- Stance placement also on **Layout** ([06-layout.md](06-layout.md))
+## Paint, effects and native flyouts
 
-## Relationships
+[Paint.lua](../Bars/Paint.lua) owns labels, icons, counts, cooldowns, tint, checked/flash/equipped state, hotkeys and assisted-combat highlights. Dirty hosts batch through `Flush(tokens)`. Shared action/secret wrappers keep restricted values out of Lua comparisons and pass them to supported display widgets.
 
-- Key names and squeeze → [05-defaults-and-bindings.md](05-defaults-and-bindings.md)
-- Badges and macros ↔ [13-binding-system.md](13-binding-system.md)
-- Grids / trinkets / utilities ↔ [12-extra-button-system.md](12-extra-button-system.md)
-- Envelope ↔ [04-visual-system.md](04-visual-system.md)
-- Respec can snapshot/restore bar content on Classic → [23-respec.md](23-respec.md)
-- Vehicle / Extra Ability → [25-other-qol.md](25-other-qol.md)
-- Inspiration → Bartender4 (+ glow packages) in [90-reference-inspirations.md](90-reference-inspirations.md)
+[BadgeHost.lua](../Bars/BadgeHost.lua) maps up to three alternate-action corner previews per slot onto every surface that can display it. Form, occupancy, cooldown, macro identity and per-binding policies control visibility. Combat visibility uses alpha; structural writes defer. Badge ordering differs from macro clause ordering.
 
-## Client availability
+[Effects.lua](../Bars/Effects.lua) transfers proc overlays by action identity across main/mini widgets so paging does not restart the birth animation. Shared cast effects follow the column. [Flyout.lua](../Bars/Flyout.lua) attaches native Blizzard SpellFlyout; custom item/utility flyouts use EBS instead.
 
-| Client | Availability |
-|--------|--------------|
-| Era | Full (Classic glow language, no skyriding page) |
-| Anniversary | Full |
-| Classic | Full |
-| Midnight | Full paging including skyriding; Retail glow language; secret-safe display only for combat decisioning. Action Button 13–19 labels apply; extra-bar Key Bindings sections may still list |
+[SpellRank.lua](../Bars/SpellRank.lua) desaturates lower learned ranks, offers explicit/automatic rank-up, maintains a blacklist and reconciles affected binding/spellbook displays. Rank support is gated for applicable Classic/Forever clients; Live Midnight does not use this rank workflow.
 
-## Rewrite intent notes
+## Pet and hybrid stance bars
 
-Match Bartender4’s mental model of **one authoritative bar with state paging**, plus Flux-specific 19-column layout, minirows, badges, and identity-stable glows. Glow packages (including modern glow-effect refs) inform feedback quality, not a particle theme for the whole UI.
+The [pet bar](../Bars/Pet/Init.lua) is 5×2 EBS widgets using `BONUSACTIONBUTTON1–10`. It follows player/stance or alternate HUD placement, pet/vehicle visibility and binding-mode overrides. Watches separate full refresh from cooldown/usability updates.
 
-## Explicit non-goals
+The [stance shell](../Bars/Stance/Init.lua) combines true forms, class extras and custom slots. Hidden Blizzard donors retain native secure behavior; EBS faces provide Flux presentation. `Order.lua` persists per-character order, hidden keys and additions. `Extras.lua` discovers class helpers, deduplicates form abilities and tracks active auras/pets. Visual aura changes repaint instead of rebuilding discovery/layout. Options support reorder/hide and cursor-added slots.
 
-- Keeping Blizzard multi-bar strips visible alongside Flux.
-- Rotation helpers that read secret combat state on Midnight.
-- Per-button free-float positioning as the default (console strip first).
+## Configuration and verification
+
+`FluxOptions:GetActionbarsDB()` selects account/character settings; stance order/custom slots remain per character. `ApplyPerformanceSettings()` configures distinct queues: action range 0.25, extra range 0.18, macro mouseover 0.07, macro-usability minimum 0.05 and optional action-usability minimum 0 by default. [Options](26-options-map.md) records exact controls.
+
+`/fluxbars` reports state; `<column>` prints surfaces; `page`/`paging` prints the secure chain; `mo`/`mouseover` prints targeting; `smoke` runs slot-math assertions. The [local smoke harness](../Bars/_tmp_barsmoke.lua) checks mapping/selected lockdown contracts, not live protected execution.
+
+Vehicle abilities page onto the first 12 Flux columns. Blizzard vehicle/override chrome differs from suppressed unused bars; modern Settings hooks avoid replacing taint-sensitive globals. Verify vehicles, forms, held modifiers at combat entry, mouse/wheel hovercast, native flyouts, promotion and identity-stable effects in game on each family.

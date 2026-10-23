@@ -706,6 +706,12 @@ local function ShouldReapplyAfterLayout(name, sel, method)
 end
 
 local function HookLayout(frame, name, method)
+    -- CharacterFrame opens from the native binding too. Its SetPoint/SetScale
+    -- callbacks must stay native before OnShow compares secret health, in both
+    -- mouse/keyboard and gamepad UI. Reapply the saved layout after it opens.
+    if name == "CharacterFrame" and Flux.Client and Flux.Client.isCamelot then
+        return
+    end
 	if not frame[method] then
 		return
 	end
@@ -842,10 +848,16 @@ function WindowMover.Attach(entry)
 	-- SetPreferredGamepadInteractTarget. An OnHide hook taints that call.
 	-- The drag driver already StopActive when the frame is no longer shown.
 	-- Forever CharacterFrame:OnShow compares secret health in TextStatusBar.
-	-- HookScript taints that compare. Saved position still reapplies from SetPoint.
+	-- Reapply saved position from the independent post-open watcher instead.
 	local camelotCharacter = name == "CharacterFrame" and Flux.Client and Flux.Client.isCamelot
 	if camelotCharacter then
 		hookedShow[frame] = true
+		local info = rawget(_G, "FluxInfoFrame")
+		if info and info.AfterCharacterShown then
+			info.AfterCharacterShown(function()
+				WindowMover.Apply(name, frame)
+			end)
+		end
 	elseif frame.HookScript and not hookedShow[frame] then
 		hookedShow[frame] = true
 		pcall(function()

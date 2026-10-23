@@ -1,75 +1,82 @@
-# FluxUI Concept Documentation (Rewrite Bible)
+# FluxUI implementation documentation
 
-This folder is the **concept-only** specification for rebuilding FluxUI from scratch.
+This is a reference for **how the current addon works**, for its author, maintainers, and coding agents. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
 
-It describes what the addon is for, what the player sees, how systems behave, how pieces relate, and what works on which World of Warcraft client. It is intentionally **not** a coding guide.
+Baseline: **22 October 2026**, working tree based on commit `bccfe9f`, including the existing uncommitted Lua and documentation changes. The [source inventory](reference/inventory.json) records exact source hashes, load parents, client gates, and extracted declarations. This is not a claim that the addon was tested in every live client.
 
-## Why this exists
+## Start here
 
-The plan is a full rewrite that keeps the **ideas and player experience** of FluxUI (as captured in the pre–major-rewrite backup) while discarding old structure and implementation. These docs are the shared source of truth for that rewrite.
+Read the [product and system overview](01-product-overview.md), then [runtime architecture](07-runtime-architecture.md). For a particular feature, use its system chapter below. For a setting, command, saved table, or source filename, start with Reference.
 
-**Source of concept truth:** the pre–major-rewrite backup only — not the current `_FluxUI` code tree.
+## Architecture
 
-## Hard rules for readers and writers
+| Chapter | What it explains |
+|---|---|
+| [Runtime architecture](07-runtime-architecture.md) | TOC/XML loading, startup/reload, hybrid module lifecycles, ownership |
+| [Shared services](08-shared-services.md) | APIs, event buses, scheduling, timers, combat queues, identity/range/VFX, diagnostics |
+| [Persistence and profiles](09-persistence.md) | Account/character scopes, AceDB, bootstrap, migration and reset behavior |
+| [Clients and capabilities](02-multi-client-matrix.md) | Live Midnight, Forever/Camelot, Era, Anniversary, progression variants |
+| [Secrets and combat restrictions](03-midnight-constraints.md) | Actual guards, display paths, secure execution and verification limits |
+| [Visual system](04-visual-system.md) | Accent, borders, chrome and shared styling |
+| [Defaults and keybinding pack](05-defaults-and-bindings.md) | Automatic setup, CVar packs, keybind writes, reset effects |
+| [Layout](06-layout.md) | HUD presets, geometry, squeezing, embedding and propagation |
+| [Dependencies and provenance](90-reference-inspirations.md) | Bundled libraries, imported components, integrations, attribution limits |
 
-- Describe **behaviors, UX, options, relationships, and client limits** only.
-- Do **not** prescribe APIs, secure-handler recipes, file layouts, function names, or “how to code it.”
-- Do **not** treat old FluxUI source as something to port line-by-line.
-- Reference addons (Bartender4, ButtonForge, Clicked, Scrap, Restocker, Baganator, Syndicator, TPerl, etc.) are **inspiration for intent**, not code to copy.
-- When Retail Midnight (12.x) restricts combat-sensitive logic, document the **product outcome** (display-only, unavailable, Classic-only), not workarounds.
+## Systems
 
-## How to read this set
+| Chapter | Feature |
+|---|---|
+| [Flux Window](10-flux-window.md) | Tab host, map providers, meters and embedding |
+| [Action bars](11-action-bars.md) | Main/mini rows, paging, modifier selection, pet/stance bars and effects |
+| [Extra buttons](12-extra-button-system.md) | Combat/utility grids, smart buttons, favorites, flyouts, categories, trinkets |
+| [Binding](13-binding-system.md) | Binding document, editor/browser/visualizer, compilation, key routing and badges |
+| [Unit frames](14-unit-frames.md) | Unit-specific frames, auras, resources, casting, swing/flight helpers |
+| [Raid and party frames](15-raid-frames.md) | Secure headers/cells, layout, auras, private auras, preview and BigDebuffs |
+| [Status and Info bars](16-status-bars.md) | XP/reputation/gold/PvP/currencies, account ledger, pinned statistics |
+| [Micro Menu](17-micromenu.md) | Native and Flux actions, visibility/order, bags, professions and addon buttons |
+| [Minimap and trackers](18-minimap-and-trackers.md) | Map shape/embedding, objectives, player buffs and minimap buttons |
+| [Nameplates](19-nameplates.md) | Flux-owned overlays, threat, levels, combo points and countdowns |
+| [Vendor, restock and junk](20-vendor-restock-junk.md) | Merchant sessions, buying/selling/repair, tier rules, bank planning and execution |
+| [Inventory foundation](21-inventory-foundation.md) | Snapshot facts, scanners, Syndicator, persistence, notifications, crafting |
+| [Salvage](22-salvage.md) | Classification, profession gates, modifier overlay and protected clicks |
+| [Respec](23-respec.md) | Profile capture, presets, talents, equipment, runes and asynchronous application |
+| [Baganator integration](24-baganator-compat.md) | Views, categories, protections, API wrappers and restocking |
+| [Other QoL](25-other-qol.md) | Chat, equipment flyouts, vehicles, HUD helpers and frame positioning |
+| [Character Info](27-character-info.md) | Statistics, localization, GearScore/ilvl and paper-doll overlays |
+| [WindowMover](28-window-mover.md) | Blizzard-window discovery, drag/scale, persistence and combat handling |
+| [Integration matrix](29-integrations.md) | Optional addons, readiness, ownership changes and fallback paths |
 
-1. Start with [01-product-overview.md](01-product-overview.md) for the whole HUD story.
-2. Read [02-multi-client-matrix.md](02-multi-client-matrix.md) and [03-midnight-constraints.md](03-midnight-constraints.md) before designing combat UI.
-3. Read [04-visual-system.md](04-visual-system.md), [05-defaults-and-bindings.md](05-defaults-and-bindings.md), and [06-layout.md](06-layout.md) for chrome and placement.
-4. Walk systems in number order (`10`–`25`), then the full options catalog [26-options-map.md](26-options-map.md), inspirations, and glossary.
-5. When rebuilding a feature, match its **Options** section to the real `/fluxui` labels in `26`.
+## Reference
 
-## Document index
+| Reference | Contents |
+|---|---|
+| [Options map](26-options-map.md) | Actual sidebar/pages, scopes, controls, defaults and custom widgets |
+| [Setting definitions](reference/settings-details.md) | Every extracted option table and factory call, ranges, getters/setters and gates |
+| [Custom widget controls](35-custom-widget-controls.md) | Every embedded editor/preview control, interaction, scope and apply path |
+| [Literal AceDB defaults](reference/defaults.md) | Every literal default path in FluxOptionsDefaults |
+| [Source coverage](30-source-coverage.md) | Active/compatibility/inactive/harness classifications and load order |
+| [Commands and keybindings](31-commands-and-bindings.md) | Effective slash behavior, subcommands, bindings and conflicts |
+| [SavedVariables](32-saved-variables.md) | All declared roots, current schemas, owners and retained legacy declarations |
+| [API and events](33-api-and-events.md) | Important cross-system contracts and callback payloads |
+| [Interface/event index](reference/interfaces.md) | Discoverable declarations and registration sites, with extraction limits |
+| [Assets](34-assets.md) | Resource families, localization, flight/salvage data and regeneration tooling |
+| [Glossary](99-glossary.md) | Terms used in source and docs |
 
-| Doc | Topic |
-|-----|--------|
-| [00-README](00-README.md) | How to use this set |
-| [01-product-overview](01-product-overview.md) | Whole product story |
-| [02-multi-client-matrix](02-multi-client-matrix.md) | Era / Anniversary / Classic / Midnight |
-| [03-midnight-constraints](03-midnight-constraints.md) | Secret values as product limits |
-| [04-visual-system](04-visual-system.md) | Borders, accents, unified envelope |
-| [05-defaults-and-bindings](05-defaults-and-bindings.md) | Defaults, keybind pack, scale/squeeze |
-| [06-layout](06-layout.md) | Layout tab click-to-place placements |
-| [10-flux-window](10-flux-window.md) | Map / Meter / Respec / Buttons hub |
-| [11-action-bars](11-action-bars.md) | Main bar, paging, minirows, glows, badges |
-| [12-extra-button-system](12-extra-button-system.md) | Combat/NC grids, trinkets, flyouts |
-| [13-binding-system](13-binding-system.md) | Conditional casting and key routing |
-| [14-unit-frames](14-unit-frames.md) | Player / target / focus / pet family |
-| [15-raid-frames](15-raid-frames.md) | Party and raid compact frames |
-| [16-status-bars](16-status-bars.md) | Gold, XP, rep, info strip |
-| [17-micromenu](17-micromenu.md) | Replacement micro bar |
-| [18-minimap-and-trackers](18-minimap-and-trackers.md) | Minimap, buffs, objectives |
-| [19-nameplates](19-nameplates.md) | Nameplate overlays |
-| [20-vendor-restock-junk](20-vendor-restock-junk.md) | Vendor, restock, junk sell |
-| [21-inventory-foundation](21-inventory-foundation.md) | Shared inventory awareness |
-| [22-salvage](22-salvage.md) | Prospect / mill / DE-style overlay |
-| [23-respec](23-respec.md) | Load profiles and presets |
-| [24-baganator-compat](24-baganator-compat.md) | Bag UI bridges |
-| [25-other-qol](25-other-qol.md) | Chat, vehicle, extras, character panel |
-| [26-options-map](26-options-map.md) | Full `/fluxui` options catalog (every label/default) |
-| [90-reference-inspirations](90-reference-inspirations.md) | What we borrow from each ref |
-| [99-glossary](99-glossary.md) | Shared terms |
+## Verification and findings
 
-## Standard section template (system docs)
+- [Findings and uncertainties](40-findings.md): observed discrepancies and suspected problems, without silently repairing code.
+- [Fix priorities and outside-WoW testing](42-fix-priorities-and-testing.md): impact-ranked findings, source-backed reproductions and evidence limits.
+- [Verification procedures](41-verification.md): source/mock evidence, existing smoke baselines, and in-game scenarios.
+- [Current recurring-driver inventory](performance-driver-inventory.md): source sites, not a performance measurement.
+- [September performance audit](performance-audit-2026-09-19.md): explicitly historical results and procedures.
 
-1. **Purpose**
-2. **What the player sees**
-3. **Behaviors**
-4. **Options / customization**
-5. **Relationships**
-6. **Client availability**
-7. **Rewrite intent notes**
-8. **Explicit non-goals**
+Claims are source-confirmed unless a chapter explicitly names a mock test or live observation. TOC inclusion proves reachability, not eligibility or successful runtime behavior. “Not live verified” means the code path is documented but needs the listed game-client check.
 
-## Out of scope
+## Maintaining this reference
 
-- Implementation plans, libraries, or file trees for the new addon
-- Porting or diffing old Lua into the rewrite
-- Copying reference-addon internals
+1. Read the affected implementation, its callers, data owner, and client guards. Update the explanatory chapters and any findings together.
+2. Run `python docs/tools/build_reference.py` to regenerate source-derived views. It writes only documentation; it does not evaluate Lua or launch WoW.
+3. Run `python docs/tools/validate_docs.py`. This command is read-only and checks source freshness, load references, classifications, inventory coverage, curated evidence and local links.
+4. Use [verification](41-verification.md) for checks that require actual protected execution, API behavior, rendering, or performance.
+
+Generated inventories supplement the explanations. Regenerating a list alone does not establish that changed behavior has been understood or tested.
