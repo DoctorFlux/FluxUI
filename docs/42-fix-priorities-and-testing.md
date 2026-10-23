@@ -1,5 +1,7 @@
 # Fix priorities and source-backed reproductions
 
+**Historical audit evidence.** The findings/reproductions below describe the pre-optimization source. The [23 October implementation report](43-startup-optimization.md) records the startup corrections. The [test failure resolution](44-test-failure-resolution.md) records the subsequent runtime fixes, replacement executable contracts and passing desktop suite. Native acceptance remains pending.
+
 This chapter separates confirmed logic defects, intentional behavior that needs a policy decision, and risks requiring live evidence. The reproductions below used isolated Lua 5.1 API fixtures. They establish selected control flow, not live game behavior.
 
 ## Recommended order
@@ -53,6 +55,6 @@ The four supplied Blizzard SettingsPanel snapshots expose official Settings.Defa
 
 ## Recent compatibility work and remaining priorities
 
-The current bar/map/tracker changes address separate compatibility paths: Forever control paging and native input/collectors, stock grid events reaching native combat layout, Questie pin ownership/refresh cost, and enabled-tracker ownership plus saved native combat callbacks. The new targeted fixtures pass; live verification is pending. The [23 October complete run](41-verification.md#current-verification-23-october-2026) records 26/28 passing scripts and the two remaining source-contract failures.
+The bar/map/tracker changes address separate compatibility paths: Forever control paging and native input/collectors, stock grid events reaching native combat layout, Questie pin ownership/refresh cost, and enabled-tracker ownership plus saved native combat callbacks. The [latest complete run](41-verification.md#current-verification-23-october-2026) passes 51/51 scripts after the [idle follow-up](46-idle-followup.md). The [test failure investigation](44-test-failure-resolution.md) resolves both previously failing scripts; full native verification is pending.
 
-Keep the five behavioral corrections above in priority order. Do not count them as fixed by the compatibility work or treat every stale Bars text expectation as a confirmed live defect. Before another release, execute the current control, bag-pickup and tracker combat scenarios on the actual client: those native restrictions cannot be established by desktop Lua. The simulator was removed and is not a current test dependency or preview route.
+The five behavioral corrections above were addressed by the later startup optimization, with targeted regression coverage listed in its report. Do not treat every historical Bars text expectation as a confirmed live defect. Before another release, execute the current control, bag-pickup and tracker combat scenarios on the actual client: those native restrictions cannot be established by desktop Lua. The simulator was removed and is not a current test dependency or preview route.

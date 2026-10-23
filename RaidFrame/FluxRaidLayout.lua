@@ -30,6 +30,7 @@ local gridHideScheduled = false
 local fluxRaidManagerHooksInstalled = false
 local fluxRaidPartyHideHooked = false
 local configureAndRefreshQueued = false
+local refreshScheduled = false
 
 local function ColumnHeight()
     local fh = FluxRaidVisuals.FRAME_HEIGHT
@@ -599,18 +600,19 @@ function FluxRaid_GetFirstGroupNthMemberBottomFromScreen(n)
 end
 
 ConfigureAndRefresh = function()
-    if not FluxRaid_IsFluxRaidEnabled() then
-        if State.containerFrame then State.containerFrame:Hide() end
-        return
-    end
     if InCombatLockdown() then
         Queue(ConfigureAndRefresh)
+        return
+    end
+    if not State.isInitialized then return end
+    if not FluxRaid_IsFluxRaidEnabled() then
+        if State.containerFrame then State.containerFrame:Hide() end
         return
     end
     if configureAndRefreshQueued then return end
     configureAndRefreshQueued = true
     pendingCombatWork[ConfigureAndRefresh] = nil
-    pcall(function()
+    local ok, err = pcall(function()
         ConfigureRaidMode()
         RefreshGroupVisibility()
         PositionContainer()
@@ -636,25 +638,37 @@ ConfigureAndRefresh = function()
                 FluxRaid_RefreshMTMATargetAttachments()
             end
         end
+        State.secureConfigured = true
         C_Timer.After(0, function()
-            if not FluxRaid_IsFluxRaidEnabled() or InCombatLockdown() then return end
+            if InCombatLockdown() then Queue(ConfigureAndRefresh); return end
+            if not FluxRaid_IsFluxRaidEnabled() then return end
             if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
             LayoutHeaders()
             PositionContainer()
         end)
     end)
     configureAndRefreshQueued = false
+    if not ok then error(err) end
 end
 
 function FluxRaid_QueueConfigureAndRefresh()
-    if configureAndRefreshQueued then
+    if configureAndRefreshQueued or InCombatLockdown() then
         Queue(ConfigureAndRefresh)
         return
     end
-    Queue(ConfigureAndRefresh)
-    if not InCombatLockdown() then
+    if not State.secureConfigured then
+        ConfigureAndRefresh()
+        return
+    end
+    if refreshScheduled then return end
+    refreshScheduled = true
+    local function Refresh()
+        refreshScheduled = false
         ConfigureAndRefresh()
     end
+    if ns.Flux and ns.Flux.Timer then ns.Flux.Timer.After(0, Refresh)
+    elseif C_Timer and C_Timer.After then C_Timer.After(0, Refresh)
+    else Refresh() end
 end
 
 -- Blizzard hide / restore. The Blizzard grid is reparented under Flux's hidden
@@ -695,6 +709,7 @@ local function GetBlizz()
 end
 
 local function HideBlizzardGrid()
+    if not State.secureConfigured then return end
     -- Edit Mode's party / raid refresh shows these frames inside its pass.
     if FluxEditModeBusy and FluxEditModeBusy() then
         FluxAfterEditMode(HideBlizzardGrid)
@@ -754,6 +769,7 @@ function FluxRaid_InstallManagerHooks()
 end
 
 function FluxRaid_ScheduleBlizzardGridHideCheck()
+    if not State.secureConfigured then return end
     if not FluxRaid_IsFluxRaidEnabled() then return end
     if gridHideScheduled then return end
     gridHideScheduled = true
@@ -796,6 +812,7 @@ function FluxRaid_RestoreBlizzardRaidFrames()
 end
 
 DisableBlizzardRaidFrames = function()
+    if not State.secureConfigured then return end
     if not FluxRaid_IsFluxRaidEnabled() then return end
     if InCombatLockdown() then
         Queue(DisableBlizzardRaidFrames)
@@ -809,13 +826,20 @@ DisableBlizzardRaidFrames = function()
 end
 
 function FluxRaid_RunPendingCombatWork()
+    if InCombatLockdown() then return end
     local work = pendingCombatWork
     State.pendingCombatWork = {}
     pendingCombatWork = State.pendingCombatWork
     local function run()
         for func in pairs(work) do
             if type(func) == "function" then
-                pcall(func)
+                if InCombatLockdown() then Queue(func) else
+                    local ok, err = pcall(func)
+                    if not ok then
+                        Queue(func)
+                        if geterrorhandler then geterrorhandler()(tostring(err)) end
+                    end
+                end
             end
         end
     end
@@ -845,14 +869,19 @@ function FluxRaid_OnRosterOrPartyChanged()
 end
 
 function FluxRaid_InitLayoutFrames()
+    if InCombatLockdown() then Queue(FluxRaid_InitLayoutFrames); return false end
     State.containerFrame = _G["FluxRaidContainer"]
     if State.containerFrame and State.containerFrame.SetClipsChildren then
         pcall(State.containerFrame.SetClipsChildren, State.containerFrame, false)
     end
     for i = 1, GROUP_COUNT do
-        State.raidHeaders[i] = _G[HEADER_PREFIX .. i]
+        local name = HEADER_PREFIX .. i
+        local header = _G[name] or CreateFrame("Frame", name, State.containerFrame, "FluxRaidGroupHeaderTemplate")
+        header:SetID(i)
+        State.raidHeaders[i] = header
     end
-    State.mtmaHeader = _G["FluxRaidMTMA"]
+    State.mtmaHeader = _G["FluxRaidMTMA"] or CreateFrame("Frame", "FluxRaidMTMA", State.containerFrame, "FluxRaidGroupHeaderTemplate")
+    State.mtmaHeader:SetID(9)
     if State.mtmaHeader and State.mtmaHeader.SetClipsChildren then
         pcall(State.mtmaHeader.SetClipsChildren, State.mtmaHeader, false)
     end
@@ -861,8 +890,13 @@ function FluxRaid_InitLayoutFrames()
 end
 
 function FluxRaid_InstallPetBattleDriver()
+    if State.petBattleDriverReady then return true end
+    if InCombatLockdown() then Queue(FluxRaid_InstallPetBattleDriver); return false end
     if not (Compat.CanUsePetBattleStateDriver and Compat.CanUsePetBattleStateDriver()) then return end
-    local stateFrame = CreateFrame("Frame", nil, nil, "SecureHandlerStateTemplate")
+    local Restricted = ns.Flux and ns.Flux.Restricted
+    if Restricted and Restricted.Works and not Restricted.Works() then return end
+    local stateFrame = State.petBattleDriver or CreateFrame("Frame", nil, nil, "SecureHandlerStateTemplate")
+    State.petBattleDriver = stateFrame
     for i = 1, GROUP_COUNT do
         stateFrame:SetFrameRef("FluxRaidHeader" .. i, State.raidHeaders[i])
     end
@@ -872,13 +906,13 @@ function FluxRaid_InstallPetBattleDriver()
         hideSnippet = hideSnippet .. 'self:GetFrameRef("FluxRaidHeader' .. i .. '"):Hide()\n'
     end
     hideSnippet = hideSnippet .. 'self:GetFrameRef("FluxRaidMTMA"):Hide()\n'
-    local Restricted = ns.Flux and ns.Flux.Restricted
     if Restricted and Restricted.SetSnippet then
-        Restricted.SetSnippet(stateFrame, "_onstate-groupupdate", [[
+        local ok = Restricted.SetSnippet(stateFrame, "_onstate-groupupdate", [[
             if newstate == "hide" then
                 ]] .. hideSnippet .. [[
             end
         ]])
+        if ok == false then return false end
     elseif not (ns.Flux and ns.Flux.Cap and ns.Flux.Cap.hasRestrictedClosures == false) then
         stateFrame:SetAttribute("_onstate-groupupdate", [[
             if newstate == "hide" then
@@ -890,6 +924,8 @@ function FluxRaid_InstallPetBattleDriver()
         return
     end
     RegisterStateDriver(stateFrame, "groupupdate", "[petbattle] hide; show")
+    State.petBattleDriverReady = true
+    return true
 end
 
 function FluxRaid_DisableBlizzardNow()

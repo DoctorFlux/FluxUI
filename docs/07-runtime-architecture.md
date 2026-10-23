@@ -22,37 +22,23 @@ The TOC's early comment saying action bars, Binding and grids remain off the TOC
 
 ## Startup sequence
 
-[`Core/Flux.lua`](../Core/Flux.lua), symbols `Flux.AfterLoad`, `Flux.AfterLogin`, `RequestModuleEnable` and `EnableModules`, owns the kernel sequence:
+The [23 October implementation report](43-startup-optimization.md) records startup hazards, phase ordering, diagnostics, measured operation counts and native acceptance limits. `Core/Flux.lua` now runs secure priority modules after all `AfterLoad` callbacks, including saved-profile bootstrap, complete. Most clients can do that in the addon's own `ADDON_LOADED` transaction. Forever still waits for Blizzard's variable/gamepad setup and leaves that callback stack on the next frame; `EventUtil.ContinueOnVariablesLoaded` also covers late addon loading.
 
 ```mermaid
-sequenceDiagram
-    participant WoW
-    participant TOC as TOC and XML files
-    participant Boot as Flux boot frame
-    participant Queues as Deferred callbacks
-    participant Modules as Flux.Module
-    WoW->>TOC: Execute eligible files in order
-    TOC->>Queues: Queue AfterLoad and AfterLogin callbacks
-    TOC->>Modules: Register feature specifications
-    WoW->>Boot: ADDON_LOADED for this addon
-    Boot->>Boot: loaded = true
-    Boot->>Queues: Run AfterLoad callbacks
-    WoW->>Boot: PLAYER_LOGIN or already logged-in load
-    alt Forever / Camelot
-        Boot->>Boot: Wait for VARIABLES_LOADED, then next frame
-    else Other clients
-        Boot->>Boot: Enable immediately
-    end
-    Boot->>Boot: loggedIn = true
-    Boot->>Queues: Run AfterLogin callbacks
-    Boot->>Modules: EnableEligible in registration order
+flowchart TD
+    A[TOC and saved variables] --> B[Own ADDON_LOADED and AfterLoad configuration]
+    B --> C{Forever barrier complete?}
+    C -->|Wait for VARIABLES_LOADED, then next frame| C
+    C -->|Yes or other client| D[Phase A secure priority modules]
+    D --> E[Login or already logged in: Phase B HUD]
+    E --> F[Next frame: Phase C caches and optional work]
+    D --> G[Restricted jobs queue individually during combat]
+    G --> H[Regen: reuse partial frames and finish once]
 ```
 
-`AfterLoad` means every eligible TOC file has executed and the kernel's `ADDON_LOADED` handler has run. It does not mean every other feature's independent `ADDON_LOADED` handler, scan or delayed initialization has finished. For example, options create their AceDB instance in their own event handler.
+A combat-blocked secure module does not block permitted HUD presentation. Completed modules are skipped on transitions. False results and exceptions leave modules retryable; required optional dependencies retry after their own `ADDON_LOADED` handlers finish. The module list reports initialization failures. `Flux.Safecall` returns protected-call success/result while still reporting exceptions through the normal error handler.
 
-Callbacks registered after their phase execute immediately through `Flux.Safecall`. A failed callback is reported through `geterrorhandler`; the protected call lets subsequent work continue. No callback return value is propagated by this helper.
-
-On `/reload` or a mid-session addon load, `IsLoggedIn()` can already be true. The kernel requests module enable from `ADDON_LOADED` instead of requiring another `PLAYER_LOGIN`. Forever defers enable until Blizzard's variable setup has finished to avoid creating action-button state before gamepad setup. The next-frame callback uses `C_Timer.After(0)`; a one-second fallback covers a mid-session load that will not see `VARIABLES_LOADED` again. This fallback belongs to the kernel; independently event-driven features may have narrower startup handling.
+`AfterLogin` remains the login callback API. Binding boot uses it immediately, with protected writes guarded by its existing coalesced Apply pipeline. Initial visual and secure-input milestones are separate. See `/fluxstartup` in the [command reference](31-commands-and-bindings.md).
 
 ## Namespaces and ownership
 
@@ -74,26 +60,15 @@ Names that look equivalent can differ. `Flux.Client.isClassic` means Wrath/Cata/
 
 - `clients` is a table keyed by kernel family (`era`, `anniversary`, `classic`, `midnight`). A missing table permits all families.
 - `capabilities` is a list of truthy keys in `Flux.Cap`; all listed keys must pass.
-- `requiredAddons` requires every named addon to be loaded through `Flux.AddOn.IsLoaded`. The registry does not automatically retry whenever a dependency later loads.
+- `requiredAddons` requires every named addon to be loaded through `Flux.AddOn.IsLoaded`. The registry retries after a required dependency loads, on the next frame after its event handlers complete.
 - `optional` is descriptive metadata; it is not an eligibility gate.
 - `OnLoad` is queued through `AfterLoad` when registered, independently of eligibility. `OnEnable` runs only after eligibility passes.
-- A module registered after `Flux.loggedIn` is immediately offered enable. Enable/disable guard against repeated calls. The enabled flag is set before `OnEnable`, so it records the attempted transition even if the protected callback errors.
+- Modules declare `phase` (secure, hud or deferred), stable `priority` and optional `protected`. Registration after a ready phase offers enable immediately. Enable also checks phase/combat barriers, guards recursion and marks success only after `OnEnable` succeeds without returning false.
 - Disable calls the optional hook. It does not generically unregister events, remove hooks or undo secure state for a feature.
 
-Current loaded registrations:
+Registrations now include the action engines, grids/trinkets, supported unit frames, raid frames and Extra Ability in the secure phase; Micro Menu, status, minimap and unified border in the HUD phase; inventory, character overlays/flyout, window discovery and optional bridges in the deferred phase. `Flux.Module.List()` exposes each phase and status. Client capability gates and existing per-feature policies still apply; Forever has an explicit branch identity while retaining legacy family aliases.
 
-| Name | Registration source |
-|---|---|
-| `WindowMover` | [`WindowMover/Init.lua`](../WindowMover/Init.lua) |
-| `Inventory` | [`Inventory/Init.lua`](../Inventory/Init.lua) |
-| `ExtraButtons` | [`ExtraButtonSystem/Init.lua`](../ExtraButtonSystem/Init.lua) |
-| `ActionBars` | [`Bars/Init.lua`](../Bars/Init.lua) |
-| `PetBar` | [`Bars/Pet/Init.lua`](../Bars/Pet/Init.lua) |
-| `StanceBar` | [`Bars/Stance/Init.lua`](../Bars/Stance/Init.lua) |
-| `CharacterInfo` | [`CharacterInfo/Init.lua`](../CharacterInfo/Init.lua) |
-| `EquipSlotFlyout` | [`CharacterInfo/PaperDollEquipFlyout.lua`](../CharacterInfo/PaperDollEquipFlyout.lua) |
-
-These registrations share the four kernel client families. Many other loaded systems start from owned event frames or `AfterLoad`/timers. In particular, [`Binding/Boot.lua`](../Binding/Boot.lua) listens to `PLAYER_LOGIN`, waits one second, ensures the document, primes availability and requests an apply after bar creation. Its lifecycle is not a `Flux.Module` registration.
+Many legacy systems retain their event-driven presentation paths. The pipeline does not imply that every optional fact cache is ready at the secure milestone. Module registration and complete native input/taint verification remain distinct evidence levels.
 
 ## Blizzard coexistence boundaries
 
@@ -107,7 +82,7 @@ Bar startup has narrower coexistence rules than a blanket hide operation. [Bars/
 
 ## Dependencies and observability
 
-TOC optional dependencies establish loading relationships; `Flux.Optional` separately probes loaded/readiness/API state. Syndicator readiness is tested through `Syndicator.API.IsReady`, so loaded does not always mean ready. See [29-integrations.md](29-integrations.md) and [90-reference-inspirations.md](90-reference-inspirations.md).
+Only native Blizzard prerequisites retain TOC optional ordering. Companion integrations initialize from readiness and late-addon events; `Flux.Optional` separately probes loaded/readiness/API state. Syndicator readiness is tested through `Syndicator.API.IsReady`, so loaded does not always mean ready. See [29-integrations.md](29-integrations.md) and [90-reference-inspirations.md](90-reference-inspirations.md).
 
 `Flux.Module.List`, `Flux.Perf.Snapshot`, scheduler statistics and ticker subscriptions expose pieces of runtime state. They do not prove that every legacy feature completed startup. [`Core/Slash.lua`](../Core/Slash.lua), [`Other/FluxPerfDebug.lua`](../Other/FluxPerfDebug.lua) and [`Other/FluxPerfCapture.lua`](../Other/FluxPerfCapture.lua) provide diagnostics; the later `/fluxperf` registration replaces the kernel handler. Exact command ownership is listed in [31-commands-and-bindings.md](31-commands-and-bindings.md).
 

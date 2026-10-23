@@ -6,6 +6,7 @@
 -- Fixed SetUserPlaced/SetMovable error
 
 local addonName, addonTable = ...
+local Flux = addonTable and addonTable.Flux or _G.Flux
 
 -- Create the public API
 FluxDetails = {}
@@ -1400,6 +1401,15 @@ local function EnsureMeterGridSizeHook(parentFrame, layoutConfig)
 end
 
 function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
+    if InCombatLockdown() then
+        if Flux and Flux.Combat then
+            local generation = embedOperationGeneration
+            Flux.Combat.Defer("details.embed", function()
+                if generation == embedOperationGeneration then self:Embed(parentFrame, layoutConfigOrMode) end
+            end)
+        end
+        return
+    end
     if not IsDetailsUIReady() or not parentFrame then return end
     EnsureDetailsMaxWindows()
     EnsureDetailsEventListener()
@@ -1440,7 +1450,9 @@ function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
     end
 
     if not layoutConfig then
-        C_Timer.After(0.2, function() self:Embed(parentFrame, 1) end)
+        C_Timer.After(0.2, function()
+            if embedGen == embedOperationGeneration and isEmbedded then self:Embed(parentFrame, 1) end
+        end)
         return
     end
 
@@ -1453,7 +1465,9 @@ function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
 
     local ensured = EnsureNWindows(math.max(totalSlots, 2))
     if not ensured or #ensured < math.min(totalSlots, 2) then
-        C_Timer.After(0.2, function() self:Embed(parentFrame, layoutConfig) end)
+        C_Timer.After(0.2, function()
+            if embedGen == embedOperationGeneration and isEmbedded then self:Embed(parentFrame, layoutConfig) end
+        end)
         return
     end
 
@@ -1497,6 +1511,10 @@ function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
     local function staggeredLayoutAndConfigure()
         if embedGen ~= embedOperationGeneration then return end
         if not isEmbedded or not currentLayoutConfig then return end
+        if InCombatLockdown() then
+            if Flux and Flux.Combat then Flux.Combat.Defer("details.layout", staggeredLayoutAndConfigure) end
+            return
+        end
         embedHeavyRefreshSuspended = true
         LayoutMeterGrid(parentFrame, currentLayoutConfig)
         ReapplyConfigureEmbeddedInstances(currentLayoutConfig)
@@ -1544,6 +1562,9 @@ function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
 
     -- Keep reasserting parent/anchors while Details' login Restore*/ChangeSkin storm settles.
     StartContainmentWatchdog(embedGen)
+    if FluxBlizzardMeter and FluxBlizzardMeter.Hide then FluxBlizzardMeter:Hide() end
+    if Flux and Flux.Startup then Flux.Startup.Mark("optional.Details.embedded") end
+    return true
 end
 
 --- Deep-copy a preset for modification. Returns table with topSlots, bottomSlots, col fracs.
@@ -1570,6 +1591,7 @@ function FluxDetails:CopyLayoutPreset(presetId)
 end
 
 function FluxDetails:Hide()
+    embedOperationGeneration = embedOperationGeneration + 1
     if not IsDetailsAvailable() then return end
     isEmbedded = false
 
@@ -1788,24 +1810,33 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+local initializedProfileFor
+
+local function InitializeDetailsProfile()
+    if not IsDetailsAvailable() then return end
+    local D = _G.Details
+    if initializedProfileFor ~= D then
+        if D.CreateProfile then D:CreateProfile(PROFILE_NAME) end
+        D.always_use_profile = true
+        D.always_use_profile_name = PROFILE_NAME
+        D.always_use_profile_exception = {}
+        initializedProfileFor = D
+        if Flux and Flux.Startup then Flux.Startup.Mark("optional.Details.loaded") end
+    end
+    if not postLoginCoordinatorScheduled and IsLoggedIn and IsLoggedIn() then
+        postLoginCoordinatorScheduled = true
+        SchedulePostLoginCoordinator()
+    end
+end
 
 frame:SetScript("OnEvent", function(self, event, ...)
     local arg1 = ...
-    if event == "ADDON_LOADED" and arg1 == "_FluxUI" then
-        if IsDetailsAvailable() then
-            local D = _G.Details
-
-            if D.CreateProfile then
-                D:CreateProfile(PROFILE_NAME)
-            end
-
-            D.always_use_profile = true
-            D.always_use_profile_name = PROFILE_NAME
-            D.always_use_profile_exception = {}
-            -- Embed/hide is handled by PLAYER_ENTERING_WORLD SchedulePostLoginCoordinator.
-        end
+    if event == "ADDON_LOADED" and (arg1 == addonName or arg1 == "Details") then
+        -- Let the provider finish its own ADDON_LOADED profile restoration.
+        C_Timer.After(0, InitializeDetailsProfile)
 
     elseif event == "PLAYER_ENTERING_WORLD" then
+        if not IsDetailsAvailable() then return end
         local isInitialLogin, isReloadingUI = ...
         local loginOrReload = (isInitialLogin == true) or (isReloadingUI == true)
         if isInitialLogin == nil and isReloadingUI == nil then

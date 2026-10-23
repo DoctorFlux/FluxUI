@@ -20,7 +20,7 @@ The event frame also tracks display/UI scale changes and compact raid profile re
 | `1–5`, `½`, `Q/E/R/T/F/G` | Action buttons 1–12. |
 | Mouse 5/4/3, `<`, `Z/X/C` | Seven extra columns using existing multiaction commands. |
 | `F1–F4`, Shift-F1–F4 | Stance/shapeshift buttons 1–8. |
-| `F5` | Flux reload; also the post-login Flux-binding sentinel. |
+| `F5` | Flux reload; customized assignments are preserved by automatic verification. |
 | `Y/7/6` | Smart mount/hearth/vendor mount. |
 | `U/I/F7/F8` | Utility slots 1–4. |
 | Alt-D/Alt-A, `K` | Food, water/combined and consumables. |
@@ -57,7 +57,7 @@ Official Settings reset callbacks and legacy hooks/heuristics can reapply full/c
 
 `GetState()` labels a small critical-CVar sample `FRESH`/`MODIFIED` by comparing to **Blizzard `GetCVarDefault`**, rather than the full Flux recommendation table. It is not an audit that Flux defaults are intact.
 
-`VerifyPostLoginDefaults` uses an incorrect F5 reload assignment as a signal to reapply keys and CVars. Its separate sentinel-only CVar threshold is unreachable with the current candidates; see [40-findings.md](40-findings.md). This documentation does not repair the implementation.
+Automatic `VerifyPostLoginDefaults` and binding-change verification preserve customized keybindings. A different F5 assignment no longer reapplies keys or triggers a CVar reset. Explicit reset-to-Flux-defaults still applies the keyboard template. Existing first-account setup and explicit Blizzard reset handling are separate paths; see the [implementation report](43-startup-optimization.md).
 
 ## Commands and reset boundaries
 

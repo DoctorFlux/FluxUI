@@ -32,6 +32,7 @@ Bars.COLOR = {
 --- column -> { column, main, sec, tert, bindingCommand, pages }
 Bars.hosts = {}
 Bars.started = false
+Bars.secureReady = false
 
 function Bars.GetHost(column)
 	return Bars.hosts[column]
@@ -195,7 +196,6 @@ local function HookScheduler()
 	if schedulerHooked or not (Flux.Scheduler and Flux.Scheduler.Register) then
 		return
 	end
-	schedulerHooked = true
 	Flux.Scheduler.Register("eval", function(tokens)
 		-- ProgramFace TOC-loads after this file, so look it up at eval time.
 		-- Cond translate must run before Paint.Flush in the same bucket.
@@ -210,6 +210,7 @@ local function HookScheduler()
 			Bars.Paint.Flush(tokens)
 		end
 	end)
+	schedulerHooked = true
 end
 
 function Bars.ApplyLayout()
@@ -223,6 +224,7 @@ function Bars.ApplyLayout()
 	pendingFullPaint = false
 
 	local Perf = Flux.Perf
+	if Flux.Startup then Flux.Startup.Count("action_layout_passes") end
 	if Perf then
 		Perf.Begin("bars.layout")
 	end
@@ -236,9 +238,9 @@ function Bars.ApplyLayout()
 		Bars.Strip.Layout()
 	end
 	if Bars.Hosts and Bars.Hosts.RefreshKeys then
-		Bars.Hosts.RefreshKeys()
+		if Bars.Hosts.RefreshKeys() == false then return false end
 	elseif Bars.Clicks and Bars.Clicks.RefreshKeys then
-		Bars.Clicks.RefreshKeys()
+		if Bars.Clicks.RefreshKeys() == false then return false end
 	end
 	-- Paging does not full-paint: the secure driver rewrites "action", which
 	-- fires OnActionAttribute and marks exactly the hosts whose slot moved.
@@ -250,24 +252,20 @@ function Bars.ApplyLayout()
 	if Perf then
 		Perf.Stop("bars.layout")
 	end
+	return true
 end
 
 function Bars.Start()
 	if Bars.started then
-		return
+		return true
 	end
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.start", Bars.Start)
 		end
-		return
+		return false
 	end
-	Bars.started = true
 	HookScheduler()
-
-	if Bars.Blizzard and Bars.Blizzard.Prepare then
-		Bars.Blizzard.Prepare()
-	end
 	if Bars.Vehicle and Bars.Vehicle.Start then
 		Bars.Vehicle.Start()
 	end
@@ -278,16 +276,22 @@ function Bars.Start()
 		Bars.State.Create()
 	end
 	if Bars.Hosts and Bars.Hosts.Build then
-		Bars.Hosts.Build()
+		if Bars.Hosts.Build() == false then return false end
 	end
 	if Bars.Minis and Bars.Minis.Build then
-		Bars.Minis.Build()
+		if Bars.Minis.Build() == false then return false end
+	end
+	for i = 1, Bars.NUM_COLUMNS do
+		local col = Bars.hosts[i]
+		if not (col and col.main and col.main.widget and col.sec and col.sec.widget and col.tert and col.tert.widget) then
+			return false
+		end
 	end
 	if Bars.Clicks and Bars.Clicks.Start then
-		Bars.Clicks.Start()
+		if Bars.Clicks.Start() == false then return false end
 	end
 	if Bars.State and Bars.State.RegisterDrivers then
-		Bars.State.RegisterDrivers()
+		if Bars.State.RegisterDrivers() == false then return false end
 	end
 	if Bars.Watch and Bars.Watch.Start then
 		Bars.Watch.Start()
@@ -301,14 +305,38 @@ function Bars.Start()
 	if Bars.Layout and Bars.Layout.Start then
 		Bars.Layout.Start()
 	end
-	Bars.ApplyLayout()
+	-- Apply the saved layout once, after all hosts and state drivers exist.
+	pendingStructural = true
+	pendingFullPaint = true
+	if Bars.ApplyLayout() == false then return false end
 	if Bars.State and Bars.State.ForceApply then
 		Bars.State.ForceApply()
 	end
-	Bars.ApplyActionbarsOptions()
+	if Flux.ButtonFX and Flux.ButtonFX.Cast and Flux.ButtonFX.Cast.RefreshFromOptions then
+		Flux.ButtonFX.Cast.RefreshFromOptions()
+	end
+	Bars.ApplyPerformanceSettings()
 	if Bars.Strip and Bars.Strip.WatchGamepad then
 		Bars.Strip.WatchGamepad()
 	end
+	Bars.secureReady = true
+	local committed, reason = pcall(function()
+		if Bars.Strip and Bars.Strip.SyncVisibility then Bars.Strip.SyncVisibility() end
+		if Bars.Vehicle and Bars.Vehicle.OnReplacementsReady then Bars.Vehicle.OnReplacementsReady() end
+		if Bars.Blizzard and Bars.Blizzard.Prepare then Bars.Blizzard.Prepare() end
+	end)
+	if not committed then
+		Bars.secureReady = false
+		error(reason)
+	end
+	Bars.started = true
+	if Flux.Startup then
+		Flux.Startup.Mark("secure_action_infrastructure_ready")
+		local strip = Bars.Strip and Bars.Strip.frame
+		local visible = strip and (strip.IsVisible and strip:IsVisible() or (not strip.IsVisible and strip.IsShown and strip:IsShown()))
+		if visible then Flux.Startup.Mark("action_buttons_visible") end
+	end
+	return true
 end
 
 local function ActionbarsDB()
@@ -360,9 +388,12 @@ function Bars.ApplyActionbarsOptions()
 end
 
 Flux.Module.Register("ActionBars", {
+	phase = "secure",
+	priority = 20,
+	protected = true,
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = function()
-		Bars.Start()
+		return Bars.Start()
 	end,
 })
 

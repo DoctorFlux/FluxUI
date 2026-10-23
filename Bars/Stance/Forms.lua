@@ -10,6 +10,7 @@ local donors = {}
 local formButtons = {}
 local extraButtons = {}
 local extraSeq = 0
+local extraNames = {}
 
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
@@ -20,19 +21,20 @@ function Stance.GetDonor(index)
 end
 
 function Stance.EnsureDonor(index, parent)
-	if donors[index] then
+	if donors[index] and donors[index]._fluxDonorReady then
 		return donors[index]
 	end
 	if InLockdown() then
 		return nil
 	end
-	local donor
+	local donor = donors[index] or _G["FluxStanceDonor" .. index]
 	local ok = pcall(function()
-		donor = CreateFrame("CheckButton", "FluxStanceDonor" .. index, parent, "StanceButtonTemplate")
+		donor = donor or CreateFrame("CheckButton", "FluxStanceDonor" .. index, parent, "StanceButtonTemplate")
 	end)
 	if not ok or not donor then
 		return nil
 	end
+	donors[index] = donor
 	donor:SetID(index)
 	donor:SetSize(1, 1)
 	donor:Hide()
@@ -40,7 +42,7 @@ function Stance.EnsureDonor(index, parent)
 	if donor.HotKey then
 		donor.HotKey:Hide()
 	end
-	donors[index] = donor
+	donor._fluxDonorReady = true
 	return donor
 end
 
@@ -54,7 +56,7 @@ end
 
 function Stance.EnsureFormButton(index, parent, size)
 	local btn = formButtons[index]
-	if btn then
+	if btn and btn._fluxFormReady then
 		return btn
 	end
 	if InLockdown() then
@@ -65,8 +67,9 @@ function Stance.EnsureFormButton(index, parent, size)
 		return nil
 	end
 	local donor = Stance.EnsureDonor(index, parent)
+	if not donor then return nil end
 	local native = (Flux.Bars and Flux.Bars.CONFIG and Flux.Bars.CONFIG.buttonSize) or 44
-	btn = EBS.Widget.Create(parent, {
+	btn = btn or EBS.Widget.Create(parent, {
 		name = "FluxStanceFormButton" .. index,
 		size = native,
 		showBorder = true,
@@ -77,6 +80,7 @@ function Stance.EnsureFormButton(index, parent, size)
 	if not btn then
 		return nil
 	end
+	formButtons[index] = btn
 	btn.locked = true
 	btn.categoryScope = "character"
 	btn.ShapeshiftDonor = donor
@@ -87,11 +91,11 @@ function Stance.EnsureFormButton(index, parent, size)
 	if EBS.Style and EBS.Style.Apply then
 		EBS.Style.Apply(btn, "character")
 	end
-	formButtons[index] = btn
 	local G = Flux.ButtonFX and Flux.ButtonFX.Glow
 	if G and btn.Widget and G.NotifySAO then
 		G.NotifySAO(btn.Widget)
 	end
+	btn._fluxFormReady = true
 	return btn
 end
 
@@ -105,10 +109,13 @@ function Stance.EnsureExtraButton(key, parent, size, data)
 		if not (EBS and EBS.Widget) then
 			return nil
 		end
-		extraSeq = extraSeq + 1
+		if not extraNames[key] then
+			extraSeq = extraSeq + 1
+			extraNames[key] = "FluxStanceExtraButton" .. extraSeq
+		end
 		local native = (Flux.Bars and Flux.Bars.CONFIG and Flux.Bars.CONFIG.buttonSize) or 44
 		btn = EBS.Widget.Create(parent, {
-			name = "FluxStanceExtraButton" .. extraSeq,
+			name = extraNames[key],
 			size = native,
 			showBorder = true,
 			tooltip = true,

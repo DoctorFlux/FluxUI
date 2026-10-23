@@ -3,7 +3,9 @@ local addonName, ns = ...
 ns.UnitFrames = ns.UnitFrames or {}
 local UF = ns.UnitFrames
 
--- Flux perf T2.6b: one shared poll frame instead of per-unit-frame OnUpdate every frame.
+-- Preserve the existing samples, but wake at their deadlines instead of every
+-- rendered frame. A shared OnUpdate remains available for timer-less clients.
+do
 local POLL_HEALTH_INTERVAL = 0.2
 local POLL_THREAT_INTERVAL = 0.5
 UF_UnitFramePollFrame = CreateFrame("Frame")
@@ -13,6 +15,8 @@ local pollThreatAcc = 0
 local pollHealthUnits = {}
 local pollThreatUnits = {}
 local pollThreatArmed = true -- OOC: skip threat walk; re-arm in combat
+local pollHealthTimer, pollThreatTimer
+local SyncPollFrameVisibility
 
 local function PollFrameHasWork()
     if next(pollHealthUnits) ~= nil then
@@ -22,14 +26,6 @@ local function PollFrameHasWork()
         return true
     end
     return false
-end
-
-local function SyncPollFrameVisibility()
-    if PollFrameHasWork() then
-        UF_UnitFramePollFrame:Show()
-    else
-        UF_UnitFramePollFrame:Hide()
-    end
 end
 
 -- Midnight: canaccessvalue can be true for secret combat numbers, but comparing
@@ -84,10 +80,9 @@ local function PollHealthUnchanged(frame, unit)
         frame._fluxPollHealthMax = m
         return false
     end
-    local ok, same = pcall(function()
-        return frame._fluxPollHealth == h and frame._fluxPollHealthMax == m
-    end)
-    if ok and same then
+    -- Both samples and cached values passed the secret/access guards above.
+    -- Compare plain values directly instead of allocating a closure every poll.
+    if frame._fluxPollHealth == h and frame._fluxPollHealthMax == m then
         return true
     end
     frame._fluxPollHealth = h
@@ -103,22 +98,20 @@ local function PollPowerUnchanged(frame, unit)
     local maxP = (api and api.SafeUnitPowerMax and api.SafeUnitPowerMax(unit, powerType)) or UnitPowerMax(unit, powerType)
     local p = SafePollNumber(power)
     local m = SafePollNumber(maxP)
-    if p == nil or m == nil then
+    if p == nil or m == nil or PollValueUnusable(powerType) then
         frame._fluxPollPower = nil
         frame._fluxPollPowerMax = nil
         frame._fluxPollPowerType = nil
         return false
     end
-    if PollValueUnusable(frame._fluxPollPower) or PollValueUnusable(frame._fluxPollPowerMax) then
+    if PollValueUnusable(frame._fluxPollPower) or PollValueUnusable(frame._fluxPollPowerMax)
+        or PollValueUnusable(frame._fluxPollPowerType) then
         frame._fluxPollPower = p
         frame._fluxPollPowerMax = m
         frame._fluxPollPowerType = powerType
         return false
     end
-    local ok, same = pcall(function()
-        return frame._fluxPollPower == p and frame._fluxPollPowerMax == m and frame._fluxPollPowerType == powerType
-    end)
-    if ok and same then
+    if frame._fluxPollPower == p and frame._fluxPollPowerMax == m and frame._fluxPollPowerType == powerType then
         return true
     end
     frame._fluxPollPower = p
@@ -160,6 +153,8 @@ function FluxUI_GetUnitFramePollStats()
         threatUnits = threatUnits,
         active = PollFrameHasWork(),
         threatArmed = pollThreatArmed,
+        healthTimer = pollHealthTimer ~= nil,
+        threatTimer = pollThreatTimer ~= nil,
     }
 end
 
@@ -189,74 +184,114 @@ do
     pollThreatArmed = (InCombatLockdown and InCombatLockdown()) and true or false
 end
 
+local function PollHealthUnits()
+    for unit, self in pairs(pollHealthUnits) do
+        if unit == "player" then
+            if self.Health and not PollHealthUnchanged(self, self.unit) then
+                UF.UpdateHealth(self, self.unit)
+            end
+            if self.Power and not PollPowerUnchanged(self, self.unit) then
+                UF.UpdatePower(self, self.unit)
+                if self.AdditionalPower then
+                    UF.UpdateAdditionalPower(self, self.unit)
+                end
+            end
+        elseif unit == "target" or unit == "focus" then
+            if UF.SyncWatchedUnitFrameVisibility then
+                UF.SyncWatchedUnitFrameVisibility(self)
+            end
+        elseif unit == "targettarget" or unit == "focustarget" then
+            local shown = UF.SyncWatchedUnitFrameVisibility and UF.SyncWatchedUnitFrameVisibility(self)
+            if shown and self.Health then
+                if not PollHealthUnchanged(self, unit) then
+                    UF.UpdateHealth(self, unit)
+                end
+                if self.Power and not PollPowerUnchanged(self, unit) then
+                    UF.UpdatePower(self, unit)
+                end
+                if self.AdditionalPower then
+                    UF.UpdateAdditionalPower(self, unit)
+                end
+                local name = UnitName and UnitName(unit)
+                local api = ns.API
+                if api and api.SafeAccessibleString then
+                    name = api.SafeAccessibleString(name)
+                end
+                if self._fluxPollTotName ~= name then
+                    self._fluxPollTotName = name
+                    if self.UpdateOuterBorder then
+                        self:UpdateOuterBorder()
+                    end
+                end
+            else
+                self._fluxPollTotName = nil
+            end
+        end
+    end
+end
+
+local function PollThreatUnits()
+    if pollThreatArmed then
+        for _, self in pairs(pollThreatUnits) do
+            if UF.UpdateThreatBar then
+                UF.UpdateThreatBar(self)
+            end
+        end
+    end
+end
+
+SyncPollFrameVisibility = function()
+    local timer = ns.Flux and ns.Flux.Timer
+    local newTicker = timer and timer.NewTicker or (C_Timer and C_Timer.NewTicker)
+    if newTicker then
+        if next(pollHealthUnits) then
+            if not pollHealthTimer then
+                pollHealthTimer = newTicker(POLL_HEALTH_INTERVAL, PollHealthUnits)
+            end
+        elseif pollHealthTimer then
+            pollHealthTimer:Cancel()
+            pollHealthTimer = nil
+        end
+        if pollThreatArmed and next(pollThreatUnits) then
+            if not pollThreatTimer then
+                pollThreatTimer = newTicker(POLL_THREAT_INTERVAL, PollThreatUnits)
+            end
+        elseif pollThreatTimer then
+            pollThreatTimer:Cancel()
+            pollThreatTimer = nil
+        end
+        UF_UnitFramePollFrame:Hide()
+    elseif PollFrameHasWork() then
+        UF_UnitFramePollFrame:Show()
+    else
+        pollHealthAcc = 0
+        pollThreatAcc = 0
+        UF_UnitFramePollFrame:Hide()
+    end
+end
+
 UF_UnitFramePollFrame:SetScript("OnUpdate", function(_, elapsed)
     local el = elapsed or 0
     if next(pollHealthUnits) then
         pollHealthAcc = pollHealthAcc + el
         if pollHealthAcc >= POLL_HEALTH_INTERVAL then
             pollHealthAcc = 0
-            for unit, self in pairs(pollHealthUnits) do
-                if unit == "player" then
-                    if self.Health and not PollHealthUnchanged(self, self.unit) then
-                        UF.UpdateHealth(self, self.unit)
-                    end
-                    if self.Power and not PollPowerUnchanged(self, self.unit) then
-                        UF.UpdatePower(self, self.unit)
-                        if self.AdditionalPower then
-                            UF.UpdateAdditionalPower(self, self.unit)
-                        end
-                    end
-                elseif unit == "target" or unit == "focus" then
-                    if UF.SyncWatchedUnitFrameVisibility then
-                        UF.SyncWatchedUnitFrameVisibility(self)
-                    end
-                elseif unit == "targettarget" or unit == "focustarget" then
-                    local shown = UF.SyncWatchedUnitFrameVisibility and UF.SyncWatchedUnitFrameVisibility(self)
-                    if shown and self.Health then
-                        if not PollHealthUnchanged(self, unit) then
-                            UF.UpdateHealth(self, unit)
-                        end
-                        if self.Power and not PollPowerUnchanged(self, unit) then
-                            UF.UpdatePower(self, unit)
-                        end
-                        if self.AdditionalPower then
-                            UF.UpdateAdditionalPower(self, unit)
-                        end
-                        local name = UnitName and UnitName(unit)
-                        local api = ns.API
-                        if api and api.SafeAccessibleString then
-                            name = api.SafeAccessibleString(name)
-                        end
-                        if self._fluxPollTotName ~= name then
-                            self._fluxPollTotName = name
-                            if self.UpdateOuterBorder then
-                                self:UpdateOuterBorder()
-                            end
-                        end
-                    else
-                        self._fluxPollTotName = nil
-                    end
-                end
-            end
+            PollHealthUnits()
         end
     else
         pollHealthAcc = 0
     end
-
     if pollThreatArmed and next(pollThreatUnits) then
         pollThreatAcc = pollThreatAcc + el
         if pollThreatAcc >= POLL_THREAT_INTERVAL then
             pollThreatAcc = 0
-            for _, self in pairs(pollThreatUnits) do
-                if UF.UpdateThreatBar then
-                    UF.UpdateThreatBar(self)
-                end
-            end
+            PollThreatUnits()
         end
     else
         pollThreatAcc = 0
     end
 end)
+end
 
 -- Replaced by UnitFrames/FluxUnitFrames_BigDebuffs.lua when that module loads (optional BigDebuffs).
 function UF.SyncBigDebuffsFrameLevelForUnitFrame() end
@@ -487,16 +522,24 @@ local function HideEmptyUnitPortrait(self)
         return
     end
     if self.Portrait then
-        self.Portrait._fluxQuestionMark = nil
-        pcall(function()
-            if self.Portrait.SetKeepModelOnHide then
-                self.Portrait:SetKeepModelOnHide(false)
-            end
-            if self.Portrait.ClearModel then
-                self.Portrait:ClearModel()
-            end
-        end)
-        self.Portrait:Hide()
+        local portrait = self.Portrait
+        portrait._fluxQuestionMark = nil
+        -- Missing watched units are checked at 5Hz. A successfully emptied
+        -- Flux-owned model needs no further ClearModel until it is painted or
+        -- shown again. Failed clears stay retryable; replacement models start
+        -- without this flag. Do not retain an invisible, animating model.
+        if not portrait._fluxEmptyCleared or (portrait.IsShown and portrait:IsShown()) then
+            local ok = pcall(function()
+                if portrait.SetKeepModelOnHide then
+                    portrait:SetKeepModelOnHide(false)
+                end
+                if portrait.ClearModel then
+                    portrait:ClearModel()
+                end
+            end)
+            portrait._fluxEmptyCleared = ok or nil
+        end
+        portrait:Hide()
     end
     if self.Portrait2D then
         self.Portrait2D:Hide()
@@ -3638,6 +3681,9 @@ function UF.CreatePortrait(frame)
     -- SetCamera(0) / portrait zoom do nothing until the .m2 is actually loaded.
     pcall(function()
         model:SetScript("OnModelLoaded", function(self)
+            -- SetUnit can finish loading after an empty watched frame hid it.
+            -- The next missing-unit check must clear that late hidden model.
+            self._fluxEmptyCleared = nil
             if not self._fluxQuestionMark then
                 ApplyPortraitCamera(self)
                 SchedulePortraitCameraRefresh(self)
@@ -3847,6 +3893,8 @@ function UF.UpdatePortrait(self, unit)
         return
     end
 
+    -- Every real paint (3D, question mark, or flat) invalidates the empty model.
+    self.Portrait._fluxEmptyCleared = nil
     local use3D = (not FluxUnitFrames_ShouldUse3DPortrait) or FluxUnitFrames_ShouldUse3DPortrait()
 
     if not use3D then

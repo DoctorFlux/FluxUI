@@ -242,7 +242,7 @@ end
 
 function FluxUnitFrames_ApplyRuntimePetTarget(wantFlux)
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.pettarget", function()
             FluxUnitFrames_ApplyRuntimePetTarget(wantFlux)
         end)
         return
@@ -251,7 +251,7 @@ function FluxUnitFrames_ApplyRuntimePetTarget(wantFlux)
     if wantFlux then
         if not ns.PetTargetFrame then
             petTargetFrameInitialized = false
-            InitializePetTargetFrame()
+            UF.RunInitializer("pettarget")
         else
             FluxUnitFrames_ResumeFluxPetTargetUnitWatch(ns.PetTargetFrame)
             if UF.SyncWatchedUnitFrameVisibility then
@@ -270,40 +270,4 @@ end
 -- ---------------------------------------------------------------------------
 -- Loader
 -- ---------------------------------------------------------------------------
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:RegisterEvent("PLAYER_ENTERING_WORLD")
-loader:SetScript("OnEvent", function(self, event)
-    if event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
-        if petTargetFrameInitialized then
-            return
-        end
-        if ns.PetFrame then
-            InitializePetTargetFrame()
-        elseif not loader._initWatcher then
-            loader._initWatcher = CreateFrame("Frame")
-        end
-
-        if not petTargetFrameInitialized then
-            local watcher = loader._initWatcher
-            if watcher:GetScript("OnUpdate") then
-                return
-            end
-            local checkCount = 0
-            local MAX_CHECKS = 20
-            watcher:Hide()
-            watcher:SetScript("OnUpdate", function(w)
-                checkCount = checkCount + 1
-                if ns.PetFrame then
-                    w:SetScript("OnUpdate", nil)
-                    InitializePetTargetFrame()
-                elseif checkCount >= MAX_CHECKS then
-                    w:SetScript("OnUpdate", nil)
-                    InitializePetTargetFrame()
-                end
-            end)
-            watcher:Show()
-        end
-    end
-end)
-
+UF.RegisterInitializer("pettarget", InitializePetTargetFrame, function() return petTargetFrameInitialized end, 66)

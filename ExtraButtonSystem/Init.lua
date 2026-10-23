@@ -253,6 +253,8 @@ function EBS.Start()
 end
 
 Flux.Module.Register("ExtraButtons", {
+	phase = "secure",
+	priority = 10,
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = function()
 		EBS.Start()

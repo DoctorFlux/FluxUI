@@ -789,11 +789,7 @@ local STATIC_PACK = [[
 ]]
 
 local function MakeHeader(name, parent)
-	local header = _G[name]
-	if header then
-		return header
-	end
-	header = CreateFrame("Frame", name, parent, "SecureHandlerStateTemplate")
+	local header = _G[name] or CreateFrame("Frame", name, parent, "SecureHandlerStateTemplate")
 	header:SetSize(1, 1)
 	header:Show()
 	return header
@@ -836,18 +832,27 @@ function State.RegisterDrivers()
 	if not headers then
 		return false
 	end
+	local complete = true
+	local writeSnippet = SetSnippet
+	local function SetSnippet(frame, name, body)
+		local ok = writeSnippet(frame, name, body)
+		if ok == false and SnippetsWork() then complete = false end
+		return ok
+	end
 	local function Drive(header, attr, driver)
 		local R = Flux.Restricted
 		if R and R.RegisterPagingDriver and R.UnregisterPagingDriver then
-			R.UnregisterPagingDriver(header, attr)
-			if driver then R.RegisterPagingDriver(header, attr, driver) end
+			if R.UnregisterPagingDriver(header, attr) == false then complete = false end
+			if driver and R.RegisterPagingDriver(header, attr, driver) == false then complete = false end
 			return
 		end
 		if UnregisterStateDriver then
-			pcall(UnregisterStateDriver, header, attr)
+			if not pcall(UnregisterStateDriver, header, attr) then complete = false end
 		end
 		if driver and RegisterStateDriver then
-			pcall(RegisterStateDriver, header, attr, driver)
+			if not pcall(RegisterStateDriver, header, attr, driver) then complete = false end
+		elseif driver then
+			complete = false
 		end
 	end
 	local native = State.BuildNativeDriver()
@@ -933,7 +938,7 @@ function State.RegisterDrivers()
 			MC.Start()
 		end
 	end
-	return true
+	return complete
 end
 
 --- Mirrors the CHILDUPDATE occupancy rule: the Lua flags are frozen while

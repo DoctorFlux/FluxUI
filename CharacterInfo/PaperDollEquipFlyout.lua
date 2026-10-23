@@ -323,6 +323,10 @@ end
 local equippedHooked = false
 
 local function TryInstall()
+    if Flux and Flux.Combat and Flux.Combat.InLockdown() then
+        Flux.Combat.Defer("characterinfo.flyout.install", TryInstall)
+        return false
+    end
     Candidates = _G.FluxEquipSlotCandidates
     Flyout = _G.FluxEquipSlotFlyout
     if not Candidates or not Flyout then
@@ -349,9 +353,7 @@ local function Start()
     if started then
         return
     end
-    started = true
-
-    TryInstall()
+    if TryInstall() == false then return false end
 
     if Flux and Flux.Events and Flux.Events.Register then
         Flux.Events.Register("ADDON_LOADED", function()
@@ -367,10 +369,12 @@ local function Start()
             HideFluxFlyout()
         end)
     end
+    started = true
 end
 
 if Flux and Flux.Module then
     Flux.Module.Register("EquipSlotFlyout", {
+        phase = "deferred", protected = true,
         clients = { era = true, anniversary = true, classic = true, midnight = true },
         OnEnable = Start,
     })

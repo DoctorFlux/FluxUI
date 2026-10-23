@@ -826,6 +826,14 @@ local moPollAccum = 0
 local lastUmuAt = 0
 local moDueAt = 0
 
+local function DisarmMouseoverPoll()
+	if moPollArmed and Flux.Ticker and Flux.Ticker.Remove then
+		Flux.Ticker.Remove(MO_POLL_KEY)
+	end
+	moPollArmed = false
+	moPollAccum = 0
+end
+
 local function ScheduleCond(kind)
 	pendingKinds[kind] = true
 	if Flux.Scheduler and Flux.Scheduler.Request then
@@ -862,6 +870,9 @@ function ProgramFace.NoteMouseoverEvent()
 	if not indexDirty and not stripNeed.mouseover and not extraNeed.mouseover then
 		return
 	end
+	-- UMU wakes on arrival. Keep the missing-leave watchdog only while
+	-- a unit is under the cursor; an indexed macro alone must not tick idle.
+	ProgramFace.WakeMouseoverPoll()
 	-- Trailing debounce: parse once after the cursor stops, never during the
 	-- hop storm. Same on Classic and Retail.
 	moDueAt = lastUmuAt + MOUSEOVER_COALESCE
@@ -888,13 +899,14 @@ end
 function ProgramFace.ArmMouseoverPoll()
 	EnsureIndex()
 	if not probeFlags.mouseover then
-		if moPollArmed and Flux.Ticker and Flux.Ticker.Remove then
-			Flux.Ticker.Remove(MO_POLL_KEY)
-		end
-		moPollArmed = false
+		DisarmMouseoverPoll()
 		return
 	end
 	if moPollArmed then
+		return
+	end
+	if ReactionClass() == "-" then
+		DisarmMouseoverPoll()
 		return
 	end
 	if not (Flux.Ticker and Flux.Ticker.Add) then
@@ -917,12 +929,29 @@ function ProgramFace.ArmMouseoverPoll()
 		end
 		moPollAccum = 0
 		local class = ReactionClass()
+		if class == "-" then
+			-- Cover clients that omit UMU when leaving to empty space, then
+			-- sleep until the next arrival. Retain the active polling cadence.
+			moPollName = class
+			RequestMouseoverNow()
+			DisarmMouseoverPoll()
+			return
+		end
 		if class == moPollName then
 			return
 		end
 		moPollName = class
 		RequestMouseoverNow()
 	end)
+end
+
+-- Context owns the normal UMU parse, while this watchdog covers omitted
+-- leave events. Wake independently of a fingerprint change, since returning
+-- to another friendly/enemy unit can share the previous context fingerprint.
+function ProgramFace.WakeMouseoverPoll()
+	if not indexDirty and probeFlags.mouseover and not moPollArmed then
+		ProgramFace.ArmMouseoverPoll()
+	end
 end
 
 local function IsMouseoverOnly(kinds)

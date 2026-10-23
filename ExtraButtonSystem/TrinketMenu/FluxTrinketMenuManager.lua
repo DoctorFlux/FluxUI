@@ -8,6 +8,8 @@ local addonName, ns = ...
 
 FluxTrinketMenuManager = FluxTrinketMenuManager or {}
 local Manager = FluxTrinketMenuManager
+local Flux = (ns and ns.Flux) or _G.Flux
+local managedStartup = Flux and Flux.Module and Flux.Module.Register
 
 -- Local references
 local TM = FluxTrinketMenu
@@ -43,36 +45,25 @@ end
 -- ============================================================================
 
 local function Initialize()
-    if InCombatLockdown() then return end
-    
-    -- Create the Trinket Menu Grid
+    if InCombatLockdown() or (managedStartup and not Flux.securePhaseReady) then return false end
+    if Manager._startupReady then return true end
+    if not TM or not TM.CreateGrid then return false end
+
     if not Manager.Initialized then
         TM.CreateGrid(UIParent)
-        Manager.Initialized = true
+        if not TM.Frame then return false end
     end
-    
-    -- Anchor accordingly
     Manager:UpdateAnchor()
-    
-    TM.UpdateTrinketVisibility()
-    if TM.UpdateKeybindings then
-        TM.UpdateKeybindings()
-    end
-    if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            if TM.UpdateKeybindings then
-                TM.UpdateKeybindings()
-            end
-        end)
-        C_Timer.After(2, function()
-            if TM.UpdateKeybindings then
-                TM.UpdateKeybindings()
-            end
-        end)
-    end
+    -- Equipped-slot input is ready without waiting on a full bag classification.
+    -- Deferred initialization and inventory pulses populate the flyout afterward.
+    TM.UpdateTrinketVisibility(true)
     if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
         FluxUnifiedBorder.UpdateBorder()
     end
+    Manager.Initialized = true
+    Manager._startupReady = true
+    if Flux and Flux.Startup then Flux.Startup.Mark("trinkets_ready") end
+    return true
 end
 
 -- ============================================================================
@@ -80,7 +71,12 @@ end
 -- ============================================================================
 
 function Manager:UpdateAnchor()
-    if InCombatLockdown() or not TM.Frame then return end
+    if InCombatLockdown() then
+        Manager._pendingAnchor = true
+        return
+    end
+    if not TM.Frame then return end
+    Manager._pendingAnchor = nil
     
     local anchorFrame = TM.ScaleHost or TM.Frame
     anchorFrame:ClearAllPoints()
@@ -151,112 +147,38 @@ if C_PetBattles then
     eventFrame:RegisterEvent("PET_BATTLE_CLOSE")
 end
 
--- Event-based watcher for instant initialization
-local watcherFrame = CreateFrame("Frame")
-local checkCount = 0
-local MAX_CHECKS = 30 -- Safety limit: ~0.5 seconds at 60fps
-local initialized = false
+-- The startup pipeline creates secure input even with only the screen fallback
+-- anchor available. Layout notifications re-anchor it when the action strip moves.
+local function TryInitialize()
+    return Initialize()
+end
 
-local function TryInitialize(force)
-    if InCombatLockdown() then return false end
-    if initialized then 
-        -- Already initialized - check if we need to re-anchor to FluxActionBar
-        if TM.Frame and (_G["FluxMainActionBar"] and _G["FluxMainActionBar"]:IsShown() or 
-                         _G["FluxActionBarSensing"] and _G["FluxActionBarSensing"]:IsShown()) then
-            -- Re-anchor to action bar if it's now available (higher priority than window frame)
-            Manager:UpdateAnchor()
-        end
-        return true 
-    end
-    
-    -- Check if any valid anchor is available (instant initialization)
-    -- Priority: FluxActionBar > FluxWindowFrame
-    local hasAnchor = false
-    if _G["FluxMainActionBar"] and _G["FluxMainActionBar"]:IsShown() then
-        hasAnchor = true
-    elseif _G["FluxActionBarSensing"] and _G["FluxActionBarSensing"]:IsShown() then
-        hasAnchor = true
-    elseif FluxWindowFrame and FluxWindowFrame.GetFrame then
-        local windowFrame = FluxWindowFrame:GetFrame()
-        if windowFrame and windowFrame.GetPoint then
-            hasAnchor = true
-        end
-    end
-    
-    -- If forcing or any anchor exists, initialize immediately
-    if force or hasAnchor then
-        Initialize()
-        initialized = true
-        watcherFrame:SetScript("OnUpdate", nil) -- Stop watching
-        return true
-    end
-    
-    return false
+if managedStartup then
+    Flux.Module.Register("TrinketMenu", {
+        phase = "secure", priority = 47, protected = true, OnEnable = Initialize,
+    })
+    Flux.Module.Register("TrinketInventory", {
+        phase = "deferred", priority = 60, protected = true,
+        OnEnable = function()
+            if not Manager._startupReady then return false end
+            TM.UpdateTrinketVisibility()
+            return true
+        end,
+    })
 end
 
 eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
     if event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LOGIN" then
-        local isInitialLogin = (event == "PLAYER_LOGIN")
-            or (event == "PLAYER_ENTERING_WORLD" and arg1 == true)
-        -- Try immediately first (will initialize if any anchor exists)
-        if TryInitialize(false) then
-            -- If initialized but not with FluxActionBar, continue watching for it
-            if initialized and not (_G["FluxMainActionBar"] and _G["FluxMainActionBar"]:IsShown() or 
-                                    _G["FluxActionBarSensing"] and _G["FluxActionBarSensing"]:IsShown()) then
-                -- Continue watching for FluxActionBar to appear (higher priority)
-                checkCount = 0
-                watcherFrame:SetScript("OnUpdate", function(self, elapsed)
-                    checkCount = checkCount + 1
-                    -- Check if FluxActionBar is now available and re-anchor
-                    if (_G["FluxMainActionBar"] and _G["FluxMainActionBar"]:IsShown() or 
-                        _G["FluxActionBarSensing"] and _G["FluxActionBarSensing"]:IsShown()) then
-                        if TM.Frame then
-                            Manager:UpdateAnchor() -- This will automatically prioritize FluxActionBar
-                        end
-                        self:SetScript("OnUpdate", nil) -- Stop watching once anchored to action bar
-                    elseif checkCount >= MAX_CHECKS * 2 then
-                        -- Stop watching after extended checks (give it more time)
-                        self:SetScript("OnUpdate", nil)
-                    end
-                end)
-            end
-            if not isInitialLogin and initialized then
-                TM.UpdateTrinketVisibility()
-                if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
-                    FluxUnifiedBorder.UpdateBorder()
-                end
-            end
-            return
-        end
-        
-        -- If not initialized, watch every frame until any anchor is available
-        -- After MAX_CHECKS, initialize anyway with fallback anchors
-        checkCount = 0
-        watcherFrame:SetScript("OnUpdate", function(self, elapsed)
-            checkCount = checkCount + 1
-            if TryInitialize(false) or checkCount >= MAX_CHECKS then
-                -- If we hit the limit, force initialization with fallback anchors
-                if checkCount >= MAX_CHECKS and not initialized then
-                    TryInitialize(true)
-                end
-                -- If initialized but not with FluxActionBar, continue watching for it
-                if initialized and not (_G["FluxMainActionBar"] and _G["FluxMainActionBar"]:IsShown() or 
-                                        _G["FluxActionBarSensing"] and _G["FluxActionBarSensing"]:IsShown()) then
-                    -- Continue watching for FluxActionBar (reset counter and keep watching)
-                    checkCount = 0
-                    return
-                end
-                self:SetScript("OnUpdate", nil)
-            end
-        end)
-
-        if not isInitialLogin and initialized then
+        if not Manager._startupReady then
+            TryInitialize()
+        else
+            Manager:UpdateAnchor()
             TM.UpdateTrinketVisibility()
             if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
                 FluxUnifiedBorder.UpdateBorder()
             end
         end
-        
+
     elseif event == "PLAYER_EQUIPMENT_CHANGED" then
         if equipDebounceTimer then
             equipDebounceTimer:Cancel()
@@ -278,6 +200,10 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
         end
         
     elseif event == "PLAYER_REGEN_ENABLED" then
+        if not Manager._startupReady then
+            if not TryInitialize() then return end
+        end
+        if Manager._pendingAnchor then Manager:UpdateAnchor() end
         TM.ProcessCombatQueue()
 
         if TM._pendingVisibilityUpdate then
@@ -321,13 +247,11 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
         end)
 
     elseif event == "UI_SCALE_CHANGED" or event == "DISPLAY_SIZE_CHANGED" then
-        if TM.Frame and not InCombatLockdown() then
-            Manager:UpdateAnchor()
-        end
+        Manager:UpdateAnchor()
         
     elseif event == "PET_BATTLE_OPENING_START" then
         -- Hide during pet battles
-        if TM.Frame and TM.Frame:IsShown() then
+        if TM.Frame and TM.Frame:IsShown() and not InCombatLockdown() then
             TM.Frame:Hide()
             TM.Frame.WasShownBeforePetBattle = true
         end

@@ -365,6 +365,12 @@ end
 
 --- Hide / mute a Blizzard unit frame while the Flux replacement is active.
 function FluxUnitFrames_SuppressBlizzardUnitFrame(unit)
+    -- Keep native controls and displays until the replacement finished setup.
+    if not UF or not UF.IsInitialized or not UF.IsInitialized(unit) then return end
+    if workBlocked() then
+        UF.DeferProtected("suppress." .. unit, function() FluxUnitFrames_SuppressBlizzardUnitFrame(unit) end)
+        return
+    end
     local frame = blizzardFrameForUnit(unit)
     if not frame or not wantFlux(unit) then
         return
@@ -539,6 +545,10 @@ end
 
 function FluxUnitFrames_ApplyFluxVsBlizzardRuntime()
     if not FluxUnitFrames_ShouldUseFlux then
+        return
+    end
+    if workBlocked() then
+        UF.DeferProtected("runtime.all", FluxUnitFrames_ApplyFluxVsBlizzardRuntime)
         return
     end
 

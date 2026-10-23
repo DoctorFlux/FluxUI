@@ -1,5 +1,7 @@
 # Verification record and in-game checklist
 
+The latest validation is in [the idle follow-up](46-idle-followup.md) and [final machine-readable results](validation/idle-followup-2026-10-23.json). The [test failure resolution](44-test-failure-resolution.md) and [startup implementation report](43-startup-optimization.md) record earlier phases. The dated 28-script/662-file record below is the **pre-optimization baseline**; [its initial smoke output](validation/before-startup-2026-10-23.json) is preserved separately. The [38/40 follow-up baseline](validation/before-test-failure-resolution-2026-10-23.json) preserves the two failures before their investigation, and the [44-script baseline](validation/before-idle-optimization-2026-10-23.json) precedes idle optimization. `reference/verification.json` indexes the final corpus and tests.
+
 This reference separates what can be established by reading files, desktop harnesses and a live World of Warcraft client. Documentation generation/validation does not execute gameplay.
 
 ## Evidence levels
@@ -17,9 +19,13 @@ Do not label source-supported matrix entries as live-verified. A successful pcal
 
 ## Current verification: 23 October 2026
 
-The complete current **28-script** smoke suite was executed on desktop **Lua 5.4.6**: **26 passed, 2 failed**. All **662 publishable Lua files**, including bundled libraries and local harnesses, also passed `luac -p`. The two failures remain the Core salvage-overlay source assertion and Bars' 26 source-contract assertions; no assertion was relaxed and no addon Lua was edited by this documentation refresh. A failing text expectation is not proof of 26 live defects. The passing behavioral fixtures do not erase those failures.
+The full desktop **Lua 5.4.6** suite now passes **51 of 51 scripts**, including both previously failing scripts. All **688 Lua files**, including bundled libraries and harnesses, pass `luac -p`. Seven latest fixtures cover idle optimizations, map lifecycle, layout equality and diagnostics with targeted mutations; four earlier fixtures cover the [test failure resolution](44-test-failure-resolution.md). The [idle report](45-idle-performance.md) includes the supplied Forever native baseline/first candidate and deterministic operation counts. The first candidate reduces measured Lua CPU but does not establish an FPS improvement. Final native performance and complete gameplay acceptance remain pending; desktop results do not establish native WoW behavior.
 
-[verification.json](reference/verification.json) records every script's exit status/output, the publishable Lua manifest and its corpus fingerprint. The corpus fingerprint uses sorted `{path,sha256}` records serialized as compact JSON with sorted object keys; individual hashes normalize CRLF to LF while preserving BOM and other bytes. The source inventory uses the same line-ending policy, so Windows and LF checkouts can validate the same source. The ignored root strip-lines helper is a local tooling item, excluded from this publishable corpus.
+### Prior compatibility baseline
+
+Before startup optimization, the then-complete **28-script** suite passed **26 scripts** and failed **2**. All **662 publishable Lua files** passed `luac -p`. The failures were the Core salvage-overlay expectation and Bars' 26 source-contract assertions. That documentation refresh did not edit runtime code or relax assertions; the later investigation is recorded separately.
+
+The current [verification.json](reference/verification.json) records every script's exit status/output, the Lua manifest and its corpus fingerprint. The corpus fingerprint uses sorted `{path,sha256}` records serialized as compact JSON with sorted object keys; individual hashes normalize CRLF to LF while preserving BOM and other bytes. The source inventory uses the same line-ending policy, so Windows and LF checkouts can validate the same source. The ignored root strip-lines helper is a local tooling item, excluded from this corpus.
 
 | New compatibility harness | Current result and boundary |
 |---|---|

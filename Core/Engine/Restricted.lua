@@ -133,6 +133,11 @@ local unitWatchers = {}
 local fallbackFrame
 local fallbackTimer = 0
 local FALLBACK_THROTTLE = 0.2
+-- Identical driver strings are common on main/mini rows and visibility
+-- headers. One sweep observes one condition snapshot; reuse its parse,
+-- including nil answers, without retaining results across events/ticks.
+local parsedDrivers = {}
+local NO_DRIVER_VALUE = {}
 
 local function IsFluxOwned(frame)
 	if not frame then
@@ -190,12 +195,12 @@ local function ApplyUnitWatch(frame, asState)
 	if not IsFluxOwned(frame) then
 		return
 	end
-	local unit = FrameUnit(frame)
-	local exists = unit and UnitExists(unit)
 	if asState then
 		if InLockdown() then
 			return
 		end
+		local unit = FrameUnit(frame)
+		local exists = unit and UnitExists(unit)
 		if frame.SetAttribute then
 			pcall(frame.SetAttribute, frame, "state-unitexists", exists and true or false)
 		end
@@ -216,7 +221,13 @@ local function ApplyAttributeDriver(frame, attribute, values)
 	if type(values) ~= "string" or values == "" or not SecureCmdOptionParse then
 		return
 	end
-	local newValue = SecureCmdOptionParse(values)
+	local newValue = parsedDrivers[values]
+	if newValue == nil then
+		newValue = SecureCmdOptionParse(values)
+		parsedDrivers[values] = newValue == nil and NO_DRIVER_VALUE or newValue
+	elseif newValue == NO_DRIVER_VALUE then
+		newValue = nil
+	end
 	if attribute == "state-visibility" then
 		local name = frame.GetName and frame:GetName()
 		local petExistence = name == "FluxUnitFrame_pet" or name == "FluxUnitFrame_pettarget"
@@ -258,6 +269,9 @@ local function ApplyAll()
 	-- SyncWatchedUnitFrameVisibility until PLAYER_REGEN_ENABLED runs this again.
 	if InLockdown() then
 		return
+	end
+	for values in pairs(parsedDrivers) do
+		parsedDrivers[values] = nil
 	end
 	for frame, drivers in pairs(attributeDrivers) do
 		for attribute, values in pairs(drivers) do

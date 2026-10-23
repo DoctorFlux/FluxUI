@@ -44,7 +44,7 @@ end
 
 has(micro, "local function ClampBesideChatColumn", "ClampBesideChatColumn exists")
 has(micro, "local function FrameEdgeInUIParent", "scale-correct edge helper")
-has(micro, "local function ScheduleBesideChatStayOnScreen", "pos2 stay scheduler")
+has(micro, "ScheduleBesideChatStayOnScreen = function()", "pos2 stay scheduler")
 has(micro, "FluxMicroMenuPos2SizeHooked", "pos2 reclamps on UIParent size")
 has(micro, 'SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT"', "pos2 pins to UIParent")
 has(micro, "FluxOptions:GetMicroMenuLayoutPosition() ~= 2", "stay scheduler is pos2-only")
@@ -182,7 +182,7 @@ has(micro, '"PlayerSpellsMicroButton"', "PlayerSpells listed so live still disco
 has(micro, '"HousingMicroButton"', "Housing parked when feature gate is false")
 has(micro, "ParkLeftoverMicroMenuLayoutChildren", "parks leftover MicroMenu layoutIndex children")
 hasNot(micro, 'hooksecurefunc(em, "InitSystemAnchors"', "must not post-hook InitSystemAnchors (runs before ResetTargetAndFocus)")
-has(micro, "FluxAfterEditMode(ParkLeftoverMicroMenuLayoutChildren)", "parks MicroMenu leftovers after Edit Mode closes")
+has(micro, 'end, "MicroMenu.EditExit")', "parks MicroMenu leftovers after Edit Mode closes")
 has(micro, '"EditMode.Exit"', "MicroMenu park is driven by EditMode.Exit")
 has(micro, "HelpOpenWebTicketButton", "parks HelpOpenWebTicketButton off MicroMenu")
 hasNot(micro, "MicroMenuContainer:EnableMouse", "must not EnableMouse MicroMenuContainer")

@@ -125,14 +125,22 @@ local function AnyAssistant()
 end
 
 local function AssistantUpdateRate()
-	local mgr = _G.AssistedCombatManager
-	if mgr and mgr.GetUpdateRate then
-		local ok, rate = pcall(mgr.GetUpdateRate, mgr)
-		if ok and type(rate) == "number" then
-			if rate < 0.05 then
-				return 0.05
+	local barWatch = Flux.Bars and Flux.Bars.Watch
+	if barWatch and barWatch.GetAssistantManagerRate then
+		local rate = barWatch.GetAssistantManagerRate()
+		if type(rate) == "number" then
+			return math.max(0.05, rate)
+		end
+	else
+		local mgr = _G.AssistedCombatManager
+		if mgr and mgr.GetUpdateRate then
+			local ok, rate = pcall(mgr.GetUpdateRate, mgr)
+			if ok and type(rate) == "number" then
+				if rate < 0.05 then
+					return 0.05
+				end
+				return rate
 			end
-			return rate
 		end
 	end
 	if GetCVar then

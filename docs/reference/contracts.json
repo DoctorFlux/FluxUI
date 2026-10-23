@@ -13,7 +13,7 @@
   },
   {
     "source": "Core/Module.lua",
-    "contains": "function Module.EnableEligible()"
+    "contains": "function Module.EnableEligible(phase)"
   },
   {
     "source": "Core/Engine/Events.lua",
@@ -113,11 +113,11 @@
   },
   {
     "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
-    "contains": "local function DropLegacyStores()"
+    "contains": "local function MigrateLegacyStores()"
   },
   {
     "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
-    "contains": "_G.FluxRestockDB = nil"
+    "contains": "checkpoint.legacyAccount = Copy(_G.FluxRestockDB)"
   },
   {
     "source": "Binding/Core/DB.lua",

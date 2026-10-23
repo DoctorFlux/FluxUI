@@ -2308,17 +2308,21 @@ function Paint.Flush(tokens)
 	local glow = full or (tokens and tokens["bars.glow"])
 	local valueLane = icon or count or cooldown or usable or checked or equipped or range or glow
 	local anyLane = valueLane or hotkey
+	local painted
 
 	-- Swapped hosts (SHIFT/CTRL, form page) MarkDirty then coalesce bars.dirty
 	-- with count/cd/hotkey. UpdateAll those hosts so icon/usable/checked land
-	-- even when the event never asked for bars.icon. Do not 57-walk the other
-	-- lanes: that was the form hitch. Hotkey still fans out — S-/C- lives on
-	-- every main, including ones whose action did not move.
+	-- even when the event never asked for bars.icon. A dirty-only pass stops
+	-- there. Independently requested lanes still reach the other hosts: a slot
+	-- move must not swallow a coalesced cooldown/charge/icon event.
 	if full then
 		for host in pairs(dirtyHosts) do
 			dirtyHosts[host] = nil
 		end
 	elseif hasDirty then
+		if anyLane then
+			painted = {}
+		end
 		local Perf = Flux.Perf
 		if Perf then
 			Perf.Begin("bars.paint.dirty")
@@ -2328,6 +2332,9 @@ function Paint.Flush(tokens)
 			FX.BeginSlotPass()
 		end
 		for host in pairs(dirtyHosts) do
+			if painted then
+				painted[host] = true
+			end
 			Paint.UpdateAll(host)
 			dirtyHosts[host] = nil
 		end
@@ -2337,18 +2344,6 @@ function Paint.Flush(tokens)
 		if Perf then
 			Perf.Stop("bars.paint.dirty")
 		end
-		if hotkey then
-			if Perf then
-				Perf.Begin("bars.paint.lane")
-			end
-			Bars.ForEachHost(function(host)
-				Paint.UpdateHotkey(host)
-			end)
-			if Perf then
-				Perf.Stop("bars.paint.lane")
-			end
-		end
-		return
 	end
 
 	if not anyLane then
@@ -2470,7 +2465,9 @@ function Paint.Flush(tokens)
 	end
 
 	Bars.ForEachHost(function(host)
-		PaintOne(host, true)
+		if not (painted and painted[host]) then
+			PaintOne(host, true)
+		end
 	end)
 
 	if FX and FX.EndSlotPass then

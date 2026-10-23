@@ -586,10 +586,10 @@ local function OnZoneLayoutWatcherEvent()
 end
 
 local function EnsureZoneLayoutWatcher()
-    if zoneLayoutWatcher then
-        return
+    if not zoneLayoutWatcher then
+        zoneLayoutWatcher = CreateFrame("Frame")
     end
-    zoneLayoutWatcher = CreateFrame("Frame")
+    if zoneLayoutWatcher:GetScript("OnEvent") then return end
     zoneLayoutWatcher:RegisterEvent("PLAYER_ENTERING_WORLD")
     zoneLayoutWatcher:RegisterEvent("ZONE_CHANGED_NEW_AREA")
     zoneLayoutWatcher:RegisterEvent("NEW_WMO_CHUNK")
@@ -602,7 +602,6 @@ local function StopZoneLayoutWatcher()
     end
     zoneLayoutWatcher:UnregisterAllEvents()
     zoneLayoutWatcher:SetScript("OnEvent", nil)
-    zoneLayoutWatcher = nil
 end
 
 local function StripCombatUnsafeMapProviders(mapFrame)
@@ -696,8 +695,9 @@ local function RestoreMapLayoutHooksPostDF(mapFrame)
     if not mapFrame then
         return
     end
-    mapFrame.FluxBattlefieldMap_OnShowHooked = nil
-    mapFrame.FluxBattlefieldMap_HideHooked = nil
+    -- These post-hooks are permanent. Clearing their installation flags on
+    -- every tab departure installs duplicates when the same native map returns.
+    -- Their callbacks already gate all work on the current embedding state.
     mapFrame.FluxLayoutHooked = nil
 end
 

@@ -36,8 +36,29 @@ local CHAR_VARS = {
 local function EnsureTable(name)
 	local t = _G[name]
 	if type(t) ~= "table" then
-		t = {}
-		_G[name] = t
+		local replacement = {}
+		if t ~= nil then
+			-- Preserve malformed but serializable roots before repairing their
+			-- shape. Never discard a player's recoverable SavedVariables value.
+			local account = name == "FluxUI_DB" and replacement or _G.FluxUI_DB
+			if type(account) ~= "table" then
+				account = {}
+				if _G.FluxUI_DB ~= nil then account.__invalidAccountRoot = _G.FluxUI_DB end
+				_G.FluxUI_DB = account
+			end
+			local recovery = account.__fluxRootRecoveryV1
+			if type(recovery) ~= "table" then
+				recovery = { version = 1, previous = recovery, roots = {} }
+				account.__fluxRootRecoveryV1 = recovery
+			end
+			if type(recovery.roots) ~= "table" then
+				recovery.previousRoots = recovery.roots
+				recovery.roots = {}
+			end
+			if recovery.roots[name] == nil then recovery.roots[name] = t end
+		end
+		t = replacement
+		_G[name] = replacement
 	end
 	return t
 end

@@ -15,6 +15,7 @@ local pendingOrder = {}
 local lightQ = {}
 local heavyQ = {}
 local drainArmed = false
+local flushing = false
 
 function Combat.InLockdown()
 	return InCombatLockdown and InCombatLockdown() and true or false
@@ -41,9 +42,18 @@ local function DrainRegenQueues()
 	heavyQ = {}
 	local function run()
 		for i = 1, #light do
+			if Combat.InLockdown() then
+				for j = i, #light do lightQ[#lightQ + 1] = light[j] end
+				for j = 1, #heavy do heavyQ[#heavyQ + 1] = heavy[j] end
+				return
+			end
 			Flux.Safecall(light[i])
 		end
 		for i = 1, #heavy do
+			if Combat.InLockdown() then
+				for j = i, #heavy do heavyQ[#heavyQ + 1] = heavy[j] end
+				return
+			end
 			Flux.Safecall(heavy[i])
 		end
 	end
@@ -100,6 +110,7 @@ function Combat.Defer(key, fn)
 	key = key or tostring(fn)
 	if not pending[key] then
 		pendingOrder[#pendingOrder + 1] = key
+		if Flux.Startup and Combat.InLockdown() then Flux.Startup.Count("combat_operations_deferred") end
 	end
 	pending[key] = fn
 	if not Combat.InLockdown() then
@@ -108,7 +119,7 @@ function Combat.Defer(key, fn)
 end
 
 function Combat.Flush()
-	if Combat.InLockdown() then
+	if Combat.InLockdown() or flushing then
 		return false
 	end
 	local Regen = Flux.Perf and Flux.Perf.Regen
@@ -116,8 +127,21 @@ function Combat.Flush()
 	local map = pending
 	pending = {}
 	pendingOrder = {}
+	flushing = true
 	local keysRan = {}
 	for i = 1, #order do
+		-- A callback can synchronously enter lockdown. Retain all unexecuted
+		-- jobs; a newer same-key request remains authoritative.
+		if Combat.InLockdown() then
+			for j = i, #order do
+				local key = order[j]
+				if not pending[key] and map[key] then
+					pendingOrder[#pendingOrder + 1] = key
+					pending[key] = map[key]
+				end
+			end
+			break
+		end
 		local key = order[i]
 		local fn = map[key]
 		if fn then
@@ -131,9 +155,14 @@ function Combat.Flush()
 			end
 		end
 	end
+	flushing = false
 	if Regen and Regen.NoteFlushKeys then
 		Regen.NoteFlushKeys(keysRan)
 	end
+	-- Requests made by a running callback are drained on a new frame, not a
+	-- recursive stack. Recheck lockdown when that frame arrives.
+	if #pendingOrder > 0 and not Combat.InLockdown() then After0(Combat.Flush) end
+	if Flux.Startup then Flux.Startup.CheckLayout() end
 	return true
 end
 

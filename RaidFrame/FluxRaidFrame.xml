@@ -144,34 +144,8 @@
 		</Anchors>
 	</Frame>
 
-	<Frame name="FluxRaidGrp1" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="1">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp2" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="2">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp3" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="3">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp4" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="4">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp5" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="5">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp6" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="6">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp7" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="7">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-	<Frame name="FluxRaidGrp8" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="8">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
-
-	<Frame name="FluxRaidMTMA" parent="FluxRaidContainer" inherits="FluxRaidGroupHeaderTemplate" id="9">
-		<Anchors><Anchor point="TOPLEFT"/></Anchors>
-	</Frame>
+	<!-- Secure headers are created by the secure startup phase after saved
+	     configuration and the Forever gamepad barrier, never during lockdown. -->
 
 	<Frame name="FluxRaidEventFrame" parent="UIParent" hidden="true">
 		<Anchors>

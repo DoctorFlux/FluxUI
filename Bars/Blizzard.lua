@@ -74,6 +74,17 @@ local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
 end
 
+local function CanReplaceBar(name)
+	if Bars.secureReady == false then return false end
+	if name == "PetActionBar" or name == "PetActionBarFrame" or name == "ActionBarParent" then
+		if Bars.Pet and Bars.Pet.secureReady == false then return false end
+	end
+	if name == "StanceBar" or name == "StanceBarFrame" or name == "MultiCastActionBarFrame" or name == "ActionBarParent" then
+		if Bars.Stance and Bars.Stance.secureReady == false then return false end
+	end
+	return true
+end
+
 local STOCK_GRID_EVENTS = {
 	ACTIONBAR_SHOWGRID = true,
 	ACTIONBAR_HIDEGRID = true,
@@ -111,7 +122,7 @@ local function SuppressStockGridEvents()
 		SilenceStockGridEvents(_G[MAIN_BARS[i]])
 	end
 	for i = 1, #MULTI_BARS do
-		SilenceStockGridEvents(_G[MULTI_BARS[i]])
+		if CanReplaceBar(MULTI_BARS[i]) then SilenceStockGridEvents(_G[MULTI_BARS[i]]) end
 	end
 end
 
@@ -399,7 +410,7 @@ end
 
 local function AlphaUnusedBars()
 	for i = 1, #MULTI_BARS do
-		ParkUnusedBar(_G[MULTI_BARS[i]])
+		if CanReplaceBar(MULTI_BARS[i]) then ParkUnusedBar(_G[MULTI_BARS[i]]) end
 	end
 end
 
@@ -537,6 +548,7 @@ local function HideClassicStanceArt(bar)
 end
 
 local function HideStockStanceBars()
+	if not CanReplaceBar("StanceBar") then return end
 	local locked = InLockdown()
 	for i = 1, #STOCK_STANCE_BARS do
 		local bar = _G[STOCK_STANCE_BARS[i]]
@@ -593,6 +605,7 @@ local leftoverQueued = false
 
 local function ApplyLeftoverNow()
 	leftoverQueued = false
+	if Bars.secureReady == false then return end
 	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		local bar = _G[MAIN_BARS[i]]
@@ -758,6 +771,7 @@ local function NeutralizeUnusedBar(bar)
 end
 
 function Blizzard.HideStockButtons()
+	if Bars.secureReady == false then return end
 	for i = 1, Bars.NUM_NATIVE do
 		SilenceStockButton(Blizzard.GetActionButton(i))
 		NeutralizeStockButton(Blizzard.GetActionButton(i))
@@ -767,6 +781,7 @@ function Blizzard.HideStockButtons()
 end
 
 function Blizzard.KillLeftoverMouse()
+	if Bars.secureReady == false then return end
 	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		NeutralizeMainBar(_G[MAIN_BARS[i]])
@@ -792,8 +807,10 @@ function Blizzard.KillLeftoverMouse()
 		KillMouse(_G["MainActionBarButtonContainer" .. i])
 	end
 	for i = 1, #MULTI_BARS do
-		NeutralizeUnusedBar(_G[MULTI_BARS[i]])
-		NeutralizePostDFBarChrome(_G[MULTI_BARS[i]])
+		if CanReplaceBar(MULTI_BARS[i]) then
+			NeutralizeUnusedBar(_G[MULTI_BARS[i]])
+			NeutralizePostDFBarChrome(_G[MULTI_BARS[i]])
+		end
 	end
 	KillMouse(_G.MainMenuBarVehicleLeaveButton)
 	NeutralizeIconIntro()
@@ -801,10 +818,13 @@ function Blizzard.KillLeftoverMouse()
 end
 
 function Blizzard.HideUnusedBars()
+	-- Do not take native input away until all replacement surfaces and their
+	-- paging/input setup completed. Failed or combat-blocked startup keeps it.
+	if Bars.secureReady == false then return end
 	SuppressStockGridEvents()
 	if not InLockdown() then
 		for i = 1, #MULTI_BARS do
-			UnparkIfNeeded(_G[MULTI_BARS[i]])
+			if CanReplaceBar(MULTI_BARS[i]) then UnparkIfNeeded(_G[MULTI_BARS[i]]) end
 		end
 	end
 	Blizzard.KillLeftoverMouse()
@@ -941,6 +961,7 @@ end
 --- Drag grid only re-shows stock buttons. Hide them again without the collector
 --- sweep, secure stance suppression, and art pass used by a real layout.
 function Blizzard.QuietGrid()
+	if Bars.secureReady == false then return end
 	local function Dim(frame)
 		if type(frame) == "table" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then
 			frame:SetAlpha(0)
@@ -952,7 +973,7 @@ function Blizzard.QuietGrid()
 	end
 	for i = 1, #MULTI_BARS do
 		local bar = _G[MULTI_BARS[i]]
-		if bar ~= _G.StanceBar and bar ~= _G.PossessActionBar
+		if CanReplaceBar(MULTI_BARS[i]) and bar ~= _G.StanceBar and bar ~= _G.PossessActionBar
 			and bar ~= _G.StanceBarFrame and bar ~= _G.PossessBarFrame then
 			Dim(bar)
 		end

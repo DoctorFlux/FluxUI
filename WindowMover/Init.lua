@@ -23,6 +23,7 @@ function WindowMover.SetEnabled(enabled)
 end
 
 Flux.Module.Register("WindowMover", {
+	phase = "deferred",
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = function()
 		WindowMover.Start()

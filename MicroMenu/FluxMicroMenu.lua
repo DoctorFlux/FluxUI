@@ -3,6 +3,10 @@
 -- Replacing the default Micro Menu with a custom, consistent top-left container.
 
 local addonName, addonTable = ...
+local Flux = (addonTable and addonTable.Flux) or _G.Flux
+local managedStartup = Flux and Flux.Module and Flux.Module.Register
+local RequestDiscoveryRefresh
+local ScheduleBesideChatStayOnScreen
 local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 
 --- Set in-file before `UpdateLayout`; used from `CreateMicroButton` after load.
@@ -624,6 +628,7 @@ function FluxMicroMenu:CreateMicroButton(globalName, iconTexture, tooltipTitle, 
         if InvalidateDiscoverCacheInternal then
             InvalidateDiscoverCacheInternal()
         end
+        if RequestDiscoveryRefresh then RequestDiscoveryRefresh() end
         return btn
     end
 end
@@ -2728,22 +2733,23 @@ local function WatchEditModeMicroMenuSanitize()
     editModeMicroParkRegistered = true
     EventRegistry:RegisterCallback("EditMode.Exit", function()
         if FluxAfterEditMode then
-            FluxAfterEditMode(ParkLeftoverMicroMenuLayoutChildren)
+            FluxAfterEditMode(function()
+                ParkLeftoverMicroMenuLayoutChildren()
+                if ScheduleBesideChatStayOnScreen then ScheduleBesideChatStayOnScreen() end
+            end, "MicroMenu.EditExit")
         end
     end)
 end
 
 local function HijackButtons()
-    if InCombatLockdown() then
+    if InCombatLockdown() or FluxGameMenuBlocksMicroTaintWork() then
         FluxMicroMenu.needsUpdate = true
-        return
+        return false
     end
     if FluxEditModeBusy and FluxEditModeBusy() then
         FluxAfterEditMode(HijackButtons)
-        return
+        return false
     end
-
-    DisableBlizzardLayout()
 
     local discovered = DiscoverButtons()
     local newButtons = discovered
@@ -2801,19 +2807,44 @@ local function HijackButtons()
     UpdateLayout()
     ParkLeftoverMicroMenuLayoutChildren()
     WatchEditModeMicroMenuSanitize()
+    -- Native controls stay usable until their moved replacements have a layout.
+    DisableBlizzardLayout()
+    FluxMicroMenu.needsUpdate = false
+    return true
 end
 
 -- Use a flag-based approach to avoid taint issues with game menu
 local pendingLayoutUpdate = false
+local pendingDiscoveryUpdate = false
 local layoutUpdateFrame = CreateFrame("Frame")
 layoutUpdateFrame:Hide()
 layoutUpdateFrame:SetScript("OnUpdate", function(self)
     self:Hide()
     pendingLayoutUpdate = false
-    if not InCombatLockdown() then
+    local discover = pendingDiscoveryUpdate
+    pendingDiscoveryUpdate = false
+    if InCombatLockdown() or FluxGameMenuBlocksMicroTaintWork() then
+        FluxMicroMenu.needsUpdate = true
+    elseif discover then
+        InvalidateDiscoverCacheInternal()
+        HijackButtons()
+    else
         UpdateLayout()
     end
 end)
+
+RequestDiscoveryRefresh = function()
+    if managedStartup and not Flux.loggedIn then return end
+    if InCombatLockdown() then
+        FluxMicroMenu.needsUpdate = true
+        return
+    end
+    pendingDiscoveryUpdate = true
+    if not pendingLayoutUpdate then
+        pendingLayoutUpdate = true
+        layoutUpdateFrame:Show()
+    end
+end
 
 -- Classic/Anniversary: refresh bar after Blizzard's UpdateMicroButtons SetPoint chain.
 -- Do NOT replace the global UpdateMicroButtons with addon code — that taints the function and breaks
@@ -2926,7 +2957,8 @@ end
 -- Post-hook HelpTip:Show to fix microbutton notification positioning without replacing HelpTip.Show (assignment
 -- taints the global entry point and can break secure callers). After Blizzard's Show runs, re-anchor via Hide+Show.
 local function FixMicroButtonNotifications()
-    if not FLUX_API.hasHelpTip_Show then return end
+    if FluxMicroMenu._notificationHooked then return end
+    if not (FLUX_API and FLUX_API.hasHelpTip_Show) then return end
     if not HelpTip or type(HelpTip.Show) ~= "function" or not hooksecurefunc then return end
 
     -- Create shared anchor frame if it doesn't exist
@@ -2977,6 +3009,7 @@ local function FixMicroButtonNotifications()
             end
         end
     end)
+    FluxMicroMenu._notificationHooked = true
 end
 
 -- ---------------------------------------------------------------------------
@@ -2986,12 +3019,13 @@ end
 WatchEditModeMicroMenuSanitize()
 
 FluxMicroMenu:RegisterEvent("PLAYER_LOGIN")
+FluxMicroMenu:RegisterEvent("ADDON_LOADED")
 FluxMicroMenu:RegisterEvent("PLAYER_REGEN_ENABLED")
 FluxMicroMenu:RegisterEvent("PLAYER_LEVEL_UP")
 FluxMicroMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 FluxMicroMenu:RegisterEvent("PLAYER_TALENT_UPDATE")
 FluxMicroMenu:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-local function ScheduleBesideChatStayOnScreen()
+ScheduleBesideChatStayOnScreen = function()
     if InCombatLockdown() then
         FluxMicroMenu.needsUpdate = true
         return
@@ -3005,7 +3039,46 @@ local function ScheduleBesideChatStayOnScreen()
     if FluxOptions:GetMicroMenuLayoutPosition() ~= 2 then
         return
     end
-    UpdateLayout()
+    if not pendingLayoutUpdate then
+        pendingLayoutUpdate = true
+        layoutUpdateFrame:Show()
+    end
+end
+
+-- Chat restores may occur long after login. Follow actual restore/size events
+-- rather than assuming three fixed startup delays cover every client.
+local chatSettleHooks = {}
+local function EnsureChatSettleHooks()
+    local chat = _G.ChatFrame1
+    if chat and chat.HookScript and not chat.FluxMicroMenuSettleHooked then
+        chat:HookScript("OnSizeChanged", ScheduleBesideChatStayOnScreen)
+        chat:HookScript("OnShow", ScheduleBesideChatStayOnScreen)
+        chat.FluxMicroMenuSettleHooked = true
+    end
+    if not hooksecurefunc then return end
+    for _, name in ipairs({ "FCF_RestorePositionAndDimensions", "FCF_DockUpdate" }) do
+        if not chatSettleHooks[name] and type(_G[name]) == "function" then
+            hooksecurefunc(name, function() ScheduleBesideChatStayOnScreen() end)
+            chatSettleHooks[name] = true
+        end
+    end
+end
+
+local function InitializeMicroMenu()
+    if managedStartup and not Flux.loggedIn then return false end
+    if FluxMicroMenu._startupReady then return true end
+    if HijackButtons() == false then return false end
+    FixMicroButtonNotifications()
+    EnsureChatSettleHooks()
+    FluxMicroMenu._startupReady = true
+    if Flux and Flux.Startup then Flux.Startup.Mark("micromenu_ready") end
+    return true
+end
+
+if managedStartup then
+    Flux.Module.Register("MicroMenu", {
+        phase = "hud", priority = 40, protected = true, OnEnable = InitializeMicroMenu,
+    })
 end
 
 if UIParent and UIParent.HookScript and not UIParent.FluxMicroMenuPos2SizeHooked then
@@ -3021,33 +3094,18 @@ end
 
 FluxMicroMenu:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" then
-        HijackButtons()
+        InitializeMicroMenu()
+    elseif event == "ADDON_LOADED" then
+        if managedStartup and not Flux.loggedIn then return end
+        EnsureChatSettleHooks()
         FixMicroButtonNotifications()
-        
-        -- Use watcher pattern for late-loading buttons instead of fixed delays
-        local hijackWatcher = CreateFrame("Frame")
-        local hijackCheckCount = 0
-        local HIJACK_MAX_CHECKS = 100  -- Check for ~5 seconds
-        hijackWatcher:Hide()
-        hijackWatcher:SetScript("OnUpdate", function(watcher)
-            hijackCheckCount = hijackCheckCount + 1
-            if hijackCheckCount >= HIJACK_MAX_CHECKS then
-                watcher:Hide()
-                -- Final hijack attempt
-                HijackButtons()
-            elseif hijackCheckCount == 20 or hijackCheckCount == 60 then
-                -- Periodic hijack attempts at ~1s and ~3s
-                HijackButtons()
-            end
-        end)
-        hijackWatcher:Show()
-        -- Chat FCF/Edit Mode restore runs after first hijack; re-pin pos2 to UIParent.
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.25, ScheduleBesideChatStayOnScreen)
-            C_Timer.After(1.2, ScheduleBesideChatStayOnScreen)
-            C_Timer.After(2.5, ScheduleBesideChatStayOnScreen)
+        if not FluxMicroMenu._startupReady then
+            InitializeMicroMenu()
+        else
+            RequestDiscoveryRefresh()
         end
     elseif event == "PLAYER_REGEN_ENABLED" then
+        if not FluxMicroMenu._startupReady then InitializeMicroMenu() end
         if FluxMicroMenu.needsUpdate then
             FluxMicroMenu.needsUpdate = false
             HijackButtons()
@@ -3057,10 +3115,10 @@ FluxMicroMenu:SetScript("OnEvent", function(self, event, ...)
         if not FluxGameMenuBlocksMicroTaintWork() and FluxUpdateTalentMicroButtonPreDF then
             FluxUpdateTalentMicroButtonPreDF()
         end
-        if event == "PLAYER_ENTERING_WORLD" and C_Timer and C_Timer.After then
-            C_Timer.After(0, ScheduleBesideChatStayOnScreen)
-            C_Timer.After(0.5, ScheduleBesideChatStayOnScreen)
-            C_Timer.After(1.5, ScheduleBesideChatStayOnScreen)
+        if event == "PLAYER_ENTERING_WORLD" then
+            if not FluxMicroMenu._startupReady then InitializeMicroMenu() end
+            RequestDiscoveryRefresh()
+            ScheduleBesideChatStayOnScreen()
         end
     end
 end)

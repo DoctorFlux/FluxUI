@@ -11,29 +11,35 @@ local started = false
 
 local function CallInstaller(fn)
 	if type(fn) ~= "function" then
-		return
+		return true
 	end
-	Flux.Safecall(fn)
+	return Flux.Safecall(fn)
 end
 
 function CI.TryInstall()
+	if Flux.Combat and Flux.Combat.InLockdown() then
+		Flux.Combat.Defer("characterinfo.install", CI.TryInstall)
+		return false
+	end
 	local Cap = Flux.Cap
 	if Cap and Cap.RefreshCharacterInfo then
 		Cap.RefreshCharacterInfo()
 	end
 
-	CallInstaller(module and module.InstallClassicStatsPanel)
-	CallInstaller(module and module.InstallQuality)
-	CallInstaller(module and module.InstallVisibility)
-	CallInstaller(module and module.InstallSecondaryName)
-	CallInstaller(module and module.InstallItemLevel)
-	CallInstaller(module and module.InstallTacoTip)
-	CallInstaller(module and module.InstallRetailPane)
+	local success = true
+	if not CallInstaller(module and module.InstallClassicStatsPanel) then success = false end
+	if not CallInstaller(module and module.InstallQuality) then success = false end
+	if not CallInstaller(module and module.InstallVisibility) then success = false end
+	if not CallInstaller(module and module.InstallSecondaryName) then success = false end
+	if not CallInstaller(module and module.InstallItemLevel) then success = false end
+	if not CallInstaller(module and module.InstallTacoTip) then success = false end
+	if not CallInstaller(module and module.InstallRetailPane) then success = false end
 
 	local info = rawget(_G, "FluxInfoFrame")
 	if info and type(info.InstallCharacterInfoPinHooks) == "function" then
 		info.InstallCharacterInfoPinHooks()
 	end
+	return success
 end
 
 local function OnAddonLoaded(event, name)
@@ -50,9 +56,7 @@ local function Start()
 	if started then
 		return
 	end
-	started = true
-
-	CI.TryInstall()
+	if not CI.TryInstall() then return false end
 
 	if Flux.Events and Flux.Events.Register then
 		Flux.Events.Register("ADDON_LOADED", OnAddonLoaded)
@@ -63,9 +67,13 @@ local function Start()
 			CI.TryInstall()
 		end)
 	end
+	started = true
+	return true
 end
 
 Flux.Module.Register("CharacterInfo", {
+	phase = "deferred",
+	protected = true,
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = Start,
 })

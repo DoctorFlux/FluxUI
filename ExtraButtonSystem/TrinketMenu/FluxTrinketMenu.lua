@@ -461,12 +461,12 @@ function TM.CreateGrid(parent)
     local scale = TM.DEFAULT_SCALE
     local slotSize = size * TM.BUTTON_SLOT_SIZE_MULTIPLIER
 
-    local scaleHost = CreateFrame("Frame", "FluxTrinketMenuScaleHost", parent)
+    local scaleHost = TM.ScaleHost or CreateFrame("Frame", "FluxTrinketMenuScaleHost", parent)
     scaleHost:SetFrameStrata("MEDIUM")
     TM.ScaleHost = scaleHost
     
     -- Create container frame (child of scaleHost so Manager can anchor the host)
-    local gridFrame = CreateFrame("Frame", "FluxTrinketMenuFrame", scaleHost, BackdropTemplateMixin and "BackdropTemplate" or nil)
+    local gridFrame = TM.Frame or CreateFrame("Frame", "FluxTrinketMenuFrame", scaleHost, BackdropTemplateMixin and "BackdropTemplate" or nil)
     gridFrame:SetClampedToScreen(true)
     gridFrame:SetScale(scale)
     
@@ -489,7 +489,7 @@ function TM.CreateGrid(parent)
     
     -- Store reference
     TM.Frame = gridFrame
-    TM.Buttons = {}
+    TM.Buttons = TM.Buttons or {}
     TM.ButtonSize = size
     TM.SlotSize = slotSize
     TM.Spacing = spacing
@@ -507,8 +507,8 @@ function TM.CreateGrid(parent)
     
     -- Create trinket buttons
     -- Slot 13 (index 0) at TOP, Slot 14 (index 1) at BOTTOM
-    TM.CreateTrinketButton(0, 13) -- Top trinket (slot 13)
-    TM.CreateTrinketButton(1, 14) -- Bottom trinket (slot 14)
+    if not TM.Buttons[0] then TM.CreateTrinketButton(0, 13) end -- Top trinket
+    if not TM.Buttons[1] then TM.CreateTrinketButton(1, 14) end -- Bottom trinket
 
     TM.ApplyHorizontalSqueeze()
     if TM.SyncKeybindPushWatch then
@@ -976,7 +976,10 @@ function TM.CreateTrinketButton(index, inventorySlot)
             -- wrap, AnyDown+AnyUp fires PreClick twice and Toggle opens then closes.
             local Click = ns and ns.Flux and ns.Flux.ButtonFX and ns.Flux.ButtonFX.Click
             if Click and Click.Apply then
-                Click.Apply(btn.Widget, { onDown = true })
+                if Click.Apply(btn.Widget, { onDown = true }) == false then
+                    slotFrame:Hide()
+                    error("Trinket secure click setup incomplete")
+                end
             else
                 btn.Widget:RegisterForClicks("AnyUp", "AnyDown")
             end
@@ -2033,7 +2036,7 @@ end
 -- KEYBINDING SUPPORT
 -- ============================================================================
 
-function TM.UpdateKeybindings()
+function TM.UpdateKeybindings(skipBagScan)
     if InCombatLockdown() then
         TM._pendingKeybindUpdate = true
         return
@@ -2072,7 +2075,7 @@ function TM.UpdateKeybindings()
         end
     end
 
-    TM.ScanBagsForTrinkets()
+    if not skipBagScan then TM.ScanBagsForTrinkets() end
     local state = TM.VisibilityState or TM.GetTrinketVisibilityState()
     local btn0 = TM.Buttons[0]
     local btn1 = TM.Buttons[1]
@@ -2242,13 +2245,13 @@ function TM.GetTrinketVisibilityState()
 end
 
 -- Central updater: visibility, slot layout, frame size based on trinket state
-function TM.UpdateTrinketVisibility()
+function TM.UpdateTrinketVisibility(skipBagScan)
     if InCombatLockdown() then
         TM._pendingVisibilityUpdate = true
         return
     end
 
-    TM.ScanBagsForTrinkets()
+    if not skipBagScan then TM.ScanBagsForTrinkets() end
     local state = TM.GetTrinketVisibilityState()
     TM.VisibilityState = state
 
@@ -2300,7 +2303,7 @@ function TM.UpdateTrinketVisibility()
             TM.ApplyHorizontalSqueeze()
         end
         TM.UpdateArrowVisibility()
-        TM.UpdateKeybindings()
+        TM.UpdateKeybindings(skipBagScan)
         if FluxTrinketMenu_ApplyAppearanceAccent then
             FluxTrinketMenu_ApplyAppearanceAccent()
         end
@@ -2310,7 +2313,7 @@ function TM.UpdateTrinketVisibility()
     local smartTM = (state ~= "none")
     if FluxExtraButtonVisibility and not FluxExtraButtonVisibility.Apply("trinket_menu", smartTM) then
         TM.Hide()
-        TM.UpdateKeybindings()
+        TM.UpdateKeybindings(skipBagScan)
         return
     end
 
@@ -2356,7 +2359,7 @@ function TM.UpdateTrinketVisibility()
             TM.ApplyHorizontalSqueeze()
         end
         TM.UpdateArrowVisibility()
-        TM.UpdateKeybindings()
+        TM.UpdateKeybindings(skipBagScan)
         if FluxTrinketMenu_ApplyAppearanceAccent then
             FluxTrinketMenu_ApplyAppearanceAccent()
         end
@@ -2424,7 +2427,7 @@ function TM.UpdateTrinketVisibility()
     if TM.ApplyHorizontalSqueeze then
         TM.ApplyHorizontalSqueeze()
     end
-    TM.UpdateKeybindings()
+    TM.UpdateKeybindings(skipBagScan)
 end
 
 function FluxTrinketMenu_ApplyAppearanceAccent()

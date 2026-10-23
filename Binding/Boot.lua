@@ -1,13 +1,15 @@
 -- Binding/Boot.lua
--- Login boot: ensure DB, wire FluxInv, first apply after the bar exists.
+-- Kernel login boot: prepare bindings immediately; the coalesced Apply pipeline
+-- checks lockdown at execution and resumes its secure writes after regen.
 
 local addonName, ns = ...
 
 local booted = false
+local Flux = ns.Flux
+local ev = CreateFrame("Frame")
 
 local function Boot()
     if booted then return end
-    booted = true
     local DB = ns.FluxBindingDB3
     if DB then DB.Ensure() end
     local Eng = ns.FluxBindingEngraving
@@ -27,16 +29,24 @@ local function Boot()
     if _G.FluxBinding and _G.FluxBinding.RequestApplyAll then
         _G.FluxBinding.RequestApplyAll("boot")
     end
+    -- Leave retries armed if any initializer above raises an error.
+    booted = true
+    ev:UnregisterAllEvents()
+    ev:SetScript("OnEvent", nil)
 end
 
-local ev = CreateFrame("Frame")
-ev:RegisterEvent("PLAYER_LOGIN")
+-- A failed boot can retry on a later world/regen event without allocating a
+-- timer loop or marking partially initialized bindings as complete.
+ev:RegisterEvent("PLAYER_ENTERING_WORLD")
+ev:RegisterEvent("PLAYER_REGEN_ENABLED")
 ev:SetScript("OnEvent", function()
-    -- small delay: bar buttons + keybindings + FluxInv warmup land first
-    if C_Timer and C_Timer.After then
-        C_Timer.After(1.0, Boot)
-    else
+    if not Flux or Flux.loggedIn then
         Boot()
     end
 end)
 
+if Flux and Flux.AfterLogin then
+    Flux.AfterLogin(Boot)
+else
+    ev:RegisterEvent("PLAYER_LOGIN")
+end

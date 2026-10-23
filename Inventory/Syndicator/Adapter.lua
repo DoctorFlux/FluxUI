@@ -530,9 +530,6 @@ local function Bind()
 	if bound then
 		return
 	end
-	if Inv.source == "builtin" then
-		return
-	end
 	local syn = rawget(_G, "Syndicator")
 	local cb = syn and syn.CallbackRegistry
 	if not cb or not cb.RegisterCallback then
@@ -652,16 +649,19 @@ local function Bind()
 		Request("warband")
 	end
 	Inv.ready = true
+	if Flux.Startup then Flux.Startup.Mark("optional.Syndicator.ready_observed") end
 end
 
 function Adapter.Start()
 	if waiting or bound then
 		return
 	end
-	waiting = true
 	local syn = rawget(_G, "Syndicator")
 	local api = syn and syn.API
 	local cb = syn and syn.CallbackRegistry
+	-- A late ADDON_LOADED can retry. Do not latch an absent provider forever.
+	if not (api and cb and cb.RegisterCallback) then return false end
+	waiting = true
 	if api and api.IsReady and api.IsReady() then
 		Bind()
 		return
@@ -671,22 +671,9 @@ function Adapter.Start()
 			Bind()
 		end)
 	end
-	Flux.Events.Register("PLAYER_ENTERING_WORLD", function()
-		if bound or Inv.source then
-			return
-		end
-		if api and api.IsReady and api.IsReady() then
-			Bind()
-		end
-	end)
-	Flux.Timer.After(3, function()
-		if Inv.source then
-			return
-		end
-		if api and api.IsReady and api.IsReady() then
-			Bind()
-			return
-		end
+	-- Live facts remain available while the companion builds its caches. Its
+	-- Ready event owns the handoff; no three-second scan blackout or polling.
+	if not Inv.source then
 		if Inv.Builtin and Inv.Builtin.Start then
 			if Inv.Store and Inv.Store.SetUsesSyndicator then
 				Inv.Store.SetUsesSyndicator(false)
@@ -696,5 +683,5 @@ function Adapter.Start()
 				Inv.Tooltip.Start()
 			end
 		end
-	end)
+	end
 end

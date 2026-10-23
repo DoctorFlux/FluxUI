@@ -1,0 +1,93 @@
+{
+  "capturedAtUtc": "2026-10-23T08:17:58.804268+00:00",
+  "scope": "Desktop Lua mocked operation counts and targeted pre-change controls; not FPS or native allocation measurements.",
+  "commands": [
+    {
+      "command": [
+        "lua",
+        "tests/idle_bars.lua",
+        "--baseline"
+      ],
+      "exit": 0,
+      "output": "live mouseover idle: 14400 frame callbacks, 848 reaction probes\nclassic_era mouseover idle: 14400 frame callbacks, 848 reaction probes\nclassic_anniversary mouseover idle: 14400 frame callbacks, 848 reaction probes\nclassic mouseover idle: 14400 frame callbacks, 848 reaction probes\nforever mouseover idle: 14400 frame callbacks, 848 reaction probes\nForever fallback: 14400 frame callbacks, 10800 parses, 17100 unit queries\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_bars.lua"
+      ],
+      "exit": 0,
+      "output": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_units.lua"
+      ],
+      "exit": 0,
+      "output": "idle units: 843 checks; missing-unit ClearModel calls/minute = 1200 -> 4\n  20s/240Hz dispatch: fallback=4800 frame callbacks, native=0 frame callbacks + 100 health timer callbacks; 11 mutations rejected\n  3000 unchanged samples, Lua heap allocated with GC paused: closure control=1171.88KB, candidate=0.00KB\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_hud.lua",
+        "--baseline"
+      ],
+      "exit": 0,
+      "output": "idle HUD before: 600s clock writes=601, formats=601, hidden clock queries=120; 2400 marquee frames text/width/measure/color=2400/2400/2400/2400; 2400 idle callbacks after refit=2400\nidle HUD stat discovery: 22320 GetChildren calls in 30 refreshes of 124 nodes\nidle HUD: 365 checks across five clients; 0 behavioral mutations rejected\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_hud.lua"
+      ],
+      "exit": 0,
+      "output": "idle HUD after: 600s clock writes=11, formats=11, hidden clock queries=0; 2400 marquee frames text/width/measure/color=0/0/0/0; 2400 idle callbacks after refit=0\nidle HUD stat discovery: 3720 GetChildren calls in 30 refreshes of 124 nodes\nidle HUD: 988 checks across five clients; 13 behavioral mutations rejected\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_map.lua",
+        "--baseline"
+      ],
+      "exit": 0,
+      "output": "idle map before: 30 visits refreshes=465, zone watchers=30, show/hide hooks=30/30\nidle map: 3148 checks across five client paths; 0 behavioral mutations rejected\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_map.lua"
+      ],
+      "exit": 0,
+      "output": "idle map after: 30 visits refreshes=30, zone watchers=1, show/hide hooks=1/1\nidle map: 2493 checks across five client paths; 5 behavioral mutations rejected\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/idle_info_layout.lua"
+      ],
+      "exit": 0,
+      "output": "idle info layout: width/font/text native calls per fitting3-stat layout = 18/21/21 -> 6/9/9\nidle info layout: 5 behavioral mutations rejected\nidle info layout: 9733 comparisons passed\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/perf_capture.lua"
+      ],
+      "exit": 0,
+      "output": "perf capture: 196 checks across five clients; 8 mutations rejected\n"
+    }
+  ],
+  "normalizedSourceHashes": {
+    "Bars/ProgramFace.lua": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd",
+    "Core/Engine/Context.lua": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7",
+    "Core/Engine/Restricted.lua": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "82a2dd27c84078e0deb51f49e66b1e1ca1bcdb6647959238eeccc220ce532e1c",
+    "StatusBars/FluxInfoFrame.lua": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456",
+    "Minimap/FluxMinimap.lua": "8365b3de828202dad6e33ed20ef49388d18830f50be3c23b57723643ae52a56e",
+    "Battlezonemap/FluxBattlefieldMap.lua": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df",
+    "Other/FluxPerfCapture.lua": "f6538d178ccc718683cdd851709f6501984565bb272924291dbc827af492cd25",
+    "tests/fixtures/idle_hud_before.txt": "e383b3b6da2f0f2cac2efa8dc4792cebb292f6f33d4998b92b1448180386dc13",
+    "tests/fixtures/idle_map_before.txt": "3e74b88b5ceea4d51724a0fbe524b43afa912d6d7c976857ac7107cbaeca9d98"
+  }
+}

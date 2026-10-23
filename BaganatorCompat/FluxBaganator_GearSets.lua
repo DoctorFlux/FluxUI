@@ -324,8 +324,17 @@ local function NameListEquals(a, b)
     return true
 end
 
+-- Reuse the match buffers for this synchronous scan. AssignGuidSetInfo copies
+-- the entries into owned GUID buckets before the next slot clears the buffers.
+local scanProfiles, scanPresets = {}, {}
+
 local function ScanInventorySlot(invSlot)
-    if not C_Item or not ItemLocation then
+    if not C_Item or not C_Item.GetItemGUID or not ItemLocation then
+        return
+    end
+    local profiles, presets = wipe(scanProfiles), wipe(scanPresets)
+    CollectMatchesForSlot("inv", nil, invSlot, profiles, presets)
+    if #profiles == 0 and #presets == 0 then
         return
     end
     local location = ItemLocation:CreateFromEquipmentSlot(invSlot)
@@ -336,14 +345,19 @@ local function ScanInventorySlot(invSlot)
     if not guid then
         return
     end
-    local profiles = {}
-    local presets = {}
-    CollectMatchesForSlot("inv", nil, invSlot, profiles, presets)
     AssignGuidSetInfo(guid, profiles, presets)
 end
 
 local function ScanBagSlot(bag, slot)
-    if not C_Item or not ItemLocation then
+    if not C_Item or not C_Item.GetItemGUID or not ItemLocation then
+        return
+    end
+    -- Allocation matching already has an item-ID index. Query native identity
+    -- only for a slot that will contribute a set, without filtering item classes
+    -- or changing the API seen by Baganator/other addons.
+    local profiles, presets = wipe(scanProfiles), wipe(scanPresets)
+    CollectMatchesForSlot("bag", bag, slot, profiles, presets)
+    if #profiles == 0 and #presets == 0 then
         return
     end
     local location = ItemLocation:CreateFromBagAndSlot(bag, slot)
@@ -354,9 +368,6 @@ local function ScanBagSlot(bag, slot)
     if not guid then
         return
     end
-    local profiles = {}
-    local presets = {}
-    CollectMatchesForSlot("bag", bag, slot, profiles, presets)
     AssignGuidSetInfo(guid, profiles, presets)
 end
 

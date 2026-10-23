@@ -170,7 +170,6 @@ local function InitializePlayerFrame()
     end
 
     ns.PlayerFrame = frame
-    playerFrameInitialized = true
 
     -- Respec build-matched spec icon override (FluxRespec loads after UnitFrames; refresh once player strip exists).
     if _G.C_Timer and _G.C_Timer.After then
@@ -189,49 +188,20 @@ local function InitializePlayerFrame()
     if ns.PlayerTransmogClick and ns.PlayerTransmogClick.Initialize then
         ns.PlayerTransmogClick.Initialize(frame)
     end
+    playerFrameInitialized = true
 end
 
 -- ---------------------------------------------------------------------------
--- Loader (match /reload: init on PLAYER_ENTERING_WORLD only)
+-- Earliest legal secure phase; Core retries after combat when necessary.
 -- ---------------------------------------------------------------------------
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_ENTERING_WORLD")
-loader:SetScript("OnEvent", function(self, event, ...)
-    if event ~= "PLAYER_ENTERING_WORLD" then
-        return
-    end
-    if UF and UF.CreateBaseFrame then
-        InitializePlayerFrame()
-    else
-        if not loader._initWatcher then
-            loader._initWatcher = CreateFrame("Frame")
-        end
-
-        local watcher = loader._initWatcher
-        local checkCount = 0
-        local MAX_CHECKS = 20
-
-        watcher:Hide()
-        watcher:SetScript("OnUpdate", function(self)
-            checkCount = checkCount + 1
-            if UF and UF.CreateBaseFrame then
-                self:Hide()
-                InitializePlayerFrame()
-            elseif checkCount >= MAX_CHECKS then
-                self:Hide()
-                InitializePlayerFrame()
-            end
-        end)
-        watcher:Show()
-    end
-end)
+UF.RegisterInitializer("player", InitializePlayerFrame, function() return playerFrameInitialized end, 60)
 
 -- ---------------------------------------------------------------------------
 -- Live Flux vs Blizzard (no reload): options / profile refresh
 -- ---------------------------------------------------------------------------
 function FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.player", function()
             FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
         end)
         return
@@ -270,7 +240,7 @@ function FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
         suppressBlizzard()
         if not ns.PlayerFrame then
             playerFrameInitialized = false
-            InitializePlayerFrame()
+            UF.RunInitializer("player")
         else
             ns.PlayerFrame:Show()
             if ns.PlayerFrame.UpdatePartition then

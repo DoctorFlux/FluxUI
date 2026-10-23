@@ -1622,23 +1622,27 @@ end
 -- Register with a grid
 function Module.Register(grid)
     if not grid or Module._registered then return end
+    if InCombatLockdown() then return false end
     
     Module._grid = grid
-    Module._registered = true
-    
-    -- Only create button if we have any teleport/portal spells
-    if Module.HasAnyTeleportOrPortalSpell() then
-        Module.CreateButton()
-        
-        -- Register for favorite changes ONLY if we created the button
-        if FluxFlyoutFavorites and FluxFlyoutFavorites.RegisterListener then
+    -- The spellbook can be cold before PLAYER_LOGIN. Reserve the secure frame
+    -- now; keep it hidden until actual spells are available or binding mode asks
+    -- for its existing placeholder. Never guess a spell from a saved identity.
+    Module.CreateButton(true)
+    if not Module._button then return false end
+
+    if not Module._favoritesListenerRegistered
+        and FluxFlyoutFavorites and FluxFlyoutFavorites.RegisterListener then
             FluxFlyoutFavorites.RegisterListener(function(category)
                 if category == "Teleport" or category == "Portal" then
                     Module.Update()
                 end
             end)
-        end
+            Module._favoritesListenerRegistered = true
     end
+    Module.Update()
+    Module._registered = true
+    return true
 end
 
 -- Lazily create grid button during LibKeyBound mode when the player has no teleport/portal spells
@@ -1655,7 +1659,7 @@ function Module.EnsureButtonForBindingMode()
 end
 
 -- Create the button
-function Module.CreateButton()
+function Module.CreateButton(allowEmpty)
     if not Module._grid or Module._button then return end
     if InCombatLockdown() then
         Timer.After(0.5, Module.CreateButton)
@@ -1663,7 +1667,8 @@ function Module.CreateButton()
     end
     
     -- Don't create if no spells known (unless binding mode is creating a placeholder slot)
-    if not Module.HasAnyTeleportOrPortalSpell() and not Module._creatingForBindingPlaceholder then
+    local hasSpells = Module.HasAnyTeleportOrPortalSpell()
+    if not hasSpells and not Module._creatingForBindingPlaceholder and not allowEmpty then
         return
     end
     
@@ -1694,6 +1699,7 @@ function Module.CreateButton()
     end
     
     Module._button = btn
+    Module._startupEmpty = allowEmpty and not hasSpells or nil
     Module._creatingForBindingPlaceholder = nil
     
     -- DISABLE DEFAULT TOOLTIP - We'll use custom tooltip
@@ -2675,6 +2681,7 @@ function Module.Update()
     
     local btn = Module._button
     local smartTP = Module.HasAnyTeleportOrPortalSpell()
+    if smartTP then Module._startupEmpty = nil end
     local fbm = _G.FluxBindingMode
     local bindingForce = fbm and fbm.ShouldForceShowAllExtraSlots and fbm:ShouldForceShowAllExtraSlots()
 
@@ -2690,6 +2697,14 @@ function Module.Update()
             elseif Module._grid and Module._grid.Relayout then
                 Module._grid:Relayout()
             end
+            return
+        end
+        if Module._startupEmpty then
+            -- Reserved startup infrastructure does not add a visible empty slot
+            -- or capture the user's key while its spell identity is unknown.
+            if btn.SlotFrame then btn.SlotFrame:Hide() end
+            if btn.Widget then btn.Widget:Hide() end
+            Module.ClearTeleportKeybinding()
             return
         end
         if FluxExtraButtonVisibility and not FluxExtraButtonVisibility.Apply("nc_teleport", smartTP, bindingForce) then

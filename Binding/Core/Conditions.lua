@@ -585,7 +585,6 @@ function Conditions.EnsureInventoryListener()
     if invRegistered then return end
     local Inv = _G.FluxInv
     if not Inv or not Inv.RegisterListener then return end
-    invRegistered = true
     Inv.RegisterListener("FluxBinding3", function(ctx)
         local changed = Conditions.DiffAvailability()
         if changed and #changed > 0 then
@@ -600,6 +599,7 @@ function Conditions.EnsureInventoryListener()
         -- DiffAvailability tests every binding; batch it during loot storms.
         deferHeavy = true,
     })
+    invRegistered = true
 end
 
 -- Rare-event load gates (zone / spec / equip fallback when FluxInv missing).

@@ -11,7 +11,7 @@ The complete declared-name/owner index is [32-saved-variables.md](32-saved-varia
 - `GetAccount` ensures `FluxUI_DB`, a shared legacy settings/state container.
 - `GetOptions` ensures the raw `FluxUI_Options` table; it is not the same accessor as the initialized AceDB object.
 - `GetChar` ensures `_FluxUI_CharSavedVars`, a legacy per-character settings/state container.
-- `EnsureAll`, run through `Flux.AfterLoad`, makes the listed legacy globals into tables if needed. It does not define their feature schemas, populate Ace defaults, validate every existing record or provide a central migration version.
+- `EnsureAll`, run through `Flux.AfterLoad`, makes the listed legacy globals into tables if needed. Non-table roots are archived in `FluxUI_DB.__fluxRootRecoveryV1` before shape repair. It does not validate every feature record or define a single addon-wide schema version. Restock has a separate validated/reversible V1 migration; see the [implementation report](43-startup-optimization.md).
 
 `FluxPerfCaptureDB` is declared in the TOC but created by the capture feature rather than the kernel's account-table list. Old binding and inventory names remain declared even when newer systems own the live data. Declaration/retention should not be interpreted as proof that a legacy scanner or schema still drives the UI.
 
@@ -108,7 +108,7 @@ Inventory and Respec persist richer documents and snapshots in their own stores/
 
 ## Defaults application state
 
-`FluxUI_DB.accountDefaultsApplied` records full account setup; `FluxUI_DB.characters[charKey]` records encountered characters. [`FluxDefaultSettings.lua`](../FluxDefaultSettings.lua) applies full game settings **and the keyboard template** automatically on first account login. A later new character receives raid/chat setup without a full keybind wipe. Delayed verification and Blizzard reset callbacks can reapply settings under specific conditions.
+`FluxUI_DB.accountDefaultsApplied` records full account setup; `FluxUI_DB.characters[charKey]` records encountered characters. [`FluxDefaultSettings.lua`](../FluxDefaultSettings.lua) applies full game settings **and the keyboard template** automatically on first account login. A later new character receives raid/chat setup without a full keybind wipe. Automatic binding verification preserves customized bindings; F5 differences no longer trigger a key or CVar reset. Explicit setup/reset paths remain separate.
 
 These flags are distinct from AceDB defaults and profile resets. Clearing one does not remove or reset the others. `/fluxdefaults reset` clears the account-applied flag; `resetchar` clears the current character's seen flag. Commands and exact side effects are described in [05-defaults-and-bindings.md](05-defaults-and-bindings.md).
 

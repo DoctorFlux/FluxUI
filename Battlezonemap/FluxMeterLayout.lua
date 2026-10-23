@@ -2,6 +2,7 @@
 -- Meter layout library, Details attribute/plugin catalog, Blizzard meter catalog, and standalone editor UI.
 
 local addonName, addonTable = ...
+local Flux = addonTable and addonTable.Flux or _G.Flux
 
 FluxMeterLayout = FluxMeterLayout or {}
 
@@ -27,6 +28,13 @@ local editorActive = false
 local reembedTimer = nil
 local liveGeomTimer = nil
 local PREVIEW_PAD = 4
+
+local function CancelableAfter(delay, callback)
+    if C_Timer.NewTimer then return C_Timer.NewTimer(delay, callback) end
+    local cancelled = false
+    C_Timer.After(delay, function() if not cancelled then callback() end end)
+    return { Cancel = function() cancelled = true end }
+end
 
 local LEGACY_TYPE_MAP = {
     damage = { kind = "attr", attribute = 1, subAttribute = 1 },
@@ -1128,6 +1136,12 @@ end
 
 local function ReembedQuiet()
     SaveLibrary()
+    if not FluxWindowFrame or not FluxWindowFrame.GetActiveTab
+        or FluxWindowFrame:GetActiveTab() ~= "Meter" then return end
+    if InCombatLockdown() then
+        if Flux and Flux.Combat then Flux.Combat.Defer("meterlayout.reembed", ReembedQuiet) end
+        return
+    end
     local layout = FluxMeterLayout.GetWorkingLayout()
     if FluxMeterLayout.IsBlizzardBackend() then
         if not (FluxBlizzardMeter and FluxBlizzardMeter.Embed and FluxWindowFrame and FluxWindowFrame.GetFrame) then
@@ -1154,7 +1168,7 @@ local function ScheduleReembed()
         reembedTimer:Cancel()
         reembedTimer = nil
     end
-    reembedTimer = C_Timer.After(0.12, function()
+    reembedTimer = CancelableAfter(0.12, function()
         reembedTimer = nil
         ReembedQuiet()
         if editorFrame and editorFrame.Refresh and not editorFrame._dragging then
@@ -1166,8 +1180,9 @@ end
 --- Push only geometry into the live embed (no full Embed) — used while dragging splitters.
 local function PushLiveGeometry()
     if liveGeomTimer then return end
-    liveGeomTimer = C_Timer.After(0.03, function()
+    liveGeomTimer = CancelableAfter(0.03, function()
         liveGeomTimer = nil
+        if not FluxWindowFrame or FluxWindowFrame:GetActiveTab() ~= "Meter" then return end
         if not workingLayout then return end
         if FluxMeterLayout.IsBlizzardBackend() then
             if FluxBlizzardMeter and FluxBlizzardMeter.SyncGeometryFromLayout then
@@ -1179,6 +1194,11 @@ local function PushLiveGeometry()
             FluxDetails:SyncGeometryFromLayout(workingLayout)
         end
     end)
+end
+
+function FluxMeterLayout.CancelPendingWork()
+    if reembedTimer then reembedTimer:Cancel(); reembedTimer = nil end
+    if liveGeomTimer then liveGeomTimer:Cancel(); liveGeomTimer = nil end
 end
 
 local function FlushLiveGeometry()

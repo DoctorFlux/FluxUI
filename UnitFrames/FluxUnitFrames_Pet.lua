@@ -267,7 +267,7 @@ end
 
 function FluxUnitFrames_ApplyRuntimePet(wantFlux)
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.pet", function()
             FluxUnitFrames_ApplyRuntimePet(wantFlux)
         end)
         return
@@ -317,7 +317,7 @@ function FluxUnitFrames_ApplyRuntimePet(wantFlux)
         suppressBlizzard()
         if not ns.PetFrame then
             petFrameInitialized = false
-            InitializePetFrame()
+            UF.RunInitializer("pet")
         else
             FluxUnitFrames_ResumeFluxPetUnitWatch(ns.PetFrame)
             if UF.SyncWatchedUnitFrameVisibility then
@@ -357,38 +357,4 @@ end
 -- ---------------------------------------------------------------------------
 -- Loader (Instant Initialization)
 -- ---------------------------------------------------------------------------
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:RegisterEvent("PLAYER_ENTERING_WORLD")
-loader:SetScript("OnEvent", function(self, event)
-    if event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
-        -- Try to initialize immediately
-        if UF and UF.CreateBaseFrame then
-            InitializePetFrame()
-        else
-            -- Use watcher pattern if UF module isn't ready yet
-            if not loader._initWatcher then
-                loader._initWatcher = CreateFrame("Frame")
-            end
-            
-            local watcher = loader._initWatcher
-            local checkCount = 0
-            local MAX_CHECKS = 20
-            
-            watcher:Hide()
-            watcher:SetScript("OnUpdate", function(self)
-                checkCount = checkCount + 1
-                if UF and UF.CreateBaseFrame then
-                    self:Hide()
-                    InitializePetFrame()
-                elseif checkCount >= MAX_CHECKS then
-                    self:Hide()
-                    -- Force initialization even if UF isn't ready
-                    InitializePetFrame()
-                end
-            end)
-            watcher:Show()
-        end
-    end
-end)
-
+UF.RegisterInitializer("pet", InitializePetFrame, function() return petFrameInitialized end, 65)

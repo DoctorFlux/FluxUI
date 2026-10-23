@@ -90,6 +90,9 @@ local function VehicleSig()
 end
 
 local function HoldCollectorEvents()
+	-- A fresh combat login must retain Blizzard's working input/update path
+	-- until Flux has finished its protected replacements.
+	if Bars.secureReady == false then return end
 	-- Forever's native controller must still receive possession/exit updates.
 	-- Its Flux hosts do not enter these shared collectors.
 	if Flux.Action and Flux.Action.LeaveBlizzardCollector and Flux.Action.LeaveBlizzardCollector() then return end
@@ -106,6 +109,10 @@ local function HoldCollectorEvents()
 	if type(actionEvents) == "table" and actionEvents.UnregisterAllEvents then
 		pcall(actionEvents.UnregisterAllEvents, actionEvents)
 	end
+end
+Vehicle.OnReplacementsReady = function()
+	HoldCollectorEvents()
+	if Vehicle.QueueApply then Vehicle.QueueApply(true) end
 end
 
 -- File load: collectors already registered these in OnLoad.
@@ -127,6 +134,7 @@ local function ShowFluxStrip()
 end
 
 function Vehicle.Apply()
+	if Bars.secureReady == false then return false end
 	SweepCollectorsOOC()
 	ShowFluxStrip()
 	-- Paging in combat is RegisterStateDriver only. Execute from this

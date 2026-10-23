@@ -1,6 +1,8 @@
 -- Other/FluxDurationBars.lua
 local addonName, ns = ...
 local API = ns.API or {}
+local hookedShows = setmetatable({}, { __mode = "k" })
+local hookedFrames = setmetatable({}, { __mode = "k" })
 
 local function IsPlayerTargetPlacement2()
     local o = _G.FluxOptions
@@ -42,9 +44,9 @@ end
 -- Hook into MirrorTimer events to reposition when they become visible
 local function HookMirrorTimerEvents()
     -- Hook the MirrorTimer_Show function to reposition when a timer is shown
-    if MirrorTimer_Show then
+    if MirrorTimer_Show and not hookedShows[MirrorTimer_Show] then
         local originalMirrorTimerShow = MirrorTimer_Show
-        MirrorTimer_Show = function(timer, value, maxvalue, scale, paused, label)
+        local function WrappedMirrorTimerShow(timer, value, maxvalue, scale, paused, label)
             local dialog = originalMirrorTimerShow(timer, value, maxvalue, scale, paused, label)
             if dialog then
                 -- Find which MirrorTimer frame this is
@@ -57,15 +59,16 @@ local function HookMirrorTimerEvents()
             end
             return dialog
         end
+        hookedShows[originalMirrorTimerShow] = true
+        hookedShows[WrappedMirrorTimerShow] = true
+        MirrorTimer_Show = WrappedMirrorTimerShow
     end
 
     -- Hook into MirrorTimerFrame_OnEvent to reposition when timers start
     for i = 1, 3 do
         local frame = _G["MirrorTimer" .. i]
-        if frame and frame:GetScript("OnEvent") then
-            local originalOnEvent = frame:GetScript("OnEvent")
-            frame:SetScript("OnEvent", function(self, event, ...)
-                originalOnEvent(self, event, ...)
+        if frame and frame:GetScript("OnEvent") and not hookedFrames[frame] then
+            frame:HookScript("OnEvent", function(self)
                 -- Reposition after the event is handled
                 for j = 1, 3 do
                     if _G["MirrorTimer" .. j] == self then
@@ -74,6 +77,7 @@ local function HookMirrorTimerEvents()
                     end
                 end
             end)
+            hookedFrames[frame] = true
         end
     end
 end
@@ -95,14 +99,10 @@ end
 -- Initialize on player login
 local loader = CreateFrame("Frame")
 loader:RegisterEvent("PLAYER_LOGIN")
-loader:SetScript("OnEvent", function()
-    InitializeDurationBars()
-end)
-
--- Also reposition when entering world (in case frames are recreated)
-local worldFrame = CreateFrame("Frame")
-worldFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-worldFrame:SetScript("OnEvent", function()
+loader:RegisterEvent("PLAYER_ENTERING_WORLD")
+loader:RegisterEvent("ADDON_LOADED")
+loader:SetScript("OnEvent", function(_, event, name)
+    if event == "ADDON_LOADED" and name ~= addonName and name ~= "Blizzard_MirrorTimer" then return end
     InitializeDurationBars()
 end)
 

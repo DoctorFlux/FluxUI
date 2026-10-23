@@ -1449,6 +1449,13 @@ function Inv.Start()
 	if Inv.Tooltip and Inv.Tooltip.Start then
 		Inv.Tooltip.Start()
 	end
+	if Flux.Events then
+		Flux.Events.Register("ADDON_LOADED", function(_, name)
+			if name == "Syndicator" and Inv.Syndicator.Start then
+				Flux.Timer.After(0, Inv.Syndicator.Start)
+			end
+		end)
+	end
 	Inv.LoadPersistedBankCounts()
 
 	local sawPew = false
@@ -1507,6 +1514,7 @@ function Inv.Start()
 end
 
 Flux.Module.Register("Inventory", {
+	phase = "deferred",
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	optional = { Syndicator = "prefer" },
 	OnEnable = function()

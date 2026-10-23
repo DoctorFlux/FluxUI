@@ -1,0 +1,170 @@
+[
+  {
+    "path": "Bars/_tmp_barsmoke.lua",
+    "exit": 1,
+    "seconds": 0.125,
+    "output": "source contract FAILED (26)\n  State must not clear pressAndHoldAction (kills mouse-up)\n  raid OnEnter skips SetUnit without a unit token\n  MTMA alpha-0 minis disable mouse\n  vehicle Apply refreshes count\n  vehicle Apply refreshes cooldown\n  vehicle Apply refreshes equipped border\n  classic stance parent is classic-only\n  SetScript on a non-Flux frame: watch\n  SetScript on a non-Flux frame: healthBits\n  form/page restamps promotion\n  page/form burst re-paints count\n  page/form burst re-paints cooldown\n  page/form burst re-paints usable\n  page/form burst re-paints equipped border\n  form settle requests Context display\n  form settle still requests Context display\n  form settle re-paints cooldown\n  form settle re-paints equipped border\n  Watch shares one Extra-face refresh\n  form burst requests Context so overlay icons flip now\n  bars.icon must include SPELLS_CHANGED\n  bars.icon must include SPELL_UPDATE_ICON\n  Extra badgeMode must not stamp INV_Misc_QuestionMark\n  SpellFX stays authored for 44\n  stance widgets stay native Extra Button size\n  stance SlotFrame is live button_size\n"
+  },
+  {
+    "path": "Bars/_tmp_forevercontrolsmoke.lua",
+    "exit": 0,
+    "seconds": 3.508,
+    "output": "Forever control smoke passed: 25920 native mouse/key/mini actions; combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe\n"
+  },
+  {
+    "path": "Bars/_tmp_stockgridsmoke.lua",
+    "exit": 0,
+    "seconds": 0.683,
+    "output": "forever: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nlive: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nclassic_anniversary: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nclassic_era: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nmop: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nstock grid smoke passed (4 native snapshots + MoP compatibility fixture; WoW taint/in-game input not modeled)\n"
+  },
+  {
+    "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+    "exit": 0,
+    "seconds": 0.039,
+    "output": "Questie battlefield pins smoke OK (Forever/native coexistence, Classic route, shared World Map settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n"
+  },
+  {
+    "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
+    "exit": 0,
+    "seconds": 0.036,
+    "output": "character info smoke OK\n  Era/Anniversary: CSC dropdown on CharacterAttributesFrame\n  Live/Forever: no CSC; pane/ScrollBox hooks + Info Frame pins\n  Forever pet ScrollBox is not pinned\n"
+  },
+  {
+    "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
+    "exit": 0,
+    "seconds": 0.053,
+    "output": "Forever shared stats OK: native values, live combat text/merged rows, native totals, saved order, row clicks/tooltips; Live/Era/Wrath isolated\n"
+  },
+  {
+    "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
+    "exit": 0,
+    "seconds": 0.032,
+    "output": "Forever Character status OK: no category injection/native refresh/hooks; owned ilvl + pins + equipment events; original Character show/hide and text methods\n"
+  },
+  {
+    "path": "Core/_tmp_buffdebuffsmoke.lua",
+    "exit": 0,
+    "seconds": 0.032,
+    "output": "player runtime smoke OK (hidden bar updates, original scripts, overlay filters, vehicles, legacy combos)\n"
+  },
+  {
+    "path": "Core/_tmp_classpowerscalesmoke.lua",
+    "exit": 0,
+    "seconds": 0.041,
+    "output": "Class power scale OK: actual scoped options/getter; 9 native classes, container/loose/arcane/totems; Classic row; target suppression; 50-200% and combat deferral\n"
+  },
+  {
+    "path": "Core/_tmp_clientguardsmoke.lua",
+    "exit": 0,
+    "seconds": 0.041,
+    "output": "client guard smoke OK (Retail 12.1.5, stray flags/APIs, Forever, Era, Anniversary, Mists, unfiltered secret backend loads)\n"
+  },
+  {
+    "path": "Core/_tmp_coresmoke.lua",
+    "exit": 1,
+    "seconds": 0.058,
+    "output": "core smoke FAILED (1)\n  salvage overlay has a visible fill when Forever lacks the proc atlas\n"
+  },
+  {
+    "path": "Core/_tmp_foreveraurassmoke.lua",
+    "exit": 0,
+    "seconds": 0.045,
+    "output": "Forever native aura smoke OK (original native methods, gains, stacks, refresh, timers, removals, expiration, vehicles, post-combat)\n"
+  },
+  {
+    "path": "Core/_tmp_foreverbarstylesmoke.lua",
+    "exit": 0,
+    "seconds": 0.049,
+    "output": "Retail HUD art smoke OK (Forever standalone fills, Live atlases, HP/loss, power, prediction/ghost, recovery, missing atlases, client guards, TGA assets)\n"
+  },
+  {
+    "path": "Core/_tmp_forevercombosmoke.lua",
+    "exit": 0,
+    "seconds": 0.044,
+    "output": "Forever combos OK: real native point mixin; rogue/cat, player-only layout, combat gains/spends, target transfers, secret count/max, forms, vehicles, options, deferred init, client guards\n"
+  },
+  {
+    "path": "Core/_tmp_minimaplayoutsmoke.lua",
+    "exit": 0,
+    "seconds": 0.023,
+    "output": "minimap layout smoke OK (embed/restore, tall windows, combat deferral, native bar methods and cluster geometry preserved)\n"
+  },
+  {
+    "path": "Core/_tmp_playeraurassmoke.lua",
+    "exit": 0,
+    "seconds": 0.053,
+    "output": "native aura smoke OK (only stock frame anchors, combat events, embed, Edit Mode, scaling, late load)\n"
+  },
+  {
+    "path": "Core/_tmp_stancehidesmoke.lua",
+    "exit": 0,
+    "seconds": 0.043,
+    "output": "stance hide smoke OK (native HANDLE:Hide, 800 combat shows, original scripts, aliases, late buttons, retries, reload, Classic/Forever)\n"
+  },
+  {
+    "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+    "exit": 0,
+    "seconds": 0.046,
+    "output": "Ammo OK: Forever durability + repairs + combat ticks; count survives current Paint; bright display-only icon; real stack/ammo counts and other clients preserved\n"
+  },
+  {
+    "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+    "exit": 0,
+    "seconds": 0.389,
+    "output": "era consumables passed\nanniversary consumables passed\nforever consumables passed\nretail consumables passed\nmists consumables passed\nwrath consumables passed\ncata consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1369 checks\n"
+  },
+  {
+    "path": "Inventory/_tmp_inventorylag_smoke.lua",
+    "exit": 0,
+    "seconds": 0.241,
+    "output": "forever inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1512 checks\n"
+  },
+  {
+    "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+    "exit": 0,
+    "seconds": 0.369,
+    "output": "Junk smoke OK: actual compatibility/facade/classifier/seller; Live/Forever/Era/Anniversary/Mists; gray rules/lists, async and immediate sales, no duplicates/bulk/cursor fallback, busy retry, protection, relocation, mode switch, close\nJunk visuals OK: native/fallback coin + highlight, pooled/named buttons, uncached grays, protected/empty slots, settings, native coin resets, Baganator item-data refresh\n"
+  },
+  {
+    "path": "MicroMenu/_tmp_bagslotssmoke.lua",
+    "exit": 0,
+    "seconds": 0.046,
+    "output": "Bag slot smoke OK (Forever native art/masks, reagent marker/tooltips, native keyring toggle with showKeyring off, key drops, bag equip/swap/unequip, refresh/layout, Live/gamepad/alternative UI guards)\n"
+  },
+  {
+    "path": "MicroMenu/_tmp_micromenusmoke.lua",
+    "exit": 0,
+    "seconds": 0.036,
+    "output": "micromenu pos2 smoke OK\n"
+  },
+  {
+    "path": "Minimap/_tmp_questiesmoke.lua",
+    "exit": 0,
+    "seconds": 0.045,
+    "output": "Questie tracker smoke OK (Classic/Forever parity, async frames, late addon, native header ownership, overflow, collapse/expand, combat, optional native timer and disabled tracker)\n"
+  },
+  {
+    "path": "Minimap/_tmp_trackercombatsmoke.lua",
+    "exit": 0,
+    "seconds": 0.038,
+    "output": "tracker combat smoke passed: original closure bypass reproduced; captured/direct/dirty updates defer, regen coalesces, callbacks recover, gamepad entry stays native\n"
+  },
+  {
+    "path": "NamePlates/_tmp_combosmoke.lua",
+    "exit": 0,
+    "seconds": 0.049,
+    "output": "Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options\n"
+  },
+  {
+    "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+    "exit": 0,
+    "seconds": 0.083,
+    "output": "forever: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nforever missing add private API: aura fallback and native dispellable filtering OK\nforever missing remove private API: aura fallback and native dispellable filtering OK\nlive: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nlive missing add private API: aura fallback and native dispellable filtering OK\nlive missing remove private API: aura fallback and native dispellable filtering OK\nclassic_era: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_era missing add private API: aura fallback and native dispellable filtering OK\nclassic_era missing remove private API: aura fallback and native dispellable filtering OK\nclassic_anniversary: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_anniversary missing add private API: aura fallback and native dispellable filtering OK\nclassic_anniversary missing remove private API: aura fallback and native dispellable filtering OK\nRaid aura smoke OK (4 supplied clients, native methods retained; engine taint requires in-game validation)\n"
+  },
+  {
+    "path": "WindowMover/_tmp_charactercombatsmoke.lua",
+    "exit": 0,
+    "seconds": 0.039,
+    "output": "Character mover combat OK: native Forever show/layout untouched on keyboard/gamepad; deferred layout recovers; Retail unchanged\n"
+  }
+]

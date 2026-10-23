@@ -7,6 +7,7 @@ Flux.Bars = Bars
 
 local Stance = Bars.Stance or {}
 Bars.Stance = Stance
+Stance.secureReady = false
 
 Stance.STANCE_SIZE = 30
 Stance.STANCE_SPACING = -2
@@ -76,7 +77,6 @@ function Stance.ApplyBorderChrome()
 	if lastBorderMode == mode then
 		return
 	end
-	lastBorderMode = mode
 	if FluxBorder.RemoveFrom then
 		FluxBorder:RemoveFrom(frame)
 	end
@@ -88,6 +88,7 @@ function Stance.ApplyBorderChrome()
 	if FluxBorder.SetClassColor then
 		FluxBorder:SetClassColor(frame, 1, true)
 	end
+	lastBorderMode = mode
 end
 
 -- SHAPESHIFTBUTTON1-10 follow visible order (forms + extras after reorder),
@@ -201,17 +202,14 @@ function Stance.GetCanonicalToShapeshiftButtonBindingIndexMap()
 end
 
 function Stance.ReassignBindings()
-	if not frame or InLockdown() or not SetOverrideBindingClick then
+	if not frame or InLockdown() or not SetOverrideBindingClick or not GetBindingKey then
 		if InLockdown() and Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.stance.keys", Stance.ReassignBindings)
 		end
-		return
+		return false
 	end
 	if ClearOverrideBindings then
 		ClearOverrideBindings(frame)
-	end
-	if not GetBindingKey then
-		return
 	end
 	if not dummyButton then
 		dummyButton = CreateFrame("Button", "FluxStanceBarDummyButton", frame, "SecureActionButtonTemplate")
@@ -220,6 +218,7 @@ function Stance.ReassignBindings()
 		dummyButton:SetAttribute("type", nil)
 		dummyButton:SetAttribute("action", nil)
 	end
+	local complete = true
 	local function BindCommand(bindIndex, clickName, clickButton)
 		local command = ("SHAPESHIFTBUTTON%d"):format(bindIndex)
 		local keys = { GetBindingKey(command) }
@@ -227,9 +226,9 @@ function Stance.ReassignBindings()
 			local key = keys[k]
 			if key and key ~= "" then
 				if clickButton then
-					pcall(SetOverrideBindingClick, frame, false, key, clickName, clickButton)
+					if not pcall(SetOverrideBindingClick, frame, false, key, clickName, clickButton) then complete = false end
 				else
-					pcall(SetOverrideBindingClick, frame, false, key, clickName)
+					if not pcall(SetOverrideBindingClick, frame, false, key, clickName) then complete = false end
 				end
 			end
 		end
@@ -258,6 +257,7 @@ function Stance.ReassignBindings()
 			BindCommand(i, dummyName)
 		end
 	end
+	return complete
 end
 
 local function InstallGlobal(f)
@@ -323,19 +323,19 @@ end
 
 function Stance.Start()
 	if started then
-		return
+		return true
 	end
 	if InLockdown() then
 		Defer("bars.stance.start", Stance.Start)
-		return
+		return false
 	end
-	started = true
-	frame = CreateFrame("Frame", "FluxStanceBar", UIParent, "SecureHandlerStateTemplate")
+	frame = frame or _G.FluxStanceBar or CreateFrame("Frame", "FluxStanceBar", UIParent, "SecureHandlerStateTemplate")
 	frame:SetFrameStrata("MEDIUM")
 	frame:SetFrameLevel(5)
 	frame:EnableMouse(false)
 	frame:Hide()
-	dummyButton = CreateFrame("Button", "FluxStanceBarDummyButton", frame, "SecureActionButtonTemplate")
+	dummyButton = dummyButton or _G.FluxStanceBarDummyButton
+		or CreateFrame("Button", "FluxStanceBarDummyButton", frame, "SecureActionButtonTemplate")
 	dummyButton:Hide()
 	dummyButton:EnableMouse(false)
 	dummyButton:SetAttribute("type", nil)
@@ -345,17 +345,22 @@ function Stance.Start()
 	if Stance.Watch and Stance.Watch.Start then
 		Stance.Watch.Start()
 	end
-	if Stance.RequestLayout then
-		Stance.RequestLayout("start")
-	end
+	-- Forms and their bindings must exist before native stance controls retire.
+	if not Stance.ApplyLayout or Stance.ApplyLayout() == false then return false end
+	Stance.secureReady = true
 	if Bars.Blizzard and Bars.Blizzard.HideUnusedBars then
 		Bars.Blizzard.HideUnusedBars()
 	end
+	started = true
+	return true
 end
 
 Flux.Module.Register("StanceBar", {
+	phase = "secure",
+	priority = 40,
+	protected = true,
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = function()
-		Stance.Start()
+		return Stance.Start()
 	end,
 })

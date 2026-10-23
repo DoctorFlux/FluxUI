@@ -602,6 +602,7 @@ local function UpdateBorder()
         return
     end
     lastBorderLayoutHash = layoutHash
+    if _G.Flux and Flux.Startup then Flux.Startup.Layout("unified_border_layout_passes") end
 
     --- Same themed fill as gap backdrop when FPS/durability strip lives elsewhere (top-left / status stack).
     UpdateActionStripInfoGapBackdrop()
@@ -877,7 +878,6 @@ local function EnsureBorderFormStormSettledHook()
 end
 if C_Timer and C_Timer.After then
     C_Timer.After(0, EnsureBorderFormStormSettledHook)
-    C_Timer.After(1, EnsureBorderFormStormSettledHook)
 end
 
 eventFrame:SetScript("OnEvent", function(self, event)
@@ -932,6 +932,7 @@ end
 
 -- EVENT-BASED: Setup hooks once after initialization (no continuous checking needed)
 -- Try to setup hooks immediately if ActionBar is available, otherwise try once after a short delay
+if not (_G.Flux and Flux.Module) then
 if NamedFrame("FluxActionStrip", "FluxMainActionBar") or NamedFrame("FluxActionStripSensing", "FluxActionBarSensing") then
     SetupActionBarHooks()
 else
@@ -939,6 +940,7 @@ else
     C_Timer.After(0.5, function()
         SetupActionBarHooks()
     end)
+end
 end
 
 -- EVENT-BASED: Drag state tracking via CURSOR_CHANGED event and mouse hooks (no OnUpdate needed)
@@ -992,5 +994,20 @@ UnifiedBorder.UpdateActionStripInfoGapBackdrop = UpdateActionStripInfoGapBackdro
 
 -- Export
 _G.FluxUnifiedBorder = UnifiedBorder
+
+-- Components are produced in secure priority order before this HUD phase.
+-- No frame-count watcher or speculative half-second delay is needed for boot.
+if _G.Flux and Flux.Module then
+    Flux.Module.Register("UnifiedBorder", {
+        phase = "hud", priority = 90, protected = true,
+        OnEnable = function()
+            if not TryInitialize(true) then return false end
+            SetupActionBarHooks()
+            EnsureBorderFormStormSettledHook()
+            if Flux.Startup then Flux.Startup.Mark("bottom_hud_layout_applied") end
+            return true
+        end,
+    })
+end
 
 

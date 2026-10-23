@@ -1,0 +1,634 @@
+{
+  "capture": {
+    "addonMsPerSecond": 11.253367331672,
+    "build": "70532",
+    "capturedAt": "2026-10-23 09:16:35",
+    "client": "Forever",
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=75 vsync=0 targetFPS=60 useTargetFPS=1 gxMaxFrameLatency=2",
+    "fpsAverage": 211.46631698608,
+    "fpsMin": 164.0464630127,
+    "frames": [
+      {
+        "calls": 3,
+        "label": "ChatFrame4EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame6EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame3EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame9EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame10EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame1EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame2EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame5EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame7EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame8EditBox",
+        "ms": 381.2649,
+        "msPerSecond": 19.062291885471
+      },
+      {
+        "calls": 4188,
+        "label": "1e463553520",
+        "ms": 195.23,
+        "msPerSecond": 9.7610119494362
+      },
+      {
+        "calls": 4188,
+        "label": "UF_UnitFramePollFrame",
+        "ms": 53.8396,
+        "msPerSecond": 2.6918454077389
+      },
+      {
+        "calls": 4188,
+        "label": "1e437517040",
+        "ms": 53.0738,
+        "msPerSecond": 2.653557322143
+      },
+      {
+        "calls": 4188,
+        "label": "1e4b334c750",
+        "ms": 46.0422,
+        "msPerSecond": 2.3019949002629
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1cb300.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1cbb20.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1ca310.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dd8d0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1cc020.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dddd0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dc1b0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dc6b0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1cad10.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dd1a0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "MainStatusTrackingBarContainer.1e43d1ca810.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dcbb0.StatusBar",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame1",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame8",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame3",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame4",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame7",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame9",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame2",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame10",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame5",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 8396,
+        "label": "ChatFrame6",
+        "ms": 38.0818,
+        "msPerSecond": 1.9039948002665
+      },
+      {
+        "calls": 4188,
+        "label": "PlayerFrame",
+        "ms": 31.8819,
+        "msPerSecond": 1.5940152992405
+      },
+      {
+        "calls": 4198,
+        "label": "CommunitiesFrame.Chat.MessageFrame",
+        "ms": 24.5037,
+        "msPerSecond": 1.225123743817
+      },
+      {
+        "calls": 4198,
+        "label": "DeveloperConsole.MessageFrame",
+        "ms": 24.5037,
+        "msPerSecond": 1.225123743817
+      },
+      {
+        "calls": 46068,
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1e4704b6cb0.WidgetContainer.BackModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "GlobalFXDialogModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "UIWidgetBelowMinimapContainerFrame.BackModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1e4704b7890.WidgetContainer.FrontModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "UIWidgetTopCenterContainerFrame.BackModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1e4704b6cb0.WidgetContainer.FrontModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "UIWidgetCenterDisplayFrame.WidgetContainer.FrontModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "CovenantRenownToast.IconSwirlModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 46068,
+        "label": "UIWidgetCenterScreenContainerFrame.BackModelScene",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      }
+    ],
+    "functions": [
+      {
+        "calls": 60,
+        "label": "FluxInfoFrame._CamelotSpellBonus",
+        "ms": 196.3847,
+        "msPerSecond": 9.8187440628307
+      },
+      {
+        "calls": 4188,
+        "label": "1e463553520:OnUpdate",
+        "ms": 195.23,
+        "msPerSecond": 9.7610119494362
+      },
+      {
+        "calls": 150,
+        "label": "FluxInfoFrame.ResolveStatFramesForTooltip",
+        "ms": 194.8596,
+        "msPerSecond": 9.7424928753898
+      },
+      {
+        "calls": 30,
+        "label": "FluxInfoFrame._ClassicSpellDamageColorHex",
+        "ms": 59.8208,
+        "msPerSecond": 2.9908904554875
+      },
+      {
+        "calls": 4188,
+        "label": "UF_UnitFramePollFrame:OnUpdate",
+        "ms": 53.8396,
+        "msPerSecond": 2.6918454077389
+      },
+      {
+        "calls": 4188,
+        "label": "1e437517040:OnUpdate",
+        "ms": 53.0738,
+        "msPerSecond": 2.653557322143
+      },
+      {
+        "calls": 4188,
+        "label": "1e4b334c750:OnUpdate",
+        "ms": 46.0422,
+        "msPerSecond": 2.3019949002629
+      },
+      {
+        "calls": 8376,
+        "label": "SecondaryStatusTrackingBarContainer.1e43d1dd1a0.StatusBar:OnUpdate",
+        "ms": 40.8292,
+        "msPerSecond": 2.0413579321104
+      },
+      {
+        "calls": 4188,
+        "label": "PlayerFrame:OnUpdate",
+        "ms": 31.8819,
+        "msPerSecond": 1.5940152992405
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdateHealth",
+        "ms": 26.7852,
+        "msPerSecond": 1.3391930403526
+      },
+      {
+        "calls": 46068,
+        "label": "GlobalFXBackgroundModelScene:OnUpdate",
+        "ms": 18.4301,
+        "msPerSecond": 0.92145892705682
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdateHealPrediction",
+        "ms": 14.682,
+        "msPerSecond": 0.73406329683769
+      },
+      {
+        "calls": 4188,
+        "label": "1e46354abf0:OnUpdate",
+        "ms": 14.0287,
+        "msPerSecond": 0.70139993000592
+      },
+      {
+        "calls": 4188,
+        "label": "ChatFrame1:OnUpdate",
+        "ms": 12.8002,
+        "msPerSecond": 0.63997800110215
+      },
+      {
+        "calls": 118972,
+        "label": "FluxAPICompat.API.IsSecretValue",
+        "ms": 11.5743,
+        "msPerSecond": 0.57868606569871
+      },
+      {
+        "calls": 2,
+        "label": "FluxAddonSystem.Scan",
+        "ms": 9.859,
+        "msPerSecond": 0.49292535373401
+      },
+      {
+        "calls": 4188,
+        "label": "1e4707cb140:OnUpdate",
+        "ms": 9.1048,
+        "msPerSecond": 0.45521723913961
+      },
+      {
+        "calls": 4188,
+        "label": "UIParent.1e437919140:OnUpdate",
+        "ms": 7.7444,
+        "msPerSecond": 0.38720063996934
+      },
+      {
+        "calls": 28200,
+        "label": "FluxInfoFrame._CamelotCombatStatKey",
+        "ms": 7.2327,
+        "msPerSecond": 0.36161691915529
+      },
+      {
+        "calls": 1118,
+        "label": "FluxAddonSystem.NameLooksLikeMinimapButton",
+        "ms": 7.1725,
+        "msPerSecond": 0.35860706964775
+      },
+      {
+        "calls": 4188,
+        "label": "1e30f87ae20:OnUpdate",
+        "ms": 7.042,
+        "msPerSecond": 0.35208239588142
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdatePower",
+        "ms": 6.9206,
+        "msPerSecond": 0.34601269936622
+      },
+      {
+        "calls": 4188,
+        "label": "PerfFrame:OnUpdate",
+        "ms": 6.8784,
+        "msPerSecond": 0.34390280486094
+      },
+      {
+        "calls": 4188,
+        "label": "1e40ad47240:OnUpdate",
+        "ms": 6.4141,
+        "msPerSecond": 0.32068896555283
+      },
+      {
+        "calls": 4188,
+        "label": "FluxInsecureStateDriver:OnUpdate",
+        "ms": 6.0265,
+        "msPerSecond": 0.30130993450431
+      },
+      {
+        "calls": 4188,
+        "label": "1e46857f940:OnUpdate",
+        "ms": 5.9102,
+        "msPerSecond": 0.29549522523976
+      },
+      {
+        "calls": 4188,
+        "label": "1e30f87c3b0:OnUpdate",
+        "ms": 5.4338,
+        "msPerSecond": 0.27167641618013
+      },
+      {
+        "calls": 392,
+        "label": "UnitFrames.SyncWatchedUnitFrameVisibility",
+        "ms": 5.3315,
+        "msPerSecond": 0.26656167191732
+      },
+      {
+        "calls": 4188,
+        "label": "MainMenuMicroButton:OnUpdate",
+        "ms": 4.6153,
+        "msPerSecond": 0.23075346232768
+      },
+      {
+        "calls": 4188,
+        "label": "ActionBarButtonUpdateFrame:OnUpdate",
+        "ms": 4.4559,
+        "msPerSecond": 0.22278386080773
+      },
+      {
+        "calls": 4188,
+        "label": "SecureStateDriverManager:OnUpdate",
+        "ms": 4.4549,
+        "msPerSecond": 0.2227338633076
+      },
+      {
+        "calls": 28380,
+        "label": "FluxInfoFrame._IsCamelotClient",
+        "ms": 4.257,
+        "msPerSecond": 0.21283935803283
+      },
+      {
+        "calls": 4188,
+        "label": "1e4b335b5d0:OnUpdate",
+        "ms": 4.1105,
+        "msPerSecond": 0.20551472426449
+      },
+      {
+        "calls": 4,
+        "label": "FluxNCConsumables.GetFirstEligibleItem",
+        "ms": 3.6164,
+        "msPerSecond": 0.18081095945265
+      },
+      {
+        "calls": 587,
+        "label": "1e437983650:OnUpdate",
+        "ms": 3.5869,
+        "msPerSecond": 0.17933603319896
+      },
+      {
+        "calls": 4,
+        "label": "FluxNCConsumables.IsItemEligible",
+        "ms": 3.5444,
+        "msPerSecond": 0.17721113944364
+      },
+      {
+        "calls": 4188,
+        "label": "1e43d28b6d0:OnUpdate",
+        "ms": 3.5039,
+        "msPerSecond": 0.17518624068857
+      },
+      {
+        "calls": 2,
+        "label": "Flux.Bars.Hosts.UpdateTooltip",
+        "ms": 3.4988,
+        "msPerSecond": 0.17493125343793
+      },
+      {
+        "calls": 8,
+        "label": "FluxNCConsumables.IsWeaponEnchantItem",
+        "ms": 3.1463,
+        "msPerSecond": 0.15730713464381
+      },
+      {
+        "calls": 4,
+        "label": "Flux.Scheduler.Flush",
+        "ms": 3.0058,
+        "msPerSecond": 0.15028248587622
+      },
+      {
+        "calls": 556,
+        "label": "GameTooltip:OnUpdate",
+        "ms": 2.8953,
+        "msPerSecond": 0.14475776211239
+      },
+      {
+        "calls": 4188,
+        "label": "1e459861550:OnUpdate",
+        "ms": 2.7707,
+        "msPerSecond": 0.1385280735968
+      },
+      {
+        "calls": 8,
+        "label": "FluxBindingTooltip.AppendForButton",
+        "ms": 2.4291,
+        "msPerSecond": 0.12144892755404
+      },
+      {
+        "calls": 1146,
+        "label": "FluxAddonSystem.IsValidMinimapButton",
+        "ms": 2.2739,
+        "msPerSecond": 0.11368931553462
+      },
+      {
+        "calls": 4188,
+        "label": "1e30f8771d0.1e30f878260:OnUpdate",
+        "ms": 1.6399,
+        "msPerSecond": 0.08199090045526
+      },
+      {
+        "calls": 16,
+        "label": "FluxBindingPlacement.DescribeBarSlot",
+        "ms": 1.5405,
+        "msPerSecond": 0.077021148942818
+      },
+      {
+        "calls": 3,
+        "label": "Flux.Bars.ForEachHost",
+        "ms": 1.2277,
+        "msPerSecond": 0.061381930903666
+      },
+      {
+        "calls": 1,
+        "label": "Flux.Bars.Paint.Flush",
+        "ms": 1.1737,
+        "msPerSecond": 0.058682065896907
+      },
+      {
+        "calls": 4,
+        "label": "FluxNCConsumables.FindBuffForItem",
+        "ms": 1.1128,
+        "msPerSecond": 0.055637218139285
+      },
+      {
+        "calls": 392,
+        "label": "UnitFrames.UnitIsAFKDisplay",
+        "ms": 1.1013,
+        "msPerSecond": 0.055062246887845
+      }
+    ],
+    "gameType": "camelot",
+    "liveAfter": 38,
+    "liveBefore": 36,
+    "passes": [
+      {
+        "calls": 1,
+        "label": "bars.paint.lane",
+        "ms": 1.1684999465942,
+        "msPerSecond": 0.058422076226102
+      }
+    ],
+    "scriptProfile": "1",
+    "seconds": 20.000999999931,
+    "spellRanks": "1",
+    "subscribers": [
+      "flux.cond.mo"
+    ],
+    "version": "1.60.1"
+  },
+  "evidence": "User-provided Forever baseline; scriptProfile=1; overlapping CPU rows must not be summed; not matched after-change evidence"
+}

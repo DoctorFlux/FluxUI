@@ -4,6 +4,12 @@
 -- Uses FluxBorder for consistent styling with FluxMicroMenu
 
 local addonName, addonTable = ...
+local Flux = (addonTable and addonTable.Flux) or _G.Flux
+local managedStartup = Flux and Flux.Module and Flux.Module.Register
+local statusHUDReady = false
+local nativeHidePending = false
+local pendingStatusLayout = false
+local InitializeStatusHUD
 
 -------------------------------------------------------------------------------
 -- CONSTANTS & CONFIG
@@ -1338,6 +1344,12 @@ local FluxHiddenParent = _G.FluxHiddenParent or CreateFrame("Frame", "FluxHidden
 FluxHiddenParent:Hide()
 
 local function HideBlizzardBars()
+    if not statusHUDReady then return end
+    if InCombatLockdown() then
+        nativeHidePending = true
+        return
+    end
+    nativeHidePending = false
     -- List of bar names across all client versions
     local barsToHide = {
         -- Pre-Dragonflight bars
@@ -1384,7 +1396,7 @@ local function HideBlizzardBars()
                     pcall(function() bar:UnregisterAllEvents() end)
                 end
                 if not bar.FluxHideHooked then
-                    bar:HookScript("OnShow", function(self) self:Hide() end)
+                    bar:HookScript("OnShow", function(self) if not InCombatLockdown() then self:Hide() end end)
                     bar.FluxHideHooked = true
                 end
             end
@@ -1829,7 +1841,11 @@ local function UpdateRepBar()
     
     if not name then
         local wasTracking = RepBar.isTracking
-        RepBar:Hide()
+        if not (InCombatLockdown() and RepBar.IsProtected and RepBar:IsProtected()) then
+            RepBar:Hide()
+        else
+            pendingStatusLayout = true
+        end
         RepBar.isTracking = false
         if not wasTracking and _repLastSig == "none" then
             _G.FluxPerfStatusBarRepSkipped = (_G.FluxPerfStatusBarRepSkipped or 0) + 1
@@ -1839,7 +1855,11 @@ local function UpdateRepBar()
         return
     end
     
-    RepBar:Show()
+    if not (InCombatLockdown() and RepBar.IsProtected and RepBar:IsProtected()) then
+        RepBar:Show()
+    else
+        pendingStatusLayout = true
+    end
     RepBar.isTracking = true
     
     local current = value - minRep
@@ -2602,29 +2622,21 @@ function UpdateLayout()
 
     local microMenu = _G.FluxMicroMenu
     if statusPos ~= 2 and statusPos ~= 3 and not microMenu then
-        -- Use watcher pattern instead of timer delay
-        if not UpdateLayout._watcher then
-            UpdateLayout._watcher = CreateFrame("Frame")
-        end
-        local watcher = UpdateLayout._watcher
-        local checkCount = 0
-        local MAX_CHECKS = 20
-        watcher:Hide()
-        watcher:SetScript("OnUpdate", function(self)
-            checkCount = checkCount + 1
-            local menu = _G.FluxMicroMenu
-            if menu then
-                self:Hide()
-                UpdateLayout()
-            elseif checkCount >= MAX_CHECKS then
-                self:Hide()
-                -- Force update even if not ready
-                UpdateLayout()
-            end
-        end)
-        watcher:Show()
-        return
+        pendingStatusLayout = true
+        return false
     end
+    -- Display fills remain live in combat. Only structural layouts involving
+    -- protected frames/anchors need the combat-end reconciliation.
+    if InCombatLockdown() and (
+        (FluxStatusBarContainer.IsProtected and FluxStatusBarContainer:IsProtected())
+        or (statusPos == 1 and microMenu and microMenu.IsProtected and microMenu:IsProtected())
+        or (ExpBar.IsProtected and ExpBar:IsProtected())
+        or (RepBar.IsProtected and RepBar:IsProtected())) then
+        pendingStatusLayout = true
+        return false
+    end
+    pendingStatusLayout = false
+    if Flux and Flux.Startup then Flux.Startup.Count("layout_passes") end
 
     -- List of bars to show (in Top-Down order)
     local activeBars = {}
@@ -2916,6 +2928,8 @@ end
 local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("PLAYER_XP_UPDATE")
 eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
 eventFrame:RegisterEvent("UPDATE_EXHAUSTION")
@@ -2936,62 +2950,49 @@ end
 
 EnsureGoldBarBagListener()
 
--- Flux idle FPS: reuse one PEW settle frame instead of CreateFrame every login/world enter.
-local lateWatcherFrame = nil
-local lateCheckCount = 0
-local LATE_MAX_CHECKS = 60
-
-local function EnsureLateWatcher()
-    if lateWatcherFrame then
-        return lateWatcherFrame
+-- Native controls remain in place until a replacement layout exists. All
+-- nonprotected status display work can run during an already-in-combat login.
+InitializeStatusHUD = function()
+    if managedStartup and not Flux.loggedIn then return false end
+    EnsureGoldBarBagListener()
+    CreateFluxDurabilityFrame()
+    UpdateExpBar()
+    UpdateRepBar()
+    UpdateGoldBar()
+    if FluxDurabilityFrame_SetAlerts then FluxDurabilityFrame_SetAlerts() end
+    if not statusHUDReady then
+        if UpdateLayout() == false then return false end
+        statusHUDReady = true
+        if Flux and Flux.Startup then Flux.Startup.Mark("status_hud_ready") end
+    else
+        MaybeUpdateLayoutForComposition()
     end
-    lateWatcherFrame = CreateFrame("Frame")
-    lateWatcherFrame:Hide()
-    lateWatcherFrame:SetScript("OnUpdate", function(watcher)
-        lateCheckCount = lateCheckCount + 1
-        if lateCheckCount >= LATE_MAX_CHECKS then
-            watcher:Hide()
-            -- Final update
-            HideBlizzardBars()
-            UpdateLayout()
-            if FluxOptions and FluxOptions.GetStatusBarPosition and FluxOptions:GetStatusBarPosition() == 2
-                and _G.FluxStatusBar_ScheduleActionStripAnchorSettle then
-                _G.FluxStatusBar_ScheduleActionStripAnchorSettle(true)
-            end
-        elseif lateCheckCount == 20 or lateCheckCount == 40 then
-            -- Periodic updates at ~1s and ~2s
-            HideBlizzardBars()
-            UpdateLayout()
-        end
-    end)
-    return lateWatcherFrame
+    HideBlizzardBars()
+    return true
+end
+
+if managedStartup then
+    Flux.Module.Register("StatusBars", {
+        phase = "hud", priority = 50, OnEnable = InitializeStatusHUD,
+    })
 end
 
 eventFrame:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
-        EnsureGoldBarBagListener()
-        -- Initial setup (instant, safe operations)
-        HideBlizzardBars()
-
-        -- Create custom DurabilityFrame
-        CreateFluxDurabilityFrame()
-
-        -- Update bars immediately (these are safe to call instantly)
-        UpdateExpBar()
-        UpdateRepBar()
-        UpdateGoldBar()
-        
-        -- Update durability frame
-        if FluxDurabilityFrame_SetAlerts then
-            FluxDurabilityFrame_SetAlerts()
+        InitializeStatusHUD()
+    elseif event == "PLAYER_REGEN_ENABLED" then
+        if not statusHUDReady then
+            InitializeStatusHUD()
+        elseif pendingStatusLayout then
+            UpdateLayout()
         end
-        
-        -- Update layout using watcher pattern (handles FluxMicroMenu availability)
-        UpdateLayout()
-        
-        -- Additional updates for late-loading elements using reused watcher
-        lateCheckCount = 0
-        EnsureLateWatcher():Show()
+        if nativeHidePending then HideBlizzardBars() end
+    elseif event == "ADDON_LOADED" then
+        if statusHUDReady then
+            HideBlizzardBars()
+        elseif not managedStartup or Flux.loggedIn then
+            InitializeStatusHUD()
+        end
     elseif event == "PLAYER_XP_UPDATE" or event == "PLAYER_LEVEL_UP" or 
            event == "UPDATE_EXHAUSTION" or event == "PLAYER_UPDATE_RESTING" then
         UpdateExpBar()
@@ -3080,19 +3081,19 @@ _G.UpdateGoldBar = UpdateGoldBar
 -- tick. Each full UpdateLayout + NotifyStatusBarLayoutDependents is heavy and
 -- re-entrant via FluxStatusBarContainer:OnSizeChanged -> FluxInfoFrame ->
 -- back into UpdateLayout. Coalesce external entries to one real pass per frame.
--- Internal UpdateLayout() calls (slash commands, first-login watcher, event
--- handlers) continue to run synchronously so boot-time layout is unchanged.
+-- Internal calls remain synchronous; external requests reconcile after the
+-- current layout transaction finishes.
 do
     local layoutPending = false
     local function FlushPendingLayout()
         layoutPending = false
-        UpdateLayout()
+        if statusHUDReady then UpdateLayout() else InitializeStatusHUD() end
     end
     _G.FluxStatusBarUpdateLayout = function()
         if layoutPending then return end
         if not (C_Timer and C_Timer.After) then
             -- No timer API: run immediately (classic fallback paths).
-            UpdateLayout()
+            if statusHUDReady then UpdateLayout() else InitializeStatusHUD() end
             return
         end
         layoutPending = true

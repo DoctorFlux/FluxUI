@@ -8,6 +8,8 @@
 
 FluxCombatManager = FluxCombatManager or {}
 local Manager = FluxCombatManager
+local Flux = _G.Flux
+local managedStartup = Flux and Flux.Module and Flux.Module.Register
 
 local GRID_NAME = "FluxCombatGrid_Main"
 local ANCHOR_OFFSET_X = -4
@@ -22,13 +24,14 @@ local function GetActionStripBottomY()
 end
 
 local function Initialize()
-    if InCombatLockdown() then
-        return
+    if InCombatLockdown() or (managedStartup and not Flux.securePhaseReady) then
+        return false
     end
     local Grid = FluxCombatGrid
     if not Grid or not Grid.New then
-        return
+        return false
     end
+    if Manager._startupReady then return true end
     if not Manager.Grid then
         Manager.Grid = Grid.New(UIParent, {
             name = GRID_NAME,
@@ -38,9 +41,13 @@ local function Initialize()
             spacing = 2,
         })
     end
+    if not Manager.Grid then return false end
     Manager:UpdateAnchor()
     if not Manager.ButtonsInitialized then
-        Manager:InitializeButtons()
+        if Manager.Grid.BeginLayout then Manager.Grid:BeginLayout() end
+        local ok, err = pcall(Manager.InitializeButtons, Manager)
+        if Manager.Grid.EndLayout then Manager.Grid:EndLayout(ok) end
+        if not ok then error(err) end
         Manager.ButtonsInitialized = true
     end
     if Manager.Grid.Show then
@@ -48,6 +55,9 @@ local function Initialize()
     elseif Manager.Grid.Frame then
         Manager.Grid.Frame:Show()
     end
+    Manager._startupReady = true
+    if Flux and Flux.Startup then Flux.Startup.Mark("combat_grid_infrastructure_ready") end
+    return true
 end
 
 function Manager:UpdateAnchor()
@@ -109,29 +119,32 @@ function Manager:InitializeButtons()
     if not grid then
         return
     end
+    self._startupRegistrations = self._startupRegistrations or {}
+    local function Create(key, module)
+        if module and module.Create and not self._startupRegistrations[key] then
+            module.Create(grid)
+            self._startupRegistrations[key] = true
+        end
+    end
     -- Order: bandage / pots / gem / HS / ammo — column groups drive layout.
-    if FluxCombatBandage and FluxCombatBandage.Create then
-        FluxCombatBandage.Create(grid)
-    end
-    if FluxCombatHealPotion and FluxCombatHealPotion.Create then
-        FluxCombatHealPotion.Create(grid)
-    end
-    if FluxCombatManaPotion and FluxCombatManaPotion.Create then
-        FluxCombatManaPotion.Create(grid)
-    end
-    if FluxCombatManaGem and FluxCombatManaGem.Create then
-        FluxCombatManaGem.Create(grid)
-    end
-    if FluxCombatHealthstone and FluxCombatHealthstone.Create then
-        FluxCombatHealthstone.Create(grid)
-    end
+    Create("bandage", FluxCombatBandage)
+    Create("healPotion", FluxCombatHealPotion)
+    Create("manaPotion", FluxCombatManaPotion)
+    Create("manaGem", FluxCombatManaGem)
+    Create("healthstone", FluxCombatHealthstone)
     -- Ammo last: display-only count for equipped ammo / thrown.
     if FluxCombatAmmo and FluxCombatAmmo.Create and FluxCombatGrid_ShouldCreateAmmoButton() then
-        FluxCombatAmmo.Create(grid)
+        Create("ammo", FluxCombatAmmo)
     end
     if grid.Relayout then
         grid:Relayout()
     end
+end
+
+if managedStartup then
+    Flux.Module.Register("CombatGrid", {
+        phase = "secure", priority = 46, protected = true, OnEnable = Initialize,
+    })
 end
 
 Manager._combatRefreshers = Manager._combatRefreshers or {}
@@ -306,7 +319,6 @@ eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 
-local initialized = false
 eventFrame:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_REGEN_DISABLED" then
         Manager:_StartCombatRefreshTicker()
@@ -314,6 +326,10 @@ eventFrame:SetScript("OnEvent", function(_, event)
     end
     if event == "PLAYER_REGEN_ENABLED" then
         Manager:_StopCombatRefreshTicker()
+        if not Manager._startupReady then
+            Initialize()
+            return
+        end
         if Manager.Grid and Manager.Grid._pendingRegenRelayout then
             pcall(function()
                 Manager:FinalizeLayout()
@@ -322,23 +338,14 @@ eventFrame:SetScript("OnEvent", function(_, event)
         return
     end
     if event == "PLAYER_ENTERING_WORLD" then
-        if initialized then
-            Manager:FinalizeLayout()
+        if Manager._startupReady then
+            Manager:UpdateAnchor()
             return
         end
         if InCombatLockdown() then
             return
         end
         Initialize()
-        initialized = true
-        Manager:FinalizeLayout()
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.15, function()
-                if not InCombatLockdown() then
-                    Manager:FinalizeLayout()
-                end
-            end)
-        end
     end
 end)
 

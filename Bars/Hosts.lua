@@ -487,7 +487,9 @@ end
 
 --- row = "main" | "sec" | "tert"
 function Hosts.CreateSurface(column, row, name, parent)
+	if InCombatLockdown and InCombatLockdown() then return nil end
 	local widget = _G[name]
+	if widget and widget._fluxSurfaceReady then return widget end
 	if not widget then
 		local function create()
 			local ok, created = pcall(CreateFrame, "CheckButton", name, parent, ButtonTemplate())
@@ -533,8 +535,8 @@ function Hosts.CreateSurface(column, row, name, parent)
 	-- that nil call taints the button (UseAction forbidden on click).
 	-- HookScript would still run the mixin (Update → SetCooldown secrets).
 	if widget.SetScript and not widget._fluxActionHooked then
-		widget._fluxActionHooked = true
 		widget:SetScript("OnAttributeChanged", OnActionAttribute)
+		widget._fluxActionHooked = true
 	end
 
 	widget._fluxBarSlotIndex = column
@@ -569,7 +571,7 @@ function Hosts.CreateSurface(column, row, name, parent)
 	end
 
 	if Bars.Clicks and Bars.Clicks.Prepare then
-		Bars.Clicks.Prepare(widget)
+		if Bars.Clicks.Prepare(widget) == false then return nil end
 	else
 		widget:RegisterForClicks("AnyDown", "AnyUp")
 	end
@@ -590,12 +592,15 @@ function Hosts.CreateSurface(column, row, name, parent)
 		Bars.Flyout.Hide(widget)
 	end
 
-	widget:HookScript("OnMouseDown", function(self)
-		local ov = Flux.ButtonFX and Flux.ButtonFX.Overlay
-		if ov and ov.NotePressed then
-			ov.NotePressed(self)
-		end
-	end)
+	if not widget._fluxPressHooked then
+		widget:HookScript("OnMouseDown", function(self)
+			local ov = Flux.ButtonFX and Flux.ButtonFX.Overlay
+			if ov and ov.NotePressed then
+				ov.NotePressed(self)
+			end
+		end)
+		widget._fluxPressHooked = true
+	end
 	-- No OnMouseUp press reset: it runs before the click is dispatched, and
 	-- clearing the pushed state there suppresses the mouse-up click. PostClick
 	-- and the GLOBAL_MOUSE_UP fallback already unstick the button.
@@ -795,6 +800,7 @@ function Hosts.CreateSurface(column, row, name, parent)
 			widget.HotKey:Hide()
 		end
 	end
+	widget._fluxSurfaceReady = true
 	return widget
 end
 
@@ -847,44 +853,59 @@ end
 
 function Hosts.Build()
 	if built then
-		return
+		return true
 	end
-	built = true
+	if InCombatLockdown and InCombatLockdown() then return false end
 	local State = Bars.State
 	if State and State.Create then
 		State.Create()
 	end
 
 	for column = 1, Bars.NUM_COLUMNS do
-		local header = State and State.HeaderFor(column, "main") or (Bars.Strip and Bars.Strip.inner)
-		local name = "FluxActionStripButton" .. column
-		local widget = Hosts.CreateSurface(column, "main", name, header)
-		local slot = (State and State.GetMainSlot(column, 1)) or column
-		if State and widget then
-			State.Attach(header, widget, column, "main")
+		local col = Bars.hosts[column]
+		if not col then
+			col = {
+				column = column,
+				pages = column <= Bars.NUM_NATIVE,
+				bindingCommand = Hosts.BindingCommand(column),
+			}
+			Bars.hosts[column] = col
 		end
-		local host = {
-			column = column,
-			row = "main",
-			slot = slot,
-			widget = widget,
-			pages = column <= Bars.NUM_NATIVE,
-			bindingCommand = Hosts.BindingCommand(column),
-		}
-		if widget then
-			Hosts.FinishSurface(host, column, "main", slot)
+		local host = col.main
+		if not (host and host._fluxReady) then
+			local header = State and State.HeaderFor(column, "main") or (Bars.Strip and Bars.Strip.inner)
+			local name = "FluxActionStripButton" .. column
+			local widget = Hosts.CreateSurface(column, "main", name, header)
+			local slot = (State and State.GetMainSlot(column, 1)) or column
+			if State and widget then
+				State.Attach(header, widget, column, "main")
+			end
+			host = host or {
+				column = column,
+				row = "main",
+				slot = slot,
+				widget = widget,
+				pages = column <= Bars.NUM_NATIVE,
+				bindingCommand = Hosts.BindingCommand(column),
+			}
+			col.main = host
+			host.widget = widget
+			if widget then
+				Hosts.FinishSurface(host, column, "main", slot)
+				host._fluxReady = true
+			end
 		end
-		Bars.hosts[column] = {
-			column = column,
-			pages = column <= Bars.NUM_NATIVE,
-			bindingCommand = host.bindingCommand,
-			main = host,
-		}
 	end
 	if Flux.Action and Flux.Action.SweepFluxFromCollectors
 		and not (Flux.Action.LeaveBlizzardCollector and Flux.Action.LeaveBlizzardCollector()) then
 		Flux.Action.SweepFluxFromCollectors()
 	end
+	for column = 1, Bars.NUM_COLUMNS do
+		local col = Bars.hosts[column]
+		if not (col and col.main and col.main._fluxReady) then return false end
+	end
+	built = true
+	return true
 end
 
 function Hosts.ApplyChrome()
@@ -901,8 +922,7 @@ end
 
 function Hosts.RefreshKeys()
 	if Bars.Clicks and Bars.Clicks.RefreshKeys then
-		Bars.Clicks.RefreshKeys()
-		return
+		return Bars.Clicks.RefreshKeys()
 	end
 end
 

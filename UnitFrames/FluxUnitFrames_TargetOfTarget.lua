@@ -273,7 +273,7 @@ end
 
 function FluxUnitFrames_ApplyRuntimeToT(wantFlux)
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.targettarget", function()
             FluxUnitFrames_ApplyRuntimeToT(wantFlux)
         end)
         return
@@ -290,7 +290,7 @@ function FluxUnitFrames_ApplyRuntimeToT(wantFlux)
         end
         if not ns.TargetOfTargetFrame then
             totFrameInitialized = false
-            InitializeTargetOfTargetFrame()
+            UF.RunInitializer("targettarget")
         else
             FluxUnitFrames_ResumeFluxToTUnitWatch(ns.TargetOfTargetFrame)
             if UF.SyncWatchedUnitFrameVisibility then
@@ -345,8 +345,4 @@ end
 -- ---------------------------------------------------------------------------
 -- Loader
 -- ---------------------------------------------------------------------------
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:SetScript("OnEvent", function(self, event)
-    InitializeTargetOfTargetFrame()
-end)
+UF.RegisterInitializer("targettarget", InitializeTargetOfTargetFrame, function() return totFrameInitialized end, 64)

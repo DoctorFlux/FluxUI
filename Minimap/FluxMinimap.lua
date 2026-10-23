@@ -90,6 +90,15 @@ FluxMinimap:RegisterEvent("UI_SCALE_CHANGED")
 
 FluxMinimap:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" then
+        if self._fluxLoginPresented then return true end
+        if InCombatLockdown() and Minimap.IsProtected and Minimap:IsProtected() then
+            if _G.Flux and Flux.Combat then
+                Flux.Combat.Defer("hud.minimap", function()
+                    self:GetScript("OnEvent")(self, "PLAYER_LOGIN")
+                end)
+            end
+            return false
+        end
         -- Initialize immediately
         self:Initialize()
         
@@ -97,7 +106,7 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
         -- Blizzard_ObjectiveTracker loads async; ADDON_LOADED handles first position when frame exists
         -- Second delay catches embedding state from saved vars (FluxWindowFrame may load after)
         if C_Timer and C_Timer.After then
-            C_Timer.After(1.0, function()
+            C_Timer.After(0, function()
                 if self.UpdateQuestTrackerPosition then self:UpdateQuestTrackerPosition() end
             end)
         end
@@ -127,6 +136,9 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
             self:EnforcePosition()
             self:CleanupBlizzardFrames()
         end
+        self._fluxLoginPresented = true
+        if _G.Flux and Flux.Startup then Flux.Startup.Mark("minimap_hud_presented") end
+        return true
     elseif event == "PLAYER_ENTERING_WORLD" then
         self:UpdateStyle()
         -- Only enforce position when not in combat
@@ -350,6 +362,7 @@ function FluxMinimap.GetEnforcerBurstRemaining()
 end
 
 function FluxMinimap:Initialize()
+    if self._fluxInitialized then return end
     -- 1. Set Shape to Square
     Minimap:SetMaskTexture(CONFIG.MaskTexture)
     
@@ -388,6 +401,7 @@ function FluxMinimap:Initialize()
     -- 5. Handle Right Click for tracking/calendar (Context Menu)
     -- Use HookScript so Blizzard's original OnMouseUp runs first (performs ping in untainted context).
     -- Our hook runs after; we only add right-click handling. Left-click ping is done by Blizzard's handler.
+    if not self._fluxMouseUpHooked then
     Minimap:HookScript("OnMouseUp", function(self, button)
         if button == "RightButton" then
             if FLUX_API.isRetail then
@@ -398,6 +412,8 @@ function FluxMinimap:Initialize()
         end
         -- Left-click: Blizzard's handler (which ran first) already did the ping - nothing to do here.
     end)
+    self._fluxMouseUpHooked = true
+    end
 
 
     -- 6. Hook Edit Mode (Retail only)
@@ -408,7 +424,8 @@ function FluxMinimap:Initialize()
     -- 7. Adaptive enforcer (event-driven bursts + slower idle fallback)
     self:RequestEnforcerBurst(4)
     self:EnsureEnforcerTicker()
-    local enforcerEvents = CreateFrame("Frame")
+    local enforcerEvents = self._fluxEnforcerEvents or CreateFrame("Frame")
+    self._fluxEnforcerEvents = enforcerEvents
     enforcerEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
     enforcerEvents:RegisterEvent("DISPLAY_SIZE_CHANGED")
     enforcerEvents:RegisterEvent("UI_SCALE_CHANGED")
@@ -424,6 +441,7 @@ function FluxMinimap:Initialize()
     
     -- 9. Hook Blizzard's QuestWatchFrame positioning to prevent conflicts
     self:HookQuestWatchFramePositioning()
+    self._fluxInitialized = true
 end
 
 --- Reapply border accent on minimap chrome and embedded extra buttons (called from FluxBorder:RefreshAppearanceDependents).
@@ -1835,18 +1853,38 @@ function FluxMinimap:CreateInfoBar()
     -- is actually wider than the clip, and is cleared in
     -- OnInfoBarZoneHitLeave / UpdateInfoBarZoneScroll when scrolling ends.
     self._infoBarFrame = infoBar
-    if not self._clockTicker and C_Timer and C_Timer.NewTicker then
-        local function _tickClock()
-            if self.InfoBar and self.InfoBar.TimeText and C_DateAndTime and C_DateAndTime.GetCurrentCalendarTime then
-                local date = C_DateAndTime.GetCurrentCalendarTime()
-                local hour, minute = date and date.hour, date and date.minute
-                if hour and minute then
-                    self.InfoBar.TimeText:SetText(string.format("%02d:%02d", hour, minute))
-                end
+    local clockHour, clockMinute
+    local function _tickClock()
+        if self.InfoBar and self.InfoBar.TimeText and C_DateAndTime and C_DateAndTime.GetCurrentCalendarTime then
+            local date = C_DateAndTime.GetCurrentCalendarTime()
+            local hour, minute = date and date.hour, date and date.minute
+            if hour and minute and (hour ~= clockHour or minute ~= clockMinute) then
+                self.InfoBar.TimeText:SetText(string.format("%02d:%02d", hour, minute))
+                clockHour, clockMinute = hour, minute
             end
         end
+    end
+    local function StartClock()
         _tickClock()
-        self._clockTicker = C_Timer.NewTicker(1, _tickClock)
+        if not self._clockTicker and C_Timer and C_Timer.NewTicker then
+            self._clockTicker = C_Timer.NewTicker(1, _tickClock)
+        end
+    end
+    infoBar:HookScript("OnShow", StartClock)
+    infoBar:HookScript("OnHide", function()
+        if self._clockTicker then
+            self._clockTicker:Cancel()
+            self._clockTicker = nil
+        end
+        -- Inherited visibility changes need not send the hit region OnLeave.
+        infoBar._zoneScrollActive = false
+        infoBar._zoneScrollPos = nil
+        infoBar._zoneScrollDir = nil
+        infoBar._zoneScrollWidth = nil
+        infoBar:SetScript("OnUpdate", nil)
+    end)
+    if infoBar:IsShown() then
+        StartClock()
     end
     
     infoBar:RegisterEvent("ZONE_CHANGED")
@@ -1933,6 +1971,13 @@ function FluxMinimap:ApplyInfoBarZoneTextFit(fullText, r, g, b)
     ib._zoneScrollActive = false
     ib._zoneScrollPos = nil
     ib._zoneScrollDir = nil
+    ib._zoneScrollWidth = nil
+    -- Zone/layout events can refit the label before the hover region sees a
+    -- leave. Do not retain a per-frame script after that refit stops scrolling.
+    local bar = self._infoBarFrame
+    if bar then
+        bar:SetScript("OnUpdate", nil)
+    end
     ft:ClearAllPoints()
     if clip then
         ft:SetPoint("TOPLEFT", clip, "TOPLEFT", 0, 0)
@@ -1967,6 +2012,7 @@ function FluxMinimap:OnInfoBarZoneHitEnter()
     ib._zoneScrollActive = true
     ib._zoneScrollPos = 0
     ib._zoneScrollDir = -1
+    ib._zoneScrollWidth = fullW
     ft:ClearAllPoints()
     ft:SetPoint("LEFT", clip, "LEFT", 0, 0)
     local r, g, b = ib._lastZoneR or 1, ib._lastZoneG or 1, ib._lastZoneB or 1
@@ -1988,6 +2034,7 @@ function FluxMinimap:OnInfoBarZoneHitLeave()
         ib._zoneScrollActive = false
         ib._zoneScrollPos = nil
         ib._zoneScrollDir = nil
+        ib._zoneScrollWidth = nil
     end
     -- Flux perf T2.7: detach the marquee OnUpdate when no longer needed.
     local bar = self._infoBarFrame
@@ -1999,21 +2046,31 @@ end
 
 function FluxMinimap:UpdateInfoBarZoneScroll(elapsed)
     local ib = self.InfoBar
-    if not ib or not ib._zoneScrollActive or not ib.ZoneText or not ib.ZoneScrollClip then return end
+    if not ib or not ib._zoneScrollActive or not ib.ZoneText or not ib.ZoneScrollClip then
+        local bar = self._infoBarFrame
+        if bar then bar:SetScript("OnUpdate", nil) end
+        return
+    end
     local clip = ib.ZoneScrollClip
     local ft = ib.ZoneText
     local clipW = clip:GetWidth()
     if not clipW or clipW <= 0 then return end
-    ft:SetText(ib._fullZoneText or "")
-    if ft.SetWidth then
-        ft:SetWidth(0)
+    -- Enter/refit owns this text and its measurement. Animation only changes
+    -- the position; formatting and measuring it every frame invalidates text
+    -- layout even when the zone and font have not changed.
+    local fullW = ib._zoneScrollWidth
+    if not fullW then
+        ft:SetText(ib._fullZoneText or "")
+        if ft.SetWidth then ft:SetWidth(0) end
+        fullW = ft:GetStringWidth()
+        ib._zoneScrollWidth = fullW
     end
-    local fullW = ft:GetStringWidth()
     local maxScroll = math.max(0, fullW - clipW)
     if maxScroll <= 0 then
         ib._zoneScrollActive = false
         ib._zoneScrollPos = nil
         ib._zoneScrollDir = nil
+        ib._zoneScrollWidth = nil
         -- Flux perf T2.7: zone now fits; stop the marquee OnUpdate.
         local bar = self._infoBarFrame
         if bar then
@@ -2035,8 +2092,6 @@ function FluxMinimap:UpdateInfoBarZoneScroll(elapsed)
     ib._zoneScrollPos = pos
     ft:ClearAllPoints()
     ft:SetPoint("LEFT", clip, "LEFT", pos, 0)
-    local r, g, b = ib._lastZoneR or 1, ib._lastZoneG or 1, ib._lastZoneB or 1
-    ft:SetTextColor(r, g, b)
 end
 
 function FluxMinimap:RefreshInfoBarZoneFit()
@@ -2611,3 +2666,12 @@ end
 -- A dumping ground for frames we want to permanently hide
 FluxMinimapHiddenFrame = CreateFrame("Frame")
 FluxMinimapHiddenFrame:Hide()
+
+if addonTable.Flux and addonTable.Flux.Module then
+    addonTable.Flux.Module.Register("MinimapHUD", {
+        phase = "hud", priority = 60,
+        OnEnable = function()
+            return FluxMinimap:GetScript("OnEvent")(FluxMinimap, "PLAYER_LOGIN")
+        end,
+    })
+end

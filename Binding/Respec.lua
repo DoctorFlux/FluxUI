@@ -266,29 +266,51 @@ end
 local function ApplySnapshotInternal(snap)
     local sticky = CollectStickyFromLive()
     local s = DB.EnsureLive and DB.EnsureLive() or DB.Ensure()
-    -- Restore compacted customized set as the live document.
-    s.bindings = DeepCopy(snap.doc.bindings) or {}
-    s.chordStackOrder = DeepCopy(snap.doc.chordStackOrder) or {}
-    s.badgeCornerOrder = DeepCopy(snap.doc.badgeCornerOrder) or {}
-    s.formPageEnabled = DeepCopy(snap.doc.formPageEnabled) or {}
-    s.rankSyncNames = DeepCopy(snap.doc.rankSyncNames) or {}
-    MergeStickyIntoDoc(s, sticky)
+    -- Prepare the whole replacement before touching live SavedVariables.
+    local replacement = {
+        bindings = DeepCopy(snap.doc.bindings) or {},
+        chordStackOrder = DeepCopy(snap.doc.chordStackOrder) or {},
+        badgeCornerOrder = DeepCopy(snap.doc.badgeCornerOrder) or {},
+        formPageEnabled = DeepCopy(snap.doc.formPageEnabled) or {},
+        rankSyncNames = DeepCopy(snap.doc.rankSyncNames) or {},
+        nextUid = s.nextUid,
+    }
+    MergeStickyIntoDoc(replacement, sticky)
     -- keep nextUid above every restored uid
     local maxUid = 0
-    for uid in pairs(s.bindings) do
+    for uid in pairs(replacement.bindings) do
         if type(uid) == "number" and uid > maxUid then
             maxUid = uid
         end
     end
-    if (tonumber(s.nextUid) or 1) <= maxUid then
-        s.nextUid = maxUid + 1
+    if (tonumber(replacement.nextUid) or 1) <= maxUid then
+        replacement.nextUid = maxUid + 1
+    end
+    local previous = {}
+    for key, value in pairs(replacement) do
+        previous[key] = s[key]
+        s[key] = value
     end
     local Conditions = ns.FluxBindingConditions
-    if Conditions then
-        Conditions.InvalidateAvailability()
-    end
-    if _G.FluxBinding and _G.FluxBinding.RequestApplyAll then
-        _G.FluxBinding.RequestApplyAll("respec")
+    local ok, reason = pcall(function()
+        if Conditions then
+            Conditions.InvalidateAvailability()
+        end
+        if _G.FluxBinding and _G.FluxBinding.RequestApplyAll then
+            _G.FluxBinding.RequestApplyAll("respec")
+        end
+    end)
+    if not ok then
+        -- A failed restore must keep the original document, including UID and
+        -- ordering state. Reconcile any request queued before the error.
+        for key in pairs(replacement) do
+            s[key] = previous[key]
+        end
+        if Conditions then pcall(Conditions.InvalidateAvailability) end
+        if _G.FluxBinding and _G.FluxBinding.RequestApplyAll then
+            pcall(_G.FluxBinding.RequestApplyAll, "respec.rollback")
+        end
+        return false, tostring(reason)
     end
     if _G.FluxSpellBindingEditor_ReloadLiveSession then
         pcall(_G.FluxSpellBindingEditor_ReloadLiveSession)
@@ -303,6 +325,9 @@ local function FinishPending(ok, reason)
     local done = _pendingDone
     _pendingSnap = nil
     _pendingDone = nil
+    if _combatWatcher then
+        _combatWatcher:UnregisterEvent("PLAYER_REGEN_ENABLED")
+    end
     if done then
         if ok then
             InvokeAfter(done, true)
@@ -313,21 +338,29 @@ local function FinishPending(ok, reason)
 end
 
 local function EnsureCombatWatcher()
-    if _combatWatcher then return end
-    _combatWatcher = CreateFrame("Frame")
+    if not _combatWatcher then
+        _combatWatcher = CreateFrame("Frame")
+        _combatWatcher:SetScript("OnEvent", function(self)
+            if _pendingSnap and not InCombatLockdown() then
+                local snap = _pendingSnap
+                local called, ok, reason = pcall(ApplySnapshotInternal, snap)
+                if not called then reason, ok = ok, false end
+                FinishPending(ok, reason)
+            end
+            if not _pendingSnap then
+                self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+            end
+        end)
+    end
     _combatWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
-    _combatWatcher:SetScript("OnEvent", function(self)
-        if _pendingSnap and not InCombatLockdown() then
-            local snap = _pendingSnap
-            local ok = ApplySnapshotInternal(snap)
-            FinishPending(ok, ok and nil or "apply failed")
-        end
-        if not _pendingSnap then
-            self:UnregisterAllEvents()
-            self:SetScript("OnEvent", nil)
-            _combatWatcher = nil
-        end
-    end)
+end
+
+--- Cancel only the deferred restore owned by this completion callback.
+--- A cancelled profile must not overwrite live bindings when combat ends.
+function _G.FluxSpellBindings_CancelPendingApply(afterFn)
+    if not _pendingSnap or _pendingDone ~= afterFn then return false end
+    FinishPending(false, "CANCELLED")
+    return true
 end
 
 function _G.FluxSpellBindings_EmptySnapshot()
@@ -425,18 +458,23 @@ function _G.FluxSpellBindings_ApplySnapshot(snap, afterFn)
     if snap.version ~= SNAPSHOT_VERSION then
         return false, "snapshot from the previous binding system (not restorable)"
     end
-    if InCombatLockdown() then
-        _pendingSnap = snap
-        _pendingDone = afterFn
-        EnsureCombatWatcher()
-        return false, "IN_COMBAT"
-    end
-    -- Normalize legacy full dumps / already-compact snaps the same way.
+    -- Normalize and detach from the caller for both immediate and deferred
+    -- restores; a combat wait must not change which document gets applied.
     local normalized = {
         version = SNAPSHOT_VERSION,
         doc = CompactDoc(snap.doc),
     }
-    ApplySnapshotInternal(normalized)
-    InvokeAfter(afterFn, true)
-    return true
+    if _pendingSnap then
+        FinishPending(false, "SUPERSEDED")
+    end
+    if InCombatLockdown() then
+        _pendingSnap = normalized
+        _pendingDone = afterFn
+        EnsureCombatWatcher()
+        return false, "IN_COMBAT"
+    end
+    local called, ok, reason = pcall(ApplySnapshotInternal, normalized)
+    if not called then reason, ok = ok, false end
+    InvokeAfter(afterFn, ok, reason)
+    return ok, reason
 end

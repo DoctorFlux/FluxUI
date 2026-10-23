@@ -102,6 +102,13 @@ function Timer.After(duration, callback)
 	if type(callback) ~= "function" then
 		return
 	end
+	local startup = Flux.Startup
+	if startup and startup.IsRecording() then
+		return _After(duration, function()
+			startup.Count("managed_timer_callbacks")
+			callback()
+		end)
+	end
 	return _After(duration, callback)
 end
 

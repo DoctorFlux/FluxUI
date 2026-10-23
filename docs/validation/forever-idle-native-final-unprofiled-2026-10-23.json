@@ -1,0 +1,51 @@
+{
+  "capture": {
+    "addonMsPerSecond": 0,
+    "build": "70532",
+    "capturedAt": "2026-10-23 10:04:03",
+    "client": "Forever",
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=75 vsync=0 targetFPS=60 useTargetFPS=1 gxMaxFrameLatency=2",
+    "fpsAverage": 184.29204788208,
+    "fpsMin": 142.60249328613,
+    "frames": {},
+    "functions": {},
+    "gameType": "camelot",
+    "liveAfter": 40,
+    "liveBefore": 42,
+    "passes": [
+      {
+        "calls": 4,
+        "label": "bars.paint.lane",
+        "ms": 3.8676999807358,
+        "msPerSecond": 0.19337533027094
+      }
+    ],
+    "scriptProfile": "0",
+    "seconds": 20.000999999931,
+    "spellRanks": "1",
+    "subscribers": {},
+    "uiAfter": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "uiBefore": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "version": "1.60.1"
+  },
+  "evidence": "Captured by the agent through normal WoW slash commands in the user's open Forever client; normal reload persisted the report. Scene outside the inn differs from earlier user baselines; not a matched old/new FPS acceptance result.",
+  "observations": {
+    "foregroundSamples": 23,
+    "backgroundSamples": 0,
+    "samplingIntervalSeconds": 1,
+    "scriptProfileRestored": "0",
+    "postCaptureReloadCompleted": true,
+    "cursorRestored": true,
+    "comparisonLimit": "Agent-operated outdoor capture. Camera framing differs from the profiled run and the original user baseline; this is not a matched FPS comparison."
+  }
+}

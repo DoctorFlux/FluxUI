@@ -37,17 +37,18 @@ end
 
 function Clicks.Prepare(widget)
 	if not widget or InLockdown() then
-		return
+		return false
 	end
 	local FX = Flux.ButtonFX
 	if FX and FX.Click and FX.Click.Apply then
-		FX.Click.Apply(widget)
+		if FX.Click.Apply(widget) == false then return false end
 	else
 		widget:RegisterForClicks("AnyUp")
 	end
 	if widget.EnableMouse then
 		widget:EnableMouse(true)
 	end
+	return true
 end
 
 function Clicks.ApplyRegistration()
@@ -55,13 +56,15 @@ function Clicks.ApplyRegistration()
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.clicks", Clicks.ApplyRegistration)
 		end
-		return
+		return false
 	end
+	local complete = true
 	Bars.ForEachHost(function(host)
 		if host.widget then
-			Clicks.Prepare(host.widget)
+			if Clicks.Prepare(host.widget) == false then complete = false end
 		end
 	end)
+	return complete
 end
 
 local function SlotIsEmpower(slot)
@@ -108,6 +111,8 @@ local function EnsureKeyer(widget, column)
 			return nil
 		end
 		keyer = created
+	end
+	if not keyer._fluxKeyerReady then
 		keyer:Hide()
 		keyer:SetSize(1, 1)
 		if keyer.EnableMouse then
@@ -129,6 +134,7 @@ local function EnsureKeyer(widget, column)
 		keyer:SetAttribute("useparent-clickbutton", true)
 		keyer:SetAttribute("useparent-unit", true)
 		keyer:SetAttribute("useparent-checkmouseovercast", true)
+		keyer._fluxKeyerReady = true
 	elseif widget and keyer.SetParent then
 		keyer:SetParent(widget)
 	end
@@ -190,11 +196,11 @@ function Clicks.RefreshKeys()
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.keys", Clicks.RefreshKeys)
 		end
-		return
+		return false
 	end
 	local owner = Bars.Strip and Bars.Strip.frame
 	if not owner or not SetOverrideBindingClick or not GetBindingKey then
-		return
+		return false
 	end
 
 	local sig = {}
@@ -213,9 +219,9 @@ function Clicks.RefreshKeys()
 	end
 	sig = table.concat(sig, "|")
 	if sig == lastKeySig then
-		return
+		return true
 	end
-	lastKeySig = sig
+	local complete = true
 
 	if ClearOverrideBindings then
 		ClearOverrideBindings(owner)
@@ -230,6 +236,7 @@ function Clicks.RefreshKeys()
 				local clickButton = "KeyBind"
 				if not WrapClicks() then
 					local keyer = EnsureKeyer(host.widget, column)
+					if not keyer then complete = false end
 					clickName = keyer and keyer:GetName() or widgetName
 					clickButton = "LeftButton"
 					local PP = ns.FluxBindingPushPress or _G.FluxBindingPushPress
@@ -241,7 +248,7 @@ function Clicks.RefreshKeys()
 				for i = 1, #keys do
 					local key = keys[i]
 					if key and key ~= "" then
-						pcall(SetOverrideBindingClick, owner, false, key, clickName, clickButton)
+						if not pcall(SetOverrideBindingClick, owner, false, key, clickName, clickButton) then complete = false end
 					end
 				end
 			end
@@ -251,6 +258,8 @@ function Clicks.RefreshKeys()
 		end
 	end
 	Clicks.ReassertEmpower()
+	if complete then lastKeySig = sig end
+	return complete
 end
 
 function Clicks.OnCVar(cvarName)
@@ -277,11 +286,10 @@ end
 
 function Clicks.Start()
 	if started then
-		return
+		return true
 	end
-	started = true
-	Clicks.ApplyRegistration()
-	Clicks.RefreshKeys()
+	if Clicks.ApplyRegistration() == false then return false end
+	if Clicks.RefreshKeys() == false then return false end
 	local PP = ns.FluxBindingPushPress or _G.FluxBindingPushPress
 	if PP and PP.EnsureBarButtonPushHooks then
 		PP.EnsureBarButtonPushHooks()
@@ -292,4 +300,6 @@ function Clicks.Start()
 			Clicks.OnCVar(name)
 		end)
 	end
+	started = true
+	return true
 end

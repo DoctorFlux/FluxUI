@@ -8,8 +8,9 @@
     Also defines the FluxVendorAuto global TABLE early (files loaded later
     attach their functions to it; UI files capture the table at file scope).
 
-    The old stores (_FluxUI_CharSavedVars.VendorAuto / bankSnapshot and the
-    account-wide FluxRestockDB) are deleted on load - deliberate fresh start.
+    Legacy stores remain available for recovery and compatibility consumers.
+    A versioned migration imports validated preferences only when no current
+    Restock store exists; it never merges stale legacy values over current data.
 ]]
 
 FluxRestockSettings = FluxRestockSettings or {}
@@ -17,6 +18,130 @@ local S = FluxRestockSettings
 
 -- Base global tables for the new engine; later files attach functions.
 FluxVendorAuto = FluxVendorAuto or {}
+
+local function Copy(value, seen)
+    if type(value) ~= "table" then return value end
+    seen = seen or {}
+    if seen[value] then return seen[value] end
+    local result = {}
+    seen[value] = result
+    for key, entry in pairs(value) do
+        result[Copy(key, seen)] = Copy(entry, seen)
+    end
+    return result
+end
+
+local function IsNumber(value)
+    return type(value) == "number" and value == value
+        and value ~= math.huge and value ~= -math.huge and value >= 0
+end
+
+local function CopyFields(source, schema)
+    local result = {}
+    if type(source) ~= "table" then return result end
+    for key, kind in pairs(schema) do
+        local value = source[key]
+        if (kind == "boolean" and type(value) == "boolean")
+            or (kind == "number" and IsNumber(value)) then
+            result[key] = value
+        end
+    end
+    return result
+end
+
+local LEGACY_BOOLEANS = {
+    autoRepair = "boolean", autoRestock = "boolean", autoSellGray = "boolean",
+    autoBankRestock = "boolean", restockShowNotSold = "boolean",
+}
+local LEGACY_GROUPS = {
+    restockFoodWater = {
+        foodTarget = "number", waterTarget = "number",
+        markInferiorFood = "boolean", markInferiorWater = "boolean",
+    },
+    restockCombat = {
+        bandageTarget = "number", healPotionTarget = "number", manaPotionTarget = "number",
+        markInferiorBandage = "boolean", markInferiorHealPotion = "boolean", markInferiorManaPotion = "boolean",
+    },
+    junkFilters = {
+        consumable = "boolean", unusable = "boolean", destroy = "boolean", safe = "boolean",
+        conjureInferiorFoodWater = "boolean", consumableLvl = "number",
+    },
+    junkDisplay = { glow = "boolean", icons = "boolean" },
+    alreadyKnown = {
+        enabled = "boolean", monochrome = "boolean", debug = "boolean", exclude = "boolean",
+        r = "number", g = "number", b = "number",
+    },
+}
+local RESTOCK_ITEM_FIELDS = {
+    targetQuantity = "number", countBank = "boolean", bankRestock = "boolean",
+    bankStash = "boolean", dismissed = "boolean",
+}
+
+local function ImportLegacySettings(source)
+    local result = CopyFields(source, LEGACY_BOOLEANS)
+    if source.repairPriority == "personal" or source.repairPriority == "guild" then
+        result.repairPriority = source.repairPriority
+    end
+    for key, schema in pairs(LEGACY_GROUPS) do
+        if type(source[key]) == "table" then
+            result[key] = CopyFields(source[key], schema)
+        end
+    end
+    result.restockItems = {}
+    if type(source.restockItems) == "table" then
+        for key, entry in pairs(source.restockItems) do
+            local id = tonumber(key)
+            if id and IsNumber(id) and id > 0 and id % 1 == 0 and type(entry) == "table" then
+                -- Prefer the numeric entry if an old store contains both forms.
+                if type(key) == "number" or result.restockItems[id] == nil then
+                    result.restockItems[id] = CopyFields(entry, RESTOCK_ITEM_FIELDS)
+                end
+            end
+        end
+    end
+    result.junkList = {}
+    if type(source.junkList) == "table" then
+        for key, value in pairs(source.junkList) do
+            local id = tonumber(key)
+            if id and IsNumber(id) and id > 0 and id % 1 == 0 and type(value) == "boolean" then
+                if type(key) == "number" or result.junkList[id] == nil then
+                    result.junkList[id] = value
+                end
+            end
+        end
+    end
+    -- Bank snapshots need a live topology refresh, and pending vendor work must
+    -- not be replayed as part of a preferences upgrade. Their originals survive.
+    return result
+end
+
+local function MigrateLegacyStores()
+    local root = _FluxUI_CharSavedVars
+    local checkpoint = root._restockMigrationV1
+    if type(checkpoint) == "table" and checkpoint.version == 1 then return end
+
+    local current = root.Restock
+    local legacy = root.VendorAuto
+    local replacement
+    if current == nil and type(legacy) == "table" then
+        replacement = ImportLegacySettings(legacy)
+    elseif current ~= nil and type(current) ~= "table" then
+        replacement = {}
+    end
+    -- Prepare rollback data before publishing anything. VendorAuto and all bank
+    -- snapshots stay in place, including fields not understood by this version.
+    checkpoint = {
+        version = 1,
+        imported = current == nil and replacement ~= nil,
+        hadRestock = current ~= nil,
+    }
+    if replacement and current ~= nil then checkpoint.previousRestock = Copy(current) end
+    -- FluxRestockDB is no longer TOC-declared. Archive it inside the declared
+    -- character root so an old account store also survives a subsequent reload.
+    if _G.FluxRestockDB ~= nil then checkpoint.legacyAccount = Copy(_G.FluxRestockDB) end
+    if replacement then root.Restock = replacement end
+    root._restockMigrationV1 = checkpoint
+end
 
 local function ApplyDefaults(t)
     t.autoRepair = (t.autoRepair == true)
@@ -84,6 +209,7 @@ end
 --- the returned table across loading screens; re-fetch per use.
 function S.Get()
     _FluxUI_CharSavedVars = _FluxUI_CharSavedVars or {}
+    MigrateLegacyStores()
     local t = _FluxUI_CharSavedVars.Restock
     if not t then
         t = {}
@@ -96,31 +222,13 @@ function S.Get()
     return t
 end
 
-local function DropLegacyStores()
-    if _FluxUI_CharSavedVars then
-        _FluxUI_CharSavedVars.VendorAuto = nil
-        _FluxUI_CharSavedVars.bankSnapshot = nil
-        _FluxUI_CharSavedVars.bankSnapshotTime = nil
-        -- The bank snapshot moved out of Restock into its own FluxBank-owned
-        -- table (_FluxUI_CharSavedVars.Bank) as part of the bank rewrite.
-        local restock = _FluxUI_CharSavedVars.Restock
-        if restock then
-            restock.bankSnapshot = nil
-            restock.bankSnapshotTime = nil
-        end
-    end
-    -- Account-wide legacy store (mage rune targets / vendor prices).
-    _G.FluxRestockDB = nil
-end
-
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, arg1)
     if arg1 ~= "_FluxUI" then return end
     self:UnregisterEvent("ADDON_LOADED")
-    DropLegacyStores()
     local t = _FluxUI_CharSavedVars and _FluxUI_CharSavedVars.Restock
-    if t then
+    if type(t) == "table" then
         t._defaultsApplied = nil
     end
     S.Get()

@@ -340,11 +340,14 @@ function Context.RequestMouseover()
 	if not HasSubscribers() then
 		return
 	end
+	local PF = Flux.Bars and Flux.Bars.ProgramFace
+	if PF and PF.WakeMouseoverPoll then
+		PF.WakeMouseoverPoll()
+	end
 	if IsUfPeek() then
 		Context.Request(false)
 		return
 	end
-	local PF = Flux.Bars and Flux.Bars.ProgramFace
 	if PF and PF.Needs and not PF.Needs("mouseover") then
 		return
 	end

@@ -1004,14 +1004,14 @@ local function MiniAlpha(tf)
     local exists = Compat.UnitTokenValid and Compat.UnitTokenValid(unit)
     local alpha = exists and 1 or 0
     local wrap = tf._fluxWrap or tf
+    local alphaApplied = false
     if wrap.SetAlphaFromBoolean and UnitExists and type(unit) == "string" then
         local ok, ex = pcall(UnitExists, unit)
         if ok then
-            pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)
-            return
+            alphaApplied = pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)
         end
     end
-    if wrap.SetAlpha then
+    if not alphaApplied and wrap.SetAlpha then
         wrap:SetAlpha(alpha)
     end
     if tf.EnableMouse and not (InCombatLockdown and InCombatLockdown()) then

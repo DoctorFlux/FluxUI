@@ -533,31 +533,52 @@ Overlay:HookScript("PreClick", function(self, button, down)
     self:Hide()
 end)
 
-local Glow, Animation
+local Glow, Animation, OverlayFill
+
+local function HasProcAtlas(atlas)
+    local Cap = _G.Flux and _G.Flux.Cap
+    if Cap and Cap.HasAtlas then
+        return Cap.HasAtlas(atlas)
+    end
+    local getAtlasInfo = C_Texture and C_Texture.GetAtlasInfo or GetAtlasInfo
+    if getAtlasInfo then
+        local ok, info = pcall(getAtlasInfo, atlas)
+        return ok and info ~= nil
+    end
+    return false
+end
 
 if not useAutoCastShine then
     Glow = Overlay:CreateTexture(nil, "ARTWORK")
-    Glow:SetPoint("CENTER")
-    Glow:SetAtlas("UI-HUD-ActionBar-Proc-Loop-Flipbook")
-    Glow:SetDesaturated(true)
+    local atlas = "UI-HUD-ActionBar-Proc-Loop-Flipbook"
+    if HasProcAtlas(atlas) and Glow.SetAtlas and pcall(Glow.SetAtlas, Glow, atlas) then
+        Glow:SetPoint("CENTER")
+        Glow:SetDesaturated(true)
 
-    Animation = Overlay:CreateAnimationGroup()
-    Animation:SetLooping("REPEAT")
+        Animation = Overlay:CreateAnimationGroup()
+        Animation:SetLooping("REPEAT")
 
-    local FlipBook = Animation:CreateAnimation("FlipBook")
-    FlipBook:SetTarget(Glow)
-    FlipBook:SetDuration(1)
-    FlipBook:SetFlipBookColumns(5)
-    FlipBook:SetFlipBookRows(6)
-    FlipBook:SetFlipBookFrames(30)
+        local FlipBook = Animation:CreateAnimation("FlipBook")
+        FlipBook:SetTarget(Glow)
+        FlipBook:SetDuration(1)
+        FlipBook:SetFlipBookColumns(5)
+        FlipBook:SetFlipBookRows(6)
+        FlipBook:SetFlipBookFrames(30)
 
-    Overlay:HookScript("OnShow", function()
-        Animation:Play()
-    end)
+        Overlay:HookScript("OnShow", function()
+            Animation:Play()
+        end)
 
-    Overlay:HookScript("OnHide", function()
-        Animation:Stop()
-    end)
+        Overlay:HookScript("OnHide", function()
+            Animation:Stop()
+        end)
+    else
+        -- Atlas availability varies independently of client identity. Reuse the
+        -- same texture for a visible, family-colored affordance if it cannot paint.
+        OverlayFill = Glow
+        OverlayFill:SetAllPoints(Overlay)
+        OverlayFill:SetColorTexture(1, 1, 1, 0.2)
+    end
 else
     for _, sparkle in next, Overlay.sparkles do
         sparkle:SetHeight(sparkle:GetHeight() * 3)
@@ -574,6 +595,10 @@ function S.SetOverlayColor(color)
     Overlay.glowColor = color
     if useAutoCastShine then
         AutoCastShine_AutoCastStart(Overlay, color:GetRGB())
+        return
+    end
+    if OverlayFill then
+        OverlayFill:SetVertexColor(color:GetRGB())
         return
     end
     if Glow then

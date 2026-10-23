@@ -129,6 +129,7 @@ local function EnsureWrap()
 	if wrapFrame then
 		return wrapFrame
 	end
+	if InLockdown() then return nil end
 	local ok, frame = pcall(CreateFrame, "Frame", "FluxButtonFXClickWrap", UIParent, "SecureHandlerBaseTemplate")
 	if ok and frame then
 		wrapFrame = frame
@@ -141,7 +142,7 @@ end
 function Click.SyncCVars()
 	local wrap = EnsureWrap()
 	if not wrap or InLockdown() then
-		return
+		return false
 	end
 	local keyDown = false
 	if Flux.CVar and Flux.CVar.GetBool then
@@ -158,7 +159,7 @@ function Click.SyncCVars()
 	if wrap.Execute then
 		local Restricted = Flux.Restricted
 		if Restricted and Restricted.Execute then
-			Restricted.Execute(wrap, [[
+			return Restricted.Execute(wrap, [[
 			ActionButtonUseKeyDown = owner:GetAttribute("CVar_ActionButtonUseKeyDown")
 			empowerTapControls = owner:GetAttribute("CVar_empowerTapControls")
 		]])
@@ -169,6 +170,7 @@ function Click.SyncCVars()
 		]])
 		end
 	end
+	return true
 end
 
 --- Mirror type* onto typerelease* (ButtonForge). Hold-release reads typerelease,
@@ -203,16 +205,17 @@ local RELEASE_TYPE_KEYS = {
 
 function Click.MirrorTypeRelease(widget)
 	if not widget or not widget.GetAttribute then
-		return
+		return false
 	end
 	for i = 1, #RELEASE_TYPE_KEYS do
 		local key = RELEASE_TYPE_KEYS[i]
 		local actionType = widget:GetAttribute(key)
 		if type(actionType) == "string" and actionType ~= "" then
 			local releaseKey = key:gsub("type", "typerelease", 1)
-			pcall(widget.SetAttribute, widget, releaseKey, actionType)
+			if not pcall(widget.SetAttribute, widget, releaseKey, actionType) then return false end
 		end
 	end
+	return true
 end
 
 --- Wrap clients can WrapScript OnClick. Forever/camelot cannot (Restricted.Works
@@ -228,35 +231,37 @@ end
 
 function Click.Apply(widget, opts)
 	if not widget or InLockdown() then
-		return
+		return false
 	end
 	opts = opts or {}
-	local wrap = EnsureWrap()
 	if widget.EnableMouse then
-		pcall(widget.EnableMouse, widget, true)
+		if not pcall(widget.EnableMouse, widget, true) then return false end
 	end
 	local Restricted = Flux.Restricted
-	if not wrap or not wrap.WrapScript or not Click.UsesWrap() then
+	if not Click.UsesWrap() then
 		-- Keep the template OnClick (secure). Addon OnClick taints UseAction.
 		widget:RegisterForClicks("AnyUp")
-		pcall(widget.SetAttribute, widget, "useOnKeyDown", false)
-		pcall(widget.SetAttribute, widget, "pressAndHoldAction", false)
-		return
+		if not pcall(widget.SetAttribute, widget, "useOnKeyDown", false) then return false end
+		return pcall(widget.SetAttribute, widget, "pressAndHoldAction", false)
 	end
+	local wrap = EnsureWrap()
+	if not wrap or not wrap.WrapScript then return false end
 	pcall(wrap.UnwrapScript, wrap, widget, "OnClick")
-	pcall(widget.SetAttribute, widget, "pressAndHoldAction", true)
+	if not pcall(widget.SetAttribute, widget, "pressAndHoldAction", true) then return false end
 	-- ButtonForge never sets useOnKeyDown; nil defers to the CVar.
-	pcall(widget.SetAttribute, widget, "useOnKeyDown", nil)
-	Click.MirrorTypeRelease(widget)
+	if not pcall(widget.SetAttribute, widget, "useOnKeyDown", nil) then return false end
+	if not Click.MirrorTypeRelease(widget) then return false end
 	if opts.empower then
-		pcall(widget.SetAttribute, widget, "IsEmpowerSpell", true)
+		if not pcall(widget.SetAttribute, widget, "IsEmpowerSpell", true) then return false end
 	end
 	widget:RegisterForClicks("AnyUp", "AnyDown")
 	local snippet = (opts.onDown and CLICK_SNIPPET_ON_DOWN) or CLICK_SNIPPET
+	local ok
 	if Restricted and Restricted.WrapScript then
-		Restricted.WrapScript(wrap, widget, "OnClick", snippet)
+		ok = Restricted.WrapScript(wrap, widget, "OnClick", snippet)
 	else
-		pcall(wrap.WrapScript, wrap, widget, "OnClick", snippet)
+		ok = pcall(wrap.WrapScript, wrap, widget, "OnClick", snippet)
 	end
-	Click.SyncCVars()
+	if not ok then return false end
+	return Click.SyncCVars()
 end

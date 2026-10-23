@@ -11,18 +11,16 @@ end
 
 function Pet.SetupKeybindings()
 	local frame = Pet.GetFrame and Pet.GetFrame()
-	if not frame or InLockdown() or not SetOverrideBindingClick then
+	if not frame or InLockdown() or not SetOverrideBindingClick or not GetBindingKey then
 		if InLockdown() and Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.pet.keys", Pet.SetupKeybindings)
 		end
-		return
+		return false
 	end
 	if ClearOverrideBindings then
 		ClearOverrideBindings(frame)
 	end
-	if not GetBindingKey then
-		return
-	end
+	local complete = true
 	local buttons = Pet.GetAllButtons and Pet.GetAllButtons() or {}
 	for i = 1, Pet.CONFIG.totalButtons do
 		local btn = buttons[i]
@@ -34,9 +32,10 @@ function Pet.SetupKeybindings()
 			for k = 1, #keys do
 				local key = keys[k]
 				if key and key ~= "" then
-					pcall(SetOverrideBindingClick, frame, false, key, name, "KeyBind")
+					if not pcall(SetOverrideBindingClick, frame, false, key, name, "KeyBind") then complete = false end
 				end
 			end
 		end
 	end
+	return complete
 end

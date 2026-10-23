@@ -127,15 +127,14 @@ function Scheduler.Request(tier, token, fn, reason)
 		paging = true
 	end
 
+	-- Retain every request in the shared bucket; a named combat callback must
+	-- wake the bucket rather than replace the previous caller's closure.
+	Merge(tier, token, fn, reason)
 	if tier == "structural" and Flux.Combat and Flux.Combat.InLockdown() then
 		stats.deferredStructural = stats.deferredStructural + 1
-		Flux.Combat.Defer("scheduler.structural", function()
-			Scheduler.Request("structural", token, fn, reason or "post_combat")
-		end)
+		Flux.Combat.Defer("scheduler.structural.flush", Scheduler.Flush)
 		return
 	end
-
-	Merge(tier, token, fn, reason)
 
 	if not flushScheduled then
 		flushScheduled = true
@@ -143,7 +142,8 @@ function Scheduler.Request(tier, token, fn, reason)
 	end
 end
 
-function Scheduler.HasPending()
+function Scheduler.HasPending(tier)
+	if tier then return pending[tier] ~= nil end
 	for i = 1, #ORDER do
 		if pending[ORDER[i]] then
 			return true
@@ -152,20 +152,31 @@ function Scheduler.HasPending()
 	return false
 end
 
-local function RunBucket(tier, bucket)
+local RunBucket
+local function PauseStructural(tier, bucket)
+	if tier ~= "structural" or not (Flux.Combat and Flux.Combat.InLockdown()) then return false end
+	Flux.Combat.Defer("scheduler.structural.resume." .. tostring(bucket), function() RunBucket(tier, bucket) end)
+	return true
+end
+
+RunBucket = function(tier, bucket)
 	if not bucket then
 		return
 	end
 	stats.tierFlushes[tier] = (stats.tierFlushes[tier] or 0) + 1
 
 	local fns = bucket.fns
-	for i = 1, #fns do
+	for i = bucket.nextFn or 1, #fns do
+		if PauseStructural(tier, bucket) then return end
 		Flux.Safecall(fns[i], bucket.tokens, bucket.reasons)
+		if tier == "structural" then bucket.nextFn = i + 1 end
 	end
 
 	local list = listeners[tier]
-	for i = 1, #list do
+	for i = bucket.nextListener or 1, #list do
+		if PauseStructural(tier, bucket) then return end
 		Flux.Safecall(list[i], bucket.tokens, bucket.reasons)
+		if tier == "structural" then bucket.nextListener = i + 1 end
 	end
 end
 
@@ -230,15 +241,12 @@ function Scheduler.Flush()
 	RunBucket("eval", eval)
 
 	local structural = pending.structural
-	pending.structural = nil
 	if structural then
 		if Flux.Combat and Flux.Combat.InLockdown() then
 			stats.deferredStructural = stats.deferredStructural + 1
-			Flux.Combat.Defer("scheduler.structural.flush", function()
-				pending.structural = structural
-				Scheduler.Flush()
-			end)
+			Flux.Combat.Defer("scheduler.structural.flush", Scheduler.Flush)
 		else
+			pending.structural = nil
 			RunBucket("structural", structural)
 		end
 	end

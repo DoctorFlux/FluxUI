@@ -1618,14 +1618,14 @@ initFrame:SetScript("OnEvent", function(self, event, loadedAddon)
     end
 
     if event ~= "ADDON_LOADED" or loadedAddon ~= addonName then return end
-    self:UnregisterEvent("ADDON_LOADED")
+    if ns.Flux and ns.Flux.optionsBootstrapComplete then return end
 
     if Flux and Flux.PlayerName and Flux.PlayerName.MigrateCurrentCharacterAccountData then
         Flux.PlayerName.MigrateCurrentCharacterAccountData()
     end
 
     -- 1. Create AceDB database
-    FluxOptions.db = AceDB:New("FluxUI_Options", FluxOptionsDefaults, true)
+    FluxOptions.db = FluxOptions.db or AceDB:New("FluxUI_Options", FluxOptionsDefaults, true)
 
     -- 1b. Account-wide: enforce Default immediately (no player name needed).
     -- Character-specific: wait until player name/realm exist - early SetProfile would use "Char - Unknown - Unknown"
@@ -1812,5 +1812,19 @@ initFrame:SetScript("OnEvent", function(self, event, loadedAddon)
 
     -- Expose ns reference for modules loaded after options
     ns.Options = FluxOptions
+    if ns.Flux then ns.Flux.optionsBootstrapComplete = true end
+    self:UnregisterEvent("ADDON_LOADED")
 end)
+
+function FluxOptions.EnsureSavedConfiguration()
+    if not (ns.Flux and ns.Flux.optionsBootstrapComplete) then
+        initFrame:GetScript("OnEvent")(initFrame, "ADDON_LOADED", addonName)
+    end
+end
+
+-- The secure phase needs the saved profile during the kernel's ADDON_LOADED
+-- transaction, before any action frame or override binding is configured.
+if ns.Flux and ns.Flux.AfterLoad then
+    ns.Flux.AfterLoad(FluxOptions.EnsureSavedConfiguration)
+end
 

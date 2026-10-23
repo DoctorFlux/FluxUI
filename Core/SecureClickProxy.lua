@@ -138,6 +138,8 @@ function EnsurePoll()
 end
 
 local function Build(entry)
+	if InCombatLockdown() then return false end
+	if entry.button then return true end
 	local ok, button = pcall(CreateFrame, "Button", nil, UIParent, "SecureActionButtonTemplate")
 	if not ok or not button then
 		return
@@ -207,6 +209,7 @@ local events = CreateFrame("Frame")
 events:RegisterEvent("PLAYER_REGEN_ENABLED")
 events:SetScript("OnEvent", function()
 	for i = #pending, 1, -1 do
+		if InCombatLockdown() then return end
 		Build(pending[i])
 		pending[i] = nil
 	end

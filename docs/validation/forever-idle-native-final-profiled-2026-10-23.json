@@ -1,0 +1,800 @@
+{
+  "capture": {
+    "addonMsPerSecond": 8.2313334333088,
+    "build": "70532",
+    "capturedAt": "2026-10-23 09:58:59",
+    "client": "Forever",
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=75 vsync=0 targetFPS=60 useTargetFPS=1 gxMaxFrameLatency=2",
+    "fpsAverage": 215.55964736938,
+    "fpsMin": 160.1067199707,
+    "frames": [
+      {
+        "calls": 3,
+        "label": "ChatFrame3EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame10EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame6EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame8EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame9EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame1EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame5EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame4EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame7EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 3,
+        "label": "ChatFrame2EditBox",
+        "ms": 388.4311,
+        "msPerSecond": 19.420583970755
+      },
+      {
+        "calls": 4284,
+        "label": "1e43d21f460",
+        "ms": 174.1971,
+        "msPerSecond": 8.7094195290029
+      },
+      {
+        "calls": 4284,
+        "label": "WorldMapFrame.ScrollContainer.Child.1e4375bf760",
+        "ms": 110.3917,
+        "msPerSecond": 5.5193090345352
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d4770",
+        "ms": 110.3917,
+        "msPerSecond": 5.5193090345352
+      },
+      {
+        "calls": 4284,
+        "label": "WorldMapFrame.ScrollContainer",
+        "ms": 75.7278,
+        "msPerSecond": 3.7862006899565
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer",
+        "ms": 75.7278,
+        "msPerSecond": 3.7862006899565
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame",
+        "ms": 63.7726,
+        "msPerSecond": 3.1884705764636
+      },
+      {
+        "calls": 4284,
+        "label": "WorldMapFrame",
+        "ms": 59.1203,
+        "msPerSecond": 2.9558672066326
+      },
+      {
+        "calls": 4284,
+        "label": "1e46346cbf0",
+        "ms": 45.1628,
+        "msPerSecond": 2.2580270986397
+      },
+      {
+        "calls": 4284,
+        "label": "1e339343fb0",
+        "ms": 44.3157,
+        "msPerSecond": 2.2156742162839
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43752e200.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437532490.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43752e700.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43751f3d0.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437531f90.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437531270.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43751e9d0.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43751f9c0.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437530870.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "MainStatusTrackingBarContainer.1e43751eed0.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437531860.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437530d70.StatusBar",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame9",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame8",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame10",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame3",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame4",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame6",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame2",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame5",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame7",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 8568,
+        "label": "ChatFrame1",
+        "ms": 32.1647,
+        "msPerSecond": 1.6081545922666
+      },
+      {
+        "calls": 4284,
+        "label": "PlayerFrame",
+        "ms": 29.832,
+        "msPerSecond": 1.4915254237253
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d30f0",
+        "ms": 21.8339,
+        "msPerSecond": 1.0916404179765
+      },
+      {
+        "calls": 4284,
+        "label": "WorldMapFrame.ScrollContainer.Child.1e422854520",
+        "ms": 21.8339,
+        "msPerSecond": 1.0916404179765
+      },
+      {
+        "calls": 4284,
+        "label": "CommunitiesFrame.Chat.MessageFrame",
+        "ms": 20.5256,
+        "msPerSecond": 1.0262286885631
+      },
+      {
+        "calls": 4284,
+        "label": "DeveloperConsole.MessageFrame",
+        "ms": 20.5256,
+        "msPerSecond": 1.0262286885631
+      },
+      {
+        "calls": 47124,
+        "label": "UIWidgetPowerBarContainerFrame.BackModelScene",
+        "ms": 16.5111,
+        "msPerSecond": 0.82551372431182
+      },
+      {
+        "calls": 47124,
+        "label": "PVPMatchResults.Score.FrontModelScene",
+        "ms": 16.5111,
+        "msPerSecond": 0.82551372431182
+      },
+      {
+        "calls": 47124,
+        "label": "ScenarioObjectiveTracker.ContentsFrame.1e33900b9b0.WidgetContainer.FrontModelScene",
+        "ms": 16.5111,
+        "msPerSecond": 0.82551372431182
+      },
+      {
+        "calls": 47124,
+        "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene",
+        "ms": 16.5111,
+        "msPerSecond": 0.82551372431182
+      }
+    ],
+    "functions": [
+      {
+        "calls": 4284,
+        "label": "1e43d21f460:OnUpdate",
+        "ms": 174.1971,
+        "msPerSecond": 8.7094195290029,
+        "ownerCount": 1,
+        "owners": [
+          "1e43d21f460 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d4770:OnUpdate",
+        "ms": 110.3917,
+        "msPerSecond": 5.5193090345352,
+        "ownerCount": 2,
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d4770 (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer.Child.1e4375bf760 (shown=true/visible=false)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer:OnUpdate",
+        "ms": 75.7278,
+        "msPerSecond": 3.7862006899565,
+        "ownerCount": 2,
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer (shown=true/visible=false)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame:OnUpdate",
+        "ms": 63.7726,
+        "msPerSecond": 3.1884705764636,
+        "ownerCount": 1,
+        "owners": [
+          "BattlefieldMapFrame (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "WorldMapFrame:OnUpdate",
+        "ms": 59.1203,
+        "msPerSecond": 2.9558672066326,
+        "ownerCount": 1,
+        "owners": [
+          "WorldMapFrame (shown=false/visible=false)"
+        ],
+        "visibleOwners": 0
+      },
+      {
+        "calls": 30,
+        "label": "FluxInfoFrame._CamelotSpellBonus",
+        "ms": 52.2229,
+        "msPerSecond": 2.6110144492713
+      },
+      {
+        "calls": 80,
+        "label": "FluxInfoFrame.ResolveStatFramesForTooltip",
+        "ms": 51.4616,
+        "msPerSecond": 2.5729513524263
+      },
+      {
+        "calls": 4284,
+        "label": "1e46346cbf0:OnUpdate",
+        "ms": 45.1628,
+        "msPerSecond": 2.2580270986397,
+        "ownerCount": 1,
+        "owners": [
+          "1e46346cbf0 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "1e339343fb0:OnUpdate",
+        "ms": 44.3157,
+        "msPerSecond": 2.2156742162839,
+        "ownerCount": 1,
+        "owners": [
+          "1e339343fb0 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 8568,
+        "label": "SecondaryStatusTrackingBarContainer.1e437531860.StatusBar:OnUpdate",
+        "ms": 36.205,
+        "msPerSecond": 1.8101594920211,
+        "ownerCount": 12,
+        "owners": [
+          "SecondaryStatusTrackingBarContainer.1e437531860.StatusBar (shown=true/visible=true)",
+          "MainStatusTrackingBarContainer.1e43751e9d0.StatusBar (shown=true/visible=true)",
+          "MainStatusTrackingBarContainer.1e43751eed0.StatusBar (shown=true/visible=false)",
+          "MainStatusTrackingBarContainer.1e43751f3d0.StatusBar (shown=true/visible=false)",
+          "MainStatusTrackingBarContainer.1e43751f9c0.StatusBar (shown=true/visible=false)"
+        ],
+        "visibleOwners": 2
+      },
+      {
+        "calls": 4284,
+        "label": "PlayerFrame:OnUpdate",
+        "ms": 29.832,
+        "msPerSecond": 1.4915254237253,
+        "ownerCount": 1,
+        "owners": [
+          "PlayerFrame (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdateHealth",
+        "ms": 26.9161,
+        "msPerSecond": 1.3457377131112
+      },
+      {
+        "calls": 15,
+        "label": "Flux.Scheduler.Flush",
+        "ms": 26.8221,
+        "msPerSecond": 1.3410379480994
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d30f0:OnUpdate",
+        "ms": 21.8339,
+        "msPerSecond": 1.0916404179765,
+        "ownerCount": 2,
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d30f0 (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer.Child.1e422854520 (shown=true/visible=false)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 15,
+        "label": "Flux.Bars.Paint.Flush",
+        "ms": 17.0422,
+        "msPerSecond": 0.85206739662815
+      },
+      {
+        "calls": 15,
+        "label": "Flux.Bars.ForEachHost",
+        "ms": 16.8151,
+        "msPerSecond": 0.84071296434979
+      },
+      {
+        "calls": 47124,
+        "label": "GlobalFXBackgroundModelScene:OnUpdate",
+        "ms": 16.5111,
+        "msPerSecond": 0.82551372431182,
+        "ownerCount": 25,
+        "owners": [
+          "GlobalFXBackgroundModelScene (shown=true/visible=true)",
+          "GlobalFXMediumModelScene (shown=true/visible=true)",
+          "GlobalFXDialogModelScene (shown=true/visible=true)",
+          "ObjectiveTrackerUIWidgetContainer.BackModelScene (shown=true/visible=true)",
+          "ObjectiveTrackerUIWidgetContainer.FrontModelScene (shown=true/visible=true)"
+        ],
+        "visibleOwners": 11
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdateHealPrediction",
+        "ms": 14.7997,
+        "msPerSecond": 0.73994800259811
+      },
+      {
+        "calls": 4284,
+        "label": "1e43d218160:OnUpdate",
+        "ms": 12.78,
+        "msPerSecond": 0.6389680515959,
+        "ownerCount": 1,
+        "owners": [
+          "1e43d218160 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 124987,
+        "label": "FluxAPICompat.API.IsSecretValue",
+        "ms": 12.3052,
+        "msPerSecond": 0.61522923853661
+      },
+      {
+        "calls": 4284,
+        "label": "ChatFrame1:OnUpdate",
+        "ms": 11.6391,
+        "msPerSecond": 0.58192590370343,
+        "ownerCount": 10,
+        "owners": [
+          "ChatFrame1 (shown=true/visible=true)",
+          "ChatFrame2 (shown=false/visible=false)",
+          "ChatFrame3 (shown=false/visible=false)",
+          "ChatFrame4 (shown=false/visible=false)",
+          "ChatFrame5 (shown=false/visible=false)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 180,
+        "label": "Flux.Bars.Paint.UpdateUsable",
+        "ms": 11.3393,
+        "msPerSecond": 0.566936653166
+      },
+      {
+        "calls": 2,
+        "label": "FluxAddonSystem.Scan",
+        "ms": 9.7592,
+        "msPerSecond": 0.48793560321868
+      },
+      {
+        "calls": 15,
+        "label": "Flux.EBS.Paint.FlushEval",
+        "ms": 9.3812,
+        "msPerSecond": 0.46903654817148
+      },
+      {
+        "calls": 4284,
+        "label": "FluxInfoCharacterWatchDriver:OnUpdate",
+        "ms": 9.1066,
+        "msPerSecond": 0.45530723463719,
+        "ownerCount": 1,
+        "owners": [
+          "FluxInfoCharacterWatchDriver (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "GeneralDockManager:OnUpdate",
+        "ms": 8.088,
+        "msPerSecond": 0.40437978100999,
+        "ownerCount": 1,
+        "owners": [
+          "GeneralDockManager (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 90,
+        "label": "Flux.EBS.Paint.UpdateUsable",
+        "ms": 7.7828,
+        "msPerSecond": 0.38912054397188
+      },
+      {
+        "calls": 4284,
+        "label": "FluxInsecureStateDriver:OnUpdate",
+        "ms": 7.694,
+        "msPerSecond": 0.38468076596079,
+        "ownerCount": 1,
+        "owners": [
+          "FluxInsecureStateDriver (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 1118,
+        "label": "FluxAddonSystem.NameLooksLikeMinimapButton",
+        "ms": 7.1419,
+        "msPerSecond": 0.35707714614184
+      },
+      {
+        "calls": 4284,
+        "label": "UIParent.1e4175b3250:OnUpdate",
+        "ms": 6.8835,
+        "msPerSecond": 0.34415779210958,
+        "ownerCount": 1,
+        "owners": [
+          "UIParent.1e4175b3250 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 98,
+        "label": "UnitFrames.UpdatePower",
+        "ms": 6.8325,
+        "msPerSecond": 0.34160791960321
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d25b0:OnUpdate",
+        "ms": 6.7381,
+        "msPerSecond": 0.33688815559142,
+        "ownerCount": 2,
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1e45e2d25b0 (shown=true/visible=true)",
+          "WorldMapFrame.ScrollContainer.Child.1e422851d20 (shown=true/visible=false)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "1e46c873940:OnUpdate",
+        "ms": 6.4854,
+        "msPerSecond": 0.32425378730986,
+        "ownerCount": 1,
+        "owners": [
+          "1e46c873940 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "PerfFrame:OnUpdate",
+        "ms": 6.1757,
+        "msPerSecond": 0.30876956152119,
+        "ownerCount": 1,
+        "owners": [
+          "PerfFrame (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "1e4a85a70f0:OnUpdate",
+        "ms": 5.982,
+        "msPerSecond": 0.299085045747,
+        "ownerCount": 1,
+        "owners": [
+          "1e4a85a70f0 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "1e46c874ed0:OnUpdate",
+        "ms": 5.4996,
+        "msPerSecond": 0.27496625168676,
+        "ownerCount": 1,
+        "owners": [
+          "1e46c874ed0 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 18720,
+        "label": "FluxInfoFrame._CamelotCombatStatKey",
+        "ms": 4.9392,
+        "msPerSecond": 0.24694765261678
+      },
+      {
+        "calls": 392,
+        "label": "UnitFrames.SyncWatchedUnitFrameVisibility",
+        "ms": 4.9384,
+        "msPerSecond": 0.24690765461668
+      },
+      {
+        "calls": 4284,
+        "label": "MainMenuMicroButton:OnUpdate",
+        "ms": 4.5848,
+        "msPerSecond": 0.22922853857253,
+        "ownerCount": 1,
+        "owners": [
+          "MainMenuMicroButton (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4284,
+        "label": "SecureStateDriverManager:OnUpdate",
+        "ms": 4.4966,
+        "msPerSecond": 0.22481875906151,
+        "ownerCount": 1,
+        "owners": [
+          "SecureStateDriverManager (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 4,
+        "label": "FluxNCConsumables.GetFirstEligibleItem",
+        "ms": 4.4551,
+        "msPerSecond": 0.22274386280633
+      },
+      {
+        "calls": 4,
+        "label": "FluxNCConsumables.IsItemEligible",
+        "ms": 4.3731,
+        "msPerSecond": 0.21864406779609
+      },
+      {
+        "calls": 4284,
+        "label": "1e41531d4e0:OnUpdate",
+        "ms": 4.2508,
+        "msPerSecond": 0.21252937353082,
+        "ownerCount": 1,
+        "owners": [
+          "1e41531d4e0 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 8,
+        "label": "FluxNCConsumables.IsWeaponEnchantItem",
+        "ms": 3.9239,
+        "msPerSecond": 0.19618519074
+      },
+      {
+        "calls": 4284,
+        "label": "ActionBarButtonUpdateFrame:OnUpdate",
+        "ms": 3.8119,
+        "msPerSecond": 0.19058547072601,
+        "ownerCount": 1,
+        "owners": [
+          "ActionBarButtonUpdateFrame (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 855,
+        "label": "Flux.Bars.Paint.HostIsLive",
+        "ms": 3.6124,
+        "msPerSecond": 0.1806109694511
+      },
+      {
+        "calls": 4284,
+        "label": "1e42275a180:OnUpdate",
+        "ms": 3.5184,
+        "msPerSecond": 0.17591120443936,
+        "ownerCount": 1,
+        "owners": [
+          "1e42275a180 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 2175,
+        "label": "Flux.API.Secrets.SafeBooleanTest",
+        "ms": 3.404,
+        "msPerSecond": 0.17019149042507
+      },
+      {
+        "calls": 4284,
+        "label": "BattlefieldMapFrame.ScrollContainer.Child.1e45e2cae70:OnUpdate",
+        "ms": 3.1799,
+        "msPerSecond": 0.15898705064709,
+        "ownerCount": 1,
+        "owners": [
+          "BattlefieldMapFrame.ScrollContainer.Child.1e45e2cae70 (shown=true/visible=true)"
+        ],
+        "visibleOwners": 1
+      },
+      {
+        "calls": 18880,
+        "label": "FluxInfoFrame._IsCamelotClient",
+        "ms": 3.0015,
+        "msPerSecond": 0.15006749662481
+      }
+    ],
+    "gameType": "camelot",
+    "liveAfter": 41,
+    "liveBefore": 42,
+    "passes": [
+      {
+        "calls": 15,
+        "label": "bars.paint.lane",
+        "ms": 16.977999687195,
+        "msPerSecond": 0.84885754148065
+      }
+    ],
+    "scriptProfile": "1",
+    "seconds": 20.001000000048,
+    "spellRanks": "1",
+    "subscribers": {},
+    "uiAfter": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "uiBefore": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "version": "1.60.1"
+  },
+  "evidence": "Captured by the agent through normal WoW slash commands in the user's open Forever client; normal reload persisted the report. Scene outside the inn differs from earlier user baselines; not a matched old/new FPS acceptance result."
+}

@@ -204,14 +204,14 @@ end
 function Stance.ApplyLayout()
 	local frame = Stance.GetFrame()
 	if not frame then
-		return
+		return false
 	end
 	if InLockdown() then
 		Defer("bars.stance.layout", function()
 			dirty.layout = true
 			Stance.ApplyLayout()
 		end)
-		return
+		return false
 	end
 	if dirty.extrasDiscover and Stance.InvalidateExtras then
 		Stance.InvalidateExtras()
@@ -287,6 +287,7 @@ function Stance.ApplyLayout()
 		local btn
 		if idx <= numForms then
 			btn = Stance.EnsureFormButton(idx, frame, size)
+			if not (btn and btn.Widget) then return false end
 			shown[btn] = true
 			if Stance.TagFormArmor then
 				Stance.TagFormArmor(btn, idx)
@@ -295,11 +296,13 @@ function Stance.ApplyLayout()
 			local data = extras[idx - numForms]
 			local key = Stance.MakeSlotKey(idx, numForms, extras, customs)
 			btn = Stance.EnsureExtraButton(key, frame, size, data)
+			if not (btn and btn.Widget) then return false end
 			shown[btn] = true
 		else
 			local data = customs[idx - numForms - #extras]
 			local key = (data and data.key) or Stance.MakeSlotKey(idx, numForms, extras, customs)
 			btn = Stance.EnsureExtraButton(key, frame, size, data)
+			if not (btn and btn.Widget) then return false end
 			shown[btn] = true
 		end
 		if btn and btn.Widget then
@@ -376,18 +379,19 @@ function Stance.ApplyLayout()
 		end)
 	end
 
+	lastVisibleCount = #visible
+	Stance.visibleBindWidgets = bindWidgets
+	Stance.Anchor()
+	if Stance.ReassignBindings() == false then return false end
 	if #visible == 0 then
 		frame:Hide()
 	else
 		frame:Show()
 	end
-	lastVisibleCount = #visible
-	Stance.visibleBindWidgets = bindWidgets
-	Stance.Anchor()
-	Stance.ReassignBindings()
 	dirty.layout = false
 	dirty.formsVisual = false
 	dirty.extrasVisual = false
+	return true
 end
 
 function Stance.RequestLayout(reason)

@@ -1,0 +1,199 @@
+{
+  "capture": {
+    "addonMsPerSecond": 0,
+    "build": "70532",
+    "capturedAt": "2026-10-23 11:17:23",
+    "client": "Forever",
+    "cvars": "maxFPS=120 maxFPSBk=30 maxFPSLoading=75 vsync=0 targetFPS=60 useTargetFPS=1 gxMaxFrameLatency=2",
+    "fpsAverage": 225.71444396973,
+    "fpsMin": 159.15118408203,
+    "frames": {},
+    "functions": {},
+    "gameType": "camelot",
+    "liveAfter": 40,
+    "liveBefore": 41,
+    "passes": {},
+    "presentationAfter": {
+      "frames": 19714,
+      "models": [
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/_FluxUI/UnitFrames/FluxUnitFrames_Shared.lua:3592",
+          "kind": "PlayerModel",
+          "label": "FluxUnitFrame_player.PortraitFrame.1e437986df0"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:5",
+          "kind": "ModelScene",
+          "label": "GlobalFXBackgroundModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:4",
+          "kind": "ModelScene",
+          "label": "GlobalFXMediumModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:3",
+          "kind": "ModelScene",
+          "label": "GlobalFXDialogModelScene"
+        },
+        {
+          "alpha": 0,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.BackModelScene"
+        },
+        {
+          "alpha": 0,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.FrontModelScene"
+        }
+      ],
+      "visibleFrames": 1659,
+      "visibleRegions": 3749
+    },
+    "presentationBefore": {
+      "frames": 19714,
+      "models": [
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/_FluxUI/UnitFrames/FluxUnitFrames_Shared.lua:3592",
+          "kind": "PlayerModel",
+          "label": "FluxUnitFrame_player.PortraitFrame.1e437986df0"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:5",
+          "kind": "ModelScene",
+          "label": "GlobalFXBackgroundModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:4",
+          "kind": "ModelScene",
+          "label": "GlobalFXMediumModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_GlobalFXModelScenes/GlobalFXModelScenes.xml:3",
+          "kind": "ModelScene",
+          "label": "GlobalFXDialogModelScene"
+        },
+        {
+          "alpha": 0,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.BackModelScene"
+        },
+        {
+          "alpha": 0,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "ObjectiveTrackerUIWidgetContainer.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetPowerBarContainerFrame.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetBelowMinimapContainerFrame.FrontModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:46",
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.BackModelScene"
+        },
+        {
+          "alpha": 1,
+          "creationSource": "Interface/AddOns/Blizzard_UIWidgets/Blizzard_UIWidgetManager.xml:33",
+          "kind": "ModelScene",
+          "label": "UIWidgetTopCenterContainerFrame.FrontModelScene"
+        }
+      ],
+      "visibleFrames": 1660,
+      "visibleRegions": 3762
+    },
+    "recentProfiler": {
+      "addonMs": 0.021131666666667,
+      "applicationMs": 4.02,
+      "count": 5,
+      "overallMs": 0.044142666666667
+    },
+    "scriptProfile": "0",
+    "seconds": 5.0019999999786,
+    "spellRanks": "1",
+    "subscribers": {},
+    "uiAfter": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "uiBefore": {
+      "battlefieldMap": "shown=true/visible=true",
+      "character": "shown=false/visible=false",
+      "fluxTab": "Map",
+      "worldMap": "shown=false/visible=false"
+    },
+    "version": "1.60.1"
+  },
+  "evidence": "Background native application/addon recent timing samples with profiling disabled, not matched FPS acceptance."
+}

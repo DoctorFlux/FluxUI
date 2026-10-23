@@ -6,6 +6,8 @@
 
 FluxNonCombatAPI = FluxNonCombatAPI or {}
 local API = FluxNonCombatAPI
+local Flux = _G.Flux
+local managedStartup = Flux and Flux.Module and Flux.Module.Register
 
 local NC_GRID_SCREEN_BOTTOM_X = 4
 
@@ -21,7 +23,9 @@ local function GetActionStripBottomY()
 end
 
 local function ApplyLeftAnchor(grid)
-    if InCombatLockdown() or not grid or not grid.Frame then
+    if not grid or not grid.Frame then return end
+    if InCombatLockdown() then
+        grid._pendingRegenRelayout = true
         return
     end
     local frame = grid.Frame
@@ -52,55 +56,60 @@ function API.UpdateAnchor()
 end
 
 local function Initialize()
-    if InCombatLockdown() then
-        return
+    if InCombatLockdown() or (managedStartup and not Flux.securePhaseReady) then
+        return false
     end
     local Grid = FluxNonCombatGrid
     if not Grid or not Grid.New then
-        return
+        return false
     end
-    if API.DefaultGrid then
-        ApplyLeftAnchor(API.DefaultGrid)
-        return
-    end
-    local grid = Grid.New(UIParent, {
+    if API._startupReady then return true end
+    local grid = API.DefaultGrid or Grid.New(UIParent, {
         name = "FluxNonCombatGrid_Main",
         rows = 2,
         cols = 4,
         size = 44,
         spacing = 2,
     })
+    if not grid then return false end
     API.DefaultGrid = grid
-    -- V9 order: Hearth → Mount → Teleport → Food/Water → Consumables
-    if FluxNCHearthstone and FluxNCHearthstone.Register then
-        FluxNCHearthstone.Register(grid)
+    API._startupRegistrations = API._startupRegistrations or {}
+    local function Register(key, module, method)
+        if module and module[method] and not API._startupRegistrations[key] then
+            if module[method](grid) == false then
+                error("NonCombatGrid registration incomplete: " .. key)
+            end
+            API._startupRegistrations[key] = true
+        end
     end
-    if FluxNCMount and FluxNCMount.Register then
-        FluxNCMount.Register(grid)
-    end
-    if FluxNCTeleportPortal and FluxNCTeleportPortal.Register then
-        FluxNCTeleportPortal.Register(grid)
-    end
-    if FluxNCWater and FluxNCWater.Create then
-        FluxNCWater.Create(grid)
-    end
-    if FluxNCFood and FluxNCFood.Create then
-        FluxNCFood.Create(grid)
-    end
-    if FluxNCConsumables and FluxNCConsumables.Register then
-        FluxNCConsumables.Register(grid)
-    end
-    if FluxNCUtilitySlotsManager and FluxNCUtilitySlotsManager.OnNonCombatGridReady then
-        FluxNCUtilitySlotsManager.OnNonCombatGridReady(grid)
-    end
-    ApplyLeftAnchor(grid)
-    if grid.Frame then
-        grid.Frame:Show()
-    end
-    if grid.Relayout then
-        _G.FluxNCRegenRelayoutInit = (_G.FluxNCRegenRelayoutInit or 0) + 1
-        grid:Relayout()
-    end
+    if grid.BeginLayout then grid:BeginLayout() end
+    local ok, err = pcall(function()
+        -- V9 order: Hearth → Mount → Teleport → Food/Water → Consumables
+        Register("hearth", FluxNCHearthstone, "Register")
+        Register("mount", FluxNCMount, "Register")
+        Register("teleport", FluxNCTeleportPortal, "Register")
+        Register("water", FluxNCWater, "Create")
+        Register("food", FluxNCFood, "Create")
+        Register("consumables", FluxNCConsumables, "Register")
+        Register("utility", FluxNCUtilitySlotsManager, "OnNonCombatGridReady")
+        ApplyLeftAnchor(grid)
+        if grid.Frame then grid.Frame:Show() end
+        if grid.Relayout then
+            _G.FluxNCRegenRelayoutInit = (_G.FluxNCRegenRelayoutInit or 0) + 1
+            grid:Relayout()
+        end
+    end)
+    if grid.EndLayout then grid:EndLayout(ok) end
+    if not ok then error(err) end
+    API._startupReady = true
+    if Flux and Flux.Startup then Flux.Startup.Mark("noncombat_grid_infrastructure_ready") end
+    return true
+end
+
+if managedStartup then
+    Flux.Module.Register("NonCombatGrid", {
+        phase = "secure", priority = 45, protected = true, OnEnable = Initialize,
+    })
 end
 
 local f = CreateFrame("Frame")
@@ -108,7 +117,7 @@ f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_REGEN_ENABLED" then
-        if not API.DefaultGrid then
+        if not API._startupReady then
             if not InCombatLockdown() then
                 Initialize()
             end
@@ -126,27 +135,13 @@ f:SetScript("OnEvent", function(_, event)
         return
     end
     if InCombatLockdown() then
+        ApplyLeftAnchor(API.DefaultGrid)
         return
     end
-    Initialize()
-    if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            if not InCombatLockdown() then
-                ApplyLeftAnchor(API.DefaultGrid)
-                if API.DefaultGrid and API.DefaultGrid.Relayout then
-                    API.DefaultGrid:Relayout()
-                end
-            end
-        end)
-        C_Timer.After(0.15, function()
-            if API.DefaultGrid and API.DefaultGrid.Relayout and not InCombatLockdown() then
-                ApplyLeftAnchor(API.DefaultGrid)
-                API.DefaultGrid:Relayout()
-            end
-            if FluxCombatManager and FluxCombatManager.FinalizeLayout then
-                FluxCombatManager:FinalizeLayout()
-            end
-        end)
+    if not API._startupReady then
+        Initialize()
+    else
+        ApplyLeftAnchor(API.DefaultGrid)
     end
 end)
 

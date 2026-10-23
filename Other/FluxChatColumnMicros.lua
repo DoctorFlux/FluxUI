@@ -827,21 +827,31 @@ local function CreateBagButton(parent)
             end
         end
     end
-    local bagCountTimer
+    -- C_Timer.After has no cancellation handle. Keep one pending callback,
+    -- refresh at most 0.2s apart during a burst, then reconcile 0.2s after its
+    -- last event so the source counter's own delayed update is included.
+    local bagCountDue
+    local bagCountPending = false
+    local function FlushBagCount()
+        bagCountPending = false
+        SyncCount()
+        local remaining = bagCountDue - GetTime()
+        if remaining > 0 then
+            bagCountPending = true
+            C_Timer.After(math.min(0.2, remaining), FlushBagCount)
+        end
+    end
     local events = CreateFrame("Frame")
     events:RegisterEvent("PLAYER_ENTERING_WORLD")
     events:RegisterEvent("BAG_UPDATE")
     events:RegisterEvent("BAG_UPDATE_DELAYED")
     events:SetScript("OnEvent", function()
-        if bagCountTimer and bagCountTimer.Cancel then
-            bagCountTimer:Cancel()
-            bagCountTimer = nil
-        end
-        if C_Timer and C_Timer.After then
-            bagCountTimer = C_Timer.After(0.2, function()
-                bagCountTimer = nil
-                SyncCount()
-            end)
+        if C_Timer and C_Timer.After and GetTime then
+            bagCountDue = GetTime() + 0.2
+            if not bagCountPending then
+                bagCountPending = true
+                C_Timer.After(0.2, FlushBagCount)
+            end
         else
             SyncCount()
         end
@@ -851,6 +861,8 @@ local function CreateBagButton(parent)
 end
 
 local function ApplyPortrait(btn)
+    -- A portrait refresh can restore resting crop/layout while the panel is open.
+    btn._fluxPlatePushed = nil
     if btn.icon and SetPortraitTexture then
         SetPortraitTexture(btn.icon, "player")
         btn.icon:SetTexCoord(0.2, 0.8, 0.0666, 0.9)
@@ -946,14 +958,14 @@ local function TrackCharacterPress(btn)
         return
     end
     btn._fluxPressTrack = true
-    local watch = CreateFrame("Frame")
+    local watch = CreateFrame("Frame", "FluxChatCharacterPressDriver")
     watch:SetScript("OnUpdate", function()
         if not btn:IsShown() then
             return
         end
         local holding = IsMouseButtonDown and IsMouseButtonDown("LeftButton") and btn:IsMouseOver()
         local pushed = holding or CharacterPanelShown()
-        if pushed or btn._fluxPlatePushed ~= pushed then
+        if btn._fluxPlatePushed ~= pushed then
             ApplyCharacterPlate(btn, pushed and true or false)
         end
     end)

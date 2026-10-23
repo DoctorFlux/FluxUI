@@ -110,6 +110,7 @@ else
 end
 
 local Client = {
+	branch = isCamelot and "forever" or (isAnniversary and "classic_anniversary" or (isEra and "classic_era" or (isRetail and "live" or "classic"))),
 	flavor = flavor,
 	expansion = expansion,
 	isRetail = isRetail,
@@ -142,6 +143,7 @@ local Client = {
 }
 
 function Client.Is(name)
+	if name == "forever" then return Client.isForever end
 	return Client.flavor == name
 end
 
@@ -150,6 +152,7 @@ function Client.Matches(clients)
 	if type(clients) ~= "table" then
 		return true
 	end
+	if Client.isForever and clients.forever ~= nil then return clients.forever == true end
 	return clients[Client.flavor] == true
 end
 

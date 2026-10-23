@@ -30,10 +30,10 @@ local SEQ = 1
 
 local function ApplyClickWrap(widget)
 	if Flux.ButtonFX and Flux.ButtonFX.Click and Flux.ButtonFX.Click.Apply then
-		Flux.ButtonFX.Click.Apply(widget)
-		return
+		return Flux.ButtonFX.Click.Apply(widget)
 	end
 	widget:RegisterForClicks("AnyUp")
+	return true
 end
 
 function Widget.ResolveKind(config)
@@ -304,12 +304,15 @@ end
 
 local function ApplyExtraScripts(self)
 	local widget = self.Widget
-	widget:HookScript("OnMouseDown", function(w)
-		local ov = Flux.ButtonFX and Flux.ButtonFX.Overlay
-		if ov and ov.NotePressed then
-			ov.NotePressed(w)
-		end
-	end)
+	if not widget._fluxExtraPressHooked then
+		widget:HookScript("OnMouseDown", function(w)
+			local ov = Flux.ButtonFX and Flux.ButtonFX.Overlay
+			if ov and ov.NotePressed then
+				ov.NotePressed(w)
+			end
+		end)
+		widget._fluxExtraPressHooked = true
+	end
 	widget:SetScript("OnDragStart", function()
 		if EBS.Action and EBS.Action.OnDragStart then
 			EBS.Action.OnDragStart(self)
@@ -414,12 +417,12 @@ end
 --- right (mode toggle / flyout) do not steal the fill.
 function Widget.BindLockedExtraHost(btn)
 	if not btn or not btn.Widget then
-		return
+		return false
 	end
 	local widget = btn.Widget
 	local Click = Flux.ButtonFX and Flux.ButtonFX.Click
 	if Click and Click.Apply then
-		Click.Apply(widget, { onDown = true })
+		if Click.Apply(widget, { onDown = true }) == false then return false end
 	end
 	if not widget._fluxLockedExtraHostHooked then
 		widget._fluxLockedExtraHostHooked = true
@@ -457,6 +460,7 @@ function Widget.BindLockedExtraHost(btn)
 	if G and G.NotifySAO then
 		G.NotifySAO(widget)
 	end
+	return true
 end
 
 --- Attach a FluxButton env to an existing CheckButton (strip occupancy wrapper).
@@ -466,7 +470,7 @@ function Widget.Attach(widget, config)
 	end
 	config = config or {}
 	local kind = Widget.ResolveKind(config)
-	if widget.FluxButton and widget.FluxButton.kind == kind then
+	if widget.FluxButton and widget.FluxButton.kind == kind and widget.FluxButton._fluxWidgetAttached then
 		return widget.FluxButton
 	end
 
@@ -531,7 +535,7 @@ function Widget.Attach(widget, config)
 	end
 
 	if not config.skipScripts and kind == "extra" then
-		ApplyClickWrap(widget)
+		if ApplyClickWrap(widget) == false then return nil end
 		ApplyExtraScripts(self)
 	end
 
@@ -558,6 +562,7 @@ function Widget.Attach(widget, config)
 				or "UP",
 		})
 	end
+	self._fluxWidgetAttached = true
 	return self
 end
 
@@ -578,6 +583,11 @@ function Widget.Create(parent, config)
 		name = "FluxEBSButton" .. SEQ
 		SEQ = SEQ + 1
 	end
+	local existing = _G[name]
+	if existing and existing.FluxButton and existing.FluxButton._fluxWidgetCreated then
+		if existing.FluxButton.kind ~= kind then return nil end
+		return existing.FluxButton
+	end
 
 	local template = "ActionButtonTemplate, SecureActionButtonTemplate"
 	local C = Flux.Client
@@ -585,7 +595,9 @@ function Widget.Create(parent, config)
 		template = "ActionBarButtonTemplate, SecureActionButtonTemplate"
 	end
 	local function create()
-		local created = CreateFrame("CheckButton", name, parent or UIParent, template)
+		-- Named frames survive a failed initializer. Reconfigure that same
+		-- surface on retry instead of allocating a second immutable name.
+		local created = existing or CreateFrame("CheckButton", name, parent or UIParent, template)
 		if created then
 			created.eventsRegistered = true
 		end
@@ -698,5 +710,7 @@ function Widget.Create(parent, config)
 	if kind ~= "badge" and not skipScripts then
 		widget:RegisterForDrag("LeftButton", "RightButton")
 	end
-	return Widget.Attach(widget, config)
+	local button = Widget.Attach(widget, config)
+	if button then button._fluxWidgetCreated = true end
+	return button
 end

@@ -1,16 +1,18 @@
 # Findings, mismatches and unresolved questions
 
+**Historical audit evidence.** The findings/reproductions below describe the pre-optimization source. The [23 October implementation report](43-startup-optimization.md) records the startup corrections. The [test failure resolution](44-test-failure-resolution.md) records the subsequent runtime fixes, replacement executable contracts and passing desktop suite. Native acceptance remains pending.
+
 Initial audit: **2026-10-22**; current source/evidence refresh: **2026-10-23**. These are observations from the current working tree, including pre-existing uncommitted code/test edits. This documentation pass changes documentation only. A source mismatch or failed text assertion is not automatically a reproducible in-game bug.
 
 ## Current compatibility work and check status
 
-The 23 October complete run passed **26 of 28** smoke scripts; all **662 publishable Lua files** passed desktop syntax checking. The same two source-contract scripts still fail, as detailed below. See the [current verification record](41-verification.md#current-verification-23-october-2026) and [per-script results](reference/verification.json). New control/grid/pin/tracker fixtures passed without changing addon Lua or relaxing expectations during this documentation refresh.
+The latest 23 October run passes **51 of 51** scripts; all **688 Lua files** pass desktop syntax checking. Both previously failing scripts pass after investigation, runtime corrections and executable coverage for obsolete source checks. See the [resolution and coverage mapping](44-test-failure-resolution.md), [idle performance investigation](45-idle-performance.md), [current verification record](41-verification.md#current-verification-23-october-2026) and [per-script results](reference/verification.json). The 26/28 compatibility result and the findings below remain historical evidence.
 
 Recent implementation changes separate Forever's probed bar paging from its legacy no-wrap input policy, preserve native collectors, reserve the twelve control columns, suppress only stock grid event subscriptions, route Questie's own World Map pins alongside Forever's native providers, and guard saved native tracker callbacks even when Questie owns the visible dock. These are current source behaviors, not proof that the reported native taint issue is solved on all clients. Fresh-login combat/hardware-input tests remain pending. [Bars](11-action-bars.md), [binding](13-binding-system.md), [map](10-flux-window.md), [trackers](18-minimap-and-trackers.md).
 
 The stock grid dispatch explains how bag pickup can reach native Edit Mode layout; it does not establish the first taint writer. A successful secure setup probe establishes that snippet execution worked at setup, not that every later protected interaction is safe. Ordinary main-page mappings, temporary control-page bypasses, pet visibility and native gamepad navigation must be evaluated separately.
 
-## Existing smoke failures
+## Historical smoke failures
 
 The initial desktop Lua 5.4.6 run passed **20 of 22** then-existing smoke scripts. The two failures were rerun at that audit stage with identical results:
 

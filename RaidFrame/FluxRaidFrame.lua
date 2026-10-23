@@ -73,6 +73,11 @@ local CVAR_REFRESH = {
 }
 
 function FluxRaid_ApplyOptionsFromDB()
+    if InCombatLockdown() then
+        if FluxRaid_QueueWork then FluxRaid_QueueWork(FluxRaid_ApplyOptionsFromDB) end
+        return
+    end
+    if not State.isInitialized then return end
     local db = {}
     if FluxOptions and FluxOptions.GetRaidFrameDB then
         local d = FluxOptions:GetRaidFrameDB()
@@ -95,12 +100,6 @@ function FluxRaid_ApplyOptionsFromDB()
     if FluxRaid_InstallManagerHooks then
         FluxRaid_InstallManagerHooks()
     end
-    if FluxRaid_DisableBlizzardNow then
-        FluxRaid_DisableBlizzardNow()
-    end
-    if FluxRaid_ScheduleBlizzardGridHideCheck then
-        FluxRaid_ScheduleBlizzardGridHideCheck()
-    end
     if State.isInitialized and FluxRaid_ApplyChromeToChildren then
         FluxRaid_ApplyChromeToChildren(true)
         if FluxRaid_SyncAllFluxUnitAuraSettings then
@@ -120,6 +119,12 @@ function FluxRaid_ApplyOptionsFromDB()
     end
     if FluxRaid_QueueConfigureAndRefresh then
         FluxRaid_QueueConfigureAndRefresh()
+    end
+    -- The first configuration creates the secure child buttons. Only then
+    -- may the native party/raid controls be handed over to Flux.
+    if State.secureConfigured then
+        if FluxRaid_DisableBlizzardNow then FluxRaid_DisableBlizzardNow() end
+        if FluxRaid_ScheduleBlizzardGridHideCheck then FluxRaid_ScheduleBlizzardGridHideCheck() end
     end
     if FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
         FluxRaidPreview.RefreshFromOptions()
@@ -186,6 +191,9 @@ function EventHandlers:CVAR_UPDATE(cvarName)
 end
 
 function EventHandlers:PLAYER_ENTERING_WORLD()
+    if not State.isInitialized and ns.Flux and ns.Flux.Module then
+        ns.Flux.Module.Enable("RaidFrames")
+    end
     FluxRaid_ApplyOptionsFromDB()
 end
 
@@ -251,12 +259,6 @@ end
 
 function FluxRaid_OnLoad(self)
     State.eventFrame = self
-    if FluxRaidVisuals and FluxRaidVisuals.ApplyRaidFrameTunables then
-        FluxRaidVisuals.ApplyRaidFrameTunables({})
-    end
-    if FluxRaid_InitLayoutFrames then
-        FluxRaid_InitLayoutFrames()
-    end
     local events = {
         "PLAYER_ENTERING_WORLD",
         "GROUP_ROSTER_UPDATE",
@@ -276,13 +278,27 @@ function FluxRaid_OnLoad(self)
     for _, event in ipairs(events) do
         pcall(self.RegisterEvent, self, event)
     end
-    if FluxRaid_InstallPetBattleDriver then
-        FluxRaid_InstallPetBattleDriver()
+    local function Initialize()
+        if State.isInitialized then return true end
+        if InCombatLockdown() then return false end
+        if FluxRaid_InitLayoutFrames then FluxRaid_InitLayoutFrames() end
+        if FluxRaid_InstallPetBattleDriver and FluxRaid_InstallPetBattleDriver() == false then return false end
+        State.isInitialized = true
+        local ok, err = pcall(FluxRaid_ApplyOptionsFromDB)
+        if not ok then
+            State.isInitialized = false
+            error(err)
+        end
+        if ns.Flux and ns.Flux.Startup then ns.Flux.Startup.Mark("raid_secure_infrastructure_ready") end
+        return true
     end
-    C_Timer.After(0, function()
-        FluxRaid_ApplyOptionsFromDB()
-    end)
-    State.isInitialized = true
+    if ns.Flux and ns.Flux.Module then
+        ns.Flux.Module.Register("RaidFrames", {
+            phase = "secure", priority = 70, protected = true, OnEnable = Initialize,
+        })
+    else
+        Initialize()
+    end
 end
 
 function FluxRaid_OnEvent(self, event, unit, ...)

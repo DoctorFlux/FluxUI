@@ -141,28 +141,28 @@ function Strip.ComputeLook(visibleCols, anyMini, expanding)
 end
 
 function Strip.Create()
-	if Strip.frame then
+	if Strip.frame and Strip.frame._fluxStripReady then
 		return Strip.frame
 	end
 	local C = Bars.CONFIG
 
-	local frame = CreateFrame("Frame", "FluxActionStrip", UIParent)
+	local frame = Strip.frame or _G.FluxActionStrip or CreateFrame("Frame", "FluxActionStrip", UIParent)
+	Strip.frame = frame
 	frame:SetFrameStrata(C.strata)
 	frame:SetFrameLevel(C.level)
 	frame:SetScale(1.0)
-	Strip.frame = frame
 	-- HUD (status loc 2/3, player Y, layout preview) still looks up this name.
 	_G.FluxMainActionBar = frame
 
-	local inner = CreateFrame("Frame", "FluxActionStripContent", frame)
-	inner:SetScale(C.scale)
+	local inner = Strip.inner or _G.FluxActionStripContent or CreateFrame("Frame", "FluxActionStripContent", frame)
 	Strip.inner = inner
+	inner:SetScale(C.scale)
 
-	local sensing = CreateFrame("Frame", "FluxActionStripSensing", UIParent)
+	local sensing = Strip.sensing or _G.FluxActionStripSensing or CreateFrame("Frame", "FluxActionStripSensing", UIParent)
+	Strip.sensing = sensing
 	sensing:SetFrameStrata("LOW")
 	sensing:EnableMouse(false)
 	sensing:Hide()
-	Strip.sensing = sensing
 
 	if FluxBorder and FluxBorder.ApplyTo then
 		FluxBorder:ApplyTo(frame, 4, -2, 4, -2)
@@ -170,6 +170,7 @@ function Strip.Create()
 	Strip.ApplyAppearanceAccent()
 
 	Strip.Layout(Bars.NUM_COLUMNS, false, false, 1, 1)
+	frame._fluxStripReady = true
 	return frame
 end
 
@@ -274,6 +275,10 @@ function Strip.SyncVisibility()
 	if not frame then
 		return
 	end
+	if Bars.secureReady == false then
+		if not InLockdown() then frame:Hide() end
+		return
+	end
 	if GamepadHudOn() then
 		if InLockdown() then
 			if Flux.Combat and Flux.Combat.Defer then
@@ -292,6 +297,10 @@ function Strip.SyncVisibility()
 		frame:Show()
 	elseif Flux.Combat and Flux.Combat.Defer then
 		Flux.Combat.Defer("bars.strip.gamepad", Strip.ApplyGamepadHud)
+	end
+	if Bars.started and Flux.Startup then
+		local visible = frame.IsVisible and frame:IsVisible() or (not frame.IsVisible and frame:IsShown())
+		if visible then Flux.Startup.Mark("action_buttons_visible") end
 	end
 end
 

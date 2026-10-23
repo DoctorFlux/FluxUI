@@ -4,6 +4,8 @@
 -- ---------------------------------------------------------------------------
 
 local addonName, ns = ...
+local Flux = ns.Flux or _G.Flux
+local SchedulePerformLayout
 
 local EXTRA_ABILITY_ANCHOR_X = -60
 local EXTRA_ABILITY_ANCHOR_Y = 30
@@ -119,7 +121,7 @@ local function HideEditModeSelection()
     end
 end
 
-local function SchedulePerformLayout()
+SchedulePerformLayout = function()
     if state.layoutScheduled then
         return
     end
@@ -127,6 +129,7 @@ local function SchedulePerformLayout()
 
     local function run()
         state.layoutScheduled = false
+        if InCombatLockdown() then state.pendingLayout = true; return end
         HideEditModeSelection()
         PerformLayout()
     end
@@ -187,6 +190,7 @@ local function EnsureHost()
     if state.host then
         return state.host
     end
+    if InCombatLockdown() then return nil end
     local host = CreateFrame("Frame", "FluxExtraAbilityHost", UIParent, "SecureHandlerStateTemplate")
     host:SetSize(HOST_SIZE, HOST_SIZE)
     state.host = host
@@ -194,7 +198,7 @@ local function EnsureHost()
 end
 
 local function Initialize()
-    EnsureHost()
+    if not EnsureHost() then return false end
     InstallHooks()
     SetupEditModeOverride()
     MarkIgnoredInLayout()
@@ -203,7 +207,6 @@ end
 
 local regenFrame = CreateFrame("Frame")
 regenFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-regenFrame:RegisterEvent("PLAYER_LOGIN")
 pcall(regenFrame.RegisterUnitEvent, regenFrame, "PLAYER_SPECIALIZATION_CHANGED", "player")
 local lastSpecToken
 local function CurrentSpecToken()
@@ -222,16 +225,7 @@ local function CurrentSpecToken()
     return nil
 end
 regenFrame:SetScript("OnEvent", function(_, event)
-    if event == "PLAYER_LOGIN" then
-        if FluxWindowFrame and FluxWindowFrame.GetFrame then
-            FluxWindowFrame:GetFrame()
-        end
-        lastSpecToken = CurrentSpecToken()
-        Initialize()
-        if C_Timer and C_Timer.After then
-            C_Timer.After(2, SchedulePerformLayout)
-        end
-    elseif event == "PLAYER_REGEN_ENABLED" then
+    if event == "PLAYER_REGEN_ENABLED" then
         if state.pendingLayout then
             SchedulePerformLayout()
         end
@@ -247,4 +241,12 @@ regenFrame:SetScript("OnEvent", function(_, event)
         SchedulePerformLayout()
     end
 end)
+
+Flux.Module.Register("ExtraAbilityHUD", {
+    phase = "secure", protected = true, priority = 80,
+    OnEnable = function()
+        lastSpecToken = CurrentSpecToken()
+        return Initialize()
+    end,
+})
 

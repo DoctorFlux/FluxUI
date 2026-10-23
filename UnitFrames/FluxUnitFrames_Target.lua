@@ -397,7 +397,7 @@ end
 
 function FluxUnitFrames_ApplyRuntimeTarget(wantFlux)
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.target", function()
             FluxUnitFrames_ApplyRuntimeTarget(wantFlux)
         end)
         return
@@ -457,7 +457,7 @@ function FluxUnitFrames_ApplyRuntimeTarget(wantFlux)
         suppressBlizzard()
         if not ns.TargetFrame then
             targetFrameInitialized = false
-            InitializeTargetFrame()
+            UF.RunInitializer("target")
         else
             FluxUnitFrames_ResumeFluxTargetPlaceholder(ns.TargetFrame)
             FluxUnitFrames_ResumeFluxTargetUnitWatch(ns.TargetFrame)
@@ -493,9 +493,4 @@ end
 -- ---------------------------------------------------------------------------
 -- Loader
 -- ---------------------------------------------------------------------------
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:SetScript("OnEvent", function(self, event)
-    InitializeTargetFrame()
-end)
-
+UF.RegisterInitializer("target", InitializeTargetFrame, function() return targetFrameInitialized end, 61)

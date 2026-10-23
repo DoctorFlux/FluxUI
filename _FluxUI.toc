@@ -2,13 +2,14 @@
 ## Title: _FLUXUI
 ## Version: 0.0.1
 ## Notes: UI overhaul (Retail Midnight, Forever, Classic Era, Anniversary, MoP Classic)
-## OptionalDeps: Blizzard_UnitFrame, Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Blizzard_CompactRaidFrames, SpellActivationOverlay
+## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames
 ## Dep: Blizzard_CombatLog [AllowLoadGameType camelot]
 ## SavedVariables: FluxUI_DB, FluxUI_Options, FluxNonCombatGridDB, FluxFlyoutFavorites_Data, FluxUIGoldLedger, FluxSalvageDB, FluxInvDB, FluxUIInventoryDB, FluxPerfCaptureDB
 ## SavedVariablesPerCharacter: _FluxUI_CharSavedVars, FluxSpellBookSlotsDB, FluxNCUtilitySlotsDB, FluxSpellBindingProfilesDB, FluxSpellDirectBindDB, FluxSpellProfileBindingsDB, FluxBindingProfilesPerStateDB, FluxBindingDBv2, FluxBindingDB3, FluxTradeSkillScannerDB, TrinketMenuOptions, TrinketMenuPerOptions, TrinketMenuQueue, FluxNCFlyoutCharDB
 ## Bindings: Bindings.xml
 
-# Rewrite kernel (Step 1–3). Action bars / Binding / Extra Buttons grids stay off this TOC until those rewrite steps.
+# Kernel, branch adapters and shared services precede all feature registration.
+Core\StartupClock.lua
 libs\LibStub\LibStub.lua
 libs\Unfit-1.0\Unfit-1.0.lua
 libs\LibCustomGlow-1.0\LibCustomGlow-1.0.lua
@@ -60,6 +61,7 @@ Core\Engine\Perf.lua
 Core\Engine\HopLag.lua
 Core\DB.lua
 Core\Module.lua
+Core\Startup.lua
 Core\Optional.lua
 Core\Slash.lua
 
@@ -314,6 +316,7 @@ UnitFrames\FluxUnitFrames_AurasOwn.lua
 UnitFrames\FluxUnitFrames_Auras.lua
 UnitFrames\FluxUnitFrames_AurasEngine.lua [AllowLoadGameType mainline, camelot]
 UnitFrames\FluxUnitFrames_Shared.lua
+UnitFrames\FluxUnitFrames_Lifecycle.lua
 UnitFrames\FluxPortraitCombatFeedback.lua
 UnitFrames\FluxUnitFrames_PlayerSpecClick.lua
 UnitFrames\FluxUnitFrames_PlayerTransmogClick.lua

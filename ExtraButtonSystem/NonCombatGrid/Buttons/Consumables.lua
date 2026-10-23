@@ -5165,25 +5165,30 @@ end
 
 function Module.Register(grid)
     if not grid or Module._registered then return end
+    if InCombatLockdown() then return false end
     
     Module._grid = grid
-    Module._registered = true
     
     -- Load saved variables
     LoadSavedVars()
     
     -- Create the button
     Module.CreateButton()
+    if not Module._button then return false end
     
     -- Register events
-    Module.RegisterEvents()
+    if not Module._eventsRegistered then
+        Module.RegisterEvents()
+        Module._eventsRegistered = true
+    end
     
-    -- Setup keybindings (delayed to ensure button widget is ready)
-    Timer.After(0.3, function()
-        Module.UpdateKeybindings()
-    end)
+    -- CreateButton returns only after its widget exists. Bind immediately while
+    -- legal; inventory settling must not hold back secure click configuration.
+    Module.UpdateKeybindings()
     
     Module.RunPostLoginConsumablesRefresh()
+    Module._registered = true
+    return true
 end
 
 function Module.CreateButton()
@@ -5972,11 +5977,11 @@ function Module.RunPostLoginConsumablesRefresh()
             Module._pendingUpdate = true
         end
     end
+    -- Select from the active saved preset and currently available facts now.
+    -- The shared settle pulse is a later reconciliation, never an input barrier.
+    doUpdate()
     if FluxEBS_PostLoginBagRefresh and FluxEBS_PostLoginBagRefresh.Schedule then
         FluxEBS_PostLoginBagRefresh.Schedule(doUpdate)
-    else
-        -- PostLogin module disabled: bind immediately on login/reload.
-        doUpdate()
     end
 end
 

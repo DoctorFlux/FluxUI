@@ -1,30 +1,23 @@
 {
-  "date": "2026-10-23",
-  "runtime": "Lua 5.4.6 (desktop)",
-  "evidence_level": "Static syntax, source assertions and mocked/extracted Lua execution; no live WoW verification",
+  "captured_at_utc": "2026-10-23T09:34:04.615859+00:00",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 662,
-  "lua_corpus_sha256": "a73f507beaa18be6e159987de8154b6e8db9c9057ea1654689da8855e07f1d7c",
+  "publishable_lua_files": 688,
+  "lua_corpus_sha256": "f9b7a70edd609cf598e84a6e3f2ac878f60bddf2ee426f41bef7e513e9e5ab80",
   "syntax_check": {
-    "command": "luac -p <each publishable Lua file>",
-    "passed": 662,
+    "command": "luac -p (batches; individual checks after batch failure)",
+    "passed": 688,
     "failed": 0
   },
-  "smoke_scripts": 28,
-  "smoke_passed": 26,
-  "smoke_failed": 2,
-  "local_dependencies": [
-    "../__AddonsForRef/wow-ui-source-live",
-    "../__AddonsForRef/wow-ui-source-forever",
-    "../__AddonsForRef/wow-ui-source-classic_era",
-    "../__AddonsForRef/wow-ui-source-classic_anniversary",
-    "../__Backup/v8/_FluxUI (Forever control comparison)"
-  ],
+  "smoke_scripts": 51,
+  "smoke_passed": 51,
+  "smoke_failed": 0,
   "results": [
     {
       "path": "Bars/_tmp_barsmoke.lua",
-      "exitCode": 1,
-      "output": "source contract FAILED (26)\n  State must not clear pressAndHoldAction (kills mouse-up)\n  raid OnEnter skips SetUnit without a unit token\n  MTMA alpha-0 minis disable mouse\n  vehicle Apply refreshes count\n  vehicle Apply refreshes cooldown\n  vehicle Apply refreshes equipped border\n  classic stance parent is classic-only\n  SetScript on a non-Flux frame: watch\n  SetScript on a non-Flux frame: healthBits\n  form/page restamps promotion\n  page/form burst re-paints count\n  page/form burst re-paints cooldown\n  page/form burst re-paints usable\n  page/form burst re-paints equipped border\n  form settle requests Context display\n  form settle still requests Context display\n  form settle re-paints cooldown\n  form settle re-paints equipped border\n  Watch shares one Extra-face refresh\n  form burst requests Context so overlay icons flip now\n  bars.icon must include SPELLS_CHANGED\n  bars.icon must include SPELL_UPDATE_ICON\n  Extra badgeMode must not stamp INV_Misc_QuestionMark\n  SpellFX stays authored for 44\n  stance widgets stay native Extra Button size\n  stance SlotFrame is live button_size\n"
+      "exitCode": 0,
+      "output": "bars refresh: 17230 checks passed; 19 production mutations rejected\nbars contract regression: 338 production checks across five clients; 9 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
     },
     {
       "path": "Bars/_tmp_forevercontrolsmoke.lua",
@@ -73,8 +66,8 @@
     },
     {
       "path": "Core/_tmp_coresmoke.lua",
-      "exitCode": 1,
-      "output": "core smoke FAILED (1)\n  salvage overlay has a visible fill when Forever lacks the proc atlas\n"
+      "exitCode": 0,
+      "output": "core smoke OK\n  scheduler: layout \u00e2\u2020\u2019 display \u00e2\u2020\u2019 eval; paging defers eval/display\n  modifier: FluxModifierTracker alias, demand-driven OnUpdate\n  context: kinded fingerprint bus on display tier\n  identity: shown-face publish + last-sig skip\n  occupancy: type+id only, no GetMacroSpell\n  formstorm: IsBursting / IsSettling / GetSnapshot\n  hoplag: /fluxhop overlay, off by default\n  aura: slots/index gate on CanAccessSecrets; GetPlayerAuraBySpellID does not\n  secrets: SafeBooleanTest/SafeLooksEmpty/AuraUpdateInfoIsNoop/KeepLastNumber\n  swing: gated off live post-DF + post-Cata classic; Forever uses PLAYER_SWING; CLEU + DurationUtil probed\n"
     },
     {
       "path": "Core/_tmp_foreveraurassmoke.lua",
@@ -114,12 +107,12 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "forever consumables passed\nanniversary consumables passed\nera consumables passed\nwrath consumables passed\nretail consumables passed\ncata consumables passed\nmists consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1369 checks\n"
+      "output": "era consumables passed\ncata consumables passed\nretail consumables passed\nwrath consumables passed\nmists consumables passed\nforever consumables passed\nanniversary consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1369 checks\n"
     },
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "era inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1512 checks\n"
+      "output": "cata inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1512 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -155,6 +148,121 @@
       "path": "RaidFrame/_tmp_raidaurassmoke.lua",
       "exitCode": 0,
       "output": "forever: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nforever missing add private API: aura fallback and native dispellable filtering OK\nforever missing remove private API: aura fallback and native dispellable filtering OK\nlive: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nlive missing add private API: aura fallback and native dispellable filtering OK\nlive missing remove private API: aura fallback and native dispellable filtering OK\nclassic_era: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_era missing add private API: aura fallback and native dispellable filtering OK\nclassic_era missing remove private API: aura fallback and native dispellable filtering OK\nclassic_anniversary: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_anniversary missing add private API: aura fallback and native dispellable filtering OK\nclassic_anniversary missing remove private API: aura fallback and native dispellable filtering OK\nRaid aura smoke OK (4 supplied clients, native methods retained; engine taint requires in-game validation)\n"
+    },
+    {
+      "path": "tests/bars_contract_regression.lua",
+      "exitCode": 0,
+      "output": "bars contract regression: 338 production checks across five clients; 9 mutations rejected\n"
+    },
+    {
+      "path": "tests/bars_refresh_regression.lua",
+      "exitCode": 0,
+      "output": "bars refresh: 17230 checks passed; 19 production mutations rejected\n"
+    },
+    {
+      "path": "tests/bars_startup_retry.lua",
+      "exitCode": 0,
+      "output": "assistant rate samples: 600; 85 paints per consumer (600 frames; use --baseline for HEAD comparison)\nbars startup retry: 714 checks passed\n"
+    },
+    {
+      "path": "tests/binding_respec_regression.lua",
+      "exitCode": 0,
+      "output": "binding/respec regression: 110 checks passed\n"
+    },
+    {
+      "path": "tests/blizzard_script_ownership.lua",
+      "exitCode": 0,
+      "output": "Blizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\n"
+    },
+    {
+      "path": "tests/data_integrity.lua",
+      "exitCode": 0,
+      "output": "PASS: 36 data-integrity checks; gear rebuild: 1 GUID + 1 existence queries (100 bag slots)\n"
+    },
+    {
+      "path": "tests/extra_startup.lua",
+      "exitCode": 0,
+      "output": "PASS: 188 extra-startup checks (five labelled client fixtures; real clients still require testing)\n"
+    },
+    {
+      "path": "tests/grid_child_startup.lua",
+      "exitCode": 0,
+      "output": "PASS: 18 grid-child startup checks; unknown data is never claimed as configured input\n"
+    },
+    {
+      "path": "tests/hud_startup.lua",
+      "exitCode": 0,
+      "output": "PASS: 25 HUD-startup checks (extracted actual lifecycle/guard functions; WoW taint still requires live tests)\n"
+    },
+    {
+      "path": "tests/idle_bars.lua",
+      "exitCode": 0,
+      "output": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_chat.lua",
+      "exitCode": 0,
+      "output": "idle chat: 70 checks; 5 mutations rejected; open-panel writes/2400frames 26400 -> 0; 200-event bag callbacks 200 -> 2\n"
+    },
+    {
+      "path": "tests/idle_hud.lua",
+      "exitCode": 0,
+      "output": "idle HUD after: 600s clock writes=11, formats=11, hidden clock queries=0; 2400 marquee frames text/width/measure/color=0/0/0/0; 2400 idle callbacks after refit=0\nidle HUD stat discovery: 3720 GetChildren calls in 30 refreshes of 124 nodes\nidle HUD: 988 checks across five clients; 13 behavioral mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_info_layout.lua",
+      "exitCode": 0,
+      "output": "idle info layout: width/font/text native calls per fitting3-stat layout = 18/21/21 -> 6/9/9\nidle info layout: 5 behavioral mutations rejected\nidle info layout: 9733 comparisons passed\n"
+    },
+    {
+      "path": "tests/idle_map.lua",
+      "exitCode": 0,
+      "output": "idle map after: 30 visits refreshes=30, zone watchers=1, show/hide hooks=1/1\nidle map: 2493 checks across five client paths; 5 behavioral mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_units.lua",
+      "exitCode": 0,
+      "output": "idle units: 843 checks; missing-unit ClearModel calls/minute = 1200 -> 4\n  20s/240Hz dispatch: fallback=4800 frame callbacks, native=0 frame callbacks + 100 health timer callbacks; 11 mutations rejected\n  3000 unchanged samples, Lua heap allocated with GC paused: closure control=1171.88KB, candidate=0.00KB\n"
+    },
+    {
+      "path": "tests/late_inventory.lua",
+      "exitCode": 0,
+      "output": "late inventory: absent, pending, ready and duplicate readiness handoffs passed\n"
+    },
+    {
+      "path": "tests/optional_startup.lua",
+      "exitCode": 0,
+      "output": "optional BigDebuffs startup: late install, idempotency and execution-time combat deferral passed\n"
+    },
+    {
+      "path": "tests/perf_capture.lua",
+      "exitCode": 0,
+      "output": "perf capture: 289 checks across five clients; 11 mutations rejected\n"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "exitCode": 0,
+      "output": "Raid startup: 2026 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+    },
+    {
+      "path": "tests/salvage_overlay.lua",
+      "exitCode": 0,
+      "output": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n"
+    },
+    {
+      "path": "tests/startup_lifecycle.lua",
+      "exitCode": 0,
+      "output": "startup lifecycle: 185 checks passed (five client fixtures; no native taint/render simulation)\n"
+    },
+    {
+      "path": "tests/unitframes_lifecycle_spec.lua",
+      "exitCode": 0,
+      "output": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n"
+    },
+    {
+      "path": "tests/window_runtime_spec.lua",
+      "exitCode": 0,
+      "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
     },
     {
       "path": "WindowMover/_tmp_charactercombatsmoke.lua",
@@ -213,7 +321,7 @@
     },
     {
       "path": "AddonOptions/FluxOptions.lua",
-      "sha256": "89b64c5cbf0c2bf167f624944cac50fc4c6f61769954c72905d0785d6134eaf3"
+      "sha256": "448ee98dd2aecc31c423f1fa9b3071c31c7c04a97ec07ebdf2d19d0b68c9a248"
     },
     {
       "path": "AddonOptions/FluxOptionsActionBars.lua",
@@ -336,12 +444,12 @@
       "sha256": "6c754c3ab69108a491aafa12db44a4b9d2031664a1042b67259097f8d99bd300"
     },
     {
-      "path": "BaganatorCompat/FluxBaganator_GearSetShield.lua",
-      "sha256": "7ba8ab10c8105ffe47115544b2cb5b80948eb441f03ee50cb3e52992a12b3873"
+      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "sha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209"
     },
     {
-      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
-      "sha256": "1fb1df0ad41ed2414d2a5ac6e8fa4be34fbba77028020688f1d8b8611af08830"
+      "path": "BaganatorCompat/FluxBaganator_GearSetShield.lua",
+      "sha256": "7ba8ab10c8105ffe47115544b2cb5b80948eb441f03ee50cb3e52992a12b3873"
     },
     {
       "path": "BaganatorCompat/FluxBaganator_ItemViews.lua",
@@ -357,7 +465,19 @@
     },
     {
       "path": "BaganatorCompat/Loader.lua",
-      "sha256": "74fe9f3df5a606282da2b81d3c587bd3938b05e0d180e155476a729550890b0d"
+      "sha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db"
+    },
+    {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "sha256": "2fa8a33e7a88cbf794d5ff2c5331a7aa33024b8cdfa5e695dcb507fcc9100a60"
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
+    },
+    {
+      "path": "Bars/_tmp_stockgridsmoke.lua",
+      "sha256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9"
     },
     {
       "path": "Bars/BadgeHost.lua",
@@ -369,7 +489,7 @@
     },
     {
       "path": "Bars/Blizzard.lua",
-      "sha256": "3d6baf755d6e3aedb2ec832b92277bc2a4aecc2d5439cb96f90ff147a4cf8799"
+      "sha256": "52c863594e6da4313ce411a80b473b909a250cdfe4ba681478b07b6c9005b530"
     },
     {
       "path": "Bars/BlizzardOptions.lua",
@@ -377,7 +497,7 @@
     },
     {
       "path": "Bars/Clicks.lua",
-      "sha256": "a03d19d499f64550b1617e7b7783c58f04be5d0d800f75aadf9796b9b2f35659"
+      "sha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
     },
     {
       "path": "Bars/Effects.lua",
@@ -389,11 +509,11 @@
     },
     {
       "path": "Bars/Hosts.lua",
-      "sha256": "5dc3030886d3edb2d98a769b891be7ead393e8f375a4939356932dccd57a03a9"
+      "sha256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf"
     },
     {
       "path": "Bars/Init.lua",
-      "sha256": "5c522b8ca69e599a7fe42b42750f29f83b3cdf751474d3adb9aa9f8070293550"
+      "sha256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38"
     },
     {
       "path": "Bars/Layout.lua",
@@ -405,19 +525,19 @@
     },
     {
       "path": "Bars/Minis.lua",
-      "sha256": "53c56f3f9d90a26fc5721fe701400222d252db4fb1545d92d4346b16bf9a38df"
+      "sha256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8"
     },
     {
       "path": "Bars/Paint.lua",
-      "sha256": "f9a10ec6909405c6777269f7c3fdde2397482b868df3dc17c473c5fc93cf03b2"
+      "sha256": "71738b071210119bf84e3d2d94fec405054a528c5df743022368dfea50fd577e"
     },
     {
       "path": "Bars/Pet/Init.lua",
-      "sha256": "eaf9e98f7f15552f79a1f62512d0d60eb42758707c507fb72f8e0a92967b82e4"
+      "sha256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049"
     },
     {
       "path": "Bars/Pet/Keys.lua",
-      "sha256": "43af5d2f4fad4e2869680f5ddfa568210d30b528e518a1def2368ca0ba1d6b2a"
+      "sha256": "1adf3fec3dc1db0b9c10489896fa1b7353fc269c7494277be9bfd68c240060f7"
     },
     {
       "path": "Bars/Pet/Layout.lua",
@@ -429,7 +549,7 @@
     },
     {
       "path": "Bars/ProgramFace.lua",
-      "sha256": "78b95cb96b86026488ed494a8adeb6165d4b9c52ead266a8f91e651f2debedb7"
+      "sha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd"
     },
     {
       "path": "Bars/SlotMath.lua",
@@ -449,15 +569,15 @@
     },
     {
       "path": "Bars/Stance/Forms.lua",
-      "sha256": "cc8ae5068d5ddc0aa7cf96ae69cc2830337a626d8c0910e64bc86522b7fb26bf"
+      "sha256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc"
     },
     {
       "path": "Bars/Stance/Init.lua",
-      "sha256": "a0a6e419951f12bfe28c5a186544ec37316ba6bdf6107f6f6bfeb49975c64aa3"
+      "sha256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7"
     },
     {
       "path": "Bars/Stance/Layout.lua",
-      "sha256": "6f0a511cdef270e8269bbd0e5e2a5810312b6da5622e73aed937e39b11d44a4a"
+      "sha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7"
     },
     {
       "path": "Bars/Stance/Order.lua",
@@ -469,35 +589,27 @@
     },
     {
       "path": "Bars/State.lua",
-      "sha256": "4849062d579424cd52359e462d8f284f2819244c363b042849ef317d76816bc6"
+      "sha256": "6280cfdcb71bcd299a670f48444e56273ab28b92b92af57e0e463f021ff1139b"
     },
     {
       "path": "Bars/Strip.lua",
-      "sha256": "0e4c3fcb6e92aadb951da709bdf4e9b751979b67489e35c43fd91d61510fdeca"
+      "sha256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df"
     },
     {
       "path": "Bars/Vehicle.lua",
-      "sha256": "4873f8f60460ec2af9b7f480e6d7d6a044c263e4a7bf84337cb095af6d76c034"
+      "sha256": "acd07311dfa84b6afb828f763aee786796c92f734749fda1aeeefe8144349f1c"
     },
     {
       "path": "Bars/Watch.lua",
-      "sha256": "6c4fa1f2aed219c67eb15bff3c9ea344ca8067d301609d73355299131fab5034"
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
     },
     {
-      "path": "Bars/_tmp_barsmoke.lua",
-      "sha256": "8db003c6c64f39b01c76b597961cf91d4a0aeced59ae524cc12e96f42309a1f2"
-    },
-    {
-      "path": "Bars/_tmp_forevercontrolsmoke.lua",
-      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
-    },
-    {
-      "path": "Bars/_tmp_stockgridsmoke.lua",
-      "sha256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9"
+      "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+      "sha256": "3ff2284b43cbad68838f271ff30eddf85a885fde8ecc5afb82530a78c7113527"
     },
     {
       "path": "Battlezonemap/FluxBattlefieldMap.lua",
-      "sha256": "d60bad018eb602711b761ae2f7df5507730717b44255b81f192b6431ae061e34"
+      "sha256": "cad3541c7d3e980b0f3c97b572c8555dfe08d99bbcfabec735fe27c5ae19b8df"
     },
     {
       "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
@@ -521,15 +633,15 @@
     },
     {
       "path": "Battlezonemap/FluxBlizzardMeter.lua",
-      "sha256": "400c6484776eaebc3940818a696240f6a7e8feb80aba73541f504741c93441a3"
+      "sha256": "10b19b6edaf7b9d209b9ba342d241b5983c10938749d9acdd880a6167b3f24a0"
     },
     {
       "path": "Battlezonemap/FluxDetails.lua",
-      "sha256": "e57d8477f8790dfbca2c08990308d59ba2953747a7864d770f17a8c5ac75a8b0"
+      "sha256": "1a46b671a7d57dba3e6a3c8c5833b447abcac4b5855e9f3bf92f87c7ebd9fa5f"
     },
     {
       "path": "Battlezonemap/FluxDetailsForever.lua",
-      "sha256": "8fc5cf1e0314f10a1dd134dc92dc087eae81eda9208be27043d40c2fed6f23c7"
+      "sha256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0"
     },
     {
       "path": "Battlezonemap/FluxDetailsWoWSkinTint.lua",
@@ -537,7 +649,7 @@
     },
     {
       "path": "Battlezonemap/FluxMeterLayout.lua",
-      "sha256": "1cc8efb8433845ec2f2850ac9df4c80c669fdeb9296731e4395fdb30355bb800"
+      "sha256": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4"
     },
     {
       "path": "Battlezonemap/FluxThreat.lua",
@@ -545,15 +657,11 @@
     },
     {
       "path": "Battlezonemap/FluxWindowFrame.lua",
-      "sha256": "5ce86dc48c76dfaeee79be6a5130eeca57b9374bfca6f046d0555bde96533a31"
-    },
-    {
-      "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
-      "sha256": "3ff2284b43cbad68838f271ff30eddf85a885fde8ecc5afb82530a78c7113527"
+      "sha256": "5b8c275af48f3c28de0c5d3b36e522e899fdee3f6a2cd5544678c5249c042ddb"
     },
     {
       "path": "Binding/Boot.lua",
-      "sha256": "b6aac89ebc63e4d490a6b273ceb75d7dd649cb910ec44703de89451673a1c192"
+      "sha256": "4f7a07bacb9fda4b41361752a55d08b3f49f55eefcfb1b6c7ad5ed0a327fe03c"
     },
     {
       "path": "Binding/Core/Action.lua",
@@ -561,7 +669,7 @@
     },
     {
       "path": "Binding/Core/Apply.lua",
-      "sha256": "d1c2fca871c810701e24600b7491de4baed12906f5fa921d703a5aceeaca0312"
+      "sha256": "ec55e39d113d36513767cf2efde099557e362d92aadd4ba76fa5e310d1ac4ce1"
     },
     {
       "path": "Binding/Core/BindingTooltip.lua",
@@ -573,7 +681,7 @@
     },
     {
       "path": "Binding/Core/Conditions.lua",
-      "sha256": "329ca652e1d7cf79ddc9ad9f8568ea35806e9dbc0d4283306821c5b1b03b034f"
+      "sha256": "c74e7d1f88b604f207cae1778049ee1b737875345c0692d29e12cf9656fba5ac"
     },
     {
       "path": "Binding/Core/DB.lua",
@@ -613,7 +721,7 @@
     },
     {
       "path": "Binding/Respec.lua",
-      "sha256": "5bcc06b0db523d039a4a66a63b74265dba9d40a6d271f06cccdf916a585a427f"
+      "sha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417"
     },
     {
       "path": "Binding/Slash.lua",
@@ -716,12 +824,24 @@
       "sha256": "715655bd155d0998556f69fe07b7b69d5ea6b83dc4489e0ca2bb845bad61efee"
     },
     {
+      "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
+      "sha256": "c682431b38499e757855522fce5969cb6ac26175dfd5f9975928532245f7e2e2"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
+      "sha256": "cd54622d6dd9cdf32066b5172895cc8e7499730149cb8e907be8e92679707df6"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
+      "sha256": "ddc40698c4f64908e5d42d5615a292b6bbeb28877ae965c065b2299262d09897"
+    },
+    {
       "path": "CharacterInfo/GearScore.lua",
       "sha256": "869a6b75763c98a112b0057c20d6959cdbbead709325979a86a20d9c636a15dd"
     },
     {
       "path": "CharacterInfo/Init.lua",
-      "sha256": "843de8a0a737fdf5d774765077f62040c4ad9b0ffea95ac4dad52ee7e556b74d"
+      "sha256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a"
     },
     {
       "path": "CharacterInfo/ItemLevel.lua",
@@ -769,7 +889,7 @@
     },
     {
       "path": "CharacterInfo/PaperDollEquipFlyout.lua",
-      "sha256": "1e393bd51ae71bbdf4581b6e565218f7833b5d1b709889658923a1a7c5f262a6"
+      "sha256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760"
     },
     {
       "path": "CharacterInfo/PaperDollQuality.lua",
@@ -812,18 +932,6 @@
       "sha256": "a94314453277b7613ceab8cd9d2660c95facaf5ddaa21fad1277a1e405b1efb7"
     },
     {
-      "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
-      "sha256": "c682431b38499e757855522fce5969cb6ac26175dfd5f9975928532245f7e2e2"
-    },
-    {
-      "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
-      "sha256": "cd54622d6dd9cdf32066b5172895cc8e7499730149cb8e907be8e92679707df6"
-    },
-    {
-      "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
-      "sha256": "ddc40698c4f64908e5d42d5615a292b6bbeb28877ae965c065b2299262d09897"
-    },
-    {
       "path": "ConsoleportCompat/CombatQueue.lua",
       "sha256": "e5009df4f188673cf431ace4a03a65f23a79d16b89ca4fb75bfdf6b5b08583e7"
     },
@@ -840,6 +948,46 @@
       "sha256": "b0d91207a044c496985a5d0c8a8fe094cff4896a2bedc45b060ca7492d930faf"
     },
     {
+      "path": "Core/_tmp_buffdebuffsmoke.lua",
+      "sha256": "bbe6c6f6eb8b23229abd57967ab95207d047f52bd5fbc64d2511999d1c43fdb5"
+    },
+    {
+      "path": "Core/_tmp_classpowerscalesmoke.lua",
+      "sha256": "5490272ff42476331fdb99107477dc9092f5fc81d9b3523c06ca929336a30d72"
+    },
+    {
+      "path": "Core/_tmp_clientguardsmoke.lua",
+      "sha256": "8578fd1bd2a57c9f0afab50599222b5f4189983fe93d73b8c467ab0818524de7"
+    },
+    {
+      "path": "Core/_tmp_coresmoke.lua",
+      "sha256": "f261bae7f192525da09e523de4f6beafea8d692787471d17f3d67bef9fc250d4"
+    },
+    {
+      "path": "Core/_tmp_foreveraurassmoke.lua",
+      "sha256": "684374d6283980d61b8dd540ec8847d53047c671457241737b4d7f52f57f0f4c"
+    },
+    {
+      "path": "Core/_tmp_foreverbarstylesmoke.lua",
+      "sha256": "56e725fe5a5dc25d04846b4e20b04e65398fc3e0f975b393227139703ec325b6"
+    },
+    {
+      "path": "Core/_tmp_forevercombosmoke.lua",
+      "sha256": "16c2a49869faf1ec951cae3d17404d33a1baa8bf8b96b14c09dbdd1b43474213"
+    },
+    {
+      "path": "Core/_tmp_minimaplayoutsmoke.lua",
+      "sha256": "88e50654e8af95d6041e608b41329cc52d70ba00f4214033a587283073005a0f"
+    },
+    {
+      "path": "Core/_tmp_playeraurassmoke.lua",
+      "sha256": "06a3062447abb6c3ac5c2ab880cf218d116de16b451b7aaa3a281618764b2ba7"
+    },
+    {
+      "path": "Core/_tmp_stancehidesmoke.lua",
+      "sha256": "1495f613d4fcc5e65418d8766a3c1c11139e14cf26aba507bba3712f10c2acca"
+    },
+    {
       "path": "Core/API/Action.lua",
       "sha256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c"
     },
@@ -852,12 +1000,12 @@
       "sha256": "11ef71d9d678c916a03bf668d796d8486e3e3b0af3d53b82666fbeaf1c47c27a"
     },
     {
-      "path": "Core/API/CVar.lua",
-      "sha256": "a69fbed4850b4cfd2115160d0cedd93082be71558f2bc1d7bf5bef9dc1bef3c7"
-    },
-    {
       "path": "Core/API/Container.lua",
       "sha256": "e7951686c90b6c1a65d78a4106415be186ce034c7e98fc541225abb98a05aca5"
+    },
+    {
+      "path": "Core/API/CVar.lua",
+      "sha256": "a69fbed4850b4cfd2115160d0cedd93082be71558f2bc1d7bf5bef9dc1bef3c7"
     },
     {
       "path": "Core/API/Item.lua",
@@ -909,7 +1057,7 @@
     },
     {
       "path": "Core/ButtonFX/Click.lua",
-      "sha256": "d2aab84a2921591d330fd32662c665b83c9d3d1067c0db2d27fd6cb6401939d2"
+      "sha256": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab"
     },
     {
       "path": "Core/ButtonFX/Click2.lua",
@@ -933,7 +1081,7 @@
     },
     {
       "path": "Core/Client.lua",
-      "sha256": "5ad2aaf062328ab55f7e51ea983ffafb0f5969b86d35f36f2f24c73161f95d85"
+      "sha256": "c4fa44c67eefa67642634532177a1faa18d3435765676cd12470e9fc2dc3bc92"
     },
     {
       "path": "Core/Client_Camelot.lua",
@@ -941,15 +1089,15 @@
     },
     {
       "path": "Core/DB.lua",
-      "sha256": "a70590c82f50b613c744ae11f9deb8293efe0183c6648801269db8fc718913be"
+      "sha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1"
     },
     {
       "path": "Core/Engine/Combat.lua",
-      "sha256": "47ffebc18af469d2b82b8a3822197c63318390e371165f82f1a94f575b3f89d4"
+      "sha256": "623e16e2fa43cdc47784b68a3b4810f279633bb1affc5f30264c735b0c989180"
     },
     {
       "path": "Core/Engine/Context.lua",
-      "sha256": "3f5f23862f416b7afc8bf9f44bc37e8499edfa4d96372c513bfbfcb69d5107c0"
+      "sha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7"
     },
     {
       "path": "Core/Engine/Events.lua",
@@ -985,11 +1133,11 @@
     },
     {
       "path": "Core/Engine/Restricted.lua",
-      "sha256": "d21a9ea8531e49a607f5d6f96a32991f8d0c8fb774fbc59a29379607f9eec592"
+      "sha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44"
     },
     {
       "path": "Core/Engine/Scheduler.lua",
-      "sha256": "4e5c8767cf4c6fff065739a4180412b19a77d16efce8629fb4adda66b8fe5b3b"
+      "sha256": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4"
     },
     {
       "path": "Core/Engine/SpellBook.lua",
@@ -1005,11 +1153,11 @@
     },
     {
       "path": "Core/Engine/Timer.lua",
-      "sha256": "9c787aaf2466cab719a2bf9bd9c34cb3b4420124ad749d0fb504b721f1f48682"
+      "sha256": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa"
     },
     {
       "path": "Core/Flux.lua",
-      "sha256": "3e09f7b8102e14482859aef397cb85dbab208eb929305967f02d012fc564daee"
+      "sha256": "0cb0296f56799542307c50bdf047c5aa53c2b896670dd7cf65e945b4bfcc6125"
     },
     {
       "path": "Core/FluxAPI/Actions.lua",
@@ -1020,16 +1168,16 @@
       "sha256": "c6f641e0dc52c979d755be746c3417bd9d919d786bd4981c856f212503aa29d6"
     },
     {
-      "path": "Core/FluxAPI/CVars.lua",
-      "sha256": "9b15c1fe9629e715b3a790b4e8665446cb087673a6575bf47a3ad9daf445cf61"
-    },
-    {
       "path": "Core/FluxAPI/Capabilities.lua",
       "sha256": "dea5c1783247c5248d7673de32e766f5947ac9cd0936a7503fde7a3ab7d76a23"
     },
     {
       "path": "Core/FluxAPI/Client.lua",
       "sha256": "0525a7a36d6fbf329a36f730f7c923d8947b49dda4ea84b6b26c5993956a80c4"
+    },
+    {
+      "path": "Core/FluxAPI/CVars.lua",
+      "sha256": "9b15c1fe9629e715b3a790b4e8665446cb087673a6575bf47a3ad9daf445cf61"
     },
     {
       "path": "Core/FluxAPI/Events.lua",
@@ -1069,63 +1217,35 @@
     },
     {
       "path": "Core/Module.lua",
-      "sha256": "d76f358b02941906ee947c6b756e0964a102192fb25404b02e8eaf02188f4413"
+      "sha256": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239"
     },
     {
       "path": "Core/Optional.lua",
-      "sha256": "ac39203218f5908461235d22ca7a35c58f18f58d22c329a1b637118b5fe7c1a2"
+      "sha256": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10"
     },
     {
       "path": "Core/SecureClickProxy.lua",
-      "sha256": "c6c79ef434c6ba366e3033fd5f655aef25a58c0703e0184c188e81af722b122b"
+      "sha256": "33c60c871c04eebe54ef0bc26291a232022b0640d1f0822ad14d1ffaa924f59f"
     },
     {
       "path": "Core/Slash.lua",
       "sha256": "a7438da027e35727676515e636a2578747574276939cf53987f5a3293b92c1d1"
     },
     {
-      "path": "Core/_tmp_buffdebuffsmoke.lua",
-      "sha256": "32c9ade326cad9c6c1a2238a005adb712f59018ecdf643c2eea546865b6dedb9"
+      "path": "Core/Startup.lua",
+      "sha256": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2"
     },
     {
-      "path": "Core/_tmp_classpowerscalesmoke.lua",
-      "sha256": "5490272ff42476331fdb99107477dc9092f5fc81d9b3523c06ca929336a30d72"
-    },
-    {
-      "path": "Core/_tmp_clientguardsmoke.lua",
-      "sha256": "8578fd1bd2a57c9f0afab50599222b5f4189983fe93d73b8c467ab0818524de7"
-    },
-    {
-      "path": "Core/_tmp_coresmoke.lua",
-      "sha256": "f261bae7f192525da09e523de4f6beafea8d692787471d17f3d67bef9fc250d4"
-    },
-    {
-      "path": "Core/_tmp_foreveraurassmoke.lua",
-      "sha256": "684374d6283980d61b8dd540ec8847d53047c671457241737b4d7f52f57f0f4c"
-    },
-    {
-      "path": "Core/_tmp_foreverbarstylesmoke.lua",
-      "sha256": "56e725fe5a5dc25d04846b4e20b04e65398fc3e0f975b393227139703ec325b6"
-    },
-    {
-      "path": "Core/_tmp_forevercombosmoke.lua",
-      "sha256": "16c2a49869faf1ec951cae3d17404d33a1baa8bf8b96b14c09dbdd1b43474213"
-    },
-    {
-      "path": "Core/_tmp_minimaplayoutsmoke.lua",
-      "sha256": "88e50654e8af95d6041e608b41329cc52d70ba00f4214033a587283073005a0f"
-    },
-    {
-      "path": "Core/_tmp_playeraurassmoke.lua",
-      "sha256": "06a3062447abb6c3ac5c2ab880cf218d116de16b451b7aaa3a281618764b2ba7"
-    },
-    {
-      "path": "Core/_tmp_stancehidesmoke.lua",
-      "sha256": "1495f613d4fcc5e65418d8766a3c1c11139e14cf26aba507bba3712f10c2acca"
+      "path": "Core/StartupClock.lua",
+      "sha256": "d53bcf729278afe70a0ffe94e0f310a07aa2bc5bb3c074ebb48c44c2a7956a5a"
     },
     {
       "path": "ExtraButtonSystem/Combat/Kind.lua",
       "sha256": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "sha256": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741"
     },
     {
       "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
@@ -1152,16 +1272,16 @@
       "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
     },
     {
-      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
-      "sha256": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741"
-    },
-    {
       "path": "ExtraButtonSystem/CombatGrid/Grid.lua",
-      "sha256": "aa54de4ff53fbc34a6e704be1a7c9cabb33d8f71913bb46f7b8d7735e811013d"
+      "sha256": "4b33e386d97369a4e1c2ac72a66ba04d4b8debc5654bd771d47cecd28106d88d"
     },
     {
       "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
-      "sha256": "9a0749ade045f0c70fc77a17dec4fbd04a2e82acb49eb24e24c3e16c812147fc"
+      "sha256": "1ace8cffcefdedb3b511b44d3b61b184bb569fe02bb83ce196d5a131312f8fd5"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "sha256": "6f74f957075328b9648d2e2a72f8ee4d149acae882de5162f7fc674cc19a2aab"
     },
     {
       "path": "ExtraButtonSystem/Engine/Action.lua",
@@ -1225,15 +1345,11 @@
     },
     {
       "path": "ExtraButtonSystem/Engine/Watch.lua",
-      "sha256": "576e8ecb8a4794cde16c9c508f74d36fdfc9eff57a159b05cd5d65f09e8ce3fa"
+      "sha256": "ac906b94f1b33347d26757c6ffd199b29bf397e8e32a96ef1fe66124b8a0dd44"
     },
     {
       "path": "ExtraButtonSystem/Engine/Widget.lua",
-      "sha256": "8f993ef5c838b7687f984147330bddd4edea38295ad00155ace9f1d01f827f37"
-    },
-    {
-      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
-      "sha256": "6f74f957075328b9648d2e2a72f8ee4d149acae882de5162f7fc674cc19a2aab"
+      "sha256": "983040afb10f9c4dce6d61e4de9c28b5310b3923ba2c52e39ce643fb5ddd6d30"
     },
     {
       "path": "ExtraButtonSystem/ExtraButtons/Buttons.lua",
@@ -1317,7 +1433,7 @@
     },
     {
       "path": "ExtraButtonSystem/Init.lua",
-      "sha256": "29e06e7f6caee7672ced985cb7954955a9da54955cb1d35ceb92a519c2aef67c"
+      "sha256": "5272a73080d63f3584055c25f469733a786ec31b1b07ef648bd85a5544822a5c"
     },
     {
       "path": "ExtraButtonSystem/Layout.lua",
@@ -1337,7 +1453,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
-      "sha256": "250cd02e1968197ec8f42d8b400a8333ff7f9e273df5970fc9681a3c4529ecf0"
+      "sha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
@@ -1365,7 +1481,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
-      "sha256": "9d2fca60697c925a1e80081c284bc3c9e47c7651bef29a5dfbdd1d3f679f05d6"
+      "sha256": "af389872182545226b47dfbaab8eaf4ba07471274b4278c2cc9dc6339ef943e6"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
@@ -1381,11 +1497,11 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
-      "sha256": "08be9e071a0546b15bc4c35ec98ee54b02493236300fd887b37fb118078cabf2"
+      "sha256": "c6bddaf5b97d71092ff3d2d7db8ba3ce140ae81d14f928dc0e99e0f76644f6fa"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
-      "sha256": "4634a53b851e7db98b642e2abf035634a446affd84e5f45141838166c8124c8c"
+      "sha256": "61f3121d3b5aec937915692364d5a21951ae1f7f10b14ffb84a546a99386a657"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
@@ -1445,11 +1561,11 @@
     },
     {
       "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
-      "sha256": "9bb15ed87386b7eea52efea4f627e1c87c20c0ce82efafeaa0fff740acc63cbf"
+      "sha256": "78eddec2f3b0972c7769f7e56facf5d69ed071e76d10e7a4f4c03554a2eeec68"
     },
     {
       "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
-      "sha256": "0a9b1a74fbbb99889856e9eb995e93501ff2efe1334d50754987f48296cdb0fa"
+      "sha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0"
     },
     {
       "path": "FluxBorder.lua",
@@ -1457,7 +1573,11 @@
     },
     {
       "path": "FluxDefaultSettings.lua",
-      "sha256": "1838becf69ef3c313bb8b41b310267ab73bf22f362dbee51391664c4f1468ae5"
+      "sha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7"
+    },
+    {
+      "path": "Inventory/_tmp_inventorylag_smoke.lua",
+      "sha256": "7980c8a09b509cf5a415690143001ded9ecd5d7bf899771b00266906f7251af5"
     },
     {
       "path": "Inventory/Builtin/Auctions.lua",
@@ -1609,7 +1729,7 @@
     },
     {
       "path": "Inventory/Init.lua",
-      "sha256": "b651fc6edbebd1394682baf881956762b09804858a63ce3447b01c4c82e0bafa"
+      "sha256": "b4e0d9d1c0f8b446d626647a510ccd5fbe1cb5a06b10ceb980135ef2fc90a4e1"
     },
     {
       "path": "Inventory/Ledger.lua",
@@ -1681,7 +1801,7 @@
     },
     {
       "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
-      "sha256": "1aa445b94d5b6df7a43caa9e9727b3937541c2de6770ba58f5cae4b1ce64825a"
+      "sha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce"
     },
     {
       "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua",
@@ -1720,6 +1840,10 @@
       "sha256": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010"
     },
     {
+      "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+      "sha256": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30"
+    },
+    {
       "path": "Inventory/Restock/Junk/FluxJunk.lua",
       "sha256": "14a6e640fb37140aca38b25812ac4151500a7986da5ec044876e45756acd7117"
     },
@@ -1734,10 +1858,6 @@
     {
       "path": "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
       "sha256": "96daeee2d0e852a945a963a38042f7d1fef41558720b7477c3ae857b75c8214c"
-    },
-    {
-      "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
-      "sha256": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30"
     },
     {
       "path": "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
@@ -1837,19 +1957,327 @@
     },
     {
       "path": "Inventory/Syndicator/Adapter.lua",
-      "sha256": "fe307352002e5e99fece9f4a29990ad724277c70351bc67054d528225cb5e81a"
+      "sha256": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078"
     },
     {
       "path": "Inventory/Tooltip.lua",
       "sha256": "4d9a34e34e26b45b9feebb53e8db18a331675a14bc5fb53b82a47b90085e59df"
     },
     {
-      "path": "Inventory/_tmp_inventorylag_smoke.lua",
-      "sha256": "7980c8a09b509cf5a415690143001ded9ecd5d7bf899771b00266906f7251af5"
+      "path": "Layout/UnifiedBorder.lua",
+      "sha256": "e2b120f6a6808378187967bb638bfcb8e53ebd12746cd0cce6274fabd3a975c3"
     },
     {
-      "path": "Layout/UnifiedBorder.lua",
-      "sha256": "7efe58500ee3b55426b0e6d96a84e32f01e353101b4882cf72015f9a5e2e63f5"
+      "path": "libs/AceAddon-3.0/AceAddon-3.0.lua",
+      "sha256": "9aaec858b04820b597155b040dd76ef0d6e8e4f0707e54630001bcfe68497307"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfig-3.0.lua",
+      "sha256": "25d745c5a8b50cf4b145caa55b5aeb389762286690117f51341d4111f98ee462"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigCmd-3.0/AceConfigCmd-3.0.lua",
+      "sha256": "936138368dd8fa2523937428b321dab6ac9b5e0e502c6b49d5faa66dc5d5c609"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua",
+      "sha256": "adf3d74fd8a65030ef536caf2eab13065f080ddf576233b5bf33235d41926025"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigRegistry-3.0/AceConfigRegistry-3.0.lua",
+      "sha256": "7185800770e786eac398cef5d5a4887b31cddda6f5ce6a2683a9f3fdca1454a6"
+    },
+    {
+      "path": "libs/AceConsole-3.0/AceConsole-3.0.lua",
+      "sha256": "3372abc50efcfa4f643bf7c2f3254de19327d28e2040997d672f94d1845a5499"
+    },
+    {
+      "path": "libs/AceDB-3.0/AceDB-3.0.lua",
+      "sha256": "f4b37c05eaa972e51b02c8a477ad40290eada7490c81f3cf511f7b8285aec6f6"
+    },
+    {
+      "path": "libs/AceDBOptions-3.0/AceDBOptions-3.0.lua",
+      "sha256": "698e58102030d4b66d7463ce2c2a7a23338584db7fe3eb28e7717f7e6143a766"
+    },
+    {
+      "path": "libs/AceEvent-3.0/AceEvent-3.0.lua",
+      "sha256": "928729c0edae955407778463d345baa0e59fc8f6f6ad53877b6243e0f225da4e"
+    },
+    {
+      "path": "libs/AceGUI-3.0/AceGUI-3.0.lua",
+      "sha256": "bcfcef55d727f8434606bdba2375929123422e051c27fd1bfcbd95e7ab723ed7"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-BlizOptionsGroup.lua",
+      "sha256": "566551ddd7c8c434d6bb6f4a4c9a67479e6e8a719fcc3a504b18eec4f11e6586"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-DropDownGroup.lua",
+      "sha256": "ecf7743bd5fb9059d4226e35cd2374aa13282eca720938498f85d7f328f8c070"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Frame.lua",
+      "sha256": "fb3f9f3b3414bd3b27e1281c2b8836749e38906458df6b69e9f385fbe041df91"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua",
+      "sha256": "e9458bd6378d017994408618cbc6921ef7e6bbe152e9bbded199255c399468a5"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-ScrollFrame.lua",
+      "sha256": "fef3da3ce311b861d669bc503906cdd0780a372fbea039c1e2d3f75ac6e68709"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-SimpleGroup.lua",
+      "sha256": "d65968489c0fa5749d2e35be69c60d0dd7969189aa14a9031f0654715625d214"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TabGroup.lua",
+      "sha256": "ad73ed3b619cba61778ec39b73206daac423bd1f539241f4a58ff623b0b0b687"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TreeGroup.lua",
+      "sha256": "f323da78c108641ac7120a596bbe6a7658f6261c426d98b5f486f24259e593d5"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Window.lua",
+      "sha256": "d57f41b781d8c021fb69a94e084efadbb891d3a353738e6ca68853da21f94645"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Button.lua",
+      "sha256": "1bcc3592c6315d1369f448316f4bc990c812a37d2a7b5c31fd2324daf6ad7e87"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-CheckBox.lua",
+      "sha256": "81cef4bb6ddef3b8bc31360f292fe7b7a7916d675b9336a697545c9ba9adfd77"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-ColorPicker.lua",
+      "sha256": "d69b7e600acf2e6f9d0e222d40952f4f25115eb6a48c039bfa71d2807668e5ef"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown-Items.lua",
+      "sha256": "aa7d0bd54525e63b9549ec0a41ff3b3595267a377e0ae65da42577856cf03f4b"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown.lua",
+      "sha256": "42e2a9d9c41bc4f481af1721b6cc45988e2bc5573fd0282499e9bf3af8e8ec20"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-EditBox.lua",
+      "sha256": "97978789450321923f180f7f21b1e5f49c0addd017fd6c5cb334cbcd522f6299"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Heading.lua",
+      "sha256": "ebf0271a8e6f7bce8947cbd339a6a08a6c856bf45e35ae9156c79320521dfa51"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Icon.lua",
+      "sha256": "62df520dba9234f704ac956141e95e9716896b006210f4ae67a9afbff3b93a50"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-InteractiveLabel.lua",
+      "sha256": "e47543663cc5c4272ef6fb6d356fb63a49f6b101d3cc0501e769ac6615442cce"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Keybinding.lua",
+      "sha256": "f91cf498566a9bfd60f42b3bd8b5f7a14d4087d6033795e72ddf50f7fd47177f"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Label.lua",
+      "sha256": "7d953f5fd4cb6ba8fb25c0c732e6dd61564684c57bc5175f4d734d646b99842d"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua",
+      "sha256": "828ede1b08906bcc62821e02ef7ff99dfc03d2658baa25b13cc645bc9790cdac"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Slider.lua",
+      "sha256": "59b3ee4b813c8e20c4463e9fb1c167bfb8552e1ad6ec512dccfce24c9e4049ca"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BackgroundWidget.lua",
+      "sha256": "a98f491caaec6406204616d12b53e666703100bf93a83e03e4e222635c15b634"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BorderWidget.lua",
+      "sha256": "a00d00269cb139ae0465994d7076a5533c8d4795f27d6dd5c3c0f90ea0a77f6b"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/FontWidget.lua",
+      "sha256": "2855a05d6a0aa2d3c939c7f41c079ccf3f4adea506c3190707ac2d1bb6221403"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/prototypes.lua",
+      "sha256": "f25f3c53110a7a51668e041edf54e178ea31f6afdc0a0030daed065945045522"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/SoundWidget.lua",
+      "sha256": "87e278a6f518bb25818c610f8858f65cd6a674ed25a3f7600d8b64b1603e9f1f"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/StatusbarWidget.lua",
+      "sha256": "0d9fe21f7c66d4de9b556125d2d6781b140ae1a0babdda3382f8e012160f8f68"
+    },
+    {
+      "path": "libs/AceHook-3.0/AceHook-3.0.lua",
+      "sha256": "9e8f57d06fa7bfcba6d2a2e9fb8fdfd9fbc040158f4401d4308f8279a26e1378"
+    },
+    {
+      "path": "libs/AceLocale-3.0/AceLocale-3.0.lua",
+      "sha256": "584b30b5cd9da71408cdd83a49469aa4348941e185a42cbd218d964678d88e57"
+    },
+    {
+      "path": "libs/C_Everywhere/C_Everywhere.lua",
+      "sha256": "f8da96f734f692479dd27190868cfc77e42cdd4c7265567590fb02db909ea3fb"
+    },
+    {
+      "path": "libs/C_Everywhere/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/CallbackHandler-1.0/CallbackHandler-1.0.lua",
+      "sha256": "84a15af505e728ac5e5eb6a8eaba8989d1131d5f8ba14d11abcfe4ce086de3c1"
+    },
+    {
+      "path": "libs/CustomSearch-1.0/CustomSearch-1.0.lua",
+      "sha256": "92667711e46349ec911f3ba66d9b382fb3c78b0bf1ee813a61255ca804bfca32"
+    },
+    {
+      "path": "libs/FluxButtonGlowExtensions.lua",
+      "sha256": "ae818e0ed68d9c34d08607addda309fb9955b6c067acf007cff92ba2ac2753e3"
+    },
+    {
+      "path": "libs/FluxLABExtensions.lua",
+      "sha256": "0b2fe5d4f38a9e2e4325795dd0cf6187a0db99f7f3cdfbc49664eeb0aa9e7454"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/API.lua",
+      "sha256": "dc77feafc86c8ca3db8a7eb1a7a88aa4f6c1bf9629dec0135d7756db7cff71e3"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/Filters.lua",
+      "sha256": "1055d557fe2b594537636bb56d626b6db2865a54d9628364dcb56d0881b3c57f"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/LibActionButton-1.02/LibActionButton-1.0.lua",
+      "sha256": "1e5e51627243a6593555f4fc5384c2a95bc6eed478a51f6bf6cd1c6e1a15b79d"
+    },
+    {
+      "path": "libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua",
+      "sha256": "69c32ec22d61324fb35305b06f8bf2ba270ce3b3008d9b18b28d85960edf8038"
+    },
+    {
+      "path": "libs/LibClassicCasterino/LibClassicCasterino.lua",
+      "sha256": "e934f61cdf2a22760b29fb0088d63acb99f0b69bde2eea2293cd664887d84fa0"
+    },
+    {
+      "path": "libs/LibClassicSpellActionCount-1.0/LibClassicSpellActionCount-1.0.lua",
+      "sha256": "7e0864dada9cc161e20f4a07b0f05a16dbe49f6d943fb9539e5a4404834f4759"
+    },
+    {
+      "path": "libs/LibClassicSpellActionCount-1.0/LibStub/LibStub.lua",
+      "sha256": "186bac9553513504fac3a5c4550ff59f3aee9e8a497376134f3ca01de2ed18d0"
+    },
+    {
+      "path": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6"
+    },
+    {
+      "path": "libs/LibDataBroker-1.1.lua",
+      "sha256": "f3d4758f2060215492c9764b1d7dc2a336826d4cd253cd54ff9ff7c6d78f04e2"
+    },
+    {
+      "path": "libs/LibDBIcon-1.0/LibDBIcon-1.0.lua",
+      "sha256": "2067ece0f93dbbf3fc6e633dabd43cc9d425be9ad49dfba6719d148864b2183d"
+    },
+    {
+      "path": "libs/LibDualSpec-1.0/LibDualSpec-1.0.lua",
+      "sha256": "e3cdde3f5ecd964fe5bd03aa2348c77fae6181bf4af4c530ba455bd7c439b4ac"
+    },
+    {
+      "path": "libs/LibDualSpec-1.0/LibStub.lua",
+      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/LibKeyBound-1.0.lua",
+      "sha256": "d5718d6902cd13e1a68cbacf8252424ea165b479c754dc59ecf49bfcf67f8bc6"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-deDE.lua",
+      "sha256": "8cad2c08fae9777716331f6e456dc0188e728201c1ce8c70487391e157fb9cdd"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-enUS.lua",
+      "sha256": "5ae8b61e315caa14120dabe6aa20c50e61d8567ec6233b72884c46282ea8ef6e"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-esES.lua",
+      "sha256": "f5fd5a289bff165712bf4ab2346249bc8084e043a703ee60c870349bfebf8a05"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-esMX.lua",
+      "sha256": "dccee9a4968d4e1a2a2499cae5ed46695fdb64c3ef01b159a04c416e0d4b56ec"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-frFR.lua",
+      "sha256": "28808327af173f01d1f0935e632ed4274e5fcaa50fab2d5eb82d663bec20b910"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-koKR.lua",
+      "sha256": "4adc082cb5a25584f93d989bc6162c87db08e85c57b45e802820eb39ea8a9cb3"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-ruRU.lua",
+      "sha256": "c63214b314826dc6c0c42fe452df320052700cad2c6f8cf102a054b1bb6855a7"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-zhCN.lua",
+      "sha256": "79eaf1f587b1b8f08d32707c2d29aeb7610e1a33cb669d67a7b519c8dc052595"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-zhTW.lua",
+      "sha256": "0494e9f1ae24cbb225cac33506fad775e26fd73f1db4c0a9f9cc84633cc160af"
+    },
+    {
+      "path": "libs/LibSharedMedia-3.0/LibSharedMedia-3.0.lua",
+      "sha256": "88fb301fe15edc86b01407640fe587ccbbff72d54c9e06b08b3d792804e0899c"
+    },
+    {
+      "path": "libs/LibStub/LibStub.lua",
+      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
+    },
+    {
+      "path": "libs/LibWindow-1.1/LibWindow-1.1.lua",
+      "sha256": "306e722c2799d8edbb5d3165d3d8b414e88a5cb544fcbd24b2a2b1a15a893dd4"
+    },
+    {
+      "path": "libs/SecureTabs-2.0/SecureTabs-2.0.lua",
+      "sha256": "fdd306aa1f994faef1e29514362619fff075c58e43832cabdbe315ea387405b6"
+    },
+    {
+      "path": "libs/SimpleSticky.lua",
+      "sha256": "116cf6c0dd24e6a84468e005bc2a87881cfee8568d6e8aa7e6d0375bfaafc4be"
+    },
+    {
+      "path": "libs/Unfit-1.0/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/Unfit-1.0/Unfit-1.0.lua",
+      "sha256": "52e5cf67b8e58f349fda0d23ed60853fcf88ff0b7d435cfcbb19fb8f8696fe43"
+    },
+    {
+      "path": "MicroMenu/_tmp_bagslotssmoke.lua",
+      "sha256": "1a0707735f05db2d595d2604ff8356ace25dcba87dfde57f256a9595eb087fd6"
+    },
+    {
+      "path": "MicroMenu/_tmp_micromenusmoke.lua",
+      "sha256": "3fba7ceaae54a5996b7deeb327969b610f01a2ad8aa94f26523f77501e87bb27"
     },
     {
       "path": "MicroMenu/AceGUIWidget-FluxMicroMenuEmbed.lua",
@@ -1881,7 +2309,7 @@
     },
     {
       "path": "MicroMenu/FluxMicroMenu.lua",
-      "sha256": "a18894ea2f6655a50222cf8ea273b37945af57d6fd0ceb85afae99cd82f75533"
+      "sha256": "6ebf7d360e91341277631af88eee894d71d942d044c702a15326fbc74445642e"
     },
     {
       "path": "MicroMenu/FluxMicroMenuConfig.lua",
@@ -1904,12 +2332,12 @@
       "sha256": "137106afe3f8f8410843bc95d1b630fe1b95a482eccf87a163760a99e3ce3090"
     },
     {
-      "path": "MicroMenu/_tmp_bagslotssmoke.lua",
-      "sha256": "1a0707735f05db2d595d2604ff8356ace25dcba87dfde57f256a9595eb087fd6"
+      "path": "Minimap/_tmp_questiesmoke.lua",
+      "sha256": "ff04deb6fea87015a5cbb4e8974d503f33bd50f67e3d300a034e9d4670d80d36"
     },
     {
-      "path": "MicroMenu/_tmp_micromenusmoke.lua",
-      "sha256": "072a934f5ab9d548fdf2c75b349a8bc6ef9fabd0e68e727c6881f7924f92c910"
+      "path": "Minimap/_tmp_trackercombatsmoke.lua",
+      "sha256": "d21651defe4c3de0b72233b7484ea61986d91f735e5d4eacefe355d352fe691c"
     },
     {
       "path": "Minimap/FluxBuffDebuffFrames.lua",
@@ -1917,7 +2345,7 @@
     },
     {
       "path": "Minimap/FluxMinimap.lua",
-      "sha256": "89e136547c2f720b52cf9bb5fe84b85bf01222ae05f17d5af76d14e71cd3b77a"
+      "sha256": "8365b3de828202dad6e33ed20ef49388d18830f50be3c23b57723643ae52a56e"
     },
     {
       "path": "Minimap/FluxMinimapButtons.lua",
@@ -1932,12 +2360,8 @@
       "sha256": "b43c4eccd3d12a4e47ad0df53a1c83d3054b7534f38a65344781e666a8870016"
     },
     {
-      "path": "Minimap/_tmp_questiesmoke.lua",
-      "sha256": "ff04deb6fea87015a5cbb4e8974d503f33bd50f67e3d300a034e9d4670d80d36"
-    },
-    {
-      "path": "Minimap/_tmp_trackercombatsmoke.lua",
-      "sha256": "d21651defe4c3de0b72233b7484ea61986d91f735e5d4eacefe355d352fe691c"
+      "path": "NamePlates/_tmp_combosmoke.lua",
+      "sha256": "df92a2454a9e25220fdc64ea8ccd041a04fe8648ca11024192d385b1548faf33"
     },
     {
       "path": "NamePlates/ComboPoints.lua",
@@ -1958,10 +2382,6 @@
     {
       "path": "NamePlates/Threat.lua",
       "sha256": "37c4a2c54811274e3e6d8c03b8f41974e9ebc4ef4b564e9c832d157f8957d3db"
-    },
-    {
-      "path": "NamePlates/_tmp_combosmoke.lua",
-      "sha256": "df92a2454a9e25220fdc64ea8ccd041a04fe8648ca11024192d385b1548faf33"
     },
     {
       "path": "Other/FluxArenaFramePosition.lua",
@@ -2061,7 +2481,7 @@
     },
     {
       "path": "Other/FluxChatColumnMicros.lua",
-      "sha256": "2125c9b4fbc8f9e98460e6ff714ec3c957b33e7d69a38f31a6ae89591ac086d6"
+      "sha256": "2f08481f81da3224b0015ba83d0c73ec015b51caabfe718c5ff541dbccaa51b7"
     },
     {
       "path": "Other/FluxChatCopyPaste.lua",
@@ -2073,7 +2493,7 @@
     },
     {
       "path": "Other/FluxDurationBars.lua",
-      "sha256": "b73afa84cfd6fa3a23e2eb536755aa3d4f2a9dae4504f7ff560e902d1da61cbf"
+      "sha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09"
     },
     {
       "path": "Other/FluxEquipSlotFlyout.lua",
@@ -2081,7 +2501,7 @@
     },
     {
       "path": "Other/FluxExtraAbilityHUD.lua",
-      "sha256": "78d74d16d625bdfd12733adde948dfa44410e4a2499cafee70ff825c094040bd"
+      "sha256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279"
     },
     {
       "path": "Other/FluxHUDTooltip.lua",
@@ -2093,7 +2513,7 @@
     },
     {
       "path": "Other/FluxPerfCapture.lua",
-      "sha256": "b3a5de1bad944895c0f7ee6abfd1ca2706fbc50289384beb52271a20b8c5fa79"
+      "sha256": "7464a0bf581fd7c4215cb3844eafd6cc3de93420118fb9ee204a185e350acb72"
     },
     {
       "path": "Other/FluxPerfDebug.lua",
@@ -2109,11 +2529,15 @@
     },
     {
       "path": "Other/FluxVehicleExitButton.lua",
-      "sha256": "cc2415b729810c7746c79772a72220f653e9e721b6e4658693a23bd415fda525"
+      "sha256": "070241ffed64059022be9b25b762ca010d6593f4b8bda41b5e993aa3e808cbe4"
     },
     {
       "path": "Other/FluxVehicleSeats.lua",
       "sha256": "0374a63183ec83f4205086e6fbbef06e14795184ba6b767fe5062725a49cf694"
+    },
+    {
+      "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+      "sha256": "b64b35d73a8f880ee522214005d33c9f8b82fc5c0baa037247be0b2f5c0cca90"
     },
     {
       "path": "RaidFrame/FluxRaidCompat.lua",
@@ -2121,7 +2545,7 @@
     },
     {
       "path": "RaidFrame/FluxRaidFrame.lua",
-      "sha256": "f08535b56631b9e863041cb3935b3d1d31fa3420eefafa3db4150eda6f4efc8b"
+      "sha256": "6b943ec9c88d1497742e7d71e5115eb526bf65659043b8cfdc997ccc8be4e30b"
     },
     {
       "path": "RaidFrame/FluxRaidFrame_BigDebuffs.lua",
@@ -2129,7 +2553,7 @@
     },
     {
       "path": "RaidFrame/FluxRaidLayout.lua",
-      "sha256": "f92d56aafca641e04da3cf655719f5f504c018001122beddab8a19e227475077"
+      "sha256": "ecd9db377f12abbfccd1bc989ff572e1aa3aa2aa2206bc33148cc113524da1b9"
     },
     {
       "path": "RaidFrame/FluxRaidPreview.lua",
@@ -2137,15 +2561,11 @@
     },
     {
       "path": "RaidFrame/FluxRaidUnit.lua",
-      "sha256": "f48852ed3795874801eb9364737f4d34523295d9cd23533a4679df05f3f53133"
+      "sha256": "cbfdc2a48df89f62abe4ecb541b6b64fcd30e26a786f9dc02d87e9718167d6e8"
     },
     {
       "path": "RaidFrame/FluxRaidVisuals.lua",
       "sha256": "462fb1e32a4339768d039ec074ed03fcae20f535c473274945e5c70819a065b1"
-    },
-    {
-      "path": "RaidFrame/_tmp_raidaurassmoke.lua",
-      "sha256": "b64b35d73a8f880ee522214005d33c9f8b82fc5c0baa037247be0b2f5c0cca90"
     },
     {
       "path": "Respec/FluxRespec_ActionBars.lua",
@@ -2153,7 +2573,7 @@
     },
     {
       "path": "Respec/FluxRespec_Apply.lua",
-      "sha256": "3d3ed017fbdae35229bc202d0b4ab3e6d306b26d2289fa91c95881012fae3c93"
+      "sha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09"
     },
     {
       "path": "Respec/FluxRespec_AtieshDualSpecFix.lua",
@@ -2321,7 +2741,7 @@
     },
     {
       "path": "Salvage/FluxSalvage_Overlay.lua",
-      "sha256": "bb5849dcbe75492341a0dde4dbb0a6803c7238fe8f4499b35b06397239b1058a"
+      "sha256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405"
     },
     {
       "path": "Salvage/FluxSalvage_Settings.lua",
@@ -2337,7 +2757,7 @@
     },
     {
       "path": "StatusBars/FluxInfoFrame.lua",
-      "sha256": "4d61a1bd193137cc4e0d8b912eb87d1b7c12e1ebd93e730ed1172ee6775fec91"
+      "sha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456"
     },
     {
       "path": "StatusBars/FluxItemCurrencyTracking.lua",
@@ -2353,7 +2773,99 @@
     },
     {
       "path": "StatusBars/FluxStatusBar.lua",
-      "sha256": "a6df6579f3fd0cd78d4a602e5721c7428d171df3336deed6c9d4bc44fee5202f"
+      "sha256": "419f666fbdfa18b2a4186ce0667e59d95f425d5a968a6883e0ca381a9e3509ff"
+    },
+    {
+      "path": "tests/bars_contract_regression.lua",
+      "sha256": "5e9515397bd539cc7233486b4ca72bee487a6d88e6169e5eebe7900a20ab2ea1"
+    },
+    {
+      "path": "tests/bars_refresh_regression.lua",
+      "sha256": "9781c56ef9bdc27a22d6fdc36adb3ce5fb4d2081873abba00edf008cbd31085f"
+    },
+    {
+      "path": "tests/bars_startup_retry.lua",
+      "sha256": "fb7fbd3ad7e3182c94ccf7092235ec5ba06180e9ca38050db527126467f5e8e0"
+    },
+    {
+      "path": "tests/binding_respec_regression.lua",
+      "sha256": "8e87e426273fa27b623fecf3378437e16dbdfcc08cdd586cac7e01b0f6c47577"
+    },
+    {
+      "path": "tests/blizzard_script_ownership.lua",
+      "sha256": "f3e627f77a9dcd7a085cb8352765aa8bc80cf95285eeb14a0a23eece2a7c0942"
+    },
+    {
+      "path": "tests/data_integrity.lua",
+      "sha256": "8f1fc6715fb507b5c6a79d2ed8c3b6f682064394c2f7676cc6198611ac31eea0"
+    },
+    {
+      "path": "tests/extra_startup.lua",
+      "sha256": "7125aa8c83165a22360daabf6fcfd8c085a0ba6c783ca8c3896f27601b5d25ba"
+    },
+    {
+      "path": "tests/grid_child_startup.lua",
+      "sha256": "dff5caf582a41bf40c124c1822bff1bca26146530bf6174a1a78a2ee9939f72a"
+    },
+    {
+      "path": "tests/hud_startup.lua",
+      "sha256": "83a8f3a829e880a94e3f889780ef7f9af7948f2202fcb0e6e1be9cb2b7e7060f"
+    },
+    {
+      "path": "tests/idle_bars.lua",
+      "sha256": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e"
+    },
+    {
+      "path": "tests/idle_chat.lua",
+      "sha256": "b10c213eef410cfaea270313f21b71a138b65622323308ebaf92a771d1be4d15"
+    },
+    {
+      "path": "tests/idle_hud.lua",
+      "sha256": "4dd4c012ffea69046582d22cb400e74243db29b8f319f0a0a6c7d11fa4cba43c"
+    },
+    {
+      "path": "tests/idle_info_layout.lua",
+      "sha256": "39e518375ae4c68e13e264241023a5daaa4c509fee257af943d140a2b031a60c"
+    },
+    {
+      "path": "tests/idle_map.lua",
+      "sha256": "a2e57830779c41d24cec6d718c46a53c3094f083d4a85d107f159b5cd8b78054"
+    },
+    {
+      "path": "tests/idle_units.lua",
+      "sha256": "54acc5443e5d3dbba1a24d3235f30e09592adaa68238c8133b83c4e4f35dfba1"
+    },
+    {
+      "path": "tests/late_inventory.lua",
+      "sha256": "d41c899ef3163d3a0c758185b5e5200d97c20dd815d6af04e9b87faf3dfd9e6f"
+    },
+    {
+      "path": "tests/optional_startup.lua",
+      "sha256": "32612cbb7fb4dc07f655b209425bf940c03a73eeba656102dd0d433a29bce8c8"
+    },
+    {
+      "path": "tests/perf_capture.lua",
+      "sha256": "5f0cc0448e4699e4b7d44c6b61888c643cfde5e778b0143e0ad41b45dda37bd6"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "sha256": "462f39aa1c62d0bf000ee05eef94bae09abd49c828b87b4e59119e5d28e8bc60"
+    },
+    {
+      "path": "tests/salvage_overlay.lua",
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    {
+      "path": "tests/startup_lifecycle.lua",
+      "sha256": "cd51f7e8b9d774de76f13acd2e3610a7664ff91f7c00524a9bbf7251a7932bf5"
+    },
+    {
+      "path": "tests/unitframes_lifecycle_spec.lua",
+      "sha256": "97e65ade9a8c4ab549c6a00b8dfbf6833aad8d1799e985b5aa0ae45e88ddf3a7"
+    },
+    {
+      "path": "tests/window_runtime_spec.lua",
+      "sha256": "56ada17374e9edac7fb840a740fae91106723bb248fa59699dd7b54d398bedae"
     },
     {
       "path": "UnitFrames/FlightPath/Data/cata/flightData.lua",
@@ -2433,27 +2945,31 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_BigDebuffs.lua",
-      "sha256": "a94c3614505e90d4f87bc81a98502eb7110328770d482156626d1ff22b7de8fe"
+      "sha256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
-      "sha256": "fa424ed60fa9c493895c0abc6d58fc41d13ca4df6f58eed622c6e1a7918a991a"
+      "sha256": "4b9db4c697f58cfebec646547093a3b48bfbe7afdca98721d9bf0789961f74d2"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Focus.lua",
-      "sha256": "27c9fd482c4e3d958d9ce908d081a280d37fc60acce7bae22d27d04e9e8e66eb"
+      "sha256": "f132185b98eb1848d39ed0c10110077b1d97e81fda5985fa7c63da8538eb9f66"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
-      "sha256": "85a4678542779c2e370372178d8cb9b8fa1f6fd7a2697f22a5f8f27d3e474646"
+      "sha256": "29f23154ff0164e20f46c81eea0c53c0072d9e0c087904c77801fa58a9bdf708"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Lifecycle.lua",
+      "sha256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
-      "sha256": "32676445588f3f1371b4a75e6e75eec67f62f98895fdc4d7c7881a1f4bae4e48"
+      "sha256": "533986ba9cfc5fa03cb638e23e9dc7222529885f9bb95d4cfe2c5ffafcb3d6cd"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Pet.lua",
-      "sha256": "6da9cd01c4987e73a61e22168442a80cf6b8564b7b603ff3e7d38ac7d6802107"
+      "sha256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
@@ -2461,11 +2977,11 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
-      "sha256": "fe5b99410078ca730568c3c4a892b69dc4657fa993f73eeb627e23ae1e63217f"
+      "sha256": "454ec79dceaba8e54f24b248d2db9ef8295ddbd229b375435e2acc20db0c0f57"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Player.lua",
-      "sha256": "03b687e069549107887be392f7b389a524c632b5c2f00329ac0906797b90f369"
+      "sha256": "689e8e644c4b3aa868899a56a186badbf502c22018336b8fb6b3e9ee4bb54d0f"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
@@ -2477,15 +2993,19 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Shared.lua",
-      "sha256": "00aef61a8fd3065e0aaea6b54526d58cbb78d4a0e733d98eb3882e013472e93b"
+      "sha256": "82a2dd27c84078e0deb51f49e66b1e1ca1bcdb6647959238eeccc220ce532e1c"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Target.lua",
-      "sha256": "0e6e23f6252d490bcaa8ca4c1bd09963dbce464bc99008cd921943f452f3f28b"
+      "sha256": "23621aa69f59d6c4899ba3ffb720d327ff7e9970c123a21f3a08aa1ebd09c8b9"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
-      "sha256": "9d1a026c8ff7985702c52d4935602a4a8e06fb4d5a12a97e6e668eb02e97b673"
+      "sha256": "14f9668c84eb7683fbd6f0cc3d935a97f0f523fdb22c1bd5ff3603cd4f8d273b"
+    },
+    {
+      "path": "WindowMover/_tmp_charactercombatsmoke.lua",
+      "sha256": "7d06ac5a54358e0cf811fa49ce698fe0924fa05f93709722e9f254597c6cbc6c"
     },
     {
       "path": "WindowMover/Catalog.lua",
@@ -2497,319 +3017,12 @@
     },
     {
       "path": "WindowMover/Init.lua",
-      "sha256": "b2707e2334875ffd823d0add5aa2e6eb6651486da8f327eaa0bfa91b21051ed9"
+      "sha256": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b"
     },
     {
       "path": "WindowMover/Resolve.lua",
       "sha256": "138855208a0139a471dc455cc900991e92802986721540a83f132c690da607cf"
-    },
-    {
-      "path": "WindowMover/_tmp_charactercombatsmoke.lua",
-      "sha256": "7d06ac5a54358e0cf811fa49ce698fe0924fa05f93709722e9f254597c6cbc6c"
-    },
-    {
-      "path": "libs/AceAddon-3.0/AceAddon-3.0.lua",
-      "sha256": "9aaec858b04820b597155b040dd76ef0d6e8e4f0707e54630001bcfe68497307"
-    },
-    {
-      "path": "libs/AceConfig-3.0/AceConfig-3.0.lua",
-      "sha256": "25d745c5a8b50cf4b145caa55b5aeb389762286690117f51341d4111f98ee462"
-    },
-    {
-      "path": "libs/AceConfig-3.0/AceConfigCmd-3.0/AceConfigCmd-3.0.lua",
-      "sha256": "936138368dd8fa2523937428b321dab6ac9b5e0e502c6b49d5faa66dc5d5c609"
-    },
-    {
-      "path": "libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua",
-      "sha256": "adf3d74fd8a65030ef536caf2eab13065f080ddf576233b5bf33235d41926025"
-    },
-    {
-      "path": "libs/AceConfig-3.0/AceConfigRegistry-3.0/AceConfigRegistry-3.0.lua",
-      "sha256": "7185800770e786eac398cef5d5a4887b31cddda6f5ce6a2683a9f3fdca1454a6"
-    },
-    {
-      "path": "libs/AceConsole-3.0/AceConsole-3.0.lua",
-      "sha256": "3372abc50efcfa4f643bf7c2f3254de19327d28e2040997d672f94d1845a5499"
-    },
-    {
-      "path": "libs/AceDB-3.0/AceDB-3.0.lua",
-      "sha256": "f4b37c05eaa972e51b02c8a477ad40290eada7490c81f3cf511f7b8285aec6f6"
-    },
-    {
-      "path": "libs/AceDBOptions-3.0/AceDBOptions-3.0.lua",
-      "sha256": "698e58102030d4b66d7463ce2c2a7a23338584db7fe3eb28e7717f7e6143a766"
-    },
-    {
-      "path": "libs/AceEvent-3.0/AceEvent-3.0.lua",
-      "sha256": "928729c0edae955407778463d345baa0e59fc8f6f6ad53877b6243e0f225da4e"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BackgroundWidget.lua",
-      "sha256": "a98f491caaec6406204616d12b53e666703100bf93a83e03e4e222635c15b634"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BorderWidget.lua",
-      "sha256": "a00d00269cb139ae0465994d7076a5533c8d4795f27d6dd5c3c0f90ea0a77f6b"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/FontWidget.lua",
-      "sha256": "2855a05d6a0aa2d3c939c7f41c079ccf3f4adea506c3190707ac2d1bb6221403"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/SoundWidget.lua",
-      "sha256": "87e278a6f518bb25818c610f8858f65cd6a674ed25a3f7600d8b64b1603e9f1f"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/StatusbarWidget.lua",
-      "sha256": "0d9fe21f7c66d4de9b556125d2d6781b140ae1a0babdda3382f8e012160f8f68"
-    },
-    {
-      "path": "libs/AceGUI-3.0-SharedMediaWidgets/prototypes.lua",
-      "sha256": "f25f3c53110a7a51668e041edf54e178ea31f6afdc0a0030daed065945045522"
-    },
-    {
-      "path": "libs/AceGUI-3.0/AceGUI-3.0.lua",
-      "sha256": "bcfcef55d727f8434606bdba2375929123422e051c27fd1bfcbd95e7ab723ed7"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-BlizOptionsGroup.lua",
-      "sha256": "566551ddd7c8c434d6bb6f4a4c9a67479e6e8a719fcc3a504b18eec4f11e6586"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-DropDownGroup.lua",
-      "sha256": "ecf7743bd5fb9059d4226e35cd2374aa13282eca720938498f85d7f328f8c070"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Frame.lua",
-      "sha256": "fb3f9f3b3414bd3b27e1281c2b8836749e38906458df6b69e9f385fbe041df91"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua",
-      "sha256": "e9458bd6378d017994408618cbc6921ef7e6bbe152e9bbded199255c399468a5"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-ScrollFrame.lua",
-      "sha256": "fef3da3ce311b861d669bc503906cdd0780a372fbea039c1e2d3f75ac6e68709"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-SimpleGroup.lua",
-      "sha256": "d65968489c0fa5749d2e35be69c60d0dd7969189aa14a9031f0654715625d214"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TabGroup.lua",
-      "sha256": "ad73ed3b619cba61778ec39b73206daac423bd1f539241f4a58ff623b0b0b687"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TreeGroup.lua",
-      "sha256": "f323da78c108641ac7120a596bbe6a7658f6261c426d98b5f486f24259e593d5"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Window.lua",
-      "sha256": "d57f41b781d8c021fb69a94e084efadbb891d3a353738e6ca68853da21f94645"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Button.lua",
-      "sha256": "1bcc3592c6315d1369f448316f4bc990c812a37d2a7b5c31fd2324daf6ad7e87"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-CheckBox.lua",
-      "sha256": "81cef4bb6ddef3b8bc31360f292fe7b7a7916d675b9336a697545c9ba9adfd77"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-ColorPicker.lua",
-      "sha256": "d69b7e600acf2e6f9d0e222d40952f4f25115eb6a48c039bfa71d2807668e5ef"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown-Items.lua",
-      "sha256": "aa7d0bd54525e63b9549ec0a41ff3b3595267a377e0ae65da42577856cf03f4b"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown.lua",
-      "sha256": "42e2a9d9c41bc4f481af1721b6cc45988e2bc5573fd0282499e9bf3af8e8ec20"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-EditBox.lua",
-      "sha256": "97978789450321923f180f7f21b1e5f49c0addd017fd6c5cb334cbcd522f6299"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Heading.lua",
-      "sha256": "ebf0271a8e6f7bce8947cbd339a6a08a6c856bf45e35ae9156c79320521dfa51"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Icon.lua",
-      "sha256": "62df520dba9234f704ac956141e95e9716896b006210f4ae67a9afbff3b93a50"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-InteractiveLabel.lua",
-      "sha256": "e47543663cc5c4272ef6fb6d356fb63a49f6b101d3cc0501e769ac6615442cce"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Keybinding.lua",
-      "sha256": "f91cf498566a9bfd60f42b3bd8b5f7a14d4087d6033795e72ddf50f7fd47177f"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Label.lua",
-      "sha256": "7d953f5fd4cb6ba8fb25c0c732e6dd61564684c57bc5175f4d734d646b99842d"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua",
-      "sha256": "828ede1b08906bcc62821e02ef7ff99dfc03d2658baa25b13cc645bc9790cdac"
-    },
-    {
-      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Slider.lua",
-      "sha256": "59b3ee4b813c8e20c4463e9fb1c167bfb8552e1ad6ec512dccfce24c9e4049ca"
-    },
-    {
-      "path": "libs/AceHook-3.0/AceHook-3.0.lua",
-      "sha256": "9e8f57d06fa7bfcba6d2a2e9fb8fdfd9fbc040158f4401d4308f8279a26e1378"
-    },
-    {
-      "path": "libs/AceLocale-3.0/AceLocale-3.0.lua",
-      "sha256": "584b30b5cd9da71408cdd83a49469aa4348941e185a42cbd218d964678d88e57"
-    },
-    {
-      "path": "libs/C_Everywhere/C_Everywhere.lua",
-      "sha256": "f8da96f734f692479dd27190868cfc77e42cdd4c7265567590fb02db909ea3fb"
-    },
-    {
-      "path": "libs/C_Everywhere/Tests.lua",
-      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
-    },
-    {
-      "path": "libs/CallbackHandler-1.0/CallbackHandler-1.0.lua",
-      "sha256": "84a15af505e728ac5e5eb6a8eaba8989d1131d5f8ba14d11abcfe4ce086de3c1"
-    },
-    {
-      "path": "libs/CustomSearch-1.0/CustomSearch-1.0.lua",
-      "sha256": "92667711e46349ec911f3ba66d9b382fb3c78b0bf1ee813a61255ca804bfca32"
-    },
-    {
-      "path": "libs/FluxButtonGlowExtensions.lua",
-      "sha256": "ae818e0ed68d9c34d08607addda309fb9955b6c067acf007cff92ba2ac2753e3"
-    },
-    {
-      "path": "libs/FluxLABExtensions.lua",
-      "sha256": "0b2fe5d4f38a9e2e4325795dd0cf6187a0db99f7f3cdfbc49664eeb0aa9e7454"
-    },
-    {
-      "path": "libs/ItemSearch-1.3/API.lua",
-      "sha256": "dc77feafc86c8ca3db8a7eb1a7a88aa4f6c1bf9629dec0135d7756db7cff71e3"
-    },
-    {
-      "path": "libs/ItemSearch-1.3/Filters.lua",
-      "sha256": "1055d557fe2b594537636bb56d626b6db2865a54d9628364dcb56d0881b3c57f"
-    },
-    {
-      "path": "libs/ItemSearch-1.3/Tests.lua",
-      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
-    },
-    {
-      "path": "libs/LibActionButton-1.02/LibActionButton-1.0.lua",
-      "sha256": "1e5e51627243a6593555f4fc5384c2a95bc6eed478a51f6bf6cd1c6e1a15b79d"
-    },
-    {
-      "path": "libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua",
-      "sha256": "69c32ec22d61324fb35305b06f8bf2ba270ce3b3008d9b18b28d85960edf8038"
-    },
-    {
-      "path": "libs/LibClassicCasterino/LibClassicCasterino.lua",
-      "sha256": "e934f61cdf2a22760b29fb0088d63acb99f0b69bde2eea2293cd664887d84fa0"
-    },
-    {
-      "path": "libs/LibClassicSpellActionCount-1.0/LibClassicSpellActionCount-1.0.lua",
-      "sha256": "7e0864dada9cc161e20f4a07b0f05a16dbe49f6d943fb9539e5a4404834f4759"
-    },
-    {
-      "path": "libs/LibClassicSpellActionCount-1.0/LibStub/LibStub.lua",
-      "sha256": "186bac9553513504fac3a5c4550ff59f3aee9e8a497376134f3ca01de2ed18d0"
-    },
-    {
-      "path": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
-      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6"
-    },
-    {
-      "path": "libs/LibDBIcon-1.0/LibDBIcon-1.0.lua",
-      "sha256": "2067ece0f93dbbf3fc6e633dabd43cc9d425be9ad49dfba6719d148864b2183d"
-    },
-    {
-      "path": "libs/LibDataBroker-1.1.lua",
-      "sha256": "f3d4758f2060215492c9764b1d7dc2a336826d4cd253cd54ff9ff7c6d78f04e2"
-    },
-    {
-      "path": "libs/LibDualSpec-1.0/LibDualSpec-1.0.lua",
-      "sha256": "e3cdde3f5ecd964fe5bd03aa2348c77fae6181bf4af4c530ba455bd7c439b4ac"
-    },
-    {
-      "path": "libs/LibDualSpec-1.0/LibStub.lua",
-      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/LibKeyBound-1.0.lua",
-      "sha256": "d5718d6902cd13e1a68cbacf8252424ea165b479c754dc59ecf49bfcf67f8bc6"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-deDE.lua",
-      "sha256": "8cad2c08fae9777716331f6e456dc0188e728201c1ce8c70487391e157fb9cdd"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-enUS.lua",
-      "sha256": "5ae8b61e315caa14120dabe6aa20c50e61d8567ec6233b72884c46282ea8ef6e"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-esES.lua",
-      "sha256": "f5fd5a289bff165712bf4ab2346249bc8084e043a703ee60c870349bfebf8a05"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-esMX.lua",
-      "sha256": "dccee9a4968d4e1a2a2499cae5ed46695fdb64c3ef01b159a04c416e0d4b56ec"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-frFR.lua",
-      "sha256": "28808327af173f01d1f0935e632ed4274e5fcaa50fab2d5eb82d663bec20b910"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-koKR.lua",
-      "sha256": "4adc082cb5a25584f93d989bc6162c87db08e85c57b45e802820eb39ea8a9cb3"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-ruRU.lua",
-      "sha256": "c63214b314826dc6c0c42fe452df320052700cad2c6f8cf102a054b1bb6855a7"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-zhCN.lua",
-      "sha256": "79eaf1f587b1b8f08d32707c2d29aeb7610e1a33cb669d67a7b519c8dc052595"
-    },
-    {
-      "path": "libs/LibKeyBound-1.0/Locale-zhTW.lua",
-      "sha256": "0494e9f1ae24cbb225cac33506fad775e26fd73f1db4c0a9f9cc84633cc160af"
-    },
-    {
-      "path": "libs/LibSharedMedia-3.0/LibSharedMedia-3.0.lua",
-      "sha256": "88fb301fe15edc86b01407640fe587ccbbff72d54c9e06b08b3d792804e0899c"
-    },
-    {
-      "path": "libs/LibStub/LibStub.lua",
-      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
-    },
-    {
-      "path": "libs/LibWindow-1.1/LibWindow-1.1.lua",
-      "sha256": "306e722c2799d8edbb5d3165d3d8b414e88a5cb544fcbd24b2a2b1a15a893dd4"
-    },
-    {
-      "path": "libs/SecureTabs-2.0/SecureTabs-2.0.lua",
-      "sha256": "fdd306aa1f994faef1e29514362619fff075c58e43832cabdbe315ea387405b6"
-    },
-    {
-      "path": "libs/SimpleSticky.lua",
-      "sha256": "116cf6c0dd24e6a84468e005bc2a87881cfee8568d6e8aa7e6d0375bfaafc4be"
-    },
-    {
-      "path": "libs/Unfit-1.0/Tests.lua",
-      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
-    },
-    {
-      "path": "libs/Unfit-1.0/Unfit-1.0.lua",
-      "sha256": "52e5cf67b8e58f349fda0d23ed60853fcf88ff0b7d435cfcbb19fb8f8696fe43"
     }
-  ]
+  ],
+  "native_client_tests": "Not run; docs/43-startup-optimization.md records required scenarios"
 }

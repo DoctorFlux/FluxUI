@@ -65,6 +65,16 @@ local ns = {
     UnitFrames = {}, PlayerFrame = fluxPlayer,
     Flux = {},
 }
+-- This fixture starts with an already completed Flux player frame. Constructor
+-- and secure-phase behavior are covered by tests/unitframes_lifecycle_spec.lua.
+-- Retain the actual runtime/buff/debuff assertions below while modeling that
+-- lifecycle boundary instead of invoking a full visual constructor here.
+ns.UnitFrames.RegisterInitializer = function(unit, initialize, isComplete)
+    assert(unit == "player" and type(initialize) == "function" and type(isComplete) == "function",
+        "player must register its secure initializer")
+end
+ns.UnitFrames.IsInitialized = function(unit) return unit == "player" and ns.PlayerFrame == fluxPlayer end
+ns.UnitFrames.DeferProtected = function(_, callback) scheduled[#scheduled + 1] = callback end
 local env = setmetatable({
     PlayerFrame = nativePlayer,
     BuffFrame = aura,

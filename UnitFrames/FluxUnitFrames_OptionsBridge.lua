@@ -452,8 +452,8 @@ end
 
 function FluxUnitFrames_ApplyThreatBarOptionsFromDB()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_ApplyThreatBarOptionsFromDB)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_ApplyThreatBarOptionsFromDB", FluxUnitFrames_ApplyThreatBarOptionsFromDB)
         end
         return
     end
@@ -498,8 +498,8 @@ end
 
 function FluxUnitFrames_ApplyPortraitOptionsFromDB()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_ApplyPortraitOptionsFromDB)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_ApplyPortraitOptionsFromDB", FluxUnitFrames_ApplyPortraitOptionsFromDB)
         end
         return
     end
@@ -568,8 +568,8 @@ end
 
 function FluxUnitFrames_RefreshPortraitRenderModeFromDB()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_RefreshPortraitRenderModeFromDB)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_RefreshPortraitRenderModeFromDB", FluxUnitFrames_RefreshPortraitRenderModeFromDB)
         end
         return
     end
@@ -679,8 +679,8 @@ end
 
 function FluxUnitFrames_ApplyAuraLayoutFromDB()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_ApplyAuraLayoutFromDB)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_ApplyAuraLayoutFromDB", FluxUnitFrames_ApplyAuraLayoutFromDB)
         end
         return
     end
@@ -1046,8 +1046,8 @@ end
 --- After Layout tab player/target placement change: reapply sizes, auras, portraits, partitions, anchors.
 function FluxUnitFrames_FullUnitFrameLayoutRefresh()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_FullUnitFrameLayoutRefresh)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_FullUnitFrameLayoutRefresh", FluxUnitFrames_FullUnitFrameLayoutRefresh)
         end
         return
     end
@@ -1134,8 +1134,8 @@ end
 
 function FluxUnitFrames_ApplyFrameSizesFromDB()
     if InCombatLockdown() then
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0.5, FluxUnitFrames_ApplyFrameSizesFromDB)
+        if ns.UnitFrames and ns.UnitFrames.DeferProtected then
+            ns.UnitFrames.DeferProtected("options.FluxUnitFrames_ApplyFrameSizesFromDB", FluxUnitFrames_ApplyFrameSizesFromDB)
         end
         return
     end

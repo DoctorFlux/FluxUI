@@ -1,5 +1,7 @@
 # Commands and keybindings
 
+`/fluxstartup on` enables the opt-in capture for the next reload; `/fluxstartup` prints separate visual/input milestones, startup layout/defer/managed-timer counters and heap delta; `/fluxstartup off` disables capture. [Metrics and limitations](43-startup-optimization.md#startup-diagnostics).
+
 This reference follows reachable source and actual handlers, including assignments that replace earlier registrations. [Declaration evidence](reference/declarations.md) lists every source registration; [source coverage](30-source-coverage.md) retains client filters. A registered command can still require a feature/API that is unavailable on the current client.
 
 ## Player and configuration commands
@@ -13,7 +15,7 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxsalvage`, `/fsalvage` | `toggle`, `on`, `off`: change overlay enablement/hooks. `status`: show enabled/modifier/hooks and Comprehend status. Otherwise open the salvage settings, with legacy Blizzard-category fallback. | [handler](../Salvage/FluxSalvage.lua#L78) |
 | `/fluxconsumables` | Toggle the consumables grid configuration; arguments are ignored. | [handler](../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6567) |
 | `/fluxhearth`, `/fhc` | Empty/`help`: usage. `config`: Toy Box; `show`: Toy Box plus delayed hearth panel display; `toggle`: account/character mode; `default`: basic Hearthstone; `item`: current item ID. | [handler](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L805) |
-| `/fluxtrinket`, `/ftm` | Empty/`toggle`, `show`, `hide`, `reset` position. Show/toggle checks whether there are trinkets to display. | [handler](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua#L413) |
+| `/fluxtrinket`, `/ftm` | Empty/`toggle`, `show`, `hide`, `reset` position. Show/toggle checks whether there are trinkets to display. | [handler](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua) |
 | `/fluxtp` | `set <itemID> <target>` changes reagent restock quantity and refreshes displays; `refresh` refreshes displays. `targets` and unrecognized input currently produce no output. Both declared aliases are the identical `/fluxtp`. | [handler](../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3197) |
 | `/buyemall` | Empty: help. `confirm`: toggle large-purchase confirmation. The command is registered during the bulk-buy module initialization. | [handler](../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua#L132) |
 | `/alreadyknown`, `/ak` | Color presets `green`, `blue`, `yellow`, `cyan`, `purple`, `gray`; `custom` opens the color picker; `monochrome` toggles desaturation. Additional `debug`, `itemtest`, `future` diagnostics and Live `exclude` handlers are defined in the respective handler table. Missing/unknown input prints the public color help. | [Live handlers](../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L740), [Classic handlers](../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L768) |

@@ -24,6 +24,7 @@ local formUsableHeld = false
 local formCooldownHeld = false
 local formIconHeld = false
 local formCountHeld = false
+local formCheckedHeld = false
 
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
@@ -199,15 +200,30 @@ function Watch.IsRangeArmed()
 	return (R and R.IsArmed and R.IsArmed()) and true or false
 end
 
-local function AssistantUpdateRate()
-	local rate = 0.1
+local assistantRateTick, assistantRateManager, assistantManagerRate
+
+-- Both strip and Extra subscribers run in the same shared ticker. Sample the
+-- manager once per dispatch while retaining each consumer's paint cadence.
+function Watch.GetAssistantManagerRate()
 	local mgr = _G.AssistedCombatManager
+	local ticker = Flux.Ticker
+	local tick = ticker and ticker.Ticks and ticker.Ticks()
+	if tick ~= nil and tick == assistantRateTick and mgr == assistantRateManager then
+		return assistantManagerRate
+	end
+	assistantRateTick, assistantRateManager = tick, mgr
+	assistantManagerRate = nil
 	if mgr and mgr.GetUpdateRate then
 		local ok, r = pcall(mgr.GetUpdateRate, mgr)
 		if ok and type(r) == "number" then
-			rate = r
+			assistantManagerRate = r
 		end
 	end
+	return assistantManagerRate
+end
+
+local function AssistantUpdateRate()
+	local rate = Watch.GetAssistantManagerRate() or 0.1
 	if GetCVar then
 		if type(rate) ~= "number" or rate <= 0 then
 			local ok, v = pcall(GetCVar, "assistedCombatIconUpdateRate")
@@ -401,6 +417,7 @@ function Watch.Start()
 	-- [harm]/[help] macros re-emit ACTIONBAR_UPDATE_STATE on every world hop.
 	local function OnCheckedEvent()
 		if InFormWindow() then
+			formCheckedHeld = true
 			return
 		end
 		if InHopBurst() then
@@ -570,15 +587,32 @@ function Watch.Start()
 		FormStorm.OnSettled("bars.page", function(quiet)
 			Watch.SyncRange()
 			local needCount = formCountHeld
+			local needUsable = formUsableHeld
+			local needCooldown = formCooldownHeld
+			local needIcon = formIconHeld
+			local needChecked = formCheckedHeld
 			formUsableHeld = false
 			formCooldownHeld = false
 			formIconHeld = false
 			formCountHeld = false
-			-- Charges that landed during the burst are not part of the burst
-			-- paint. Replay count even on a quiet settle; do not walk the bar
-			-- again while the window is still open.
+			formCheckedHeld = false
+			-- Companion events can land after the burst paint without opening
+			-- another form edge. Replay only the held lanes, even on a quiet
+			-- settle, so unrelated static slots do not retain stale values.
 			if needCount then
 				Bars.RequestPaint("bars.count")
+			end
+			if needUsable then
+				Bars.RequestPaint("bars.usable")
+			end
+			if needCooldown then
+				Bars.RequestPaint("bars.cooldown")
+			end
+			if needIcon then
+				Bars.RequestPaint("bars.icon")
+			end
+			if needChecked then
+				Bars.RequestPaint("bars.checked")
 			end
 			if quiet then
 				return

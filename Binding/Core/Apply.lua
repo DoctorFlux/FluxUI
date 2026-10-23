@@ -2310,6 +2310,8 @@ local function RunApplyBody()
 
     lastApplyStats.slots, lastApplyStats.badges, lastApplyStats.free = nSlots, nBadges, nFree
     lastApplyStats.at = GetTime()
+    local Startup = ns.Flux and ns.Flux.Startup
+    if Startup then Startup.Mark("spell_bindings_input_ready") end
 
     for _, fn in pairs(appliedCallbacks) do
         pcall(fn)

@@ -114,8 +114,6 @@ function Grid.New(parent, opts)
             end
             
             btn.SlotFrame = slotFrame
-            table.insert(self.Buttons, btn)
-
             if ebs.Style and ebs.Style.Apply then
                 ebs.Style.Apply(btn, "class")
             elseif FluxButtonUtil and FluxButtonUtil.ApplyButtonStyle then
@@ -124,13 +122,21 @@ function Grid.New(parent, opts)
             -- skipScripts skips Extra-window drag/pickup. Same Extra press,
             -- checked, CD, glow, and reticle as Extra-window slots.
             if ebs.Widget and ebs.Widget.BindLockedExtraHost then
-                ebs.Widget.BindLockedExtraHost(btn)
+                if ebs.Widget.BindLockedExtraHost(btn) == false then
+                    slotFrame:Hide()
+                    error("Grid secure click setup incomplete")
+                end
             else
                 local Click = Flux and Flux.ButtonFX and Flux.ButtonFX.Click
                 if Click and Click.Apply then
-                    Click.Apply(btn.Widget, { onDown = true })
+                    if Click.Apply(btn.Widget, { onDown = true }) == false then
+                        slotFrame:Hide()
+                        error("Grid secure click setup incomplete")
+                    end
                 end
             end
+
+            table.insert(self.Buttons, btn)
 
             function btn:SetPlaceholder(icon, label)
                 self.PlaceholderTexture = icon
@@ -529,7 +535,23 @@ function Grid.New(parent, opts)
     
     -- Coalesce multiple visibility-driven relayout requests (e.g. six CombatGrid
     -- scan callbacks firing on the same debounced bag pulse) into one layout pass.
+    function grid:BeginLayout()
+        self._layoutBatchDepth = (self._layoutBatchDepth or 0) + 1
+    end
+
+    function grid:EndLayout(flush)
+        self._layoutBatchDepth = math.max(0, (self._layoutBatchDepth or 0) - 1)
+        if self._layoutBatchDepth == 0 and self._layoutBatchPending and flush ~= false then
+            self._layoutBatchPending = nil
+            self:Relayout()
+        end
+    end
+
     function grid:ScheduleRelayout()
+        if (self._layoutBatchDepth or 0) > 0 then
+            self._layoutBatchPending = true
+            return
+        end
         if InCombatLockdown() then
             self._pendingRegenRelayout = true
             return
@@ -552,11 +574,17 @@ function Grid.New(parent, opts)
     -- Relayout buttons (Column-Major: Fill columns from bottom-up or top-down?)
     -- Layouts columns left-to-right. Rows bottom-to-top.
     function grid:Relayout()
+        if (self._layoutBatchDepth or 0) > 0 then
+            self._layoutBatchPending = true
+            return
+        end
         if InCombatLockdown() then
             self._pendingRegenRelayout = true
             return
         end
         self._pendingRegenRelayout = nil
+        local startup = _G.Flux and _G.Flux.Startup
+        if startup and startup.Count then startup.Count("layout_passes") end
 
         local bm = _G.FluxBindingMode
         if bm and bm.ShouldForceShowAllExtraSlots and bm:ShouldForceShowAllExtraSlots() then

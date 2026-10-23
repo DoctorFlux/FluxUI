@@ -415,7 +415,7 @@ local _SCHOOL_COLOR_BY_ID = {
     [7] = "99ccff", -- Arcane
 }
 
-local function _GetSpellPowerTopSchoolColorNoTie()
+local function _GetSpellPowerTopSchoolColorNoTie(maxD, bonus)
     local cscFn = _G.CSC_InfoFrame_BuildSpellPowerData
     if type(cscFn) == "function" then
         local ok, maxDmg, _, _, values, relevant = pcall(cscFn)
@@ -435,7 +435,7 @@ local function _GetSpellPowerTopSchoolColorNoTie()
         end
     end
     if InfoFrame._ClassicSpellDamageColorHex then
-        return InfoFrame._ClassicSpellDamageColorHex()
+        return InfoFrame._ClassicSpellDamageColorHex(maxD, bonus)
     end
     return nil
 end
@@ -738,8 +738,11 @@ function InfoFrame._CamelotSpellBonus()
 end
 
 --- Same rule as classic GetDisplayColorForTop: one leading school, else the spec school if it ties, else white.
-function InfoFrame._ClassicSpellDamageColorHex()
-    local maxD, _, _, bonus = InfoFrame._CamelotSpellBonus()
+function InfoFrame._ClassicSpellDamageColorHex(maxD, bonus)
+    if maxD == nil or type(bonus) ~= "table" then
+        local currentMax, _, _, currentBonus = InfoFrame._CamelotSpellBonus()
+        maxD, bonus = currentMax, currentBonus
+    end
     local tops = {}
     for school = 2, 7 do
         if bonus[school] == maxD then
@@ -808,7 +811,7 @@ STAT_REGISTRY["spellPower"] = {
                 end
             end
             local snap = InfoFrame._camelotSpellSnapshot
-            local dmgHex = _GetSpellPowerTopSchoolColorNoTie() or "ffffff"
+            local dmgHex = _GetSpellPowerTopSchoolColorNoTie(maxD, bonus) or "ffffff"
             local dmgStr
             if haveSchools or not (snap and type(snap.shownText) == "string" and snap.shownText ~= "") then
                 dmgStr = string.format("|cff%s%d|r", dmgHex, maxD or 0)
@@ -1893,19 +1896,21 @@ local function _ApplyCompactTextsToRenderList(rl, compactByKey)
     return out
 end
 
-local function _ApplyMergeCascadeUntilFit(rl, mergeGroups, fontSize, availableW)
+local function _ApplyMergeCascadeUntilFit(rl, mergeGroups, fontSize, availableW, measuredW)
     local out = rl
-    if _MeasureRL(out, fontSize) <= availableW then
-        return out
+    local width = measuredW or _MeasureRL(out, fontSize)
+    if width <= availableW then
+        return out, width
     end
     for _, groupKeys in ipairs(mergeGroups) do
-        if _MeasureRL(out, fontSize) <= availableW then break end
+        if width <= availableW then break end
         local newRl, merged = _TryMergeGroup(out, groupKeys)
         if merged then
             out = newRl
+            width = _MeasureRL(out, fontSize)
         end
     end
-    return out
+    return out, width
 end
 
 local function _ApplyMergeCascadeUntilRowCount(rl, mergeGroups, maxRows)
@@ -2243,26 +2248,33 @@ local function ApplyHorizontalStripTextLayoutDynamic(fontSize, padLeft, gap)
         local rl = _BuildRenderList(texts)
         rl = _MergeIlvlAndGearScoreRenderList(rl)
         local useFont = useFontStart
-        rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_PRIMARY, useFont, availableW)
-        if _MeasureRL(rl, useFont) > availableW then
+        -- Keep the current list/font measurement within this transaction.
+        -- Merge, compact, hybrid and font changes each take a fresh sample.
+        local width
+        rl, width = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_PRIMARY, useFont, availableW)
+        if width > availableW then
             rl = _ApplyCompactTextsToRenderList(rl, compactByKey)
+            width = _MeasureRL(rl, useFont)
         end
-        while useFont > 7 and _MeasureRL(rl, useFont) > availableW do
+        while useFont > 7 and width > availableW do
             useFont = useFont - 1
+            width = _MeasureRL(rl, useFont)
         end
-        if _MeasureRL(rl, useFont) > availableW then
-            rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW)
+        if width > availableW then
+            rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)
         end
         return rl, useFont
     end
 
     local rl, useFont = _RunHorizontalMergePipeline(textsShort, fontSize)
     rl = _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey)
-    while useFont > 7 and _MeasureRL(rl, useFont) > availableW do
+    local width = _MeasureRL(rl, useFont)
+    while useFont > 7 and width > availableW do
         useFont = useFont - 1
+        width = _MeasureRL(rl, useFont)
     end
-    if _MeasureRL(rl, useFont) > availableW then
-        rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW)
+    if width > availableW then
+        rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)
     end
     local prev = nil
     for _, entry in ipairs(rl) do
@@ -3311,7 +3323,7 @@ local function _ApplyPaperDollStatTooltipToAnchor(statFrame, anchor)
 end
 
 function _InvalidateTooltipStatFrameCache()
-    _tooltipKeyToStatFrameAt = 0
+    _tooltipKeyToStatFrameAt = nil
 end
 
 function _G.FluxAutoRepairEnabled()
@@ -3454,68 +3466,6 @@ function _GetCompactInfoPairValues()
     local ilvlText = ilvl and string.format("%.1f", ilvl) or "--"
     local gsText = gs and string.format("%d", math.floor(gs + 0.5)) or "--"
     return fpsText, pingText, ilvlText, gsText
-end
-
-function _RebuildTooltipStatFrameCache()
-    _tooltipKeyToStatFrame = {}
-    _tooltipKeyToStatFrameList = {}
-    _tooltipKeyToStatFrameAt = GetTime() or 0
-    local function registerStatKey(c, key)
-        key = _CanonicalIlvlGsRegistryKey(key) or key
-        key = InfoFrame._CamelotCombatStatKey(key)
-        if not key or not c then return end
-        if not _tooltipKeyToStatFrame[key] then
-            _tooltipKeyToStatFrame[key] = c
-        end
-        local L = _tooltipKeyToStatFrameList[key]
-        if not L then
-            L = {}
-            _tooltipKeyToStatFrameList[key] = L
-        end
-        for i = 1, #L do
-            if L[i] == c then return end
-        end
-        L[#L + 1] = c
-    end
-    local pane = _G.CharacterStatsPane
-    if pane and pane.statsFramePool then
-        for statFrame in pane.statsFramePool:EnumerateActive() do
-            registerStatKey(statFrame, statFrame._FluxInfoStatKey)
-        end
-    end
-    local foreverRoot = _G.CharacterStatsPaneScrollBox
-    if foreverRoot and foreverRoot ~= _G.CharacterStatsPanePetScrollBox then
-        local box = foreverRoot.ScrollBox
-        local view = box and box.GetView and box:GetView()
-        local frames = view and view.GetFrames and view:GetFrames()
-        if type(frames) == "table" then
-            for i = 1, #frames do
-                local f = frames[i]
-                if f then
-                    registerStatKey(f, f._FluxInfoStatKey)
-                end
-            end
-        end
-    end
-    local root = _G.CharacterFrame or pane
-    if root and root.GetChildren then
-        local queue = { root }
-        local qi = 1
-        while qi <= #queue do
-            local node = queue[qi]
-            qi = qi + 1
-            if node and node.GetChildren then
-                local kids = { node:GetChildren() }
-                for i = 1, #kids do
-                    local c = kids[i]
-                    if c then
-                        queue[#queue + 1] = c
-                        registerStatKey(c, c._FluxInfoStatKey)
-                    end
-                end
-            end
-        end
-    end
 end
 
 function _GetTooltipSourceStatFrames(statKey)
@@ -4820,7 +4770,7 @@ local function UpdatePosition()
 end
 
 -- EVENT-BASED: Stats updates via events and less frequent timer
-local updateFrame = CreateFrame("Frame")
+local updateFrame = CreateFrame("Frame", "FluxInfoStatsEventDriver")
 
 -- Register events that might affect stats
 updateFrame:RegisterEvent("ZONE_CHANGED")
@@ -4962,7 +4912,7 @@ end
 -- ============================================================================
 
 local initialized = false
-local watcherFrame = CreateFrame("Frame")
+local watcherFrame = CreateFrame("Frame", "FluxInfoStartupDriver")
 local checkCount = 0
 local MAX_CHECKS = 30 -- Safety limit: ~0.5 seconds at 60fps
 
@@ -5046,7 +4996,7 @@ end
 -- Flux perf: only actionStrip placement needs this 2s poll. statusIntegrated
 -- is driven by FluxStatusBar + FluxMicroMenu hooks; minimapTop is driven by
 -- Minimap OnSizeChanged/OnShow/OnHide hooks.
-local positionWatcher = CreateFrame("Frame")
+local positionWatcher = CreateFrame("Frame", "FluxInfoPositionDriver")
 local positionElapsed = 0
 local positionTicker
 
@@ -5618,6 +5568,7 @@ local function RefreshRetailPinIndicators()
         local sf = _retailPaperDollItemLevelStatFrame
         if sf:GetParent() then
             local key = GetRetailStatKey(sf) or "itemLevel"
+            if sf._FluxInfoStatKey ~= key then _InvalidateTooltipStatFrameCache() end
             sf._FluxInfoStatKey = key
             HookRetailStatFrame(sf)
             UpdatePinIndicator(sf, key)
@@ -5640,6 +5591,7 @@ local function RefreshRetailPinIndicators()
         end
         key = InfoFrame._CamelotCombatStatKey(key or GetRetailStatKey(statFrame))
         if key then
+            if statFrame._FluxInfoStatKey ~= key then _InvalidateTooltipStatFrameCache() end
             statFrame._FluxInfoStatKey = key
             HookRetailStatFrame(statFrame)
             UpdatePinIndicator(statFrame, key)
@@ -5934,6 +5886,7 @@ local function RefreshClassicPinIndicators()
                     if labelText and _StatFrameHasValueRegion(c) then
                         local key = InfoFrame._CamelotCombatStatKey(GetClassicStatKey(c))
                         if key then
+                            if c._FluxInfoStatKey ~= key then _InvalidateTooltipStatFrameCache() end
                             c._FluxInfoStatKey = key
                             HookClassicStatFrame(c)
                             UpdatePinIndicator(c, key)
@@ -5945,6 +5898,77 @@ local function RefreshClassicPinIndicators()
     end
 end
 
+-- Discover all keys in one pass. The old resolver traversed this same tree
+-- again for every requested stat, including the damage/heal/color getters in
+-- one refresh. Only frame identities are cached: numbers and visibility stay
+-- live, and the existing 0.25s bound still discovers unannounced addon rows.
+function _RebuildTooltipStatFrameCache()
+    _tooltipKeyToStatFrame = {}
+    _tooltipKeyToStatFrameList = {}
+    _tooltipKeyToStatFrameAt = GetTime() or 0
+    InfoFrame._tooltipSourceMembers = {}
+    InfoFrame._tooltipSourceRoots = {
+        character = _G.CharacterFrame, pane = _G.CharacterStatsPane,
+        paperDoll = _G.PaperDollFrame, scroll = _G.CharacterStatsPaneScrollBox,
+    }
+    local seen = {}
+    local queue = {}
+    local function push(c)
+        if not c or seen[c] then return end
+        seen[c] = true
+        queue[#queue + 1] = c
+    end
+    local function register(c)
+        local k = c._FluxInfoStatKey
+        if not k then
+            local _, labelText = _GetStatLabelRegionAndText(c)
+            if labelText and _StatFrameHasValueRegion(c) then
+                if FLUX_API and FLUX_API.isRetail then
+                    k = GetRetailStatKey(c)
+                end
+                if not k then k = GetClassicStatKey(c) end
+            end
+        end
+        k = InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
+        if not k then return end
+        InfoFrame._tooltipSourceMembers[c] = k
+        local list = _tooltipKeyToStatFrameList[k]
+        if not list then
+            list = {}
+            _tooltipKeyToStatFrameList[k] = list
+            _tooltipKeyToStatFrame[k] = c
+        end
+        list[#list + 1] = c
+    end
+    push(_G.CharacterFrame)
+    push(_G.CharacterStatsPane)
+    push(_G.PaperDollFrame)
+    push(_G.CharacterStatsPaneScrollBox)
+    local pane = _G.CharacterStatsPane
+    if pane and pane.statsFramePool then
+        for statFrame in pane.statsFramePool:EnumerateActive() do push(statFrame) end
+    end
+    local foreverRoot = _G.CharacterStatsPaneScrollBox
+    if foreverRoot and foreverRoot ~= _G.CharacterStatsPanePetScrollBox then
+        local box = foreverRoot.ScrollBox
+        local view = box and box.GetView and box:GetView()
+        local frames = view and view.GetFrames and view:GetFrames()
+        if type(frames) == "table" then
+            for i = 1, #frames do push(frames[i]) end
+        end
+    end
+    local qi = 1
+    while qi <= #queue do
+        local node = queue[qi]
+        qi = qi + 1
+        register(node)
+        if node.GetChildren then
+            local kids = { node:GetChildren() }
+            for i = 1, #kids do push(kids[i]) end
+        end
+    end
+end
+
 --- All Character / PaperDoll / stats-pane frames matching this Flux registry key (for CSC tooltip parity).
 function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
     statKey = _CanonicalIlvlGsRegistryKey(statKey) or statKey
@@ -5952,71 +5976,18 @@ function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
     if not statKey then return {} end
     if allowRetry == nil then allowRetry = true end
     local now = GetTime() or 0
-    if (now - (_tooltipKeyToStatFrameAt or 0)) > 0.25 then
+    local roots = InfoFrame._tooltipSourceRoots
+    if not _tooltipKeyToStatFrameAt or (now - _tooltipKeyToStatFrameAt) > 0.25
+        or not roots or roots.character ~= _G.CharacterFrame or roots.pane ~= _G.CharacterStatsPane
+        or roots.paperDoll ~= _G.PaperDollFrame or roots.scroll ~= _G.CharacterStatsPaneScrollBox then
         _RebuildTooltipStatFrameCache()
     end
-    local seen = {}
     local out = {}
-    local function addFrame(f)
-        if not f or seen[f] then return end
-        seen[f] = true
-        out[#out + 1] = f
+    local list = _tooltipKeyToStatFrameList[statKey]
+    if list then
+        for i = 1, #list do out[i] = list[i] end
     end
-    local L = _tooltipKeyToStatFrameList[statKey]
-    if type(L) == "table" then
-        for i = 1, #L do
-            addFrame(L[i])
-        end
-    end
-    local one = _tooltipKeyToStatFrame[statKey]
-    if one then
-        addFrame(one)
-    end
-
-    local function resolvedKeyForFrame(c)
-        local k = c._FluxInfoStatKey
-        if k then
-            return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
-        end
-        if FLUX_API and FLUX_API.isRetail then
-            k = GetRetailStatKey(c)
-        end
-        if not k then
-            k = GetClassicStatKey(c)
-        end
-        return InfoFrame._CamelotCombatStatKey(_CanonicalIlvlGsRegistryKey(k) or k)
-    end
-
-    local qSeen = {}
-    local q = {}
-    local function push(x)
-        if x and not qSeen[x] then
-            qSeen[x] = true
-            q[#q + 1] = x
-        end
-    end
-    push(_G.CharacterFrame)
-    push(_G.CharacterStatsPane)
-    push(_G.PaperDollFrame)
-    push(_G.CharacterStatsPaneScrollBox)
-    local qi = 1
-    while qi <= #q do
-        local node = q[qi]
-        qi = qi + 1
-        local _, labelText = _GetStatLabelRegionAndText(node)
-        if labelText and _StatFrameHasValueRegion(node) then
-            if resolvedKeyForFrame(node) == statKey then
-                addFrame(node)
-            end
-        end
-        if node.GetChildren then
-            local kids = { node:GetChildren() }
-            for i = 1, #kids do
-                push(kids[i])
-            end
-        end
-    end
-
+    -- Visibility can change without rebuilding/reassigning pooled frames.
     table.sort(out, function(a, b)
         local sa = (a.IsShown and a:IsShown()) and 1 or 0
         local sb = (b.IsShown and b:IsShown()) and 1 or 0
@@ -6031,7 +6002,7 @@ function InfoFrame.ResolveStatFramesForTooltip(statKey, allowRetry)
         if type(RefreshAllPinIndicators) == "function" then
             RefreshAllPinIndicators()
         end
-        _tooltipKeyToStatFrameAt = 0
+        _InvalidateTooltipStatFrameCache()
         _RebuildTooltipStatFrameCache()
         return InfoFrame.ResolveStatFramesForTooltip(statKey, false)
     end
@@ -6097,6 +6068,7 @@ end
 function InfoFrame.HookClassicCSCStatFrame(statFrame)
     HookClassicStatFrame(statFrame)
     local key = GetClassicStatKey(statFrame)
+    if statFrame._FluxInfoStatKey ~= key then _InvalidateTooltipStatFrameCache() end
     statFrame._FluxInfoStatKey = key
     UpdatePinIndicator(statFrame, key)
 end
@@ -6106,6 +6078,7 @@ function InfoFrame.HookRetailPaperDollStatFrame(statFrame)
     if not statFrame then return end
     _retailPaperDollItemLevelStatFrame = statFrame
     local key = GetRetailStatKey(statFrame) or "itemLevel"
+    if statFrame._FluxInfoStatKey ~= key then _InvalidateTooltipStatFrameCache() end
     statFrame._FluxInfoStatKey = key
     HookRetailStatFrame(statFrame)
     UpdatePinIndicator(statFrame, key)
@@ -6115,6 +6088,10 @@ end
 function InfoFrame.HookRetailPaperDollPoolStatFrame(statFrame, registryKey)
     if not statFrame or type(registryKey) ~= "string" or registryKey == "" then return end
     if not STAT_REGISTRY[registryKey] then return end
+    if statFrame._FluxInfoStatKey ~= registryKey
+        or (InfoFrame._tooltipSourceMembers and InfoFrame._tooltipSourceMembers[statFrame] ~= registryKey) then
+        _InvalidateTooltipStatFrameCache()
+    end
     statFrame._FluxInfoStatKey = registryKey
     HookRetailStatFrame(statFrame)
     UpdatePinIndicator(statFrame, registryKey)
@@ -6233,6 +6210,10 @@ function InfoFrame.HookForeverScrollBoxStatFrame(statFrame, registryKey)
         and statFrame.Label and statFrame.Label.SetText then
         statFrame.Label:SetText(InfoFrame.StatLabel(registryKey))
     end
+    if statFrame._FluxInfoStatKey ~= registryKey
+        or (InfoFrame._tooltipSourceMembers and InfoFrame._tooltipSourceMembers[statFrame] ~= registryKey) then
+        _InvalidateTooltipStatFrameCache()
+    end
     statFrame._FluxInfoStatKey = registryKey
     HookRetailStatFrame(statFrame)
     UpdatePinIndicator(statFrame, registryKey)
@@ -6260,7 +6241,7 @@ function InfoFrame._StartCamelotCharacterWatch()
         return
     end
     InfoFrame._camelotCharacterWatch = true
-    local watch = CreateFrame("Frame")
+    local watch = CreateFrame("Frame", "FluxInfoCharacterWatchDriver")
     local wasShown = false
     local pending = false
     watch:SetScript("OnUpdate", function()

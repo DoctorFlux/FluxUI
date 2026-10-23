@@ -4,6 +4,7 @@
 -- Can be used for Battlezone maps, Damage meters, and other UI elements
 
 local addonName, addonTable = ...
+local Flux = addonTable and addonTable.Flux or _G.Flux
 
 -- Create the public API
 FluxWindowFrame = {}
@@ -31,6 +32,57 @@ local TAB_MIN_WIDTH = 80
 
 -- Map tab toggle state (true = Map, false = Minimap)
 local isMapMode = true
+
+-- A tab owns its delayed work. Native NewTimer lets us cancel queued callbacks;
+-- the generation guard also covers clients providing only C_Timer.After.
+local function CancelTabWork(tab)
+    tab.workGeneration = (tab.workGeneration or 0) + 1
+    if tab.workTimers then
+        for _, work in pairs(tab.workTimers) do
+            local timer = work.timer
+            if timer and timer.Cancel then timer:Cancel() end
+        end
+    end
+    tab.workTimers = nil
+    tab.combatWork = nil
+end
+
+local function TabAfter(tab, key, delay, callback)
+    local generation = tab.workGeneration or 0
+    tab.workTimers = tab.workTimers or {}
+    local timers = tab.workTimers
+    local old = timers[key]
+    if old and old.timer and old.timer.Cancel then old.timer:Cancel() end
+    local work = {}
+    timers[key] = work
+    local function Run()
+        if tabs[tab.name] ~= tab or activeTab ~= tab.name
+            or generation ~= (tab.workGeneration or 0) or timers[key] ~= work then return end
+        timers[key] = nil
+        if InCombatLockdown() then
+            tab.combatWork = tab.combatWork or {}
+            tab.combatWork[key] = callback
+            return
+        end
+        callback()
+    end
+    if C_Timer.NewTimer then
+        work.timer = C_Timer.NewTimer(delay, Run)
+    else
+        C_Timer.After(delay, Run)
+    end
+end
+
+local function GetTabStatusText(tab)
+    local text = tab.statusText
+    if not text then
+        text = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        text:SetPoint("CENTER", tab.content, "CENTER")
+        tab.statusText = text
+    end
+    text:Show()
+    return text
+end
 
 -- Meter layout delegated to FluxMeterLayout (library + editor).
 -- Meter tab: Details XOR Blizzard_DamageMeter. Neither → no tab.
@@ -220,6 +272,7 @@ end
 function FluxWindowFrame:Show()
     local frame = self:GetFrame()
     frame:Show()
+    if Flux and Flux.Startup then Flux.Startup.Mark("window_shell_visible") end
     if frame._fluxMapWasActive and FluxBattlefieldMap and FluxBattlefieldMap.Show then
         frame._fluxMapWasActive = nil
         FluxBattlefieldMap:Show()
@@ -692,7 +745,9 @@ function FluxWindowFrame:AddTab(name, onShow, onHide, tooltipText)
                     FluxMinimap:RestoreToNormal()
                 end
 
-                -- Update the content for the new mode (this will clear and recreate)
+                -- Cancel work for the old mode before showing the new one.
+                CancelTabWork(tab)
+                if tab.statusText then tab.statusText:Hide() end
                 if tabs["Map"].onShow then
                     tabs["Map"].onShow(tabs["Map"])
                 end
@@ -700,7 +755,7 @@ function FluxWindowFrame:AddTab(name, onShow, onHide, tooltipText)
                 -- Update objective tracker only when Map/Minimap mode actually
                 -- changed. Unchanged docks are a no-op inside UpdateQuestTrackerPosition.
                 if FluxMinimap and FluxMinimap.UpdateQuestTrackerPosition then
-                    C_Timer.After(0.1, function() FluxMinimap:UpdateQuestTrackerPosition() end)
+                    TabAfter(tab, "tracker", 0.1, function() FluxMinimap:UpdateQuestTrackerPosition() end)
                 end
 
                 -- Save the new state
@@ -791,12 +846,14 @@ function FluxWindowFrame:SwitchToTab(tabName)
         if tab.button.highlightRight then tab.button.highlightRight:Hide() end
     end
 
-    -- Thoroughly clean up current active tab content
+    -- Hosted modules retain their frames, scripts and regions across tab switches.
     if activeTab and tabs[activeTab] then
-        CleanupTabContent(tabs[activeTab])
-        if tabs[activeTab].onHide then
-            tabs[activeTab].onHide(tabs[activeTab])
+        local previous = tabs[activeTab]
+        CancelTabWork(previous)
+        if previous.onHide then
+            previous.onHide(previous)
         end
+        previous.content:Hide()
     end
 
     -- Show new tab
@@ -804,6 +861,7 @@ function FluxWindowFrame:SwitchToTab(tabName)
     -- Re-setup the content area for the new tab
     tabs[activeTab].content:SetAllPoints(windowFrame.Content)
     tabs[activeTab].content:Show()
+    if tabs[activeTab].statusText then tabs[activeTab].statusText:Hide() end
     UpdateTabVisualState(tabs[activeTab].button, true)
     if tabs[activeTab].onShow then
         tabs[activeTab].onShow(tabs[activeTab])
@@ -816,7 +874,7 @@ function FluxWindowFrame:SwitchToTab(tabName)
     -- UpdateQuestTrackerPosition is a no-op (no ClearAllPoints / quest rebuild).
     -- Binding-tab SetSize and Map/Minimap embed still apply when geometry changes.
     if FluxMinimap and FluxMinimap.UpdateQuestTrackerPosition then
-        C_Timer.After(0.1, function() FluxMinimap:UpdateQuestTrackerPosition() end)
+        TabAfter(tabs[activeTab], "tracker", 0.1, function() FluxMinimap:UpdateQuestTrackerPosition() end)
     end
 end
 
@@ -826,6 +884,7 @@ function FluxWindowFrame:RemoveTab(tabName)
     if not tabs[tabName] then return end
 
     local tab = tabs[tabName]
+    CancelTabWork(tab)
 
     -- If this tab is active, switch to another tab
     if activeTab == tabName then
@@ -1229,11 +1288,149 @@ local initialized = false
 local watcherFrame = CreateFrame("Frame")
 local checkCount = 0
 local MAX_CHECKS = 30 -- Safety limit: ~0.5 seconds at 60fps
-local MAX_METER_TAB_RETRIES = 50 -- 10 seconds (50 * 0.2s)
+local pendingInitialTab
+local pendingTabConfig = false
+
+local function RegisterMeterTab()
+    if tabs["Meter"] or not windowFrame then return false end
+    -- Meter tab only when Details is loaded XOR this client ships Blizzard_DamageMeter.
+    local meterSystem = ResolveMeterSystem()
+
+    -- Only add the Meter tab if we have a valid meter system
+    if meterSystem then
+        FluxWindowFrame:AddTab("Meter", function(tab)
+            -- Re-resolve on show so Details vs Blizzard stays exclusive.
+            local meterSystem = ResolveMeterSystem()
+            -- Meter tab content - embed the appropriate damage meter
+            if meterSystem == "Details" then
+                -- Priority 1: Use Details addon
+                if FluxDetails and FluxDetails.Embed then
+                    -- Retry until Details StartMeUp finishes; Embed creates missing windows.
+                    local function TryEmbedDetails(attempt)
+                        attempt = attempt or 1
+                        local maxAttempts = 30 -- 6 seconds (30 * 0.2s)
+
+                        local isDetailsReady = FluxDetails.IsDetailsUIReady and FluxDetails:IsDetailsUIReady()
+
+                        if isDetailsReady then
+                            local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
+                            FluxDetails:Embed(windowFrame, layoutConfig)
+                            tab.content:Hide()
+                            return
+                        end
+
+                        -- Not ready yet, show loading message and retry
+                        if attempt < maxAttempts then
+                            tab.content:Show()
+
+                            local meterText = GetTabStatusText(tab)
+
+                            meterText:SetText("Details! Meter\n(Initializing... " .. attempt .. "/" .. maxAttempts .. ")")
+                            meterText:SetTextColor(1, 1, 0.5, 1)
+
+                            TabAfter(tab, "meter-embed", 0.2, function()
+                                TryEmbedDetails(attempt + 1)
+                            end)
+                        else
+                            -- Failed after all attempts
+                            tab.content:Show()
+                            local meterText = GetTabStatusText(tab)
+                            meterText:SetText("Details! Meter\n(Failed to Initialize)")
+                            meterText:SetTextColor(1, 0.2, 0.2, 1)
+                        end
+                    end
+
+                    -- Start embedding attempt
+                    TryEmbedDetails(1)
+                else
+                    -- Fallback if FluxDetails is not available yet
+                    tab.content:Show()
+                    local meterText = GetTabStatusText(tab)
+                    meterText:SetText("Details! Meter\n(Loading...)")
+                    meterText:SetTextColor(1, 1, 1, 1)
+                end
+            elseif meterSystem == "BlizzardMeter" then
+                -- Priority 2: Use Blizzard's native damage meter when Details is absent
+                if FluxBlizzardMeter and FluxBlizzardMeter.Embed then
+                    -- Check if meter is already embedded (from previous tab switch or startup)
+                    if FluxBlizzardMeter:IsEmbedded() then
+                        -- Already embedded - refresh layout then show
+                        local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
+                        FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
+                        FluxBlizzardMeter:Show()
+                        tab.content:Hide()
+                    else
+                        -- Not embedded yet - need to embed it
+                        -- Retry logic for startup case
+                        local function TryEmbed(attempt)
+                            attempt = attempt or 1
+                            local maxAttempts = 15 -- 3 seconds
+
+                            -- Check if meter is ready
+                            if FluxBlizzardMeter.IsMeterReady and FluxBlizzardMeter:IsMeterReady() then
+                                local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
+                                local success = FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
+                                if success then
+                                    if Flux and Flux.Startup then Flux.Startup.Mark("optional.BlizzardMeter.embedded") end
+                                    tab.content:Hide()
+                                    return
+                                end
+                            end
+
+                            -- Not ready yet, show loading message and retry
+                            if attempt < maxAttempts then
+                                tab.content:Show()
+
+                                local meterText = GetTabStatusText(tab)
+
+                                meterText:SetText("Blizzard Damage Meter\n(Initializing... " .. attempt .. "/" .. maxAttempts .. ")")
+                                meterText:SetTextColor(1, 1, 0.5, 1)
+
+                                TabAfter(tab, "meter-embed", 0.2, function()
+                                    TryEmbed(attempt + 1)
+                                end)
+                            else
+                                -- Failed after all attempts
+                                tab.content:Show()
+                                local meterText = GetTabStatusText(tab)
+                                meterText:SetText("Blizzard Damage Meter\n(Failed to Initialize)")
+                                meterText:SetTextColor(1, 0.2, 0.2, 1)
+                            end
+                        end
+
+                        -- Start embedding attempt
+                        TryEmbed(1)
+                    end
+                else
+                    -- Fallback if FluxBlizzardMeter is not available
+                    tab.content:Show()
+                    local meterText = GetTabStatusText(tab)
+                    meterText:SetText("Blizzard Damage Meter\n(Not Available)")
+                    meterText:SetTextColor(1, 0.5, 0.2, 1)
+                end
+            end
+        end, function(tab)
+            -- Never leave both backends visible.
+            if FluxMeterLayout and FluxMeterLayout.CancelPendingWork then FluxMeterLayout.CancelPendingWork() end
+            if FluxDetails and FluxDetails.Hide then
+                FluxDetails:Hide()
+            end
+            if FluxBlizzardMeter and FluxBlizzardMeter.Hide then
+                FluxBlizzardMeter:Hide()
+            end
+            tab.content:Show()
+        end, "Damage/Healing Meters\nLeft-click: cycle layouts. Right-click: FluxWindow options.\nMiddle-click: reset all meter data (out of combat).")
+    end
+
+    return tabs["Meter"] ~= nil
+end
 
 -- Function to initialize the window frame and tabs
 local function InitializeWindowFrame()
     if initialized then return true end
+
+    -- Core's HUD barrier follows VARIABLES_LOADED on Forever, including gamepad.
+    if Flux and Flux.AfterLogin and not Flux.loggedIn then return false end
     
     -- Initialize saved variables if they don't exist
     if not _FluxUI_CharSavedVars then
@@ -1249,8 +1446,8 @@ local function InitializeWindowFrame()
     -- Add the three main tabs
     FluxWindowFrame:AddTab("Map", function(tab)
             -- Map tab content
-            -- Clear any existing content first
-            CleanupTabContent(tab)
+            -- The tab and its fallback label persist between visits.
+            if tab.statusText then tab.statusText:Hide() end
 
             -- Check if we're in Map mode (battlefield map) or Minimap mode
             if isMapMode then
@@ -1277,13 +1474,13 @@ local function InitializeWindowFrame()
                                 FluxBattlefieldMap:UpdateLayout()
                             end
                         end
-                        C_Timer.After(0.1, EnforceScaling)
-                        C_Timer.After(0.5, EnforceScaling)
-                        C_Timer.After(1.0, EnforceScaling)
+                        TabAfter(tab, "map-scale-early", 0.1, EnforceScaling)
+                        TabAfter(tab, "map-scale-mid", 0.5, EnforceScaling)
+                        TabAfter(tab, "map-scale-final", 1.0, EnforceScaling)
                     else
                         -- Fallback if initialization failed
                         tab.content:Show()
-                        local text = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                        local text = GetTabStatusText(tab)
                         text:SetPoint("CENTER", tab.content, "CENTER")
                         text:SetText("Battlefield Map\n(Init Failed)")
                         text:SetTextColor(1, 0.2, 0.2, 1)
@@ -1291,7 +1488,7 @@ local function InitializeWindowFrame()
                 else
                     -- Fallback if FluxBattlefieldMap is not available
                     tab.content:Show()
-                    local text = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                    local text = GetTabStatusText(tab)
                     text:SetPoint("CENTER", tab.content, "CENTER")
                     text:SetText("FluxBattlefieldMap\n(Not Available)")
                     text:SetTextColor(1, 0.5, 0.2, 1)
@@ -1317,7 +1514,7 @@ local function InitializeWindowFrame()
                     else
                         -- Fallback if embedding failed
                         tab.content:Show()
-                        local text = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                        local text = GetTabStatusText(tab)
                         text:SetPoint("CENTER", tab.content, "CENTER")
                         text:SetText("Minimap\n(Embed Failed)")
                         text:SetTextColor(1, 0.2, 0.2, 1)
@@ -1325,7 +1522,7 @@ local function InitializeWindowFrame()
                 else
                     -- Fallback if FluxMinimap is not available
                     tab.content:Show()
-                    local text = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                    local text = GetTabStatusText(tab)
                     text:SetPoint("CENTER", tab.content, "CENTER")
                     text:SetText("FluxMinimap\n(Not Available)")
                     text:SetTextColor(1, 0.5, 0.2, 1)
@@ -1350,150 +1547,7 @@ local function InitializeWindowFrame()
             tab.content:Show()
         end, "Battlezone Map\nClick again to switch between Map and Minimap modes.")
 
-        -- Meter tab only when Details is loaded XOR this client ships Blizzard_DamageMeter.
-        local meterSystem = ResolveMeterSystem()
-        
-        -- Only add the Meter tab if we have a valid meter system
-        if meterSystem then
-            FluxWindowFrame:AddTab("Meter", function(tab)
-                -- Re-resolve on show so Details vs Blizzard stays exclusive.
-                local meterSystem = ResolveMeterSystem()
-                -- Meter tab content - embed the appropriate damage meter
-                if meterSystem == "Details" then
-                    -- Priority 1: Use Details addon
-                    if FluxDetails and FluxDetails.Embed then
-                        -- Retry until Details StartMeUp finishes; Embed creates missing windows.
-                        local function TryEmbedDetails(attempt)
-                            attempt = attempt or 1
-                            local maxAttempts = 30 -- 6 seconds (30 * 0.2s)
-
-                            local isDetailsReady = FluxDetails.IsDetailsUIReady and FluxDetails:IsDetailsUIReady()
-
-                            if isDetailsReady then
-                                local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
-                                FluxDetails:Embed(windowFrame, layoutConfig)
-                                tab.content:Hide()
-                                return
-                            end
-
-                            -- Not ready yet, show loading message and retry
-                            if attempt < maxAttempts then
-                                tab.content:Show()
-                                -- Clear previous messages
-                                local regions = { tab.content:GetRegions() }
-                                for _, region in ipairs(regions) do
-                                    if region and region.GetObjectType and region:GetObjectType() == "FontString" then
-                                        region:Hide()
-                                    end
-                                end
-
-                                local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                meterText:SetText("Details! Meter\n(Initializing... " .. attempt .. "/" .. maxAttempts .. ")")
-                                meterText:SetTextColor(1, 1, 0.5, 1)
-
-                                C_Timer.After(0.2, function()
-                                    TryEmbedDetails(attempt + 1)
-                                end)
-                            else
-                                -- Failed after all attempts
-                                tab.content:Show()
-                                local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                meterText:SetText("Details! Meter\n(Failed to Initialize)")
-                                meterText:SetTextColor(1, 0.2, 0.2, 1)
-                            end
-                        end
-
-                        -- Start embedding attempt
-                        TryEmbedDetails(1)
-                    else
-                        -- Fallback if FluxDetails is not available yet
-                        tab.content:Show()
-                        local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                        meterText:SetPoint("CENTER", tab.content, "CENTER")
-                        meterText:SetText("Details! Meter\n(Loading...)")
-                        meterText:SetTextColor(1, 1, 1, 1)
-                    end
-                elseif meterSystem == "BlizzardMeter" then
-                    -- Priority 2: Use Blizzard's native damage meter when Details is absent
-                    if FluxBlizzardMeter and FluxBlizzardMeter.Embed then
-                        -- Check if meter is already embedded (from previous tab switch or startup)
-                        if FluxBlizzardMeter:IsEmbedded() then
-                            -- Already embedded - refresh layout then show
-                            local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
-                            FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
-                            FluxBlizzardMeter:Show()
-                            tab.content:Hide()
-                        else
-                            -- Not embedded yet - need to embed it
-                            -- Retry logic for startup case
-                            local function TryEmbed(attempt)
-                                attempt = attempt or 1
-                                local maxAttempts = 15 -- 3 seconds
-                                
-                                -- Check if meter is ready
-                                if FluxBlizzardMeter.IsMeterReady and FluxBlizzardMeter:IsMeterReady() then
-                                    local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
-                                    local success = FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
-                                    if success then
-                                        tab.content:Hide()
-                                        return
-                                    end
-                                end
-                                
-                                -- Not ready yet, show loading message and retry
-                                if attempt < maxAttempts then
-                                    tab.content:Show()
-                                    -- Clear previous messages
-                                    local regions = { tab.content:GetRegions() }
-                                    for _, region in ipairs(regions) do
-                                        if region and region.GetObjectType and region:GetObjectType() == "FontString" then
-                                            region:Hide()
-                                        end
-                                    end
-                                    
-                                    local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                    meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                    meterText:SetText("Blizzard Damage Meter\n(Initializing... " .. attempt .. "/" .. maxAttempts .. ")")
-                                    meterText:SetTextColor(1, 1, 0.5, 1)
-                                    
-                                    C_Timer.After(0.2, function()
-                                        TryEmbed(attempt + 1)
-                                    end)
-                                else
-                                    -- Failed after all attempts
-                                    tab.content:Show()
-                                    local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                    meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                    meterText:SetText("Blizzard Damage Meter\n(Failed to Initialize)")
-                                    meterText:SetTextColor(1, 0.2, 0.2, 1)
-                                end
-                            end
-                            
-                            -- Start embedding attempt
-                            TryEmbed(1)
-                        end
-                    else
-                        -- Fallback if FluxBlizzardMeter is not available
-                        tab.content:Show()
-                        local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                        meterText:SetPoint("CENTER", tab.content, "CENTER")
-                        meterText:SetText("Blizzard Damage Meter\n(Not Available)")
-                        meterText:SetTextColor(1, 0.5, 0.2, 1)
-                    end
-                end
-            end, function(tab)
-                -- Never leave both backends visible.
-                if FluxDetails and FluxDetails.Hide then
-                    FluxDetails:Hide()
-                end
-                if FluxBlizzardMeter and FluxBlizzardMeter.Hide then
-                    FluxBlizzardMeter:Hide()
-                end
-                tab.content:Show()
-            end, "Damage/Healing Meters\nLeft-click: cycle layouts. Right-click: FluxWindow options.\nMiddle-click: reset all meter data (out of combat).")
-        end
+    RegisterMeterTab()
 
         -- Respec tab (3rd, after Map and Meter). Registered via FluxRespec_Register so UI lives in Respec/.
         -- Tall SoD rune flyout: FluxRespec adds temporary bottom inset on its body scroll (FluxRespec_UI)
@@ -1512,7 +1566,7 @@ local function InitializeWindowFrame()
                 FluxExtraButtons.UI:Show()
             else
                 -- Fallback if FluxExtraButtons is not available
-                local buttonsText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                local buttonsText = GetTabStatusText(tab)
                 buttonsText:SetPoint("CENTER", tab.content, "CENTER")
                 buttonsText:SetText("Extra Buttons\n(Module Not Found)")
                 buttonsText:SetTextColor(1, 0.5, 0.2, 1)
@@ -1551,6 +1605,8 @@ local function InitializeWindowFrame()
     -- Switch once to the saved tab; FluxDetails post-login coordinator handles Details embed.
     if tabs[targetTab] and not InCombatLockdown() then
         FluxWindowFrame:SwitchToTab(targetTab)
+    else
+        pendingInitialTab = targetTab
     end
 
     -- Update the Map tab button text to reflect current mode
@@ -1574,109 +1630,6 @@ local function InitializeWindowFrame()
     initialized = true
     watcherFrame:SetScript("OnUpdate", nil) -- Stop watching
     
-    -- Blizzard meter tab can lag LoadAddOn; retry only that backend (Details is OptionalDeps).
-    if not tabs["Meter"] and ResolveMeterSystem() == "BlizzardMeter" then
-        -- Start retrying to add the Meter tab using a timer (more efficient than OnUpdate)
-        local function TryAddMeterTab(attempt)
-            attempt = attempt or 1
-            
-            if tabs["Meter"] then
-                return
-            end
-            if ResolveMeterSystem() ~= "BlizzardMeter" then
-                return
-            end
-            
-            if FluxBlizzardMeter and FluxBlizzardMeter.IsMeterReady then
-                FluxBlizzardMeter:IsMeterReady()
-            end
-            
-            -- Check if meter is now available
-            if FluxBlizzardMeter and FluxBlizzardMeter.IsAvailable and FluxBlizzardMeter:IsAvailable() then
-                -- Meter is available, add the tab now (reuse the same logic from above)
-                -- First add it normally
-                local meterTab = FluxWindowFrame:AddTab("Meter", function(tab)
-                    if FluxBlizzardMeter and FluxBlizzardMeter.Embed then
-                        if FluxBlizzardMeter:IsEmbedded() then
-                            local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
-                            FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
-                            FluxBlizzardMeter:Show()
-                            tab.content:Hide()
-                        else
-                            local function TryEmbed(embedAttempt)
-                                embedAttempt = embedAttempt or 1
-                                local maxAttempts = 15
-                                
-                                if FluxBlizzardMeter.IsMeterReady and FluxBlizzardMeter:IsMeterReady() then
-                                    local layoutConfig = FluxWindowFrame:GetMeterLayoutConfig()
-                                    local success = FluxBlizzardMeter:Embed(windowFrame.Content, layoutConfig)
-                                    if success then
-                                        tab.content:Hide()
-                                        return
-                                    end
-                                end
-                                
-                                if embedAttempt < maxAttempts then
-                                    tab.content:Show()
-                                    local regions = { tab.content:GetRegions() }
-                                    for _, region in ipairs(regions) do
-                                        if region and region.GetObjectType and region:GetObjectType() == "FontString" then
-                                            region:Hide()
-                                        end
-                                    end
-                                    
-                                    local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                    meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                    meterText:SetText("Blizzard Damage Meter\n(Initializing... " .. embedAttempt .. "/" .. maxAttempts .. ")")
-                                    meterText:SetTextColor(1, 1, 0.5, 1)
-                                    
-                                    C_Timer.After(0.2, function()
-                                        TryEmbed(embedAttempt + 1)
-                                    end)
-                                else
-                                    tab.content:Show()
-                                    local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                                    meterText:SetPoint("CENTER", tab.content, "CENTER")
-                                    meterText:SetText("Blizzard Damage Meter\n(Failed to Initialize)")
-                                    meterText:SetTextColor(1, 0.2, 0.2, 1)
-                                end
-                            end
-                            TryEmbed(1)
-                        end
-                    else
-                        tab.content:Show()
-                        local meterText = tab.content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                        meterText:SetPoint("CENTER", tab.content, "CENTER")
-                        meterText:SetText("Blizzard Damage Meter\n(Not Available)")
-                        meterText:SetTextColor(1, 0.5, 0.2, 1)
-                    end
-                end, function(tab)
-                    if FluxBlizzardMeter and FluxBlizzardMeter.Hide then
-                        FluxBlizzardMeter:Hide()
-                    end
-                    tab.content:Show()
-                end, "Damage/Healing Meters\nLeft-click: cycle layouts. Right-click: FluxWindow options.\nMiddle-click: reset all meter data (out of combat).")
-                
-                -- Honor saved tab order / visibility (Meter may have been missing at first init).
-                FluxWindowFrame:ApplyTabConfig()
-                
-                return -- Success, stop retrying
-            end
-            
-            -- Not available yet, retry
-            if attempt < MAX_METER_TAB_RETRIES then
-                C_Timer.After(0.2, function()
-                    TryAddMeterTab(attempt + 1)
-                end)
-            end
-        end
-        
-        -- Start the retry process
-        C_Timer.After(0.2, function()
-            TryAddMeterTab(1)
-        end)
-    end
-    
     return true
 end
 
@@ -1698,8 +1651,38 @@ end
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_LOGIN")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 frame:SetScript("OnEvent", function(self, event, addon)
-    if event == "ADDON_LOADED" and addon == addonName then
+    if event == "PLAYER_REGEN_ENABLED" then
+        if InCombatLockdown() then return end
+        if pendingTabConfig then
+            pendingTabConfig = false
+            FluxWindowFrame:ApplyTabConfig()
+        end
+        if pendingInitialTab then
+            local targetTab = pendingInitialTab
+            pendingInitialTab = nil
+            FluxWindowFrame:ApplyTabConfig()
+            FluxWindowFrame:SwitchToTab(targetTab)
+        end
+        local tab = activeTab and tabs[activeTab]
+        if tab and tab.combatWork then
+            local work = tab.combatWork
+            local generation = tab.workGeneration
+            tab.combatWork = nil
+            for _, callback in pairs(work) do
+                if activeTab ~= tab.name or tab.workGeneration ~= generation then break end
+                callback()
+            end
+        end
+    elseif event == "ADDON_LOADED" and initialized then
+        -- Optional backends can arrive after the HUD. Reuse the same tab callback.
+        if RegisterMeterTab() then
+            if InCombatLockdown() then pendingTabConfig = true
+            else FluxWindowFrame:ApplyTabConfig() end
+        end
+    elseif event == "ADDON_LOADED" and addon == addonName then
+        if Flux and Flux.AfterLogin and not Flux.loggedIn then return end
         -- Try immediately first (will initialize if ready)
         if TryInitialize(false) then
             return
@@ -1726,9 +1709,9 @@ frame:SetScript("OnEvent", function(self, event, addon)
         -- Pre-load BattlefieldMap addon to prevent scaling issues on tab switch
         -- This ensures the frame is initialized early regardless of which tab is active
         local success = false
-        if C_AddOns and C_AddOns.LoadAddOn then
+        if not InCombatLockdown() and C_AddOns and C_AddOns.LoadAddOn then
             success = C_AddOns.LoadAddOn("Blizzard_BattlefieldMap")
-        elseif LoadAddOn then
+        elseif not InCombatLockdown() and LoadAddOn then
             success = LoadAddOn("Blizzard_BattlefieldMap")
         end
         
@@ -1767,6 +1750,10 @@ frame:SetScript("OnEvent", function(self, event, addon)
         end
     end
 end)
+
+if Flux and Flux.AfterLogin then
+    Flux.AfterLogin(function() TryInitialize(false) end)
+end
 
 function FluxWindowFrame_RefreshTabAccent()
     local r, g, b = 0.5, 0.5, 0.5

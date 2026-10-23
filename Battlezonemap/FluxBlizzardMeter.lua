@@ -14,6 +14,18 @@ local isEmbedded = false
 local damageMeterFrame = nil
 local primarySessionWindow = nil
 local secondarySessionWindow = nil
+local pendingEmbed = nil
+local pendingStartup = false
+local startupTimer = nil
+local startupGeneration = 0
+local StartStartupEmbed
+
+local function CancelStartupEmbed()
+    startupGeneration = startupGeneration + 1
+    if startupTimer and startupTimer.Cancel then startupTimer:Cancel() end
+    startupTimer = nil
+    pendingStartup = false
+end
 
 -- Meter embed sizing:
 -- 1) Lay out panes in an expanded canvas (20% larger W/H than Flux Content)
@@ -1152,6 +1164,12 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     if not parentFrame then
         return false
     end
+    if InCombatLockdown() then
+        -- Keep only the latest requested structure; never poll until combat ends.
+        pendingEmbed = { parent = parentFrame, layout = layoutConfig }
+        return false
+    end
+    pendingEmbed = nil
 
     if not self:IsAvailable() then
         return false
@@ -1167,13 +1185,14 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     if not IsMeterReady() then
         return false
     end
+    CancelStartupEmbed()
 
     local resolvedLayout = ResolveLayoutConfig(layoutConfig)
     currentLayoutConfig = resolvedLayout
 
     local function DoEmbed()
         if InCombatLockdown() then
-            C_Timer.After(0.1, DoEmbed)
+            pendingEmbed = { parent = parentFrame, layout = layoutConfig }
             return
         end
 
@@ -1309,6 +1328,8 @@ end
 
 --- Hide the embedded damage meter
 function FluxBlizzardMeter:Hide()
+    pendingEmbed = nil
+    CancelStartupEmbed()
     -- Don't reset isEmbedded - keep the embedded state so Show() can work
     -- Just hide the frame when switching away from Meter tab
     if not embeddedParentFrame then
@@ -1356,6 +1377,8 @@ end
 
 --- Clean up and reset the damage meter to normal state
 function FluxBlizzardMeter:Cleanup()
+    pendingEmbed = nil
+    CancelStartupEmbed()
     isEmbedded = false
     embeddedParentFrame = nil
     currentLayoutConfig = nil
@@ -1433,7 +1456,11 @@ frame:SetScript("OnEvent", function(self, event, addonName)
         -- Entering combat - don't allow embedding changes
         -- This prevents taint issues
     elseif event == "PLAYER_REGEN_ENABLED" then
-        -- Left combat - safe to make changes again if needed
+        if InCombatLockdown() then return end
+        local embed = pendingEmbed
+        pendingEmbed = nil
+        if embed then FluxBlizzardMeter:Embed(embed.parent, embed.layout) end
+        if pendingStartup and StartStartupEmbed then StartStartupEmbed() end
     elseif event == "ADDON_LOADED" and addonName == "Blizzard_DamageMeter" then
         -- Patch entry methods when DamageMeter addon loads
         PatchDamageMeterEntryMethods()
@@ -1448,7 +1475,15 @@ end)
 -- ---------------------------------------------------------------------------
 
 -- Retry embedding on startup
-local function TryStartupEmbed(attempt)
+local function TryStartupEmbed(attempt, generation)
+    if generation ~= startupGeneration then return end
+    startupTimer = nil
+    if not FluxWindowFrame or not FluxWindowFrame.GetActiveTab
+        or FluxWindowFrame:GetActiveTab() ~= "Meter" then return end
+    if InCombatLockdown() then
+        pendingStartup = true
+        return
+    end
     attempt = attempt or 1
     local maxAttempts = 20 -- Try for up to 4 seconds (20 * 0.2s)
     
@@ -1470,10 +1505,15 @@ local function TryStartupEmbed(attempt)
     
     -- Not ready yet or embed failed, retry
     if attempt < maxAttempts then
-        C_Timer.After(0.2, function()
-            TryStartupEmbed(attempt + 1)
-        end)
+        local function Retry() TryStartupEmbed(attempt + 1, generation) end
+        if C_Timer.NewTimer then startupTimer = C_Timer.NewTimer(0.2, Retry)
+        else C_Timer.After(0.2, Retry) end
     end
+end
+
+StartStartupEmbed = function()
+    CancelStartupEmbed()
+    TryStartupEmbed(1, startupGeneration)
 end
 
 -- Startup embedding frame (handles login/reload with Meter tab active)
@@ -1502,12 +1542,12 @@ startupFrame:SetScript("OnEvent", function(self, event, arg1)
     elseif event == "VARIABLES_LOADED" then
         -- Variables loaded, try to embed now (if tab was active)
         if wasMeterActive then
-            TryStartupEmbed()
+            StartStartupEmbed()
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
         -- Final attempt after entering world (if tab was active)
         if wasMeterActive then
-            TryStartupEmbed()
+            StartStartupEmbed()
         end
     end
 end)

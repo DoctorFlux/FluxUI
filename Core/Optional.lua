@@ -82,12 +82,16 @@ end
 
 function Optional.Get(name)
 	local probe = probes[name]
+	local info
 	if probe then
-		return probe()
+		info = probe()
+	else
+		local addon = NAMES[name] or name
+		local loaded = Loaded(addon)
+		info = { loaded = loaded, ready = loaded, api = rawget(_G, addon) }
 	end
-	local addon = NAMES[name] or name
-	local loaded = Loaded(addon)
-	return { loaded = loaded, ready = loaded, api = rawget(_G, addon) }
+	if Flux.Startup then Flux.Startup.ObserveOptional(name, info) end
+	return info
 end
 
 function Optional.IsLoaded(name)

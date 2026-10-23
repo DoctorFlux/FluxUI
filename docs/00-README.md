@@ -1,10 +1,12 @@
 # FluxUI implementation documentation
 
+Latest implementation: [idle follow-up](46-idle-followup.md), with a background comparison, character-button and bag-counter fixes, and expanded presentation diagnostics. The [initial idle investigation](45-idle-performance.md) records the earlier CPU captures and operation counts. Earlier phases are recorded in the [startup report](43-startup-optimization.md) and [test failure resolution](44-test-failure-resolution.md).
+
 This is a reference for **how the current addon works**, for its author, maintainers, and coding agents. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
 
 Source review: **23 October 2026**, including the current working-tree changes since GitHub commit `7882474`. The [source inventory](reference/inventory.json) records source hashes with CRLF normalized to LF, load parents, client gates, and extracted declarations. Binary asset hashes retain their original bytes. This is not a claim that the addon was tested in every live client.
 
-The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 28 desktop smoke scripts: 26 passing and two existing source-contract failures. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
+The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 51 passing desktop scripts and 688 syntax-checked Lua files. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
 
 ## Start here
 
@@ -42,7 +44,7 @@ Read the [product and system overview](01-product-overview.md), then [runtime ar
 | [Inventory foundation](21-inventory-foundation.md) | Snapshot facts, scanners, Syndicator, persistence, notifications, crafting |
 | [Salvage](22-salvage.md) | Classification, profession gates, modifier overlay and protected clicks |
 | [Respec](23-respec.md) | Profile capture, presets, talents, equipment, runes and asynchronous application |
-| [Baganator integration](24-baganator-compat.md) | Views, categories, protections, API wrappers and restocking |
+| [Baganator integration](24-baganator-compat.md) | Views, categories, protections, native API ownership and restocking |
 | [Other QoL](25-other-qol.md) | Chat, equipment flyouts, vehicles, HUD helpers and frame positioning |
 | [Character Info](27-character-info.md) | Statistics, localization, GearScore/ilvl and paper-doll overlays |
 | [WindowMover](28-window-mover.md) | Blizzard-window discovery, drag/scale, persistence and combat handling |

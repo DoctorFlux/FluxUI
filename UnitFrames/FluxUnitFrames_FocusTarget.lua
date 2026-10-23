@@ -192,7 +192,7 @@ function FluxUnitFrames_ApplyRuntimeFocusTarget(wantFlux)
         return
     end
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.focustarget", function()
             FluxUnitFrames_ApplyRuntimeFocusTarget(wantFlux)
         end)
         return
@@ -245,7 +245,7 @@ function FluxUnitFrames_ApplyRuntimeFocusTarget(wantFlux)
         end
         if not ns.FocusTargetFrame then
             ftInitialized = false
-            InitializeFocusTargetFrame()
+            UF.RunInitializer("focustarget")
         else
             if UF.SyncWatchedUnitFrameVisibility then
                 UF.SyncWatchedUnitFrameVisibility(ns.FocusTargetFrame)
@@ -287,9 +287,4 @@ function FluxUnitFrames_MatchFocusTargetToFocus()
     end
 end
 
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:SetScript("OnEvent", function()
-    InitializeFocusTargetFrame()
-end)
-
+UF.RegisterInitializer("focustarget", InitializeFocusTargetFrame, function() return ftInitialized end, 63)

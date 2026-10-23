@@ -2049,9 +2049,8 @@ function FluxDefaultSettings.ApplyCharacterFirstLogin()
     FluxDefaultSettings.ApplyChatSettings()
 end
 
--- After PLAYER_LOGIN, Blizzard may load default bindings/CVars while UPDATE_BINDINGS is ignored
--- (loginGracePeriod). That one reload looks like a full revert even though FluxUI_DB says we
--- already applied — recover once the grace window ends.
+-- Check client CVar reverts once the login grace window ends. A binding which
+-- differs from the Flux template is a player preference, never a reset signal.
 function FluxDefaultSettings.VerifyPostLoginDefaults()
     if not FluxUI_DB or not FluxUI_DB.accountDefaultsApplied then
         return
@@ -2065,13 +2064,6 @@ function FluxDefaultSettings.VerifyPostLoginDefaults()
         return
     end
     detection.postLoginVerified = true
-
-    local testKey = "F5"
-    local keybindsWrong = (GetBindingAction(testKey) ~= "FLUXRELOADUI")
-    if keybindsWrong then
-        print("|cFF00FFFF[FluxDefaultSettings]|r Post-login verify: keybindings missing Flux binds; re-applying...")
-        FluxDefaultSettings.ApplyKeybinds()
-    end
 
     -- Only treat as a client CVar revert when several Flux-owned sentinels were reset to Blizzard.
     -- Avoid stomping on /reload noise or a couple of user-tweaked options.
@@ -2097,8 +2089,8 @@ function FluxDefaultSettings.VerifyPostLoginDefaults()
         end
     end
 
-    -- Require a clear revert signal: broken Flux keybind, or 4+ sentinel CVars back on Blizzard defaults.
-    local needsCvars = keybindsWrong or (mismatchCount >= 4)
+    -- Binding changes must never authorize resetting bindings or CVars.
+    local needsCvars = mismatchCount >= 4
 
     if needsCvars then
         print("|cFF00FFFF[FluxDefaultSettings]|r Post-login verify: client reverted Flux CVars (" .. mismatchCount .. " sentinels); re-applying CVars...")
@@ -2752,7 +2744,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
     -- UPDATE_BINDINGS: do NOT auto-reapply Flux keybinds here.
     -- Changing a single key in Settings fires this event; the old F5-sentinel
     -- treated that as a full reset and wiped user binds (and looped after Defaults).
-    -- Keybind re-apply is only: CategoryDefaulted / Settings.Defaulted / slash / post-login verify.
+    -- Keybind re-apply is only: explicit Defaults actions / slash / first account setup.
     end
 end)
 

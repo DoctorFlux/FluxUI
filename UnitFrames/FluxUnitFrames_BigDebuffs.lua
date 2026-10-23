@@ -4,10 +4,11 @@
 
 local _, ns = ...
 local UF = ns and ns.UnitFrames
+local installed = false
 
-if not BigDebuffs or not UF then
-    return
-end
+local function InstallBigDebuffs()
+if installed then return true end
+if not BigDebuffs or not UF or not BigDebuffs.anchors or not BigDebuffs.db then return false end
 
 --- Returns (anchor, parent[, noPortrait]) for BigDebuffs:AttachUnitFrame auto anchor.
 -- noPortrait must be false/nil so BigDebuffs uses SetAllPoints(anchor) (cover portrait or class slot).
@@ -195,8 +196,27 @@ for i = 1, #CATEGORIES do
 end
 
 -- Defer Refresh to next frame to avoid blocking addon load
-C_Timer.After(0, function()
+local function RefreshBigDebuffs()
+    if InCombatLockdown and InCombatLockdown() then
+        if ns.Flux and ns.Flux.Combat then
+            ns.Flux.Combat.Defer("unitframes.bigdebuffs.refresh", RefreshBigDebuffs)
+        end
+        return
+    end
     if BigDebuffs and BigDebuffs.Refresh then
         BigDebuffs:Refresh()
     end
-end)
+end
+C_Timer.After(0, RefreshBigDebuffs)
+installed = true
+return true
+end
+
+if ns.Flux and ns.Flux.Module then
+    ns.Flux.Module.Register("BigDebuffsUnitFrames", {
+        phase = "deferred", protected = true, requiredAddons = { "BigDebuffs" },
+        OnEnable = InstallBigDebuffs,
+    })
+else
+    InstallBigDebuffs()
+end

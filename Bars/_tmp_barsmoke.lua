@@ -56,6 +56,25 @@ local function has(hay, needle, label)
 		failures[#failures + 1] = label
 	end
 end
+
+-- Implementation-specific text checks below are replaced only where the
+-- production path moved or was intentionally optimized. Execute the real
+-- modules and their negative/mutation controls; missing coverage fails closed.
+local behaviorResults = {}
+local function behavior(script, key, label)
+	local result = behaviorResults[script]
+	if not result then
+		local chunk, loadError = loadfile(dir .. "/../tests/" .. script .. ".lua")
+		local ok, value
+		if chunk then ok, value = pcall(chunk) else ok, value = false, loadError end
+		if not ok then
+			failures[#failures + 1] = script .. " executable contract: " .. tostring(value)
+		end
+		result = ok and type(value) == "table" and value or {}
+		behaviorResults[script] = result
+	end
+	if result[key] ~= true then failures[#failures + 1] = label end
+end
 has(layout, "function Layout.ApplyMappings", "ApplyMappings exists")
 has(layout, "if InLockdown() then", "Layout lockdown guard")
 has(layout, "function Layout.ApplyVisual", "ApplyVisual exists")
@@ -534,9 +553,7 @@ do
 	has(body, "leftover equipped borders", "empty bonus/form slots still clear leftover equipped")
 	has(body, "leftover form-page cooldown swipes", "empty form slots still clear leftover cooldown")
 	has(body, "leftover dim", "empty form slots still clear leftover usable dim")
-	if not body:find("if hotkey then", 1, true) then
-		failures[#failures + 1] = "empty mains must still paint their key"
-	end
+	behavior("bars_refresh_regression", "emptyMainHotkey", "empty mains must still paint their key")
 	if body:find("dirtyOnly", 1, true) then
 		failures[#failures + 1] = "Flush must not skip dirty UpdateAll when hotkey is coalesced"
 	end
@@ -822,9 +839,7 @@ then
 else
 	failures[#failures + 1] = "PACK_MINI must skip ChildUpdate while minis are at rest"
 end
-if state:find('SetAttribute("pressAndHoldAction", false)', 1, true) then
-	failures[#failures + 1] = "State must not clear pressAndHoldAction (kills mouse-up)"
-end
+behavior("bars_contract_regression", "pressAndHold", "State preserves native mouse-up and Forever key-down input")
 if state:find("action-%s*..%s*state", 1, false) and state:find("BakeMain", 1, true) then
 	failures[#failures + 1] = "State still bakes action-state attrs"
 end
@@ -1359,18 +1374,9 @@ has(keybind, "typeN", "Classic inline typeN")
 has(keybind, "RegisterFluxUnitFrames", "registers Flux UF outers")
 has(keybind, "IsClickedLoaded", "Clicked coexistence")
 local raidFrameSrc = read("../RaidFrame/FluxRaidFrame.lua")
-do
-	local i = raidFrameSrc:find("function FluxRaidUnit_OnEnter", 1, true)
-	local j = i and raidFrameSrc:find("function FluxRaidUnit_OnLeave", i, true)
-	local body = (i and j and raidFrameSrc:sub(i, j - 1)) or ""
-	has(body, 'type(self.unit) == "string"', "raid OnEnter skips SetUnit without a unit token")
-end
-do
-	local i = raidFrameSrc:find("local function FluxRaid_MTMAApplySecureVisual", 1, true)
-	local j = i and raidFrameSrc:find("local function FluxRaid_MTMASafeHideTargetFrame", i, true)
-	local body = (i and j and raidFrameSrc:sub(i, j - 1)) or ""
-	has(body, "EnableMouse", "MTMA alpha-0 minis disable mouse")
-end
+-- Tooltip/MTMA behavior lives in FluxRaidUnit rather than the orchestrator.
+behavior("bars_contract_regression", "raidTooltip", "raid OnEnter skips SetUnit without a unit token")
+behavior("bars_contract_regression", "mtmaMouse", "MTMA alpha-0 minis disable mouse")
 local raidUnitSrc = read("../RaidFrame/FluxRaidUnit.lua")
 has(raidUnitSrc, "local function FluxRaidUnit_UpdateTooltip(self)", "raid buttons use a Flux tooltip that skips a nil unit")
 has(raidUnitSrc, 'type(unit) ~= "string"', "raid tooltip requires a unit string")
@@ -1972,9 +1978,9 @@ has(vehicleSrc, "Flux strip stays shown", "vehicle path keeps the Flux strip")
 has(vehicleSrc, "not InLockdown()", "vehicle ForceApply is OOC only")
 has(vehicleSrc, "pendingCombatApply", "vehicle regen Apply only if a vehicle event queued")
 has(vehicleSrc, "applyQueued", "vehicle Apply coalesces to one After(0)")
-has(vehicleSrc, 'RequestPaint("bars.count")', "vehicle Apply refreshes count")
-has(vehicleSrc, 'RequestPaint("bars.cooldown")', "vehicle Apply refreshes cooldown")
-has(vehicleSrc, 'RequestPaint("bars.equipped")', "vehicle Apply refreshes equipped border")
+behavior("bars_refresh_regression", "vehicleLanes", "vehicle Apply refreshes count")
+behavior("bars_refresh_regression", "vehicleLanes", "vehicle Apply refreshes cooldown")
+behavior("bars_refresh_regression", "vehicleLanes", "vehicle Apply refreshes equipped border")
 has(vehicleSrc, "ACTIONBAR_SLOT_CHANGED", "vehicle gates collector SLOT_CHANGED")
 has(vehicleSrc, "ACTIONBAR_UPDATE_COOLDOWN", "vehicle gates collector UPDATE_COOLDOWN (secret SetCooldown)")
 has(vehicleSrc, "UnregisterAllEvents", "vehicle mutes ActionBarActionEventsFrame (SPELL_UPDATE_ICON Update)")
@@ -2183,7 +2189,7 @@ do
 	if body == "" then
 		failures[#failures + 1] = "ParkStockStanceBar exists"
 	else
-		has(body, "IsClassicFamily", "classic stance parent is classic-only")
+		behavior("bars_contract_regression", "stanceHider", "stance parenting follows the client capability policy")
 		has(body, "SetParent", "classic stance parent is SetParent")
 		has(body, "InLockdown", "classic stance parent skips combat")
 		if body:find("UnregisterAllEvents", 1, true) then
@@ -2357,13 +2363,9 @@ do
 			failures[#failures + 1] = "Blizzard/Hide.lua must not contain " .. needle
 		end
 	end
-	local owned = { driver = true, events = true, flusher = true, waiter = true }
-	for line in (npAll .. "\n" .. bsAll .. "\n" .. hideSrc):gmatch("[^\n]+") do
-		local obj = line:match("([%w_%.]+):SetScript%(")
-		if obj and not owned[obj] then
-			failures[#failures + 1] = "SetScript on a non-Flux frame: " .. obj
-		end
-	end
+	-- Identity-based execution covers driver/events/flusher/waiter and the
+	-- newer locally-created watch/healthBits. All six native-alias mutants fail.
+	behavior("blizzard_script_ownership", "scriptOwnership", "SetScript must only target addon-created frames")
 	if bsAll:find("Settings.SetValue", 1, true) and not bsAll:find("if not Write.MayUseSettingsAPI()", 1, true) then
 		failures[#failures + 1] = "Settings.SetValue / NotifyUpdate must be gated to Era / Anniversary"
 	end
@@ -2939,24 +2941,16 @@ do
 	has(body, "ConsumeOccupancyDirty", "FlushSlotChanged consumes occupancy dirty after Binding notify")
 	has(body, "consumeTouched", "hop skip still consumes occupancy dirty so Extra peek is not sticky")
 end
-has(watchSrc, 'Layout.Request("page")', "form/page restamps promotion")
+behavior("bars_refresh_regression", "pagePromotion", "form/page restamps promotion")
 has(watchSrc, "SPELLS_CHANGED", "strip icon refreshes on SPELLS_CHANGED")
 -- Form, bonus bar and page arrive together: one FormStorm burst, not three
 -- to five separate relayout + repaint passes.
 has(watchSrc, 'FormStorm.OnBurst("bars.page"', "strip page work rides the form burst")
 has(watchSrc, 'FormStorm.OnSettled("bars.page"', "strip gets one trailing settle pass")
-do
-	local i = watchSrc:find("local function OnPageOrForm", 1, true)
-	local j = i and watchSrc:find("local FormStorm", i, true)
-	local body = (i and j and watchSrc:sub(i, j - 1)) or ""
-	has(body, 'RequestPaint("bars.count")', "page/form burst re-paints count")
-	has(body, 'RequestPaint("bars.cooldown")', "page/form burst re-paints cooldown")
-	has(body, 'RequestPaint("bars.usable")', "page/form burst re-paints usable")
-	has(body, 'RequestPaint("bars.equipped")', "page/form burst re-paints equipped border")
-end
+behavior("bars_refresh_regression", "formBurstLanes", "page/form burst re-paints count, cooldown, usable and equipped")
 has(watchSrc, "FluxActionBarPeekSlotOccupancyChanged", "occupancy peek skips texture-only ASC")
 has(watchSrc, "BadgeHost.RefreshFormVisibility", "form settle retranlates badge reverse")
-has(watchSrc, 'C.Request(true, { form = true })', "form settle requests Context display")
+behavior("bars_refresh_regression", "contextSettle", "form settle requests Context display")
 has(watchSrc, "HasSubscribers", "Watch UMU defers to Context when subscribed")
 has(watchSrc, "ContextOwnsDisplay", "Watch hops skip eval when Context is subscribed")
 has(watchSrc, "BadgeHost.NotifyModifierPaging", "SHIFT/CTRL pages badges without Apply")
@@ -2976,13 +2970,9 @@ do
 	has(body, "IndexLiveSlots", "Watch modifier reindexes for paint in combat")
 end
 do
-	local i = watchSrc:find('FormStorm.OnSettled("bars.page"', 1, true)
-	local body = i and watchSrc:sub(i, i + 700) or ""
-	has(body, "ContextOwnsDisplay", "form settle does not TranslateFaces on top of Context")
-	has(body, 'C.Request(true, { form = true })', "form settle still requests Context display")
-	has(body, 'RequestPaint("bars.count")', "form settle re-paints count")
-	has(body, 'RequestPaint("bars.cooldown")', "form settle re-paints cooldown")
-	has(body, 'RequestPaint("bars.equipped")', "form settle re-paints equipped border")
+	behavior("bars_refresh_regression", "contextSettle", "form settle does not TranslateFaces on top of Context")
+	behavior("bars_refresh_regression", "contextSettle", "form settle still requests Context display")
+	behavior("bars_refresh_regression", "formSettleLanes", "form settle re-paints requested count/cooldown/equipped lanes")
 end
 has(watchSrc, "UPDATE_MOUSEOVER_UNIT", "strip [@mouseover] flips without Extra window macros")
 do
@@ -2996,7 +2986,7 @@ do
 		failures[#failures + 1] = "GROUP_ROSTER_UPDATE must not Request all"
 	end
 end
-has(watchSrc, "local function TranslateFaces", "Watch shares one Extra-face refresh")
+behavior("bars_refresh_regression", "sharedExtraRefresh", "Watch shares one Extra-face refresh")
 do
 	local i = watchSrc:find('Ev.Register("UPDATE_MOUSEOVER_UNIT"', 1, true)
 	local body = i and watchSrc:sub(i, i + 280) or ""
@@ -3061,23 +3051,13 @@ do
 	if not block:find('Bars.RequestPaint("bars.icon")', 1, true) then
 		failures[#failures + 1] = "form/page must request the icon lane"
 	end
-	has(block, 'C.Request(true, { form = true })', "form burst requests Context so overlay icons flip now")
+	behavior("bars_refresh_regression", "contextBurst", "form burst requests Context so overlay icons flip now")
 	has(block, "SP.ApplyLiveType", "form IndexSlot rebinds the live face before CHILDUPDATE")
 	if block:find("if not (FS and FS.OnBurst)", 1, true) then
 		failures[#failures + 1] = "form burst must not skip Context.Request when FormStorm exists"
 	end
 end
-do
-	local i = watchSrc:find('RegisterMany(Ev, "bars.icon"', 1, true)
-	local j = i and watchSrc:find("RegisterMany", i + 10, true)
-	local block = (i and j and watchSrc:sub(i, j - 1)) or ""
-	if not block:find("SPELLS_CHANGED", 1, true) then
-		failures[#failures + 1] = "bars.icon must include SPELLS_CHANGED"
-	end
-	if not block:find("SPELL_UPDATE_ICON", 1, true) then
-		failures[#failures + 1] = "bars.icon must include SPELL_UPDATE_ICON"
-	end
-end
+behavior("bars_refresh_regression", "iconEvents", "icon lanes handle SPELLS_CHANGED and SPELL_UPDATE_ICON")
 
 local ub = read("../Layout/UnifiedBorder.lua")
 has(ub, 'NamedFrame("FluxActionStrip"', "unified envelope uses FluxActionStrip")
@@ -4163,7 +4143,8 @@ has(toc, "Core\\ButtonFX\\Charges.lua", "TOC Charges")
 has(toc, "Core\\ButtonFX\\Click.lua", "TOC Click wrap")
 has(toc, "Core\\ButtonFX\\Glow.lua", "TOC Glow")
 has(toc, "libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua", "TOC LibCustomGlow ProcGlow fallback")
-has(toc, "SpellActivationOverlay", "TOC OptionalDeps SAO")
+has(glowSrc, 'Ev.Register("ADDON_LOADED"', "SAO integration listens for late addon load")
+has(glowSrc, 'name == "SpellActivationOverlay"', "late addon load binds the SAO integration")
 has(toc, "Core\\ButtonFX\\Overlay.lua", "TOC Overlay")
 has(toc, "Core\\ButtonFX\\Cast.lua", "TOC Cast")
 has(toc, "Core\\ButtonFX\\Flash.lua", "TOC Flash")
@@ -5119,17 +5100,9 @@ do
 	end
 end
 local ebsPaint = readEbs("Engine/Paint.lua")
-do
-	local i = ebsPaint:find("function Paint.UpdateIcon", 1, true)
-	local j = i and ebsPaint:find("local function SnapshotStackCount", i, true)
-	local body = (i and j and ebsPaint:sub(i, j - 1)) or ""
-	local bm = body:find("if btn.badgeMode then", 1, true)
-	local els = bm and body:find("else", bm, true)
-	local branch = (bm and els and body:sub(bm, els - 1)) or ""
-	if branch == "" or branch:find("QUESTION", 1, true) then
-		failures[#failures + 1] = "Extra badgeMode must not stamp INV_Misc_QuestionMark"
-	end
-end
+-- Unresolved spells intentionally occupy their badge corner; executable checks
+-- cover placeholders, later icon resolution and the saved desired-face fallback.
+behavior("bars_contract_regression", "badgeIcon", "Extra badge identity and placeholder resolve correctly")
 has(ebsPaint, "charge count is 0 while the stack is still in bags", "Paint count keeps gem stacks over live 0")
 has(ebsPaint, "Paint.DisplayItemCount", "Extra DisplayItemCount")
 do
@@ -5493,7 +5466,7 @@ if badgeSrc:find("2 / 3", 1, true) then
 	failures[#failures + 1] = "badge count must not shrink to 2/3 of NumberFontNormal"
 end
 has(ebsPaint, "Badge.SyncCountFont", "Extra count paint sizes action-bar badge digits")
-has(badgeSrc, "Do not SetSize to the", "SpellFX stays authored for 44")
+behavior("bars_contract_regression", "vfxGeometry", "SpellFX preserves authored native dimensions under badge scaling")
 has(badgeSrc, "SuppressBadgeChrome", "badge hides Extra ring chrome")
 has(badgeSrc, "HostVfxCeiling", "badges sit above host SpellFX")
 has(badgeSrc, "SpellCastAnimFrame", "badge level considers cast fill")
@@ -6035,11 +6008,11 @@ if stanceForms:find('button ~= "RightButton"', 1, true) then
 end
 has(stanceLayout, "ApplyHiddenToShouldShow", "stance layout honors saved hidden keys")
 has(stanceLayout, "_fluxStanceButtonSize = size", "stance layout stamps live button size")
-has(stanceLayout, "SetSize(native, native)", "stance widgets stay native Extra Button size")
+behavior("bars_contract_regression", "stanceGeometry", "stance widgets preserve native dimensions and per-axis squeeze")
 has(stanceLayout, "size / native", "stance visual size is widget SetScale")
 has(stanceLayout, "EnsureSlot", "stance packs a visual SlotFrame like Extra Buttons")
 has(stanceLayout, 'SetPoint("CENTER", slot, "CENTER"', "stance widget is centered in the SlotFrame")
-has(stanceLayout, "slot:SetSize(size, size)", "stance SlotFrame is live button_size")
+behavior("bars_contract_regression", "stanceGeometry", "stance SlotFrame uses configured size and squeeze")
 if stanceLayout:find("ov.SyncSize", 1, true) then
 	failures[#failures + 1] = "stance must not Overlay.SyncSize"
 end

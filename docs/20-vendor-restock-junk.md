@@ -19,7 +19,7 @@ FluxUI extends merchant and bank windows with repairs, junk classification/selli
 | `alreadyKnown` | Enabled, green tint, monochrome/debug/exclude false. |
 | Bulk buy | Separate per-character `buyEmAllEnabled` and `buyEmAllConfirmLarge` default true. |
 
-The rewrite's `DropLegacyStores` intentionally deletes old `VendorAuto`, old top-level/nested bank snapshot fields, and global `FluxRestockDB` on addon load. This is a fresh settings boundary, not a migration of old target lists. The new `_FluxUI_CharSavedVars.Bank` compatibility snapshot survives separately. The active NC Consumables Chronoboon helpers can later recreate `VendorAuto` through `InitRestockSavedVars`; deleting that store at addon load does not mean every live consumer has stopped referencing it. [Persistence reference](32-saved-variables.md) describes the surrounding storage domains.
+`MigrateLegacyStores` now preserves `VendorAuto`, bank snapshots and existing Restock settings. Migration V1 imports validated preferences only when current Restock is absent, and records rollback/archive data in `_FluxUI_CharSavedVars._restockMigrationV1`. It does not replay pending vendor transactions or reinterpret cached bank topology. Old `FluxRestockDB` found in memory is archived inside that declared character root. See the [migration tests/report](43-startup-optimization.md).
 
 ## Merchant lifecycle and automation ordering
 

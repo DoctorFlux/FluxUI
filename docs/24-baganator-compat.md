@@ -1,10 +1,10 @@
 # Baganator integration: categories, protection, bank state, and wrappers
 
-`FluxBaganatorCompat` connects Flux junk, Respec equipment, consumable presets and bank restock to Baganator. It also changes Baganator configuration and wraps selected global item/cursor APIs. Its ownership extends beyond drawing a coin on a bag slot. Inventory data delegation to Syndicator is a separate integration and does not depend on the Baganator view layer being present.
+`FluxBaganatorCompat` connects Flux junk, Respec equipment, consumable presets and bank restock to Baganator. It also changes Baganator configuration and wraps selected cursor APIs while leaving native item identity APIs intact. Its ownership extends beyond drawing a coin on a bag slot. Inventory data delegation to Syndicator is a separate integration and does not depend on the Baganator view layer being present.
 
 ## Startup and dependencies
 
-[`Loader.lua`](../BaganatorCompat/Loader.lua), `Compat.Init`, waits for `Baganator.API`. It immediately installs the item-identity cache and bank-restock bridge; bank controls deliberately do not wait for all Respec modules. The remaining bridge initialization requires `FluxRespec.GearSetLock`, `GearSetIndex`, `R.Inv` and `Flux.Inventory`, or retries from login. Guard flags make installations idempotent. `ADDON_LOADED` for Baganator/_FluxUI and `PLAYER_LOGIN` provide late-start opportunities.
+[`Loader.lua`](../BaganatorCompat/Loader.lua), `Compat.Init`, waits for `Baganator.API` through the deferred `BaganatorIntegration` module. Required late-addon events run integration after the provider finishes its saved-profile handlers. Bank-restock setup retains its independent dependency handling. The initialized marker is published only after successful setup; guard flags keep individual installations idempotent. Baganator no longer delays the essential HUD through TOC ordering.
 
 The compatibility files are TOC-loaded even when Baganator is absent; most meaningful work returns until its API/dependencies exist. Missing optional APIs suppress individual registrations instead of making Baganator a required dependency. Available Baganator API/mixin/config shapes still define what the bridge can do; this is not a version-independent public compatibility guarantee.
 
@@ -35,7 +35,7 @@ The bridge reads the active profile inside `BAGANATOR_CONFIG.Profiles` when avai
 
 `ConfigureBaganatorGearSetCorners` removes `equipment_set` and `equipment_set_icon` from configured corner arrays, inserts the Flux shield at bottom-left, and sets `icon_equipment_set_border = false`. It triggers `PluginsUpdated` and a layout/widget refresh. This is a deliberate configuration change, not simply an extra transient texture.
 
-`InstallItemIdentityCache` in `Loader.lua` wraps the global `C_Item.GetItemGUID` and `C_Item.DoesItemExist` functions once Baganator is ready. For table locations with `bagID`/`slotIndex`, it caches answers per bag/slot until relevant `BAG_UPDATE` or `PLAYERBANKSLOTS_CHANGED` invalidation. Other location shapes delegate to the original function. The GUID wrapper returns nil without querying the original GUID for known non-Armor/non-Weapon item classes. These wrappers are shared global behavior while installed, not Baganator-private API calls.
+Native `C_Item.GetItemGUID` and `C_Item.DoesItemExist` are no longer replaced. Gear-map building selects matching equipment snapshots locally before querying identity, skips unrelated slots and preserves native semantics for every item class and other addon consumer. The regression fixture verifies both fewer identity calls and retained GUID-to-set mappings.
 
 `InstallSellCursorBlock` wraps global `SellCursorItem`. If cursor metadata identifies a Respec-protected bag slot in merchant/disenchant context, it clears the cursor, reports the block and declines the original call. Otherwise it delegates. Category/vendor integration also wraps view `RunAction`, `Transfer`, `TransferCategory`, and available category-button mixin interaction methods, retaining originals for unhandled paths. Existing hook flags avoid stacking the same wrappers repeatedly.
 

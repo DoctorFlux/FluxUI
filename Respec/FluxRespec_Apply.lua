@@ -114,7 +114,11 @@ end
 --- Clear an in-progress apply (rune queue, state). Does not fire APPLY_DONE.
 --- @param preserveRunes boolean|nil SoD: keep the rune engrave queue when stopping for NEEDS_TRAINER so you can engrave before visiting the trainer.
 local function ClearApplyState(preserveRunes)
+    local state = Apply._state
     Apply._state = nil
+    if state and state.bindingCallback and _G.FluxSpellBindings_CancelPendingApply then
+        pcall(_G.FluxSpellBindings_CancelPendingApply, state.bindingCallback)
+    end
     if R.Talents and R.Talents.AbortApply then
         pcall(R.Talents.AbortApply)
     end
@@ -124,7 +128,7 @@ local function ClearApplyState(preserveRunes)
 end
 
 --- Stop load with failure; clears queue so gear/runes/bars do not continue.
-local function AbortPipeline(reason)
+local function AbortPipeline(reason, preserveCheckpoint)
     local preserveRunes = false
     if reason == "NEEDS_TRAINER"
         and Compat.IsSoD and Compat.IsSoD()
@@ -132,7 +136,7 @@ local function AbortPipeline(reason)
         preserveRunes = true
     end
     ClearApplyState(preserveRunes)
-    if R.ClearLoadCheckpoint then
+    if not preserveCheckpoint and R.ClearLoadCheckpoint then
         R.ClearLoadCheckpoint()
     end
     R.Fire("APPLY_DONE", false, reason or "ABORTED")
@@ -214,15 +218,18 @@ local function ResolveSpellBindingsSnap(profile)
 end
 
 local function ProfileSpellBindingsMatch(profile)
-    if not _G.FluxSpellBindings_MatchesSnapshot then return true end
     local snap = ResolveSpellBindingsSnap(profile)
     if not snap then return true end
-    -- Legacy V2 blobs are unrestorable — treat as non-blocking "match" so load continues.
+    if not _G.FluxSpellBindings_ApplySnapshot or not _G.FluxSpellBindings_MatchesSnapshot then
+        return false
+    end
+    -- An unrestorable captured section must reach the failure path, rather than
+    -- letting the whole-profile fast path report that every section matched.
     if _G.FluxSpellBindings_IsLegacySnapshot and _G.FluxSpellBindings_IsLegacySnapshot(snap) then
-        return true
+        return false
     end
     if _G.FluxSpellBindings_IsV3Snapshot and not _G.FluxSpellBindings_IsV3Snapshot(snap) then
-        return true
+        return false
     end
     return _G.FluxSpellBindings_MatchesSnapshot(snap)
 end
@@ -295,8 +302,7 @@ local function ProfileAlreadyFullyApplied(profile)
             return false
         end
     end
-    if SectionOn(profile, "spellBindings") and _G.FluxSpellBindings_MatchesSnapshot
-        and not ProfileSpellBindingsMatch(profile) then
+    if SectionOn(profile, "spellBindings") and not ProfileSpellBindingsMatch(profile) then
         return false
     end
     if SectionOn(profile, "infoFrame") and R.Includes and R.Includes.InfoFrameMatches then
@@ -373,7 +379,6 @@ end
 
 local function ProfileSpellBindingsDiffer(profile)
     if not SectionOn(profile, "spellBindings") then return false end
-    if not _G.FluxSpellBindings_MatchesSnapshot then return false end
     return not ProfileSpellBindingsMatch(profile)
 end
 
@@ -777,7 +782,7 @@ StepSpellBindings = function()
     if not state then return end
     state.phase = "bindings"
     local profile = state.profile
-    if not SectionOn(profile, "spellBindings") or not _G.FluxSpellBindings_ApplySnapshot then
+    if not SectionOn(profile, "spellBindings") then
         StepDone()
         return
     end
@@ -786,14 +791,29 @@ StepSpellBindings = function()
         StepDone()
         return
     end
+    if R.SetLoadCheckpoint and state.name then
+        R.SetLoadCheckpoint(state.name, "bindings")
+    end
+    local function failBindings(reason)
+        if Apply._state ~= state then return end
+        state.waitingForBindings = nil
+        R.Warn("Spell bindings: " .. tostring(reason or "FAILED"))
+        SetStatus("Load failed. Spell bindings can be retried.")
+        -- Earlier gear/talent changes may already be committed. Retain the
+        -- bindings checkpoint so the Load UI can offer recovery.
+        AbortPipeline(reason or "SPELL_BINDINGS_FAILED", true)
+    end
+    if not _G.FluxSpellBindings_ApplySnapshot then
+        failBindings("SPELL_BINDINGS_API_UNAVAILABLE")
+        return
+    end
     if _G.FluxSpellBindings_IsLegacySnapshot and _G.FluxSpellBindings_IsLegacySnapshot(snap) then
         R.Warn("Spell bindings were saved with the previous Binding system — re-save this profile to update them.")
-        StepDone()
+        failBindings("SPELL_BINDINGS_LEGACY_SNAPSHOT")
         return
     end
     if _G.FluxSpellBindings_IsV3Snapshot and not _G.FluxSpellBindings_IsV3Snapshot(snap) then
-        R.Warn("Spell bindings snapshot is invalid — skipped.")
-        StepDone()
+        failBindings("SPELL_BINDINGS_INVALID_SNAPSHOT")
         return
     end
     if _G.FluxSpellBindings_MatchesSnapshot and _G.FluxSpellBindings_MatchesSnapshot(snap) then
@@ -801,30 +821,30 @@ StepSpellBindings = function()
         StepDone()
         return
     end
-    if R.SetLoadCheckpoint and state.name then
-        R.SetLoadCheckpoint(state.name, "bindings")
-    end
     SetStatus("Applying Flux spell bindings and badges…")
-    local function afterBindings(ok)
+    local function afterBindings(ok, reason)
         if not Apply._state or Apply._state ~= state then return end
         state.waitingForBindings = nil
         if ok then
             StepDone()
         else
-            R.Warn("Spell bindings could not be applied.")
-            SetStatus("Load failed.")
-            FinishSuccess()
+            failBindings(reason)
         end
     end
-    local ok, reason = _G.FluxSpellBindings_ApplySnapshot(snap, afterBindings)
+    state.bindingCallback = afterBindings
+    state.waitingForBindings = true
+    local called, ok, reason = pcall(_G.FluxSpellBindings_ApplySnapshot, snap, afterBindings)
+    if Apply._state ~= state then return end -- synchronous completion owns the result
+    if not called then
+        failBindings(ok)
+        return
+    end
     if not ok and (reason == "IN_COMBAT" or reason == "in combat") then
-        state.waitingForBindings = true
         R.Print("In combat: spell bindings will be applied after combat ends.")
         return
     end
     if not ok then
-        R.Warn("Spell bindings: " .. tostring(reason or "FAILED"))
-        StepDone()
+        failBindings(reason)
     end
 end
 

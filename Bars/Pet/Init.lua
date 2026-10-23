@@ -7,6 +7,7 @@ Flux.Bars = Bars
 
 local Pet = Bars.Pet or {}
 Bars.Pet = Pet
+Pet.secureReady = false
 
 Pet.CONFIG = {
 	buttonSize = 30,
@@ -234,79 +235,93 @@ end
 local function CreateButtons()
 	local EBS = Flux.EBS
 	if not (EBS and EBS.Widget and EBS.Widget.Create) then
-		return
+		return false
 	end
 	local native = (Flux.Bars and Flux.Bars.CONFIG and Flux.Bars.CONFIG.buttonSize) or 44
 	for i = 1, Pet.CONFIG.totalButtons do
-		local btn = EBS.Widget.Create(frame, {
-			name = "FluxPetButton" .. i,
-			size = native,
-			showBorder = true,
-			tooltip = true,
-			macroText = false,
-			autocast = true,
-			locked = false,
-			castUnit = "pet",
-		})
-		if btn then
-			btn.showgrid = 0
-			btn.categoryScope = "character"
-			if EBS.Action and EBS.Action.SetAction then
-				EBS.Action.SetAction(btn, "pet", i)
+		local btn = buttons[i]
+		if not (btn and btn._fluxPetReady) then
+			btn = btn or EBS.Widget.Create(frame, {
+				name = "FluxPetButton" .. i,
+				size = native,
+				showBorder = true,
+				tooltip = true,
+				macroText = false,
+				autocast = true,
+				locked = false,
+				castUnit = "pet",
+			})
+			if btn then
+				buttons[i] = btn
+				btn.showgrid = 0
+				btn.categoryScope = "character"
+				if EBS.Action and EBS.Action.SetAction then
+					EBS.Action.SetAction(btn, "pet", i)
+				end
+				if EBS.Style and EBS.Style.Apply then
+					EBS.Style.Apply(btn, "character")
+				end
+				local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+				if G and btn.Widget and G.NotifySAO then
+					G.NotifySAO(btn.Widget)
+				end
+				btn._fluxPetReady = true
 			end
-			if EBS.Style and EBS.Style.Apply then
-				EBS.Style.Apply(btn, "character")
-			end
-			local G = Flux.ButtonFX and Flux.ButtonFX.Glow
-			if G and btn.Widget and G.NotifySAO then
-				G.NotifySAO(btn.Widget)
-			end
-			buttons[i] = btn
 		end
 	end
+	for i = 1, Pet.CONFIG.totalButtons do
+		if not (buttons[i] and buttons[i].Widget and buttons[i]._fluxPetReady) then return false end
+	end
+	return true
 end
 
 function Pet.Start()
 	if started then
-		return
+		return true
 	end
 	if InLockdown() then
 		Defer("bars.pet.start", Pet.Start)
-		return
+		return false
 	end
-	started = true
-	frame = CreateFrame("Frame", "FluxPetBar", UIParent)
+	frame = frame or _G.FluxPetBar or CreateFrame("Frame", "FluxPetBar", UIParent)
 	frame:SetFrameStrata("MEDIUM")
 	frame:SetFrameLevel(5)
 	frame:SetMovable(false)
 	frame:EnableMouse(false)
 	frame:SetSize(1, 1)
 	frame:SetScale(Pet.CONFIG.scale)
+	frame:Hide()
 	InstallGlobal(frame)
-	CreateButtons()
+	if not CreateButtons() then return false end
 	if Pet.LayoutButtons then
 		Pet.LayoutButtons()
 	end
 	if FluxBorder and FluxBorder.SetClassColor then
 		FluxBorder:SetClassColor(frame, 1, true)
 	end
-	Pet.ApplyVisibility()
 	if Pet.SetupKeybindings then
-		Pet.SetupKeybindings()
+		if Pet.SetupKeybindings() == false then return false end
 	end
 	if Pet.Watch and Pet.Watch.Start then
 		Pet.Watch.Start()
 	end
 	Pet.UpdatePosition()
 	Pet.ForAll("Update")
+	Pet.ApplyVisibility()
+	Pet.secureReady = true
 	if Bars.Blizzard and Bars.Blizzard.HideUnusedBars then
 		Bars.Blizzard.HideUnusedBars()
 	end
+	started = true
+	return true
 end
 
 Flux.Module.Register("PetBar", {
+	phase = "secure",
+	priority = 30,
+	protected = true,
 	clients = { era = true, anniversary = true, classic = true, midnight = true },
 	OnEnable = function()
-		Pet.Start()
+		return Pet.Start()
 	end,
 })

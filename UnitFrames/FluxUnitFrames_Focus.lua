@@ -228,7 +228,7 @@ function FluxUnitFrames_ApplyRuntimeFocus(wantFlux)
         return
     end
     if InCombatLockdown() then
-        C_Timer.After(0.5, function()
+        UF.DeferProtected("runtime.focus", function()
             FluxUnitFrames_ApplyRuntimeFocus(wantFlux)
         end)
         return
@@ -276,7 +276,7 @@ function FluxUnitFrames_ApplyRuntimeFocus(wantFlux)
         suppressBlizzard()
         if not ns.FocusFrame then
             focusFrameInitialized = false
-            InitializeFocusFrame()
+            UF.RunInitializer("focus")
         else
             ns.FocusFrame:Show()
             if UF.SyncWatchedUnitFrameVisibility then
@@ -297,9 +297,4 @@ function FluxUnitFrames_ApplyRuntimeFocus(wantFlux)
     restoreBlizzard()
 end
 
-local loader = CreateFrame("Frame")
-loader:RegisterEvent("PLAYER_LOGIN")
-loader:SetScript("OnEvent", function()
-    InitializeFocusFrame()
-end)
-
+UF.RegisterInitializer("focus", InitializeFocusFrame, function() return focusFrameInitialized end, 62)

@@ -4,6 +4,8 @@
 -- Positioned left-aligned above player frame's outer border
 
 local addonName, ns = ...
+local Flux = ns.Flux or _G.Flux
+local updateScheduled = false
 
 -- ---------------------------------------------------------------------------
 -- VERSION DETECTION
@@ -156,6 +158,7 @@ function FluxVehicleExitButton:RegisterEvents()
     button:RegisterEvent("PLAYER_CONTROL_LOST")
     -- Taxi start/end reliably toggle the exit affordance.
     button:RegisterEvent("PLAYER_ENTERING_WORLD")
+    button:RegisterEvent("PLAYER_REGEN_ENABLED")
 
     -- Set event handler
     button:SetScript("OnEvent", function(buttonFrame, event, ...)
@@ -164,6 +167,9 @@ function FluxVehicleExitButton:RegisterEvents()
 end
 
 function FluxVehicleExitButton:OnEvent(buttonFrame, event, ...)
+    if event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_REGEN_ENABLED" then
+        self:UpdatePosition()
+    end
     -- For UNIT_ENTERED_VEHICLE and UNIT_EXITED_VEHICLE, check if it's for the player
     if event == "UNIT_ENTERED_VEHICLE" or event == "UNIT_EXITED_VEHICLE" then
         local unit = ...
@@ -176,8 +182,10 @@ function FluxVehicleExitButton:OnEvent(buttonFrame, event, ...)
     FluxVehicleExitButton:Update()
     
     -- Also update after a tiny delay to catch any state changes that happen slightly after the event
-    if C_Timer and C_Timer.After then
+    if not updateScheduled and C_Timer and C_Timer.After then
+        updateScheduled = true
         C_Timer.After(0.01, function()
+            updateScheduled = false
             if button then
                 FluxVehicleExitButton:Update()
             end
@@ -329,26 +337,8 @@ function FluxVehicleExitButton:UpdatePosition()
     -- Combat safety check - defer positioning if in combat
     -- Note: Show/Hide can be done in combat, but SetPoint cannot
     if InCombatLockdown() then
-        -- Store flag to update after combat
-        if not button.needsPositionUpdate then
-            button.needsPositionUpdate = true
-            -- Register event to update after combat if not already registered
-            if not button:IsEventRegistered("PLAYER_REGEN_ENABLED") then
-                button:RegisterEvent("PLAYER_REGEN_ENABLED")
-                local originalOnEvent = button:GetScript("OnEvent")
-                button:SetScript("OnEvent", function(buttonFrame, event, ...)
-                    if event == "PLAYER_REGEN_ENABLED" and buttonFrame.needsPositionUpdate then
-                        buttonFrame.needsPositionUpdate = false
-                        buttonFrame:UnregisterEvent("PLAYER_REGEN_ENABLED")
-                        FluxVehicleExitButton:UpdatePosition()
-                    end
-                    -- Call original event handler if it exists
-                    if originalOnEvent then
-                        originalOnEvent(buttonFrame, event, ...)
-                    end
-                end)
-            end
-        end
+        -- The shared combat queue replaces repeated requests under one key.
+        Flux.Combat.Defer("vehicleExit.position", function() FluxVehicleExitButton:UpdatePosition() end)
         return
     end
     
@@ -400,14 +390,7 @@ local function Initialize()
 end
 
 -- Register startup events
-local startupFrame = CreateFrame("Frame")
-startupFrame:RegisterEvent("PLAYER_LOGIN")
-startupFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-startupFrame:SetScript("OnEvent", function(self, event)
-    if event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
-        Initialize()
-    end
-end)
+Flux.AfterLogin(Initialize)
 
 -- Export update position function for use by other modules
 FluxVehicleExitButton.UpdatePosition = FluxVehicleExitButton.UpdatePosition
