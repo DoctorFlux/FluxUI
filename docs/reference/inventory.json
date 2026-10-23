@@ -1,5 +1,6 @@
 {
-  "format_version": 1,
+  "format_version": 2,
+  "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
   "clients": [
     "mainline",
     "camelot",
@@ -20149,8 +20150,40 @@
       "path": "Bars/_tmp_barsmoke.lua",
       "classification": "development harness",
       "chapter": "11-action-bars.md",
-      "lines": 8246,
-      "sha256": "24501a2918e3cabfc94ba1ace5f9b7504cbda0ca1ac99692a7e34c382f7671c4",
+      "lines": 8247,
+      "sha256": "8db003c6c64f39b01c76b597961cf91d4a0aeced59ae524cc12e96f42309a1f2",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "classification": "development harness",
+      "chapter": "11-action-bars.md",
+      "lines": 269,
+      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "Bars/_tmp_stockgridsmoke.lua",
+      "classification": "development harness",
+      "chapter": "11-action-bars.md",
+      "lines": 287,
+      "sha256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -20369,8 +20402,8 @@
       "path": "Bars/Blizzard.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 906,
-      "sha256": "ad18e22320771a53497b5c35c6a6f9e722211ad200ee79bf8c5f9976e10bf411",
+      "lines": 960,
+      "sha256": "3d6baf755d6e3aedb2ec832b92277bc2a4aecc2d5439cb96f90ff147a4cf8799",
       "clients": [
         "camelot",
         "cata",
@@ -20388,52 +20421,52 @@
       "functions": [
         {
           "name": "Blizzard.GetHider",
-          "line": 77
+          "line": 118
         },
         {
           "name": "Blizzard.GetActionButton",
-          "line": 88
+          "line": 129
         },
         {
           "name": "Blizzard.QueueLeftoverMouse",
-          "line": 562
+          "line": 614
         },
         {
           "name": "Blizzard.HideStockButtons",
-          "line": 708
+          "line": 760
         },
         {
           "name": "Blizzard.KillLeftoverMouse",
-          "line": 717
+          "line": 769
         },
         {
           "name": "Blizzard.HideUnusedBars",
-          "line": 750
+          "line": 803
         },
         {
           "name": "widget.UpdateButtonArtwidget.UpdateButtonArt",
-          "line": 852
+          "line": 906
         },
         {
           "name": "Blizzard.SkinButton",
-          "line": 863
+          "line": 917
         },
         {
           "name": "Blizzard.Prepare",
-          "line": 877
+          "line": 931
         },
         {
           "name": "Blizzard.Reassert",
-          "line": 883
+          "line": 937
         },
         {
           "name": "Blizzard.QuietGrid",
-          "line": 889
+          "line": 943
         }
       ],
       "events": [
         {
-          "line": 600,
+          "line": 652,
           "method": "RegisterEvent",
           "arguments": [
             "STOCK_STANCE_LEFTOVER_EVENTS[i]"
@@ -20441,12 +20474,12 @@
           "context": "#STOCK_STANCE_LEFTOVER_EVENTSdoleftoverWatch:"
         },
         {
-          "line": 603,
+          "line": 654,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
           ],
-          "context": "()thenleftoverWatch:"
+          "context": "])endleftoverWatch:"
         }
       ],
       "slash": [],
@@ -20658,8 +20691,8 @@
       "path": "Bars/Hosts.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 911,
-      "sha256": "b99df782ddced1540354f6aed553359c830a8cb96b1dd8db274185f8170c9f4b",
+      "lines": 913,
+      "sha256": "5dc3030886d3edb2d98a769b891be7ead393e8f375a4939356932dccd57a03a9",
       "clients": [
         "camelot",
         "cata",
@@ -20701,43 +20734,43 @@
         },
         {
           "name": "Hosts.UpdateTooltip",
-          "line": 436
+          "line": 438
         },
         {
           "name": "Hosts.RefreshHoverTooltip",
-          "line": 476
+          "line": 478
         },
         {
           "name": "Hosts.CreateSurface",
-          "line": 487
+          "line": 489
         },
         {
           "name": "Hosts.Skin",
-          "line": 799
+          "line": 801
         },
         {
           "name": "Hosts.FinishSurface",
-          "line": 809
+          "line": 811
         },
         {
           "name": "Hosts.Build",
-          "line": 846
+          "line": 848
         },
         {
           "name": "Hosts.ApplyChrome",
-          "line": 888
+          "line": 890
         },
         {
           "name": "Hosts.InvalidateKeys",
-          "line": 894
+          "line": 896
         },
         {
           "name": "Hosts.RefreshKeys",
-          "line": 900
+          "line": 902
         },
         {
           "name": "Hosts.PrepareClicks",
-          "line": 907
+          "line": 909
         }
       ],
       "events": [],
@@ -20750,8 +20783,8 @@
       "path": "Bars/Init.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 534,
-      "sha256": "32e06852afa0137d3d811e04c76dadb18eaeeb4a09bafd71642c141f2264581a",
+      "lines": 536,
+      "sha256": "5c522b8ca69e599a7fe42b42750f29f83b3cdf751474d3adb9aa9f8070293550",
       "clients": [
         "camelot",
         "cata",
@@ -20822,12 +20855,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXBARS1",
           "value": "/fluxbars",
-          "line": 453
+          "line": 455
         },
         {
           "kind": "handler",
           "name": "FLUXBARS",
-          "line": 454
+          "line": 456
         }
       ],
       "widgets": [],
@@ -20838,8 +20871,8 @@
       "path": "Bars/Layout.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 728,
-      "sha256": "8adef94aa21033f25db91cf4e118606bc615a65c926fc7c461efdc074cf38287",
+      "lines": 731,
+      "sha256": "cee77ad50dd6d3ac26a6cc446fde95ed7609f11822c132721735806870fe96d3",
       "clients": [
         "camelot",
         "cata",
@@ -20857,75 +20890,75 @@
       "functions": [
         {
           "name": "Layout.HasContentInAnyState",
-          "line": 62
+          "line": 63
         },
         {
           "name": "Layout.HasContentOnMain",
-          "line": 81
+          "line": 82
         },
         {
           "name": "Layout.IsColumnEmpty",
-          "line": 93
+          "line": 94
         },
         {
           "name": "Layout.GetPromotedMode",
-          "line": 110
+          "line": 114
         },
         {
           "name": "Layout.IsExpanding",
-          "line": 132
+          "line": 136
         },
         {
           "name": "Layout.SetBindingMode",
-          "line": 153
+          "line": 157
         },
         {
           "name": "Layout.MiniAtBottom",
-          "line": 164
+          "line": 168
         },
         {
           "name": "Layout.InvalidateMappings",
-          "line": 174
+          "line": 178
         },
         {
           "name": "Layout.ApplyMappings",
-          "line": 198
+          "line": 202
         },
         {
           "name": "Layout.RevealEmptyInCombat",
-          "line": 263
+          "line": 266
         },
         {
           "name": "Layout.AnyMiniVisible",
-          "line": 396
+          "line": 399
         },
         {
           "name": "Layout.VisibleCount",
-          "line": 406
+          "line": 409
         },
         {
           "name": "Layout.ApplyVisual",
-          "line": 455
+          "line": 458
         },
         {
           "name": "Layout.Invalidate",
-          "line": 595
+          "line": 598
         },
         {
           "name": "Layout.Apply",
-          "line": 600
+          "line": 603
         },
         {
           "name": "Layout.Request",
-          "line": 626
+          "line": 629
         },
         {
           "name": "Layout.OnCursor",
-          "line": 683
+          "line": 686
         },
         {
           "name": "Layout.Start",
-          "line": 702
+          "line": 705
         }
       ],
       "events": [],
@@ -21174,8 +21207,8 @@
       "path": "Bars/Pet/Init.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 309,
-      "sha256": "15df5206764d51bb17604fdd0f6eda379b70e51ea2f69c35461d3975ce2ae98c",
+      "lines": 312,
+      "sha256": "eaf9e98f7f15552f79a1f62512d0d60eb42758707c507fb72f8e0a92967b82e4",
       "clients": [
         "camelot",
         "cata",
@@ -21193,67 +21226,67 @@
       "functions": [
         {
           "name": "Pet.GetFrame",
-          "line": 45
+          "line": 48
         },
         {
           "name": "Pet.GetButton",
-          "line": 49
+          "line": 52
         },
         {
           "name": "Pet.GetAllButtons",
-          "line": 53
+          "line": 56
         },
         {
           "name": "Pet.ForAll",
-          "line": 57
+          "line": 60
         },
         {
           "name": "Pet.UpdatePosition",
-          "line": 108
+          "line": 111
         },
         {
           "name": "Pet.SetBindingModeFrameOverride",
-          "line": 157
+          "line": 160
         },
         {
           "name": "Pet.FlushBindingModePending",
-          "line": 181
+          "line": 184
         },
         {
           "name": "Pet.ApplyVisibility",
-          "line": 190
+          "line": 193
         },
         {
           "name": "f.GetFrame",
-          "line": 204
-        },
-        {
-          "name": "endf.GetButton",
           "line": 207
         },
         {
-          "name": "endf.GetAllButtons",
+          "name": "endf.GetButton",
           "line": 210
         },
         {
-          "name": "endf.ForAll",
+          "name": "endf.GetAllButtons",
           "line": 213
         },
         {
-          "name": "endf.UpdatePosition",
+          "name": "endf.ForAll",
           "line": 216
         },
         {
-          "name": "endf.SetupKeybindings",
+          "name": "endf.UpdatePosition",
           "line": 219
         },
         {
+          "name": "endf.SetupKeybindings",
+          "line": 222
+        },
+        {
           "name": "endendf.SetBindingModeFrameOverride",
-          "line": 224
+          "line": 227
         },
         {
           "name": "Pet.Start",
-          "line": 266
+          "line": 269
         }
       ],
       "events": [],
@@ -21511,8 +21544,8 @@
       "path": "Bars/SlotMath.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 241,
-      "sha256": "f8feb5f604238372917c2f89afd8f81a289fa3ba1fb57353efb99d740880cd52",
+      "lines": 243,
+      "sha256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
       "clients": [
         "camelot",
         "cata",
@@ -21542,19 +21575,19 @@
         },
         {
           "name": "M.MainSlot",
-          "line": 142
+          "line": 144
         },
         {
           "name": "M.SecondarySlot",
-          "line": 154
+          "line": 156
         },
         {
           "name": "M.TertiarySlot",
-          "line": 162
+          "line": 164
         },
         {
           "name": "M.SelfTest",
-          "line": 176
+          "line": 178
         }
       ],
       "events": [],
@@ -21567,8 +21600,8 @@
       "path": "Bars/SlotProgram.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 594,
-      "sha256": "944d731814458509d787852a925693937c50a7a7ac0a3e70fcf12e8c868c1b00",
+      "lines": 599,
+      "sha256": "f16577bf7b1a3940a67fcae412f834b66c717cd3c9870ee0defa7b890c22341d",
       "clients": [
         "camelot",
         "cata",
@@ -21586,79 +21619,79 @@
       "functions": [
         {
           "name": "SlotHost.GetAllBarSlots",
-          "line": 254
+          "line": 259
         },
         {
           "name": "SlotProgram.Apply",
-          "line": 318
+          "line": 323
         },
         {
           "name": "SlotProgram.ApplyMap",
-          "line": 357
+          "line": 362
         },
         {
           "name": "SlotProgram.Get",
-          "line": 386
+          "line": 391
         },
         {
           "name": "SlotProgram.GetIdle",
-          "line": 390
+          "line": 395
         },
         {
           "name": "SlotProgram.GetMode",
-          "line": 398
+          "line": 403
         },
         {
           "name": "SlotProgram.GetAll",
-          "line": 402
+          "line": 407
         },
         {
           "name": "SlotProgram.ClickButtonName",
-          "line": 406
+          "line": 411
         },
         {
           "name": "SlotProgram.ClickButton",
-          "line": 417
+          "line": 422
         },
         {
           "name": "SlotProgram.HasAny",
-          "line": 424
+          "line": 429
         },
         {
           "name": "SlotProgram.SetHover",
-          "line": 428
+          "line": 433
         },
         {
           "name": "SlotProgram.ApplyHoverMap",
-          "line": 440
+          "line": 445
         },
         {
           "name": "SlotProgram.GetHover",
-          "line": 478
+          "line": 483
         },
         {
           "name": "SlotProgram.GetAllHover",
-          "line": 482
+          "line": 487
         },
         {
           "name": "SlotProgram.HasHover",
-          "line": 486
+          "line": 491
         },
         {
           "name": "SlotProgram.RefreshDisplays",
-          "line": 513
+          "line": 518
         },
         {
           "name": "SlotProgram.ApplyStripDisplayOverrides",
-          "line": 550
+          "line": 555
         },
         {
           "name": "SlotProgram.ReassertAll",
-          "line": 570
+          "line": 575
         },
         {
           "name": "SlotProgram.FlushCombatQueue",
-          "line": 589
+          "line": 594
         }
       ],
       "events": [],
@@ -22336,8 +22369,8 @@
       "path": "Bars/State.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 1095,
-      "sha256": "16cd5faed6410187e7cae2d73ec9f90cc0f38cbb20b441283a54b67ce207aad7",
+      "lines": 1125,
+      "sha256": "4849062d579424cd52359e462d8f284f2819244c363b042849ef317d76816bc6",
       "clients": [
         "camelot",
         "cata",
@@ -22355,71 +22388,71 @@
       "functions": [
         {
           "name": "State.GetSecondarySlot",
-          "line": 58
+          "line": 72
         },
         {
           "name": "State.GetTertiarySlot",
-          "line": 62
+          "line": 76
         },
         {
           "name": "State.GetMainSlot",
-          "line": 66
+          "line": 80
         },
         {
           "name": "State.ResolveSlot",
-          "line": 70
+          "line": 84
         },
         {
           "name": "State.GetCurrentPage",
-          "line": 92
+          "line": 106
         },
         {
           "name": "State.GetMinirowPosition",
-          "line": 112
+          "line": 126
         },
         {
           "name": "State.BuildNativeDriver",
-          "line": 182
+          "line": 196
         },
         {
           "name": "State.Attach",
-          "line": 637
+          "line": 657
         },
         {
           "name": "State.HeaderFor",
-          "line": 673
+          "line": 695
         },
         {
           "name": "State.Create",
-          "line": 780
+          "line": 802
         },
         {
           "name": "State.RegisterDrivers",
-          "line": 809
+          "line": 831
         },
         {
           "name": "State.CurrentSwap",
-          "line": 939
+          "line": 967
         },
         {
           "name": "State.IndexLiveSlots",
-          "line": 953
+          "line": 981
         },
         {
           "name": "State.ApplySlotsInsecure",
-          "line": 999
+          "line": 1027
         },
         {
           "name": "State.OnModFallback",
-          "line": 1044
+          "line": 1072
         },
         {
           "name": "State.ForceApply",
-          "line": 1052
+          "line": 1080
         },
         {
           "name": "State.GetClassStances",
-          "line": 1087
+          "line": 1117
         }
       ],
       "events": [],
@@ -22516,8 +22549,8 @@
       "path": "Bars/Vehicle.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 226,
-      "sha256": "cbe36c5121d89fd14c5c488601d021cac82123bd846ab88d98390a0258d0501b",
+      "lines": 234,
+      "sha256": "4873f8f60460ec2af9b7f480e6d7d6a044c263e4a7bf84337cb095af6d76c034",
       "clients": [
         "camelot",
         "cata",
@@ -22535,15 +22568,15 @@
       "functions": [
         {
           "name": "Vehicle.Apply",
-          "line": 126
+          "line": 129
         },
         {
           "name": "Vehicle.QueueApply",
-          "line": 151
+          "line": 156
         },
         {
           "name": "Vehicle.Start",
-          "line": 189
+          "line": 194
         }
       ],
       "events": [],
@@ -22556,8 +22589,8 @@
       "path": "Bars/Watch.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 979,
-      "sha256": "408f8f44266cac2fc596be22db43e5c156a2ecb746f1e0609a28036e2db61cf5",
+      "lines": 978,
+      "sha256": "6c4fa1f2aed219c67eb15bff3c9ea344ca8067d301609d73355299131fab5034",
       "clients": [
         "camelot",
         "cata",
@@ -22602,6 +22635,22 @@
           "line": 325
         }
       ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+      "classification": "development harness",
+      "chapter": "10-flux-window.md",
+      "lines": 302,
+      "sha256": "3ff2284b43cbad68838f271ff30eddf85a885fde8ecc5afb82530a78c7113527",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
       "events": [],
       "slash": [],
       "widgets": [],
@@ -22850,8 +22899,8 @@
       "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 931,
-      "sha256": "8afa3b9f59139191a3cc03ef167e71957cd4cf04120cb3d9847dc98c508e0ebd",
+      "lines": 926,
+      "sha256": "79c2f7bb0661844c702eb8c6968f9907aec180af7d184759ddf1dce7df195c7b",
       "clients": [
         "camelot",
         "cata",
@@ -22868,65 +22917,77 @@
       "settings": [],
       "functions": [
         {
+          "name": "FluxBattlefieldMapPinRouter:IsLibrarySupported",
+          "line": 61
+        },
+        {
           "name": "FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield",
-          "line": 109
+          "line": 124
         },
         {
           "name": "FluxBattlefieldMapPinRouter:IsHBDAvailable",
-          "line": 128
+          "line": 143
         },
         {
           "name": "FluxBattlefieldMapPinRouter:IsHBDWorldProvider",
-          "line": 132
+          "line": 147
         },
         {
           "name": "FluxBattlefieldMapPinRouter:GetRouteLabel",
-          "line": 151
+          "line": 166
         },
         {
           "name": "canvaspool.createFunc",
-          "line": 216
-        },
-        {
-          "name": "frame.OnAcquiredframe.OnAcquired",
           "line": 231
         },
         {
+          "name": "frame.OnAcquiredframe.OnAcquired",
+          "line": 246
+        },
+        {
           "name": "endendendreturnframeendpool.resetFunc",
-          "line": 242
+          "line": 257
         },
         {
           "name": "canvaspool.createFunc",
-          "line": 310
+          "line": 325
         },
         {
-          "name": "routeworldProvider.HandlePin",
-          "line": 550
+          "name": "route.battlefieldProvider.RefreshAllDataroute.battlefieldProvider.RefreshAllData",
+          "line": 574
+        },
+        {
+          "name": "endendworldProvider.HandlePin",
+          "line": 583
         },
         {
           "name": "endworldProvider.RefreshAllData",
-          "line": 553
+          "line": 586
         },
         {
           "name": "FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins",
-          "line": 736
+          "line": 706
+        },
+        {
+          "name": "FluxBattlefieldMapPinRouter:RequestRefresh",
+          "line": 737
         },
         {
           "name": "FluxBattlefieldMapPinRouter:ScheduleKickstart",
-          "line": 762
+          "line": 749
         },
         {
           "name": "FluxBattlefieldMapPinRouter:Install",
-          "line": 795
+          "line": 773
         },
         {
           "name": "FluxBattlefieldMapPinRouter:Uninstall",
-          "line": 822
+          "line": 804
         }
       ],
       "events": [
         {
-          "line": 866,
+          "line": 853,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_NEW_AREA\""
@@ -22934,7 +22995,7 @@
           "context": "(\"Frame\")zoneRefresher:"
         },
         {
-          "line": 867,
+          "line": 854,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -22942,12 +23003,20 @@
           "context": "(\"ZONE_CHANGED_NEW_AREA\")zoneRefresher:"
         },
         {
-          "line": 868,
+          "line": 855,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
           ],
           "context": "(\"ADDON_LOADED\")zoneRefresher:"
+        },
+        {
+          "line": 856,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_REGEN_ENABLED\""
+          ],
+          "context": "(\"PLAYER_ENTERING_WORLD\")zoneRefresher:"
         }
       ],
       "slash": [],
@@ -22959,8 +23028,8 @@
       "path": "Battlezonemap/FluxBattlefieldMapPinTooltips.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 248,
-      "sha256": "7c5932232700d6be70f648814d6859a5f4fea876c3de400eac2d59dee81a1616",
+      "lines": 253,
+      "sha256": "f2b64d27c46e6b465bad794acfb33e385af21b33a0509690c8cb55c4eb00b2f4",
       "clients": [
         "camelot",
         "cata",
@@ -22978,31 +23047,31 @@
       "functions": [
         {
           "name": "FluxBattlefieldMapPinTooltips:OnHBDPinAcquired",
-          "line": 119
+          "line": 121
         },
         {
           "name": "FluxBattlefieldMapPinTooltips:IsInstalled",
-          "line": 138
+          "line": 140
         },
         {
           "name": "FluxBattlefieldMapPinTooltips:GetDiagnostics",
-          "line": 142
+          "line": 144
         },
         {
           "name": "provider.GetMapprovider.GetMap",
-          "line": 158
+          "line": 160
         },
         {
           "name": "provider.RemoveAllData",
-          "line": 167
+          "line": 169
         },
         {
           "name": "FluxBattlefieldMapPinTooltips:Install",
-          "line": 225
+          "line": 230
         },
         {
           "name": "FluxBattlefieldMapPinTooltips:Uninstall",
-          "line": 240
+          "line": 245
         }
       ],
       "events": [],
@@ -23140,8 +23209,8 @@
       "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1283,
-      "sha256": "d6cf036d3187fa8f8fc588fb8bc90ca6bc0029423c7bbe682b41f4042abe96dc",
+      "lines": 1274,
+      "sha256": "00eaf0863563fcf826b5b32cb8adec764f1397f82e89e4e5f9acab1cbc6ebe43",
       "clients": [
         "camelot",
         "cata",
@@ -23195,23 +23264,23 @@
         },
         {
           "name": "FluxBattlefieldMapWorldFeatures:Activate",
-          "line": 1032
+          "line": 1028
         },
         {
           "name": "FluxBattlefieldMapWorldFeatures:Deactivate",
-          "line": 1055
+          "line": 1046
         },
         {
           "name": "FluxBattlefieldMapWorldFeatures:OnMapShown",
-          "line": 1081
+          "line": 1072
         },
         {
           "name": "FluxBattlefieldMapWorldFeatures:OnMapHidden",
-          "line": 1096
+          "line": 1087
         },
         {
           "name": "FluxBattlefieldMapWorldFeatures:SyncIfMapActive",
-          "line": 1106
+          "line": 1097
         }
       ],
       "events": [
@@ -23232,7 +23301,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")toggleCombatFrame:"
         },
         {
-          "line": 1214,
+          "line": 1205,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -23240,7 +23309,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1215,
+          "line": 1206,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -23248,7 +23317,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 1216,
+          "line": 1207,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -23261,12 +23330,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXWORLDMAP1",
           "value": "/fluxwm",
-          "line": 1270
+          "line": 1261
         },
         {
           "kind": "handler",
           "name": "FLUXWORLDMAP",
-          "line": 1271
+          "line": 1262
         }
       ],
       "widgets": [],
@@ -24704,8 +24773,8 @@
       "path": "Binding/Core/Apply.lua",
       "classification": "active",
       "chapter": "13-binding-system.md",
-      "lines": 3085,
-      "sha256": "55b2b557789b8afd1f03306a593a61dbfd7b179e51235b52ed62a52361094518",
+      "lines": 3092,
+      "sha256": "d1c2fca871c810701e24600b7491de4baed12906f5fa921d703a5aceeaca0312",
       "clients": [
         "camelot",
         "cata",
@@ -24759,76 +24828,76 @@
         },
         {
           "name": "FluxBinding.HasActiveWork",
-          "line": 2475
+          "line": 2482
         },
         {
           "name": "FluxBinding.GetActiveWorkInfo",
-          "line": 2488
+          "line": 2495
         },
         {
           "name": "FluxBinding.RequestApplyAll",
-          "line": 2506
+          "line": 2513
         },
         {
           "name": "FluxBinding.NotifyOccupancyChanged",
-          "line": 2527
+          "line": 2534
         },
         {
           "name": "FluxBinding.NotifyBarSlotChanged",
-          "line": 2576
+          "line": 2583
         },
         {
           "name": "FluxBinding.NotifyBarSlotsChanged",
-          "line": 2585
+          "line": 2592
         },
         {
           "name": "FluxBinding.NotifyBindingChanged",
-          "line": 2599
+          "line": 2606
         },
         {
           "name": "FluxBinding.NotifyBindingsAvailabilityChanged",
-          "line": 2616
+          "line": 2623
         },
         {
           "name": "FluxBinding.NormalizeChord",
-          "line": 2624
+          "line": 2631
         },
         {
           "name": "FluxBinding.FindColumnForChord",
-          "line": 2628
+          "line": 2635
         },
         {
           "name": "FluxBinding.RegisterApplied",
-          "line": 2632
+          "line": 2639
         },
         {
           "name": "FluxBinding.GetLastApplyStats",
-          "line": 2636
-        },
-        {
-          "name": "FluxBinding.CanUseMultiCastExtras",
           "line": 2643
         },
         {
+          "name": "FluxBinding.CanUseMultiCastExtras",
+          "line": 2650
+        },
+        {
           "name": "FluxBinding.GetPeersForChord",
-          "line": 2789
+          "line": 2796
         },
         {
           "name": "FluxBinding.GetEditorOverlap",
-          "line": 2839
+          "line": 2846
         },
         {
           "name": "FluxBinding.GetPreviewForBinding",
-          "line": 2910
+          "line": 2917
         },
         {
           "name": "FluxBinding.Debug",
-          "line": 3021
+          "line": 3028
         }
       ],
       "events": [
         {
-          "line": 2396,
+          "line": 2403,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE\""
@@ -24836,7 +24905,7 @@
           "context": "})elsebagExtrasEv:"
         },
         {
-          "line": 2397,
+          "line": 2404,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_EQUIPMENT_CHANGED\""
@@ -24844,7 +24913,7 @@
           "context": "(\"BAG_UPDATE\")bagExtrasEv:"
         },
         {
-          "line": 2414,
+          "line": 2421,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -24852,7 +24921,7 @@
           "context": "(\"Frame\")regen:"
         },
         {
-          "line": 2424,
+          "line": 2431,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -24860,7 +24929,7 @@
           "context": "(\"Frame\")seedEv:"
         },
         {
-          "line": 2464,
+          "line": 2471,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_SHAPESHIFT_FORM\""
@@ -30472,8 +30541,8 @@
       "path": "Core/_tmp_stancehidesmoke.lua",
       "classification": "development harness",
       "chapter": "08-shared-services.md",
-      "lines": 176,
-      "sha256": "ec98ad98760aabdb8819154936d341b379705f2beaa1b65a1a012b6c02df6db9",
+      "lines": 184,
+      "sha256": "1495f613d4fcc5e65418d8766a3c1c11139e14cf26aba507bba3712f10c2acca",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -30488,8 +30557,8 @@
       "path": "Core/API/Action.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 461,
-      "sha256": "740640f5ae81882d0316cfb8e58476b5752644cb7f80a1c7d1c32123bc6e6f81",
+      "lines": 443,
+      "sha256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c",
       "clients": [
         "camelot",
         "cata",
@@ -30622,20 +30691,16 @@
           "line": 352
         },
         {
-          "name": "collector.RegisterFrame",
-          "line": 361
-        },
-        {
           "name": "Action.NilFromCollector",
-          "line": 377
+          "line": 359
         },
         {
           "name": "Action.SweepFluxFromCollectors",
-          "line": 425
+          "line": 407
         },
         {
           "name": "Action.DetachFromCollectors",
-          "line": 447
+          "line": 429
         }
       ],
       "events": [],
@@ -32418,8 +32483,8 @@
       "path": "Core/Capabilities.lua",
       "classification": "active",
       "chapter": "02-multi-client-matrix.md",
-      "lines": 690,
-      "sha256": "dc376275cbacc094878f8ec493f3b466f274f2b64c548df3d760965680137478",
+      "lines": 691,
+      "sha256": "623b50f42dd835f00a8ce023bb5f62dd4a2f1f2370dfcd9b94fce591bfcc4336",
       "clients": [
         "camelot",
         "cata",
@@ -32449,136 +32514,136 @@
         },
         {
           "name": "Cap.GetMaxBagIndex",
-          "line": 208
+          "line": 209
         },
         {
           "name": "Cap.HasBlizzardSettingsKeybindings",
-          "line": 215
+          "line": 216
         },
         {
           "name": "Cap.HasBlizzardActionBarsOverrides",
-          "line": 221
+          "line": 222
         },
         {
           "name": "Cap.GetFluxBlizzardActionBarUIMode",
-          "line": 232
+          "line": 233
         },
         {
           "name": "Cap.AllowBlizzardActionBarSettingsReplace",
-          "line": 245
+          "line": 246
         },
         {
           "name": "Cap.HasUnifiedBankUI",
-          "line": 250
+          "line": 251
         },
         {
           "name": "Cap.UseLegacyBankSlotsUI",
-          "line": 261
+          "line": 262
         },
         {
           "name": "Cap.HasWarbandBank",
-          "line": 265
+          "line": 266
         },
         {
           "name": "Cap.UsesPlayerBagsInBank",
-          "line": 276
+          "line": 277
         },
         {
           "name": "Cap.GetCharacterBankTabSentinel",
-          "line": 289
+          "line": 290
         },
         {
           "name": "Cap.GetAccountBankTabSentinel",
-          "line": 293
+          "line": 294
         },
         {
           "name": "Cap.IsBankTabSentinel",
-          "line": 297
+          "line": 298
         },
         {
           "name": "Cap.HasReagentBankContainer",
-          "line": 308
+          "line": 309
         },
         {
           "name": "Cap.GetReagentBankContainerID",
-          "line": 319
+          "line": 320
         },
         {
           "name": "Cap.IsReagentBankContainer",
-          "line": 326
+          "line": 327
         },
         {
           "name": "Cap.FetchPurchasedBankTabIDs",
-          "line": 351
+          "line": 352
         },
         {
           "name": "Cap.EnumerateBankTabIDs",
-          "line": 373
+          "line": 374
         },
         {
           "name": "Cap.IsUnifiedBankTabBag",
-          "line": 400
+          "line": 401
         },
         {
           "name": "Cap.HasCompactRaidFrameManager",
-          "line": 430
+          "line": 431
         },
         {
           "name": "Cap.HasAtlas",
-          "line": 434
+          "line": 435
         },
         {
           "name": "Cap.ClientSupportsSingleButtonAssistant",
-          "line": 465
+          "line": 466
         },
         {
           "name": "Cap.ClientSupportsCombatAmmoExtraButton",
-          "line": 472
+          "line": 473
         },
         {
           "name": "Cap.RefreshFocusUnit",
-          "line": 533
+          "line": 534
         },
         {
           "name": "Cap.RefreshUnifiedBank",
-          "line": 538
+          "line": 539
         },
         {
           "name": "Cap.RefreshKeyring",
-          "line": 547
+          "line": 548
         },
         {
           "name": "Cap.HasVoidStorage",
-          "line": 572
+          "line": 573
         },
         {
           "name": "Cap.HasGuildBank",
-          "line": 576
+          "line": 577
         },
         {
           "name": "Cap.HasAuctionHouse",
-          "line": 580
+          "line": 581
         },
         {
           "name": "Cap.HasLegacyAuctionHouse",
-          "line": 590
+          "line": 591
         },
         {
           "name": "Cap.RefreshInventoryCaps",
-          "line": 607
+          "line": 608
         },
         {
           "name": "Cap.RefreshCharacterInfo",
-          "line": 617
+          "line": 618
         },
         {
           "name": "Cap.IsForeverGamepadUI",
-          "line": 653
+          "line": 654
         }
       ],
       "events": [
         {
-          "line": 155,
+          "line": 156,
           "method": "RegisterEvent",
           "arguments": [
             "\"COMBAT_LOG_EVENT_UNFILTERED\""
@@ -32586,7 +32651,7 @@
           "context": "function()testFrame:"
         },
         {
-          "line": 192,
+          "line": 193,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_RETICLE_TARGET\"",
@@ -32595,7 +32660,7 @@
           "context": "function()testFrame:"
         },
         {
-          "line": 195,
+          "line": 196,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_RETICLE_CLEAR\"",
@@ -32604,7 +32669,7 @@
           "context": "function()testFrame:"
         },
         {
-          "line": 523,
+          "line": 524,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_HEALTH\"",
@@ -33731,8 +33796,8 @@
       "path": "Core/Engine/Restricted.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 382,
-      "sha256": "8a4acbe581b148582263850a9fd786bdbea4e5f85dfd32e9a6139f39466f09fa",
+      "lines": 438,
+      "sha256": "d21a9ea8531e49a607f5d6f96a32991f8d0c8fb774fbc59a29379607f9eec592",
       "clients": [
         "camelot",
         "cata",
@@ -33750,56 +33815,76 @@
       "functions": [
         {
           "name": "Restricted.Works",
-          "line": 22
+          "line": 27
         },
         {
-          "name": "Restricted.Execute",
-          "line": 26
-        },
-        {
-          "name": "Restricted.WrapScript",
+          "name": "Restricted.PagingWorks",
           "line": 36
         },
         {
+          "name": "Restricted.SetPagingSnippet",
+          "line": 54
+        },
+        {
+          "name": "Restricted.ExecutePaging",
+          "line": 60
+        },
+        {
+          "name": "Restricted.RegisterPagingDriver",
+          "line": 66
+        },
+        {
+          "name": "Restricted.UnregisterPagingDriver",
+          "line": 74
+        },
+        {
+          "name": "Restricted.Execute",
+          "line": 82
+        },
+        {
+          "name": "Restricted.WrapScript",
+          "line": 92
+        },
+        {
           "name": "Restricted.UnwrapScript",
-          "line": 49
+          "line": 105
         },
         {
           "name": "Restricted.SetSnippet",
-          "line": 59
+          "line": 115
         },
         {
           "name": "Restricted.RegisterAttributeDriver",
-          "line": 264
+          "line": 320
         },
         {
           "name": "Restricted.UnregisterAttributeDriver",
-          "line": 287
+          "line": 343
         },
         {
           "name": "Restricted.RegisterStateDriver",
-          "line": 312
+          "line": 368
         },
         {
           "name": "Restricted.UnregisterStateDriver",
-          "line": 316
+          "line": 372
         },
         {
           "name": "Restricted.RegisterUnitWatch",
-          "line": 323
+          "line": 379
         },
         {
           "name": "Restricted.UnregisterUnitWatch",
-          "line": 338
+          "line": 394
         },
         {
           "name": "Restricted.UnitWatchRegistered",
-          "line": 353
+          "line": 409
         }
       ],
       "events": [
         {
-          "line": 234,
+          "line": 290,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -33807,7 +33892,7 @@
           "context": ")end)fallbackFrame:"
         },
         {
-          "line": 235,
+          "line": 291,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -33815,7 +33900,7 @@
           "context": "(\"PLAYER_TARGET_CHANGED\")fallbackFrame:"
         },
         {
-          "line": 236,
+          "line": 292,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -33823,7 +33908,7 @@
           "context": "(\"PLAYER_FOCUS_CHANGED\")fallbackFrame:"
         },
         {
-          "line": 237,
+          "line": 293,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -33831,7 +33916,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")fallbackFrame:"
         },
         {
-          "line": 238,
+          "line": 294,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_PET\""
@@ -33839,7 +33924,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")fallbackFrame:"
         },
         {
-          "line": 239,
+          "line": 295,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_TARGET\""
@@ -33847,7 +33932,7 @@
           "context": "(\"UNIT_PET\")fallbackFrame:"
         },
         {
-          "line": 240,
+          "line": 296,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -33855,7 +33940,7 @@
           "context": "(\"UNIT_TARGET\")fallbackFrame:"
         },
         {
-          "line": 241,
+          "line": 297,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_SHAPESHIFT_FORM\""
@@ -33863,7 +33948,7 @@
           "context": "(\"GROUP_ROSTER_UPDATE\")fallbackFrame:"
         },
         {
-          "line": 242,
+          "line": 298,
           "method": "RegisterEvent",
           "arguments": [
             "\"MODIFIER_STATE_CHANGED\""
@@ -33871,7 +33956,7 @@
           "context": "(\"UPDATE_SHAPESHIFT_FORM\")fallbackFrame:"
         },
         {
-          "line": 243,
+          "line": 299,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIONBAR_PAGE_CHANGED\""
@@ -33879,7 +33964,7 @@
           "context": "(\"MODIFIER_STATE_CHANGED\")fallbackFrame:"
         },
         {
-          "line": 244,
+          "line": 300,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_BONUS_ACTIONBAR\""
@@ -33887,7 +33972,7 @@
           "context": "(\"ACTIONBAR_PAGE_CHANGED\")fallbackFrame:"
         },
         {
-          "line": 245,
+          "line": 301,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_STEALTH\""
@@ -38412,7 +38497,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 702,
-      "sha256": "be937b177dec783761aeb85c227cfbf606221a949ce7c00dc85ed59cd305cc7b",
+      "sha256": "8f993ef5c838b7687f984147330bddd4edea38295ad00155ace9f1d01f827f37",
       "clients": [
         "camelot",
         "cata",
@@ -58609,6 +58694,38 @@
       ]
     },
     {
+      "path": "Minimap/_tmp_questiesmoke.lua",
+      "classification": "development harness",
+      "chapter": "18-minimap-and-trackers.md",
+      "lines": 290,
+      "sha256": "ff04deb6fea87015a5cbb4e8974d503f33bd50f67e3d300a034e9d4670d80d36",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "Minimap/_tmp_trackercombatsmoke.lua",
+      "classification": "development harness",
+      "chapter": "18-minimap-and-trackers.md",
+      "lines": 151,
+      "sha256": "d21651defe4c3de0b72233b7484ea61986d91f735e5d4eacefe355d352fe691c",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "Minimap/FluxBuffDebuffFrames.lua",
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
@@ -58689,8 +58806,8 @@
       "path": "Minimap/FluxMinimap.lua",
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
-      "lines": 2605,
-      "sha256": "9e509742ebcfc73c86b48b144fb92a9891fb2e45b28b39e446ff2d1cbb12a344",
+      "lines": 2613,
+      "sha256": "89e136547c2f720b52cf9bb5fe84b85bf01222ae05f17d5af76d14e71cd3b77a",
       "clients": [
         "camelot",
         "cata",
@@ -58784,71 +58901,71 @@
         },
         {
           "name": "FluxMinimap:HandleEditMode",
-          "line": 1595
+          "line": 1603
         },
         {
           "name": "FluxMinimap:CreateInfoBar",
-          "line": 1739
+          "line": 1747
         },
         {
           "name": "FluxMinimap:ApplyInfoBarZoneTextFit",
-          "line": 1910
+          "line": 1918
         },
         {
           "name": "FluxMinimap:OnInfoBarZoneHitEnter",
-          "line": 1942
+          "line": 1950
         },
         {
           "name": "FluxMinimap:OnInfoBarZoneHitLeave",
-          "line": 1976
+          "line": 1984
         },
         {
           "name": "FluxMinimap:UpdateInfoBarZoneScroll",
-          "line": 1992
+          "line": 2000
         },
         {
           "name": "FluxMinimap:RefreshInfoBarZoneFit",
-          "line": 2034
+          "line": 2042
         },
         {
           "name": "FluxMinimap:UpdateInfoBarZone",
-          "line": 2038
+          "line": 2046
         },
         {
           "name": "FluxMinimap:UpdateInfoBarTime",
-          "line": 2075
+          "line": 2083
         },
         {
           "name": "FluxMinimap:EmbedInFrame",
-          "line": 2109
+          "line": 2117
         },
         {
           "name": "FluxMinimap:RestoreToNormal",
-          "line": 2359
+          "line": 2367
         },
         {
           "name": "FluxMinimap:IsEmbedded",
-          "line": 2499
+          "line": 2507
         },
         {
           "name": "FluxMinimap:GetNormalWidth",
-          "line": 2504
+          "line": 2512
         },
         {
           "name": "FluxMinimap:HideEmbedded",
-          "line": 2516
+          "line": 2524
         },
         {
           "name": "FluxMinimap:ShowEmbedded",
-          "line": 2541
+          "line": 2549
         },
         {
           "name": "FluxMinimap.NotifyInfoFrameLayoutChanged",
-          "line": 2563
+          "line": 2571
         },
         {
           "name": "FluxMinimap:Refresh",
-          "line": 2576
+          "line": 2584
         }
       ],
       "events": [
@@ -59021,7 +59138,7 @@
           "context": "function()ev:"
         },
         {
-          "line": 1844,
+          "line": 1852,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED\""
@@ -59029,7 +59146,7 @@
           "context": "_tickClock)endinfoBar:"
         },
         {
-          "line": 1845,
+          "line": 1853,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_NEW_AREA\""
@@ -59037,7 +59154,7 @@
           "context": "(\"ZONE_CHANGED\")infoBar:"
         },
         {
-          "line": 1846,
+          "line": 1854,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_INDOORS\""
@@ -59045,7 +59162,7 @@
           "context": "(\"ZONE_CHANGED_NEW_AREA\")infoBar:"
         },
         {
-          "line": 1847,
+          "line": 1855,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -59053,7 +59170,7 @@
           "context": "(\"ZONE_CHANGED_INDOORS\")infoBar:"
         },
         {
-          "line": 2204,
+          "line": 2212,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59061,7 +59178,7 @@
           "context": "._positionQueueRegisteredthenFluxMinimap:"
         },
         {
-          "line": 2399,
+          "line": 2407,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59193,8 +59310,8 @@
       "path": "Minimap/FluxObjectiveTrackerScroll.lua",
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
-      "lines": 1436,
-      "sha256": "694f24c87462ce1496d5f56c9b2f81acb713ea9277e94c4e20d7869fadaf32e4",
+      "lines": 1520,
+      "sha256": "7cb238f4a85b5f8a5a5121d2247d639c28a985c7765b7722271716f1f5f25ae8",
       "clients": [
         "camelot",
         "cata",
@@ -59211,133 +59328,145 @@
       "settings": [],
       "functions": [
         {
+          "name": "FluxObjectiveTrackerScroll:UpdateQuestieVisibility",
+          "line": 68
+        },
+        {
           "name": "FluxObjectiveTrackerScroll.IsActiveFor",
-          "line": 165
+          "line": 184
         },
         {
           "name": "FluxObjectiveTrackerScroll:GetQuestTimer",
-          "line": 169
+          "line": 188
         },
         {
           "name": "FluxObjectiveTrackerScroll:PinTopModulePadding",
-          "line": 176
+          "line": 195
         },
         {
           "name": "FluxObjectiveTrackerScroll:PinLayoutHeight",
-          "line": 185
+          "line": 204
         },
         {
           "name": "FluxObjectiveTrackerScroll:ReassertDock",
-          "line": 231
+          "line": 251
         },
         {
           "name": "FluxObjectiveTrackerScroll:RecoverStuckDirty",
-          "line": 266
+          "line": 287
         },
         {
           "name": "FluxObjectiveTrackerScroll:CollapseModuleTopGap",
-          "line": 279
+          "line": 301
         },
         {
           "name": "FluxObjectiveTrackerScroll:AnchorHeader",
-          "line": 302
+          "line": 324
         },
         {
           "name": "mixin:ShouldDisplayQuest",
-          "line": 383
+          "line": 406
         },
         {
           "name": "tracker:BuildQuestWatchInfos",
-          "line": 402
+          "line": 425
         },
         {
           "name": "tracker:UpdateSingle",
-          "line": 438
+          "line": 461
         },
         {
           "name": "_G.SetQuestTitleLevelAndDifficultyColor_G.SetQuestTitleLevelAndDifficultyColor",
-          "line": 463
+          "line": 486
         },
         {
           "name": "ObjectiveTrackerBlockMixin:UpdateHighlight",
-          "line": 496
+          "line": 519
         },
         {
           "name": "FluxObjectiveTrackerScroll:DockQuestTimer",
-          "line": 510
+          "line": 533
         },
         {
           "name": "FluxObjectiveTrackerScroll:MeasureContentHeight",
-          "line": 628
+          "line": 652
         },
         {
           "name": "FluxObjectiveTrackerScroll:AnchorTrackerRightInScroll",
-          "line": 643
+          "line": 667
         },
         {
           "name": "FluxObjectiveTrackerScroll:SizeScrollContent",
-          "line": 660
+          "line": 684
         },
         {
           "name": "FluxObjectiveTrackerScroll:SettleTrackerHeight",
-          "line": 711
+          "line": 735
         },
         {
           "name": "FluxObjectiveTrackerScroll:EnsureVisibleBody",
-          "line": 745
+          "line": 769
         },
         {
           "name": "FluxObjectiveTrackerScroll:QueueFullLayout",
-          "line": 771
+          "line": 796
         },
         {
           "name": "FluxObjectiveTrackerScroll:LayoutScrollArea",
-          "line": 800
+          "line": 827
         },
         {
           "name": "FluxObjectiveTrackerScroll:_DoSyncAfterUpdate",
-          "line": 866
+          "line": 894
         },
         {
           "name": "FluxObjectiveTrackerScroll:SyncAfterUpdate",
-          "line": 946
+          "line": 974
+        },
+        {
+          "name": "ObjectiveTrackerContainerMixin.UpdateObjectiveTrackerContainerMixin.Update",
+          "line": 1134
+        },
+        {
+          "name": "self._fluxSecureDirtyCbthencallback",
+          "line": 1138
         },
         {
           "name": "FluxObjectiveTrackerScroll:StartForeverLoginPulse",
-          "line": 1193
+          "line": 1268
         },
         {
           "name": "FluxObjectiveTrackerScroll:InstallForeverCompat",
-          "line": 1227
+          "line": 1303
         },
         {
           "name": "FluxObjectiveTrackerScroll:ReadyForScrollDock",
-          "line": 1238
+          "line": 1319
         },
         {
           "name": "FluxObjectiveTrackerScroll:KickScrollLayoutOnce",
-          "line": 1254
+          "line": 1335
         },
         {
           "name": "FluxObjectiveTrackerScroll:EnsureViewport",
-          "line": 1272
+          "line": 1355
         },
         {
           "name": "outerViewport:ToggleCollapsed",
-          "line": 1316
+          "line": 1400
         },
         {
           "name": "FluxObjectiveTrackerScroll:ApplyViewportSize",
-          "line": 1386
+          "line": 1470
         },
         {
           "name": "FluxObjectiveTrackerScroll:RefreshLayout",
-          "line": 1407
+          "line": 1491
         }
       ],
       "events": [
         {
-          "line": 220,
+          "line": 240,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59345,7 +59474,7 @@
           "context": "(\"Frame\")dockRegenWatch:"
         },
         {
-          "line": 586,
+          "line": 610,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59353,7 +59482,7 @@
           "context": "(\"Frame\")questTimerWatch:"
         },
         {
-          "line": 1033,
+          "line": 1062,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59361,7 +59490,7 @@
           "context": "(\"Frame\")dirtyRegenFrame:"
         },
         {
-          "line": 1204,
+          "line": 1280,
           "method": "RegisterEvent",
           "arguments": [
             "\"QUEST_LOG_UPDATE\""
@@ -59369,7 +59498,7 @@
           "context": "(\"Frame\")questLogDirtyWatch:"
         },
         {
-          "line": 1429,
+          "line": 1513,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59386,8 +59515,8 @@
       "path": "Minimap/FluxQuestie.lua",
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
-      "lines": 407,
-      "sha256": "92857bcc8eb28a9865245022ff8a6f89ca0f0fd24f03027a51793721af2bbb45",
+      "lines": 517,
+      "sha256": "b43c4eccd3d12a4e47ad0df53a1c83d3054b7534f38a65344781e666a8870016",
       "clients": [
         "camelot",
         "cata",
@@ -59404,42 +59533,82 @@
       "settings": [],
       "functions": [
         {
+          "name": "FluxQuestie:IsTrackerEnabled",
+          "line": 26
+        },
+        {
+          "name": "FluxQuestie:RequestLayout",
+          "line": 33
+        },
+        {
+          "name": "FluxQuestie:HookHeader",
+          "line": 53
+        },
+        {
           "name": "FluxQuestie:Initialize",
-          "line": 31
+          "line": 61
         },
         {
           "name": "FluxQuestie:UpdateLayout",
           "line": 108
         },
         {
+          "name": "FluxQuestie:ReleaseQuestTimer",
+          "line": 154
+        },
+        {
+          "name": "FluxQuestie:DockQuestTimer",
+          "line": 163
+        },
+        {
+          "name": "FluxQuestie:UpdateScrollRange",
+          "line": 197
+        },
+        {
           "name": "FluxQuestie:StyleBaseFrame",
-          "line": 125
+          "line": 218
         },
         {
           "name": "FluxQuestie:SizeQuestFrame",
-          "line": 205
+          "line": 298
         },
         {
           "name": "FluxQuestie:StyleLines",
-          "line": 261
+          "line": 371
         }
       ],
       "events": [
         {
-          "line": 8,
+          "line": 9,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
           ],
-          "context": "(\"Frame\")FluxQuestie:"
+          "context": "FluxQuestie=FluxQuestieFluxQuestie:"
         },
         {
-          "line": 9,
+          "line": 10,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
           ],
           "context": "(\"PLAYER_LOGIN\")FluxQuestie:"
+        },
+        {
+          "line": 11,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"ADDON_LOADED\""
+          ],
+          "context": "(\"PLAYER_ENTERING_WORLD\")FluxQuestie:"
+        },
+        {
+          "line": 12,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_REGEN_ENABLED\""
+          ],
+          "context": "(\"ADDON_LOADED\")FluxQuestie:"
         }
       ],
       "slash": [],

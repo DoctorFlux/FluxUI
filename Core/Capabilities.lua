@@ -106,8 +106,9 @@ Cap.hasC_Timer = C_Timer ~= nil and C_Timer.After ~= nil
 Cap.hasC_Timer_NewTicker = C_Timer ~= nil and C_Timer.NewTicker ~= nil
 Cap.hasBackdropTemplateMixin = BackdropTemplateMixin ~= nil
 Cap.hasSecureActionButtonTemplate = SecureActionButtonTemplate ~= nil
--- Forever/camelot: EnvironmentCleanup nils loadstring_untainted before
--- RestrictedAddOnEnvironment captures it. Do not probe Execute (that crashes).
+-- Legacy policy for click wrappers and other modules. Bars independently
+-- probe the repaired restricted environment via Restricted.PagingWorks;
+-- this flag must not prevent secure paging on newer Forever clients.
 Cap.hasRestrictedClosures = not Client.isCamelot
 Cap.hasC_AddOns = C_AddOns ~= nil
 Cap.hasC_PetJournal = C_PetJournal ~= nil

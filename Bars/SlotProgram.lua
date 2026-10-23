@@ -175,6 +175,11 @@ local function ApplyLiveType(host)
 	local body = widget:GetAttribute(ATTR .. tostring(slot))
 	local mode = programModes[slot]
 	local clicker = widget:GetAttribute(ATTR_CLICK .. tostring(slot)) or clickers[slot]
+	local State = Bars.State
+	if host.row == "main" and host.column and host.column <= 12
+		and State and State.GetCurrentPage and State.GetCurrentPage() >= 11 then
+		body, clicker = nil, nil
+	end
 	local hasOverlay = clicker or (type(body) == "string" and body ~= "")
 	if not InLockdown() then
 		if not hasOverlay then

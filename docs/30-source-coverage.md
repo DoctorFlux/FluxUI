@@ -8,6 +8,8 @@ The TOC/XML closure contains **570 files**. `Bindings.xml` is additionally class
 
 Files excluded: Git metadata, local editor settings, backup directories, ignored development/extraction caches, generated Python caches, documentation code, and non-Lua/XML assets (covered in [assets](34-assets.md)). Unloaded source is described as inactive rather than assumed obsolete or safe to delete.
 
+Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, including any BOM. This makes the same Git source verifiable on Windows and LF checkouts without rewriting addon files. Resource asset hashes are raw-byte hashes. Inventory format 2 records this policy explicitly.
+
 ## Classification totals
 
 | Classification | Files |
@@ -15,7 +17,7 @@ Files excluded: Git metadata, local editor settings, backup directories, ignored
 | active | 472 |
 | active compatibility | 33 |
 | bundled library | 97 |
-| development harness | 23 |
+| development harness | 28 |
 | inactive source | 64 |
 
 ## Addon sources
@@ -72,6 +74,8 @@ Files excluded: Git metadata, local editor settings, backup directories, ignored
 | [BaganatorCompat/FluxBaganator_Protection.lua](../BaganatorCompat/FluxBaganator_Protection.lua) | active compatibility | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [24-baganator-compat.md](24-baganator-compat.md) |
 | [BaganatorCompat/Loader.lua](../BaganatorCompat/Loader.lua) | active compatibility | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [24-baganator-compat.md](24-baganator-compat.md) |
 | [Bars/_tmp_barsmoke.lua](../Bars/_tmp_barsmoke.lua) | development harness | — | [11-action-bars.md](11-action-bars.md) |
+| [Bars/_tmp_forevercontrolsmoke.lua](../Bars/_tmp_forevercontrolsmoke.lua) | development harness | — | [11-action-bars.md](11-action-bars.md) |
+| [Bars/_tmp_stockgridsmoke.lua](../Bars/_tmp_stockgridsmoke.lua) | development harness | — | [11-action-bars.md](11-action-bars.md) |
 | [Bars/BadgeHost.lua](../Bars/BadgeHost.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
 | [Bars/BindingMode.lua](../Bars/BindingMode.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
 | [Bars/Blizzard.lua](../Bars/Blizzard.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
@@ -103,6 +107,7 @@ Files excluded: Git metadata, local editor settings, backup directories, ignored
 | [Bars/Strip.lua](../Bars/Strip.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
 | [Bars/Vehicle.lua](../Bars/Vehicle.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
 | [Bars/Watch.lua](../Bars/Watch.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [11-action-bars.md](11-action-bars.md) |
+| [Battlezonemap/_tmp_questiepinsmoke.lua](../Battlezonemap/_tmp_questiepinsmoke.lua) | development harness | — | [10-flux-window.md](10-flux-window.md) |
 | [Battlezonemap/FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [10-flux-window.md](10-flux-window.md) |
 | [Battlezonemap/FluxBattlefieldMapPinRouter.lua](../Battlezonemap/FluxBattlefieldMapPinRouter.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [10-flux-window.md](10-flux-window.md) |
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [10-flux-window.md](10-flux-window.md) |
@@ -459,6 +464,8 @@ Files excluded: Git metadata, local editor settings, backup directories, ignored
 | [MicroMenu/FluxMinimapToMicro.lua](../MicroMenu/FluxMinimapToMicro.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [17-micromenu.md](17-micromenu.md) |
 | [MicroMenu/FluxReloadMicroButton.lua](../MicroMenu/FluxReloadMicroButton.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [17-micromenu.md](17-micromenu.md) |
 | [MicroMenu/FluxTradeSkillMicro.lua](../MicroMenu/FluxTradeSkillMicro.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [17-micromenu.md](17-micromenu.md) |
+| [Minimap/_tmp_questiesmoke.lua](../Minimap/_tmp_questiesmoke.lua) | development harness | — | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |
+| [Minimap/_tmp_trackercombatsmoke.lua](../Minimap/_tmp_trackercombatsmoke.lua) | development harness | — | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |
 | [Minimap/FluxBuffDebuffFrames.lua](../Minimap/FluxBuffDebuffFrames.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |
 | [Minimap/FluxMinimap.lua](../Minimap/FluxMinimap.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |
 | [Minimap/FluxMinimapButtons.lua](../Minimap/FluxMinimapButtons.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |

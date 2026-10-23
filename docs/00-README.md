@@ -2,7 +2,9 @@
 
 This is a reference for **how the current addon works**, for its author, maintainers, and coding agents. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
 
-Baseline: **22 October 2026**, working tree based on commit `bccfe9f`, including the existing uncommitted Lua and documentation changes. The [source inventory](reference/inventory.json) records exact source hashes, load parents, client gates, and extracted declarations. This is not a claim that the addon was tested in every live client.
+Source review: **23 October 2026**, including the current working-tree changes since GitHub commit `7882474`. The [source inventory](reference/inventory.json) records source hashes with CRLF normalized to LF, load parents, client gates, and extracted declarations. Binary asset hashes retain their original bytes. This is not a claim that the addon was tested in every live client.
+
+The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 28 desktop smoke scripts: 26 passing and two existing source-contract failures. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
 
 ## Start here
 
@@ -76,7 +78,7 @@ Claims are source-confirmed unless a chapter explicitly names a mock test or liv
 
 1. Read the affected implementation, its callers, data owner, and client guards. Update the explanatory chapters and any findings together.
 2. Run `python docs/tools/build_reference.py` to regenerate source-derived views. It writes only documentation; it does not evaluate Lua or launch WoW.
-3. Run `python docs/tools/validate_docs.py`. This command is read-only and checks source freshness, load references, classifications, inventory coverage, curated evidence and local links.
+3. Run `python docs/tools/validate_docs.py`. This command is read-only and checks source freshness, load references, classifications, inventory coverage, curated evidence, dated verification manifests/totals and local links. If Lua changed, rerun applicable checks and update the dated record rather than carrying old results forward.
 4. Use [verification](41-verification.md) for checks that require actual protected execution, API behavior, rendering, or performance.
 
 Generated inventories supplement the explanations. Regenerating a list alone does not establish that changed behavior has been understood or tested.

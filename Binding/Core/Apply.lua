@@ -1922,7 +1922,14 @@ local function ApplyBarModClickThrough(clickThrough, freeChords)
         if col and not (freeChords[nk] and freeChords[nk].text) and appliedClickThrough[nk] ~= col then
             local btnName = MainStripButtonName(col)
             if btnName and not btnName:find("OverrideActionBar", 1, true) then
-                SetOverrideBindingClick(overrideOwner, false, nk, btnName, "KeyBind")
+                local clickButton = "KeyBind"
+                local Flux = ns.Flux
+                local Click = Flux and Flux.ButtonFX and Flux.ButtonFX.Click
+                if Click and Click.UsesWrap and not Click.UsesWrap() then
+                    local keyer = _G["FluxActionStripKey" .. col]
+                    if keyer then btnName = keyer:GetName(); clickButton = "LeftButton" end
+                end
+                SetOverrideBindingClick(overrideOwner, false, nk, btnName, clickButton)
                 appliedClickThrough[nk] = col
             end
         end

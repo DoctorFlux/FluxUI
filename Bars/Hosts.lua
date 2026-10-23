@@ -244,7 +244,9 @@ end
 
 local function ButtonTemplate()
 	local C = Flux.Client
-	if C and C.isPostDF and not C.isAnyClassic then
+	-- Forever's art-only template avoids touching Blizzard's shared event
+	-- collectors. The secure OnClick and v8 input registration stay the same.
+	if C and C.isPostDF and not C.isAnyClassic and not (C.isCamelot or C.isForever) then
 		return "ActionBarButtonTemplate, SecureActionButtonTemplate"
 	end
 	return "ActionButtonTemplate, SecureActionButtonTemplate"

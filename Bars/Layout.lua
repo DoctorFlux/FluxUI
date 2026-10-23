@@ -6,7 +6,8 @@ local Bars = Flux.Bars
 local Layout = {}
 Bars.Layout = Layout
 
-local MAIN_PAGES = { 7, 8, 9, 10, 11, 12, 13, 14 }
+-- Temporary contents must not erase the ordinary mini promotion on exit.
+local MAIN_PAGES = { 7, 8, 9, 10 }
 
 local lastHash
 local appliedExpanding = false
@@ -91,6 +92,9 @@ function Layout.HasContentOnMain(column)
 end
 
 function Layout.IsColumnEmpty(column)
+	-- A control spell can populate any of these twelve slots after lockdown.
+	-- Reserve their shown, clickable surfaces before the fight starts.
+	if column <= Bars.NUM_NATIVE then return false end
 	local State = Bars.State
 	if Layout.HasContentInAnyState(column) then
 		return false
@@ -249,11 +253,10 @@ function Layout.ApplyMappings()
 			State.ForceApply()
 		end
 	end
-	-- Forever: snippets never restamp action / shift-action*. Do this even when
-	-- occupancy flags (and ForceApply) did not move.
+	-- Early Forever builds without secure paging still need the OOC fallback,
+	-- even when occupancy flags (and ForceApply) did not move.
 	if State.ApplySlotsInsecure then
-		local Restricted = Flux.Restricted
-		if not (Restricted and Restricted.Works and Restricted.Works()) then
+		if not (State.UsesSecurePaging and State.UsesSecurePaging()) then
 			State.ApplySlotsInsecure()
 		end
 	end

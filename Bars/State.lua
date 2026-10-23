@@ -23,6 +23,15 @@ Bars.State = State
 
 local NATIVE = 12
 local SlotMath = Bars.SlotMath
+local CAB = C_ActionBar or {}
+local HasVehicleActionBar = CAB.HasVehicleActionBar or _G.HasVehicleActionBar
+local HasOverrideActionBar = CAB.HasOverrideActionBar or _G.HasOverrideActionBar
+local HasTempShapeshiftActionBar = CAB.HasTempShapeshiftActionBar or _G.HasTempShapeshiftActionBar
+local HasBonusActionBar = CAB.HasBonusActionBar or _G.HasBonusActionBar
+local GetVehicleBarIndex = CAB.GetVehicleBarIndex or _G.GetVehicleBarIndex
+local GetOverrideBarIndex = CAB.GetOverrideBarIndex or _G.GetOverrideBarIndex
+local GetTempShapeshiftBarIndex = CAB.GetTempShapeshiftBarIndex or _G.GetTempShapeshiftBarIndex
+local GetBonusBarIndex = CAB.GetBonusBarIndex or _G.GetBonusBarIndex
 
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
@@ -30,6 +39,7 @@ end
 
 local function SnippetsWork()
 	local Restricted = Flux.Restricted
+	if Restricted and Restricted.PagingWorks then return Restricted.PagingWorks() end
 	if Restricted and Restricted.Works then
 		return Restricted.Works()
 	end
@@ -39,9 +49,13 @@ local function SnippetsWork()
 	end
 	return true
 end
+State.UsesSecurePaging = SnippetsWork
 
 local function SetSnippet(frame, name, body)
 	local Restricted = Flux.Restricted
+	if Restricted and Restricted.SetPagingSnippet then
+		return Restricted.SetPagingSnippet(frame, name, body)
+	end
 	if Restricted and Restricted.SetSnippet then
 		return Restricted.SetSnippet(frame, name, body)
 	end
@@ -196,16 +210,16 @@ function State.BuildNativeDriver()
 	if vehicleIndex < 1 then
 		vehicleIndex = 12
 	end
-	parts[#parts + 1] = "[overridebar] " .. overrideIndex
-	parts[#parts + 1] = "[vehicleui][possessbar] " .. vehicleIndex
-	parts[#parts + 1] = "[shapeshift]shapeshift"
-	local hasSky = Flux.Cap and Flux.Cap.hasSkyriding
-	if hasSky == nil then
-		hasSky = Flux.Client and Flux.Client.isRetail and Flux.Client.isPostDF
+	local C = Flux.Client
+	if not (C and (C.isCamelot or C.isForever)) then
+		parts[#parts + 1] = "[overridebar] " .. overrideIndex
+		parts[#parts + 1] = "[vehicleui] " .. vehicleIndex
+		parts[#parts + 1] = "[possessbar]possess"
+		parts[#parts + 1] = "[shapeshift]shapeshift"
 	end
-	if hasSky then
-		parts[#parts + 1] = "[bonusbar:5] 11"
-	end
+	-- Legacy Mind Control / Chess uses bonus page 5 (action slots 121-132).
+	-- Forever rejects the modern macro options despite exposing their APIs.
+	parts[#parts + 1] = "[bonusbar:5] 11"
 
 	local maxPage = NUM_ACTIONBAR_PAGES or 6
 	if maxPage > 18 then
@@ -332,7 +346,9 @@ local CHILDUPDATE = [[
 	local slotNomod, slotShift, slotCtrl
 	for sw = 0, 2 do
 		local slot = mainRest
-		if row == 1 then
+		if static == 0 and page >= 11 then
+			if row == 2 then slot = sec elseif row == 3 then slot = tert end
+		elseif row == 1 then
 			if promoted == 1 then
 				slot = sec
 			elseif promoted == 2 then
@@ -423,6 +439,7 @@ local CHILDUPDATE = [[
 			local body = self:GetAttribute("flux-p-" .. s)
 			local clicker = self:GetAttribute("flux-click-" .. s)
 			local mode = self:GetAttribute("flux-m-" .. s)
+			if static == 0 and page >= 11 and row == 1 then body, clicker = nil, nil end
 			-- Every branch writes all four. Leaving one nil falls through to the
 			-- bare live attribute, which under SHIFT would fire whatever body
 			-- the main row happens to be showing.
@@ -479,6 +496,7 @@ local CHILDUPDATE = [[
 	local body = slot and self:GetAttribute("flux-p-" .. slot)
 	local clicker = slot and self:GetAttribute("flux-click-" .. slot)
 	local mode = slot and self:GetAttribute("flux-m-" .. slot)
+	if static == 0 and page >= 11 and row == 1 then body, clicker = nil, nil end
 	self:SetAttribute("unit", nil)
 	if clicker then
 		self:SetAttribute("macrotext", nil)
@@ -501,7 +519,9 @@ local CHILDUPDATE = [[
 		self:SetAttribute("clickbutton", nil)
 	end
 
-	self:SetAttribute("pressAndHoldAction", true)
+	-- Preserve v8 Forever's AnyUp mouse path. A hold flag would suppress the
+	-- release click, even though paging itself now runs in secure snippets.
+	self:SetAttribute("pressAndHoldAction", self:GetAttribute("flux-native-click") ~= 1)
 	if slot and IsPressHoldReleaseSpell then
 		local actionType, id, subType = GetActionInfo(slot)
 		local spellID = nil
@@ -653,6 +673,8 @@ function State.Attach(header, widget, column, row)
 	widget:SetAttribute("flux-column", column)
 	widget:SetAttribute("flux-row", RowId(row))
 	widget:SetAttribute("flux-static", column > NATIVE and 1 or 0)
+	local C = Flux.Client
+	widget:SetAttribute("flux-native-click", C and (C.isCamelot or C.isForever) and 1 or 0)
 	widget:SetAttribute("flux-promoted", 0)
 	widget:SetAttribute("flux-has-sec", 0)
 	widget:SetAttribute("flux-has-tert", 0)
@@ -701,17 +723,17 @@ local RESOLVE_PAGE = [[
 	end
 	local page
 	if native == "possess" or native == "dragon" or native == "shapeshift" then
-		if HasVehicleActionBar() then
+		if HasVehicleActionBar and HasVehicleActionBar() then
 			page = GetVehicleBarIndex()
-		elseif HasOverrideActionBar() then
+		elseif HasOverrideActionBar and HasOverrideActionBar() then
 			page = GetOverrideBarIndex()
-		elseif HasTempShapeshiftActionBar() then
+		elseif HasTempShapeshiftActionBar and HasTempShapeshiftActionBar() then
 			page = GetTempShapeshiftBarIndex()
-		elseif HasBonusActionBar() then
+		elseif HasBonusActionBar and HasBonusActionBar() then
 			page = GetBonusBarIndex()
 		end
 		page = tonumber(page)
-		if not page or page < 1 then page = 1 end
+		if not page or page < 1 then page = 11 end
 	else
 		page = tonumber(native)
 		if not page or page < 1 then page = 1 end
@@ -738,7 +760,7 @@ local PACK_MINI = RESOLVE_PAGE .. [[
 	if swap == 0 then
 		local prev = tonumber(self:GetAttribute("state"))
 		self:SetAttribute("state", packed)
-		if prev and prev < 100 then
+		if prev and prev < 11 and page < 11 then
 			return
 		end
 		control:ChildUpdate("state", packed)
@@ -815,6 +837,12 @@ function State.RegisterDrivers()
 		return false
 	end
 	local function Drive(header, attr, driver)
+		local R = Flux.Restricted
+		if R and R.RegisterPagingDriver and R.UnregisterPagingDriver then
+			R.UnregisterPagingDriver(header, attr)
+			if driver then R.RegisterPagingDriver(header, attr, driver) end
+			return
+		end
 		if UnregisterStateDriver then
 			pcall(UnregisterStateDriver, header, attr)
 		end
@@ -1067,7 +1095,9 @@ function State.ForceApply()
 	local function run(header)
 		if header and header.Execute and header:GetAttribute("_fluxForceApply") then
 			local Restricted = Flux.Restricted
-			if Restricted and Restricted.Execute then
+			if Restricted and Restricted.ExecutePaging then
+				Restricted.ExecutePaging(header, [[ self:RunAttribute("_fluxForceApply") ]])
+			elseif Restricted and Restricted.Execute then
 				Restricted.Execute(header, [[ self:RunAttribute("_fluxForceApply") ]])
 			else
 				header:Execute([[ self:RunAttribute("_fluxForceApply") ]])

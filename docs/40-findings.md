@@ -1,6 +1,14 @@
 # Findings, mismatches and unresolved questions
 
-Audit date: **2026-10-22**. These are observations from the current working tree, including pre-existing uncommitted code/test edits. This documentation pass changes documentation only. A source mismatch or failed text assertion is not automatically a reproducible in-game bug.
+Initial audit: **2026-10-22**; current source/evidence refresh: **2026-10-23**. These are observations from the current working tree, including pre-existing uncommitted code/test edits. This documentation pass changes documentation only. A source mismatch or failed text assertion is not automatically a reproducible in-game bug.
+
+## Current compatibility work and check status
+
+The 23 October complete run passed **26 of 28** smoke scripts; all **662 publishable Lua files** passed desktop syntax checking. The same two source-contract scripts still fail, as detailed below. See the [current verification record](41-verification.md#current-verification-23-october-2026) and [per-script results](reference/verification.json). New control/grid/pin/tracker fixtures passed without changing addon Lua or relaxing expectations during this documentation refresh.
+
+Recent implementation changes separate Forever's probed bar paging from its legacy no-wrap input policy, preserve native collectors, reserve the twelve control columns, suppress only stock grid event subscriptions, route Questie's own World Map pins alongside Forever's native providers, and guard saved native tracker callbacks even when Questie owns the visible dock. These are current source behaviors, not proof that the reported native taint issue is solved on all clients. Fresh-login combat/hardware-input tests remain pending. [Bars](11-action-bars.md), [binding](13-binding-system.md), [map](10-flux-window.md), [trackers](18-minimap-and-trackers.md).
+
+The stock grid dispatch explains how bag pickup can reach native Edit Mode layout; it does not establish the first taint writer. A successful secure setup probe establishes that snippet execution worked at setup, not that every later protected interaction is safe. Ordinary main-page mappings, temporary control-page bypasses, pet visibility and native gamepad navigation must be evaluated separately.
 
 ## Existing smoke failures
 
@@ -23,7 +31,7 @@ The 26 bar source assertions cover:
 - bars.icon registration of SPELLS_CHANGED and SPELL_UPDATE_ICON.
 - Extra badgeMode question-mark fallback, SpellFX authoring size 44, native stance widget size and live SlotFrame button_size.
 
-After that baseline, external work changed CharacterInfo source/tests and WindowMover, adding [WindowMover/_tmp_charactercombatsmoke.lua](../WindowMover/_tmp_charactercombatsmoke.lua). The current corpus therefore contains **23 smoke harnesses**. Targeted reruns of the changed [CharacterInfo/_tmp_foreverstatssmoke.lua](../CharacterInfo/_tmp_foreverstatssmoke.lua) and new WindowMover harness both passed. This is an incremental record; the full 23-harness suite was not rerun, so the original 20/22 result is historical. The mover harness models real attachment/layout code with mocked hooks and combat state, not WoW's secure execution VM.
+After that baseline, external work changed CharacterInfo source/tests and WindowMover, adding [WindowMover/_tmp_charactercombatsmoke.lua](../WindowMover/_tmp_charactercombatsmoke.lua). That intermediate corpus contained **23 smoke harnesses**. Targeted reruns of the changed [CharacterInfo/_tmp_foreverstatssmoke.lua](../CharacterInfo/_tmp_foreverstatssmoke.lua) and new WindowMover harness both passed. This is an incremental record; the full 23-harness suite was not rerun, so the original 20/22 result is historical. The mover harness models real attachment/layout code with mocked hooks and combat state, not WoW's secure execution VM.
 
 These scripts mix source-text expectations with executable mock/logic checks. Some expectations can be stale after implementation changes; others can indicate a missing behavior. The correct classification requires examining each assertion and reproducing the intended scenario. No assertion or runtime code was relaxed to obtain a green report.
 
@@ -100,11 +108,11 @@ These documentation discrepancies are corrected in [architecture](07-runtime-arc
 
 ## Remaining evidence limits
 
-### Lab observation added 23 October: inactive Meter retry content
+### Historical mock observation, 23 October: inactive Meter retry content
 
-Confirmed source path with a **missing native backend fixture**, not a reproduced live-client defect: [FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua), `InitializeWindowFrame` → Meter `TryEmbed`, queues retries without an active-tab/generation check. Meter onHide also shows its content frame after CleanupTabContent hid its regions. Opening Meter, switching to Map and advancing 0.4 seconds produces a new visible meter-loading label on the inactive tab in both Live/Forever lab profiles. This explains overlapping loading/error text in some lab captures.
+Historical simulator observation with a **missing native backend fixture**, not a reproduced live-client defect. The simulator has since been removed; its capture scenario is not an available current check. The source path remains reviewable: [FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua), `InitializeWindowFrame` → Meter `TryEmbed`, queues retries without an active-tab/generation check. Meter onHide also shows its content frame after CleanupTabContent hid its regions. Opening Meter, switching to Map and advancing 0.4 seconds produces a new visible meter-loading label on the inactive tab in both Live/Forever lab profiles. This explains overlapping loading/error text in some lab captures.
 
-When repairing addon behavior later, guard delayed callbacks against a changed active tab/window generation and cancel/ignore retries after leaving Meter. Test backend-not-ready, rapid tab changes and late native loading in game. The lab preserves this behavior; this pass does not modify the addon Lua or claim normal ready-backend gameplay is broken.
+When repairing addon behavior later, guard delayed callbacks against a changed active tab/window generation and cancel/ignore retries after leaving Meter. Test backend-not-ready, rapid tab changes and late native loading in game. This pass does not modify addon Lua or claim normal ready-backend gameplay is broken; the historical simulator is no longer available.
 
 There was no interactive game session, native secure-engine test, screenshot comparison, release install/reset test or performance capture in this documentation audit. Optional addons, in-combat secret values, gamepad panel behavior and recycled native UI objects require in-game evidence. Broad matrix availability is source routing, not blanket "Full" certification. Full upstream revision/license provenance is also incomplete.
 

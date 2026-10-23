@@ -347,28 +347,10 @@ function Action.LeaveBlizzardCollector()
 	return LeaveBlizzardCollector()
 end
 
---- OnLoad of ActionBarButtonTemplate calls RegisterFrame. Suppress that for
---- one CreateFrame, then restore the Blizzard methods.
+--- Forever strip hosts use the art-only base template. Temporarily replacing
+--- RegisterFrame taints that method even after restoring the original value.
 function Action.WithRegistrationSuppressed(fn)
-	if not LeaveBlizzardCollector() then
-		return fn()
-	end
-	local saved = {}
-	for i = 1, #COLLECTORS do
-		local collector = _G[COLLECTORS[i]]
-		if collector and type(collector.RegisterFrame) == "function" then
-			saved[#saved + 1] = { collector = collector, orig = collector.RegisterFrame }
-			collector.RegisterFrame = function() end
-		end
-	end
-	local results = { pcall(fn) }
-	for i = 1, #saved do
-		saved[i].collector.RegisterFrame = saved[i].orig
-	end
-	if not results[1] then
-		error(results[2])
-	end
-	return unpack(results, 2)
+	return fn()
 end
 
 --- Remove one widget from a Blizzard button collector.
@@ -445,7 +427,7 @@ end
 
 --- Drop a widget from every action-button collector plus the C_ActionBar registry.
 function Action.DetachFromCollectors(widget, slot)
-	if not widget then
+	if not widget or LeaveBlizzardCollector() then
 		return
 	end
 	for i = 1, #COLLECTORS do

@@ -284,7 +284,7 @@ def inspect_file(path, graph):
     tool = path.name.startswith("_tmp") or path.name.endswith("smoke.lua")
     classification = "development harness" if tool else "bundled library" if rel.startswith("libs/") else "active compatibility" if loaded and ("Compat" in rel or "FluxAPI/" in rel or "LegacyBridge" in rel) else "active" if loaded else "inactive source"
     rec = {"path": rel, "classification": classification, "chapter": chapter_for(rel), "lines": len(source.splitlines()),
-           "sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "clients": loaded["clients"] if loaded else [],
+           "sha256": hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest(), "clients": loaded["clients"] if loaded else [],
            "parents": loaded["parents"] if loaded else [], "settings": [], "functions": [], "events": [], "slash": [], "widgets": [], "loads": [], "sv_sites": []}
     if path.suffix.lower() != ".lua" or rel.startswith("libs/") or tool:
         return rec
@@ -382,4 +382,4 @@ def collect():
             continue
         assets.append({"path": rel.as_posix(), "bytes": path.stat().st_size,
                        "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
-    return {"format_version": 1, "clients": CLIENTS, "graph": graph, "files": files, "defaults": defaults_inventory(), "assets": assets}
+    return {"format_version": 2, "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved", "clients": CLIENTS, "graph": graph, "files": files, "defaults": defaults_inventory(), "assets": assets}

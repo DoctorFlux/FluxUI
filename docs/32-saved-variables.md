@@ -103,3 +103,7 @@ Utility slot descriptors use spell/item/macro/mount/battlepet/toy identities plu
 - Binding v3 begins from its own normalized document; old binding roots remaining in the TOC do not imply migration.
 - Ace profile resets, independent tab resets, Micro Menu factory reset, clearing restock targets, and defaults-pack application affect different stores. See [options](26-options-map.md) and [defaults](05-defaults-and-bindings.md).
 - The game persists declared SavedVariables on normal reload/logout. These docs do not read or edit WTF files, and an in-memory change is not proof it was flushed to disk.
+
+## Recent compatibility state
+
+`Cap.hasSecureBarPaging`, paging-probe results, pending grid/tracker work and pin-router refresh generations are session state. They add no SavedVariable root, schema version or profile selector. Questie owns its `trackerEnabled` and persisted `TrackerWidth`; those companion fields are outside FluxUI's TOC declarations. Flux's existing Map Pins control and layout settings continue to use their existing stores. [Persistence](09-persistence.md), [integrations](29-integrations.md).

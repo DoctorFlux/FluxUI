@@ -1263,6 +1263,14 @@ function FluxMinimap:UpdateQuestTrackerPosition()
     end
     
     local s = (self and type(self) == "table") and self or FluxMinimap
+    local questie = addonTable and addonTable.FluxQuestie
+    if questie and questie:IsTrackerEnabled() then
+        questie:UpdateLayout()
+        return
+    end
+    if FluxObjectiveTrackerScroll and FluxObjectiveTrackerScroll.UpdateQuestieVisibility then
+        FluxObjectiveTrackerScroll:UpdateQuestieVisibility()
+    end
     local questTracker = ObjectiveTrackerFrame or QuestWatchFrame
     if not questTracker then return end
 

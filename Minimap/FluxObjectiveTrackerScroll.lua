@@ -56,6 +56,25 @@ local managerInitHooked = false
 
 local function nop() end
 
+local function questieTrackerEnabled()
+    local integration = addonTable and addonTable.FluxQuestie
+    if integration then return integration:IsTrackerEnabled() end
+    -- This file loads before FluxQuestie. Avoid creating a Blizzard dock during
+    -- early Forever initialization when Questie's saved setting already owns it.
+    return Questie ~= nil and QuestieLoader ~= nil and Questie.db ~= nil
+        and Questie.db.profile ~= nil and Questie.db.profile.trackerEnabled == true
+end
+
+function FluxObjectiveTrackerScroll:UpdateQuestieVisibility()
+    local active = questieTrackerEnabled()
+    -- Header and timer were moved outside ObjectiveTrackerFrame. Questie's
+    -- HideWatchFrame cannot hide those siblings; hide our entire viewport too.
+    if outerViewport and not InCombatLockdown() then
+        outerViewport:SetShown(not active)
+    end
+    return active
+end
+
 local function isCamelotClient()
     if addonTable and addonTable._isCamelotGameType then
         return true
@@ -163,7 +182,7 @@ local function bindScrollWheel(frame)
 end
 
 function FluxObjectiveTrackerScroll.IsActiveFor(tracker)
-    return tracker and tracker.fluxScrollActive == true
+    return tracker and tracker.fluxScrollActive == true and not questieTrackerEnabled()
 end
 
 function FluxObjectiveTrackerScroll:GetQuestTimer(tracker)
@@ -183,6 +202,7 @@ function FluxObjectiveTrackerScroll:PinTopModulePadding(tracker)
 end
 
 function FluxObjectiveTrackerScroll:PinLayoutHeight(tracker)
+    if questieTrackerEnabled() then return end
     -- Scroll viewport and Forever non-scroll dock both need a tall GetHeight so
     -- Forever UpdateTopPadding (38px + timer) does not skip watches. OnSizeChanged
     -- is noped so this SetHeight does not taint the next Blizzard Update.
@@ -229,6 +249,7 @@ end
 -- right manager on spec/level. Put it back on the scroll child only.
 -- Do not SortQuestWatches / RecoverStuckDirty / rebuild geometry (level-up).
 function FluxObjectiveTrackerScroll:ReassertDock(tracker)
+    if questieTrackerEnabled() then return end
     tracker = tracker or ObjectiveTrackerFrame
     if not tracker or not tracker.fluxInitialized then
         return
@@ -264,6 +285,7 @@ function FluxObjectiveTrackerScroll:ReassertDock(tracker)
 end
 
 function FluxObjectiveTrackerScroll:RecoverStuckDirty(tracker)
+    if questieTrackerEnabled() then return false end
     -- Forever Frame:Update can throw after a successful Container:Update. The dirty
     -- callback then never reaches dirty=nil, so later MarkDirty is a no-op.
     if tracker and tracker.dirty then
@@ -277,7 +299,7 @@ end
 -- Pinning the number is not enough if that method already ran; pull the first visible
 -- module up so "All Objectives" sits on the quest list the way retail Flux does.
 function FluxObjectiveTrackerScroll:CollapseModuleTopGap(tracker)
-    if not tracker or not tracker.fluxScrollActive then
+    if not self.IsActiveFor(tracker) then
         return
     end
     local modules = tracker.modules
@@ -300,6 +322,7 @@ function FluxObjectiveTrackerScroll:CollapseModuleTopGap(tracker)
 end
 
 function FluxObjectiveTrackerScroll:AnchorHeader(tracker)
+    if questieTrackerEnabled() then return end
     if not outerViewport or not tracker or not tracker.Header then
         return
     end
@@ -508,6 +531,7 @@ local function installForeverHighlightPatch()
 end
 
 function FluxObjectiveTrackerScroll:DockQuestTimer(tracker)
+    if questieTrackerEnabled() then return end
     if not outerViewport or not tracker or not tracker.fluxScrollActive then
         return
     end
@@ -743,6 +767,7 @@ end
 -- then goes to 0, Blizzard Hide()s the body, and only the reparented
 -- "All Objectives" header remains.
 function FluxObjectiveTrackerScroll:EnsureVisibleBody(tracker)
+    if questieTrackerEnabled() then return end
     if not tracker or not scrollBody or not scrollContent then
         return
     end
@@ -769,6 +794,7 @@ end
 -- One tall layout so Blizzard builds every block. Not from UpdateHeight:
 -- that runs inside RightManagedFrameContainer:Layout.
 function FluxObjectiveTrackerScroll:QueueFullLayout(tracker, seenHeight)
+    if questieTrackerEnabled() then return end
     if not tracker or tracker._fluxExpandQueued then
         return
     end
@@ -779,6 +805,7 @@ function FluxObjectiveTrackerScroll:QueueFullLayout(tracker, seenHeight)
     tracker._fluxExpandQueued = true
     local function expand()
         tracker._fluxExpandQueued = false
+        if questieTrackerEnabled() then return end
         if not tracker.fluxScrollActive or not scrollContent or tracker:GetParent() ~= scrollContent then
             return
         end
@@ -798,6 +825,7 @@ end
 
 --- Size header row, optional Forever quest timer, and scroll area below them.
 function FluxObjectiveTrackerScroll:LayoutScrollArea(tracker)
+    if questieTrackerEnabled() then return end
     if not outerViewport or not scrollBody or not tracker then
         return
     end
@@ -944,6 +972,7 @@ function FluxObjectiveTrackerScroll:_DoSyncAfterUpdate(tracker)
 end
 
 function FluxObjectiveTrackerScroll:SyncAfterUpdate(tracker)
+    if questieTrackerEnabled() then return end
     if not tracker then return end
     if tracker._fluxSyncPending then return end
     tracker._fluxSyncPending = true
@@ -984,7 +1013,7 @@ local function installForeverCompatHooks()
 
     if ObjectiveTrackerFrame.UpdateHeaderPosition then
         hooksecurefunc(ObjectiveTrackerFrame, "UpdateHeaderPosition", function(self)
-            if self and self.fluxScrollActive then
+            if self and self.fluxScrollActive and not InCombatLockdown() then
                 FluxObjectiveTrackerScroll:AnchorHeader(self)
             end
         end)
@@ -1017,7 +1046,7 @@ local function flushPendingDirty(retried)
     local list = pendingDirtyTrackers
     pendingDirtyTrackers = nil
     for tracker, orig in pairs(list) do
-        if tracker and type(orig) == "function" and tracker.dirtyCallback ~= orig then
+        if tracker and type(orig) == "function" and orig ~= tracker._fluxSecureDirtyCb then
             orig()
         end
     end
@@ -1031,7 +1060,15 @@ local function deferDirtyUntilRegen(tracker, orig)
     end
     dirtyRegenFrame = CreateFrame("Frame")
     dirtyRegenFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-    dirtyRegenFrame:SetScript("OnEvent", flushPendingDirty)
+    dirtyRegenFrame:SetScript("OnEvent", function()
+        -- The event can precede the lockdown flag clearing. Drain next tick,
+        -- with no event-frame argument accidentally treated as `retried`.
+        if C_Timer and C_Timer.After then
+            C_Timer.After(0, flushPendingDirty)
+        else
+            flushPendingDirty()
+        end
+    end)
 end
 
 local function wrapTrackerDirtyCallback(tracker)
@@ -1076,12 +1113,48 @@ local function installSecureCombatDirtyUpdate()
     end
 end
 
+local containerCombatGuardInstalled = false
+local function installContainerCombatGuard()
+    -- Forever's OnLoad saves GenerateClosure(self.Update, ...). A callback
+    -- queued before dirtyCallback was replaced still calls that saved Update,
+    -- which reads ContainerMixin.Update directly and bypasses the instance
+    -- Update hook. Guard that shared entry as well, before any native layout.
+    -- The gamepad Frame:Update has protected navigation AFTER this entry, so
+    -- leave that pipeline native; it cannot safely resume after an addon guard.
+    if containerCombatGuardInstalled or not isCamelotClient()
+        or not ObjectiveTrackerContainerMixin or type(ObjectiveTrackerContainerMixin.Update) ~= "function" then
+        return
+    end
+    local gamepad = _G.FluxUI_IsForeverGamepadUI
+    if (gamepad and gamepad()) or (InputUtil and InputUtil.IsGamepadUIEnabled and InputUtil.IsGamepadUIEnabled()) then
+        return
+    end
+    containerCombatGuardInstalled = true
+    local update = ObjectiveTrackerContainerMixin.Update
+    ObjectiveTrackerContainerMixin.Update = function(self, dirtyUpdate)
+        if InCombatLockdown and InCombatLockdown() then
+            local callback = self._fluxOrigDirtyCb or self.dirtyCallback
+            if type(callback) ~= "function" or callback == self._fluxSecureDirtyCb then
+                callback = function()
+                    update(self, dirtyUpdate)
+                    self.dirty = nil
+                end
+            end
+            self.dirty = nil
+            deferDirtyUntilRegen(self, callback)
+            return
+        end
+        return update(self, dirtyUpdate)
+    end
+end
+
 local function installHooks()
     if hooksInstalled or not ObjectiveTrackerFrame then
         return
     end
     installSecureCombatDirtyUpdate()
     hooksecurefunc(ObjectiveTrackerFrame, "Update", function(self, ...)
+        if InCombatLockdown() then return end
         if self.fluxScrollActive then
             FluxObjectiveTrackerScroll:CollapseModuleTopGap(self)
             FluxObjectiveTrackerScroll:SyncAfterUpdate(self)
@@ -1141,6 +1214,7 @@ local function installHooks()
         end)
     end
 
+    installContainerCombatGuard()
     hooksInstalled = true
     installForeverCompatHooks()
 end
@@ -1155,6 +1229,7 @@ end
 -- After a stuck Init, QUEST_LOG_UPDATE may already have been ignored. SortQuestWatches
 -- is a C API that makes Blizzard fire watch-list events so MarkDirty runs untainted.
 local function kickForeverQuestLayout()
+    if questieTrackerEnabled() then return end
     recoverForeverDirty()
     local getNum = C_QuestLog and C_QuestLog.GetNumQuestWatches
     local n = getNum and getNum() or 0
@@ -1191,6 +1266,7 @@ end
 -- leaving DirtiableMixin.dirty set so later QUEST_LOG_UPDATE MarkDirty is a no-op.
 -- Clear dirty only. Never call Update / UpdateAll from Flux (MawBuffs taint).
 function FluxObjectiveTrackerScroll:StartForeverLoginPulse()
+    if questieTrackerEnabled() then return end
     if loginPulseStarted then
         return
     end
@@ -1228,6 +1304,11 @@ function FluxObjectiveTrackerScroll:InstallForeverCompat()
     if not ObjectiveTrackerFrame or not isForeverObjectiveTracker(ObjectiveTrackerFrame) then
         return
     end
+    -- Questie can hide the Blizzard tracker while its saved dirty callbacks
+    -- still run. Combat guards must exist even when the scroll dock is unused.
+    installSecureCombatDirtyUpdate()
+    installContainerCombatGuard()
+    if questieTrackerEnabled() then return end
     installHooks()
     installForeverCompatHooks()
     hookForeverManagerInit()
@@ -1252,11 +1333,13 @@ end
 -- tracker dirty from the client, so Flux does not call Update (MawBuffs taint).
 -- Not used from UpdateQuestTrackerPosition (tab-switch flicker).
 function FluxObjectiveTrackerScroll:KickScrollLayoutOnce()
+    if questieTrackerEnabled() then return end
     if self._scrollLayoutKicked then
         return
     end
     self._scrollLayoutKicked = true
     local function kick()
+        if questieTrackerEnabled() then return end
         if C_QuestLog and C_QuestLog.SortQuestWatches then
             pcall(C_QuestLog.SortQuestWatches)
         end
@@ -1270,6 +1353,7 @@ end
 
 --- Outer frame (positioned by FluxMinimap) + fixed header + inner ScrollFrame for body only.
 function FluxObjectiveTrackerScroll:EnsureViewport(tracker)
+    if self:UpdateQuestieVisibility() then return nil end
     if not tracker or tracker ~= ObjectiveTrackerFrame then
         return nil
     end

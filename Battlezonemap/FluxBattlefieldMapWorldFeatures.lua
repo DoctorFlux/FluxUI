@@ -1025,10 +1025,6 @@ local function HideToggle()
     end
 end
 
-local function BlizzardHasQuestPins()
-    return type(QuestDataProviderMixin) == "table"
-end
-
 function FluxBattlefieldMapWorldFeatures:Activate()
     if not self:IsEnabled() then
         return
@@ -1041,13 +1037,8 @@ function FluxBattlefieldMapWorldFeatures:Activate()
     if FluxBattlefieldMapProviders and FluxBattlefieldMapProviders.Attach then
         FluxBattlefieldMapProviders:Attach(GetBattlefieldMap())
     end
-    if not BlizzardHasQuestPins() then
-        if FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.Install then
-            FluxBattlefieldMapPinRouter:Install()
-        end
-        if FluxBattlefieldMapPinTooltips and FluxBattlefieldMapPinTooltips.Install then
-            FluxBattlefieldMapPinTooltips:Install()
-        end
+    if FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.Install then
+        FluxBattlefieldMapPinRouter:Install()
     end
     UpdateToggleVisual()
 end
@@ -1073,7 +1064,7 @@ local function ScheduleActivateRetry()
     if not state.isActive or not FluxBattlefieldMapWorldFeatures:IsEnabled() then
         return
     end
-    if not BlizzardHasQuestPins() and FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.ScheduleKickstart then
+    if FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.ScheduleKickstart then
         FluxBattlefieldMapPinRouter:ScheduleKickstart()
     end
 end
@@ -1260,8 +1251,8 @@ eventFrame:SetScript("OnEvent", function(_, event, loadedAddon)
             end
             return
         end
-        if not BlizzardHasQuestPins() and FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.RefreshAllThirdPartyPins then
-            FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
+        if FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.RequestRefresh then
+            FluxBattlefieldMapPinRouter:RequestRefresh()
         end
         UpdateToggleVisual()
     end

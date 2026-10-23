@@ -36,8 +36,8 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:3199](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3199) | handler | `FLUXTELEPORT` | `` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6567](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6567) | alias | `SLASH_FLUXCONSUMABLES1` | `/fluxconsumables` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6568](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6568) | handler | `FLUXCONSUMABLES` | `` |
-| [Bars/Init.lua:453](../../Bars/Init.lua#L453) | alias | `SLASH_FLUXBARS1` | `/fluxbars` |
-| [Bars/Init.lua:454](../../Bars/Init.lua#L454) | handler | `FLUXBARS` | `` |
+| [Bars/Init.lua:455](../../Bars/Init.lua#L455) | alias | `SLASH_FLUXBARS1` | `/fluxbars` |
+| [Bars/Init.lua:456](../../Bars/Init.lua#L456) | handler | `FLUXBARS` | `` |
 | [Other/FluxPerfDebug.lua:804](../../Other/FluxPerfDebug.lua#L804) | alias | `SLASH_FLUXPERF1` | `/fluxperf` |
 | [Other/FluxPerfDebug.lua:805](../../Other/FluxPerfDebug.lua#L805) | handler | `FLUXPERF` | `` |
 | [FluxDefaultSettings.lua:2782](../../FluxDefaultSettings.lua#L2782) | alias | `SLASH_FLUXDEFAULTS1` | `/fluxdefaults` |
@@ -63,8 +63,8 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [Battlezonemap/FluxBlizzardMeter.lua:1518](../../Battlezonemap/FluxBlizzardMeter.lua#L1518) | handler | `FLUXBLIZZMETER` | `` |
 | [Battlezonemap/FluxBattlefieldMap.lua:1379](../../Battlezonemap/FluxBattlefieldMap.lua#L1379) | alias | `SLASH_FLUXBATTLEFIELDMAP1` | `/fluxmap` |
 | [Battlezonemap/FluxBattlefieldMap.lua:1380](../../Battlezonemap/FluxBattlefieldMap.lua#L1380) | handler | `FLUXBATTLEFIELDMAP` | `` |
-| [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1270](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1270) | alias | `SLASH_FLUXWORLDMAP1` | `/fluxwm` |
-| [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1271](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1271) | handler | `FLUXWORLDMAP` | `` |
+| [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1261](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1261) | alias | `SLASH_FLUXWORLDMAP1` | `/fluxwm` |
+| [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1262](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1262) | handler | `FLUXWORLDMAP` | `` |
 | [Respec/FluxRespec_Core.lua:755](../../Respec/FluxRespec_Core.lua#L755) | alias | `SLASH_FLUXRESPEC1` | `/fluxrespec` |
 | [Respec/FluxRespec_Core.lua:756](../../Respec/FluxRespec_Core.lua#L756) | alias | `SLASH_FLUXRESPEC2` | `/respec` |
 | [Respec/FluxRespec_Core.lua:757](../../Respec/FluxRespec_Core.lua#L757) | handler | `FLUXRESPEC` | `` |

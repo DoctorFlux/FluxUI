@@ -36,6 +36,8 @@ flowchart TD
 
 [ChordMap.lua](../Binding/Core/ChordMap.lua) normalizes uppercase `ALT-CTRL-SHIFT-META-KEY`. If a base key belongs to a Flux column, bare/SHIFT/CTRL route through its current main/mini mapping. ALT, SHIFT+CTRL and keys without a column use pooled free-chord secure buttons. Promotion means effective routing must read current host state.
 
+Column overrides preserve the click engine's input policy. On wrap clients Apply routes to `FluxActionStripButton<column>` with `KeyBind`. When `Click.UsesWrap()` is false and the proxy exists, it routes to `FluxActionStripKey<column>` with `LeftButton`, retaining Forever's hidden key-down path while visible mouse hosts remain mouse-up. It never redirects these chords to Blizzard OverrideActionBarButton frames. During temporary native pages (page 11 or greater), the first twelve main hosts suppress ordinary slot macro/click overlays and use the temporary native action; modifiers and promotion cannot replace that control action. Leaving the page restores ordinary routing. The document, pooled free chords and saved order are unchanged by this runtime exception.
+
 [MacroFactory.lua](../Binding/Core/MacroFactory.lua) builds forward programs by merging ordered binding clauses and a native-action tail, respecting fallback. Reverse programs let a badge preview the opposite shared-condition action. Complex sequences/petattack/multi-cast use hidden slot clickers; simpler programs can live on a visible surface. Native slot, compiled program and displayed macro face remain distinct.
 
 ## Conditions, forms and actions

@@ -15,6 +15,36 @@ This reference separates what can be established by reading files, desktop harne
 
 Do not label source-supported matrix entries as live-verified. A successful pcall is not a complete taint test.
 
+## Current verification: 23 October 2026
+
+The complete current **28-script** smoke suite was executed on desktop **Lua 5.4.6**: **26 passed, 2 failed**. All **662 publishable Lua files**, including bundled libraries and local harnesses, also passed `luac -p`. The two failures remain the Core salvage-overlay source assertion and Bars' 26 source-contract assertions; no assertion was relaxed and no addon Lua was edited by this documentation refresh. A failing text expectation is not proof of 26 live defects. The passing behavioral fixtures do not erase those failures.
+
+[verification.json](reference/verification.json) records every script's exit status/output, the publishable Lua manifest and its corpus fingerprint. The corpus fingerprint uses sorted `{path,sha256}` records serialized as compact JSON with sorted object keys; individual hashes normalize CRLF to LF while preserving BOM and other bytes. The source inventory uses the same line-ending policy, so Windows and LF checkouts can validate the same source. The ignored root strip-lines helper is a local tooling item, excluded from this publishable corpus.
+
+| New compatibility harness | Current result and boundary |
+|---|---|
+| [Forever control paging](../Bars/_tmp_forevercontrolsmoke.lua) | PASS. Executes supplied native secure-driver/template Lua and real Flux state/click/layout code; compares ordinary slot math with a local v8 backup. Models protected writes and input edges, not the game's taint VM. |
+| [Stock grid events](../Bars/_tmp_stockgridsmoke.lua) | PASS. Selected native grid/layout methods plus actual Flux suppression/combat queue. Four supplied client snapshots; explicit Era-backed compatibility fixture for MoP, whose own snapshot was not supplied. |
+| [Questie battlefield pins](../Battlezonemap/_tmp_questiepinsmoke.lua) | PASS. Ownership handoff, library/client gates, native-provider coexistence, filters/tooltips, late load, combat recovery and bounded refresh behavior under mocks. |
+| [Questie tracker](../Minimap/_tmp_questiesmoke.lua) | PASS. Enabled/hidden ownership, wrapped overflow, collapse/expand, timer handoff, late frames and combat-deferred layout with mock frames. |
+| [Forever native tracker combat](../Minimap/_tmp_trackercombatsmoke.lua) | PASS. Selected supplied native dirty/container code and actual Flux guards; models the saved-callback problem, deferred recovery and keyboard/gamepad separation. |
+
+Some harnesses read the sibling `__AddonsForRef` folders supplied locally. The Forever control test also reads `../__Backup/v8/_FluxUI/Bars/SlotMath.lua`. These external Blizzard/reference/backup trees are **not included in GitHub**; a standalone clone cannot reproduce every check without those inputs. An unavailable fixture is a missing test dependency, not a verified addon failure. Native hardware clicks, WoW's secure/taint execution, rendering and live client timing remain unverified.
+
+A separate `lua Battlezonemap/_tmp_questiepinsmoke.lua --benchmark` run passed. This machine reported 9 ms for 1,000 and 16 ms for 2,000 incremental mock pins, with zero full pin-list visits and zero provider refreshes during insertion. These are one desktop mocked CPU sample, not in-game FPS or a cross-client performance claim. Historical performance captures below retain their original dates and limits.
+
+Rebuild documentation with `python -B docs/tools/build_reference.py`, then run the read-only checker with `python -B docs/tools/validate_docs.py`. The generated references reconcile the current TOC/XML graph, source classifications, settings/custom controls, command registrations, defaults and SavedVariables. Source fragments in `contracts.json` are checked for presence; their meaning still requires review against callers and bodies. The checker also compares the current Lua bytes with the dated verification manifest and reconciles its per-script totals; it does not rerun those checks or turn recorded failures into passes.
+
+### Current compatibility scenarios
+
+All scenarios below are **pending in-game**. Run on each applicable exact client/build, recording clean or upgraded saved data, addon versions, keyboard/gamepad mode, resolution/UI scale, errors and expected/actual behavior.
+
+1. **Control paging:** log in/reload; inspect `/fluxbars page` for separate snippet and secure-paging decisions. On Forever, test Mind Control/Chess entry and exit from ordinary pages 1, 2 and 6, including combat, held SHIFT/CTRL, empty columns, promoted minis and custom binding macros. Verify the first twelve control actions and pet visibility, then ordinary action/macros and key/mouse edges on exit. Test forms/vehicles/override/skyriding separately where the client supplies them. A failed cached probe needs reload for retry.
+2. **Bag pickup and stock layout:** on a fresh Forever session use `/console taintLog 2` and `/reload`; enter combat, pick up/cancel bag items, move items and trigger action/pet grids. Check for blocked native managed-container resize and inspect the first taint attribution in `Logs/taint.log`. Repeat after late Blizzard_ActionBar load and with gamepad UI. Turn logging off afterward with `/console taintLog 0`. The reported dispatch stack alone does not identify the first taint writer.
+3. **Questie pins:** toggle Flux Map Pins independently of Questie tracker and minimap-icon preferences. Change World Map filters/icon size/colors, hover routed icons, open/close World Map in the same zone, zoom/pan and switch tabs. Verify World Map priority/restoration, late Questie loading and combat-deferred resume. Modern Live should keep its native-provider path; Classic/Forever library gates differ.
+4. **Tracker ownership:** test Questie enabled, collapsed, temporarily hidden, disabled and loaded late. Confirm a single visible dock, reachable last wrapped objective, correct header clicks and scrollbar, and normal/embedded/restored minimap geometry. On Forever toggle its optional Blizzard quest timer repeatedly and check both reserved spacing and restored native parent/anchors.
+5. **Hidden native callbacks:** with Questie enabled, trigger native objective dirty updates during combat in Forever keyboard mode, then leave combat. Check for one deferred native layout recovery without a blocked resize or resurfacing detached header. Repeat in gamepad mode and verify native navigation after the container callback. Repeat login, reload, loading screen and optional-addon changes.
+
 ## Audit baseline: 2026-10-22
 
 Desktop runtime: **Lua 5.4.6**. The initial 22 smoke scripts yielded **20 passing scripts, 2 failing scripts**. The two failures were independently rerun at that stage with the same Core 1/Bars 26 source-contract result. This is the initial baseline, not a fresh result for the later source state. The documentation work did not change runtime code or smoke expectations. [40-findings.md](40-findings.md) records failure categories.
@@ -29,14 +59,14 @@ Desktop runtime: **Lua 5.4.6**. The initial 22 smoke scripts yielded **20 passin
 
 ### Incremental checks after concurrent source changes
 
-External work during the audit changed CharacterInfo/InfoFrame/WindowMover source and the Forever stats harness, and added a WindowMover harness. There are now **23 existing smoke harnesses**. Only the following targeted reruns are recorded after those changes:
+External work during the audit changed CharacterInfo/InfoFrame/WindowMover source and the Forever stats harness, and added a WindowMover harness. At that intermediate stage there were **23 existing smoke harnesses**. Only the following targeted reruns are recorded after those changes:
 
 | Harness | Result and limit |
 |---|---|
 | [CharacterInfo/_tmp_foreverstatssmoke.lua](../CharacterInfo/_tmp_foreverstatssmoke.lua) | PASS, rerun on Lua 5.4.6 on 2026-10-22 after the latest concurrent Info Frame/harness changes. Real providers, pin handlers and stat-update loop; mocked APIs, secret tokens and native formatted-text output. Includes changing combat values with unchanged layout samples, merged lines, visible/hidden native totals, alias/order migration, tooltip rows and combat recovery. |
 | [WindowMover/_tmp_charactercombatsmoke.lua](../WindowMover/_tmp_charactercombatsmoke.lua) | PASS for real mover attachment/layout code under mocked hooks/combat, covering Forever keyboard/gamepad and Retail isolation/deferred recovery. It does not execute WoW's secure VM. |
 
-The complete 23-harness suite was **not** rerun after these changes. Do not derive an updated whole-suite pass count from the historical 20/22 baseline plus two targeted checks. [Status bars](16-status-bars.md), [Character Info](27-character-info.md) and [WindowMover](28-window-mover.md) describe the concurrently updated implementations.
+The complete 23-harness suite was **not** rerun at that intermediate stage; the newer complete 28-script run above supersedes that limitation for the current source. Do not derive an updated whole-suite pass count from the historical 20/22 baseline plus two targeted checks. [Status bars](16-status-bars.md), [Character Info](27-character-info.md) and [WindowMover](28-window-mover.md) describe the concurrently updated implementations.
 
 The latest targeted Forever run exited 0 and printed `Forever shared stats OK: native values, live combat text/merged rows, native totals, saved order, row clicks/tooltips; Live/Era/Wrath isolated`. The following SHA-256 fingerprints identify the tested files; later source changes require another targeted run before carrying this result forward:
 
@@ -66,14 +96,6 @@ lua Bars/_tmp_barsmoke.lua
 ```
 
 [30-source-coverage.md](30-source-coverage.md) and documentation tooling inventory current source/include coverage. Generated links/default/API/event indexes must be regenerated when their source changes, then checked for missing files and stale links. A documentation check passing is independent from gameplay smoke failures.
-
-## Publication verification: 2026-10-23
-
-The addon/documentation publishing snapshot excludes the local simulator, its extracted client assets and its dedicated documentation. The original working addon and local simulator remain separate from this snapshot. Generated inventory hashes describe the published source bytes.
-
-All **42 changed/new Lua files** pass `luac -p` on desktop Lua 5.4.6. The complete **23 smoke scripts** were rerun from the source workspace with the supplied Blizzard reference trees available: **21 pass, 2 fail**. The failures are the existing Core source assertion (1) and Bars source-contract assertions (26) documented above; they are not reported as passing or repaired by publication.
-
-Running the same scripts in the standalone publishing checkout gives 13 pass, 8 blocked by missing sibling Blizzard reference files, and those same 2 failures. The reference trees are local test inputs and are not part of the addon repository. These desktop checks do not establish native taint/security, secret-value behavior, live UI appearance or WoW performance. Run the in-game scenarios below for each supported client.
 
 ## Client test matrix and record format
 

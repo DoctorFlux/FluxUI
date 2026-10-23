@@ -103,6 +103,8 @@ This helper's rules apply to that helper, not to all addon code. The addon also 
 
 The legacy `FluxEditModeBusy`/`FluxAfterEditMode` queue in [`Core/FluxAPI/UI.lua`](../Core/FluxAPI/UI.lua) keeps layout work out of Blizzard's open/close pass; jobs collapse by key and run on a later frame after the mode closes. It also suppresses owned Edit Mode selection chrome and unregisters the manager's specialization-change layout event. Those are deliberate runtime effects, not merely visual preferences.
 
+Bar startup has narrower coexistence rules than a blanket hide operation. [Bars/Blizzard.lua](../Bars/Blizzard.lua) detaches recognized stock grid-event pairs before alpha neutralization, including main-bar aliases and frames appearing on a later `ADDON_LOADED`; combat setup queues through `bars.stockgrid`. Native controller/page events remain owned by Blizzard. On Forever, [Restricted.lua](../Core/Engine/Restricted.lua) captures native attribute-driver functions before installing its legacy shims; bar setup can use those captured functions after a successful OOC paging probe. Shared action collector methods are never temporarily replaced on this path. [Action bars](11-action-bars.md) and [modern boundaries](03-midnight-constraints.md) explain the input and taint limits.
+
 ## Dependencies and observability
 
 TOC optional dependencies establish loading relationships; `Flux.Optional` separately probes loaded/readiness/API state. Syndicator readiness is tested through `Syndicator.API.IsReady`, so loaded does not always mean ready. See [29-integrations.md](29-integrations.md) and [90-reference-inspirations.md](90-reference-inspirations.md).

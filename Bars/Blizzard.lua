@@ -74,6 +74,47 @@ local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
 end
 
+local STOCK_GRID_EVENTS = {
+	ACTIONBAR_SHOWGRID = true,
+	ACTIONBAR_HIDEGRID = true,
+	PET_BAR_SHOWGRID = true,
+	PET_BAR_HIDEGRID = true,
+}
+local STOCK_GRID_EVENT_FIELDS = { "showGridEventName", "hideGridEventName" }
+
+local function SilenceStockGridEvents(bar)
+	if type(bar) ~= "table" or type(bar.UnregisterEvent) ~= "function" then
+		return
+	end
+	for i = 1, #STOCK_GRID_EVENT_FIELDS do
+		local event = bar[STOCK_GRID_EVENT_FIELDS[i]]
+		if STOCK_GRID_EVENTS[event] and (not bar.IsEventRegistered or bar:IsEventRegistered(event)) then
+			bar:UnregisterEvent(event)
+		end
+	end
+end
+
+-- Alpha-hidden bars still receive bag-pickup grid events: SetShowGrid calls
+-- UpdateVisibility -> Edit Mode -> RightManagedFrameContainer:SetSize in combat.
+-- Flux has its own grid listeners. Detach only the stock bars' configured grid
+-- pair before neutralizing them; retain all native controller/paging events.
+-- This is independent of SilenceUnusedBar's one-time visibility-event flag so
+-- MainActionBar, aliases, late frames and re-registered events are covered too.
+local function SuppressStockGridEvents()
+	if InLockdown() then
+		if Flux.Combat and Flux.Combat.Defer then
+			Flux.Combat.Defer("bars.stockgrid", SuppressStockGridEvents)
+		end
+		return
+	end
+	for i = 1, #MAIN_BARS do
+		SilenceStockGridEvents(_G[MAIN_BARS[i]])
+	end
+	for i = 1, #MULTI_BARS do
+		SilenceStockGridEvents(_G[MULTI_BARS[i]])
+	end
+end
+
 function Blizzard.GetHider()
 	if hider then
 		return hider
@@ -107,6 +148,14 @@ local function KillMouse(frame)
 		return
 	end
 	if type(frame) ~= "table" or type(frame.EnableMouse) ~= "function" then
+		return
+	end
+	if frame.IsProtected and frame:IsProtected() then
+		-- Leave stock protected state native: its next SetShown/SetAttribute
+		-- runs inside ActionBarController_UpdateAll during possession changes.
+		if frame.SetPropagateMouseClicks then frame:SetPropagateMouseClicks(true) end
+		if frame.SetPropagateMouseMotion then frame:SetPropagateMouseMotion(true) end
+		if frame.SetHitRectInsets then frame:SetHitRectInsets(10000, 10000, 10000, 10000) end
 		return
 	end
 	frame:EnableMouse(false)
@@ -361,7 +410,8 @@ end
 -- captured C widget method, bypassing HideOverride. Protected stance buttons
 -- notify us when their parent becomes visible; the parent's own OnShow cannot
 -- be used because the Edit Mode bar is not explicitly protected.
--- Classic/Forever retain the existing hidden-parent behavior.
+-- Classic/early Forever retain hidden parenting. Repaired Forever builds use
+-- the same secure hide, preserving the native Edit Mode bar's parent.
 local STOCK_STANCE_BARS = {
 	"StanceBar",
 	"StanceBarFrame",
@@ -428,7 +478,8 @@ local function UseStanceHider()
 	end
 	local C = Flux.Client
 	if C and (C.isCamelot or C.isForever) then
-		return true
+		local R = Flux.Restricted
+		return not (R and R.PagingWorks and R.PagingWorks())
 	end
 	local Restricted = Flux.Restricted
 	if Restricted and Restricted.Works and not Restricted.Works() then
@@ -542,6 +593,7 @@ local leftoverQueued = false
 
 local function ApplyLeftoverNow()
 	leftoverQueued = false
+	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		local bar = _G[MAIN_BARS[i]]
 		if type(bar) == "table" and bar.SetAlpha then
@@ -599,8 +651,8 @@ local function WatchLeftoverEvents()
 	for i = 1, #STOCK_STANCE_LEFTOVER_EVENTS do
 		leftoverWatch:RegisterEvent(STOCK_STANCE_LEFTOVER_EVENTS[i])
 	end
+	leftoverWatch:RegisterEvent("ADDON_LOADED")
 	if IsRetailPostDF() then
-		leftoverWatch:RegisterEvent("ADDON_LOADED")
 		pcall(leftoverWatch.RegisterEvent, leftoverWatch, "ACTIONBAR_SHOW_BOTTOMLEFT")
 		if EventRegistry and EventRegistry.RegisterCallback then
 			EventRegistry:RegisterCallback("EditMode.Exit", Blizzard.QueueLeftoverMouse)
@@ -715,6 +767,7 @@ function Blizzard.HideStockButtons()
 end
 
 function Blizzard.KillLeftoverMouse()
+	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		NeutralizeMainBar(_G[MAIN_BARS[i]])
 	end
@@ -748,6 +801,7 @@ function Blizzard.KillLeftoverMouse()
 end
 
 function Blizzard.HideUnusedBars()
+	SuppressStockGridEvents()
 	if not InLockdown() then
 		for i = 1, #MULTI_BARS do
 			UnparkIfNeeded(_G[MULTI_BARS[i]])

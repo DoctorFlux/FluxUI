@@ -581,7 +581,7 @@ function Widget.Create(parent, config)
 
 	local template = "ActionButtonTemplate, SecureActionButtonTemplate"
 	local C = Flux.Client
-	if kind == "strip" and C and C.isPostDF and not C.isAnyClassic then
+	if kind == "strip" and C and C.isPostDF and not C.isAnyClassic and not (C.isCamelot or C.isForever) then
 		template = "ActionBarButtonTemplate, SecureActionButtonTemplate"
 	end
 	local function create()

@@ -70,7 +70,9 @@ function M.Resolve(column, row, page, swap, opts)
 	end
 
 	local slot = mainRest
-	if rowId == 1 then
+	if static == 0 and page >= 11 then
+		if rowId == 2 then slot = sec elseif rowId == 3 then slot = tert end
+	elseif rowId == 1 then
 		if promoted == 1 then
 			slot = sec
 		elseif promoted == 2 then

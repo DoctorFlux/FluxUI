@@ -3,6 +3,8 @@
 -- BattlefieldMapFrame when the Battlezone map is active and the world map is closed.
 -- World map takes priority while open. Also mirrors third-party WorldMapFrame pin pools
 -- onto the battlefield map so AcquirePin does not fail on missing XML templates.
+-- Forever has native quest providers too; only Questie's HBD provider is routed
+-- there, keeping its original world-map icons, filters and appearance settings.
 
 local addonName, addonTable = ...
 
@@ -37,19 +39,32 @@ local state = {
     origAcquirePin = nil,
     worldMapOpen = false,
     restorePending = false,
-    questieQueueHooked = false,
-    questieCatchupScheduled = false,
+    refreshPending = false,
+    refreshQueued = false,
 }
 
 local KICKSTART_DELAYS = { 0, 0.25, 0.5, 1.0, 2.0, 3.0, 5.0, 8.0 }
 local kickstartGeneration = 0
+local refreshGeneration = 0
 
 local function BlizzardHasQuestPins()
     return type(QuestDataProviderMixin) == "table"
 end
 
+local function IsForeverClient()
+    local client = addonTable and addonTable.Flux and addonTable.Flux.Client
+    return (addonTable and addonTable._isCamelotGameType)
+        or (client and (client.isForever or client.isCamelot))
+        or (FLUX_API and (FLUX_API.isForever or FLUX_API.isCamelot))
+end
+
+function FluxBattlefieldMapPinRouter:IsLibrarySupported(name)
+    if not BlizzardHasQuestPins() then return true end
+    return IsForeverClient() and name == "HereBeDragonsQuestie-Pins-2.0"
+end
+
 local function IsPinRouterWanted()
-    if BlizzardHasQuestPins() then
+    if BlizzardHasQuestPins() and not IsForeverClient() then
         return false
     end
     if not FluxBattlefieldMapWorldFeatures or not FluxBattlefieldMapWorldFeatures.IsEnabled then
@@ -165,7 +180,7 @@ local function EnumerateHBDLibs()
     end
     for _, entry in ipairs(HBD_LIBS) do
         local ok, pins = pcall(LibStub, entry.name, true)
-        if ok and pins and pins.worldmapProvider then
+        if ok and pins and pins.worldmapProvider and FluxBattlefieldMapPinRouter:IsLibrarySupported(entry.name) then
             found[#found + 1] = {
                 name = entry.name,
                 template = entry.template,
@@ -446,15 +461,18 @@ local function SyncThirdPartyPinPools(mapFrame)
     if not mapFrame or not worldMap or not worldMap.pinPools then
         return
     end
-    for template in pairs(worldMap.pinPools) do
-        if not IsXmlPinTemplate(template) then
-            if not mapFrame.pinPools or not mapFrame.pinPools[template] then
-                TryMirrorPinPoolFromWorldMap(mapFrame, template)
+    if not BlizzardHasQuestPins() then
+        for template in pairs(worldMap.pinPools) do
+            if not IsXmlPinTemplate(template) then
+                if not mapFrame.pinPools or not mapFrame.pinPools[template] then
+                    TryMirrorPinPoolFromWorldMap(mapFrame, template)
+                end
             end
         end
     end
     for _, entry in ipairs(HBD_LIBS) do
-        if not mapFrame.pinPools or not mapFrame.pinPools[entry.template] then
+        if FluxBattlefieldMapPinRouter:IsLibrarySupported(entry.name)
+            and (not mapFrame.pinPools or not mapFrame.pinPools[entry.template]) then
             EnsureKnownHBDTemplatePool(mapFrame, entry.template)
         end
     end
@@ -464,63 +482,66 @@ local ClearProviderFromIcon
 local RouteHandlePin
 local RouteRefreshAllData
 
-ClearProviderFromIcon = function(provider, icon)
-    if provider and provider.RemovePinByIcon and icon then
+ClearProviderFromIcon = function(provider, icon, mapFrame)
+    -- The world provider's GetMap is shimmed to the battlefield map for Questie
+    -- tooltips/scaling. Remove from the actual canvas, never from that shim.
+    if mapFrame and mapFrame.RemovePin then
+        -- HBD parents its icon directly to the owning pin. This is constant
+        -- time even when Questie draws thousands of objectives in a zone.
+        local pin = icon and icon.GetParent and icon:GetParent()
+        if pin and pin.icon == icon and pin.owningMap == mapFrame then
+            mapFrame:RemovePin(pin)
+        end
+    elseif provider and provider.RemovePinByIcon and icon then
         pcall(provider.RemovePinByIcon, provider, icon)
     end
 end
 
 RouteHandlePin = function(route, worldProvider, icon, data, ...)
+    if InCombatLockdown and InCombatLockdown() then
+        state.refreshPending = true
+        return
+    end
     if FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield() then
+        -- Release the old owner before acquiring the new pin: OnReleased hides
+        -- and reparents the shared icon, so releasing afterwards erases it.
+        ClearProviderFromIcon(worldProvider, icon, _G.WorldMapFrame)
+        ClearProviderFromIcon(route.battlefieldProvider, icon, GetBattlefieldMap())
         if route.battlefieldProvider and route.battlefieldProvider.HandlePin then
             pcall(SecureCall, route.battlefieldProvider.HandlePin, route.battlefieldProvider, icon, data, ...)
-            if FluxBattlefieldMapPinTooltips and FluxBattlefieldMapPinTooltips.OnHBDPinAcquired and icon then
-                pcall(function()
-                    local mapFrame = GetBattlefieldMap()
-                    if mapFrame and mapFrame.EnumeratePinsByTemplate then
-                        for pin in mapFrame:EnumeratePinsByTemplate(route.template) do
-                            if pin.icon == icon then
-                                FluxBattlefieldMapPinTooltips:OnHBDPinAcquired(pin, icon)
-                                break
-                            end
-                        end
-                    end
-                end)
-            end
+            -- The pin pool's OnAcquired wrapper sets up tooltip mouse handling;
+            -- do not rescan the full pin pool for every newly drawn icon.
         end
-        ClearProviderFromIcon(worldProvider, icon)
     elseif route.origHandlePin then
+        ClearProviderFromIcon(route.battlefieldProvider, icon, GetBattlefieldMap())
         pcall(SecureCall, route.origHandlePin, worldProvider, icon, data, ...)
-        ClearProviderFromIcon(route.battlefieldProvider, icon)
     end
 end
 
 RouteRefreshAllData = function(route, worldProvider, fromOnShow)
+    if InCombatLockdown and InCombatLockdown() then
+        state.refreshPending = true
+        return
+    end
     if FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield() then
+        local worldMap = _G.WorldMapFrame
+        if worldMap and worldMap.RemoveAllPinsByTemplate then
+            pcall(worldMap.RemoveAllPinsByTemplate, worldMap, route.template)
+        end
         if worldProvider then
             worldProvider.forceUpdate = true
         end
         if route.battlefieldProvider then
             route.battlefieldProvider.forceUpdate = true
-            -- Skip pin acquire under Flux taint while locked down (SetPassThroughButtons).
-            if route.battlefieldProvider.RefreshAllData
-                and not (InCombatLockdown and InCombatLockdown()) then
+            if route.battlefieldProvider.RefreshAllData then
                 pcall(SecureCall, route.battlefieldProvider.RefreshAllData, route.battlefieldProvider, fromOnShow)
             end
         end
-        -- Do not call worldProvider:RemoveAllData() while routing: GetMap may be shimmed to
-        -- BattlefieldMapFrame, which would wipe pins we just placed on the battlefield map.
-        local worldMap = _G.WorldMapFrame
-        if worldMap and worldMap.RemoveAllPinsByTemplate then
-            pcall(worldMap.RemoveAllPinsByTemplate, worldMap, route.template)
-        end
     elseif route.origRefreshAllData then
-        if not (InCombatLockdown and InCombatLockdown()) then
-            pcall(SecureCall, route.origRefreshAllData, worldProvider, fromOnShow)
-        end
         if route.battlefieldProvider and route.battlefieldProvider.RemoveAllData then
             pcall(SecureCall, route.battlefieldProvider.RemoveAllData, route.battlefieldProvider)
         end
+        pcall(SecureCall, route.origRefreshAllData, worldProvider, fromOnShow)
     end
 end
 
@@ -547,6 +568,18 @@ local function InstallOneHBDProvider(mapFrame, libEntry)
         }
         state.hbdRoutes[worldProvider] = route
 
+        -- MapCanvas also refreshes providers directly on map changes. An
+        -- inactive battlefield clone must never steal the shared World Map icon.
+        local refreshBattlefield = route.battlefieldProvider.RefreshAllData
+        route.battlefieldProvider.RefreshAllData = function(self, ...)
+            if not FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield() then return end
+            if InCombatLockdown and InCombatLockdown() then
+                state.refreshPending = true
+                return
+            end
+            if refreshBattlefield then return refreshBattlefield(self, ...) end
+        end
+
         worldProvider.HandlePin = function(self, icon, data, ...)
             RouteHandlePin(route, self, icon, data, ...)
         end
@@ -565,14 +598,14 @@ local function InstallOneHBDProvider(mapFrame, libEntry)
 
     if hooksecurefunc and not route.removeIconHooked then
         hooksecurefunc(HBDPins, "RemoveWorldMapIcon", function(_, ref, icon)
-            ClearProviderFromIcon(route.battlefieldProvider, icon)
+            ClearProviderFromIcon(route.battlefieldProvider, icon, GetBattlefieldMap())
         end)
         route.removeIconHooked = true
     end
 end
 
 local function InstallHBDProvider(mapFrame)
-    PurgePoisonedXmlPinPools(mapFrame)
+    if not BlizzardHasQuestPins() then PurgePoisonedXmlPinPools(mapFrame) end
     InstallAcquirePinGuard(mapFrame)
     SyncThirdPartyPinPools(mapFrame)
 
@@ -584,8 +617,13 @@ local function InstallHBDProvider(mapFrame)
 end
 
 local function OnWorldMapOpened()
+    if state.worldMapOpen then return end
     state.worldMapOpen = true
     state.restorePending = false
+    if InCombatLockdown and InCombatLockdown() then
+        state.refreshPending = true
+        return
+    end
     for _, route in pairs(state.hbdRoutes) do
         if route.battlefieldProvider and route.battlefieldProvider.RemoveAllData then
             pcall(route.battlefieldProvider.RemoveAllData, route.battlefieldProvider)
@@ -609,37 +647,27 @@ local function ScheduleBattlefieldPinRestore()
     state.restorePending = true
 
     local function tryRestore()
+        state.restorePending = false
         if not state.installed then
-            state.restorePending = false
             return
         end
         if state.worldMapOpen then
             return
         end
         if FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield() then
-            FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
+            FluxBattlefieldMapPinRouter:RequestRefresh()
         end
     end
 
-    local function finishRestore()
-        state.restorePending = false
-    end
-
     if C_Timer and C_Timer.After then
-        C_Timer.After(0, function()
-            tryRestore()
-            C_Timer.After(0.1, function()
-                tryRestore()
-                finishRestore()
-            end)
-        end)
+        C_Timer.After(0, tryRestore)
     else
         tryRestore()
-        finishRestore()
     end
 end
 
 local function OnWorldMapClosed()
+    if not state.worldMapOpen then return end
     state.worldMapOpen = false
     ScheduleBattlefieldPinRestore()
 end
@@ -675,66 +703,12 @@ worldMapEventFrame:SetScript("OnEvent", function(_, event)
     end
 end)
 
-local function TryHookQuestieQueueInit()
-    if not hooksecurefunc or not QuestieLoader then
-        return
-    end
-    local ok, QuestieMap = pcall(QuestieLoader.ImportModule, QuestieLoader, "QuestieMap")
-    if not ok or not QuestieMap then
-        return
-    end
-
-    if not state.questieQueueHooked and QuestieMap.InitializeQueue then
-        hooksecurefunc(QuestieMap, "InitializeQueue", function()
-            if not state.installed or not IsPinRouterWanted() then
-                return
-            end
-            if C_Timer and C_Timer.After then
-                C_Timer.After(0.5, function()
-                    if state.installed and IsPinRouterWanted() then
-                        FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
-                    end
-                end)
-                C_Timer.After(2.0, function()
-                    if state.installed and IsPinRouterWanted() then
-                        FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
-                    end
-                end)
-            end
-        end)
-        state.questieQueueHooked = true
-    end
-
-    if not state.questieCatchupScheduled and IsPinRouterWanted() and C_Timer and C_Timer.After then
-        state.questieCatchupScheduled = true
-        C_Timer.After(1.0, function()
-            if state.installed and IsPinRouterWanted() then
-                FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
-            end
-        end)
-        C_Timer.After(3.0, function()
-            if state.installed and IsPinRouterWanted() then
-                FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
-            end
-        end)
-    end
-end
-
-local function DrainQuestieMapQueue()
-    if not QuestieLoader then
-        return
-    end
-    local ok, QuestieMap = pcall(QuestieLoader.ImportModule, QuestieLoader, "QuestieMap")
-    if not ok or not QuestieMap or not QuestieMap.ProcessQueue then
-        return
-    end
-    for _ = 1, 64 do
-        QuestieMap.ProcessQueue()
-    end
-end
-
 function FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
     if not state.installed then
+        return
+    end
+    if InCombatLockdown and InCombatLockdown() then
+        state.refreshPending = true
         return
     end
 
@@ -748,7 +722,8 @@ function FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
         RouteRefreshAllData(route, worldProvider, false)
     end
 
-    DrainQuestieMapQueue()
+    -- Questie drains its own draw queue in small batches. Its live HandlePin
+    -- calls already route each arriving icon; never force-drain that queue here.
 
     if FluxBattlefieldMapWorldFeatures and FluxBattlefieldMapWorldFeatures.RefreshShadowClones then
         FluxBattlefieldMapWorldFeatures:RefreshShadowClones()
@@ -757,6 +732,18 @@ function FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
     if FluxBattlefieldMapWorldFeatures and FluxBattlefieldMapWorldFeatures.RefreshBattlefieldMapPublic then
         FluxBattlefieldMapWorldFeatures:RefreshBattlefieldMapPublic(true)
     end
+end
+
+function FluxBattlefieldMapPinRouter:RequestRefresh()
+    if not state.installed or state.refreshQueued then return end
+    state.refreshQueued = true
+    local generation = refreshGeneration
+    local function refresh()
+        if generation ~= refreshGeneration then return end
+        state.refreshQueued = false
+        self:RefreshAllThirdPartyPins()
+    end
+    if C_Timer and C_Timer.After then C_Timer.After(0, refresh) else refresh() end
 end
 
 function FluxBattlefieldMapPinRouter:ScheduleKickstart()
@@ -775,25 +762,20 @@ function FluxBattlefieldMapPinRouter:ScheduleKickstart()
             if not IsPinRouterWanted() then
                 return
             end
+            -- Once a live HBD route exists, new icons arrive incrementally.
+            -- Discovery retries must not redraw the full zone eight times.
+            if state.installed and state.hbdAvailable then return end
             FluxBattlefieldMapPinRouter:Install()
         end)
     end
 end
 
-local function HookCanvasScale(mapFrame)
-    if not mapFrame or mapFrame._fluxHBDScaleHooked or not hooksecurefunc or not mapFrame.OnCanvasScaleChanged then
-        return
-    end
-    mapFrame._fluxHBDScaleHooked = true
-    hooksecurefunc(mapFrame, "OnCanvasScaleChanged", function()
-        if FluxBattlefieldMapPinRouter:ShouldRouteToBattlefield() then
-            FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
-        end
-    end)
-end
-
 function FluxBattlefieldMapPinRouter:Install()
-    if BlizzardHasQuestPins() or not IsPinRouterWanted() then
+    if not IsPinRouterWanted() then
+        return false
+    end
+    if InCombatLockdown and InCombatLockdown() then
+        state.refreshPending = true
         return false
     end
 
@@ -802,10 +784,10 @@ function FluxBattlefieldMapPinRouter:Install()
         return false
     end
 
-    HookCanvasScale(mapFrame)
+    -- MapCanvas updates pin scale/position itself. Rebuilding the entire HBD
+    -- provider on each zoom animation tick causes avoidable frame spikes.
     InstallHBDProvider(mapFrame)
     InstallWorldMapPriorityHooks()
-    TryHookQuestieQueueInit()
 
     if FluxBattlefieldMapPinTooltips and FluxBattlefieldMapPinTooltips.Install then
         FluxBattlefieldMapPinTooltips:Install()
@@ -815,12 +797,15 @@ function FluxBattlefieldMapPinRouter:Install()
         state.installed = true
     end
 
-    self:RefreshAllThirdPartyPins()
+    self:RequestRefresh()
     return true
 end
 
 function FluxBattlefieldMapPinRouter:Uninstall()
     kickstartGeneration = kickstartGeneration + 1
+    refreshGeneration = refreshGeneration + 1
+    state.refreshQueued = false
+    state.refreshPending = false
 
     if not state.installed then
         if FluxBattlefieldMapPinTooltips and FluxBattlefieldMapPinTooltips.Uninstall then
@@ -847,6 +832,9 @@ function FluxBattlefieldMapPinRouter:Uninstall()
         if route.origRefreshAllData then
             worldProvider.RefreshAllData = route.origRefreshAllData
         end
+        -- The same icon was moved off the world canvas. Even on the same zone,
+        -- the next World Map show must rebuild it after routing is switched off.
+        worldProvider.forceUpdate = true
     end
 
     if state.acquirePinGuarded and mapFrame and state.origAcquirePin then
@@ -859,14 +847,21 @@ function FluxBattlefieldMapPinRouter:Uninstall()
     state.acquirePinGuarded = false
     state.acquirePinPostHooked = false
     state.origAcquirePin = nil
-    state.questieCatchupScheduled = false
 end
 
 local zoneRefresher = CreateFrame("Frame")
 zoneRefresher:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 zoneRefresher:RegisterEvent("ADDON_LOADED")
 zoneRefresher:RegisterEvent("PLAYER_ENTERING_WORLD")
+zoneRefresher:RegisterEvent("PLAYER_REGEN_ENABLED")
 zoneRefresher:SetScript("OnEvent", function(_, event, loadedAddon)
+    if event == "PLAYER_REGEN_ENABLED" then
+        if state.refreshPending and IsPinRouterWanted() then
+            state.refreshPending = false
+            FluxBattlefieldMapPinRouter:Install()
+        end
+        return
+    end
     if event == "PLAYER_ENTERING_WORLD" then
         if IsPinRouterWanted() then
             FluxBattlefieldMapPinRouter:ScheduleKickstart()
@@ -885,7 +880,7 @@ zoneRefresher:SetScript("OnEvent", function(_, event, loadedAddon)
         if C_Timer and C_Timer.After then
             C_Timer.After(0.2, function()
                 if state.installed and IsPinRouterWanted() then
-                    FluxBattlefieldMapPinRouter:RefreshAllThirdPartyPins()
+                    FluxBattlefieldMapPinRouter:RequestRefresh()
                 end
             end)
         end

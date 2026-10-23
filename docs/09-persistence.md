@@ -113,3 +113,7 @@ Inventory and Respec persist richer documents and snapshots in their own stores/
 These flags are distinct from AceDB defaults and profile resets. Clearing one does not remove or reset the others. `/fluxdefaults reset` clears the account-applied flag; `resetchar` clears the current character's seen flag. Commands and exact side effects are described in [05-defaults-and-bindings.md](05-defaults-and-bindings.md).
 
 Persistence has no single addon-wide schema version. For troubleshooting, identify the feature owner, effective profile/scope, canonical character key and migration guard first. Backups and reset testing belong in an isolated test profile/account-data copy; the documentation rewrite itself does not change saved data.
+
+## Runtime compatibility decisions are not new saved profiles
+
+The secure bar probe caches its OOC result until reload and can set `Cap.hasSecureBarPaging`; this is runtime capability state, not a SavedVariable or migration. Pending stock-grid suppression, tracker layout and pin refresh generations are also runtime-only. The recent bar/map/tracker changes introduce no new TOC SavedVariable declaration. Questie's `trackerEnabled` and `TrackerWidth` belong to Questie's own profile, independently of Flux's Map Pins setting and account/character layout selectors. See [API contracts](33-api-and-events.md) and [tracker ownership](18-minimap-and-trackers.md).

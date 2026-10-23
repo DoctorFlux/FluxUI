@@ -45,7 +45,9 @@ local function EnumerateHBDLibs()
     end
     for _, entry in ipairs(HBD_LIBS) do
         local ok, pins = pcall(LibStub, entry.name, true)
-        if ok and pins and pins.worldmapProvider then
+        local router = FluxBattlefieldMapPinRouter
+        local supported = not router or not router.IsLibrarySupported or router:IsLibrarySupported(entry.name)
+        if supported and ok and pins and pins.worldmapProvider then
             found[#found + 1] = {
                 name = entry.name,
                 template = entry.template,
@@ -207,6 +209,9 @@ local function UnwrapWorldMapGetMapID()
 end
 
 local function WrapBattlefieldRegisterPin()
+    -- Questie pins get their mouse setup directly from OnHBDPinAcquired. Leave
+    -- the shared native registration path alone on modern Forever maps.
+    if type(QuestDataProviderMixin) == "table" then return end
     if state.registerPinHooked or not hooksecurefunc then
         return
     end

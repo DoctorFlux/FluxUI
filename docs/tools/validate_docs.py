@@ -5,6 +5,7 @@ setting/default/command/SV/interface inventories, curated evidence, and links.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -131,6 +132,45 @@ def main():
                 errors.append("Missing documented source contract: " + entry["source"] + " :: " + entry["contains"])
     else:
         errors.append("Missing curated source-contract evidence")
+    verification_path = DOCS / "reference/verification.json"
+    if verification_path.is_file():
+        evidence = json.loads(verification_path.read_text(encoding="utf-8"))
+        corpus = evidence.get("lua_corpus", [])
+        fingerprint = hashlib.sha256(json.dumps(corpus, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        if fingerprint != evidence.get("lua_corpus_sha256"):
+            errors.append("Verification corpus fingerprint does not match its manifest")
+        if len(corpus) != evidence.get("publishable_lua_files"):
+            errors.append("Verification Lua file count does not match its manifest")
+        corpus_paths = set()
+        for entry in corpus:
+            rel = entry["path"]
+            path = (ROOT / rel).resolve()
+            if not path.is_relative_to(ROOT.resolve()) or not path.is_file():
+                errors.append("Invalid verification source: " + rel)
+                continue
+            if rel in corpus_paths:
+                errors.append("Duplicate verification source: " + rel)
+            corpus_paths.add(rel)
+            actual = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+            if actual != entry["sha256"]:
+                errors.append("Recorded verification predates current source: " + rel)
+        for rel in current["graph"]["reachable"]:
+            if rel.endswith(".lua") and rel not in corpus_paths:
+                errors.append("Reachable Lua absent from verification corpus: " + rel)
+        results = evidence.get("results", [])
+        passed = sum(result["exitCode"] == 0 for result in results)
+        failed = len(results) - passed
+        if (len(results), passed, failed) != (evidence.get("smoke_scripts"), evidence.get("smoke_passed"), evidence.get("smoke_failed")):
+            errors.append("Recorded smoke totals do not match per-script results")
+        result_paths = {result["path"] for result in results}
+        for file in current["files"]:
+            if file["classification"] == "development harness" and "smoke" in file["path"] and file["path"] not in result_paths:
+                errors.append("Smoke harness absent from verification record: " + file["path"])
+        syntax = evidence.get("syntax_check", {})
+        if syntax.get("passed", 0) + syntax.get("failed", 0) != len(corpus):
+            errors.append("Recorded syntax totals do not match the Lua corpus")
+    else:
+        errors.append("Missing current verification record")
     links = 0
     anchors_cache = {}
     source_line_counts = {}

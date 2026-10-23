@@ -1,12 +1,15 @@
 -- FluxQuestie.lua
 -- Questie Integration for FluxUI
--- Smart Layout Engine: Final Polish V4
--- Fixes: Highlight/Transparency, Logic Forwarding, Anchoring
+-- Shared Classic / Forever layout. Questie owns quest data and tracker visibility;
+-- Flux owns the dock and yields the Blizzard scroll viewport while Questie is enabled.
 
 local addonName, addonTable = ...
 local FluxQuestie = CreateFrame("Frame")
+addonTable.FluxQuestie = FluxQuestie
 FluxQuestie:RegisterEvent("PLAYER_LOGIN")
 FluxQuestie:RegisterEvent("PLAYER_ENTERING_WORLD")
+FluxQuestie:RegisterEvent("ADDON_LOADED")
+FluxQuestie:RegisterEvent("PLAYER_REGEN_ENABLED")
 
 -- ----------------------------------------------------------------------------
 -- CONSTANTS & CONFIG
@@ -20,16 +23,44 @@ local INDENT_STEP = 10
 -- ----------------------------------------------------------------------------
 -- INITIALIZATION
 -- ----------------------------------------------------------------------------
-FluxQuestie:SetScript("OnEvent", function(self, event)
-    if event == "PLAYER_LOGIN" then
-        C_Timer.After(1.0, function() self:Initialize() end)
-    elseif event == "PLAYER_ENTERING_WORLD" then
-        C_Timer.After(2.0, function() self:UpdateLayout() end)
+function FluxQuestie:IsTrackerEnabled()
+    -- A hidden/collapsed Questie tracker still owns the dock (combat, instances,
+    -- pet battles and empty logs). Never use IsShown() to select the tracker.
+    return Questie ~= nil and QuestieLoader ~= nil and Questie.db ~= nil
+        and Questie.db.profile ~= nil and Questie.db.profile.trackerEnabled == true
+end
+
+function FluxQuestie:RequestLayout(delay)
+    if self._layoutQueued then return end
+    self._layoutQueued = true
+    C_Timer.After(delay or 0, function()
+        self._layoutQueued = false
+        self:Initialize()
+        self:UpdateLayout()
+    end)
+end
+
+FluxQuestie:SetScript("OnEvent", function(self, event, name)
+    if event == "PLAYER_REGEN_ENABLED" then
+        if self._layoutPending then self:RequestLayout() end
+    elseif event ~= "ADDON_LOADED" or name == "Questie" or name == "Blizzard_ObjectiveTracker"
+        or name == "Blizzard_QuestTimer" then
+        self:Initialize()
+        self:RequestLayout(event == "PLAYER_LOGIN" and 1 or 0)
     end
 end)
 
+function FluxQuestie:HookHeader()
+    local header = self.TrackerHeaderFrame and self.TrackerHeaderFrame.headerFrame
+    local button = header and header.trackedQuests
+    if not button or button._fluxLayoutHooked then return end
+    button._fluxLayoutHooked = true
+    button:HookScript("OnClick", function() self:RequestLayout(0.1) end)
+end
+
 function FluxQuestie:Initialize()
-    if not Questie or not QuestieLoader then return end
+    if self.initialized then return end
+    if not Questie or not QuestieLoader or type(QuestieLoader.ImportModule) ~= "function" then return end
     
     -- Import Questie Modules
     self.QuestieTracker = QuestieLoader:ImportModule("QuestieTracker")
@@ -38,88 +69,150 @@ function FluxQuestie:Initialize()
     self.QuestieCombatQueue = QuestieLoader:ImportModule("QuestieCombatQueue")
     self.TrackerFadeTicker = QuestieLoader:ImportModule("TrackerFadeTicker")
     self.TrackerQuestFrame = QuestieLoader:ImportModule("TrackerQuestFrame")
+    self.TrackerHeaderFrame = QuestieLoader:ImportModule("TrackerHeaderFrame")
+    self.QuestieCompat = QuestieLoader:ImportModule("QuestieCompat")
     
-    if not self.QuestieTracker then return end
+    if not self.QuestieTracker or type(self.QuestieTracker.Update) ~= "function"
+        or not self.TrackerLinePool or type(self.TrackerLinePool.GetLine) ~= "function"
+        or type(self.TrackerLinePool.GetHighestIndex) ~= "function" then return end
+    self.initialized = true
 
     -- Hook Questie's Update to apply our layout POST-UPDATE
     hooksecurefunc(self.QuestieTracker, "Update", function()
         self:UpdateLayout()
     end)
     
-    -- Hook TrackerHeaderFrame's expand/collapse button to update layout when minimized/maximized
-    -- Use delayed initialization in case headerFrame isn't ready yet
-    C_Timer.After(0.5, function()
-        local TrackerHeaderFrame = QuestieLoader:ImportModule("TrackerHeaderFrame")
-        if TrackerHeaderFrame and TrackerHeaderFrame.headerFrame and TrackerHeaderFrame.headerFrame.trackedQuests then
-            local trackedQuests = TrackerHeaderFrame.headerFrame.trackedQuests
-            local originalOnClick = trackedQuests:GetScript("OnClick")
-            if originalOnClick then
-                trackedQuests:SetScript("OnClick", function(button, ...)
-                    originalOnClick(button, ...)
-                    -- Update layout after expand state changes
-                    C_Timer.After(0.1, function()
-                        FluxQuestie:UpdateLayout()
-                    end)
-                end)
-            end
-        end
-    end)
-    
-    -- Flux perf T2.9: removed the 0.5s polling ticker that watched
-    -- Questie.db.char.isTrackerExpanded. Any real state transition (expand /
-    -- collapse button click, quest add/remove, quest completion) already
-    -- funnels through QuestieTracker:Update, which is hooked above. The
-    -- trackedQuests button also wraps OnClick to re-layout after manual
-    -- expand/collapse. The ticker added no coverage beyond those hooks but
-    -- fired 2x/sec forever, even while the tracker was hidden.
+    -- Frames are created asynchronously on Forever. Bind the actual header
+    -- when it exists, including after later Questie initialization.
+    self:HookHeader()
     
     -- Sync with FluxMinimap
     if FluxMinimap then
         local function SafeHook(obj, method, func)
             if obj and obj[method] then hooksecurefunc(obj, method, func) end
         end
-        SafeHook(FluxMinimap, "EnforcePosition", function() 
-            C_Timer.After(0.1, function() self:UpdateLayout() end)
-        end)
-        SafeHook(FluxMinimap, "EmbedInFrame", function() 
-            -- Use multiple delays to match FluxMinimap's UpdateQuestTrackerPosition timing
-            -- This ensures Questie updates after frames are ready (especially on reload)
-            C_Timer.After(0.15, function() self:UpdateLayout() end)
-            C_Timer.After(0.3, function() self:UpdateLayout() end)
-            C_Timer.After(0.5, function() self:UpdateLayout() end)
-        end)
-        SafeHook(FluxMinimap, "RestoreToNormal", function() 
-            -- Use delays to match FluxMinimap's UpdateQuestTrackerPosition timing
-            C_Timer.After(0.1, function() self:UpdateLayout() end)
-            C_Timer.After(0.2, function() self:UpdateLayout() end)
-        end)
+        for _, method in ipairs({ "EnforcePosition", "EmbedInFrame", "RestoreToNormal" }) do
+            SafeHook(FluxMinimap, method, function() self:RequestLayout(0.1) end)
+        end
         
         if FluxMinimap.RegisterCallback then
-            FluxMinimap:RegisterCallback("OnEmbeddingChanged", function() self:UpdateLayout() end)
+            FluxMinimap:RegisterCallback("OnEmbeddingChanged", function() self:RequestLayout() end)
         end
     end
     
-    self:UpdateLayout()
 end
 
 -- ----------------------------------------------------------------------------
 -- LAYOUT ENGINE
 -- ----------------------------------------------------------------------------
 function FluxQuestie:UpdateLayout()
-    if InCombatLockdown() then return end
+    if InCombatLockdown() then
+        self._layoutPending = true
+        return
+    end
+    self._layoutPending = false
+    self:Initialize()
+    local active = self:IsTrackerEnabled()
+    local wasActive = self._trackerActive
+    self._trackerActive = active
+    if not active then self:ReleaseQuestTimer() end
+    if FLUX_API and (FLUX_API.isForever or FLUX_API.isCamelot) and self.QuestieCompat then
+        -- Use Questie's own visibility contract so a late Blizzard addon is
+        -- suppressed too, and disabling the tracker releases its OnShow guard.
+        local method = active and "HideWatchFrame" or (wasActive and "ShowWatchFrame")
+        if method and type(self.QuestieCompat[method]) == "function" then
+            self.QuestieCompat[method]()
+        end
+    end
+    if FluxObjectiveTrackerScroll and FluxObjectiveTrackerScroll.UpdateQuestieVisibility then
+        FluxObjectiveTrackerScroll:UpdateQuestieVisibility()
+    end
+    if not active then
+        if wasActive and FluxMinimap and FluxMinimap.UpdateQuestTrackerPosition then
+            FluxMinimap:UpdateQuestTrackerPosition()
+        end
+        return
+    end
+    if not self.initialized then return end
     if not self.TrackerBaseFrame or not self.TrackerLinePool then return end
     
     local baseFrame = self.TrackerBaseFrame.baseFrame
     if not baseFrame then return end
+    self:HookHeader()
     
     -- 1. Enforce Base Frame Size & Position
     local trackerWidth = self:StyleBaseFrame(baseFrame)
     
     -- 2. Size questFrame (and its ScrollFrame) to match baseFrame height
-    self:SizeQuestFrame(baseFrame)
+    self:SizeQuestFrame(baseFrame, self:DockQuestTimer(baseFrame))
     
     -- 3. Style Lines based on Mode
     self:StyleLines(trackerWidth)
+    self:UpdateScrollRange()
+end
+
+function FluxQuestie:ReleaseQuestTimer()
+    local dock = self._questTimerDock
+    if not dock then return end
+    self._questTimerDock = nil
+    dock.frame:SetParent(dock.parent)
+    dock.frame:ClearAllPoints()
+    for _, point in ipairs(dock.points) do dock.frame:SetPoint(unpack(point)) end
+end
+
+function FluxQuestie:DockQuestTimer(baseFrame)
+    -- Forever's timer is a child of the hidden native tracker. Preserve Questie's
+    -- "Show Blizzard quest timer" option by putting that same timer in our dock.
+    if not (FLUX_API and (FLUX_API.isForever or FLUX_API.isCamelot))
+        or not Questie.db.profile.showBlizzardQuestTimer then
+        self:ReleaseQuestTimer()
+        return 0
+    end
+    local timer = (ObjectiveTrackerFrame and ObjectiveTrackerFrame.QuestTimerFrame) or _G.QuestTimerFrame
+    if not timer then return 0 end
+    if not self._questTimerDock then
+        local points = {}
+        for i = 1, timer:GetNumPoints() do points[i] = { timer:GetPoint(i) } end
+        self._questTimerDock = { frame = timer, parent = timer:GetParent(), points = points }
+    end
+    if not timer._fluxQuestieLayoutHooked then
+        timer._fluxQuestieLayoutHooked = true
+        for _, event in ipairs({ "OnShow", "OnHide", "OnSizeChanged" }) do
+            timer:HookScript(event, function() self:RequestLayout() end)
+        end
+    end
+    if timer:GetParent() ~= baseFrame then timer:SetParent(baseFrame) end
+    local header = self.TrackerHeaderFrame and self.TrackerHeaderFrame.headerFrame
+    local headerHeight = header and header:IsShown() and not Questie.db.profile.moveHeaderToBottom
+        and header:GetHeight() or 0
+    timer:ClearAllPoints()
+    timer:SetPoint("TOPRIGHT", baseFrame, "TOPRIGHT", 0, -headerHeight)
+    if timer:IsShown() and (timer.numTimers or 0) > 0 then
+        local height = timer.GetFrameHeight and timer:GetFrameHeight() or timer:GetHeight()
+        return math.max(0, height) + 4
+    end
+    return 0
+end
+
+function FluxQuestie:UpdateScrollRange()
+    local questFrame = self.TrackerQuestFrame and self.TrackerQuestFrame.questFrame
+    if not questFrame or not questFrame:IsShown() then return end
+    local scroll = questFrame.ScrollFrame
+    local child = questFrame.ScrollChildFrame
+    if not scroll or not child then return end
+
+    -- Questie measured the old line heights before Flux wrapped the labels.
+    -- Recompute overflow so the last wrapped objective remains reachable.
+    local height = 0
+    for i = 1, self.TrackerLinePool.GetHighestIndex() do
+        local line = self.TrackerLinePool.GetLine(i)
+        if line and line:IsShown() then height = height + line:GetHeight() end
+    end
+    child:SetHeight(height + 3)
+    if scroll.UpdateScrollChildRect then scroll:UpdateScrollChildRect() end
+    local offset = scroll:GetVerticalScroll() or 0
+    local maxScroll = math.max(0, child:GetHeight() - scroll:GetHeight())
+    if offset > maxScroll then scroll:SetVerticalScroll(maxScroll) end
 end
 
 function FluxQuestie:StyleBaseFrame(baseFrame)
@@ -185,7 +278,7 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
             
             if FluxWindowFrame and FluxWindowFrame.frame then
                 -- Use same calculation as UpdateQuestTrackerPosition for consistency
-                local minimapBottom = Minimap:GetBottom() or 0
+                local minimapBottom = Minimap and Minimap:GetBottom() or UIParent:GetHeight()
                 local windowTop = FluxWindowFrame.frame:GetTop() or 0
                 local availableHeight = (minimapBottom - windowTop) / scale
                 baseFrame:SetHeight(math.max(100, availableHeight))
@@ -202,7 +295,7 @@ function FluxQuestie:StyleBaseFrame(baseFrame)
     return finalWidth
 end
 
-function FluxQuestie:SizeQuestFrame(baseFrame)
+function FluxQuestie:SizeQuestFrame(baseFrame, timerHeight)
     if InCombatLockdown() then return end
     if not self.TrackerQuestFrame then return end
     
@@ -212,6 +305,23 @@ function FluxQuestie:SizeQuestFrame(baseFrame)
     -- Only size questFrame when tracker is expanded
     local isMinimized = Questie and Questie.db and Questie.db.char and (not Questie.db.char.isTrackerExpanded)
     if isMinimized then return end
+    timerHeight = timerHeight or 0
+
+    if (timerHeight > 0 or self._questFrameTimerOffset)
+        and type(self.TrackerQuestFrame.PositionTrackedQuestsFrame) == "function" then
+        -- Start with Questie's own header-at-top/bottom/headerless anchor each
+        -- time, so repeated dock updates cannot accumulate the timer offset.
+        questFrame:ClearAllPoints()
+        self.TrackerQuestFrame.PositionTrackedQuestsFrame()
+        self._questFrameTimerOffset = timerHeight > 0
+        if timerHeight > 0 and not Questie.db.profile.moveHeaderToBottom then
+            local point, relative, relativePoint, x, y = questFrame:GetPoint(1)
+            if point then
+                questFrame:ClearAllPoints()
+                questFrame:SetPoint(point, relative, relativePoint, x, (y or 0) - timerHeight)
+            end
+        end
+    end
     
     -- Get headerFrame to calculate its height
     local TrackerHeaderFrame = QuestieLoader:ImportModule("TrackerHeaderFrame")
@@ -238,7 +348,7 @@ function FluxQuestie:SizeQuestFrame(baseFrame)
     if isEmbedded then
         extraPadding = extraPadding + 15
     end
-    local availableHeight = math.max(0, baseHeight - headerHeight - headerSpacing - extraPadding)
+    local availableHeight = math.max(0, baseHeight - headerHeight - headerSpacing - extraPadding - timerHeight)
     
     -- Set questFrame height to fill available space
     -- Width should match baseFrame width (accounting for scale)

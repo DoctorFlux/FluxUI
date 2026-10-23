@@ -14,6 +14,8 @@ The Extra Button System provides reusable secure buttons for combat/noncombat gr
 
 `FluxBtn.Create(parent, config)` creates a button; `Attach(widget, config)` adapts an existing one. Registry methods maintain `EBS.buttons`, `EBS.badges` and widget lookup. Action assignment differs from painting: a context change can alter the apparent macro face without rewriting protected attributes.
 
+Template selection is client- and kind-specific. Only an eligible post-DF `kind="strip"` outside Forever/Camelot uses `ActionBarButtonTemplate`; Forever uses `ActionButtonTemplate, SecureActionButtonTemplate` and retains native mouse-up/key-down handling. The action adapter's historically named `WithRegistrationSuppressed` now calls through without replacing shared collector methods. The bar paging execution probe does not change EBS's other restricted-click/visibility policies. See [shared services](08-shared-services.md) and [binding routing](13-binding-system.md).
+
 Macro parsing identifies required display probes and watches relevant context. Shared macro-click proxies provide stable `/click` destinations. [FluxTooltipGuard](../ExtraButtonSystem/Shared/FluxTooltipGuard.lua) isolates button tooltips; [HotkeyUtil](../ExtraButtonSystem/Shared/HotkeyUtil.lua) formats chords and batches binding refresh. Assisted Combat APIs are capability-gated; a visible setting does not create support on an older client.
 
 ## Combat grid

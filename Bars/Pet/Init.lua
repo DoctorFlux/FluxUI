@@ -23,6 +23,9 @@ local FLUX_WINDOW_GAP_X = -4
 local FLUX_WINDOW_GAP_Y = -4
 local STATUS_LOC2_STACK_GAP = 2
 local VISIBILITY = "[pet,novehicleui]show;hide"
+if Flux.Client and (Flux.Client.isCamelot or Flux.Client.isForever) then
+	VISIBILITY = "[pet,nobonusbar:5]show;hide"
+end
 
 local frame
 local buttons = {}

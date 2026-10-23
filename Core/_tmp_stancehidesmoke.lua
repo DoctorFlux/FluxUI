@@ -91,7 +91,8 @@ local function Boot(family, options)
         isCamelot = family == "forever", isForever = family == "forever", isAnyClassic = family == "classic" }
     ns.Flux.Bars = { NUM_NATIVE = 0 }
     ns.Flux.Combat = { InLockdown = function() return locked end, Defer = function(key, fn) pending[key] = fn end }
-    ns.Flux.Restricted = { Works = function() return family ~= "forever" end }
+    ns.Flux.Restricted = { Works = function() return family ~= "forever" end,
+        PagingWorks = function() return family ~= "forever" or options.paging == true end }
     local function AddButtons(bar)
         for _ = 1, 10 do
             bar.actionButtons[#bar.actionButtons + 1] = {
@@ -172,5 +173,12 @@ for _, family in ipairs({ "classic", "forever" }) do
     local client = Boot(family)
     assert(select(1, client.Counts()) == 0 and select(2, client.Counts()) == 0)
     assert(client.native.StanceBar.state.parent ~= client.env.UIParent, "legacy stance parenting changed")
+end
+local repairedForever = Boot("forever", { paging = true })
+assert(select(1, repairedForever.Counts()) == 2 and select(2, repairedForever.Counts()) == 20)
+repairedForever.Lock(true)
+for _, item in pairs(repairedForever.native) do
+    assert(item.state.parent == repairedForever.env.UIParent, "repaired Forever must retain native stance parent")
+    repairedForever.Show(item.bar, 1)
 end
 print("stance hide smoke OK (native HANDLE:Hide, 800 combat shows, original scripts, aliases, late buttons, retries, reload, Classic/Forever)")

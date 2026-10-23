@@ -90,6 +90,9 @@ local function VehicleSig()
 end
 
 local function HoldCollectorEvents()
+	-- Forever's native controller must still receive possession/exit updates.
+	-- Its Flux hosts do not enter these shared collectors.
+	if Flux.Action and Flux.Action.LeaveBlizzardCollector and Flux.Action.LeaveBlizzardCollector() then return end
 	local buttonEvents = _G.ActionBarButtonEventsFrame
 	if type(buttonEvents) == "table" and buttonEvents.UnregisterEvent then
 		pcall(buttonEvents.UnregisterEvent, buttonEvents, "ACTIONBAR_SLOT_CHANGED")
@@ -146,6 +149,8 @@ function Vehicle.Apply()
 		Bars.Blizzard.QueueLeftoverMouse()
 	end
 	lastApplySig = VehicleSig()
+	if Bars.State and Bars.State.IndexLiveSlots then Bars.State.IndexLiveSlots() end
+	if Bars.RequestPaint then Bars.RequestPaint("bars.dirty") end
 end
 
 function Vehicle.QueueApply(forceRestamp)
@@ -201,6 +206,9 @@ function Vehicle.Start()
 		Ev.Register("UPDATE_VEHICLE_ACTIONBAR", OnVehicleEvent)
 		Ev.Register("UPDATE_OVERRIDE_ACTIONBAR", OnVehicleEvent)
 		Ev.Register("UPDATE_POSSESS_BAR", OnVehicleEvent)
+		Ev.Register("UPDATE_BONUS_ACTIONBAR", function() Vehicle.QueueApply() end)
+		Ev.Register("PLAYER_CONTROL_LOST", function() Vehicle.QueueApply() end)
+		Ev.Register("PLAYER_CONTROL_GAINED", function() Vehicle.QueueApply() end)
 		-- Entering world flushes unconditionally: a loading screen can change
 		-- slot contents behind an unchanged vehicle signature.
 		Ev.Register("PLAYER_ENTERING_WORLD", function()

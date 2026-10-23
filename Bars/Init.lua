@@ -424,6 +424,8 @@ local function DescribePaging()
 		.. " lockdown=" .. yn(InLockdown())
 		.. " page=" .. tostring(State and State.GetCurrentPage and State.GetCurrentPage())
 		.. " swap=" .. tostring(State and State.CurrentSwap and State.CurrentSwap()))
+	print("  securePaging=" .. yn(State and State.UsesSecurePaging and State.UsesSecurePaging())
+		.. " (Forever keeps v8 mouse-up and key-down input)")
 	local hub = State and State.hub
 	if hub then
 		print("  hub state-mod=" .. tostring(hub:GetAttribute("state-mod")))

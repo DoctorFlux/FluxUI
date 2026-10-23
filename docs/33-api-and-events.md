@@ -63,6 +63,21 @@ Identity keys are `slot:<actionSlot>` and `badge:<actionSlot>:<index>`. These ar
 
 Sources: [Modifier](../Core/Engine/Modifier.lua), [Context](../Core/Engine/Context.lua), [SpellBook](../Core/Engine/SpellBook.lua), [Identity](../Core/Engine/Identity.lua), [Range](../Core/Engine/Range.lua), [binding placement](../Binding/Core/Placement.lua).
 
+## Restricted execution and bar paging
+
+`Flux.Restricted` and `Flux.Engine.Restricted` refer to the same helper table, but its general and bar-only policies deliberately differ. Sources: [Restricted.lua](../Core/Engine/Restricted.lua), [capabilities](../Core/Capabilities.lua), [bar state](../Bars/State.lua), [click policy](../Core/ButtonFX/Click.lua).
+
+| Interface | Contract |
+|---|---|
+| `Restricted.Works()` | General capability policy. Returns false when `Cap.hasRestrictedClosures` is false; this remains the Forever policy for existing non-bar consumers. |
+| `Restricted.PagingWorks()` | General support returns true directly. Otherwise only Forever/Camelot can run an OOC `SecureHandlerBaseTemplate` execution probe. An OOC result is cached until reload; an in-combat refusal is not cached. `Cap.hasSecureBarPaging` records that Forever probe and may remain nil on other clients. |
+| `SetPagingSnippet(frame,name,body)`, `ExecutePaging(frame,body)` | Refuse setup from insecure Lua during lockdown or after a failed paging probe. With a valid caller-supplied frame they return the protected native call's status/result. Native callbacks already installed OOC own combat page changes. |
+| `RegisterPagingDriver(frame,state,values)`, `UnregisterPagingDriver(frame,state)` | OOC only. Use the captured native attribute-driver functions with `state-<state>` when paging works and the entrypoint exists; otherwise delegate to the existing state-driver wrapper. |
+| `Bars.State.UsesSecurePaging()` | Alias of the bar capability decision, separate from click wrapping and `Restricted.Works`. Inspect with `/fluxbars page`; successful paging does not enable Forever mouseover wraps or change key/mouse edges. |
+| `Action.LeaveBlizzardCollector()` | Forever collector no-touch policy. Nil/detach/sweep paths return without changing those native collectors. `WithRegistrationSuppressed(fn)` now directly returns `fn()`; its old name does not imply temporary method replacement. |
+
+Native main columns and saved slot programs are separate contracts. Temporary pages (`page >= 11`) suppress ordinary compiled macro/click overlays on the first twelve main hosts, ignore modifier promotion for those mains and preserve ordinary promotion flags for exit. Static columns 13–19 keep their own slot mapping. Failed probes require reload to attempt the probe again; an OOC fallback cannot be described as secure combat paging.
+
 ## Inventory facts and consumer callbacks
 
 `Flux.Inventory` supplies snapshots and query methods over builtin or Syndicator-backed facts. Important entrypoints include `GetSource()`, `IsReady()`, `GetCount()`, `GetLiveCount()`, `Find()`, store/ledger facades and the listener registration below. Read [inventory](21-inventory-foundation.md) for exact query options and live/remembered region behavior.
@@ -99,6 +114,10 @@ Respec's local event bus is `FluxRespec.On(event,fn)` / `Fire(event,...)`; it is
 The renderer inherits `get`, `set`, `func`, `confirm`, `validate`, `hidden` and `disabled` down option paths. String-valued members can resolve through a handler; native rendering retains custom AceGUI `dialogControl` embeds. [Options map](26-options-map.md), [widget controls](35-custom-widget-controls.md), [renderer](../AddonOptions/FluxOptionsRender.lua).
 
 Optional integrations can replace ownership rather than simply add decoration. In particular, Syndicator delegates inventory storage, ConsolePort suppresses selected micromenu/status ownership, Baganator installs hooks/global item-API wrappers, and the meter chooses an available backend. Their readiness/failure contracts belong to the [integration matrix](29-integrations.md).
+
+`addonTable.FluxQuestie:IsTrackerEnabled()` selects tracker ownership from Questie's loaded profile and `trackerEnabled == true`, independently of the current frame's visibility. `RequestLayout(delay)` coalesces layout requests; combat marks pending work for regen. A collapsed Questie tracker still owns the dock. `TrackerWidth` is a Questie preference; this integration does not introduce another Flux profile scope. [Tracker owner](../Minimap/FluxQuestie.lua).
+
+`FluxBattlefieldMapPinRouter:IsLibrarySupported(name)` gates pin routing independently of tracker ownership. With `QuestDataProviderMixin`, only Forever's `HereBeDragonsQuestie-Pins-2.0` route is accepted; older clients without native quest providers can use the broader supported library set. `RequestRefresh()` coalesces to the next frame and invalidates stale work on uninstall. Original World Map icon objects move between owners, so release must precede acquisition; the World Map has priority while open. [Pin router](../Battlezonemap/FluxBattlefieldMapPinRouter.lua).
 
 ## Reading the generated index
 

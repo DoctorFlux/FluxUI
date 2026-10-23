@@ -62,7 +62,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Bars/Vehicle.lua](../Bars/Vehicle.lua) | 0 | 0 | 1 | 0 | 0 |
 | [Bars/Watch.lua](../Bars/Watch.lua) | 0 | 0 | 6 | 0 | 0 |
 | [Battlezonemap/FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) | 13 | 0 | 6 | 12 | 2 |
-| [Battlezonemap/FluxBattlefieldMapPinRouter.lua](../Battlezonemap/FluxBattlefieldMapPinRouter.lua) | 0 | 0 | 9 | 3 | 5 |
+| [Battlezonemap/FluxBattlefieldMapPinRouter.lua](../Battlezonemap/FluxBattlefieldMapPinRouter.lua) | 0 | 0 | 5 | 4 | 3 |
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxBattlefieldMapProviders.lua](../Battlezonemap/FluxBattlefieldMapProviders.lua) | 0 | 0 | 3 | 0 | 5 |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua) | 0 | 0 | 3 | 5 | 2 |
@@ -230,8 +230,8 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Minimap/FluxBuffDebuffFrames.lua](../Minimap/FluxBuffDebuffFrames.lua) | 0 | 0 | 1 | 1 | 1 |
 | [Minimap/FluxMinimap.lua](../Minimap/FluxMinimap.lua) | 10 | 2 | 13 | 27 | 11 |
 | [Minimap/FluxMinimapButtons.lua](../Minimap/FluxMinimapButtons.lua) | 0 | 0 | 2 | 2 | 0 |
-| [Minimap/FluxObjectiveTrackerScroll.lua](../Minimap/FluxObjectiveTrackerScroll.lua) | 0 | 0 | 15 | 5 | 10 |
-| [Minimap/FluxQuestie.lua](../Minimap/FluxQuestie.lua) | 0 | 0 | 10 | 2 | 2 |
+| [Minimap/FluxObjectiveTrackerScroll.lua](../Minimap/FluxObjectiveTrackerScroll.lua) | 0 | 0 | 16 | 5 | 10 |
+| [Minimap/FluxQuestie.lua](../Minimap/FluxQuestie.lua) | 0 | 0 | 1 | 4 | 4 |
 | [NamePlates/ComboPoints.lua](../NamePlates/ComboPoints.lua) | 0 | 0 | 0 | 3 | 0 |
 | [NamePlates/Core.lua](../NamePlates/Core.lua) | 3 | 0 | 0 | 6 | 2 |
 | [Other/FluxArenaFramePosition.lua](../Other/FluxArenaFramePosition.lua) | 0 | 0 | 1 | 4 | 0 |

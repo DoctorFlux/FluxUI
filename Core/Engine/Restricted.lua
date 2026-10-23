@@ -1,12 +1,17 @@
 -- Restricted.lua — SecureHandler snippet helpers.
 -- Forever/camelot: RestrictedExecution captured a nil loadstring_untainted, so
--- Execute / WrapScript / _onstate snippets crash. Skip them; do not probe.
--- RegisterStateDriver / RegisterUnitWatch also taint SecureStateDriverManager
--- on that client, so Flux frames are driven from this file instead.
+-- Execute / WrapScript / _onstate snippets failed on early builds. Keep the
+-- legacy policy for existing callers; PagingWorks probes the repaired engine
+-- separately for bars so their established input behavior does not change.
+-- Existing callers retain their state/unit-driver shims; bars register through
+-- the captured native attribute-driver functions after a successful probe.
 local addonName, ns = ...
 local Flux = ns.Flux
 
 local Restricted = {}
+-- Retain Blizzard's entry points before the legacy Forever shims below.
+local nativeAttributeDriver = RegisterAttributeDriver
+local nativeUnregisterAttributeDriver = UnregisterAttributeDriver
 Flux.Restricted = Restricted
 Flux.Engine = Flux.Engine or {}
 Flux.Engine.Restricted = Restricted
@@ -21,6 +26,57 @@ end
 
 function Restricted.Works()
 	return Works()
+end
+
+-- Bars can use repaired Forever secure handlers without changing v8's mouse
+-- registration, key proxies, or the compatibility policy of other modules.
+-- The public loadstring_untainted global is intentionally removed after load;
+-- only executing a snippet proves whether the restricted environment works.
+local pagingSupported
+function Restricted.PagingWorks()
+	if Works() then return true end
+	if pagingSupported ~= nil then return pagingSupported end
+	local C = Flux.Client
+	if not (C and (C.isCamelot or C.isForever)) then return false end
+	if InCombatLockdown and InCombatLockdown() then return false end
+	local ok, probe = pcall(CreateFrame, "Frame", "FluxBarsSecureProbe", nil, "SecureHandlerBaseTemplate")
+	if ok and probe and probe.Execute then
+		ok = pcall(probe.Execute, probe, [[ self:SetAttribute("flux-paging-probe", 1) ]])
+		pagingSupported = ok and probe:GetAttribute("flux-paging-probe") == 1
+		probe:Hide()
+	else
+		pagingSupported = false
+	end
+	if Flux.Cap then Flux.Cap.hasSecureBarPaging = pagingSupported end
+	return pagingSupported
+end
+
+function Restricted.SetPagingSnippet(frame, name, body)
+	if InCombatLockdown and InCombatLockdown() then return false end
+	if not Restricted.PagingWorks() then return false end
+	return pcall(frame.SetAttribute, frame, name, body)
+end
+
+function Restricted.ExecutePaging(frame, body)
+	if InCombatLockdown and InCombatLockdown() then return false end
+	if not Restricted.PagingWorks() then return false end
+	return pcall(frame.Execute, frame, body)
+end
+
+function Restricted.RegisterPagingDriver(frame, state, values)
+	if InCombatLockdown and InCombatLockdown() then return false end
+	if Restricted.PagingWorks() and nativeAttributeDriver then
+		return pcall(nativeAttributeDriver, frame, "state-" .. state, values)
+	end
+	return Restricted.RegisterStateDriver(frame, state, values)
+end
+
+function Restricted.UnregisterPagingDriver(frame, state)
+	if InCombatLockdown and InCombatLockdown() then return false end
+	if Restricted.PagingWorks() and nativeUnregisterAttributeDriver then
+		return pcall(nativeUnregisterAttributeDriver, frame, "state-" .. state)
+	end
+	return Restricted.UnregisterStateDriver(frame, state)
 end
 
 function Restricted.Execute(frame, body)

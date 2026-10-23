@@ -508,7 +508,7 @@ function Watch.Start()
 		for col = 1, Bars.NUM_NATIVE do
 			local hostRecord = hosts[col]
 			local mainHost = hostRecord and hostRecord.main
-			if mainHost and not mainHost._fluxPromoted then
+			if mainHost and (not mainHost._fluxPromoted or page >= 11) then
 				local newSlot = State.GetMainSlot(col, page)
 				local moved = newSlot and newSlot ~= mainHost.slot
 				if moved then
@@ -532,8 +532,8 @@ function Watch.Start()
 	-- one burst, so this runs once per shift instead of three to five times.
 	-- Flush UpdateAlls dirty hosts (icon/usable/cd/checked); not all 57.
 	local function OnPageOrForm()
-		local Restricted = Flux.Restricted
-		if not (Restricted and Restricted.Works and Restricted.Works()) then
+		local State = Bars.State
+		if not (State and State.UsesSecurePaging and State.UsesSecurePaging()) then
 			local State = Bars.State
 			if State and State.ApplySlotsInsecure then
 				State.ApplySlotsInsecure()
@@ -817,8 +817,7 @@ function Watch.Start()
 					State.IndexLiveSlots()
 				end
 			else
-				local Restricted = Flux.Restricted
-				if not (Restricted and Restricted.Works and Restricted.Works()) then
+				if not (State.UsesSecurePaging and State.UsesSecurePaging()) then
 					if State.ApplySlotsInsecure then
 						State.ApplySlotsInsecure()
 					end

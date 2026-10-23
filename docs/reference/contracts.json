@@ -166,5 +166,41 @@
   {
     "source": "WindowMover/Init.lua",
     "contains": "SLASH_FLUXWINDOWS1 = \"/fluxwindows\""
+  },
+  {
+    "source": "Core/Engine/Restricted.lua",
+    "contains": "function Restricted.PagingWorks()"
+  },
+  {
+    "source": "Core/Engine/Restricted.lua",
+    "contains": "function Restricted.SetPagingSnippet(frame, name, body)"
+  },
+  {
+    "source": "Core/Engine/Restricted.lua",
+    "contains": "function Restricted.ExecutePaging(frame, body)"
+  },
+  {
+    "source": "Core/Engine/Restricted.lua",
+    "contains": "function Restricted.RegisterPagingDriver(frame, state, values)"
+  },
+  {
+    "source": "Core/Engine/Restricted.lua",
+    "contains": "function Restricted.UnregisterPagingDriver(frame, state)"
+  },
+  {
+    "source": "Bars/State.lua",
+    "contains": "State.UsesSecurePaging = SnippetsWork"
+  },
+  {
+    "source": "Minimap/FluxQuestie.lua",
+    "contains": "function FluxQuestie:IsTrackerEnabled()"
+  },
+  {
+    "source": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+    "contains": "function FluxBattlefieldMapPinRouter:IsLibrarySupported(name)"
+  },
+  {
+    "source": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+    "contains": "function FluxBattlefieldMapPinRouter:RequestRefresh()"
   }
 ]

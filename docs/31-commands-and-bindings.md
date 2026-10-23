@@ -29,7 +29,7 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxapi` | Client/capability/secrets/optional-addon, module and inventory/extra-engine summary. | [Core commands](../Core/Slash.lua#L245) |
 | `/fluxclick` | Secure click attributes and recorded click trace. | [Core commands](../Core/Slash.lua#L250) |
 | `/fluxcast` | Cast VFX dispatcher/owner/entry and last-spell state. | [Core commands](../Core/Slash.lua#L255) |
-| `/fluxbars` | Empty: strip/host diagnostics. `<column>`: main/secondary/tertiary details. `page` / `paging`: paging chain. `mo` / `mouseover`: mouseover dump. `smoke`: slot-math self-test. | [handler](../Bars/Init.lua#L453) |
+| `/fluxbars` | Empty: strip/host diagnostics. `<column>`: main/secondary/tertiary details. `page` / `paging`: paging chain, including separate `securePaging` and general snippet capability decisions. `mo` / `mouseover`: mouseover dump. `smoke`: slot-math self-test. | [handler](../Bars/Init.lua#L456) |
 | `/fluxebs` | Extra-button enablement/counts/range, inventory source and cast VFX summary. | [handler](../ExtraButtonSystem/Init.lua#L266) |
 | `/fluxinv` | Empty: inventory source/snapshot diagnostics. `count <itemID>`: snapshot versus live count and locations. `listeners`: listener keys, tiers and region/defer/sync options. | [handler](../Inventory/Init.lua#L1521) |
 | `/fluxmount` | Mount detection diagnostics; `update` additionally forces a mount-button update. | [handler](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4516) |
@@ -37,7 +37,7 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxhop`, `/fluxlag` | Empty: toggle tracing. `on` / `start`, `off` / `stop`, `overlay`, `report` / `dump`, `reset`, `watch`, `thresh <ms>` / `threshold <ms>`, `cpu`, `help`. Hiding the overlay need not stop tracing. CPU starts a five-second sample and resets CPU counters. | [dispatcher](../Core/Engine/HopLag.lua#L982) |
 | `/fluxbankdebug`, `/fbrdebug` | `on` / `1` / `true`, `off` / `0` / `false`, `toggle`, `dump`, `cats`, `quiet` / `normal` / `verbose`, `cat` / `category <name> on\|off`, `help`. | [handler](../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L523) |
 | `/fluxmap` | `testload`, `scale <x> [y]`, `show`, `hide`, `refresh`, `cleanup`. Empty input does nothing. | [handler](../Battlezonemap/FluxBattlefieldMap.lua#L1379) |
-| `/fluxwm` | `on` / `1` / `true`, `off` / `0` / `false`, `toggle`: world-map feature mirroring. Otherwise status. | [handler](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1270) |
+| `/fluxwm` | `on` / `1` / `true`, `off` / `0` / `false`, `toggle`: world-map feature mirroring. Otherwise status. | [handler](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1262) |
 | `/fluxblizzmeter`, `/fbm` | `available`, `api`, `embed`, `hide`, `show`, `cleanup`. Requires usable native meter APIs for the corresponding operation. | [handler](../Battlezonemap/FluxBlizzardMeter.lua#L1516) |
 | `/fluxpvp` | `debug`, `reposition`; otherwise usage for objective/capture-bar positioning. | [handler](../StatusBars/FluxPVPObjectiveMover.lua#L374) |
 | `/fluxstatus` | `refresh`: bars/layout refresh. `testdurability`: position/show test. `debug` is currently a no-op despite help text advertising it. | [handler](../StatusBars/FluxStatusBar.lua#L3041) |
