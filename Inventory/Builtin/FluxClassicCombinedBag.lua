@@ -426,6 +426,9 @@ local function HighlightBagItems(bagID, on)
 end
 
 local function FreeBagSlots()
+	if Flux.Container and Flux.Container.GetTotalFreeBagSlots then
+		return Flux.Container.GetTotalFreeBagSlots()
+	end
 	if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
 		return C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
 	end
@@ -2409,6 +2412,15 @@ end
 local layoutCheckOwed = false
 
 local watcher = CreateFrame("Frame")
+if Flux.Container and Flux.Container.WatchFreeBagSlots then
+	Flux.Container.WatchFreeBagSlots("FluxClassicCombinedBag", function(total)
+		if UsesAltBag() or not ownedSlots then return end
+		for i = 1, #ownedSlots do
+			local button = ownedSlots[i]
+			if button.kind == "backpack" and button.count then button.count:SetText(total) end
+		end
+	end)
+end
 watcher:RegisterEvent("ADDON_LOADED")
 watcher:RegisterEvent("PLAYER_ENTERING_WORLD")
 watcher:RegisterEvent("BAG_UPDATE")

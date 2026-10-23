@@ -1,6 +1,6 @@
 -- FluxChatFrame.lua
 -- Automatic chat frame positioning, sizing, and configuration on first login per character.
--- Supports: Classic Era (no Edit Mode), Classic Anniversary (Edit Mode), Retail/Live (post-DF).
+-- Supports Live, Forever, Era, Anniversary and progression Classic; Edit Mode is capability-detected.
 
 local addonName, ns = ...
 
@@ -571,26 +571,12 @@ local function GetChatBottomLeftX()
     return BESIDE_CHAT_COLUMN_LEFT_INSET + width + MICROMENU_CHAT_GAP
 end
 
-local function IsEraOrAnniversaryChat()
-    local client = (ns.Flux and ns.Flux.Client) or (_G.Flux and _G.Flux.Client)
-    if client and (client.isEra or client.isAnniversary) then
-        return true
-    end
-    if WOW_PROJECT_CLASSIC and WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
-        return true
-    end
-    if WOW_PROJECT_BURNING_CRUSADE_CLASSIC and WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
-        return true
-    end
-    return false
-end
-
 --- Pos2: log fills the micromenu column except the tab row (top) and the chat edit box
 --- (bottom, below ChatFrame1). Extra height still grows down; do not raise the top.
---- Era and Anniversary do not follow the live menu rect. That rect changes every
---- menu refresh and drags the log with it.
+--- All clients use the settled UIParent-anchored column. Its layout uses computed
+--- chat dimensions, never the live chat rect, so this does not create a feedback loop.
 local function GetPos2ChatVertical()
-    if GetMicroMenuLayoutPos() ~= 2 or IsEraOrAnniversaryChat() then
+    if GetMicroMenuLayoutPos() ~= 2 then
         return nil, nil
     end
     local mm = _G.FluxMicroMenu
@@ -617,6 +603,7 @@ end
 -- Last Flux layout. Combat ExtraAction / UIParent_ManageFramePositions parks
 -- DEFAULT_CHAT_FRAME; we re-pin this instead of recomputing from combat extras.
 local lastChatPin = nil
+local chatPinCombatPending = false
 
 --- Classic UIParentManageFramePositions moves ChatFrame1 while
 --- systemInfo.isInDefaultPosition is true (stance, pet, status bars).
@@ -655,6 +642,12 @@ local function PinChatFrame(chatFrame, x, y, w, h)
     if not chatFrame or type(x) ~= "number" or type(y) ~= "number" or type(w) ~= "number" or type(h) ~= "number" then
         return
     end
+    -- Chat's secure descendants can protect its anchors on some clients.
+    -- Keep the last rectangle and retry once after combat instead of touching it.
+    if InCombatLockdown() and chatFrame.IsProtected and chatFrame:IsProtected() then
+        chatPinCombatPending = true
+        return
+    end
     SyncChatEditModeAnchor(chatFrame, x, y)
     chatFrame.ignoreFramePositionManager = true
     if chatFrame.SetMovable then
@@ -678,9 +671,9 @@ local function PinChatFrame(chatFrame, x, y, w, h)
     end
 end
 
---- Ignore smaller refreshes. Menu layout and tab-height reads move the log
---- by a few pixels if every measurement is applied.
-local CHAT_PIN_HOLD_PX = 24
+--- Suppress subpixel noise, without retaining an incomplete startup rectangle
+--- or swallowing real option/scale changes.
+local CHAT_PIN_HOLD_PX = 0.5
 
 local function ChatPinDrifted(chatFrame, x, y)
     if not chatFrame or not chatFrame.GetLeft or not chatFrame.GetBottom then
@@ -743,16 +736,10 @@ ApplyPosition = function(chatFrame, force)
     -- Combat: keep the last OOC layout. Do not recompute from combat-grid tops
     -- or skip entirely (Blizzard then parks the log on the action strip).
     if InCombatLockdown() then
+        chatPinCombatPending = true
         if lastChatPin then
             PinChatFrame(chatFrame, lastChatPin.x, lastChatPin.y, lastChatPin.w, lastChatPin.h)
         end
-        chatPinApplying = false
-        return
-    end
-
-    -- Pos2 menu refresh runs often on Era and Anniversary. Keep the placed log.
-    if not force and lastChatPin and IsEraOrAnniversaryChat() and GetMicroMenuLayoutPos() == 2 then
-        SyncChatEditModeAnchor(chatFrame, lastChatPin.x, lastChatPin.y)
         chatPinApplying = false
         return
     end
@@ -771,7 +758,7 @@ ApplyPosition = function(chatFrame, force)
         return
     end
     local xLeft = GetChatBottomLeftX()
-    if ChatMetricsClose(lastChatPin, xLeft, yBottom, w, h) then
+    if not force and ChatMetricsClose(lastChatPin, xLeft, yBottom, w, h) then
         chatPinApplying = false
         return
     end
@@ -1131,6 +1118,12 @@ end
 
 local function ApplySocialButtonLayoutNearChannel()
     if _G.QuickJoinToastButton then return end
+    if InCombatLockdown() then
+        if FluxCCP and FluxCCP.PlaceColumnButtons then
+            FluxCCP.PlaceColumnButtons()
+        end
+        return
+    end
     if FluxEditModeBusy and FluxEditModeBusy() then
         FluxAfterEditMode(ApplySocialButtonLayoutNearChannel)
         return
@@ -1233,8 +1226,19 @@ local function ApplyRetailChatChannelAndQuickJoin()
     end
 end
 
+local chatChannelApplyQueued = false
+local function ApplyQueuedChatChannel()
+    chatChannelApplyQueued = false
+    ApplyRetailChatChannelAndQuickJoin()
+end
+
 local function ScheduleRetailChatChannelApply()
-    C_Timer.After(0, ApplyRetailChatChannelAndQuickJoin)
+    -- Native button-side/alert hooks can fire together. One batch in this
+    -- frame provides the same immediate pass and late-anchor retries. Clear
+    -- the flag before applying so a later layout change can queue its own batch.
+    if chatChannelApplyQueued then return end
+    chatChannelApplyQueued = true
+    C_Timer.After(0, ApplyQueuedChatChannel)
     C_Timer.After(0.1, ApplyRetailChatChannelAndQuickJoin)
     C_Timer.After(1, ApplyRetailChatChannelAndQuickJoin)
 end
@@ -1356,6 +1360,7 @@ local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 
 local hasRun = false
 
@@ -1398,6 +1403,13 @@ if FluxSafeRegisterEvent and FluxSafeRegisterEvent(fluxChatPewFrame, "PLAYER_ENT
 end
 
 eventFrame:SetScript("OnEvent", function(self, event)
+    if event == "PLAYER_REGEN_ENABLED" then
+        if chatPinCombatPending then
+            chatPinCombatPending = false
+            ApplyPositionWithRetries(ChatFrame1, true)
+        end
+        return
+    end
     if event == "PLAYER_REGEN_DISABLED" then
         -- ExtraAction / UIParent parks chat on combat enter. Put the last
         -- placement back. Measuring again slides the frame.

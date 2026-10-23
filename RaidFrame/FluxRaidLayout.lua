@@ -720,7 +720,9 @@ local function HideBlizzardGrid()
     for i = 1, #BLIZZARD_GRID_FRAME_NAMES do
         local frame = _G[BLIZZARD_GRID_FRAME_NAMES[i]]
         if frame and not (frame.IsForbidden and frame:IsForbidden()) then
-            Blizz.Hide(frame, { keepEvents = true })
+            -- Edit Mode resets the same native party frames on save/close.
+            -- Insecure hidden-parent visibility must not enter their setup pass.
+            Blizz.Hide(frame, { keepEvents = true, keepParent = true })
         end
     end
 end

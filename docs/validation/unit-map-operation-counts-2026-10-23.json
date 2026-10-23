@@ -1,0 +1,56 @@
+{
+  "scope": "Desktop Lua operation-count controls on five client/API models, not native FPS/CPU or taint acceptance. No new native capture performed in this phase. Map tab must stay fully functional on all five clients, explicitly including Forever.",
+  "commands": [
+    {
+      "command": [
+        "lua",
+        "tests/idle_unit_geometry.lua"
+      ],
+      "exit": 0,
+      "output": "idle unit geometry: 21727 checks; five clients; 6 mutations rejected; 300 unchanged updates anchor/UV writes 10500 -> 1800\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/map_init_watchers.lua"
+      ],
+      "exit": 0,
+      "output": "map initialization: 8464 checks; five clients plus legacy zoom fallback; 5 mutations rejected; 30 visits modern watcher frames 30 -> 1 (legacy 60 -> 2)\n"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "ddac979e821a69804608b931e50449893aea7f741cc8e113fc8ce65180265a4e"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMap.lua",
+      "sha256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438"
+    },
+    {
+      "path": "tests/idle_unit_geometry.lua",
+      "sha256": "79ca09db9d0673065014ab39ff3b8d43b328a9c3561a1bf5105be7d3d2aa6b8b"
+    },
+    {
+      "path": "tests/map_init_watchers.lua",
+      "sha256": "65cae3e36e795411ebcc7a55efafd999123d2c95010e834dfbd57aa63a38b9ec"
+    },
+    {
+      "path": "tests/fixtures/unit_overlay_geometry_before.txt",
+      "sha256": "b8daaa3f6c99ab6dde08f22645c5ca58cb863ff6363326e8228f9e8b4c8d02b1"
+    },
+    {
+      "path": "tests/fixtures/unit_prediction_geometry_before.txt",
+      "sha256": "d360ecc1a9da39cac705924c7a485ce0c6855d1bbe8dc18cec1f604d864098bd"
+    },
+    {
+      "path": "tests/fixtures/unit_portrait_geometry_before.txt",
+      "sha256": "167e6128b2131250b69df9e47471340043a2fb3d377f5e60613d70b4d0078453"
+    },
+    {
+      "path": "tests/fixtures/map_initialization_before.txt",
+      "sha256": "5fc8f60df149bcd78a1bad92dd6f7e3aef2d720e02fa6234b24050c9630cf313"
+    }
+  ],
+  "nativeFPSImprovementVerified": false
+}

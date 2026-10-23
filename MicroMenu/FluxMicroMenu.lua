@@ -2289,6 +2289,7 @@ local function EnsureFluxQueueStatusUpdateHook()
     if FluxMinimap and FluxMinimap.EnsureQueueStatusEyeHooks then
         FluxMinimap:EnsureQueueStatusEyeHooks()
     end
+    if FLUX_API and FLUX_API.isRetail and FLUX_API.isPostDF then return end
 
     -- Pre-DF / non-managed path: keep eye beside the micro row when Blizzard repositions it.
     local q = _G.QueueStatusButton
@@ -2917,8 +2918,11 @@ end
 -- which calls protected SetPreferredGamepadInteractTarget(). A hooksecurefunc here
 -- taints that caller (same failure mode as ActionBarController_UpdateAll). Login,
 -- regen, and talent events already rebuild the bar.
-local fluxSkipUpdateMicroButtonsHook = (Flux and Flux.Client and (Flux.Client.isCamelot or Flux.Client.isForever))
-    or (FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever))
+-- Live now enforces the same secret/secure UI restrictions as Forever. Keep
+-- this shared native menu path free of addon callbacks on both modern clients;
+-- our login, addon, binding, talent and Edit Mode events still refresh the HUD.
+local fluxSkipUpdateMicroButtonsHook = (Flux and Flux.Client and (Flux.Client.isRetail and Flux.Client.isPostDF))
+    or (FLUX_API and (FLUX_API.isRetail and FLUX_API.isPostDF))
 if UpdateMicroButtons and not fluxSkipUpdateMicroButtonsHook then
     hooksecurefunc("UpdateMicroButtons", function()
         if FluxGameMenuBlocksMicroTaintWork() then

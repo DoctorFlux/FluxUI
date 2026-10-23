@@ -216,6 +216,7 @@ Core\FluxAPI\FluxAPI_Boot.lua
 
 Other\FluxPerfDebug.lua
 Other\FluxPerfCapture.lua
+Other\FluxInputDebug.lua
 Other\FluxEquipSlotFlyout.lua
 FluxBorder.lua
 BlizzardSettings\Write.lua

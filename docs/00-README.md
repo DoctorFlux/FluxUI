@@ -1,12 +1,12 @@
 # FluxUI implementation documentation
 
-Latest implementation: [idle follow-up](46-idle-followup.md), with a background comparison, character-button and bag-counter fixes, and expanded presentation diagnostics. The [initial idle investigation](45-idle-performance.md) records the earlier CPU captures and operation counts. Earlier phases are recorded in the [startup report](43-startup-optimization.md) and [test failure resolution](44-test-failure-resolution.md).
+Latest audit: [P0-to-current resource lifecycle follow-up](55-resource-lifecycle-audit.md), including a fresh Forever CPU capture and shared resource watcher/spark fixes. The [GitHub history and startup audit](54-history-p0-startup-audit.md) verifies retained P0 protections. Earlier performance work includes [unit-frame, portrait and open-map optimization](53-unit-map-idle.md), [Retail idle hotspots](52-retail-idle-hotspots.md) and the [idle follow-up](46-idle-followup.md). The [initial idle investigation](45-idle-performance.md) records the earlier CPU captures and operation counts. Earlier phases are recorded in the [startup report](43-startup-optimization.md) and [test failure resolution](44-test-failure-resolution.md).
 
 This is a reference for **how the current addon works**, for its author, maintainers, and coding agents. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
 
 Source review: **23 October 2026**, including the current working-tree changes since GitHub commit `7882474`. The [source inventory](reference/inventory.json) records source hashes with CRLF normalized to LF, load parents, client gates, and extracted declarations. Binary asset hashes retain their original bytes. This is not a claim that the addon was tested in every live client.
 
-The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 51 passing desktop scripts and 688 syntax-checked Lua files. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
+The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 72 passing desktop scripts and 710 syntax-checked Lua files. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
 
 ## Start here
 
@@ -71,6 +71,12 @@ Read the [product and system overview](01-product-overview.md), then [runtime ar
 - [Findings and uncertainties](40-findings.md): observed discrepancies and suspected problems, without silently repairing code.
 - [Fix priorities and outside-WoW testing](42-fix-priorities-and-testing.md): impact-ranked findings, source-backed reproductions and evidence limits.
 - [Verification procedures](41-verification.md): source/mock evidence, existing smoke baselines, and in-game scenarios.
+- [Chat layout compatibility](47-chat-layout-compatibility.md): five-client rectangle/column correction and native Era evidence.
+- [Transmog actions](48-transmog-actions.md): clear-first shared flyouts, draggable clear/outfit identities, persistence and combat-safe assignment.
+- [Native mouse suppression](49-native-mouse-suppression.md): reversible input suppression for transparent player/status frames across five clients.
+- [3D portrait framing](50-portrait-camera-compatibility.md): shared Forever face framing and capability-based camera fallbacks on all five clients.
+- [Player input and native callbacks](51-input-and-native-callbacks.md): confirmed Retail click-binding diagnosis, combat portrait controls, bag/queue callback ownership and remaining native checks.
+- [Retail idle hotspots](52-retail-idle-hotspots.md): profiled trinket/tier work, shared optimizations and native measurement limits.
 - [Current recurring-driver inventory](performance-driver-inventory.md): source sites, not a performance measurement.
 - [September performance audit](performance-audit-2026-09-19.md): explicitly historical results and procedures.
 

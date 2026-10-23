@@ -2,6 +2,10 @@
 
 This continues the [idle investigation](45-idle-performance.md). It preserves all features and settings; the remaining FPS difference is not yet resolved.
 
+The latest [Retail capture and shared trinket/tier changes](52-retail-idle-hotspots.md) identify two further source-supported targets. The new deterministic controls preserve frame-synchronous input and live item usability. Repeated native profiling records lower CPU readings without an FPS improvement; the wider gap remains unresolved.
+
+The later [v9 comparison follow-up](51-input-and-native-callbacks.md#stance-flicker-player-artwork-containers-and-retained-idle-optimization) verifies eight retained optimization regions against optimized main, reruns the idle fixtures, and records a new Forever capture. The reported near-300 versus near-200 FPS change remains unverified by a matched capture. The new sample averages 238.91 FPS; it is not attributed to the code changes.
+
 ## Measurements and limits
 
 An independent temporary sampler recorded 20-second intervals with and without FluxUI. Initial foreground attempts were interrupted by Chrome and are [retained as rejected evidence](validation/idle-rejected-native-comparisons-2026-10-23.json). The user confirmed using Chrome during those intervals. They are not foreground FPS acceptance.

@@ -61,7 +61,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Bars/Strip.lua](../Bars/Strip.lua) | 0 | 0 | 4 | 0 | 0 |
 | [Bars/Vehicle.lua](../Bars/Vehicle.lua) | 0 | 0 | 1 | 0 | 0 |
 | [Bars/Watch.lua](../Bars/Watch.lua) | 0 | 0 | 6 | 0 | 0 |
-| [Battlezonemap/FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) | 13 | 0 | 6 | 12 | 2 |
+| [Battlezonemap/FluxBattlefieldMap.lua](../Battlezonemap/FluxBattlefieldMap.lua) | 12 | 0 | 6 | 12 | 2 |
 | [Battlezonemap/FluxBattlefieldMapPinRouter.lua](../Battlezonemap/FluxBattlefieldMapPinRouter.lua) | 0 | 0 | 5 | 4 | 3 |
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxBattlefieldMapProviders.lua](../Battlezonemap/FluxBattlefieldMapProviders.lua) | 0 | 0 | 3 | 0 | 5 |
@@ -91,7 +91,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Binding/UI/Editor/Widgets/AceGUIWidget-FluxMultiCastOrderPanel.lua](../Binding/UI/Editor/Widgets/AceGUIWidget-FluxMultiCastOrderPanel.lua) | 4 | 0 | 1 | 0 | 0 |
 | [Binding/UI/KeyVisualizer/Core.lua](../Binding/UI/KeyVisualizer/Core.lua) | 0 | 0 | 2 | 4 | 1 |
 | [Binding/UI/SpellbookBindingHooks.lua](../Binding/UI/SpellbookBindingHooks.lua) | 1 | 0 | 2 | 4 | 4 |
-| [Blizzard/Hide.lua](../Blizzard/Hide.lua) | 0 | 0 | 1 | 1 | 1 |
+| [Blizzard/Hide.lua](../Blizzard/Hide.lua) | 0 | 0 | 1 | 2 | 1 |
 | [BlizzardSettings/Nameplates.lua](../BlizzardSettings/Nameplates.lua) | 0 | 0 | 0 | 1 | 0 |
 | [BlizzardSettings/Write.lua](../BlizzardSettings/Write.lua) | 1 | 0 | 1 | 1 | 1 |
 | [CharacterInfo/ItemLevel.lua](../CharacterInfo/ItemLevel.lua) | 0 | 0 | 3 | 4 | 2 |
@@ -109,6 +109,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ConsoleportCompat/Loader.lua](../ConsoleportCompat/Loader.lua) | 0 | 0 | 0 | 3 | 0 |
 | [ConsoleportCompat/MicroMenuHooks.lua](../ConsoleportCompat/MicroMenuHooks.lua) | 0 | 0 | 0 | 0 | 5 |
 | [ConsoleportCompat/StatusBarHooks.lua](../ConsoleportCompat/StatusBarHooks.lua) | 0 | 0 | 0 | 0 | 1 |
+| [Core/API/Container.lua](../Core/API/Container.lua) | 0 | 0 | 1 | 1 | 0 |
 | [Core/ButtonFX/Cast.lua](../Core/ButtonFX/Cast.lua) | 2 | 0 | 4 | 0 | 0 |
 | [Core/ButtonFX/Flash.lua](../Core/ButtonFX/Flash.lua) | 2 | 0 | 0 | 0 | 0 |
 | [Core/ButtonFX/Glow.lua](../Core/ButtonFX/Glow.lua) | 0 | 1 | 0 | 0 | 0 |
@@ -167,7 +168,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/NonCombatGrid/Grid.lua](../ExtraButtonSystem/NonCombatGrid/Grid.lua) | 0 | 0 | 4 | 0 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/GridInit.lua](../ExtraButtonSystem/NonCombatGrid/GridInit.lua) | 0 | 0 | 0 | 2 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua) | 0 | 0 | 0 | 1 | 0 |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua) | 3 | 0 | 10 | 12 | 0 |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua) | 3 | 0 | 10 | 14 | 0 |
 | [ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua](../ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua) | 0 | 0 | 1 | 0 | 0 |
 | [ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua](../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua) | 0 | 0 | 3 | 1 | 0 |
 | [ExtraButtonSystem/Shared/FluxMacroClickProxies.lua](../ExtraButtonSystem/Shared/FluxMacroClickProxies.lua) | 0 | 0 | 6 | 0 | 0 |
@@ -230,7 +231,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [MicroMenu/FluxMinimapToMicro.lua](../MicroMenu/FluxMinimapToMicro.lua) | 9 | 0 | 4 | 3 | 4 |
 | [MicroMenu/FluxTradeSkillMicro.lua](../MicroMenu/FluxTradeSkillMicro.lua) | 0 | 0 | 3 | 7 | 0 |
 | [Minimap/FluxBuffDebuffFrames.lua](../Minimap/FluxBuffDebuffFrames.lua) | 0 | 0 | 1 | 1 | 1 |
-| [Minimap/FluxMinimap.lua](../Minimap/FluxMinimap.lua) | 13 | 2 | 13 | 27 | 13 |
+| [Minimap/FluxMinimap.lua](../Minimap/FluxMinimap.lua) | 13 | 2 | 13 | 31 | 13 |
 | [Minimap/FluxMinimapButtons.lua](../Minimap/FluxMinimapButtons.lua) | 0 | 0 | 2 | 2 | 0 |
 | [Minimap/FluxObjectiveTrackerScroll.lua](../Minimap/FluxObjectiveTrackerScroll.lua) | 0 | 0 | 16 | 5 | 10 |
 | [Minimap/FluxQuestie.lua](../Minimap/FluxQuestie.lua) | 0 | 0 | 1 | 4 | 4 |
@@ -240,11 +241,12 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Other/FluxBossFramePosition.lua](../Other/FluxBossFramePosition.lua) | 0 | 0 | 1 | 4 | 0 |
 | [Other/FluxChatColumnMicros.lua](../Other/FluxChatColumnMicros.lua) | 1 | 0 | 3 | 16 | 6 |
 | [Other/FluxChatCopyPaste.lua](../Other/FluxChatCopyPaste.lua) | 0 | 0 | 1 | 6 | 26 |
-| [Other/FluxChatFrame.lua](../Other/FluxChatFrame.lua) | 0 | 1 | 18 | 3 | 5 |
+| [Other/FluxChatFrame.lua](../Other/FluxChatFrame.lua) | 0 | 1 | 18 | 4 | 5 |
 | [Other/FluxDurationBars.lua](../Other/FluxDurationBars.lua) | 0 | 0 | 0 | 3 | 1 |
 | [Other/FluxEquipSlotFlyout.lua](../Other/FluxEquipSlotFlyout.lua) | 0 | 0 | 2 | 0 | 0 |
 | [Other/FluxExtraAbilityHUD.lua](../Other/FluxExtraAbilityHUD.lua) | 0 | 0 | 1 | 1 | 4 |
 | [Other/FluxHUDTooltip.lua](../Other/FluxHUDTooltip.lua) | 0 | 0 | 1 | 1 | 1 |
+| [Other/FluxInputDebug.lua](../Other/FluxInputDebug.lua) | 0 | 0 | 1 | 0 | 0 |
 | [Other/FluxLootRollPosition.lua](../Other/FluxLootRollPosition.lua) | 3 | 0 | 0 | 3 | 1 |
 | [Other/FluxPerfCapture.lua](../Other/FluxPerfCapture.lua) | 3 | 1 | 1 | 0 | 0 |
 | [Other/FluxPerfDebug.lua](../Other/FluxPerfDebug.lua) | 3 | 0 | 0 | 0 | 0 |
@@ -268,7 +270,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Respec/FluxRespec_GearSetIndex.lua](../Respec/FluxRespec_GearSetIndex.lua) | 0 | 0 | 0 | 1 | 0 |
 | [Respec/FluxRespec_GearSetLock.lua](../Respec/FluxRespec_GearSetLock.lua) | 0 | 0 | 1 | 6 | 0 |
 | [Respec/FluxRespec_GearSetOverlay.lua](../Respec/FluxRespec_GearSetOverlay.lua) | 0 | 0 | 0 | 1 | 0 |
-| [Respec/FluxRespec_GearSetTooltip.lua](../Respec/FluxRespec_GearSetTooltip.lua) | 0 | 0 | 0 | 1 | 3 |
+| [Respec/FluxRespec_GearSetTooltip.lua](../Respec/FluxRespec_GearSetTooltip.lua) | 0 | 0 | 0 | 1 | 4 |
 | [Respec/FluxRespec_IconPicker.lua](../Respec/FluxRespec_IconPicker.lua) | 0 | 0 | 0 | 1 | 1 |
 | [Respec/FluxRespec_Register.lua](../Respec/FluxRespec_Register.lua) | 0 | 0 | 2 | 2 | 0 |
 | [Respec/FluxRespec_RunePicker.lua](../Respec/FluxRespec_RunePicker.lua) | 0 | 0 | 2 | 0 | 0 |
@@ -308,7 +310,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [UnitFrames/FluxUnitFrames_PetTarget.lua](../UnitFrames/FluxUnitFrames_PetTarget.lua) | 0 | 0 | 3 | 7 | 1 |
 | [UnitFrames/FluxUnitFrames_Player.lua](../UnitFrames/FluxUnitFrames_Player.lua) | 0 | 0 | 4 | 0 | 0 |
 | [UnitFrames/FluxUnitFrames_PlayerSpecClick.lua](../UnitFrames/FluxUnitFrames_PlayerSpecClick.lua) | 2 | 0 | 1 | 8 | 1 |
-| [UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua](../UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua) | 5 | 0 | 0 | 0 | 2 |
+| [UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua](../UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua) | 6 | 0 | 0 | 0 | 2 |
 | [UnitFrames/FluxUnitFrames_Shared.lua](../UnitFrames/FluxUnitFrames_Shared.lua) | 3 | 0 | 13 | 67 | 7 |
 | [UnitFrames/FluxUnitFrames_Target.lua](../UnitFrames/FluxUnitFrames_Target.lua) | 0 | 0 | 3 | 17 | 0 |
 | [UnitFrames/FluxUnitFrames_TargetOfTarget.lua](../UnitFrames/FluxUnitFrames_TargetOfTarget.lua) | 0 | 0 | 4 | 1 | 1 |

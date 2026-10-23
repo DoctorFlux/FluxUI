@@ -4,6 +4,15 @@
 local addonName, ns = ...
 local Flux = ns.Flux or _G.Flux
 
+local function TotalFreeSlots()
+	local container = Flux and Flux.Container
+	if container and container.GetTotalFreeBagSlots then return container.GetTotalFreeBagSlots() end
+	if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
+		return C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
+	end
+	return 0
+end
+
 local SLOT_SCALE = 0.8
 local ITEM_ANCHOR_X = 10
 local ITEM_ANCHOR_Y = -65
@@ -77,41 +86,38 @@ end
 -- Unequipping bag 1-4 hides the combined window even though the player left it
 -- open. Blizzard lists the bag in checkReopenBags only when that window was
 -- open, and CheckReopenBags skips a bag that now has no slots.
--- Post-hook only: replacing CloseBag runs Flux code inside every CloseAllBags,
--- including the ESC handler.
-local reopenHooked = false
-local function HookReopenAfterUnequip()
+-- Observe the combined frame's completed event instead of wrapping the shared
+-- settings manager. CloseAllBags/ESC and other container frames stay native.
+local reopenPending = false
+local function ReopenAfterUnequip(container, event, bagID)
 	local settings = _G.ContainerFrameSettingsManager
-	if reopenHooked or not settings or type(settings.OnBagClosed) ~= "function" then
+	if event ~= "BAG_CLOSED" or not settings then return end
+	local backpack = (Enum and Enum.BagIndex and Enum.BagIndex.Backpack) or 0
+	if Off() or bagID == nil or bagID == backpack then
 		return
 	end
-	reopenHooked = true
-	hooksecurefunc(settings, "OnBagClosed", function(self, bagID, container)
-		local backpack = (Enum and Enum.BagIndex and Enum.BagIndex.Backpack) or 0
-		if Off() or bagID == nil or bagID == backpack then
+	if not container or not container.IsCombinedBagContainer or not container:IsCombinedBagContainer() then
+		return
+	end
+	local pending = settings.checkReopenBags
+	if type(pending) ~= "table" or not Contains(pending, bagID) then
+		return
+	end
+	if reopenPending then return end
+	reopenPending = true
+	C_Timer.After(0, function()
+		reopenPending = false
+		if Off() or container:IsShown() then
 			return
 		end
-		if not container or not container.IsCombinedBagContainer or not container:IsCombinedBagContainer() then
+		if settings.IsUsingCombinedBags and not settings:IsUsingCombinedBags() then
 			return
 		end
-		local pending = self.checkReopenBags
-		if type(pending) ~= "table" or not Contains(pending, bagID) then
-			return
+		if _G.OpenBag then
+			OpenBag(backpack)
 		end
-		C_Timer.After(0, function()
-			if Off() or container:IsShown() then
-				return
-			end
-			if self.IsUsingCombinedBags and not self:IsUsingCombinedBags() then
-				return
-			end
-			if _G.OpenBag then
-				OpenBag(backpack)
-			end
-		end)
 	end)
 end
-HookReopenAfterUnequip()
 
 local function GamepadUIOn()
 	return InputUtil and InputUtil.IsGamepadUIEnabled and InputUtil.IsGamepadUIEnabled()
@@ -205,12 +211,7 @@ local function UpdateOwnedSlot(button)
 			button.Count = count
 		end
 		if count and count.SetText then
-			local free = 0
-			if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
-				free = C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
-			elseif C_Container and C_Container.GetContainerNumFreeSlots then
-				free = C_Container.GetContainerNumFreeSlots(0) or 0
-			end
+			local free = TotalFreeSlots()
 			count:SetText(free)
 			count:Show()
 		end
@@ -261,10 +262,7 @@ local function ShowSlotTooltip(button)
 	if button.kind == "backpack" then
 		local title = _G.BACKPACK_TOOLTIP or "Backpack"
 		GameTooltip:SetText(title, 1, 1, 1)
-		local free = 0
-		if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
-			free = C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
-		end
+		local free = TotalFreeSlots()
 		if _G.NUM_FREE_SLOTS then
 			GameTooltip:AddLine(NUM_FREE_SLOTS:format(free), 1, 1, 1)
 		end
@@ -712,10 +710,7 @@ local function ShowGamepadFreeCount(bar)
 	if not count then
 		return
 	end
-	local free = 0
-	if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
-		free = C_Container.CalculateTotalNumberOfFreeBagSlots() or 0
-	end
+	local free = TotalFreeSlots()
 	count:SetText(string.format("(%s)", free))
 	if count.SetDrawLayer then
 		count:SetDrawLayer("OVERLAY", 7)
@@ -1050,6 +1045,7 @@ local function HookCombined(bag)
 		self.FluxAddingSlotRowHeight = false
 	end)
 	if bag.HookScript then
+		bag:HookScript("OnEvent", ReopenAfterUnequip)
 		bag:HookScript("OnShow", function(self)
 			if Off() then
 				return
@@ -1071,6 +1067,15 @@ local function HookCombined(bag)
 end
 
 local watcher = CreateFrame("Frame")
+if Flux and Flux.Container and Flux.Container.WatchFreeBagSlots then
+	Flux.Container.WatchFreeBagSlots("FluxCombinedBagHeader", function(total)
+		if Off() or not liveButtons then return end
+		for i = 1, #liveButtons do
+			local button = liveButtons[i]
+			if button.kind == "backpack" and button.Count then button.Count:SetText(total) end
+		end
+	end)
+end
 watcher:RegisterEvent("ADDON_LOADED")
 watcher:RegisterEvent("PLAYER_ENTERING_WORLD")
 watcher:RegisterEvent("BAG_UPDATE")
@@ -1088,7 +1093,6 @@ watcher:SetScript("OnEvent", function(_, event)
 		ShowGamepadFreeCount(_G.GamepadBagBar)
 		return
 	end
-	HookReopenAfterUnequip()
 	HookCombined(CombinedBag())
 end)
 HookCombined(CombinedBag())

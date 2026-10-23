@@ -1,0 +1,71 @@
+local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)
+    -- 12.0 Safety: amount might be a secret value; comparisons on secrets error.
+    local shouldHide = false
+    if not amount then
+        shouldHide = true
+    else
+        local ok, res = pcall(function() return amount <= 0 end)
+        if ok then shouldHide = res end
+    end
+    if shouldHide then
+        self:Hide()
+        if self.overlay then self.overlay:Hide() end
+        if self.absorbOverlay then self.absorbOverlay:Hide() end
+        if self.healAbsorbLeftShadow then self.healAbsorbLeftShadow:Hide() end
+        if self.healAbsorbRightShadow then self.healAbsorbRightShadow:Hide() end
+        return nil
+    end
+
+    local parent = self:GetParent() -- The Health Bar
+    local totalWidth = parent:GetWidth()
+    local _, maxHealth = parent:GetMinMaxValues()
+
+    local maxIsSecret = API.IsSecretValue(maxHealth)
+    if not maxIsSecret and (not maxHealth or maxHealth <= 0) then
+        maxHealth = 1
+    end
+
+    if totalWidth == 0 then
+        self:Hide()
+        if self.overlay then self.overlay:Hide() end
+        if self.absorbOverlay then self.absorbOverlay:Hide() end
+        if self.healAbsorbLeftShadow then self.healAbsorbLeftShadow:Hide() end
+        if self.healAbsorbRightShadow then self.healAbsorbRightShadow:Hide() end
+        return nil
+    end
+
+    local barOffsetX = 0
+    if offsetXPercent then
+        barOffsetX = totalWidth * offsetXPercent
+    end
+
+    self:SetHeight(parent:GetHeight())
+    self:ClearAllPoints()
+    self:SetPoint("TOPLEFT", previousTexture, "TOPRIGHT", barOffsetX, 0)
+    self:SetPoint("BOTTOMLEFT", previousTexture, "BOTTOMRIGHT", barOffsetX, 0)
+
+    if API.isMidnight then
+        -- 12.0: Use StatusBar's native fill logic to avoid math on secret values
+        self:SetWidth(totalWidth)
+        self:SetMinMaxValues(0, maxHealth)
+        self:SetValue(amount)
+    else
+        -- Legacy: Manual width calculation
+        local percent = amount / maxHealth
+        local width = totalWidth * percent
+        self:SetWidth(width)
+        self:SetValue(amount)
+    end
+
+    self:Show()
+    if self.overlay then
+        self.overlay:SetAllPoints(self)
+        self.overlay:Show()
+    end
+    if self.absorbOverlay and self.healAbsorbOverlayActive then
+        AnchorOverlayToStatusBarFill(self, self.absorbOverlay)
+        self.absorbOverlay:Show()
+        RefreshTiledOverlayTexCoords(self.absorbOverlay, ABSORB_OVERLAY_TILE)
+    end
+    return self:GetStatusBarTexture()
+end

@@ -783,20 +783,18 @@ function PCO.DisableForFrame(frame)
     if frame.PowerCostWatcher then
         frame.PowerCostWatcher:UnregisterAllEvents()
         frame.PowerCostWatcher:SetScript("OnEvent", nil)
-        frame.PowerCostWatcher = nil
+        frame.PowerCostWatcher.unit = nil
+        frame.PowerCostWatcher.parentFrame = nil
     end
     local function hideBar(bar)
         if not bar then return end
         HideSegment(bar)
-        if bar.FeedbackFrame then
-            bar.FeedbackFrame.updatingGain = false
-            bar.FeedbackFrame.updatingLoss = false
-            bar.FeedbackFrame:Hide()
-            if bar.FeedbackFrame.GainGlowTexture then bar.FeedbackFrame.GainGlowTexture:Hide() end
-            if bar.FeedbackFrame.LossGlowTexture then bar.FeedbackFrame.LossGlowTexture:Hide() end
-            if bar.FeedbackFrame.BarTexture then bar.FeedbackFrame.BarTexture:Hide() end
-        end
-        bar._fluxPrevFillW = nil
+        -- Invalidate queued ghost commits/holds as well as stopping the visible
+        -- animation. Otherwise a callback can show the ghost after disable.
+        StopBarFeedback(bar)
+        bar._fluxGhostPrimed = nil
+        if bar.PowerGhost then bar.PowerGhost:Hide() end
+        if bar._fluxCostMeter then bar._fluxCostMeter:Hide() end
     end
     hideBar(frame.Power)
     hideBar(frame.AdditionalPower)
@@ -815,14 +813,18 @@ function PCO.Initialize(frame)
         PCO.CreateOverlay(frame.AdditionalPower)
     end
 
-    if frame.PowerCostWatcher then
-        frame.PowerCostWatcher:UnregisterAllEvents()
-        frame.PowerCostWatcher:SetScript("OnEvent", nil)
-        frame.PowerCostWatcher = nil
-    end
-
     local unit = frame.unit
-    local watcher = CreateFrame("Frame")
+    -- Options are reapplied to every existing unit frame. WoW cannot destroy
+    -- the old event frame; retain it across rebinds and feature toggles instead
+    -- of accumulating unregistered frames for the rest of the session.
+    local watcher = frame.PowerCostWatcher
+    if not watcher then
+        watcher = CreateFrame("Frame")
+        frame.PowerCostWatcher = watcher
+    else
+        watcher:UnregisterAllEvents()
+        watcher:SetScript("OnEvent", nil)
+    end
     watcher.unit = unit
     watcher.parentFrame = frame
 

@@ -1,0 +1,257 @@
+local function SafeRegisterUnit(watcher, event, unit)
+    pcall(function() watcher:RegisterUnitEvent(event, unit) end)
+end
+
+function PCO.DisableForFrame(frame)
+    if not frame then return end
+    if frame.PowerCostWatcher then
+        frame.PowerCostWatcher:UnregisterAllEvents()
+        frame.PowerCostWatcher:SetScript("OnEvent", nil)
+        frame.PowerCostWatcher = nil
+    end
+    local function hideBar(bar)
+        if not bar then return end
+        HideSegment(bar)
+        if bar.FeedbackFrame then
+            bar.FeedbackFrame.updatingGain = false
+            bar.FeedbackFrame.updatingLoss = false
+            bar.FeedbackFrame:Hide()
+            if bar.FeedbackFrame.GainGlowTexture then bar.FeedbackFrame.GainGlowTexture:Hide() end
+            if bar.FeedbackFrame.LossGlowTexture then bar.FeedbackFrame.LossGlowTexture:Hide() end
+            if bar.FeedbackFrame.BarTexture then bar.FeedbackFrame.BarTexture:Hide() end
+        end
+        bar._fluxPrevFillW = nil
+    end
+    hideBar(frame.Power)
+    hideBar(frame.AdditionalPower)
+end
+
+function PCO.Initialize(frame)
+    if not frame or not frame.Power or not frame.unit then return end
+    local enabled = not FluxUnitFrames_IsFeatureEnabled or FluxUnitFrames_IsFeatureEnabled("powerCostOverlay")
+    if not enabled then
+        PCO.DisableForFrame(frame)
+        return
+    end
+
+    PCO.CreateOverlay(frame.Power)
+    if frame.AdditionalPower then
+        PCO.CreateOverlay(frame.AdditionalPower)
+    end
+
+    if frame.PowerCostWatcher then
+        frame.PowerCostWatcher:UnregisterAllEvents()
+        frame.PowerCostWatcher:SetScript("OnEvent", nil)
+        frame.PowerCostWatcher = nil
+    end
+
+    local unit = frame.unit
+    local watcher = CreateFrame("Frame")
+    watcher.unit = unit
+    watcher.parentFrame = frame
+
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_START", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_STOP", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_FAILED", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_INTERRUPTED", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_SUCCEEDED", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_CHANNEL_START", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_CHANNEL_STOP", unit)
+    SafeRegisterUnit(watcher, "UNIT_POWER_UPDATE", unit)
+    SafeRegisterUnit(watcher, "UNIT_DISPLAYPOWER", unit)
+
+    local function CurrentCastSpell(which)
+        which = which or unit
+        if not which or not UnitExists(which) then return nil end
+        local spellID
+        pcall(function()
+            local name, _, _, startTime, endTime, _, _, _, sid = UnitCastingInfo(which)
+            if name and sid and startTime ~= endTime and not IsSecretValue(sid) then
+                spellID = sid
+                return
+            end
+            local cname, _, _, cs, ce, _, _, cid = UnitChannelInfo(which)
+            if cname and cid and cs ~= ce and not IsSecretValue(cid) then
+                spellID = cid
+            end
+        end)
+        return spellID
+    end
+
+    local function ApplyCost(spellID, whichFrame, whichUnit)
+        whichFrame = whichFrame or frame
+        whichUnit = whichUnit or unit
+        if not whichFrame then return end
+        HideSegment(whichFrame.Power)
+        if whichFrame.AdditionalPower then
+            HideSegment(whichFrame.AdditionalPower)
+        end
+        if not spellID then return end
+
+        local cost = GetSpellCost(spellID, whichUnit)
+        local target = whichFrame.Power
+        local powerType = 0
+        pcall(function()
+            powerType = select(1, UnitPowerType(whichUnit))
+        end)
+
+        -- Extra mana only on the player. Target, target of target, and focus
+        -- only preview a cost that matches the bar's own power type.
+        if whichUnit == "player" and not CostActive(cost) and powerType ~= 0 then
+            local manaCost = GetSpellCostMana(spellID, whichUnit)
+            if CostActive(manaCost) and whichFrame.AdditionalPower and not whichFrame.AdditionalPower.isStaggerBar then
+                cost = manaCost
+                target = whichFrame.AdditionalPower
+                powerType = 0
+            end
+        end
+
+        if not CostActive(cost) or not target or target.isStaggerBar then
+            if UF.UpdatePower and whichFrame.Power then UF.UpdatePower(whichFrame, whichUnit) end
+            if UF.UpdateAdditionalPower and whichFrame.AdditionalPower then
+                UF.UpdateAdditionalPower(whichFrame, whichUnit)
+            end
+            return
+        end
+
+        local maxPower
+        if target == whichFrame.AdditionalPower then
+            maxPower = API.SafeUnitPowerMax(whichUnit, 0)
+        else
+            maxPower = API.SafeUnitPowerMax(whichUnit, powerType)
+        end
+        target._fluxPredictedCost = cost
+        target._fluxPredictMax = maxPower
+        target._fluxCastUnitGUID = UnitGUID and UnitGUID(whichUnit) or nil
+        PCO.ApplySegmentArt(target)
+
+        if UF.UpdatePower and whichFrame.Power then UF.UpdatePower(whichFrame, whichUnit) end
+        if UF.UpdateAdditionalPower and whichFrame.AdditionalPower then
+            UF.UpdateAdditionalPower(whichFrame, whichUnit)
+        end
+    end
+
+    local function ClearCost()
+        local still = CurrentCastSpell(unit)
+        if still then
+            ApplyCost(still)
+            return
+        end
+        HideSegment(frame.Power)
+        if frame.AdditionalPower then
+            HideSegment(frame.AdditionalPower)
+        end
+        if UF.UpdatePower then UF.UpdatePower(frame, unit) end
+        if UF.UpdateAdditionalPower then UF.UpdateAdditionalPower(frame, unit) end
+    end
+
+    if unit == "target" or unit == "targettarget" then
+        watcher:RegisterEvent("PLAYER_TARGET_CHANGED")
+    end
+    if unit == "focus" or unit == "focustarget" then
+        watcher:RegisterEvent("PLAYER_FOCUS_CHANGED")
+    end
+    if unit == "targettarget" then
+        SafeRegisterUnit(watcher, "UNIT_TARGET", "target")
+    end
+    if unit == "focustarget" then
+        SafeRegisterUnit(watcher, "UNIT_TARGET", "focus")
+    end
+
+    local function FrameForUnit(name)
+        if name == "player" then return ns.PlayerFrame end
+        if name == "target" then return ns.TargetFrame end
+        if name == "targettarget" then return ns.TargetOfTargetFrame end
+        if name == "focus" then return ns.FocusFrame end
+        if name == "focustarget" then return ns.FocusTargetFrame end
+    end
+
+    local function SyncNamedUnit(name)
+        local fr = FrameForUnit(name)
+        if not fr then return end
+        StopBarFeedback(fr.Power)
+        if fr.AdditionalPower then
+            StopBarFeedback(fr.AdditionalPower)
+        end
+        local sid = CurrentCastSpell(name)
+        if sid then
+            ApplyCost(sid, fr, name)
+            return
+        end
+        StopBarFeedback(fr.Power)
+        if fr.AdditionalPower then
+            StopBarFeedback(fr.AdditionalPower)
+        end
+        HideSegment(fr.Power)
+        if fr.AdditionalPower then
+            HideSegment(fr.AdditionalPower)
+        end
+        if UF.UpdatePower and fr.Power then
+            UF.UpdatePower(fr, fr.unit or name)
+        end
+        if UF.UpdateAdditionalPower and fr.AdditionalPower then
+            UF.UpdateAdditionalPower(fr, fr.unit or name)
+        end
+    end
+
+    watcher:SetScript("OnEvent", function(_, event, eventUnit, ...)
+        if event == "PLAYER_TARGET_CHANGED" then
+            SyncNamedUnit("target")
+            SyncNamedUnit("targettarget")
+            return
+        end
+        if event == "PLAYER_FOCUS_CHANGED" then
+            SyncNamedUnit("focus")
+            SyncNamedUnit("focustarget")
+            return
+        end
+        if event == "UNIT_TARGET" then
+            if unit == "targettarget" and eventUnit == "target" then
+                SyncNamedUnit("targettarget")
+            elseif unit == "focustarget" and eventUnit == "focus" then
+                SyncNamedUnit("focustarget")
+            end
+            return
+        end
+
+        if eventUnit ~= unit then return end
+
+        if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
+            local castGUID, spellID = ...
+            if not spellID then
+                spellID = castGUID
+            end
+            if IsSecretValue(spellID) then spellID = nil end
+            if not spellID then
+                spellID = CurrentCastSpell()
+            end
+            ApplyCost(spellID)
+        elseif event == "UNIT_SPELLCAST_STOP" or event == "UNIT_SPELLCAST_SUCCEEDED"
+            or event == "UNIT_SPELLCAST_CHANNEL_STOP" then
+            local nowGUID = UnitGUID and UnitGUID(unit) or nil
+            local function markFinish(bar)
+                if bar and bar._fluxCastUnitGUID and bar._fluxCastUnitGUID == nowGUID then
+                    bar._fluxCastFinish = true
+                end
+            end
+            markFinish(frame.Power)
+            if frame.AdditionalPower and not frame.AdditionalPower.isStaggerBar then
+                markFinish(frame.AdditionalPower)
+            end
+            ClearCost()
+        elseif event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_INTERRUPTED" then
+            ClearCost()
+        elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_DISPLAYPOWER" then
+            local spellID = CurrentCastSpell()
+            if spellID then
+                ApplyCost(spellID)
+            end
+        end
+    end)
+
+    frame.PowerCostWatcher = watcher
+    local already = CurrentCastSpell(unit)
+    if already then
+        ApplyCost(already)
+    end
+end

@@ -399,6 +399,9 @@ end
 
 local function ApplyKidAttributes(kid, def)
 	ClearKidAttributes(kid)
+	if kid.RegisterForDrag then
+		if def and def.onDragStart then kid:RegisterForDrag("LeftButton") else kid:RegisterForDrag() end
+	end
 	if not def then
 		return
 	end
@@ -877,6 +880,11 @@ local function CreateKid(popup, index)
 	end
 	kid:SetScript("OnEnter", KidOnEnter)
 	kid:SetScript("OnLeave", KidOnLeave)
+	kid:SetScript("OnDragStart", function(self)
+		if Flyout.InLockdown() then return end
+		local def = self._fluxFlyoutDef
+		if def and def.onDragStart then def.onDragStart(self) end
+	end)
 	kid:SetScript("PostClick", KidPostClick)
 	if Flyout.Secure and Flyout.Secure.InstallKidClose then
 		Flyout.Secure.InstallKidClose(kid, popup)

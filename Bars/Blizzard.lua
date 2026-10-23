@@ -60,7 +60,7 @@ local MAIN_BAR_ART = {
 -- StanceBar or PossessActionBar: ActionBarController_UpdateAll calls their
 -- Update() before MainActionBar:SetAttribute("actionpage"). A Flux Noop
 -- there taints the rest of UpdateAll (combat form ADDON_ACTION_BLOCKED).
--- Never SetAlpha those bars either: object taint survives to the next
+-- Never insecurely SetAlpha those bars either: object taint survives to the next
 -- UpdateAll → StanceBar:SetShown → EditMode RightManagedFrameContainer:SetSize.
 local MAIN_BARS = {
 	"MainActionBar",
@@ -318,10 +318,10 @@ local function UnusedHider()
 end
 
 -- UpdateAll: PossessActionBar:Update() then StanceBar:Update() then
--- MainActionBar:SetAttribute. Do not SetAlpha those bars: object taint
+-- MainActionBar:SetAttribute. Do not insecurely SetAlpha those bars: object taint
 -- survives to StanceBar:SetShown → EditMode RightManagedFrameContainer:SetSize.
--- Leave every mixin method stock. Stock stance/form is hidden with a
--- secure visibility driver (all clients) plus a classic-only hidden parent.
+-- Leave every mixin method stock. Replaced stance buttons use restricted
+-- handlers; legacy clients retain their capability-gated hidden parent.
 local function IsControllerUpdateBar(bar)
 	return bar == _G.StanceBar
 		or bar == _G.PossessActionBar
@@ -417,10 +417,15 @@ end
 -- Flux owns stance/form. A native "visibility" driver calls bar:Hide() every
 -- 0.2s, including while already hidden. On Retail that is HideOverride, which
 -- enters Edit Mode layout and the protected RightManagedFrameContainer:SetSize.
--- Use restricted frame-handle Hide instead: Blizzard's HANDLE:Hide calls the
--- captured C widget method, bypassing HideOverride. Protected stance buttons
+-- Use restricted frame-handle methods instead: they call the captured C widget
+-- methods, bypassing HideOverride. Protected stance buttons
 -- notify us when their parent becomes visible; the parent's own OnShow cannot
 -- be used because the Edit Mode bar is not explicitly protected.
+-- Hide each replaced stance button itself. Native Update() can show the bar again after
+-- UpdateShownButtons(), with no second child OnShow when that child was left
+-- shown. Suppressing only the parent therefore permits form-change flicker.
+-- Do not hide that parent inside its button OnShow: Update's trailing SetShown
+-- can reenter the parent's OnShow/Update. Securely mute its art/input instead.
 -- Classic/early Forever retain hidden parenting. Repaired Forever builds use
 -- the same secure hide, preserving the native Edit Mode bar's parent.
 local STOCK_STANCE_BARS = {
@@ -439,14 +444,28 @@ local retailStanceRecords = setmetatable({}, { __mode = "k" })
 local STANCE_SHOW_PRE = [[ return nil, true ]]
 local STANCE_SHOW_POST = [[
     local bar = control:GetFrameRef("bar")
-    if bar then bar:Hide(true) end
+    if bar then
+        if not control:GetAttribute("preserve-possess") then
+            self:Hide(true)
+            bar:SetAlpha(0)
+            bar:EnableMouse(false)
+        elseif not SecureCmdOptionParse("[possessbar] 1") then
+            bar:Hide(true)
+        end
+    end
 ]]
 local STANCE_INITIAL_HIDE = [[
     local bar = self:GetFrameRef("bar")
-    if bar then bar:Hide(true) end
+    if bar and not (self:GetAttribute("preserve-possess") and SecureCmdOptionParse("[possessbar] 1")) then
+        if not self:GetAttribute("preserve-possess") then
+            bar:SetAlpha(0)
+            bar:EnableMouse(false)
+        end
+        bar:Hide(true)
+    end
 ]]
 
-local function SecureHideRetailStanceBar(bar)
+local function SecureHideRetailStanceBar(bar, preservePossess)
 	if InLockdown() then return "pending" end
 	local record = retailStanceRecords[bar]
 	if not record then
@@ -456,11 +475,16 @@ local function SecureHideRetailStanceBar(bar)
 		header:Hide()
 		if not header.SetFrameRef or not header.WrapScript or not header.Execute then return "failed" end
 		if not pcall(header.SetFrameRef, header, "bar", bar) then return "failed" end
+		header:SetAttribute("preserve-possess", preservePossess and true or nil)
 		record = { header = header, buttons = setmetatable({}, { __mode = "k" }) }
 		retailStanceRecords[bar] = record
 	end
 	local found, failed = false, false
-	for _, button in ipairs(bar.actionButtons or {}) do
+	local buttons = bar.actionButtons
+	if not buttons and bar == _G.PossessBarFrame then
+		buttons = { _G.PossessButton1, _G.PossessButton2 }
+	end
+	for _, button in ipairs(buttons or {}) do
 		-- SecureHandlers needs an explicitly protected self handle. Blizzard's
 		-- StanceButtonTemplate inherits SecureFrameTemplate; its parent does not.
 		local explicit = button.IsProtected and select(2, button:IsProtected())
@@ -566,6 +590,24 @@ local function HideStockStanceBars()
 	end
 end
 
+local function HideStockPossessBars()
+	if not CanReplaceBar("PossessActionBar") then return end
+	if InLockdown() then
+		if Flux.Combat and Flux.Combat.Defer then
+			Flux.Combat.Defer("bars.possess.hide", HideStockPossessBars)
+		end
+		return
+	end
+	local restricted = Flux.Restricted
+	if restricted and restricted.PagingWorks and not restricted.PagingWorks() then return end
+	-- Never retire the real cancel-possession/taxi controls. Only the empty
+	-- Edit Mode presentation is suppressed; native Update/OnClick stay intact.
+	for _, name in ipairs({ "PossessActionBar", "PossessBarFrame" }) do
+		local bar = _G[name]
+		if type(bar) == "table" then SecureHideRetailStanceBar(bar, true) end
+	end
+end
+
 local function NeutralizePostDFBarChrome(bar)
 	if not IsRetailPostDF() or type(bar) ~= "table" then
 		return
@@ -606,6 +648,10 @@ local leftoverQueued = false
 local function ApplyLeftoverNow()
 	leftoverQueued = false
 	if Bars.secureReady == false then return end
+	if FluxEditModeBusy and FluxEditModeBusy() then
+		FluxAfterEditMode(ApplyLeftoverNow, "bars.leftover")
+		return
+	end
 	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		local bar = _G[MAIN_BARS[i]]
@@ -615,6 +661,7 @@ local function ApplyLeftoverNow()
 	end
 	AlphaUnusedBars()
 	HideStockStanceBars()
+	HideStockPossessBars()
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.leftover", Blizzard.KillLeftoverMouse)
@@ -772,6 +819,10 @@ end
 
 function Blizzard.HideStockButtons()
 	if Bars.secureReady == false then return end
+	if FluxEditModeBusy and FluxEditModeBusy() then
+		FluxAfterEditMode(Blizzard.HideStockButtons)
+		return
+	end
 	for i = 1, Bars.NUM_NATIVE do
 		SilenceStockButton(Blizzard.GetActionButton(i))
 		NeutralizeStockButton(Blizzard.GetActionButton(i))
@@ -782,6 +833,10 @@ end
 
 function Blizzard.KillLeftoverMouse()
 	if Bars.secureReady == false then return end
+	if FluxEditModeBusy and FluxEditModeBusy() then
+		FluxAfterEditMode(Blizzard.KillLeftoverMouse)
+		return
+	end
 	SuppressStockGridEvents()
 	for i = 1, #MAIN_BARS do
 		NeutralizeMainBar(_G[MAIN_BARS[i]])
@@ -815,12 +870,17 @@ function Blizzard.KillLeftoverMouse()
 	KillMouse(_G.MainMenuBarVehicleLeaveButton)
 	NeutralizeIconIntro()
 	HideStockStanceBars()
+	HideStockPossessBars()
 end
 
 function Blizzard.HideUnusedBars()
 	-- Do not take native input away until all replacement surfaces and their
 	-- paging/input setup completed. Failed or combat-blocked startup keeps it.
 	if Bars.secureReady == false then return end
+	if FluxEditModeBusy and FluxEditModeBusy() then
+		FluxAfterEditMode(Blizzard.HideUnusedBars)
+		return
+	end
 	SuppressStockGridEvents()
 	if not InLockdown() then
 		for i = 1, #MULTI_BARS do
@@ -962,6 +1022,10 @@ end
 --- sweep, secure stance suppression, and art pass used by a real layout.
 function Blizzard.QuietGrid()
 	if Bars.secureReady == false then return end
+	if FluxEditModeBusy and FluxEditModeBusy() then
+		FluxAfterEditMode(Blizzard.QuietGrid)
+		return
+	end
 	local function Dim(frame)
 		if type(frame) == "table" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then
 			frame:SetAlpha(0)

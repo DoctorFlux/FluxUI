@@ -849,6 +849,8 @@ function Action.ClearEnv(btn)
 	btn.FlyoutId = nil
 	btn.BattlePetId = nil
 	btn.BattlePetName = nil
+	btn.OutfitId = nil
+	btn.OutfitInfo = nil
 	btn.IsEmpowerSpell = nil
 	btn.PetSlot = nil
 	btn.ShapeshiftIndex = nil
@@ -920,6 +922,13 @@ local function WriteAttributes(btn)
 		end
 	elseif actionType == "macrotext" then
 		RouteExtraMacro(widget, StripHashLines(actionValue))
+	elseif actionType == "outfit" then
+		local info = btn.OutfitInfo
+		if info and not info.isDisabled then
+			widget:SetAttribute("type", "macro")
+			widget:SetAttribute("typerelease", "macro")
+			widget:SetAttribute("macrotext", info.macrotext)
+		end
 	elseif actionType == "mount" then
 		local mountId = btn.MountId or actionValue
 		if C_MountJournal and C_MountJournal.SummonByID and mountId then
@@ -1014,10 +1023,14 @@ local function FillEnv(btn, actionType, actionValue)
 
 	if actionType == "spell" then
 		local sid = SpellID(actionValue) or actionValue
+		local api = ns.API
+		local isOutfitSpell = api and api.GetPlayerTransmogOutfitIDForSpell
+			and api.GetPlayerTransmogOutfitIDForSpell(sid) ~= nil
 		-- Keep Blizzard's assistant action spell id; GetBaseSpell would break identity.
+		-- Clear outfit is a synthetic spell face, not a rank to normalize.
 		-- Stance custom slots keep the placed rank. GetBaseSpell would swap the icon.
 		if type(sid) == "number" and not btn._fluxExactSpell and Flux.Spell and Flux.Spell.GetBaseSpell
-			and not Action.IsAssistantSpell(sid) then
+			and not isOutfitSpell and not Action.IsAssistantSpell(sid) then
 			sid = Flux.Spell.GetBaseSpell(sid) or sid
 		end
 		btn.ActionType = "spell"
@@ -1073,6 +1086,17 @@ local function FillEnv(btn, actionType, actionValue)
 		btn.MacroBody = actionValue
 		btn.ShowTooltip = HasShowTooltip(actionValue)
 		btn.needsRange = true
+		return true
+	elseif actionType == "outfit" then
+		local api = ns.API
+		local id = tonumber(actionValue)
+		if not id or id < 0 or id ~= math.floor(id) or not api
+			or not api.HasPlayerTransmogOutfitAPI or not api.HasPlayerTransmogOutfitAPI() then return false end
+		btn.ActionType, btn.ActionValue, btn.OutfitId = "outfit", id, id
+		-- Preserve a saved ID while outfit data is still arriving at login.
+		btn.OutfitInfo = api.GetPlayerTransmogOutfitAction and api.GetPlayerTransmogOutfitAction(id)
+		btn.SpellId = btn.OutfitInfo and btn.OutfitInfo.spell
+		btn.needsRange = false
 		return true
 	elseif actionType == "mount" then
 		if not CapHas("hasC_MountJournal") then
@@ -2173,6 +2197,7 @@ function Action.ForceMacrosLoaded()
 end
 
 local KNOWN = {
+	outfit = true,
 	spell = true,
 	item = true,
 	macro = true,
@@ -2184,6 +2209,23 @@ local KNOWN = {
 	pet = true,
 	shapeshift = true,
 }
+
+function Action.RefreshOutfits()
+	local list = EBS.buttons or {}
+	for i = 1, #list do
+		local btn = list[i]
+		if btn and btn.ActionType == "outfit" then
+			local function refresh()
+				if btn.ActionType == "outfit" then Action.SetAction(btn, "outfit", btn.ActionValue) end
+			end
+			if InLockdown() then
+				Defer("ebs.outfit." .. tostring(btn), refresh)
+			else
+				refresh()
+			end
+		end
+	end
+end
 
 function Action.SetAction(btn, actionType, actionValue)
 	if not btn or not btn.Widget then
@@ -2492,7 +2534,15 @@ function Action.Pickup(btn)
 		return false
 	end
 	local t = btn.ActionType
-	if t == "spell" then
+	local api = ns.API
+	local outfitID = t == "outfit" and (btn.OutfitId or btn.ActionValue) or nil
+	if t == "spell" and api and api.GetPlayerTransmogOutfitIDForSpell then
+		outfitID = api.GetPlayerTransmogOutfitIDForSpell(btn.SpellId or btn.ActionValue)
+	end
+	if t == "outfit" or outfitID ~= nil then
+		return ns.API and ns.API.TryPickupPlayerTransmogOutfit
+			and ns.API.TryPickupPlayerTransmogOutfit(outfitID) or false
+	elseif t == "spell" then
 		PickupSpell(btn.SpellId or btn.ActionValue)
 	elseif t == "item" then
 		PickupItem(btn.ItemId or btn.ActionValue)
@@ -2668,6 +2718,16 @@ local function OnCursorChanged()
 	end
 end
 
+local function SpellCursorAction(spellID)
+	local api = ns.API
+	local outfitID
+	if api and api.GetPlayerTransmogOutfitIDForSpell then
+		outfitID = api.GetPlayerTransmogOutfitIDForSpell(spellID)
+	end
+	if outfitID ~= nil then return "outfit", outfitID end
+	return "spell", spellID
+end
+
 local function CursorToAction()
 	if not GetCursorInfo then
 		return nil
@@ -2677,9 +2737,14 @@ local function CursorToAction()
 		return nil
 	end
 	local stashed, stashKind = PeekFlyoutPopupStash()
-	if cursorType == "spell" then
+	if cursorType == "outfit" then
+		local info = ns.API and ns.API.GetPlayerTransmogOutfitAction
+			and ns.API.GetPlayerTransmogOutfitAction(cursorData)
+		if info and not info.isDisabled then return "outfit", info.id end
+		return nil
+	elseif cursorType == "spell" then
 		if stashed and stashKind == "spell" then
-			return "spell", stashed
+			return SpellCursorAction(stashed)
 		end
 		-- Popup slot pickup (not the parent flyout from the spellbook).
 		if cursorSubType == "flyout" then
@@ -2690,7 +2755,7 @@ local function CursorToAction()
 					sid = ov
 				end
 			end
-			return "spell", sid or cursorData
+			return SpellCursorAction(sid or cursorData)
 		end
 		if C_SpellBook and C_SpellBook.GetSpellBookItemInfo and cursorData and cursorSubType then
 			local ok, info = pcall(C_SpellBook.GetSpellBookItemInfo, cursorData, cursorSubType)
@@ -2699,7 +2764,7 @@ local function CursorToAction()
 				return "flyout", info.actionID or info.itemID or cursorSubData
 			end
 		end
-		return "spell", cursorSubData or cursorData
+		return SpellCursorAction(cursorSubData or cursorData)
 	elseif cursorType == "flyout" then
 		if stashed and stashKind == "spell" then
 			return "spell", stashed
@@ -2769,6 +2834,7 @@ function Action.OnReceiveDrag(btn)
 	local prevToy = btn.ToyId
 	local prevFlyout = btn.FlyoutId
 	local prevPet = btn.BattlePetId
+	local prevOutfit = btn.OutfitId
 
 	Action.SetAction(btn, actionType, actionValue)
 	ClearFlyoutPopupStash()
@@ -2790,6 +2856,7 @@ function Action.OnReceiveDrag(btn)
 			ToyId = prevToy,
 			FlyoutId = prevFlyout,
 			BattlePetId = prevPet,
+			OutfitId = prevOutfit,
 		}
 		Action.Pickup(ghost)
 	end
@@ -3082,6 +3149,19 @@ function Action.UpdateTooltip(btn)
 		GameTooltip:SetOwner(btn.Widget, "ANCHOR_RIGHT")
 	end
 	local t = btn.ActionType
+	if t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
+		local info = btn._fluxUtilityOutfitInfo or btn.OutfitInfo
+		local id = btn._fluxUtilityOutfitID or btn.OutfitId
+		if id ~= 0 and GameTooltip.SetOutfit and info then
+			GameTooltip:SetOutfit(id)
+		elseif info and info.spell and GameTooltip.SetSpellByID then
+			GameTooltip:SetSpellByID(info.tooltipSpell or info.spell)
+		else
+			GameTooltip:SetText(info and info.name or "Transmog Outfit")
+		end
+		GameTooltip:Show()
+		return
+	end
 	if t == "macro" or t == "macrotext" then
 		local shown = false
 		if btn.ShowTooltip then

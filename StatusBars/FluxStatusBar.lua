@@ -1345,6 +1345,10 @@ FluxHiddenParent:Hide()
 
 local function HideBlizzardBars()
     if not statusHUDReady then return end
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(HideBlizzardBars)
+        return
+    end
     if InCombatLockdown() then
         nativeHidePending = true
         return
@@ -1369,6 +1373,9 @@ local function HideBlizzardBars()
     for _, barName in ipairs(barsToHide) do
         local bar = _G[barName]
         if bar then
+            if Flux and Flux.Blizz and Flux.Blizz.SetMouseSuppressed then
+                Flux.Blizz.SetMouseSuppressed(bar, true)
+            end
             -- Post-DF status tracking bars are Edit Mode systems. Hide/OnShow-Hide
             -- and SetParent(addon) taint UpdateLayoutInfo → MainActionBar:SetPointBase
             -- on spec/level. Mute with alpha only, same as leftover MainActionBar.
@@ -1407,6 +1414,9 @@ local function HideBlizzardBars()
     -- system: Hide() / OnShow-Hide / SetParent(addon) taint UpdateLayoutInfo →
     -- MainActionBar:SetPointBase on spec/level. Mute with alpha only.
     if DurabilityFrame then
+        if Flux and Flux.Blizz and Flux.Blizz.SetMouseSuppressed then
+            Flux.Blizz.SetMouseSuppressed(DurabilityFrame, true)
+        end
         if not InCombatLockdown() and DurabilityFrame.SetAlpha then
             DurabilityFrame:SetAlpha(0)
         end

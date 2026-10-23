@@ -1,7 +1,7 @@
 -- BlizzardSettings/Raid.lua — tutorials off and Flux's raid / arena frame defaults.
--- raidFrames* / pvpFrames* CVars are written on every client. Missing CVars skip.
+-- Native compact-frame defaults apply only where their callbacks can safely run.
 -- Settings.SetValue / NotifyUpdate and the raid manager run only where secrets
--- are not enforced (Era / Anniversary). Raid profile options apply on every client.
+-- are not enforced (Classic clients). Flux's own raid options are independent.
 local addonName, ns = ...
 local Flux = ns.Flux
 local BS = Flux.BlizzardSettings
@@ -55,6 +55,7 @@ function Raid.ApplyTutorials()
 end
 
 function Raid.ApplyProfile()
+	if not Write.MayUseSettingsAPI() then return false end
 	if not (SetRaidProfileOption and GetActiveRaidProfile) then
 		return false
 	end

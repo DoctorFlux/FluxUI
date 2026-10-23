@@ -172,6 +172,24 @@ end
 
 -- Event frame for instant tab hiding
 local tabHiderFrame = CreateFrame("Frame")
+local tabChecksRemaining = 0
+local function StopTabWatch()
+    tabChecksRemaining = 0
+    tabHiderFrame:SetScript("OnUpdate", nil)
+end
+local function CheckBattlefieldMapTab()
+    tabChecksRemaining = tabChecksRemaining - 1
+    HideBattlefieldMapTabInstantly()
+    if _G.BattlefieldMapTab or tabChecksRemaining <= 0 then
+        StopTabWatch()
+    end
+end
+local function StartTabWatch(checks)
+    -- WoW frames cannot be destroyed. Reuse this event frame across world
+    -- transitions, retaining the longer initial discovery window if active.
+    tabChecksRemaining = math.max(tabChecksRemaining, checks)
+    tabHiderFrame:SetScript("OnUpdate", CheckBattlefieldMapTab)
+end
 tabHiderFrame:RegisterEvent("ADDON_LOADED")
 tabHiderFrame:RegisterEvent("PLAYER_LOGIN")
 tabHiderFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -179,36 +197,17 @@ tabHiderFrame:SetScript("OnEvent", function(self, event, addon)
     if event == "ADDON_LOADED" and addon == "Blizzard_BattlefieldMap" then
         -- Hide tab immediately when Blizzard addon loads
         HideBattlefieldMapTabInstantly()
+        if _G.BattlefieldMapTab then StopTabWatch() else StartTabWatch(30) end
     elseif event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
         -- Also try to hide on login/reload (in case addon was already loaded)
         HideBattlefieldMapTabInstantly()
         
-        -- Use watcher to catch tab if it appears later
-        local tabWatcher = CreateFrame("Frame")
-        local tabCheckCount = 0
-        local MAX_TAB_CHECKS = 30  -- Increased to catch tab that might appear later
-        tabWatcher:SetScript("OnUpdate", function(watcher, elapsed)
-            tabCheckCount = tabCheckCount + 1
-            HideBattlefieldMapTabInstantly()
-            if tabCheckCount >= MAX_TAB_CHECKS or state.tabHidden then
-                watcher:SetScript("OnUpdate", nil)
-            end
-        end)
+        if _G.BattlefieldMapTab then StopTabWatch() else StartTabWatch(30) end
     end
 end)
 
--- Try to hide tab immediately on file load (in case addon was already loaded)
--- Use watcher to catch it when it becomes available
-local initialTabWatcher = CreateFrame("Frame")
-local initialTabCheckCount = 0
-local MAX_INITIAL_CHECKS = 50  -- Check for up to ~0.8 seconds
-initialTabWatcher:SetScript("OnUpdate", function(self, elapsed)
-    initialTabCheckCount = initialTabCheckCount + 1
-    HideBattlefieldMapTabInstantly()
-    if initialTabCheckCount >= MAX_INITIAL_CHECKS or state.tabHidden then
-        self:SetScript("OnUpdate", nil)
-    end
-end)
+-- Catch the initial late tab without adding a permanent polling loop.
+StartTabWatch(50)
 
 -- Anchor map to FluxWindowFrame without reparenting (keeps Blizzard frame hierarchy untainted)
 -- IMPORTANT: Uses single-anchor positioning (CENTER) to avoid conflicts with scale
@@ -980,7 +979,18 @@ zoneRefresher:SetScript("OnEvent", function(self, event)
     end
 end)
 
+-- Initialization retries are bounded, but native frames cannot be destroyed.
+-- Reuse these two owned watchers when returning to the Map tab, and cancel
+-- their scripts when hiding/cleaning up before the next rendered frame.
+local initializationWatchers = {}
+local function StopInitializationWatchers()
+    for _, watcher in pairs(initializationWatchers) do
+        watcher:SetScript("OnUpdate", nil)
+    end
+end
+
 DoInitialize = function(parentFrame)
+    StopInitializationWatchers()
     -- Get Blizzard's battlefield map frame (loads addon if needed)
     state.mapFrame = GetBlizzardBattlefieldMap()
     
@@ -1054,11 +1064,20 @@ DoInitialize = function(parentFrame)
 
     -- Use watcher pattern instead of delays for instant setup
     -- This ensures proper scaling during initial login/reload when Map tab is active
-    local scalingWatcher = CreateFrame("Frame")
+    local scalingWatcher = initializationWatchers.scaling
+    if not scalingWatcher then
+        scalingWatcher = CreateFrame("Frame")
+        initializationWatchers.scaling = scalingWatcher
+    end
     local scalingCheckCount = 0
     local MAX_SCALING_CHECKS = 10
     
     scalingWatcher:SetScript("OnUpdate", function(self, elapsed)
+        if InCombatLockdown() then
+            state.embedPending = true
+            StopInitializationWatchers()
+            return
+        end
         scalingCheckCount = scalingCheckCount + 1
         
         -- Check if map frame is ready and apply scaling
@@ -1095,9 +1114,18 @@ DoInitialize = function(parentFrame)
 
         -- For older clients, ensure proper zoom level (use watcher instead of delay)
         if IsOlderClient() then
-            local zoomWatcher = CreateFrame("Frame")
+            local zoomWatcher = initializationWatchers.zoom
+            if not zoomWatcher then
+                zoomWatcher = CreateFrame("Frame")
+                initializationWatchers.zoom = zoomWatcher
+            end
             local zoomCheckCount = 0
             zoomWatcher:SetScript("OnUpdate", function(self, elapsed)
+                if InCombatLockdown() then
+                    state.embedPending = true
+                    StopInitializationWatchers()
+                    return
+                end
                 zoomCheckCount = zoomCheckCount + 1
                 if state.mapFrame then
                     if state.mapFrame.SetMapZoom then
@@ -1124,6 +1152,7 @@ function FluxBattlefieldMap:Initialize(parentFrame)
     if not parentFrame then
         return false
     end
+    StopInitializationWatchers()
     state.parentFrame = parentFrame
 
     if InCombatLockdown() then
@@ -1216,6 +1245,7 @@ end
 
 -- Hide the battlefield map
 function FluxBattlefieldMap:Hide()
+    StopInitializationWatchers()
     if not state.mapFrame then return end
 
     if FluxBattlefieldMapWorldFeatures and FluxBattlefieldMapWorldFeatures.OnMapHidden then
@@ -1332,6 +1362,7 @@ end
 
 -- Cleanup function
 function FluxBattlefieldMap:Cleanup()
+    StopInitializationWatchers()
     if FluxBattlefieldMapWorldFeatures and FluxBattlefieldMapWorldFeatures.OnMapHidden then
         FluxBattlefieldMapWorldFeatures:OnMapHidden()
     end

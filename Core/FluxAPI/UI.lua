@@ -312,9 +312,21 @@ end
 local editModeOpen = false
 local afterEditMode = {}
 local afterEditModeScheduled = false
+local ScheduleAfterEditMode
+
+local function NativeEditModeClosed()
+    local em = _G.EditModeManagerFrame
+    if not em or not em.IsShown or em:IsShown() then return false end
+    -- Edit Mode hides temporarily for dialogs while remaining active/locked.
+    -- Only its explicit inactive state can recover a missing Exit callback.
+    if not em.IsEditModeActive or em:IsEditModeActive() ~= false then return false end
+    if em.IsEditModeLocked and em:IsEditModeLocked() then return false end
+    return true
+end
 
 function FluxEditModeBusy()
     if editModeOpen then
+        if NativeEditModeClosed() then ScheduleAfterEditMode() end
         return true
     end
     local em = _G.EditModeManagerFrame
@@ -324,6 +336,9 @@ FLUX_API.EditModeBusy = FluxEditModeBusy
 
 local function RunAfterEditMode()
     afterEditModeScheduled = false
+    -- A native reset error can abort before EditMode.Exit. This runs on a
+    -- later frame, never on the native OnHide/reset stack that set it inactive.
+    if editModeOpen and NativeEditModeClosed() then editModeOpen = false end
     if FluxEditModeBusy() then
         return
     end
@@ -337,7 +352,7 @@ local function RunAfterEditMode()
     end
 end
 
-local function ScheduleAfterEditMode()
+ScheduleAfterEditMode = function()
     if afterEditModeScheduled or not (C_Timer and C_Timer.After) then
         return
     end
@@ -398,6 +413,15 @@ local function SuppressOwnedEditModeChrome()
             MuteEditModeChild(frame.Selection)
             MuteEditModeChild(frame.EditModeResizeButton)
         end
+    end
+    local bars = ns.Flux and ns.Flux.Bars
+    if bars and bars.secureReady == true then
+        if not bars.Stance or bars.Stance.secureReady == true then
+            local stance = _G.StanceBar or _G.StanceBarFrame
+            if stance then MuteEditModeChild(stance.Selection) end
+        end
+        local possess = _G.PossessActionBar or _G.PossessBarFrame
+        if possess then MuteEditModeChild(possess.Selection) end
     end
     local castBar = _G.PlayerCastingBarFrame or _G.CastingBarFrame
     if castBar then
@@ -728,6 +752,9 @@ ns.API.ShouldUseDfStyleVerticalMicroMenuGrid = FluxShouldUseDfStyleVerticalMicro
 -- ---------------------------------------------------------------------------
 function FluxSetupPortraitModel(model, unit)
     if not model then return false end
+    -- Shared unit portraits already own camera/model/event handling on every
+    -- client. The old pre-DF wrap would replace OnShow and reset their crop.
+    if model._fluxSharedPortraitCamera then return true end
     local originalSetUnit = model.SetUnit
 
     local function resetCamera(self)
@@ -1119,9 +1146,14 @@ function ns.API.GetPlayerSpecSwitchMode()
 end
 
 function ns.API.HasPlayerTransmogOutfitAPI()
-    return isRetail and C_TransmogOutfitInfo ~= nil
-        and type(C_TransmogOutfitInfo.GetOutfitsInfo) == "function"
-        and type(C_TransmogOutfitInfo.ChangeToOutfit) == "function"
+    if not C_TransmogOutfitInfo
+        or type(C_TransmogOutfitInfo.GetOutfitsInfo) ~= "function"
+        or type(C_TransmogOutfitInfo.ChangeToOutfit) ~= "function" then return false end
+    if type(C_TransmogOutfitInfo.IsTransmogEnabled) == "function" then
+        local ok, enabled = pcall(C_TransmogOutfitInfo.IsTransmogEnabled)
+        if ok and enabled == false then return false end
+    end
+    return true
 end
 
 function ns.API.GetPlayerTransmogOutfitEntries()
@@ -1173,6 +1205,53 @@ function ns.API.GetPlayerTransmogOutfitEntries()
     return out
 end
 
+-- Native outfit cursor IDs are sparse identities, not the player-facing index
+-- consumed by /outfit. ID 0 is Blizzard's draggable "show equipped gear" action.
+function ns.API.GetPlayerTransmogOutfitAction(outfitID)
+    if issecretvalue and issecretvalue(outfitID) then return nil end
+    outfitID = tonumber(outfitID)
+    if not outfitID or outfitID < 0 or outfitID ~= math.floor(outfitID)
+        or not ns.API.HasPlayerTransmogOutfitAPI() then return nil end
+    local constants = Constants and Constants.TransmogOutfitDataConsts
+    local equipSpell = constants and constants.EQUIP_TRANSMOG_OUTFIT_MANUAL_SPELL_ID or 1247613
+    if outfitID == 0 then
+        if type(C_TransmogOutfitInfo.ClearOutfit) ~= "function" then return nil end
+        local clearSpell = constants and constants.CLEAR_TRANSMOG_OUTFIT_MANUAL_SPELL_ID
+        local info = clearSpell and C_Spell and C_Spell.GetSpellInfo and C_Spell.GetSpellInfo(clearSpell)
+        return { id = 0, isClear = true, name = "Clear Current Transmogrifications",
+            icon = info and info.iconID or "Interface\\Icons\\INV_Helmet_134",
+            spell = equipSpell, tooltipSpell = clearSpell or equipSpell, macrotext = "/outfit" }
+    end
+    for _, entry in ipairs(ns.API.GetPlayerTransmogOutfitEntries()) do
+        if entry.id == outfitID then
+            entry.spell = equipSpell
+            entry.macrotext = "/outfit !" .. tostring(entry.index)
+            return entry
+        end
+    end
+    return nil
+end
+
+function ns.API.IsPlayerTransmogOutfitActive(outfitID)
+    if not ns.API.HasPlayerTransmogOutfitAPI()
+        or type(C_TransmogOutfitInfo.GetActiveOutfitID) ~= "function" then return false end
+    local ok, active = pcall(C_TransmogOutfitInfo.GetActiveOutfitID)
+    if not ok or (issecretvalue and issecretvalue(active)) then return false end
+    if outfitID == 0 then return active == nil or active == 0 end
+    return active == outfitID
+end
+
+-- Forever can expose "show equipped gear" as a spell cursor/saved spell.
+-- Its spell face is not an ordinary spellbook pickup: Blizzard drags outfit 0.
+function ns.API.GetPlayerTransmogOutfitIDForSpell(spellID)
+    if issecretvalue and issecretvalue(spellID) then return nil end
+    local constants = Constants and Constants.TransmogOutfitDataConsts
+    local clearSpell = constants and constants.CLEAR_TRANSMOG_OUTFIT_MANUAL_SPELL_ID
+    if clearSpell and tonumber(spellID) == clearSpell and ns.API.HasPlayerTransmogOutfitAPI()
+        and type(C_TransmogOutfitInfo.ClearOutfit) == "function" then return 0 end
+    return nil
+end
+
 function ns.API.TryApplyPlayerTransmogOutfit(playerFacingOutfitIndex)
     if type(playerFacingOutfitIndex) ~= "number" or playerFacingOutfitIndex < 1 then return false end
     if not ns.API.HasPlayerTransmogOutfitAPI() then return false end
@@ -1185,7 +1264,20 @@ function ns.API.TryPickupPlayerTransmogOutfit(outfitID)
     if type(outfitID) ~= "number" or not ns.API.HasPlayerTransmogOutfitAPI() then return false end
     if InCombatLockdown() then return false end
     if type(C_TransmogOutfitInfo.PickupOutfit) ~= "function" then return false end
-    return pcall(C_TransmogOutfitInfo.PickupOutfit, outfitID) == true
+    if not ns.API.GetPlayerTransmogOutfitAction(outfitID) then return false end
+    local ok, result = pcall(C_TransmogOutfitInfo.PickupOutfit, outfitID)
+    if not ok or result == false then return false end
+    if GetCursorInfo then
+        local kind, id, _, spellID = GetCursorInfo()
+        if kind == "outfit" then return id == outfitID end
+        -- Clear may be represented by its synthetic spell cursor even when
+        -- picked up through PickupOutfit(0). It must still remove the source.
+        if outfitID == 0 and kind == "spell" then
+            return ns.API.GetPlayerTransmogOutfitIDForSpell(spellID or id) == 0
+        end
+        return false
+    end
+    return true
 end
 
 -- ---------------------------------------------------------------------------

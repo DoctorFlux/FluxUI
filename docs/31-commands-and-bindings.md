@@ -1,5 +1,7 @@
 # Commands and keybindings
 
+`/fluxinput` captures a read-only input/taint snapshot immediately and once after three seconds. Hover the affected frame, then reload to flush `FluxPerfCaptureDB.inputDebug`. It never changes click bindings or native input. [Behavior and evidence](51-input-and-native-callbacks.md), [handler](../Other/FluxInputDebug.lua).
+
 `/fluxstartup on` enables the opt-in capture for the next reload; `/fluxstartup` prints separate visual/input milestones, startup layout/defer/managed-timer counters and heap delta; `/fluxstartup off` disables capture. [Metrics and limitations](43-startup-optimization.md#startup-diagnostics).
 
 This reference follows reachable source and actual handlers, including assignments that replace earlier registrations. [Declaration evidence](reference/declarations.md) lists every source registration; [source coverage](30-source-coverage.md) retains client filters. A registered command can still require a feature/API that is unavailable on the current client.

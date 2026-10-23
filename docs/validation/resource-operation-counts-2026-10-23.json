@@ -1,0 +1,26 @@
+{
+  "scope": "Deterministic production-body replay, five mocked client capabilities; not native FPS, secure VM or taint evidence. Earlier function bodies retained as negative controls.",
+  "command": [
+    "lua",
+    "tests/unit_resource_lifecycle.lua"
+  ],
+  "exit": 0,
+  "output": "unit resource lifecycle: 16111 checks, five client models, 7 mutations rejected\n  100 option/enable cycles: watcher frames 201 -> 1; 300 spark paints: style writes 1200 -> 4\n",
+  "watchers": {
+    "cycles": 100,
+    "beforeFrames": 201,
+    "afterFrames": 1
+  },
+  "sparks": {
+    "paints": 300,
+    "beforeStyleWrites": 1200,
+    "afterStyleWrites": 4
+  },
+  "sourceHashes": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "fcbb2993a20ede85b3a33b570d6d653371dfb610a5ab13ed2d40f79fa1c89797",
+    "UnitFrames/FluxPowerCostOverlay.lua": "386e4e2d1a17aeec00ede2e20cbe4cc76cfe2ac6ba2b9a3fec8a9f2d2725b3e8",
+    "tests/unit_resource_lifecycle.lua": "77205c6615ad5f017f39d136807274fe9c800047c8e5297e4cb5bc744148ebc8",
+    "tests/fixtures/resource_spark_before.txt": "3a08b805987d9568248cd79524f9a7944b3e36bbb2283f4db2edc382ad0633b0",
+    "tests/fixtures/power_cost_watchers_before.txt": "4f80dc7c2668f64266fc06d22e08f585f2dfbe5a844b407904cdb27a32cc6941"
+  }
+}

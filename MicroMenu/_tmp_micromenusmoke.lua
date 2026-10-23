@@ -279,7 +279,8 @@ if bagHeader == "" then
 else
 	hasNot(bagHeader, "_G.CloseBag =", "bag header must not replace CloseBag (taints CloseAllBags / ESC)")
 	hasNot(bagHeader, "FluxCombinedReopenHooked", "CloseBag override flag is gone")
-	has(bagHeader, 'hooksecurefunc(settings, "OnBagClosed"', "unequip reopen is a post-hook on OnBagClosed")
+	hasNot(bagHeader, 'hooksecurefunc(settings, "OnBagClosed"', "bag header leaves shared settings manager native")
+	has(bagHeader, 'bag:HookScript("OnEvent", ReopenAfterUnequip)', "unequip reopen observes completed combined-frame events")
 	has(bagHeader, "if not RetailHeaderClient() or Off() then", "bag header skips Forever gamepad UI at load")
 	has(bagHeader, "return UsesAltBag() or ForeverGamepadUI()", "bag header gate covers Forever gamepad UI")
 	hasNot(bagHeader, '"InitializeGamepad"', "bag header must not hook the gamepad bag init")

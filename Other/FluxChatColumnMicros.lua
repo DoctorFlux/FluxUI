@@ -677,6 +677,7 @@ local function HasTransmogOutfits()
     if not api or not api.HasPlayerTransmogOutfitAPI or api.HasPlayerTransmogOutfitAPI() ~= true then
         return false
     end
+    if api.GetPlayerTransmogOutfitAction and api.GetPlayerTransmogOutfitAction(0) then return true end
     local entries = api.GetPlayerTransmogOutfitEntries and api.GetPlayerTransmogOutfitEntries()
     if type(entries) ~= "table" then
         return false
@@ -813,6 +814,16 @@ local function CreateBagButton(parent)
             onLeave = HideTooltip,
         })
     end
+    local container = ns.Flux and ns.Flux.Container
+    if container and container.WatchFreeBagSlots then
+        container.WatchFreeBagSlots("FluxChatBagButton", function(total)
+            count:SetText(total)
+            if total < 5 then count:SetTextColor(1, 0.1, 0.1) else count:SetTextColor(1, 1, 1) end
+        end)
+        return btn
+    end
+    -- Compatibility fallback for a standalone/older core. Current clients use
+    -- the shared live counter above, independently of micro-menu load timing.
     local function SyncCount()
         local src = _G.FluxBagMicroButton
         local text = src and src.count and src.count.GetText and src.count:GetText()

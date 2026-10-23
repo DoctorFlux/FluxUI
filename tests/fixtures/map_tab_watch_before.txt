@@ -1,0 +1,39 @@
+-- Event frame for instant tab hiding
+local tabHiderFrame = CreateFrame("Frame")
+tabHiderFrame:RegisterEvent("ADDON_LOADED")
+tabHiderFrame:RegisterEvent("PLAYER_LOGIN")
+tabHiderFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+tabHiderFrame:SetScript("OnEvent", function(self, event, addon)
+    if event == "ADDON_LOADED" and addon == "Blizzard_BattlefieldMap" then
+        -- Hide tab immediately when Blizzard addon loads
+        HideBattlefieldMapTabInstantly()
+    elseif event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
+        -- Also try to hide on login/reload (in case addon was already loaded)
+        HideBattlefieldMapTabInstantly()
+
+        -- Use watcher to catch tab if it appears later
+        local tabWatcher = CreateFrame("Frame")
+        local tabCheckCount = 0
+        local MAX_TAB_CHECKS = 30  -- Increased to catch tab that might appear later
+        tabWatcher:SetScript("OnUpdate", function(watcher, elapsed)
+            tabCheckCount = tabCheckCount + 1
+            HideBattlefieldMapTabInstantly()
+            if tabCheckCount >= MAX_TAB_CHECKS or state.tabHidden then
+                watcher:SetScript("OnUpdate", nil)
+            end
+        end)
+    end
+end)
+
+-- Try to hide tab immediately on file load (in case addon was already loaded)
+-- Use watcher to catch it when it becomes available
+local initialTabWatcher = CreateFrame("Frame")
+local initialTabCheckCount = 0
+local MAX_INITIAL_CHECKS = 50  -- Check for up to ~0.8 seconds
+initialTabWatcher:SetScript("OnUpdate", function(self, elapsed)
+    initialTabCheckCount = initialTabCheckCount + 1
+    HideBattlefieldMapTabInstantly()
+    if initialTabCheckCount >= MAX_INITIAL_CHECKS or state.tabHidden then
+        self:SetScript("OnUpdate", nil)
+    end
+end)

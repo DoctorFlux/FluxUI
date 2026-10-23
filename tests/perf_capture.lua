@@ -8,10 +8,11 @@ local function check(value, message)
     checks = checks + 1
 end
 
-local function run(branch, profile, change, restrictedMetrics)
+local function run(branch, profile, change, restrictedMetrics, registryMode)
     local env = setmetatable({}, { __index = _G }); env._G = env
     local now, timers, output, inspections, sourceReads, forbiddenSources = 0, {}, {}, 0, 0, 0
     local metricReads = 0
+    local registryReads = 0
     local frames = {}
     local function frame(name, visible, update, forbidden)
         local value = { name = name, shown = visible, visible = visible, update = update }
@@ -79,8 +80,23 @@ local function run(branch, profile, change, restrictedMetrics)
     env.GetBuildInfo = function() return "test", 70532 end
     env.GetFramerate = function() return 200 end
     env.issecretvalue = function(value)
-        return value == "SECRET_CREATION_SOURCE" or (type(value) == "table" and value.secret)
+        -- Native issecretvalue inspects the value, without indexing its Lua
+        -- metatable (inaccessible-table fixtures deliberately reject that).
+        return value == "SECRET_CREATION_SOURCE" or (type(value) == "table" and rawget(value, "secret"))
     end
+    local nativeCallback = function() error("diagnostic invoked a native callback") end
+    local anonymousCallback = function() error("diagnostic invoked an anonymous native callback") end
+    env.FloatingChatFrameMixin = {}
+    local nativeOwners = { [env.FloatingChatFrameMixin] = nativeCallback, [{}] = anonymousCallback,
+        [{}] = nativeCallback, [{ secret = true }] = function() end }
+    local callbackTable = setmetatable({}, {
+        __index = function(_, key) registryReads = registryReads + 1; return nativeOwners[key] end,
+        __pairs = function() registryReads = registryReads + 1; return pairs(nativeOwners) end,
+        __newindex = function() error("diagnostic mutated native callback registry") end,
+    })
+    if registryMode == "secret" then rawset(callbackTable, "secretTable", true) end
+    if registryMode == "inaccessible" then rawset(callbackTable, "inaccessible", true) end
+    if registryMode ~= "missing" then env.EventRegistry = { onUpdateCallbacksByOwner = callbackTable } end
     env.GetCVar = function(name) return name == "scriptProfile" and profile or "0" end
     if branch == "forever" or branch == "live" then
         env.Enum = { AddOnProfilerMetric = { RecentAverageTime = 1 } }
@@ -116,7 +132,7 @@ local function run(branch, profile, change, restrictedMetrics)
     env.C_Timer = { NewTimer = timer, NewTicker = timer }
     local text = change and change(source) or source
     assert(load(text, "@Other/FluxPerfCapture.lua", "t", env))("_FluxUI", { Flux = flux })
-    check(inspections == 0 and #timers == 0 and sourceReads == 0 and metricReads == 0,
+    check(inspections == 0 and #timers == 0 and sourceReads == 0 and metricReads == 0 and registryReads == 0,
         "loading diagnostics performs no scans or recurring work")
     flux.PerfCapture.Start(5)
     check(#timers == 2, "only requested capture arms sampler and completion")
@@ -144,6 +160,18 @@ local function run(branch, profile, change, restrictedMetrics)
         check(result.recentProfiler == nil, "older clients need no modern profiler API")
     end
     if profile == "1" then
+        local registered, anonymous
+        for _, value in ipairs(result.functions) do
+            if value.label == "EventRegistry:FloatingChatFrameMixin" then registered = value end
+            if value.label:find("EventRegistry:anonymous#", 1, true) then anonymous = value end
+        end
+        if registryMode then
+            check(registryReads == 0 and not registered and not anonymous,
+                "missing/inaccessible/secret native registry is never enumerated")
+        else
+            check(registered and #registered.registryOwners == 2 and anonymous,
+                "native registry callbacks ranked once with shared/anonymous owners")
+        end
         local row
         for _, value in ipairs(result.functions) do if value.ownerCount == 2 then row = value end end
         check(row and row.visibleOwners == 1 and #row.owners == 2,
@@ -183,9 +211,9 @@ local function run(branch, profile, change, restrictedMetrics)
         check(#result.frames == 0 and #result.functions == 0, "disabled profiler does not invent CPU attribution")
     end
     check(result.client == branch and result.scriptProfile == profile, "client and profiler context preserved")
-    local reads, sources, metricsRead = inspections, sourceReads, metricReads
+    local reads, sources, metricsRead, registeredReads = inspections, sourceReads, metricReads, registryReads
     flux.PerfCapture.Print()
-    check(inspections == reads and sources == sourceReads and metricsRead == metricReads,
+    check(inspections == reads and sources == sourceReads and metricsRead == metricReads and registryReads == registeredReads,
         "printing saved report does not enumerate frames")
     flux.PerfCapture.Start(5)
     flux.PerfCapture.Cancel()
@@ -204,6 +232,7 @@ for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic
     run(branch, "0"); run(branch, "1")
 end
 for _, mode in ipairs({ "secret", "error", "missing" }) do run("forever", "0", nil, mode) end
+for _, mode in ipairs({ "secret", "inaccessible", "missing" }) do run("live", "1", nil, nil, mode) end
 local mutations = {
     { "visibility evidence", 'worldMap = FrameState(_G.WorldMapFrame)', 'worldMap = FrameState(_G.BattlefieldMapFrame)',
         "closed world map and visible embedded map are recorded independently" },
@@ -226,6 +255,8 @@ local mutations = {
         "visible transparent models stay distinct" },
     { "secret modern metric", 'if ok and PlainNumber(value) then return value end', 'if ok then return value end',
         "used secret profiler metric", "secret" },
+    { "native callback attribution", 'if callbacks then\n        local index = 0', 'if false then\n        local index = 0',
+        "native registry callbacks ranked once" },
 }
 for _, mutation in ipairs(mutations) do
     local ok, message = pcall(run, "forever", "1", function(text)

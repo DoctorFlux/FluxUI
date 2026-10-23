@@ -1,0 +1,58 @@
+local function ApplyRetailChatChannelAndQuickJoin()
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(ApplyRetailChatChannelAndQuickJoin)
+        return
+    end
+    ApplyChatFrameChannelButtonTopOffset()
+    ApplyQuickJoinAnchorToChannel()
+    if FluxCCP and FluxCCP.PlaceColumnButtons then
+        FluxCCP.PlaceColumnButtons()
+    end
+end
+
+local function ScheduleRetailChatChannelApply()
+    C_Timer.After(0, ApplyRetailChatChannelAndQuickJoin)
+    C_Timer.After(0.1, ApplyRetailChatChannelAndQuickJoin)
+    C_Timer.After(1, ApplyRetailChatChannelAndQuickJoin)
+end
+
+local function InitQuickJoinAnchorHooks()
+    if quickJoinAnchorHooksDone then return end
+    if not _G.QuickJoinToastButton or not _G.ChatFrameChannelButton then return end
+
+    quickJoinAnchorHooksDone = true
+
+    -- ChatAlertFrame is optional: if missing, we still nudge via FCF hooks + timers.
+    if _G.ChatAlertFrame and ChatAlertFrame.UpdateAnchors then
+        hooksecurefunc(ChatAlertFrame, "UpdateAnchors", function()
+            ScheduleRetailChatChannelApply()
+        end)
+    end
+
+    if FCF_SetButtonSide then
+        hooksecurefunc("FCF_SetButtonSide", function(chatFrame)
+            if chatFrame == ChatFrame1 then
+                ScheduleRetailChatChannelApply()
+            end
+        end)
+    end
+    if FCF_UpdateButtonSide then
+        hooksecurefunc("FCF_UpdateButtonSide", function(chatFrame)
+            if chatFrame == ChatFrame1 then
+                ScheduleRetailChatChannelApply()
+            end
+        end)
+    end
+
+    -- Do not replace ChatFrameChannelButton.ClearAllPoints: Blizzard's chat
+    -- button layout (also in chat's Edit Mode enter) would run Flux code.
+    if EventRegistry and EventRegistry.RegisterCallback then
+        EventRegistry:RegisterCallback("EditMode.Exit", function()
+            if FluxAfterEditMode then
+                FluxAfterEditMode(ApplyRetailChatChannelAndQuickJoin)
+            end
+        end)
+    end
+
+    ScheduleRetailChatChannelApply()
+end

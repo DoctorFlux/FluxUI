@@ -910,19 +910,35 @@ function UF.UpdateResourceSpark(bar, sparkInfo)
     spark.isActive = true
     spark.visualInfo = sparkInfo
     local fill = bar:GetStatusBarTexture()
-    spark:ClearAllPoints()
-    if fill then
-        spark:SetPoint("RIGHT", fill, "RIGHT", sparkInfo.xOffset or 0, 0)
-    else
-        spark:SetPoint("RIGHT", bar, "LEFT", sparkInfo.xOffset or 0, 0)
+    local relative = fill or bar
+    local point = fill and "RIGHT" or "LEFT"
+    local offset = sparkInfo.xOffset or 0
+    -- Only this function styles resource sparks. The fill anchor follows live
+    -- power automatically; reapplying its atlas/anchors invalidates geometry
+    -- without moving it. Keep live width/visibility checks below on every paint.
+    if spark._fluxAnchorRelative ~= relative or spark._fluxAnchorPoint ~= point or spark._fluxAnchorOffset ~= offset then
+        spark._fluxAnchorRelative = nil
+        spark:ClearAllPoints()
+        spark:SetPoint("RIGHT", relative, point, offset, 0)
+        spark._fluxAnchorRelative, spark._fluxAnchorPoint, spark._fluxAnchorOffset = relative, point, offset
     end
-    spark:SetAtlas(sparkInfo.atlas, true)
+    if spark._fluxSparkAtlas ~= sparkInfo.atlas then
+        spark._fluxSparkAtlas = nil
+        spark:SetAtlas(sparkInfo.atlas, true)
+        spark._fluxSparkAtlas = sparkInfo.atlas
+        spark._fluxSparkScale = nil
+    end
     if sparkInfo.barHeight and sparkInfo.barHeight > 0 and fill then
         local okH, h = pcall(function()
             return fill:GetHeight() + 0
         end)
-        if okH and type(h) == "number" and h > 0 then
-            spark:SetScale(h / sparkInfo.barHeight)
+        if okH and type(h) == "number" and not ValueIsSecret(h) and h > 0 then
+            local scale = h / sparkInfo.barHeight
+            if spark._fluxSparkScale ~= scale then
+                spark._fluxSparkScale = nil
+                spark:SetScale(scale)
+                spark._fluxSparkScale = scale
+            end
         end
     end
     local show = false
@@ -2266,9 +2282,14 @@ local function AnchorOverlayToStatusBarFill(bar, overlay)
     if not bar or not overlay then return end
     local fill = bar.GetStatusBarTexture and bar:GetStatusBarTexture()
     if not fill then return end
+    -- These Flux-owned overlays have one anchor writer. Anchoring to the fill
+    -- already tracks its live size; health changes need no anchor rebuild.
+    if overlay._fluxAbsorbFillAnchor == fill then return end
+    overlay._fluxAbsorbFillAnchor = nil
     overlay:ClearAllPoints()
     overlay:SetPoint("TOPLEFT", fill, "TOPLEFT", 0, 0)
     overlay:SetPoint("BOTTOMRIGHT", fill, "BOTTOMRIGHT", 0, 0)
+    overlay._fluxAbsorbFillAnchor = fill
 end
 
 local function RefreshTiledOverlayTexCoords(overlay, tileSize)
@@ -2278,7 +2299,17 @@ local function RefreshTiledOverlayTexCoords(overlay, tileSize)
     pcall(function()
         local w = overlay:GetWidth()
         local h = overlay:GetHeight()
+        local readable = type(w) == "number" and not ValueIsSecret(w)
+            and type(h) == "number" and not ValueIsSecret(h)
+        if readable and overlay._fluxTileWidth == w and overlay._fluxTileHeight == h
+            and overlay._fluxTileSize == tileSize then return end
+        -- Never cache or compare secret-derived dimensions. Native SetTexCoord
+        -- still receives their live result at the original update cadence.
+        overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = nil, nil, nil
         overlay:SetTexCoord(0, w / tileSize, 0, h / tileSize)
+        if readable then
+            overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = w, h, tileSize
+        end
     end)
 end
 
@@ -2385,9 +2416,16 @@ local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)
     end
 
     self:SetHeight(parent:GetHeight())
-    self:ClearAllPoints()
-    self:SetPoint("TOPLEFT", previousTexture, "TOPRIGHT", barOffsetX, 0)
-    self:SetPoint("BOTTOMLEFT", previousTexture, "BOTTOMRIGHT", barOffsetX, 0)
+    local readableOffset = type(barOffsetX) == "number" and not ValueIsSecret(barOffsetX)
+    if not readableOffset or self._fluxPredictionAnchor ~= previousTexture or self._fluxPredictionOffset ~= barOffsetX then
+        self._fluxPredictionAnchor, self._fluxPredictionOffset = nil, nil
+        self:ClearAllPoints()
+        self:SetPoint("TOPLEFT", previousTexture, "TOPRIGHT", barOffsetX, 0)
+        self:SetPoint("BOTTOMLEFT", previousTexture, "BOTTOMRIGHT", barOffsetX, 0)
+        if readableOffset then
+            self._fluxPredictionAnchor, self._fluxPredictionOffset = previousTexture, barOffsetX
+        end
+    end
 
     if API.isMidnight then
         -- 12.0: Use StatusBar's native fill logic to avoid math on secret values
@@ -3305,10 +3343,9 @@ end
 -- 3D Portrait (square with FluxBorder)
 -- ---------------------------------------------------------------------------
 -- oUF portrait.lua: SetCamDistanceScale(1), SetPortraitZoom(1), SetPosition(0,0,0),
--- then ClearModel, then SetUnit. Live DF also RefreshCamera (baked portrait cam).
--- Forever must not RefreshCamera or SetCamera(0) — both restore a full-body bake.
--- Era/Anniversary use SetCamera(0). Forever: engine zoom first; if the camera is
--- still far, lift using that model's camera (not a race-height table).
+-- then ClearModel, then SetUnit. Use Forever's face framing on every client
+-- with custom-camera APIs. RefreshCamera / SetCamera(0) can restore a full-body
+-- bake after zoom; retain them only for clients lacking those camera APIs.
 local function IsCamelotPortraitClient()
     local api = rawget(_G, "FLUX_API")
     if api and (api.isCamelot or api.isForever) then
@@ -3340,14 +3377,21 @@ local function IsPostDFPortraitClient()
     return false
 end
 
-local function NeedsDeferredPortraitCamera()
-    return IsPostDFPortraitClient() or IsCamelotPortraitClient()
+local function CanFramePortraitHead(portrait)
+    return (portrait.MakeCurrentCameraCustom or portrait.SetCustomCamera)
+        and portrait.GetCameraDistance and portrait.GetCameraTarget and portrait.GetCameraPosition
+        and portrait.SetCameraTarget and portrait.SetCameraPosition
 end
 
--- Forever: SetPortraitZoom is the real face crop. If the .m2 has no portrait
+local function PortraitCameraNumber(value)
+    return type(value) == "number" and not IsSecretValue(value)
+        and value == value and value > -math.huge and value < math.huge
+end
+
+-- SetPortraitZoom is the real face crop. If the .m2 has no portrait
 -- camera, zoom is a no-op and GetCameraDistance stays far — then pull in along
 -- this model's own look axis, lifting to the top of that frustum (not a race Z).
-local function ApplyCamelotPortraitCamera(portrait)
+local function ApplyPortraitHeadCamera(portrait)
     if portrait.MakeCurrentCameraCustom then
         pcall(portrait.MakeCurrentCameraCustom, portrait)
     elseif portrait.SetCustomCamera then
@@ -3362,7 +3406,7 @@ local function ApplyCamelotPortraitCamera(portrait)
         end
     end
     -- Model not ready, or engine zoom already framed the head.
-    if type(dist) ~= "number" or dist ~= dist or dist < 0.08 then
+    if not PortraitCameraNumber(dist) or dist < 0.08 then
         return
     end
     if dist < 1.55 then
@@ -3373,13 +3417,13 @@ local function ApplyCamelotPortraitCamera(portrait)
     local cx, cy, cz = dist, 0, 0
     if portrait.GetCameraTarget then
         local ok, x, y, z = pcall(portrait.GetCameraTarget, portrait)
-        if ok and type(x) == "number" then
+        if ok and PortraitCameraNumber(x) and PortraitCameraNumber(y) and PortraitCameraNumber(z) then
             tx, ty, tz = x, y, z
         end
     end
     if portrait.GetCameraPosition then
         local ok, x, y, z = pcall(portrait.GetCameraPosition, portrait)
-        if ok and type(x) == "number" then
+        if ok and PortraitCameraNumber(x) and PortraitCameraNumber(y) and PortraitCameraNumber(z) then
             cx, cy, cz = x, y, z
         end
     end
@@ -3424,9 +3468,10 @@ local function ApplyPortraitCamera(portrait, keepIfClose)
         return
     end
     pcall(function()
-        if keepIfClose and IsCamelotPortraitClient() and portrait.GetCameraDistance then
+        local customCamera = CanFramePortraitHead(portrait)
+        if keepIfClose and customCamera then
             local ok, d = pcall(portrait.GetCameraDistance, portrait)
-            if ok and type(d) == "number" and d >= 0.35 and d < 1.55 then
+            if ok and PortraitCameraNumber(d) and d >= 0.35 and d < 1.55 then
                 return
             end
         end
@@ -3442,10 +3487,13 @@ local function ApplyPortraitCamera(portrait, keepIfClose)
         if portrait.SetModelScale then
             portrait:SetModelScale(1.0)
         end
-        if IsCamelotPortraitClient() then
-            ApplyCamelotPortraitCamera(portrait)
+        if customCamera then
+            ApplyPortraitHeadCamera(portrait)
             return
         end
+        -- Preserve Forever's no-baked-camera policy even if a camera method
+        -- is unavailable; engine portrait zoom still provides the first crop.
+        if IsCamelotPortraitClient() then return end
         if IsPostDFPortraitClient() then
             if portrait.RefreshCamera then
                 portrait:RefreshCamera()
@@ -3459,7 +3507,7 @@ local function ApplyPortraitCamera(portrait, keepIfClose)
 end
 
 local function SchedulePortraitCameraRefresh(portrait)
-    if not portrait or not NeedsDeferredPortraitCamera() then
+    if not portrait then
         return
     end
     if portrait._fluxCamRefreshQueued then
@@ -3590,6 +3638,7 @@ function UF.CreatePortrait(frame)
 
     -- Create the Model for 3D portrait (use PlayerModel for unit portraits)
     local model = CreateFrame("PlayerModel", nil, portraitFrame)
+    model._fluxSharedPortraitCamera = true
     model:EnableMouse(false)
     model:ClearAllPoints()
     -- Size the model to fit within the FluxBorder (accounting for 2px border insets)
@@ -3607,7 +3656,7 @@ function UF.CreatePortrait(frame)
     local unit = frame.unit
     BindPortraitUnit(model, unit)
 
-    -- Set up the model (camera via ApplyPortraitCamera — post-DF vs classic vs Forever)
+    -- Set up the model with shared face framing and capability-based fallback.
     local success = pcall(function()
         SetPortraitUnit(model, unit)
     end)
@@ -3965,18 +4014,19 @@ function UF.SyncPortraitModelGeometry(self)
     if not portraitSize or portraitSize <= 0 then return end
     local contentSize = portraitSize - 4
     if contentSize < 1 then contentSize = 1 end
-    pcall(function()
-        self.Portrait:ClearAllPoints()
-        self.Portrait:SetSize(contentSize, contentSize)
-        self.Portrait:SetPoint("CENTER", pf, "CENTER", 0, 0)
-    end)
-    if self.Portrait2D then
-        pcall(function()
-            self.Portrait2D:ClearAllPoints()
-            self.Portrait2D:SetSize(contentSize, contentSize)
-            self.Portrait2D:SetPoint("CENTER", pf, "CENTER", 0, 0)
-        end)
+    -- Both regions are owned here; resizing their container does not change
+    -- the CENTER anchor. Cache only completed geometry, never a failed write.
+    local function sync(region)
+        if not region then return end
+        if region._fluxPortraitGeometryFrame == pf and region._fluxPortraitGeometrySize == contentSize then return end
+        region._fluxPortraitGeometryFrame, region._fluxPortraitGeometrySize = nil, nil
+        region:ClearAllPoints()
+        region:SetSize(contentSize, contentSize)
+        region:SetPoint("CENTER", pf, "CENTER", 0, 0)
+        region._fluxPortraitGeometryFrame, region._fluxPortraitGeometrySize = pf, contentSize
     end
+    pcall(sync, self.Portrait)
+    if self.Portrait2D then pcall(sync, self.Portrait2D) end
 end
 
 --- Full portrait refresh after resolution / UI scale (model size + unit + camera helpers).

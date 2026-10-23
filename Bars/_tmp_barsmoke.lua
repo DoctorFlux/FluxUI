@@ -2379,7 +2379,7 @@ do
 			failures[#failures + 1] = "FluxRaidLayout must not write Blizzard compact frames: " .. needle
 		end
 	end
-	has(raidLayout, "Blizz.Hide(frame, { keepEvents = true })", "Blizzard raid grid is hidden by reparenting")
+	has(raidLayout, "Blizz.Hide(frame, { keepEvents = true, keepParent = true })", "Blizzard raid grid preserves native parents and events")
 	if read("../RaidFrame/FluxRaidCompat.lua"):find("_G.UnitFrame_UpdateTooltip =", 1, true) then
 		failures[#failures + 1] = "must not replace UnitFrame_UpdateTooltip"
 	end
@@ -5771,7 +5771,8 @@ do
 	local j = i and ebsAction:find("\nfunction Action.", i + 10, true)
 	local body = (i and j and ebsAction:sub(i, j - 1)) or (i and ebsAction:sub(i)) or ""
 	has(body, 'cursorSubType == "flyout"', "CursorToAction sees flyout-subtype spell pickups")
-	has(body, 'return "spell", sid or cursorData', "popup spell+flyout subtype stores the spell")
+	has(body, 'return SpellCursorAction(sid or cursorData)', "popup spell+flyout subtype resolves the inner spell through the cursor adapter")
+	has(ebsAction, 'return "spell", spellID', "cursor adapter preserves ordinary popup spell identity")
 	if body:find('return "flyout", cursorSubData or cursorData', 1, true) then
 		failures[#failures + 1] = "CursorToAction must not map popup spell+flyout to type=flyout"
 	end

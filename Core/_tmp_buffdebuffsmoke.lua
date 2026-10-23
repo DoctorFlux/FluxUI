@@ -36,6 +36,7 @@ local nativePlayer = setmetatable({}, {
         end
         if key == "unit" then return nativeState.unit end
         if key == "PlayerFrameContent" then return content end
+        if key == "PlayerFrameContainer" then return nil end -- absent on legacy player frames
         if key == "IsEventRegistered" then
             return function(_, event)
                 local units = nativeEvents[event]

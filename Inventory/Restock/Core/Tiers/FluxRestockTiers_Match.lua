@@ -374,13 +374,16 @@ function Tiers.GetBagOwnedTier(kind)
     local inv = P.Inv()
     local bestV, bestID = 0, nil
     local function consider(itemID, n)
-        if n <= 0 or not P.IsTierItemUsable(kind, itemID) then
+        if n <= 0 then
             return
         end
         local cls = P.ClassificationForTierCount(kind, itemID)
+        -- Only matching non-conjured restores can win this ladder. Avoid
+        -- usability/tooltips for every unrelated bag item for every kind.
+        -- Keep the live usable gate for every candidate; cache no verdict.
         if cls and not cls.isConjured and not cls.wellFed then
             local v = P.RoundTier(P.TierAxisValue(kind, cls))
-            if v > bestV then
+            if v > bestV and P.IsTierItemUsable(kind, itemID) then
                 bestV, bestID = v, itemID
             end
         end

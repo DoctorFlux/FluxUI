@@ -14,6 +14,7 @@ end
 
 local function ReadableTable(value)
     if type(value) ~= "table" then return false end
+    if issecretvalue and issecretvalue(value) then return false end
     if issecrettable and issecrettable(value) then return false end
     if canaccesstable and not canaccesstable(value) then return false end
     return true
@@ -50,6 +51,7 @@ end
 
 local function AddFunction(snapshot, fn, label)
     if type(fn) ~= "function" then return end
+    if issecretvalue and issecretvalue(fn) then return end
     if snapshot.functions[fn] then return snapshot.functions[fn] end
     local ms, calls = ReadCPU(GetFunctionCPUUsage, fn, true)
     snapshot.functions[fn] = { label = label, ms = ms, calls = calls }
@@ -92,7 +94,19 @@ local function Snapshot(atEnd)
     end
     Walk(Flux, "Flux", 0)
     Walk(ns.UnitFrames, "UnitFrames", 0)
+    -- The native dispatcher can dominate while its registered callbacks are
+    -- absent from addon namespaces/frame scripts. Read its table only during
+    -- requested endpoint scans; never hook, invoke or replace the callbacks.
+    local registry = _G.EventRegistry
+    local callbacks = ReadableTable(registry) and rawget(registry, "onUpdateCallbacksByOwner")
+    if not ReadableTable(callbacks) then callbacks = nil end
+    local registryNames = {}
     for key, value in pairs(_G) do
+        if callbacks and type(key) == "string" and ReadableTable(value) then
+            local callback = callbacks[value]
+            if type(callback) == "function" and not (issecretvalue and issecretvalue(callback))
+                and not registryNames[value] then registryNames[value] = key end
+        end
         if type(key) == "string" and (key:match("^Flux") or key:match("^UF_"))
             and (type(value) == "table" or type(value) == "userdata") then
             aliases[value] = key
@@ -100,6 +114,23 @@ local function Snapshot(atEnd)
         if type(key) == "string" and key:match("^Flux") and key ~= "FluxPerfCaptureDB" then
             if type(value) == "table" then Walk(value, key, 1)
             elseif type(value) == "function" then AddFunction(snap, value, key) end
+        end
+    end
+    if callbacks then
+        local index = 0
+        for owner, callback in pairs(callbacks) do
+            index = index + 1
+            if not (issecretvalue and issecretvalue(owner)) then
+                local ownerName = registryNames[owner] or ("anonymous#" .. index)
+                local row = AddFunction(snap, callback, "EventRegistry:" .. ownerName)
+                if row then
+                    if registryNames[owner] and row.label:find("EventRegistry:", 1, true) == 1 then
+                        row.label = "EventRegistry:" .. ownerName
+                    end
+                    row.registryOwners = row.registryOwners or {}
+                    if #row.registryOwners < 5 then row.registryOwners[#row.registryOwners + 1] = ownerName end
+                end
+            end
         end
     end
     if Flux.Ticker and Flux.Ticker.GetSubscribers then
@@ -188,7 +219,8 @@ local function Rank(before, after, seconds, newCountersStartAtZero)
             if ms > 0 and calls >= 0 then
                 rows[#rows + 1] = { label = row.label, ms = ms, calls = calls, msPerSecond = ms / seconds,
                     ownerCount = row.ownerCount, visibleOwners = row.visibleOwners, owners = row.owners,
-                    creationSource = row.creationSource, ownerSources = row.ownerSources }
+                    creationSource = row.creationSource, ownerSources = row.ownerSources,
+                    registryOwners = row.registryOwners }
             end
         end
     end
@@ -231,7 +263,8 @@ function Capture.Print()
                 source = row.ownerSources[1].creationSource
             end
             local created = source and (" [owner created at: " .. source .. "]") or ""
-            print(string.format("  %7.2f ms/s  %7d calls  %s%s%s", row.msPerSecond, row.calls, row.label, shared, created))
+            local registered = row.registryOwners and (" [registry owners: " .. table.concat(row.registryOwners, ", ") .. "]") or ""
+            print(string.format("  %7.2f ms/s  %7d calls  %s%s%s%s", row.msPerSecond, row.calls, row.label, shared, created, registered))
         end
     end
     print(PREFIX, "Script CPU includes direct method calls; registered-owner visibility does not identify every caller.")

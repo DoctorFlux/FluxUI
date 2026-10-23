@@ -2,11 +2,35 @@
     ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua
 
     Per-character assignments for NonCombat Utility Slots (4 slots × modifier chords).
-    Accepts spell / item / macro / mount / battlepet / toy from GetCursorInfo.
+    Accepts spell / item / macro / mount / battlepet / toy / outfit from GetCursorInfo.
 ]]
 
+local _, ns = ...
 FluxNCUtilitySlots = FluxNCUtilitySlots or {}
 local Assign = FluxNCUtilitySlots
+
+function Assign.GetOutfitInfo(id)
+    local api = ns and ns.API
+    return api and api.GetPlayerTransmogOutfitAction and api.GetPlayerTransmogOutfitAction(id)
+end
+
+function Assign.PickupOutfit(id)
+    local api = ns and ns.API
+    return api and api.TryPickupPlayerTransmogOutfit and api.TryPickupPlayerTransmogOutfit(id) or false
+end
+
+function Assign.GetOutfitIDForSpell(spellID)
+    local api = ns and ns.API
+    if api and api.GetPlayerTransmogOutfitIDForSpell then
+        return api.GetPlayerTransmogOutfitIDForSpell(spellID)
+    end
+    return nil
+end
+
+function Assign.IsOutfitActive(id)
+    local api = ns and ns.API
+    return api and api.IsPlayerTransmogOutfitActive and api.IsPlayerTransmogOutfitActive(id) or false
+end
 
 local MAX_SLOTS = 4
 local MOD_ORDER = { SHIFT = 1, CTRL = 2, ALT = 3 }
@@ -185,12 +209,20 @@ function Assign.ParseCursor()
         return nil
     end
     cursorType = string.lower(tostring(cursorType))
+    if cursorType == "outfit" then
+        local info = Assign.GetOutfitInfo(a1)
+        if info and not info.isDisabled then return { type = "outfit", id = info.id, name = info.name } end
+        return nil
+    end
 
     if cursorType == "spell" then
         local spellID = tonumber(a3) or tonumber(a1)
         if not spellID then
             return nil
         end
+        local outfitID = Assign.GetOutfitIDForSpell(spellID)
+        local outfit = outfitID ~= nil and Assign.GetOutfitInfo(outfitID)
+        if outfit then return { type = "outfit", id = outfit.id, name = outfit.name } end
         return {
             type = "spell",
             id = spellID,
@@ -307,6 +339,7 @@ function Assign.HasAssignableCursor()
 end
 
 local VALID_TYPES = {
+    outfit = true,
     spell = true,
     item = true,
     macro = true,

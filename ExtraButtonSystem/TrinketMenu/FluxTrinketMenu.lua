@@ -543,6 +543,9 @@ local MOUSE_BIND = {
     BUTTON4 = "Button4",
     BUTTON5 = "Button5",
 }
+local bindingChords
+local clearPushes = {}
+local clearMousePresses = {}
 
 local function TrinketBareKey(chord)
     if type(chord) ~= "string" or chord == "" then
@@ -551,7 +554,7 @@ local function TrinketBareKey(chord)
     return chord:match("([^-]+)$") or chord
 end
 
-local function ChordIsPhysicallyDown(chord)
+local function CompileTrinketChord(chord)
     if type(chord) ~= "string" or chord == "" then
         return false
     end
@@ -563,7 +566,38 @@ local function ChordIsPhysicallyDown(chord)
     if up == "MOUSEWHEELUP" or up == "MOUSEWHEELDOWN" then
         return false
     end
-    local mouseBtn = MOUSE_BIND[up]
+    local nk = string.upper(chord)
+    local mode = "plain"
+    if nk:find("SHIFT%-CTRL%-", 1, false) or nk:find("CTRL%-SHIFT%-", 1, false) then
+        mode = "both"
+    elseif nk:match("^SHIFT%-") then mode = "shift"
+    elseif nk:match("^CTRL%-") then mode = "ctrl"
+    elseif nk:match("^ALT%-") then mode = "alt" end
+    return { bare = bare, mouse = MOUSE_BIND[up], mode = mode }
+end
+
+local function ReadTrinketBinding(...)
+    local chords = {}
+    for i = 1, select("#", ...) do
+        local chord = CompileTrinketChord(select(i, ...))
+        if chord then chords[#chords + 1] = chord end
+    end
+    return chords
+end
+
+local function RefreshTrinketBindings()
+    if GetBindingKey then
+        bindingChords = {
+            ReadTrinketBinding(GetBindingKey("FLUXTRINKET1")),
+            ReadTrinketBinding(GetBindingKey("FLUXTRINKET2")),
+        }
+    else
+        bindingChords = { {}, {} }
+    end
+end
+
+local function ChordIsPhysicallyDown(chord)
+    local mouseBtn = chord.mouse
     if mouseBtn and IsMouseButtonDown then
         local ok, down = pcall(IsMouseButtonDown, mouseBtn)
         if not ok or not down then
@@ -573,37 +607,34 @@ local function ChordIsPhysicallyDown(chord)
         if not IsKeyDown then
             return false
         end
-        local ok, down = pcall(IsKeyDown, bare)
+        local ok, down = pcall(IsKeyDown, chord.bare)
         if not ok or not down then
             return false
         end
     end
-    local nk = string.upper(chord)
     local shift = IsShiftKeyDown and IsShiftKeyDown()
     local ctrl = IsControlKeyDown and IsControlKeyDown()
     local alt = IsAltKeyDown and IsAltKeyDown()
-    if nk:find("SHIFT%-CTRL%-", 1, false) or nk:find("CTRL%-SHIFT%-", 1, false) then
+    if chord.mode == "both" then
         return shift and ctrl
     end
-    if nk:match("^SHIFT%-") then
+    if chord.mode == "shift" then
         return shift and not ctrl
     end
-    if nk:match("^CTRL%-") then
+    if chord.mode == "ctrl" then
         return ctrl and not shift
     end
-    if nk:match("^ALT%-") then
+    if chord.mode == "alt" then
         return alt and true or false
     end
     return not shift and not ctrl and not alt
 end
 
 local function BindingIsDown(bindIndex)
-    if not GetBindingKey then
-        return false
-    end
-    local keys = { GetBindingKey("FLUXTRINKET" .. bindIndex) }
-    for i = 1, #keys do
-        if ChordIsPhysicallyDown(keys[i]) then
+    if not bindingChords then RefreshTrinketBindings() end
+    local chords = bindingChords[bindIndex]
+    for i = 1, #chords do
+        if ChordIsPhysicallyDown(chords[i]) then
             return true
         end
     end
@@ -747,17 +778,16 @@ local function EnsureHandler(widget, handler)
 end
 
 local function FlushTrinketPushes()
-    local leftover = {}
     for widget in pairs(presses) do
-        leftover[#leftover + 1] = widget
-    end
-    for i = 1, #leftover do
-        ClearTrinketPush(leftover[i])
+        ClearTrinketPush(widget)
     end
     wipe(presses)
 end
 
 function TM.SyncKeybindPushWatch()
+    -- Binding metadata is stable between UPDATE_BINDINGS/setup calls. Physical
+    -- key state still polls every frame, including release-only secure clicks.
+    RefreshTrinketBindings()
     if TM.Frame and TM.Frame.IsShown and TM.Frame:IsShown() then
         keyPushWatch:Show()
         return
@@ -768,7 +798,8 @@ end
 
 local function ReleaseMousePresses()
     local now = (GetTime and GetTime()) or 0
-    local toClear = {}
+    local toClear = clearMousePresses
+    wipe(toClear)
     for widget, rec in pairs(presses) do
         rec.mouse = nil
         if widget then
@@ -781,12 +812,17 @@ local function ReleaseMousePresses()
     end
     for i = 1, #toClear do
         ClearTrinketPush(toClear[i])
+        toClear[i] = nil
     end
 end
 
 keyPushWatch:RegisterEvent("GLOBAL_MOUSE_UP")
-keyPushWatch:RegisterEvent("MODIFIER_STATE_CHANGED")
+keyPushWatch:RegisterEvent("UPDATE_BINDINGS")
 keyPushWatch:SetScript("OnEvent", function(_, event)
+    if event == "UPDATE_BINDINGS" then
+        RefreshTrinketBindings()
+        return
+    end
     if event == "GLOBAL_MOUSE_UP" then
         if C_Timer and C_Timer.After then
             C_Timer.After(0, ReleaseMousePresses)
@@ -795,33 +831,34 @@ keyPushWatch:SetScript("OnEvent", function(_, event)
         end
         return
     end
-    -- Modifier flip: OnUpdate re-evaluates chords next frame.
 end)
 
 keyPushWatch:SetScript("OnUpdate", function()
     local now = (GetTime and GetTime()) or 0
-    local keyHeld = {}
+    local held1, held2
     for i = 1, 2 do
         if BindingIsDown(i) then
             local widget = TM.WidgetForTrinketBind(i)
             if widget then
-                keyHeld[widget] = true
+                if i == 1 then held1 = widget else held2 = widget end
                 NoteTrinketPushed(widget, "key")
             end
         end
     end
-    local toClear = {}
+    local toClear = clearPushes
+    wipe(toClear)
     for widget, rec in pairs(presses) do
         local age = now - (rec.t0 or now)
+        local keyHeld = widget == held1 or widget == held2
         if rec.capped then
-            if not keyHeld[widget] then
+            if not keyHeld then
                 rec.capped = nil
                 toClear[#toClear + 1] = widget
             end
         elseif age >= HOLD_SAFETY_CAP then
             rec.capped = true
             toClear[#toClear + 1] = widget
-        elseif keyHeld[widget] then
+        elseif keyHeld then
             ApplyTrinketPushVisual(widget)
         elseif rec.mouse and MouseLeftHeld() then
             ApplyTrinketPushVisual(widget)
@@ -849,6 +886,7 @@ keyPushWatch:SetScript("OnUpdate", function()
         if capped then
             presses[widget] = { t0 = now, capped = true }
         end
+        toClear[i] = nil
     end
 end)
 

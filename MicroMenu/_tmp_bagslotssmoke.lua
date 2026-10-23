@@ -162,7 +162,7 @@ local function Boot(family, options)
             end
         end
     end
-    return { bag = bag, buttons = buttons, hooks = hooks, watcher = watcher, calls = calls,
+    return { bag = bag, buttons = buttons, hooks = hooks, watcher = watcher, calls = calls, env = env,
         event = function(event) watcher.scripts.OnEvent(watcher, event) end,
         cursor = function(value) cursor = value end, held = function() return cursor end,
         equipped = equipped, tooltip = tooltip, keyringShown = function() return showKeyring end }
@@ -242,6 +242,32 @@ for _, reagent in ipairs({ false, true }) do
     end
 end
 assert(Boot("live").buttons, "Live lost its existing slot row")
+for _, family in ipairs({ "live", "forever" }) do
+    local ui = Boot(family)
+    local env, timers, opened = ui.env, {}, 0
+    local settings = env.ContainerFrameSettingsManager
+    settings.OnBagClosed = function() error("shared manager must remain unhooked") end
+    local native = settings.OnBagClosed
+    ui.event("PLAYER_ENTERING_WORLD")
+    assert(settings.OnBagClosed == native, "bag-close manager replaced or hooked")
+    env.C_Timer = { After = function(_, fn) timers[#timers + 1] = fn end }
+    env.OpenBag = function(id) assert(id == 0); opened = opened + 1 end
+    local afterEvent = assert(ui.bag.scripts.OnEvent)
+    ui.bag:Hide()
+    afterEvent(ui.bag, "BAG_CLOSED", 1)
+    assert(#timers == 0, "normal bag close reopened the window")
+    settings.checkReopenBags = { 1, 2 }
+    afterEvent(ui.bag, "BAG_CLOSED", 0)
+    assert(#timers == 0, "closing backpack reopened it")
+    afterEvent(ui.bag, "BAG_CLOSED", 1); afterEvent(ui.bag, "BAG_CLOSED", 2)
+    assert(#timers == 1, "unequip callbacks were not coalesced")
+    timers[1](); assert(opened == 1, "unequipping a bag lost the open combined window")
+    afterEvent(ui.bag, "BAG_CLOSED", 1); ui.bag:Show(); timers[2]()
+    assert(opened == 1, "already reopened bag was opened again")
+    ui.bag:Hide(); afterEvent(ui.bag, "BAG_CLOSED", 1)
+    settings.IsUsingCombinedBags = function() return false end; timers[3]()
+    assert(opened == 1, "stale callback reopened after switching bag UI")
+end
 assert(not Boot("forever", { noKeyring = true }).buttons[-1], "unsupported keyring was exposed")
 for _, opts in ipairs({ { gamepad = true }, { alt = true } }) do
     local ui = Boot("forever", opts)

@@ -1,6 +1,6 @@
 -- AceGUI: compact row of 4 NonCombat Utility Slots (same DB as NC grid).
 
-local Type, Version = "FluxSpellBookSlotsPanel", 5
+local Type, Version = "FluxSpellBookSlotsPanel", 6
 local AceGUI = LibStub and LibStub("AceGUI-3.0", true)
 if not AceGUI or (AceGUI:GetWidgetVersion(Type) or 0) >= Version then return end
 
@@ -30,7 +30,11 @@ local function GetEntryIcon(entry)
         return nil
     end
     local t = entry.type
-    if t == "spell" then
+    if t == "outfit" then
+        local A = AssignAPI()
+        local info = A and A.GetOutfitInfo and A.GetOutfitInfo(entry.id)
+        return info and info.icon
+    elseif t == "spell" then
         if C_Spell and C_Spell.GetSpellTexture then
             return C_Spell.GetSpellTexture(entry.id)
         end

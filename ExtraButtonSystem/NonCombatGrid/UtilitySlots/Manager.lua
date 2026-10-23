@@ -109,6 +109,12 @@ local function ActionToken(entry)
         return nil, nil
     end
     local t = entry.type
+    if t == "outfit" then
+        local A = Assign()
+        local info = A and A.GetOutfitInfo and A.GetOutfitInfo(entry.id)
+        if info and not info.isDisabled then return "outfit", info.isClear and "" or ("!" .. tostring(info.index)) end
+        return nil, nil
+    end
     if t == "spell" then
         local name = entry.name
         local spellId = tonumber(entry.id)
@@ -154,7 +160,7 @@ function Manager.BuildMacroText(slotData)
     if type(slotData) ~= "table" then
         return nil
     end
-    local castParts, useParts, petParts = {}, {}, {}
+    local castParts, useParts, petParts, outfitParts = {}, {}, {}, {}
 
     local modKeys = {}
     for k, v in pairs(slotData) do
@@ -179,6 +185,8 @@ function Manager.BuildMacroText(slotData)
             useParts[#useParts + 1] = frag
         elseif slash == "summonpet" then
             petParts[#petParts + 1] = frag
+        elseif slash == "outfit" then
+            outfitParts[#outfitParts + 1] = frag
         end
     end
 
@@ -213,6 +221,7 @@ function Manager.BuildMacroText(slotData)
     if #petParts > 0 then
         lines[#lines + 1] = "/summonpet " .. table.concat(petParts, "; ")
     end
+    if #outfitParts > 0 then lines[#lines + 1] = "/outfit " .. table.concat(outfitParts, "; ") end
     if #lines == 1 then
         return nil
     end
@@ -226,6 +235,34 @@ local function ApplyMacroAttributes(btn, slotData)
     end
     ClearModMacroAttrs(w)
     if type(slotData) ~= "table" then
+        return
+    end
+    -- Outfit clear has an empty /outfit argument. Bind each exact chord to its
+    -- chosen action so a different modifier cannot fall through and clear gear.
+    local hasOutfit = false
+    for _, entry in pairs(slotData) do
+        if type(entry) == "table" and entry.type == "outfit" then hasOutfit = true; break end
+    end
+    if hasOutfit then
+        local A = Assign()
+        local base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData)) or slotData[""]
+        local chords = {
+            { "", "" }, { "SHIFT", "shift-" }, { "CTRL", "ctrl-" }, { "ALT", "alt-" },
+            { "SHIFT-CTRL", "ctrl-shift-" }, { "SHIFT-ALT", "alt-shift-" },
+            { "CTRL-ALT", "alt-ctrl-" }, { "SHIFT-CTRL-ALT", "alt-ctrl-shift-" },
+        }
+        for _, chord in ipairs(chords) do
+            local entry, prefix = slotData[chord[1]] or base, chord[2]
+            w:SetAttribute(prefix .. "type1", "macro")
+            w:SetAttribute(prefix .. "typerelease1", "macro")
+            if entry and entry.type == "macro" then
+                w:SetAttribute(prefix .. "macro1", entry.name or entry.id)
+            else
+                w:SetAttribute(prefix .. "macrotext1", entry and Manager.BuildMacroText({ [""] = entry }) or "")
+            end
+        end
+        local Click = _G.Flux and _G.Flux.ButtonFX and _G.Flux.ButtonFX.Click
+        if Click and Click.MirrorTypeRelease then Click.MirrorTypeRelease(w) end
         return
     end
     for modKey, entry in pairs(slotData) do
@@ -425,6 +462,10 @@ local function EntryIsChecked(entry)
     end
     local t = entry.type
     local id = entry.id
+    if t == "outfit" then
+        local A = Assign()
+        return A and A.IsOutfitActive and A.IsOutfitActive(id) or false
+    end
 
     if t == "spell" then
         if C_Spell and C_Spell.IsCurrentSpell then
@@ -509,7 +550,7 @@ local function RefreshChecked(btn, slotData)
     local shouldBeChecked = EntryIsChecked(entry)
     -- Extra Paint golds StanceActiveVisual before macrotext faces. Mount / pet
     -- assignments stay type=macrotext, so stamp that visual here.
-    if entry and (entry.type == "mount" or entry.type == "battlepet") then
+    if entry and (entry.type == "mount" or entry.type == "battlepet" or entry.type == "outfit") then
         btn.StanceActiveVisual = shouldBeChecked and true or nil
     else
         btn.StanceActiveVisual = nil
@@ -550,6 +591,22 @@ end
 local function RefreshItemCount(btn, slotData)
     local A = Assign()
     local entry = select(1, ResolveDisplayEntry(A, btn.slotIndex, slotData))
+    local wasOutfit = btn._fluxUtilityOutfitID ~= nil
+    if entry and entry.type == "outfit" then
+        btn._fluxUtilityOutfitID = entry.id
+        btn._fluxUtilityOutfitInfo = A and A.GetOutfitInfo and A.GetOutfitInfo(entry.id)
+        btn.IconOverrideTexture = btn._fluxUtilityOutfitInfo and btn._fluxUtilityOutfitInfo.icon or 134400
+    elseif wasOutfit then
+        btn._fluxUtilityOutfitID, btn._fluxUtilityOutfitInfo, btn.IconOverrideTexture = nil, nil, nil
+    end
+    if wasOutfit or btn._fluxUtilityOutfitID ~= nil then
+        local Paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
+        if Paint then
+            if Paint.UpdateIcon then Paint.UpdateIcon(btn) end
+            if Paint.UpdateCooldown then Paint.UpdateCooldown(btn) end
+            if Paint.UpdateUsable then Paint.UpdateUsable(btn) end
+        end
+    end
 
     if type(entry) ~= "table" or entry.id == nil then
         ClearForcedCount(btn)
@@ -766,7 +823,16 @@ local function PickupEntry(entry)
         return false
     end
     local t = entry.type
-    if t == "spell" then
+    if t == "outfit" then
+        local A = Assign()
+        return A and A.PickupOutfit and A.PickupOutfit(entry.id) or false
+    elseif t == "spell" then
+        local A = Assign()
+        local outfitID
+        if A and A.GetOutfitIDForSpell then outfitID = A.GetOutfitIDForSpell(entry.id) end
+        if outfitID ~= nil then
+            return A.PickupOutfit and A.PickupOutfit(outfitID) or false
+        end
         if C_Spell and C_Spell.PickupSpell then
             return pcall(C_Spell.PickupSpell, entry.id)
         end
@@ -1081,6 +1147,10 @@ watch:RegisterEvent("CURSOR_CHANGED")
 watch:RegisterEvent("PLAYER_REGEN_ENABLED")
 watch:RegisterEvent("UPDATE_BINDINGS")
 watch:RegisterEvent("PLAYER_ENTERING_WORLD")
+if C_TransmogOutfitInfo and C_TransmogOutfitInfo.GetOutfitsInfo then
+    watch:RegisterEvent("TRANSMOG_OUTFITS_CHANGED")
+    watch:RegisterEvent("TRANSMOG_DISPLAYED_OUTFIT_CHANGED")
+end
 -- No BAG_UPDATE_DELAYED: the FluxNCUtilitySlots inventory listener already
 -- refreshes item counts, and registering both refreshed every slot twice.
 watch:RegisterEvent("SPELL_UPDATE_CHARGES")
@@ -1132,6 +1202,10 @@ local function ScheduleCheckedRefresh()
 end
 
 watch:SetScript("OnEvent", function(_, event)
+    if event == "TRANSMOG_OUTFITS_CHANGED" or event == "TRANSMOG_DISPLAYED_OUTFIT_CHANGED" then
+        Manager.UpdateAllSlots()
+        return
+    end
     if event == "PLAYER_REGEN_ENABLED" then
         if Manager._pendingUpdate then
             Manager._pendingUpdate = nil

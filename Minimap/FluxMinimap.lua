@@ -1139,10 +1139,12 @@ function FluxMinimap:EnsureQueueStatusEyeHooks()
     end
     self._queueStatusEyeHooks = true
 
-    local function Reapply()
+    local reapplyQueued = false
+    local function Apply()
+        reapplyQueued = false
         -- Micro menu Edit Mode enter / exit move the eye inside its pass.
         if FluxEditModeBusy and FluxEditModeBusy() then
-            FluxAfterEditMode(Reapply)
+            FluxAfterEditMode(Apply)
             return
         end
         if FluxMinimap and FluxMinimap.PositionQueueStatusEye then
@@ -1152,13 +1154,21 @@ function FluxMinimap:EnsureQueueStatusEyeHooks()
         end
     end
 
+    local function Reapply()
+        if reapplyQueued then return end
+        reapplyQueued = true
+        C_Timer.After(0, Apply)
+    end
+
+    -- Modern MicroMenu calls these methods from its secure Edit Mode layout.
+    -- Observe completed layout/queue events instead of hooking that call chain.
     local q = _G.QueueStatusButton
-    if q and type(q.UpdatePosition) == "function" then
+    if not managesRetail and q and type(q.UpdatePosition) == "function" then
         hooksecurefunc(q, "UpdatePosition", Reapply)
     end
 
     local tip = _G.QueueStatusFrame
-    if tip and type(tip.UpdatePosition) == "function" then
+    if not managesRetail and tip and type(tip.UpdatePosition) == "function" then
         hooksecurefunc(tip, "UpdatePosition", Reapply)
     end
 
@@ -1178,21 +1188,20 @@ function FluxMinimap:EnsureQueueStatusEyeHooks()
         pcall(function()
             EventRegistry:RegisterCallback("QueueStatusButton.OnShow", Reapply)
             EventRegistry:RegisterCallback("QueueStatusUpdate.QueuesUpdated", Reapply)
+            EventRegistry:RegisterCallback("EditMode.Exit", Reapply)
         end)
     end
 
     local ev = CreateFrame("Frame")
     ev:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
     ev:RegisterEvent("PLAYER_ENTERING_WORLD")
+    ev:RegisterEvent("PLAYER_REGEN_ENABLED")
+    ev:RegisterEvent("DISPLAY_SIZE_CHANGED")
+    ev:RegisterEvent("UI_SCALE_CHANGED")
+    if managesRetail then ev:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED") end
     pcall(function() ev:RegisterEvent("PVPQUEUE_ANYWHERE_SHOW") end)
     pcall(function() ev:RegisterEvent("PVPQUEUE_ANYWHERE_UPDATE_AVAILABLE") end)
-    ev:SetScript("OnEvent", function()
-        if C_Timer and C_Timer.After then
-            C_Timer.After(0, Reapply)
-        else
-            Reapply()
-        end
-    end)
+    ev:SetScript("OnEvent", Reapply)
 end
 
 -- ----------------------------------------------------------------------------

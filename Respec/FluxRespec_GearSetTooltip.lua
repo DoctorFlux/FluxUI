@@ -261,26 +261,15 @@ local function OnSetInventoryItemAfter(tooltip)
     end
 end
 
-local origGameTooltip_OnTooltipAddMoney
-
-local function FluxGearSet_OnTooltipAddMoney(tooltip, cost, maxcost)
-    if not tooltip or tooltip:IsForbidden() then
-        if origGameTooltip_OnTooltipAddMoney then
-            return origGameTooltip_OnTooltipAddMoney(tooltip, cost, maxcost)
-        end
-        return
-    end
+local function FilterLegacyTooltipMoney(tooltip)
+    if not tooltip or tooltip:IsForbidden() then return end
 
     local bag, slot = GearSetLock.ResolveBagSlotFromTooltip(tooltip)
     if bag and GearSetLock.IsSlotProtected(bag, slot) and GearSetLock.IsMerchantSellContext() then
+        StripSellPriceMoney(tooltip)
         if not tooltip.fluxGearSetProtectionShown then
             ShowProtectionLine(tooltip)
         end
-        return
-    end
-
-    if origGameTooltip_OnTooltipAddMoney then
-        return origGameTooltip_OnTooltipAddMoney(tooltip, cost, maxcost)
     end
 end
 
@@ -316,9 +305,13 @@ function GearSetLock.InstallTooltipHooks()
         GameTooltip:HookScript("OnTooltipCleared", ResetTooltipDecorationState)
     end
 
-    if _G.GameTooltip_OnTooltipAddMoney and _G.GameTooltip_OnTooltipAddMoney ~= FluxGearSet_OnTooltipAddMoney then
-        origGameTooltip_OnTooltipAddMoney = _G.GameTooltip_OnTooltipAddMoney
-        _G.GameTooltip_OnTooltipAddMoney = FluxGearSet_OnTooltipAddMoney
+    -- Modern line/post processors above already filter protected sell prices.
+    -- Replacing this global taints TooltipDataRules for every native tooltip.
+    -- Legacy clients retain filtering after the native callback, without
+    -- replacing its implementation or changing return values.
+    if not (TooltipDataProcessor and TooltipDataProcessor.AddLinePreCall)
+        and type(_G.GameTooltip_OnTooltipAddMoney) == "function" then
+        hooksecurefunc("GameTooltip_OnTooltipAddMoney", FilterLegacyTooltipMoney)
     end
 end
 

@@ -76,7 +76,7 @@ A binding row contains `uid`, `action={type,id,name,...}`, `key`, optional `plac
 
 `DB.SetDocumentOverride(doc)` temporarily redirects normal document access for Respec preview. `EnsureLive()` explicitly bypasses the override. Sticky rows survive Respec snapshot application. Full field vocabulary/defaults and capture/apply behavior: [binding schema source](../Binding/Core/DB.lua), [binding system](13-binding-system.md).
 
-Utility slot descriptors use spell/item/macro/mount/battlepet/toy identities plus their required action fields, keyed by canonical modifier chords. Utility chords normalize in SHIFT/CTRL/ALT order with hyphens. Flyout favorites normalize CTRL/SHIFT/ALT with plus signs and `nomod`. These formats are different contracts; do not reuse one formatter for both.
+Utility slot descriptors use spell/item/macro/mount/battlepet/toy/outfit identities plus their required action fields, keyed by canonical modifier chords. Outfit ID `0` is the clear action; positive sparse outfit IDs retain identity across player-facing index changes. Utility chords normalize in SHIFT/CTRL/ALT order with hyphens. Flyout favorites normalize CTRL/SHIFT/ALT with plus signs and `nomod`. These formats are different contracts; do not reuse one formatter for both.
 
 ## Restock defaults and normalization
 

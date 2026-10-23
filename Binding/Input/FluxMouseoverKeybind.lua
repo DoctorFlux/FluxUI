@@ -504,6 +504,13 @@ end
 -- Forward declaration (defined in the Edit Mode section below)
 local BuildButtonBindData
 
+-- Keep ordinary unit interactions on the native release edge. Only the extra
+-- mouse buttons need key-down delivery for action-bar/hovercast routing.
+-- AnyDown drops the ordinary left-button release event on these frames.
+local function RegisterFrameClickEdges(frame)
+    frame:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonDown", "Button4Down", "Button5Down")
+end
+
 -- ---------------------------------------------------------------------------
 -- PERMANENT ATTRIBUTE MANAGEMENT (typeN/macrotextN on unit frames)
 -- ---------------------------------------------------------------------------
@@ -705,8 +712,7 @@ local function ApplyEditModeSpellHoverFrameSetup(frame)
     frame.__fluxKeybindAttrs = nil
 
     if frame.RegisterForClicks then
-        -- AnyDown: passthrough Middle/Button4/Button5 must reach the binding system (backup parity).
-        frame:RegisterForClicks("AnyDown", "RightButtonUp")
+        RegisterFrameClickEdges(frame)
     end
 
     if frame.SetPassThroughButtons then
@@ -1324,9 +1330,7 @@ local function RegisterFrame(frame)
     if isEditModeClient then
         ApplyEditModeSpellHoverFrameSetup(frame)
     else
-        -- Non-Edit Mode (classic_era): Blizzard only registers Left/Right; AnyDown
-        -- delivers BUTTON3/4/5 (Clicked parity). RightButtonUp keeps context menu.
-        frame:RegisterForClicks("AnyDown", "RightButtonUp")
+        RegisterFrameClickEdges(frame)
         ApplyKeybindAttributes(frame)
     end
 
@@ -1423,7 +1427,7 @@ local function ReapplyFrameClicks(frame)
     if isEditModeClient then
         ApplyEditModeSpellHoverFrameSetup(frame)
     else
-        frame:RegisterForClicks("AnyDown", "RightButtonUp")
+        RegisterFrameClickEdges(frame)
         ApplyKeybindAttributes(frame)
     end
 

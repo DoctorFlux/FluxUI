@@ -143,7 +143,10 @@ function Combat.Flush()
 			break
 		end
 		local key = order[i]
-		local fn = map[key]
+		-- An earlier callback can replace a later key in this detached batch.
+		-- Keep the newer request for the next frame; never run its stale copy
+		-- first and rebuild/configure the same structure twice.
+		local fn = not pending[key] and map[key]
 		if fn then
 			keysRan[#keysRan + 1] = key
 			if Regen and Regen.Time then

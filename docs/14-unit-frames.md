@@ -45,10 +45,14 @@ On supported Midnight/Forever clients, [AurasEngine.lua](../UnitFrames/FluxUnitF
 
 Target/focus threat uses `Flux.Threat`, including available Forever lead/situation APIs. Visibility, location and percentage display are independent options; restricted rank/percentage values are omitted or displayed safely. Numeric percentage follows game `threatShowNumeric`, also used by nameplates. [BigDebuffs integration](../UnitFrames/FluxUnitFrames_BigDebuffs.lua) handles portrait/corner placement and frame levels without making that addon mandatory.
 
-[PetAuraTooltip](../UnitFrames/FluxUnitFrames_PetAuraTooltip.lua) adds pet auras on hover with tooltip ownership and deferred refresh. [PlayerSpecClick](../UnitFrames/FluxUnitFrames_PlayerSpecClick.lua) supplies specialization/profile flyouts, selected-profile state and Respec interactions; choosing/arming a profile differs from loading it. [PlayerTransmogClick](../UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua) provides supported outfit/transmog interactions and appropriate click/flyout state.
+[PetAuraTooltip](../UnitFrames/FluxUnitFrames_PetAuraTooltip.lua) adds pet auras on hover with tooltip ownership and deferred refresh. [PlayerSpecClick](../UnitFrames/FluxUnitFrames_PlayerSpecClick.lua) supplies specialization/profile flyouts, selected-profile state and Respec interactions; choosing/arming a profile differs from loading it. [PlayerTransmogClick](../UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua) provides supported outfit/transmog interactions and appropriate click/flyout state. Its shared character-button/player flyout places the draggable clear action first when available; see [transmog actions](48-transmog-actions.md).
 
 ## Failure and verification model
 
 Unknown/secret units, unsupported APIs, unresolved aura data and unavailable features are gated rather than treated as ordinary zeroes. Secure geometry/toggle work defers outside combat. Mock tests cover selected aura, combo, scale and style contracts; they cannot verify actual secure execution.
 
 In game, test switching each unit to/from Blizzard, changing targets rapidly, empty placeholders, pet replacement, vehicles, portrait mode, all supported resource types, heal/absorb display, aura sorting and restricted combat, shared cast/swing/flight ownership, hover routing and BigDebuffs absent/present. Exact controls/defaults are in [options](26-options-map.md); remaining uncertainty belongs in [verification](41-verification.md).
+
+The [shared 3D portrait camera](50-portrait-camera-compatibility.md) uses Forever's face-framing algorithm on every client with the required model-camera APIs. Legacy adapters preserve shared camera/event ownership, and missing capabilities retain native fallbacks. Desktop checks cover all five client models; exact visual framing still requires native testing.
+
+The [unit/portrait performance follow-up](53-unit-map-idle.md) avoids rebuilding completed Flux-owned portrait and heal/absorb geometry. Live values and secret updates remain synchronous; native frame suppression and Edit Mode ownership are unchanged.

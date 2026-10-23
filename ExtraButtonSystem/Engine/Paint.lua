@@ -720,6 +720,8 @@ function Paint.UpdateIcon(btn)
 		tex = ItemIcon(btn.ItemId or btn.ActionValue)
 	elseif t == "macro" or t == "macrotext" then
 		tex = MacroIcon(btn)
+	elseif t == "outfit" then
+		tex = btn.OutfitInfo and btn.OutfitInfo.icon
 	elseif t == "mount" then
 		local mountId = btn.MountId or btn.ActionValue
 		local name, spellID, icon
@@ -1917,7 +1919,10 @@ function Paint.UpdateCooldown(btn)
 	local charges, maxCharges, chargeStart, chargeDuration
 	local spellId
 	local fromItem
-	if t == "spell" then
+	if t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
+		spellId = btn._fluxUtilityOutfitInfo and btn._fluxUtilityOutfitInfo.spell or btn.SpellId
+		if spellId then start, duration, enable = SpellCooldownForButton(btn, spellId) end
+	elseif t == "spell" then
 		spellId = PaintSpell(ShownSpellId(btn))
 		start, duration, enable = SpellCooldownForButton(btn, spellId)
 		charges, maxCharges, chargeStart, chargeDuration = SpellCharges(spellId)
@@ -2374,7 +2379,11 @@ function Paint.UpdateUsable(btn)
 	end
 	local usable, noMana
 	local t = btn.ActionType
-	if t == "spell" then
+	if t == "outfit" or btn._fluxUtilityOutfitID ~= nil then
+		local info = btn._fluxUtilityOutfitInfo or btn.OutfitInfo
+		usable = info ~= nil and not info.isDisabled
+		noMana = false
+	elseif t == "spell" then
 		local sid = ShownSpellId(btn)
 		if IsProfessionSpell(sid) then
 			usable = true
@@ -3022,6 +3031,9 @@ function Paint.UpdateChecked(btn)
 	local hint = btn.SpellNameRank or btn.SpellName
 	if stanceActive then
 		checked = true
+	elseif t == "outfit" then
+		checked = ns.API and ns.API.IsPlayerTransmogOutfitActive
+			and ns.API.IsPlayerTransmogOutfitActive(btn.OutfitId or btn.ActionValue) or false
 	elseif t == "spell" then
 		local sid = ShownSpellId(btn)
 		checked = SpellIsActive(sid, hint)

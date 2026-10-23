@@ -17,6 +17,15 @@ local source = f:read("*a"); f:close()
 local a = assert(source:find("function HANDLE:Hide(skipAttr)", 1, true))
 local b = assert(source:find("function HANDLE:SetID", a, true))
 local hideSource = source:sub(a, b - 1)
+for _, pair in ipairs({ { "SetAlpha(alpha)", "local _set_points" }, { "EnableMouse(isEnabled)", "function HANDLE:EnableKeyboard" } }) do
+    local start = assert(source:find("function HANDLE:" .. pair[1], 1, true))
+    hideSource = hideSource .. source:sub(start, assert(source:find(pair[2], start + 1, true)) - 1)
+end
+local function ReadSection(path, first, last)
+    local f = assert(io.open(root .. path, "r")); local s = f:read("*a"); f:close()
+    local a = assert(s:find(first, 1, true))
+    return s:sub(a, assert(s:find(last, a + #first, true)) - 1)
+end
 
 local function Boot(family, options)
     family, options = family or "live", options or {}
@@ -25,7 +34,7 @@ local function Boot(family, options)
     local ui, ns, native = {}, {}, {}
     local function Forbidden() error("native override/geometry/mouse or state driver was touched", 2) end
     local HANDLE = {}
-    Compile(hideSource, { HANDLE = HANDLE, GetHandleFrame = function(handle) return handle.frame end,
+    Compile(hideSource, { HANDLE = HANDLE, tonumber = tonumber, GetHandleFrame = function(handle) return handle.frame end,
         LOCAL_CHECK_Frame = {
             Hide = function(frame)
                 assert(restricted, "stock hide did not run through a restricted frame handle")
@@ -33,6 +42,8 @@ local function Boot(family, options)
                 frame._state.shown = false
             end,
             SetAttribute = function() attributeWrites = attributeWrites + 1 end,
+            SetAlpha = function(frame, alpha) assert(restricted); frame._state.alpha = alpha end,
+            EnableMouse = function(frame, enabled) assert(restricted); frame._state.mouse = enabled end,
         },
     })()
     local function Handle(frame) return setmetatable({ frame = frame }, { __index = HANDLE }) end
@@ -56,7 +67,8 @@ local function Boot(family, options)
         C_Timer = { After = function(_, fn) pending[#pending + 1] = fn end },
         CreateFrame = function(kind, name, parent, template)
             assert(kind == "Frame")
-            local frame = { events = {}, scripts = {}, refs = {}, name = name }
+            local frame = { events = {}, scripts = {}, refs = {}, attributes = {}, name = name }
+            function frame:SetAttribute(key, value) assert(not locked); self.attributes[key] = value end
             function frame:RegisterEvent(event) self.events[event] = true end
             function frame:UnregisterEvent(event) self.events[event] = nil end
             function frame:SetScript(script, fn) self.scripts[script] = fn end
@@ -66,7 +78,8 @@ local function Boot(family, options)
             if template then
                 assert(template == "SecureHandlerBaseTemplate" and not locked)
                 headers = headers + 1
-                local control = { GetFrameRef = function(_, key) return frame.refs[key] end }
+                local control = { GetFrameRef = function(_, key) return frame.refs[key] end,
+                    GetAttribute = function(_, key) return frame.attributes[key] end }
                 function frame:SetFrameRef(key, ref) assert(not locked); self.refs[key] = Handle(ref) end
                 function frame:Execute(body) assert(not locked); return RunSnippet(body, control, control) end
                 function frame:WrapScript(button, script, pre, post)
@@ -96,6 +109,7 @@ local function Boot(family, options)
     local function AddButtons(bar)
         for _ = 1, 10 do
             bar.actionButtons[#bar.actionButtons + 1] = {
+                _state = { shown = true },
                 IsProtected = function() return true, true end,
                 IsForbidden = function() return false end,
                 _originalShow = function() originalShows = originalShows + 1 end,
@@ -104,7 +118,7 @@ local function Boot(family, options)
         end
     end
     for _, name in ipairs({ "StanceBar", "StanceBarFrame" }) do
-        local state = { parent = ui, shown = true, artHides = 0 }
+        local state = { parent = ui, shown = true, alpha = 1, mouse = true, artHides = 0 }
         local bar = { _state = state, actionButtons = {},
             GetParent = function() return state.parent end,
             SetParent = function(_, parent) assert(family ~= "live"); state.parent = parent end,
@@ -133,9 +147,65 @@ local function Boot(family, options)
         Show = function(bar, index)
             bar._state.shown = true
             local button = bar.actionButtons[index]
+            button._state.shown = true
             assert(button._wrapped, "a native stance button was not wrapped")
             button._wrapped()
-            assert(not bar._state.shown, "stock stance parent remained visible/interactive")
+            assert(bar._state.alpha == 0 and not bar._state.mouse,
+                "stock stance parent remained visible/interactive")
+            assert(bar._state.shown, "stance callback hid the parent and could reenter native OnShow/Update")
+            -- StanceBarMixin.Update calls SetShown after UpdateShownButtons.
+            -- That tail must not reveal a button whose OnShow already ran.
+            bar._state.shown = true
+            assert(not button._state.shown, "native Update tail revealed the replaced stance button")
+        end,
+        NativeUpdate = function(branch)
+            local ref = "../__AddonsForRef/wow-ui-source-" .. branch .. "/Interface/AddOns/Blizzard_ActionBar/Shared/"
+            env.StanceBarMixin, env.ActionBarMixin = {}, {}
+            Compile(ReadSection(ref .. "StanceBar.lua", "function StanceBarMixin:OnShow()", "function StanceBarMixin:ShouldShow()"), env)()
+            Compile(ReadSection(ref .. "StanceBar.lua", "function StanceBarMixin:Update()", "function StanceBarMixin:ShouldShowBackgroundArt()"), env)()
+            Compile(ReadSection(ref .. "ActionBar.lua", "function ActionBarMixin:UpdateShownButtons()", "function ActionBarMixin:UpdateSpellFlyoutDirection()"), env)()
+            env.GetNumShapeshiftForms = function() return 2 end
+            env.ActionBarBusy = function() return false end
+            env.table = setmetatable({ wipe = function(t) for k in pairs(t) do t[k] = nil end end }, { __index = table })
+            local bar = env.StanceBar
+            bar.Update = env.StanceBarMixin.Update
+            local calls = 0
+            function bar:ShouldShow() return true end
+            function bar:UpdateBackgroundArt() end
+            function bar:UpdateGridLayout() end
+            bar.UpdateShownButtons = env.ActionBarMixin.UpdateShownButtons
+            function bar:UpdateState() self:UpdateShownButtons() end
+            bar.shownButtonContainers, bar.noSpacers = {}, true
+            function bar:SetShown(shown)
+                local was = self._state.shown
+                self._state.shown = shown
+                if shown and not was then
+                    calls = calls + 1; assert(calls < 100, "native OnShow/Update reentered without bound")
+                    env.StanceBarMixin.OnShow(self)
+                    for _, button in ipairs(self.actionButtons) do
+                        if self._state.shown and button._state.shown then button._wrapped() end
+                    end
+                end
+            end
+            for i, button in ipairs(bar.actionButtons) do
+                button.index = i
+                button.container = { SetShown = function() end }
+                function button:GetAttribute() return nil end
+                function button:GetShowGrid() return true end
+                function button:SetShown(shown)
+                    local was = self._state.shown
+                    self._state.shown = shown
+                    if shown and not was and bar._state.shown then self._wrapped() end
+                end
+            end
+            for _ = 1, 40 do
+                env.StanceBarMixin.Update(bar)
+                assert(bar._state.alpha == 0 and not bar._state.mouse, "native stance root revealed art/input")
+                for _, button in ipairs(bar.actionButtons) do
+                    assert(not button._state.shown, "native Update/OnShow revealed a replaced stance button")
+                end
+            end
+            assert(calls <= 1, "form changes repeatedly reentered the native parent OnShow")
         end,
     }
 end
@@ -180,5 +250,10 @@ repairedForever.Lock(true)
 for _, item in pairs(repairedForever.native) do
     assert(item.state.parent == repairedForever.env.UIParent, "repaired Forever must retain native stance parent")
     repairedForever.Show(item.bar, 1)
+end
+for _, branch in ipairs({ "live", "forever" }) do
+    local client = Boot(branch, { paging = true })
+    client.Lock(true)
+    client.NativeUpdate(branch)
 end
 print("stance hide smoke OK (native HANDLE:Hide, 800 combat shows, original scripts, aliases, late buttons, retries, reload, Classic/Forever)")

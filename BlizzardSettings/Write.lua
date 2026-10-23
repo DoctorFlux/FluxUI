@@ -1,6 +1,7 @@
 -- BlizzardSettings/Write.lua — the only place Flux writes Blizzard CVars and Settings.
 -- CVars: C_CVar.SetCVar / SetCVarBitfield only, skipped when missing or already equal.
--- Writes wait while in combat or while SettingsPanel is shown (its previews rebuild
+-- Writes wait in combat, through Edit Mode's complete enter/exit pass, or while
+-- SettingsPanel is shown (its previews rebuild
 -- plates and raid frames on CVAR_UPDATE) and flush on PLAYER_REGEN_ENABLED or
 -- SettingsPanel OnHide. Settings.SetValue / NotifyUpdate only run on clients without
 -- enforced secret values (Era / Anniversary / other Classic): on Forever and Live
@@ -24,6 +25,14 @@ end
 
 function Write.MayUseSettingsAPI()
 	return not Write.IsSecretClient()
+end
+
+local function IsCompactFrameCVar(cvar)
+	if type(cvar) ~= "string" then return false end
+	local lower = string.lower(cvar)
+	return lower:sub(1, 10) == "raidframes" or lower:sub(1, 9) == "pvpframes"
+		or lower == "usecompactpartyframes" or lower == "raidoptiondisplaymaintankandassist"
+		or lower == "raidoptiondisplaypets" or lower == "pvpoptiondisplaypets"
 end
 
 function Write.Get(cvar)
@@ -64,10 +73,15 @@ end
 
 function Write.CanWriteNow()
 	return not InCombat() and not SettingsPanelShown()
+		and not (FluxEditModeBusy and FluxEditModeBusy())
 end
 
 --- Returns true if the CVar was written.
 function Write.CVar(cvar, value, force)
+	-- A later timer does not make CUF callbacks safe: they persist native option
+	-- tables written under addon execution, then Edit Mode consumes them on exit.
+	-- Match the CUF policy in Flux.CVar/FluxSetCVar, including explicit resets.
+	if Write.IsSecretClient() and IsCompactFrameCVar(cvar) then return false end
 	if InCombat() or not Write.Exists(cvar) then
 		return false
 	end
@@ -217,7 +231,11 @@ function Write.Run(key, fn)
 	end
 	queue[key] = fn
 	flusher:RegisterEvent("PLAYER_REGEN_ENABLED")
-	HookSettingsPanel()
+	local editing = FluxEditModeBusy and FluxEditModeBusy()
+	if not editing or SettingsPanelShown() then HookSettingsPanel() end
+	if editing and FluxAfterEditMode then
+		FluxAfterEditMode(Write.Flush)
+	end
 	return false
 end
 
@@ -227,6 +245,7 @@ end
 
 function Write.Flush()
 	if not Write.CanWriteNow() then
+		if SettingsPanelShown() then HookSettingsPanel() end
 		return
 	end
 	flusher:UnregisterEvent("PLAYER_REGEN_ENABLED")

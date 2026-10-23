@@ -1,5 +1,5 @@
 -- UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua
--- Player portrait transmog trigger (post-DF/Midnight): hover-revealed icon + ExtraButtonSystem outfit flyout.
+-- Player portrait transmog trigger (capability-gated, including Forever): hover icon + EBS outfit flyout.
 local addonName, ns = ...
 ns.PlayerTransmogClick = ns.PlayerTransmogClick or {}
 
@@ -32,6 +32,7 @@ local state = {
     hooked = false,
     hoverAccum = 0,
 }
+local ArmPortraitCombatHide
 
 local function GetFlyout()
     local Flux = ns.Flux
@@ -116,14 +117,33 @@ local function OutfitKidOnEnter(kid)
     GameTooltip:SetText((def and def.name) or "", 1, 1, 1)
     if def and def.isActive then
         GameTooltip:AddLine("Currently active.", 0.18, 0.95, 0.28)
+    elseif def and def.isClear then
+        GameTooltip:AddLine("Show your equipped gear without the current outfit.", 0.78, 0.78, 0.78, true)
     else
         GameTooltip:AddLine("Click to activate this outfit.", 0.78, 0.78, 0.78, true)
     end
     GameTooltip:Show()
 end
 
+local function OutfitKidOnDragStart(kid)
+    local def = kid and kid._fluxFlyoutDef
+    if def and def.outfitID ~= nil and API.TryPickupPlayerTransmogOutfit then
+        API.TryPickupPlayerTransmogOutfit(def.outfitID)
+    end
+end
+
 local function BuildTransmogFlyoutButtons()
     local buttons = {}
+    local clear = API.GetPlayerTransmogOutfitAction and API.GetPlayerTransmogOutfitAction(0)
+    if clear then
+        buttons[1] = {
+            type = "macrotext", macrotext = clear.macrotext, icon = clear.icon,
+            name = clear.name, isClear = true,
+            isActive = API.IsPlayerTransmogOutfitActive and API.IsPlayerTransmogOutfitActive(0) or false,
+            spell = clear.spell, onEnter = OutfitKidOnEnter,
+            outfitID = 0, onDragStart = OutfitKidOnDragStart,
+        }
+    end
     local entries = (API.GetPlayerTransmogOutfitEntries and API.GetPlayerTransmogOutfitEntries()) or {}
     for _, e in ipairs(entries) do
         if e and not e.isDisabled and type(e.index) == "number" then
@@ -135,6 +155,7 @@ local function BuildTransmogFlyoutButtons()
                 isActive = e.isActive and true or false,
                 spell = OUTFIT_EQUIP_SPELL_ID,
                 onEnter = OutfitKidOnEnter,
+                outfitID = e.id, onDragStart = OutfitKidOnDragStart,
             }
         end
     end
@@ -230,6 +251,7 @@ local function ToggleTransmogFlyout(anchor)
     if Flyout.Toggle then
         Flyout.Toggle(host)
     end
+    ArmPortraitCombatHide()
     RefreshFlyoutRowVisuals()
 end
 
@@ -358,6 +380,7 @@ local function ArmCharacterFlyoutCombatHide()
 end
 
 local function RefreshOpenCharacterFlyout()
+    if InCombatLockdown() then return end
     if not IsCharacterFlyoutOpen() then
         return
     end
@@ -459,6 +482,7 @@ local function CanShowTransmogControl(playerFrame)
 end
 
 local function RefreshOpenTransmogFlyout()
+    if InCombatLockdown() then return end
     if not IsTransmogFlyoutOpenFor() then
         return
     end
@@ -509,7 +533,7 @@ local function EnsurePortraitHoverCatcher(playerFrame)
     local parent = outer or portrait
     local catcher = state.portraitHoverCatcher
     if not catcher or catcher:GetParent() ~= parent then
-        catcher = CreateFrame("Frame", "FluxPlayerPortraitHoverCatcher", parent)
+        catcher = CreateFrame("Frame", "FluxPlayerPortraitHoverCatcher", parent, "SecureFrameTemplate")
         catcher:EnableMouse(true)
         catcher:SetMouseClickEnabled(false)
         catcher:SetScript("OnEnter", ArmAndRefresh)
@@ -547,6 +571,36 @@ local function ApplyButtonLayout(playerFrame)
     btn:SetSize(ICON_SIZE, ICON_SIZE)
     btn:SetFrameStrata(parent:GetFrameStrata())
     btn:SetFrameLevel(base + 26)
+end
+
+-- These controls inherit protection from the secure unit button. Hide them
+-- through a restricted state handler, never from a combat event or hover hook.
+ArmPortraitCombatHide = function()
+    if InCombatLockdown() or not RegisterStateDriver or not state.btn then return end
+    local hider = state.portraitCombatHider
+    if not hider then
+        hider = CreateFrame("Frame", "FluxPortraitOutfitCombatHider", UIParent, "SecureHandlerStateTemplate")
+        hider:SetAttribute("_onstate-fluxportraitcombat", [[
+            if newstate == "hide" then
+                local button = self:GetFrameRef("button")
+                local catcher = self:GetFrameRef("catcher")
+                local popup = self:GetFrameRef("popup")
+                if button then button:Hide() end
+                if catcher then catcher:Hide() end
+                if popup then popup:Hide() end
+            end
+        ]])
+        state.portraitCombatHider = hider
+    end
+    hider:SetFrameRef("button", state.btn)
+    if state.portraitHoverCatcher then hider:SetFrameRef("catcher", state.portraitHoverCatcher) end
+    local flyout = GetFlyout()
+    local popup = flyout and flyout.GetPopup and state.flyoutAnchorProxy and flyout.GetPopup(state.flyoutAnchorProxy)
+    if popup then hider:SetFrameRef("popup", popup) end
+    if not state.portraitCombatDriver then
+        RegisterStateDriver(hider, "fluxportraitcombat", "[combat] hide; show")
+        state.portraitCombatDriver = true
+    end
 end
 
 local function SetButtonIconFromAtlas(tex, atlasName)
@@ -691,6 +745,7 @@ local function SetupButtonScripts(b)
 end
 
 function PTC.UpdateInteractionState(playerFrame)
+    if InCombatLockdown() then return end
     playerFrame = playerFrame or state.frame
     if not playerFrame or playerFrame.unit ~= "player" then
         return
@@ -728,6 +783,10 @@ local function EnsureWatcher(playerFrame)
     SafeRegisterEvent(evt, "TRANSMOG_DISPLAYED_OUTFIT_CHANGED")
     SafeRegisterEvent(evt, "SPELL_UPDATE_COOLDOWN")
     evt:SetScript("OnEvent", function(_, event)
+        if InCombatLockdown() then
+            evt:SetScript("OnUpdate", nil)
+            return
+        end
         if not state.btn and state.frame then
             PTC.Initialize(state.frame)
         end
@@ -764,6 +823,7 @@ local function EnsureWatcher(playerFrame)
     end
     state._transmogWatcherOnUpdate = TransmogWatcher_OnUpdate
     state.ArmTransmogWatcher = function()
+        if InCombatLockdown() then return end
         if evt:GetScript("OnUpdate") ~= TransmogWatcher_OnUpdate then
             state.hoverAccum = 0
             evt:SetScript("OnUpdate", TransmogWatcher_OnUpdate)
@@ -778,6 +838,10 @@ function PTC.Initialize(playerFrame)
     if not playerFrame or playerFrame.unit ~= "player" then
         return
     end
+    if InCombatLockdown() then
+        ns.Flux.Combat.Defer("player.portrait.transmog", function() PTC.Initialize(playerFrame) end)
+        return
+    end
     state.frame = playerFrame
     EnsureWatcher(playerFrame)
     if not IsTransmogOutfitFeatureAvailable() then
@@ -786,7 +850,7 @@ function PTC.Initialize(playerFrame)
 
     if not state.btn then
         local parent = playerFrame.outerBorderFrame or playerFrame.PortraitFrame or playerFrame
-        local b = CreateFrame("Button", "FluxPlayerPortraitTransmogClick", parent)
+        local b = CreateFrame("Button", "FluxPlayerPortraitTransmogClick", parent, "SecureFrameTemplate")
         b:Hide()
         b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
         if b.GetHighlightTexture then
@@ -823,4 +887,5 @@ function PTC.Initialize(playerFrame)
     end
 
     PTC.UpdateInteractionState(playerFrame)
+    ArmPortraitCombatHide()
 end

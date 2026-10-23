@@ -19,11 +19,11 @@ local function fixture(client, inCombat, enabled)
     e.UnitExists = function(unit) return unit == "player" or unit == "party1" end
     e.UnitInRaid = function() return nil end
     e.GetRaidRosterInfo = function() end
-    local timers, deferred, specs = {}, {}, {}
+    local timers, frames, specs = {}, {}, {}
     local metrics = { headers = 0, hides = 0, attributes = 0, fonts = 0 }
     local methods = {}
     local noop = function() end
-    for name in ("SetFrameStrata SetFrameLevel EnableMouse SetClipsChildren SetShadowOffset SetTextColor SetFont SetScale"):gmatch("%S+") do methods[name] = noop end
+    for name in ("SetFrameStrata SetFrameLevel SetAllPoints SetClipsChildren SetShadowOffset SetTextColor SetFont SetScale"):gmatch("%S+") do methods[name] = noop end
     local function legal(self)
         check(not (e.combat and self.protected), client .. ": no protected mutation during lockdown (" .. (self.name or self.kind) .. ")")
     end
@@ -49,6 +49,16 @@ local function fixture(client, inCombat, enabled)
     function methods:IsVisible() return self.shown end
     function methods:IsForbidden() return false end
     function methods:IsProtected() return self.protected end
+    function methods:GetAlpha() return self.alpha or 1 end
+    function methods:SetAlpha(value)
+        legal(self); self.alpha = value
+        if self.name == "CompactRaidFrameContainer" and value == 0 then
+            check(e.FluxRaidState.secureConfigured, "native grid remains until secure configuration completes")
+            metrics.hides = metrics.hides + 1
+        end
+    end
+    function methods:IsMouseEnabled() return self.mouse ~= false end
+    function methods:EnableMouse(value) legal(self); self.mouse = value end
     function methods:SetParent(parent) legal(self); self.parent = parent end
     function methods:GetParent() return self.parent end
     function methods:GetChildren() return unpack(self.children) end
@@ -67,6 +77,7 @@ local function fixture(client, inCombat, enabled)
         local frame = setmetatable({ kind = kind, name = name, parent = parent, protected = protected,
             children = {}, attributes = {}, scripts = {}, events = {}, shown = false, width = 72, height = 10 }, { __index = methods })
         if name then e[name] = frame end
+        frames[#frames + 1] = frame
         if protected and template == "FluxRaidGroupHeaderTemplate" then metrics.headers = metrics.headers + 1 end
         return frame
     end
@@ -74,20 +85,13 @@ local function fixture(client, inCombat, enabled)
     e.FluxRaidContainer = e.CreateFrame("Frame", "FluxRaidContainer", e.UIParent)
     e.CompactRaidFrameContainer = e.CreateFrame("Frame", "CompactRaidFrameContainer", e.UIParent)
     e.CompactRaidFrameContainer.shown = true
+    e.CompactRaidFrameContainer.protected = true
     e.C_Timer = { After = function(_, callback) timers[#timers + 1] = callback end }
     local ns = { Flux = {
         Client = { key = client },
         Module = { Register = function(name, spec) specs[name] = spec end },
         Timer = e.C_Timer,
         Startup = { Mark = noop },
-        Blizz = {
-            Hide = function(frame)
-                if e.combat then deferred[frame] = true; return end
-                check(e.FluxRaidState.secureConfigured, "native grid remains until secure configuration completes")
-                frame:Hide(); metrics.hides = metrics.hides + 1
-            end,
-            Unhide = function(frame) frame:Show() end,
-        },
     } }
     e.Flux = ns.Flux
     e.FluxOptions = { GetRaidFrameDB = function() return { useFluxRaidFrames = e.enabled } end }
@@ -98,9 +102,11 @@ local function fixture(client, inCombat, enabled)
         for _, callback in ipairs(work) do callback() end
     end
     function e.FlushNative()
-        local work = deferred; deferred = {}
-        for frame in pairs(work) do ns.Flux.Blizz.Hide(frame) end
+        for _, frame in ipairs(frames) do
+            if frame.events.PLAYER_REGEN_ENABLED and frame.scripts.OnEvent then frame.scripts.OnEvent(frame, "PLAYER_REGEN_ENABLED") end
+        end
     end
+    load("Blizzard/Hide.lua", e, ns)
     load("RaidFrame/FluxRaidCompat.lua", e, ns)
     load("RaidFrame/FluxRaidLayout.lua", e, ns)
     load("RaidFrame/FluxRaidFrame.lua", e, ns)
@@ -122,7 +128,10 @@ for _, client in ipairs({ "live", "classic_era", "classic_anniversary", "classic
     check(e.metrics.headers == 9 and e.FluxRaidState.secureConfigured, "all nine headers configure before handoff")
     local fonts = e.metrics.fonts
     e.Advance(); e.Advance()
-    check(e.metrics.hides > 0 and not e.CompactRaidFrameContainer:IsShown(), "native fallback hands over after secure initialization")
+    check(e.metrics.hides > 0 and e.CompactRaidFrameContainer:GetAlpha() == 0
+        and not e.CompactRaidFrameContainer:IsMouseEnabled(), "native fallback hands over after secure initialization")
+    check(e.CompactRaidFrameContainer:IsShown() and e.CompactRaidFrameContainer:GetParent() == e.UIParent
+        and e.CompactRaidFrameContainer:GetScript("OnShow") == nil, "native grid retains its own shown state, parent and scripts")
     check(spec.OnEnable() and e.metrics.headers == 9 and e.metrics.fonts == fonts, "repeated enable reuses headers and labels")
 
     -- Combat can start between the coalesced request and its next-frame callback.
@@ -135,7 +144,8 @@ for _, client in ipairs({ "live", "classic_era", "classic_anniversary", "classic
 
     e.enabled = false
     e.FluxRaid_ApplyOptionsFromDB()
-    check(e.CompactRaidFrameContainer:IsShown(), "disabling Flux restores native group controls")
+    check(e.CompactRaidFrameContainer:IsShown() and e.CompactRaidFrameContainer:GetAlpha() == 1
+        and e.CompactRaidFrameContainer:IsMouseEnabled(), "disabling Flux restores native group controls")
 end
 
 local disabled = fixture("forever", false, false)

@@ -657,7 +657,8 @@ if ufShared:find('if not UnitExists(tu) or not UnitAffectingCombat("player")', 1
 	failures[#failures + 1] = "UpdateThreatBar must not Lua-test UnitAffectingCombat/UnitExists"
 end
 has(ufShared, "IsCamelotPortraitClient", "Forever portrait client probe")
-has(ufShared, "ApplyCamelotPortraitCamera", "Forever uses engine zoom then measured fallback")
+has(ufShared, "ApplyPortraitHeadCamera", "all clients use engine zoom then measured face framing")
+has(ufShared, "CanFramePortraitHead", "shared portrait framing detects actual camera capabilities")
 has(ufShared, "SetPortraitZoom", "3D portraits use engine portrait zoom")
 has(ufShared, "GetCameraDistance", "Forever only custom-frames when zoom left a far camera")
 has(ufShared, "SetPortraitUnit", "shared SetUnit plus head framing")
@@ -671,7 +672,7 @@ if not ufShared:find("if IsCamelotPortraitClient() then", 1, true) then
 	failures[#failures + 1] = "camelot must have its own portrait camera path"
 end
 do
-	local camelotFn = slice(ufShared, "local function ApplyCamelotPortraitCamera", "local function ApplyPortraitCamera")
+	local camelotFn = slice(ufShared, "local function ApplyPortraitHeadCamera", "local function ApplyPortraitCamera")
 	if camelotFn:find("RefreshCamera", 1, true) then
 		failures[#failures + 1] = "camelot portrait camera must not RefreshCamera (full-body bake)"
 	end

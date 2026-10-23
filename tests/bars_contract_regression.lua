@@ -226,6 +226,99 @@ local function stanceHiderCase(client, replacements)
     end
 end
 
+local function stockControllerCase(client, replacements)
+    local env, flux = environment(client)
+    local wraps, nativeCalls, hides, failed = {}, 0, 0, false
+    local create = env.CreateFrame
+    env.CreateFrame = function(...)
+        local f = create(...)
+        function f:SetFrameRef(key, bar)
+            self.refs = self.refs or {}
+            -- Restricted HANDLE:Hide invokes the captured widget method, not
+            -- the stock bar's Lua HideOverride (see RestrictedFrames.lua).
+            self.refs[key] = { Hide = function(_, skipAttr)
+                check(skipAttr == true, "stock controller does not write statehidden on native bars")
+                bar.hidden = true; hides = hides + 1
+            end, SetAlpha = function(_, value) bar.alpha = value end,
+                EnableMouse = function(_, value) bar.mouse = value end }
+        end
+        function f:GetFrameRef(key) return self.refs[key] end
+        function f:Execute(body)
+            local e = setmetatable({ self = self, control = self }, { __index = env })
+            return assert(load(body, "secure-stock-controller", "t", e))()
+        end
+        function f:WrapScript(button, script, pre, post)
+            check(not env.locked, "stock controller handler setup waits for combat")
+            if failed then error("simulated handler setup failure") end
+            check(wraps[button] == nil, "stock controller never accumulates wrappers")
+            wraps[button] = { header = self, pre = pre, post = post, script = script }
+        end
+        return f
+    end
+    env.SecureCmdOptionParse = function() return env.possess and "1" or nil end
+    flux.Restricted = { PagingWorks = function() return true end }
+    module("Bars/Blizzard.lua", env, flux, replacements)
+    local suppress = assert(closure(flux.Bars.Blizzard.KillLeftoverMouse, "SecureHideRetailStanceBar"))
+    local possess = assert(closure(flux.Bars.Blizzard.KillLeftoverMouse, "HideStockPossessBars"))
+    local bar = create("Frame", nil, env.UIParent)
+    local button = create("CheckButton", nil, bar)
+    function button:IsProtected() return true, true end
+    bar.actionButtons = { button }
+    function bar:Hide() error("native Lua HideOverride must never run from addon code") end
+    env.locked = true
+    check(suppress(bar) == "pending" and next(wraps) == nil, client .. ": combat startup retains native controller")
+    env.locked = false; failed = true
+    check(suppress(bar) == "failed", client .. ": failed wrapper install is reported")
+    failed = false
+    check(suppress(bar) == "secured", client .. ": failed setup is retryable")
+    local count = #env.created
+    check(suppress(bar) == "secured" and #env.created == count, client .. ": repeated suppression reuses the handler")
+    local function nativeShow()
+        bar.hidden = false
+        button.hidden = false
+        local w = assert(wraps[button])
+        local handle = { Hide = function(_, skipAttr)
+            check(skipAttr == true, "stock button does not write statehidden")
+            button.hidden = true
+        end }
+        local e = setmetatable({ self = handle, control = w.header }, { __index = env })
+        local allow, message = assert(load(w.pre, "stock-OnShow-pre", "t", e))()
+        if allow ~= false then nativeCalls = nativeCalls + 1 end
+        -- Blizzard CreateSimpleWrapper's exact dispatch contract: message is
+        -- the SECOND return from pre; nil prevents post execution.
+        if message ~= nil then
+            e.message = message
+            assert(load(w.post, "stock-OnShow-post", "t", e))()
+        end
+    end
+    env.locked = true; nativeShow()
+    check(button.hidden and bar.alpha == 0 and bar.mouse == false and nativeCalls == 1,
+        client .. ": native OnShow executes and secure stance hide survives combat")
+    check(not bar.hidden, client .. ": stance callback cannot reenter parent OnShow/Update")
+    bar.hidden = false -- Native StanceBarMixin.Update's final SetShown(true).
+    check(button.hidden, client .. ": native update tail cannot reveal replaced stance buttons")
+    env.locked = false
+    -- Use the real possess coordinator, including its replacement readiness.
+    bar = create("Frame", nil, env.UIParent)
+    button = create("CheckButton", nil, bar)
+    function button:IsProtected() return true, true end
+    bar.actionButtons = { button }
+    function bar:Hide() error("native Lua HideOverride must never run from addon code") end
+    env.PossessActionBar = bar
+    flux.Bars.secureReady = false; bar.hidden = false; possess()
+    check(not bar.hidden and wraps[button] == nil, "possess fallback remains until Flux input is ready")
+    flux.Bars.secureReady = true
+    possess(); check(bar.hidden and wraps[button], "empty Edit Mode possess bar is suppressed")
+    env.locked = true; nativeShow()
+    check(bar.hidden, "empty possess bar remains suppressed in combat")
+    env.possess = true; nativeShow()
+    check(not bar.hidden and not button.hidden, "real native possession/cancel controls remain visible and usable in combat")
+    env.locked = false; possess()
+    check(not bar.hidden, "out-of-combat reconciliation retains native possession controls")
+    env.possess = false; possess(); check(bar.hidden, "possession ending reconciles empty stock bar")
+    check(nativeCalls == 3 and hides > 0, "native callbacks remain intact across controller transitions")
+end
+
 local function badgeCase(client, replacements)
     local env, flux = environment(client)
     flux.Spell = { GetTexture = function(id) return env.icons and env.icons[id] end }
@@ -305,6 +398,7 @@ local function run(replacements)
         inputCase(client, replacements)
         raidCase(client, replacements)
         stanceHiderCase(client, replacements)
+        stockControllerCase(client, replacements)
         badgeCase(client, replacements)
         geometryCase(client, replacements)
     end
@@ -318,6 +412,13 @@ local mutations = {
     { "RaidFrame/FluxRaidUnit.lua", 'alphaApplied = pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)',
         'alphaApplied = pcall(wrap.SetAlphaFromBoolean, wrap, ex, 1, 0)\n            return', "native alpha early return", "invisible mini disables mouse" },
     { "Bars/Blizzard.lua", 'if not UseStanceHider() or InLockdown() then', 'if InLockdown() then', "stance client/capability gate", "stance parenting follows" },
+    { "Bars/Blizzard.lua", 'local STANCE_SHOW_PRE = [[ return nil, true ]]',
+        'local STANCE_SHOW_PRE = [[ return nil ]]', "secure OnShow post dispatch", "secure stance hide survives combat" },
+    { "Bars/Blizzard.lua", 'elseif not SecureCmdOptionParse("[possessbar] 1") then', 'elseif true then',
+        "native possess controls", "possession/cancel controls remain visible" },
+    { "Bars/Blizzard.lua", 'self:Hide(true)', '', "stance child visibility", "secure stance hide survives combat" },
+    { "Bars/Blizzard.lua", 'self:Hide(true)', 'self:Hide(true)\n            bar:Hide(true)',
+        "stance parent OnShow reentry", "stance callback cannot reenter parent OnShow/Update" },
     { "ExtraButtonSystem/Engine/Paint.lua", 'SetIconTexture(btn, QUESTION)', 'SetIconTexture(btn, nil)', "occupied badge placeholder", "unresolved corner stays" },
     { "ExtraButtonSystem/Engine/Badge.lua", 'widget:SetSize(faceW, native)', 'widget:SetSize(43, 43)', "badge native authoring size", "badge face uses native" },
     { "Core/ButtonFX/Overlay.lua", 'local CAST_REF_W = 44', 'local CAST_REF_W = 43', "VFX authoring size", "SpellFX frame uses" },

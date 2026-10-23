@@ -56,6 +56,10 @@ local function GetCarriedBagIDs()
 end
 
 local function GetTotalFreeBagSlots()
+    local container = _G.Flux and Flux.Container
+    if container and container.GetTotalFreeBagSlots then
+        return container.GetTotalFreeBagSlots()
+    end
     -- Use the same count as Blizzard's bag window/header. The inventory total
     -- includes reagent storage, which cannot hold ordinary backpack items.
     if C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots then
@@ -683,8 +687,8 @@ if btn then
     count:SetText("")
     btn.count = count
     
-    local function UpdateBagCount()
-        local totalFree = GetTotalFreeBagSlots()
+    local function UpdateBagCount(totalFree)
+        totalFree = totalFree or GetTotalFreeBagSlots()
         
         if count then
             count:SetText(totalFree)
@@ -736,12 +740,15 @@ if btn then
 
     local eventFrame = CreateFrame("Frame")
     eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-    eventFrame:RegisterEvent("BAG_UPDATE")
-    eventFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+    local container = _G.Flux and Flux.Container
+    local sharedCount = container and container.WatchFreeBagSlots
+    if not sharedCount then
+        eventFrame:RegisterEvent("BAG_UPDATE")
+        eventFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+    end
     eventFrame:SetScript("OnEvent", function(self, event, ...)
         if event == "PLAYER_ENTERING_WORLD" then
-            EnsureBagCountListener()
-            UpdateBagCount()
+            if not sharedCount then EnsureBagCountListener(); UpdateBagCount() end
             HideBlizzardBags()
         elseif event == "BAG_UPDATE" or event == "BAG_UPDATE_DELAYED" then
             -- Fallback only when FluxInv listener is unavailable
@@ -751,8 +758,12 @@ if btn then
             end
         end
     end)
-    EnsureBagCountListener()
-    UpdateBagCount()
+    if sharedCount then
+        container.WatchFreeBagSlots("FluxBagMicroButton", UpdateBagCount)
+    else
+        EnsureBagCountListener()
+        UpdateBagCount()
+    end
 end
 
 -- Custom Styling for Bag Icon

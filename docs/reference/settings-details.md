@@ -3585,7 +3585,7 @@ Registration expressions can use local `Type` constants. Exact widget names, int
 | [AddonOptions/AceGUIWidget-FluxOptionsToggleGrid.lua:313](../../AddonOptions/AceGUIWidget-FluxOptionsToggleGrid.lua#L313) | `Type, Constructor, Version` |
 | [AddonOptions/AceGUIWidget-FluxRestockPanel.lua:2559](../../AddonOptions/AceGUIWidget-FluxRestockPanel.lua#L2559) | `Type, Constructor, Version` |
 | [AddonOptions/AceGUIWidget-FluxSpellBlacklistPanel.lua:593](../../AddonOptions/AceGUIWidget-FluxSpellBlacklistPanel.lua#L593) | `Type, Constructor, Version` |
-| [AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua:472](../../AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua#L472) | `Type, Constructor, Version` |
+| [AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua:476](../../AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua#L476) | `Type, Constructor, Version` |
 | [AddonOptions/AceGUIWidget-FluxStanceBarOrderPanel.lua:838](../../AddonOptions/AceGUIWidget-FluxStanceBarOrderPanel.lua#L838) | `Type, Constructor, Version` |
 | [Binding/UI/Browser/AceGUIWidget-FluxBindingBrowserEmbed.lua:372](../../Binding/UI/Browser/AceGUIWidget-FluxBindingBrowserEmbed.lua#L372) | `Type, Constructor, Version` |
 | [Binding/UI/Editor/Widgets/AceGUIWidget-FluxBlizzardDropdown.lua:231](../../Binding/UI/Editor/Widgets/AceGUIWidget-FluxBlizzardDropdown.lua#L231) | `Type, Constructor, Version` |

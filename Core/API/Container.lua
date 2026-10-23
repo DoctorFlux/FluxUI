@@ -246,3 +246,89 @@ function Container.GetNumFreeSlots(bag)
 	end
 	return 0
 end
+
+-- HUD counters use live native bag capacity, never the deferred item snapshot
+-- or another button's cached FontString. Reagent, keyring and bank slots are
+-- outside this ordinary carried-bag total.
+local function FreeSlotNumber(value)
+	if issecretvalue and issecretvalue(value) then return nil end
+	if type(value) == "number" and value >= 0 and value == math.floor(value) then
+		return value
+	end
+end
+
+function Container.GetTotalFreeBagSlots()
+	local native = C_Container and C_Container.CalculateTotalNumberOfFreeBagSlots
+	if native then
+		local ok, value = pcall(native)
+		value = ok and FreeSlotNumber(value)
+		if value then return value end
+	end
+	local total = 0
+	local getFree = (C_Container and C_Container.GetContainerNumFreeSlots) or GetContainerNumFreeSlots
+	if not getFree then return total end
+	local reagent = REAGENTBAG_CONTAINER or (Enum and Enum.BagIndex and Enum.BagIndex.ReagentBag)
+	local last = math.min(NUM_BAG_SLOTS or 4, ITEM_INVENTORY_BANK_BAG_OFFSET or 4)
+	for bag = 0, last do
+		if bag ~= reagent then
+			local ok, free = pcall(getFree, bag)
+			if ok then total = total + (FreeSlotNumber(free) or 0) end
+		end
+	end
+	return total
+end
+
+local freeSlotListeners = {}
+local freeSlotFrame, freeSlotPending, freeSlotLast
+
+local function PublishFreeBagSlots(total)
+	total = total or Container.GetTotalFreeBagSlots()
+	if total == freeSlotLast then return end
+	freeSlotLast = total
+	for _, callback in pairs(freeSlotListeners) do
+		if Flux.Safecall then Flux.Safecall(callback, total) else callback(total) end
+	end
+end
+
+local function FlushFreeBagSlots()
+	freeSlotPending = false
+	PublishFreeBagSlots()
+end
+
+function Container.RequestFreeBagSlotsRefresh()
+	if freeSlotPending then return end
+	if C_Timer and C_Timer.After then
+		freeSlotPending = true
+		C_Timer.After(0, FlushFreeBagSlots)
+	else
+		PublishFreeBagSlots()
+	end
+end
+
+function Container.WatchFreeBagSlots(key, callback)
+	if type(key) ~= "string" or type(callback) ~= "function" then return end
+	freeSlotListeners[key] = callback
+	if not freeSlotFrame then
+		freeSlotFrame = CreateFrame("Frame")
+		-- The login value can be backpack-only until the equipped bags arrive.
+		-- Observe native readiness even when inventory scanning is deferred, and
+		-- always reconcile BAG_UPDATE_DELAYED rather than waiting for a reload.
+		for _, event in ipairs({ "PLAYER_LOGIN", "PLAYER_ENTERING_WORLD", "BAG_UPDATE", "BAG_UPDATE_DELAYED",
+			"PLAYER_EQUIPMENT_CHANGED", "UNIT_INVENTORY_CHANGED" }) do
+			freeSlotFrame:RegisterEvent(event)
+		end
+		freeSlotFrame:SetScript("OnEvent", function(_, event, unit)
+			if event ~= "UNIT_INVENTORY_CHANGED" or unit == "player" then
+				Container.RequestFreeBagSlotsRefresh()
+			end
+		end)
+	end
+	-- New/replaced consumers receive a current value even if nothing changed.
+	-- Updating the other subscribers here also handles late UI/addon creation.
+	local total = Container.GetTotalFreeBagSlots()
+	if total ~= freeSlotLast then
+		PublishFreeBagSlots(total)
+	else
+		if Flux.Safecall then Flux.Safecall(callback, total) else callback(total) end
+	end
+end

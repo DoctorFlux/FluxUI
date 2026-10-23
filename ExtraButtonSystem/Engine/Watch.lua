@@ -652,6 +652,15 @@ function Watch.Start()
 		end
 		RequestIcon()
 	end)
+	if C_TransmogOutfitInfo and C_TransmogOutfitInfo.GetOutfitsInfo then
+		Ev.Register("TRANSMOG_OUTFITS_CHANGED", function()
+			if EBS.Action and EBS.Action.RefreshOutfits then EBS.Action.RefreshOutfits() end
+			RequestLanes("ebs.icon", "ebs.usable", "ebs.checked")
+		end)
+		Ev.Register("TRANSMOG_DISPLAYED_OUTFIT_CHANGED", function()
+			RequestLanes("ebs.checked", "ebs.usable")
+		end)
+	end
 
 	local function After(delay, fn)
 		if FluxBtn and FluxBtn.Compat and FluxBtn.Compat.After then

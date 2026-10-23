@@ -577,19 +577,22 @@ function FluxCCP.AttachColumnToDock()
 end
 
 local columnLayoutQueued = false
+local columnLayoutWaiter
 
 local function QueueColumnLayout()
     if columnLayoutQueued then
         return
     end
     columnLayoutQueued = true
-    local waiter = CreateFrame("Frame")
-    waiter:RegisterEvent("PLAYER_REGEN_ENABLED")
-    waiter:SetScript("OnEvent", function(self)
-        self:UnregisterEvent("PLAYER_REGEN_ENABLED")
-        columnLayoutQueued = false
-        FluxCCP.PlaceColumnButtons()
-    end)
+    if not columnLayoutWaiter then
+        columnLayoutWaiter = CreateFrame("Frame")
+        columnLayoutWaiter:SetScript("OnEvent", function(self)
+            self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+            columnLayoutQueued = false
+            FluxCCP.PlaceColumnButtons()
+        end)
+    end
+    columnLayoutWaiter:RegisterEvent("PLAYER_REGEN_ENABLED")
 end
 
 local columnPlacing = false
@@ -601,14 +604,37 @@ local function ColumnScreenNum(v)
     return v
 end
 
---- Era and Anniversary: FCF_SetButtonSide anchors buttonFrame to Background
---- BOTTOM, so the column grows up from the edit box. The tab top sits about
---- 35px above the chat frame. Pin the strip a little above that so the social
---- button sits on the tab. Forever/live stay on Background TOP (y = -3).
-local CLASSIC_BUTTON_FRAME_TOP = 55
+--- Match the Live/Forever column at Background TOP minus 4 on every branch.
+--- Use the chat frame as the actual anchor: Background is a texture and the
+--- column contains secure buttons. The former Classic +55/tab-top offsets
+--- raised the entire column above the log.
+local function ColumnTopOffset(chat, contentHeight)
+    local top = chat.GetTop and ColumnScreenNum(chat:GetTop())
+    local bg = chat.Background
+    local bgTop = bg and bg.GetTop and ColumnScreenNum(bg:GetTop())
+    local offset = -1
+    if top and bgTop then
+        offset = bgTop - top - 4
+    end
+    -- Classic's taller native shells and count labels can exceed the log's
+    -- height. Keep the complete stack above the edit-box floor, rather than
+    -- clipping Copy/Options into the action bar or applying a fixed upward nudge.
+    contentHeight = ColumnScreenNum(contentHeight)
+    local bottom = chat.GetBottom and ColumnScreenNum(chat:GetBottom())
+    if top and bottom and contentHeight and contentHeight > 0 then
+        local edit = _G.ChatFrame1EditBox
+        local editHeight = edit and edit.GetHeight and ColumnScreenNum(edit:GetHeight()) or 32
+        offset = math.max(offset, bottom - editHeight + contentHeight - top)
+    end
+    return offset
+end
 
 function FluxCCP.PinClassicButtonFrame(chat)
     if not IsEraOrAnniversaryColumn() then
+        return
+    end
+    if InCombatLockdown() then
+        QueueColumnLayout()
         return
     end
     chat = _G.ChatFrame1
@@ -623,10 +649,11 @@ function FluxCCP.PinClassicButtonFrame(chat)
     -- One point only. A leftover bottom anchor stretches this strip and drags
     -- the chat frame with it.
     bf:ClearAllPoints()
+    local y = ColumnTopOffset(chat, bf.GetHeight and bf:GetHeight())
     if side == "right" then
-        bf:SetPoint("TOPLEFT", chat, "TOPRIGHT", 3, CLASSIC_BUTTON_FRAME_TOP)
+        bf:SetPoint("TOPLEFT", chat, "TOPRIGHT", 3, y)
     else
-        bf:SetPoint("TOPRIGHT", chat, "TOPLEFT", -3, CLASSIC_BUTTON_FRAME_TOP)
+        bf:SetPoint("TOPRIGHT", chat, "TOPLEFT", -3, y)
     end
 end
 
@@ -637,12 +664,6 @@ if type(FCF_SetButtonSide) == "function" and not FluxCCP._classicButtonSideHook 
             FluxCCP.PinClassicButtonFrame(chatFrame)
         end
     end)
-end
-
-local function ClassicColumnUsesTabTop()
-    local forever = (WOW_PROJECT_CAMELOT and WOW_PROJECT_ID == WOW_PROJECT_CAMELOT)
-        or ns._isCamelotGameType == true
-    return WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE and not forever
 end
 
 local function HookColumnLayout(bf)
@@ -660,6 +681,10 @@ end
 
 function FluxCCP.PlaceColumnButtons()
     if columnPlacing then
+        return
+    end
+    if InCombatLockdown() then
+        QueueColumnLayout()
         return
     end
     if IsEraOrAnniversaryColumn() then
@@ -699,6 +724,7 @@ function FluxCCP.PlaceColumnButtons()
             FluxCCP.PinClassicButtonFrame(chat)
             if bf and bf.Layout then
                 bf:Layout()
+                FluxCCP.PinClassicButtonFrame(chat)
             end
             if bf then
                 HookColumnLayout(bf)
@@ -734,7 +760,7 @@ function FluxCCP.PlaceColumnButtons()
     local bgKind = bg.GetObjectType and bg:GetObjectType()
     local bgIsRegion = bgKind == "Texture" or bgKind == "FontString" or bgKind == "MaskTexture" or bgKind == "Line"
     local anchor = bgIsRegion and chat or bg
-    local x, y = 0, -4
+    local x, y = 0, ColumnTopOffset(chat)
     local chatTop = chat.GetTop and ColumnScreenNum(chat:GetTop())
     if bgIsRegion and bg.GetTop and chatTop then
         local bgTop = ColumnScreenNum(bg:GetTop())
@@ -742,17 +768,7 @@ function FluxCCP.PlaceColumnButtons()
         local edge = ColumnScreenNum((side == "right") and bg:GetRight() or bg:GetLeft())
         if bgTop and chatLeft and edge then
             x = edge - chatLeft
-            if ClassicColumnUsesTabTop() then
-                local tab = _G.ChatFrame1Tab
-                local tabTop = tab and tab.GetTop and ColumnScreenNum(tab:GetTop())
-                -- Holder top is chatTop + y. Match the tab top.
-                y = tabTop and (tabTop - chatTop) or 32
-            else
-                y = (bgTop - chatTop) - 4
-            end
         end
-    elseif ClassicColumnUsesTabTop() then
-        y = 32
     end
     holder:ClearAllPoints()
     if side == "right" then
@@ -780,6 +796,26 @@ function FluxCCP.PlaceColumnButtons()
     Stack(copyBtn, -8)
     Stack(_G.ChatFrameMenuButton, 0)
     Stack(gear, 0)
+    local client = (ns.Flux and ns.Flux.Client) or (_G.Flux and _G.Flux.Client)
+    local preDF = client and client.isPreDF
+    if preDF == nil then
+        preDF = FLUX_API and FLUX_API.isPreDF
+    end
+    if preDF and stackFrom ~= holder then
+        local top = holder.GetTop and ColumnScreenNum(holder:GetTop())
+        local bottom = stackFrom.GetBottom and ColumnScreenNum(stackFrom:GetBottom())
+        if top and bottom then
+            local fittedY = ColumnTopOffset(chat, top - bottom)
+            if fittedY > y then
+                holder:ClearAllPoints()
+                if side == "right" then
+                    holder:SetPoint("TOPLEFT", anchor, bgIsRegion and "TOPLEFT" or "TOPRIGHT", x, fittedY)
+                else
+                    holder:SetPoint("TOPRIGHT", anchor, "TOPLEFT", x, fittedY)
+                end
+            end
+        end
+    end
     if chat.buttonFrame then
         HookColumnLayout(chat.buttonFrame)
     end

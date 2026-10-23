@@ -216,25 +216,51 @@ local playerOverlayEvents = {
     "UNIT_HEAL_ABSORB_AMOUNT_CHANGED", "UNIT_MAX_HEALTH_MODIFIERS_CHANGED",
 }
 local savedPlayerOverlayEvents
-local savedPlayerContent
+local savedPlayerVisuals = {}
+local playerVisualKeys = { "PlayerFrameContent", "PlayerFrameContainer" }
+local function KeepIndependentMouseChild(child)
+    return ShouldSkipMuteChild(child)
+        or child == _G.PlayerBottomManagedFrameContainer
+        or child == _G.PlayerFrameBottomManagedFramesContainer
+        or child == _G.TotemFrame
+        or child == _G.PlayerCastingBarFrame
+        or child == _G.CastingBarFrame
+        or child == ns.PlayerFrame
+end
+
 function FluxUnitFrames_SetBlizzardPlayerPredictionMuted(muted)
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(function() FluxUnitFrames_SetBlizzardPlayerPredictionMuted(muted) end,
+            "unitframes.player.prediction")
+        return
+    end
     local frame = _G.PlayerFrame
     if not frame or not frame.IsEventRegistered then return end
+    local blizz = ns.Flux and ns.Flux.Blizz
+    if blizz and blizz.SetMouseSuppressed then
+        blizz.SetMouseSuppressed(frame, muted, KeepIndependentMouseChild)
+    end
     -- Alpha 0 still runs both bars' OnUpdate secret comparisons. The stock
-    -- content container has no show/hide scripts, and native player art never
-    -- shows it explicitly. Hide that ancestor to stop the bars' updates while
+    -- visual containers have no show/hide scripts, and native player art never
+    -- shows them explicitly. Hide those ancestors to stop unused art and bars while
     -- preserving every original script and the root's player/vehicle events.
     -- In particular, do not detach and later reattach native OnUpdate scripts.
-    local content = frame.PlayerFrameContent
-    if content and not workBlocked() then
+    if not workBlocked() then
         if muted then
-            if not savedPlayerContent then
-                savedPlayerContent = { frame = content, shown = content:IsShown() }
+            for _, key in ipairs(playerVisualKeys) do
+                local content = frame[key]
+                if content then
+                    if savedPlayerVisuals[content] == nil then
+                        savedPlayerVisuals[content] = content:IsShown()
+                    end
+                    if content:IsShown() then content:Hide() end
+                end
             end
-            content:Hide()
-        elseif savedPlayerContent then
-            if savedPlayerContent.shown then savedPlayerContent.frame:Show() end
-            savedPlayerContent = nil
+        else
+            for content, shown in pairs(savedPlayerVisuals) do
+                if shown then content:Show() end
+                savedPlayerVisuals[content] = nil
+            end
         end
     end
     if muted then
@@ -367,6 +393,11 @@ end
 function FluxUnitFrames_SuppressBlizzardUnitFrame(unit)
     -- Keep native controls and displays until the replacement finished setup.
     if not UF or not UF.IsInitialized or not UF.IsInitialized(unit) then return end
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(function() FluxUnitFrames_SuppressBlizzardUnitFrame(unit) end,
+            "unitframes.suppress." .. unit)
+        return
+    end
     if workBlocked() then
         UF.DeferProtected("suppress." .. unit, function() FluxUnitFrames_SuppressBlizzardUnitFrame(unit) end)
         return
@@ -453,6 +484,10 @@ end
 --- Refresh Blizzard default unit frames and Flux replacement frames after a Flux vs Blizzard toggle
 --- so visibility, layout, and unit data stay in sync (immediate + next-frame pass).
 function FluxUnitFrames_RefreshBothSidesAfterToggle()
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(FluxUnitFrames_RefreshBothSidesAfterToggle)
+        return
+    end
     refreshBlizzardPlayerSide()
 
     if FluxUnitFrames_RefreshTargetAndTotTogether then
@@ -545,6 +580,10 @@ end
 
 function FluxUnitFrames_ApplyFluxVsBlizzardRuntime()
     if not FluxUnitFrames_ShouldUseFlux then
+        return
+    end
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(FluxUnitFrames_ApplyFluxVsBlizzardRuntime)
         return
     end
     if workBlocked() then

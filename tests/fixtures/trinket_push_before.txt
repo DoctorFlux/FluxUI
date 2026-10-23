@@ -1,0 +1,352 @@
+local keyPushWatch = CreateFrame("Frame")
+keyPushWatch:Hide()
+local presses = {}
+local HOLD_SAFETY_CAP = 1.5
+local TAP_FLASH = 0.2
+local MOUSE_BIND = {
+    BUTTON1 = "LeftButton",
+    BUTTON2 = "RightButton",
+    BUTTON3 = "MiddleButton",
+    BUTTON4 = "Button4",
+    BUTTON5 = "Button5",
+}
+
+local function TrinketBareKey(chord)
+    if type(chord) ~= "string" or chord == "" then
+        return nil
+    end
+    return chord:match("([^-]+)$") or chord
+end
+
+local function ChordIsPhysicallyDown(chord)
+    if type(chord) ~= "string" or chord == "" then
+        return false
+    end
+    local bare = TrinketBareKey(chord)
+    if not bare then
+        return false
+    end
+    local up = string.upper(bare)
+    if up == "MOUSEWHEELUP" or up == "MOUSEWHEELDOWN" then
+        return false
+    end
+    local mouseBtn = MOUSE_BIND[up]
+    if mouseBtn and IsMouseButtonDown then
+        local ok, down = pcall(IsMouseButtonDown, mouseBtn)
+        if not ok or not down then
+            return false
+        end
+    else
+        if not IsKeyDown then
+            return false
+        end
+        local ok, down = pcall(IsKeyDown, bare)
+        if not ok or not down then
+            return false
+        end
+    end
+    local nk = string.upper(chord)
+    local shift = IsShiftKeyDown and IsShiftKeyDown()
+    local ctrl = IsControlKeyDown and IsControlKeyDown()
+    local alt = IsAltKeyDown and IsAltKeyDown()
+    if nk:find("SHIFT%-CTRL%-", 1, false) or nk:find("CTRL%-SHIFT%-", 1, false) then
+        return shift and ctrl
+    end
+    if nk:match("^SHIFT%-") then
+        return shift and not ctrl
+    end
+    if nk:match("^CTRL%-") then
+        return ctrl and not shift
+    end
+    if nk:match("^ALT%-") then
+        return alt and true or false
+    end
+    return not shift and not ctrl and not alt
+end
+
+local function BindingIsDown(bindIndex)
+    if not GetBindingKey then
+        return false
+    end
+    local keys = { GetBindingKey("FLUXTRINKET" .. bindIndex) }
+    for i = 1, #keys do
+        if ChordIsPhysicallyDown(keys[i]) then
+            return true
+        end
+    end
+    return false
+end
+
+function TM.WidgetForTrinketBind(bindIndex)
+    local state = TM.VisibilityState or (TM.GetTrinketVisibilityState and TM.GetTrinketVisibilityState())
+    local w0 = TM.SlotWidget and TM.SlotWidget(0)
+    local w1 = TM.SlotWidget and TM.SlotWidget(1)
+    if state == "none" or state == "bag_only" then
+        return nil
+    end
+    if state == "one_equipped" then
+        local equipped = TM.GetEquippedTrinketSlots and TM.GetEquippedTrinketSlots()
+        if equipped and equipped[1] == 13 then
+            return w0
+        end
+        return w1
+    end
+    if bindIndex == 1 then
+        return w0
+    end
+    return w1
+end
+
+local function WidgetBindHeld(widget)
+    for i = 1, 2 do
+        if BindingIsDown(i) and TM.WidgetForTrinketBind(i) == widget then
+            return true
+        end
+    end
+    return false
+end
+
+local function MouseLeftHeld()
+    if not IsMouseButtonDown then
+        return false
+    end
+    local ok, down = pcall(IsMouseButtonDown, "LeftButton")
+    return ok and down and true or false
+end
+
+local function EnsurePushShade(widget)
+    local shade = widget._fluxTrinketPushShade
+    if shade then
+        return shade
+    end
+    shade = widget:CreateTexture(nil, "OVERLAY", nil, 7)
+    shade:SetAllPoints(widget)
+    shade:SetColorTexture(0, 0, 0, 0.45)
+    shade:Hide()
+    widget._fluxTrinketPushShade = shade
+    return shade
+end
+
+local function RestoreTrinketPushIcon(widget)
+    local btn = widget.FluxButton
+    local icon = (btn and btn.WIcon) or widget.icon or widget.Icon
+    if widget._fluxTrinketPushDimmed and icon and icon.SetVertexColor and widget._fluxTrinketPushIconColor then
+        local c = widget._fluxTrinketPushIconColor
+        icon:SetVertexColor(c[1], c[2], c[3])
+        widget._fluxTrinketPushDimmed = nil
+        widget._fluxTrinketPushIconColor = nil
+    end
+end
+
+local function ClearTrinketPush(widget)
+    if not widget then
+        return
+    end
+    presses[widget] = nil
+    widget._fluxTrinketMouseDown = nil
+    if widget.SetButtonState then
+        pcall(widget.SetButtonState, widget, "NORMAL", false)
+    end
+    if widget.UnlockHighlight then
+        pcall(widget.UnlockHighlight, widget)
+    end
+    local pt = widget.PushedTexture or (widget.GetPushedTexture and widget:GetPushedTexture())
+    if pt and pt.Hide then
+        pcall(pt.Hide, pt)
+    end
+    RestoreTrinketPushIcon(widget)
+    local shade = widget._fluxTrinketPushShade
+    if shade then
+        shade:Hide()
+    end
+end
+
+local function ApplyTrinketPushVisual(widget)
+    if not widget then
+        return
+    end
+    -- Do not lock PUSHED: a missed key-up would stick the atlas forever.
+    if widget.SetButtonState then
+        pcall(widget.SetButtonState, widget, "PUSHED", false)
+    end
+    local pt = widget.PushedTexture or (widget.GetPushedTexture and widget:GetPushedTexture())
+    if pt and pt.Show then
+        pcall(pt.Show, pt)
+    end
+    local btn = widget.FluxButton
+    local icon = (btn and btn.WIcon) or widget.icon or widget.Icon
+    if icon and icon.SetVertexColor and not widget._fluxTrinketPushDimmed then
+        local r, g, b = icon:GetVertexColor()
+        widget._fluxTrinketPushIconColor = { r, g, b }
+        widget._fluxTrinketPushDimmed = true
+        icon:SetVertexColor(r * 0.62, g * 0.62, b * 0.62)
+    end
+    EnsurePushShade(widget):Show()
+end
+
+local function NoteTrinketPushed(widget, reason)
+    if not widget then
+        return
+    end
+    local rec = presses[widget]
+    if rec and rec.capped then
+        return
+    end
+    if not rec then
+        rec = { t0 = (GetTime and GetTime()) or 0 }
+        presses[widget] = rec
+    end
+    if reason == "mouse" then
+        rec.mouse = true
+        widget._fluxTrinketMouseDown = true
+    else
+        -- KeyBind / wheel ticks have no OnMouseDown. Keep the same shade as a
+        -- click for at least TAP_FLASH so a missed IsKeyDown does not wipe it.
+        rec.untilClear = math.max(rec.untilClear or 0, ((GetTime and GetTime()) or 0) + TAP_FLASH)
+    end
+    ApplyTrinketPushVisual(widget)
+end
+
+local function EnsureHandler(widget, handler)
+    if widget.GetScript and not widget:GetScript(handler) then
+        widget:SetScript(handler, function() end)
+    end
+end
+
+local function FlushTrinketPushes()
+    local leftover = {}
+    for widget in pairs(presses) do
+        leftover[#leftover + 1] = widget
+    end
+    for i = 1, #leftover do
+        ClearTrinketPush(leftover[i])
+    end
+    wipe(presses)
+end
+
+function TM.SyncKeybindPushWatch()
+    if TM.Frame and TM.Frame.IsShown and TM.Frame:IsShown() then
+        keyPushWatch:Show()
+        return
+    end
+    keyPushWatch:Hide()
+    FlushTrinketPushes()
+end
+
+local function ReleaseMousePresses()
+    local now = (GetTime and GetTime()) or 0
+    local toClear = {}
+    for widget, rec in pairs(presses) do
+        rec.mouse = nil
+        if widget then
+            widget._fluxTrinketMouseDown = nil
+        end
+        if rec and not WidgetBindHeld(widget) then
+            rec.t0 = math.min(rec.t0 or now, now - TAP_FLASH)
+            toClear[#toClear + 1] = widget
+        end
+    end
+    for i = 1, #toClear do
+        ClearTrinketPush(toClear[i])
+    end
+end
+
+keyPushWatch:RegisterEvent("GLOBAL_MOUSE_UP")
+keyPushWatch:RegisterEvent("MODIFIER_STATE_CHANGED")
+keyPushWatch:SetScript("OnEvent", function(_, event)
+    if event == "GLOBAL_MOUSE_UP" then
+        if C_Timer and C_Timer.After then
+            C_Timer.After(0, ReleaseMousePresses)
+        else
+            ReleaseMousePresses()
+        end
+        return
+    end
+    -- Modifier flip: OnUpdate re-evaluates chords next frame.
+end)
+
+keyPushWatch:SetScript("OnUpdate", function()
+    local now = (GetTime and GetTime()) or 0
+    local keyHeld = {}
+    for i = 1, 2 do
+        if BindingIsDown(i) then
+            local widget = TM.WidgetForTrinketBind(i)
+            if widget then
+                keyHeld[widget] = true
+                NoteTrinketPushed(widget, "key")
+            end
+        end
+    end
+    local toClear = {}
+    for widget, rec in pairs(presses) do
+        local age = now - (rec.t0 or now)
+        if rec.capped then
+            if not keyHeld[widget] then
+                rec.capped = nil
+                toClear[#toClear + 1] = widget
+            end
+        elseif age >= HOLD_SAFETY_CAP then
+            rec.capped = true
+            toClear[#toClear + 1] = widget
+        elseif keyHeld[widget] then
+            ApplyTrinketPushVisual(widget)
+        elseif rec.mouse and MouseLeftHeld() then
+            ApplyTrinketPushVisual(widget)
+        elseif rec.mouse then
+            -- Mouse-up lands before OnClick. Clearing PUSHED in this
+            -- handler would cancel /use; wait a tick.
+            rec.mouse = nil
+            rec.untilClear = now + TAP_FLASH
+            if widget then
+                widget._fluxTrinketMouseDown = nil
+            end
+        elseif rec.untilClear and now < rec.untilClear then
+            ApplyTrinketPushVisual(widget)
+        elseif age < TAP_FLASH then
+            ApplyTrinketPushVisual(widget)
+        else
+            toClear[#toClear + 1] = widget
+        end
+    end
+    for i = 1, #toClear do
+        local widget = toClear[i]
+        local rec = presses[widget]
+        local capped = rec and rec.capped
+        ClearTrinketPush(widget)
+        if capped then
+            presses[widget] = { t0 = now, capped = true }
+        end
+    end
+end)
+
+function TM.HookTrinketClickScripts(widget)
+    if not widget or widget._fluxTrinketClicksHooked then
+        return
+    end
+    widget._fluxTrinketClicksHooked = true
+
+    EnsureHandler(widget, "OnMouseDown")
+    widget:HookScript("OnMouseDown", function(self, button)
+        if button == "RightButton" then
+            TM.BuildMenu(self)
+            return
+        end
+        NoteTrinketPushed(self, "mouse")
+    end)
+
+    -- Keybinds (including ALT-MOUSEWHEEL) never fire OnMouseDown. Paint the
+    -- same push shade on the click the override actually delivers.
+    EnsureHandler(widget, "OnClick")
+    widget:HookScript("OnClick", function(self, button, down)
+        if button == "RightButton" or not down then
+            return
+        end
+        NoteTrinketPushed(self, "click")
+    end)
+
+    widget:HookScript("PostClick", function(self)
+        if self.SetChecked then
+            self:SetChecked(false)
+        end
+    end)
+end

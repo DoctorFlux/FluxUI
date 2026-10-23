@@ -200,6 +200,11 @@ UF.RegisterInitializer("player", InitializePlayerFrame, function() return player
 -- Live Flux vs Blizzard (no reload): options / profile refresh
 -- ---------------------------------------------------------------------------
 function FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
+    if FluxEditModeBusy and FluxEditModeBusy() then
+        FluxAfterEditMode(function() FluxUnitFrames_ApplyRuntimePlayer(wantFlux) end,
+            "unitframes.runtime.player")
+        return
+    end
     if InCombatLockdown() then
         UF.DeferProtected("runtime.player", function()
             FluxUnitFrames_ApplyRuntimePlayer(wantFlux)
