@@ -98,7 +98,8 @@ local function ResolvePossessPage()
 	end
 	page = tonumber(page)
 	if not page or page < 1 then
-		return 1
+		-- Match RESOLVE_PAGE when a possess/shapeshift token has no index API.
+		return 11
 	end
 	return page
 end

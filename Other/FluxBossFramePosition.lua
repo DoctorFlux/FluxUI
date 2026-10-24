@@ -92,7 +92,13 @@ local function Apply()
 
     if isContainer then
         boss.ignoreFramePositionManager = true
-        boss.ignoreInLayout = true
+        -- LayoutFrame reads ignoreInLayout even on hidden children. Writing it
+        -- while still parented to RightManagedFrameContainer taints its next
+        -- protected SetSize (stance / possession / override transitions).
+        -- Flux owns this position, so leave the native layout physically.
+        if boss:GetParent() ~= UIParent then
+            boss:SetParent(UIParent)
+        end
     end
 
     local x, y = UnderAuraOffsets(debuff)
@@ -138,5 +144,6 @@ end)
 
 if EventRegistry and EventRegistry.RegisterCallback then
     EventRegistry:RegisterCallback("EditMode.Exit", ApplyNext)
+    EventRegistry:RegisterCallback("UI.TopLevelParentShown", ApplyNext)
 end
 

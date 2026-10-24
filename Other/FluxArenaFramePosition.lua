@@ -95,7 +95,12 @@ local function Apply()
 
     if isEditSystem or arena.SetPointBase or arena.system then
         arena.ignoreFramePositionManager = true
-        arena.ignoreInLayout = true
+        -- Keep Flux-positioned frames out of Blizzard's layout children.
+        -- An addon ignoreInLayout value is read even while hidden and taints
+        -- RightManagedFrameContainer:SetSize during possession transitions.
+        if arena:GetParent() ~= UIParent then
+            arena:SetParent(UIParent)
+        end
     end
 
     local x, y = UnderAuraOffsets(debuff)
@@ -147,6 +152,7 @@ end)
 
 if EventRegistry and EventRegistry.RegisterCallback then
     EventRegistry:RegisterCallback("EditMode.Exit", ApplyNext)
+    EventRegistry:RegisterCallback("UI.TopLevelParentShown", ApplyNext)
 end
 
 

@@ -17,7 +17,7 @@ local function source(path)
     return value
 end
 
-local function fixture(mutation, insecure, context)
+local function fixture(mutation, insecure, context, namespaced)
     local f = { now = 1, page = 1, form = 0, combat = false, timers = {}, events = {},
         tokens = {}, counts = {}, notifications = {}, layout = 0, applies = 0, swept = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
@@ -76,6 +76,18 @@ local function fixture(mutation, insecure, context)
     env.GetVehicleBarIndex = function() return 12 end
     env.HasOverrideActionBar = function() return f.override end
     env.GetOverrideBarIndex = function() return 14 end
+    env.HasTempShapeshiftActionBar = function() return f.temp end
+    env.GetTempShapeshiftBarIndex = function() return 13 end
+    env.HasBonusActionBar = function() return f.bonus end
+    env.GetBonusBarIndex = function() return f.bonusPage or 11 end
+    env.IsPossessBarVisible = function() return f.possess end
+    if namespaced then
+        env.C_ActionBar = {}
+        for _, name in ipairs({ "HasVehicleActionBar", "GetVehicleBarIndex", "HasOverrideActionBar", "GetOverrideBarIndex",
+            "HasTempShapeshiftActionBar", "GetTempShapeshiftBarIndex", "HasBonusActionBar", "GetBonusBarIndex", "IsPossessBarVisible" }) do
+            env.C_ActionBar[name], env[name] = env[name], nil
+        end
+    end
     env.ActionBarButtonEventsFrame = { UnregisterEvent = function() f.collectorHeld = true end }
     env.ActionBarActionEventsFrame = { UnregisterAllEvents = function() f.collectorHeld = true end }
     B.ForEachHost = function(callback)
@@ -304,6 +316,55 @@ local function vehicleRefresh(mutation)
     check(not f.collectorHeld, "Forever preserves the native controller's collector updates")
 end
 
+local function controlTransitions(namespaced)
+    local f = fixture(nil, false, nil, namespaced)
+    local B = f.B
+    B.Vehicle.Start(); f.advance(0); f.flush()
+    local applies = f.applies
+    f.combat = true
+    for _, transition in ipairs({
+        { "possess", 11 }, { "bonus", 11 }, { "temp", 13 },
+        { "override", 14 }, { "vehicle", 12 }, { "bonus", 11 }, { "normal", 1 },
+    }) do
+        f.vehicle, f.override, f.bonus, f.temp, f.possess = false, false, false, false, false
+        f[transition[1]], f.page = true, transition[2]
+        f.revision = transition[2]
+        local leftovers = f.leftovers
+        f.emit("UPDATE_POSSESS_BAR"); f.emit("UPDATE_POSSESS_BAR")
+        check(f.leftovers == leftovers, "possession event never performs native layout inline")
+        f.advance(0); f.flush()
+        check(f.leftovers == leftovers + 1, "all temporary control entries/exits refresh once, including possession-only changes")
+        check(f.applies == applies, "temporary control changes never force insecure combat paging")
+        for column = 1, 12 do
+            local host = B.hosts[column].main
+            check(host.slot == (f.page - 1) * 12 + column and host.values.Icon == host.slot * 1000 + f.revision,
+                "possession/bonus/temporary/override/vehicle entry and exit refresh the live action")
+        end
+    end
+    f.combat = false; f.emit("PLAYER_REGEN_ENABLED"); f.advance(0); f.flush()
+    check(f.applies == applies + 1, "temporary control combat work drains once on regen")
+    local leftovers = f.leftovers
+    f.emit("UPDATE_POSSESS_BAR"); f.advance(0)
+    check(f.leftovers == leftovers, "unchanged possession notification remains idle after recovery")
+    local syncedPage = B.State.GetCurrentPage
+    B.State.GetCurrentPage = function() return 1 end
+    f.possess, f.page = true, 11
+    f.emit("UPDATE_POSSESS_BAR"); f.advance(0)
+    check(f.applies == applies + 2, "out-of-combat possession-only entry repairs a stale ordinary page")
+    B.State.GetCurrentPage = function() return 11 end
+    f.possess, f.page = false, 1
+    f.emit("UPDATE_POSSESS_BAR"); f.advance(0)
+    check(f.applies == applies + 3, "out-of-combat possession exit repairs a stale control page")
+    B.State.GetCurrentPage = syncedPage
+    f.load("Bars/SlotMath.lua"); f.load("Bars/State.lua")
+    for _, native in ipairs({ "possess", "shapeshift", "dragon" }) do
+        B.State.headers = { main = { GetAttribute = function(_, name)
+            if name == "state-native" then return native end
+        end } }
+        check(B.State.GetCurrentPage() == 11, "temporary token without a usable index matches the secure resolver fallback")
+    end
+end
+
 local function upvalue(fn, wanted, seen)
     seen = seen or {}
     if type(fn) ~= "function" or seen[fn] then return end
@@ -452,6 +513,8 @@ iconEvents()
 emptyMainHotkey()
 fallbackExtraFaces()
 vehicleRefresh()
+controlTransitions(false)
+controlTransitions(true)
 for _, client in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
     promotedPages(nil, false, client)
 end

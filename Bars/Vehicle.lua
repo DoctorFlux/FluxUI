@@ -26,6 +26,17 @@ local pendingCombatApply = false
 local pendingForceRestamp = false
 local lastApplySig = nil
 
+local CAB = C_ActionBar or {}
+local HasVehicleActionBar = CAB.HasVehicleActionBar or _G.HasVehicleActionBar
+local HasOverrideActionBar = CAB.HasOverrideActionBar or _G.HasOverrideActionBar
+local HasTempShapeshiftActionBar = CAB.HasTempShapeshiftActionBar or _G.HasTempShapeshiftActionBar
+local HasBonusActionBar = CAB.HasBonusActionBar or _G.HasBonusActionBar
+local IsPossessBarVisible = CAB.IsPossessBarVisible or _G.IsPossessBarVisible
+local GetVehicleBarIndex = CAB.GetVehicleBarIndex or _G.GetVehicleBarIndex
+local GetOverrideBarIndex = CAB.GetOverrideBarIndex or _G.GetOverrideBarIndex
+local GetTempShapeshiftBarIndex = CAB.GetTempShapeshiftBarIndex or _G.GetTempShapeshiftBarIndex
+local GetBonusBarIndex = CAB.GetBonusBarIndex or _G.GetBonusBarIndex
+
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
 end
@@ -49,44 +60,35 @@ local function Num(fn)
 	return tonumber(v) or 0
 end
 
+-- Same precedence as the secure page resolver, including bonus-page possession
+-- (Mind Control / Chess on Forever) and temporary shapeshifts.
+local function ControlPage()
+	if Bit(HasVehicleActionBar) == 1 then return Num(GetVehicleBarIndex) end
+	if Bit(HasOverrideActionBar) == 1 then return Num(GetOverrideBarIndex) end
+	if Bit(HasTempShapeshiftActionBar) == 1 then return Num(GetTempShapeshiftBarIndex) end
+	if Bit(HasBonusActionBar) == 1 then return Num(GetBonusBarIndex) end
+	if Bit(IsPossessBarVisible) == 1 then return 11 end
+	return 0
+end
+
 local function DriverAlreadyPaged()
 	local State = Bars.State
 	if not (State and State.GetCurrentPage) then
 		return false
 	end
 	local page = State.GetCurrentPage()
-	local hasVeh = Bit(HasVehicleActionBar)
-	local hasOv = Bit(HasOverrideActionBar)
-	if hasVeh == 1 then
-		return page == Num(GetVehicleBarIndex)
-	end
-	if hasOv == 1 then
-		return page == Num(GetOverrideBarIndex)
-	end
-	local v = Num(GetVehicleBarIndex)
-	local o = Num(GetOverrideBarIndex)
-	if v > 0 and page == v then
-		return false
-	end
-	if o > 0 and page == o then
-		return false
-	end
-	return true
+	local active = ControlPage()
+	if active > 0 then return page == active end
+	return page < 11
 end
 
---- Same shape as State.ResolvePossessPage's vehicle/override half. VEHICLE_UPDATE
---- and repeat UPDATE_*_ACTIONBAR fires inside the same vehicle match the last
---- applied snapshot and skip the full restamp.
+--- Possession can change without either vehicle/override bit changing. Keep it
+--- in the snapshot so UPDATE_POSSESS_BAR refreshes both entry and exit; repeat
+--- notifications within an unchanged state still skip the full restamp.
 local function VehicleSig()
-	local hasVeh = Bit(HasVehicleActionBar)
-	local hasOv = Bit(HasOverrideActionBar)
-	local page = 0
-	if hasVeh == 1 then
-		page = Num(GetVehicleBarIndex)
-	elseif hasOv == 1 then
-		page = Num(GetOverrideBarIndex)
-	end
-	return hasVeh .. hasOv .. tostring(page)
+	return Bit(HasVehicleActionBar) .. Bit(HasOverrideActionBar)
+		.. Bit(HasTempShapeshiftActionBar) .. Bit(HasBonusActionBar)
+		.. Bit(IsPossessBarVisible) .. ":" .. ControlPage()
 end
 
 local function HoldCollectorEvents()
