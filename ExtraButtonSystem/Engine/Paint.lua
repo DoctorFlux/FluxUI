@@ -3709,8 +3709,10 @@ function Paint.FlushCounts(ctx)
 	if not doBags and not doEquip then
 		return false
 	end
-	-- Items whose totals moved on this pulse (nil = unknown, refresh all).
-	local changedIDs = doBags and ctx and ctx.changedItemIDs
+	-- Readiness can change ownership/usability without any count delta. Repaint
+	-- that recovery pulse even in combat; this path never writes secure actions.
+	local recovery = ctx and ctx.recovery
+	local changedIDs = not recovery and doBags and ctx and ctx.changedItemIDs
 	local any = false
 	local function CountOne(btn)
 		if not btn or not btn.ActionType then
@@ -3728,7 +3730,7 @@ function Paint.FlushCounts(ctx)
 			if not (id and not changedIDs[id] and usesCharges ~= true) then
 				local changed = Paint.UpdateCount(btn)
 				-- 0-count gems must re-tint even when the digit did not change.
-				if changed or ConsumableKindButton(btn) then
+				if changed or ConsumableKindButton(btn) or recovery then
 					Paint.UpdateUsable(btn)
 					any = true
 				end

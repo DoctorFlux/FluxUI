@@ -136,7 +136,8 @@ local function BuildInfoRecord(itemID)
             name, link, quality, itemLevel, minLevel, itemType, itemSubType,
                 stackCount, equipLoc, icon, sellPrice, classID, subClassID, bindType = C_Item.GetItemInfo(itemID)
         end
-    elseif GetItemInfo then
+    end
+    if not name and GetItemInfo then
         name, link, quality, itemLevel, minLevel, itemType, itemSubType,
             stackCount, equipLoc, icon, sellPrice, classID, subClassID, bindType = GetItemInfo(itemID)
     end
@@ -167,6 +168,9 @@ function IC.RequestLoad(itemID)
     if C_Item and C_Item.RequestLoadItemDataByID then
         pcall(C_Item.RequestLoadItemDataByID, itemID)
     end
+    -- Classic can expose a modern loader before it has useful item metadata.
+    -- The legacy query also requests the server record and emits its own event.
+    if GetItemInfo then pcall(GetItemInfo, itemID) end
 end
 
 --- Full item info record, or nil when the item is not loaded yet (a load is
@@ -290,11 +294,11 @@ local function EnsureScanTooltip()
     return scanTip
 end
 
-local function CollectTooltipTextFromCTooltipInfo(itemLink)
-    if not (C_TooltipInfo and C_TooltipInfo.GetHyperlink and itemLink) then
+local function CollectTooltipTextFromCTooltipInfo(getData, ...)
+    if type(getData) ~= "function" then
         return nil
     end
-    local ok, data = pcall(C_TooltipInfo.GetHyperlink, itemLink)
+    local ok, data = pcall(getData, ...)
     if not ok or not data or not data.lines then
         return nil
     end
@@ -317,11 +321,16 @@ local function CollectTooltipTextFromCTooltipInfo(itemLink)
     return table.concat(parts, "\n")
 end
 
-local function CollectTooltipTextFromGameTooltip(itemLink)
+local function CollectTooltipTextFromGameTooltip(itemLink, bag, slot)
     local tip = EnsureScanTooltip()
+    tip:SetOwner(UIParent, "ANCHOR_NONE")
     tip:ClearLines()
     local ok = pcall(function()
-        tip:SetHyperlink(itemLink)
+        if bag ~= nil and slot ~= nil and tip.SetBagItem then
+            tip:SetBagItem(bag, slot)
+        else
+            tip:SetHyperlink(itemLink)
+        end
     end)
     if not ok then
         return nil
@@ -342,10 +351,26 @@ end
 
 --- Lowercase multi-line tooltip text for an item, or nil if unavailable.
 function IC.GetTooltipText(itemID, itemLink)
+    -- Query the owned location as well as its hyperlink. Classic item IDs can
+    -- already be counted while hyperlink tooltips are still empty after login.
+    local Flux = _G.Flux
+    local Inv = Flux and Flux.Inventory
+    local location = Inv and Inv.GetFirst and Inv.GetFirst(itemID, {
+        bags = true, bank = false, warband = false, equipped = false,
+    })
+    local text
+    if location then
+        text = CollectTooltipTextFromCTooltipInfo(C_TooltipInfo and C_TooltipInfo.GetBagItem, location.bag, location.slot)
+        if text then return text end
+    end
     itemLink = itemLink or IC.GetLink(itemID)
     if not itemLink then return nil end
-    local text = CollectTooltipTextFromCTooltipInfo(itemLink)
+    text = CollectTooltipTextFromCTooltipInfo(C_TooltipInfo and C_TooltipInfo.GetHyperlink, itemLink)
     if text then return text end
+    if location then
+        text = CollectTooltipTextFromGameTooltip(nil, location.bag, location.slot)
+        if text then return text end
+    end
     return CollectTooltipTextFromGameTooltip(itemLink)
 end
 

@@ -57,7 +57,8 @@ local function boot(family, legacy)
     end, RegisterUnit = function(event, _, fn)
         s.events[event] = s.events[event] or {}; table.insert(s.events[event], fn); return true
     end }
-    Flux.Scheduler = { Request = function(_, token) s.tokens[token] = true end }
+    Flux.Scheduler = { Request = function(_, token) s.tokens[token] = true end,
+        Register = function(_, fn) s.inventoryFlush = fn end }
     function s:event(event, ...)
         for _, fn in ipairs(self.events[event] or {}) do fn(event, ...) end
         for _, f in ipairs(self.frames) do if f.events[event] and f.scripts.OnEvent then f.scripts.OnEvent(f, event, ...) end end
@@ -68,8 +69,11 @@ local function boot(family, legacy)
             iterations = iterations + 1; assert(iterations < 1000, "unbounded refresh loop")
             if next(self.tokens) then
                 local tokens = self.tokens; self.tokens = {}
-                if Flux.Inventory.source == "builtin" then Flux.Inventory.Builtin.Flush(tokens) end
-                Flux.Inventory.Notify(tokens)
+                if self.inventoryFlush then self.inventoryFlush(tokens)
+                else
+                    if Flux.Inventory.source == "builtin" then Flux.Inventory.Builtin.Flush(tokens) end
+                    Flux.Inventory.Notify(tokens)
+                end
             end
             local first, at
             for i, t in ipairs(self.timers) do if t.at <= target and (not at or t.at < at) then first, at = i, t.at end end
@@ -137,7 +141,7 @@ local function boot(family, legacy)
     local gridSource = read("ExtraButtonSystem/CombatGrid/Grid.lua")
     local first = assert(gridSource:find("function btn:SetCount(count, opts)", 1, true))
     local last = assert(gridSource:find("function btn:ShowTooltip()", first, true))
-    function s:button(kind, craft, modulePath)
+    function s:button(kind, craft, modulePath, coalesce)
         local text = { value = "", Show = function() end, IsShown = function() return true end,
             SetText = function(self, value) self.value = tostring(value) end, GetText = function(self) return self.value end, SetAlpha = function() end }
         local icon = { SetVertexColor = function(self, r, g, b) self.color = { r, g, b } end,
@@ -165,6 +169,7 @@ local function boot(family, legacy)
         else
             env.FluxEBSButtonRefresh.Attach({ module = module, btn = btn, kind = kind, kindFlag = kinds[kind],
                 charges = kind == "managem" or kind == "healthstone", listenerKey = "smoke." .. kind,
+                combatGridCoalesce = coalesce,
                 placeholderIcon = "placeholder", placeholderLabel = kind, reapplyCraftOnBag = craft,
                 applyRightClick = function()
                     s.rightClicks = (s.rightClicks or 0) + 1
@@ -437,5 +442,101 @@ do
     s:set(0, 2, 2287, 1); s:bags(0)
     s.inv.Notify({ bank = true, tier = "light" }); s:advance(0.4)
     assert(queries > 0, "bank pulse was lost while merging bag-only scan")
+end
+-- Releasing a load hold must refresh selection even if counts stayed the same
+-- and the last slot delta is empty. Recovery merged with normal counts survives.
+for family in pairs(families) do
+    local s = boot(family, false)
+    s:set(0, 1, 117, 5); s:bags(); s:bags()
+    local btn = s:button("food"); s:advance(1)
+    s.best._runtime.food = nil; s.best._ladders.food = nil
+    s.best._dirty = false
+    local scans = s.scans
+    s.inv.Notify({ bags = true, recovery = true })
+    s.inv.Notify({ bags = true })
+    s:advance(0.5)
+    eq(s.scans > scans, true, "recovery bypasses count-only scan suppression")
+    eq(s.best._runtime.food and s.best._runtime.food.itemID, 117, "recovery restores owned selection")
+    s:expect(btn, 117, 5, family .. " count-only recovery repopulates grid")
+end
+-- A cold usability result can gray an already latched button. Recovery must
+-- repaint without relying on a new Best identity or a manual UpdateUsable.
+for _, coalesce in ipairs({ false, true }) do
+    local s = boot("forever", false)
+    local M = s.load("ExtraButtonSystem/CombatGrid/GridManager.lua")
+    M._startupReady = true
+    s:set(0, 1, 117, 5); s:bags()
+    local cold = true
+    s.env.C_Item.GetItemSpell = function() return "Food Use", 12345 end
+    s.env.Flux.Spell = { IsUsable = function() return not cold, false end }
+    local btn, module = s:button("food", false, nil, coalesce)
+    -- The manager names are fixed; use its first module slot for this fixture.
+    s.env.FluxCombatBandage = module
+    s:advance(3)
+    eq(btn.WIcon.color[1], 0.4, "cold use-spell result grays owned button")
+    s.inv.Unregister("FluxConsumableBest")
+    local generation = s.best._generation
+    M._lastBestGeneration = generation
+    module._pendingUpdate = false
+    cold = false
+    s.inv.Notify({ bags = true, recovery = true })
+    s:advance(0.3)
+    eq(s.best._generation, generation, "test keeps Best identity/generation unchanged")
+    eq(btn.WIcon.color[1], 1, "recovery automatically restores live tint")
+    eq(btn.ItemId, 117, "recovery keeps real owned item")
+    eq(btn.PlaceholderTexture, nil, "recovery clears missing-item face")
+    -- Tint repair is visual-only and must also work while secure rebinding is
+    -- locked. An empty slot delta does not describe a readiness change.
+    cold = true; s.paint.UpdateUsable(btn)
+    cold = false; s.combat = true
+    s.paint.FlushCounts({ regions = { bags = true }, changedItemIDs = {}, recovery = true })
+    eq(btn.WIcon.color[1], 1, "combat recovery repaints despite empty count delta")
+    s.combat = false
+    -- Real startup verification must publish recovery after the first ready
+    -- snapshot too: usability APIs can become ready later than bag counts.
+    cold = true; s.paint.UpdateUsable(btn)
+    s.inv.Start(); s:advance(1.7)
+    eq(btn.WIcon.color[1], 0.4, "late usability still cold after initial inventory settle")
+    cold = false; s:advance(1.3)
+    eq(btn.WIcon.color[1], 1, "startup verification automatically repairs late usability")
+    if coalesce then
+        module._pendingUpdate = true
+        local batches = M._coalescedUpdateCount
+        M:ScheduleAllUpdates(false); s:advance(0.1)
+        eq(M._coalescedUpdateCount, batches + 1, "pending grid update bypasses unchanged-generation shortcut")
+        s.combat = true
+        local writes = s.writes
+        M:ScheduleAllUpdates(true); s:advance(0.1)
+        eq(s.writes, writes, "queued grid recovery cannot write secure actions in combat")
+        eq(M._moduleUpdateOnRegen, true, "grid recovery survives combat race")
+        s.combat = false; s:event("PLAYER_REGEN_ENABLED"); s:advance(0.1)
+        eq(s.writes > writes, true, "grid recovery finishes after combat")
+    end
+end
+-- Classic bank capacities remain cached when closed. Late item classification
+-- must drain with no new loot/bag event, including all the missing grid kinds.
+do
+    local s = boot("era", true)
+    s.bagSizes[-1] = 24
+    local ready = false
+    local classify = s.env.FluxConsumableClassify.Classify
+    s.env.FluxConsumableClassify.Classify = function(id)
+        if ready or id == 1251 then return classify(id) end
+    end
+    s.env.FluxConsumableClassify.IsPending = function(id) return not ready and id ~= 1251 end
+    local buttons = {}
+    local wanted = { { "food", 117 }, { "water", 159 }, { "healPotion", 118 }, { "manaPotion", 2455 }, { "bandage", 1251 } }
+    for slot, entry in ipairs(wanted) do s:set(0, slot, entry[2], 5) end
+    s:bags(0.4)
+    for _, entry in ipairs(wanted) do buttons[entry[1]] = s:button(entry[1]) end
+    s:advance(1)
+    eq(buttons.bandage.ItemId, 1251, "bandage remains detectable while other tooltip data is cold")
+    ready = true
+    for _, entry in ipairs(wanted) do s.best.Scan.OnItemDataLoaded(entry[2], true) end
+    s:advance(1)
+    for _, entry in ipairs(wanted) do
+        eq(buttons[entry[1]].ItemId, entry[2], "late " .. entry[1] .. " data drains with closed bank capacity")
+    end
+    eq(s.inv.IsBankOpen(), false, "late classification never treats bank size as open")
 end
 print("Consumable smoke passed: " .. checks .. " checks")

@@ -12,7 +12,7 @@ local families = {
     era = { "1.15.9", 2, 11509 }, anniversary = { "2.5.6", 5, 20506 },
     wrath = { "3.4.3", 11, 30403 }, cata = { "4.4.2", 14, 40402 }, mists = { "5.5.4", 19, 50504 },
 }
-local function boot(family, syndicator)
+local function boot(family, syndicator, cold)
     local s = { now = 10, timers = {}, frames = {}, events = {}, inbox = {}, slots = { [0] = {}, [1] = {} },
         calls = 0, loads = 0, reads = 0, headers = 0, inboxReads = 0, auctionReads = 0, writes = 0,
         size = 16, auctions = {}, syn = syndicator, callbacks = {}, legacy = family ~= "retail" and family ~= "forever" }
@@ -64,7 +64,10 @@ local function boot(family, syndicator)
     env.GetBuildInfo = function() return families[family][1], "70000", "", families[family][3] end
     env.C_Item = { IsItemDataCachedByID = function() return false end,
         RequestLoadItemDataByID = function() s.loads = s.loads + 1 end }
-    local function slots(bag) return (bag == 0 or bag == 1) and s.size or 0 end
+    local function slots(bag)
+        if bag == -1 and s.closedBankSlots then return s.closedBankSlots end
+        return (bag == 0 or bag == 1) and s.size or 0
+    end
     local function info(bag, slot)
         s.reads = s.reads + 1; local r = s.slots[bag] and s.slots[bag][slot]
         if r then return { itemID = r.itemID, stackCount = r.itemCount, hyperlink = "item:" .. r.itemID } end
@@ -130,7 +133,7 @@ local function boot(family, syndicator)
         Flux.Optional = { Get = function() return { loaded = true } end }
         loadFile("Inventory/Syndicator/Adapter.lua")
     end
-    Inv.Start(); s:advance(9)
+    Inv.Start(); if not cold then s:advance(9) end
     function s:bag(id, count, slot, bag)
         bag, slot = bag or 0, slot or 1
         self.slots[bag][slot] = count > 0 and { itemID = id, itemCount = count } or nil
@@ -138,6 +141,75 @@ local function boot(family, syndicator)
         else self:event("BAG_UPDATE", bag); self:event("BAG_UPDATE_DELAYED") end
     end
     return s
+end
+
+-- Deferred enable can miss PEW and the final bag event entirely. Recovery
+-- must reacquire facts rather than merely release an empty cached snapshot.
+for family in pairs(families) do
+    for _, syn in ipairs({ false, true }) do
+        local s = boot(family, syn, true)
+        s.slots[0][1] = { itemID = 5656, itemCount = 1 }
+        s:advance(1.5)
+        eq(s.inv.GetCount(5656), 1, family .. " deferred login captures bags without events")
+        eq(s.inv.IsReliable(), true, "login becomes reliable without DELAYED")
+        eq(s.inv.IsLoginHold(), false, "login hold released after capture")
+        s.slots[1][1] = { itemID = 117, itemCount = 5 }
+        s:advance(1.5)
+        eq(s.inv.GetCount(117), 5, "partially loaded carried bags get a final verification")
+        local recovered, inline = 0, true
+        s.inv.Register("world.recovery", function(ctx)
+            if ctx.recovery then recovered = recovered + 1; eq(inline, false, "recovery remains budgeted") end
+        end, { regions = { "bags" }, tier = "scan" })
+        -- Even an unchanged item-ID/count set owes a selection refresh.
+        s:event("PLAYER_ENTERING_WORLD", false, false)
+        inline = false; s:advance(2)
+        yes(recovered > 0, "count-only recovery reaches deferred selectors")
+        s:event("PLAYER_LEAVING_WORLD"); s:event("LOADING_SCREEN_ENABLED")
+        local reads = s.reads
+        s:advance(10)
+        eq(s.reads, reads, "old world retries cancelled during loading screen")
+        -- Bags briefly empty after the portal, then return without BAG_UPDATE.
+        s.slots[0][1] = nil
+        if syn then s.callbacks.BagCacheUpdate(nil, "Player-Realm", { bags = { [0] = true } })
+        else s:event("BAG_UPDATE", 0); s:event("BAG_UPDATE_DELAYED") end
+        s:event("PLAYER_ENTERING_WORLD", false, false)
+        s:advance(0.6)
+        s.slots[0][1] = { itemID = 5656, itemCount = 1 }
+        s:advance(2)
+        eq(s.inv.GetCount(5656), 1, "portal recaptures bags without final bag event")
+        eq(s.inv.IsReliable(), true, "portal snapshot settles")
+        s:advance(10); reads = s.reads; s:advance(10)
+        eq(s.reads, reads, "no permanent world polling")
+    end
+end
+
+-- Classic exposes bank capacity while the player is nowhere near a banker.
+-- Capacity is not access and must not suspend bag classification indefinitely.
+for _, family in ipairs({ "era", "anniversary", "wrath", "cata", "mists" }) do
+    local s = boot(family, false)
+    s.load("Inventory/Builtin/Bank.lua")
+    s.closedBankSlots = 24
+    eq(s.inv.CanTakeFromBank(), false, "closed bank has no live access")
+    eq(s.inv.IsBankOpen(), false, family .. " cached bank capacity cannot imply open bank")
+    eq(s.inv.IsBankLive(), false, "cached bank capacity cannot imply live bank")
+    eq(s.inv.ShouldDeferHeavyWork(), false, "closed bank cannot starve item classification")
+    eq(s.inv.Containers.IsBankReadable(), false, "closed bank capacity is not readable contents")
+    s:event("BANKFRAME_OPENED")
+    eq(s.inv.IsBankOpen(), true, "bank open event grants real access")
+    eq(s.inv.IsBankLive(), true, "bank open event grants live state")
+    eq(s.inv.Containers.IsBankReadable(), true, "open bank capacity remains readable")
+    s:event("BANKFRAME_CLOSED")
+    eq(s.inv.IsBankOpen(), false, "bank close clears access despite retained capacity")
+    eq(s.inv.ShouldDeferHeavyWork(), false, "bank close releases classification")
+end
+
+do
+    local s = boot("retail", false, true)
+    s:advance(12)
+    local reads = s.reads
+    s:advance(12)
+    eq(s.reads, reads, "legitimately empty bags stop retrying")
+    yes(reads <= 6 * 32, "empty-bag captures stay bounded")
 end
 
 for family in pairs(families) do

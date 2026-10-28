@@ -26,6 +26,21 @@ local bagSetCacheAll = nil
 -- Precomputed best mount per modifier (priority fallback already applied)
 local favMap = nil
 local favMapDirty = true
+local pendingItemData = {}
+local requestedItemData = {}
+
+local function AwaitItemData(itemId)
+    if pendingItemData[itemId] then return end
+    pendingItemData[itemId] = true
+    if requestedItemData[itemId] then return end
+    requestedItemData[itemId] = true
+    local IC = _G.FluxItemClass
+    if IC and IC.RequestLoad then
+        IC.RequestLoad(itemId)
+    elseif C_Item and C_Item.RequestLoadItemDataByID then
+        C_Item.RequestLoadItemDataByID(itemId)
+    end
+end
 
 local function GetSpells()
     local Flux = _G.Flux
@@ -65,7 +80,7 @@ local function IsBagMountItem(itemId)
         local _, _, _, _, _, classID, subclassID = C_Item.GetItemInfoInstant(itemId)
         classId, subclassId = classID, subclassID
     elseif GetItemInfoInstant then
-        local _, _, _, _, _, _, _, _, _, _, _, classID, subclassID = GetItemInfoInstant(itemId)
+        local _, _, _, _, _, classID, subclassID = GetItemInfoInstant(itemId)
         classId, subclassId = classID, subclassID
     end
     local miscClass = (Enum and Enum.ItemClass and Enum.ItemClass.Miscellaneous) or 15
@@ -73,10 +88,17 @@ local function IsBagMountItem(itemId)
     if classId == miscClass and subclassId == mountSub then
         return true
     end
+    if classId and classId ~= miscClass then
+        return false
+    end
+    -- Missing static data is temporary. Do not leave an empty favorite map
+    -- cached after the item's data arrives without a bag-count change.
+    if not classId then AwaitItemData(itemId) end
     local IC = _G.FluxItemClass
     local text = IC and IC.GetTooltipText and IC.GetTooltipText(itemId)
     text = type(text) == "string" and text:lower() or ""
     if text == "" then
+        AwaitItemData(itemId)
         return false
     end
     local companionHint = text:find("companion", 1, true) or text:find("critter", 1, true)
@@ -100,6 +122,7 @@ local function ScanUniqueMounts()
             local getItemInfo = (C_Item and C_Item.GetItemInfo) or GetItemInfo
             local getItemIcon = (C_Item and C_Item.GetItemIconByID) or GetItemIcon
             local name, _, quality, _, _, _, _, _, _, icon = getItemInfo(itemId)
+            if not name then AwaitItemData(itemId) end
             mounts[#mounts + 1] = {
                 itemId = itemId,
                 name = name or ("Item " .. tostring(itemId)),
@@ -783,6 +806,34 @@ end
 function Items.HasAnyMountInBags()
     local list = Items.GetBagMountItems(true)
     return list and #list > 0
+end
+
+-- Only IDs encountered cold by our bag scan can wake this refresh. Item-info
+-- events for tooltips, bank items, and other addons do no work here.
+do
+    local frame = CreateFrame("Frame")
+    local refreshQueued = false
+    frame:RegisterEvent("ITEM_DATA_LOAD_RESULT")
+    frame:RegisterEvent("GET_ITEM_INFO_RECEIVED")
+    frame:SetScript("OnEvent", function(_, _, itemId, success)
+        itemId = tonumber(itemId)
+        if success == false or not pendingItemData[itemId] then return end
+        pendingItemData[itemId] = nil
+        if refreshQueued then return end
+        refreshQueued = true
+        local function Refresh()
+            refreshQueued = false
+            Items.InvalidateCache()
+            if not Module._registered then return end
+            if InCombatLockdown() then
+                Module._pendingUpdate = true
+                return
+            end
+            Module._bagMountNeedsFullRefresh = true
+            if Module.Update then Module.Update() end
+        end
+        if C_Timer and C_Timer.After then C_Timer.After(0.15, Refresh) else Refresh() end
+    end)
 end
 
 -- Attach onto FluxNCMount so proxies / Mount.lua / options panel keep working

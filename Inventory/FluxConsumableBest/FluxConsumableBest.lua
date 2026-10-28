@@ -349,7 +349,9 @@ local function OnInventoryPulse(info)
         end
     end
     local conjureArm = Best.IsConjureArmActive and Best.IsConjureArmActive()
-    if info and info.changeKind == "countOnly" and not conjureArm then
+    -- Ready after a load hold changes selection validity even with identical
+    -- item IDs/counts. Keep this on the normal coalesced scan path.
+    if info and info.changeKind == "countOnly" and not info.recovery and not conjureArm then
         -- Item-data/classify backlog has its own bounded resume callbacks.
         -- Ordinary stack updates must not restart those full scans or extend
         -- an already queued scan on every unrelated item change.
@@ -379,7 +381,7 @@ local function OnInventoryPulse(info)
         QueueInventoryScan(regions, info and info.addedItemIDs)
         return
     end
-    if info and info.changeKind == "identityChanged" and not info.force then
+    if info and info.changeKind == "identityChanged" and not info.force and not info.recovery then
         local relevant = false
         -- Item class is a cached/static lookup, never a tooltip parse here.
         local IC = _G.FluxItemClass
@@ -405,7 +407,7 @@ local function OnInventoryPulse(info)
     end
     -- A slot move/restack changes neither ownership nor ranking. Unknown/full
     -- snapshots still scan, including recovery after a load-screen hold.
-    if info and info.changedItemIDs and not next(info.changedItemIDs) and not info.force and not Best._dirty then
+    if info and info.changedItemIDs and not next(info.changedItemIDs) and not info.force and not info.recovery and not Best._dirty then
         return
     end
     QueueInventoryScan(regions, info and info.addedItemIDs)

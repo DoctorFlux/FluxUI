@@ -221,6 +221,11 @@ end
 
 --- True while Blizzard will answer GetContainerItemInfo for bank containers.
 function C.IsBankReadable()
+	-- Classic retains bank/bank-bag capacities away from the banker. Require
+	-- live access before interpreting those sizes as readable containers.
+	if Inv.CanTakeFromBank and not Inv.CanTakeFromBank() then
+		return false
+	end
 	local function readable(bag)
 		bag = tonumber(bag)
 		if not bag then

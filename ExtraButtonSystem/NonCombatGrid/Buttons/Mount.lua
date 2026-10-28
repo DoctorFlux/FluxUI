@@ -3714,9 +3714,15 @@ if _G.FluxInv and _G.FluxInv.RegisterListener and not Module._fluxInvListenerReg
         if not Module._registered then
             return
         end
+        -- The spellbook can be cold when secure grid infrastructure is built.
+        -- Inventory readiness must also retire that cached negative skill result.
+        if ctx and ctx.recovery then
+            Module.InvalidateRidingSkillCache()
+            Module.InvalidateCollectedMountCache()
+        end
         -- item-data / light pulses: clear sticky false classify + light icon refresh
         local tier = ctx and ctx.tier
-        local countOnly = ctx and ctx.changeKind == "countOnly" and not ctx.force
+        local countOnly = ctx and ctx.changeKind == "countOnly" and not ctx.force and not ctx.recovery
         if countOnly or tier == "instant" or tier == "light" then
             InvalidateAllMountItemCaches()
             local btn = Module._button

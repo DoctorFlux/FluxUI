@@ -624,6 +624,7 @@ local function MergeContext(a, b)
 		end
 	end
 	out.force = a.force or b.force
+	out.recovery = a.recovery or b.recovery
 	return out
 end
 
@@ -747,6 +748,7 @@ function Inv.Notify(tokens)
 		touchedItemIDs = touchedItemIDs,
 		changedItemIDs = changedItemIDs,
 		force = force,
+		recovery = tokens and tokens.recovery or nil,
 	}
 
 	-- Counts stay inline. Scan work uses the budgeted queue, including the
@@ -927,7 +929,7 @@ function Inv.BeginLoginHold()
 			end
 			if loginHold then
 				loginHold = false
-				Inv.Notify({ bags = true })
+				Inv.Notify({ bags = true, recovery = true })
 			end
 		end)
 	end
@@ -960,7 +962,7 @@ function Inv.NoteLoginBagsDelayed()
 				return
 			end
 			loginHold = false
-			Inv.Notify({ bags = true })
+			Inv.Notify({ bags = true, recovery = true })
 		end)
 	else
 		loginHold = false
@@ -995,7 +997,7 @@ local function TryClearUnreliable()
 	if cleared then
 		uniqueAtUnreliable = 0
 		unreliableMarkedAt = 0
-		Inv.Notify({ bags = true })
+		Inv.Notify({ bags = true, recovery = true })
 	end
 end
 
@@ -1031,6 +1033,48 @@ function Inv.NoteRefreshSettling()
 			end
 			TryClearUnreliable()
 		end)
+	end
+end
+
+-- A load screen need not produce BAG_UPDATE after the container APIs recover.
+-- Capture facts again, then verify as the carried bags finish loading. Further
+-- retries are only needed while the snapshot is cold.
+-- These are slot reads, with normal budgeted listener delivery, not tooltip scans.
+local worldRefreshGeneration = 0
+local worldLoading = false
+local WORLD_REFRESH_DELAYS = { 0.1, 1.0, 2.5, 5.0, 8.0 }
+
+local function CancelWorldRefresh()
+	worldLoading = true
+	worldRefreshGeneration = worldRefreshGeneration + 1
+end
+
+local function BeginWorldRefresh()
+	worldLoading = false
+	worldRefreshGeneration = worldRefreshGeneration + 1
+	local generation = worldRefreshGeneration
+	local function Refresh(attempt)
+		if worldLoading or generation ~= worldRefreshGeneration then return end
+		if Inv.source == "builtin" then
+			Inv.Builtin.Bags.Invalidate()
+			Inv.Builtin.Bags.Refresh()
+			Inv.NoteRefreshSettling()
+		elseif Inv.source == "syndicator" and Inv.Syndicator.RebuildBags then
+			Inv.Syndicator.RebuildBags()
+		else
+			return
+		end
+		Inv.NoteLoginBagsDelayed()
+		Inv.Notify({ bags = true })
+		local cold = BackpackSlotCount() <= 0 or BagUniqueCount() == 0
+			or Inv.IsScanPending() or not Inv.IsReliable()
+		local nextDelay = WORLD_REFRESH_DELAYS[attempt + 1]
+		if nextDelay and (attempt <= 2 or cold) and C_Timer and C_Timer.After then
+			C_Timer.After(nextDelay - WORLD_REFRESH_DELAYS[attempt], function() Refresh(attempt + 1) end)
+		end
+	end
+	if C_Timer and C_Timer.After then
+		C_Timer.After(WORLD_REFRESH_DELAYS[1], function() Refresh(1) end)
 	end
 end
 
@@ -1254,9 +1298,6 @@ function Inv.IsBankLive()
 	if bankOpenLatch then
 		return true
 	end
-	if Inv.Containers and Inv.Containers.IsBankReadable and Inv.Containers.IsBankReadable() then
-		return true
-	end
 	if Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
 		return true
 	end
@@ -1290,9 +1331,6 @@ function Inv.IsBankOpen()
 		return true
 	end
 	if Inv.IsBaganatorBankViewShown and Inv.IsBaganatorBankViewShown() then
-		return true
-	end
-	if Inv.Containers and Inv.Containers.IsBankReadable and Inv.Containers.IsBankReadable() then
 		return true
 	end
 	if Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
@@ -1411,9 +1449,6 @@ function Inv.Start()
 					if Inv.IsBaganatorBankViewShown and Inv.IsBaganatorBankViewShown() then
 						return
 					end
-					if Inv.Containers and Inv.Containers.IsBankReadable and Inv.Containers.IsBankReadable() then
-						return
-					end
 					Inv.SetBankOpenLatch(false)
 				end)
 			end
@@ -1460,6 +1495,7 @@ function Inv.Start()
 
 	local sawPew = false
 	local function ArmLoadHold()
+		CancelWorldRefresh()
 		Inv.MarkUnreliable("zone")
 		local Best = rawget(_G, "FluxConsumableBest")
 		if Best and Best.BeginLoadHold then
@@ -1480,6 +1516,7 @@ function Inv.Start()
 		Flux.Events.Register("PLAYER_LEAVING_WORLD", ArmLoadHold)
 		pcall(Flux.Events.Register, "LOADING_SCREEN_ENABLED", ArmLoadHold)
 		Flux.Events.Register("PLAYER_ENTERING_WORLD", function(_, isInitialLogin, isReload)
+			BeginWorldRefresh()
 			if not sawPew then
 				sawPew = true
 				if isInitialLogin == true or isReload == true then
@@ -1511,6 +1548,8 @@ function Inv.Start()
 			end
 		end)
 	end
+	-- Inventory enables in the deferred startup phase and can miss the first PEW.
+	BeginWorldRefresh()
 end
 
 Flux.Module.Register("Inventory", {

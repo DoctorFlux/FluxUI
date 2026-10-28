@@ -3219,14 +3219,16 @@ function Refresh.Attach(opts)
         RefreshCountOnly()
     end
 
-    local function ScheduleUpdate()
+    local scheduledForce = false
+    local function ScheduleUpdate(force)
         if opts.combatGridCoalesce then
             local M = _G.FluxCombatManager
             if M and M.ScheduleAllUpdates then
-                M:ScheduleAllUpdates(false)
+                M:ScheduleAllUpdates(force == true)
                 return
             end
         end
+        scheduledForce = scheduledForce or force == true
         Module._debounceGen = Module._debounceGen + 1
         local gen = Module._debounceGen
         local B = Bridge()
@@ -3236,7 +3238,9 @@ function Refresh.Attach(opts)
             if gen ~= Module._debounceGen then
                 return
             end
-            Module.Update(false)
+            local doForce = scheduledForce
+            scheduledForce = false
+            Module.Update(doForce)
         end)
     end
 
@@ -3287,7 +3291,7 @@ function Refresh.Attach(opts)
             local B = Bridge()
             local id = SwapFaceItemID() or Module._trackedItemID or Module._latchItemID
             local changed = ctx and ctx.changedItemIDs
-            local countChanged = id and (charges or not changed or changed[id])
+            local countChanged = id and (charges or not changed or changed[id] or ctx.recovery)
             local depleted = false
             if B and countChanged then
                 local n = B.BagCount(id, { charges = charges, kind = kind }) or 0
@@ -3317,8 +3321,8 @@ function Refresh.Attach(opts)
                     ScheduleCraftRefresh()
                 end
             end
-            if depleted or Module._pendingUpdate or (ctx and ctx.force) then
-                ScheduleUpdate()
+            if depleted or Module._pendingUpdate or (ctx and (ctx.force or ctx.recovery)) then
+                ScheduleUpdate(ctx and (ctx.force or ctx.recovery))
             end
             -- Newly owned/better items arrive through Best's batched publish.
         end, { tier = "light", regions = regions, sync = true })

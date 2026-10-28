@@ -214,6 +214,8 @@ function Manager:ScheduleAllUpdates(force)
         local doForce = self._moduleUpdateForce
         self._moduleUpdateForce = false
         if InCombatLockdown and InCombatLockdown() then
+            self._moduleUpdateOnRegen = true
+            self._moduleUpdateForce = doForce
             return
         end
         local Best = _G.FluxConsumableBest
@@ -226,12 +228,12 @@ function Manager:ScheduleAllUpdates(force)
             FluxCombatHealthstone,
             FluxCombatAmmo,
         }
-        local unbound = false
+        local unbound, pending = false, false
         for i = 1, #mods do
             local m = mods[i]
+            if m and m._pendingUpdate then pending = true end
             if m and not (m._trackedItemID or m._latchItemID) then
                 unbound = true
-                break
             end
         end
         local loginScan = Best and Best.IsLoginScanActive and Best.IsLoginScanActive()
@@ -241,7 +243,7 @@ function Manager:ScheduleAllUpdates(force)
             -- unless a combat slot is still empty during login settle.
             -- Still recount. Buying or looting more of the same potion does
             -- not bump generation, and a skipped Update left the digit stale.
-            if not (unbound and (loginScan or unsettled)) then
+            if not pending and not (unbound and (loginScan or unsettled)) then
                 self._skippedUnchangedUpdates = (self._skippedUnchangedUpdates or 0) + 1
                 for i = 1, #mods do
                     local m = mods[i]
@@ -329,6 +331,10 @@ eventFrame:SetScript("OnEvent", function(_, event)
         if not Manager._startupReady then
             Initialize()
             return
+        end
+        if Manager._moduleUpdateOnRegen then
+            Manager._moduleUpdateOnRegen = nil
+            Manager:ScheduleAllUpdates(Manager._moduleUpdateForce)
         end
         if Manager.Grid and Manager.Grid._pendingRegenRelayout then
             pcall(function()
