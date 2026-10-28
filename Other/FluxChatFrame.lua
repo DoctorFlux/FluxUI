@@ -4,6 +4,27 @@
 
 local addonName, ns = ...
 
+-- Tabs have their own fade targets; ScrollingMessageFrame:SetFading only
+-- controls message text. Use Blizzard's normal targets so idle, hover and
+-- newly created tabs all stay visible without replacing any native handler.
+CHAT_FRAME_TAB_SELECTED_MOUSEOVER_ALPHA = 1
+CHAT_FRAME_TAB_SELECTED_NOMOUSE_ALPHA = 1
+CHAT_FRAME_TAB_NORMAL_MOUSEOVER_ALPHA = 1
+CHAT_FRAME_TAB_NORMAL_NOMOUSE_ALPHA = 1
+
+local function RefreshChatTabVisibility()
+    if not FCFTab_UpdateAlpha then return end
+    local function Refresh(name)
+        local chat = _G[name]
+        if chat and _G[name .. "Tab"] then FCFTab_UpdateAlpha(chat) end
+    end
+    if CHAT_FRAMES then
+        for _, name in pairs(CHAT_FRAMES) do Refresh(name) end
+    else
+        for i = 1, (NUM_CHAT_WINDOWS or 10) do Refresh("ChatFrame" .. i) end
+    end
+end
+
 -- ---------------------------------------------------------------------------
 -- CROSS-VERSION HELPERS
 -- ---------------------------------------------------------------------------
@@ -1381,6 +1402,8 @@ eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 local hasRun = false
 local function InitializeChat()
     if hasRun then return end
+    -- Also safe for a combat login: alpha updates do not change tab geometry.
+    RefreshChatTabVisibility()
     hasRun = RunConfiguration() == true
 end
 if ns.Flux and ns.Flux.AfterLogin then

@@ -27,6 +27,11 @@ local function fixture(branch, side, body)
         local r = { name = name, parent = parent, height = height or 27, top = 0, children = {}, events = {}, scripts = {} }
         if parent and parent.children then parent.children[#parent.children + 1] = r end
         function r:GetName() return self.name end
+        function r:GetID() return self.id or 1 end
+        function r:IsVisible()
+            if self.hidden then return false end
+            return not self.parent or not self.parent.IsVisible or self.parent:IsVisible()
+        end
         function r:GetParent() return self.parent end
         function r:SetParent(value) mutate(); self.parent = value; value.children[#value.children + 1] = self end
         function r:GetTop()
@@ -66,6 +71,7 @@ local function fixture(branch, side, body)
         return r
     end
     env.UIParent = frame("UIParent")
+    function env.UIParent:IsVisible() return true end
     local chat = frame("ChatFrame1", env.UIParent, 240); chat.top = 370
     env.ChatFrame1EditBox = { GetHeight = function() return 32 end }
     local bg = frame("Background"); bg.top = 373
@@ -96,6 +102,20 @@ local function fixture(branch, side, body)
         env[name] = frame(name, bf, name == "FluxCCPChatBagButton" and 37 or 27)
         env[name].layoutIndex = i + 3
         env[name].click = function() return name end
+    end
+    env.GENERAL_CHAT_DOCK = { selected = chat }
+    env.FCFDock_GetSelectedWindow = function(dock) return dock.selected end
+    local windows = { chat }
+    for i = 2, 3 do
+        local cf = frame("ChatFrame" .. i, env.UIParent, 240); cf.top, cf.hidden, cf.id = 370, true, i
+        cf.buttonFrame = frame("ChatFrame" .. i .. "ButtonFrame", cf)
+        env[cf.name] = cf; windows[i] = cf
+    end
+    function state.select(index)
+        env.GENERAL_CHAT_DOCK.selected = windows[index]
+        -- Native FCFDock_UpdateTabs may hide/show windows in combat. This
+        -- changes inherited visibility without an addon protected-frame write.
+        for i, cf in ipairs(windows) do cf.hidden = i ~= index end
     end
     assert(load("local _, ns = ...\n" .. (body or production), "@production-chat-column", "t", env))("_FluxUI", { Flux = env.Flux })
     function state.regen()
@@ -150,6 +170,42 @@ local function exercise(branch, side, body)
 end
 for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
     exercise(branch, "left"); exercise(branch, "right")
+end
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    for _, side in ipairs({ "left", "right" }) do
+        local s, chat, bf, env, names = fixture(branch, side)
+        -- Modern Social uses QuickJoin, whose original parent is General's
+        -- button frame even though its anchor already follows Channel.
+        if branch == "live" or branch == "forever" then
+            env.FriendsMicroButton = nil
+            names[1] = "QuickJoinToastButton"
+            local qj = env.CreateFrame("Button", "QuickJoinToastButton", bf)
+            function qj:IsVisible() return not self.hidden and self.parent:IsVisible() end
+        end
+        env.FluxCCP.PlaceColumnButtons()
+        local start = assert(source:find("local function SelectedChatWindowId()", 1, true))
+        local selected = source:sub(start)
+        selected = selected:sub(1, assert(selected:find("\nlocal function SetStateArt", 1, true)) - 1)
+        local getCopyWindow = assert(load(selected .. "\nreturn SelectedChatWindowId", "@copy-chat-selection", "t", env))()
+        for _, combat in ipairs({ false, true }) do
+            s.combat = combat
+            for _, tab in ipairs({ 2, 3, 1, 3, 2 }) do
+                s.select(tab)
+                local writes = s.writes
+                env.FluxCCP.PlaceColumnButtons()
+                if combat then check(s.writes == writes, "combat tab selection needs no protected reparent or show") end
+                for _, name in ipairs(names) do
+                    check(env[name]:IsVisible(), branch .. ": " .. name .. " stays visible on tab " .. tab)
+                end
+                check(getCopyWindow() == tab, "Copy still reads the selected tab")
+            end
+        end
+        s.combat = false; s.regen()
+        env.FluxCCPChatCopyButton._fluxChatOptHidden = true
+        env.FluxCCPChatCopyButton:Hide()
+        s.select(1); env.FluxCCP.PlaceColumnButtons()
+        check(not env.FluxCCPChatCopyButton:IsVisible(), "persistent column respects disabled button settings")
+    end
 end
 local function replace(old, new)
     local at = assert(production:find(old, 1, true))

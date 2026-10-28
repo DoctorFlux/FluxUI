@@ -416,6 +416,7 @@ local COLUMN_BUTTON_NAMES = {
     "ChatFrameMenuButton",
     "ChatFrameChannelButton",
     "FriendsMicroButton",
+    "QuickJoinToastButton",
 }
 
 --- Account-wide chat column toggles. Missing or true means shown.
@@ -555,8 +556,23 @@ end
 function FluxCCP.AttachColumnToDock()
     local holder = ColumnHolder()
     -- Era/Anniversary buttons stay on ChatFrame.buttonFrame. Moving that frame
-    -- moves the column. Reparenting them leaves the visible strip where it was.
-    if not IsEraOrAnniversaryColumn() then
+    -- moves the column. Keep its native Layout, but detach its visibility from
+    -- General: Blizzard hides that chat frame whenever another tab is selected.
+    if IsEraOrAnniversaryColumn() then
+        local bf = _G.ChatFrame1 and ChatFrame1.buttonFrame
+        if bf then
+            if bf.SetParent and bf:GetParent() ~= UIParent then
+                local scale = bf.GetEffectiveScale and bf:GetEffectiveScale()
+                local parentScale = UIParent.GetEffectiveScale and UIParent:GetEffectiveScale()
+                bf:SetParent(UIParent)
+                if bf.SetScale and scale and parentScale and parentScale > 0 then
+                    bf:SetScale(scale / parentScale)
+                end
+            end
+            bf:SetAlpha(1)
+            bf:Show()
+        end
+    else
         for i = 1, #COLUMN_BUTTON_NAMES do
             local btn = _G[COLUMN_BUTTON_NAMES[i]]
             if btn and btn.SetParent and btn:GetParent() ~= holder then
@@ -786,7 +802,8 @@ function FluxCCP.PlaceColumnButtons()
         btn:SetPoint("TOP", stackFrom, stackFrom == holder and "TOP" or "BOTTOM", 0, stackFrom == holder and 0 or gap)
         stackFrom = btn
     end
-    Stack(_G.FriendsMicroButton, 0)
+    local socialName = FluxCCP.SocialChatButtonName()
+    Stack(socialName and _G[socialName], 0)
     if _G.ChatFrameChannelButton and ChatFrameChannelButton:GetParent() == holder then
         Stack(ChatFrameChannelButton, 0)
     end
