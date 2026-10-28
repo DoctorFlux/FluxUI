@@ -616,6 +616,87 @@ local function AttachMergedFrameOptions(options)
     RelaxToggleWidths(options)
 end
 
+local function BuildCastBarThemeOptions()
+    local defaults = {
+        enabled = true, player = true, target = true, focus = true, pet = true,
+        colors = true, gradient = true, particles = true, halo = true, edge = true, backdrop = true,
+        spellVisuals = true, inferVisuals = true,
+        density = 100, glowOpacity = 100, backdropOpacity = 100,
+    }
+    local function get(key)
+        local db = GetDB().castBarThemes
+        local value = db and db[key]
+        if value == nil then return defaults[key] end
+        return value
+    end
+    local function set(key, value)
+        local db = GetDB()
+        db.castBarThemes = db.castBarThemes or {}
+        db.castBarThemes[key] = value
+        if ns.CastBarThemes then ns.CastBarThemes.Refresh() end
+    end
+    local args = {
+        description = {
+            type = "description", order = 0, width = "full",
+            name = "School and spell visual themes for Flux cast bars. Hybrid spells combine every school’s colors and effects. Inferred visuals never change the spell’s real school or interrupt behavior. Physical, profession, and unidentified spells use the default bar. These options follow Unit frame settings scope.\n",
+        },
+    }
+    local function toggle(key, label, order)
+        args[key] = {
+            type = "toggle", name = label, order = order, width = "full",
+            get = function() return get(key) ~= false end,
+            set = function(_, value) set(key, value and true or false) end,
+            disabled = function()
+                return (key ~= "enabled" and get("enabled") == false)
+                    or (key == "gradient" and get("colors") == false)
+            end,
+        }
+    end
+    toggle("enabled", "Enable school themes", 1)
+    args.bars = {type = "header", name = "Cast bars", order = 2}
+    toggle("player", "Player", 3)
+    toggle("target", "Target", 4)
+    toggle("focus", "Focus", 5)
+    toggle("pet", "Pet", 6)
+    args.pet.desc = "Applies when the pet cast bar is enabled on the Pet page."
+    args.detection={type="header",name="Spell appearance",order=7}
+    toggle("spellVisuals","Spell-specific visual themes",8)
+    args.spellVisuals.desc="Use electric colors and particles for lightning spells, and fire orange with rock brown, flames and rock fragments for Volcanic (Fire + Nature). Turn off to use their base school themes instead. Chaos uses all six magic schools."
+    toggle("inferVisuals","Infer visuals from spell metadata",8.2)
+    args.inferVisuals.desc="Identify new or changed spells from readable client descriptions without any built-in spell list. These are visual estimates, not verified school data. Hidden or ambiguous metadata uses the default bar."
+    args.effects = {type = "header", name = "Shared appearance", order = 10}
+    toggle("colors", "School fill colors", 11)
+    toggle("gradient", "Fill gradient", 12)
+    toggle("particles", "Animated particles", 13)
+    toggle("halo", "Halo glow", 14)
+    toggle("edge", "Leading-edge glow", 15)
+    toggle("backdrop", "School backdrop artwork", 16)
+    local function slider(key, label, order, maximum, requires)
+        args[key] = {
+            type = "range", name = label, order = order, width = "full", min = 0, max = maximum, step = 5,
+            get = function() return get(key) end,
+            set = function(_, value) set(key, value) end,
+            disabled = function()
+                return get("enabled") == false or (requires and get(requires) == false)
+                    or (key == "glowOpacity" and get("halo") == false and get("edge") == false)
+            end,
+        }
+    end
+    slider("density", "Particle density (%)", 20, 200, "particles")
+    slider("glowOpacity", "Glow opacity (%)", 21, 100)
+    slider("backdropOpacity", "Backdrop opacity (%)", 22, 100, "backdrop")
+    args.reset = {
+        type = "execute", name = "Reset school themes", order = 30,
+        func = function()
+            local db = GetDB()
+            db.castBarThemes = {}
+            for key, value in pairs(defaults) do db.castBarThemes[key] = value end
+            if ns.CastBarThemes then ns.CastBarThemes.Refresh() end
+        end,
+    }
+    return {type = "group", name = "Cast bar school themes", order = 8, args = args}
+end
+
 local function BuildUnitFrameOptions()
     local options = {
     name = "Unit frames",
@@ -848,6 +929,7 @@ local function BuildUnitFrameOptions()
                 enableMP5Overlay = {
                     type = "toggle",
                     name = "MP5 / mana tick overlay (player)",
+                    desc = "Show five-second-rule and mana-tick markers on Era, Anniversary/TBC, and Forever clients.",
                     order = 23,
                     width = "full",
                     get = function() return GetDB().enableMP5Overlay ~= false end,
@@ -1987,6 +2069,7 @@ local function BuildUnitFrameOptions()
     },
 }
     AttachMergedFrameOptions(options)
+    options.args.castBarThemes = BuildCastBarThemeOptions()
     return options
 end
 

@@ -590,7 +590,7 @@ function PCO.BeforePowerApplied(bar)
     bar._fluxSpendSnapOK = ok and true or false
 end
 
-local function StartFeedback(bar, oldW, newW, force)
+local function StartFeedback(bar, oldW, newW, force, unit)
     local bw = TryLayoutWidth(bar)
     if not bw or bw <= 0 then return end
     local delta = math.abs(newW - oldW) / bw
@@ -598,6 +598,21 @@ local function StartFeedback(bar, oldW, newW, force)
     if not force and delta <= 0.1 then return end
 
     local gaining = newW > oldW
+    local MP5 = ns.MP5Overlay
+    if gaining and MP5 and MP5.SupportsClient and MP5.SupportsClient() then
+        local parent = bar.GetParent and bar:GetParent()
+        local powerType = unit and UnitPowerType(unit)
+        local additionalMana = parent and parent.AdditionalPower == bar and not bar.isStaggerBar
+        if additionalMana or (not IsSecretValue(powerType) and powerType == 0) then
+            -- Mana ticks have their own indicator; omit the white gain flash.
+            local feedback = bar.FeedbackFrame
+            if feedback and feedback.updatingGain then
+                EndFeedbackGain(feedback)
+                if not feedback.updatingLoss and not feedback.secretPlaying then feedback:Hide() end
+            end
+            return
+        end
+    end
     if gaining and not CVarEnabled("showBuilderFeedback") then return end
     if not gaining and not CVarEnabled("showSpenderFeedback") then return end
 
@@ -754,19 +769,19 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
         -- Finished cast (instant or timed). Flash even if the texture width did not change much.
         if not UsesHud() then
             if readable and math.abs(fillW - prev) > 0.5 then
-                StartFeedback(bar, prev, fillW, true)
+                StartFeedback(bar, prev, fillW, true, unit)
             end
             commitGhostLater()
         else
             if bigChange then
-                StartFeedback(bar, prev, fillW)
+                StartFeedback(bar, prev, fillW, nil, unit)
             else
                 ShowSecretSpendBetween(bar)
             end
             holdGhost()
         end
     elseif readable and bigChange and not watchedUnit then
-        StartFeedback(bar, prev, fillW)
+        StartFeedback(bar, prev, fillW, nil, unit)
         commitGhostLater()
     else
         commitGhostLater()
@@ -835,6 +850,8 @@ function PCO.Initialize(frame)
     SafeRegisterUnit(watcher, "UNIT_SPELLCAST_SUCCEEDED", unit)
     SafeRegisterUnit(watcher, "UNIT_SPELLCAST_CHANNEL_START", unit)
     SafeRegisterUnit(watcher, "UNIT_SPELLCAST_CHANNEL_STOP", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_EMPOWER_START", unit)
+    SafeRegisterUnit(watcher, "UNIT_SPELLCAST_EMPOWER_STOP", unit)
     SafeRegisterUnit(watcher, "UNIT_POWER_UPDATE", unit)
     SafeRegisterUnit(watcher, "UNIT_DISPLAYPOWER", unit)
 
@@ -848,8 +865,12 @@ function PCO.Initialize(frame)
                 spellID = sid
                 return
             end
-            local cname, _, _, cs, ce, _, _, cid = UnitChannelInfo(which)
-            if cname and cid and cs ~= ce and not IsSecretValue(cid) then
+            -- Active channels have already paid their startup cost. They are
+            -- not pending casts and must not shorten the remaining mana fill.
+            -- Empowered charging casts use UnitChannelInfo but pay on release.
+            local cname, _, _, cs, ce, _, _, cid, _, stages = UnitChannelInfo(which)
+            if not IsSecretValue(stages) and type(stages) == "number" and stages > 0
+                and cname and cid and cs ~= ce and not IsSecretValue(cid) then
                 spellID = cid
             end
         end)
@@ -909,8 +930,8 @@ function PCO.Initialize(frame)
         end
     end
 
-    local function ClearCost()
-        local still = CurrentCastSpell(unit)
+    local function ClearCost(skipActiveCast)
+        local still = not skipActiveCast and CurrentCastSpell(unit)
         if still then
             ApplyCost(still)
             return
@@ -994,7 +1015,9 @@ function PCO.Initialize(frame)
 
         if eventUnit ~= unit then return end
 
-        if event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_CHANNEL_START" then
+        if event == "UNIT_SPELLCAST_CHANNEL_START" then
+            ClearCost(true)
+        elseif event == "UNIT_SPELLCAST_START" or event == "UNIT_SPELLCAST_EMPOWER_START" then
             local castGUID, spellID = ...
             if not spellID then
                 spellID = castGUID
@@ -1005,7 +1028,7 @@ function PCO.Initialize(frame)
             end
             ApplyCost(spellID)
         elseif event == "UNIT_SPELLCAST_STOP" or event == "UNIT_SPELLCAST_SUCCEEDED"
-            or event == "UNIT_SPELLCAST_CHANNEL_STOP" then
+            or event == "UNIT_SPELLCAST_CHANNEL_STOP" or event == "UNIT_SPELLCAST_EMPOWER_STOP" then
             local nowGUID = UnitGUID and UnitGUID(unit) or nil
             local function markFinish(bar)
                 if bar and bar._fluxCastUnitGUID and bar._fluxCastUnitGUID == nowGUID then
@@ -1023,6 +1046,9 @@ function PCO.Initialize(frame)
             local spellID = CurrentCastSpell()
             if spellID then
                 ApplyCost(spellID)
+            elseif frame.Power._fluxPredictedCost ~= nil
+                or (frame.AdditionalPower and frame.AdditionalPower._fluxPredictedCost ~= nil) then
+                ClearCost(true)
             end
         end
     end)
@@ -1031,5 +1057,7 @@ function PCO.Initialize(frame)
     local already = CurrentCastSpell(unit)
     if already then
         ApplyCost(already)
+    else
+        ClearCost(true)
     end
 end

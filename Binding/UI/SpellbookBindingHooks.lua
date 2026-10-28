@@ -232,21 +232,9 @@ local function EnsureRightClickCatcher(hitTarget, wantCatch, buildInfo)
         catcher:SetFrameLevel(level + 1)
         pcall(catcher.RegisterForClicks, catcher, "RightButtonUp")
         catcher:EnableMouse(false)
-        local function ForwardScript(frame, script)
-            if not frame or not frame.GetScript then
-                return
-            end
-            local fn = frame:GetScript(script)
-            if fn then
-                fn(frame)
-            end
-        end
-        catcher:SetScript("OnEnter", function(self)
-            ForwardScript(self:GetParent(), "OnEnter")
-        end)
-        catcher:SetScript("OnLeave", function(self)
-            ForwardScript(self:GetParent(), "OnLeave")
-        end)
+        -- The engine propagates hover to Blizzard (configured below). Never
+        -- call native OnEnter/OnLeave scripts ourselves: SpellBookItem's leave
+        -- handler updates PetActionBar and Edit Mode using protected methods.
         catcher:SetScript("OnClick", function(self, mouseButton)
             if mouseButton ~= "RightButton" then
                 return
@@ -447,9 +435,19 @@ local function PositionEditorButton()
     btn:Show()
 end
 
+local refreshQueued = false
 local function OnSpellbookShow()
-    HookSpellbookButtons()
-    PositionEditorButton()
+    if refreshQueued then return end
+    refreshQueued = true
+    -- PlayerSpells OnShow continues into MultiActionBar_ShowAllGrids after
+    -- displaying the book tab. Decorate from our own timer, not that stack.
+    C_Timer.After(0, function()
+        refreshQueued = false
+        local book = GetSpellBookFrame()
+        if not book or not book:IsShown() then return end
+        HookSpellbookButtons()
+        PositionEditorButton()
+    end)
 end
 
 local function OnSpellbookHide()
@@ -483,6 +481,12 @@ initFrame:SetScript("OnEvent", function(_, event, arg1)
         initFrame.__fluxBindingSpellbookHooks = true
 
         local client = _G.Flux and _G.Flux.Client
+        local Chrome=_G.Flux and _G.Flux.SpellBookChrome
+        if Chrome and Chrome.Observe and client and (client.isRetail or client.isCamelot or client.isForever) then
+            -- Page refreshes are observed outside Blizzard's show/grid stack.
+            Chrome.Observe("binding",OnSpellbookShow,OnSpellbookHide,OnSpellbookShow)
+            return
+        end
         local forever = client and (client.isCamelot or client.isForever)
         if not forever then
             local api = _G.FLUX_API
@@ -517,7 +521,7 @@ initFrame:SetScript("OnEvent", function(_, event, arg1)
             EventRegistry:RegisterCallback("PlayerSpellsFrame.SpellBookFrame.Show", OnSpellbookShow)
             EventRegistry:RegisterCallback("PlayerSpellsFrame.SpellBookFrame.Hide", OnSpellbookHide)
             EventRegistry:RegisterCallback("PlayerSpellsFrame.SpellBookFrame.DisplayedSpellsChanged", function()
-                HookSpellbookButtons()
+                OnSpellbookShow()
             end)
         end
         if SpellBookFrame then

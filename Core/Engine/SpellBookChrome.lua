@@ -11,6 +11,48 @@ local FOOTER_X, FOOTER_Y = 20, 36
 local CLASSIC_TITLE_X, CLASSIC_TITLE_Y = 74, -38
 local ROW_GAP = 15
 
+-- Modern book visibility/page changes can occur inside PlayerSpells OnShow,
+-- before MultiActionBar_ShowAllGrids and protected spell casting. Observe from
+-- one independent, throttled driver; never wrap the native book/filter methods.
+local observers = {}
+local observerFrame
+function Chrome.Observe(owner, onShow, onHide, onUpdate)
+	observers[owner] = { onShow=onShow, onHide=onHide, onUpdate=onUpdate }
+	if observerFrame then return end
+	observerFrame=CreateFrame("Frame")
+	local elapsed=0
+	observerFrame:SetScript("OnUpdate",function(_,dt)
+		elapsed=elapsed+dt
+		if elapsed<0.1 then return end
+		elapsed=0
+		local host=Chrome.GetHost()
+		local shown=false
+		if host then
+			if host.IsVisible then shown=host:IsVisible()
+			elseif host.IsShown then shown=host:IsShown() end
+		end
+		shown=shown and true or false
+		local paged=shown and host.PagedSpellsFrame
+		local provider=paged and paged.dataProvider
+		local views=paged and paged.viewDataList
+		local pages=paged and paged.PagingControls
+		local page=pages and pages.currentPage
+		if issecretvalue and issecretvalue(page) then page=nil end
+		for _,observer in pairs(observers) do
+			local changed=observer.shown~=shown or observer.host~=host
+			local pageChanged=observer.provider~=provider or observer.views~=views or observer.page~=page
+			observer.provider,observer.views,observer.page=provider,views,page
+			observer.host=host
+			if changed then
+				local was=observer.shown
+				observer.shown=shown
+				if shown and observer.onShow then observer.onShow()
+				elseif was and observer.onHide then observer.onHide() end
+			elseif shown and pageChanged and observer.onUpdate then observer.onUpdate() end
+		end
+	end)
+end
+
 function Chrome.HasLowRankApi()
 	return C_SpellBook and type(C_SpellBook.IsSpellBookItemLowRank) == "function"
 end

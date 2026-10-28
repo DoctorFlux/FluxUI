@@ -1213,71 +1213,30 @@ local function PositionSpellBookUI()
 end
 
 local function PatchSpellBookRankUI()
-	if not RankSupported() then
-		return
-	end
-	local mixin = _G.SpellBookFrameMixin
-	if mixin and not mixin._fluxRankPatched then
-		mixin._fluxRankPatched = true
-		-- Do not replace SetupAllRanksCheckbox: Forever's settings gear owns
-		-- Blizzard Show All Spell Ranks. EnsureBlizzardShowAllRanks fills the
-		-- missing SHOW_ALL_SPELL_RANKS string and CVar.
-		if mixin.ShouldDisplaySpellBookItem then
-			local origFilter = mixin.ShouldDisplaySpellBookItem
-			function mixin:ShouldDisplaySpellBookItem(isKioskEnabled, isHidingPassives, isHidingLowRank, isHidingFlyouts, slotIndex, spellBank)
-				local lowRankApi = C_SpellBook and C_SpellBook.IsSpellBookItemLowRank
-				local show = origFilter(self, isKioskEnabled, isHidingPassives, isHidingLowRank and lowRankApi, isHidingFlyouts, slotIndex, spellBank)
-				if not show then
-					return false
-				end
-				if isHidingLowRank and not lowRankApi then
-					local info = C_SpellBook and C_SpellBook.GetSpellBookItemInfo and C_SpellBook.GetSpellBookItemInfo(slotIndex, spellBank)
-					if info and info.spellID and IsLowerRank(info.spellID) then
-						return false
-					end
-				end
-				return true
-			end
+	if not RankSupported() then return end
+	local book=PlayerSpellsFrame and PlayerSpellsFrame.SpellBookFrame
+	if not book or not book.ForEachDisplayedSpell or not book:IsShown() then return end
+	-- Keep SpellBookFrameMixin.ShouldDisplaySpellBookItem and
+	-- SpellBookItemMixin.UpdateVisuals native. Both run before the parent opens
+	-- its protected action-bar grids. Supplement only the font string, from an
+	-- independent refresh; UpdateSubName would mutate spellBookItemInfo too.
+	book:ForEachDisplayedSpell(function(row)
+		local info=row.spellBookItemInfo
+		if issecretvalue and issecretvalue(info) then return end
+		if not info or not row.SubName or not row.SubName.SetText then return end
+		if issecretvalue and issecretvalue(info.subName) then return end
+		if type(info.subName)=="string" and info.subName~="" then return end
+		local sid=info.spellID
+		if (issecretvalue and issecretvalue(sid)) or not sid then return end
+		local sub
+		if Flux.Spell and Flux.Spell.GetSubtext then sub=Flux.Spell.GetSubtext(sid)
+		elseif C_Spell and C_Spell.GetSpellSubtext then sub=C_Spell.GetSpellSubtext(sid) end
+		if issecretvalue and issecretvalue(sub) then return end
+		if type(sub)=="string" and sub~="" then
+			row.SubName:SetText(sub)
+			if row.UpdateTextContainer then row:UpdateTextContainer() end
 		end
-	end
-	local itemMixin = _G.SpellBookItemMixin
-	if itemMixin and not itemMixin._fluxRankPatched then
-		itemMixin._fluxRankPatched = true
-		if itemMixin.UpdateVisuals then
-			hooksecurefunc(itemMixin, "UpdateVisuals", function(self)
-				if not RankSupported() then
-					return
-				end
-				if not self.HasValidData or not self:HasValidData() then
-					return
-				end
-				local info = self.spellBookItemInfo
-				if not info then
-					return
-				end
-				local sub = info.subName
-				if type(sub) == "string" and sub ~= "" then
-					return
-				end
-				local sid = info.spellID
-				if not sid then
-					return
-				end
-				local rankSub
-				if Flux.Spell and Flux.Spell.GetSubtext then
-					rankSub = Flux.Spell.GetSubtext(sid)
-				elseif C_Spell and C_Spell.GetSpellSubtext then
-					rankSub = C_Spell.GetSpellSubtext(sid)
-				end
-				if type(rankSub) == "string" and rankSub ~= "" and self.UpdateSubName then
-					self:UpdateSubName(rankSub)
-					if self.UpdateTextContainer then
-						self:UpdateTextContainer()
-					end
-				end
-			end)
-		end
-	end
+	end)
 end
 
 local function OnSpellbookShow()
@@ -1674,6 +1633,12 @@ local function BindSpellBookUI()
 		return
 	end
 	spellbookHooked = true
+	local Chrome=Flux.SpellBookChrome
+	local modernClient=Flux.Client
+	if Chrome and Chrome.Observe and modernClient and (modernClient.isRetail or modernClient.isCamelot or modernClient.isForever) then
+		Chrome.Observe("ranks",OnSpellbookShow,OnSpellbookHide,PatchSpellBookRankUI)
+		return
+	end
 	-- Forever HideUIPanel fires spellbook hide from the secure close. An
 	-- OnUpdate edge sees the change after that execution has finished.
 	local client = Flux.Client

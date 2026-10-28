@@ -18,7 +18,7 @@ local power = read("UnitFrames/FluxPowerCostOverlay.lua")
 local oldWatchers = read("tests/fixtures/power_cost_watchers_before.txt")
 local oldPower = power:sub(1, assert(power:find("local function SafeRegisterUnit(", 1, true)) - 1) .. oldWatchers
 local function watchers(branch, text, old)
-    local s = { created = {}, enabled = true, casts = {}, updates = {}, overlays = 0 }
+    local s = { created = {}, enabled = true, casts = {}, channels = {}, empowered = {}, updates = {}, overlays = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
     env.PlayerFrame = setmetatable({}, { __newindex = function() error("native frame mutation") end })
     env.hooksecurefunc = function() error("native hook") end
@@ -29,7 +29,9 @@ local function watchers(branch, text, old)
     env.UnitCastingInfo = function(unit)
         local id = s.casts[unit]; if id then return "spell", nil, nil, 100, 200, nil, nil, nil, id end
     end
-    env.UnitChannelInfo = function() end
+    env.UnitChannelInfo = function(unit)
+        local id = s.channels[unit]; if id then return "channel", nil, nil, 100, 200, nil, nil, id, nil, s.empowered[unit] and 3 or 0 end
+    end
     env.C_Spell = { GetSpellPowerCost = function() return { { type = 0, cost = 20 } } end }
     env.FluxUnitFrames_IsFeatureEnabled = function() return s.enabled end
     local ns = { API = {
@@ -98,8 +100,41 @@ local function watchers(branch, text, old)
     s.casts.player = nil
     watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_INTERRUPTED", "player")
     check(player.Power._fluxPredictedCost == nil, "interruption clears preview")
-    watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_CHANNEL_START", "player", 61)
+    watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_START", "player", 61)
     check(player.Power._fluxPredictedCost == 20, "legacy single-ID payload remains supported")
+    if not old then
+        s.channels.player = 61
+        player.AdditionalPower._fluxPredictedCost = 20
+        watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_CHANNEL_START", "player", "channel", 61)
+        check(player.Power._fluxPredictedCost == nil and player.AdditionalPower._fluxPredictedCost == nil,
+            "channel start clears primary and secondary mana previews")
+        check(player.Power.CostOverlay.hidden and player.AdditionalPower.CostOverlay.hidden,
+            "channel start hides already-paid cost overlays")
+        watcher.scripts.OnEvent(watcher, "UNIT_POWER_UPDATE", "player")
+        watcher.scripts.OnEvent(watcher, "UNIT_DISPLAYPOWER", "player")
+        check(player.Power._fluxPredictedCost == nil and player.AdditionalPower._fluxPredictedCost == nil,
+            "channel power updates cannot restore an already-paid preview")
+        player.Power._fluxPredictedCost = 20
+        pco.Initialize(player)
+        check(player.Power._fluxPredictedCost == nil, "options reapply during a channel clears stale prediction")
+        s.channels.target = 61
+        pco.Initialize(target)
+        target.Power._fluxPredictedCost = 20
+        target.PowerCostWatcher.scripts.OnEvent(target.PowerCostWatcher, "PLAYER_TARGET_CHANGED")
+        check(target.Power._fluxPredictedCost == nil, "switching to a channeling target does not preview spent mana")
+        s.empowered.player = true
+        pco.Initialize(player)
+        check(player.Power._fluxPredictedCost == 20, "empowered charging keeps its pending cost preview")
+        watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_EMPOWER_START", "player", "empower", 61)
+        watcher.scripts.OnEvent(watcher, "UNIT_POWER_UPDATE", "player")
+        check(player.Power._fluxPredictedCost == 20, "empowered start and power updates retain pending cost")
+        s.empowered.player = nil
+        s.channels.player, s.channels.target = nil, nil
+        s.casts.player = 61
+        watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_START", "player", "cast", 61)
+        check(player.Power._fluxPredictedCost == 20, "regular cast prediction returns after a channel")
+        s.casts.player = nil
+    end
     watcher.scripts.OnEvent(watcher, "UNIT_SPELLCAST_START", "player", "cast", { secret = true })
     check(player.Power._fluxPredictedCost == nil, "secret spell ID is never used as a cost key")
     pco.Initialize(target); pco.Initialize(focus)

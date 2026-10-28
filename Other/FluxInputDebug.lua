@@ -17,6 +17,16 @@ end
 local function name(frame)
     return call(frame, "GetName") or call(frame, "GetDebugName") or "anonymous"
 end
+local function security(object,keys)
+    local result={}
+    if issecretvalue and issecretvalue(object) then return {restricted=true} end
+    if not object or not issecurevariable then return result end
+    for _,key in ipairs(keys) do
+        local ok,secure,owner=pcall(issecurevariable,object,key)
+        if ok then result[key]={secure=plain(secure),owner=plain(owner)} end
+    end
+    return result
+end
 local function state(frame)
     if not frame then return { missing = true } end
     local result = { name = name(frame), attributes = {}, security = {} }
@@ -61,7 +71,33 @@ end
 local names = { "FluxUnitFrame_player", "FluxUnitFrameOuter_player", "PlayerFrame", "TargetFrame", "FocusFrame",
     "FluxPlayerPortraitTransmogClick", "FluxPlayerPortraitHoverCatcher", "FluxPortraitOutfitCombatHider",
     "StanceBar", "PetActionBar", "PossessActionBar", "CompactPartyFrame", "PartyFrame", "GameMenuFrame", "EditModeManagerFrame" }
-function Debug.Capture()
+local gridNames={"MainActionBar","MultiBarBottomLeft","MultiBarBottomRight","MultiBarLeft","MultiBarRight","MultiBar5","MultiBar6","MultiBar7"}
+local gridFields={"SetShown","SetShowGrid","GetShowGrid","HasAction","UpdateVisibility","UpdateShownButtons",
+    "actionButtons","shownButtonContainers","numButtonsShowable","showAllButtons","noSpacers","index","showgrid","bar","container"}
+local function captureGrids(snapshot)
+    snapshot.nativeGrids={}
+    for _,key in ipairs(gridNames) do
+        local bar=_G[key]
+        local record={frame=state(bar),security=security(bar,gridFields),buttons={}}
+        snapshot.nativeGrids[key]=record
+        local buttons=bar and bar.actionButtons
+        if type(buttons)=="table" and not (issecretvalue and issecretvalue(buttons)) then
+            for i=1,12 do
+                local button=buttons[i]
+                if button and not (issecretvalue and issecretvalue(button)) then
+                    record.buttons[i]={name=name(button),security=security(button,gridFields),
+                        entry=security(buttons,{i}),container=security(button.container,{"SetShown","Show","Hide"}),
+                        statehidden=call(button,"GetAttribute","statehidden")}
+                end
+            end
+        end
+    end
+    snapshot.gridGlobals=security(_G,{"MultiActionBar_ShowAllGrids","MultiActionBar_HideAllGrids","GetMultiActionBars","PlayerSpellsFrame"})
+    snapshot.spellbookMixins={
+        frame=security(_G.SpellBookFrameMixin,{"OnShow","UpdateSpells","ShouldDisplaySpellBookItem"}),
+        item=security(_G.SpellBookItemMixin,{"UpdateVisuals","UpdateSubName","OnIconClick"})}
+end
+function Debug.Capture(includeGrids)
     local snapshot = { schema = 2, time = date and date("%Y-%m-%d %H:%M:%S"), frames = {}, foci = {},
         combat = InCombatLockdown and InCombatLockdown(), editBusy = FluxEditModeBusy and FluxEditModeBusy(),
         helpers = { api = type(FLUX_API), events = type(FluxSafeRegisterUnitEvent), atlas = type(FluxHasAtlas),
@@ -130,21 +166,25 @@ function Debug.Capture()
         end
         snapshot.foci[#snapshot.foci + 1] = ancestry
     end
+    if includeGrids then captureGrids(snapshot) end
     snapshot.complete = true
     return snapshot
 end
 local pending = false
 SLASH_FLUXINPUT1 = "/fluxinput"
-SlashCmdList.FLUXINPUT = function()
+SlashCmdList.FLUXINPUT = function(message)
     if pending then return end
-    local message = "Flux input v2: hover the player frame for 3 seconds, then /reload to save the snapshot."
-    if UIErrorsFrame and UIErrorsFrame.AddMessage then UIErrorsFrame:AddMessage(message, 1, 1, 1) end
-    Debug.Capture()
+    local grids=type(message)=="string" and message:lower():match("^%s*grid%s*$")~=nil
+    local notice = grids and "Flux grid capture: reproduce the spellbook error now; /reload afterward to save."
+        or "Flux input v2: hover the player frame for 3 seconds, then /reload to save the snapshot."
+    if UIErrorsFrame and UIErrorsFrame.AddMessage then UIErrorsFrame:AddMessage(notice, 1, 1, 1) end
+    local before=Debug.Capture(grids)
     if C_Timer and C_Timer.After then
         pending = true
         C_Timer.After(3, function()
             pending = false
-            local snapshot = Debug.Capture()
+            local snapshot = Debug.Capture(grids)
+            if grids then snapshot.gridsBefore=before.nativeGrids end
             if UIErrorsFrame and UIErrorsFrame.AddMessage then
                 UIErrorsFrame:AddMessage("Flux input captured " .. (snapshot.time or "now") .. ". /reload to save.", 1, 1, 1)
             end

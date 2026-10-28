@@ -13,6 +13,27 @@ local hookedMouse = {}
 local hookedShow = {}
 local session = {} -- name -> { x, y, scale } live layout even when save is off
 local started = false
+local panelWatch
+local panelFrames={}
+
+local function ObserveNativePanel(name,frame)
+	panelFrames[name]={frame=frame,shown=false}
+	if panelWatch then return end
+	panelWatch=CreateFrame("Frame")
+	local elapsed=0
+	panelWatch:SetScript("OnUpdate",function(_,dt)
+		elapsed=elapsed+dt
+		if elapsed<0.1 then return end
+		elapsed=0
+		for key,record in pairs(panelFrames) do
+			local shown=record.frame:IsShown() and true or false
+			if shown~=record.shown then
+				record.shown=shown
+				if shown then WindowMover.Apply(key,record.frame) end
+			end
+		end
+	end)
+end
 
 local function ResolveDynamicSize(entry)
 	if not entry then
@@ -706,6 +727,9 @@ local function ShouldReapplyAfterLayout(name, sel, method)
 end
 
 local function HookLayout(frame, name, method)
+    -- UIPanel positioning precedes PlayerSpells OnShow -> native protected
+    -- grids. Restore saved placement from our post-open observer instead.
+    if name=="PlayerSpellsFrame" then return end
     -- CharacterFrame opens from the native binding too. Its SetPoint/SetScale
     -- callbacks must stay native before OnShow compares secret health, in both
     -- mouse/keyboard and gamepad UI. Reapply the saved layout after it opens.
@@ -858,6 +882,9 @@ function WindowMover.Attach(entry)
 				WindowMover.Apply(name, frame)
 			end)
 		end
+	elseif name=="PlayerSpellsFrame" then
+		hookedShow[frame]=true
+		ObserveNativePanel(name,frame)
 	elseif frame.HookScript and not hookedShow[frame] then
 		hookedShow[frame] = true
 		pcall(function()
@@ -876,7 +903,7 @@ function WindowMover.Attach(entry)
 		HookLayout(frame, name, "SetScale")
 	end
 
-	WindowMover.Apply(name, frame)
+	if name~="PlayerSpellsFrame" then WindowMover.Apply(name, frame) end
 	return true
 end
 

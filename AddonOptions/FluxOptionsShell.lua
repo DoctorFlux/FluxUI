@@ -682,8 +682,10 @@ end
 
 -- CloseWindows hides every UISpecialFrames entry when a center or fullscreen
 -- panel opens (spellbook, talents, help, chat config). Stay off that list.
--- Escape still closes this window through the game-menu handler, or an
--- override binding on clients that do not have one.
+-- Escape closes this window through an override binding while it is shown.
+-- Do not register a game-menu handler: registration sorts Blizzard's shared
+-- handler table in addon context, tainting even its earlier Casting entry.
+-- That can forbid SpellStopCasting/SpellStopTargeting after options close.
 local escapeInstalled = false
 local escapeRegen
 
@@ -697,15 +699,6 @@ local function LeaveSpecialFrames()
             table.remove(list, i)
         end
     end
-end
-
---- After CloseAllWindows (AddOnPost). An earlier handler taints ToggleGameMenu
---- and the gamepad close then calls SetPreferredGamepadInteractTarget.
-local function EscHandlerPriority()
-    if not (RegisterGameMenuEscHandler and GameMenuEscPriority) then
-        return nil
-    end
-    return GameMenuEscPriority.AddOnPost2 or GameMenuEscPriority.World
 end
 
 local function MenuOrDropdownTookEscape()
@@ -765,6 +758,8 @@ local function ArmEscapeBinding(frame)
             local shown = Shell.frame
             if shown and shown:IsShown() then
                 BindEscapeClick(shown)
+            elseif shown then
+                ClearEscapeClick(shown)
             end
         end)
     end
@@ -772,6 +767,11 @@ local function ArmEscapeBinding(frame)
 end
 
 local function DisarmEscapeBinding(frame)
+    if InCombatLockdown and InCombatLockdown() then
+        -- Closing during combat must still clear the override once permitted.
+        ArmEscapeBinding(frame)
+        return
+    end
     if escapeRegen then
         escapeRegen:UnregisterEvent("PLAYER_REGEN_ENABLED")
     end
@@ -784,17 +784,6 @@ local function InstallEscapeClose(frame)
         return
     end
     escapeInstalled = true
-    local escPriority = EscHandlerPriority()
-    if escPriority then
-        RegisterGameMenuEscHandler(escPriority, function()
-            if Shell.frame and Shell.frame:IsShown() then
-                Shell.frame:Hide()
-                return true
-            end
-            return false
-        end)
-        return
-    end
     local button = CreateFrame("Button", "FluxUIOptionsEscapeButton", frame)
     button:SetSize(1, 1)
     button:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)

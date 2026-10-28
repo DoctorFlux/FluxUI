@@ -324,6 +324,9 @@ UnitFrames\FluxUnitFrames_PlayerTransmogClick.lua
 UnitFrames\FluxMP5Overlay.lua
 UnitFrames\FluxPowerCostOverlay.lua
 UnitFrames\FluxHealthLossOverlay.lua
+UnitFrames\FluxCastBarSchools.lua
+UnitFrames\FluxCastBarVisuals.lua
+UnitFrames\FluxCastBarThemes.lua
 UnitFrames\FluxCastBar.lua
 UnitFrames\FlightPath\Data_mainline.xml [AllowLoadGameType mainline]
 UnitFrames\FlightPath\Data_mop.xml [AllowLoadGameType mists]

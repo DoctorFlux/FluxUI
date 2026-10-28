@@ -5,6 +5,7 @@ local CB = ns.CastBar
 local UF = ns.UnitFrames
 local API = ns.API
 local Border = ns.Border
+local CastThemes = ns.CastBarThemes
 
 -- Helper function to get unit's class color (copied from shared file)
 local function GetUnitClassColor(unit)
@@ -1162,6 +1163,7 @@ end
 -- red pip, localized Interrupted / Interrupted by. Classic Style fills red immediately
 -- (CastingBarMixin:ApplyInterruptFilledState) and does not use the interrupted atlas cap.
 local function HandleInterrupt(self, failed, interruptedBy)
+    if CastThemes then CastThemes.Reset(self, true) end
     self.interrupted = true
     self.beingInterrupted = true
     self.casting = nil
@@ -1236,6 +1238,7 @@ local function NotifyCastBarSlotReleased(self)
 end
 
 HideCastBarInstant = function(self, isAfterInterrupt)
+    if CastThemes then CastThemes.Reset(self, true) end
     if self.fadeTimer then
         self.fadeTimer:Cancel()
         self.fadeTimer = nil
@@ -1373,6 +1376,7 @@ local function CastStop(self, failed)
     if self.IsShown and not self:IsShown() then
         self:Show()
     end
+    if CastThemes then CastThemes.Finish(self) end
 end
 
 -- Blizzard Mainline CastingBarFrameStageTierTemplate FlashAnim: glow 0 -> 1 -> 0 (~0.5s)
@@ -1802,6 +1806,8 @@ function CB.StartCustomTimer(castBar, timerOpts)
         return
     end
 
+    if CastThemes then CastThemes.Reset(castBar, true) end
+
     StopCustomTimerInternal(castBar)
 
     castBar.casting = nil
@@ -1890,7 +1896,8 @@ function CB.StartCustomTimer(castBar, timerOpts)
     end
 end
 
-local function CastStart(self, unit, isChannel, castGUID)
+local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
+    if CastThemes then CastThemes.Reset(self, true) end
     if FluxUnitFrames_ShouldShowCastBar and not FluxUnitFrames_ShouldShowCastBar(unit) then
         self:Hide()
         return
@@ -2186,6 +2193,8 @@ local function CastStart(self, unit, isChannel, castGUID)
     else
         AddStages(self, 0)
     end
+
+    if CastThemes then CastThemes.Begin(self, unit, spellID, name, isTradeSkill, eventSpellID) end
 
     if unit == "player" or unit == "vehicle" then
         local ST = ns.SwingTimer
@@ -2958,11 +2967,11 @@ function CB.CreateCastBar(frame, unit)
         end
 
         if event == "UNIT_SPELLCAST_START" then
-            CastStart(self, unit, false, castGUID)
+            CastStart(self, unit, false, castGUID, spellID)
         elseif event == "UNIT_SPELLCAST_CHANNEL_START" then
-            CastStart(self, unit, true, castGUID)
+            CastStart(self, unit, true, castGUID, spellID)
         elseif event == "UNIT_SPELLCAST_EMPOWER_START" then
-             CastStart(self, unit, true, castGUID)
+             CastStart(self, unit, true, castGUID, spellID)
         elseif event == "UNIT_SPELLCAST_DELAYED" then
             -- Forever HandleCastDelayed: re-read UnitCastingInfo start/end.
             if self.casting and not self.isEmpowered then
@@ -3087,6 +3096,7 @@ function CB.CreateCastBar(frame, unit)
     end)
     
     castBar:SetScript("OnUpdate", OnUpdate)
+    if CastThemes then CastThemes.Attach(castBar) end
 
     -- Dynamic Layout Update function
     castBar.UpdateLayout = function()
@@ -3196,6 +3206,7 @@ function CB.CreateCastBar(frame, unit)
         if castBar.customTimer and castBar.customFromName then
             ApplyCustomTimerLabel(castBar)
         end
+        if CastThemes then CastThemes.Layout(castBar) end
     end
 
     frame.CastBar = castBar

@@ -769,6 +769,7 @@ function FluxUnitFrames_ApplyOptionsFromDB()
     FluxUnitFrames_ApplyFrameSizesFromDB()
     FluxUnitFrames_ApplyAuraLayoutFromDB()
     FluxUnitFrames_ApplyPortraitOptionsFromDB()
+    if ns.CastBarThemes then ns.CastBarThemes.Refresh() end
     FluxUnitFrames_RefreshPortraitCombatTint()
     if FluxUnitFrames_ApplyThreatBarOptionsFromDB then
         FluxUnitFrames_ApplyThreatBarOptionsFromDB()

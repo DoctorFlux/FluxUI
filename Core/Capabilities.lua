@@ -141,8 +141,10 @@ do
 	end)
 end
 do
-	local restricted = false
-	if C_CombatLog and C_CombatLog.IsCombatLogRestricted then
+	-- Live Midnight forbids the event methods themselves, including cleanup.
+	-- Do not probe them even when the restriction query is absent or says false.
+	local restricted = Client.isLiveMidnight == true
+	if not restricted and C_CombatLog and C_CombatLog.IsCombatLogRestricted then
 		local ok, res = pcall(C_CombatLog.IsCombatLogRestricted)
 		if ok and res then
 			restricted = true

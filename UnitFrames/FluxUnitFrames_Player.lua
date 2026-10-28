@@ -77,7 +77,7 @@ local function InitializePlayerFrame()
         ns.PowerCostOverlay.Initialize(frame)
     end
 
-    -- MP5 Rule / Mana Tick overlay (vanilla/TBC only)
+    -- MP5 Rule / Mana Tick overlay on tick-based mana clients
     if ns.MP5Overlay and ns.MP5Overlay.Initialize then
         ns.MP5Overlay.Initialize(frame)
     end

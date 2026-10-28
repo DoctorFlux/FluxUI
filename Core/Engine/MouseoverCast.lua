@@ -917,6 +917,11 @@ local function BindSpellBookUI()
 	end
 	spellBookHooked = true
 	local client = Flux.Client
+	local Chrome=Flux.SpellBookChrome
+	if Chrome and Chrome.Observe and client and (client.isRetail or client.isCamelot or client.isForever) then
+		Chrome.Observe("mouseover",OnSpellbookShow,OnSpellbookHide)
+		return
+	end
 	if client and (client.isCamelot or client.isForever) then
 		local was = (SpellBookFrame and SpellBookFrame.IsShown and SpellBookFrame:IsShown()) and true or false
 		local modern = PlayerSpellsFrame and PlayerSpellsFrame.SpellBookFrame

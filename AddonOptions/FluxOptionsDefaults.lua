@@ -1,5 +1,14 @@
 local addonName, ns = ...
 
+local function CastBarThemeDefaults()
+    return {
+        enabled = true, player = true, target = true, focus = true, pet = true,
+        colors = true, gradient = true, particles = true, halo = true, edge = true, backdrop = true,
+        spellVisuals = true, inferVisuals = true,
+        density = 100, glowOpacity = 100, backdropOpacity = 100,
+    }
+end
+
 -- AceDB-3.0 defaults table for FluxUI options.
 -- profile = shared across characters using the same profile name.
 -- char    = always per-character regardless of profile.
@@ -136,6 +145,7 @@ FluxOptionsDefaults = {
         },
         -- Unit frames: see FluxOptions:GetUnitFrameDB (scope independent of General).
         unitFrames = {
+            castBarThemes = CastBarThemeDefaults(),
             classPowerScale = 1,
             useFluxPlayer = true,
             useFluxTarget = true,
@@ -429,6 +439,7 @@ FluxOptionsDefaults = {
         unitFramesSettingsScope = "account",
         unitFramesCharInitialized = false,
         unitFrames = {
+            castBarThemes = CastBarThemeDefaults(),
             classPowerScale = 1,
             useFluxPlayer = true,
             useFluxTarget = true,

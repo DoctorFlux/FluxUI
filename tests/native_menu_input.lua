@@ -56,8 +56,62 @@ local function tooltipCase(processors)
         check(cleared == 1 and added == 1, "legacy unprotected money remains unchanged")
     end
 end
+-- Exercise the real options Escape code. Registering an addon handler sorts
+-- Blizzard's shared secure entries; even a late priority is unsafe there.
+local shellSource = read("AddonOptions/FluxOptionsShell.lua")
+local escapeStart = assert(shellSource:find("local escapeInstalled = false", 1, true))
+local escapeEnd = assert(shellSource:find("function Shell:EnsureFrame()", escapeStart, true))
+local escapeSource = shellSource:sub(escapeStart, escapeEnd - 1)
+local function optionsEscapeCase(branch)
+    local registrations, bindings, clears, hides, combat, menuOpen = 0, 0, 0, 0, false, false
+    local frames = {}
+    local frame = { shown = true }
+    function frame:IsShown() return self.shown end
+    local shell = { frame = frame }
+    function shell:Hide() hides = hides + 1; self.frame.shown = false end
+    local env = setmetatable({ Shell = shell, UISpecialFrames = {"OtherAddon", "FluxUIOptionsFrame"},
+        GameMenuEscPriority = {AddOnPost2=10,World=11},
+        RegisterGameMenuEscHandler = function() registrations = registrations + 1 end,
+        InCombatLockdown = function() return combat end,
+        SetOverrideBindingClick = function(owner, priority, key, button, click)
+            check(not combat and owner == frame and priority and key == "ESCAPE"
+                and button == "FluxUIOptionsEscapeButton" and click == "LeftButton", branch..": options-only Escape binding")
+            bindings = bindings + 1
+        end,
+        ClearOverrideBindings = function(owner) check(owner == frame, "only options bindings cleared"); clears = clears + 1 end,
+        Menu = {GetManager = function() return {HandleESC = function() local open=menuOpen;menuOpen=false;return open end} end},
+        CreateFrame = function(kind, name, parent)
+            local f = {events={},scripts={}}
+            function f:SetSize() end; function f:SetPoint() end; function f:EnableMouse() end
+            function f:SetScript(key, fn) self.scripts[key] = fn end
+            function f:RegisterEvent(event) self.events[event] = true end
+            function f:UnregisterEvent(event) self.events[event] = nil end
+            frames[#frames+1] = f
+            return f
+        end,
+    }, {__index=_G})
+    env._G = env
+    local install, arm, disarm = assert(load(escapeSource.."\nreturn InstallEscapeClose, ArmEscapeBinding, DisarmEscapeBinding", "@options-escape", "t", env))()
+    install(frame); install(frame)
+    check(registrations == 0, branch..": options never modifies Blizzard's Escape handler table")
+    check(#frames == 1 and shell._escapeBinding, branch..": one reusable Escape button")
+    check(#env.UISpecialFrames == 1 and env.UISpecialFrames[1] == "OtherAddon", branch..": unrelated special frames preserved")
+    arm(frame)
+    menuOpen = true; frames[1].scripts.OnClick()
+    check(hides == 0 and not menuOpen, branch..": dropdown consumes first Escape")
+    frames[1].scripts.OnClick();disarm(frame)
+    check(hides == 1 and bindings == 1 and clears == 1, branch..": options closes and restores native Escape")
+    combat = true;frame.shown = true;arm(frame)
+    check(bindings == 1 and frames[2].events.PLAYER_REGEN_ENABLED, branch..": combat defers binding changes")
+    combat = false;frames[2].scripts.OnEvent(frames[2])
+    check(bindings == 2 and not frames[2].events.PLAYER_REGEN_ENABLED, branch..": deferred binding restored once")
+    combat = true;arm(frame);frame.shown = false;disarm(frame)
+    check(frames[2].events.PLAYER_REGEN_ENABLED, branch..": combat close retains pending cleanup")
+    combat = false;frames[2].scripts.OnEvent(frames[2])
+    check(bindings == 2 and clears == 2 and not frames[2].events.PLAYER_REGEN_ENABLED, branch..": hidden options clears Escape after combat")
+end
 for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
-    microCase(branch); tooltipCase(true); tooltipCase(false)
+    microCase(branch); tooltipCase(true); tooltipCase(false); optionsEscapeCase(branch)
 end
 local old = microHook:gsub('Flux.Client.isRetail and Flux.Client.isPostDF', 'Flux.Client.isForever')
     :gsub('FLUX_API.isRetail and FLUX_API.isPostDF', 'FLUX_API.isForever')
