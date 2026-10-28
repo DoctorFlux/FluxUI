@@ -421,6 +421,12 @@ local function PositionEditorButton()
         return
     end
 
+    local Chrome = _G.Flux and _G.Flux.SpellBookChrome
+    if Chrome and Chrome.UsesCompactLayout and Chrome.UsesCompactLayout() then
+        Chrome.Layout({ editor = btn })
+        return
+    end
+
     btn:SetParent(book)
     btn:ClearAllPoints()
     if isModern then

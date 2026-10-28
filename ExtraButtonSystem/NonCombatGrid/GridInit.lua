@@ -112,6 +112,29 @@ if managedStartup then
     })
 end
 
+-- ADDON_LOADED reserves the buttons; PLAYER_LOGIN supplies the current bags
+-- and spellbook. Finish selection and layout in this same event, before PEW.
+if Flux and Flux.AfterLogin then
+    Flux.AfterLogin(function()
+        if InCombatLockdown() then return end
+        local wasReady = API._startupReady
+        if not Initialize() or not wasReady then return end
+        local grid = API.DefaultGrid
+        if grid.BeginLayout then grid:BeginLayout() end
+        for _, module in ipairs({ FluxNCHearthstone, FluxNCMount, FluxNCTeleportPortal,
+            FluxNCWater, FluxNCFood, FluxNCConsumables }) do
+            local update = module.Update or module.UpdateButtonState
+            if update then Flux.Safecall(update, true) end
+        end
+        if FluxNCUtilitySlotsManager and FluxNCUtilitySlotsManager.UpdateAllSlots then
+            Flux.Safecall(FluxNCUtilitySlotsManager.UpdateAllSlots)
+        end
+        ApplyLeftAnchor(grid)
+        if grid.Relayout then grid:Relayout() end
+        if grid.EndLayout then grid:EndLayout() end
+    end)
+end
+
 local f = CreateFrame("Frame")
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:RegisterEvent("PLAYER_REGEN_ENABLED")

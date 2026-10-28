@@ -853,6 +853,11 @@ local function OpenSettings(_, button)
 end
 
 function FluxCCP:InstallColumnButtons()
+    if InCombatLockdown() then
+        self._columnInstallPending = true
+        return
+    end
+    self._columnInstallPending = nil
     local chat = _G.ChatFrame1
     local bf = chat and chat.buttonFrame
     if not bf or _G.FluxCCPChatCopyButton then
@@ -1066,10 +1071,17 @@ function FluxCCP:InstallColumnButtons()
 end
 
 local pewFrame = CreateFrame("Frame")
+pewFrame:RegisterEvent("PLAYER_LOGIN")
 pewFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-pewFrame:SetScript("OnEvent", function()
+pewFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+pewFrame:SetScript("OnEvent", function(_, event)
+    if event == "PLAYER_REGEN_ENABLED" and not FluxCCP._columnInstallPending then return end
+    if event == "PLAYER_LOGIN" and _G.FluxCCPChatCopyButton then return end
     FluxCCP:InstallColumnButtons()
 end)
+if ns.Flux and ns.Flux.AfterLogin then
+    ns.Flux.AfterLogin(function() FluxCCP:InstallColumnButtons() end)
+end
 
 local function hasEscapes(msg)
     if msg then

@@ -147,6 +147,22 @@ if managedStartup then
     })
 end
 
+if Flux and Flux.AfterLogin then
+    Flux.AfterLogin(function()
+        if InCombatLockdown() then return end
+        local wasReady = Manager._startupReady
+        if not Initialize() or not wasReady then return end
+        local grid = Manager.Grid
+        if grid.BeginLayout then grid:BeginLayout() end
+        for _, module in ipairs({ FluxCombatBandage, FluxCombatHealPotion, FluxCombatManaPotion,
+            FluxCombatManaGem, FluxCombatHealthstone, FluxCombatAmmo }) do
+            if module.Update then Flux.Safecall(module.Update, true) end
+        end
+        Manager:FinalizeLayout()
+        if grid.EndLayout then grid:EndLayout() end
+    end)
+end
+
 Manager._combatRefreshers = Manager._combatRefreshers or {}
 Manager._combatRefreshTicker = Manager._combatRefreshTicker or nil
 

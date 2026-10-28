@@ -1384,6 +1384,21 @@ local function HookScheduler()
 	end)
 end
 
+-- One bags-only startup snapshot. No provider, bank scan or timer needs to
+-- finish before the grid buttons can select and bind their carried items.
+function Inv.PrepareHUD()
+	if InCombatLockdown and InCombatLockdown() then return false end
+	local bags = Inv.Builtin and Inv.Builtin.Bags
+	if not (bags and bags.Invalidate and bags.Refresh) then return false end
+	bags.Invalidate()
+	bags.Refresh()
+	local best = _G.FluxConsumableBest
+	if best and best.RequestRecompute then
+		best.RequestRecompute({ reason = "hudLogin", bagsOnly = true, force = true, immediate = true })
+	end
+	return true
+end
+
 function Inv.Start()
 	if Inv.started then
 		return

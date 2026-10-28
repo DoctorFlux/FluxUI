@@ -314,7 +314,9 @@ local function GetChatHeight()
     else
         base = 200 * 1.35
     end
-    return math.max(120, base - 100)
+    -- The original beside-chat layout had a ~195-unit log. Keep that height
+    -- explicit instead of relying on extra startup clearance to stretch it.
+    return math.max(120, base - 75)
 end
 
 local function ShownFrameTop(frame)
@@ -327,6 +329,11 @@ local function ShownFrameTop(frame)
     local top = frame:GetTop()
     if type(top) ~= "number" or top ~= top or top < 40 then
         return nil
+    end
+    local parentScale = (UIParent and UIParent.GetEffectiveScale and UIParent:GetEffectiveScale()) or 1
+    local frameScale = (frame.GetEffectiveScale and frame:GetEffectiveScale()) or parentScale
+    if type(frameScale) == "number" and frameScale > 0 and type(parentScale) == "number" and parentScale > 0 then
+        top = top * frameScale / parentScale
     end
     return top
 end
@@ -352,7 +359,8 @@ local function GetStripClearanceTop()
         end
     end
     consider(ShownFrameTop(_G.FluxUnifiedBorderFrame))
-    consider(ShownFrameTop(_G.FluxStatusBarUnifiedBorderFrame))
+    -- The status/menu border can reach the top of the chat column itself.
+    -- Including it feeds that height back into the column's bottom anchor.
     consider(ShownFrameTop(_G.FluxActionStrip) or ShownFrameTop(_G.FluxMainActionBar))
     local nc = _G.FluxNonCombatAPI and _G.FluxNonCombatAPI.DefaultGrid
     consider(ShownFrameTop(nc and nc.Frame))
@@ -410,7 +418,7 @@ local function GetActionStripTopY()
         end
     end
     if not y then
-        y = ShownFrameTop(_G.FluxActionStrip) or ShownFrameTop(_G.FluxMainActionBar) or GetStripClearanceTop()
+        y = ShownFrameTop(_G.FluxActionStrip) or ShownFrameTop(_G.FluxMainActionBar) or GetBorderTop()
     end
     local Cap = ns.Flux and ns.Flux.Cap
     local floor = Cap and Cap.GetGamepadActionBarFloor and Cap.GetGamepadActionBarFloor()
@@ -453,8 +461,13 @@ end
 --- Bottom Y inset for anchoring frames to UIParent BOTTOMLEFT (matches ApplyPosition for ChatFrame1).
 --- Includes status-strip lifts so micromenu pos2 and chat share one floor.
 function _G.FluxChatFrame_GetPrimaryBottomInsetY()
-    local yBottom = GetBorderTop() + GetEditBoxHeight()
-    return ApplyStatusBarChatLifts(yBottom)
+    return GetChatFloorAboveActionStrip()
+end
+
+--- Bottom of the side column / edit box, before the chat log's edit-box inset.
+--- Available during login even before UnifiedBorder has created its frame.
+function _G.FluxChatFrame_GetPrimaryColumnBottomY()
+    return GetChatFloorAboveActionStrip() - GetEditBoxHeight()
 end
 
 --- Visual chat-tab height in UIParent units (not live GetTop — that follows off-screen FCF restores).
@@ -1299,7 +1312,12 @@ end
 -- MAIN INITIALIZATION
 -- ---------------------------------------------------------------------------
 
+local configurationPending = false
 local function RunConfiguration()
+    if InCombatLockdown() then
+        configurationPending = true
+        return false
+    end
     if not _FluxUI_CharSavedVars then
         _FluxUI_CharSavedVars = {}
     end
@@ -1319,16 +1337,12 @@ local function RunConfiguration()
         HookEditModeRestore()
         WatchChatPinDrift()
         InitSocialButtonPositioning()
-        return
-    end
-
-    if InCombatLockdown() then
-        C_Timer.After(2, RunConfiguration)
-        return
+        configurationPending = false
+        return true
     end
 
     local chatFrame1 = ChatFrame1
-    if not chatFrame1 then return end
+    if not chatFrame1 then return false end
 
     ConfigureGeneral(chatFrame1)
 
@@ -1350,6 +1364,8 @@ local function RunConfiguration()
     _FluxUI_CharSavedVars.fluxChatConfigured = true
 
     print("|cff00ffff[FluxChatFrame]|r Chat configured for this character.")
+    configurationPending = false
+    return true
 end
 
 -- ---------------------------------------------------------------------------
@@ -1363,6 +1379,35 @@ eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 
 local hasRun = false
+local function InitializeChat()
+    if hasRun then return end
+    hasRun = RunConfiguration() == true
+end
+if ns.Flux and ns.Flux.AfterLogin then
+    ns.Flux.AfterLogin(InitializeChat)
+end
+
+-- Commit the shared rectangle after the micro menu, status bars and unified
+-- border have their final startup dimensions. This is still the same login
+-- event; no timer or world-entry/combat transition is needed to finish sizing.
+if ns.Flux and ns.Flux.Module then
+    ns.Flux.Module.Register("ChatLayout", {
+        phase = "hud", priority = 100, protected = true,
+        OnEnable = function()
+            if InCombatLockdown() or not ChatFrame1 then return false end
+            local menu = _G.FluxMicroMenu
+            if menu and menu.RefreshLayout then
+                if not menu._startupReady then return false end
+                menu:RefreshLayout()
+            end
+            ApplyPositionWithRetries(ChatFrame1, true)
+            if _G.FluxCCP and FluxCCP.InstallColumnButtons then
+                FluxCCP:InstallColumnButtons()
+            end
+            return true
+        end,
+    })
+end
 
 -- Zone/global channels populate after login; refresh Global Chat when the client reports channel changes.
 -- Pre-DF: also re-disable globals on General — the engine can re-add them when channels update.
@@ -1404,6 +1449,7 @@ end
 
 eventFrame:SetScript("OnEvent", function(self, event)
     if event == "PLAYER_REGEN_ENABLED" then
+        if configurationPending then InitializeChat() end
         if chatPinCombatPending then
             chatPinCombatPending = false
             ApplyPositionWithRetries(ChatFrame1, true)
@@ -1423,20 +1469,8 @@ eventFrame:SetScript("OnEvent", function(self, event)
 
     if hasRun then return end
 
-    if event == "PLAYER_LOGIN" then
-        C_Timer.After(1, function()
-            if not hasRun then
-                hasRun = true
-                RunConfiguration()
-            end
-        end)
-    elseif event == "PLAYER_ENTERING_WORLD" then
-        C_Timer.After(2, function()
-            if not hasRun then
-                hasRun = true
-                RunConfiguration()
-            end
-        end)
+    if event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
+        InitializeChat()
     end
 end)
 

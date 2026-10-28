@@ -316,8 +316,8 @@ local function AppendTooltip(btn, tip)
             Bridge.AppendConjureSpellLines(tip, primaryID or primary, secondaryID or secondary, {
                 bindingName = "FLUXMAGE_CONJURE_FOOD",
                 ritualBindingName = "FLUXMAGE_RITUAL_OF_REFRESHMENT",
-                -- Recuperate: Shift+Right is restock; Ritual moves to Ctrl+Right.
-                secondaryModifier = Module.HasRecuperate() and "ctrl" or nil,
+                -- Shift+Right edits the target; Ritual uses Ctrl+Right.
+                secondaryModifier = "ctrl",
             })
         end
     end
@@ -368,18 +368,13 @@ local function ApplyRC(btn)
     Bridge.ApplyCtrlRightClickSpell(btn, nil)
     if hasPrimary then
         Bridge.ApplyRightClickSpell(btn, primaryID or primary)
+        Bridge.ApplyShiftRightClickSpell(btn, nil)
         if secondaryID or secondary then
-            Bridge.ApplyShiftRightClickSpell(btn, secondaryID or secondary)
+            Bridge.ApplyCtrlRightClickSpell(btn, secondaryID or secondary)
         else
-            Bridge.ApplyShiftRightClickSpell(btn, nil)
+            Bridge.ApplyCtrlRightClickSpell(btn, nil)
         end
-        -- Conjure owns right-click; restock on middle (shift-middle if conjured delete uses middle).
-        local isConjured = Bridge.IsConjured and Bridge.IsConjured(Module._trackedItemID or btn.ItemId)
-        if isConjured then
-            Bridge.WireRestockEdit(btn, "food", { mode = "shift-middle" })
-        else
-            Bridge.WireRestockEdit(btn, "food", { mode = "middle" })
-        end
+        Bridge.WireRestockEdit(btn, "food", { mode = "shift-right" })
     else
         Bridge.ApplyRightClickSpell(btn, nil)
         Bridge.ApplyShiftRightClickSpell(btn, nil)

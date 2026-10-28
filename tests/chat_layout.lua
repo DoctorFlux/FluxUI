@@ -6,6 +6,11 @@ local function section(text, first, last)
     return text:sub(a, assert(text:find(last, a + #first, true)) - 1)
 end
 local production = section(source, "local function GetChatWidth()", "-- CLASS COLORS")
+local microFile = assert(io.open("MicroMenu/FluxMicroMenu.lua", "rb"))
+local micro = microFile:read("*a"):gsub("\r\n", "\n"); microFile:close()
+local columnFloor = section(micro, "local function GetBesideChatColumnBottom", "--- Multi-column grid beside chat:")
+local columnGeometry = section(micro, "local function FrameEdgeInUIParent", "local function EnsureMicroMenuScrollParts")
+    .. section(micro, "local function GetBesideChatColumnBottom", "-- Minimap vertical strip")
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
 local function fixture(branch, body)
@@ -23,7 +28,7 @@ local function fixture(branch, body)
         GetEffectiveScale = function() return .7 end }
     env.FluxUnifiedBorder = { GetActionGridBorderTop = function() return state.floor end }
     env.FluxActionStrip = { IsShown = function() return true end, GetTop = function() return state.floor end }
-    local menu = { w = 52, h = 224, bottom = 103 }
+    local menu = { w = 52, h = 249, bottom = 103 }
     function menu:GetWidth() return self.w end
     function menu:GetHeight() return self.h end
     function menu:GetBottom() return self.bottom end
@@ -62,7 +67,7 @@ end
 local function exercise(branch, body)
     local s, chat, menu, env, apply, restore, drift = fixture(branch, body)
     apply(chat)
-    check(math.abs(chat.w - 222.75) < .01 and chat.h == 170, branch .. ": initial squeezed rectangle")
+    check(math.abs(chat.w - 222.75) < .01 and chat.h == 195, branch .. ": original taller chat rectangle")
     -- Secure/HUD startup now completes before the older delayed chat configuration.
     -- Subsequent menu layout must reconcile the transient first measurements.
     s.xFactor, s.floor = 1, 140
@@ -91,7 +96,7 @@ local function exercise(branch, body)
     env.FluxChatFrame_SetDragHold(false, true); apply(chat)
     check(chat.x == 116, branch .. ": bag drag release permits reconciliation")
     s.pos = 1; apply(chat, true)
-    check(chat.x == 34 and chat.y == 175 and chat.h == 170, branch .. ": horizontal menu layout preserved")
+    check(chat.x == 34 and chat.y == 175 and chat.h == 195, branch .. ": horizontal menu layout preserved")
     s.pos = 3; apply(chat, true)
     check(chat.x == 34 and chat.y == 175, branch .. ": minimap menu layout preserved")
     s.pos = 2; apply(chat, true)
@@ -117,10 +122,78 @@ local function exercise(branch, body)
     fresh.combat = true; firstApply(first)
     check(fresh.writes == 0, branch .. ": combat login waits for legal structural initialization")
     fresh.combat = false; fresh.event(nil, "PLAYER_REGEN_ENABLED")
-    check(first.h == 170 and math.abs(first.w - 222.75) < .01, branch .. ": combat login completes after regen")
+    check(first.h == 195 and math.abs(first.w - 222.75) < .01, branch .. ": combat login completes after regen")
     return s, chat, menu, env, apply, restore
 end
-for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do exercise(branch) end
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    exercise(branch)
+    -- Login now precedes UnifiedBorder creation. The menu must subtract the
+    -- editor inset from the log floor, rather than add it again through chat.
+    local s, chat, menu, env, apply = fixture(branch)
+    env.FluxUnifiedBorder = nil
+    s.floor = 125
+    env.FluxActionStrip.GetEffectiveScale = function() return .56 end -- UIParent = .7; physical top = 100.
+    menu.h, menu.bottom = 40, 1000 -- Unlaid-out top-left menu at file load.
+    apply(chat)
+    check(chat.y == 135, branch .. ": early chat uses scaled strip top plus one editor inset")
+    local bottom = assert(load("local BESIDE_CHAT_ABOVE_GRID_GAP = 3\n" .. columnFloor
+        .. "\nreturn GetBesideChatColumnBottom", "@micro-column-floor", "t", env))()
+    local y = bottom(env.FluxChatFrame_GetPrimaryBottomInsetY())
+    check(y == 103, branch .. ": early menu uses column floor without duplicating edit height")
+    menu.bottom = y
+    menu.h = env.FluxChatFrame_GetPrimaryColumnTopY() - y
+    apply(chat)
+    check(chat.y == 135 and chat.h == 195, branch .. ": synchronous menu layout keeps original chat height and bottom")
+    env.FluxUnifiedBorder = { GetActionGridBorderTop = function() return 100 end }
+    check(bottom(env.FluxChatFrame_GetPrimaryBottomInsetY()) == 103, branch .. ": border readiness does not raise chat")
+    -- Exercise the compatibility fallback when the chat-floor export is absent.
+    env.FluxChatFrame_GetPrimaryColumnBottomY, env.FluxUnifiedBorder = nil, nil
+    check(bottom(135) == 103, branch .. ": fallback also reserves editor exactly once")
+    env.FluxActionStrip = nil
+    env.FluxNonCombatGrid_Main = { IsShown = function() return true end, GetTop = function() return 150 end,
+        GetEffectiveScale = function() return .56 end }
+    env.FluxStatusBarUnifiedBorderFrame = { IsShown = function() return true end, GetTop = function() return 900 end }
+    check(math.abs(env.FluxChatFrame_GetPrimaryBottomInsetY() - 155) < .01,
+        branch .. ": scaled grid fallback excludes the menu/status border from its own floor")
+end
+-- Exercise both production layout owners in one fixture. Replacing one side
+-- with preselected menu dimensions missed the height regression at login.
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    local s, chat, menu, env = fixture(branch)
+    s.xFactor = 1
+    menu.h, menu.bottom = 40, 1000
+    local noop = function() end
+    function menu:SetParent() end
+    function menu:SetScale() end
+    function menu:ClearAllPoints() end
+    function menu:SetAlpha() end
+    function menu:SetSize(w, h) self.w, self.h = w, h end
+    function menu:SetPoint(_, _, _, x, y) self.left, self.bottom = x, y end
+    function menu:GetLeft() return self.left end
+    function menu:GetRight() return self.left + self.w end
+    menu.GetEffectiveScale = env.UIParent.GetEffectiveScale
+    local scroll = { SetSize = noop, SetVerticalScroll = noop, ClearAllPoints = noop, SetPoint = noop }
+    env.RunVerticalMicroMenuGridLayout = function() return 52, 1000 end
+    env.EnsureMicroMenuScrollParts = function() return scroll, scroll end
+    env.GetPrimaryChatHeightForMicroMenu = env.FluxChatFrame_GetPrimaryChatHeight
+    env.GetPrimaryBottomInsetYForMicroMenu = env.FluxChatFrame_GetPrimaryBottomInsetY
+    local layout = assert(load("local BESIDE_CHAT_ABOVE_GRID_GAP, BESIDE_CHAT_LEFT_INSET, BESIDE_CHAT_MIN_COLUMN_H = 3, 2, 48\n"
+        .. columnGeometry .. "\nreturn UpdateLayoutBesideChat", "@paired-chat-menu-layout", "t", env))()
+    env.FluxUnifiedBorder = nil
+    layout({}, 0, 0, 1, 2)
+    check(chat.w == 405 and chat.h == 195 and menu.h == 249,
+        branch .. ": original chat height and complete side-column span restored")
+    check(chat.y == menu.bottom + 32 and chat.y + chat.h + 22 == menu.bottom + menu.h,
+        branch .. ": original tab/input alignment retained")
+    local before = chat.y
+    env.FluxUnifiedBorder = { GetActionGridBorderTop = function() return s.floor end }
+    layout({}, 0, 0, 1, 2)
+    check(chat.y == before and chat.h == 195 and menu.h == 249, "border availability does not change original proportions")
+    s.floor = 140
+    layout({}, 0, 0, 1, 2)
+    check(chat.y == 175 and menu.bottom == 143 and chat.h == 195 and menu.h == 249,
+        "late HUD geometry moves the pair without shrinking or stretching it")
+end
 local mutants = 0
 local function reject(old, replacement, message)
     local a = assert(production:find(old, 1, true), old)

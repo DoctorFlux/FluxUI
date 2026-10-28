@@ -1,6 +1,6 @@
--- SpellBookChrome.lua — Mouseover Cast + rank-up placement on all four books.
+-- SpellBookChrome.lua — shared spellbook control placement.
 -- Live / Forever: PlayerSpellsFrame.SpellBookFrame footer (PagedSpellsFrame).
--- Classic Era / Anniversary: SpellBookFrame title row, right of Blizzard ranks.
+-- Era / TBC / Wrath: two compact header rows inside the 384px book.
 local addonName, ns = ...
 local Flux = ns.Flux
 
@@ -10,6 +10,8 @@ Flux.SpellBookChrome = Chrome
 local FOOTER_X, FOOTER_Y = 20, 36
 local CLASSIC_TITLE_X, CLASSIC_TITLE_Y = 74, -38
 local ROW_GAP = 15
+local COMPACT_LEFT, COMPACT_RIGHT, COMPACT_TOP = 32, 46, -64
+local COMPACT_GAP, COMPACT_HEIGHT = 12, 18
 
 -- Modern book visibility/page changes can occur inside PlayerSpells OnShow,
 -- before MultiActionBar_ShowAllGrids and protected spell casting. Observe from
@@ -141,6 +143,12 @@ function Chrome.GetHost()
 	return nil, nil
 end
 
+function Chrome.UsesCompactLayout()
+	local _, kind = Chrome.GetHost()
+	local client = Flux.Client
+	return kind == "classic" and client and (client.isEra or client.isAnniversary or client.isTBC or client.isWrath)
+end
+
 local function Raise(frame, host)
 	if not frame or not host then
 		return
@@ -210,12 +218,50 @@ local function PlaceRow(host, firstPoint, firstRel, firstRelPoint, firstX, first
 	end
 end
 
+local function PlaceCompactHeader(host, editor, widgets)
+	if editor then
+		Raise(editor, host)
+		editor:SetSize(104, 20)
+		editor:SetPoint("TOPRIGHT", host, "TOPRIGHT", -COMPACT_RIGHT, -40)
+		editor:Show()
+	end
+
+	-- Blizzard's rank filter occupies y=38..64, and the first spell starts at
+	-- y=85. Keep our second row and its click targets in the gap between them.
+	local width = 0
+	for i, widget in ipairs(widgets) do
+		widget:SetHeight(COMPACT_HEIGHT)
+		if widget.label then
+			widget:SetWidth(COMPACT_HEIGHT)
+			widget:SetHitRectInsets(-2, -widget.label:GetStringWidth() - 7, 0, 0)
+			width = width + COMPACT_HEIGHT + 5 + widget.label:GetStringWidth()
+		else
+			width = width + widget:GetWidth()
+		end
+		if i > 1 then width = width + COMPACT_GAP end
+	end
+	-- Account for font replacements as well as the visible checkbox labels.
+	local available = host:GetWidth() - COMPACT_LEFT - COMPACT_RIGHT
+	local scale = width > 0 and math.min(1, available / width) or 1
+	local x = COMPACT_LEFT
+	for _, widget in ipairs(widgets) do
+		Raise(widget, host)
+		widget:SetScale(scale)
+		widget:SetPoint("TOPLEFT", host, "TOPLEFT", x / scale, COMPACT_TOP / scale)
+		widget:Show()
+		local widgetWidth = widget:GetWidth()
+		if widget.label then widgetWidth = widgetWidth + 5 + widget.label:GetStringWidth() end
+		x = x + (widgetWidth + COMPACT_GAP) * scale
+	end
+end
+
 function Chrome.Layout(opts)
 	opts = opts or {}
 	local host, kind = Chrome.GetHost()
 	local mouseover = opts.mouseover or _G.FluxMouseoverCastCheckbox
 	local autoRank = opts.autoRank or _G.FluxAutoRankUpCheckbox
 	local rankUp = opts.rankUp or _G.FluxRankUpAllButton
+	local editor = opts.editor or _G.FluxSpellBookBindingEditorBtn
 	local showAll = opts.showAll
 	if showAll == nil then
 		showAll = Chrome.GetFluxShowAllRanksCheckbox()
@@ -233,6 +279,7 @@ function Chrome.Layout(opts)
 		if mouseover then
 			mouseover:Hide()
 		end
+		if editor then editor:Hide() end
 		Chrome.HideRankChrome()
 		return
 	end
@@ -256,6 +303,10 @@ function Chrome.Layout(opts)
 	end
 	if rankUp then
 		row[#row + 1] = rankUp
+	end
+	if Chrome.UsesCompactLayout() then
+		PlaceCompactHeader(host, editor, row)
+		return
 	end
 	if #row == 0 then
 		return

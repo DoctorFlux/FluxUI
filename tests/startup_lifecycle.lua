@@ -245,4 +245,30 @@ do
     check(roots.FluxSpellBindingProfilesDB == "recover bindings", "recovery idempotent")
 end
 
+-- Login/reload into combat: no timer runs between PLAYER_LOGIN and lockdown.
+-- In particular, Forever must not wait for its queued variable-barrier timer.
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    local h = harness(branch, false, false)
+    local f, primed, input, creations = h.flux, false, false, 0
+    f.Inventory = { PrepareHUD = function()
+        check(not h.env.InCombatLockdown(), "bags prepared before lockdown")
+        primed = true
+    end }
+    f.Module.Register("grid", { phase = "secure", protected = true, OnEnable = function()
+        creations = creations + 1
+    end })
+    f.AfterLogin(function()
+        check(f.Module.IsEnabled("grid") and primed, "grid and current bags precede login input binding")
+        input = true
+    end)
+    h.loaded()
+    h.variables()
+    h.login()
+    check(input and creations == 1, branch .. " input ready without a timer")
+    h.combat(true)
+    h.event("PLAYER_ENTERING_WORLD", true, true)
+    h.frame()
+    check(input and creations == 1 and #h.errors == 0, branch .. " combat entry retains prepared controls")
+end
+
 print("startup lifecycle: " .. checks .. " checks passed (five client fixtures; no native taint/render simulation)")

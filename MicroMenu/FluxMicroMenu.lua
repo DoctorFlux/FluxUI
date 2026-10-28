@@ -1240,7 +1240,7 @@ local function GetPrimaryChatHeightFallback()
     if FluxWindowFrame and FluxWindowFrame.WINDOW_HEIGHT then
         base = FluxWindowFrame.WINDOW_HEIGHT
     end
-    return math.max(120, base - 100)
+    return math.max(120, base - 75)
 end
 
 local function GetPrimaryChatHeightForMicroMenu()
@@ -1890,6 +1890,24 @@ local function RunVerticalMicroMenuGridLayout(rowInfo, padding, spacing, btnSize
     return gridW, contentH
 end
 
+local function GetBesideChatColumnBottom(yChatBottom)
+    if _G.FluxChatFrame_GetPrimaryColumnBottomY then
+        local ok, y = pcall(_G.FluxChatFrame_GetPrimaryColumnBottomY)
+        if ok and type(y) == "number" and y == y then return y end
+    end
+    local border = _G.FluxUnifiedBorder
+    local top = border and border.GetActionGridBorderTop and border.GetActionGridBorderTop()
+    if type(top) == "number" and top == top then
+        return top + BESIDE_CHAT_ABOVE_GRID_GAP
+    end
+    -- The log floor already includes this inset. Adding it again through
+    -- GetPos2ChatVertical raises the entire chat by one edit-box height.
+    local editBox = _G.ChatFrame1EditBox
+    local editHeight = editBox and editBox.GetHeight and editBox:GetHeight() or 32
+    if type(editHeight) ~= "number" or editHeight <= 0 then editHeight = 32 end
+    return yChatBottom - editHeight
+end
+
 --- Multi-column grid beside chat: top aligns with intended chat tab row; bottom above action/grid UnifiedBorder.
 --- Anchored to UIParent only. Never parent/point to ChatFrame1 — per-character FCF scale, Edit Mode, and
 --- RestorePosition drag the chat frame off-screen and used to take the micromenu with it.
@@ -1911,17 +1929,7 @@ local function UpdateLayoutBesideChat(rowInfo, padding, spacing, btnSizeScale, c
         end
     end
 
-    local ubTop = nil
-    if _G.FluxUnifiedBorder and _G.FluxUnifiedBorder.GetActionGridBorderTop then
-        ubTop = _G.FluxUnifiedBorder.GetActionGridBorderTop()
-    end
-
-    local yBot
-    if type(ubTop) == "number" and ubTop == ubTop then
-        yBot = ubTop + BESIDE_CHAT_ABOVE_GRID_GAP
-    else
-        yBot = yChatBottom
-    end
+    local yBot = GetBesideChatColumnBottom(yChatBottom)
 
     local columnOuterH
     if yIntendedTop > yBot + 16 then

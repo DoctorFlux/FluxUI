@@ -93,6 +93,11 @@ local function EnableModules()
 		return
 	end
 	Flux.loggedIn = true
+	-- Bind HUD input from current carried items before world entry can enable
+	-- lockdown. The full inventory service still starts in the deferred phase.
+	if Flux.Inventory and Flux.Inventory.PrepareHUD then
+		Safecall(Flux.Inventory.PrepareHUD)
+	end
 	RunQueue(loginQueue)
 	if Flux.Module and Flux.Module.EnableEligible then
 		Flux.Module.EnableEligible("hud")
@@ -153,7 +158,7 @@ local function RequestModuleEnable()
 	loginRequested = true
 	if moduleEnableQueued then return end
 	moduleEnableQueued = true
-	if securePhaseReady or not DeferModuleEnableForGamepadSetup() then
+	if securePhaseReady or gamepadBarrierReleased or not DeferModuleEnableForGamepadSetup() then
 		RunReadyPhases()
 		return
 	end
@@ -216,7 +221,13 @@ boot:SetScript("OnEvent", function(_, event, name)
 		end
 	elseif event == "PLAYER_LOGIN" then
 		boot:UnregisterEvent("PLAYER_LOGIN")
+		-- VARIABLES_LOADED callbacks have finished by PLAYER_LOGIN. Release
+		-- Forever here rather than waiting for a timer after combat world entry.
+		if variablesLoaded and DeferModuleEnableForGamepadSetup() then
+			gamepadBarrierReleased = true
+		end
 		if Flux.loggedIn or moduleEnableQueued then
+			RunReadyPhases()
 			return
 		end
 		RequestModuleEnable()

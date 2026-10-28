@@ -1792,19 +1792,54 @@ function Bridge.AppendDeleteStackHint(tip, btn, itemID)
     tip:AddLine("Middle-click to remove 1 stack", 1, 0, 0)
 end
 
+local RESTOCK_CLICK_KEYS = {
+    right = "2", ["shift-right"] = "shift-2", middle = "3", ["shift-middle"] = "shift-3",
+}
+
 --- Wire restock edit for ExtraButtons.
 --- opts.mode = "right" | "middle" | "shift-middle" | "shift-right"
---- When mode is "right" and no conjure/craft, sets type2 to restock proxy.
---- When mode is "shift-right", sets shift-type2 (conjure keeps type2).
---- When mode is "middle"/"shift-middle", sets type3 / shift-type3 (conjure keeps type2).
+-- Open from the widget's mouse release, independently of secure click phase
+-- and /click proxy support. The matching secure action only suppresses use.
 function Bridge.WireRestockEdit(btn, kind, opts)
-    -- Restock UI is out of this pass; keep a no-op so food/water still bind.
     opts = opts or {}
-    if btn then
-        btn._fluxRestockKind = kind
-        btn._fluxRestockEditClickMode = opts.mode or "right"
+    if not btn or not btn.Widget or not RESTOCK_TIER_KINDS[kind]
+        or (InCombatLockdown and InCombatLockdown()) then
+        return
     end
-    return
+    local mode = opts.mode or "right"
+    local key = RESTOCK_CLICK_KEYS[mode]
+    if not key then return end
+    local prefix, suffix = key:match("^(.-)(%d)$")
+    local w = btn.Widget
+    local oldKey = btn._fluxRestockActionKey
+    if oldKey and oldKey ~= key then
+        local oldPrefix, oldSuffix = oldKey:match("^(.-)(%d)$")
+        if w:GetAttribute(oldPrefix .. "macrotext" .. oldSuffix) == "/stopmacro" then
+            SetClickType(w, oldPrefix .. "type" .. oldSuffix, nil)
+            w:SetAttribute(oldPrefix .. "macrotext" .. oldSuffix, nil)
+        end
+    end
+    btn._fluxRestockActionKey = key
+    btn._fluxRestockKind = kind
+    btn._fluxRestockEditClickMode = mode
+    btn._fluxSkipMiddleNoUse = mode == "middle" or nil
+    SetClickType(w, prefix .. "type" .. suffix, "macro")
+    w:SetAttribute(prefix .. "macrotext" .. suffix, "/stopmacro")
+    w:SetAttribute(prefix .. "spell" .. suffix, nil)
+    if w._fluxRestockEditHooked then return end
+    w._fluxRestockEditHooked = true
+    w:HookScript("OnMouseUp", function(_, button)
+        if InCombatLockdown and InCombatLockdown() then return end
+        if (IsControlKeyDown and IsControlKeyDown()) or (IsAltKeyDown and IsAltKeyDown()) then return end
+        local shift = IsShiftKeyDown and IsShiftKeyDown()
+        local clickMode = btn._fluxRestockEditClickMode
+        local matches = (button == "RightButton" and (clickMode == "right" or (clickMode == "shift-right" and shift)))
+            or (button == "MiddleButton" and (clickMode == "middle" or (clickMode == "shift-middle" and shift)))
+        local Tiers = _G.FluxRestockTiers
+        if matches and Tiers and Tiers.ToggleEditBox then
+            Tiers.ToggleEditBox(btn, btn._fluxRestockKind)
+        end
+    end)
 end
 
 function Bridge.GetRestockClickHint(kind, mode)
@@ -1812,7 +1847,11 @@ function Bridge.GetRestockClickHint(kind, mode)
 end
 
 function Bridge.AppendRestockEditHint(tip, kind, mode)
-    return
+    local Tiers = _G.FluxRestockTiers
+    if tip and Tiers and Tiers.AppendRestockTooltipLines then
+        Bridge._EnsureFluxTooltipGap(tip)
+        Tiers.AppendRestockTooltipLines(tip, kind, mode or "right", nil, true)
+    end
 end
 
 --- Best craftable profession recipe for kind (healPotion / manaPotion / bandage).
@@ -1864,7 +1903,7 @@ local function BindHardwareCraftClick(btn, kind)
     end
     w._fluxHardwareCraftHooked = true
     local function TryCraft(_, button)
-        if button ~= "RightButton" then
+        if button ~= "RightButton" or (IsShiftKeyDown and IsShiftKeyDown()) then
             return
         end
         local k = w._fluxHardwareCraftKind
@@ -1954,7 +1993,7 @@ end
 
 --- Right-click crafts when mats allow (hardware OnMouseDown/PostClick).
 --- type2 /click is a backup; ExecuteCraft lock keeps one item per press.
---- Restock UI is unused; when craft is unavailable RC is unbound.
+--- Shift+right edits the target when crafting owns plain right-click.
 function Bridge.ApplyCraftOrRestockRightClick(btn, kind)
     if not btn or not btn.Widget or not kind then
         return
@@ -1980,9 +2019,9 @@ function Bridge.ApplyCraftOrRestockRightClick(btn, kind)
         local live = w and w:GetAttribute("macrotext2")
         local liveOk
         if canCraft then
-            liveOk = live == craftMacro
+            liveOk = live == craftMacro and w:GetAttribute("shift-macrotext2") == "/stopmacro"
         else
-            liveOk = live == nil or live == false or live == ""
+            liveOk = live == "/stopmacro"
         end
         if liveOk then
             return canCraft and true or false
@@ -1996,7 +2035,7 @@ function Bridge.ApplyCraftOrRestockRightClick(btn, kind)
         w:SetAttribute("macrotext2", craftMacro)
         SetClickType(w, "shift-type2", nil)
         w:SetAttribute("shift-macrotext2", nil)
-        Bridge.WireRestockEdit(btn, kind, { mode = "middle" })
+        Bridge.WireRestockEdit(btn, kind, { mode = "shift-right" })
         return true
     end
     do

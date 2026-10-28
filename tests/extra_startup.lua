@@ -55,6 +55,9 @@ local function fixture(managed, branch)
             Count = function(key) env.marks[key] = (env.marks[key] or 0) + 1 end,
         },
     }
+    env.loginCallbacks = {}
+    env.Flux.AfterLogin = function(fn) env.loginCallbacks[#env.loginCallbacks + 1] = fn end
+    env.Flux.Safecall = function(fn, ...) return fn(...) end
     if managed then
         env.Flux.Module = { Register = function(name, spec) env.specs[name] = spec end }
     end
@@ -130,6 +133,33 @@ for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic
         env.fire("PLAYER_REGEN_ENABLED")
         env.fire("PLAYER_REGEN_ENABLED")
         check(env.marks.layout_passes == 2 and not grid._pendingRegenRelayout, branch .. ": queued relayout applied once")
+    end
+end
+
+-- Early creation can precede bag/spell readiness. Login must bind the new
+-- facts and flush the final layout before world-entry lockdown, without timers.
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    for _, combatGrid in ipairs({ false, true }) do
+        local env = fixture(true, branch)
+        local _, names = setupGrid(env, combatGrid)
+        local key = combatGrid and "CombatGrid" or "NonCombatGrid"
+        env.Flux.securePhaseReady = true
+        check(env.specs[key].OnEnable(), "early grid infrastructure created")
+        local updates = {}
+        for _, name in ipairs(names) do
+            local function update()
+                check(not env.combat, "login input selected before lockdown")
+                updates[name] = (updates[name] or 0) + 1
+            end
+            env[name].Update, env[name].UpdateAllSlots = update, update
+        end
+        local before = env.marks.layout_passes
+        for _, fn in ipairs(env.loginCallbacks) do fn() end
+        for _, name in ipairs(names) do check(updates[name] == 1, branch .. " immediate " .. name) end
+        check(env.marks.layout_passes == before + 1, "login selection flushes one batched layout immediately")
+        env.combat = true
+        env.fire("PLAYER_ENTERING_WORLD")
+        check(env.marks.layout_passes == before + 1, "combat entry keeps the completed layout")
     end
 end
 

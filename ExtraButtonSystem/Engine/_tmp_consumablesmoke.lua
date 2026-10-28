@@ -194,6 +194,23 @@ local function boot(family, legacy)
     return s
 end
 
+-- PLAYER_LOGIN bag priming does not depend on a delayed bag pulse, provider
+-- startup, a bank scan, or a classifier timer before binding the first item.
+for family in pairs(families) do
+    local s = boot(family, family == "era" or family == "anniversary" or family == "wrath")
+    s:set(0, 1, 117, 10)
+    s:set(0, 2, 118, 5)
+    eq(s.inv.PrepareHUD(), true, family .. " immediate HUD bag snapshot")
+    eq(s.bridge.GetBestOwned("food").itemID, 117, "login food selection without a timer")
+    eq(s.bridge.GetBestOwned("healPotion").itemID, 118, "login potion selection without a timer")
+    local btn = s:button("healPotion", true)
+    eq(btn.ItemId, 118, "login binds the actual potion immediately")
+    s.combat = true
+    local writes = s.writes
+    eq(s.inv.PrepareHUD(), false, "already locked startup declines protected preparation")
+    eq(s.writes, writes, "combat keeps prepared item binding")
+end
+
 for family in pairs(families) do
     local s = boot(family, family == "era" or family == "anniversary" or family == "wrath")
     for _, pair in ipairs({ { "food", 117 }, { "water", 159 }, { "bandage", 1251 }, { "healPotion", 118 }, { "manaPotion", 2455 } }) do
@@ -387,14 +404,14 @@ do
     } end }
     s:set(0, 1, 1251, 3); s:bags()
     local btn = s:button("bandage", true); s:advance(0.5)
-    eq(btn.Widget:GetAttribute("macrotext2"), nil, "no cloth no craft")
+    eq(btn.Widget:GetAttribute("macrotext2"), "/stopmacro", "no cloth right-click reserved for target edit")
     local scans, writes = s.scans, s.writes
     s:set(0, 2, 2589, 5); s:bags(0.2)
     eq(btn.Widget:GetAttribute("macrotext2"), s.bridge.GetCraftMacro("bandage"), "cloth enables craft")
     eq(s.scans, scans, "reagent loot skips consumable scan")
     eq(s.writes, writes, "reagent loot does not rebind bandage")
     s:set(0, 2, 2589, 0); s:bags(0.2)
-    eq(btn.Widget:GetAttribute("macrotext2"), nil, "cloth depletion disables craft")
+    eq(btn.Widget:GetAttribute("macrotext2"), "/stopmacro", "cloth depletion restores target edit")
 end
 
 -- Charged custom Extra buttons still repaint when stack totals did not move.
