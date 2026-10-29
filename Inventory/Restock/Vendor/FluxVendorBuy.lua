@@ -1167,7 +1167,9 @@ local function RunBuyPass()
     local i = 1
     while i <= #queue and calls < BUY_CALLS_PER_PASS do
         local task = queue[i]
-        if task.need <= 0 or not task.meta then
+        -- Queued slots can change identity even after the index has refreshed.
+        if task.need <= 0 or not task.meta
+            or ResolveMerchantSlotItemID(task.slot) ~= task.itemID then
             table.remove(queue, i)
         else
             local buyQty, received = FV.ComputeRestockPurchaseQty(
