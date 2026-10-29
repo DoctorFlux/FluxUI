@@ -131,20 +131,26 @@ function Currency.Start()
 		currencyDirty = false
 	end
 	Request()
+	-- Builtin may start while Syndicator is still loading. Once ready, its
+	-- callbacks own currency snapshots; these shared-bus handlers stay inert.
 	Flux.Events.Register("PLAYER_MONEY", function()
+		if Store.UsesSyndicator() then return end
 		if GetMoney then
 			ApplyMoney(GetMoney())
 		end
 		Request()
 	end)
 	Flux.Events.Register("CURRENCY_DISPLAY_UPDATE", function()
+		if Store.UsesSyndicator() then return end
 		currencyDirty = true
 		Request()
 	end)
 	Flux.Events.Register("ACCOUNT_MONEY", function()
+		if Store.UsesSyndicator() then return end
 		Request()
 	end)
 	Flux.Events.Register("BANKFRAME_OPENED", function()
+		if Store.UsesSyndicator() then return end
 		if Inv.HasWarband and Inv.HasWarband() then
 			Request()
 		end
