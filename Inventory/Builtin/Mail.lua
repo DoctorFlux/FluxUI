@@ -261,7 +261,8 @@ local function EnsurePendingFrame()
 	end
 	pendingFrame = CreateFrame("Frame")
 	pendingFrame:SetScript("OnEvent", function(_, event)
-		if event == "MAIL_FAILED" then
+		-- Completion can arrive after Ready makes Store return provider-owned data.
+		if event == "MAIL_FAILED" or Store.UsesSyndicator() then
 			pendingOutgoing = nil
 			pendingFrame:UnregisterEvent("MAIL_SEND_SUCCESS")
 			pendingFrame:UnregisterEvent("MAIL_FAILED")
