@@ -112,3 +112,12 @@ are advisory and include startup/harness work; they are not addon CPU or FPS.
 
 All native cases above remain **pending**. The current measurements justify removal
 of stale currency work and snapshot corruption only.
+
+## Later Windows lifecycle evidence
+
+BUG-004/PERF-003 has a separate matched baseline/candidate and complete-addon suite
+in [WINDOW_MOVER_LIFECYCLE.md](WINDOW_MOVER_LIFECYCLE.md). Five alternating pairs
+record disabled discovery/polling and gesture resource counts; enabled scale/frame/
+hook controls remain equal. Latest suite passes 85 scripts/726 syntax files. Native
+startup/idle/burst CPU, allocations, latency, frame times and parity remain pending;
+do not relabel the earlier currency/provider samples as this candidate's baseline.

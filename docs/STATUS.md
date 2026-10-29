@@ -3,10 +3,11 @@
 Updated 29 October 2026. Work continues directly in `_FluxUI` and
 `DoctorFlux/FluxUI`. Branch: `codex/modernization-audit-20261029`.
 `main` remains `7436820453d2248c84c99fff71507553efc47c19`; no merge or push performed.
-Latest runtime: `ab4e658a98a7ce3ee6688ac6170e7e0991325af0`, tree
-`67b4890083fe13e242ffbc47c36ff6037a172f82`. Final validation: **84 desktop scripts,
-725 Lua syntax files, zero failures**. The continuation changed only Mail/Auctions
-runtime code; presentation/settings/TOC/bindings remain untouched.
+Latest runtime: `19c40a0c84212b24fdf221a9653a4116d32f9020`, tree
+`92973edadfdd5ebfc5935621bc2b77f1e0655066`. Latest validation: **85 desktop scripts,
+726 Lua syntax files, zero failures**. The latest batch fixes disabled Windows
+lifecycle; enabled geometry/assets/settings/TOC/bindings are preserved. Native parity
+remains pending. Auction/guild-bank/void callback work is deferred by user direction.
 
 ## Completed and verified
 
@@ -18,7 +19,7 @@ runtime code; presentation/settings/TOC/bindings remain untouched.
   1,384 requirements/control/default/command/binding/saved-root/integration entries
   and 17 explicit discrepancies. Source collection is complete to the documented
   extractor limits; dynamic/native behavioral acceptance is not complete.
-- [Ownership map](MODULE_DEPENDENCIES.md): 35 domain/service rows, 17 API migration
+- [Ownership map](MODULE_DEPENDENCIES.md): 35 domain/service rows, 18 API migration
   contracts, 22 registration sites, 577 TOC/XML-reachable files, zero missing includes.
 - [Client audit](CLIENT_VALIDATION.md): exact installed PE builds, eight distinct
   target rows and 77 version/license reference entries. All five local Blizzard
@@ -93,7 +94,22 @@ are added to Git. Ignored local
 backups/scripts are preserved. Git author was unset; local commits use this repo's
 existing DoctorFlux name/GitHub noreply address via command-only configuration.
 
-Next independent task: reproduce native-query/request work in auction SHOW,
-Guild.OpenVault and Void callbacks after provider Ready. These are source findings,
-not yet measured defects. Capture a focused baseline before any fix. Native provider
-checks can proceed independently using [CLIENT_VALIDATION.md](CLIENT_VALIDATION.md).
+Latest bounded task completed: [disabled window mover lifecycle](WINDOW_MOVER_LIFECYCLE.md),
+BUG-004/PERF-003, commit `19c40a0`. Fresh checkpoint at 10:07 UTC; 220 focused checks
+pass after 108 baseline failures. Five matched pairs eliminate disabled discovery,
+watcher polling and post-disable saved scale writes. One hundred cycles retain the
+same seven fixture frames/hooks and saved scale. The full suite passes 85 scripts/
+726 syntax files. Native validation remains pending.
+
+Next independent investigation: vendor/restock operation-time slot and protection
+validation, or another reproduced issue outside the excluded callback domains.
+Capture a focused baseline before choosing a change. The user explicitly deferred
+auction, guild-bank and void-storage callback audits in this continuation.
+
+Latest documentation validation passes: 759 classified sources, 577 reachable,
+361 setting definitions, 23 SavedVariables roots and 12,704 local links. All six
+CSV ledgers have valid row shapes (1,384 parity, 35 ownership, 18 API contracts,
+eight client, 77 reference and 109 performance rows). All 726 current Lua hashes
+match full validation; all 42 supplied package/log files match the fresh checkpoint.
+Generated references were refreshed with the existing tools. Whitespace checks pass
+with intentional verbatim Markdown hard breaks retained.

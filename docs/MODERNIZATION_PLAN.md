@@ -4,7 +4,9 @@ The source checkpoint and fresh baseline are complete. BUG-001 fixes builtin
 currency callbacks after external Syndicator readiness; BUG-002 cancels stale
 mail and owned-auction scans at the same ownership boundary. BUG-003 prevents
 pending builtin mail completion from modifying provider-owned recipient data.
-Next reproduce remaining auction/guild/Void event work after Ready.
+BUG-004/PERF-003 now fixes disabled window discovery, watcher polling and public
+disable gesture cancellation. The user deferred auction/guild-bank/void callback
+audits; continue other evidence-driven work.
 The broader modernization and native acceptance remain unfinished.
 The supplied Word/Markdown plan and all 26 supplied specification documents are
 requirements sources. Current code and later fixes take precedence over historical
@@ -20,6 +22,7 @@ the feature inventory.
 | BUG-002 | Queued/partial builtin mail and owned-auction StepScan callbacks continued after Ready, overwriting provider snapshots and notifying consumers. An unchanged provider mail fingerprint could leave the overwritten data in place. | Fixed in runtime commit `05e9f79`; 210 targeted checks pass, plus 83 complete-suite scripts and 724 Lua syntax files. [Lifecycle evidence](PROVIDER_HANDOFF_LIFECYCLE.md). No particular native tooltip/gameplay symptom established. |
 | PERF-002 | After handoff, queued/partial mail reads were 105/56 and auction reads 71/38 per mocked case; stale snapshot increments and notifications were one each. | Candidate reduces these operations to zero. Five alternating pairs have zero per-case count variation; no native CPU/FPS or whole-addon speedup claim. |
 | BUG-003 | Pending builtin mail send/return completion crossed Ready and obtained/appended to a provider-owned recipient table through Store.GetCharacter. | Fixed in runtime commit `ab4e658`; 410 focused checks pass after eight baseline failures. Five matched pairs reduce lookup/foreign append counts from one to zero in four successful completion cases. Standalone 100-cycle checks retain one frame, zero final completion subscriptions and 50 credits per action. Full suite: 84 scripts/725 syntax files pass. Native acceptance pending. |
+| BUG-004/PERF-003 | Disabled Windows still attached native hooks and polled Player Spells; public SetEnabled(false) retained a gesture that changed saved scale. | Fixed in `19c40a0`; 220 focused checks/100 cycles, 85 full-suite scripts and 726 syntax files pass. Five matched pairs eliminate disabled discovery/polling/saved writes. [Evidence](WINDOW_MOVER_LIFECYCLE.md); native acceptance pending. |
 | AUDIT-001 | Core.Module has no generic resource scope/cancellation; production registrations do not provide OnDisable cleanup. | Source finding, not proof that every feature leaks. Trace real disable and combat-deferred callers before changing the shared contract. |
 | AUDIT-002 | Production Events replay confirms self-removal skips a later handler and remove-plus-add changes same-event behavior. Context.DisarmEvents is the sole active source consumer through alias Ev; no production Context.Unsubscribe invocation was found. | [Latent API defect](EVENT_DISPATCH_AUDIT.md), not demonstrated gameplay failure. Defer dispatcher changes until an actual teardown consumer or reproduced trigger justifies them. RegisterUnit lifetime audit remains separate. |
 | AUDIT-003 | Core/API and Core/FluxAPI both load; client flag meanings and callers differ. | Inventory migration contracts before moving a domain. Do not introduce a third backend. |
@@ -33,14 +36,15 @@ Historical taint/performance reports stay pending revalidation against exact bui
 
 ## Priorities and gates
 
-1. **Provider ownership:** BUG-001, BUG-002 and BUG-003 are complete in desktop
-   validation. Next reproduce auction/guild/Void event work after Ready against
-   production callbacks; preserve standalone and pending-provider behavior. Those
-   findings remain unmeasured until replay. Keep each correction separate with raw
-   before/after counts and complete suite.
+1. **Current user scope:** BUG-001 through BUG-004 are complete in desktop
+   validation; native acceptance remains pending. The user deferred auction, guild-bank
+   and void-storage callback audits. Next inspect vendor/restock operation-time slot/
+   protection validation or another active feature outside those domains, reproduce a
+   concrete defect and capture its baseline before choosing a small correction.
 2. **Core lifecycle correctness:** event-dispatch mutation is now reproduced as a
    latent API defect; no current production unsubscribe path justifies prioritizing
-   a dispatcher change over active provider work. Trace queued enable-after-disable
+   a dispatcher change. Windows disable discovery/polling is now fixed; other
+   lifecycle candidates still require current consumer evidence. Trace queued enable-after-disable
    callers and define desired state/cancellation before migrating feature lifecycles.
 3. **Client API consolidation:** compare return shapes, nil/readiness/secret rules
    and flag meanings; migrate one domain's consumers with aliases only where needed.

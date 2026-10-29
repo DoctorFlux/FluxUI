@@ -1,0 +1,14 @@
+{
+  "head": "f1a3bc7488a904e075264794e080a00c8fceba23",
+  "tree": "8dbef40c11d122a47d238c0445e936d1894d28a8",
+  "reusedFullValidation": "docs/validation/pending-mail-full-2026-10-29.json",
+  "verifiedLuaFiles": 725,
+  "pass": 84,
+  "fail": 0,
+  "normalization": "CRLF to LF only",
+  "sourceHashes": {
+    "WindowMover/Engine.lua": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255",
+    "WindowMover/Init.lua": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+    "AddonOptions/FluxOptionsWindows.lua": "15b8eab66803b819943ff5d24a4abe04ac7adbe974bea37dad18dac5851f05c4"
+  }
+}

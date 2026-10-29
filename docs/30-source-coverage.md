@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 119 |
+| inactive source | 120 |
 
 ## Addon sources
 
@@ -636,6 +636,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/unit_click_edges.lua](../tests/unit_click_edges.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_resource_lifecycle.lua](../tests/unit_resource_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unitframes_lifecycle_spec.lua](../tests/unitframes_lifecycle_spec.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/window_mover_disabled.lua](../tests/window_mover_disabled.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/window_runtime_spec.lua](../tests/window_runtime_spec.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [UnitFrames/FlightPath/Data/cata/flightData.lua](../UnitFrames/FlightPath/Data/cata/flightData.lua) | active | cata | [14-unit-frames.md](14-unit-frames.md) |
 | [UnitFrames/FlightPath/Data/classic/flightData.lua](../UnitFrames/FlightPath/Data/classic/flightData.lua) | active | vanilla | [14-unit-frames.md](14-unit-frames.md) |

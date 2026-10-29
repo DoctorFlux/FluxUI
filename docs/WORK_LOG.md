@@ -133,3 +133,58 @@ it matches both new checkpoints and was left untouched/untracked. This explains 
 initial final-preservation check's mismatch against the older 111,922-byte log;
 no rollback or overwrite was performed. Whitespace checks pass with intentional
 verbatim Markdown line breaks retained.
+
+## 2026-10-29 continuation — Windows enable/disable (user excludes provider queries)
+
+Resumed on `f1a3bc7`, same modernization branch, with only the original sync log
+untracked. Read durable records, lifecycle/feature/API/client/performance records,
+Windows requirements/options, actual Catalog/Engine/Init, existing tests and runner.
+The user explicitly excluded auction, guild-bank and void callback investigation;
+no runtime edits were made in those domains.
+
+Before edits, created and hash-verified a fresh external checkpoint at 10:07:52 UTC:
+1,219 actual source files, all Git refs/history, and 403 private settings files with
+WoW closed. Rechecked all 725 Lua hashes against the previous passing full report
+before reusing that baseline. Main remains `7436820`; no push/merge/deployment.
+
+Production mover/options replay reproduced BUG-004/PERF-003: disabled startup still
+runs catalog discovery and native attachment, Player Spells keeps polling, and the
+public SetEnabled(false) leaves a scaling driver able to change saved scale.
+Captured 220 checks/108 failures before editing. The two-file runtime diff gates
+Scan by existing settings, hides/shows the panel watcher through Refresh and calls
+Refresh for both public enable outcomes. Existing options setter already uses it.
+No saved data migration, new framework or native API replacement.
+
+Commands and evidence:
+
+- `lua tests/window_mover_disabled.lua --baseline --measure`: 108 expected failures
+  in 220 checks using retained pre-fix source fixtures. Initial baseline was captured
+  from unchanged runtime before applying the fix. Measure mode deliberately exits 0.
+- `lua tests/window_mover_disabled.lua`: 220 checks pass, including real options and
+  module startup, event/delayed discovery, 100 enable/disable cycles, scale persistence,
+  public disable during scaling and combat-deferred Apply.
+- `lua WindowMover/_tmp_charactercombatsmoke.lua`: passes existing modeled Forever
+  mouse/gamepad hook isolation and combat recovery controls.
+- Five alternating fresh-process pairs: disabled-start discovery 24 to zero,
+  resolution calls 2,546 to zero, hooks seven to zero. After enabled startup, 20
+  disabled event scans/2,120 resolves and 100 polls in ten modeled seconds become
+  zero. Public disable stops post-disable saved scale change and both update loops.
+  Count ranges are zero; 100 cycles retain seven fixture frames/hooks and scale 1.2.
+- `python tests/run_validation.py --output docs/validation/window-mover-full-2026-10-29.json --sync-docs`:
+  85 scripts/726 syntax files, zero failures. These are desktop mocks, not native
+  UI/secure/taint/secret/FPS acceptance. Process durations are advisory only.
+
+Runtime/test/fixtures committed separately as `19c40a0c84212b24fdf221a9653a4116d32f9020`,
+tree `92973edadfdd5ebfc5935621bc2b77f1e0655066`. Review of the small runtime diff
+confirmed enabled geometry paths/restriction guards are unchanged. No independent
+agent review was requested or claimed. Evidence/native steps are in
+`WINDOW_MOVER_LIFECYCLE.md`; current baseline/candidate hashes and matched outputs
+are pinned in `validation/window-mover-comparison-2026-10-29.json`.
+
+Latest documentation validation passes: 759 classified sources, 577 reachable,
+361 setting definitions, 23 SavedVariables roots and 12,704 local links. All six
+CSV ledgers have valid row shapes (1,384 parity, 35 ownership, 18 API contracts,
+eight client, 77 reference and 109 performance rows). All 726 current Lua hashes
+match full validation; all 42 supplied package/log files match the fresh checkpoint.
+Generated references were refreshed with the existing tools. Whitespace checks pass
+with intentional verbatim Markdown hard breaks retained.

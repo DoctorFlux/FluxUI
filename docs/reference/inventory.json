@@ -75577,6 +75577,124 @@
       "sv_sites": []
     },
     {
+      "path": "tests/window_mover_disabled.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 174,
+      "sha256": "13473896b718b9ead7a2ce2830b3c4c04caa2b7593515893a96b68b4aeab7b1d",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "f:GetName",
+          "line": 21
+        },
+        {
+          "name": "f:IsShown",
+          "line": 22
+        },
+        {
+          "name": "f:Show",
+          "line": 23
+        },
+        {
+          "name": "f:Hide",
+          "line": 24
+        },
+        {
+          "name": "f:SetScript",
+          "line": 25
+        },
+        {
+          "name": "f:HookScript",
+          "line": 26
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 27
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 28
+        },
+        {
+          "name": "f:IsMouseEnabled",
+          "line": 29
+        },
+        {
+          "name": "f:IsProtected",
+          "line": 30
+        },
+        {
+          "name": "f:EnableMouse",
+          "line": 31
+        },
+        {
+          "name": "f:GetScale",
+          "line": 32
+        },
+        {
+          "name": "f:SetScale",
+          "line": 33
+        },
+        {
+          "name": "f:SetPoint",
+          "line": 34
+        },
+        {
+          "name": "f:SetFrameStrata",
+          "line": 35
+        },
+        {
+          "name": "f:SetFrameLevel",
+          "line": 36
+        },
+        {
+          "name": "f:SetMovable",
+          "line": 37
+        },
+        {
+          "name": "f:SetClampedToScreen",
+          "line": 38
+        },
+        {
+          "name": "f:StopMovingOrSizing",
+          "line": 39
+        },
+        {
+          "name": "mover.Catalogmover.Catalog",
+          "line": 68
+        },
+        {
+          "name": "h:event",
+          "line": 72
+        },
+        {
+          "name": "h:tick",
+          "line": 78
+        },
+        {
+          "name": "h:seconds",
+          "line": 88
+        }
+      ],
+      "events": [
+        {
+          "line": 27,
+          "method": "RegisterEvent",
+          "arguments": [
+            "key"
+          ],
+          "context": "fnendfunctionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/window_runtime_spec.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -79760,8 +79878,8 @@
       "path": "WindowMover/Engine.lua",
       "classification": "active",
       "chapter": "28-window-mover.md",
-      "lines": 1052,
-      "sha256": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255",
+      "lines": 1059,
+      "sha256": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c",
       "clients": [
         "camelot",
         "cata",
@@ -79815,24 +79933,24 @@
         },
         {
           "name": "WindowMover.Refresh",
-          "line": 934
+          "line": 938
         },
         {
           "name": "WindowMover.Start",
-          "line": 948
+          "line": 955
         },
         {
           "name": "WindowMover.AttachedCount",
-          "line": 977
+          "line": 984
         },
         {
           "name": "WindowMover.Smoke",
-          "line": 987
+          "line": 994
         }
       ],
       "events": [
         {
-          "line": 958,
+          "line": 965,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -79840,7 +79958,7 @@
           "context": "(\"Frame\")events:"
         },
         {
-          "line": 959,
+          "line": 966,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -79858,7 +79976,7 @@
       "classification": "active",
       "chapter": "28-window-mover.md",
       "lines": 106,
-      "sha256": "0b2c0b63a0aa6620cce45f276ea355e7cff407481a43cdba85d383f284d4663b",
+      "sha256": "c5228e269f1e7267dc377c21d7f8271797f943b598897dfa8bb002ba579b4cb9",
       "clients": [
         "camelot",
         "cata",

@@ -78,3 +78,25 @@ files and original sync log. No WoW process was running.
 Capture and ZIP/hash verification completed 2026-10-29 09:41:35 UTC. ZIP archive
 hashes can differ across captures because entry timestamps differ; per-entry hash
 manifests identify file contents. Private archives/manifests remain outside Git.
+
+## Windows lifecycle checkpoint 10:07 UTC
+
+Before the current runtime batch, verified external checkpoint:
+
+```text
+C:\Users\mario\.codex\visualizations\2026\10\29\01a186ea-e332-79a1-9cdc-8e340df7e22b\FluxUI-recovery-20261029T100747Z
+```
+
+It preserves baseline commit `f1a3bc7488a904e075264794e080a00c8fceba23`, tree
+`8dbef40c11d122a47d238c0445e936d1894d28a8`, all actual ignored/untracked files and
+all Git history/refs. No WoW process was running. Capture completed 10:07:52 UTC.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,219 files; 34,412,547 uncompressed bytes | `0c31e5bed7902f2299cc4cb4dfd0f901e62220bc1c8b85254b7162224f67d9ff` |
+| `history.bundle` | All refs/history; verified | `5d83c0c28dc66191be8b99f1a2601d5ca0189f01be4a4fcf4cc4307e14338ab7` |
+| `settings-private.zip` | 403 WTF files; 6,333,742 uncompressed bytes | `17ef1b66c266895d92d6d2660aff50544d7b9e886ebc0cc1dffef29c9f95e8ba` |
+
+Every ZIP entry was reread and hash-verified against its source manifest. Private
+settings/manifests remain outside Git. All earlier archives remain intact. No
+restore/reset was performed; preserve newer work before any future recovery.

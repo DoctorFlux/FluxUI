@@ -71,3 +71,14 @@ Get-FileHash '..\__AddonsForRef\wow-ui-source-live\version.txt' -Algorithm SHA25
 ```
 
 Use the corresponding verified path in the CSV for other clients/references. No native row can move to passed solely because these commands or desktop mocks pass.
+
+## Windows lifecycle continuation — native checks pending
+
+BUG-004/PERF-003 changes only mover discovery/watcher/disable lifecycle. The desktop
+suite passes 85 scripts/726 syntax files and its focused production-code replay
+passes 220 checks, including 100 toggle cycles. These do not advance any native
+client row. Follow [Windows native steps](WINDOW_MOVER_LIFECYCLE.md): disabled reload,
+late panel discovery, options/public API disable and re-enable, gesture cancellation,
+saved geometry/scopes, protected combat Apply and matched screenshots/input. Capture
+matched native startup/idle/burst performance with profiling overhead accounted for.
+Auction/guild-bank/void callback audits are currently deferred by user direction.

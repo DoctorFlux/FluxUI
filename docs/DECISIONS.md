@@ -60,3 +60,21 @@
   Treat loss of ownership like existing failure cleanup before resolving the
   recipient; clear the pending operation and its subscriptions. Keep this separate
   from scan cancellation, with its own checkpoint, baseline and regression.
+
+## 2026-10-29 continuation — disabled Windows lifecycle
+
+- User explicitly deferred auction, guild-bank and void-storage callback audits.
+  Redirected independent inspection to the documented WindowMover disable behavior.
+- Production Catalog/Engine/Init/options replay reproduced disabled attachment and
+  polling, plus public SetEnabled(false) retaining an active scale gesture that
+  changes saved scale. Fix BUG-004/PERF-003 using the existing Scan and Refresh.
+- Gate discovery before native hook setup; hide/show the existing panel watcher
+  through Refresh; call Refresh on both public enable outcomes. Keep enabled
+  cadence, frame reuse, native protection guards and saved positions/scales.
+- Retain existing permanent guarded hooks, startup proxy/driver, two discovery
+  event subscriptions and two bounded startup callbacks. Their disabled Scan now
+  returns before catalog access. Do not claim complete module teardown.
+- Reused the 84-script full baseline only after verifying all 725 Lua source hashes.
+  Captured a new verified external source/history/private settings checkpoint before
+  edits. Matched desktop counters establish removed work; native input/pixels/taint/
+  performance remain pending. No subagents were used in this continuation.

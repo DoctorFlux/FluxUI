@@ -35,3 +35,14 @@ Defaults enable mover/scaling/position save/scale save and screen clamp, leave m
 The new [character-combat smoke](../WindowMover/_tmp_charactercombatsmoke.lua) runs real mover attachment/layout code with mocked frame hooks. It confirms Forever CharacterFrame leaves native show/hide/SetPoint/SetScale unhooked, registers post-open layout recovery, defers writes during combat and restores them afterward; non-Forever retains its normal hooks. Its gamepad scenario bypasses catalog filtering to test engine isolation, not production gamepad availability. This harness passed during the audit and explicitly does not model WoW's secure execution VM.
 
 In-game checks: Character drag and reload persistence; merchant restock-tab clicks; title drag vs world-map pan; native/Baganator bags; scale/reset/scope/save-off behavior; screen clamp and UI scale; load-on-demand Settings/Player Spells/housing; character open/close and pending changes through combat; dynamic bank growth; and Forever mouse/gamepad mode changes. The smoke command/tests check implementation invariants, not native protected execution or taint propagation. See [verification](41-verification.md).
+
+## Disabled lifecycle correction
+
+BUG-004/PERF-003 (`19c40a0`) makes Scan return zero before catalog/native hook work
+when Windows is disabled. Refresh sleeps/resumes the existing Player Spells watcher;
+both public SetEnabled outcomes call Refresh, so disable also stops an active gesture.
+Re-enable through options discovers panels and restores saved geometry. Existing
+permanent hooks and startup event/delayed callbacks remain guarded; saved records
+are retained. [Evidence](WINDOW_MOVER_LIFECYCLE.md): 220 focused checks/100 cycles and
+85 full-suite scripts/726 syntax files pass. Native screenshots/input/combat/taint
+and performance remain pending.

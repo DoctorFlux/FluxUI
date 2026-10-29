@@ -947,8 +947,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [UnitFrames/FluxUnitFrames_Target.lua:304](../../UnitFrames/FluxUnitFrames_Target.lua#L304) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxUnitFrames_Target.lua:305](../../UnitFrames/FluxUnitFrames_Target.lua#L305) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [UnitFrames/FluxUnitFrames_TargetOfTarget.lua:105](../../UnitFrames/FluxUnitFrames_TargetOfTarget.lua#L105) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [WindowMover/Engine.lua:958](../../WindowMover/Engine.lua#L958) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [WindowMover/Engine.lua:959](../../WindowMover/Engine.lua#L959) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [WindowMover/Engine.lua:965](../../WindowMover/Engine.lua#L965) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [WindowMover/Engine.lua:966](../../WindowMover/Engine.lua#L966) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 
 ## Declared interface candidates
 
@@ -9755,10 +9755,10 @@ Owner: [28-window-mover.md](../28-window-mover.md).
 | `WindowMover.IsLocked` | [L654](../../WindowMover/Engine.lua#L654) |
 | `WindowMover.Attach` | [L816](../../WindowMover/Engine.lua#L816) |
 | `WindowMover.Scan` | [L910](../../WindowMover/Engine.lua#L910) |
-| `WindowMover.Refresh` | [L934](../../WindowMover/Engine.lua#L934) |
-| `WindowMover.Start` | [L948](../../WindowMover/Engine.lua#L948) |
-| `WindowMover.AttachedCount` | [L977](../../WindowMover/Engine.lua#L977) |
-| `WindowMover.Smoke` | [L987](../../WindowMover/Engine.lua#L987) |
+| `WindowMover.Refresh` | [L938](../../WindowMover/Engine.lua#L938) |
+| `WindowMover.Start` | [L955](../../WindowMover/Engine.lua#L955) |
+| `WindowMover.AttachedCount` | [L984](../../WindowMover/Engine.lua#L984) |
+| `WindowMover.Smoke` | [L994](../../WindowMover/Engine.lua#L994) |
 
 ### WindowMover/Init.lua
 
