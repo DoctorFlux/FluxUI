@@ -124,3 +124,13 @@ the existing eight-call budget and bag-driven cadence. A normal new request afte
 index refresh resolves remaining/moved targets. [Evidence and native checks](VENDOR_PURCHASE_IDENTITY.md):
 660 focused checks and the 86-script/727-file desktop suite pass. Stable 40-item queues
 retain five passes and add one identity lookup per purchase. Native acceptance is pending.
+
+## Finite stock reservations
+
+BUG-006 (`b505bb8`) treats zero merchant availability as a purchase cap and reserves
+submitted quantities on the shared finite index entry. Repeated tasks share the
+remaining budget until index refresh; the reservation is not an acceptance receipt.
+Unlimited/nil helper semantics and ordinary affordability/cadence remain. A fresh
+index/request can use replenished stock. [Evidence](VENDOR_STOCK_BUDGET.md): 177 stock
+plus 660 identity checks, five matched pairs and the full 86-script/727-syntax pass.
+External stock/price changes and delayed acknowledgements still require investigation.

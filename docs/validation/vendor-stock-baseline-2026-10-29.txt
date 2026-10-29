@@ -1,0 +1,60 @@
+METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL legacy_sold_out no request exceeds stock or funds
+FAIL legacy_sold_out accounting matches accepted purchases
+METRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL legacy_finite_same_pass no request exceeds stock or funds
+FAIL legacy_finite_same_pass obtains exact available/affordable quantity
+FAIL legacy_finite_same_pass accounting matches accepted purchases
+FAIL legacy_finite_same_pass shared index reserves submitted stock
+FAIL legacy_finite_same_pass fresh index/request can buy replenished stock
+METRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1
+FAIL legacy_finite_across_passes no request exceeds stock or funds
+FAIL legacy_finite_across_passes accounting matches accepted purchases
+FAIL legacy_finite_across_passes shared index reserves submitted stock
+METRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL legacy_shared_stock no request exceeds stock or funds
+FAIL legacy_shared_stock obtains exact available/affordable quantity
+FAIL legacy_shared_stock accounting matches accepted purchases
+FAIL legacy_shared_stock shared index reserves submitted stock
+METRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL legacy_sold_out_partial_gold no request exceeds stock or funds
+FAIL legacy_sold_out_partial_gold accounting matches accepted purchases
+METRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL legacy_finite_partial_gold shared index reserves submitted stock
+METRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1
+METRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL legacy_finite_currency shared index reserves submitted stock
+METRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL legacy_finite_item_cost shared index reserves submitted stock
+METRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL modern_sold_out no request exceeds stock or funds
+FAIL modern_sold_out accounting matches accepted purchases
+METRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL modern_finite_same_pass no request exceeds stock or funds
+FAIL modern_finite_same_pass obtains exact available/affordable quantity
+FAIL modern_finite_same_pass accounting matches accepted purchases
+FAIL modern_finite_same_pass shared index reserves submitted stock
+FAIL modern_finite_same_pass fresh index/request can buy replenished stock
+METRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1
+FAIL modern_finite_across_passes no request exceeds stock or funds
+FAIL modern_finite_across_passes accounting matches accepted purchases
+FAIL modern_finite_across_passes shared index reserves submitted stock
+METRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL modern_shared_stock no request exceeds stock or funds
+FAIL modern_shared_stock obtains exact available/affordable quantity
+FAIL modern_shared_stock accounting matches accepted purchases
+FAIL modern_shared_stock shared index reserves submitted stock
+METRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL modern_sold_out_partial_gold no request exceeds stock or funds
+FAIL modern_sold_out_partial_gold accounting matches accepted purchases
+METRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+FAIL modern_finite_partial_gold shared index reserves submitted stock
+METRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1
+METRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL modern_finite_currency shared index reserves submitted stock
+METRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+FAIL modern_finite_item_cost shared index reserves submitted stock
+FAIL direct quantity helper honors stock 0
+Vendor slot/stock: 177 checks, 39 failures

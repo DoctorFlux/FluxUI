@@ -105,3 +105,17 @@
 - Record the extra identity lookup per valid purchase as correctness overhead.
   No native performance improvement is claimed. Unchanged-ID price/stock changes
   and purchase acknowledgement are separate unmeasured candidates.
+
+## 2026-10-29 — finite merchant stock budget
+
+- BUG-006 reproduces two related capacity defects: zero availability was uncapped,
+  and repeated tasks reused the same finite snapshot count. Treat zero as a cap and
+  reserve submitted quantities on the existing shared index entry.
+- The shared remaining value is a reservation budget until index refresh, not proof
+  of native acceptance. Do not introduce another transaction service or live polling.
+  Unrelated rejections, external stock changes and acknowledgement remain separate.
+- Preserve unlimited/nil helper semantics, gold/alternate-cost math, eight-call pass
+  budget, UI/defaults/settings and normal refresh/new-request recovery. Extend the
+  existing merchant harness with focused stock/identity groups rather than duplicate it.
+- Exact read-only Blizzard source hashes support API shape/zero-stock interpretation;
+  the 12.1.0.69283 snapshot predates installed clients and does not advance native rows.

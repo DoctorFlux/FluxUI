@@ -451,11 +451,11 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua:3434](../../Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua#L3434) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua:3435](../../Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua#L3435) | `RegisterEvent` | `"MERCHANT_SHOW"` |
 | [Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua:3436](../../Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua#L3436) | `RegisterEvent` | `"MERCHANT_CLOSED"` |
-| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1596](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1596) | `RegisterEvent` | `"MERCHANT_SHOW"` |
-| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1597](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1597) | `RegisterEvent` | `"MERCHANT_UPDATE"` |
-| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1598](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1598) | `RegisterEvent` | `"MERCHANT_CLOSED"` |
-| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1599](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1599) | `RegisterEvent` | `"UI_ERROR_MESSAGE"` |
-| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1607](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1607) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
+| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1600](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1600) | `RegisterEvent` | `"MERCHANT_SHOW"` |
+| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1601](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1601) | `RegisterEvent` | `"MERCHANT_UPDATE"` |
+| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1602](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1602) | `RegisterEvent` | `"MERCHANT_CLOSED"` |
+| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1603](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1603) | `RegisterEvent` | `"UI_ERROR_MESSAGE"` |
+| [Inventory/Restock/Vendor/FluxVendorBuy.lua:1611](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1611) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
 | [Inventory/Restock/Vendor/FluxVendorRestockPanel.lua:1048](../../Inventory/Restock/Vendor/FluxVendorRestockPanel.lua#L1048) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
 | [Inventory/Restock/Vendor/FluxVendorRestockPanel.lua:1234](../../Inventory/Restock/Vendor/FluxVendorRestockPanel.lua#L1234) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Layout/UnifiedBorder.lua:857](../../Layout/UnifiedBorder.lua#L857) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -7455,12 +7455,12 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 | `FV.InvalidateMerchantIndex` | [L820](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L820) |
 | `FV.RegisterMerchantIndexListener` | [L826](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L826) |
 | `FV.ComputeRestockPurchaseQty` | [L994](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L994) |
-| `Buy.OnIndexReady` | [L1229](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1229) |
-| `FV.IsRestockBuyActive` | [L1249](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1249) |
-| `FV.IsVendorBurstActive` | [L1253](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1253) |
-| `FV.DoRestockManual` | [L1296](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1296) |
-| `FV.TriggerAutoRestock` | [L1387](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1387) |
-| `FV.RunAutoVendorBatch` | [L1436](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1436) |
+| `Buy.OnIndexReady` | [L1233](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1233) |
+| `FV.IsRestockBuyActive` | [L1253](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1253) |
+| `FV.IsVendorBurstActive` | [L1257](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1257) |
+| `FV.DoRestockManual` | [L1300](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1300) |
+| `FV.TriggerAutoRestock` | [L1391](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1391) |
+| `FV.RunAutoVendorBatch` | [L1440](../../Inventory/Restock/Vendor/FluxVendorBuy.lua#L1440) |
 
 ### Inventory/Restock/Vendor/FluxVendorItemDisplay.lua
 

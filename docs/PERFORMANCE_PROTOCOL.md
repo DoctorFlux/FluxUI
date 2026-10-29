@@ -129,3 +129,11 @@ replay and full 86-script/727-file candidate. Invalid purchases drop to zero; th
 correctness guard adds one identity lookup per valid purchase. Stable cadence and
 resource controls remain equal. These are operation counts, not a native CPU/FPS
 speedup. Native startup/idle/purchase-burst profiling and parity remain pending.
+
+## Finite merchant stock evidence
+
+[BUG-006](VENDOR_STOCK_BUDGET.md) records a separate matched baseline/candidate and
+full 86-script/727-file validation. Five pairs remove modeled stock-limit rejections
+and correct quantities/accounting, retaining unlimited cadence and existing event
+frames. No merchant-info reads/timers were added. These operation counts are not
+native CPU/FPS evidence; native acceptance and asynchronous acknowledgement remain pending.

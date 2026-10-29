@@ -134,3 +134,13 @@ skips stale tasks while preserving valid purchases, and a normal fresh request f
 remaining targets. [Evidence](VENDOR_PURCHASE_IDENTITY.md): 660 checks, five matched
 pairs and a complete 86-script/727-syntax pass. Other vendor requirements and all
 native feature/visual acceptance retain their previous status.
+
+## Finite merchant stock correction
+
+BUG-006 (`b505bb8`) gives the restock target/behavior rows additional partial coverage:
+zero availability stops buying and finite submitted quantities share one index-entry
+budget. This avoids known over-stock requests and their false accounting in the
+modeled cases; reservations are not native acknowledgement. [Evidence](VENDOR_STOCK_BUDGET.md):
+177 stock checks plus 660 identity controls, full 86 scripts/727 syntax pass, five
+matched pairs. Other vendor requirements and all native/visual acceptance retain
+prior status. No option/default/feature was removed.

@@ -92,3 +92,13 @@ stable manual/automatic restock, naturally changed/missing listings before/after
 index refresh, normal fresh-request recovery, quantities, money, tier/alternate-cost
 behavior, close/reopen, input/combat/taint and matched screenshots/performance. No
 native API replacement or forced live-data manipulation is part of the procedure.
+
+## Finite merchant stock — native acceptance pending
+
+BUG-006 caps zero availability and reserves finite submitted quantities on shared
+merchant index entries. Desktop stock/identity replay passes 837 checks, with the
+full 86-script/727-syntax suite passing. No native client row advances. Follow
+[stock native checks](VENDOR_STOCK_BUDGET.md) for sold-out/limited/unlimited merchants,
+partial funds and alternate costs, cross-pass/shared targets, replenishment/new
+requests, real acceptance/error totals, screenshots/input/combat/taint and matched
+startup/idle/purchase profiling. Reservations do not certify native acknowledgement.

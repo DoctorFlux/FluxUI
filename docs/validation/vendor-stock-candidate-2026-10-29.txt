@@ -1,0 +1,21 @@
+METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1
+METRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1
+METRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1
+METRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1
+METRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1
+METRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1
+METRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1
+METRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1
+METRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+METRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1
+Vendor slot/stock: 177 checks, 0 failures

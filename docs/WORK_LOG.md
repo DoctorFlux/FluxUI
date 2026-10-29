@@ -269,3 +269,51 @@ links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 19 API
 eight client, 77 reference and 118 performance rows). All 727 Lua hashes match
 the full report. Requirements/libraries/assets/manifests (346 files) match the fresh
 checkpoint, and the development-tool marker scan remains clear outside Git.
+
+## 2026-10-29 — finite merchant stock budget
+
+Resumed on 0d05acc with a clean working tree, same branch and main 7436820. Read
+contribution/development/status/decisions, vendor requirements/ownership/performance
+records, production quantity/queue code and existing tests. Read-only local Blizzard
+12.1.0.69283 merchant source and existing bulk-buy code confirm separate zero-stock
+handling; no reference code/assets were copied. Deferred callback scope is unchanged.
+
+Before edits, verified an external source/history/private-settings checkpoint at
+10:54:48 UTC while WoW was closed. All 727 Lua hashes matched the prior 86-script
+full report before baseline reuse. Extended the existing merchant harness instead
+of creating another fixture framework; retained the pre-edit runtime as a nonloaded
+source fixture. Baseline stock replay: 177 checks, 39 failures.
+
+Changed ComputeRestockPurchaseQty to cap zero stock. RunBuyPass now reserves finite
+submitted quantities on the existing shared index entry, preventing reuse within
+and across passes/duplicate entries. The reservation is not native acknowledgement.
+Settings, UI, cadence, unlimited/nil helper semantics and other affordability math
+remain. Normal index refresh/new request can buy replenished stock.
+
+Commands/results:
+
+- `lua tests/vendor_slot_identity.lua --stock-only --source tests/fixtures/vendor_stock_before.txt --measure`:
+  39 expected baseline failures; measure mode deliberately exits zero.
+- `lua tests/vendor_slot_identity.lua --stock-only`: 177 checks pass.
+- `lua tests/vendor_slot_identity.lua --identity-only`: original 660 checks pass.
+- Default execution: 837 checks pass. Existing junk smoke passes.
+- Five alternating fresh-process pairs: all 20 metric cases have zero count range.
+  Zero-stock rejection calls 5 to zero; finite stock 3/max stack 2 rejections 4 to zero,
+  actual units 2 to 3 and accounted/actual copper 50/10 to 15/15. Across-pass stock
+  rejection calls 2 to zero; unlimited 40 purchases/five passes and one event frame
+  remain. No extra merchant-info reads. Money values are simulated, not native losses.
+- `python tests/run_validation.py --output docs/validation/vendor-stock-full-2026-10-29.json --sync-docs`:
+  86 scripts/727 syntax files, zero failures. Native screenshots/input/taint/security,
+  CPU/resources/latency/frame times/FPS remain pending; no speedup is claimed.
+
+Runtime/test/fixture committed as b505bb880aeefbab414d957d8d7fbee6820c20a8, tree
+cc067974b724c82188d52f24a9800ad485ca261e. Small runtime diff reviewed for ownership,
+negative/nil sentinels and shared-entry capacity. Evidence/native steps are in
+VENDOR_STOCK_BUDGET.md. No settings mutation, client deployment, push or main change.
+
+Finite-stock documentation validation passes: 760 classified sources, 577
+reachable files, 361 setting definitions, 23 SavedVariables roots and 12,750 local
+links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 20 API,
+eight client, 77 reference and 129 performance rows). All 727 current Lua hashes
+match the full report; requirements/libraries/assets/manifests (346 files) match
+the checkpoint. The development-tool marker scan remains clear outside Git.

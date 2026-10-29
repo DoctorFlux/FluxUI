@@ -1,0 +1,4153 @@
+{
+  "baseline": {
+    "commit": "0d05acc3f56235d34dfa8dd699155a9e9f40147e",
+    "tree": "d482d14b17a63345ceaeea8ea2b5e6be1bed9f19",
+    "reusedReport": "docs/validation/vendor-slot-full-2026-10-29.json",
+    "verifiedLuaFiles": 727,
+    "tests": 86,
+    "fail": 0,
+    "sourceSha256": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
+    "normalization": "full corpus hashes normalize CRLF to LF only"
+  },
+  "candidate": {
+    "commit": "b505bb880aeefbab414d957d8d7fbee6820c20a8",
+    "tree": "cc067974b724c82188d52f24a9800ad485ca261e",
+    "sources": {
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "d306732e4c468e3f25a296e960507225c6323f48b4d6770f709d9c56d7534ba3",
+      "tests/vendor_slot_identity.lua": "e22a66b812d7d44761aa875c3bf25253b7782e1120b9d1bf103de3c42f580d32"
+    }
+  },
+  "configuration": {
+    "environment": "Windows-10-10.0.26200-SP0",
+    "models": [
+      "legacy tuple merchant info",
+      "modern table merchant info"
+    ],
+    "scenario": "production FluxVendorBuy index/manual queue/merchant events; native shop rejects unavailable/over-budget purchases; settings, stock and tokens modeled",
+    "cases": "10 cases per API model: zero stock, finite same-pass/across-pass/shared entry, gold partial limits, unlimited, currency and item costs; direct helper nil/-1/zero/positive controls",
+    "warmup": "0.6 modeled seconds on open, then index build plus 0.05 seconds",
+    "duration": "operation bounded; run queue until idle, then 100 settled pulses; fresh replenishment and close controls separate",
+    "repetitions": "5 alternating fresh-process baseline/candidate pairs",
+    "profilers": "off; deterministic counters; whole-process durations advisory",
+    "hardware": "Intel Core i7-12700F, 20 logical processors (prior registry evidence); GPU/RAM unavailable",
+    "nativeStatus": "No client launched. Exact live build/settings/addon list/screenshots/CPU/memory/latency/frame times/FPS pending."
+  },
+  "configSha256": "07fe227b5bc1071202697c971a82f923f5b9b21378c673cde66cd4cc4ccf6f4c",
+  "readOnlyReference": {
+    "version": "12.1.0.69283; older than installed client; not native acceptance",
+    "files": {
+      "version.txt": "fe4db80b0872b86afeadb38602087453b822f77372c4acca87060cab5c0476a2",
+      "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/MerchantFrame.lua": "07352bd6e27a6fc929c68f118e8deb0aa8b6b7e44b838b90c277e1d570d92b89",
+      "Interface/AddOns/Blizzard_APIDocumentationGenerated/MerchantFrameDocumentation.lua": "d1cdf1fb26663925fae1745a9c1f80cb73d854ba7095360e37bec1d08223c6cf"
+    }
+  },
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only",
+        "--source",
+        "tests/fixtures/vendor_stock_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.057170700005372055,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out no request exceeds stock or funds\nFAIL legacy_sold_out accounting matches accepted purchases\nMETRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_same_pass no request exceeds stock or funds\nFAIL legacy_finite_same_pass obtains exact available/affordable quantity\nFAIL legacy_finite_same_pass accounting matches accepted purchases\nFAIL legacy_finite_same_pass shared index reserves submitted stock\nFAIL legacy_finite_same_pass fresh index/request can buy replenished stock\nMETRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL legacy_finite_across_passes no request exceeds stock or funds\nFAIL legacy_finite_across_passes accounting matches accepted purchases\nFAIL legacy_finite_across_passes shared index reserves submitted stock\nMETRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_shared_stock no request exceeds stock or funds\nFAIL legacy_shared_stock obtains exact available/affordable quantity\nFAIL legacy_shared_stock accounting matches accepted purchases\nFAIL legacy_shared_stock shared index reserves submitted stock\nMETRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out_partial_gold no request exceeds stock or funds\nFAIL legacy_sold_out_partial_gold accounting matches accepted purchases\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_partial_gold shared index reserves submitted stock\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_currency shared index reserves submitted stock\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_item_cost shared index reserves submitted stock\nMETRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out no request exceeds stock or funds\nFAIL modern_sold_out accounting matches accepted purchases\nMETRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_same_pass no request exceeds stock or funds\nFAIL modern_finite_same_pass obtains exact available/affordable quantity\nFAIL modern_finite_same_pass accounting matches accepted purchases\nFAIL modern_finite_same_pass shared index reserves submitted stock\nFAIL modern_finite_same_pass fresh index/request can buy replenished stock\nMETRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL modern_finite_across_passes no request exceeds stock or funds\nFAIL modern_finite_across_passes accounting matches accepted purchases\nFAIL modern_finite_across_passes shared index reserves submitted stock\nMETRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_shared_stock no request exceeds stock or funds\nFAIL modern_shared_stock obtains exact available/affordable quantity\nFAIL modern_shared_stock accounting matches accepted purchases\nFAIL modern_shared_stock shared index reserves submitted stock\nMETRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out_partial_gold no request exceeds stock or funds\nFAIL modern_sold_out_partial_gold accounting matches accepted purchases\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_partial_gold shared index reserves submitted stock\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_currency shared index reserves submitted stock\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_item_cost shared index reserves submitted stock\nFAIL direct quantity helper honors stock 0\nVendor slot/stock: 177 checks, 39 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only"
+      ],
+      "wallSeconds": 0.040929399998276494,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 177 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only",
+        "--source",
+        "tests/fixtures/vendor_stock_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.04017149999708636,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out no request exceeds stock or funds\nFAIL legacy_sold_out accounting matches accepted purchases\nMETRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_same_pass no request exceeds stock or funds\nFAIL legacy_finite_same_pass obtains exact available/affordable quantity\nFAIL legacy_finite_same_pass accounting matches accepted purchases\nFAIL legacy_finite_same_pass shared index reserves submitted stock\nFAIL legacy_finite_same_pass fresh index/request can buy replenished stock\nMETRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL legacy_finite_across_passes no request exceeds stock or funds\nFAIL legacy_finite_across_passes accounting matches accepted purchases\nFAIL legacy_finite_across_passes shared index reserves submitted stock\nMETRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_shared_stock no request exceeds stock or funds\nFAIL legacy_shared_stock obtains exact available/affordable quantity\nFAIL legacy_shared_stock accounting matches accepted purchases\nFAIL legacy_shared_stock shared index reserves submitted stock\nMETRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out_partial_gold no request exceeds stock or funds\nFAIL legacy_sold_out_partial_gold accounting matches accepted purchases\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_partial_gold shared index reserves submitted stock\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_currency shared index reserves submitted stock\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_item_cost shared index reserves submitted stock\nMETRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out no request exceeds stock or funds\nFAIL modern_sold_out accounting matches accepted purchases\nMETRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_same_pass no request exceeds stock or funds\nFAIL modern_finite_same_pass obtains exact available/affordable quantity\nFAIL modern_finite_same_pass accounting matches accepted purchases\nFAIL modern_finite_same_pass shared index reserves submitted stock\nFAIL modern_finite_same_pass fresh index/request can buy replenished stock\nMETRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL modern_finite_across_passes no request exceeds stock or funds\nFAIL modern_finite_across_passes accounting matches accepted purchases\nFAIL modern_finite_across_passes shared index reserves submitted stock\nMETRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_shared_stock no request exceeds stock or funds\nFAIL modern_shared_stock obtains exact available/affordable quantity\nFAIL modern_shared_stock accounting matches accepted purchases\nFAIL modern_shared_stock shared index reserves submitted stock\nMETRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out_partial_gold no request exceeds stock or funds\nFAIL modern_sold_out_partial_gold accounting matches accepted purchases\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_partial_gold shared index reserves submitted stock\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_currency shared index reserves submitted stock\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_item_cost shared index reserves submitted stock\nFAIL direct quantity helper honors stock 0\nVendor slot/stock: 177 checks, 39 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only"
+      ],
+      "wallSeconds": 0.043544500003918074,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 177 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only",
+        "--source",
+        "tests/fixtures/vendor_stock_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.042203500001051,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out no request exceeds stock or funds\nFAIL legacy_sold_out accounting matches accepted purchases\nMETRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_same_pass no request exceeds stock or funds\nFAIL legacy_finite_same_pass obtains exact available/affordable quantity\nFAIL legacy_finite_same_pass accounting matches accepted purchases\nFAIL legacy_finite_same_pass shared index reserves submitted stock\nFAIL legacy_finite_same_pass fresh index/request can buy replenished stock\nMETRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL legacy_finite_across_passes no request exceeds stock or funds\nFAIL legacy_finite_across_passes accounting matches accepted purchases\nFAIL legacy_finite_across_passes shared index reserves submitted stock\nMETRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_shared_stock no request exceeds stock or funds\nFAIL legacy_shared_stock obtains exact available/affordable quantity\nFAIL legacy_shared_stock accounting matches accepted purchases\nFAIL legacy_shared_stock shared index reserves submitted stock\nMETRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out_partial_gold no request exceeds stock or funds\nFAIL legacy_sold_out_partial_gold accounting matches accepted purchases\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_partial_gold shared index reserves submitted stock\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_currency shared index reserves submitted stock\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_item_cost shared index reserves submitted stock\nMETRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out no request exceeds stock or funds\nFAIL modern_sold_out accounting matches accepted purchases\nMETRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_same_pass no request exceeds stock or funds\nFAIL modern_finite_same_pass obtains exact available/affordable quantity\nFAIL modern_finite_same_pass accounting matches accepted purchases\nFAIL modern_finite_same_pass shared index reserves submitted stock\nFAIL modern_finite_same_pass fresh index/request can buy replenished stock\nMETRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL modern_finite_across_passes no request exceeds stock or funds\nFAIL modern_finite_across_passes accounting matches accepted purchases\nFAIL modern_finite_across_passes shared index reserves submitted stock\nMETRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_shared_stock no request exceeds stock or funds\nFAIL modern_shared_stock obtains exact available/affordable quantity\nFAIL modern_shared_stock accounting matches accepted purchases\nFAIL modern_shared_stock shared index reserves submitted stock\nMETRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out_partial_gold no request exceeds stock or funds\nFAIL modern_sold_out_partial_gold accounting matches accepted purchases\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_partial_gold shared index reserves submitted stock\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_currency shared index reserves submitted stock\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_item_cost shared index reserves submitted stock\nFAIL direct quantity helper honors stock 0\nVendor slot/stock: 177 checks, 39 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only"
+      ],
+      "wallSeconds": 0.04207760000281269,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 177 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only",
+        "--source",
+        "tests/fixtures/vendor_stock_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.04030780000175582,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out no request exceeds stock or funds\nFAIL legacy_sold_out accounting matches accepted purchases\nMETRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_same_pass no request exceeds stock or funds\nFAIL legacy_finite_same_pass obtains exact available/affordable quantity\nFAIL legacy_finite_same_pass accounting matches accepted purchases\nFAIL legacy_finite_same_pass shared index reserves submitted stock\nFAIL legacy_finite_same_pass fresh index/request can buy replenished stock\nMETRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL legacy_finite_across_passes no request exceeds stock or funds\nFAIL legacy_finite_across_passes accounting matches accepted purchases\nFAIL legacy_finite_across_passes shared index reserves submitted stock\nMETRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_shared_stock no request exceeds stock or funds\nFAIL legacy_shared_stock obtains exact available/affordable quantity\nFAIL legacy_shared_stock accounting matches accepted purchases\nFAIL legacy_shared_stock shared index reserves submitted stock\nMETRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out_partial_gold no request exceeds stock or funds\nFAIL legacy_sold_out_partial_gold accounting matches accepted purchases\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_partial_gold shared index reserves submitted stock\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_currency shared index reserves submitted stock\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_item_cost shared index reserves submitted stock\nMETRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out no request exceeds stock or funds\nFAIL modern_sold_out accounting matches accepted purchases\nMETRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_same_pass no request exceeds stock or funds\nFAIL modern_finite_same_pass obtains exact available/affordable quantity\nFAIL modern_finite_same_pass accounting matches accepted purchases\nFAIL modern_finite_same_pass shared index reserves submitted stock\nFAIL modern_finite_same_pass fresh index/request can buy replenished stock\nMETRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL modern_finite_across_passes no request exceeds stock or funds\nFAIL modern_finite_across_passes accounting matches accepted purchases\nFAIL modern_finite_across_passes shared index reserves submitted stock\nMETRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_shared_stock no request exceeds stock or funds\nFAIL modern_shared_stock obtains exact available/affordable quantity\nFAIL modern_shared_stock accounting matches accepted purchases\nFAIL modern_shared_stock shared index reserves submitted stock\nMETRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out_partial_gold no request exceeds stock or funds\nFAIL modern_sold_out_partial_gold accounting matches accepted purchases\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_partial_gold shared index reserves submitted stock\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_currency shared index reserves submitted stock\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_item_cost shared index reserves submitted stock\nFAIL direct quantity helper honors stock 0\nVendor slot/stock: 177 checks, 39 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only"
+      ],
+      "wallSeconds": 0.0397780999992392,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 177 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only",
+        "--source",
+        "tests/fixtures/vendor_stock_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.040297799998370465,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 5.0,
+          "rejected": 5.0,
+          "bought": 0.0,
+          "accounted": 50.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 5.0,
+          "rejected": 4.0,
+          "bought": 2.0,
+          "accounted": 50.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 12.0,
+          "rejected": 2.0,
+          "bought": 10.0,
+          "accounted": 60.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 6.0,
+          "rejected": 5.0,
+          "bought": 2.0,
+          "accounted": 60.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 1.0,
+          "rejected": 1.0,
+          "bought": 0.0,
+          "accounted": 10.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out no request exceeds stock or funds\nFAIL legacy_sold_out accounting matches accepted purchases\nMETRIC legacy_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_same_pass no request exceeds stock or funds\nFAIL legacy_finite_same_pass obtains exact available/affordable quantity\nFAIL legacy_finite_same_pass accounting matches accepted purchases\nFAIL legacy_finite_same_pass shared index reserves submitted stock\nFAIL legacy_finite_same_pass fresh index/request can buy replenished stock\nMETRIC legacy_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL legacy_finite_across_passes no request exceeds stock or funds\nFAIL legacy_finite_across_passes accounting matches accepted purchases\nFAIL legacy_finite_across_passes shared index reserves submitted stock\nMETRIC legacy_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_shared_stock no request exceeds stock or funds\nFAIL legacy_shared_stock obtains exact available/affordable quantity\nFAIL legacy_shared_stock accounting matches accepted purchases\nFAIL legacy_shared_stock shared index reserves submitted stock\nMETRIC legacy_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_sold_out_partial_gold no request exceeds stock or funds\nFAIL legacy_sold_out_partial_gold accounting matches accepted purchases\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_partial_gold shared index reserves submitted stock\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_currency shared index reserves submitted stock\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL legacy_finite_item_cost shared index reserves submitted stock\nMETRIC modern_sold_out calls=5 rejected=5 bought=0 accounted=50 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out no request exceeds stock or funds\nFAIL modern_sold_out accounting matches accepted purchases\nMETRIC modern_finite_same_pass calls=5 rejected=4 bought=2 accounted=50 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_same_pass no request exceeds stock or funds\nFAIL modern_finite_same_pass obtains exact available/affordable quantity\nFAIL modern_finite_same_pass accounting matches accepted purchases\nFAIL modern_finite_same_pass shared index reserves submitted stock\nFAIL modern_finite_same_pass fresh index/request can buy replenished stock\nMETRIC modern_finite_across_passes calls=12 rejected=2 bought=10 accounted=60 actual_spent=50 passes=2 info_reads=0 frames=1\nFAIL modern_finite_across_passes no request exceeds stock or funds\nFAIL modern_finite_across_passes accounting matches accepted purchases\nFAIL modern_finite_across_passes shared index reserves submitted stock\nMETRIC modern_shared_stock calls=6 rejected=5 bought=2 accounted=60 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_shared_stock no request exceeds stock or funds\nFAIL modern_shared_stock obtains exact available/affordable quantity\nFAIL modern_shared_stock accounting matches accepted purchases\nFAIL modern_shared_stock shared index reserves submitted stock\nMETRIC modern_sold_out_partial_gold calls=1 rejected=1 bought=0 accounted=10 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_sold_out_partial_gold no request exceeds stock or funds\nFAIL modern_sold_out_partial_gold accounting matches accepted purchases\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nFAIL modern_finite_partial_gold shared index reserves submitted stock\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_currency shared index reserves submitted stock\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nFAIL modern_finite_item_cost shared index reserves submitted stock\nFAIL direct quantity helper honors stock 0\nVendor slot/stock: 177 checks, 39 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_slot_identity.lua",
+        "--stock-only"
+      ],
+      "wallSeconds": 0.03925570000137668,
+      "metrics": {
+        "legacy_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "legacy_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_same_pass": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_across_passes": {
+          "calls": 10.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 50.0,
+          "actual_spent": 50.0,
+          "passes": 2.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_shared_stock": {
+          "calls": 2.0,
+          "rejected": 0.0,
+          "bought": 3.0,
+          "accounted": 15.0,
+          "actual_spent": 15.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_sold_out_partial_gold": {
+          "calls": 0.0,
+          "rejected": 0.0,
+          "bought": 0.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited": {
+          "calls": 40.0,
+          "rejected": 0.0,
+          "bought": 40.0,
+          "accounted": 200.0,
+          "actual_spent": 200.0,
+          "passes": 5.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_unlimited_partial_gold": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 2.0,
+          "accounted": 10.0,
+          "actual_spent": 10.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_currency": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        },
+        "modern_finite_item_cost": {
+          "calls": 1.0,
+          "rejected": 0.0,
+          "bought": 10.0,
+          "accounted": 0.0,
+          "actual_spent": 0.0,
+          "passes": 1.0,
+          "info_reads": 0.0,
+          "frames": 1.0
+        }
+      },
+      "output": "METRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 177 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "legacy_sold_out": {
+      "calls": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_finite_same_pass": {
+      "calls": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 3.0,
+          "min": 3.0,
+          "max": 3.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_finite_across_passes": {
+      "calls": {
+        "baseline": {
+          "median": 12.0,
+          "min": 12.0,
+          "max": 12.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_shared_stock": {
+      "calls": {
+        "baseline": {
+          "median": 6.0,
+          "min": 6.0,
+          "max": 6.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 3.0,
+          "min": 3.0,
+          "max": 3.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_sold_out_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_finite_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_unlimited": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_unlimited_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_finite_currency": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "legacy_finite_item_cost": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_sold_out": {
+      "calls": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_finite_same_pass": {
+      "calls": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 4.0,
+          "min": 4.0,
+          "max": 4.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 3.0,
+          "min": 3.0,
+          "max": 3.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_finite_across_passes": {
+      "calls": {
+        "baseline": {
+          "median": 12.0,
+          "min": 12.0,
+          "max": 12.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        },
+        "candidate": {
+          "median": 50.0,
+          "min": 50.0,
+          "max": 50.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_shared_stock": {
+      "calls": {
+        "baseline": {
+          "median": 6.0,
+          "min": 6.0,
+          "max": 6.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 3.0,
+          "min": 3.0,
+          "max": 3.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 15.0,
+          "min": 15.0,
+          "max": 15.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_sold_out_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_finite_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_unlimited": {
+      "calls": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        },
+        "candidate": {
+          "median": 40.0,
+          "min": 40.0,
+          "max": 40.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "candidate": {
+          "median": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_unlimited_partial_gold": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "candidate": {
+          "median": 2.0,
+          "min": 2.0,
+          "max": 2.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_finite_currency": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "modern_finite_item_cost": {
+      "calls": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "rejected": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "bought": {
+        "baseline": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "candidate": {
+          "median": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        }
+      },
+      "accounted": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "actual_spent": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "passes": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "info_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    }
+  }
+}

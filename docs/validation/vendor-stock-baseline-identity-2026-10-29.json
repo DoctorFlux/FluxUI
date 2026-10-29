@@ -1,0 +1,10 @@
+{
+  "commit": "0d05acc3f56235d34dfa8dd699155a9e9f40147e",
+  "tree": "d482d14b17a63345ceaeea8ea2b5e6be1bed9f19",
+  "reusedReport": "docs/validation/vendor-slot-full-2026-10-29.json",
+  "verifiedLuaFiles": 727,
+  "tests": 86,
+  "fail": 0,
+  "sourceSha256": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
+  "normalization": "full corpus hashes normalize CRLF to LF only"
+}

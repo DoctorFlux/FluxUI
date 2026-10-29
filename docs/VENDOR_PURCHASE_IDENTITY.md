@@ -44,8 +44,8 @@ and asynchronous purchase acknowledgement remain separate investigations.
 ## Desktop validation and matched operation counts
 
 ```powershell
-lua tests/vendor_slot_identity.lua --source tests/fixtures/vendor_buy_slot_before.txt --measure
-lua tests/vendor_slot_identity.lua
+lua tests/vendor_slot_identity.lua --identity-only --source tests/fixtures/vendor_buy_slot_before.txt --measure
+lua tests/vendor_slot_identity.lua --identity-only
 lua Inventory/Restock/Junk/_tmp_junksmoke.lua
 python tests/run_validation.py --output docs/validation/vendor-slot-full-2026-10-29.json --sync-docs
 ```
@@ -122,3 +122,7 @@ preserve current code/settings before any baseline comparison.
 No visual, protected-input, secret-value, taint or native performance pass is inferred
 from these desktop checks. The deferred auction/guild-bank/void callback scope is
 unchanged.
+
+The test now also covers [finite stock budgets](VENDOR_STOCK_BUDGET.md). Use
+`--identity-only` to reproduce this report's original 660-check group with the
+current harness; historical raw samples retain their original commands/test hashes.
