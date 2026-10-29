@@ -66,6 +66,7 @@ local ruleCache = {}            -- [itemID] = true|false
 local conjuredExemptCache = {}  -- [itemID] = true|false
 local displayRuleCache = {}       -- fast overlay path (no bag walks / Search / journals)
 local ruleGeneration = 0
+local cachedBlizzardJunk, cachedBlizzardJunkGen
 
 local function Inv()
     return _G.FluxRestock and _G.FluxRestock.Inv
@@ -330,6 +331,7 @@ end
 -- ---------------------------------------------------------------------------
 
 function FJ.InvalidateRules()
+    cachedBlizzardJunk = nil
     ruleGeneration = ruleGeneration + 1
     wipe(ruleCache)
     wipe(displayRuleCache)
@@ -340,6 +342,7 @@ end
 function FJ.InvalidateItemRules(itemID)
     itemID = tonumber(itemID)
     if not itemID then return end
+    cachedBlizzardJunk = nil
     ruleCache[itemID] = nil
     displayRuleCache[itemID] = nil
     conjuredExemptCache[itemID] = nil
@@ -1052,6 +1055,7 @@ local function ScanJunkSlotCount()
 end
 
 function FJ.InvalidateJunkSlotCount()
+    cachedBlizzardJunk = nil
     cachedJunkSlotGen = -1
     InvalidateJunkWorklist()
 end
@@ -1122,21 +1126,32 @@ end
 
 function FJ.AnyBlizzardVendorJunkInBags()
     if FJ.NativeJunkCount() > 0 then
+        cachedBlizzardJunk = nil
         return true
     end
     local inv = Inv()
     if not inv or not inv.GetBagContainerIDs then
         return false
     end
+    local gen = inv.GetBagSnapshotGeneration and inv.GetBagSnapshotGeneration()
+    if inv.IsReliable and not inv.IsReliable() then gen = nil end
+    if gen == nil then
+        cachedBlizzardJunk = nil
+    elseif cachedBlizzardJunk ~= nil and cachedBlizzardJunkGen == gen then
+        return cachedBlizzardJunk
+    end
+    -- Both results are reusable until inventory, rules or item data change.
     for _, bag in ipairs(inv.GetBagContainerIDs()) do
         local numSlots = inv.GetContainerNumSlots(bag) or 0
         for slot = 1, numSlots do
             local info = inv.GetContainerItemInfo(bag, slot)
             if info and FJ.IsBlizzardVendorJunk(NumericItemID(info.itemID) or info.itemID, info) then
+                if gen ~= nil then cachedBlizzardJunk, cachedBlizzardJunkGen = true, gen end
                 return true
             end
         end
     end
+    if gen ~= nil then cachedBlizzardJunk, cachedBlizzardJunkGen = false, gen end
     return false
 end
 
