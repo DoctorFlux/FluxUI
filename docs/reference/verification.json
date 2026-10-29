@@ -1,23 +1,23 @@
 {
-  "captured_at_utc": "2026-10-23T18:09:27.213844+00:00",
+  "captured_at_utc": "2026-10-29T09:18:54.844205+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 710,
-  "lua_corpus_sha256": "c9285f7555fbc0d3036a5d13b28087a479aab70742cbe1eb7232842394bbad98",
+  "publishable_lua_files": 723,
+  "lua_corpus_sha256": "e904d08aa492459e4b2b2807dbde197f2528ad3c230ac68079d8dc6efacf8141",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
-    "passed": 710,
+    "passed": 723,
     "failed": 0
   },
-  "smoke_scripts": 72,
-  "smoke_passed": 72,
+  "smoke_scripts": 82,
+  "smoke_passed": 82,
   "smoke_failed": 0,
   "results": [
     {
       "path": "Bars/_tmp_barsmoke.lua",
       "exitCode": 0,
-      "output": "bars refresh: 17230 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
     },
     {
       "path": "Bars/_tmp_forevercontrolsmoke.lua",
@@ -107,12 +107,17 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "wrath consumables passed\nmists consumables passed\nanniversary consumables passed\nretail consumables passed\nera consumables passed\nforever consumables passed\ncata consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1369 checks\n"
+      "output": "anniversary consumables passed\nera consumables passed\ncata consumables passed\nwrath consumables passed\nmists consumables passed\nretail consumables passed\nforever consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "exitCode": 0,
+      "output": "Mount item smoke passed: 30 checks\n"
     },
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1512 checks\n"
+      "output": "era inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -167,7 +172,7 @@
     {
       "path": "tests/bars_refresh_regression.lua",
       "exitCode": 0,
-      "output": "bars refresh: 17230 checks passed; 19 production mutations rejected\n"
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\n"
     },
     {
       "path": "tests/bars_startup_retry.lua",
@@ -185,19 +190,39 @@
       "output": "Blizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\n"
     },
     {
+      "path": "tests/castbar_school_themes.lua",
+      "exitCode": 0,
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6259 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13839 checks across five client families (native rendering/taint unverified)\n"
+    },
+    {
       "path": "tests/chat_column_layout.lua",
       "exitCode": 0,
-      "output": "chat column: 351 checks across five branches, both sides; 4 regressions rejected\n"
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\n"
     },
     {
       "path": "tests/chat_layout.lua",
       "exitCode": 0,
-      "output": "chat layout: 115 checks across five branches; 4 regressions rejected\n"
+      "output": "chat layout: 165 checks across five branches; 4 regressions rejected\n"
+    },
+    {
+      "path": "tests/chat_startup.lua",
+      "exitCode": 0,
+      "output": "Chat startup/tabs: 478 checks; reference-client fades exercised; native rendering/taint unverified\n"
     },
     {
       "path": "tests/combat_queue_supersession.lua",
       "exitCode": 0,
       "output": "combat queue supersession: 264 checks; five clients; stale mutation rejected; recovery job executions 4 -> 3 with identical latest result\n"
+    },
+    {
+      "path": "tests/consumable_restock_clicks.lua",
+      "exitCode": 0,
+      "output": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n"
+    },
+    {
+      "path": "tests/currency_provider_handoff.lua",
+      "exitCode": 0,
+      "output": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n"
     },
     {
       "path": "tests/data_integrity.lua",
@@ -217,7 +242,7 @@
     {
       "path": "tests/extra_startup.lua",
       "exitCode": 0,
-      "output": "PASS: 188 extra-startup checks (five labelled client fixtures; real clients still require testing)\n"
+      "output": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n"
     },
     {
       "path": "tests/grid_child_startup.lua",
@@ -295,9 +320,19 @@
       "output": "map initialization: 8464 checks; five clients plus legacy zoom fallback; 5 mutations rejected; 30 visits modern watcher frames 30 -> 1 (legacy 60 -> 2)\n"
     },
     {
+      "path": "tests/modern_spellbook_ownership.lua",
+      "exitCode": 0,
+      "output": "Modern spellbook ownership: 82 checks passed; native taint VM unverified\n"
+    },
+    {
+      "path": "tests/mp5_mana_ticks.lua",
+      "exitCode": 0,
+      "output": "PASS MP5 mana ticks: 127 checks (native rendering and taint unverified)\n"
+    },
+    {
       "path": "tests/native_menu_input.lua",
       "exitCode": 0,
-      "output": "Native menu/input ownership: 56 checks; five client models; negative control passed\n"
+      "output": "Native menu/input ownership: 121 checks; five client models; negative control passed\n"
     },
     {
       "path": "tests/native_mouse_suppression.lua",
@@ -308,6 +343,11 @@
       "path": "tests/optional_startup.lua",
       "exitCode": 0,
       "output": "optional BigDebuffs startup: late install, idempotency and execution-time combat deferral passed\n"
+    },
+    {
+      "path": "tests/owned_item_detection.lua",
+      "exitCode": 0,
+      "output": "Owned item detection passed: 29 checks\n"
     },
     {
       "path": "tests/perf_capture.lua",
@@ -325,6 +365,11 @@
       "output": "Portrait transmog combat: 616 checks; five capability models; negative control passed\n"
     },
     {
+      "path": "tests/possession_layout.lua",
+      "exitCode": 0,
+      "output": "possession layout: 100 checks passed; Retail/Forever native controller, stance, Edit Mode and LayoutFrame; original policy rejected\n"
+    },
+    {
       "path": "tests/queue_eye_lifecycle.lua",
       "exitCode": 0,
       "output": "Queue eye lifecycle: 61 checks; five client models; negative control passed\n"
@@ -340,9 +385,14 @@
       "output": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n"
     },
     {
+      "path": "tests/spellbook_native_input.lua",
+      "exitCode": 0,
+      "output": "PASS spellbook native input: 56 checks across five client models; native taint unverified\n"
+    },
+    {
       "path": "tests/startup_lifecycle.lua",
       "exitCode": 0,
-      "output": "startup lifecycle: 185 checks passed (five client fixtures; no native taint/render simulation)\n"
+      "output": "startup lifecycle: 205 checks passed (five client fixtures; no native taint/render simulation)\n"
     },
     {
       "path": "tests/transmog_actions.lua",
@@ -357,7 +407,7 @@
     {
       "path": "tests/unit_resource_lifecycle.lua",
       "exitCode": 0,
-      "output": "unit resource lifecycle: 16111 checks, five client models, 7 mutations rejected\n  100 option/enable cycles: watcher frames 201 -> 1; 300 spark paints: style writes 1200 -> 4\n"
+      "output": "unit resource lifecycle: 16272 checks, five client models, 7 mutations rejected\n  100 option/enable cycles: watcher frames 201 -> 1; 300 spark paints: style writes 1200 -> 4\n"
     },
     {
       "path": "tests/unitframes_lifecycle_spec.lua",
@@ -466,7 +516,7 @@
     },
     {
       "path": "AddonOptions/FluxOptionsDefaults.lua",
-      "sha256": "1fcc67c3b22d224a83688f3a260f6696669e36eb63eb2712367153813507d454"
+      "sha256": "0025d296774f2cdc460ed783d70d6a349204ce01088f44dac4606bf2dd634f17"
     },
     {
       "path": "AddonOptions/FluxOptionsGeneral.lua",
@@ -502,7 +552,7 @@
     },
     {
       "path": "AddonOptions/FluxOptionsShell.lua",
-      "sha256": "b560acdcb16f4ba32d67ae365ba616f642aad498ce3c4df5079e9ababc936ea2"
+      "sha256": "466dfa8700590a9be60c6e729e91905b7b1d7b562e521e35262333784390a7a8"
     },
     {
       "path": "AddonOptions/FluxOptionsStatusBars.lua",
@@ -510,7 +560,7 @@
     },
     {
       "path": "AddonOptions/FluxOptionsUnitFrames.lua",
-      "sha256": "4a1e174e073df54e3217b9f0869b50f4e8b3d8698969f0aebcbb249f7e3732f1"
+      "sha256": "00a0ff54430db01cf00027e427808a1e8744d88b581922410a4013a93430f976"
     },
     {
       "path": "AddonOptions/FluxOptionsVendor.lua",
@@ -666,7 +716,7 @@
     },
     {
       "path": "Bars/SpellRank.lua",
-      "sha256": "de13de3fd04d3ea8d2a33ecc2315121e70e1a79bac825d1c203d841fb7ae45f9"
+      "sha256": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f"
     },
     {
       "path": "Bars/Stance/Extras.lua",
@@ -694,7 +744,7 @@
     },
     {
       "path": "Bars/State.lua",
-      "sha256": "6280cfdcb71bcd299a670f48444e56273ab28b92b92af57e0e463f021ff1139b"
+      "sha256": "94c5a04cd918fc2b530c41622e94bb165ebb440fde970afab9e34a92233d3dfb"
     },
     {
       "path": "Bars/Strip.lua",
@@ -702,7 +752,7 @@
     },
     {
       "path": "Bars/Vehicle.lua",
-      "sha256": "acd07311dfa84b6afb828f763aee786796c92f734749fda1aeeefe8144349f1c"
+      "sha256": "f44778392115319eed121a22e18db79f91a27eb438a40a331dc144af4d1e0595"
     },
     {
       "path": "Bars/Watch.lua",
@@ -910,7 +960,7 @@
     },
     {
       "path": "Binding/UI/SpellbookBindingHooks.lua",
-      "sha256": "95c14e8718960b6e81cffa9a3ef7e29e561aca16c6b9da7e043a58a379f8794b"
+      "sha256": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4"
     },
     {
       "path": "Blizzard/Hide.lua",
@@ -1182,7 +1232,7 @@
     },
     {
       "path": "Core/Capabilities.lua",
-      "sha256": "623b50f42dd835f00a8ce023bb5f62dd4a2f1f2370dfcd9b94fce591bfcc4336"
+      "sha256": "180eb60c917bb1ca6394f85fae524f61f3fe0cd86bf4f148132167352c6abd1d"
     },
     {
       "path": "Core/Client.lua",
@@ -1226,7 +1276,7 @@
     },
     {
       "path": "Core/Engine/MouseoverCast.lua",
-      "sha256": "d32b86bde6db252b9b7c471a81a624c3e828cbd1c1e1c1614e778dafe3701583"
+      "sha256": "8c8c9344283502599c58f53ea5f26f302727937e30bb393d044c3b9fe49c3311"
     },
     {
       "path": "Core/Engine/Perf.lua",
@@ -1250,7 +1300,7 @@
     },
     {
       "path": "Core/Engine/SpellBookChrome.lua",
-      "sha256": "13471dfa93d0517f3731aad2348e45b382f0f2ba21484f70f040faae76cd5a7f"
+      "sha256": "3c401a72525511bd748aaefad98733d75ff5264643774472ccc413fbe54855f5"
     },
     {
       "path": "Core/Engine/Ticker.lua",
@@ -1262,7 +1312,7 @@
     },
     {
       "path": "Core/Flux.lua",
-      "sha256": "0cb0296f56799542307c50bdf047c5aa53c2b896670dd7cf65e945b4bfcc6125"
+      "sha256": "6181f8d55f4d2193558df860f1ac212cdd21341705f0f650fbb8c8a691d67fa9"
     },
     {
       "path": "Core/FluxAPI/Actions.lua",
@@ -1382,11 +1432,11 @@
     },
     {
       "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
-      "sha256": "1ace8cffcefdedb3b511b44d3b61b184bb569fe02bb83ce196d5a131312f8fd5"
+      "sha256": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9"
     },
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
-      "sha256": "6f74f957075328b9648d2e2a72f8ee4d149acae882de5162f7fc674cc19a2aab"
+      "sha256": "6c60f0143225781137e8976ba9e51875df8b4018dd51ad4c25b4cc21a2a30746"
     },
     {
       "path": "ExtraButtonSystem/Engine/Action.lua",
@@ -1402,7 +1452,7 @@
     },
     {
       "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
-      "sha256": "b85bb22a7b20d7793c18a2ded8f6f7a1b110989422c57636da4fc341b89cec5f"
+      "sha256": "ca8218313b59b363e7af76378884fb8a8290367d8d129f7db091fbcabc3afd17"
     },
     {
       "path": "ExtraButtonSystem/Engine/Core.lua",
@@ -1426,7 +1476,7 @@
     },
     {
       "path": "ExtraButtonSystem/Engine/Paint.lua",
-      "sha256": "caabf1ca437b4329f06977770f3d9fc1ca38b45ed3f2c6953e7fb0e7d48be3b5"
+      "sha256": "8f473fcdd408d02e3b919f6847c51df407691f25aee48639580e996bb2861f63"
     },
     {
       "path": "ExtraButtonSystem/Engine/Range.lua",
@@ -1557,6 +1607,10 @@
       "sha256": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe"
     },
     {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "sha256": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4"
+    },
+    {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
       "sha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962"
     },
@@ -1566,7 +1620,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
-      "sha256": "c8d9e413f90ed403ad33f8998df68c97b8d2c5fe1fa3a4356fdb09d1520994a3"
+      "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
@@ -1574,7 +1628,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
-      "sha256": "4f2dfc01d42465cb397492f95fa5f12f2bd0d9283743fa751d7508ba2b9a181d"
+      "sha256": "d2669f6dffdcc46c152197b334e8cc5a7a0136c4de67f064ea915ed98cae3e9e"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua",
@@ -1582,7 +1636,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua",
-      "sha256": "a0f3fa4a3655f867f5e450425c334e59b358670a194488590a6b083bbf407215"
+      "sha256": "ceb30edfb4d2c69ff08a9e12a29a82c20b021b92b9bbba8da3e04306af55aa83"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
@@ -1606,7 +1660,7 @@
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
-      "sha256": "61f3121d3b5aec937915692364d5a21951ae1f7f10b14ffb84a546a99386a657"
+      "sha256": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
@@ -1682,7 +1736,7 @@
     },
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
-      "sha256": "7980c8a09b509cf5a415690143001ded9ecd5d7bf899771b00266906f7251af5"
+      "sha256": "cbd48f33f770bb40361e339834966e438850f8b8276bbff1de59758a09906834"
     },
     {
       "path": "Inventory/Builtin/Auctions.lua",
@@ -1698,7 +1752,7 @@
     },
     {
       "path": "Inventory/Builtin/Currency.lua",
-      "sha256": "b52d85ab69ee982c4cc396f4e3d0c6e4dceb50caedf5f855983b9b2bcb6c3a8e"
+      "sha256": "ed9961fb405b999420331bda0121bfb7628e5bc247662722b190d19c1c089b37"
     },
     {
       "path": "Inventory/Builtin/Equip.lua",
@@ -1726,7 +1780,7 @@
     },
     {
       "path": "Inventory/Containers.lua",
-      "sha256": "7a83dcf2e04af093329bcfb34bd78b35e547e2b1175495792dea7837e32b6eb2"
+      "sha256": "67a59049ac84bbbdd48ad5c57b193542fe8c3b7d04d0e42063fcbcf255673376"
     },
     {
       "path": "Inventory/Craft.lua",
@@ -1738,7 +1792,7 @@
     },
     {
       "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
-      "sha256": "0d9750912278eb34408835db3b830f5c26dde2ed819ee04be5db6b6840f213b1"
+      "sha256": "32d1724d2786844b70a1ed564c3fd967ed9f807591caa77a32686dcfba3c8797"
     },
     {
       "path": "Inventory/FluxConsumableBest/Init.lua",
@@ -1822,7 +1876,7 @@
     },
     {
       "path": "Inventory/FluxItemClass.lua",
-      "sha256": "a7c4c33246005bc8baf869f45c4e43ba6e247793e65a1269562acec9569b1395"
+      "sha256": "59e627c9073ec5fead482768541059d4a4210970caf7ed040d587e1d58e4cb52"
     },
     {
       "path": "Inventory/FluxItemMover.lua",
@@ -1834,7 +1888,7 @@
     },
     {
       "path": "Inventory/Init.lua",
-      "sha256": "b4e0d9d1c0f8b446d626647a510ccd5fbe1cb5a06b10ceb980135ef2fc90a4e1"
+      "sha256": "b10466aa9fe216d5a450224374e677a05aaa57481ea3b9393f75945db0795246"
     },
     {
       "path": "Inventory/Ledger.lua",
@@ -2414,7 +2468,7 @@
     },
     {
       "path": "MicroMenu/FluxMicroMenu.lua",
-      "sha256": "04619b3ee9c4d9e836d389b545679b24313c90b342a025f38276efb1cfab9169"
+      "sha256": "86e809e7ad0c88c3f0f55da57e464924f7b72a9cc2561ecc6bf55364660133a5"
     },
     {
       "path": "MicroMenu/FluxMicroMenuConfig.lua",
@@ -2490,11 +2544,11 @@
     },
     {
       "path": "Other/FluxArenaFramePosition.lua",
-      "sha256": "ccb850182452623d75a47102fe4884fe95d0e137dac9791441dfcf63df194c32"
+      "sha256": "fbe069ed348e2d1e0413ce404e86d70d2ac796be1f0c1a5b6180a88bc94efbe6"
     },
     {
       "path": "Other/FluxBossFramePosition.lua",
-      "sha256": "3155f9aa069590b62a09aced62d34c427b4ed4a4757e24979947d70e34196994"
+      "sha256": "63590dfabca4a5e8f3525bde49b8e15e74c10dca0b8b765350e939f358f55a0a"
     },
     {
       "path": "Other/FluxCharacterStats/CharacterStatsCritCalculator.lua",
@@ -2590,11 +2644,11 @@
     },
     {
       "path": "Other/FluxChatCopyPaste.lua",
-      "sha256": "9c234347dea3f464aac068d0906c234ad06a1379a1518a9c9807763ff799bb41"
+      "sha256": "234f0822e547da404a30a0e726fb280fc55e13650ad99070629a310199b41af9"
     },
     {
       "path": "Other/FluxChatFrame.lua",
-      "sha256": "e253b9157dc10b7b946a6d3999080f62c559eabe2c9ba5583fb42ff07054c6d4"
+      "sha256": "eabf816ad4caf03396444fe8f571f027fe8ef599d222234e2c2ace07164a7b29"
     },
     {
       "path": "Other/FluxDurationBars.lua",
@@ -2614,7 +2668,7 @@
     },
     {
       "path": "Other/FluxInputDebug.lua",
-      "sha256": "22a62ac9736c812ef8a116639f5356a075866ede4f0d9e3ef9caf30cbd1d1997"
+      "sha256": "985767bd22edddea4b8da149b53ac931fd470f617d169385076133940ed299c0"
     },
     {
       "path": "Other/FluxLootRollPosition.lua",
@@ -2898,7 +2952,7 @@
     },
     {
       "path": "tests/bars_refresh_regression.lua",
-      "sha256": "9781c56ef9bdc27a22d6fdc36adb3ce5fb4d2081873abba00edf008cbd31085f"
+      "sha256": "52ee5540b0d47a4935ff5bff434d4cf605bbd63e92fe0ff8ca5472b7908db8c1"
     },
     {
       "path": "tests/bars_startup_retry.lua",
@@ -2913,16 +2967,32 @@
       "sha256": "f3e627f77a9dcd7a085cb8352765aa8bc80cf95285eeb14a0a23eece2a7c0942"
     },
     {
+      "path": "tests/castbar_school_themes.lua",
+      "sha256": "6d6b73f83ecc039a9560625e5e2af235609b7fcf5f0b62c6a216f60887c141ef"
+    },
+    {
       "path": "tests/chat_column_layout.lua",
-      "sha256": "957cb38ba18f7be99a7ac03218eae4aa1273120fbf8c5d8c8d698f5fffd554fc"
+      "sha256": "4a4da60ea0514fdb16c98c97a123accb174c4317d11aaca517b9a959a9e3e087"
     },
     {
       "path": "tests/chat_layout.lua",
-      "sha256": "940dc67859df297149308167b22c7431a27d7f2761c10a4108032eedc2ab494c"
+      "sha256": "b3b0f542d1df1d45e03c934acf9ae86fb81bb328ef2cd11f55ed01f7a3f621ab"
+    },
+    {
+      "path": "tests/chat_startup.lua",
+      "sha256": "b48f3ba0f25f9e386d17496c0a0e16e80bdef27363efebec24b059f162fccbbd"
     },
     {
       "path": "tests/combat_queue_supersession.lua",
       "sha256": "8e8fd920475e2d812968433ebd67e155aa716ffefd3d5f0fad0380c1a87e33e3"
+    },
+    {
+      "path": "tests/consumable_restock_clicks.lua",
+      "sha256": "2d0bc7f84eb04e3b25f691386c4414ef075d05842d27d96374cd9ba971586ce4"
+    },
+    {
+      "path": "tests/currency_provider_handoff.lua",
+      "sha256": "cabde189544c785e8bdc6ba5b375119cd43ae7fe923f52583f1d165611449752"
     },
     {
       "path": "tests/data_integrity.lua",
@@ -2938,7 +3008,7 @@
     },
     {
       "path": "tests/extra_startup.lua",
-      "sha256": "7125aa8c83165a22360daabf6fcfd8c085a0ba6c783ca8c3896f27601b5d25ba"
+      "sha256": "3833c20dd506c43262f2cd956996f9e9f18da9cb45b01d815c6fee31216bcb94"
     },
     {
       "path": "tests/grid_child_startup.lua",
@@ -2990,7 +3060,7 @@
     },
     {
       "path": "tests/input_diagnostics.lua",
-      "sha256": "09d162dcd50b3706cec724341abbf6fb394dfa1409c37fc4a77d9cc154d4f25b"
+      "sha256": "55e5f7577c7bce607d7311e79b38ed110714f046262c07776de7e74e177d2652"
     },
     {
       "path": "tests/late_inventory.lua",
@@ -3001,8 +3071,16 @@
       "sha256": "65cae3e36e795411ebcc7a55efafd999123d2c95010e834dfbd57aa63a38b9ec"
     },
     {
+      "path": "tests/modern_spellbook_ownership.lua",
+      "sha256": "e7ae252ee59d72b4473c8fcc7fc2ad5cdc35356326cac8b2b747e4d560013ca5"
+    },
+    {
+      "path": "tests/mp5_mana_ticks.lua",
+      "sha256": "498625e8ac91d076e5290a5b768dd30d0c74b3c5067ac3e0fbdd7365e70f3a20"
+    },
+    {
       "path": "tests/native_menu_input.lua",
-      "sha256": "d42835aaffe68c07b43c2b572e4e27991d0333a1dc965b2537e8ed9d24304359"
+      "sha256": "01b96bac636878f209a459794ca7c77d58fc3b26bcffd0d7e7601524db719d93"
     },
     {
       "path": "tests/native_mouse_suppression.lua",
@@ -3011,6 +3089,10 @@
     {
       "path": "tests/optional_startup.lua",
       "sha256": "32612cbb7fb4dc07f655b209425bf940c03a73eeba656102dd0d433a29bce8c8"
+    },
+    {
+      "path": "tests/owned_item_detection.lua",
+      "sha256": "f9a470478106042abec646329ac3c97322a0ec5d1d08a85d45f6720f228aa3c6"
     },
     {
       "path": "tests/perf_capture.lua",
@@ -3025,6 +3107,10 @@
       "sha256": "40e2e78ada5f8438feb737f19b25e584a83c8b171498ba5e08bfb690fdaf9f6a"
     },
     {
+      "path": "tests/possession_layout.lua",
+      "sha256": "9c0234099490b4b9d014e8248b4bdd1d43012438fd469c7db352b34578f9667f"
+    },
+    {
       "path": "tests/queue_eye_lifecycle.lua",
       "sha256": "d5669614207942131b565f8136378cb52d23c5c816c512655d68b37c64975042"
     },
@@ -3037,8 +3123,12 @@
       "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
     },
     {
+      "path": "tests/spellbook_native_input.lua",
+      "sha256": "197e850c3e567ffb1e802a4f1c3f08227de867aa32870f1b093c5b500fed4940"
+    },
+    {
       "path": "tests/startup_lifecycle.lua",
-      "sha256": "cd51f7e8b9d774de76f13acd2e3610a7664ff91f7c00524a9bbf7251a7932bf5"
+      "sha256": "f09eb8e940269b3ba2801ec857a09d61ca15ccb6dcebbc7a415b8bce64b3a947"
     },
     {
       "path": "tests/transmog_actions.lua",
@@ -3050,7 +3140,7 @@
     },
     {
       "path": "tests/unit_resource_lifecycle.lua",
-      "sha256": "77205c6615ad5f017f39d136807274fe9c800047c8e5297e4cb5bc744148ebc8"
+      "sha256": "0056c964ebd5cc0f9861b5c418b91dd167cd1dcb31e0d9cbfca019599d9c959a"
     },
     {
       "path": "tests/unitframes_lifecycle_spec.lua",
@@ -3086,7 +3176,19 @@
     },
     {
       "path": "UnitFrames/FluxCastBar.lua",
-      "sha256": "32da3bef50afb007ef6ee3044aaabe2801ca01942aeb58199b56ae8194dbbd9c"
+      "sha256": "514be37b54c50503c68896386dbb1b92e0be687717c3f63c38318f97c1e98d1f"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarSchools.lua",
+      "sha256": "3fcec8350ad4c1e93da0121ddd108ecc01cffd0ed5e3d96fca3cb9cb75837dc4"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarThemes.lua",
+      "sha256": "aa85a95c3c92e17b10072c67210b0238d4f7dc0dff7519b371992cbd6807f5d3"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarVisuals.lua",
+      "sha256": "7e6373d98df2d542f4c77713e1f85594d009f7e6c6e93b20a62c00e36f796edb"
     },
     {
       "path": "UnitFrames/FluxClassPower.lua",
@@ -3110,7 +3212,7 @@
     },
     {
       "path": "UnitFrames/FluxMP5Overlay.lua",
-      "sha256": "6062d4d92115c5f49fd47849ca721ce763c180246a6b9ba964b5b20c107154b1"
+      "sha256": "4d84389161fab87f6238127413b4b671fb74ad0ce68886441d9d1ccfa9dc3c58"
     },
     {
       "path": "UnitFrames/FluxPortraitCombatFeedback.lua",
@@ -3118,7 +3220,7 @@
     },
     {
       "path": "UnitFrames/FluxPowerCostOverlay.lua",
-      "sha256": "386e4e2d1a17aeec00ede2e20cbe4cc76cfe2ac6ba2b9a3fec8a9f2d2725b3e8"
+      "sha256": "4fc475853f56a11432b1b831f633f3b34525ad35b234bc079910d42e9dc95a6f"
     },
     {
       "path": "UnitFrames/FluxSwingTimer.lua",
@@ -3158,7 +3260,7 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
-      "sha256": "533986ba9cfc5fa03cb638e23e9dc7222529885f9bb95d4cfe2c5ffafcb3d6cd"
+      "sha256": "1570f294a136a6b44d749ee0fdcde30214e793d76ad0ce13ed1bb9c1a0b250e3"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Pet.lua",
@@ -3174,7 +3276,7 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Player.lua",
-      "sha256": "5e913be6da5f642af6ac565bb21a49a84b3542fd255bce4a16cc1d50fa452091"
+      "sha256": "6c876d048ac837e877a3e1bc7eb762a76311a36dd19f4b05e254e90ef280089b"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
@@ -3206,7 +3308,7 @@
     },
     {
       "path": "WindowMover/Engine.lua",
-      "sha256": "c4c743bb8ae855e895e946f0bb76458e0f77b8f9c5a3a65f59b4c3fdd9d68046"
+      "sha256": "9e17d5d680d8b8cdeff4a05592e995e669e653258cc3470c93b216cf88308255"
     },
     {
       "path": "WindowMover/Init.lua",

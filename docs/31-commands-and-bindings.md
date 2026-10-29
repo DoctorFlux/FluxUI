@@ -10,7 +10,7 @@ This reference follows reachable source and actual handlers, including assignmen
 
 | Command / aliases | Arguments and actual effect | Source |
 |---|---|---|
-| `/fluxui`, `/fluxoptions` | Empty/other input toggles the options shell. `bliz` / `blizzard` opens native settings; `raidpreview` toggles raid preview. | [options registration](../AddonOptions/FluxOptions.lua#L1798) |
+| `/fluxui`, `/fluxoptions` | Empty/other input toggles the options shell. `bliz` / `blizzard` opens the Flux options shell through `ShowConfig`; `raidpreview` toggles raid preview. | [options registration](../AddonOptions/FluxOptions.lua#L1798) |
 | `/fluxbind` | Empty: open a pending binding editor, with options-page fallback. Positive spell ID: open that action. `viz` / `visualizer` / `keyboard`: keyboard view. `apply`: request recompile/apply. `debug`: diagnostics. Only the visualizer aliases use the lowercased copy; other comparisons retain the input's case. | [handler](../Binding/Slash.lua) |
 | `/fluxwindow`, `/fw` | `show`, `hide`, `toggle`; `tab <name>` switches outside combat; `addtab <name>` creates a placeholder tab; `removetab <name>` removes it. **Empty/unrecognized input does nothing** in the current handler. | [handler](../Battlezonemap/FluxWindowFrame.lua#L1195) |
 | `/fluxrespec`, `/respec` | `list`, `save <name>`, `load <name>`, `delete <name>`. Profile names can contain spaces. Empty input prints usage; it does not open the Respec UI. Load can coordinate protected/asynchronous actions. | [handler](../Respec/FluxRespec_Core.lua#L755), [pipeline](23-respec.md) |

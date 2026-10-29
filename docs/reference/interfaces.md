@@ -20,9 +20,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [AddonOptions/FluxOptionsLayout.lua:76](../../AddonOptions/FluxOptionsLayout.lua#L76) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsMicroMenu.lua:306](../../AddonOptions/FluxOptionsMicroMenu.lua#L306) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsNameplates.lua:272](../../AddonOptions/FluxOptionsNameplates.lua#L272) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [AddonOptions/FluxOptionsShell.lua:771](../../AddonOptions/FluxOptionsShell.lua#L771) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [AddonOptions/FluxOptionsShell.lua:766](../../AddonOptions/FluxOptionsShell.lua#L766) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [AddonOptions/FluxOptionsStatusBars.lua:536](../../AddonOptions/FluxOptionsStatusBars.lua#L536) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [AddonOptions/FluxOptionsUnitFrames.lua:1994](../../AddonOptions/FluxOptionsUnitFrames.lua#L1994) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [AddonOptions/FluxOptionsUnitFrames.lua:2077](../../AddonOptions/FluxOptionsUnitFrames.lua#L2077) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsWindows.lua:274](../../AddonOptions/FluxOptionsWindows.lua#L274) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [BaganatorCompat/FluxBaganator_BankRestock.lua:246](../../BaganatorCompat/FluxBaganator_BankRestock.lua#L246) | `RegisterEvent` | `"BANKFRAME_OPENED"` |
 | [BaganatorCompat/FluxBaganator_BankRestock.lua:247](../../BaganatorCompat/FluxBaganator_BankRestock.lua#L247) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -139,9 +139,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Binding/UI/KeyVisualizer/Core.lua:1956](../../Binding/UI/KeyVisualizer/Core.lua#L1956) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
 | [Binding/UI/KeyVisualizer/Core.lua:1957](../../Binding/UI/KeyVisualizer/Core.lua#L1957) | `RegisterEvent` | `"UPDATE_SHAPESHIFT_FORM"` |
 | [Binding/UI/SpellbookBindingHooks.lua:214](../../Binding/UI/SpellbookBindingHooks.lua#L214) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Binding/UI/SpellbookBindingHooks.lua:462](../../Binding/UI/SpellbookBindingHooks.lua#L462) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Binding/UI/SpellbookBindingHooks.lua:463](../../Binding/UI/SpellbookBindingHooks.lua#L463) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Binding/UI/SpellbookBindingHooks.lua:464](../../Binding/UI/SpellbookBindingHooks.lua#L464) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Binding/UI/SpellbookBindingHooks.lua:466](../../Binding/UI/SpellbookBindingHooks.lua#L466) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Binding/UI/SpellbookBindingHooks.lua:467](../../Binding/UI/SpellbookBindingHooks.lua#L467) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Binding/UI/SpellbookBindingHooks.lua:468](../../Binding/UI/SpellbookBindingHooks.lua#L468) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Blizzard/Hide.lua:45](../../Blizzard/Hide.lua#L45) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Blizzard/Hide.lua:194](../../Blizzard/Hide.lua#L194) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [BlizzardSettings/Nameplates.lua:217](../../BlizzardSettings/Nameplates.lua#L217) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -212,10 +212,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Core/API/Container.lua:318](../../Core/API/Container.lua#L318) | `RegisterEvent` | `event` |
 | [Core/ButtonFX/Overlay.lua:1827](../../Core/ButtonFX/Overlay.lua#L1827) | `RegisterEvent` | `"GLOBAL_MOUSE_UP"` |
 | [Core/ButtonFX/Overlay.lua:2069](../../Core/ButtonFX/Overlay.lua#L2069) | `RegisterEvent` | `"GLOBAL_MOUSE_UP"` |
-| [Core/Capabilities.lua:156](../../Core/Capabilities.lua#L156) | `RegisterEvent` | `"COMBAT_LOG_EVENT_UNFILTERED"` |
-| [Core/Capabilities.lua:193](../../Core/Capabilities.lua#L193) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_TARGET", "player"` |
-| [Core/Capabilities.lua:196](../../Core/Capabilities.lua#L196) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_CLEAR", "player"` |
-| [Core/Capabilities.lua:524](../../Core/Capabilities.lua#L524) | `RegisterUnitEvent` | `"UNIT_HEALTH", "focus"` |
+| [Core/Capabilities.lua:158](../../Core/Capabilities.lua#L158) | `RegisterEvent` | `"COMBAT_LOG_EVENT_UNFILTERED"` |
+| [Core/Capabilities.lua:195](../../Core/Capabilities.lua#L195) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_TARGET", "player"` |
+| [Core/Capabilities.lua:198](../../Core/Capabilities.lua#L198) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_CLEAR", "player"` |
+| [Core/Capabilities.lua:526](../../Core/Capabilities.lua#L526) | `RegisterUnitEvent` | `"UNIT_HEALTH", "focus"` |
 | [Core/Client_Camelot.lua:171](../../Core/Client_Camelot.lua#L171) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Core/Engine/Combat.lua:182](../../Core/Engine/Combat.lua#L182) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Core/Engine/Context.lua:274](../../Core/Engine/Context.lua#L274) | `Subscribe` | `fn` |
@@ -236,11 +236,11 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Core/Engine/Restricted.lua:313](../../Core/Engine/Restricted.lua#L313) | `RegisterEvent` | `"ACTIONBAR_PAGE_CHANGED"` |
 | [Core/Engine/Restricted.lua:314](../../Core/Engine/Restricted.lua#L314) | `RegisterEvent` | `"UPDATE_BONUS_ACTIONBAR"` |
 | [Core/Engine/Restricted.lua:315](../../Core/Engine/Restricted.lua#L315) | `RegisterEvent` | `"UPDATE_STEALTH"` |
-| [Core/Flux.lua:168](../../Core/Flux.lua#L168) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Core/Flux.lua:169](../../Core/Flux.lua#L169) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Core/Flux.lua:170](../../Core/Flux.lua#L170) | `RegisterEvent` | `"VARIABLES_LOADED"` |
-| [Core/Flux.lua:171](../../Core/Flux.lua#L171) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Core/Flux.lua:198](../../Core/Flux.lua#L198) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Core/Flux.lua:173](../../Core/Flux.lua#L173) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Core/Flux.lua:174](../../Core/Flux.lua#L174) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Core/Flux.lua:175](../../Core/Flux.lua#L175) | `RegisterEvent` | `"VARIABLES_LOADED"` |
+| [Core/Flux.lua:176](../../Core/Flux.lua#L176) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Core/Flux.lua:203](../../Core/Flux.lua#L203) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Core/FluxAPI/Auras.lua:396](../../Core/FluxAPI/Auras.lua#L396) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Core/FluxAPI/Capabilities.lua:59](../../Core/FluxAPI/Capabilities.lua#L59) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_TARGET", "player"` |
 | [Core/FluxAPI/Capabilities.lua:62](../../Core/FluxAPI/Capabilities.lua#L62) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_RETICLE_CLEAR", "player"` |
@@ -269,15 +269,15 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua:231](../../ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua#L231) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua:232](../../ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua#L232) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua:271](../../ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua#L271) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [ExtraButtonSystem/CombatGrid/GridManager.lua:318](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L318) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/CombatGrid/GridManager.lua:319](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L319) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/CombatGrid/GridManager.lua:320](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L320) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:1833](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1833) | `RegisterEvent` | `"TRADE_SKILL_SHOW"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:2603](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2603) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:2604](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2604) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3328](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3328) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3329](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3329) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3330](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3330) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/CombatGrid/GridManager.lua:336](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L336) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/CombatGrid/GridManager.lua:337](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L337) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/CombatGrid/GridManager.lua:338](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L338) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:1872](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1872) | `RegisterEvent` | `"TRADE_SKILL_SHOW"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:2642](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2642) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:2643](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2643) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3371](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3371) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3372](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3372) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3373](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3373) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/ExtraButtons/Buttons.lua:122](../../ExtraButtonSystem/ExtraButtons/Buttons.lua#L122) | `RegisterEvent` | `"CURSOR_CHANGED"` |
 | [ExtraButtonSystem/ExtraButtons/UI.lua:579](../../ExtraButtonSystem/ExtraButtons/UI.lua#L579) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/ExtraButtons/UI.lua:758](../../ExtraButtonSystem/ExtraButtons/UI.lua#L758) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -300,10 +300,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1095](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1095) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1129](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1129) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1130](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1130) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:541](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L541) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:542](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L542) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:543](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L543) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:551](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L551) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:536](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L536) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:537](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L537) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:538](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L538) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:546](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L546) | `RegisterEvent` | `"SPELLS_CHANGED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua:2130](../../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua#L2130) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua:2131](../../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua#L2131) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua:2132](../../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua#L2132) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -333,6 +333,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:3146](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3146) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_INTERRUPTED", "player"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:3147](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3147) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_FAILED", "player"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:3148](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3148) | `RegisterEvent` | `"PLAYER_MOUNT_DISPLAY_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua:816](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L816) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua:817](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L817) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2904](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2904) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2905](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2905) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2913](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2913) | `RegisterEvent` | `"SPELLS_CHANGED"` |
@@ -352,8 +354,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:1000](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L1000) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:1001](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L1001) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:1002](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L1002) | `RegisterEvent` | `"NEW_MOUNT_ADDED"` |
-| [ExtraButtonSystem/NonCombatGrid/GridInit.lua:116](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L116) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/NonCombatGrid/GridInit.lua:117](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L117) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/GridInit.lua:139](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L139) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/GridInit.lua:140](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L140) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua:832](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua#L832) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1146](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1146) | `RegisterEvent` | `"CURSOR_CHANGED"` |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1147](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1147) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
@@ -414,16 +416,16 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Builtin/Mail.lua:354](../../Inventory/Builtin/Mail.lua#L354) | `RegisterEvent` | `"MAIL_FAILED"` |
 | [Inventory/CreateSpells.lua:441](../../Inventory/CreateSpells.lua#L441) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Inventory/CreateSpells.lua:457](../../Inventory/CreateSpells.lua#L457) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:470](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L470) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:471](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L471) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:472](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L472) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:473](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L473) | `RegisterEvent` | `"PLAYER_SPECIALIZATION_CHANGED"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:474](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L474) | `RegisterEvent` | `"SKILL_LINES_CHANGED"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:475](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L475) | `RegisterEvent` | `"UNIT_MAXHEALTH"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:476](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L476) | `RegisterEvent` | `"UNIT_MAXPOWER"` |
-| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:626](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L626) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
-| [Inventory/FluxItemClass.lua:610](../../Inventory/FluxItemClass.lua#L610) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
-| [Inventory/FluxItemClass.lua:611](../../Inventory/FluxItemClass.lua#L611) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:472](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L472) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:473](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L473) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:474](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L474) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:475](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L475) | `RegisterEvent` | `"PLAYER_SPECIALIZATION_CHANGED"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:476](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L476) | `RegisterEvent` | `"SKILL_LINES_CHANGED"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:477](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L477) | `RegisterEvent` | `"UNIT_MAXHEALTH"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:478](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L478) | `RegisterEvent` | `"UNIT_MAXPOWER"` |
+| [Inventory/FluxConsumableBest/FluxConsumableBest.lua:628](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L628) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
+| [Inventory/FluxItemClass.lua:635](../../Inventory/FluxItemClass.lua#L635) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
+| [Inventory/FluxItemClass.lua:636](../../Inventory/FluxItemClass.lua#L636) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
 | [Inventory/Init.lua:242](../../Inventory/Init.lua#L242) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:516](../../Inventory/Restock/Bank/FluxBankRestock.lua#L516) | `RegisterEvent` | `"BAG_UPDATE"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:517](../../Inventory/Restock/Bank/FluxBankRestock.lua#L517) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
@@ -485,13 +487,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [MicroMenu/FluxMicroMenu.lua:435](../../MicroMenu/FluxMicroMenu.lua#L435) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [MicroMenu/FluxMicroMenu.lua:436](../../MicroMenu/FluxMicroMenu.lua#L436) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [MicroMenu/FluxMicroMenu.lua:437](../../MicroMenu/FluxMicroMenu.lua#L437) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3025](../../MicroMenu/FluxMicroMenu.lua#L3025) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [MicroMenu/FluxMicroMenu.lua:3026](../../MicroMenu/FluxMicroMenu.lua#L3026) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [MicroMenu/FluxMicroMenu.lua:3027](../../MicroMenu/FluxMicroMenu.lua#L3027) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [MicroMenu/FluxMicroMenu.lua:3028](../../MicroMenu/FluxMicroMenu.lua#L3028) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [MicroMenu/FluxMicroMenu.lua:3029](../../MicroMenu/FluxMicroMenu.lua#L3029) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3030](../../MicroMenu/FluxMicroMenu.lua#L3030) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
-| [MicroMenu/FluxMicroMenu.lua:3031](../../MicroMenu/FluxMicroMenu.lua#L3031) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
+| [MicroMenu/FluxMicroMenu.lua:3033](../../MicroMenu/FluxMicroMenu.lua#L3033) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [MicroMenu/FluxMicroMenu.lua:3034](../../MicroMenu/FluxMicroMenu.lua#L3034) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [MicroMenu/FluxMicroMenu.lua:3035](../../MicroMenu/FluxMicroMenu.lua#L3035) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [MicroMenu/FluxMicroMenu.lua:3036](../../MicroMenu/FluxMicroMenu.lua#L3036) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [MicroMenu/FluxMicroMenu.lua:3037](../../MicroMenu/FluxMicroMenu.lua#L3037) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [MicroMenu/FluxMicroMenu.lua:3038](../../MicroMenu/FluxMicroMenu.lua#L3038) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
+| [MicroMenu/FluxMicroMenu.lua:3039](../../MicroMenu/FluxMicroMenu.lua#L3039) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [MicroMenu/FluxMicroMenuConfigUI.lua:451](../../MicroMenu/FluxMicroMenuConfigUI.lua#L451) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:751](../../MicroMenu/FluxMinimapToMicro.lua#L751) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:1615](../../MicroMenu/FluxMinimapToMicro.lua#L1615) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -555,14 +557,14 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [NamePlates/Core.lua:569](../../NamePlates/Core.lua#L569) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
 | [NamePlates/Core.lua:570](../../NamePlates/Core.lua#L570) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [NamePlates/Core.lua:571](../../NamePlates/Core.lua#L571) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Other/FluxArenaFramePosition.lua:128](../../Other/FluxArenaFramePosition.lua#L128) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxArenaFramePosition.lua:129](../../Other/FluxArenaFramePosition.lua#L129) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxArenaFramePosition.lua:130](../../Other/FluxArenaFramePosition.lua#L130) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Other/FluxArenaFramePosition.lua:131](../../Other/FluxArenaFramePosition.lua#L131) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Other/FluxBossFramePosition.lua:125](../../Other/FluxBossFramePosition.lua#L125) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxBossFramePosition.lua:126](../../Other/FluxBossFramePosition.lua#L126) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxBossFramePosition.lua:127](../../Other/FluxBossFramePosition.lua#L127) | `RegisterEvent` | `"INSTANCE_ENCOUNTER_ENGAGE_UNIT"` |
-| [Other/FluxBossFramePosition.lua:128](../../Other/FluxBossFramePosition.lua#L128) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxArenaFramePosition.lua:133](../../Other/FluxArenaFramePosition.lua#L133) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxArenaFramePosition.lua:134](../../Other/FluxArenaFramePosition.lua#L134) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxArenaFramePosition.lua:135](../../Other/FluxArenaFramePosition.lua#L135) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxArenaFramePosition.lua:136](../../Other/FluxArenaFramePosition.lua#L136) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Other/FluxBossFramePosition.lua:131](../../Other/FluxBossFramePosition.lua#L131) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxBossFramePosition.lua:132](../../Other/FluxBossFramePosition.lua#L132) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxBossFramePosition.lua:133](../../Other/FluxBossFramePosition.lua#L133) | `RegisterEvent` | `"INSTANCE_ENCOUNTER_ENGAGE_UNIT"` |
+| [Other/FluxBossFramePosition.lua:134](../../Other/FluxBossFramePosition.lua#L134) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxChatColumnMicros.lua:608](../../Other/FluxChatColumnMicros.lua#L608) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxChatColumnMicros.lua:609](../../Other/FluxChatColumnMicros.lua#L609) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxChatColumnMicros.lua:610](../../Other/FluxChatColumnMicros.lua#L610) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -579,16 +581,18 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxChatColumnMicros.lua:1240](../../Other/FluxChatColumnMicros.lua#L1240) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxChatColumnMicros.lua:1241](../../Other/FluxChatColumnMicros.lua#L1241) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [Other/FluxChatColumnMicros.lua:1242](../../Other/FluxChatColumnMicros.lua#L1242) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
-| [Other/FluxChatCopyPaste.lua:595](../../Other/FluxChatCopyPaste.lua#L595) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Other/FluxChatCopyPaste.lua:925](../../Other/FluxChatCopyPaste.lua#L925) | `RegisterEvent` | `"GUILD_ROSTER_UPDATE"` |
-| [Other/FluxChatCopyPaste.lua:926](../../Other/FluxChatCopyPaste.lua#L926) | `RegisterEvent` | `"PLAYER_GUILD_UPDATE"` |
-| [Other/FluxChatCopyPaste.lua:927](../../Other/FluxChatCopyPaste.lua#L927) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatCopyPaste.lua:1069](../../Other/FluxChatCopyPaste.lua#L1069) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatCopyPaste.lua:1232](../../Other/FluxChatCopyPaste.lua#L1232) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Other/FluxChatFrame.lua:1360](../../Other/FluxChatFrame.lua#L1360) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxChatFrame.lua:1361](../../Other/FluxChatFrame.lua#L1361) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatFrame.lua:1362](../../Other/FluxChatFrame.lua#L1362) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Other/FluxChatFrame.lua:1363](../../Other/FluxChatFrame.lua#L1363) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxChatCopyPaste.lua:611](../../Other/FluxChatCopyPaste.lua#L611) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxChatCopyPaste.lua:947](../../Other/FluxChatCopyPaste.lua#L947) | `RegisterEvent` | `"GUILD_ROSTER_UPDATE"` |
+| [Other/FluxChatCopyPaste.lua:948](../../Other/FluxChatCopyPaste.lua#L948) | `RegisterEvent` | `"PLAYER_GUILD_UPDATE"` |
+| [Other/FluxChatCopyPaste.lua:949](../../Other/FluxChatCopyPaste.lua#L949) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatCopyPaste.lua:1091](../../Other/FluxChatCopyPaste.lua#L1091) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxChatCopyPaste.lua:1092](../../Other/FluxChatCopyPaste.lua#L1092) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatCopyPaste.lua:1093](../../Other/FluxChatCopyPaste.lua#L1093) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxChatCopyPaste.lua:1261](../../Other/FluxChatCopyPaste.lua#L1261) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Other/FluxChatFrame.lua:1397](../../Other/FluxChatFrame.lua#L1397) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxChatFrame.lua:1398](../../Other/FluxChatFrame.lua#L1398) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatFrame.lua:1399](../../Other/FluxChatFrame.lua#L1399) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [Other/FluxChatFrame.lua:1400](../../Other/FluxChatFrame.lua#L1400) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxDurationBars.lua:101](../../Other/FluxDurationBars.lua#L101) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxDurationBars.lua:102](../../Other/FluxDurationBars.lua#L102) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxDurationBars.lua:103](../../Other/FluxDurationBars.lua#L103) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -745,10 +749,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [StatusBars/FluxStatusBar.lua:2949](../../StatusBars/FluxStatusBar.lua#L2949) | `RegisterEvent` | `"PLAYER_MONEY"` |
 | [StatusBars/FluxStatusBar.lua:2950](../../StatusBars/FluxStatusBar.lua#L2950) | `RegisterEvent` | `"CURRENCY_DISPLAY_UPDATE"` |
 | [StatusBars/FluxStatusBar.lua:2951](../../StatusBars/FluxStatusBar.lua#L2951) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
-| [UnitFrames/FluxCastBar.lua:2854](../../UnitFrames/FluxCastBar.lua#L2854) | `RegisterUnitEvent` | `event, unit` |
-| [UnitFrames/FluxCastBar.lua:2887](../../UnitFrames/FluxCastBar.lua#L2887) | `RegisterEvent` | `"UNIT_SPELLCAST_SENT"` |
-| [UnitFrames/FluxCastBar.lua:3455](../../UnitFrames/FluxCastBar.lua#L3455) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [UnitFrames/FluxCastBar.lua:3456](../../UnitFrames/FluxCastBar.lua#L3456) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [UnitFrames/FluxCastBar.lua:2863](../../UnitFrames/FluxCastBar.lua#L2863) | `RegisterUnitEvent` | `event, unit` |
+| [UnitFrames/FluxCastBar.lua:2896](../../UnitFrames/FluxCastBar.lua#L2896) | `RegisterEvent` | `"UNIT_SPELLCAST_SENT"` |
+| [UnitFrames/FluxCastBar.lua:3466](../../UnitFrames/FluxCastBar.lua#L3466) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [UnitFrames/FluxCastBar.lua:3467](../../UnitFrames/FluxCastBar.lua#L3467) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [UnitFrames/FluxCastBarThemes.lua:892](../../UnitFrames/FluxCastBarThemes.lua#L892) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [UnitFrames/FluxCastBarThemes.lua:893](../../UnitFrames/FluxCastBarThemes.lua#L893) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxClassPower.lua:629](../../UnitFrames/FluxClassPower.lua#L629) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxClassPower.lua:630](../../UnitFrames/FluxClassPower.lua#L630) | `RegisterEvent` | `"PLAYER_SPECIALIZATION_CHANGED"` |
 | [UnitFrames/FluxClassPower.lua:631](../../UnitFrames/FluxClassPower.lua#L631) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
@@ -776,13 +782,17 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [UnitFrames/FluxLegacyComboPoints.lua:178](../../UnitFrames/FluxLegacyComboPoints.lua#L178) | `RegisterEvent` | `"UNIT_POWER_FREQUENT"` |
 | [UnitFrames/FluxLegacyComboPoints.lua:179](../../UnitFrames/FluxLegacyComboPoints.lua#L179) | `RegisterEvent` | `"UNIT_POWER_UPDATE"` |
 | [UnitFrames/FluxLegacyComboPoints.lua:180](../../UnitFrames/FluxLegacyComboPoints.lua#L180) | `RegisterEvent` | `"UNIT_MAXPOWER"` |
-| [UnitFrames/FluxMP5Overlay.lua:318](../../UnitFrames/FluxMP5Overlay.lua#L318) | `RegisterEvent` | `"UNIT_SPELLCAST_SUCCEEDED"` |
-| [UnitFrames/FluxMP5Overlay.lua:319](../../UnitFrames/FluxMP5Overlay.lua#L319) | `RegisterUnitEvent` | `"UNIT_POWER_UPDATE", "player"` |
-| [UnitFrames/FluxMP5Overlay.lua:320](../../UnitFrames/FluxMP5Overlay.lua#L320) | `RegisterUnitEvent` | `"UNIT_DISPLAYPOWER", "player"` |
-| [UnitFrames/FluxMP5Overlay.lua:321](../../UnitFrames/FluxMP5Overlay.lua#L321) | `RegisterUnitEvent` | `"UNIT_MAXPOWER", "player"` |
-| [UnitFrames/FluxPowerCostOverlay.lua:778](../../UnitFrames/FluxPowerCostOverlay.lua#L778) | `RegisterUnitEvent` | `event, unit` |
-| [UnitFrames/FluxPowerCostOverlay.lua:927](../../UnitFrames/FluxPowerCostOverlay.lua#L927) | `RegisterEvent` | `"PLAYER_TARGET_CHANGED"` |
-| [UnitFrames/FluxPowerCostOverlay.lua:930](../../UnitFrames/FluxPowerCostOverlay.lua#L930) | `RegisterEvent` | `"PLAYER_FOCUS_CHANGED"` |
+| [UnitFrames/FluxMP5Overlay.lua:340](../../UnitFrames/FluxMP5Overlay.lua#L340) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
+| [UnitFrames/FluxMP5Overlay.lua:341](../../UnitFrames/FluxMP5Overlay.lua#L341) | `RegisterUnitEvent` | `"UNIT_POWER_UPDATE", "player"` |
+| [UnitFrames/FluxMP5Overlay.lua:342](../../UnitFrames/FluxMP5Overlay.lua#L342) | `RegisterUnitEvent` | `"UNIT_POWER_FREQUENT", "player"` |
+| [UnitFrames/FluxMP5Overlay.lua:343](../../UnitFrames/FluxMP5Overlay.lua#L343) | `RegisterUnitEvent` | `"UNIT_DISPLAYPOWER", "player"` |
+| [UnitFrames/FluxMP5Overlay.lua:344](../../UnitFrames/FluxMP5Overlay.lua#L344) | `RegisterUnitEvent` | `"UNIT_MAXPOWER", "player"` |
+| [UnitFrames/FluxMP5Overlay.lua:345](../../UnitFrames/FluxMP5Overlay.lua#L345) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [UnitFrames/FluxMP5Overlay.lua:346](../../UnitFrames/FluxMP5Overlay.lua#L346) | `RegisterEvent` | `"PLAYER_ALIVE"` |
+| [UnitFrames/FluxMP5Overlay.lua:347](../../UnitFrames/FluxMP5Overlay.lua#L347) | `RegisterEvent` | `"PLAYER_UNGHOST"` |
+| [UnitFrames/FluxPowerCostOverlay.lua:793](../../UnitFrames/FluxPowerCostOverlay.lua#L793) | `RegisterUnitEvent` | `event, unit` |
+| [UnitFrames/FluxPowerCostOverlay.lua:948](../../UnitFrames/FluxPowerCostOverlay.lua#L948) | `RegisterEvent` | `"PLAYER_TARGET_CHANGED"` |
+| [UnitFrames/FluxPowerCostOverlay.lua:951](../../UnitFrames/FluxPowerCostOverlay.lua#L951) | `RegisterEvent` | `"PLAYER_FOCUS_CHANGED"` |
 | [UnitFrames/FluxSwingTimer.lua:1717](../../UnitFrames/FluxSwingTimer.lua#L1717) | `RegisterEvent` | `"COMBAT_LOG_EVENT_UNFILTERED"` |
 | [UnitFrames/FluxSwingTimer.lua:2017](../../UnitFrames/FluxSwingTimer.lua#L2017) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [UnitFrames/FluxSwingTimer.lua:2018](../../UnitFrames/FluxSwingTimer.lua#L2018) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
@@ -937,8 +947,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [UnitFrames/FluxUnitFrames_Target.lua:304](../../UnitFrames/FluxUnitFrames_Target.lua#L304) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxUnitFrames_Target.lua:305](../../UnitFrames/FluxUnitFrames_Target.lua#L305) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [UnitFrames/FluxUnitFrames_TargetOfTarget.lua:105](../../UnitFrames/FluxUnitFrames_TargetOfTarget.lua#L105) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [WindowMover/Engine.lua:931](../../WindowMover/Engine.lua#L931) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [WindowMover/Engine.lua:932](../../WindowMover/Engine.lua#L932) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [WindowMover/Engine.lua:958](../../WindowMover/Engine.lua#L958) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [WindowMover/Engine.lua:959](../../WindowMover/Engine.lua#L959) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 
 ## Declared interface candidates
 
@@ -1235,9 +1245,9 @@ Owner: [26-options-map.md](../26-options-map.md).
 | `Shell:RefreshOpenPage` | [L554](../../AddonOptions/FluxOptionsShell.lua#L554) |
 | `Shell:Relayout` | [L570](../../AddonOptions/FluxOptionsShell.lua#L570) |
 | `Shell:BuildSidebar` | [L580](../../AddonOptions/FluxOptionsShell.lua#L580) |
-| `Shell:EnsureFrame` | [L811](../../AddonOptions/FluxOptionsShell.lua#L811) |
-| `Shell:Show` | [L1074](../../AddonOptions/FluxOptionsShell.lua#L1074) |
-| `Shell:Open` | [L1096](../../AddonOptions/FluxOptionsShell.lua#L1096) |
+| `Shell:EnsureFrame` | [L800](../../AddonOptions/FluxOptionsShell.lua#L800) |
+| `Shell:Show` | [L1063](../../AddonOptions/FluxOptionsShell.lua#L1063) |
+| `Shell:Open` | [L1085](../../AddonOptions/FluxOptionsShell.lua#L1085) |
 
 ### AddonOptions/FluxOptionsUnitFrames.lua
 
@@ -1844,26 +1854,25 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 | `UpdateFluxButtonDesaturation` | [L605](../../Bars/SpellRank.lua#L605) |
 | `UpdateAllButtonDesaturation` | [L615](../../Bars/SpellRank.lua#L615) |
 | `SpellRank:RankUpAllSpells` | [L911](../../Bars/SpellRank.lua#L911) |
-| `mixin:ShouldDisplaySpellBookItem` | [L1227](../../Bars/SpellRank.lua#L1227) |
-| `SpellRank:IsRankFeaturesSupported` | [L1335](../../Bars/SpellRank.lua#L1335) |
-| `SpellRank:IsLowerRankSpell` | [L1339](../../Bars/SpellRank.lua#L1339) |
-| `SpellRank:ApplyRankDesaturation` | [L1346](../../Bars/SpellRank.lua#L1346) |
-| `SpellRank:RefreshColumnSurfaces` | [L1367](../../Bars/SpellRank.lua#L1367) |
-| `SpellRank:RefreshColumnSurfacesPaging` | [L1397](../../Bars/SpellRank.lua#L1397) |
-| `SpellRank:RefreshColumnAllRows` | [L1401](../../Bars/SpellRank.lua#L1401) |
-| `SpellRank:RefreshColumnUsable` | [L1429](../../Bars/SpellRank.lua#L1429) |
-| `SpellRank:ClearHostRankState` | [L1463](../../Bars/SpellRank.lua#L1463) |
-| `SpellRank:ReassertDesaturation` | [L1481](../../Bars/SpellRank.lua#L1481) |
-| `SpellRank:GetAutoRankUpEnabled` | [L1523](../../Bars/SpellRank.lua#L1523) |
-| `SpellRank:SetAutoRankUpEnabled` | [L1530](../../Bars/SpellRank.lua#L1530) |
-| `SpellRank:GetBlacklistSpellIDs` | [L1552](../../Bars/SpellRank.lua#L1552) |
-| `SpellRank:ToggleSpellBlacklist` | [L1587](../../Bars/SpellRank.lua#L1587) |
-| `SpellRank:ClearSpellFromBlacklist` | [L1594](../../Bars/SpellRank.lua#L1594) |
-| `SpellRank:SetSpellBlacklistPanelRefreshHandler` | [L1614](../../Bars/SpellRank.lua#L1614) |
-| `SpellRank:NotifySpellBlacklistPanelRefresh` | [L1618](../../Bars/SpellRank.lua#L1618) |
-| `SpellRank:RefreshSpellBookRankUI` | [L1622](../../Bars/SpellRank.lua#L1622) |
-| `SpellRank:RefreshAfterActionbarsScopedStorageChange` | [L1634](../../Bars/SpellRank.lua#L1634) |
-| `SpellRank.RefreshAll` | [L1644](../../Bars/SpellRank.lua#L1644) |
+| `SpellRank:IsRankFeaturesSupported` | [L1294](../../Bars/SpellRank.lua#L1294) |
+| `SpellRank:IsLowerRankSpell` | [L1298](../../Bars/SpellRank.lua#L1298) |
+| `SpellRank:ApplyRankDesaturation` | [L1305](../../Bars/SpellRank.lua#L1305) |
+| `SpellRank:RefreshColumnSurfaces` | [L1326](../../Bars/SpellRank.lua#L1326) |
+| `SpellRank:RefreshColumnSurfacesPaging` | [L1356](../../Bars/SpellRank.lua#L1356) |
+| `SpellRank:RefreshColumnAllRows` | [L1360](../../Bars/SpellRank.lua#L1360) |
+| `SpellRank:RefreshColumnUsable` | [L1388](../../Bars/SpellRank.lua#L1388) |
+| `SpellRank:ClearHostRankState` | [L1422](../../Bars/SpellRank.lua#L1422) |
+| `SpellRank:ReassertDesaturation` | [L1440](../../Bars/SpellRank.lua#L1440) |
+| `SpellRank:GetAutoRankUpEnabled` | [L1482](../../Bars/SpellRank.lua#L1482) |
+| `SpellRank:SetAutoRankUpEnabled` | [L1489](../../Bars/SpellRank.lua#L1489) |
+| `SpellRank:GetBlacklistSpellIDs` | [L1511](../../Bars/SpellRank.lua#L1511) |
+| `SpellRank:ToggleSpellBlacklist` | [L1546](../../Bars/SpellRank.lua#L1546) |
+| `SpellRank:ClearSpellFromBlacklist` | [L1553](../../Bars/SpellRank.lua#L1553) |
+| `SpellRank:SetSpellBlacklistPanelRefreshHandler` | [L1573](../../Bars/SpellRank.lua#L1573) |
+| `SpellRank:NotifySpellBlacklistPanelRefresh` | [L1577](../../Bars/SpellRank.lua#L1577) |
+| `SpellRank:RefreshSpellBookRankUI` | [L1581](../../Bars/SpellRank.lua#L1581) |
+| `SpellRank:RefreshAfterActionbarsScopedStorageChange` | [L1593](../../Bars/SpellRank.lua#L1593) |
+| `SpellRank.RefreshAll` | [L1603](../../Bars/SpellRank.lua#L1603) |
 
 ### Bars/Stance/Extras.lua
 
@@ -1999,19 +2008,19 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 | `State.GetTertiarySlot` | [L76](../../Bars/State.lua#L76) |
 | `State.GetMainSlot` | [L80](../../Bars/State.lua#L80) |
 | `State.ResolveSlot` | [L84](../../Bars/State.lua#L84) |
-| `State.GetCurrentPage` | [L106](../../Bars/State.lua#L106) |
-| `State.GetMinirowPosition` | [L126](../../Bars/State.lua#L126) |
-| `State.BuildNativeDriver` | [L196](../../Bars/State.lua#L196) |
-| `State.Attach` | [L657](../../Bars/State.lua#L657) |
-| `State.HeaderFor` | [L695](../../Bars/State.lua#L695) |
-| `State.Create` | [L798](../../Bars/State.lua#L798) |
-| `State.RegisterDrivers` | [L827](../../Bars/State.lua#L827) |
-| `State.CurrentSwap` | [L972](../../Bars/State.lua#L972) |
-| `State.IndexLiveSlots` | [L986](../../Bars/State.lua#L986) |
-| `State.ApplySlotsInsecure` | [L1032](../../Bars/State.lua#L1032) |
-| `State.OnModFallback` | [L1077](../../Bars/State.lua#L1077) |
-| `State.ForceApply` | [L1085](../../Bars/State.lua#L1085) |
-| `State.GetClassStances` | [L1122](../../Bars/State.lua#L1122) |
+| `State.GetCurrentPage` | [L107](../../Bars/State.lua#L107) |
+| `State.GetMinirowPosition` | [L127](../../Bars/State.lua#L127) |
+| `State.BuildNativeDriver` | [L197](../../Bars/State.lua#L197) |
+| `State.Attach` | [L658](../../Bars/State.lua#L658) |
+| `State.HeaderFor` | [L696](../../Bars/State.lua#L696) |
+| `State.Create` | [L799](../../Bars/State.lua#L799) |
+| `State.RegisterDrivers` | [L828](../../Bars/State.lua#L828) |
+| `State.CurrentSwap` | [L973](../../Bars/State.lua#L973) |
+| `State.IndexLiveSlots` | [L987](../../Bars/State.lua#L987) |
+| `State.ApplySlotsInsecure` | [L1033](../../Bars/State.lua#L1033) |
+| `State.OnModFallback` | [L1078](../../Bars/State.lua#L1078) |
+| `State.ForceApply` | [L1086](../../Bars/State.lua#L1086) |
+| `State.GetClassStances` | [L1123](../../Bars/State.lua#L1123) |
 
 ### Bars/Strip.lua
 
@@ -2040,10 +2049,10 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 
 | Declaration | Source |
 |---|---|
-| `endendVehicle.OnReplacementsReady` | [L113](../../Bars/Vehicle.lua#L113) |
-| `Vehicle.Apply` | [L136](../../Bars/Vehicle.lua#L136) |
-| `Vehicle.QueueApply` | [L164](../../Bars/Vehicle.lua#L164) |
-| `Vehicle.Start` | [L202](../../Bars/Vehicle.lua#L202) |
+| `endendVehicle.OnReplacementsReady` | [L115](../../Bars/Vehicle.lua#L115) |
+| `Vehicle.Apply` | [L138](../../Bars/Vehicle.lua#L138) |
+| `Vehicle.QueueApply` | [L166](../../Bars/Vehicle.lua#L166) |
+| `Vehicle.Start` | [L204](../../Bars/Vehicle.lua#L204) |
 
 ### Bars/Watch.lua
 
@@ -3839,38 +3848,38 @@ Owner: [02-multi-client-matrix.md](../02-multi-client-matrix.md).
 | `Cap.IsGamepadUIEnabled` | [L20](../../Core/Capabilities.lua#L20) |
 | `Cap.GamepadHudActive` | [L32](../../Core/Capabilities.lua#L32) |
 | `Cap.GetGamepadActionBarFloor` | [L43](../../Core/Capabilities.lua#L43) |
-| `Cap.GetMaxBagIndex` | [L209](../../Core/Capabilities.lua#L209) |
-| `Cap.HasBlizzardSettingsKeybindings` | [L216](../../Core/Capabilities.lua#L216) |
-| `Cap.HasBlizzardActionBarsOverrides` | [L222](../../Core/Capabilities.lua#L222) |
-| `Cap.GetFluxBlizzardActionBarUIMode` | [L233](../../Core/Capabilities.lua#L233) |
-| `Cap.AllowBlizzardActionBarSettingsReplace` | [L246](../../Core/Capabilities.lua#L246) |
-| `Cap.HasUnifiedBankUI` | [L251](../../Core/Capabilities.lua#L251) |
-| `Cap.UseLegacyBankSlotsUI` | [L262](../../Core/Capabilities.lua#L262) |
-| `Cap.HasWarbandBank` | [L266](../../Core/Capabilities.lua#L266) |
-| `Cap.UsesPlayerBagsInBank` | [L277](../../Core/Capabilities.lua#L277) |
-| `Cap.GetCharacterBankTabSentinel` | [L290](../../Core/Capabilities.lua#L290) |
-| `Cap.GetAccountBankTabSentinel` | [L294](../../Core/Capabilities.lua#L294) |
-| `Cap.IsBankTabSentinel` | [L298](../../Core/Capabilities.lua#L298) |
-| `Cap.HasReagentBankContainer` | [L309](../../Core/Capabilities.lua#L309) |
-| `Cap.GetReagentBankContainerID` | [L320](../../Core/Capabilities.lua#L320) |
-| `Cap.IsReagentBankContainer` | [L327](../../Core/Capabilities.lua#L327) |
-| `Cap.FetchPurchasedBankTabIDs` | [L352](../../Core/Capabilities.lua#L352) |
-| `Cap.EnumerateBankTabIDs` | [L374](../../Core/Capabilities.lua#L374) |
-| `Cap.IsUnifiedBankTabBag` | [L401](../../Core/Capabilities.lua#L401) |
-| `Cap.HasCompactRaidFrameManager` | [L431](../../Core/Capabilities.lua#L431) |
-| `Cap.HasAtlas` | [L435](../../Core/Capabilities.lua#L435) |
-| `Cap.ClientSupportsSingleButtonAssistant` | [L466](../../Core/Capabilities.lua#L466) |
-| `Cap.ClientSupportsCombatAmmoExtraButton` | [L473](../../Core/Capabilities.lua#L473) |
-| `Cap.RefreshFocusUnit` | [L534](../../Core/Capabilities.lua#L534) |
-| `Cap.RefreshUnifiedBank` | [L539](../../Core/Capabilities.lua#L539) |
-| `Cap.RefreshKeyring` | [L548](../../Core/Capabilities.lua#L548) |
-| `Cap.HasVoidStorage` | [L573](../../Core/Capabilities.lua#L573) |
-| `Cap.HasGuildBank` | [L577](../../Core/Capabilities.lua#L577) |
-| `Cap.HasAuctionHouse` | [L581](../../Core/Capabilities.lua#L581) |
-| `Cap.HasLegacyAuctionHouse` | [L591](../../Core/Capabilities.lua#L591) |
-| `Cap.RefreshInventoryCaps` | [L608](../../Core/Capabilities.lua#L608) |
-| `Cap.RefreshCharacterInfo` | [L618](../../Core/Capabilities.lua#L618) |
-| `Cap.IsForeverGamepadUI` | [L654](../../Core/Capabilities.lua#L654) |
+| `Cap.GetMaxBagIndex` | [L211](../../Core/Capabilities.lua#L211) |
+| `Cap.HasBlizzardSettingsKeybindings` | [L218](../../Core/Capabilities.lua#L218) |
+| `Cap.HasBlizzardActionBarsOverrides` | [L224](../../Core/Capabilities.lua#L224) |
+| `Cap.GetFluxBlizzardActionBarUIMode` | [L235](../../Core/Capabilities.lua#L235) |
+| `Cap.AllowBlizzardActionBarSettingsReplace` | [L248](../../Core/Capabilities.lua#L248) |
+| `Cap.HasUnifiedBankUI` | [L253](../../Core/Capabilities.lua#L253) |
+| `Cap.UseLegacyBankSlotsUI` | [L264](../../Core/Capabilities.lua#L264) |
+| `Cap.HasWarbandBank` | [L268](../../Core/Capabilities.lua#L268) |
+| `Cap.UsesPlayerBagsInBank` | [L279](../../Core/Capabilities.lua#L279) |
+| `Cap.GetCharacterBankTabSentinel` | [L292](../../Core/Capabilities.lua#L292) |
+| `Cap.GetAccountBankTabSentinel` | [L296](../../Core/Capabilities.lua#L296) |
+| `Cap.IsBankTabSentinel` | [L300](../../Core/Capabilities.lua#L300) |
+| `Cap.HasReagentBankContainer` | [L311](../../Core/Capabilities.lua#L311) |
+| `Cap.GetReagentBankContainerID` | [L322](../../Core/Capabilities.lua#L322) |
+| `Cap.IsReagentBankContainer` | [L329](../../Core/Capabilities.lua#L329) |
+| `Cap.FetchPurchasedBankTabIDs` | [L354](../../Core/Capabilities.lua#L354) |
+| `Cap.EnumerateBankTabIDs` | [L376](../../Core/Capabilities.lua#L376) |
+| `Cap.IsUnifiedBankTabBag` | [L403](../../Core/Capabilities.lua#L403) |
+| `Cap.HasCompactRaidFrameManager` | [L433](../../Core/Capabilities.lua#L433) |
+| `Cap.HasAtlas` | [L437](../../Core/Capabilities.lua#L437) |
+| `Cap.ClientSupportsSingleButtonAssistant` | [L468](../../Core/Capabilities.lua#L468) |
+| `Cap.ClientSupportsCombatAmmoExtraButton` | [L475](../../Core/Capabilities.lua#L475) |
+| `Cap.RefreshFocusUnit` | [L536](../../Core/Capabilities.lua#L536) |
+| `Cap.RefreshUnifiedBank` | [L541](../../Core/Capabilities.lua#L541) |
+| `Cap.RefreshKeyring` | [L550](../../Core/Capabilities.lua#L550) |
+| `Cap.HasVoidStorage` | [L575](../../Core/Capabilities.lua#L575) |
+| `Cap.HasGuildBank` | [L579](../../Core/Capabilities.lua#L579) |
+| `Cap.HasAuctionHouse` | [L583](../../Core/Capabilities.lua#L583) |
+| `Cap.HasLegacyAuctionHouse` | [L593](../../Core/Capabilities.lua#L593) |
+| `Cap.RefreshInventoryCaps` | [L610](../../Core/Capabilities.lua#L610) |
+| `Cap.RefreshCharacterInfo` | [L620](../../Core/Capabilities.lua#L620) |
+| `Cap.IsForeverGamepadUI` | [L656](../../Core/Capabilities.lua#L656) |
 
 ### Core/Client.lua
 
@@ -4038,7 +4047,7 @@ Owner: [08-shared-services.md](../08-shared-services.md).
 | `MouseoverCast.DebugDump` | [L785](../../Core/Engine/MouseoverCast.lua#L785) |
 | `MouseoverCast.RefreshSpellBookCheckbox` | [L842](../../Core/Engine/MouseoverCast.lua#L842) |
 | `PositionSpellBookCheckbox` | [L888](../../Core/Engine/MouseoverCast.lua#L888) |
-| `MouseoverCast.Start` | [L970](../../Core/Engine/MouseoverCast.lua#L970) |
+| `MouseoverCast.Start` | [L975](../../Core/Engine/MouseoverCast.lua#L975) |
 
 ### Core/Engine/Perf.lua
 
@@ -4147,16 +4156,18 @@ Owner: [08-shared-services.md](../08-shared-services.md).
 
 | Declaration | Source |
 |---|---|
-| `Chrome.HasLowRankApi` | [L14](../../Core/Engine/SpellBookChrome.lua#L14) |
-| `Chrome.HasBlizzardShowAllRanksDropdown` | [L18](../../Core/Engine/SpellBookChrome.lua#L18) |
-| `Chrome.GetBlizzardShowAllRanksCheckbox` | [L23](../../Core/Engine/SpellBookChrome.lua#L23) |
-| `Chrome.GetFluxShowAllRanksCheckbox` | [L31](../../Core/Engine/SpellBookChrome.lua#L31) |
-| `Chrome.EnsureBlizzardShowAllRanks` | [L42](../../Core/Engine/SpellBookChrome.lua#L42) |
-| `Chrome.ShouldCreateFluxShowAllRanks` | [L62](../../Core/Engine/SpellBookChrome.lua#L62) |
-| `Chrome.RankChromeAllowed` | [L79](../../Core/Engine/SpellBookChrome.lua#L79) |
-| `Chrome.GetHost` | [L92](../../Core/Engine/SpellBookChrome.lua#L92) |
-| `Chrome.HideRankChrome` | [L136](../../Core/Engine/SpellBookChrome.lua#L136) |
-| `Chrome.Layout` | [L171](../../Core/Engine/SpellBookChrome.lua#L171) |
+| `Chrome.Observe` | [L21](../../Core/Engine/SpellBookChrome.lua#L21) |
+| `Chrome.HasLowRankApi` | [L58](../../Core/Engine/SpellBookChrome.lua#L58) |
+| `Chrome.HasBlizzardShowAllRanksDropdown` | [L62](../../Core/Engine/SpellBookChrome.lua#L62) |
+| `Chrome.GetBlizzardShowAllRanksCheckbox` | [L67](../../Core/Engine/SpellBookChrome.lua#L67) |
+| `Chrome.GetFluxShowAllRanksCheckbox` | [L75](../../Core/Engine/SpellBookChrome.lua#L75) |
+| `Chrome.EnsureBlizzardShowAllRanks` | [L86](../../Core/Engine/SpellBookChrome.lua#L86) |
+| `Chrome.ShouldCreateFluxShowAllRanks` | [L106](../../Core/Engine/SpellBookChrome.lua#L106) |
+| `Chrome.RankChromeAllowed` | [L123](../../Core/Engine/SpellBookChrome.lua#L123) |
+| `Chrome.GetHost` | [L136](../../Core/Engine/SpellBookChrome.lua#L136) |
+| `Chrome.UsesCompactLayout` | [L146](../../Core/Engine/SpellBookChrome.lua#L146) |
+| `Chrome.HideRankChrome` | [L186](../../Core/Engine/SpellBookChrome.lua#L186) |
+| `Chrome.Layout` | [L258](../../Core/Engine/SpellBookChrome.lua#L258) |
 
 ### Core/Engine/Ticker.lua
 
@@ -4647,13 +4658,13 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Manager:UpdateAnchor` | [L63](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L63) |
 | `Manager:FinalizeLayout` | [L91](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L91) |
 | `Manager:InitializeButtons` | [L117](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L117) |
-| `Manager:RegisterCombatRefresh` | [L153](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L153) |
-| `Manager:UnregisterCombatRefresh` | [L163](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L163) |
-| `Manager:_RunCombatRefreshers` | [L169](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L169) |
-| `Manager:_StartCombatRefreshTicker` | [L177](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L177) |
-| `Manager:_StopCombatRefreshTicker` | [L193](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L193) |
-| `Manager:ScheduleAllUpdates` | [L204](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L204) |
-| `Manager:GetDebugStats` | [L272](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L272) |
+| `Manager:RegisterCombatRefresh` | [L169](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L169) |
+| `Manager:UnregisterCombatRefresh` | [L179](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L179) |
+| `Manager:_RunCombatRefreshers` | [L185](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L185) |
+| `Manager:_StartCombatRefreshTicker` | [L193](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L193) |
+| `Manager:_StopCombatRefreshTicker` | [L209](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L209) |
+| `Manager:ScheduleAllUpdates` | [L220](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L220) |
+| `Manager:GetDebugStats` | [L290](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L290) |
 
 ### ExtraButtonSystem/Engine/Action.lua
 
@@ -4779,28 +4790,28 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Bridge.AppendConjureSpellLines` | [L1524](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1524) |
 | `Bridge.AppendTierStatusLines` | [L1674](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1674) |
 | `Bridge.AppendDeleteStackHint` | [L1767](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1767) |
-| `Bridge.WireRestockEdit` | [L1800](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1800) |
-| `Bridge.GetRestockClickHint` | [L1810](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1810) |
-| `Bridge.AppendRestockEditHint` | [L1814](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1814) |
-| `Bridge.GetBestCraftable` | [L1902](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1902) |
-| `Bridge.CanCraft` | [L1911](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1911) |
-| `Bridge.GetCraftMacro` | [L1920](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1920) |
-| `Bridge.ApplyCraftOrRestockRightClick` | [L1958](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1958) |
-| `Bridge.AppendCraftTooltipLines` | [L2012](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2012) |
-| `Bridge.ApplyMiddleClickNoUse` | [L2049](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2049) |
-| `Bridge.SuppressCheckedVisual` | [L2092](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2092) |
-| `Bridge.SuppressCheckedVisualSettle` | [L2132](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2132) |
-| `Bridge.GetConsumableCombatSwap` | [L2172](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2172) |
-| `Bridge.SetConsumableCombatSwap` | [L2184](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2184) |
-| `Bridge.CombatSwapTooltipKind` | [L2199](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2199) |
-| `Bridge.SyncSwapEmptyFace` | [L2316](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2316) |
-| `Bridge.ApplyCombatSwap` | [L2413](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2413) |
-| `Bridge.RefreshConsumableCombatSwap` | [L2479](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2479) |
-| `Bridge.QueueConsumableFaceRefresh` | [L2576](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2576) |
-| `Refresh.Attach` | [L2669](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2669) |
-| `Module.Update` | [L3011](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3011) |
-| `Module.RefreshCountOnly` | [L3218](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3218) |
-| `Module.Update` | [L3486](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3486) |
+| `Bridge.WireRestockEdit` | [L1803](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1803) |
+| `Bridge.GetRestockClickHint` | [L1845](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1845) |
+| `Bridge.AppendRestockEditHint` | [L1849](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1849) |
+| `Bridge.GetBestCraftable` | [L1941](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1941) |
+| `Bridge.CanCraft` | [L1950](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1950) |
+| `Bridge.GetCraftMacro` | [L1959](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1959) |
+| `Bridge.ApplyCraftOrRestockRightClick` | [L1997](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1997) |
+| `Bridge.AppendCraftTooltipLines` | [L2051](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2051) |
+| `Bridge.ApplyMiddleClickNoUse` | [L2088](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2088) |
+| `Bridge.SuppressCheckedVisual` | [L2131](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2131) |
+| `Bridge.SuppressCheckedVisualSettle` | [L2171](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2171) |
+| `Bridge.GetConsumableCombatSwap` | [L2211](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2211) |
+| `Bridge.SetConsumableCombatSwap` | [L2223](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2223) |
+| `Bridge.CombatSwapTooltipKind` | [L2238](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2238) |
+| `Bridge.SyncSwapEmptyFace` | [L2355](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2355) |
+| `Bridge.ApplyCombatSwap` | [L2452](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2452) |
+| `Bridge.RefreshConsumableCombatSwap` | [L2518](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2518) |
+| `Bridge.QueueConsumableFaceRefresh` | [L2615](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2615) |
+| `Refresh.Attach` | [L2708](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2708) |
+| `Module.Update` | [L3050](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3050) |
+| `Module.RefreshCountOnly` | [L3257](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3257) |
+| `Module.Update` | [L3529](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3529) |
 
 ### ExtraButtonSystem/Engine/Paint.lua
 
@@ -4838,10 +4849,10 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Paint.UpdateLiveFace` | [L3588](../../ExtraButtonSystem/Engine/Paint.lua#L3588) |
 | `Paint.FlushEval` | [L3599](../../ExtraButtonSystem/Engine/Paint.lua#L3599) |
 | `Paint.FlushCounts` | [L3705](../../ExtraButtonSystem/Engine/Paint.lua#L3705) |
-| `FluxButton:UpdateEmptyBackground` | [L3755](../../ExtraButtonSystem/Engine/Paint.lua#L3755) |
-| `FluxButton:UpdateUsable` | [L3759](../../ExtraButtonSystem/Engine/Paint.lua#L3759) |
-| `FluxButton:UpdateCooldown` | [L3763](../../ExtraButtonSystem/Engine/Paint.lua#L3763) |
-| `FluxButton:UpdateEquipped` | [L3767](../../ExtraButtonSystem/Engine/Paint.lua#L3767) |
+| `FluxButton:UpdateEmptyBackground` | [L3757](../../ExtraButtonSystem/Engine/Paint.lua#L3757) |
+| `FluxButton:UpdateUsable` | [L3761](../../ExtraButtonSystem/Engine/Paint.lua#L3761) |
+| `FluxButton:UpdateCooldown` | [L3765](../../ExtraButtonSystem/Engine/Paint.lua#L3765) |
+| `FluxButton:UpdateEquipped` | [L3769](../../ExtraButtonSystem/Engine/Paint.lua#L3769) |
 
 ### ExtraButtonSystem/Engine/Range.lua
 
@@ -5306,9 +5317,9 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Module.GetPreferRecuperate` | [L149](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L149) |
 | `Module.SetPreferRecuperate` | [L158](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L158) |
 | `Module.ToggleRecuperate` | [L175](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L175) |
-| `Module.Create` | [L459](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L459) |
-| `Module.Update` | [L489](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L489) |
-| `Module.UpdateKeybinding` | [L520](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L520) |
+| `Module.Create` | [L454](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L454) |
+| `Module.Update` | [L484](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L484) |
+| `Module.UpdateKeybinding` | [L515](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L515) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua
 
@@ -5413,23 +5424,23 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Module.GetOppositeMountModeIconForBindingGhost` | [L2860](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L2860) |
 | `Module.UpdateTexture` | [L2869](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L2869) |
 | `Module.Update` | [L2940](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L2940) |
-| `Module.GetMountItemId` | [L3863](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3863) |
-| `Module.GetBagMountItems` | [L3871](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3871) |
-| `Module.BuildMountItemFlyoutActions` | [L3878](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3878) |
-| `Module.OnMountPickedFromFlyout` | [L3885](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3885) |
-| `Module.ShowMountItemFlyout` | [L3891](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3891) |
-| `Module.RefreshFlyoutIfOpen` | [L3897](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3897) |
-| `Module.RegisterForFavorites` | [L3903](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3903) |
-| `Module.GetBagMountItemsSet` | [L3916](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3916) |
-| `Module.GetBestAvailableMount` | [L3923](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3923) |
-| `Module.GetAvailableFavorites` | [L3930](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3930) |
-| `Module.GetFavoriteMount` | [L3937](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3937) |
-| `Module.BuildModifierActions` | [L3963](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3963) |
-| `Module.BuildBagMountMacro` | [L4021](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4021) |
-| `btn.WIcon.SetTexturebtn.WIcon.SetTexture` | [L4154](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4154) |
-| `Module.UpdateJournalMountIcon` | [L4212](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4212) |
-| `Module.UpdateBagMountIcon` | [L4233](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4233) |
-| `Module.SetupBagMountButton` | [L4353](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4353) |
+| `Module.GetMountItemId` | [L3869](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3869) |
+| `Module.GetBagMountItems` | [L3877](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3877) |
+| `Module.BuildMountItemFlyoutActions` | [L3884](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3884) |
+| `Module.OnMountPickedFromFlyout` | [L3891](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3891) |
+| `Module.ShowMountItemFlyout` | [L3897](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3897) |
+| `Module.RefreshFlyoutIfOpen` | [L3903](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3903) |
+| `Module.RegisterForFavorites` | [L3909](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3909) |
+| `Module.GetBagMountItemsSet` | [L3922](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3922) |
+| `Module.GetBestAvailableMount` | [L3929](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3929) |
+| `Module.GetAvailableFavorites` | [L3936](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3936) |
+| `Module.GetFavoriteMount` | [L3943](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3943) |
+| `Module.BuildModifierActions` | [L3969](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3969) |
+| `Module.BuildBagMountMacro` | [L4027](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4027) |
+| `btn.WIcon.SetTexturebtn.WIcon.SetTexture` | [L4160](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4160) |
+| `Module.UpdateJournalMountIcon` | [L4218](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4218) |
+| `Module.UpdateBagMountIcon` | [L4239](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4239) |
+| `Module.SetupBagMountButton` | [L4359](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L4359) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua
 
@@ -5455,26 +5466,26 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 
 | Declaration | Source |
 |---|---|
-| `Items.InvalidateCache` | [L429](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L429) |
-| `Items.InvalidateCacheForSettle` | [L450](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L450) |
-| `Items.InvalidateFavoriteMap` | [L472](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L472) |
-| `Items.RebuildFavoriteMap` | [L477](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L477) |
-| `Items.GetBagMountItems` | [L498](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L498) |
-| `Items.GetBagMountItemsSet` | [L571](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L571) |
-| `Items.GetBestAvailableMount` | [L586](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L586) |
-| `Items.GetAvailableFavorites` | [L602](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L602) |
-| `Items.GetBindingFavoriteMounts` | [L626](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L626) |
-| `Items.IsMountFlying` | [L652](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L652) |
-| `Items.IsFlyableHere` | [L656](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L656) |
-| `Items.IsTemporarilyDisabledMount` | [L660](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L660) |
-| `Items.GetFavoriteMount` | [L664](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L664) |
-| `Items.GetMountItemId` | [L678](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L678) |
-| `Items.BuildMountItemFlyoutActions` | [L690](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L690) |
-| `Items.HasMountItemFlyout` | [L701](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L701) |
-| `Items.OnMountPickedFromFlyout` | [L706](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L706) |
-| `Items.ShowMountItemFlyout` | [L723](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L723) |
-| `Items.RefreshFlyoutIfOpen` | [L748](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L748) |
-| `Items.HasAnyMountInBags` | [L783](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L783) |
+| `Items.InvalidateCache` | [L452](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L452) |
+| `Items.InvalidateCacheForSettle` | [L473](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L473) |
+| `Items.InvalidateFavoriteMap` | [L495](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L495) |
+| `Items.RebuildFavoriteMap` | [L500](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L500) |
+| `Items.GetBagMountItems` | [L521](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L521) |
+| `Items.GetBagMountItemsSet` | [L594](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L594) |
+| `Items.GetBestAvailableMount` | [L609](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L609) |
+| `Items.GetAvailableFavorites` | [L625](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L625) |
+| `Items.GetBindingFavoriteMounts` | [L649](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L649) |
+| `Items.IsMountFlying` | [L675](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L675) |
+| `Items.IsFlyableHere` | [L679](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L679) |
+| `Items.IsTemporarilyDisabledMount` | [L683](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L683) |
+| `Items.GetFavoriteMount` | [L687](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L687) |
+| `Items.GetMountItemId` | [L701](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L701) |
+| `Items.BuildMountItemFlyoutActions` | [L713](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L713) |
+| `Items.HasMountItemFlyout` | [L724](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L724) |
+| `Items.OnMountPickedFromFlyout` | [L729](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L729) |
+| `Items.ShowMountItemFlyout` | [L746](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L746) |
+| `Items.RefreshFlyoutIfOpen` | [L771](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L771) |
+| `Items.HasAnyMountInBags` | [L806](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L806) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua
 
@@ -5634,7 +5645,7 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | Declaration | Source |
 |---|---|
 | `API.UpdateAnchor` | [L54](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L54) |
-| `API_G.FluxNonCombatGrid_ApplyScreenBottomAnchor` | [L149](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L149) |
+| `API_G.FluxNonCombatGrid_ApplyScreenBottomAnchor` | [L172](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L172) |
 
 ### ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua
 
@@ -6119,30 +6130,30 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | `C.GetOpenBankScanNumSlots` | [L164](../../Inventory/Containers.lua#L164) |
 | `C.BuildLegacyBankContainerIDs` | [L203](../../Inventory/Containers.lua#L203) |
 | `C.IsBankReadable` | [L223](../../Inventory/Containers.lua#L223) |
-| `C.GetCarriedBagIDs` | [L258](../../Inventory/Containers.lua#L258) |
-| `C.GetPlayerRestockBagIDs` | [L288](../../Inventory/Containers.lua#L288) |
-| `C.GetCharacterBankIDs` | [L326](../../Inventory/Containers.lua#L326) |
-| `C.GetWarbandBankIDs` | [L363](../../Inventory/Containers.lua#L363) |
-| `C.IsCarriedBag` | [L395](../../Inventory/Containers.lua#L395) |
-| `C.IsCharacterBankContainer` | [L404](../../Inventory/Containers.lua#L404) |
-| `C.IsWarbandBankContainer` | [L413](../../Inventory/Containers.lua#L413) |
-| `C.IsBankContainer` | [L422](../../Inventory/Containers.lua#L422) |
-| `C.GetBankTypeForContainer` | [L426](../../Inventory/Containers.lua#L426) |
-| `C.GetKeyringBagID` | [L446](../../Inventory/Containers.lua#L446) |
-| `C.GetReagentBagID` | [L465](../../Inventory/Containers.lua#L465) |
-| `C.IsKeyringBag` | [L478](../../Inventory/Containers.lua#L478) |
-| `C.IsReagentBag` | [L500](../../Inventory/Containers.lua#L500) |
-| `C.IsReagentBank` | [L509](../../Inventory/Containers.lua#L509) |
-| `C.SkipEquipCandidateBag` | [L528](../../Inventory/Containers.lua#L528) |
-| `C.ReadSlot` | [L607](../../Inventory/Containers.lua#L607) |
-| `C.PatchSlots` | [L613](../../Inventory/Containers.lua#L613) |
-| `C.ScanBag` | [L640](../../Inventory/Containers.lua#L640) |
-| `C.CountsFromByBag` | [L661](../../Inventory/Containers.lua#L661) |
-| `C.DiffSlots` | [L685](../../Inventory/Containers.lua#L685) |
-| `C.ChangedFromDelta` | [L708](../../Inventory/Containers.lua#L708) |
-| `C.NewItemSetLog` | [L730](../../Inventory/Containers.lua#L730) |
-| `C.NoteItemSets` | [L735](../../Inventory/Containers.lua#L735) |
-| `C.TakeItemSets` | [L750](../../Inventory/Containers.lua#L750) |
+| `C.GetCarriedBagIDs` | [L263](../../Inventory/Containers.lua#L263) |
+| `C.GetPlayerRestockBagIDs` | [L293](../../Inventory/Containers.lua#L293) |
+| `C.GetCharacterBankIDs` | [L331](../../Inventory/Containers.lua#L331) |
+| `C.GetWarbandBankIDs` | [L368](../../Inventory/Containers.lua#L368) |
+| `C.IsCarriedBag` | [L400](../../Inventory/Containers.lua#L400) |
+| `C.IsCharacterBankContainer` | [L409](../../Inventory/Containers.lua#L409) |
+| `C.IsWarbandBankContainer` | [L418](../../Inventory/Containers.lua#L418) |
+| `C.IsBankContainer` | [L427](../../Inventory/Containers.lua#L427) |
+| `C.GetBankTypeForContainer` | [L431](../../Inventory/Containers.lua#L431) |
+| `C.GetKeyringBagID` | [L451](../../Inventory/Containers.lua#L451) |
+| `C.GetReagentBagID` | [L470](../../Inventory/Containers.lua#L470) |
+| `C.IsKeyringBag` | [L483](../../Inventory/Containers.lua#L483) |
+| `C.IsReagentBag` | [L505](../../Inventory/Containers.lua#L505) |
+| `C.IsReagentBank` | [L514](../../Inventory/Containers.lua#L514) |
+| `C.SkipEquipCandidateBag` | [L533](../../Inventory/Containers.lua#L533) |
+| `C.ReadSlot` | [L612](../../Inventory/Containers.lua#L612) |
+| `C.PatchSlots` | [L618](../../Inventory/Containers.lua#L618) |
+| `C.ScanBag` | [L645](../../Inventory/Containers.lua#L645) |
+| `C.CountsFromByBag` | [L666](../../Inventory/Containers.lua#L666) |
+| `C.DiffSlots` | [L690](../../Inventory/Containers.lua#L690) |
+| `C.ChangedFromDelta` | [L713](../../Inventory/Containers.lua#L713) |
+| `C.NewItemSetLog` | [L735](../../Inventory/Containers.lua#L735) |
+| `C.NoteItemSets` | [L740](../../Inventory/Containers.lua#L740) |
+| `C.TakeItemSets` | [L755](../../Inventory/Containers.lua#L755) |
 
 ### Inventory/Craft.lua
 
@@ -6207,7 +6218,7 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | `Best.GetBestOwned` | [L279](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L279) |
 | `Best.GetAllBest` | [L298](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L298) |
 | `Best.FindStacks` | [L318](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L318) |
-| `Best.Init` | [L432](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L432) |
+| `Best.Init` | [L434](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L434) |
 
 ### Inventory/FluxConsumableBest/Init.lua
 
@@ -6331,25 +6342,25 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | Declaration | Source |
 |---|---|
 | `IC.GetStatic` | [L87](../../Inventory/FluxItemClass.lua#L87) |
-| `IC.RequestLoad` | [L164](../../Inventory/FluxItemClass.lua#L164) |
-| `IC.GetInfo` | [L174](../../Inventory/FluxItemClass.lua#L174) |
-| `IC.IsLoaded` | [L190](../../Inventory/FluxItemClass.lua#L190) |
-| `IC.GetName` | [L194](../../Inventory/FluxItemClass.lua#L194) |
-| `IC.GetLink` | [L199](../../Inventory/FluxItemClass.lua#L199) |
-| `IC.GetQuality` | [L219](../../Inventory/FluxItemClass.lua#L219) |
-| `IC.GetSellPrice` | [L224](../../Inventory/FluxItemClass.lua#L224) |
-| `IC.GetStackSize` | [L239](../../Inventory/FluxItemClass.lua#L239) |
-| `IC.GetIcon` | [L244](../../Inventory/FluxItemClass.lua#L244) |
-| `IC.GetClassID` | [L253](../../Inventory/FluxItemClass.lua#L253) |
-| `IC.GetSubClassID` | [L258](../../Inventory/FluxItemClass.lua#L258) |
-| `IC.GetEquipLoc` | [L263](../../Inventory/FluxItemClass.lua#L263) |
-| `IC.IsEquippable` | [L270](../../Inventory/FluxItemClass.lua#L270) |
-| `IC.GetTooltipText` | [L344](../../Inventory/FluxItemClass.lua#L344) |
-| `IC.GetRestore` | [L356](../../Inventory/FluxItemClass.lua#L356) |
-| `IC.InvalidateRestoreCache` | [L425](../../Inventory/FluxItemClass.lua#L425) |
-| `IC.ClassifyConsumable` | [L455](../../Inventory/FluxItemClass.lua#L455) |
-| `IC.InvalidateClassification` | [L538](../../Inventory/FluxItemClass.lua#L538) |
-| `IC.OnItemDataLoaded` | [L551](../../Inventory/FluxItemClass.lua#L551) |
+| `IC.RequestLoad` | [L165](../../Inventory/FluxItemClass.lua#L165) |
+| `IC.GetInfo` | [L178](../../Inventory/FluxItemClass.lua#L178) |
+| `IC.IsLoaded` | [L194](../../Inventory/FluxItemClass.lua#L194) |
+| `IC.GetName` | [L198](../../Inventory/FluxItemClass.lua#L198) |
+| `IC.GetLink` | [L203](../../Inventory/FluxItemClass.lua#L203) |
+| `IC.GetQuality` | [L223](../../Inventory/FluxItemClass.lua#L223) |
+| `IC.GetSellPrice` | [L228](../../Inventory/FluxItemClass.lua#L228) |
+| `IC.GetStackSize` | [L243](../../Inventory/FluxItemClass.lua#L243) |
+| `IC.GetIcon` | [L248](../../Inventory/FluxItemClass.lua#L248) |
+| `IC.GetClassID` | [L257](../../Inventory/FluxItemClass.lua#L257) |
+| `IC.GetSubClassID` | [L262](../../Inventory/FluxItemClass.lua#L262) |
+| `IC.GetEquipLoc` | [L267](../../Inventory/FluxItemClass.lua#L267) |
+| `IC.IsEquippable` | [L274](../../Inventory/FluxItemClass.lua#L274) |
+| `IC.GetTooltipText` | [L353](../../Inventory/FluxItemClass.lua#L353) |
+| `IC.GetRestore` | [L381](../../Inventory/FluxItemClass.lua#L381) |
+| `IC.InvalidateRestoreCache` | [L450](../../Inventory/FluxItemClass.lua#L450) |
+| `IC.ClassifyConsumable` | [L480](../../Inventory/FluxItemClass.lua#L480) |
+| `IC.InvalidateClassification` | [L563](../../Inventory/FluxItemClass.lua#L563) |
+| `IC.OnItemDataLoaded` | [L576](../../Inventory/FluxItemClass.lua#L576) |
 
 ### Inventory/FluxItemMover.lua
 
@@ -6451,32 +6462,33 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | `Inv.SetMailboxOpen` | [L434](../../Inventory/Init.lua#L434) |
 | `Inv.IsMailboxOpen` | [L454](../../Inventory/Init.lua#L454) |
 | `Inv.ShouldDeferHeavyWork` | [L468](../../Inventory/Init.lua#L468) |
-| `Inv.GetLastAddedItemIDs` | [L672](../../Inventory/Init.lua#L672) |
-| `Inv.Notify` | [L715](../../Inventory/Init.lua#L715) |
-| `Inv.Register` | [L785](../../Inventory/Init.lua#L785) |
-| `Inv.Unregister` | [L803](../../Inventory/Init.lua#L803) |
-| `Inv.GetListenerInfo` | [L809](../../Inventory/Init.lua#L809) |
-| `Inv.GetSource` | [L826](../../Inventory/Init.lua#L826) |
-| `Inv.IsReady` | [L830](../../Inventory/Init.lua#L830) |
-| `Inv.SnapshotLooksCollapsed` | [L869](../../Inventory/Init.lua#L869) |
-| `Inv.MarkUnreliable` | [L882](../../Inventory/Init.lua#L882) |
-| `Inv.BeginLoginHold` | [L916](../../Inventory/Init.lua#L916) |
-| `Inv.IsLoginHold` | [L936](../../Inventory/Init.lua#L936) |
-| `Inv.NoteLoginBagsDelayed` | [L948](../../Inventory/Init.lua#L948) |
-| `Inv.IsReliable` | [L1003](../../Inventory/Init.lua#L1003) |
-| `Inv.NoteRefreshSettling` | [L1015](../../Inventory/Init.lua#L1015) |
-| `Inv.HasWarband` | [L1037](../../Inventory/Init.lua#L1037) |
-| `Inv.IsBaganatorBankViewShown` | [L1117](../../Inventory/Init.lua#L1117) |
-| `Inv.IsBaganatorBankLiveShown` | [L1144](../../Inventory/Init.lua#L1144) |
-| `Inv.RegisterBankStateListener` | [L1163](../../Inventory/Init.lua#L1163) |
-| `Inv.ShouldKeepBankOpen` | [L1199](../../Inventory/Init.lua#L1199) |
-| `Inv.SetBankOpenLatch` | [L1203](../../Inventory/Init.lua#L1203) |
-| `Inv.SetBaganatorBankLive` | [L1215](../../Inventory/Init.lua#L1215) |
-| `Inv.IsBaganatorBankLive` | [L1238](../../Inventory/Init.lua#L1238) |
-| `Inv.IsBankLive` | [L1244](../../Inventory/Init.lua#L1244) |
-| `Inv.CanTakeFromBank` | [L1269](../../Inventory/Init.lua#L1269) |
-| `Inv.IsBankOpen` | [L1288](../../Inventory/Init.lua#L1288) |
-| `Inv.Start` | [L1349](../../Inventory/Init.lua#L1349) |
+| `Inv.GetLastAddedItemIDs` | [L673](../../Inventory/Init.lua#L673) |
+| `Inv.Notify` | [L716](../../Inventory/Init.lua#L716) |
+| `Inv.Register` | [L787](../../Inventory/Init.lua#L787) |
+| `Inv.Unregister` | [L805](../../Inventory/Init.lua#L805) |
+| `Inv.GetListenerInfo` | [L811](../../Inventory/Init.lua#L811) |
+| `Inv.GetSource` | [L828](../../Inventory/Init.lua#L828) |
+| `Inv.IsReady` | [L832](../../Inventory/Init.lua#L832) |
+| `Inv.SnapshotLooksCollapsed` | [L871](../../Inventory/Init.lua#L871) |
+| `Inv.MarkUnreliable` | [L884](../../Inventory/Init.lua#L884) |
+| `Inv.BeginLoginHold` | [L918](../../Inventory/Init.lua#L918) |
+| `Inv.IsLoginHold` | [L938](../../Inventory/Init.lua#L938) |
+| `Inv.NoteLoginBagsDelayed` | [L950](../../Inventory/Init.lua#L950) |
+| `Inv.IsReliable` | [L1005](../../Inventory/Init.lua#L1005) |
+| `Inv.NoteRefreshSettling` | [L1017](../../Inventory/Init.lua#L1017) |
+| `Inv.HasWarband` | [L1081](../../Inventory/Init.lua#L1081) |
+| `Inv.IsBaganatorBankViewShown` | [L1161](../../Inventory/Init.lua#L1161) |
+| `Inv.IsBaganatorBankLiveShown` | [L1188](../../Inventory/Init.lua#L1188) |
+| `Inv.RegisterBankStateListener` | [L1207](../../Inventory/Init.lua#L1207) |
+| `Inv.ShouldKeepBankOpen` | [L1243](../../Inventory/Init.lua#L1243) |
+| `Inv.SetBankOpenLatch` | [L1247](../../Inventory/Init.lua#L1247) |
+| `Inv.SetBaganatorBankLive` | [L1259](../../Inventory/Init.lua#L1259) |
+| `Inv.IsBaganatorBankLive` | [L1282](../../Inventory/Init.lua#L1282) |
+| `Inv.IsBankLive` | [L1288](../../Inventory/Init.lua#L1288) |
+| `Inv.CanTakeFromBank` | [L1310](../../Inventory/Init.lua#L1310) |
+| `Inv.IsBankOpen` | [L1329](../../Inventory/Init.lua#L1329) |
+| `Inv.PrepareHUD` | [L1389](../../Inventory/Init.lua#L1389) |
+| `Inv.Start` | [L1402](../../Inventory/Init.lua#L1402) |
 
 ### Inventory/Ledger.lua
 
@@ -7678,8 +7690,8 @@ Owner: [17-micromenu.md](../17-micromenu.md).
 | `FluxMicroMenu:GetLayoutSpacing` | [L1182](../../MicroMenu/FluxMicroMenu.lua#L1182) |
 | `FluxMicroMenu:GetButtonSizeScale` | [L1201](../../MicroMenu/FluxMicroMenu.lua#L1201) |
 | `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1447](../../MicroMenu/FluxMicroMenu.lua#L1447) |
-| `FluxMicroMenu:RefreshLayout` | [L2601](../../MicroMenu/FluxMicroMenu.lua#L2601) |
-| `FluxMicroMenu:Rebuild` | [L2942](../../MicroMenu/FluxMicroMenu.lua#L2942) |
+| `FluxMicroMenu:RefreshLayout` | [L2609](../../MicroMenu/FluxMicroMenu.lua#L2609) |
+| `FluxMicroMenu:Rebuild` | [L2950](../../MicroMenu/FluxMicroMenu.lua#L2950) |
 
 ### MicroMenu/FluxMicroMenuConfig.lua
 
@@ -8084,19 +8096,19 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 | `FluxCCP.openFluxCCPCopyFrame` | [L109](../../Other/FluxChatCopyPaste.lua#L109) |
 | `FluxCCP.createBnetString` | [L178](../../Other/FluxChatCopyPaste.lua#L178) |
 | `FluxCCP.removeChatJunk` | [L201](../../Other/FluxChatCopyPaste.lua#L201) |
-| `FluxCCP.SocialChatButtonName` | [L434](../../Other/FluxChatCopyPaste.lua#L434) |
-| `FluxCCP.IsChatButtonEnabled` | [L444](../../Other/FluxChatCopyPaste.lua#L444) |
-| `FluxCCP.AttachColumnToDock` | [L555](../../Other/FluxChatCopyPaste.lua#L555) |
-| `FluxCCP.PinClassicButtonFrame` | [L632](../../Other/FluxChatCopyPaste.lua#L632) |
-| `FluxCCP.PlaceColumnButtons` | [L682](../../Other/FluxChatCopyPaste.lua#L682) |
-| `FluxCCP:UpdateColumnButtons` | [L825](../../Other/FluxChatCopyPaste.lua#L825) |
-| `FluxCCP:InstallColumnButtons` | [L855](../../Other/FluxChatCopyPaste.lua#L855) |
-| `FluxCCP:loadUrlColor` | [L1090](../../Other/FluxChatCopyPaste.lua#L1090) |
-| `FluxCCP.fluxccpChatWebLinks` | [L1112](../../Other/FluxChatCopyPaste.lua#L1112) |
-| `ItemRefTooltip:SetHyperlink` | [L1184](../../Other/FluxChatCopyPaste.lua#L1184) |
-| `FluxCCP.createUrlLinkFrame` | [L1191](../../Other/FluxChatCopyPaste.lua#L1191) |
-| `FluxCCP:updateChatOptions` | [L1195](../../Other/FluxChatCopyPaste.lua#L1195) |
-| `FluxCCP:RGBToHex` | [L1218](../../Other/FluxChatCopyPaste.lua#L1218) |
+| `FluxCCP.SocialChatButtonName` | [L435](../../Other/FluxChatCopyPaste.lua#L435) |
+| `FluxCCP.IsChatButtonEnabled` | [L445](../../Other/FluxChatCopyPaste.lua#L445) |
+| `FluxCCP.AttachColumnToDock` | [L556](../../Other/FluxChatCopyPaste.lua#L556) |
+| `FluxCCP.PinClassicButtonFrame` | [L648](../../Other/FluxChatCopyPaste.lua#L648) |
+| `FluxCCP.PlaceColumnButtons` | [L698](../../Other/FluxChatCopyPaste.lua#L698) |
+| `FluxCCP:UpdateColumnButtons` | [L842](../../Other/FluxChatCopyPaste.lua#L842) |
+| `FluxCCP:InstallColumnButtons` | [L872](../../Other/FluxChatCopyPaste.lua#L872) |
+| `FluxCCP:loadUrlColor` | [L1119](../../Other/FluxChatCopyPaste.lua#L1119) |
+| `FluxCCP.fluxccpChatWebLinks` | [L1141](../../Other/FluxChatCopyPaste.lua#L1141) |
+| `ItemRefTooltip:SetHyperlink` | [L1213](../../Other/FluxChatCopyPaste.lua#L1213) |
+| `FluxCCP.createUrlLinkFrame` | [L1220](../../Other/FluxChatCopyPaste.lua#L1220) |
+| `FluxCCP:updateChatOptions` | [L1224](../../Other/FluxChatCopyPaste.lua#L1224) |
+| `FluxCCP:RGBToHex` | [L1247](../../Other/FluxChatCopyPaste.lua#L1247) |
 
 ### Other/FluxChatFrame.lua
 
@@ -8104,15 +8116,16 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 
 | Declaration | Source |
 |---|---|
-| `_G.FluxChatFrame_GetPrimaryChatHeight` | [L429](../../Other/FluxChatFrame.lua#L429) |
-| `_G.FluxChatFrame_GetPrimaryBottomInsetY` | [L455](../../Other/FluxChatFrame.lua#L455) |
-| `_G.FluxChatFrame_GetPrimaryTabHeight` | [L461](../../Other/FluxChatFrame.lua#L461) |
-| `_G.FluxChatFrame_GetPrimaryColumnTopY` | [L466](../../Other/FluxChatFrame.lua#L466) |
-| `_G.FluxChatFrame_GetPrimaryChatTop` | [L471](../../Other/FluxChatFrame.lua#L471) |
-| `_G.FluxChatFrame_GetBesideMicromenuGap` | [L500](../../Other/FluxChatFrame.lua#L500) |
-| `_G.FluxChatFrame_ApplyPrimaryPosition` | [L817](../../Other/FluxChatFrame.lua#L817) |
-| `_G.FluxChatFrame_SetDragHold` | [L827](../../Other/FluxChatFrame.lua#L827) |
-| `_G.FluxChatFrame_RefreshSocialLayout` | [L1166](../../Other/FluxChatFrame.lua#L1166) |
+| `_G.FluxChatFrame_GetPrimaryChatHeight` | [L458](../../Other/FluxChatFrame.lua#L458) |
+| `_G.FluxChatFrame_GetPrimaryBottomInsetY` | [L484](../../Other/FluxChatFrame.lua#L484) |
+| `_G.FluxChatFrame_GetPrimaryColumnBottomY` | [L490](../../Other/FluxChatFrame.lua#L490) |
+| `_G.FluxChatFrame_GetPrimaryTabHeight` | [L495](../../Other/FluxChatFrame.lua#L495) |
+| `_G.FluxChatFrame_GetPrimaryColumnTopY` | [L500](../../Other/FluxChatFrame.lua#L500) |
+| `_G.FluxChatFrame_GetPrimaryChatTop` | [L505](../../Other/FluxChatFrame.lua#L505) |
+| `_G.FluxChatFrame_GetBesideMicromenuGap` | [L534](../../Other/FluxChatFrame.lua#L534) |
+| `_G.FluxChatFrame_ApplyPrimaryPosition` | [L851](../../Other/FluxChatFrame.lua#L851) |
+| `_G.FluxChatFrame_SetDragHold` | [L861](../../Other/FluxChatFrame.lua#L861) |
+| `_G.FluxChatFrame_RefreshSocialLayout` | [L1200](../../Other/FluxChatFrame.lua#L1200) |
 
 ### Other/FluxEquipSlotFlyout.lua
 
@@ -8147,8 +8160,8 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 
 | Declaration | Source |
 |---|---|
-| `Debug.Capture` | [L64](../../Other/FluxInputDebug.lua#L64) |
-| `SlashCmdList.FLUXINPUT` | [L138](../../Other/FluxInputDebug.lua#L138) |
+| `Debug.Capture` | [L100](../../Other/FluxInputDebug.lua#L100) |
+| `SlashCmdList.FLUXINPUT` | [L175](../../Other/FluxInputDebug.lua#L175) |
 
 ### Other/FluxPerfCapture.lua
 
@@ -9224,23 +9237,61 @@ Owner: [14-unit-frames.md](../14-unit-frames.md).
 
 | Declaration | Source |
 |---|---|
-| `CB.StopCustomTimer` | [L1790](../../UnitFrames/FluxCastBar.lua#L1790) |
-| `CB.StartCustomTimer` | [L1796](../../UnitFrames/FluxCastBar.lua#L1796) |
-| `CB.RefreshCastForUnit` | [L2198](../../UnitFrames/FluxCastBar.lua#L2198) |
-| `CB.CreateCastBar` | [L2680](../../UnitFrames/FluxCastBar.lua#L2680) |
-| `castBar.SetValue` | [L2704](../../UnitFrames/FluxCastBar.lua#L2704) |
-| `endcastBar.GetValue` | [L2705](../../UnitFrames/FluxCastBar.lua#L2705) |
-| `endcastBar.SetMinMaxValues` | [L2706](../../UnitFrames/FluxCastBar.lua#L2706) |
-| `endcastBar.GetMinMaxValues` | [L2707](../../UnitFrames/FluxCastBar.lua#L2707) |
-| `endcastBar.SetStatusBarColor` | [L2708](../../UnitFrames/FluxCastBar.lua#L2708) |
-| `endcastBar.SetStatusBarTexture` | [L2709](../../UnitFrames/FluxCastBar.lua#L2709) |
-| `endcastBar.GetStatusBarTexture` | [L2710](../../UnitFrames/FluxCastBar.lua#L2710) |
-| `endiftimerBar.SetTimerDurationthencastBar.SetTimerDuration` | [L2721](../../UnitFrames/FluxCastBar.lua#L2721) |
-| `endendiftimerBar.GetTimerDurationthencastBar.GetTimerDuration` | [L2724](../../UnitFrames/FluxCastBar.lua#L2724) |
-| `RegisterUnitCastEventscastBar.DisablePetCastBar` | [L2892](../../UnitFrames/FluxCastBar.lua#L2892) |
-| `castBar.UpdateLayout` | [L3092](../../UnitFrames/FluxCastBar.lua#L3092) |
-| `CB.SyncBlizzardCastBars` | [L3413](../../UnitFrames/FluxCastBar.lua#L3413) |
-| `FluxCastBar_ApplyAppearanceAccent` | [L3444](../../UnitFrames/FluxCastBar.lua#L3444) |
+| `CB.StopCustomTimer` | [L1794](../../UnitFrames/FluxCastBar.lua#L1794) |
+| `CB.StartCustomTimer` | [L1800](../../UnitFrames/FluxCastBar.lua#L1800) |
+| `CB.RefreshCastForUnit` | [L2207](../../UnitFrames/FluxCastBar.lua#L2207) |
+| `CB.CreateCastBar` | [L2689](../../UnitFrames/FluxCastBar.lua#L2689) |
+| `castBar.SetValue` | [L2713](../../UnitFrames/FluxCastBar.lua#L2713) |
+| `endcastBar.GetValue` | [L2714](../../UnitFrames/FluxCastBar.lua#L2714) |
+| `endcastBar.SetMinMaxValues` | [L2715](../../UnitFrames/FluxCastBar.lua#L2715) |
+| `endcastBar.GetMinMaxValues` | [L2716](../../UnitFrames/FluxCastBar.lua#L2716) |
+| `endcastBar.SetStatusBarColor` | [L2717](../../UnitFrames/FluxCastBar.lua#L2717) |
+| `endcastBar.SetStatusBarTexture` | [L2718](../../UnitFrames/FluxCastBar.lua#L2718) |
+| `endcastBar.GetStatusBarTexture` | [L2719](../../UnitFrames/FluxCastBar.lua#L2719) |
+| `endiftimerBar.SetTimerDurationthencastBar.SetTimerDuration` | [L2730](../../UnitFrames/FluxCastBar.lua#L2730) |
+| `endendiftimerBar.GetTimerDurationthencastBar.GetTimerDuration` | [L2733](../../UnitFrames/FluxCastBar.lua#L2733) |
+| `RegisterUnitCastEventscastBar.DisablePetCastBar` | [L2901](../../UnitFrames/FluxCastBar.lua#L2901) |
+| `endcastBar.UpdateLayout` | [L3102](../../UnitFrames/FluxCastBar.lua#L3102) |
+| `CB.SyncBlizzardCastBars` | [L3424](../../UnitFrames/FluxCastBar.lua#L3424) |
+| `FluxCastBar_ApplyAppearanceAccent` | [L3455](../../UnitFrames/FluxCastBar.lua#L3455) |
+
+### UnitFrames/FluxCastBarSchools.lua
+
+Owner: [14-unit-frames.md](../14-unit-frames.md).
+
+| Declaration | Source |
+|---|---|
+| `Schools.Resolve` | [L69](../../UnitFrames/FluxCastBarSchools.lua#L69) |
+| `Schools.Learn` | [L78](../../UnitFrames/FluxCastBarSchools.lua#L78) |
+| `Schools.InvalidateAliases` | [L100](../../UnitFrames/FluxCastBarSchools.lua#L100) |
+
+### UnitFrames/FluxCastBarThemes.lua
+
+Owner: [14-unit-frames.md](../14-unit-frames.md).
+
+| Declaration | Source |
+|---|---|
+| `FX.ThemeForMask` | [L259](../../UnitFrames/FluxCastBarThemes.lua#L259) |
+| `FX.ResolveTheme` | [L299](../../UnitFrames/FluxCastBarThemes.lua#L299) |
+| `FX.Layout` | [L421](../../UnitFrames/FluxCastBarThemes.lua#L421) |
+| `FX.Reset` | [L513](../../UnitFrames/FluxCastBarThemes.lua#L513) |
+| `FX.Update` | [L644](../../UnitFrames/FluxCastBarThemes.lua#L644) |
+| `FX.Apply` | [L714](../../UnitFrames/FluxCastBarThemes.lua#L714) |
+| `FX.Begin` | [L746](../../UnitFrames/FluxCastBarThemes.lua#L746) |
+| `FX.Finish` | [L756](../../UnitFrames/FluxCastBarThemes.lua#L756) |
+| `FX.Attach` | [L779](../../UnitFrames/FluxCastBarThemes.lua#L779) |
+| `FX.Refresh` | [L787](../../UnitFrames/FluxCastBarThemes.lua#L787) |
+| `FX.ObserveCast` | [L796](../../UnitFrames/FluxCastBarThemes.lua#L796) |
+| `FX.SyncEvents` | [L864](../../UnitFrames/FluxCastBarThemes.lua#L864) |
+
+### UnitFrames/FluxCastBarVisuals.lua
+
+Owner: [14-unit-frames.md](../14-unit-frames.md).
+
+| Declaration | Source |
+|---|---|
+| `Visuals.Resolve` | [L141](../../UnitFrames/FluxCastBarVisuals.lua#L141) |
+| `Visuals.Invalidate` | [L166](../../UnitFrames/FluxCastBarVisuals.lua#L166) |
 
 ### UnitFrames/FluxClassPower.lua
 
@@ -9304,9 +9355,8 @@ Owner: [14-unit-frames.md](../14-unit-frames.md).
 
 | Declaration | Source |
 |---|---|
-| `MP5.Shutdown` | [L272](../../UnitFrames/FluxMP5Overlay.lua#L272) |
-| `MP5.Initialize` | [L292](../../UnitFrames/FluxMP5Overlay.lua#L292) |
-| `frame.UpdatePartitionifmp5OrigUpdatePartitionthenframe.UpdatePartition` | [L331](../../UnitFrames/FluxMP5Overlay.lua#L331) |
+| `MP5.Shutdown` | [L290](../../UnitFrames/FluxMP5Overlay.lua#L290) |
+| `MP5.Initialize` | [L310](../../UnitFrames/FluxMP5Overlay.lua#L310) |
 
 ### UnitFrames/FluxPortraitCombatFeedback.lua
 
@@ -9328,9 +9378,9 @@ Owner: [14-unit-frames.md](../14-unit-frames.md).
 | `PCO.UpdateOverlayColor` | [L160](../../UnitFrames/FluxPowerCostOverlay.lua#L160) |
 | `PCO.RefreshPrediction` | [L307](../../UnitFrames/FluxPowerCostOverlay.lua#L307) |
 | `PCO.BeforePowerApplied` | [L576](../../UnitFrames/FluxPowerCostOverlay.lua#L576) |
-| `PCO.AfterPowerApplied` | [L660](../../UnitFrames/FluxPowerCostOverlay.lua#L660) |
-| `PCO.DisableForFrame` | [L781](../../UnitFrames/FluxPowerCostOverlay.lua#L781) |
-| `PCO.Initialize` | [L803](../../UnitFrames/FluxPowerCostOverlay.lua#L803) |
+| `PCO.AfterPowerApplied` | [L675](../../UnitFrames/FluxPowerCostOverlay.lua#L675) |
+| `PCO.DisableForFrame` | [L796](../../UnitFrames/FluxPowerCostOverlay.lua#L796) |
+| `PCO.Initialize` | [L818](../../UnitFrames/FluxPowerCostOverlay.lua#L818) |
 
 ### UnitFrames/FluxSwingTimer.lua
 
@@ -9488,18 +9538,18 @@ Owner: [14-unit-frames.md](../14-unit-frames.md).
 | `FluxUnitFrames_GetAuraConfigTables` | [L620](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L620) |
 | `FluxUnitFrames_ApplyAuraLayoutFromDB` | [L680](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L680) |
 | `FluxUnitFrames_ApplyOptionsFromDB` | [L710](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L710) |
-| `FluxUnitFrames_GetPlayerTargetPlacement2RelativeUIScale` | [L845](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L845) |
-| `FluxUnitFrames_UnitFrameStorageToEffectiveDimension` | [L853](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L853) |
-| `FluxUnitFrames_UnitFrameEffectiveToStorageDimension` | [L864](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L864) |
-| `FluxUnitFrames_EnsureAndGetFrameSizesBucket` | [L900](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L900) |
-| `FluxUnitFrames_GetPlacement1TargetLeftForMicroMenuCap` | [L927](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L927) |
-| `FluxUnitFrames_GetUnitFrameDefaultDimension` | [L962](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L962) |
-| `FluxUnitFrames_GetConfiguredFrameSize` | [L986](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L986) |
-| `FluxUnitFrames_GetConfiguredPetTargetBarWidth` | [L1034](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1034) |
-| `FluxUnitFrames_FullUnitFrameLayoutRefresh` | [L1047](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1047) |
-| `FluxUnitFrames_GetHealthPartitionPct` | [L1084](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1084) |
-| `FluxUnitFrames_RefreshBarPartitionsFromDB` | [L1114](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1114) |
-| `FluxUnitFrames_ApplyFrameSizesFromDB` | [L1135](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1135) |
+| `FluxUnitFrames_GetPlayerTargetPlacement2RelativeUIScale` | [L846](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L846) |
+| `FluxUnitFrames_UnitFrameStorageToEffectiveDimension` | [L854](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L854) |
+| `FluxUnitFrames_UnitFrameEffectiveToStorageDimension` | [L865](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L865) |
+| `FluxUnitFrames_EnsureAndGetFrameSizesBucket` | [L901](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L901) |
+| `FluxUnitFrames_GetPlacement1TargetLeftForMicroMenuCap` | [L928](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L928) |
+| `FluxUnitFrames_GetUnitFrameDefaultDimension` | [L963](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L963) |
+| `FluxUnitFrames_GetConfiguredFrameSize` | [L987](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L987) |
+| `FluxUnitFrames_GetConfiguredPetTargetBarWidth` | [L1035](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1035) |
+| `FluxUnitFrames_FullUnitFrameLayoutRefresh` | [L1048](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1048) |
+| `FluxUnitFrames_GetHealthPartitionPct` | [L1085](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1085) |
+| `FluxUnitFrames_RefreshBarPartitionsFromDB` | [L1115](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1115) |
+| `FluxUnitFrames_ApplyFrameSizesFromDB` | [L1136](../../UnitFrames/FluxUnitFrames_OptionsBridge.lua#L1136) |
 
 ### UnitFrames/FluxUnitFrames_Pet.lua
 
@@ -9696,19 +9746,19 @@ Owner: [28-window-mover.md](../28-window-mover.md).
 
 | Declaration | Source |
 |---|---|
-| `WindowMover.Settings` | [L114](../../WindowMover/Engine.lua#L114) |
-| `WindowMover.Apply` | [L274](../../WindowMover/Engine.lua#L274) |
-| `WindowMover._OnProxyUpdate` | [L452](../../WindowMover/Engine.lua#L452) |
-| `WindowMover.ResetFrame` | [L597](../../WindowMover/Engine.lua#L597) |
-| `WindowMover.ResetAll` | [L614](../../WindowMover/Engine.lua#L614) |
-| `WindowMover.SetLocked` | [L626](../../WindowMover/Engine.lua#L626) |
-| `WindowMover.IsLocked` | [L633](../../WindowMover/Engine.lua#L633) |
-| `WindowMover.Attach` | [L792](../../WindowMover/Engine.lua#L792) |
-| `WindowMover.Scan` | [L883](../../WindowMover/Engine.lua#L883) |
-| `WindowMover.Refresh` | [L907](../../WindowMover/Engine.lua#L907) |
-| `WindowMover.Start` | [L921](../../WindowMover/Engine.lua#L921) |
-| `WindowMover.AttachedCount` | [L950](../../WindowMover/Engine.lua#L950) |
-| `WindowMover.Smoke` | [L960](../../WindowMover/Engine.lua#L960) |
+| `WindowMover.Settings` | [L135](../../WindowMover/Engine.lua#L135) |
+| `WindowMover.Apply` | [L295](../../WindowMover/Engine.lua#L295) |
+| `WindowMover._OnProxyUpdate` | [L473](../../WindowMover/Engine.lua#L473) |
+| `WindowMover.ResetFrame` | [L618](../../WindowMover/Engine.lua#L618) |
+| `WindowMover.ResetAll` | [L635](../../WindowMover/Engine.lua#L635) |
+| `WindowMover.SetLocked` | [L647](../../WindowMover/Engine.lua#L647) |
+| `WindowMover.IsLocked` | [L654](../../WindowMover/Engine.lua#L654) |
+| `WindowMover.Attach` | [L816](../../WindowMover/Engine.lua#L816) |
+| `WindowMover.Scan` | [L910](../../WindowMover/Engine.lua#L910) |
+| `WindowMover.Refresh` | [L934](../../WindowMover/Engine.lua#L934) |
+| `WindowMover.Start` | [L948](../../WindowMover/Engine.lua#L948) |
+| `WindowMover.AttachedCount` | [L977](../../WindowMover/Engine.lua#L977) |
+| `WindowMover.Smoke` | [L987](../../WindowMover/Engine.lua#L987) |
 
 ### WindowMover/Init.lua
 

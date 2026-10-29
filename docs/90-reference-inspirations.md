@@ -4,7 +4,7 @@ Runtime dependencies, embedded libraries, explicit ports and design references a
 
 ## Runtime companions and embedded libraries
 
-[_FluxUI.toc](../_FluxUI.toc) lists Blizzard_UnitFrame, Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Blizzard_CompactRaidFrames and SpellActivationOverlay as optional dependencies. A Camelot-filtered dependency metadata entry names Blizzard_CombatLog. [Core/Optional.lua](../Core/Optional.lua) also probes Masque and Clicked; a probe is not proof of a complete integration. Syndicator readiness is separate from loaded state.
+[_FluxUI.toc](../_FluxUI.toc) lists Blizzard_UnitFrame and Blizzard_CompactRaidFrames as optional dependencies. A Camelot-filtered dependency metadata entry names Blizzard_CombatLog. External companions are discovered at runtime; [Core/Optional.lua](../Core/Optional.lua) probes Syndicator, Baganator, Details, BigDebuffs, TacoTip, ConsolePort, Questie, Masque and Clicked. A probe is not proof of a complete integration. Syndicator readiness is separate from loaded state. The dated [reference manifest](REFERENCE_MANIFEST.csv) records inspected versions and license evidence.
 
 | Loaded code | Role/provenance |
 |---|---|

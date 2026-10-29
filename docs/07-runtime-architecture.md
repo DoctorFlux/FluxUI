@@ -18,7 +18,7 @@ This chapter describes the current working-tree implementation. The addon combin
 | HUD and services | Raid/unit frames, Micro Menu, status, minimap, Flux Window/map/meters, Respec, character panel, chat, nameplates and Salvage. |
 | Economy bridges and final chrome | Restock/vendor libraries and features, Baganator compatibility, then the unified border. |
 
-The TOC's early comment saying action bars, Binding and grids remain off the TOC is stale: the actual entries load all three. Follow entries and includes when reconstructing execution.
+The TOC loads action bars, Binding and both grids after their shared foundations. Follow entries and XML includes when reconstructing execution; the current opening comment correctly places kernel, adapters and services before feature registration.
 
 ## Startup sequence
 
