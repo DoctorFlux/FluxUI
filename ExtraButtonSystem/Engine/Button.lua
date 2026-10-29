@@ -1376,7 +1376,7 @@ function FluxButton:TranslateMacro()
             self:ApplyDisplayPolicy()
         end
     elseif targetChanged then
-        -- Even if nothing else changed, if target changed we need to re-check range
+        -- A target change requires a range check even when other state is unchanged.
         self:UpdateUsable()
     end
 
@@ -3086,7 +3086,7 @@ function FluxButton:UpdateTextCount()
         end
         
         if countNotZero or isConsumable then
-            -- Check if we can display the count value
+            -- Check count accessibility before display.
             if canAccessValue(count) then
                 setCountText(count or 0)
             else
@@ -3107,7 +3107,7 @@ function FluxButton:UpdateTextCount()
                 end
                 
                 if hasMultipleCharges ~= false then
-                    -- Check if we can access the charge count to display it
+                    -- Check charge-count accessibility before display.
                     if canAccessValue(chargesInfo.currentCharges) then
                         setCountText(chargesInfo.currentCharges)
                     else
@@ -3221,7 +3221,7 @@ function FluxButton:UpdateTextCount()
                         end
                         
                         if hasMultipleCharges ~= false then
-                            -- Check if we can access the charge count to display it
+                            -- Check charge-count accessibility before display.
                             if canAccessValue(chargesInfo.currentCharges) then
                                 setCountText(chargesInfo.currentCharges)
                             else

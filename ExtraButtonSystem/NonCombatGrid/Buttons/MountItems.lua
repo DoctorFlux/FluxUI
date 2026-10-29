@@ -364,7 +364,7 @@ local function PickFromItemsPreferGround(items, preferGround)
             end
         end
         -- Fallback: unknown traits (keep button usable after dungeon exit) — still
-        -- prefer non-flying when we can tell.
+        -- prefer non-flying when mount type is known.
         for _, item in ipairs(items) do
             local id = item["$itemId"]
             if id and not IsMountFlying(id) then

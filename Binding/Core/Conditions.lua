@@ -579,7 +579,7 @@ function Conditions.InvalidateAvailability(uid)
 end
 
 -- FluxInv listener: spells (learn/unlearn) + bags/equip (item-owned, equipped
--- gates). FluxInv debounces (~50ms); we only trigger apply on real changes.
+-- gates). FluxInv debounces (~50ms); only actual changes trigger Apply.
 local invRegistered = false
 function Conditions.EnsureInventoryListener()
     if invRegistered then return end

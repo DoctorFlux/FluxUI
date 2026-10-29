@@ -37,7 +37,7 @@ Exact outputs and normalized source hashes are retained in [follow-up operation 
 
 ## Temporary sampler recovery
 
-Forever blocked the first background protocol's addon-initiated `ReloadUI()` callback. That protocol was stopped; normal `/reload` chat commands restored FluxUI. The replacement sampler contains no addon reload calls: the agent performs ordinary reloads between completed measurements and restores the user's previous foreground window. It restored FluxUI and disabled itself at the end; its two temporary addon files were then removed. The blocked operation is not treated as a successful test, and no protected-action workaround was introduced.
+Forever blocked the first background protocol's addon-initiated `ReloadUI()` callback. That protocol was stopped; normal `/reload` chat commands restored FluxUI. The replacement sampler contains no addon reload calls: ordinary reloads run between completed measurements and restores the user's previous foreground window. It restored FluxUI and disabled itself at the end; its two temporary addon files were then removed. The blocked operation is not treated as a successful test, and no protected-action workaround was introduced.
 
 No graphics/FPS CVar, binding or player SavedVariables was directly edited. The comparison temporarily changed only FluxUI's native addon enable state and the temporary sampler's own state; FluxUI is restored. Native client reloads persisted the diagnostic reports normally.
 

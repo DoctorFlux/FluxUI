@@ -22,7 +22,7 @@ local function GetUnitClassColor(unit)
         end)
         return (ok and color) or { r = 0.6, g = 0.6, b = 0.6 }
     else
-        -- For NPCs, no color tint (user requested no tint for non-players)
+        -- NPC cast bars omit class-color tint.
         return { r = 0.6, g = 0.6, b = 0.6 } -- Neutral gray
     end
 end

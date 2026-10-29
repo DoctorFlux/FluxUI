@@ -796,5 +796,5 @@
     },
     "version": "1.60.1"
   },
-  "evidence": "Captured by the agent through normal WoW slash commands in the user's open Forever client; normal reload persisted the report. Scene outside the inn differs from earlier user baselines; not a matched old/new FPS acceptance result."
+  "evidence": "Captured through normal WoW slash commands in the user's open Forever client; normal reload persisted the report. Scene outside the inn differs from earlier user baselines; not a matched old/new FPS acceptance result."
 }

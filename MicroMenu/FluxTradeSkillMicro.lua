@@ -211,7 +211,7 @@ function M:ShouldKeepRowInOrder(rowId)
         if mapped and self:IsSkillKnown(mapped) then
             return true
         end
-        -- Also: key may be skillLine while we only have a name-key map entry the other way
+        -- The key may be a skillLine while the reverse map contains only a name key.
         for nameKey, skillLineKey in pairs(self._nameToSkillLineKey) do
             if skillLineKey == key and self:IsSkillKnown(skillLineKey) then
                 return true

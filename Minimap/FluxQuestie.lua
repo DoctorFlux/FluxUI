@@ -362,7 +362,7 @@ function FluxQuestie:SizeQuestFrame(baseFrame, timerHeight)
     questFrame:SetHeight(availableHeight)
     
     -- ScrollFrame uses SetAllPoints(questFrame), so it will automatically match questFrame size
-    -- But we should also update ScrollChildFrame width to match
+    -- Match ScrollChildFrame width as well.
     if questFrame.ScrollFrame and questFrame.ScrollChildFrame then
         questFrame.ScrollChildFrame:SetWidth(questFrame.ScrollFrame:GetWidth())
     end

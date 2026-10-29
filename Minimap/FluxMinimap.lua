@@ -377,7 +377,7 @@ function FluxMinimap:Initialize()
     
     -- 3. Basic Sizing
     if FLUX_API.isLegacyClient then
-        -- Legacy clients render the minimap slightly wider, user requested 175x190
+        -- Legacy minimap dimensions are 175x190.
         Minimap:SetSize(175, CONFIG.Size)
     else
         -- Modern clients: 190x190
@@ -400,7 +400,7 @@ function FluxMinimap:Initialize()
     
     -- 5. Handle Right Click for tracking/calendar (Context Menu)
     -- Use HookScript so Blizzard's original OnMouseUp runs first (performs ping in untainted context).
-    -- Our hook runs after; we only add right-click handling. Left-click ping is done by Blizzard's handler.
+    -- The post-hook handles right-click; Blizzard's handler owns left-click ping.
     if not self._fluxMouseUpHooked then
     Minimap:HookScript("OnMouseUp", function(self, button)
         if button == "RightButton" then
@@ -611,7 +611,7 @@ function FluxMinimap:EnforcePosition()
         MinimapCluster:SetMovable(false)
         MinimapCluster:Hide() -- Hide the cluster which usually contains the border/zone text
         
-        -- But we need the Minimap frame itself to be shown
+        -- Keep the Minimap frame itself shown.
         Minimap:Show()
         Minimap:SetParent(UIParent) -- Ensure it's not hidden by parent hide
     end
@@ -1911,7 +1911,7 @@ function FluxMinimap:CreateInfoBar()
              if ToggleFrame then ToggleFrame(WorldMapFrame) end
         else
              -- Right Click: Toggle Calendar (if available) or other time features
-             -- Since we only have one bar, let's map actions:
+             -- Map the actions to the single bar:
              -- Left: Map. Right: Calendar (if available). Shift-Left: Stopwatch?
              if FLUX_API.hasCalendar then
                  ToggleCalendar()
@@ -2654,7 +2654,7 @@ function FluxMinimap:Refresh()
     end
     
     -- 2. Force texture refresh by toggling zoom
-    -- We can't actually change the zoom if it's maxed out, so we handle both directions
+    -- Handle both directions when zoom is already at a limit.
     local currentZoom = Minimap:GetZoom()
     local maxZoom = Minimap.GetZoomLevels and Minimap:GetZoomLevels() or 5
     

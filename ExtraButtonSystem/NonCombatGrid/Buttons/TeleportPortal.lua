@@ -551,7 +551,7 @@ local function IsSpellKnownCompat(spellId)
         return true
     end
     
-    -- Fallback: check if we can get spell info for it
+    -- Fallback: query spell information.
     if C_Spell and C_Spell.GetSpellInfo then
         local info = C_Spell.GetSpellInfo(spellId)
         if info and info.spellID then
@@ -3030,7 +3030,7 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
                 SetCastLockSpellId(Module._pendingLockSpell.spellID)
             end
             
-            -- Verify this is our pending spell (if we can identify it)
+            -- Match the pending spell when its identity is accessible.
             local shouldLock = false
             if Module._pendingLockSpell.spellID and castSpellId then
                 -- Match by spell ID

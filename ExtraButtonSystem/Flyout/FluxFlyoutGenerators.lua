@@ -110,7 +110,7 @@ local function IsSpellKnownSafe(spellIdOrName)
     if GetSpellLink then
         local ok, link = pcall(GetSpellLink, spellIdOrName)
         if ok and link then
-            -- Additional check: on some clients, we can verify via FindSpellBookSlotBySpellID
+            -- Use FindSpellBookSlotBySpellID to verify ownership where supported.
             if FindSpellBookSlotBySpellID and spellId then
                 local ok2, slot = pcall(FindSpellBookSlotBySpellID, spellId)
                 if ok2 and slot then return true end

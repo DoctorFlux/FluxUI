@@ -458,7 +458,7 @@ function Grid.New(parent, opts)
             return -- No consolidation needed
         end
         
-        -- If we only have 1 column total, skip consolidation
+        -- Skip consolidation for a single column.
         if #columnData <= 1 then
             return
         end

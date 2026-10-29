@@ -1,6 +1,6 @@
 -- HopLag.lua — in-game hop / modifier lag overlay. Off by default.
 -- /fluxhop on  → overlay + traces. Reproduce cursor hops and Shift/Ctrl swaps.
--- /fluxhop report dumps the last bursts so we can see which pass still hitching.
+-- /fluxhop report lists recent bursts and their pass timings.
 local addonName, ns = ...
 local Flux = ns.Flux
 

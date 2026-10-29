@@ -406,16 +406,16 @@ function Core.SetupOverlayFrames(widget)
     local function OverrideSpellCastAnimScripts(frame, parentWidget)
         if not frame then return end
         
-        -- CRITICAL FIX: Override OnHide to prevent crashes
+        -- Override native OnHide behavior for buttons without action slots.
         -- The default ActionButtonCastingAnimFrameMixin:OnHide calls ClearReticle and ActionButton_UpdateCooldown
         -- which crashes for FluxButtons because they don't have action slots
         -- 
-        -- Blizzard's template uses a MIXIN, so we need to:
+        -- Override the template mixin and its installed scripts together:
         -- 1. Clear any existing script
         -- 2. Override the frame's OnHide method (mixin method)
         -- 3. Set our own script handler
         
-        -- Create our safe OnHide handler
+        -- Preserve reticle and swipe cleanup without native action-slot updates.
         local safeOnHideHandler = function(self)
             local parent = self:GetParent()
             -- Safely call ClearReticle if it exists
@@ -429,19 +429,19 @@ function Core.SetupOverlayFrames(widget)
             -- SKIPPED: ActionButton_UpdateCooldown(parent) - crashes on custom buttons
         end
         
-        -- Step 1: Clear any existing OnHide script
+        -- Clear the existing OnHide script.
         pcall(function() frame:SetScript("OnHide", nil) end)
         
-        -- Step 2: Override the mixin method directly on the frame instance
+        -- Override the mixin method on the frame instance.
         -- This prevents the mixin's OnHide from being called via frame:OnHide()
         rawset(frame, "OnHide", safeOnHideHandler)
         
-        -- Step 3: Set our script handler
+        -- Install the replacement script handler.
         pcall(function() frame:SetScript("OnHide", safeOnHideHandler) end)
         
-        -- CRITICAL FIX: Override animation OnFinished callbacks
+        -- Override animation OnFinished callbacks for the same custom-button contract.
         -- Blizzard's animations call parentButton:StopSpellCastAnim() which triggers Hide() and OnHide
-        -- We need to override ALL animation callbacks that might trigger this
+        -- Override all animation callbacks that might trigger this
         
         -- Helper to safely override an animation group's OnFinished
         local function SafeOverrideAnimGroupFinished(animGroup, handler)

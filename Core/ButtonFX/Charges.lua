@@ -214,7 +214,7 @@ local function SetCD(cd, start, duration, enable, drawEdge, durationObject, modR
 	return true
 end
 
--- Only a value we can safely == compare may drive the skip cache. type() never
+-- Only values safe for equality comparison may drive the skip cache. type() never
 -- errors on a secret, so gate on it before touching IsSecret.
 local function PlainScalar(value)
 	local t = type(value)

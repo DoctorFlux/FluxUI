@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CLIENTS = ("mainline", "camelot", "vanilla", "tbc", "wrath", "cata", "mists", "classic")
-EXCLUDED = {".git", ".cursor", ".cache", ".perf-backup-20260919", ".gamepad-taint-backup-20261009", "__pycache__"}
+EXCLUDED = {".git", ".cache", ".perf-backup-20260919", ".gamepad-taint-backup-20261009", "__pycache__"}
 LONG_BRACKET = re.compile(r"\[(=*)\[")
 CODE_TOKEN = re.compile(r"[A-Za-z_][A-Za-z_0-9]*|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|\.\.\.|\.\.|==|~=|<=|>=|::")
 

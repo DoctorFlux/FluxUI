@@ -5,13 +5,12 @@ Before repository edits, the checkout was `main` at
 `6e3af8d646a09ce2182ffd6d2cc287890584825a`. Remote:
 `https://github.com/DoctorFlux/FluxUI.git`. There were no tracked modifications.
 `FluxUI_Sync_Log.txt` and the entire `new docs/` package were untracked.
-No applicable ancestor/root AGENTS file existed; the package's context template
-was read and merged into the new root instructions.
+No repository contribution guidelines existed at the original checkpoint.
 
 Private recovery directory, outside every active addon folder:
 
 ```text
-C:\Users\mario\.codex\visualizations\2026\10\29\01a186ea-e332-79a1-9cdc-8e340df7e22b\FluxUI-recovery-20261029T0910Z
+FluxUI-recovery-20261029T0910Z
 ```
 
 | Artifact | Coverage | SHA-256 |
@@ -35,9 +34,7 @@ history bundle to recover Git history if necessary; ordinary rollback should use
 the change branch and the verified source archive. Do not extract a second active
 addon or overwrite the checkpoint. No recovery or settings reset was performed.
 
-The working branch is `codex/modernization-audit-20261029`. `main` remains at the
-original SHA. Creating the branch required sandbox escalation for `.git` writes;
-automatic review approved it. No push or merge is implied.
+`main` remains at the original SHA; development uses the current change branch.
 
 ## Continuation checkpoint 09:32 UTC
 
@@ -47,7 +44,7 @@ Before the second runtime batch, a new checkpoint preserved branch commit
 `FluxUI_Sync_Log.txt`. The first checkpoint remains intact.
 
 ```text
-C:\Users\mario\.codex\visualizations\2026\10\29\01a186ea-e332-79a1-9cdc-8e340df7e22b\FluxUI-recovery-20261029T0932Z
+FluxUI-recovery-20261029T0932Z
 ```
 
 | Artifact | Coverage | SHA-256 |
@@ -84,7 +81,7 @@ manifests identify file contents. Private archives/manifests remain outside Git.
 Before the current runtime batch, verified external checkpoint:
 
 ```text
-C:\Users\mario\.codex\visualizations\2026\10\29\01a186ea-e332-79a1-9cdc-8e340df7e22b\FluxUI-recovery-20261029T100747Z
+FluxUI-recovery-20261029T100747Z
 ```
 
 It preserves baseline commit `f1a3bc7488a904e075264794e080a00c8fceba23`, tree
@@ -100,3 +97,22 @@ all Git history/refs. No WoW process was running. Capture completed 10:07:52 UTC
 Every ZIP entry was reread and hash-verified against its source manifest. Private
 settings/manifests remain outside Git. All earlier archives remain intact. No
 restore/reset was performed; preserve newer work before any future recovery.
+
+## Editorial cleanup checkpoint 10:19 UTC
+
+External archive: `FluxUI-recovery-20261029T101942Z`. Absolute private paths are
+stored in its checkpoint metadata outside the addon. Baseline commit:
+`f57fc79b536d23a87666d751135304865571d738`, tree
+`9876bb52f688dba175d2b867be038aea0e5cfcb1`. WoW was closed.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,228 actual files; 34,672,776 bytes | `876d8a2fa9d71a37958b836e67f2ceec50925e52e4c696103bf3591cafb4d0c9` |
+| history.bundle | All refs/history; verified | `3cfc06ae442e2affe28e2e2edc881cb7b5c380ea41e7c650bb3ca029e53d8652` |
+| settings-private.zip | 403 files; 6,335,941 bytes | `8759f2dc598d33bf8df1b4fb2a5d4af93d9603b713f396c462635f1ed6c9d75b` |
+
+ZIP entries were reread and hash-verified. The checkpoint also retains the retired
+editor plans, prompts/templates, original Word plan, former handoff files, local
+backup trees and sync log as ordinary files under `retired/`. The current Markdown
+plan, specifications, tests and factual validation evidence remain in the repository.
+No addon identity, settings or Git history was reset or rewritten.

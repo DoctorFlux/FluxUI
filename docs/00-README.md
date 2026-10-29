@@ -2,13 +2,16 @@
 
 Latest audit: [P0-to-current resource lifecycle follow-up](55-resource-lifecycle-audit.md), including a fresh Forever CPU capture and shared resource watcher/spark fixes. The [GitHub history and startup audit](54-history-p0-startup-audit.md) verifies retained P0 protections. Earlier performance work includes [unit-frame, portrait and open-map optimization](53-unit-map-idle.md), [Retail idle hotspots](52-retail-idle-hotspots.md) and the [idle follow-up](46-idle-followup.md). The [initial idle investigation](45-idle-performance.md) records the earlier CPU captures and operation counts. Earlier phases are recorded in the [startup report](43-startup-optimization.md) and [test failure resolution](44-test-failure-resolution.md).
 
-This is a reference for **how the current addon works**, for its author, maintainers, and coding agents. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
+This is a reference for **how the current addon works**, for its author and contributors. It replaces the former backup-derived concept/rewrite specification. Current source wins over old documentation, comments, intended designs, and reference addons.
 
 Source review: **23 October 2026**, including the current working-tree changes since GitHub commit `7882474`. The [source inventory](reference/inventory.json) records source hashes with CRLF normalized to LF, load parents, client gates, and extracted declarations. Binary asset hashes retain their original bytes. This is not a claim that the addon was tested in every live client.
 
 The current reference includes Forever's separately probed secure bar paging, native mouse-up/key-down routing, stock grid-event suppression, Questie pin handoff and tracker ownership/combat deferral. These behaviors are integrated into the system and API chapters, rather than inferred from older client flags. The [current verification record](41-verification.md#current-verification-23-october-2026) reports 72 passing desktop scripts and 710 syntax-checked Lua files. The removed browser simulator and its extracted client assets are not part of the addon or this documentation.
 
 ## Start here
+
+Development rules are in [CONTRIBUTING.md](../CONTRIBUTING.md); see
+[current status](STATUS.md) and [development tasks](DEVELOPMENT.md) for ongoing work.
 
 Read the [product and system overview](01-product-overview.md), then [runtime architecture](07-runtime-architecture.md). For a particular feature, use its system chapter below. For a setting, command, saved table, or source filename, start with Reference.
 

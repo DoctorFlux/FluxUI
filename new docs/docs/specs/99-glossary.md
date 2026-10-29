@@ -7,7 +7,7 @@ Shared terms used across the FluxUI concept docs.
 | **Accent** | Global color identity for Flux borders/backdrops: class, atlas-natural, or custom RGB. |
 | **Action strip / bottom console** | NonCombat grid + main action bar + Combat grid + Trinket Menu treated as one sealed HUD. |
 | **Already Known** | Tint for collectibles the character has already learned, shown at vendors and similar UIs. |
-| **Assisted Combat** | Blizzard helper feature surfaced as a Flux bind where the client provides it—not Flux combat AI. |
+| **Assisted Combat** | Blizzard helper feature surfaced as a Flux bind where the client provides it—not autonomous Flux combat logic. |
 | **Badge / corner badge** | Small corner preview on an action slot showing an alternate action (often from binding reverse/preview). |
 | **Battlezone / Flux Window** | Docked bottom-right tabbed hub (Map, Meter, Respec, Buttons). |
 | **Binding document** | Clicked-style saved description of what a key/action does under conditions. |

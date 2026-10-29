@@ -73,7 +73,7 @@ local function IsTradingSkill(spellIdentifier)
     end)
     
     if not ok or not spellName then
-        -- If we can't get spell info, return false but don't cache (might work later)
+        -- Do not cache missing spell info; delayed data can become available.
         return false
     end
     
@@ -976,7 +976,7 @@ function FluxButtonUsability:CheckUsability(actionType, actionValue, extraData)
     
     local state, mana, extraInfo
     
-    -- 12.0.0+ secret value handling - check if we should preserve last known state
+    -- 12.0.0+ secret-value handling: preserve the last accessible state when required.
     local has12SecretValues = FluxAPICompat and FluxAPICompat.FLUX_API and FluxAPICompat.FLUX_API.hasCanAccessValue
     local cacheKey = actionType .. "_" .. tostring(actionValue)
     

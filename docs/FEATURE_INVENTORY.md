@@ -1,8 +1,8 @@
 # Feature inventory and specification reconciliation
 
-Audit date: 29 October 2026. Implementation baseline: `7436820` in the existing `_FluxUI` repository, with the user's supplied `new docs/` package and sync log preserved by the recovery checkpoint. The current addon is the implementation base. This inventory records requirements and current source; it does not certify native feature or visual parity.
+Audit date: 29 October 2026. Implementation baseline: `7436820` in the existing `_FluxUI` repository, with original supplied requirements and the sync log preserved in external recovery archives. The current addon is the implementation base. This inventory records requirements and current source; it does not certify native feature or visual parity.
 
-The [parity ledger](FEATURE_PARITY.csv) has 1,384 rows: 308 specification sections, 361 option definitions, 44 factory sites, 519 literal defaults, 80 command registrations/handlers, 25 bindings, 23 SavedVariables roots, 15 integrations and 9 current-only feature groups. It records every nonempty heading section in all 26 supplied specifications. Each row carries its source location, baseline identity, owner, and verification state. Specification rows retain the original section text and source-file SHA-256, including contradictions and historical methodology. A captured requirement is not an implemented/tested requirement.
+The [parity ledger](FEATURE_PARITY.csv) has 1,384 rows: 308 specification sections, 361 option definitions, 44 factory sites, 519 literal defaults, 80 command registrations/handlers, 25 bindings, 23 SavedVariables roots, 15 integrations and 9 current-only feature groups. It records every nonempty heading section in all 26 supplied specifications. Each row carries its source location, baseline identity, owner, and verification state. Specification rows retain requirements and source-file SHA-256 values, including contradictions and historical methodology. Editorially updated terminology carries both current and archived original hashes. A captured requirement is not an implemented/tested requirement.
 
 The existing reference remains the detailed inventory rather than introducing a second documentation framework:
 
@@ -116,3 +116,11 @@ Windows requirement/enable control rows link the 220-check regression and 100-cy
 resource controls; other Windows requirements retain their previous verification
 status. [Evidence and native steps](WINDOW_MOVER_LIFECYCLE.md). Latest full suite:
 85 scripts/726 syntax files pass. Native feature/visual acceptance remains pending.
+
+## Editorial maintenance
+
+Three specification passages now use ordinary gameplay terminology without changing
+their requirements. Their ledger rows and source hashes follow the edited Markdown;
+original text remains in the external checkpoint. Prompt/template and Word planning
+artifacts were retired outside the addon; the 26 specifications, implementation
+plan and all feature requirements remain available. No feature/default was removed.

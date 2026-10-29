@@ -321,7 +321,7 @@ local FLUX_DEFAULTS = {
     
     -- Action Bars
     ["alwaysShowActionBars"] = "1", -- empty slots still show keybind numbers
-    ["lockActionBars"] = "0", -- User requested disabled
+    ["lockActionBars"] = "0", -- Allow action-button dragging.
     ["countdownForCooldowns"] = "1", -- Show Numbers for Cooldowns
     ["enableMultiActionBars"] = "0",
     ["multiBarLeft"] = "0",

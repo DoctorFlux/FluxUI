@@ -2252,7 +2252,7 @@ local function GetCurrentFlightStyle()
     -- Check for Dragonflight+ flight style system
     if C_PlayerInfo and C_PlayerInfo.GetGlidingInfo then
         local isGliding, canGlide, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
-        -- If we can glide, we're probably on Skyriding
+        -- Use glide capability as a Skyriding heuristic.
         if canGlide then
             return "Skyriding"
         end

@@ -31,7 +31,7 @@ For FluxUI that translates to:
 ## Product rules for the rewrite
 
 1. **Display is first-class** — Unit frames, raid frames, cast bars, and status text may continue to *look* like Flux, using paths the game allows for showing secret-aware values.
-2. **No combat AI** — Flux does not become a combat assistant that reads secret health/power/auras to decide actions. Assisted Combat, if present, is Blizzard’s feature surfaced as a bind—not Flux logic.
+2. **No automated combat decisions** — Flux does not become a combat assistant that reads secret health/power/auras to decide actions. Assisted Combat, if present, is Blizzard’s feature surfaced as a bind—not Flux logic.
 3. **Author ahead of time** — Binding conditions, restock lists, junk rules, and respec profiles are configured outside the secret decision problem; they must not depend on reading forbidden combat state to recompile mid-fight.
 4. **Meters and threat** — Prefer embedding Details! or Blizzard’s native Midnight meter. Flux’s job is layout, skinning, and tab hosting—not inventing a CLEU-based meter.
 5. **Nameplates** — Classic-style threat rank / level overlays that require branching on combat data stay **Classic / pre-Midnight**. On Midnight, do not promise custom threat decision overlays; stick to safe display or leave Blizzard plates alone.

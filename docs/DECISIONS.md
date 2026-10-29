@@ -6,7 +6,7 @@
   supersedes fresh-project/no-old-code/separate-repository/rename instructions in
   older specs. Product requirements remain inputs; conflicting current behavior
   is recorded, not silently removed or redesigned.
-- Use `codex/modernization-audit-20261029`; leave `main` untouched until explicitly
+- Use the current change branch; leave `main` untouched until explicitly
   authorized. Keep the same TOC, public commands, saved roots and profiles. No push
   or merge is part of the first batch.
 - Preserve all actual files and Git history outside AddOns before changes, including
@@ -77,4 +77,16 @@
 - Reused the 84-script full baseline only after verifying all 725 Lua source hashes.
   Captured a new verified external source/history/private settings checkpoint before
   edits. Matched desktop counters establish removed work; native input/pixels/taint/
-  performance remain pending. No subagents were used in this continuation.
+  performance remain pending.
+
+## 2026-10-29 — editorial maintenance
+
+- Use conventional contribution guidelines and development tasks instead of editor
+  workflow files. Archive original prompts/templates, planning Word file, old handoffs,
+  local backup trees and sync log outside the addon before removing active copies.
+- Rewrite conversational comments as technical explanations. Preserve every executable
+  Lua token/string, native restriction invariant, license and third-party attribution.
+- Retain technical specifications, tests, measurement values and revision identities.
+  Use factual descriptions of the recorded procedure. Preserve
+  original records in the verified checkpoint and omit optional branch metadata.
+- Do not rewrite Git history or alter main as part of a working-tree cleanup.

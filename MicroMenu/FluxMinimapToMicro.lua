@@ -880,7 +880,7 @@ function M:CreateConfigButton(parent, data, index)
         M.isDragging = false
     end)
     
-    -- No tooltip on config popup buttons (user requested removal)
+    -- Configuration popup buttons omit tooltips.
     btn:SetScript("OnEnter", nil)
     btn:SetScript("OnLeave", nil)
     

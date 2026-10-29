@@ -68,7 +68,7 @@ Recommended nameplate CVar packs may still come from `/fluxdefaults` ([05-defaul
 
 ## Rewrite intent notes
 
-Nameplates are a **Classic comfort feature**. Do not block the Midnight rewrite on rebuilding threat AI overlays. If Midnight later exposes safe display hooks, treat them as additive.
+Nameplates are a **Classic comfort feature**. Do not block the Midnight rewrite on rebuilding automated threat overlays. If Midnight later exposes safe display hooks, treat them as additive.
 
 ## Explicit non-goals
 

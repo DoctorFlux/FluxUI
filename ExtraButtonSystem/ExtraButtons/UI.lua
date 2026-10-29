@@ -208,7 +208,7 @@ end
 
         -- Override OnMouseWheel to prevent scroll when values are secret
         self.scrollFrame:SetScript("OnMouseWheel", function(scrollFrame, delta)
-            -- Check if we can access scroll values
+            -- Check scroll-value accessibility.
             local scrollBar = scrollFrame.ScrollBar
             if scrollBar and not canAccessScrollValues(scrollBar) then
                 return -- Values are secret, skip scroll

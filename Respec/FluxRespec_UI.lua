@@ -2655,7 +2655,7 @@ local function AnchorToWindow(tabContent)
     UI._mainFrame:SetPoint("TOPLEFT",     windowFrame, "TOPLEFT",     -2, 0)
     -- Align to Flux window bottom (no positive Y inset) so content can use full height.
     UI._mainFrame:SetPoint("BOTTOMRIGHT", windowFrame, "BOTTOMRIGHT", -4, 0)
-    -- Above window frame so we can overlay its content area.
+    -- Place above the window frame to overlay its content area.
     local strata = windowFrame:GetFrameStrata() or "MEDIUM"
     UI._mainFrame:SetFrameStrata(strata)
     UI._mainFrame:SetFrameLevel((windowFrame:GetFrameLevel() or 0) + 5)

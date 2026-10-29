@@ -187,7 +187,7 @@ def main():
             line = re.sub(r"`+[^`]*`+", "", raw)
             for match in link_pattern.finditer(line):
                 target = match[1] or match[2]
-                if target.startswith(("http://", "https://", "mailto:", "data:", "codex:")):
+                if target.startswith(("http://", "https://", "mailto:", "data:")):
                     continue
                 links += 1
                 parsed = urlsplit(target)

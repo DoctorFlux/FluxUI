@@ -53,7 +53,7 @@ local function GetCurrentActionBarState()
     return LE_ACTIONBAR_STATE_MAIN
 end
 
--- Check if we can exit vehicle
+-- Check vehicle-exit availability.
 local function CanExitVehicleCheck()
     if _G.CanExitVehicle then
         return _G.CanExitVehicle()
@@ -198,7 +198,7 @@ end
 -- ---------------------------------------------------------------------------
 
 function FluxVehicleExitButton:CanExitVehicle()
-    -- Check if we can exit vehicle or are on taxi
+    -- Check vehicle-exit or taxi availability.
     local canExit = CanExitVehicleCheck()
     local onTaxi = IsOnTaxi()
     

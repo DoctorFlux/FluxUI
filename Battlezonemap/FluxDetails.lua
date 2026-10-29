@@ -500,7 +500,7 @@ local function ConfigureInstance(inst, embedOpts)
     if inst.SetTitleBarShown then inst:SetTitleBarShown(true) end
     if inst.SetAutoHideMenu then inst:SetAutoHideMenu(true) end
     
-    -- Hide Icons (Requested by user). Details API is HideMainIcon — HideIcon does not exist.
+    -- Hide icons with the Details HideMainIcon API — HideIcon does not exist.
     inst.hide_icon = true
     inst.toolbar_side = 1
     inst.menu_icons_size = 1
@@ -1471,7 +1471,7 @@ function FluxDetails:Embed(parentFrame, layoutConfigOrMode)
         return
     end
 
-    -- Shut down extras beyond what we need
+    -- Hide unused extra windows
     for i = totalSlots + 1, #D.tabela_instancias do
         local extra = D.tabela_instancias[i]
         if extra then

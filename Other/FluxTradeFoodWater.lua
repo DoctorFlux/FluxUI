@@ -365,7 +365,7 @@ local function AddStackToTrade(itemId, isFood)
         -- Use secure click
         if tradeButton:IsVisible() then
             -- The item should already be on cursor from PickupContainerItem
-            -- We need to click the trade slot to place it
+            -- Click the trade slot to place the item.
             -- Use ClickTradeButton for secure action
             if ClickTradeButton then
                 ClickTradeButton(tradeSlot)

@@ -2794,10 +2794,10 @@ local function HijackButtons()
     -- Handle Hide List
     for name, shouldHide in pairs(BUTTONS_TO_HIDE) do
         if shouldHide then
-            -- Safely check if this is MainMenuBarDownload which might be needed on some clients?
-            -- Actually user said "Game Menu" missing. MainMenuMicroButton is 1.
-            -- But "MainMenuBarDownload" is hidden. Let's unhide it just in case it's related on their client
-            -- or serves as a placeholder.
+            -- Keep the native download indicator available where supported.
+            -- Game Menu uses the separate MainMenuMicroButton entry.
+            -- Apply button suppression to the remaining eligible entries.
+            -- MainMenuBarDownload remains under native control.
             if name ~= "MainMenuBarDownload" and not FluxMicroMenu:ShouldLeaveBlizzardButtonShown(name) then
                 local btn = _G[name]
                 if btn then

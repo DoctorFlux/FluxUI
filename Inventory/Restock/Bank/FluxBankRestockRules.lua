@@ -781,7 +781,7 @@ function Rules.ResolveNextStep(ctx)
     local placeCap = stepCap
     if ctx.getMaxPlaceable then
         -- Whole-stack no-split moves need room for the FULL amount, not just
-        -- the incremental need, since we can't split off a smaller piece.
+        -- the incremental need because a smaller portion cannot be split.
         local placeWant = wholeStackNoSplit and amt or stepCap
         placeCap = tonumber(ctx.getMaxPlaceable(placeWant, moveItemID, liveMax, tierKind)) or 0
     end

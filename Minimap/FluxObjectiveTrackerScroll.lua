@@ -888,7 +888,7 @@ end
 -- Flux perf T2.8: ObjectiveTrackerFrame.Update and UpdateHeight can both fire
 -- during a single frame (quest accept, objective complete, module toggle), and
 -- each fire used to drive a full MeasureContentHeight + SetHeight + scroll
--- resize pass. We now debounce to at most one real sync per frame and
+-- resize pass. Debounce to at most one sync per frame and
 -- short-circuit if the measured content height is unchanged from the last
 -- committed value.
 function FluxObjectiveTrackerScroll:_DoSyncAfterUpdate(tracker)

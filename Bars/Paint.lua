@@ -1776,7 +1776,7 @@ function Paint.UpdateEquipped(host)
 	end
 	local shown = border.IsShown and border:IsShown() and true or false
 	-- Cache skip must match the widget: leftover green on an empty bonus/form
-	-- slot keeps showing if we only compare host._equipped.
+	-- slot stays visible when the cache compares only host._equipped.
 	if host._equipped == equipped and shown == equipped then
 		return
 	end

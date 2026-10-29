@@ -1036,7 +1036,7 @@ function Talents.BuildNeedTrainerPopupText()
         .. armed
 end
 
---- Recompute whether we should auto-pick Unlearn Talents on the next class trainer gossip.
+--- Update automatic Unlearn Talents selection for the next trainer interaction.
 function Talents.SyncTrainerUnlearnQueueForActiveProfile()
     Talents._trainerUnlearnArmed = false
     if UseRetail() then

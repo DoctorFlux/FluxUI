@@ -1,16 +1,15 @@
-# Resume FluxUI modernization
+# Development status and next tasks
 
-Read AGENTS.md, docs/STATUS.md, docs/DECISIONS.md and docs/WORK_LOG.md, then relevant
+Read CONTRIBUTING.md, docs/STATUS.md, docs/DECISIONS.md and docs/WORK_LOG.md, then relevant
 requirements/ownership/client/performance records. Stay in this existing addon.
 
-1. Inspect status/HEAD/main/remotes. Continue on `codex/modernization-audit-20261029`;
-   main stays `7436820453d2248c84c99fff71507553efc47c19`. Preserve original untracked
-   FluxUI_Sync_Log.txt, ignored work and any newer user changes.
+1. Inspect status/HEAD/main/remotes. Continue on the current change branch;
+   main stays `7436820453d2248c84c99fff71507553efc47c19`. Preserve any newer user changes. The former sync log and local backup trees
+   are retained in the external recovery checkpoint.
 2. User explicitly deferred auction, guild-bank and void-storage callback audits.
-   Continue other work until directed otherwise. Do not use older next-step prose
-   as authorization to resume those audits.
-3. Read docs/RECOVERY.md. Four external verified checkpoints cover the original
-   source and each runtime batch. Latest at 10:07 UTC preserves baseline f1a3bc7,
+   Continue other work until directed otherwise. Keep those domains deferred until requested.
+3. Read docs/RECOVERY.md. Five external verified checkpoints cover the original
+   source and each runtime batch. Latest at 10:19 UTC preserves baseline f57fc79,
    actual ignored/untracked files/history and 403 private WTF files while WoW closed.
    Preserve a fresh checkpoint if source/settings differ before the next edits.
 4. Latest runtime `19c40a0c84212b24fdf221a9653a4116d32f9020`, tree
@@ -48,6 +47,12 @@ missing fixtures are not addon failures. Regenerate indexes with
 `python -B docs/tools/build_reference.py` after source changes; use --sync-docs only
 with a fresh validation run.
 
-Before stopping, update status, decisions, work log, affected ledgers/raw evidence
-and this handoff. No sync to other clients, push/merge to main, settings reset,
+Update status, decisions, work log, affected ledgers/raw evidence and these tasks
+when completing a change. No sync to other clients, push/merge to main, settings reset,
 second addon, rename or release is authorized.
+
+The editorial cleanup retires obsolete workflow files and keeps ordinary contribution
+rules/tasks here. Original files are recoverable externally. All 39 changed Lua files retain identical
+executable tokens and strings. Latest validation is in
+`docs/validation/editorial-cleanup-full-2026-10-29.json`; current source references
+and all six CSV ledgers are refreshed.

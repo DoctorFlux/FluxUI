@@ -1,3 +1,7 @@
-# FluxUI in place modernization package
+# FluxUI product requirements
 
-Use this package for the latest direction: retain and modernize DoctorFlux/FluxUI. All earlier fresh-start/no-old-code, separate-addon/repository and rename methodology is superseded. Continue directly in current _FluxUI. A frozen restore archive is not another working addon. Read the plan and Codex prompt. Merge context templates with existing repository instructions/progress; do not overwrite unrelated files. This is a plan, not completed runtime changes or native acceptance.
+The [implementation plan](docs/FluxUI_Modernization_Plan.md) and 26 documents under
+[specs](docs/specs/00-README.md) describe the addon requirements. Development continues
+in the existing _FluxUI addon and repository. See [contribution guidelines](../CONTRIBUTING.md),
+[current status](../docs/STATUS.md) and [development tasks](../docs/DEVELOPMENT.md).
+Original supplied files are preserved in the external recovery archives.

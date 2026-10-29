@@ -2184,7 +2184,7 @@ function Module.HasSuperchargedChronoboonBuff()
             
             -- For 12.0+ clients, check if name is a secret value
             if isV12 and isSecretValue(name) then
-                -- For 12.0+ with secret values, we can't use string methods (name:lower())
+                -- 12.0+ secret names cannot be passed to string methods such as name:lower().
                 -- Try using string functions instead (string.lower() as C function may work)
                 local success, result = pcall(function()
                     local lowerName = string.lower(name)
@@ -2916,7 +2916,7 @@ function Module.FindBuffForItem(itemID)
                     end
                     
                     -- Method 3: If we still don't have maxDuration, estimate based on remaining time
-                    -- We need to be smart about this - use the smallest standard duration that could fit
+                    -- Use the smallest standard duration that can contain the remaining time.
                     -- Common weapon enchant durations: 30 min (1800s), 1 hour (3600s), 2 hours (7200s)
                     if maxDuration <= 0 then
                         if expirationRemaining > 3600 then
@@ -3186,7 +3186,7 @@ function Module.CanEnchantApplyToSlot(enchantItemID, slotID)
     -- Get weapon item info
     local weaponName, weaponLink, _, _, _, weaponType, weaponSubType, _, weaponEquipLoc = GetItemInfo(weaponItemID)
     if not weaponType or not weaponEquipLoc then 
-        -- If we can't get item info, be conservative and return false
+        -- Return false until item data is available.
         return false
     end
     
@@ -3321,7 +3321,7 @@ function Module.GetWeaponEnchantSlot(itemID)
             isSameEnchant = true
         elseif enchantId and enchantId > 0 then
             -- Could be same enchant type (different items can create same enchant)
-            -- For now, assume if enchant exists and is under threshold, we should refresh
+            -- Refresh an existing enchant when its duration is below the threshold.
             isSameEnchant = true
         end
         
@@ -4587,7 +4587,7 @@ local function SetItemMode(btn, itemID, buff)
             end
             StoreConsumablesBoundSlot(btn, bag, slot, "charges")
             
-            -- CRITICAL: For weapon enchants with macro actions, we need to manually set icon and count
+            -- Weapon-enchant macro actions require explicit icon and count updates.
             -- because FluxButton might clear them when it sees a macro action
             -- Get item info first
             local name, link, icon = GetCachedItemInfo(itemID)
@@ -4620,7 +4620,7 @@ local function SetItemMode(btn, itemID, buff)
                 btn.PlaceholderHideCount = nil
             end
             
-            -- Store item ID on button so we can restore icon/count if FluxButton clears them
+            -- Store the item ID to restore icon/count after FluxButton clears them.
             btn.ConsumablesItemID = itemID
             btn.ConsumablesIsWeaponEnchant = true
             Module.RefreshConsumablesUsability(btn)
@@ -4979,7 +4979,7 @@ function Module.UpdateButtonState(force)
         return
     end
     
-    -- CRITICAL: If we're in WISP LOCK, check if we should stay in it FIRST
+    -- Check whether WISP LOCK still applies before changing state.
     -- This prevents any flickering by prioritizing WISP LOCK state
     if Module._isWispLocked then
         local isWispLocked, minRemaining, minRemainingBuff, isStable = Module.CheckWispLockState()
@@ -5099,7 +5099,7 @@ function Module.UpdateButtonState(force)
     
     if itemID then
         -- CRITICAL: Double-check WISP LOCK state right before SetItemMode to prevent race conditions
-        -- This ensures we don't show the item if we should be in WISP LOCK
+        -- Keep the item hidden while WISP LOCK applies.
         local doubleCheckWispLocked, _, _, _ = Module.CheckWispLockState()
         if doubleCheckWispLocked then
             -- State changed - enter WISP LOCK instead

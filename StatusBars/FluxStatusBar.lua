@@ -1509,8 +1509,8 @@ local function UpdateGoldBar()
     -- Check for tracked currencies
     local currencyText = ""
     
-    -- We track specific currencies but we NO LONGER show a progress bar for them
-    -- (User requested "not having that yellow bar")
+    -- Tracked currencies are displayed as text.
+    -- This display has no currency progress bar.
     
     -- Retail API (Backpack specific tracking)
     if C_CurrencyInfo and C_CurrencyInfo.GetBackpackCurrencyInfo then

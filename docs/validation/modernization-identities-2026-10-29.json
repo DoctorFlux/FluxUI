@@ -1,6 +1,5 @@
 {
   "recordedAtUtc": "2026-10-29T09:26:20.594723+00:00",
-  "branch": "codex/modernization-audit-20261029",
   "baseline": {
     "commit": "7436820453d2248c84c99fff71507553efc47c19",
     "tree": "6e3af8d646a09ce2182ffd6d2cc287890584825a",

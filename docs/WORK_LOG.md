@@ -5,12 +5,12 @@
 Inspected actual main `7436820`, remote, manifests, tests, diagnostics, documentation
 and supplied Word/Markdown plans/templates/specifications. Initial tracked tree was
 clean; `new docs/` and sync log were untracked. No root/ancestor instructions existed.
-Merged durable rules without modifying supplied documents. Parallel read-only audits
+Merged durable rules without modifying supplied documents. Read-only audits
 covered all supplied specs, lifecycle ownership and installed clients/references.
 
 Before repository edits, created and verified source ZIP (1,177 files), Git history
 bundle and private settings ZIP (403 files), while no WoW process was running. See
-`RECOVERY.md`. Created `codex/modernization-audit-20261029`; main was preserved.
+`RECOVERY.md`. Created the current change branch; main was preserved.
 
 Ran `python tests/run_validation.py --output docs/validation/modernization-baseline-2026-10-29.json`:
 81 tests passed; 722 Lua syntax files, zero failures. Lua/luac 5.4.6, Python 3.10.6.
@@ -176,8 +176,7 @@ Commands and evidence:
 
 Runtime/test/fixtures committed separately as `19c40a0c84212b24fdf221a9653a4116d32f9020`,
 tree `92973edadfdd5ebfc5935621bc2b77f1e0655066`. Review of the small runtime diff
-confirmed enabled geometry paths/restriction guards are unchanged. No independent
-agent review was requested or claimed. Evidence/native steps are in
+confirmed enabled geometry paths/restriction guards are unchanged.  Evidence/native steps are in
 `WINDOW_MOVER_LIFECYCLE.md`; current baseline/candidate hashes and matched outputs
 are pinned in `validation/window-mover-comparison-2026-10-29.json`.
 
@@ -188,3 +187,37 @@ eight client, 77 reference and 109 performance rows). All 726 current Lua hashes
 match full validation; all 42 supplied package/log files match the fresh checkpoint.
 Generated references were refreshed with the existing tools. Whitespace checks pass
 with intentional verbatim Markdown hard breaks retained.
+
+## 2026-10-29 — repository editorial cleanup
+
+Baseline f57fc79; main unchanged. Before edits, verified a fresh external source,
+history and private settings checkpoint at 10:19 UTC with WoW closed. Retired editor
+plans, prompts/templates, original Word plan, old handoffs, ignored local backups
+and sync log into that checkpoint. Replaced useful rules/tasks with conventional
+contribution and development documentation. Retained all 26 specifications and the
+Markdown implementation plan; three terminology edits preserve gameplay requirements.
+
+Rewrote conversational comments in 39 Lua files across bars, binding, window/map,
+extra buttons, inventory/restock, layout, menu, minimap, other helpers, Respec and
+unit frames. Existing lexer comparison against recovered sources proves identical
+non-comment tokens and exact string bytes for every changed Lua file. Data, licenses,
+assets, saved roots, manifests and runtime behavior are preserved. Historical capture
+numbers remain unchanged; only process descriptions/optional branch metadata changed.
+
+Evidence: validation/comment-cleanup-tokens-2026-10-29.json. No new runtime benchmark
+is needed for identical executable code; native acceptance remains at its prior status.
+
+Final checks use `python tests/run_validation.py --output docs/validation/editorial-cleanup-full-2026-10-29.json --sync-docs`, the existing
+reference builder and documentation validator. The final source manifest supersedes
+intermediate reports made before the last inline comment edit. Libraries/assets/
+manifests (318 files) and historical measurement values were byte/value checked;
+38 retired original files match the external checkpoint. All six CSV ledgers retain
+valid row shapes. Explicit development-tool markers are absent from actual addon
+files outside Git; legitimate game labels/item names/local variables are retained.
+
+Editorial validation completed: 85 desktop tests and 726 Lua syntax checks pass;
+all current Lua hashes match the final report. Documentation validation passes
+with 759 classified sources, 577 reachable files, 361 setting definitions,
+23 SavedVariables roots and 12,709 local links. All six CSV ledgers are valid.
+The final scope scan covers 1,195 actual files and finds zero development-tool
+markers outside Git. Native acceptance retains its prior pending status.

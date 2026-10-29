@@ -333,7 +333,7 @@ function FluxWindowFrame:SetOffset(xOffset, yOffset)
     end
 end
 
---- Get the content frame (where you should add your UI elements)
+--- Return the content frame for child widgets.
 function FluxWindowFrame:GetContentFrame()
     local frame = self:GetFrame()
     return frame.Content
@@ -571,7 +571,7 @@ local function CleanupTabContent(tab)
 
         -- If SetParent(nil) failed, try to set it to a safe parent instead
         if not success and parent == nil then
-            -- For fonts and textures, we can't set parent to nil on some clients
+            -- Some clients reject nil parents for fonts and textures.
             -- Instead, just hide them and clear points
             obj:Hide()
             if obj.ClearAllPoints then
@@ -655,7 +655,7 @@ local function CleanupTabContent(tab)
         tab.content:SetAllPoints(windowFrame.Content)
         tab.content:Hide()
 
-        -- Clean up the old frame as best we can
+        -- Hide the detached content frame.
         pcall(function() oldContent:Hide() end)
         -- Don't try to set parent to nil, just leave it
     end
@@ -1615,7 +1615,7 @@ local function InitializeWindowFrame()
     end
     
     -- If we're in Minimap mode but NOT on the Map tab, 
-    -- we need to embed the minimap and then hide it (only while Map tab is enabled).
+    -- embed the minimap before hiding it, only while the Map tab is enabled.
     if FluxWindowFrame:IsTabEnabled("Map") and not isMapMode and targetTab ~= "Map" then
         if FluxMinimap and FluxMinimap.EmbedInFrame and not InCombatLockdown() then
             FluxMinimap:EmbedInFrame(windowFrame)

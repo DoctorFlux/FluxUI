@@ -9,7 +9,7 @@ local CombatFeedback_OnUpdate = CombatFeedback_OnUpdate
 
 -- Flux perf T2.6: FluxUnitFrames_Shared previously drove CombatFeedback_OnUpdate
 -- from its main per-frame OnUpdate, so that code ran every frame for every
--- unit frame even when no damage/heal text was being animated. We now attach
+-- unit frame even without damage/heal text. Attach
 -- an OnUpdate to the frame's hitIndicator only while a feedback animation is
 -- actually in flight (self.feedbackStartTime ~= nil). Blizzard's
 -- CombatFeedback_OnUpdate clears feedbackStartTime when the animation

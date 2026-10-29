@@ -187,7 +187,7 @@ local function CreateFluxLFGButton()
 
     -- Compatibility / Availability Check
     -- Only create this button if the LFG Minimap Button exists (indicating LFG is active)
-    -- We strictly check for the minimap buttons as indicators, as requested.
+    -- Use minimap button visibility as the availability indicator.
     local lfgMinimapButton = _G["LFGMinimapFrame"] or _G["LFGMinimapFrameIcon"] or _G["QueueStatusMinimapButton"] or _G["LFG_MinimapEye"]
 
     if not lfgMinimapButton then
@@ -419,7 +419,7 @@ lfgInitFrame:SetScript("OnEvent", function(self, event)
     CreateFluxLFGButton()
 end)
 
--- Fast Timer Backups (as requested by user edits)
+-- Fallback refresh timers
 if C_Timer and C_Timer.After then
     C_Timer.After(0, CreateFluxLFGButton)
     C_Timer.After(0.1, CreateFluxLFGButton)

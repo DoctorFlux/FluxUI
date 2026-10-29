@@ -1315,7 +1315,7 @@
     },
     "version": "1.60.1"
   },
-  "evidence": "Agent collected the open Forever client through normal slash commands before the resource lifecycle/spark changes. Map tab remained open. External half-second focus samples: 43/43 WowB, not a continuous focus guarantee. CPU profiling enabled; FPS is not an unprofiled before/after result. No scene movement, player settings, graphics CVars, or bindings changed by the capture; scriptProfile restored to 0 followed by a normal reload.",
+  "evidence": "Captured from the open Forever client through normal slash commands before the resource lifecycle/spark changes. Map tab remained open. External half-second focus samples: 43/43 WowB, not a continuous focus guarantee. CPU profiling enabled; FPS is not an unprofiled before/after result. No scene movement, player settings, graphics CVars, or bindings changed by the capture; scriptProfile restored to 0 followed by a normal reload.",
   "focusAudit": {
     "label": "current-profiled",
     "samples": [

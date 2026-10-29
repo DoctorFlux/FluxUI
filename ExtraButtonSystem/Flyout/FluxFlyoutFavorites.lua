@@ -433,7 +433,7 @@ local function SyncClearToPaired(category, itemId, spellId, modKey)
     if not syncPartner then return end
     
     -- For Teleport/Portal sync, clear the same modifier from partner
-    -- regardless of whether we can find the exact paired spell
+    -- even when the exact paired spell is unavailable
     syncInProgress = true
     local favs = GetFavoritesTable()[syncPartner]
     if type(favs) == "table" then
@@ -1041,7 +1041,7 @@ function FluxFlyoutFavorites.HookFlyoutButton(btn, category)
             if cat == "Mount" then
                 idToSave = itemID
                 if not idToSave then
-                    -- If we only have a spell ID, we can't favorite it for the item-based macro
+                    -- A spell ID alone cannot identify a favorite for an item-based macro.
                 end
             elseif itemType == "item" then
                 idToSave = itemID

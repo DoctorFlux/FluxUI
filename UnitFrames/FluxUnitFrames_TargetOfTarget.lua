@@ -126,11 +126,11 @@ local function InitializeTargetOfTargetFrame()
         ns.PowerCostOverlay.Initialize(frame)
     end
 
-    -- NO Additional Power Bar for target of target (user requested only main resource bar)
+    -- Target-of-target frames show only the main resource bar.
 
     -- Bars will be updated by the shared event system when needed
 
-    -- NO Portrait for target of target (as requested)
+    -- Target-of-target frames omit the portrait.
 
     -- Atlas Border (covers both unit frame and portrait, layered on top)
     local atlasBorder = UF.CreateAtlasBorder(frame)
@@ -144,7 +144,7 @@ local function InitializeTargetOfTargetFrame()
     if frame.classIconLeftBorder then frame.classIconLeftBorder = nil end
     if frame.classIconRightBorder then frame.classIconRightBorder = nil end
 
-    -- NO Cast Bar for target of target (as requested)
+    -- Target-of-target frames omit the cast bar.
 
     -- Force initial layout
     if frame.UpdatePartition then

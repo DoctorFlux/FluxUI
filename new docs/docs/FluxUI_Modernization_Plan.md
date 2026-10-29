@@ -6,7 +6,7 @@
 
 Modernize the existing DoctorFlux/FluxUI repository in place. Keep the addon usable while repairing defects, consolidating duplicated responsibilities, introducing real module ownership and optimizing measured hotspots. Retain sound code and existing fixes; rewrite individual subsystems when their contracts, defects or measured cost justify it. The end result should be clean and modular throughout, with the same player experience and feature set.
 
-Definitive user instruction: continue directly from the existing _FluxUI files in the current DoctorFlux/FluxUI repository. Do not create a second working addon, a separate working repository, a derived FluxUI package or a renamed addon. Reuse, refactor, repair and selectively rewrite the current implementation. This supersedes all earlier empty-project, reference-only-source, separate-addon, separate-repository and rename instructions. Preserve the appearance, features, settings, performance-testing, client and AI-continuity requirements.
+Definitive user instruction: continue directly from the existing _FluxUI files in the current DoctorFlux/FluxUI repository. Do not create a second working addon, a separate working repository, a derived FluxUI package or a renamed addon. Reuse, refactor, repair and selectively rewrite the current implementation. This supersedes all earlier empty-project, reference-only-source, separate-addon, separate-repository and rename instructions. Preserve the appearance, features, settings, performance-testing, client and maintenance-record requirements.
 
 Use a branch such as refactor/modular-runtime in https://github.com/DoctorFlux/FluxUI. Keep its history. Do not create a second product, fork its feature set, or switch to an empty runtime. Keep the current _FluxUI folder/TOC, addon identity, public commands, bindings and SavedVariables during stabilization. The addon remains _FluxUI. No rename or separate product is part of this plan.
 
@@ -83,7 +83,7 @@ Each stage keeps the addon runnable, has a bounded file/feature scope and ends w
 
 ### Stage 0 Establish checkpoint and reproducible evidence
 
-Inspect AGENTS, Git status/remotes/HEAD, installations, references, existing tests and diagnostics. Freeze source/settings references, record client/builds, create the change branch and expand parity/ownership/load maps. Reproduce the current validation suite, recording missing reference dependencies and actual tool versions. Capture native baseline scenarios where clients are available. Distinguish pre-existing failures from new regressions.
+Inspect contribution guidelines, Git status/remotes/HEAD, installations, references, existing tests and diagnostics. Freeze source/settings references, record client/builds, create the change branch and expand parity/ownership/load maps. Reproduce the current validation suite, recording missing reference dependencies and actual tool versions. Capture native baseline scenarios where clients are available. Distinguish pre-existing failures from new regressions.
 
 Exit: checkpoint evidence, baseline reports or explicit pending rows, reproducible command list, scope/decision record and one immediate implementation task. Do not spend the whole project documenting before fixing a bounded verified issue.
 
@@ -185,15 +185,18 @@ Use documented native display consumers for secret values. Do not compare, sort,
 
 Native acceptance covers startup/reload/reconnect, combat and secure input, taint/Edit Mode, paging/vehicles/forms, actual aura/raid/secret displays, inventory/bank/vendor/salvage, profiles/migration/recovery, optional addons and resolution/UI scale. No actual client acceptance or new FPS improvement is claimed here.
 
-## 9 AI continuity and local references
+## 9 Maintenance records and local references
 
-Persist the modernization direction in repository instructions and a decision log. Explicitly mark all earlier fresh-start, second-addon, separate-repository and rename directives superseded so another AI continues directly in the existing _FluxUI project. Merge the supplied context templates with existing records; never overwrite unrelated AGENTS guidance or erase current progress.
+The existing _FluxUI implementation and repository remain the development base.
+Keep working rules in CONTRIBUTING.md, current verified state in docs/STATUS.md,
+next tasks in docs/DEVELOPMENT.md, and decisions/results in the existing ledgers
+and WORK_LOG.md. Record commands, source identities, artifacts, unresolved native
+checks and the next task. Inspect the actual working tree before making changes.
 
-AGENTS.md sets permanent rules and read order. docs/STATUS.md records current milestone, tested source fingerprint, accepted work, active task, blockers, native tests, dirty work and one immediate next action. NEXT_SESSION.md is derived from STATUS. Maintain docs/DECISIONS.md, FEATURE_PARITY.csv, MODULE_OWNERSHIP.csv, API_MIGRATION.csv, CLIENT_MATRIX.csv, REFERENCE_MANIFEST.csv, PERFORMANCE_RESULTS.csv and WORK_LOG.md. Store the 26 input concepts and sanitized evidence with durable links.
-
-At each session start, read the instructions/status/decisions and relevant specs/ledgers, then inspect actual Git state and reconcile newer/dirty work before editing. At each meaningful checkpoint and session end, update records with exact commands/results, source fingerprints, artifacts, pending native work and the next action. Persist before context limits. Commit relevant code/context together where appropriate without including unrelated changes; do not invent commit IDs or mark unfinished work complete. Chat memory is supplementary.
-
-Local references may be at F:\World of Warcraft\_retail_\Interface\AddOns. A local Codex session can inventory selected folders read-only; this hosted session cannot access that drive. Record TOC/version/interface/dependencies, origin and hashes. Accept selected addon ZIPs if needed. Identify classicthreat from its actual TOC, and verify installed Syndicator/Baganator APIs rather than assuming the old fork matches current distributions.
+Local references may be available at F:\World of Warcraft\_retail_\Interface\AddOns.
+Inspect accessible folders read-only and record versions, licenses, origins and
+hashes. Verify current Syndicator/Baganator APIs and identify classicthreat by its
+actual TOC; do not assume an older copy matches the installed distribution.
 
 Use MoveAny, EllesmereUI, Bartender4, Button Forge, Clicked, Buffet, Restocker, Scrap, TrinketMenu, ItemRack and Blizzard source as versioned behavior/API references. Keep optional Questie, Baganator, Syndicator and Details integrations, plus existing supported companions. Existing code retention does not override upstream permissions: preserve attribution and audit provenance for retained libraries/assets instead of blindly copying new reference code. Keep private account files and full reference installations out of public Git history.
 
@@ -203,7 +206,7 @@ The first implementation task is to preserve/checkpoint the current state, repro
 
 Completion requires preserved features/options/scopes, recorded intentional bug fixes, equivalent controlled appearance/input, one canonical contract per domain, resource ownership across all features, retired obsolete paths, clean reproducible packages, exact-revision evidence and separate per-build native acceptance. Formatting/comment cleanup alone does not meet the objective.
 
-This planning deliverable changes no repository or installation. The package is a proposed execution plan and mergeable context templates, not completed modernization. It defines continued work in the current _FluxUI addon and repository, with only a frozen restore checkpoint outside the active addon folders.
+This planning deliverable changes no repository or installation. The package records product requirements and an implementation plan; completion requires the validation described above. It defines continued work in the current _FluxUI addon and repository, with only a frozen restore checkpoint outside the active addon folders.
 
 ## 11 Source register
 
@@ -213,4 +216,4 @@ Primary paths: _FluxUI.toc; Core/Module.lua; Core/Engine/Events.lua; Core/Engine
 
 Supporting repository records: docs/07-runtime-architecture.md; docs/43-startup-optimization.md; docs/52-retail-idle-hotspots.md; docs/55-resource-lifecycle-audit.md; docs/41-verification.md. Historical reports are evidence with their original revision/limits, not a list of still-open defects.
 
-Blizzard API source: https://github.com/Gethe/wow-ui-source. Pin matching sources for each actual build. The 26 supplied product specifications are packaged verbatim; this modernization decision governs implementation methodology where their old rewrite wording differs.
+Blizzard API source: https://github.com/Gethe/wow-ui-source. Pin matching sources for each actual build. The 26 product specifications are retained; this modernization decision governs implementation methodology where their old rewrite wording differs.

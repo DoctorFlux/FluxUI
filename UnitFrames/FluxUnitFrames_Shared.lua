@@ -5092,9 +5092,9 @@ end
 function UF.UpdateBorderColors(self)
     if not self.unit then return end
     
-    -- Determine if this frame relies on dynamic coloring (Target, TargetOfTarget)
-    -- Or if it's the player frame (which might just stay Class Color or default)
-    -- For this fix, we focus on Target and TargetTarget as requested.
+    -- Target/focus frames and their target frames use dynamic colors.
+    -- Player frames retain their configured class or default color.
+    -- NPC palettes are resolved separately below.
     local useDynamicColor = (self.unit == "target" or self.unit == "targettarget"
         or self.unit == "focus" or self.unit == "focustarget")
     
@@ -5110,7 +5110,7 @@ function UF.UpdateBorderColors(self)
         elseif npcR then
             color = { r = npcR, g = npcG, b = npcB }
         else
-            -- NPC: No color tint (user requested no tint for non-players)
+            -- NPCs omit class-color tint.
             color = { r = 1, g = 1, b = 1 }
         end
 

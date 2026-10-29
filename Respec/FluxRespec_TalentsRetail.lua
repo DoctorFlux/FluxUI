@@ -410,9 +410,9 @@ function TR.Matches(snapshot)
         return not liveStarter
     end
 
-    -- Same spec, but we can't prove the loadout matches: treat as not matching
+    -- Treat an unverified loadout as a mismatch even when the spec matches.
     -- so Apply actually runs LoadConfig / replay. If both name and string are
-    -- missing, accept the spec match (best we can do) to avoid looping.
+    -- missing, accept the spec match to avoid retrying indefinitely.
     if (not snapshot.loadoutName or snapshot.loadoutName == "")
         and (not snapshot.exportString or snapshot.exportString == "") then
         return true
@@ -670,7 +670,7 @@ local function ReplayExportString(importText, configID, myGen, onDone, opts)
         return
     end
 
-    -- Starter-build must be off before we can ResetTree / PurchaseRank (unless applying a starter snapshot).
+    -- Disable Starter Build before ResetTree / PurchaseRank unless applying a starter snapshot.
     if not opts.starterProfile and _G.C_ClassTalents and _G.C_ClassTalents.GetStarterBuildActive then
         local ok, active = pcall(_G.C_ClassTalents.GetStarterBuildActive)
         if ok and active then

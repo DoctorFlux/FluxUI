@@ -21334,7 +21334,7 @@
       "classification": "active",
       "chapter": "11-action-bars.md",
       "lines": 2512,
-      "sha256": "71738b071210119bf84e3d2d94fec405054a528c5df743022368dfea50fd577e",
+      "sha256": "cbe5a28c5bd84bd7d0db88374720d0166b4ede129702c7424832d73386092a75",
       "clients": [
         "camelot",
         "cata",
@@ -23832,7 +23832,7 @@
       "classification": "active",
       "chapter": "10-flux-window.md",
       "lines": 1855,
-      "sha256": "1a46b671a7d57dba3e6a3c8c5833b447abcac4b5855e9f3bf92f87c7ebd9fa5f",
+      "sha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61",
       "clients": [
         "camelot",
         "cata",
@@ -24613,7 +24613,7 @@
       "classification": "active",
       "chapter": "10-flux-window.md",
       "lines": 1781,
-      "sha256": "5b8c275af48f3c28de0c5d3b36e522e899fdee3f6a2cd5544678c5249c042ddb",
+      "sha256": "1795747f9beb829501d24f1f45c385d0fdc78467fe9d4eacb9d389c600f0e62e",
       "clients": [
         "camelot",
         "cata",
@@ -25395,7 +25395,7 @@
       "classification": "active",
       "chapter": "13-binding-system.md",
       "lines": 637,
-      "sha256": "c74e7d1f88b604f207cae1778049ee1b737875345c0692d29e12cf9656fba5ac",
+      "sha256": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
       "clients": [
         "camelot",
         "cata",
@@ -32317,7 +32317,7 @@
       "classification": "active",
       "chapter": "08-shared-services.md",
       "lines": 464,
-      "sha256": "3f70e91058ffc127b04d90a21ad1d5a01a5d8260789e12007770856e66dd0389",
+      "sha256": "fd7b41830c894237d35253202e555620ecbf32709a10f50d82d3d81d0aeac14d",
       "clients": [
         "camelot",
         "cata",
@@ -33622,7 +33622,7 @@
       "classification": "active",
       "chapter": "08-shared-services.md",
       "lines": 1083,
-      "sha256": "c2671ddbef134b3886d261af6308d84fda32e46234feabb594deeacac2c90454",
+      "sha256": "4671d5ae0dec97cf24bed4ab10578095720cfe16fb9946ec8dfe560aa4ed4b16",
       "clients": [
         "camelot",
         "cata",
@@ -36855,7 +36855,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 834,
-      "sha256": "4b33e386d97369a4e1c2ac72a66ba04d4b8debc5654bd771d47cecd28106d88d",
+      "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
       "clients": [
         "camelot",
         "cata",
@@ -37404,7 +37404,7 @@
       "classification": "inactive source",
       "chapter": "12-extra-button-system.md",
       "lines": 4691,
-      "sha256": "f6c9e27d694e4eefb3d259d9ab04a5480c3c86a62734b15fc8aef903e16c5645",
+      "sha256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -37991,7 +37991,7 @@
       "classification": "inactive source",
       "chapter": "12-extra-button-system.md",
       "lines": 964,
-      "sha256": "20ff085c62ce8042756618d1d07d25dc13b874ebd36387adba5fee535c773aab",
+      "sha256": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -38641,7 +38641,7 @@
       "classification": "inactive source",
       "chapter": "12-extra-button-system.md",
       "lines": 1587,
-      "sha256": "ca279465036a2fb88429fa42f133705737ee394816a4c0115a20d745af45812b",
+      "sha256": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -39436,7 +39436,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 808,
-      "sha256": "62c15dc4c59ff9ae91c90521ca6084fb14b9e87e725af088c5b678da0b561048",
+      "sha256": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
       "clients": [
         "camelot",
         "cata",
@@ -39856,7 +39856,7 @@
       "classification": "inactive source",
       "chapter": "12-extra-button-system.md",
       "lines": 1525,
-      "sha256": "50ce83883e51fab73794f478c129fd9e6ceadd771c0ecebe01dae64ce8b76eca",
+      "sha256": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -40214,7 +40214,7 @@
       "classification": "inactive source",
       "chapter": "12-extra-button-system.md",
       "lines": 989,
-      "sha256": "5cefb02191b30dbe4260243a3bd86795b008b8befcaf28d6918c7444e7c991ae",
+      "sha256": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -41271,7 +41271,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 6586,
-      "sha256": "9df32badf43a07265217fa52c124424268f6dbcdfa812b0f320c982e67858962",
+      "sha256": "1dfe7689915f4416e2463a651d1167c7c0060f44b8a7d539af745f178045419f",
       "clients": [
         "camelot",
         "cata",
@@ -42473,7 +42473,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 4575,
-      "sha256": "d2669f6dffdcc46c152197b334e8cc5a7a0136c4de67f064ea915ed98cae3e9e",
+      "sha256": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c",
       "clients": [
         "camelot",
         "cata",
@@ -43015,7 +43015,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 860,
-      "sha256": "ceb30edfb4d2c69ff08a9e12a29a82c20b021b92b9bbba8da3e04306af55aa83",
+      "sha256": "8194c2d49dac4b9094ab63fa0016dac0d4e9fa0a1039e16c83e77c13df40f004",
       "clients": [
         "camelot",
         "cata",
@@ -43140,7 +43140,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 3238,
-      "sha256": "af389872182545226b47dfbaab8eaf4ba07471274b4278c2cc9dc6339ef943e6",
+      "sha256": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6",
       "clients": [
         "camelot",
         "cata",
@@ -43950,7 +43950,7 @@
       "classification": "active",
       "chapter": "12-extra-button-system.md",
       "lines": 892,
-      "sha256": "c6bddaf5b97d71092ff3d2d7db8ba3ce140ae81d14f928dc0e99e0f76644f6fa",
+      "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
       "clients": [
         "camelot",
         "cata",
@@ -46121,7 +46121,7 @@
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
       "lines": 2803,
-      "sha256": "353a596d1c38ff6c3e47538ba3b7305fc9a233473301f27488b7821288a1d6a7",
+      "sha256": "9956821a69cecd565125ce0ab227b74cfc1d9fee0da918c3df34e3444dce7133",
       "clients": [
         "camelot",
         "cata",
@@ -51297,7 +51297,7 @@
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
       "lines": 1131,
-      "sha256": "3144f217057ad8213fb567720675ebdda944a544cefb3cacbe241b49a7799e2b",
+      "sha256": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd",
       "clients": [
         "camelot",
         "cata",
@@ -55357,7 +55357,7 @@
       "classification": "active",
       "chapter": "06-layout.md",
       "lines": 1013,
-      "sha256": "e2b120f6a6808378187967bb638bfcb8e53ebd12746cd0cce6274fabd3a975c3",
+      "sha256": "c3fa85b68bb03fae488ab2d29d2447bb60cac9ee8c1efa7e8abc2ce887f85f1e",
       "clients": [
         "camelot",
         "cata",
@@ -58024,7 +58024,7 @@
       "classification": "active",
       "chapter": "17-micromenu.md",
       "lines": 426,
-      "sha256": "500898d3cfff1886bad22577ac115a471421da5ccd127a1203c306908125fb0a",
+      "sha256": "65c682daeeb2f499d99bef9e45a633ca3ff636dbadf7e8b3083eda4fca0c960f",
       "clients": [
         "camelot",
         "cata",
@@ -58173,7 +58173,7 @@
       "classification": "active",
       "chapter": "17-micromenu.md",
       "lines": 3197,
-      "sha256": "86e809e7ad0c88c3f0f55da57e464924f7b72a9cc2561ecc6bf55364660133a5",
+      "sha256": "df986aabcbc04c4965f8fc8061676bd0a171fa175287f3164cfbdc94fb8862f4",
       "clients": [
         "camelot",
         "cata",
@@ -58788,7 +58788,7 @@
       "classification": "active",
       "chapter": "17-micromenu.md",
       "lines": 1720,
-      "sha256": "ba3ada5617561e6b73b2a84382f2461acc4bafd10287e131842002ace0f3fbfd",
+      "sha256": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e",
       "clients": [
         "camelot",
         "cata",
@@ -59065,7 +59065,7 @@
       "classification": "active",
       "chapter": "17-micromenu.md",
       "lines": 1103,
-      "sha256": "137106afe3f8f8410843bc95d1b630fe1b95a482eccf87a163760a99e3ce3090",
+      "sha256": "9514d1c81da548070bbf228e1cb25b38ada91bb7351cf248a6a21aa8003fab94",
       "clients": [
         "camelot",
         "cata",
@@ -59404,7 +59404,7 @@
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
       "lines": 2686,
-      "sha256": "3b822e92f5145cd8c02af16f732a4ddd1ae079363f76e9a96a7fb4df22f034df",
+      "sha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e",
       "clients": [
         "camelot",
         "cata",
@@ -59940,7 +59940,7 @@
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
       "lines": 1520,
-      "sha256": "7cb238f4a85b5f8a5a5121d2247d639c28a985c7765b7722271716f1f5f25ae8",
+      "sha256": "d1ceeb19d001d5b0db3c1bbc7c82f28682165f6a2706be5b8cfef34e943006f3",
       "clients": [
         "camelot",
         "cata",
@@ -60145,7 +60145,7 @@
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
       "lines": 517,
-      "sha256": "b43c4eccd3d12a4e47ad0df53a1c83d3054b7534f38a65344781e666a8870016",
+      "sha256": "534793c994a163af6a3702690cf2512fbc706cd5da98b8c80f113155cb626569",
       "clients": [
         "camelot",
         "cata",
@@ -63435,7 +63435,7 @@
       "classification": "active",
       "chapter": "25-other-qol.md",
       "lines": 699,
-      "sha256": "35cee3006a3bb9a8671b4c503b770c41bf511a1ef445766dd3be80465b9da8cf",
+      "sha256": "db1cc1b737942ae38905d9663c453ef008f0538e9319a336c6de272657c179f0",
       "clients": [
         "camelot",
         "cata",
@@ -63524,7 +63524,7 @@
       "classification": "active",
       "chapter": "25-other-qol.md",
       "lines": 398,
-      "sha256": "070241ffed64059022be9b25b762ca010d6593f4b8bda41b5e993aa3e808cbe4",
+      "sha256": "1718bb3f1991cadacec3ea9f6de5d87098015f46d5d1af111a48475b3310e1c4",
       "clients": [
         "camelot",
         "cata",
@@ -67002,7 +67002,7 @@
       "classification": "active",
       "chapter": "23-respec.md",
       "lines": 1468,
-      "sha256": "6aa416f5eaca19a0fafbc1909d0dd6661703704da947c2dee3a1877443b702a2",
+      "sha256": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b",
       "clients": [
         "camelot",
         "cata",
@@ -67195,7 +67195,7 @@
       "classification": "active",
       "chapter": "23-respec.md",
       "lines": 995,
-      "sha256": "0ee4a08c45a7ac04ecd3c7474f8797600540610c18adafb71741d306f485c2ea",
+      "sha256": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6",
       "clients": [
         "camelot",
         "cata",
@@ -67284,7 +67284,7 @@
       "classification": "active",
       "chapter": "23-respec.md",
       "lines": 3146,
-      "sha256": "934227d88a0997a4255f8f02550e90a9a7e1abad48cbb4abb131278b614dbd41",
+      "sha256": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
       "clients": [
         "camelot",
         "cata",
@@ -69195,7 +69195,7 @@
       "classification": "active",
       "chapter": "16-status-bars.md",
       "lines": 3112,
-      "sha256": "9199393ed286f8761fb7580f164e22c8b0bba61025cd6d10084d560c6e639e94",
+      "sha256": "5357903ec1f56c8ddece792502d3ea00a0753405ea7169debf0f77001f8def2e",
       "clients": [
         "camelot",
         "cata",
@@ -76144,7 +76144,7 @@
       "classification": "active",
       "chapter": "14-unit-frames.md",
       "lines": 3480,
-      "sha256": "514be37b54c50503c68896386dbb1b92e0be687717c3f63c38318f97c1e98d1f",
+      "sha256": "8d105f70652583b179603caa65424eca0a5c381abd51ba00c6ee759b0ea635c2",
       "clients": [
         "camelot",
         "cata",
@@ -77033,7 +77033,7 @@
       "classification": "active",
       "chapter": "14-unit-frames.md",
       "lines": 201,
-      "sha256": "3f23a866f699f96970db301119cb02096f75c0e72c704cb5139c20cf939e2716",
+      "sha256": "3f9e255f90f02655947236d01b3539275b876c1f80c66fc06a0cc30cc14ad274",
       "clients": [
         "camelot",
         "cata",
@@ -77155,7 +77155,7 @@
       "classification": "active",
       "chapter": "14-unit-frames.md",
       "lines": 2411,
-      "sha256": "6e9f4e28a83f075318f21553f38be50af2e89caff073df3db3d1e5bda625c614",
+      "sha256": "81f7ddba75b0b1cc9496acbb4e6280b7fc8dc2fe2fcbc06033adabfe05fba035",
       "clients": [
         "camelot",
         "cata",
@@ -78641,7 +78641,7 @@
       "classification": "active",
       "chapter": "14-unit-frames.md",
       "lines": 8833,
-      "sha256": "fcbb2993a20ede85b3a33b570d6d653371dfb610a5ab13ed2d40f79fa1c89797",
+      "sha256": "f0ea171f2f0add3f43a1a8bdf137defcaaa5c9721c1d30f1ea0ed8dd93f6f4f9",
       "clients": [
         "camelot",
         "cata",
@@ -79778,7 +79778,7 @@
       "classification": "active",
       "chapter": "14-unit-frames.md",
       "lines": 348,
-      "sha256": "14f9668c84eb7683fbd6f0cc3d935a97f0f523fdb22c1bd5ff3603cd4f8d273b",
+      "sha256": "8cca264871aa994ae960f7217af1298170da76fa10b988c3742b6ab6681ce17a",
       "clients": [
         "camelot",
         "cata",

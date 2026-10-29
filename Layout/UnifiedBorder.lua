@@ -624,7 +624,7 @@ local function UpdateBorder()
     
     -- Account for border padding
     -- Grids have borders that extend 4px outward
-    -- Unified border also extends 4px outward, so we need to account for both
+    -- Account for the unified border extending 4px outward on both sides.
     local gridBorderWidth = 0
     local unifiedBorderPadding = 0
     local totalOffset = gridBorderWidth + unifiedBorderPadding
@@ -763,7 +763,7 @@ local function TryInitialize(force)
     local hasNonCombatGrid = components.nonCombatGridFrame ~= nil
     local hasCombatGrid = components.combatGridFrame ~= nil
     
-    -- At minimum, we need both grids to create a border
+    -- Both grids are required to create the border.
     if force or (hasNonCombatGrid and hasCombatGrid) then
         if Initialize() then
             initialized = true

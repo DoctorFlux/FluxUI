@@ -1026,7 +1026,7 @@ end
 -- Visibility
 -- Flux perf T2.4: previously the frame used SetAlpha(0) as "hidden" so the
 -- OnUpdate would keep firing every frame even when the player had no swings
--- to track. We now Hide() the frame in idle states, which stops OnUpdate at
+-- to track. Hide() the frame in idle states to stop OnUpdate at
 -- the engine level, and Show() from the existing event-driven paths
 -- (ShowSwing is called from combat-log swing-start, autorepeat, UNIT_AURA-ish
 -- transitions, and the ready-linger re-entry inside OnUpdate). When a swing
