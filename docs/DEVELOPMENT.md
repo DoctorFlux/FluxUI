@@ -109,3 +109,25 @@ Keep other-client rendering, combat/Edit Mode and broader performance/lifecycle/
 long-session acceptance pending. Current native diagnostics are cleaned up and
 profiler0 restored. Preserve background PC use, main, deferred callbacks and the
 separate uncommitted tracker correction.
+
+## Next tasks after PERF-009
+
+Read [original stage tracker](MODERNIZATION_PROGRESS.md) and root next-session
+record. Runtime `efca305` and [full report](validation/nameplate-countdown-full-2026-10-29.json)
+cover93 scripts/734 syntax files including preserved pending tracker work. Focused
+countdown replay1160 checks, five desktop/native widget pairs; actual restricted
+plate-aura/combat/native pixels remain pending. [Exact steps](NAMEPLATE_COUNTDOWN_WORK.md).
+
+Native cleanup is complete: original profile0, diagnostic root nil and normal
+candidate file loaded. Leave WoW open in the background. Next attribute assistant
+same-fact paint/queries and stress remaining real lifecycle/private-cache churn.
+Do not infer leaks/FPS from changed scenes or extend to excluded callbacks.
+
+```powershell
+lua tests/nameplate_countdown_work.lua --source tests/fixtures/nameplate_countdown_before.txt --measure
+lua tests/nameplate_countdown_work.lua
+python tests/run_validation.py --output docs/validation/next-check.json
+```
+
+Baseline measure exits0 with15 unmet work budgets; candidate must pass. Preserve
+user tracker changes while staging shared/generated records.

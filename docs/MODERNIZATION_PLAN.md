@@ -105,3 +105,15 @@ excluded callback audits remain untouched.
 ## Shared chat column follow-up
 
 BUG-01178fe4e7/7f13000 completes the requested shared Social offset, startup and all-tab correction in tested scope.2,009 column checks; native Retail gap8 and seven stable General/Global/Combat Log samples; complete92-script/733-file actual corpus. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Keep other-client/security/pixel acceptance and wider performance/lifecycle stress pending; preserve tracker work, main and excluded callbacks.
+
+## Original stage gates and next measured batch
+
+[Stage tracker](MODERNIZATION_PROGRESS.md) reconnects current evidence to every
+stage in the supplied plan. PERF-009 `efca305` removes repeated countdown discovery
+and temporary level tables within the existing NamePlates owner. Five desktop
+pairs halve lookups; native Retail five alternating real-widget pairs preserve
+geometry/alpha/reuse with0 recorded errors. Full93 scripts/734 syntax pass.
+[Details](NAMEPLATE_COUNTDOWN_WORK.md). Actual restricted aura rendering/security,
+long-session leaks, all-client acceptance and the remaining stage gates stay pending.
+Next attribute assisted-action same-fact paint and remaining lifecycle/resource
+work; preserve cadence, pending tracker changes, background PC use and deferred callbacks.

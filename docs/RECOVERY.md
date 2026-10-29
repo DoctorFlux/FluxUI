@@ -250,3 +250,16 @@ df72b2c48996012c89257a42352271738d2a981c plus all pending tracker/audit work.
 ZIP contents/hashes and bundle verified. Retail remained running: on-disk WTF only,
 not unsaved state. Private account data/reference/screenshots stay outside Git.
 Tracker source/test preserved; no settings/profile reset or restore.
+
+## 29 October 2026, 16:20 UTC / 17:20 Copenhagen - nameplate batch
+
+External `Nameplate-audit-recovery-20261029T162035Z` captures HEAD `38ea267`
+(tree `ba965afc85d31707b8db6ef5a0b9328e30dbeac1`) plus all pending/untracked files.
+1,271 source files /37,298,235 bytes,403 relevant on-disk WTF files /6,337,870 bytes;
+all entries and the full Git history bundle verify. Source ZIP SHA-256
+`b6e106842ba7af4c364252e05128c310ffb2d444630ce6470fd447a13167e5a6`;
+settings ZIP `37205433f158455429fb36790a58313ce4c7a72eda73cacedf45ba938652c27a`;
+history `488f0274d690dcebfd04e94ccff64709726b694e688f2dd7ac6cb00b5fcd4d36`.
+Game process state was not independently checked at checkpoint creation; Retail
+was confirmed running for subsequent tests. On-disk settings exclude unsaved
+in-memory changes. No archives/private settings are placed in the repository.

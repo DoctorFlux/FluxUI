@@ -196,3 +196,12 @@ separate pending tracker changes; native lifecycle/visual/security acceptance pe
 ## Shared chat column follow-up
 
 BUG-011 retains existing chat owners: relative tab-height inset follows late chat pins; the primary dock supplies column geometry for every selected tab; Copy remains selected-window based. No new frame/event/timer/hook.2,009 column checks, native Retail geometry/tab samples and current92-script/733-file report pass. [Evidence](CHAT_COLUMN_ALIGNMENT.md).
+
+## Countdown ownership follow-up
+
+PERF-009 `efca305` changes only NamePlates/Countdown.lua's private current-poll
+lookup/level work. Core retains the same driver, cadence, active-unit ownership
+and module registration; the weak aura->host map remains the same owner. No alias,
+framework, event, timer, hook or persistent cache is introduced. Native widget
+fixtures use a temporary local facade, never replace native APIs or register a
+second production module, and disappear on reload. [Evidence](NAMEPLATE_COUNTDOWN_WORK.md).

@@ -607,3 +607,40 @@ files remain byte-identical; tracker source/test preserved. Explicit development
 tool markers absent across1,271 actual files outside Git. Main unchanged. Native
 temporary data removed; original profile0 retained. Generated records remain with
 the user's separate pending tracker work; focused runtime/evidence commits exclude it.
+
+## 2026-10-29 - PERF-009 and original-plan continuation
+
+Reviewed actual branch/main/dirty tree, contribution/status/decision/work records,
+supplied original plan and relevant nameplate/action-bar specifications. Confirmed
+all26 specification requirement ledgers remain available; added explicit original
+stage-gate tracking and restored root continuity files as the user requested.
+Verified external actual-file/history/settings recovery before runtime edits.
+Preserved the unrelated pending objective-tracker source/test/docs.
+
+Reproduced duplicate countdown discovery and temporary per-aura level tables in
+real Core/Countdown replay. Runtime `efca305` reuses the current poll's discovered
+region and unrolls the same guarded three level reads; no cross-poll cache or new
+resource. Five alternating desktop pairs retain same text/anchor/level/frame counts
+while discovery halves and measured transient desktop heap falls.1,160 checks,
+100 remove/re-add cycles and5 mutation controls pass. The first full run exposed an
+existing source guard tied to the exact two-argument helper spelling; adjusted it
+to accept optional arguments while retaining label-before-fade ordering. Full
+rerun passes93 scripts/734 syntax files; no unexplained runtime failure remains.
+
+At the user's reminder, executed background Retail12.1.5.70575 real-widget native
+checks and full-addon20s before/after windows after30s scheduled warm-up. Frozen
+baseline file loaded by normal reload; candidate restored in normal folder and
+loaded by normal reload. Source transport changed header comment punctuation only;
+exported source executable lines/literals and full ASCII diagnostic probe verified.
+Five alternating2,000-update native widget pairs: medians33.371 ->31.712ms; all raw
+samples/ranges retained, one candidate slower. Geometry/font/alpha/hide-reuse match;
+BugTabs counts0 before, after fixture and after candidate window. Private baseline/
+candidate screenshots retained outside Git. Camera/mount/plate density changed,
+so full-addon performance/pixel comparison is inconclusive. Legacy CPU is
+unavailable with profile0; do not interpret its zero as no addon work.
+
+Native diagnostics/root/globals/temporary frames removed by normal reload; original
+profile0 unchanged and WoW stays open in background. No mouse/clipboard/activation,
+API replacement, settings reset, new addon/repo, deferred callback audit or main
+change. Actual protected aura rendering/security/FPS, long sessions and other
+clients remain pending. Updated stage/evidence/client/parity/performance/API records.

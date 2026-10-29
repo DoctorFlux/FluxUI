@@ -151,3 +151,25 @@ files remain byte-identical; tracker source/test preserved. Explicit development
 tool markers absent across1,271 actual files outside Git. Main unchanged. Native
 temporary data removed; original profile0 retained. Generated records remain with
 the user's separate pending tracker work; focused runtime/evidence commits exclude it.
+
+## Latest: original-plan continuation and PERF-009
+
+Current runtime/test commit `efca305c76a87f9db36db12a1a2400272a253633`, tree
+`1aa4627d774e10515dc52681b0cb527dba4ab60b`. [Original stage tracker](MODERNIZATION_PROGRESS.md)
+keeps all26 specifications and remaining exit gates explicit. Countdown now reuses
+one poll's native text-region lookup and avoids the temporary frame-level table.
+UI/cadence/settings/resources are unchanged. [Evidence](NAMEPLATE_COUNTDOWN_WORK.md).
+
+Five desktop pairs halve modern/legacy lookups20,000 ->10,000 per10,000 updates;
+1,160 checks and five rejected mutations pass. Native Retail12.1.5.70575 has five
+alternating real-widget pairs: median33.371 ->31.712ms per2,000 updates, identical
+owned-widget geometry/alpha/hide-reuse and0 recorded errors. One candidate pair is
+slower. Actual restricted aura pixels/combat/secret values and other clients remain
+pending. Complete-addon background scene changed; no FPS/overall speedup claim.
+
+Latest actual-file [full report](validation/nameplate-countdown-full-2026-10-29.json):
+**93 scripts /734 Lua syntax files, zero failures**. It includes the preserved
+uncommitted tracker correction. Candidate source is restored in the normal addon
+folder and loaded natively. Profile0 unchanged; diagnostic root/globals/frames
+removed by normal reload; WoW stays open in background. Main and deferred callbacks
+remain untouched. Root continuity files restored as explicitly requested.

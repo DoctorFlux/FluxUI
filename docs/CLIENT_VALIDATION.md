@@ -169,3 +169,14 @@ clients remain pending. This partial row does not certify all Retail features.
 ## Shared chat column follow-up
 
 Retail BUG-011 native partial pass: Social gap8 UI units, untouched post-reload screenshot inspected before chat/tab input, and seven General/Global/Combat Log selections with identical visible coordinates. Profiler0 restored; temporary exports removed. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Custom-tab desktop checks do not certify other native clients or combat/taint.
+
+## Countdown native follow-up
+
+PERF-009 Retail 12.1.5.70575 / interface 120105 / project 1: five alternating
+real-widget pairs retain identical owned-widget geometry, alpha and hide/reuse,
+with zero recorded errors. Median elapsed time per 2,000 updates is 33.371 ->
+31.712 ms; one candidate pair is slower. Full-addon scene changes make its separate
+before/after capture inconclusive. Profile 0 stays unchanged and diagnostics are
+removed by normal reload. [Exact evidence and remaining steps](NAMEPLATE_COUNTDOWN_WORK.md).
+Other clients have desktop controls only for this batch; actual plate-aura pixels,
+secret values, combat/taint, foreground FPS and long-session acceptance remain pending.

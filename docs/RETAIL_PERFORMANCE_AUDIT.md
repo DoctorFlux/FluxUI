@@ -210,3 +210,14 @@ Original profiler=0 was restored; temporary exports/namespaces were cleared by a
 normal reload. WoW remains open in the background. No further game input is needed
 for this batch. The next work is nameplate/assistant attribution and repeated real
 feature/lifecycle/long-session stress, with all previously pending checks explicit.
+
+## Nameplate follow-up
+
+[PERF-009](NAMEPLATE_COUNTDOWN_WORK.md), runtime `efca305`, removes duplicate current-
+poll FontString lookup and per-aura frame-level table allocation. 1,160 focused
+checks, five desktop pairs and native Retail five alternating real-widget pairs
+preserve geometry/alpha/reuse. Native median per2,000 updates33.371 ->31.712ms, with
+one slower candidate pair and overlapping ranges. This is unprotected hidden-widget
+elapsed work, not full gameplay FPS. Whole-addon scene changed; that comparison is
+inconclusive. No new ordinary leak-free/taint certification. Profile0 preserved,
+temporary data removed by normal reload; WoW remains in background.

@@ -31,3 +31,13 @@ Combo points load only for the TOC-listed Vanilla/TBC/classic/camelot game types
 `FluxNamePlates_RefreshFromDB` and `FluxNamePlateThreat_RefreshFromDB` apply option changes. Numeric percentage shares game `threatShowNumeric` with unit frames. Nameplate CVar defaults are a separate explicit [defaults feature](05-defaults-and-bindings.md), not something every overlay refresh should be assumed to rewrite.
 
 Verify each supported style/client, secret numeric text, group policy, player target detection, threat clearing/reuse, native border restoration, minion omissions, zero/transfer combo points, countdown recovery and Settings previews. Current comments, old docs and capability gates disagree in places; observed behavior belongs in [verification](41-verification.md), not inferred “full support” claims.
+
+## Countdown work reduction
+
+PERF-009 `efca305` passes the current poll's discovered native text region to label/
+alpha handling and reads the same three frame levels without a temporary table.
+No region/level is cached between polls. Five matched desktop pairs halve discovery
+calls and remove measured temporary allocations with the same text/anchor writes,
+font, levels and 0.1s timing. 1,160 checks include 100 plate lifecycle cycles.
+Native Retail real-widget geometry/alpha/reuse checks pass with zero recorded errors;
+actual protected aura rendering/combat/secret values remain pending. [Evidence](NAMEPLATE_COUNTDOWN_WORK.md).

@@ -228,3 +228,19 @@
   scale conversion, combat restrictions and current retry deadlines. No framework.
 - Native seven-selection Retail pass plus untouched reload image supports this
   scope. Five desktop branch models are not other-client native certification.
+
+## 2026-10-29 - original stage tracking and countdown work
+
+- Continue the supplied original plan through explicit stage gates; inventories
+  and passing desktop checks do not complete all native acceptance.
+- PERF-009 keeps the existing NamePlates owner/driver/cadence and removes repeated
+  FontString discovery plus per-aura level tables. Reuse only within one poll;
+  changing/opaque labels and native digit fallback remain fresh.
+- Keep real unprotected native-widget results separate from actual combat aura
+  rendering/taint/FPS. Background whole-addon scene changed, so that comparison
+  is inconclusive even though errors remain0 and per-window frame counts stable.
+- The user again explicitly requested root working rules and next-session records;
+  restore those concise files alongside existing contribution/development docs.
+  Do not restore retired prompt templates, narrated comments or private artifacts.
+- Preserve the separate tracker work and current branch; main and excluded
+  callback audits remain untouched. Keep WoW in the background and profile0.
