@@ -6985,29 +6985,29 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 | `P.MerchantItemLink` | [L245](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L245) |
 | `P.ClassifyMerchantItem` | [L259](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L259) |
 | `P.ScanVendorBestPurchasable` | [L341](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L341) |
-| `Tiers.GetItemTierValue` | [L367](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L367) |
-| `Tiers.GetBagOwnedTier` | [L373](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L373) |
-| `Tiers.GetOwnedTier` | [L401](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L401) |
-| `Tiers.GetEffectiveReferenceTier` | [L444](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L444) |
-| `Tiers.GetReferenceTier` | [L487](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L487) |
-| `Tiers.RememberOwnedTiers` | [L497](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L497) |
-| `Tiers.ResetTierReference` | [L505](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L505) |
-| `P.GetVendorBestTier` | [L526](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L526) |
-| `Tiers.GetInferiorReferenceTier` | [L531](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L531) |
-| `P.GetTierRestockThreshold` | [L559](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L559) |
-| `P.IsTierItemUsable` | [L579](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L579) |
-| `P.ItemMatchesTier` | [L593](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L593) |
-| `P.ItemMatchesTierForBank` | [L614](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L614) |
-| `P.ItemMatchesTierLooseForBank` | [L625](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L625) |
-| `Tiers.ItemMatchesRestockKind` | [L635](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L635) |
-| `Tiers.StackMatchesBankRestockKind` | [L648](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L648) |
-| `Tiers.GetTierCount` | [L676](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L676) |
-| `Tiers.GetSnapshotTierCount` | [L761](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L761) |
-| `Tiers.GetTierBagTotalForBankRestock` | [L765](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L765) |
-| `Tiers.GetBankCountForKind` | [L843](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L843) |
-| `Tiers.GetCachedTooltipReferenceTier` | [L894](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L894) |
-| `Tiers.GetTooltipDisplay` | [L898](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L898) |
-| `Tiers.KindsTouchedByItemID` | [L906](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L906) |
+| `Tiers.GetItemTierValue` | [L366](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L366) |
+| `Tiers.GetBagOwnedTier` | [L372](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L372) |
+| `Tiers.GetOwnedTier` | [L400](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L400) |
+| `Tiers.GetEffectiveReferenceTier` | [L443](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L443) |
+| `Tiers.GetReferenceTier` | [L486](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L486) |
+| `Tiers.RememberOwnedTiers` | [L496](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L496) |
+| `Tiers.ResetTierReference` | [L504](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L504) |
+| `P.GetVendorBestTier` | [L525](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L525) |
+| `Tiers.GetInferiorReferenceTier` | [L530](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L530) |
+| `P.GetTierRestockThreshold` | [L558](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L558) |
+| `P.IsTierItemUsable` | [L578](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L578) |
+| `P.ItemMatchesTier` | [L592](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L592) |
+| `P.ItemMatchesTierForBank` | [L613](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L613) |
+| `P.ItemMatchesTierLooseForBank` | [L624](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L624) |
+| `Tiers.ItemMatchesRestockKind` | [L634](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L634) |
+| `Tiers.StackMatchesBankRestockKind` | [L647](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L647) |
+| `Tiers.GetTierCount` | [L675](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L675) |
+| `Tiers.GetSnapshotTierCount` | [L760](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L760) |
+| `Tiers.GetTierBagTotalForBankRestock` | [L764](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L764) |
+| `Tiers.GetBankCountForKind` | [L842](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L842) |
+| `Tiers.GetCachedTooltipReferenceTier` | [L893](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L893) |
+| `Tiers.GetTooltipDisplay` | [L897](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L897) |
+| `Tiers.KindsTouchedByItemID` | [L905](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L905) |
 
 ### Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua
 
@@ -7042,21 +7042,21 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 
 | Declaration | Source |
 |---|---|
-| `Tiers.GetVendorTierStatus` | [L71](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L71) |
-| `Tiers.AppendTierReferenceLines` | [L90](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L90) |
-| `Tiers.SeedReferenceFromVendor` | [L112](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L112) |
-| `Tiers.ApplyVendorTierUpgrades` | [L152](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L152) |
-| `Tiers.RefreshTierReferences` | [L212](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L212) |
-| `Tiers.GetVendorUpgradeKinds` | [L224](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L224) |
-| `Tiers.PeekVendorUpgradeSession` | [L230](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L230) |
-| `Tiers.HasPendingVendorUpgradeRestock` | [L241](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L241) |
-| `Tiers.ClearPendingVendorUpgradeKinds` | [L245](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L245) |
-| `Tiers.HasPendingMerchantTierClassification` | [L303](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L303) |
-| `Tiers.ScheduleVendorTierRefresh` | [L322](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L322) |
-| `Tiers.WarmMerchantTierItems` | [L374](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L374) |
-| `Tiers.ClearMerchantWarmSet` | [L474](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L474) |
-| `Tiers.ClearVendorInferiorSnapshot` | [L482](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L482) |
-| `Tiers.NotifyTierReferenceUIRefresh` | [L489](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L489) |
+| `Tiers.GetVendorTierStatus` | [L70](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L70) |
+| `Tiers.AppendTierReferenceLines` | [L89](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L89) |
+| `Tiers.SeedReferenceFromVendor` | [L111](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L111) |
+| `Tiers.ApplyVendorTierUpgrades` | [L151](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L151) |
+| `Tiers.RefreshTierReferences` | [L211](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L211) |
+| `Tiers.GetVendorUpgradeKinds` | [L223](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L223) |
+| `Tiers.PeekVendorUpgradeSession` | [L229](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L229) |
+| `Tiers.HasPendingVendorUpgradeRestock` | [L240](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L240) |
+| `Tiers.ClearPendingVendorUpgradeKinds` | [L244](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L244) |
+| `Tiers.HasPendingMerchantTierClassification` | [L302](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L302) |
+| `Tiers.ScheduleVendorTierRefresh` | [L321](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L321) |
+| `Tiers.WarmMerchantTierItems` | [L373](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L373) |
+| `Tiers.ClearMerchantWarmSet` | [L473](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L473) |
+| `Tiers.ClearVendorInferiorSnapshot` | [L481](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L481) |
+| `Tiers.NotifyTierReferenceUIRefresh` | [L488](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua#L488) |
 
 ### Inventory/Restock/FluxRestock_Inv.lua
 

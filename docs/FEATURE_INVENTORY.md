@@ -163,3 +163,12 @@ column-owned buttons avoid the reversed dependency that caused SetPoint failure.
 The combined column regression passes 1,819 checks; the full suite passes 87 scripts/
 728 syntax files. Other Chat requirements and native/visual acceptance remain
 pending. [Evidence](CHAT_QUICKJOIN_ANCHOR.md). No option/default was removed.
+
+## Repeated vendor tier candidates
+
+PERF-005 (`1762826`) adds partial performance/parity coverage to the restock-target
+and behavior rows (`SPEC-20-L14`, `SPEC-20-L30`). Reference seeding remains active;
+only matching positive contenders receive live usability checks. The 340-check
+regression covers repeated opens, levels, thresholds, price ties and delayed facts;
+full suite 88 scripts/729 syntax passes. [Evidence](VENDOR_TIER_WORK.md). Native
+feature/visual/hitch confirmation remains pending; no option/default was removed.

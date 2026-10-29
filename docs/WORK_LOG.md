@@ -413,3 +413,50 @@ report. The fresh checkpoint comparison finds no missing files or unexpected
 changes and preserves 348 specification/library/asset/manifest files byte-for-byte.
 Explicit development-tool markers remain absent across 1,225 actual files outside
 Git. Main remains unchanged; native acceptance remains pending.
+
+## 2026-10-29 — repeated vendor tier work
+
+Continued on the clean existing branch; main and deferred callback scope unchanged.
+User clarified that the Era spike occurs on every same-vendor reopening. Read-only
+Era hashes matched the earlier junk/buyer/chat fixes. Era Config.wtf saves
+scriptProfile=1; active runtime state was not observed and no preference was changed.
+Fresh verified external checkpoint at 12:04:44 UTC / 13:04 Copenhagen includes all
+1,225 files, history and 403 private settings files with WoW closed. Verified all
+728 baseline Lua hashes against the prior 87-script suite.
+
+A blanket index skip would suppress consumable reference seeding. Instead, PERF-005
+moves live usability after classification in two vendor tier loops, retaining
+reference discovery, level/skill checks on matching contenders, thresholds, ties,
+Well Fed/food-water rules, retries and UI timing. No new resources or caches.
+Classification before level rejection can shift cold work; native cost remains
+pending.
+
+`lua tests/vendor_tier_work.lua --baseline --measure`: 340 checks, 12 expected
+baseline failures; measure mode exits zero. Candidate passes 340. Actual production
+buyer/index/post-index seed and Score/tier modules run with classification/native
+facts modeled. Five alternating pairs cover legacy/modern APIs and 20/200 listings.
+Large-vendor initial seed info/ownership lookups 1,000 to 10 each; separate status
+2,000 to 20 each. After the cadence clarification, added 25 same-vendor reopens with
+retained food/water refs and three unoffered families: 15,000 info and ownership
+lookups each to zero (small vendor 1,500 each to zero). Classification counts remain;
+all count ranges zero, buyer frame one and purchases zero. These are service calls,
+not native CPU/cache misses or FPS.
+
+Bag-tier controls pass 16,527 checks; merchant identity/stock 837 and junk availability
+265. Final `python tests/run_validation.py --output docs/validation/vendor-tier-full-2026-10-29.json --sync-docs`:
+88 scripts/729 syntax files pass. The final full run includes the repeated-open
+extension. Native pixels/input/taint/security/CPU/memory/latency/frame times/FPS remain
+pending. No sync/deployment/settings reset/push or main update.
+
+Runtime `17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3`, tree `0c681c46987fc5b136274bba59e5e5bb3dd90990`.
+Repeated-open test carrier `e7ec46a4070c132ff8bf6033d6bef5e2c92f90aa`, tree
+`4507ccd1456e42f9acdea0e2be4aaad073ff72ae`. [Evidence/native procedure](VENDOR_TIER_WORK.md).
+
+Vendor-tier documentation validation passes: 762 classified sources, 577 reachable
+files, 361 setting definitions, 23 SavedVariables roots and 12,807 local links.
+All six ledgers have valid row shapes (1,384 parity, 35 ownership, 23 API, eight
+client, 77 reference and 217 performance rows). All 729 current Lua hashes match
+the full report. The fresh checkpoint comparison preserves 348 specification/
+library/asset/manifest files byte-for-byte, with no missing files or unexpected
+changes. Explicit development-tool markers remain absent across 1,234 actual files
+outside Git. Main remains unchanged; native repeated-open acceptance is pending.

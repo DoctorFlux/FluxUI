@@ -1,0 +1,1354 @@
+{
+  "baseline": {
+    "commit": "af5eee0d7a4c4693bf30124855a40a4c5e50981f",
+    "tree": "f5ab638b4c42a67f4b3f73e5e3fa4428b56022bc",
+    "reusedFullReport": "docs/validation/chat-quickjoin-full-2026-10-29.json",
+    "verifiedLuaFiles": 728,
+    "tests": 87,
+    "fail": 0,
+    "normalization": "CRLF to LF only; actual pre-edit archive verified"
+  },
+  "candidate": {
+    "commit": "e7ec46a4070c132ff8bf6033d6bef5e2c92f90aa",
+    "tree": "4507ccd1456e42f9acdea0e2be4aaad073ff72ae",
+    "sources": {
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "735ba5e4c50b5311790ea85b37535f9f87b532b8e4e45b590139865262910e81",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua": "f4bcdd2eb4fee3b0ad9dbf4bb4ce692686cd525acecb2f24cc38d722e971911e",
+      "Inventory/FluxConsumableBest/Score.lua": "b7313f76c6e9a884974b94697133cc5f65ae0e498c9d5e5b5ad20461e9765059",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "d306732e4c468e3f25a296e960507225c6323f48b4d6770f709d9c56d7534ba3",
+      "tests/vendor_tier_work.lua": "98000e4af2b038c41bfab57709518b071025c93fdc45b2e76d185da492c2bc47"
+    },
+    "runtimeCommit": "17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3",
+    "runtimeTree": "0c681c46987fc5b136274bba59e5e5bb3dd90990"
+  },
+  "configuration": {
+    "environment": "Windows-10-10.0.26200-SP0",
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "hardware": "Intel Core i7-12700F / 20 logical processors per prior evidence; GPU/RAM unavailable",
+    "reportedSymptom": "User confirms major Era spike on EVERY reopening of the same vendor, after earlier junk-cache fix; exact runtime build, active profile and loaded addons unknown",
+    "installationCheck": "Read-only Era FJ, buyer and chat source hashes matched this checkout before edits; no sync performed",
+    "scope": "Production buyer MERCHANT events/index and post-index seed, full tier Match/Vendor and actual Score.IsUsableForVendor. Classification/native item facts, widgets, tooltip rendering and external integrations modeled.; repeated-open reference seeding uses production buyer post-index callback without added UI polling",
+    "models": "Legacy merchant tuple and modern info-table routes, 20 and 200 listings; only 10 listings match five tracked tier kinds",
+    "settings": "automation off; tier reference seeding active; fresh saved-reference map then explicit best/status queries; native state not inferred from saved profiles",
+    "warmup": "Boot original queue fixture and initial index; attach full tier/Score modules; close/reopen into empty tier references; cold references with ready modeled classification, not cold native tooltip measurement",
+    "capture": "after MERCHANT_UPDATE advance one modeled second for seed; capture separate five-kind best/status pass; live level/skill, cold item data, threshold, price-tie, Well Fed and combo controls afterward; then retain food/water references, leave three unoffered families empty and perform 25 matched same-vendor close/show/update cycles with one modeled second each",
+    "repetitions": "5 alternating fresh-process baseline/candidate pairs",
+    "profiling": "off; item-info/ownership/classification call counters; process duration advisory",
+    "native": "no client run; CPU/allocations/whole-addon resource totals/latency/frame times/FPS and screenshot/security checks pending",
+    "tradeoff": "Classification now precedes usability for rejected/nonmatching items. Matching candidates keep live level/skill checks; cold level-rejected classification cost is not measured natively. Merchant index/tier discovery and existing warm/retry paths remain."
+  },
+  "configSha256": "96a8fe7e3b9660410bfdbcd4579a5312946b5454497c467d688be019ceef7449",
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.12699429999338463,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nVendor tier work: 340 checks, 12 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua"
+      ],
+      "wallSeconds": 0.07943530000193277,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.12434419999772217,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nVendor tier work: 340 checks, 12 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua"
+      ],
+      "wallSeconds": 0.08656490000430495,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.12406599999667378,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nVendor tier work: 340 checks, 12 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua"
+      ],
+      "wallSeconds": 0.08915900000283727,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.12388759999885224,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nVendor tier work: 340 checks, 12 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua"
+      ],
+      "wallSeconds": 0.10229070000059437,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua",
+        "--baseline",
+        "--measure"
+      ],
+      "wallSeconds": 0.13450279999960912,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 100,
+          "seed_owned": 100,
+          "status_info": 200,
+          "status_owned": 200,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 1500,
+          "owned": 1500,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 1000,
+          "seed_owned": 1000,
+          "status_info": 2000,
+          "status_owned": 2000,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 15000,
+          "owned": 15000,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nMETRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000\nFAIL seed checks usability only for matching contenders\nFAIL best/status check usability only for matching contenders\nMETRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0\nFAIL 25 same-vendor reopens skip unrelated usability\nVendor tier work: 340 checks, 12 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_tier_work.lua"
+      ],
+      "wallSeconds": 0.0882458999985829,
+      "metrics": {
+        "legacy_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "legacy_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "legacy_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "legacy_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_20": {
+          "seed_info": 9,
+          "seed_owned": 9,
+          "status_info": 19,
+          "status_owned": 19,
+          "seed_classify": 100,
+          "status_classify": 200
+        },
+        "modern_20_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 1500,
+          "frames": 1,
+          "purchases": 0
+        },
+        "modern_200": {
+          "seed_info": 10,
+          "seed_owned": 10,
+          "status_info": 20,
+          "status_owned": 20,
+          "seed_classify": 1000,
+          "status_classify": 2000
+        },
+        "modern_200_reopen": {
+          "info": 0,
+          "owned": 0,
+          "classify": 15000,
+          "frames": 1,
+          "purchases": 0
+        }
+      },
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "legacy_20": {
+      "seed_info": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 9,
+          "min": 9,
+          "max": 9
+        }
+      },
+      "seed_owned": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 9,
+          "min": 9,
+          "max": 9
+        }
+      },
+      "status_info": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 19,
+          "min": 19,
+          "max": 19
+        }
+      },
+      "status_owned": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 19,
+          "min": 19,
+          "max": 19
+        }
+      },
+      "seed_classify": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      },
+      "status_classify": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        }
+      }
+    },
+    "legacy_20_reopen": {
+      "info": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "owned": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "classify": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "purchases": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "legacy_200": {
+      "seed_info": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 10,
+          "min": 10,
+          "max": 10
+        }
+      },
+      "seed_owned": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 10,
+          "min": 10,
+          "max": 10
+        }
+      },
+      "status_info": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        }
+      },
+      "status_owned": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        }
+      },
+      "seed_classify": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "status_classify": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        }
+      }
+    },
+    "legacy_200_reopen": {
+      "info": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "owned": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "classify": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "purchases": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "modern_20": {
+      "seed_info": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 9,
+          "min": 9,
+          "max": 9
+        }
+      },
+      "seed_owned": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 9,
+          "min": 9,
+          "max": 9
+        }
+      },
+      "status_info": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 19,
+          "min": 19,
+          "max": 19
+        }
+      },
+      "status_owned": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 19,
+          "min": 19,
+          "max": 19
+        }
+      },
+      "seed_classify": {
+        "baseline": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        },
+        "candidate": {
+          "median": 100,
+          "min": 100,
+          "max": 100
+        }
+      },
+      "status_classify": {
+        "baseline": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        },
+        "candidate": {
+          "median": 200,
+          "min": 200,
+          "max": 200
+        }
+      }
+    },
+    "modern_20_reopen": {
+      "info": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "owned": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "classify": {
+        "baseline": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        },
+        "candidate": {
+          "median": 1500,
+          "min": 1500,
+          "max": 1500
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "purchases": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "modern_200": {
+      "seed_info": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 10,
+          "min": 10,
+          "max": 10
+        }
+      },
+      "seed_owned": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 10,
+          "min": 10,
+          "max": 10
+        }
+      },
+      "status_info": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        }
+      },
+      "status_owned": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        }
+      },
+      "seed_classify": {
+        "baseline": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "candidate": {
+          "median": 1000,
+          "min": 1000,
+          "max": 1000
+        }
+      },
+      "status_classify": {
+        "baseline": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        },
+        "candidate": {
+          "median": 2000,
+          "min": 2000,
+          "max": 2000
+        }
+      }
+    },
+    "modern_200_reopen": {
+      "info": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "owned": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "classify": {
+        "baseline": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        },
+        "candidate": {
+          "median": 15000,
+          "min": 15000,
+          "max": 15000
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "purchases": {
+        "baseline": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  },
+  "observedEnvironment": {
+    "eraSavedScriptProfile": "1 in Config.wtf; runtime value unobserved; profiling preference not modified",
+    "eraInstallation": "Previous junk/buyer/chat sources matched before edits; no sync performed",
+    "reportedCadence": "every reopening of the same vendor"
+  },
+  "finalVerification": {
+    "fullReport": "docs/validation/vendor-tier-full-2026-10-29.json",
+    "desktopTests": 88,
+    "testFailures": 0,
+    "luaSyntaxFiles": 729,
+    "syntaxFailures": 0,
+    "currentLuaHashesVerified": 729,
+    "focusedChecks": 340,
+    "baselineExpectedFailures": 12,
+    "candidateFailures": 0,
+    "classifiedSources": 762,
+    "reachableFiles": 577,
+    "settingDefinitions": 361,
+    "savedVariableRoots": 23,
+    "localLinks": 12807,
+    "ledgerRows": {
+      "parity": 1384,
+      "ownership": 35,
+      "api": 23,
+      "client": 8,
+      "reference": 77,
+      "performance": 217
+    },
+    "checkpointProtectedFilesByteEqual": 348,
+    "missingFiles": 0,
+    "unexpectedChanges": 0,
+    "actualFilesOutsideGit": 1234,
+    "explicitDevelopmentMarkers": 0,
+    "nativeAcceptance": "pending; user confirms every same-vendor Era reopening; saved scriptProfile=1; no native spike/FPS/CPU/visual certification"
+  }
+}

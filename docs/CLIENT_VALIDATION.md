@@ -126,3 +126,14 @@ suite passes. No native row advances. Follow [chat native steps](CHAT_QUICKJOIN_
 for reload, native alerts, tab/side changes, Social/Channels visibility, Edit Mode,
 combat/regen, matched screenshots/geometry, input/taint and profiling. Clients with
 only FriendsMicroButton retain their separate path. Original Wrath is unverified.
+
+## Repeated Era vendor spike — native result pending
+
+User confirms every same-vendor reopening spikes. Prior junk/buyer/chat sources
+matched the Era install before this batch; no sync was performed. Saved Config.wtf
+has scriptProfile=1, with runtime state unobserved. [PERF-005](VENDOR_TIER_WORK.md)
+reduces repeated usability work in legacy/modern API fixtures: 340 checks, five
+matched pairs and full 88 scripts/729 syntax pass. No native row advances. Prioritize
+matched repeated-open profiling on/off runs, retaining the original preference;
+record actual build/profile/addons and raw hitch evidence. Check reference discovery,
+levels/skills, cold rejected items, thresholds, ties, pixels/input/combat/taint.

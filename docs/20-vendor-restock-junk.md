@@ -144,3 +144,12 @@ without changing button updates or storm timing. [Evidence](VENDOR_OPEN_WORK.md)
 265 checks/seven API fixtures, five matched count pairs, full 87 scripts/728 syntax
 pass. The user's idle-open hitch on Era still requires native confirmation; cold
 classification, other merchant work and all visual/security acceptance remain pending.
+
+## Vendor tier candidate work
+
+PERF-005 (`1762826`) moves live usability checks after tier matching in vendor best/
+status scans. Reference seeding, live level/skill rules, thresholds and price ties
+remain. Unoffered families no longer repeat usability checks on unrelated stock at
+every reopen. [Evidence](VENDOR_TIER_WORK.md): 340 checks; five matched pairs;
+full 88 scripts/729 syntax pass. Classification remains; native Era spike confirmation,
+including profiling-off comparison, is pending.

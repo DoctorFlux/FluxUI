@@ -31,6 +31,7 @@ the feature inventory.
 | BUG-006 | Zero availability was uncapped and finite stock was reused per queued request, causing modeled rejected calls, missed final units and false accounting. | Fixed `b505bb8`; 177 stock checks after 39 baseline failures, plus 660 identity checks. Five matched pairs; full 86 scripts/727 syntax pass. No added merchant-info reads; reservations are not acceptance. [Evidence](VENDOR_STOCK_BUDGET.md). |
 | BUG-007/PERF-004 | User reports idle vendor-open lag on Era. Production availability replay proves repeated full fallback walks through unchanged non-junk bags. Native cause/resolution remains unverified. | Fixed redundant work in `e02139a`; 265 checks/seven API fixtures; five matched pairs reduce Era first/reopen reads 300/5,000 to 200/zero. Full 87 scripts/728 syntax pass. [Evidence](VENDOR_OPEN_WORK.md); native pending. |
 | BUG-008 | Reported QuickJoin SetPoint error reproduced when the older social callback reverses the column dependency between Quick Join and Channels. | Fixed `5198ded`; both-button ownership guard retains normal column reconciliation and native fallback. 508 ownership plus 1,311 original column checks pass; five matched pairs; full 87 scripts/728 syntax pass. [Evidence](CHAT_QUICKJOIN_ANCHOR.md); native pending. |
+| PERF-005 | Vendor tier best/status scans ran live usability on every listing before matching; unoffered reference families repeated it at each open. | `1762826` filters matches first; 340 checks and full 88 scripts/729 syntax pass. Five pairs remove 15,000 info/ownership service lookups each across 25 large-vendor reopens; classification remains. [Evidence](VENDOR_TIER_WORK.md). Native spike remains unverified; profiling off/on must be separated. |
 | AUDIT-001 | Core.Module has no generic resource scope/cancellation; production registrations do not provide OnDisable cleanup. | Source finding, not proof that every feature leaks. Trace real disable and combat-deferred callers before changing the shared contract. |
 | AUDIT-002 | Production Events replay confirms self-removal skips a later handler and remove-plus-add changes same-event behavior. Context.DisarmEvents is the sole active source consumer through alias Ev; no production Context.Unsubscribe invocation was found. | [Latent API defect](EVENT_DISPATCH_AUDIT.md), not demonstrated gameplay failure. Defer dispatcher changes until an actual teardown consumer or reproduced trigger justifies them. RegisterUnit lifetime audit remains separate. |
 | AUDIT-003 | Core/API and Core/FluxAPI both load; client flag meanings and callers differ. | Inventory migration contracts before moving a domain. Do not introduce a third backend. |
@@ -44,11 +45,11 @@ Historical taint/performance reports stay pending revalidation against exact bui
 
 ## Priorities and gates
 
-1. **Current user scope:** BUG-001 through BUG-008 pass desktop validation; native
+1. **Current user scope:** BUG-001 through BUG-008 and PERF-005 pass desktop validation; native
    acceptance remains pending. The user reports idle vendor-open lag on Era only.
-   Prioritize the reported Quick Join error native recheck and matched vendor
-   first/repeated-open captures, then remaining cold
-   classification, merchant index, Already Known or layout candidates if needed.
+   User confirms every same-vendor Era reopening spikes. Prioritize matched native
+   repeated-open traces with profiling overhead separated; classification, Already
+   Known, reagent names and layout remain candidates. Chat native recheck is pending.
    None of those remaining candidates is a proven cause. Auction, guild-bank and
    void-storage callback audits stay deferred. Reproduce and measure a concrete
    failure before selecting another correction.

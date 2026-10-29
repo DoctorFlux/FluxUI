@@ -124,3 +124,12 @@ If the hitch persists, trace cold classification, merchant-index rebuilds,
 Already Known and layout/paint retries independently. These are remaining source
 candidates, not reproduced or measured defects. Auction, guild-bank and void-storage
 callback audits remain deferred.
+
+## Repeated-open continuation
+
+The user subsequently confirmed a spike on every reopening of the same Era vendor.
+Previous fixes were present in that install at the read-only pre-edit comparison.
+[PERF-005](VENDOR_TIER_WORK.md) reduces repeated tier usability work while preserving
+reference discovery. The original cache's 265 checks still pass. Era's saved
+scriptProfile=1 requires a separate unprofiled comparison. Native spike resolution
+remains unverified; the earlier cold-reference measurements are not native acceptance.

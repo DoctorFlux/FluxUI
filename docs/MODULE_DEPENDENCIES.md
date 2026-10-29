@@ -27,13 +27,20 @@ pass 265 checks; full suite 87 scripts/728 syntax files. The API ledger now has
 21 contracts. [Vendor-open evidence](VENDOR_OPEN_WORK.md); the user's Era hitch and
 all native acceptance remain unverified.
 
-Current runtime is `5198ded001dde5bbc3fc5d6011239652cbe79dac`, tree
+Chat anchor runtime is `5198ded001dde5bbc3fc5d6011239652cbe79dac`, tree
 `ffeca6fce85ff9606c7dab3f38b065bdbfdfeb70`. BUG-008 preserves FluxCCP column ownership
 of Quick Join/Channels anchors. The older social fallback now returns while either
 button belongs there, avoiding a dependency cycle. The enclosing callback retains
 column reconciliation and original deadlines. Combined regression: 1,819 checks;
 full suite 87 scripts/728 syntax files. The API ledger has 22 contracts. Native
 checks remain pending. [Evidence](CHAT_QUICKJOIN_ANCHOR.md).
+
+Current runtime is `17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3`, tree
+`0c681c46987fc5b136274bba59e5e5bb3dd90990`. PERF-005 filters vendor tier candidates before
+live usability without caching verdicts or removing discovery. Repeated-open
+validation carrier is `e7ec46a4070c132ff8bf6033d6bef5e2c92f90aa`. 340 checks and
+full 88 scripts/729 syntax pass; API ledger 23 contracts. Native spike attribution
+remains pending. [Evidence](VENDOR_TIER_WORK.md).
 
 The load graph below was reconstructed from the current `_FluxUI.toc` and XML includes using `docs/tools/source_inventory.py:load_graph`, not copied from the older generated reference. File reachability establishes potential execution, not native support, option activation, or resource counts. TOC gates and runtime checks still apply. `Bindings.xml` is separate metadata-loaded binding data. Static assets and unloaded source are indexed by the existing asset/source inventories and remain preserved.
 

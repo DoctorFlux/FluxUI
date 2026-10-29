@@ -180,3 +180,19 @@ with no WoW process running. Baseline `7465e36653a279e7276568eb2b90e147a6c38e93`
 Every ZIP entry was reread and verified against its source manifest; Git bundle
 verification passed. Private absolute paths/manifests remain outside Git. Earlier
 checkpoints/retired originals remain intact; no restore/settings reset occurred.
+
+## Vendor tier checkpoint 12:04 UTC / 13:04 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T120439Z`. Capture completed 12:04:44 UTC
+with no WoW process running. Baseline `af5eee0d7a4c4693bf30124855a40a4c5e50981f`, tree
+`f5ab638b4c42a67f4b3f73e5e3fa4428b56022bc`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,225 actual files; 34,880,935 bytes | `12c58a1bd61c2079b8983073b1dd53b973ed012fa7f0bd6367a1b11109c00105` |
+| history.bundle | All refs/history; verified | `a72dd979e0d5088e697535c6d8b80f3783b3609d14f64319abbcf0f52a36ce28` |
+| settings-private.zip | 403 files; 6,337,116 bytes | `8ac77cbf363537cbad948f03c3f802f1b34019f597dcc54ac9252008c0f88446` |
+
+ZIP entries were reread and hash-verified against source manifests; bundle
+verification passed. Private manifests/absolute paths stay outside Git. Earlier
+checkpoints remain; no restore or settings/profiling reset was performed.

@@ -160,3 +160,15 @@ exceptions abort before queuing. The complete suite passes 87 scripts/728 syntax
 files; 1,819 combined column checks pass. These error/resource controls establish
 correctness, not native latency/CPU/FPS. Native startup/idle/layout bursts, allocation,
 frame-time and visual/security acceptance remain pending.
+
+## Repeated tier usability evidence
+
+[PERF-005](VENDOR_TIER_WORK.md) separates initial reference seeding, tier best/status,
+and 25 repeated same-vendor opens. Five matched pairs reduce large-vendor info/
+ownership service lookups from 1,000 to 10 each for seed, 2,000 to 20 for status,
+and 15,000 to zero for reopens with three unoffered families. Classification counts
+remain equal in the modeled ready-fact case. Native cold classification before
+level rejection can differ; memory/CPU/latency/frame-time/FPS/parity remain pending.
+Era saves scriptProfile=1. Separate profiled attribution from an unprofiled hitch
+comparison; preserve that preference and do not sum overlapping inclusive timings.
+Full 88 scripts/729 syntax files pass. No live hitch resolution is claimed.

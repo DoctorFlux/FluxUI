@@ -1,0 +1,9 @@
+METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200
+METRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0
+METRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000
+METRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0
+METRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200
+METRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0
+METRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000
+METRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0
+Vendor tier work: 340 checks, 0 failures

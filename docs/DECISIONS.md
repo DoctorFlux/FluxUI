@@ -153,3 +153,21 @@
 - The baseline combat exception never reaches its existing waiter. The candidate
   reaches that deferral and reuses one waiter; it does not add a new runtime frame
   service. Native geometry, input/taint and performance remain pending.
+
+## 2026-10-29 — repeated vendor tier candidates
+
+- User confirms Era spikes on every same-vendor reopening. Read-only hashes showed
+  the preceding junk/buyer/chat fixes already installed; do not assume a stale copy.
+  Saved scriptProfile=1 is an observation requiring matched unprofiled validation,
+  not proof of causality or permission to change the user's preference.
+- Preserve merchant discovery/reference seeding. A blanket lazy-index skip can
+  suppress that feature. PERF-005 instead filters actual tier matches before live
+  usability in best selection and status; non-improving best contenders also skip
+  the gate. Matching contenders retain fresh level/skill checks without a new cache.
+- Reuse the existing buyer fixture and actual Score/Match/Vendor modules. Extend
+  measurement to 25 reopenings with retained food/water refs and unoffered families
+  after the user's cadence clarification; retain the source fix and test extension
+  as separate reviewable commits.
+- Ready-classification calls remain equal in measured runs. Classification now
+  precedes level rejection, so cold tooltip cost can differ and needs native checks.
+  Service call reductions are not native cache-miss, CPU, latency or FPS results.

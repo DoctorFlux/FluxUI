@@ -1,0 +1,21 @@
+METRIC legacy_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200
+FAIL seed checks usability only for matching contenders
+FAIL best/status check usability only for matching contenders
+METRIC legacy_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0
+FAIL 25 same-vendor reopens skip unrelated usability
+METRIC legacy_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000
+FAIL seed checks usability only for matching contenders
+FAIL best/status check usability only for matching contenders
+METRIC legacy_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0
+FAIL 25 same-vendor reopens skip unrelated usability
+METRIC modern_20 seed_info=100 seed_owned=100 status_info=200 status_owned=200 seed_classify=100 status_classify=200
+FAIL seed checks usability only for matching contenders
+FAIL best/status check usability only for matching contenders
+METRIC modern_20_reopen info=1500 owned=1500 classify=1500 frames=1 purchases=0
+FAIL 25 same-vendor reopens skip unrelated usability
+METRIC modern_200 seed_info=1000 seed_owned=1000 status_info=2000 status_owned=2000 seed_classify=1000 status_classify=2000
+FAIL seed checks usability only for matching contenders
+FAIL best/status check usability only for matching contenders
+METRIC modern_200_reopen info=15000 owned=15000 classify=15000 frames=1 purchases=0
+FAIL 25 same-vendor reopens skip unrelated usability
+Vendor tier work: 340 checks, 12 failures
