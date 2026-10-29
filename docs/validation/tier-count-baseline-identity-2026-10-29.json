@@ -1,0 +1,12 @@
+{
+  "commit": "d3bce5baa01d8dff2aa6372de27afe1680da7b31",
+  "tree": "c9a97bf07e7b267925d3b63bc8a827ea8ad99ebc",
+  "reusedFullReport": "docs/validation/vendor-tier-full-2026-10-29.json",
+  "verifiedLuaFiles": 729,
+  "tests": 88,
+  "fail": 0,
+  "sourceSha256": "735ba5e4c50b5311790ea85b37535f9f87b532b8e4e45b590139865262910e81",
+  "normalization": "Test loader normalizes CRLF to LF only; sourceSha256 records raw archived bytes; actual pre-edit archive verified",
+  "sourceSha256Normalization": "raw captured bytes",
+  "normalizedSourceSha256": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f"
+}

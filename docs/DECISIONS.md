@@ -171,3 +171,24 @@
 - Ready-classification calls remain equal in measured runs. Classification now
   precedes level rejection, so cold tooltip cost can differ and needs native checks.
   Service call reductions are not native cache-miss, CPU, latency or FPS results.
+
+## 2026-10-29 — native tier count attribution
+
+- The clean Era 1.15.9.70576 four-reopen pilot reproduces a 333 ms UI interval;
+  GetRestockTargetItems spends about 320 ms per call. Inclusive bag/bank count and
+  tooltip rows identify a measured target; do not sum overlapping timings.
+- PERF-006 filters tier membership before live usability in existing bag and cached
+  personal/warband count owners. Keep live gates on matches, accounting, caches,
+  fallback and protections. No new lifecycle resources or generic service.
+- Five alternating native background getter pairs return identical quantities;
+  median CPU is 132.199 to 15.237 ms for five bag kinds, 118.897 to 22.517 ms for
+  cached-bank kinds. Bank outputs are zero on this character; positive/warband
+  parity is desktop-only. Candidate bodies ran as source-derived local functions;
+  no public/native API replaced. This is not full-window after acceptance.
+- Honor the user's background PC use: no further game activation. Background local
+  slash diagnostics preserved focus; original automation values and profiler=1
+  restored, temporary exports removed and sampler/namespaces cleared by reload.
+  The user's normal sync delivered source; no separate addon or sync job created.
+- Native foreground repeated opens, unprofiled FPS, matched pixels, cold work,
+  security/taint and other clients remain pending. Keep auction, guild-bank and
+  void-storage callbacks deferred. [Evidence](TIER_COUNT_WORK.md).

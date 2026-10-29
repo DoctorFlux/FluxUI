@@ -460,3 +460,61 @@ the full report. The fresh checkpoint comparison preserves 348 specification/
 library/asset/manifest files byte-for-byte, with no missing files or unexpected
 changes. Explicit development-tool markers remain absent across 1,234 actual files
 outside Git. Main remains unchanged; native repeated-open acceptance is pending.
+
+## 2026-10-29 — native Era vendor tier counts
+
+Continued on the existing clean branch at d3bce5b; main stayed
+7436820453d2248c84c99fff71507553efc47c19. Read current contribution rules,
+requirements, diagnostics and affected tier sources/tests. Fresh verified external
+checkpoint at 12:35:23.862522 UTC covers 1,234 actual files, history and 403 private
+WTF files. Both clients were running: on-disk settings only, not a quiescent state.
+Verified all 729 baseline Lua hashes against the prior complete report.
+
+User authorized native vendor commands, then requested ordinary PC use with WoW
+in the background. Clean foreground Era 1.15.9.70576 capture with four reopenings,
+three automations temporarily off and profile=1 reproduces a 333 ms maximum UI
+interval. GetRestockTargetItems: four calls / 1,281.123 inclusive ms; GetTierCount:
+20 / 707.280 ms; cached-bank getter: 20 / 457.873 ms. 5,250 tooltip calls expose
+unrelated live usability checks in those count loops. Earlier interrupted captures
+are excluded; this one pilot is attribution, not five full-window matched pairs.
+
+PERF-006 moves tier membership ahead of live usability in the existing two count
+functions. Retains matching live gates, caches, quantities, inferior protection,
+strict/loose bank semantics, vendor-first deduplication and live fallback. No new
+runtime resources/settings; no auction, guild-bank or void callback edits.
+Runtime/test/nonloaded fixture commit `013bf40db1d5b57c238ac3ac377e8ced98446fd1`,
+tree `4f0d827bb26bba3ee8b20e21de891596fad0e98b`.
+
+`lua tests/tier_count_work.lua --source tests/fixtures/tier_count_match_before.txt --measure`:
+1,710 checks with ten expected baseline performance failures. Candidate passes all
+1,710; five alternating fresh-process pairs reduce initial/repeated legacy live
+checks 1,350/33,750 to 17/425; modern 1,500/37,500 to 18/450. Bank-store reads remain.
+Existing tiers 16,527 checks, vendor tiers 340, stock/identity 837 and junk 265 pass.
+Full `python tests/run_validation.py --output docs/validation/tier-count-full-2026-10-29.json --sync-docs`:
+89 scripts, 730 syntax files, zero failures.
+
+Native comparison continued without activating Era: original loaded references
+versus exact source-derived local candidate count functions, one warm pass, query
+cache invalidation and five alternating pairs. Median CPU per five kinds:
+bags 132.199 -> 15.237 ms; cached bank 118.897 -> 22.517 ms. Tooltip calls 455 -> 5
+and 450 -> 5. Quantities identical in every pair; personal-bank results all zero.
+Native positive-bank/warband acceptance remains pending. Net memory deltas include
+harness and GC and are not allocation measurements. No native API replaced.
+
+Original three automation flags restored true, profiler preference remains 1;
+temporary sampler/namespaces cleared by reload and diagnostic SavedVariable exports
+removed. User's existing sync delivered candidate source, verified before reload.
+WoW remains in the background; no further focus/input access. Full vendor after
+latency, matched pixels/input, unprofiled FPS, cold work, taint/security and other
+clients remain pending. [Evidence and exact steps](TIER_COUNT_WORK.md).
+
+Tier-count documentation validation passes: 763 classified sources, 577 reachable,
+361 setting definitions, 519 literal defaults, 23 saved roots and 12,824 local links.
+Six ledgers have valid shapes: 1,384 parity, 35 ownership, 24 API, eight client,
+77 reference, 242 performance. All 730 normalized Lua hashes match the full report;
+raw/normalized candidate hashes match committed source and the native probe hash
+matches the exported source-derived chunk. Checkpoint comparison preserves 361
+specification/library/asset/manifest/XML files byte-for-byte, with no missing or
+unexpected changes. Explicit development-tool markers remain absent across 1,244
+actual files outside Git. Main unchanged; native after whole-vendor acceptance
+remains pending. No additional foreground/game input used during final file work.

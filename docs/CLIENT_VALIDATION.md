@@ -1,10 +1,10 @@
 # Client and reference validation — 29 October 2026
 
-This is a local installation/source audit. No client was launched and no native acceptance run or screenshot comparison was performed in this session. [CLIENT_MATRIX.csv](CLIENT_MATRIX.csv) records installed executable versions separately from `_FluxUI.toc` interface declarations, reference-source versions, and test status. [REFERENCE_MANIFEST.csv](REFERENCE_MANIFEST.csv) pins inspected metadata/license files; its hashes identify those files, not entire upstream packages.
+This record began as a local installation/source audit. Era now has a native vendor attribution capture and five alternating background getter pairs; full visual/security and whole-vendor after acceptance remain pending. [Native evidence](TIER_COUNT_WORK.md). [CLIENT_MATRIX.csv](CLIENT_MATRIX.csv) records installed executable versions separately from `_FluxUI.toc` interface declarations, reference-source versions, and test status. [REFERENCE_MANIFEST.csv](REFERENCE_MANIFEST.csv) pins inspected metadata/license files; its hashes identify those files, not entire upstream packages.
 
 ## Installed roster and evidence limits
 
-The requested Era, Anniversary, MoP, Retail, and Forever executables are accessible. Their Windows PE FileVersion values are respectively `1.15.9.70576`, `2.5.6.70577`, `5.5.4.70631`, `12.1.5.70575`, and `1.60.1.70685`. These values are installation facts, not executed `GetBuildInfo()` results or evidence of successful addon loading. Exact runtime project ID and interface return values remain pending.
+The requested Era, Anniversary, MoP, Retail, and Forever executables are accessible. Their Windows PE FileVersion values are respectively `1.15.9.70576`, `2.5.6.70577`, `5.5.4.70631`, `12.1.5.70575`, and `1.60.1.70685`. These values are installation facts, not executed `GetBuildInfo()` results or evidence of successful addon loading. Era runtime GetBuildInfo confirms 1.15.9 / 70576 / interface 11509. Its numeric project ID was not recorded; other runtime build/interface values remain pending.
 
 The supplied spec calls Retail 12.1.0. The installed executable is 12.1.5.70575 and Flux's advertised interface remains 120100. All five named local Blizzard source trees are older than the corresponding installed executable. Do not silently relabel their builds or use them to certify current native callback contracts. They have no `.git` directory; upstream commit IDs are unpinned.
 
@@ -103,10 +103,12 @@ partial funds and alternate costs, cross-pass/shared targets, replenishment/new
 requests, real acceptance/error totals, screenshots/input/combat/taint and matched
 startup/idle/purchase profiling. Reservations do not certify native acknowledgement.
 
-## Vendor-open hitch — native reproduction and acceptance pending
+## Vendor-open hitch — native attribution recorded; after acceptance pending
 
-The user has observed an idle vendor-open hitch on Classic Era only; no exact runtime
-build/capture was supplied, and automation/first-versus-repeated behavior are unknown.
+The user reports a spike on every Era vendor reopening. A clean four-reopen capture
+now confirms a 333 ms maximum UI interval on 1.15.9.70576 with automation off and
+profiling=1. [PERF-006](TIER_COUNT_WORK.md) records attribution and native getter
+comparisons; whole-vendor after acceptance remains pending.
 BUG-007/PERF-004 removes a desktop-reproduced redundant junk scan contributor. Seven
 API fixtures pass 265 checks and the full suite 87 scripts/728 syntax files. This
 advances no native client row. Original Wrath 3.3.5 is not covered by the modern
@@ -127,13 +129,27 @@ for reload, native alerts, tab/side changes, Social/Channels visibility, Edit Mo
 combat/regen, matched screenshots/geometry, input/taint and profiling. Clients with
 only FriendsMicroButton retain their separate path. Original Wrath is unverified.
 
-## Repeated Era vendor spike — native result pending
+## Repeated Era vendor spike — prior PERF-005 scope
 
 User confirms every same-vendor reopening spikes. Prior junk/buyer/chat sources
 matched the Era install before this batch; no sync was performed. Saved Config.wtf
-has scriptProfile=1, with runtime state unobserved. [PERF-005](VENDOR_TIER_WORK.md)
+has scriptProfile=1; runtime state was unobserved in that prior batch. [PERF-005](VENDOR_TIER_WORK.md)
 reduces repeated usability work in legacy/modern API fixtures: 340 checks, five
 matched pairs and full 88 scripts/729 syntax pass. No native row advances. Prioritize
 matched repeated-open profiling on/off runs, retaining the original preference;
 record actual build/profile/addons and raw hitch evidence. Check reference discovery,
 levels/skills, cold rejected items, thresholds, ties, pixels/input/combat/taint.
+
+## Era native count comparison — partial pass
+
+Actual runtime 1.15.9.70576 / interface 11509, level 60 Mage, built-in inventory,
+recorded addon list/hardware/settings. Five alternating background baseline/local
+candidate pairs preserve all getter results and reduce measured CPU. [PERF-006
+protocol and raw samples](TIER_COUNT_WORK.md). Personal-bank outputs are all zero;
+positive bank and warband quantities are desktop-only. User's normal sync delivered
+candidate source; original automation flags and profiler=1 restored. WoW stays in
+the background without further foreground access.
+
+Only Era's matrix row gains this partial native result. Full repeated-open after,
+matched screenshots/input, cold work, unprofiled FPS, security/taint, external
+providers and other clients remain pending. Original Wrath remains unverified.

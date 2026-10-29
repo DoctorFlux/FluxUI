@@ -7005,9 +7005,9 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 | `Tiers.GetSnapshotTierCount` | [L760](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L760) |
 | `Tiers.GetTierBagTotalForBankRestock` | [L764](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L764) |
 | `Tiers.GetBankCountForKind` | [L842](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L842) |
-| `Tiers.GetCachedTooltipReferenceTier` | [L893](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L893) |
-| `Tiers.GetTooltipDisplay` | [L897](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L897) |
-| `Tiers.KindsTouchedByItemID` | [L905](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L905) |
+| `Tiers.GetCachedTooltipReferenceTier` | [L900](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L900) |
+| `Tiers.GetTooltipDisplay` | [L904](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L904) |
+| `Tiers.KindsTouchedByItemID` | [L912](../../Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua#L912) |
 
 ### Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua
 

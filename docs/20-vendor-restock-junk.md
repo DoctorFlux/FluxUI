@@ -153,3 +153,13 @@ remain. Unoffered families no longer repeat usability checks on unrelated stock 
 every reopen. [Evidence](VENDOR_TIER_WORK.md): 340 checks; five matched pairs;
 full 88 scripts/729 syntax pass. Classification remains; native Era spike confirmation,
 including profiling-off comparison, is pending.
+
+## Native bag and cached-bank count work
+
+PERF-006 (`013bf40`) filters tier membership before live usability in bag and cached
+personal/warband count paths. Matching live gates, quantities, bank badges,
+protections and discovery remain. [Evidence](TIER_COUNT_WORK.md): 1,710 desktop
+checks; full 89 scripts/730 syntax; five alternating native Era getter pairs with
+identical quantities and lower CPU. The baseline vendor hitch is reproduced;
+foreground after hitch resolution, positive native bank/warband counts, pixels,
+security and other clients remain pending.

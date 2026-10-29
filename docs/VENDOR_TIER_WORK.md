@@ -111,3 +111,15 @@ Repeat native checks on other available clients; the two API fixtures certify no
 native build. If the Era hitch remains, trace the remaining classification work,
 Already Known tooltip scans, reagent-name harvesting and layout retries with actual
 CPU evidence. Auction, guild-bank and void-storage callbacks remain deferred.
+
+## Native continuation: bag and cached-bank counts
+
+The next capture on Era 1.15.9.70576 reproduces a 333 ms maximum UI interval across
+four vendor reopenings. Target building still performs live usability on unrelated
+bag and cached personal-bank items. [PERF-006](TIER_COUNT_WORK.md) filters those
+count candidates first. Five alternating background native getter pairs return
+identical quantities with median CPU 132.199 -> 15.237 ms for bags and
+118.897 -> 22.517 ms for cached-bank kinds. Full 89 scripts/730 syntax passes.
+This updates the earlier unavailable attribution: whole-vendor after, unprofiled
+FPS and native visual/security acceptance remain pending. Original settings are
+restored and the game remains in the background at the user's request.

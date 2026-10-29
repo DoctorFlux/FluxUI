@@ -1,0 +1,292 @@
+local Tiers = FluxRestockTiers
+local P = Tiers._Private
+local function NumericItemID(value)
+    local n = tonumber(value)
+    if n and n > 0 then
+        return n
+    end
+    local Secrets = _G.Flux and _G.Flux.Secrets
+    if Secrets and Secrets.SafeGetNumber then
+        n = Secrets.SafeGetNumber(value, 0)
+        if n and n > 0 then
+            return n
+        end
+    end
+    return nil
+end
+local function NumericCount(value)
+    local n = tonumber(value)
+    if n and n > 0 then
+        return n
+    end
+    local Secrets = _G.Flux and _G.Flux.Secrets
+    if Secrets and Secrets.SafeGetNumber then
+        n = Secrets.SafeGetNumber(value, 0)
+        if n and n > 0 then
+            return n
+        end
+    end
+    return 0
+end
+local function LiveBagCount(inv, itemID)
+    itemID = NumericItemID(itemID)
+    if not itemID then
+        return 0
+    end
+    if inv and inv.GetLiveCount then
+        local n = NumericCount(inv.GetLiveCount(itemID, {
+            bags = true,
+            bank = false,
+            warband = false,
+            charges = false,
+        }))
+        if n > 0 then
+            return n
+        end
+    end
+    local Item = _G.Flux and _G.Flux.Item
+    if Item and Item.GetCount then
+        local n = NumericCount(Item.GetCount(itemID, false, false, false, false))
+        if n > 0 then
+            return n
+        end
+    end
+    if C_Item and C_Item.GetItemCount then
+        local ok, raw = pcall(C_Item.GetItemCount, itemID, false, false, false, false)
+        if ok then
+            local n = NumericCount(raw)
+            if n > 0 then
+                return n
+            end
+        end
+    end
+    if inv and inv.GetCount then
+        return NumericCount(inv.GetCount(itemID, {
+            bags = true,
+            bank = false,
+            warband = false,
+        }))
+    end
+    return 0
+end
+local function ForEachUniqueBagStack(inv, fn)
+    if not inv or type(fn) ~= "function" then
+        return 0
+    end
+    local unique = inv.Bags and inv.Bags.GetUniqueItems and inv.Bags.GetUniqueItems()
+    if type(unique) ~= "table" and inv.GetUniqueItems then
+        unique = inv.GetUniqueItems({ bags = true, bank = false, warband = false })
+    end
+    if type(unique) ~= "table" then
+        return 0
+    end
+    local stacks = 0
+    for itemID, rec in pairs(unique) do
+        itemID = NumericItemID(itemID) or NumericItemID(rec and rec.itemID)
+        local n = rec and NumericCount(rec.count) or 0
+        if n <= 0 and type(rec) == "number" then
+            n = NumericCount(rec)
+        end
+        if itemID and n > 0 then
+            stacks = stacks + 1
+            fn(itemID, n)
+        end
+    end
+    return stacks
+end
+local function ForEachLiveBagStack(inv, fn)
+    if not inv or type(fn) ~= "function" then
+        return
+    end
+    if inv.GetBagContainerIDs and inv.GetContainerItemInfo then
+        for _, bag in ipairs(inv.GetBagContainerIDs()) do
+            local numSlots = inv.GetContainerNumSlots and inv.GetContainerNumSlots(bag) or 0
+            for slot = 1, numSlots do
+                local info = inv.GetContainerItemInfo(bag, slot)
+                local itemID = info and NumericItemID(info.itemID)
+                local n = info and NumericCount(info.count or info.stackCount) or 0
+                if itemID and n > 0 then
+                    fn(itemID, n, info and (info.hyperlink or info.link))
+                end
+            end
+        end
+        return
+    end
+    if inv.ForEachLocation then
+        inv.ForEachLocation(function(loc)
+            local itemID = NumericItemID(loc and loc.itemID)
+            local n = loc and NumericCount(loc.count) or 0
+            if itemID and n > 0 then
+                fn(itemID, n, loc and loc.link)
+            end
+        end, { bags = true, bank = false, warband = false, equipped = false })
+    end
+end
+local function AxisFromClassify(kind, cls)
+    if not cls then
+        return 0
+    end
+    if kind == "water" or kind == "manaPotion" then
+        return tonumber(cls.mana or cls.effective) or 0
+    end
+    return tonumber(cls.health or cls.effective) or 0
+end
+local function CandidateTierCount(kind, merchantIndex)
+    if not Tiers.IsTierEligible(kind) then
+        return 0
+    end
+    merchantIndex = P.ResolveMerchantIndex and P.ResolveMerchantIndex(merchantIndex) or merchantIndex
+    local bagGen = P.GetBagCacheGen()
+    local merchantGen = P.GetMerchantCacheGen()
+    local cacheKey = tostring(kind) .. ":" .. tostring(merchantIndex and true or false)
+    if P.countCache.bagGen == bagGen and P.countCache.merchantGen == merchantGen then
+        local cached = P.countCache.kinds[cacheKey]
+        if cached and cached > 0 then
+            return cached
+        end
+    else
+        P.countCache.bagGen = bagGen
+        P.countCache.merchantGen = merchantGen
+        wipe(P.countCache.kinds)
+    end
+    local threshold = P.GetTierRestockThreshold(kind, merchantIndex)
+    local fj = P.FJ()
+    local inv = P.Inv()
+    local counted = {}
+    local total = 0
+    local function consider(itemID, n, link, cls, vendorOk)
+        itemID = NumericItemID(itemID)
+        n = NumericCount(n)
+        if not itemID or n <= 0 or counted[itemID] then
+            return 0
+        end
+        cls = cls or P.ClassificationForTierCount(kind, itemID, link)
+        if not P.ItemMatchesTier(kind, cls, threshold) then
+            return 0
+        end
+        if not P.IsTierItemUsable(kind, itemID, vendorOk and { vendor = true } or nil) then
+            return 0
+        end
+        if fj and fj.IsUpgradeInferior and fj.IsUpgradeInferior(itemID) then
+            return 0
+        end
+        counted[itemID] = true
+        return n
+    end
+    if type(merchantIndex) == "table" then
+        for itemID, meta in pairs(merchantIndex) do
+            itemID = NumericItemID(itemID) or (type(meta) == "table" and NumericItemID(meta.itemID))
+            if itemID and type(meta) == "table" then
+                local cls = P.ClassifyMerchantItem(kind, itemID, meta)
+                total = total + consider(itemID, LiveBagCount(inv, itemID), P.MerchantItemLink(meta), cls, true)
+            end
+        end
+    end
+    local Best = P.Best()
+    local best = Best and Best.GetBest and Best.GetBest(kind)
+    if best and best.itemID and not best.isConjured then
+        local cls = P.ClassificationForTierCount(kind, best.itemID, best.link)
+        total = total + consider(best.itemID, LiveBagCount(inv, best.itemID), best.link, cls)
+    end
+    ForEachUniqueBagStack(inv, function(itemID, n)
+        if counted[itemID] then
+            return
+        end
+        total = total + consider(itemID, n)
+    end)
+    ForEachLiveBagStack(inv, function(itemID, n, link)
+        if counted[itemID] then
+            return
+        end
+        total = total + consider(itemID, n, link)
+    end)
+    if total > 0 then
+        P.countCache.kinds[cacheKey] = total
+    end
+    return total
+end
+local function CandidateBankCount(kind, merchantIndex)
+    if not Tiers.IsTierEligible(kind) then
+        return 0
+    end
+    local inv = P.Inv()
+    if not inv or not inv.Bank then
+        return 0
+    end
+    local ref = P.GetTierRestockThreshold(kind, merchantIndex)
+    local strict, loose = 0, 0
+    local function consider(itemID, n, itemLink)
+        itemID = tonumber(itemID)
+        n = tonumber(n) or 0
+        if not itemID or n <= 0 then
+            return
+        end
+        local cls = P.ClassificationForTierCount(kind, itemID, itemLink)
+        local strictMatch = P.ItemMatchesTierForBank(kind, cls, ref)
+        if not strictMatch and not P.ItemMatchesTierLooseForBank(kind, cls) then
+            return
+        end
+        if not P.IsTierItemUsable(kind, itemID) then
+            return
+        end
+        if strictMatch then
+            strict = strict + n
+        else
+            loose = loose + n
+        end
+    end
+    local seen = {}
+    local char = inv.Bank.GetCharacterCounts and inv.Bank.GetCharacterCounts({ allowCached = true }) or {}
+    for itemID in pairs(char) do
+        itemID = tonumber(itemID)
+        if itemID then
+            seen[itemID] = true
+        end
+    end
+    if inv.Bank.GetWarbandCounts then
+        local war = inv.Bank.GetWarbandCounts({ allowCached = true }) or {}
+        for itemID in pairs(war) do
+            itemID = tonumber(itemID)
+            if itemID then
+                seen[itemID] = true
+            end
+        end
+    end
+    for itemID in pairs(seen) do
+        consider(itemID, inv.Bank.GetCount(itemID, { bank = true, warband = true }) or 0)
+    end
+    if strict > 0 then
+        return strict + loose
+    end
+    return loose
+end
+
+local kinds={"food","water","bandage","healPotion","manaPotion"}
+local function sample(pair,variant,domain,fn)
+ Tiers.InvalidateTierQueryCache()
+ local c0,n0=GetFunctionCPUUsage(fn,true)
+ local _,tips0=GetFunctionCPUUsage(FluxItemClass.GetTooltipText,true)
+ local _,use0=GetFunctionCPUUsage(FluxConsumableBest.Score.IsUsable,true)
+ local mem0=collectgarbage("count")
+ local values={}
+ local start=debugprofilestop()
+ for i,kind in ipairs(kinds)do values[i]=fn(kind,{})end
+ local wall=debugprofilestop()-start
+ local c1,n1=GetFunctionCPUUsage(fn,true)
+ local _,tips1=GetFunctionCPUUsage(FluxItemClass.GetTooltipText,true)
+ local _,use1=GetFunctionCPUUsage(FluxConsumableBest.Score.IsUsable,true)
+ return{pair=pair,variant=variant,domain=domain,wallMs=wall,cpuMs=c1-c0,calls=n1-n0,tooltipCalls=tips1-tips0,usabilityCalls=use1-use0,memoryDeltaKiB=collectgarbage("count")-mem0,values=values}
+end
+local function run()
+ local out={}
+ for _,fn in ipairs({_FVB.baseTier,CandidateTierCount,_FVB.baseBank,CandidateBankCount})do sample(0,"warm","warm",fn)end
+ for pair=1,5 do
+  local order=pair%2==1 and {"baseline","candidate"}or{"candidate","baseline"}
+  for _,variant in ipairs(order)do
+   out[#out+1]=sample(pair,variant,"bags",variant=="baseline"and _FVB.baseTier or CandidateTierCount)
+   out[#out+1]=sample(pair,variant,"cached_bank",variant=="baseline"and _FVB.baseBank or CandidateBankCount)
+  end
+ end
+ return out
+end
+return{tier=CandidateTierCount,bank=CandidateBankCount,run=run}

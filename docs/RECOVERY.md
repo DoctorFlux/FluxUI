@@ -196,3 +196,23 @@ with no WoW process running. Baseline `af5eee0d7a4c4693bf30124855a40a4c5e50981f`
 ZIP entries were reread and hash-verified against source manifests; bundle
 verification passed. Private manifests/absolute paths stay outside Git. Earlier
 checkpoints remain; no restore or settings/profiling reset was performed.
+
+## Tier count checkpoint 12:35 UTC / 13:35 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T123516Z`. Capture completed
+12:35:23.862522 UTC. Baseline `d3bce5baa01d8dff2aa6372de27afe1680da7b31`, tree
+`c9a97bf07e7b267925d3b63bc8a827ea8ad99ebc`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,234 actual files; 35,187,983 bytes | `f1b5c179f4917429fa656c784ffc085064388ae171951cc420b5779de253898d` |
+| history.bundle | All refs/history; verified | `34f6785cf40bcc7b39da483c2ad673a9c9f3d85eac8a7dbe11105c219783a47f` |
+| settings-private.zip | 403 files; 6,337,145 bytes | `f03306c21cd77715d9223a98955a002abde173459b3b22fb5aae0aca5fe58f15` |
+
+All ZIP entries were reread/hash-verified and bundle verification passed. Both Era
+and Retail were running: the settings snapshot preserves on-disk WTF only, not
+unsaved in-memory state. This limitation supersedes the initial sandbox process
+visibility observation for this checkpoint; it is not a closed-client backup.
+Original automation/profiler values were recorded separately in the native test.
+Private settings, raw exports, account paths and chat screenshots stay outside Git.
+All prior checkpoints/retired originals remain intact. No restore or reset occurred.

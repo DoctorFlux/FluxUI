@@ -52140,8 +52140,8 @@
       "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 914,
-      "sha256": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f",
+      "lines": 921,
+      "sha256": "5a8ca01692212b66f1841bb341dce345b46591b3fc5c536f4426d580e089eccc",
       "clients": [
         "camelot",
         "cata",
@@ -52267,15 +52267,15 @@
         },
         {
           "name": "Tiers.GetCachedTooltipReferenceTier",
-          "line": 893
+          "line": 900
         },
         {
           "name": "Tiers.GetTooltipDisplay",
-          "line": 897
+          "line": 904
         },
         {
           "name": "Tiers.KindsTouchedByItemID",
-          "line": 905
+          "line": 912
         }
       ],
       "events": [],
@@ -75264,6 +75264,47 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/tier_count_work.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 110,
+      "sha256": "f8d98bc0dfcaab6895dd77f4037c68c7824e4795892baf137c81983ab3b1a43f",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "nilendinv.GetCount",
+          "line": 37
+        },
+        {
+          "name": "p.GetBagCacheGen",
+          "line": 47
+        },
+        {
+          "name": "returns.generationendp.GetMerchantCacheGen",
+          "line": 48
+        },
+        {
+          "name": "returns.generationendp.GetTierRestockThreshold",
+          "line": 49
+        },
+        {
+          "name": "returns.thresholdendp.ResolveMerchantIndex",
+          "line": 50
+        },
+        {
+          "name": "returnindexendp.FJ",
+          "line": 51
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/transmog_actions.lua",

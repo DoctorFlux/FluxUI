@@ -32,6 +32,7 @@ the feature inventory.
 | BUG-007/PERF-004 | User reports idle vendor-open lag on Era. Production availability replay proves repeated full fallback walks through unchanged non-junk bags. Native cause/resolution remains unverified. | Fixed redundant work in `e02139a`; 265 checks/seven API fixtures; five matched pairs reduce Era first/reopen reads 300/5,000 to 200/zero. Full 87 scripts/728 syntax pass. [Evidence](VENDOR_OPEN_WORK.md); native pending. |
 | BUG-008 | Reported QuickJoin SetPoint error reproduced when the older social callback reverses the column dependency between Quick Join and Channels. | Fixed `5198ded`; both-button ownership guard retains normal column reconciliation and native fallback. 508 ownership plus 1,311 original column checks pass; five matched pairs; full 87 scripts/728 syntax pass. [Evidence](CHAT_QUICKJOIN_ANCHOR.md); native pending. |
 | PERF-005 | Vendor tier best/status scans ran live usability on every listing before matching; unoffered reference families repeated it at each open. | `1762826` filters matches first; 340 checks and full 88 scripts/729 syntax pass. Five pairs remove 15,000 info/ownership service lookups each across 25 large-vendor reopens; classification remains. [Evidence](VENDOR_TIER_WORK.md). Native spike remains unverified; profiling off/on must be separated. |
+| PERF-006 | Native Era four-reopen pilot reproduces 333 ms maximum UI interval; bag/cached-bank counts test unrelated live usability. | `013bf40` filters matches first; 1,710 checks/full 89 scripts/730 syntax pass. Five alternating native background pairs preserve quantities; median CPU per five kinds 132.199 -> 15.237 ms bags, 118.897 -> 22.517 ms cached bank. [Evidence](TIER_COUNT_WORK.md). Foreground after/native parity pending. |
 | AUDIT-001 | Core.Module has no generic resource scope/cancellation; production registrations do not provide OnDisable cleanup. | Source finding, not proof that every feature leaks. Trace real disable and combat-deferred callers before changing the shared contract. |
 | AUDIT-002 | Production Events replay confirms self-removal skips a later handler and remove-plus-add changes same-event behavior. Context.DisarmEvents is the sole active source consumer through alias Ev; no production Context.Unsubscribe invocation was found. | [Latent API defect](EVENT_DISPATCH_AUDIT.md), not demonstrated gameplay failure. Defer dispatcher changes until an actual teardown consumer or reproduced trigger justifies them. RegisterUnit lifetime audit remains separate. |
 | AUDIT-003 | Core/API and Core/FluxAPI both load; client flag meanings and callers differ. | Inventory migration contracts before moving a domain. Do not introduce a third backend. |
@@ -40,19 +41,20 @@ the feature inventory.
 | AUDIT-006 | Earlier native CPU/resource optimizations are present; the original baseline passed 81 scripts/722 syntax files and the historical BUG-003 candidate passes 84 scripts/725 syntax files. | Preserve as regression controls. Historical hotspots are not newly reproduced performance problems. |
 | AUDIT-007 | Auction SHOW queries, guild-bank queries and Void callbacks have additional provider-ownership boundaries. | Source-audit candidates only; reproduce and measure independently before expanding scope. |
 
-No additional current native bugs or FPS deficits were reproduced in this session.
-Historical taint/performance reports stay pending revalidation against exact builds.
+The Era vendor hitch is now reproduced on 1.15.9.70576; PERF-006 has measured
+native getter improvement. Full vendor after, FPS and historical taint/performance
+acceptance remain pending against exact builds.
 
 ## Priorities and gates
 
-1. **Current user scope:** BUG-001 through BUG-008 and PERF-005 pass desktop validation; native
-   acceptance remains pending. The user reports idle vendor-open lag on Era only.
-   User confirms every same-vendor Era reopening spikes. Prioritize matched native
-   repeated-open traces with profiling overhead separated; classification, Already
-   Known, reagent names and layout remain candidates. Chat native recheck is pending.
-   None of those remaining candidates is a proven cause. Auction, guild-bank and
-   void-storage callback audits stay deferred. Reproduce and measure a concrete
-   failure before selecting another correction.
+1. **Current user scope:** BUG-001 through BUG-008 and PERF-005/006 pass desktop
+   validation. Era hitch attribution and PERF-006 native getter comparison are
+   recorded. Keep WoW in the background for ordinary PC use. When convenient,
+   capture matched foreground repeated opens, separating profiling overhead, to
+   determine the remaining whole-vendor hitch. Other classification, Already Known,
+   reagent-name and layout candidates need attribution before edits. Chat native
+   recheck remains pending. Auction, guild-bank and void-storage callbacks stay
+   deferred; main stays unchanged.
 2. **Core lifecycle correctness:** event-dispatch mutation is now reproduced as a
    latent API defect; no current production unsubscribe path justifies prioritizing
    a dispatcher change. Windows disable discovery/polling is now fixed; other

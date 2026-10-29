@@ -1,17 +1,17 @@
 {
-  "captured_at_utc": "2026-10-29T12:21:03.792550+00:00",
+  "captured_at_utc": "2026-10-29T13:48:28.226060+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 729,
-  "lua_corpus_sha256": "c212ac48b7b69adbbda140fb9c91eaa260bdc0b755ff418024f97303c312fce8",
+  "publishable_lua_files": 730,
+  "lua_corpus_sha256": "f4f9aa0be616c736a03a00e1243aa9163f2ab340fd4ae9c8363606998d8698bf",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
-    "passed": 729,
+    "passed": 730,
     "failed": 0
   },
-  "smoke_scripts": 88,
-  "smoke_passed": 88,
+  "smoke_scripts": 89,
+  "smoke_passed": 89,
   "smoke_failed": 0,
   "results": [
     {
@@ -107,7 +107,7 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "wrath consumables passed\nmists consumables passed\nera consumables passed\nretail consumables passed\ncata consumables passed\nforever consumables passed\nanniversary consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+      "output": "retail consumables passed\nera consumables passed\nforever consumables passed\nwrath consumables passed\nmists consumables passed\nanniversary consumables passed\ncata consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
@@ -117,7 +117,7 @@
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "retail inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -192,7 +192,7 @@
     {
       "path": "tests/castbar_school_themes.lua",
       "exitCode": 0,
-      "output": "Particle Lua texture writes over 2s: native=300, fallback=6159 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13812 checks across five client families (native rendering/taint unverified)\n"
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6106 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13857 checks across five client families (native rendering/taint unverified)\n"
     },
     {
       "path": "tests/chat_column_layout.lua",
@@ -362,7 +362,7 @@
     {
       "path": "tests/perf_capture.lua",
       "exitCode": 0,
-      "output": "perf capture: 383 checks across five clients; 12 mutations rejected\n"
+      "output": "perf capture: 384 checks across five clients; 12 mutations rejected\n"
     },
     {
       "path": "tests/portrait_camera.lua",
@@ -403,6 +403,11 @@
       "path": "tests/startup_lifecycle.lua",
       "exitCode": 0,
       "output": "startup lifecycle: 205 checks passed (five client fixtures; no native taint/render simulation)\n"
+    },
+    {
+      "path": "tests/tier_count_work.lua",
+      "exitCode": 0,
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
     },
     {
       "path": "tests/transmog_actions.lua",
@@ -2010,7 +2015,7 @@
     },
     {
       "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
-      "sha256": "12881a7104409df884973ab24c41817a83d7a76aefc379c71ad285fa013c196f"
+      "sha256": "5a8ca01692212b66f1841bb341dce345b46591b3fc5c536f4426d580e089eccc"
     },
     {
       "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua",
@@ -3167,6 +3172,10 @@
     {
       "path": "tests/startup_lifecycle.lua",
       "sha256": "f09eb8e940269b3ba2801ec857a09d61ca15ccb6dcebbc7a415b8bce64b3a947"
+    },
+    {
+      "path": "tests/tier_count_work.lua",
+      "sha256": "f8d98bc0dfcaab6895dd77f4037c68c7824e4795892baf137c81983ab3b1a43f"
     },
     {
       "path": "tests/transmog_actions.lua",

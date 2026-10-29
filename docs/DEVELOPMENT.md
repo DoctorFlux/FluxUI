@@ -6,56 +6,63 @@ changing a subsystem. Continue in this existing addon and repository.
 
 1. Inspect status/HEAD/main/remotes and preserve newer user edits. Use the current
    change branch; main remains `7436820453d2248c84c99fff71507553efc47c19`.
-2. Continue skipping auction, guild-bank and void-storage callback audits until
-   explicitly requested. Do not infer permission from unrelated vendor work.
-3. Read [recovery](RECOVERY.md). Ten verified external checkpoints retain source,
-   history and private settings. Latest at 12:04 UTC / 13:04 Copenhagen covers
-   baseline af5eee0. Preserve a fresh checkpoint before another runtime batch if
-   source/settings differ; retired originals remain outside the addon.
-4. Latest runtime `17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3`, tree
-   `0c681c46987fc5b136274bba59e5e5bb3dd90990`. PERF-005 filters tier candidates
-   before live usability, retaining discovery, references, levels/skills and retries.
-   Validation candidate `e7ec46a4070c132ff8bf6033d6bef5e2c92f90aa`, tree
-   `4507ccd1456e42f9acdea0e2be4aaad073ff72ae`, adds the clarified repeated-open
-   scenario. 340 focused checks and full 88 scripts/729 syntax files pass.
-5. User confirms the Era spike on EVERY reopening of the same vendor. Follow
-   [native tier procedure](VENDOR_TIER_WORK.md), prioritizing repeated opens and
-   recorded actual builds/addons/profile. Previous fixes matched Era source before
-   edits. Saved Config.wtf has scriptProfile=1; compare profiling on/off separately
-   with original preference preserved. Five desktop pairs remove 15,000 info and
-   ownership lookups each across 25 large-vendor reopens; classification remains.
-   Native spike resolution is unverified. Remaining classification, Already Known,
-   reagent-name harvesting and layout candidates need actual attribution. Avoid
-   skipping the index wholesale: it preserves consumable reference discovery.
-6. BUG-001 through BUG-008, PERF-005 and editorial cleanup are already complete in desktop
-   scope. Merchant stock reservations are not native acknowledgement. Unchanged-ID
-   prices, external stock changes and delayed/rejected requests remain separate
-   unmeasured candidates. Event-dispatch mutation is latent with no production
-   unsubscribe trigger found; avoid speculative shared-service redesign.
-7. Native acceptance remains pending for every target. Follow [client validation](CLIENT_VALIDATION.md)
-   and [performance protocol](PERFORMANCE_PROTOCOL.md). Desktop mocks do not certify
-   pixels, input, combat/taint, secrets, native CPU or FPS. Modern Wrath fixtures do
-   not certify original Wrath 3.3.5.
+2. Keep skipping auction, guild-bank and void-storage callback audits. The current
+   cached personal/warband count change does not authorize those callbacks.
+3. Read [recovery](RECOVERY.md). Eleven verified external checkpoints retain source,
+   history and private settings. Latest 12:35 UTC / 13:35 Copenhagen covers d3bce5b,
+   1,234 actual files and 403 WTF files. Both clients were running: on-disk settings
+   only, not quiescent in-memory state. Preserve a fresh checkpoint before another
+   runtime batch if source/settings differ; retired originals stay outside AddOns.
+4. Current runtime/test `013bf40db1d5b57c238ac3ac377e8ced98446fd1`, tree
+   `4f0d827bb26bba3ee8b20e21de891596fad0e98b`. PERF-006 filters bag/cached-bank tier
+   matches before live usability; quantities, live gates/protections/fallback remain.
+   1,710 focused checks and full 89 scripts/730 syntax pass. Five alternating native
+   Era getter pairs return identical results with lower CPU. Personal-bank native
+   outputs are zero; positive/warband parity is desktop-only.
+5. **Leave WoW in the background while the user uses the PC.** Do not activate it,
+   take keyboard/mouse focus, or repeat the foreground controller without renewed
+   coordination. Cleanup is complete: original three automation flags true and
+   profiler=1 retained, temporary sampler/namespaces/exports cleared. Edit the normal
+   addon folder; the user's existing sync delivers files. No new sync/deployment job.
+6. The clean Era 1.15.9.70576 pilot reproduced a 333 ms UI interval across four opens
+   and about 320 ms per target build. Getter CPU medians per five kinds fell from
+   132.199 to 15.237 ms bags and 118.897 to 22.517 ms cached bank. Whole-vendor after
+   remains pending. When foreground testing is convenient, use [exact procedure](TIER_COUNT_WORK.md):
+   five matched alternating four-open/20-second windows, same NPC/profile/resolution/
+   scale/inventory/addons, 30-second warm-up, separate cold and steady work, profile
+   on/off with preference restored. Compare screenshots/input/taint and normal
+   allowed transactions separately. Do not infer native FPS from getter CPU.
+7. BUG-001 through BUG-008, PERF-005/006 and editorial cleanup retain their documented
+   tested scope. Other classification, Already Known, reagent-name or layout work
+   needs attribution before edits. Reservations are not native acknowledgement;
+   unchanged-ID price/stock changes and delayed/rejected requests remain separate.
+   Event mutation is latent with no production unsubscribe trigger; do not redesign
+   the shared dispatcher speculatively.
+8. Complete [client validation](CLIENT_VALIDATION.md) separately on available targets.
+   Era gains only partial native count evidence; pixels, security/taint, unprofiled
+   FPS, external providers and other clients remain pending. Desktop mocks do not
+   certify real secret values or original Wrath 3.3.5.
 
 Reproduction from the addon root:
 
 ```powershell
-lua tests/vendor_tier_work.lua --baseline --measure
-lua tests/vendor_tier_work.lua
+lua tests/tier_count_work.lua --source tests/fixtures/tier_count_match_before.txt --measure
+lua tests/tier_count_work.lua
 lua tests/idle_tiers.lua
+lua tests/vendor_tier_work.lua
 lua tests/vendor_slot_identity.lua
 python tests/run_validation.py --output docs/validation/next-check.json
 python -B docs/tools/build_reference.py
 python -B docs/tools/validate_docs.py
 ```
 
-Tier baseline measure mode exits zero with 12 expected failures among 340 checks;
-candidate passes all 340. Verify all current Lua hashes against
-`docs/validation/vendor-tier-full-2026-10-29.json` before reusing the full baseline
+Count measure mode exits zero with ten expected failures among 1,710 checks;
+candidate passes all. Verify all current Lua hashes against
+`docs/validation/tier-count-full-2026-10-29.json` before reusing the full result
 (Lua/luac 5.4.6, Python 3.10.6). Some legacy tests need adjacent reference trees;
-missing fixtures are not addon failures. Use --sync-docs only alongside a fresh
-validation run.
+missing fixtures are not addon failures. Use --sync-docs only with a fresh full run.
+Native probe/source hashes and samples are in the focused evidence; its local
+candidate bodies are not a replacement for complete addon foreground acceptance.
 
-Update status, decisions, work log, affected ledgers and these tasks when completing
-a change. No client sync/deployment, push/merge to main, settings reset, second addon,
-rename or release is authorized.
+Update status, decisions, work log, ledgers and these tasks before stopping. No
+push/merge to main, settings reset, second addon, rename or release is authorized.

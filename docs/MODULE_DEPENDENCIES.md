@@ -1,6 +1,6 @@
 # Module ownership and dependency audit
 
-Updated 2026-10-29. The original preserved baseline is `7436820`. BUG-001 guards builtin currency callbacks, BUG-002 cancels stale mail/auction scans, and BUG-003 discards pending builtin mail attribution after provider handoff. BUG-003 runtime commit is `ab4e658a98a7ce3ee6688ac6170e7e0991325af0`. [MODULE_OWNERSHIP.csv](MODULE_OWNERSHIP.csv) maps every loaded source domain and the shared services within Core/Inventory. [API_MIGRATION.csv](API_MIGRATION.csv) records overlapping contracts and explicit retirement conditions. Neither ledger declares the unfinished modernization complete. Window lifecycle runtime is `19c40a0c84212b24fdf221a9653a4116d32f9020`: BUG-004/PERF-003 fixes the disabled Windows lifecycle. The user deferred auction/guild-bank/void callback audits; those findings remain unmeasured. All native acceptance remains pending.
+Updated 2026-10-29. The original preserved baseline is `7436820`. BUG-001 guards builtin currency callbacks, BUG-002 cancels stale mail/auction scans, and BUG-003 discards pending builtin mail attribution after provider handoff. BUG-003 runtime commit is `ab4e658a98a7ce3ee6688ac6170e7e0991325af0`. [MODULE_OWNERSHIP.csv](MODULE_OWNERSHIP.csv) maps every loaded source domain and the shared services within Core/Inventory. [API_MIGRATION.csv](API_MIGRATION.csv) records overlapping contracts and explicit retirement conditions. Neither ledger declares the unfinished modernization complete. Window lifecycle runtime is `19c40a0c84212b24fdf221a9653a4116d32f9020`: BUG-004/PERF-003 fixes the disabled Windows lifecycle. The user deferred auction/guild-bank/void callback audits; those findings remain unmeasured. Broader native acceptance remains pending; Era getter evidence is recorded below.
 
 Merchant identity runtime: `cdd752abd060588bc1602e880d997a60dd0b34a9`, tree
 `d18478f458e670f18931c070a00d53a708387fee`. BUG-005 revalidates each queued merchant
@@ -35,12 +35,20 @@ column reconciliation and original deadlines. Combined regression: 1,819 checks;
 full suite 87 scripts/728 syntax files. The API ledger has 22 contracts. Native
 checks remain pending. [Evidence](CHAT_QUICKJOIN_ANCHOR.md).
 
-Current runtime is `17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3`, tree
+Prior runtime is `17628269f0e3b7fbeb1b8c2d7f9c7196829e67f3`, tree
 `0c681c46987fc5b136274bba59e5e5bb3dd90990`. PERF-005 filters vendor tier candidates before
 live usability without caching verdicts or removing discovery. Repeated-open
 validation carrier is `e7ec46a4070c132ff8bf6033d6bef5e2c92f90aa`. 340 checks and
-full 88 scripts/729 syntax pass; API ledger 23 contracts. Native spike attribution
-remains pending. [Evidence](VENDOR_TIER_WORK.md).
+full 88 scripts/729 syntax pass; that batch had 23 API contracts. Its native
+attribution was pending then. [Evidence](VENDOR_TIER_WORK.md).
+
+Current runtime `013bf40db1d5b57c238ac3ac377e8ced98446fd1`, tree
+`4f0d827bb26bba3ee8b20e21de891596fad0e98b`: PERF-006 filters bag and cached
+personal/warband count candidates before live usability. Existing owners retain
+accounting, caches and live gates; no new runtime resources. 1,710 focused checks
+and full 89 scripts/730 syntax pass; API ledger 24 contracts. Era native background
+getter pairs preserve quantities with reduced CPU; whole-vendor after and broader
+acceptance remain pending. [Evidence](TIER_COUNT_WORK.md).
 
 The load graph below was reconstructed from the current `_FluxUI.toc` and XML includes using `docs/tools/source_inventory.py:load_graph`, not copied from the older generated reference. File reachability establishes potential execution, not native support, option activation, or resource counts. TOC gates and runtime checks still apply. `Bindings.xml` is separate metadata-loaded binding data. Static assets and unloaded source are indexed by the existing asset/source inventories and remain preserved.
 

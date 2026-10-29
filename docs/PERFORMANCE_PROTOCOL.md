@@ -172,3 +172,23 @@ level rejection can differ; memory/CPU/latency/frame-time/FPS/parity remain pend
 Era saves scriptProfile=1. Separate profiled attribution from an unprofiled hitch
 comparison; preserve that preference and do not sum overlapping inclusive timings.
 Full 88 scripts/729 syntax files pass. No live hitch resolution is claimed.
+
+## Native Era tier count evidence
+
+[PERF-006](TIER_COUNT_WORK.md) records an actual Era 1.15.9.70576 four-reopen baseline
+with a 333 ms maximum UI interval and about 320 ms per restock target build. One
+profiled attribution pilot is not five matched whole-window pairs. A separate
+background native comparison uses five alternating getter pairs, one warm pass and
+existing query-cache invalidation; identical quantities, median CPU per five kinds
+132.199 -> 15.237 ms bags and 118.897 -> 22.517 ms cached personal bank. Exact
+source identities, hardware, addon list, profiler/settings, raw samples, ranges and
+source-derived local probe are retained. No public/native API replacement.
+
+Desktop five-model pairs preserve quantities and bank reads while eliminating
+unrelated live checks; full 89 scripts/730 syntax passes. Native bank outputs are
+all zero; positive/warband parity is desktop-only. Raw net memory deltas are not
+allocation bytes. No runtime resources added by source inspection; native resource
+enumeration was not performed. Full vendor after, startup/cold work, unprofiled
+frame/FPS traces and visual/security acceptance remain pending. User requested
+background PC use; leave the window there until foreground testing is convenient.
+Inclusive CPU rows overlap and must not be summed or translated into FPS.

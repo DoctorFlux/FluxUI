@@ -172,3 +172,13 @@ only matching positive contenders receive live usability checks. The 340-check
 regression covers repeated opens, levels, thresholds, price ties and delayed facts;
 full suite 88 scripts/729 syntax passes. [Evidence](VENDOR_TIER_WORK.md). Native
 feature/visual/hitch confirmation remains pending; no option/default was removed.
+
+## Native vendor tier count work
+
+PERF-006 (`013bf40`) adds partial performance/parity evidence for `SPEC-20-L14` and
+`SPEC-20-L30`: bag and cached personal/warband counts filter tier membership before
+live usability while retaining matching live gates and quantities. Desktop parity
+passes 1,710 checks; full suite 89 scripts/730 syntax. Era 1.15.9.70576 five-pair
+native background getters return identical quantities with lower measured CPU;
+positive cached-bank/warband counts, foreground after hitch, pixels and security
+remain pending. No option/default or feature removed. [Evidence](TIER_COUNT_WORK.md).

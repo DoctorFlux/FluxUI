@@ -1,0 +1,6 @@
+METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500
+METRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500
+METRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500
+METRIC live initial_checks=18 repeat_checks=450 bank_reads=23400
+METRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400
+Tier count work: 1710 checks, 0 failures
