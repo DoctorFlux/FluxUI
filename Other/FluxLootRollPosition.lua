@@ -4,6 +4,7 @@
 local addonName, ns = ...
 
 local GAP = 6 -- Vertical gap above the outer border
+local playerFrameWatcher
 
 -- Resolve Blizzard frame (GroupLootFrame is the main roll window; fallback for other clients)
 local function GetLootRollFrame()
@@ -22,16 +23,21 @@ local function UpdatePosition()
     if InCombatLockdown() then
         if not lootFrame._fluxLootRollNeedsPosition then
             lootFrame._fluxLootRollNeedsPosition = true
-            local defer = CreateFrame("Frame")
+            local defer = lootFrame._fluxLootRollDefer
+            if not defer then
+                defer = CreateFrame("Frame")
+                defer:SetScript("OnEvent", function(self, event)
+                    if event == "PLAYER_REGEN_ENABLED" then
+                        self:UnregisterAllEvents()
+                        if lootFrame._fluxLootRollNeedsPosition then
+                            lootFrame._fluxLootRollNeedsPosition = nil
+                            UpdatePosition()
+                        end
+                    end
+                end)
+                lootFrame._fluxLootRollDefer = defer
+            end
             defer:RegisterEvent("PLAYER_REGEN_ENABLED")
-            defer:SetScript("OnEvent", function(self, event)
-                if event == "PLAYER_REGEN_ENABLED" and lootFrame._fluxLootRollNeedsPosition then
-                    lootFrame._fluxLootRollNeedsPosition = nil
-                    self:UnregisterAllEvents()
-                    UpdatePosition()
-                end
-            end)
-            lootFrame._fluxLootRollDefer = defer
         end
         return
     end
@@ -54,7 +60,10 @@ local function Initialize()
     UpdatePosition()
 
     if not ns.PlayerFrame or not ns.PlayerFrame.outerBorderFrame then
-        local watcher = CreateFrame("Frame")
+        if not playerFrameWatcher then
+            playerFrameWatcher = CreateFrame("Frame")
+        end
+        local watcher = playerFrameWatcher
         local checkCount = 0
         local MAX_CHECKS = 50
         watcher:SetScript("OnUpdate", function(self, elapsed)
@@ -66,6 +75,8 @@ local function Initialize()
                 self:SetScript("OnUpdate", nil)
             end
         end)
+    elseif playerFrameWatcher then
+        playerFrameWatcher:SetScript("OnUpdate", nil)
     end
 end
 
