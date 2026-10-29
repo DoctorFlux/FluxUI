@@ -779,7 +779,9 @@ function FluxCCP.PlaceColumnButtons()
     end
     columnPlacing = true
     FluxCCP.AttachColumnToDock()
-    local chat = DockChat()
+    -- Combat Log and other docked windows can have different native rectangles.
+    -- Keep one column on the primary dock; Copy still reads the selected tab.
+    local chat = _G.ChatFrame1 or DockChat()
     local holder = ColumnHolder()
     local guildBtn = _G.FluxCCPChatGuildButton
     local durBtn = _G.FluxCCPChatDurabilityButton

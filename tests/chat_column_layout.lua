@@ -129,8 +129,9 @@ local function fixture(branch, side, body)
     env.GENERAL_CHAT_DOCK = { selected = chat }
     env.FCFDock_GetSelectedWindow = function(dock) return dock.selected end
     local windows = { chat }
-    for i = 2, 3 do
-        local cf = frame("ChatFrame" .. i, env.UIParent, 240); cf.top, cf.hidden, cf.id = 370, true, i
+    for i = 2, 4 do
+        local cf = frame("ChatFrame" .. i, env.UIParent, 180 + i * 15)
+        cf.top, cf.hidden, cf.id, cf.scale = 370 + i * 45, true, i, 0.8 + i * 0.1
         cf.buttonFrame = frame("ChatFrame" .. i .. "ButtonFrame", cf)
         env[cf.name] = cf; windows[i] = cf
     end
@@ -383,6 +384,12 @@ for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic
         env.FluxChatFrame_GetPrimaryTabHeight = function() reads = reads + 1; return tabHeight end
         env.FluxCCP.PlaceColumnButtons()
         aligned(env.FriendsMicroButton:GetTop() == 394, branch .. ": beside-chat top matches reference inset")
+        for _, tab in ipairs({ 2, 3, 4, 1 }) do
+            s.select(tab); env.FluxCCP.PlaceColumnButtons()
+            aligned(env.FriendsMicroButton:GetTop() == 394,
+                branch .. ": Social keeps its primary-dock offset on tab " .. tab)
+            aligned(env.FriendsMicroButton:IsVisible(), branch .. ": column stays visible on tab " .. tab)
+        end
         columnTop, chat.top, chat.Background.top = 432, 400, 403
         env.FluxCCP.PlaceColumnButtons()
         aligned(env.FriendsMicroButton:GetTop() == 424, branch .. ": shared top follows layout resize")
