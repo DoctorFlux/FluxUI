@@ -121,3 +121,11 @@ record disabled discovery/polling and gesture resource counts; enabled scale/fra
 hook controls remain equal. Latest suite passes 85 scripts/726 syntax files. Native
 startup/idle/burst CPU, allocations, latency, frame times and parity remain pending;
 do not relabel the earlier currency/provider samples as this candidate's baseline.
+
+## Merchant purchase identity evidence
+
+[BUG-005](VENDOR_PURCHASE_IDENTITY.md) records a separate matched production-code
+replay and full 86-script/727-file candidate. Invalid purchases drop to zero; the
+correctness guard adds one identity lookup per valid purchase. Stable cadence and
+resource controls remain equal. These are operation counts, not a native CPU/FPS
+speedup. Native startup/idle/purchase-burst profiling and parity remain pending.

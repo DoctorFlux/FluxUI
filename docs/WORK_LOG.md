@@ -221,3 +221,51 @@ with 759 classified sources, 577 reachable files, 361 setting definitions,
 23 SavedVariables roots and 12,709 local links. All six CSV ledgers are valid.
 The final scope scan covers 1,195 actual files and finds zero development-tool
 markers outside Git. Native acceptance retains its prior pending status.
+
+## 2026-10-29 — queued merchant purchase identity
+
+Resumed on 07b11ce with a clean working tree, same branch and main 7436820. Read
+contribution/status/development/decision records, vendor ownership/performance
+records, supplied vendor requirements, production seller/classifier/buyer and tests.
+The auction, guild-bank and void-storage callback audits remain deferred.
+
+Before edits, verified a fresh external checkpoint at 10:40:48 UTC: 1,195 source
+files, Git history/refs and 403 private settings files while WoW was closed. Verified
+all 726 previous Lua hashes before reusing the 85-script full baseline.
+
+BUG-005 reproduction executes production FluxVendorBuy through public restock and
+merchant event handlers. After the initial eight purchases, replacing slot 9 and
+removing slot 10 causes wrong/empty purchases on the next bag pulse, even after the
+index rebuild. Baseline: 660 checks/36 failures. Added one execution-time identity
+condition using the existing resolver; no new service or settings change. Invalid
+tasks leave the queue before purchase/accounting while valid trailing tasks continue.
+
+Validation:
+
+- `lua tests/vendor_slot_identity.lua --source tests/fixtures/vendor_buy_slot_before.txt --measure`:
+  retained baseline records 36 expected failures; measure mode deliberately exits 0.
+- `lua tests/vendor_slot_identity.lua`: all 660 checks pass. Four merchant API/identity
+  models, manual/tier targets, pulses before/after index rebuild, same-pass changes,
+  fresh request recovery, merchant close and stable 40-target queues are covered.
+- `lua Inventory/Restock/Junk/_tmp_junksmoke.lua`: existing sale/protection/visual
+  regression passes; no seller code changes.
+- Five alternating process pairs: all 20 metric cases have zero count variation.
+  Each changed tail goes from one wrong + one empty purchase to zero; valid trailing
+  purchases remain two. Stable 40-item queues retain five passes/eight-call budget
+  and one event frame; each valid purchase adds one ID or link identity read.
+- `python tests/run_validation.py --output docs/validation/vendor-slot-full-2026-10-29.json --sync-docs`:
+  86 scripts/727 syntax files, zero failures. Native screenshots/input/taint/security,
+  resource costs, latency and FPS remain pending; fixture money is simulated.
+
+Runtime/test/fixture committed as cdd752abd060588bc1602e880d997a60dd0b34a9, tree
+d18478f458e670f18931c070a00d53a708387fee. Source review confirms only the invalid-task
+condition/comment changed; purchase math/UI/defaults/restriction guards are preserved.
+Evidence and exact native steps are in VENDOR_PURCHASE_IDENTITY.md. No new native
+client run, settings mutation, deployment, push or main change.
+
+Merchant identity documentation validation passes: 760 classified sources, 577
+reachable files, 361 setting definitions, 23 SavedVariables roots and 12,733 local
+links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 19 API,
+eight client, 77 reference and 118 performance rows). All 727 Lua hashes match
+the full report. Requirements/libraries/assets/manifests (346 files) match the fresh
+checkpoint, and the development-tool marker scan remains clear outside Git.

@@ -12,14 +12,18 @@ Work continues on the existing change branch. Main remains
 | Deferred inventory scans | `05e9f79` | 210 checks; stale queued/partial work cancels after ownership transfer |
 | Pending mail completion | `ab4e658` | 410 checks; no writes into provider-owned recipient data |
 | Disabled window mover | `19c40a0` | 220 checks and 100 toggle cycles; discovery/polling/gestures stop |
+| Queued merchant item identity | `cdd752a` | 660 focused checks; changed/missing listings are skipped before purchase |
 
-Latest behavior-changing runtime commit: `19c40a0c84212b24fdf221a9653a4116d32f9020`,
-tree `92973edadfdd5ebfc5935621bc2b77f1e0655066`. Its full desktop suite passed
-85 scripts and 726 syntax files. The editorial cleanup preserves executable Lua
-tokens; [fresh full-suite results](validation/editorial-cleanup-full-2026-10-29.json)
-and [token comparisons](validation/comment-cleanup-tokens-2026-10-29.json) identify
-the current files. The [scope check](validation/editorial-cleanup-scope-2026-10-29.json)
-covers actual addon files, including ignored files and bundled libraries.
+Latest behavior-changing runtime commit: `cdd752abd060588bc1602e880d997a60dd0b34a9`,
+tree `d18478f458e670f18931c070a00d53a708387fee`. Latest full suite: **86 desktop scripts and
+727 Lua syntax files, zero failures**. All current Lua hashes match the
+[full report](validation/vendor-slot-full-2026-10-29.json).
+
+[BUG-005 evidence](VENDOR_PURCHASE_IDENTITY.md) records the reproduced wrong-item
+purchase, before/after counts and added identity-query cost. Five alternating pairs
+remove invalid purchases while stable queues retain 40 purchases over five passes.
+Native acceptance remains pending. The earlier editorial cleanup and its source
+comparison remain historical evidence for that separate change.
 
 ## Editorial cleanup
 
@@ -36,7 +40,7 @@ Original requirements and raw records are preserved in [recovery](RECOVERY.md).
 - [Feature inventory](FEATURE_INVENTORY.md): 1,384 ledger rows covering all 26
   product specifications, controls/defaults, commands, bindings, saved roots and
   integrations; 17 documented discrepancies remain explicit.
-- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 18 API
+- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 19 API
   contracts. Source closure: 577 reachable files, zero missing includes.
 - [Client validation](CLIENT_VALIDATION.md): eight distinct client rows and 77
   reference/version/license entries. Installed executables were inspected; their
@@ -54,8 +58,9 @@ Event-dispatch mutation is a documented latent defect with no current production
 unsubscribe trigger found; do not redesign it without an actual consumer.
 
 Auction, guild-bank and void-storage callback audits are deferred by user direction.
-The next independent investigation may cover vendor/restock slot/protection checks
-or another reproduced issue outside those domains. See [development tasks](DEVELOPMENT.md).
+The next independent investigation may cover sold-out stock/affordability metadata
+for unchanged merchant item IDs, or another reproduced issue outside those domains.
+Those candidates are not yet reproduced defects. See [development tasks](DEVELOPMENT.md).
 
 Editorial validation completed: 85 desktop tests and 726 Lua syntax checks pass;
 all current Lua hashes match the final report. Documentation validation passes
@@ -63,3 +68,10 @@ with 759 classified sources, 577 reachable files, 361 setting definitions,
 23 SavedVariables roots and 12,709 local links. All six CSV ledgers are valid.
 The final scope scan covers 1,195 actual files and finds zero development-tool
 markers outside Git. Native acceptance retains its prior pending status.
+
+Merchant identity documentation validation passes: 760 classified sources, 577
+reachable files, 361 setting definitions, 23 SavedVariables roots and 12,733 local
+links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 19 API,
+eight client, 77 reference and 118 performance rows). All 727 Lua hashes match
+the full report. Requirements/libraries/assets/manifests (346 files) match the fresh
+checkpoint, and the development-tool marker scan remains clear outside Git.

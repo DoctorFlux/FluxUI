@@ -124,3 +124,13 @@ their requirements. Their ledger rows and source hashes follow the edited Markdo
 original text remains in the external checkpoint. Prompt/template and Word planning
 artifacts were retired outside the addon; the 26 specifications, implementation
 plan and all feature requirements remain available. No feature/default was removed.
+
+## Queued merchant purchase correction
+
+BUG-005 (`cdd752a`) addresses an operation-time identity gap: retained queue slots can
+buy unrelated items after merchant listings change, including after index refresh.
+Manual/tier restock requirement rows receive only this focused coverage. The guard
+skips stale tasks while preserving valid purchases, and a normal fresh request fills
+remaining targets. [Evidence](VENDOR_PURCHASE_IDENTITY.md): 660 checks, five matched
+pairs and a complete 86-script/727-syntax pass. Other vendor requirements and all
+native feature/visual acceptance retain their previous status.

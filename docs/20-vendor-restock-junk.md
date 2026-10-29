@@ -115,3 +115,12 @@ The planner favors existing partial destinations to avoid needless leftover frag
 ## Interfaces and verification boundaries
 
 The detailed controls/defaults are in [Options](26-options-map.md); commands include `/fluxbankdebug`/`/fbrdebug`, `/buyemall`, and the active Already Known backend's aliases. See [command reference](31-commands-and-bindings.md), [inventory](21-inventory-foundation.md), [Baganator](24-baganator-compat.md) and [Respec protection](23-respec.md) for shared contracts. Existing local junk/consumable/inventory mocks exercise many transitions, but source/mock evidence does not prove merchant throttling, protected mutations, taint, real bank topology or item-moving latency in the game.
+
+## Queued listing identity
+
+BUG-005 (`cdd752a`) checks the live merchant slot item ID before each queued purchase.
+A missing/replaced listing is removed before buying or accounting; valid tasks keep
+the existing eight-call budget and bag-driven cadence. A normal new request after
+index refresh resolves remaining/moved targets. [Evidence and native checks](VENDOR_PURCHASE_IDENTITY.md):
+660 focused checks and the 86-script/727-file desktop suite pass. Stable 40-item queues
+retain five passes and add one identity lookup per purchase. Native acceptance is pending.

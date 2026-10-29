@@ -1,6 +1,15 @@
 # Module ownership and dependency audit
 
-Updated 2026-10-29. The original preserved baseline is `7436820`. BUG-001 guards builtin currency callbacks, BUG-002 cancels stale mail/auction scans, and BUG-003 discards pending builtin mail attribution after provider handoff. BUG-003 runtime commit is `ab4e658a98a7ce3ee6688ac6170e7e0991325af0`. [MODULE_OWNERSHIP.csv](MODULE_OWNERSHIP.csv) maps every loaded source domain and the shared services within Core/Inventory. [API_MIGRATION.csv](API_MIGRATION.csv) records overlapping contracts and explicit retirement conditions. Neither ledger declares the unfinished modernization complete. Latest runtime is now `19c40a0c84212b24fdf221a9653a4116d32f9020`: BUG-004/PERF-003 fixes the disabled Windows lifecycle. The user deferred auction/guild-bank/void callback audits; those findings remain unmeasured. All native acceptance remains pending.
+Updated 2026-10-29. The original preserved baseline is `7436820`. BUG-001 guards builtin currency callbacks, BUG-002 cancels stale mail/auction scans, and BUG-003 discards pending builtin mail attribution after provider handoff. BUG-003 runtime commit is `ab4e658a98a7ce3ee6688ac6170e7e0991325af0`. [MODULE_OWNERSHIP.csv](MODULE_OWNERSHIP.csv) maps every loaded source domain and the shared services within Core/Inventory. [API_MIGRATION.csv](API_MIGRATION.csv) records overlapping contracts and explicit retirement conditions. Neither ledger declares the unfinished modernization complete. Window lifecycle runtime is `19c40a0c84212b24fdf221a9653a4116d32f9020`: BUG-004/PERF-003 fixes the disabled Windows lifecycle. The user deferred auction/guild-bank/void callback audits; those findings remain unmeasured. All native acceptance remains pending.
+
+Latest behavior-changing runtime: `cdd752abd060588bc1602e880d997a60dd0b34a9`, tree
+`d18478f458e670f18931c070a00d53a708387fee`. BUG-005 revalidates each queued merchant
+slot through the existing resolver before purchase/accounting. Refreshing an index
+alone does not repair retained task references. Stale tasks are removed; a normal
+fresh request resolves current listings and remaining counts. The suite passes
+86 scripts/727 syntax files, including 660 focused checks. This adds one identity
+lookup per valid purchase. [Evidence](VENDOR_PURCHASE_IDENTITY.md); native acceptance
+remains pending. The API ledger now has 19 domain contracts.
 
 The load graph below was reconstructed from the current `_FluxUI.toc` and XML includes using `docs/tools/source_inventory.py:load_graph`, not copied from the older generated reference. File reachability establishes potential execution, not native support, option activation, or resource counts. TOC gates and runtime checks still apply. `Bindings.xml` is separate metadata-loaded binding data. Static assets and unloaded source are indexed by the existing asset/source inventories and remain preserved.
 

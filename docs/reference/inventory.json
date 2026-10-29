@@ -54544,8 +54544,8 @@
       "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 1824,
-      "sha256": "a5daa9465a124b6c2ee4268f4e3b11eafc11f33a422ddd44b14ce36d5dd98da8",
+      "lines": 1826,
+      "sha256": "e9ce58c2d97709a18eb784d98b6f560258964b6ebf67c057452b8ffceeff564a",
       "clients": [
         "camelot",
         "cata",
@@ -54595,32 +54595,32 @@
         },
         {
           "name": "Buy.OnIndexReady",
-          "line": 1227
+          "line": 1229
         },
         {
           "name": "FV.IsRestockBuyActive",
-          "line": 1247
+          "line": 1249
         },
         {
           "name": "FV.IsVendorBurstActive",
-          "line": 1251
+          "line": 1253
         },
         {
           "name": "FV.DoRestockManual",
-          "line": 1294
+          "line": 1296
         },
         {
           "name": "FV.TriggerAutoRestock",
-          "line": 1385
+          "line": 1387
         },
         {
           "name": "FV.RunAutoVendorBatch",
-          "line": 1434
+          "line": 1436
         }
       ],
       "events": [
         {
-          "line": 1594,
+          "line": 1596,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_SHOW\""
@@ -54628,7 +54628,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 1595,
+          "line": 1597,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_UPDATE\""
@@ -54636,7 +54636,7 @@
           "context": "(\"MERCHANT_SHOW\")frame:"
         },
         {
-          "line": 1596,
+          "line": 1598,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_CLOSED\""
@@ -54644,7 +54644,7 @@
           "context": "(\"MERCHANT_UPDATE\")frame:"
         },
         {
-          "line": 1597,
+          "line": 1599,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_ERROR_MESSAGE\""
@@ -54652,7 +54652,7 @@
           "context": "function()frame:"
         },
         {
-          "line": 1605,
+          "line": 1607,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE_DELAYED\""
@@ -75571,6 +75571,100 @@
         }
       ],
       "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/vendor_slot_identity.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 184,
+      "sha256": "e420f27633b322130945c0069ac81c100e92079cb0cfe27f9b346ecc7c61f3f6",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "endenv.FluxVendorAuto.GetRestockTargetItems",
+          "line": 30
+        },
+        {
+          "name": "entryendreturnentriesendenv.GetMoney",
+          "line": 44
+        },
+        {
+          "name": "env.IsShiftKeyDown",
+          "line": 46
+        },
+        {
+          "name": "returnfalseendenv.GetTime",
+          "line": 47
+        },
+        {
+          "name": "returnh.nowendenv.GetMerchantNumItems",
+          "line": 48
+        },
+        {
+          "name": "returnh.sizeendenv.GetMerchantItemMaxStack",
+          "line": 49
+        },
+        {
+          "name": "endenv.GetMerchantItemLink",
+          "line": 50
+        },
+        {
+          "name": "endifnotlinksthenenv.GetMerchantItemID",
+          "line": 56
+        },
+        {
+          "name": "infoendenv.BuyMerchantItem",
+          "line": 74
+        },
+        {
+          "name": "env.CreateFrame",
+          "line": 89
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 91
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 92
+        },
+        {
+          "name": "f:SetScript",
+          "line": 93
+        },
+        {
+          "name": "freturnfendenv.print",
+          "line": 97
+        },
+        {
+          "name": "h:event",
+          "line": 98
+        },
+        {
+          "name": "h:advance",
+          "line": 101
+        },
+        {
+          "name": "h.afterFirst",
+          "line": 159
+        }
+      ],
+      "events": [
+        {
+          "line": 91,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "}}functionf:"
+        }
+      ],
       "slash": [],
       "widgets": [],
       "loads": [],

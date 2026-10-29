@@ -82,3 +82,13 @@ late panel discovery, options/public API disable and re-enable, gesture cancella
 saved geometry/scopes, protected combat Apply and matched screenshots/input. Capture
 matched native startup/idle/burst performance with profiling overhead accounted for.
 Auction/guild-bank/void callback audits are currently deferred by user direction.
+
+## Queued merchant identity — native acceptance pending
+
+BUG-005 uses the existing item-ID/link resolver before a queued purchase. The desktop
+replay passes 660 checks and the full suite 86 scripts/727 syntax files; no native
+client row advances. Follow [merchant identity native checks](VENDOR_PURCHASE_IDENTITY.md):
+stable manual/automatic restock, naturally changed/missing listings before/after
+index refresh, normal fresh-request recovery, quantities, money, tier/alternate-cost
+behavior, close/reopen, input/combat/taint and matched screenshots/performance. No
+native API replacement or forced live-data manipulation is part of the procedure.

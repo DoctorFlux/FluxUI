@@ -116,3 +116,19 @@ editor plans, prompts/templates, original Word plan, former handoff files, local
 backup trees and sync log as ordinary files under `retired/`. The current Markdown
 plan, specifications, tests and factual validation evidence remain in the repository.
 No addon identity, settings or Git history was reset or rewritten.
+
+## Merchant identity checkpoint 10:40 UTC
+
+External archive: `FluxUI-recovery-20261029T104042Z`. Capture completed 10:40:48 UTC
+with no WoW process running. Baseline commit `07b11ce66c1b9efd70752f70f15a8e3f88fa63eb`,
+tree `ddd388fb8c69d8650efb485f1d9b95d0512f7e3e`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,195 actual files; 33,267,050 bytes | `23811bd6d972ed30af758503190f81486769b344a39b3426f253fffae9a0f0b8` |
+| history.bundle | All refs/history; verified | `9d8928ddbf01a71868c89c2610647f1d30ddf367950506659811cb7489960d76` |
+| settings-private.zip | 403 files; 6,336,469 bytes | `1478525b853dafcb8a534653792e4ba79b04d1f1ee5bfcf95db39b6dd8a4f6ec` |
+
+All archive entries were reread and hash-verified against their source manifests.
+Absolute recovery locations/private manifests stay outside Git. Earlier checkpoints
+and their retired original files remain intact. No restore/settings reset occurred.

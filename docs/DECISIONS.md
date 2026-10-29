@@ -90,3 +90,18 @@
   Use factual descriptions of the recorded procedure. Preserve
   original records in the verified checkpoint and omit optional branch metadata.
 - Do not rewrite Git history or alter main as part of a working-tree cleanup.
+
+## 2026-10-29 — queued merchant purchase identity
+
+- BUG-005 is an active queue correctness issue: production replay buys a replacement
+  merchant item or submits an empty slot after listings change. Index refresh alone
+  cannot repair retained task references. Protect the operation, not just index build.
+- Reuse ResolveMerchantSlotItemID in RunBuyPass's invalid-task condition. Discard a
+  missing/mismatched listing before quantity calculation, purchase, wallet debit or
+  reporting. Continue valid tasks at the original eight-call budget and cadence.
+- Do not relocate stale tasks or restart the session automatically: a fresh normal
+  request uses current index/remaining counts. This avoids resubmitting earlier
+  purchases while inventory acknowledgements may still be settling.
+- Record the extra identity lookup per valid purchase as correctness overhead.
+  No native performance improvement is claimed. Unchanged-ID price/stock changes
+  and purchase acknowledgement are separate unmeasured candidates.
