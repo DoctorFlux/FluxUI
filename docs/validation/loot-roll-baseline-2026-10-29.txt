@@ -1,0 +1,26 @@
+FAIL era coalesces readiness watcher
+FAIL era one startup plus one readiness frame
+FAIL era reuses combat waiter over 100 cycles
+FAIL era cleared request still disarms waiter
+METRIC era frames=203 combat_frames=101 hooks=1 writes=101
+FAIL anniversary coalesces readiness watcher
+FAIL anniversary one startup plus one readiness frame
+FAIL anniversary reuses combat waiter over 100 cycles
+FAIL anniversary cleared request still disarms waiter
+METRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101
+FAIL progression coalesces readiness watcher
+FAIL progression one startup plus one readiness frame
+FAIL progression reuses combat waiter over 100 cycles
+FAIL progression cleared request still disarms waiter
+METRIC progression frames=203 combat_frames=101 hooks=1 writes=101
+FAIL live coalesces readiness watcher
+FAIL live one startup plus one readiness frame
+FAIL live reuses combat waiter over 100 cycles
+FAIL live cleared request still disarms waiter
+METRIC live frames=203 combat_frames=101 hooks=1 writes=101
+FAIL forever coalesces readiness watcher
+FAIL forever one startup plus one readiness frame
+FAIL forever reuses combat waiter over 100 cycles
+FAIL forever cleared request still disarms waiter
+METRIC forever frames=203 combat_frames=101 hooks=1 writes=101
+Loot roll lifecycle: 2050 checks, 20 failures

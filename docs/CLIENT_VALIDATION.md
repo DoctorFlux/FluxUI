@@ -153,3 +153,19 @@ the background without further foreground access.
 Only Era's matrix row gains this partial native result. Full repeated-open after,
 matched screenshots/input, cold work, unprofiled FPS, security/taint, external
 providers and other clients remain pending. Original Wrath remains unverified.
+
+## Retail native idle and resource audit — partial evidence
+
+Retail is now observed running 12.1.5.70575, interface120105, project1, level81 Mage
+in Stormwind. Five background profile1 idle captures and ten GC/frame censuses
+record actual addons/settings/hardware. Frame/public-cache sizes stay stable while
+requested diagnostics retain memory; [audit](RETAIL_PERFORMANCE_AUDIT.md) separates
+that observation from a normal HUD leak claim. Source fixes reuse loot waiters and
+release full capture snapshots. Original profiler=0 is restored after measurement;
+no game activation or public/native API replacement. Complete foreground FPS,
+visual/input/taint/secrets, combat/loot, long sessions, external providers and other
+clients remain pending. This partial row does not certify all Retail features.
+
+## Shared chat column follow-up
+
+Retail BUG-011 native partial pass: Social gap8 UI units, untouched post-reload screenshot inspected before chat/tab input, and seven General/Global/Combat Log selections with identical visible coordinates. Profiler0 restored; temporary exports removed. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Custom-tab desktop checks do not certify other native clients or combat/taint.

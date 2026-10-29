@@ -98,3 +98,56 @@ match the full report. Checkpoint comparison preserves 361 specification/library
 asset/manifest/XML files byte-for-byte, with no missing files or unexpected changes.
 Explicit development-tool markers remain absent across 1,244 actual files outside
 Git. Main remains unchanged; complete native after acceptance remains pending.
+
+## Retail audit — latest actual-file validation
+
+[Whole-addon audit](RETAIL_PERFORMANCE_AUDIT.md) indexes 577 reachable files across
+26 domains. BUG-009/PERF-007 `6ac4389` fixes accumulating loot waiters; BUG-010/PERF-008
+`3046478` releases full optional capture snapshots/handle references. Five desktop
+pairs preserve geometry/report controls: loot frames 203 -> 3, retained capture
+snapshots 20 -> 0 per model. Focused checks 2,050 / 400; existing capture 383 with
+12 rejected mutations. Latest actual-file suite is **92 scripts / 733 Lua files,
+zero failures**: [full report](validation/retail-lifecycle-full-2026-10-29.json).
+It includes the preserved, uncommitted tracker correction; older vendor corpus
+counts above retain their historical scope.
+
+Native Retail 12.1.5.70575 / interface 120105, project 1: five 20-second background
+captures, median addon CPU 30.772 ms/s (30.107-37.046), stable 14,742 total / 1,449
+Flux-source frames and eight sampled public cache sizes. Memory rises during the
+requested diagnostics; native follow-up is scoped to snapshot release, not a claim
+that ordinary UI leaks at that rate. Nameplate/assistant work needs further matched
+attribution. Foreground FPS, combat/taint/pixels, private-cache churn, multi-hour
+sessions and other clients remain pending. Original profiler preference is 0;
+restore it after probes. WoW remains in the background, main unchanged, excluded
+callbacks untouched. Existing tracker source/test changes remain uncommitted.
+
+Retail follow-up complete: five direct file-loaded candidate captures retain compact
+reports with824 KiB block growth versus40,450 KiB before. Unequal memory endpoint
+gaps, camera activity and frame totals make strict gameplay/CPU/FPS comparisons
+inconclusive. [Raw follow-up](validation/retail-idle-native-after-2026-10-29.json).
+Original profiler0 restored and temporary diagnostics removed; WoW stays open in
+the background. Normal HUD leak-free acceptance remains pending.
+
+## Chat column — latest runtime and validation
+
+BUG-011 alignment/reload `78fe4e7`, all-tab anchor `7f13000`: Social uses one eight-
+UI-unit tab-row inset on every client path. The relative offset follows late login
+pins; one primary-dock anchor prevents Combat Log/Global/custom-tab rectangle
+changes from moving buttons. Copy still targets the selected tab. [Evidence](CHAT_COLUMN_ALIGNMENT.md).
+
+Current actual-file report is [chat validation](validation/chat-column-alignment-full-2026-10-29.json):
+92 scripts/733 syntax files pass, including2,009 column checks. Five alternating
+pairs preserve layout point/frame counts; native Retail seven General/Global/Combat
+Log selections have identical visible coordinates. Untouched reload screenshot
+inspected before chat/tab input. Other native clients/combat/taint/full pixel/FPS
+acceptance remain pending. Main unchanged; original profile0 and empty diagnostic
+root restored; WoW stays in background. Separate pending tracker work preserved.
+
+Final combined verification:92 scripts/733 normalized Lua hashes pass. Source
+inventory766, reachable577, setting definitions361, literal defaults519, saved
+roots23, local links12,868. Ledger shapes valid:1,384 parity/35 ownership/28 API/
+eight clients/77 references/308 performance/26 audit-domain rows. Protected361
+files remain byte-identical; tracker source/test preserved. Explicit development-
+tool markers absent across1,271 actual files outside Git. Main unchanged. Native
+temporary data removed; original profile0 retained. Generated records remain with
+the user's separate pending tracker work; focused runtime/evidence commits exclude it.

@@ -182,3 +182,18 @@ passes 1,710 checks; full suite 89 scripts/730 syntax. Era 1.15.9.70576 five-pai
 native background getters return identical quantities with lower measured CPU;
 positive cached-bank/warband counts, foreground after hitch, pixels and security
 remain pending. No option/default or feature removed. [Evidence](TIER_COUNT_WORK.md).
+
+## Whole-addon retained-resource work
+
+BUG-009/PERF-007 gives QoL requirement rows SPEC-25-L3/L7 additional partial coverage:
+loot combat/readiness waiters are reused without changing six-pixel layout or
+50-update readiness timeout. BUG-010/PERF-008 gives CURRENT-diagnostics retention
+coverage: completed/cancelled full snapshots/handles release, compact reports remain.
+[Audit](RETAIL_PERFORMANCE_AUDIT.md): 2050/400 new checks, existing383 capture checks,
+full92 scripts/733 syntax; native Retail background attribution and pending native
+lifecycle/visual/security scope explicit. No feature, command, setting or default
+removed. Existing tracker correction is preserved as separate uncommitted work.
+
+## Shared chat column follow-up
+
+BUG-011 gives SPEC-26-L406 partial alignment/lifecycle coverage: shared inset8, reload-safe relative tab offset, primary dock anchor for all tabs, selected Copy target unchanged.2,009 checks/five desktop pairs and native Retail seven-selection geometry pass. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Other requirements/native clients/security remain pending.

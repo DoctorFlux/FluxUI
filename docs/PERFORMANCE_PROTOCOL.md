@@ -192,3 +192,25 @@ enumeration was not performed. Full vendor after, startup/cold work, unprofiled
 frame/FPS traces and visual/security acceptance remain pending. User requested
 background PC use; leave the window there until foreground testing is convenient.
 Inclusive CPU rows overlap and must not be summed or translated into FPS.
+
+## Whole-addon Retail CPU and retained-resource audit
+
+[Current audit](RETAIL_PERFORMANCE_AUDIT.md) maps 577 loaded files/26 domains, native
+Retail 12.1.5.70575 background idle, and two reproduced resource defects. Native
+baseline: 30-second warm-up, five20-second windows, eight-second gaps, ten full-GC
+endpoint memory/frame censuses outside CPU windows. Median CPU30.772 ms/s; frame
+and sampled public-cache sizes stable. Rising requested-diagnostic memory requires
+separating retained capture snapshots/harness/profiling from ordinary UI behavior.
+
+BUG-009/PERF-007 five desktop pairs reduce loot watcher allocations203->3 without
+geometry/timing changes. BUG-010/PERF-008 pairs reduce full retained snapshots20->0
+per model while retaining compact reports. Baseline actual-file checkpoint includes
+pending tracker work; commits alone are not the complete measured tree. Current
+92 scripts/733 syntax pass. Native after data is scoped separately; truncated
+private-module compilation is discarded. Preserve original profile0 and background
+PC use. Inclusive CPU overlaps; allocations, foreground FPS/tails, combat/taint,
+private-cache/long-session churn and multi-client acceptance remain pending.
+
+## Shared chat column follow-up
+
+BUG-011 [five alternating pairs](CHAT_COLUMN_ALIGNMENT.md) record intentional layout correctness:100 stable layouts retain identical point counts and zero new frames;103/203 shared tab-height reads including3 scale probes are explicit overhead. Native Retail gap/tab geometry passes; no native CPU/FPS improvement claimed. Current actual-file suite92 scripts/733 syntax; pending tracker state identified separately from commit.

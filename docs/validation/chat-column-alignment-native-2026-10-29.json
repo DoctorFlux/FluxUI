@@ -1,0 +1,250 @@
+{
+  "before": {
+    "ChatFrame1": {
+      "parent": "UIParent",
+      "rect": [
+        91.5999984741211,
+        142.0592956542969,
+        404.3082885742188,
+        194.9999542236328
+      ],
+      "scale": 0.75
+    },
+    "ChatFrame1Tab": {
+      "parent": "GeneralDockManager",
+      "rect": [
+        91.5999984741211,
+        340.0592651367188,
+        61.60951232910156,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "ChatFrameChannelButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        60.10000228881836,
+        278.0592651367188,
+        27,
+        26
+      ],
+      "scale": 0.75
+    },
+    "FluxCCPChatColumn": {
+      "parent": "UIParent",
+      "rect": [
+        57.60000610351563,
+        304.0592956542969,
+        32.00000381469727,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "FluxCCPChatSettingsButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        60.10000228881836,
+        83.05924224853516,
+        27,
+        27
+      ],
+      "scale": 0.75
+    },
+    "FluxMicroMenu": {
+      "parent": "UIParent",
+      "rect": [
+        2,
+        110.0593032836914,
+        55.59999847412109,
+        258.9999694824219
+      ],
+      "scale": 0.75
+    },
+    "QuickJoinToastButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        57.59999847412109,
+        304.0592956542969,
+        32.00000381469727,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "UIParent": {
+      "rect": [
+        0,
+        0,
+        1948.543212890625,
+        1024.000122070313
+      ],
+      "scale": 0.75
+    },
+    "background": {
+      "parent": "ChatFrame1",
+      "rect": [
+        89.5999984741211,
+        136.0592956542969,
+        421.3083190917969,
+        203.9999389648438
+      ],
+      "scale": 0.75
+    },
+    "build": [
+      "12.1.5",
+      "70575",
+      "Oct 22 2026",
+      120105,
+      "",
+      " "
+    ],
+    "buttonFrame": {
+      "parent": "ChatFrame1",
+      "rect": [
+        57.59999847412109,
+        142.0592956542969,
+        29.00000381469727,
+        194.9999542236328
+      ],
+      "scale": 0.75
+    },
+    "computedTop": 369.0592861175537,
+    "layout": 2,
+    "profile": "0"
+  },
+  "after": {
+    "ChatFrame1": {
+      "parent": "UIParent",
+      "rect": [
+        91.5999984741211,
+        142.0592956542969,
+        404.3082885742188,
+        194.9999542236328
+      ],
+      "scale": 0.75
+    },
+    "ChatFrame1Tab": {
+      "parent": "GeneralDockManager",
+      "rect": [
+        91.5999984741211,
+        340.0592651367188,
+        61.60951232910156,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "ChatFrameChannelButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        60.10000228881836,
+        303.0592651367188,
+        27,
+        26
+      ],
+      "scale": 0.75
+    },
+    "FluxCCPChatColumn": {
+      "parent": "UIParent",
+      "rect": [
+        57.60000610351563,
+        329.0592651367188,
+        32.00000381469727,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "FluxCCPChatSettingsButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        60.10000228881836,
+        108.0592498779297,
+        27,
+        27
+      ],
+      "scale": 0.75
+    },
+    "FluxMicroMenu": {
+      "parent": "UIParent",
+      "rect": [
+        2,
+        110.0593032836914,
+        55.59999847412109,
+        258.9999694824219
+      ],
+      "scale": 0.75
+    },
+    "QuickJoinToastButton": {
+      "parent": "FluxCCPChatColumn",
+      "rect": [
+        57.59999847412109,
+        329.0592651367188,
+        32.00000381469727,
+        31.9999942779541
+      ],
+      "scale": 0.75
+    },
+    "UIParent": {
+      "rect": [
+        0,
+        0,
+        1948.543212890625,
+        1024.000122070313
+      ],
+      "scale": 0.75
+    },
+    "background": {
+      "parent": "ChatFrame1",
+      "rect": [
+        89.5999984741211,
+        136.0592956542969,
+        421.3083190917969,
+        203.9999389648438
+      ],
+      "scale": 0.75
+    },
+    "build": [
+      "12.1.5",
+      "70575",
+      "Oct 22 2026",
+      120105,
+      "",
+      " "
+    ],
+    "buttonFrame": {
+      "parent": "ChatFrame1",
+      "rect": [
+        57.59999847412109,
+        142.0592956542969,
+        29.00000381469727,
+        194.9999542236328
+      ],
+      "scale": 0.75
+    },
+    "computedTop": 369.0592861175537,
+    "layout": 2,
+    "profile": "0"
+  },
+  "normalizedSourceSha256": "afebacc7197721a9491b80bf005da56243ba0eacd57bf10de2ec5efa11c46a60",
+  "source": "Actual Retail12.1.5.70575 interface120105, profiler0; final relative tab-row inset",
+  "status": "PASS final Social8-unit offset; untouched post-reload screenshot inspected before chat/tab input; five desktop branches; other native clients pending",
+  "expectedSharedInsetUiUnits": 8,
+  "baselineInsetUiUnits": 32.999982833862305,
+  "candidateInsetUiUnits": 8.000013351440373,
+  "sameSurroundingRectangles": {
+    "UIParent": true,
+    "ChatFrame1": true,
+    "ChatFrame1Tab": true,
+    "FluxMicroMenu": true,
+    "background": true
+  },
+  "limitations": "Cropped user reference lacks resolution/build metadata; dynamic world pixels are not a matched full-screen parity result. Native combat/taint and other-client rendering pending.",
+  "privateScreenshotPixels": {
+    "chat-alignment-before-private.png": [
+      1936,
+      1048
+    ],
+    "chat-alignment-reload-untouched-private.png": [
+      1936,
+      1048
+    ]
+  }
+}

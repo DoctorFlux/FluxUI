@@ -61,7 +61,7 @@ Docking follows the available screen edge/anchor; hover timers keep the flyout o
 
 These modules do not all share the Window Mover's arbitrary positioning store. Some deliberately enforce composed HUD anchors. The extra-ability host preserves Blizzard's native action button behavior; moving its container is distinct from taking over the action click implementation. Tooltip owner assignment uses `ANCHOR_NONE` before applying Flux placement and rejects forbidden tooltip ownership.
 
-Duration bars currently reinstall wrappers around `MirrorTimer_Show` and existing mirror-timer OnEvent scripts from both login and world-entry initialization without an installation flag. The reference records that wrapper behavior; it does not assume the hooks are idempotent or infer a measured performance cost.
+Current duration-bar source uses weak `hookedShows`/`hookedFrames` installation guards for MirrorTimer_Show wrappers and frame OnEvent hooks. The earlier paragraph claiming no guard was stale. No duration-bar runtime change is justified by that historical claim.
 
 ## Vehicle exit and seat indicators
 
@@ -78,3 +78,20 @@ ConsolePort suppression is documented in [Integrations](29-integrations.md): it 
 `Other/FluxPerfDebug.lua` and `FluxPerfCapture.lua` provide diagnostic commands/capture rather than player HUD behavior. Their source-derived interfaces and evidence limits are in [Runtime](07-runtime-architecture.md), [commands](31-commands-and-bindings.md), and [verification](41-verification.md). The [source coverage index](30-source-coverage.md) distinguishes loaded helpers, historical copies and smoke harnesses.
 
 Live verification remains necessary for chat channel/server behavior, secure CharacterFrame/ExtraAbility interactions, trade cursor operations, vehicle seats, Edit Mode and protected frame anchoring. This documentation describes observed source ownership and guards; it does not certify every client-specific native UI path.
+
+## Loot waiter and diagnostic retention audit
+
+BUG-009/PERF-007 reuses loot combat/readiness frames: 203 -> 3 allocations in the
+100-world-entry/100-combat-cycle replay; hooks and placement remain. BUG-010/PERF-008
+releases optional capture snapshots/handle references after finish/cancel. Focused
+checks: 2,050 loot, 400 retention, 383 existing capture with 12 mutations. Native
+Retail idle attribution and pending gameplay/resource tests are in the [audit](RETAIL_PERFORMANCE_AUDIT.md).
+No layout, option, command or feature removed.
+
+## Shared Social column position
+
+BUG-011 uses one eight-unit tab-row inset on all client paths. Relative offset follows
+late reload pins without a tab switch; the primary dock anchors all tabs including
+Combat Log/custom windows, while Copy uses the selected tab. [Evidence](CHAT_COLUMN_ALIGNMENT.md):
+2,009 column checks and native seven-selection Retail geometry pass; other native
+clients/secure/pixel acceptance pending. Existing buttons/settings/ownership remain.

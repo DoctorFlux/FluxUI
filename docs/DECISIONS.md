@@ -192,3 +192,39 @@
 - Native foreground repeated opens, unprofiled FPS, matched pixels, cold work,
   security/taint and other clients remain pending. Keep auction, guild-bank and
   void-storage callbacks deferred. [Evidence](TIER_COUNT_WORK.md).
+
+## 2026-10-29 — whole-addon Retail resource audit
+
+- Cover all 26 loaded source domains through current ownership/recurring-driver
+  maps. Native idle execution does not exercise every lifecycle or prove leak-free
+  operation; keep pending interaction/client scenarios explicit.
+- BUG-009/PERF-007 reuses loot combat/readiness frames after production replay proves
+  203 allocations across repeated world/combat cycles. Keep 50-update timeout,
+  six-pixel anchor, native show hook and no protected writes in combat.
+- BUG-010/PERF-008 explicitly releases full requested-capture snapshots and handle
+  cycles. Retained-callback replay proves 20 -> 0 snapshots and 10,000 -> 0 frame
+  rows per model. Retain the compact report, schema, deadlines and dormant behavior.
+- Native Retail baseline has stable frame/public-cache counts but memory increases
+  during diagnostics. Attribute requested capture retention before accusing the
+  normal HUD. Native CPU ranks nameplates and assisted painting; do not disable
+  features or slow update cadence without matched evidence.
+- Discard the incomplete long-upload native comparison; no result for its missing
+  candidate. Use normal file-loaded API calls for follow-up. Original profiler=0
+  must be restored; no game activation, global API replacement or restriction bypass.
+- Preserve the existing uncommitted tracker source/test/docs. Keep its changes out
+  of the new runtime commits and record actual-file identities separately from HEAD.
+  Main and excluded auction/guild-bank/void callbacks remain untouched.
+
+## 2026-10-29 — common Social offset and dock ownership
+
+- User-authorized intentional position correction: one eight-unit inset from the
+  tab/menu top across client paths, preserving other layout/feature behavior.
+- Use existing tab height as a relative offset. An absolute future top against a
+  provisional login chat rectangle goes stale after the final pin; no timer/hook
+  is needed to follow that movement.
+- Anchor the column to primary ChatFrame1 on all tabs. Combat Log/custom native
+  rectangles may differ; selected-tab identity remains solely for Copy/action data.
+- Preserve Classic ownership/overflow handling, other menu-position fallback,
+  scale conversion, combat restrictions and current retry deadlines. No framework.
+- Native seven-selection Retail pass plus untouched reload image supports this
+  scope. Five desktop branch models are not other-client native certification.

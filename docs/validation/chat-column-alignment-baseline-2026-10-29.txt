@@ -1,0 +1,117 @@
+chat column: 1311 checks across five branches, both sides; 4 regressions rejected
+METRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+QuickJoin column ownership: 508 checks, 0 failures
+FAIL live: beside-chat top matches reference inset
+FAIL live: Social keeps its primary-dock offset on tab 2
+FAIL live: Social keeps its primary-dock offset on tab 3
+FAIL live: Social keeps its primary-dock offset on tab 4
+FAIL live: Social keeps its primary-dock offset on tab 1
+FAIL live: shared top follows layout resize
+FAIL live: late login chat pin settles without switching tabs
+FAIL live: shared physical top survives saved chat scale 0.65
+FAIL live: shared physical top survives saved chat scale 1
+FAIL live: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC live_left shared_tab_reads=0 layout_points=900 new_frames=0
+FAIL live: beside-chat top matches reference inset
+FAIL live: Social keeps its primary-dock offset on tab 2
+FAIL live: Social keeps its primary-dock offset on tab 3
+FAIL live: Social keeps its primary-dock offset on tab 4
+FAIL live: Social keeps its primary-dock offset on tab 1
+FAIL live: shared top follows layout resize
+FAIL live: late login chat pin settles without switching tabs
+FAIL live: shared physical top survives saved chat scale 0.65
+FAIL live: shared physical top survives saved chat scale 1
+FAIL live: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC live_right shared_tab_reads=0 layout_points=900 new_frames=0
+FAIL classic_era: beside-chat top matches reference inset
+FAIL classic_era: Social keeps its primary-dock offset on tab 2
+FAIL classic_era: Social keeps its primary-dock offset on tab 3
+FAIL classic_era: Social keeps its primary-dock offset on tab 4
+FAIL classic_era: Social keeps its primary-dock offset on tab 1
+FAIL classic_era: shared top follows layout resize
+FAIL classic_era: late login chat pin settles without switching tabs
+FAIL classic_era: shared physical top survives saved chat scale 0.65
+FAIL classic_era: shared physical top survives saved chat scale 1
+FAIL classic_era: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_era_left shared_tab_reads=0 layout_points=1000 new_frames=0
+FAIL classic_era: beside-chat top matches reference inset
+FAIL classic_era: Social keeps its primary-dock offset on tab 2
+FAIL classic_era: Social keeps its primary-dock offset on tab 3
+FAIL classic_era: Social keeps its primary-dock offset on tab 4
+FAIL classic_era: Social keeps its primary-dock offset on tab 1
+FAIL classic_era: shared top follows layout resize
+FAIL classic_era: late login chat pin settles without switching tabs
+FAIL classic_era: shared physical top survives saved chat scale 0.65
+FAIL classic_era: shared physical top survives saved chat scale 1
+FAIL classic_era: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_era_right shared_tab_reads=0 layout_points=1000 new_frames=0
+FAIL classic_anniversary: beside-chat top matches reference inset
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 2
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 3
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 4
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 1
+FAIL classic_anniversary: shared top follows layout resize
+FAIL classic_anniversary: late login chat pin settles without switching tabs
+FAIL classic_anniversary: shared physical top survives saved chat scale 0.65
+FAIL classic_anniversary: shared physical top survives saved chat scale 1
+FAIL classic_anniversary: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_anniversary_left shared_tab_reads=0 layout_points=1000 new_frames=0
+FAIL classic_anniversary: beside-chat top matches reference inset
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 2
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 3
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 4
+FAIL classic_anniversary: Social keeps its primary-dock offset on tab 1
+FAIL classic_anniversary: shared top follows layout resize
+FAIL classic_anniversary: late login chat pin settles without switching tabs
+FAIL classic_anniversary: shared physical top survives saved chat scale 0.65
+FAIL classic_anniversary: shared physical top survives saved chat scale 1
+FAIL classic_anniversary: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_anniversary_right shared_tab_reads=0 layout_points=1000 new_frames=0
+FAIL classic: beside-chat top matches reference inset
+FAIL classic: Social keeps its primary-dock offset on tab 2
+FAIL classic: Social keeps its primary-dock offset on tab 3
+FAIL classic: Social keeps its primary-dock offset on tab 4
+FAIL classic: Social keeps its primary-dock offset on tab 1
+FAIL classic: shared top follows layout resize
+FAIL classic: late login chat pin settles without switching tabs
+FAIL classic: shared physical top survives saved chat scale 0.65
+FAIL classic: shared physical top survives saved chat scale 1
+FAIL classic: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_left shared_tab_reads=0 layout_points=900 new_frames=0
+FAIL classic: beside-chat top matches reference inset
+FAIL classic: Social keeps its primary-dock offset on tab 2
+FAIL classic: Social keeps its primary-dock offset on tab 3
+FAIL classic: Social keeps its primary-dock offset on tab 4
+FAIL classic: Social keeps its primary-dock offset on tab 1
+FAIL classic: shared top follows layout resize
+FAIL classic: late login chat pin settles without switching tabs
+FAIL classic: shared physical top survives saved chat scale 0.65
+FAIL classic: shared physical top survives saved chat scale 1
+FAIL classic: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC classic_right shared_tab_reads=0 layout_points=900 new_frames=0
+FAIL forever: beside-chat top matches reference inset
+FAIL forever: Social keeps its primary-dock offset on tab 2
+FAIL forever: Social keeps its primary-dock offset on tab 3
+FAIL forever: Social keeps its primary-dock offset on tab 4
+FAIL forever: Social keeps its primary-dock offset on tab 1
+FAIL forever: shared top follows layout resize
+FAIL forever: late login chat pin settles without switching tabs
+FAIL forever: shared physical top survives saved chat scale 0.65
+FAIL forever: shared physical top survives saved chat scale 1
+FAIL forever: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC forever_left shared_tab_reads=0 layout_points=900 new_frames=0
+FAIL forever: beside-chat top matches reference inset
+FAIL forever: Social keeps its primary-dock offset on tab 2
+FAIL forever: Social keeps its primary-dock offset on tab 3
+FAIL forever: Social keeps its primary-dock offset on tab 4
+FAIL forever: Social keeps its primary-dock offset on tab 1
+FAIL forever: shared top follows layout resize
+FAIL forever: late login chat pin settles without switching tabs
+FAIL forever: shared physical top survives saved chat scale 0.65
+FAIL forever: shared physical top survives saved chat scale 1
+FAIL forever: shared physical top survives saved chat scale 1.4
+ALIGN_METRIC forever_right shared_tab_reads=0 layout_points=900 new_frames=0
+Chat column reference alignment: 190 checks, 100 failures

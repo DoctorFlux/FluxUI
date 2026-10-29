@@ -181,3 +181,18 @@ Total: **577 reachable files**, **0 missing includes**. `Bindings.xml` in includ
 | `"UnifiedBorder"` | [Layout/UnifiedBorder.lua](../Layout/UnifiedBorder.lua) line 1001 |
 
 22 registration sites; these are source declarations, not enabled-module counts.
+
+## Retail resource ownership follow-up
+
+Current runtime commits `6ac4389` and `3046478` retain existing loot/capture owners.
+Loot owns one readiness watcher plus one regen waiter per native loot root; completed
+regen has no subscription. Requested capture owns two cancellable handles and full
+before snapshot only while active; compact saved report persists after completion.
+No general framework/resource scope introduced. [Audit](RETAIL_PERFORMANCE_AUDIT.md)
+and [26-domain map](PERFORMANCE_AUDIT.csv) retain whole-addon source coverage and
+native idle evidence limits. Current actual-file suite92 scripts/733 syntax includes
+separate pending tracker changes; native lifecycle/visual/security acceptance pending.
+
+## Shared chat column follow-up
+
+BUG-011 retains existing chat owners: relative tab-height inset follows late chat pins; the primary dock supplies column geometry for every selected tab; Copy remains selected-window based. No new frame/event/timer/hook.2,009 column checks, native Retail geometry/tab samples and current92-script/733-file report pass. [Evidence](CHAT_COLUMN_ALIGNMENT.md).

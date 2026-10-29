@@ -216,3 +216,37 @@ visibility observation for this checkpoint; it is not a closed-client backup.
 Original automation/profiler values were recorded separately in the native test.
 Private settings, raw exports, account paths and chat screenshots stay outside Git.
 All prior checkpoints/retired originals remain intact. No restore or reset occurred.
+
+## Retail audit checkpoint 14:39 UTC / 15:39 Copenhagen
+
+External `Retail-audit-recovery-20261029T143824Z` completed 14:39:06.047547 UTC.
+HEAD e1132d0948906acef72be9e4c28dff60a5736931, tree
+f0950ad82840e76ba076d791ae53d78393666e5e, plus the existing uncommitted tracker
+source/test/docs. All actual files and private settings are included.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,246 files; 35,820,060 bytes | `fcc345a42d493ad607d69f2df8b6efd956c118664c3e7c2f7d04fd1454c21bad` |
+| history.bundle | all refs/history; verified | `93ef1f2f35a94e0b77d12f5d7c95e73ae337136dfdc003bd1e9a6913902dd7a5` |
+| settings-private.zip | 403 files; 6,337,808 bytes | `430e23ec4df6599a75a51fa0a656b11fcb39fc74139b080bf92d178d9288e3e0` |
+
+Every ZIP entry/hash and bundle verified. Retail was running; Era was not found.
+WTF is an on-disk snapshot, not unsaved in-memory state. Private account settings,
+raw exports and chat screenshots remain outside Git. Existing tracker changes are
+preserved; no restore or reset occurred.
+
+## Chat alignment checkpoint15:32 UTC /16:32 Copenhagen
+
+External `Chat-alignment-recovery-20261029T153201Z`, completed15:32:10.729819 UTC,
+covers HEAD30464782f39a435c3b402048387a1a47ac0acb0c/tree
+df72b2c48996012c89257a42352271738d2a981c plus all pending tracker/audit work.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,263 actual files;36,965,016 bytes | `1990f076ce8c8fcc6dfacfac14e2ae137ea57db0e49d39b342870b94213eed13` |
+| history.bundle | all refs; verified | `5faeaaa25a811f712cda922c8e868b25dfb649849890a8e292ab294b41c58e76` |
+| settings-private.zip |403 files;6,509,629 bytes | `4b285e2b1c5d09b26debb31c3294bd7d466b042c6cda1f245e4b49b6db6f4d7a` |
+
+ZIP contents/hashes and bundle verified. Retail remained running: on-disk WTF only,
+not unsaved state. Private account data/reference/screenshots stay outside Git.
+Tracker source/test preserved; no settings/profile reset or restore.

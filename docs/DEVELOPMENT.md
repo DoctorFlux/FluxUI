@@ -66,3 +66,46 @@ candidate bodies are not a replacement for complete addon foreground acceptance.
 
 Update status, decisions, work log, ledgers and these tasks before stopping. No
 push/merge to main, settings reset, second addon, rename or release is authorized.
+
+## Next steps after the Retail audit
+
+Current runtime fixes: loot waiter reuse `6ac4389`, capture snapshot release
+`3046478`; [evidence](RETAIL_PERFORMANCE_AUDIT.md). Actual current suite passes
+92 scripts/733 syntax files including the preserved pending tracker correction.
+Use validation/retail-lifecycle-full-2026-10-29.json for current Lua hashes.
+Do not stage or overwrite that separate tracker work as part of another fix.
+
+Finish native capture follow-up/cleanup, retaining original profiler=0 and background
+PC use. Then prioritize nameplate add/remove/disabled work and assisted-action
+same-fact paint traces; preserve timing. Stress options, map, inventory, bindings,
+respec and unit/raid resources through real lifecycle cycles and long sessions.
+Existing GUID freshness TTL is not an eviction policy; quantify older-client
+inspection churn before a cache policy change. Mirror timer idempotence already
+exists; no runtime fix needed there. Auction/guild-bank/void callbacks remain
+excluded. No whole-addon leak-free/FPS/security certification is established.
+
+```powershell
+lua tests/loot_roll_lifecycle.lua
+lua tests/perf_capture_retention.lua
+lua tests/perf_capture.lua
+python tests/run_validation.py --output docs/validation/next-check.json
+```
+
+Retail capture follow-up/cleanup is complete; original profile0 restored. Five
+actual candidate reports and native endpoint limitations are retained in the audit.
+Next prioritize nameplate/assistant work and real lifecycle/long-session stress.
+Keep background PC use and preserve the pending tracker work.
+
+## Chat offset/reload/tab follow-up complete
+
+Current runtime7f13000 includes78fe4e7. Use validation/chat-column-alignment-full-2026-10-29.json
+for all733 current Lua hashes;92 scripts pass. Social uses shared inset8, relative
+tab height for late startup movement and primary dock geometry for every tab.
+2,009 column checks cover five branches/both sides/scales and custom tab geometry.
+Native Retail General/Global/Combat Log seven-selection coordinates match; untouched
+reload inspected before chat input. [Evidence](CHAT_COLUMN_ALIGNMENT.md).
+
+Keep other-client rendering, combat/Edit Mode and broader performance/lifecycle/
+long-session acceptance pending. Current native diagnostics are cleaned up and
+profiler0 restored. Preserve background PC use, main, deferred callbacks and the
+separate uncommitted tracker correction.

@@ -1,0 +1,68 @@
+{
+  "samples": {
+    "original": 1,
+    "profile": "0",
+    "samples": [
+      [
+        1,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        3,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        2,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        1,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        2,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        3,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ],
+      [
+        1,
+        57.59999465942383,
+        361.0592346191406,
+        true,
+        361.0592346191406
+      ]
+    ]
+  },
+  "sourceNormalizedSha256": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c",
+  "columns": [
+    "selectedWindowId",
+    "socialLeft",
+    "socialTop",
+    "socialVisible",
+    "holderTop"
+  ],
+  "status": "PASS actual Retail General1/CombatLog2/Global3 seven selections; same visible Social rectangle; original observed tab restored",
+  "protocol": "Normal securecallfunction native tab selection out of combat; 2-second delayed read before any further chat input; no global API replacement; original profiler0 unchanged",
+  "limitations": "Additional/custom docked windows covered in desktop regression; other native clients/combat/taint acceptance pending"
+}

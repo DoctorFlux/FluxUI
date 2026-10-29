@@ -1,0 +1,31 @@
+{
+  "1": [
+    "/run _FR2.runs[1]=FluxPerfCaptureDB;_FR2.Sample(\"after1\")",
+    "/run _FR2.Sample(\"before2\");Flux.PerfCapture.Start(20)"
+  ],
+  "2": [
+    "/run _FR2.runs[2]=FluxPerfCaptureDB;_FR2.Sample(\"after2\")",
+    "/run _FR2.Sample(\"before3\");Flux.PerfCapture.Start(20)"
+  ],
+  "3": [
+    "/run _FR2.runs[3]=FluxPerfCaptureDB;_FR2.Sample(\"after3\")",
+    "/run _FR2.Sample(\"before4\");Flux.PerfCapture.Start(20)"
+  ],
+  "4": [
+    "/run _FR2.runs[4]=FluxPerfCaptureDB;_FR2.Sample(\"after4\")",
+    "/run _FR2.Sample(\"before5\");Flux.PerfCapture.Start(20)"
+  ],
+  "5": [
+    "/run _FR2.runs[5]=FluxPerfCaptureDB;_FR2.Sample(\"after5\")",
+    "/run _FR2.context={class=select(2,UnitClass(\"player\")),level=UnitLevel(\"player\"),zone=GetRealZoneText(),physical={GetPhysicalScreenSize()},uiScale=GetCVar(\"uiScale\"),font={GameFontNormal:GetFont()}}",
+    "/run _FR2.context.addons={};for i=1,C_AddOns.GetNumAddOns()do if C_AddOns.IsAddOnLoaded(i)then local n=C_AddOns.GetAddOnInfo(i);table.insert(_FR2.context.addons,{n,C_AddOns.GetAddOnMetadata(i,\"Version\")})end end",
+    "/run _FR2.context.cvars={};for _,k in ipairs({\"gxApi\",\"graphicsQuality\",\"maxFPS\",\"maxFPSBk\",\"useMaxFPS\",\"useMaxFPSBk\",\"vsync\",\"renderScale\",\"targetFPS\",\"useTargetFPS\",\"gxMaxFrameLatency\"})do _FR2.context.cvars[k]=GetCVar(k)end",
+    "/run FluxPerfCaptureDB={retailDirectAudit=_FR2};SetCVar(\"scriptProfile\",\"0\")",
+    "/reload"
+  ],
+  "start": [
+    "/run Flux.PerfCapture.Cancel();_FRetailAudit=nil;_FRMemory=nil;_FRSource=nil;_FRAuditCode=nil;_FRDriver=nil;FluxPerfCaptureDB=nil;_FR2={meta={GetBuildInfo()},profile=GetCVar(\"scriptProfile\"),memory={},runs={}}",
+    "/run _FR2.Sample=function(tag)collectgarbage(\"collect\");UpdateAddOnMemoryUsage();table.insert(_FR2.memory,{tag,GetTime(),collectgarbage(\"count\"),GetAddOnMemoryUsage(\"_FluxUI\")})end",
+    "/run _FR2.Sample(\"before1\");Flux.PerfCapture.Start(20)"
+  ]
+}

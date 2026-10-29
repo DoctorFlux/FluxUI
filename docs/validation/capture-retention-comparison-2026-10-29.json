@@ -1,0 +1,602 @@
+{
+  "baseline": {
+    "source": "tests/fixtures/perf_capture_retention_before.txt",
+    "normalizedSha256": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07"
+  },
+  "candidate": {
+    "commit": "30464782f39a435c3b402048387a1a47ac0acb0c",
+    "tree": "df72b2c48996012c89257a42352271738d2a981c",
+    "sources": {
+      "Other/FluxPerfCapture.lua": "4c7e8f8ca435d158aec71ce8bd59f3fdb326f061ea2900d8c1a583d4cb32c30c",
+      "tests/perf_capture_retention.lua": "23e74db872dba5b9a52bf8f50f2f2a49fd14237ec212f7f1538660e29031b645"
+    },
+    "hashNormalization": "CRLF to LF only"
+  },
+  "configuration": {
+    "scope": "Actual optional capture source; 500 mock native frames, timer handles deliberately retain callback closures; 20 capture/cancel cycles per model",
+    "repetitions": "5 alternating fresh-process pairs",
+    "warmup": "source boot; each capture includes existing endpoint scans",
+    "profiling": "off in desktop process; deterministic snapshot/frame-row counts",
+    "limitation": "retained callback state inspected in desktop Lua; native comparison recorded separately"
+  },
+  "configSha256": "f5cd07dc77baa9e3f18eb058b526634135d606f04bbb0781abb50dfaf210f651",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua",
+        "--source",
+        "tests/fixtures/perf_capture_retention_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.327679399997578,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "FAIL live releases full snapshot 1\nFAIL live drops timer cycle 1\nFAIL live releases full snapshot 2\nFAIL live drops timer cycle 2\nFAIL live releases full snapshot 3\nFAIL live drops timer cycle 3\nFAIL live releases full snapshot 4\nFAIL live drops timer cycle 4\nFAIL live releases full snapshot 5\nFAIL live drops timer cycle 5\nFAIL live releases full snapshot 6\nFAIL live drops timer cycle 6\nFAIL live releases full snapshot 7\nFAIL live drops timer cycle 7\nFAIL live releases full snapshot 8\nFAIL live drops timer cycle 8\nFAIL live releases full snapshot 9\nFAIL live drops timer cycle 9\nFAIL live releases full snapshot 10\nFAIL live drops timer cycle 10\nFAIL live releases full snapshot 11\nFAIL live drops timer cycle 11\nFAIL live releases full snapshot 12\nFAIL live drops timer cycle 12\nFAIL live releases full snapshot 13\nFAIL live drops timer cycle 13\nFAIL live releases full snapshot 14\nFAIL live drops timer cycle 14\nFAIL live releases full snapshot 15\nFAIL live drops timer cycle 15\nFAIL live releases full snapshot 16\nFAIL live drops timer cycle 16\nFAIL live releases full snapshot 17\nFAIL live drops timer cycle 17\nFAIL live releases full snapshot 18\nFAIL live drops timer cycle 18\nFAIL live releases full snapshot 19\nFAIL live drops timer cycle 19\nFAIL live releases full snapshot 20\nFAIL live drops timer cycle 20\nMETRIC live retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL forever releases full snapshot 1\nFAIL forever drops timer cycle 1\nFAIL forever releases full snapshot 2\nFAIL forever drops timer cycle 2\nFAIL forever releases full snapshot 3\nFAIL forever drops timer cycle 3\nFAIL forever releases full snapshot 4\nFAIL forever drops timer cycle 4\nFAIL forever releases full snapshot 5\nFAIL forever drops timer cycle 5\nFAIL forever releases full snapshot 6\nFAIL forever drops timer cycle 6\nFAIL forever releases full snapshot 7\nFAIL forever drops timer cycle 7\nFAIL forever releases full snapshot 8\nFAIL forever drops timer cycle 8\nFAIL forever releases full snapshot 9\nFAIL forever drops timer cycle 9\nFAIL forever releases full snapshot 10\nFAIL forever drops timer cycle 10\nFAIL forever releases full snapshot 11\nFAIL forever drops timer cycle 11\nFAIL forever releases full snapshot 12\nFAIL forever drops timer cycle 12\nFAIL forever releases full snapshot 13\nFAIL forever drops timer cycle 13\nFAIL forever releases full snapshot 14\nFAIL forever drops timer cycle 14\nFAIL forever releases full snapshot 15\nFAIL forever drops timer cycle 15\nFAIL forever releases full snapshot 16\nFAIL forever drops timer cycle 16\nFAIL forever releases full snapshot 17\nFAIL forever drops timer cycle 17\nFAIL forever releases full snapshot 18\nFAIL forever drops timer cycle 18\nFAIL forever releases full snapshot 19\nFAIL forever drops timer cycle 19\nFAIL forever releases full snapshot 20\nFAIL forever drops timer cycle 20\nMETRIC forever retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_era releases full snapshot 1\nFAIL classic_era drops timer cycle 1\nFAIL classic_era releases full snapshot 2\nFAIL classic_era drops timer cycle 2\nFAIL classic_era releases full snapshot 3\nFAIL classic_era drops timer cycle 3\nFAIL classic_era releases full snapshot 4\nFAIL classic_era drops timer cycle 4\nFAIL classic_era releases full snapshot 5\nFAIL classic_era drops timer cycle 5\nFAIL classic_era releases full snapshot 6\nFAIL classic_era drops timer cycle 6\nFAIL classic_era releases full snapshot 7\nFAIL classic_era drops timer cycle 7\nFAIL classic_era releases full snapshot 8\nFAIL classic_era drops timer cycle 8\nFAIL classic_era releases full snapshot 9\nFAIL classic_era drops timer cycle 9\nFAIL classic_era releases full snapshot 10\nFAIL classic_era drops timer cycle 10\nFAIL classic_era releases full snapshot 11\nFAIL classic_era drops timer cycle 11\nFAIL classic_era releases full snapshot 12\nFAIL classic_era drops timer cycle 12\nFAIL classic_era releases full snapshot 13\nFAIL classic_era drops timer cycle 13\nFAIL classic_era releases full snapshot 14\nFAIL classic_era drops timer cycle 14\nFAIL classic_era releases full snapshot 15\nFAIL classic_era drops timer cycle 15\nFAIL classic_era releases full snapshot 16\nFAIL classic_era drops timer cycle 16\nFAIL classic_era releases full snapshot 17\nFAIL classic_era drops timer cycle 17\nFAIL classic_era releases full snapshot 18\nFAIL classic_era drops timer cycle 18\nFAIL classic_era releases full snapshot 19\nFAIL classic_era drops timer cycle 19\nFAIL classic_era releases full snapshot 20\nFAIL classic_era drops timer cycle 20\nMETRIC classic_era retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_anniversary releases full snapshot 1\nFAIL classic_anniversary drops timer cycle 1\nFAIL classic_anniversary releases full snapshot 2\nFAIL classic_anniversary drops timer cycle 2\nFAIL classic_anniversary releases full snapshot 3\nFAIL classic_anniversary drops timer cycle 3\nFAIL classic_anniversary releases full snapshot 4\nFAIL classic_anniversary drops timer cycle 4\nFAIL classic_anniversary releases full snapshot 5\nFAIL classic_anniversary drops timer cycle 5\nFAIL classic_anniversary releases full snapshot 6\nFAIL classic_anniversary drops timer cycle 6\nFAIL classic_anniversary releases full snapshot 7\nFAIL classic_anniversary drops timer cycle 7\nFAIL classic_anniversary releases full snapshot 8\nFAIL classic_anniversary drops timer cycle 8\nFAIL classic_anniversary releases full snapshot 9\nFAIL classic_anniversary drops timer cycle 9\nFAIL classic_anniversary releases full snapshot 10\nFAIL classic_anniversary drops timer cycle 10\nFAIL classic_anniversary releases full snapshot 11\nFAIL classic_anniversary drops timer cycle 11\nFAIL classic_anniversary releases full snapshot 12\nFAIL classic_anniversary drops timer cycle 12\nFAIL classic_anniversary releases full snapshot 13\nFAIL classic_anniversary drops timer cycle 13\nFAIL classic_anniversary releases full snapshot 14\nFAIL classic_anniversary drops timer cycle 14\nFAIL classic_anniversary releases full snapshot 15\nFAIL classic_anniversary drops timer cycle 15\nFAIL classic_anniversary releases full snapshot 16\nFAIL classic_anniversary drops timer cycle 16\nFAIL classic_anniversary releases full snapshot 17\nFAIL classic_anniversary drops timer cycle 17\nFAIL classic_anniversary releases full snapshot 18\nFAIL classic_anniversary drops timer cycle 18\nFAIL classic_anniversary releases full snapshot 19\nFAIL classic_anniversary drops timer cycle 19\nFAIL classic_anniversary releases full snapshot 20\nFAIL classic_anniversary drops timer cycle 20\nMETRIC classic_anniversary retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic releases full snapshot 1\nFAIL classic drops timer cycle 1\nFAIL classic releases full snapshot 2\nFAIL classic drops timer cycle 2\nFAIL classic releases full snapshot 3\nFAIL classic drops timer cycle 3\nFAIL classic releases full snapshot 4\nFAIL classic drops timer cycle 4\nFAIL classic releases full snapshot 5\nFAIL classic drops timer cycle 5\nFAIL classic releases full snapshot 6\nFAIL classic drops timer cycle 6\nFAIL classic releases full snapshot 7\nFAIL classic drops timer cycle 7\nFAIL classic releases full snapshot 8\nFAIL classic drops timer cycle 8\nFAIL classic releases full snapshot 9\nFAIL classic drops timer cycle 9\nFAIL classic releases full snapshot 10\nFAIL classic drops timer cycle 10\nFAIL classic releases full snapshot 11\nFAIL classic drops timer cycle 11\nFAIL classic releases full snapshot 12\nFAIL classic drops timer cycle 12\nFAIL classic releases full snapshot 13\nFAIL classic drops timer cycle 13\nFAIL classic releases full snapshot 14\nFAIL classic drops timer cycle 14\nFAIL classic releases full snapshot 15\nFAIL classic drops timer cycle 15\nFAIL classic releases full snapshot 16\nFAIL classic drops timer cycle 16\nFAIL classic releases full snapshot 17\nFAIL classic drops timer cycle 17\nFAIL classic releases full snapshot 18\nFAIL classic drops timer cycle 18\nFAIL classic releases full snapshot 19\nFAIL classic drops timer cycle 19\nFAIL classic releases full snapshot 20\nFAIL classic drops timer cycle 20\nMETRIC classic retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nCapture retention: 400 checks, 200 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua"
+      ],
+      "wallSeconds": 0.29487199999857694,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua"
+      ],
+      "wallSeconds": 0.29137099999934435,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua",
+        "--source",
+        "tests/fixtures/perf_capture_retention_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.278463800001191,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "FAIL live releases full snapshot 1\nFAIL live drops timer cycle 1\nFAIL live releases full snapshot 2\nFAIL live drops timer cycle 2\nFAIL live releases full snapshot 3\nFAIL live drops timer cycle 3\nFAIL live releases full snapshot 4\nFAIL live drops timer cycle 4\nFAIL live releases full snapshot 5\nFAIL live drops timer cycle 5\nFAIL live releases full snapshot 6\nFAIL live drops timer cycle 6\nFAIL live releases full snapshot 7\nFAIL live drops timer cycle 7\nFAIL live releases full snapshot 8\nFAIL live drops timer cycle 8\nFAIL live releases full snapshot 9\nFAIL live drops timer cycle 9\nFAIL live releases full snapshot 10\nFAIL live drops timer cycle 10\nFAIL live releases full snapshot 11\nFAIL live drops timer cycle 11\nFAIL live releases full snapshot 12\nFAIL live drops timer cycle 12\nFAIL live releases full snapshot 13\nFAIL live drops timer cycle 13\nFAIL live releases full snapshot 14\nFAIL live drops timer cycle 14\nFAIL live releases full snapshot 15\nFAIL live drops timer cycle 15\nFAIL live releases full snapshot 16\nFAIL live drops timer cycle 16\nFAIL live releases full snapshot 17\nFAIL live drops timer cycle 17\nFAIL live releases full snapshot 18\nFAIL live drops timer cycle 18\nFAIL live releases full snapshot 19\nFAIL live drops timer cycle 19\nFAIL live releases full snapshot 20\nFAIL live drops timer cycle 20\nMETRIC live retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL forever releases full snapshot 1\nFAIL forever drops timer cycle 1\nFAIL forever releases full snapshot 2\nFAIL forever drops timer cycle 2\nFAIL forever releases full snapshot 3\nFAIL forever drops timer cycle 3\nFAIL forever releases full snapshot 4\nFAIL forever drops timer cycle 4\nFAIL forever releases full snapshot 5\nFAIL forever drops timer cycle 5\nFAIL forever releases full snapshot 6\nFAIL forever drops timer cycle 6\nFAIL forever releases full snapshot 7\nFAIL forever drops timer cycle 7\nFAIL forever releases full snapshot 8\nFAIL forever drops timer cycle 8\nFAIL forever releases full snapshot 9\nFAIL forever drops timer cycle 9\nFAIL forever releases full snapshot 10\nFAIL forever drops timer cycle 10\nFAIL forever releases full snapshot 11\nFAIL forever drops timer cycle 11\nFAIL forever releases full snapshot 12\nFAIL forever drops timer cycle 12\nFAIL forever releases full snapshot 13\nFAIL forever drops timer cycle 13\nFAIL forever releases full snapshot 14\nFAIL forever drops timer cycle 14\nFAIL forever releases full snapshot 15\nFAIL forever drops timer cycle 15\nFAIL forever releases full snapshot 16\nFAIL forever drops timer cycle 16\nFAIL forever releases full snapshot 17\nFAIL forever drops timer cycle 17\nFAIL forever releases full snapshot 18\nFAIL forever drops timer cycle 18\nFAIL forever releases full snapshot 19\nFAIL forever drops timer cycle 19\nFAIL forever releases full snapshot 20\nFAIL forever drops timer cycle 20\nMETRIC forever retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_era releases full snapshot 1\nFAIL classic_era drops timer cycle 1\nFAIL classic_era releases full snapshot 2\nFAIL classic_era drops timer cycle 2\nFAIL classic_era releases full snapshot 3\nFAIL classic_era drops timer cycle 3\nFAIL classic_era releases full snapshot 4\nFAIL classic_era drops timer cycle 4\nFAIL classic_era releases full snapshot 5\nFAIL classic_era drops timer cycle 5\nFAIL classic_era releases full snapshot 6\nFAIL classic_era drops timer cycle 6\nFAIL classic_era releases full snapshot 7\nFAIL classic_era drops timer cycle 7\nFAIL classic_era releases full snapshot 8\nFAIL classic_era drops timer cycle 8\nFAIL classic_era releases full snapshot 9\nFAIL classic_era drops timer cycle 9\nFAIL classic_era releases full snapshot 10\nFAIL classic_era drops timer cycle 10\nFAIL classic_era releases full snapshot 11\nFAIL classic_era drops timer cycle 11\nFAIL classic_era releases full snapshot 12\nFAIL classic_era drops timer cycle 12\nFAIL classic_era releases full snapshot 13\nFAIL classic_era drops timer cycle 13\nFAIL classic_era releases full snapshot 14\nFAIL classic_era drops timer cycle 14\nFAIL classic_era releases full snapshot 15\nFAIL classic_era drops timer cycle 15\nFAIL classic_era releases full snapshot 16\nFAIL classic_era drops timer cycle 16\nFAIL classic_era releases full snapshot 17\nFAIL classic_era drops timer cycle 17\nFAIL classic_era releases full snapshot 18\nFAIL classic_era drops timer cycle 18\nFAIL classic_era releases full snapshot 19\nFAIL classic_era drops timer cycle 19\nFAIL classic_era releases full snapshot 20\nFAIL classic_era drops timer cycle 20\nMETRIC classic_era retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_anniversary releases full snapshot 1\nFAIL classic_anniversary drops timer cycle 1\nFAIL classic_anniversary releases full snapshot 2\nFAIL classic_anniversary drops timer cycle 2\nFAIL classic_anniversary releases full snapshot 3\nFAIL classic_anniversary drops timer cycle 3\nFAIL classic_anniversary releases full snapshot 4\nFAIL classic_anniversary drops timer cycle 4\nFAIL classic_anniversary releases full snapshot 5\nFAIL classic_anniversary drops timer cycle 5\nFAIL classic_anniversary releases full snapshot 6\nFAIL classic_anniversary drops timer cycle 6\nFAIL classic_anniversary releases full snapshot 7\nFAIL classic_anniversary drops timer cycle 7\nFAIL classic_anniversary releases full snapshot 8\nFAIL classic_anniversary drops timer cycle 8\nFAIL classic_anniversary releases full snapshot 9\nFAIL classic_anniversary drops timer cycle 9\nFAIL classic_anniversary releases full snapshot 10\nFAIL classic_anniversary drops timer cycle 10\nFAIL classic_anniversary releases full snapshot 11\nFAIL classic_anniversary drops timer cycle 11\nFAIL classic_anniversary releases full snapshot 12\nFAIL classic_anniversary drops timer cycle 12\nFAIL classic_anniversary releases full snapshot 13\nFAIL classic_anniversary drops timer cycle 13\nFAIL classic_anniversary releases full snapshot 14\nFAIL classic_anniversary drops timer cycle 14\nFAIL classic_anniversary releases full snapshot 15\nFAIL classic_anniversary drops timer cycle 15\nFAIL classic_anniversary releases full snapshot 16\nFAIL classic_anniversary drops timer cycle 16\nFAIL classic_anniversary releases full snapshot 17\nFAIL classic_anniversary drops timer cycle 17\nFAIL classic_anniversary releases full snapshot 18\nFAIL classic_anniversary drops timer cycle 18\nFAIL classic_anniversary releases full snapshot 19\nFAIL classic_anniversary drops timer cycle 19\nFAIL classic_anniversary releases full snapshot 20\nFAIL classic_anniversary drops timer cycle 20\nMETRIC classic_anniversary retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic releases full snapshot 1\nFAIL classic drops timer cycle 1\nFAIL classic releases full snapshot 2\nFAIL classic drops timer cycle 2\nFAIL classic releases full snapshot 3\nFAIL classic drops timer cycle 3\nFAIL classic releases full snapshot 4\nFAIL classic drops timer cycle 4\nFAIL classic releases full snapshot 5\nFAIL classic drops timer cycle 5\nFAIL classic releases full snapshot 6\nFAIL classic drops timer cycle 6\nFAIL classic releases full snapshot 7\nFAIL classic drops timer cycle 7\nFAIL classic releases full snapshot 8\nFAIL classic drops timer cycle 8\nFAIL classic releases full snapshot 9\nFAIL classic drops timer cycle 9\nFAIL classic releases full snapshot 10\nFAIL classic drops timer cycle 10\nFAIL classic releases full snapshot 11\nFAIL classic drops timer cycle 11\nFAIL classic releases full snapshot 12\nFAIL classic drops timer cycle 12\nFAIL classic releases full snapshot 13\nFAIL classic drops timer cycle 13\nFAIL classic releases full snapshot 14\nFAIL classic drops timer cycle 14\nFAIL classic releases full snapshot 15\nFAIL classic drops timer cycle 15\nFAIL classic releases full snapshot 16\nFAIL classic drops timer cycle 16\nFAIL classic releases full snapshot 17\nFAIL classic drops timer cycle 17\nFAIL classic releases full snapshot 18\nFAIL classic drops timer cycle 18\nFAIL classic releases full snapshot 19\nFAIL classic drops timer cycle 19\nFAIL classic releases full snapshot 20\nFAIL classic drops timer cycle 20\nMETRIC classic retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nCapture retention: 400 checks, 200 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua",
+        "--source",
+        "tests/fixtures/perf_capture_retention_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.28539180000370834,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "FAIL live releases full snapshot 1\nFAIL live drops timer cycle 1\nFAIL live releases full snapshot 2\nFAIL live drops timer cycle 2\nFAIL live releases full snapshot 3\nFAIL live drops timer cycle 3\nFAIL live releases full snapshot 4\nFAIL live drops timer cycle 4\nFAIL live releases full snapshot 5\nFAIL live drops timer cycle 5\nFAIL live releases full snapshot 6\nFAIL live drops timer cycle 6\nFAIL live releases full snapshot 7\nFAIL live drops timer cycle 7\nFAIL live releases full snapshot 8\nFAIL live drops timer cycle 8\nFAIL live releases full snapshot 9\nFAIL live drops timer cycle 9\nFAIL live releases full snapshot 10\nFAIL live drops timer cycle 10\nFAIL live releases full snapshot 11\nFAIL live drops timer cycle 11\nFAIL live releases full snapshot 12\nFAIL live drops timer cycle 12\nFAIL live releases full snapshot 13\nFAIL live drops timer cycle 13\nFAIL live releases full snapshot 14\nFAIL live drops timer cycle 14\nFAIL live releases full snapshot 15\nFAIL live drops timer cycle 15\nFAIL live releases full snapshot 16\nFAIL live drops timer cycle 16\nFAIL live releases full snapshot 17\nFAIL live drops timer cycle 17\nFAIL live releases full snapshot 18\nFAIL live drops timer cycle 18\nFAIL live releases full snapshot 19\nFAIL live drops timer cycle 19\nFAIL live releases full snapshot 20\nFAIL live drops timer cycle 20\nMETRIC live retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL forever releases full snapshot 1\nFAIL forever drops timer cycle 1\nFAIL forever releases full snapshot 2\nFAIL forever drops timer cycle 2\nFAIL forever releases full snapshot 3\nFAIL forever drops timer cycle 3\nFAIL forever releases full snapshot 4\nFAIL forever drops timer cycle 4\nFAIL forever releases full snapshot 5\nFAIL forever drops timer cycle 5\nFAIL forever releases full snapshot 6\nFAIL forever drops timer cycle 6\nFAIL forever releases full snapshot 7\nFAIL forever drops timer cycle 7\nFAIL forever releases full snapshot 8\nFAIL forever drops timer cycle 8\nFAIL forever releases full snapshot 9\nFAIL forever drops timer cycle 9\nFAIL forever releases full snapshot 10\nFAIL forever drops timer cycle 10\nFAIL forever releases full snapshot 11\nFAIL forever drops timer cycle 11\nFAIL forever releases full snapshot 12\nFAIL forever drops timer cycle 12\nFAIL forever releases full snapshot 13\nFAIL forever drops timer cycle 13\nFAIL forever releases full snapshot 14\nFAIL forever drops timer cycle 14\nFAIL forever releases full snapshot 15\nFAIL forever drops timer cycle 15\nFAIL forever releases full snapshot 16\nFAIL forever drops timer cycle 16\nFAIL forever releases full snapshot 17\nFAIL forever drops timer cycle 17\nFAIL forever releases full snapshot 18\nFAIL forever drops timer cycle 18\nFAIL forever releases full snapshot 19\nFAIL forever drops timer cycle 19\nFAIL forever releases full snapshot 20\nFAIL forever drops timer cycle 20\nMETRIC forever retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_era releases full snapshot 1\nFAIL classic_era drops timer cycle 1\nFAIL classic_era releases full snapshot 2\nFAIL classic_era drops timer cycle 2\nFAIL classic_era releases full snapshot 3\nFAIL classic_era drops timer cycle 3\nFAIL classic_era releases full snapshot 4\nFAIL classic_era drops timer cycle 4\nFAIL classic_era releases full snapshot 5\nFAIL classic_era drops timer cycle 5\nFAIL classic_era releases full snapshot 6\nFAIL classic_era drops timer cycle 6\nFAIL classic_era releases full snapshot 7\nFAIL classic_era drops timer cycle 7\nFAIL classic_era releases full snapshot 8\nFAIL classic_era drops timer cycle 8\nFAIL classic_era releases full snapshot 9\nFAIL classic_era drops timer cycle 9\nFAIL classic_era releases full snapshot 10\nFAIL classic_era drops timer cycle 10\nFAIL classic_era releases full snapshot 11\nFAIL classic_era drops timer cycle 11\nFAIL classic_era releases full snapshot 12\nFAIL classic_era drops timer cycle 12\nFAIL classic_era releases full snapshot 13\nFAIL classic_era drops timer cycle 13\nFAIL classic_era releases full snapshot 14\nFAIL classic_era drops timer cycle 14\nFAIL classic_era releases full snapshot 15\nFAIL classic_era drops timer cycle 15\nFAIL classic_era releases full snapshot 16\nFAIL classic_era drops timer cycle 16\nFAIL classic_era releases full snapshot 17\nFAIL classic_era drops timer cycle 17\nFAIL classic_era releases full snapshot 18\nFAIL classic_era drops timer cycle 18\nFAIL classic_era releases full snapshot 19\nFAIL classic_era drops timer cycle 19\nFAIL classic_era releases full snapshot 20\nFAIL classic_era drops timer cycle 20\nMETRIC classic_era retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_anniversary releases full snapshot 1\nFAIL classic_anniversary drops timer cycle 1\nFAIL classic_anniversary releases full snapshot 2\nFAIL classic_anniversary drops timer cycle 2\nFAIL classic_anniversary releases full snapshot 3\nFAIL classic_anniversary drops timer cycle 3\nFAIL classic_anniversary releases full snapshot 4\nFAIL classic_anniversary drops timer cycle 4\nFAIL classic_anniversary releases full snapshot 5\nFAIL classic_anniversary drops timer cycle 5\nFAIL classic_anniversary releases full snapshot 6\nFAIL classic_anniversary drops timer cycle 6\nFAIL classic_anniversary releases full snapshot 7\nFAIL classic_anniversary drops timer cycle 7\nFAIL classic_anniversary releases full snapshot 8\nFAIL classic_anniversary drops timer cycle 8\nFAIL classic_anniversary releases full snapshot 9\nFAIL classic_anniversary drops timer cycle 9\nFAIL classic_anniversary releases full snapshot 10\nFAIL classic_anniversary drops timer cycle 10\nFAIL classic_anniversary releases full snapshot 11\nFAIL classic_anniversary drops timer cycle 11\nFAIL classic_anniversary releases full snapshot 12\nFAIL classic_anniversary drops timer cycle 12\nFAIL classic_anniversary releases full snapshot 13\nFAIL classic_anniversary drops timer cycle 13\nFAIL classic_anniversary releases full snapshot 14\nFAIL classic_anniversary drops timer cycle 14\nFAIL classic_anniversary releases full snapshot 15\nFAIL classic_anniversary drops timer cycle 15\nFAIL classic_anniversary releases full snapshot 16\nFAIL classic_anniversary drops timer cycle 16\nFAIL classic_anniversary releases full snapshot 17\nFAIL classic_anniversary drops timer cycle 17\nFAIL classic_anniversary releases full snapshot 18\nFAIL classic_anniversary drops timer cycle 18\nFAIL classic_anniversary releases full snapshot 19\nFAIL classic_anniversary drops timer cycle 19\nFAIL classic_anniversary releases full snapshot 20\nFAIL classic_anniversary drops timer cycle 20\nMETRIC classic_anniversary retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic releases full snapshot 1\nFAIL classic drops timer cycle 1\nFAIL classic releases full snapshot 2\nFAIL classic drops timer cycle 2\nFAIL classic releases full snapshot 3\nFAIL classic drops timer cycle 3\nFAIL classic releases full snapshot 4\nFAIL classic drops timer cycle 4\nFAIL classic releases full snapshot 5\nFAIL classic drops timer cycle 5\nFAIL classic releases full snapshot 6\nFAIL classic drops timer cycle 6\nFAIL classic releases full snapshot 7\nFAIL classic drops timer cycle 7\nFAIL classic releases full snapshot 8\nFAIL classic drops timer cycle 8\nFAIL classic releases full snapshot 9\nFAIL classic drops timer cycle 9\nFAIL classic releases full snapshot 10\nFAIL classic drops timer cycle 10\nFAIL classic releases full snapshot 11\nFAIL classic drops timer cycle 11\nFAIL classic releases full snapshot 12\nFAIL classic drops timer cycle 12\nFAIL classic releases full snapshot 13\nFAIL classic drops timer cycle 13\nFAIL classic releases full snapshot 14\nFAIL classic drops timer cycle 14\nFAIL classic releases full snapshot 15\nFAIL classic drops timer cycle 15\nFAIL classic releases full snapshot 16\nFAIL classic drops timer cycle 16\nFAIL classic releases full snapshot 17\nFAIL classic drops timer cycle 17\nFAIL classic releases full snapshot 18\nFAIL classic drops timer cycle 18\nFAIL classic releases full snapshot 19\nFAIL classic drops timer cycle 19\nFAIL classic releases full snapshot 20\nFAIL classic drops timer cycle 20\nMETRIC classic retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nCapture retention: 400 checks, 200 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua"
+      ],
+      "wallSeconds": 0.30459870000049705,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua"
+      ],
+      "wallSeconds": 0.2941242000015336,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua",
+        "--source",
+        "tests/fixtures/perf_capture_retention_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.31468150000000605,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "FAIL live releases full snapshot 1\nFAIL live drops timer cycle 1\nFAIL live releases full snapshot 2\nFAIL live drops timer cycle 2\nFAIL live releases full snapshot 3\nFAIL live drops timer cycle 3\nFAIL live releases full snapshot 4\nFAIL live drops timer cycle 4\nFAIL live releases full snapshot 5\nFAIL live drops timer cycle 5\nFAIL live releases full snapshot 6\nFAIL live drops timer cycle 6\nFAIL live releases full snapshot 7\nFAIL live drops timer cycle 7\nFAIL live releases full snapshot 8\nFAIL live drops timer cycle 8\nFAIL live releases full snapshot 9\nFAIL live drops timer cycle 9\nFAIL live releases full snapshot 10\nFAIL live drops timer cycle 10\nFAIL live releases full snapshot 11\nFAIL live drops timer cycle 11\nFAIL live releases full snapshot 12\nFAIL live drops timer cycle 12\nFAIL live releases full snapshot 13\nFAIL live drops timer cycle 13\nFAIL live releases full snapshot 14\nFAIL live drops timer cycle 14\nFAIL live releases full snapshot 15\nFAIL live drops timer cycle 15\nFAIL live releases full snapshot 16\nFAIL live drops timer cycle 16\nFAIL live releases full snapshot 17\nFAIL live drops timer cycle 17\nFAIL live releases full snapshot 18\nFAIL live drops timer cycle 18\nFAIL live releases full snapshot 19\nFAIL live drops timer cycle 19\nFAIL live releases full snapshot 20\nFAIL live drops timer cycle 20\nMETRIC live retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL forever releases full snapshot 1\nFAIL forever drops timer cycle 1\nFAIL forever releases full snapshot 2\nFAIL forever drops timer cycle 2\nFAIL forever releases full snapshot 3\nFAIL forever drops timer cycle 3\nFAIL forever releases full snapshot 4\nFAIL forever drops timer cycle 4\nFAIL forever releases full snapshot 5\nFAIL forever drops timer cycle 5\nFAIL forever releases full snapshot 6\nFAIL forever drops timer cycle 6\nFAIL forever releases full snapshot 7\nFAIL forever drops timer cycle 7\nFAIL forever releases full snapshot 8\nFAIL forever drops timer cycle 8\nFAIL forever releases full snapshot 9\nFAIL forever drops timer cycle 9\nFAIL forever releases full snapshot 10\nFAIL forever drops timer cycle 10\nFAIL forever releases full snapshot 11\nFAIL forever drops timer cycle 11\nFAIL forever releases full snapshot 12\nFAIL forever drops timer cycle 12\nFAIL forever releases full snapshot 13\nFAIL forever drops timer cycle 13\nFAIL forever releases full snapshot 14\nFAIL forever drops timer cycle 14\nFAIL forever releases full snapshot 15\nFAIL forever drops timer cycle 15\nFAIL forever releases full snapshot 16\nFAIL forever drops timer cycle 16\nFAIL forever releases full snapshot 17\nFAIL forever drops timer cycle 17\nFAIL forever releases full snapshot 18\nFAIL forever drops timer cycle 18\nFAIL forever releases full snapshot 19\nFAIL forever drops timer cycle 19\nFAIL forever releases full snapshot 20\nFAIL forever drops timer cycle 20\nMETRIC forever retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_era releases full snapshot 1\nFAIL classic_era drops timer cycle 1\nFAIL classic_era releases full snapshot 2\nFAIL classic_era drops timer cycle 2\nFAIL classic_era releases full snapshot 3\nFAIL classic_era drops timer cycle 3\nFAIL classic_era releases full snapshot 4\nFAIL classic_era drops timer cycle 4\nFAIL classic_era releases full snapshot 5\nFAIL classic_era drops timer cycle 5\nFAIL classic_era releases full snapshot 6\nFAIL classic_era drops timer cycle 6\nFAIL classic_era releases full snapshot 7\nFAIL classic_era drops timer cycle 7\nFAIL classic_era releases full snapshot 8\nFAIL classic_era drops timer cycle 8\nFAIL classic_era releases full snapshot 9\nFAIL classic_era drops timer cycle 9\nFAIL classic_era releases full snapshot 10\nFAIL classic_era drops timer cycle 10\nFAIL classic_era releases full snapshot 11\nFAIL classic_era drops timer cycle 11\nFAIL classic_era releases full snapshot 12\nFAIL classic_era drops timer cycle 12\nFAIL classic_era releases full snapshot 13\nFAIL classic_era drops timer cycle 13\nFAIL classic_era releases full snapshot 14\nFAIL classic_era drops timer cycle 14\nFAIL classic_era releases full snapshot 15\nFAIL classic_era drops timer cycle 15\nFAIL classic_era releases full snapshot 16\nFAIL classic_era drops timer cycle 16\nFAIL classic_era releases full snapshot 17\nFAIL classic_era drops timer cycle 17\nFAIL classic_era releases full snapshot 18\nFAIL classic_era drops timer cycle 18\nFAIL classic_era releases full snapshot 19\nFAIL classic_era drops timer cycle 19\nFAIL classic_era releases full snapshot 20\nFAIL classic_era drops timer cycle 20\nMETRIC classic_era retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_anniversary releases full snapshot 1\nFAIL classic_anniversary drops timer cycle 1\nFAIL classic_anniversary releases full snapshot 2\nFAIL classic_anniversary drops timer cycle 2\nFAIL classic_anniversary releases full snapshot 3\nFAIL classic_anniversary drops timer cycle 3\nFAIL classic_anniversary releases full snapshot 4\nFAIL classic_anniversary drops timer cycle 4\nFAIL classic_anniversary releases full snapshot 5\nFAIL classic_anniversary drops timer cycle 5\nFAIL classic_anniversary releases full snapshot 6\nFAIL classic_anniversary drops timer cycle 6\nFAIL classic_anniversary releases full snapshot 7\nFAIL classic_anniversary drops timer cycle 7\nFAIL classic_anniversary releases full snapshot 8\nFAIL classic_anniversary drops timer cycle 8\nFAIL classic_anniversary releases full snapshot 9\nFAIL classic_anniversary drops timer cycle 9\nFAIL classic_anniversary releases full snapshot 10\nFAIL classic_anniversary drops timer cycle 10\nFAIL classic_anniversary releases full snapshot 11\nFAIL classic_anniversary drops timer cycle 11\nFAIL classic_anniversary releases full snapshot 12\nFAIL classic_anniversary drops timer cycle 12\nFAIL classic_anniversary releases full snapshot 13\nFAIL classic_anniversary drops timer cycle 13\nFAIL classic_anniversary releases full snapshot 14\nFAIL classic_anniversary drops timer cycle 14\nFAIL classic_anniversary releases full snapshot 15\nFAIL classic_anniversary drops timer cycle 15\nFAIL classic_anniversary releases full snapshot 16\nFAIL classic_anniversary drops timer cycle 16\nFAIL classic_anniversary releases full snapshot 17\nFAIL classic_anniversary drops timer cycle 17\nFAIL classic_anniversary releases full snapshot 18\nFAIL classic_anniversary drops timer cycle 18\nFAIL classic_anniversary releases full snapshot 19\nFAIL classic_anniversary drops timer cycle 19\nFAIL classic_anniversary releases full snapshot 20\nFAIL classic_anniversary drops timer cycle 20\nMETRIC classic_anniversary retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic releases full snapshot 1\nFAIL classic drops timer cycle 1\nFAIL classic releases full snapshot 2\nFAIL classic drops timer cycle 2\nFAIL classic releases full snapshot 3\nFAIL classic drops timer cycle 3\nFAIL classic releases full snapshot 4\nFAIL classic drops timer cycle 4\nFAIL classic releases full snapshot 5\nFAIL classic drops timer cycle 5\nFAIL classic releases full snapshot 6\nFAIL classic drops timer cycle 6\nFAIL classic releases full snapshot 7\nFAIL classic drops timer cycle 7\nFAIL classic releases full snapshot 8\nFAIL classic drops timer cycle 8\nFAIL classic releases full snapshot 9\nFAIL classic drops timer cycle 9\nFAIL classic releases full snapshot 10\nFAIL classic drops timer cycle 10\nFAIL classic releases full snapshot 11\nFAIL classic drops timer cycle 11\nFAIL classic releases full snapshot 12\nFAIL classic drops timer cycle 12\nFAIL classic releases full snapshot 13\nFAIL classic drops timer cycle 13\nFAIL classic releases full snapshot 14\nFAIL classic drops timer cycle 14\nFAIL classic releases full snapshot 15\nFAIL classic drops timer cycle 15\nFAIL classic releases full snapshot 16\nFAIL classic drops timer cycle 16\nFAIL classic releases full snapshot 17\nFAIL classic drops timer cycle 17\nFAIL classic releases full snapshot 18\nFAIL classic drops timer cycle 18\nFAIL classic releases full snapshot 19\nFAIL classic drops timer cycle 19\nFAIL classic releases full snapshot 20\nFAIL classic drops timer cycle 20\nMETRIC classic retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nCapture retention: 400 checks, 200 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua",
+        "--source",
+        "tests/fixtures/perf_capture_retention_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.28387479999946663,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 20,
+          "retained_frame_rows": 10000,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "FAIL live releases full snapshot 1\nFAIL live drops timer cycle 1\nFAIL live releases full snapshot 2\nFAIL live drops timer cycle 2\nFAIL live releases full snapshot 3\nFAIL live drops timer cycle 3\nFAIL live releases full snapshot 4\nFAIL live drops timer cycle 4\nFAIL live releases full snapshot 5\nFAIL live drops timer cycle 5\nFAIL live releases full snapshot 6\nFAIL live drops timer cycle 6\nFAIL live releases full snapshot 7\nFAIL live drops timer cycle 7\nFAIL live releases full snapshot 8\nFAIL live drops timer cycle 8\nFAIL live releases full snapshot 9\nFAIL live drops timer cycle 9\nFAIL live releases full snapshot 10\nFAIL live drops timer cycle 10\nFAIL live releases full snapshot 11\nFAIL live drops timer cycle 11\nFAIL live releases full snapshot 12\nFAIL live drops timer cycle 12\nFAIL live releases full snapshot 13\nFAIL live drops timer cycle 13\nFAIL live releases full snapshot 14\nFAIL live drops timer cycle 14\nFAIL live releases full snapshot 15\nFAIL live drops timer cycle 15\nFAIL live releases full snapshot 16\nFAIL live drops timer cycle 16\nFAIL live releases full snapshot 17\nFAIL live drops timer cycle 17\nFAIL live releases full snapshot 18\nFAIL live drops timer cycle 18\nFAIL live releases full snapshot 19\nFAIL live drops timer cycle 19\nFAIL live releases full snapshot 20\nFAIL live drops timer cycle 20\nMETRIC live retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL forever releases full snapshot 1\nFAIL forever drops timer cycle 1\nFAIL forever releases full snapshot 2\nFAIL forever drops timer cycle 2\nFAIL forever releases full snapshot 3\nFAIL forever drops timer cycle 3\nFAIL forever releases full snapshot 4\nFAIL forever drops timer cycle 4\nFAIL forever releases full snapshot 5\nFAIL forever drops timer cycle 5\nFAIL forever releases full snapshot 6\nFAIL forever drops timer cycle 6\nFAIL forever releases full snapshot 7\nFAIL forever drops timer cycle 7\nFAIL forever releases full snapshot 8\nFAIL forever drops timer cycle 8\nFAIL forever releases full snapshot 9\nFAIL forever drops timer cycle 9\nFAIL forever releases full snapshot 10\nFAIL forever drops timer cycle 10\nFAIL forever releases full snapshot 11\nFAIL forever drops timer cycle 11\nFAIL forever releases full snapshot 12\nFAIL forever drops timer cycle 12\nFAIL forever releases full snapshot 13\nFAIL forever drops timer cycle 13\nFAIL forever releases full snapshot 14\nFAIL forever drops timer cycle 14\nFAIL forever releases full snapshot 15\nFAIL forever drops timer cycle 15\nFAIL forever releases full snapshot 16\nFAIL forever drops timer cycle 16\nFAIL forever releases full snapshot 17\nFAIL forever drops timer cycle 17\nFAIL forever releases full snapshot 18\nFAIL forever drops timer cycle 18\nFAIL forever releases full snapshot 19\nFAIL forever drops timer cycle 19\nFAIL forever releases full snapshot 20\nFAIL forever drops timer cycle 20\nMETRIC forever retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_era releases full snapshot 1\nFAIL classic_era drops timer cycle 1\nFAIL classic_era releases full snapshot 2\nFAIL classic_era drops timer cycle 2\nFAIL classic_era releases full snapshot 3\nFAIL classic_era drops timer cycle 3\nFAIL classic_era releases full snapshot 4\nFAIL classic_era drops timer cycle 4\nFAIL classic_era releases full snapshot 5\nFAIL classic_era drops timer cycle 5\nFAIL classic_era releases full snapshot 6\nFAIL classic_era drops timer cycle 6\nFAIL classic_era releases full snapshot 7\nFAIL classic_era drops timer cycle 7\nFAIL classic_era releases full snapshot 8\nFAIL classic_era drops timer cycle 8\nFAIL classic_era releases full snapshot 9\nFAIL classic_era drops timer cycle 9\nFAIL classic_era releases full snapshot 10\nFAIL classic_era drops timer cycle 10\nFAIL classic_era releases full snapshot 11\nFAIL classic_era drops timer cycle 11\nFAIL classic_era releases full snapshot 12\nFAIL classic_era drops timer cycle 12\nFAIL classic_era releases full snapshot 13\nFAIL classic_era drops timer cycle 13\nFAIL classic_era releases full snapshot 14\nFAIL classic_era drops timer cycle 14\nFAIL classic_era releases full snapshot 15\nFAIL classic_era drops timer cycle 15\nFAIL classic_era releases full snapshot 16\nFAIL classic_era drops timer cycle 16\nFAIL classic_era releases full snapshot 17\nFAIL classic_era drops timer cycle 17\nFAIL classic_era releases full snapshot 18\nFAIL classic_era drops timer cycle 18\nFAIL classic_era releases full snapshot 19\nFAIL classic_era drops timer cycle 19\nFAIL classic_era releases full snapshot 20\nFAIL classic_era drops timer cycle 20\nMETRIC classic_era retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic_anniversary releases full snapshot 1\nFAIL classic_anniversary drops timer cycle 1\nFAIL classic_anniversary releases full snapshot 2\nFAIL classic_anniversary drops timer cycle 2\nFAIL classic_anniversary releases full snapshot 3\nFAIL classic_anniversary drops timer cycle 3\nFAIL classic_anniversary releases full snapshot 4\nFAIL classic_anniversary drops timer cycle 4\nFAIL classic_anniversary releases full snapshot 5\nFAIL classic_anniversary drops timer cycle 5\nFAIL classic_anniversary releases full snapshot 6\nFAIL classic_anniversary drops timer cycle 6\nFAIL classic_anniversary releases full snapshot 7\nFAIL classic_anniversary drops timer cycle 7\nFAIL classic_anniversary releases full snapshot 8\nFAIL classic_anniversary drops timer cycle 8\nFAIL classic_anniversary releases full snapshot 9\nFAIL classic_anniversary drops timer cycle 9\nFAIL classic_anniversary releases full snapshot 10\nFAIL classic_anniversary drops timer cycle 10\nFAIL classic_anniversary releases full snapshot 11\nFAIL classic_anniversary drops timer cycle 11\nFAIL classic_anniversary releases full snapshot 12\nFAIL classic_anniversary drops timer cycle 12\nFAIL classic_anniversary releases full snapshot 13\nFAIL classic_anniversary drops timer cycle 13\nFAIL classic_anniversary releases full snapshot 14\nFAIL classic_anniversary drops timer cycle 14\nFAIL classic_anniversary releases full snapshot 15\nFAIL classic_anniversary drops timer cycle 15\nFAIL classic_anniversary releases full snapshot 16\nFAIL classic_anniversary drops timer cycle 16\nFAIL classic_anniversary releases full snapshot 17\nFAIL classic_anniversary drops timer cycle 17\nFAIL classic_anniversary releases full snapshot 18\nFAIL classic_anniversary drops timer cycle 18\nFAIL classic_anniversary releases full snapshot 19\nFAIL classic_anniversary drops timer cycle 19\nFAIL classic_anniversary releases full snapshot 20\nFAIL classic_anniversary drops timer cycle 20\nMETRIC classic_anniversary retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nFAIL classic releases full snapshot 1\nFAIL classic drops timer cycle 1\nFAIL classic releases full snapshot 2\nFAIL classic drops timer cycle 2\nFAIL classic releases full snapshot 3\nFAIL classic drops timer cycle 3\nFAIL classic releases full snapshot 4\nFAIL classic drops timer cycle 4\nFAIL classic releases full snapshot 5\nFAIL classic drops timer cycle 5\nFAIL classic releases full snapshot 6\nFAIL classic drops timer cycle 6\nFAIL classic releases full snapshot 7\nFAIL classic drops timer cycle 7\nFAIL classic releases full snapshot 8\nFAIL classic drops timer cycle 8\nFAIL classic releases full snapshot 9\nFAIL classic drops timer cycle 9\nFAIL classic releases full snapshot 10\nFAIL classic drops timer cycle 10\nFAIL classic releases full snapshot 11\nFAIL classic drops timer cycle 11\nFAIL classic releases full snapshot 12\nFAIL classic drops timer cycle 12\nFAIL classic releases full snapshot 13\nFAIL classic drops timer cycle 13\nFAIL classic releases full snapshot 14\nFAIL classic drops timer cycle 14\nFAIL classic releases full snapshot 15\nFAIL classic drops timer cycle 15\nFAIL classic releases full snapshot 16\nFAIL classic drops timer cycle 16\nFAIL classic releases full snapshot 17\nFAIL classic drops timer cycle 17\nFAIL classic releases full snapshot 18\nFAIL classic drops timer cycle 18\nFAIL classic releases full snapshot 19\nFAIL classic drops timer cycle 19\nFAIL classic releases full snapshot 20\nFAIL classic drops timer cycle 20\nMETRIC classic retained_snapshots=20 retained_frame_rows=10000 timer_callbacks=40\nCapture retention: 400 checks, 200 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/perf_capture_retention.lua"
+      ],
+      "wallSeconds": 0.26308090000384254,
+      "metrics": {
+        "live": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "forever": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_era": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic_anniversary": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        },
+        "classic": {
+          "retained_snapshots": 0,
+          "retained_frame_rows": 0,
+          "timer_callbacks": 40
+        }
+      },
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "live": {
+      "retained_snapshots": {
+        "baseline": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retained_frame_rows": {
+        "baseline": {
+          "median": 10000,
+          "min": 10000,
+          "max": 10000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "timer_callbacks": {
+        "baseline": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        },
+        "candidate": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        }
+      }
+    },
+    "forever": {
+      "retained_snapshots": {
+        "baseline": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retained_frame_rows": {
+        "baseline": {
+          "median": 10000,
+          "min": 10000,
+          "max": 10000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "timer_callbacks": {
+        "baseline": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        },
+        "candidate": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        }
+      }
+    },
+    "classic_era": {
+      "retained_snapshots": {
+        "baseline": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retained_frame_rows": {
+        "baseline": {
+          "median": 10000,
+          "min": 10000,
+          "max": 10000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "timer_callbacks": {
+        "baseline": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        },
+        "candidate": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        }
+      }
+    },
+    "classic_anniversary": {
+      "retained_snapshots": {
+        "baseline": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retained_frame_rows": {
+        "baseline": {
+          "median": 10000,
+          "min": 10000,
+          "max": 10000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "timer_callbacks": {
+        "baseline": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        },
+        "candidate": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        }
+      }
+    },
+    "classic": {
+      "retained_snapshots": {
+        "baseline": {
+          "median": 20,
+          "min": 20,
+          "max": 20
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "retained_frame_rows": {
+        "baseline": {
+          "median": 10000,
+          "min": 10000,
+          "max": 10000
+        },
+        "candidate": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "timer_callbacks": {
+        "baseline": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        },
+        "candidate": {
+          "median": 40,
+          "min": 40,
+          "max": 40
+        }
+      }
+    }
+  }
+}

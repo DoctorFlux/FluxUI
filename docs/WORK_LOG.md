@@ -518,3 +518,92 @@ specification/library/asset/manifest/XML files byte-for-byte, with no missing or
 unexpected changes. Explicit development-tool markers remain absent across 1,244
 actual files outside Git. Main unchanged; native after whole-vendor acceptance
 remains pending. No additional foreground/game input used during final file work.
+
+## 2026-10-29 — whole-addon Retail performance and resource audit
+
+Preserved the pre-existing uncommitted tracker correction/test/docs in a verified
+external actual-file checkpoint at 14:39:06 UTC (15:39 Copenhagen): 1,246 files,
+all Git history, 403 private on-disk WTF files while Retail ran. Verified all 731
+baseline Lua hashes against the 90-script tracker report. Main unchanged.
+
+Whole-addon ownership/recurring map covers 577 reachable files and 26 source
+folders. Native Retail 12.1.5.70575/interface120105/project1, level81 Mage in
+Stormwind, built-in inventory, three loaded addons, original profiler0. Five
+20-second background profile1 captures after 30-second warm-up: median addon CPU
+30.772 ms/s (30.107-37.046). All ten endpoints retain 14,742 total frames, 1,449
+Flux-source frames, 458 visible, 212 registered OnUpdates and one shared subscriber;
+eight sampled public cache sizes unchanged. Requested-capture memory grows after
+GC; ordinary gameplay leak rate is not inferred. Nameplate/assistant CPU remains
+for separate matched timing-preserving work. No foreground/mouse/clipboard control.
+
+BUG-009/PERF-007 replay reproduces repeated readiness/combat frame allocations.
+Runtime/test/fixture `6ac4389` reuses owners; five alternating desktop pairs reduce
+203 frames to 3 with one hook/101 geometry writes unchanged. 2,050 checks pass,
+20 baseline failures. Cleared requests disarm regen. Same timeout and six-pixel
+anchor; native loot/combat trigger remains pending.
+
+BUG-010/PERF-008 runtime/test/fixture `3046478` clears completed/cancelled full
+capture snapshot and timer references. Five alternating desktop pairs retain
+20 -> 0 full snapshots / 10,000 -> 0 frame rows per model; 400 checks after 200
+baseline failures. Existing capture 383 checks/12 rejected mutations pass. The
+full current actual-file suite passes 92 scripts/733 syntax files, including the
+preserved pending tracker test. New runtime commits exclude that separate work.
+
+Source checks find existing mirror-timer installation guards; corrected stale QoL
+prose, with no duration runtime change. Binding/macro/spell/visual cache controls
+retained; older inspect GUID TTL without eviction remains an unmeasured candidate.
+Incomplete long-upload private native comparison was discarded after truncation;
+no missing candidate result invented. Follow-up uses direct file-loaded capture
+calls. Native foreground FPS/pixels/input/taint, long-session/private-cache churn,
+other clients and full interaction acceptance remain pending. Excluded callbacks
+untouched. [Detailed evidence](RETAIL_PERFORMANCE_AUDIT.md).
+
+Native direct follow-up completed five actual file-loaded20-second profile1
+captures. Post-GC addon memory24,105->24,928 KiB across retained reports versus
+24,115->64,565 KiB before; median capture-associated delta186 versus7,860 KiB.
+Endpoint gaps90-235sec versus22sec and changed camera/frame totals(14,588 versus
+14,742) prevent strict gameplay/CPU/FPS causal acceptance. After CPU21.315 ms/s
+median is context, not a claimed speedup. A later failed scripted export was also
+discarded. Original profiler0 restored and temporary SavedVariable/namespaces
+cleared by normal reload. WoW remains open in the background; no native API replaced.
+Public raw samples and commands contain no private settings/account names.
+
+## 2026-10-29 — shared Social offset, reload and all-tab geometry
+
+User supplied cropped alignment reference, requested a slight downward adjustment,
+then reported reload/tab-only recovery and Combat Log displacement. Fresh verified
+15:32 UTC checkpoint includes1,263 actual files, history and403 on-disk WTF files
+while Retail ran. All prior tracker/audit work preserved; main unchanged.
+
+Final shared inset8 UI units uses existing primary tab-height service in column
+owner coordinates. Relative height survives a provisional chat rectangle moving
+later at login without another tab selection. All holder placement now anchors to
+ChatFrame1 instead of selected Combat Log/Global/custom window geometry. Selected
+Copy target, buttons/actions/art, settings, native ownership, scales, overflow,
+combat waiter and three retry deadlines remain. No new runtime resource/framework.
+Commits78fe4e7 and7f13000; exact identities/raw results in CHAT_COLUMN_ALIGNMENT.md.
+
+Expanded actual column/social fixture:1,311 original plus508 ownership plus190 new
+checks=2,009 passing; frozen baseline fails100 new assertions. Five alternating
+pairs have zero count variation;100 layouts add no frames, same point writes;
+shared tab-height reads are explicit correctness overhead. Existing chat layout165,
+startup478 and retries5,869 controls pass. Final whole actual-file suite92 scripts/
+733 syntax files passes, including the preserved pending tracker test.
+
+Native Retail12.1.5.70575/interface120105/profile0 geometry has Social8 units below
+menu/tab top (was33); measured surrounding rectangles unchanged. A private untouched
+post-reload image was inspected before chat/tab input. Seven native out-of-combat
+General1/Global3/CombatLog2 selections sample identical visible Social left57.600/
+top361.059 after2seconds without further chat input; original observed tab restored.
+No OS activation/mouse/clipboard/native API replacement. Temporary geometry/tab
+exports removed by normal reload; original profile0 retained. Other native clients,
+combat/taint and full-screen pixel/FPS acceptance remain pending.
+
+Final combined verification:92 scripts/733 normalized Lua hashes pass. Source
+inventory766, reachable577, setting definitions361, literal defaults519, saved
+roots23, local links12,868. Ledger shapes valid:1,384 parity/35 ownership/28 API/
+eight clients/77 references/308 performance/26 audit-domain rows. Protected361
+files remain byte-identical; tracker source/test preserved. Explicit development-
+tool markers absent across1,271 actual files outside Git. Main unchanged. Native
+temporary data removed; original profile0 retained. Generated records remain with
+the user's separate pending tracker work; focused runtime/evidence commits exclude it.

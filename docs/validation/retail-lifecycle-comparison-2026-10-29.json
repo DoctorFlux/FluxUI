@@ -1,0 +1,743 @@
+{
+  "baseline": {
+    "head": "e1132d0948906acef72be9e4c28dff60a5736931",
+    "tree": "f0950ad82840e76ba076d791ae53d78393666e5e",
+    "actualFileCheckpoint": "Retail-audit-recovery-20261029T143824Z",
+    "sourceArchiveSha256": "fcc345a42d493ad607d69f2df8b6efd956c118664c3e7c2f7d04fd1454c21bad",
+    "includesUncommittedTrackerFix": true,
+    "fullReport": "docs/validation/objective-tracker-scroll-2026-10-29.json",
+    "verifiedLuaFiles": 731
+  },
+  "candidate": {
+    "commit": "6ac438941504ae3280969334d484fe00bad94ca7",
+    "tree": "d9549284df8bb12154c056d416054a080ece8a9c",
+    "sources": {
+      "Other/FluxLootRollPosition.lua": "291ba22a149ec0f1d8ea6a1e05aa61009643ead9f3966a88736a294767257b3c",
+      "tests/loot_roll_lifecycle.lua": "14402c68148fe5b11fb92d3abcd95faf071f6b6a8573c5f42bab35c67aea872d"
+    },
+    "hashNormalization": "CRLF to LF only"
+  },
+  "configuration": {
+    "scope": "Actual loot positioning source; persistent native-frame identities and combat/events modeled; five labels share legacy/container routes",
+    "repetitions": "5 alternating fresh-process pairs",
+    "scenario": "100 world entries with player absent; 50-update timeout; ready retry; 100 combat cycles plus one externally cleared pending request",
+    "profiler": "off; allocation/event/geometry counters",
+    "warmup": "source boot and initial readiness measured separately from combat loop",
+    "native": "Separate whole-addon idle captures; real loot/combat trigger not exercised"
+  },
+  "configSha256": "66754d20ad8050fc080617dba2b4df7be262051fee78e6ee8b48ac4b57f45949",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua",
+        "--source",
+        "tests/fixtures/loot_roll_position_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.045254800003021955,
+      "metrics": {
+        "era": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "FAIL era coalesces readiness watcher\nFAIL era one startup plus one readiness frame\nFAIL era reuses combat waiter over 100 cycles\nFAIL era cleared request still disarms waiter\nMETRIC era frames=203 combat_frames=101 hooks=1 writes=101\nFAIL anniversary coalesces readiness watcher\nFAIL anniversary one startup plus one readiness frame\nFAIL anniversary reuses combat waiter over 100 cycles\nFAIL anniversary cleared request still disarms waiter\nMETRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101\nFAIL progression coalesces readiness watcher\nFAIL progression one startup plus one readiness frame\nFAIL progression reuses combat waiter over 100 cycles\nFAIL progression cleared request still disarms waiter\nMETRIC progression frames=203 combat_frames=101 hooks=1 writes=101\nFAIL live coalesces readiness watcher\nFAIL live one startup plus one readiness frame\nFAIL live reuses combat waiter over 100 cycles\nFAIL live cleared request still disarms waiter\nMETRIC live frames=203 combat_frames=101 hooks=1 writes=101\nFAIL forever coalesces readiness watcher\nFAIL forever one startup plus one readiness frame\nFAIL forever reuses combat waiter over 100 cycles\nFAIL forever cleared request still disarms waiter\nMETRIC forever frames=203 combat_frames=101 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 20 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua"
+      ],
+      "wallSeconds": 0.02095310000004247,
+      "metrics": {
+        "era": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua"
+      ],
+      "wallSeconds": 0.018140000000130385,
+      "metrics": {
+        "era": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua",
+        "--source",
+        "tests/fixtures/loot_roll_position_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.05915860000095563,
+      "metrics": {
+        "era": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "FAIL era coalesces readiness watcher\nFAIL era one startup plus one readiness frame\nFAIL era reuses combat waiter over 100 cycles\nFAIL era cleared request still disarms waiter\nMETRIC era frames=203 combat_frames=101 hooks=1 writes=101\nFAIL anniversary coalesces readiness watcher\nFAIL anniversary one startup plus one readiness frame\nFAIL anniversary reuses combat waiter over 100 cycles\nFAIL anniversary cleared request still disarms waiter\nMETRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101\nFAIL progression coalesces readiness watcher\nFAIL progression one startup plus one readiness frame\nFAIL progression reuses combat waiter over 100 cycles\nFAIL progression cleared request still disarms waiter\nMETRIC progression frames=203 combat_frames=101 hooks=1 writes=101\nFAIL live coalesces readiness watcher\nFAIL live one startup plus one readiness frame\nFAIL live reuses combat waiter over 100 cycles\nFAIL live cleared request still disarms waiter\nMETRIC live frames=203 combat_frames=101 hooks=1 writes=101\nFAIL forever coalesces readiness watcher\nFAIL forever one startup plus one readiness frame\nFAIL forever reuses combat waiter over 100 cycles\nFAIL forever cleared request still disarms waiter\nMETRIC forever frames=203 combat_frames=101 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 20 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua",
+        "--source",
+        "tests/fixtures/loot_roll_position_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.04137609999452252,
+      "metrics": {
+        "era": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "FAIL era coalesces readiness watcher\nFAIL era one startup plus one readiness frame\nFAIL era reuses combat waiter over 100 cycles\nFAIL era cleared request still disarms waiter\nMETRIC era frames=203 combat_frames=101 hooks=1 writes=101\nFAIL anniversary coalesces readiness watcher\nFAIL anniversary one startup plus one readiness frame\nFAIL anniversary reuses combat waiter over 100 cycles\nFAIL anniversary cleared request still disarms waiter\nMETRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101\nFAIL progression coalesces readiness watcher\nFAIL progression one startup plus one readiness frame\nFAIL progression reuses combat waiter over 100 cycles\nFAIL progression cleared request still disarms waiter\nMETRIC progression frames=203 combat_frames=101 hooks=1 writes=101\nFAIL live coalesces readiness watcher\nFAIL live one startup plus one readiness frame\nFAIL live reuses combat waiter over 100 cycles\nFAIL live cleared request still disarms waiter\nMETRIC live frames=203 combat_frames=101 hooks=1 writes=101\nFAIL forever coalesces readiness watcher\nFAIL forever one startup plus one readiness frame\nFAIL forever reuses combat waiter over 100 cycles\nFAIL forever cleared request still disarms waiter\nMETRIC forever frames=203 combat_frames=101 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 20 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua"
+      ],
+      "wallSeconds": 0.02108040000166511,
+      "metrics": {
+        "era": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua"
+      ],
+      "wallSeconds": 0.01691240000218386,
+      "metrics": {
+        "era": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua",
+        "--source",
+        "tests/fixtures/loot_roll_position_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.03797449999547098,
+      "metrics": {
+        "era": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "FAIL era coalesces readiness watcher\nFAIL era one startup plus one readiness frame\nFAIL era reuses combat waiter over 100 cycles\nFAIL era cleared request still disarms waiter\nMETRIC era frames=203 combat_frames=101 hooks=1 writes=101\nFAIL anniversary coalesces readiness watcher\nFAIL anniversary one startup plus one readiness frame\nFAIL anniversary reuses combat waiter over 100 cycles\nFAIL anniversary cleared request still disarms waiter\nMETRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101\nFAIL progression coalesces readiness watcher\nFAIL progression one startup plus one readiness frame\nFAIL progression reuses combat waiter over 100 cycles\nFAIL progression cleared request still disarms waiter\nMETRIC progression frames=203 combat_frames=101 hooks=1 writes=101\nFAIL live coalesces readiness watcher\nFAIL live one startup plus one readiness frame\nFAIL live reuses combat waiter over 100 cycles\nFAIL live cleared request still disarms waiter\nMETRIC live frames=203 combat_frames=101 hooks=1 writes=101\nFAIL forever coalesces readiness watcher\nFAIL forever one startup plus one readiness frame\nFAIL forever reuses combat waiter over 100 cycles\nFAIL forever cleared request still disarms waiter\nMETRIC forever frames=203 combat_frames=101 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 20 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua",
+        "--source",
+        "tests/fixtures/loot_roll_position_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.04487589999916963,
+      "metrics": {
+        "era": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 203,
+          "combat_frames": 101,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "FAIL era coalesces readiness watcher\nFAIL era one startup plus one readiness frame\nFAIL era reuses combat waiter over 100 cycles\nFAIL era cleared request still disarms waiter\nMETRIC era frames=203 combat_frames=101 hooks=1 writes=101\nFAIL anniversary coalesces readiness watcher\nFAIL anniversary one startup plus one readiness frame\nFAIL anniversary reuses combat waiter over 100 cycles\nFAIL anniversary cleared request still disarms waiter\nMETRIC anniversary frames=203 combat_frames=101 hooks=1 writes=101\nFAIL progression coalesces readiness watcher\nFAIL progression one startup plus one readiness frame\nFAIL progression reuses combat waiter over 100 cycles\nFAIL progression cleared request still disarms waiter\nMETRIC progression frames=203 combat_frames=101 hooks=1 writes=101\nFAIL live coalesces readiness watcher\nFAIL live one startup plus one readiness frame\nFAIL live reuses combat waiter over 100 cycles\nFAIL live cleared request still disarms waiter\nMETRIC live frames=203 combat_frames=101 hooks=1 writes=101\nFAIL forever coalesces readiness watcher\nFAIL forever one startup plus one readiness frame\nFAIL forever reuses combat waiter over 100 cycles\nFAIL forever cleared request still disarms waiter\nMETRIC forever frames=203 combat_frames=101 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 20 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/loot_roll_lifecycle.lua"
+      ],
+      "wallSeconds": 0.01865449999604607,
+      "metrics": {
+        "era": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "anniversary": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "progression": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "live": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        },
+        "forever": {
+          "frames": 3,
+          "combat_frames": 1,
+          "hooks": 1,
+          "writes": 101
+        }
+      },
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "era": {
+      "frames": {
+        "baseline": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        },
+        "candidate": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "combat_frames": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        }
+      }
+    },
+    "anniversary": {
+      "frames": {
+        "baseline": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        },
+        "candidate": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "combat_frames": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        }
+      }
+    },
+    "progression": {
+      "frames": {
+        "baseline": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        },
+        "candidate": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "combat_frames": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        }
+      }
+    },
+    "live": {
+      "frames": {
+        "baseline": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        },
+        "candidate": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "combat_frames": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        }
+      }
+    },
+    "forever": {
+      "frames": {
+        "baseline": {
+          "median": 203,
+          "min": 203,
+          "max": 203
+        },
+        "candidate": {
+          "median": 3,
+          "min": 3,
+          "max": 3
+        }
+      },
+      "combat_frames": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "hooks": {
+        "baseline": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "candidate": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "writes": {
+        "baseline": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        },
+        "candidate": {
+          "median": 101,
+          "min": 101,
+          "max": 101
+        }
+      }
+    }
+  },
+  "finalVerification": {
+    "markerFiles": [],
+    "actualFilesOutsideGit": 1261,
+    "ledgerRows": {
+      "FEATURE_PARITY.csv": 1384,
+      "MODULE_OWNERSHIP.csv": 35,
+      "API_MIGRATION.csv": 27,
+      "CLIENT_MATRIX.csv": 8,
+      "REFERENCE_MANIFEST.csv": 77,
+      "PERFORMANCE_RESULTS.csv": 277,
+      "PERFORMANCE_AUDIT.csv": 26
+    },
+    "missingCheckpointFiles": [],
+    "unexpectedChanges": [],
+    "preservedUserRuntimeAndTest": [
+      "Minimap/FluxObjectiveTrackerScroll.lua",
+      "tests/objective_tracker_scroll.lua"
+    ],
+    "fullSuite": {
+      "scripts": 92,
+      "luaFiles": 733,
+      "failures": 0
+    },
+    "protectedFilesByteIdentical": 361
+  }
+}

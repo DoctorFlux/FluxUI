@@ -87,3 +87,21 @@ native certification; they do not prevent independent audits or desktop fixes.
 - Existing [source coverage](30-source-coverage.md), [controls](26-options-map.md),
   [commands and bindings](31-commands-and-bindings.md), [persistence](32-saved-variables.md),
   and generated `reference/` indexes remain the detailed source cross-reference.
+
+## Retail whole-addon follow-up
+
+BUG-009/PERF-007 `6ac4389` fixes accumulating loot waiters after2050 checks;
+BUG-010/PERF-008 `3046478` releases requested full capture snapshots/handles after
+400 checks plus383 existing controls/12 mutations. Full current actual-file suite
+92 scripts/733 syntax. [Audit](RETAIL_PERFORMANCE_AUDIT.md) maps577 reachable files,
+26 domains and native Retail background CPU/memory/frame observations. Stable idle
+frames do not certify every lifecycle; diagnostic-associated memory is separated
+from normal HUD growth. Next priorities are nameplate/assistant attribution,
+repeated enable/disable/open/close cycles and long-session private-cache stress.
+Foreground native pixels/input/security/FPS and other clients remain pending.
+Preserve the user's pending tracker work and background PC use. Main and the three
+excluded callback audits remain untouched.
+
+## Shared chat column follow-up
+
+BUG-01178fe4e7/7f13000 completes the requested shared Social offset, startup and all-tab correction in tested scope.2,009 column checks; native Retail gap8 and seven stable General/Global/Combat Log samples; complete92-script/733-file actual corpus. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Keep other-client/security/pixel acceptance and wider performance/lifecycle stress pending; preserve tracker work, main and excluded callbacks.
