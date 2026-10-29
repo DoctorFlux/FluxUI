@@ -11,12 +11,21 @@ fresh request resolves current listings and remaining counts. The suite passes
 lookup per valid purchase. [Evidence](VENDOR_PURCHASE_IDENTITY.md); native acceptance
 remains pending. The merchant-identity batch added the nineteenth API contract.
 
-Current runtime is `b505bb880aeefbab414d957d8d7fbee6820c20a8`, tree
+Finite-stock runtime is `b505bb880aeefbab414d957d8d7fbee6820c20a8`, tree
 `cc067974b724c82188d52f24a9800ad485ca261e`. BUG-006 caps zero availability and
 reserves submitted quantities on shared finite merchant index entries until index
 refresh. That budget is not native acceptance. The extended merchant harness passes
 837 checks; full suite remains 86 scripts/727 syntax files with no added Lua file.
 The API ledger has 20 contracts. [Stock budget evidence](VENDOR_STOCK_BUDGET.md).
+
+Current runtime is `e02139ab1c6b8099b02fb4506ff150a50d6555ef`, tree
+`0a23a38a04809c0a087089586cb5842496fb5c64`. BUG-007/PERF-004 retains exact gray fallback
+availability in FluxJunk using reliable bag generation. Existing rule/item/list/
+slot invalidation retires both cached outcomes; native-positive precedence and
+unready live retry remain. Two scalars add no lifecycle resources. Seven API fixtures
+pass 265 checks; full suite 87 scripts/728 syntax files. The API ledger now has
+21 contracts. [Vendor-open evidence](VENDOR_OPEN_WORK.md); the user's Era hitch and
+all native acceptance remain unverified.
 
 The load graph below was reconstructed from the current `_FluxUI.toc` and XML includes using `docs/tools/source_inventory.py:load_graph`, not copied from the older generated reference. File reachability establishes potential execution, not native support, option activation, or resource counts. TOC gates and runtime checks still apply. `Bindings.xml` is separate metadata-loaded binding data. Static assets and unloaded source are indexed by the existing asset/source inventories and remain preserved.
 

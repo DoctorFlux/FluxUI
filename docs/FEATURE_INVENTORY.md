@@ -144,3 +144,13 @@ modeled cases; reservations are not native acknowledgement. [Evidence](VENDOR_ST
 177 stock checks plus 660 identity controls, full 86 scripts/727 syntax pass, five
 matched pairs. Other vendor requirements and all native/visual acceptance retain
 prior status. No option/default/feature was removed.
+
+## Vendor-open junk availability
+
+BUG-007/PERF-004 (`e02139a`) gives `SPEC-20-L9` and `SPEC-20-L20` targeted partial
+coverage: repeated no-junk availability checks reuse reliable unchanged inventory
+without losing cold gray fallback or rule/item/Useful invalidation. Seven API
+fixtures pass 265 checks and five matched count pairs; full suite passes 87 scripts/
+728 syntax files. The user's Era idle-open hitch remains unverified natively.
+Other requirements and all native/visual statuses remain pending or retain their
+previous evidence. [Scope and native checks](VENDOR_OPEN_WORK.md).

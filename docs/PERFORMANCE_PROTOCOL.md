@@ -137,3 +137,15 @@ full 86-script/727-file validation. Five pairs remove modeled stock-limit reject
 and correct quantities/accounting, retaining unlimited cadence and existing event
 frames. No merchant-info reads/timers were added. These operation counts are not
 native CPU/FPS evidence; native acceptance and asynchronous acknowledgement remain pending.
+
+## Vendor-open availability evidence
+
+[BUG-007/PERF-004](VENDOR_OPEN_WORK.md) separates a cold open from 25 unchanged
+reopens across five alternating pairs and seven API fixtures. Era slot-info reads
+fall from 300/5,000 to 200/zero; Retail/Forever from 360/6,000 to 240/zero. Count range
+is zero; existing buyer frame/native queries remain. This measured fallback path
+excludes native rendering/layout and other integrations. Generation/reliability
+queries precede reuse; native overhead is unmeasured. Full suite: 87 scripts/728
+syntax files pass. Native resolution of the Era hitch, CPU/allocations/resource
+totals/latency/frame times/FPS and parity remain pending; fewer reads do not prove
+higher FPS. Retain first-open, steady idle and repeated-open traces separately.

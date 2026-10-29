@@ -1,6 +1,6 @@
 # Work log
 
-## 2026-10-29 — audit baseline and first provider fix
+## 2026-10-29 â€” audit baseline and first provider fix
 
 Inspected actual main `7436820`, remote, manifests, tests, diagnostics, documentation
 and supplied Word/Markdown plans/templates/specifications. Initial tracked tree was
@@ -65,7 +65,7 @@ CPU, allocations, latency and frame-time/FPS acceptance remains pending. Larger
 architecture/lifecycle migration is unfinished. Next investigation is event-dispatch
 mutation and its actual consumers, with a separate baseline before any fix.
 
-## 2026-10-29 continuation — deferred scans and mail completion
+## 2026-10-29 continuation â€” deferred scans and mail completion
 
 Resumed on `201bc83`; tracked tree was clean and only the original sync log was
 untracked. Read instructions, status, decisions, ownership/performance records and
@@ -134,7 +134,7 @@ initial final-preservation check's mismatch against the older 111,922-byte log;
 no rollback or overwrite was performed. Whitespace checks pass with intentional
 verbatim Markdown line breaks retained.
 
-## 2026-10-29 continuation — Windows enable/disable (user excludes provider queries)
+## 2026-10-29 continuation â€” Windows enable/disable (user excludes provider queries)
 
 Resumed on `f1a3bc7`, same modernization branch, with only the original sync log
 untracked. Read durable records, lifecycle/feature/API/client/performance records,
@@ -188,7 +188,7 @@ match full validation; all 42 supplied package/log files match the fresh checkpo
 Generated references were refreshed with the existing tools. Whitespace checks pass
 with intentional verbatim Markdown hard breaks retained.
 
-## 2026-10-29 — repository editorial cleanup
+## 2026-10-29 â€” repository editorial cleanup
 
 Baseline f57fc79; main unchanged. Before edits, verified a fresh external source,
 history and private settings checkpoint at 10:19 UTC with WoW closed. Retired editor
@@ -222,7 +222,7 @@ with 759 classified sources, 577 reachable files, 361 setting definitions,
 The final scope scan covers 1,195 actual files and finds zero development-tool
 markers outside Git. Native acceptance retains its prior pending status.
 
-## 2026-10-29 — queued merchant purchase identity
+## 2026-10-29 â€” queued merchant purchase identity
 
 Resumed on 07b11ce with a clean working tree, same branch and main 7436820. Read
 contribution/status/development/decision records, vendor ownership/performance
@@ -270,7 +270,7 @@ eight client, 77 reference and 118 performance rows). All 727 Lua hashes match
 the full report. Requirements/libraries/assets/manifests (346 files) match the fresh
 checkpoint, and the development-tool marker scan remains clear outside Git.
 
-## 2026-10-29 — finite merchant stock budget
+## 2026-10-29 â€” finite merchant stock budget
 
 Resumed on 0d05acc with a clean working tree, same branch and main 7436820. Read
 contribution/development/status/decisions, vendor requirements/ownership/performance
@@ -317,3 +317,52 @@ links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 20 API
 eight client, 77 reference and 129 performance rows). All 727 current Lua hashes
 match the full report; requirements/libraries/assets/manifests (346 files) match
 the checkpoint. The development-tool marker scan remains clear outside Git.
+
+## 2026-10-29 â€” vendor-open junk availability
+
+User reports lag simply opening a vendor on Classic Era and requests all-client
+coverage. First/repeated-open behavior and automation settings are unknown. Kept
+main and the deferred auction/guild-bank/void-storage callback scope unchanged.
+Inspected current contribution/status/decision records and actual merchant/junk/
+inventory source before editing. Preserved the clean 9e17e28 baseline at 11:14:06 UTC
+in a verified external source/history/private-settings checkpoint with WoW closed.
+All prior 727 Lua hashes matched the 86-script full report before baseline reuse.
+
+Production availability calls repeatedly walked unchanged non-junk bags. BUG-007/
+PERF-004 adds two scalar values to the existing junk owner, keyed by reliable bag
+generation and cleared by existing rule/item/list/slot invalidation. Native-positive
+precedence, cold gray fallback, unready retries, UI cadence and automation remain.
+No new frames/hooks/timers/subscriptions/settings. The native hitch is not certified
+fixed; other open-path work remains unmeasured.
+
+Commands/results:
+
+- `lua tests/vendor_open_work.lua --source tests/fixtures/vendor_open_junk_before.txt --measure`:
+  265 checks, seven expected baseline failures; measure mode exits zero.
+- `lua tests/vendor_open_work.lua`: all 265 checks pass across Era, Anniversary,
+  modern Wrath Classic, Cata, Mists, Retail and Forever fixtures. Real buyer events,
+  inventory/junk modules and extracted production UI availability callbacks run;
+  rendering/layout/restock data/other integrations are modeled or excluded.
+- Five alternating fresh-process pairs, all automation off: each legacy fixture's
+  first-open slot reads 300 to 200; 25 unchanged reopens 5,000 to zero. Retail/Forever
+  360 to 240 and 6,000 to zero. All counts have zero trial range. Buyer event frame
+  remains one, native junk-count queries remain 182 on modern fixtures/zero legacy.
+- Existing junk seller smoke passes; merchant stock/identity controls retain 837
+  checks. `python tests/run_validation.py --output docs/validation/vendor-open-full-2026-10-29.json --sync-docs`:
+  87 scripts/728 syntax files, no failures. Every current Lua hash matches the report.
+- Native builds/settings/addon list, screenshots/input/combat/taint/secrets, CPU/
+  memory/latency/frame times/FPS remain pending. Process timings include fixture
+  startup and do not measure native vendor-open latency.
+
+Runtime/test/nonloaded fixture: `e02139ab1c6b8099b02fb4506ff150a50d6555ef`, tree
+`0a23a38a04809c0a087089586cb5842496fb5c64`. Focused evidence and exact native steps:
+[VENDOR_OPEN_WORK.md](VENDOR_OPEN_WORK.md). No settings reset, deployment or push.
+
+Vendor-open documentation validation passes: 761 classified sources, 577 reachable
+files, 361 setting definitions, 23 SavedVariables roots and 12,769 local links. All
+six ledgers have valid row shapes (1,384 parity, 35 ownership, 21 API, eight client,
+77 reference and 157 performance rows). All 728 Lua hashes match the full report.
+The checkpoint comparison finds no missing files and preserves 348 specification/
+library/asset/manifest files byte-for-byte. Explicit development-tool markers remain
+absent across 1,218 actual files outside Git. Legacy fixture labels share one API
+route; Retail/Forever share another, rather than proving seven native contracts.

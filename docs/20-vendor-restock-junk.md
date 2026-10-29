@@ -134,3 +134,13 @@ Unlimited/nil helper semantics and ordinary affordability/cadence remain. A fres
 index/request can use replenished stock. [Evidence](VENDOR_STOCK_BUDGET.md): 177 stock
 plus 660 identity checks, five matched pairs and the full 86-script/727-syntax pass.
 External stock/price changes and delayed acknowledgements still require investigation.
+
+## Vendor-open availability reuse
+
+BUG-007/PERF-004 (`e02139a`) reuses the exact gray fallback result for reliable,
+unchanged bag generations. Existing rule/item/list/slot invalidation, native-positive
+precedence and unready live fallback remain. This avoids repeated no-junk bag walks
+without changing button updates or storm timing. [Evidence](VENDOR_OPEN_WORK.md):
+265 checks/seven API fixtures, five matched count pairs, full 87 scripts/728 syntax
+pass. The user's idle-open hitch on Era still requires native confirmation; cold
+classification, other merchant work and all visual/security acceptance remain pending.

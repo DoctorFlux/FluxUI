@@ -1,0 +1,983 @@
+{
+  "baseline": {
+    "commit": "9e17e28310e14f571208c8ecddfa0e36ae616a13",
+    "tree": "69c039054c7d522a741ca6bb3a72682f1ca04b43",
+    "reusedFullReport": "docs/validation/vendor-stock-full-2026-10-29.json",
+    "verifiedLuaFiles": 727,
+    "tests": 86,
+    "fail": 0,
+    "sourceSha256": "14a6e640fb37140aca38b25812ac4151500a7986da5ec044876e45756acd7117",
+    "normalization": "Full Lua hashes normalize CRLF to LF only"
+  },
+  "candidate": {
+    "commit": "e02139ab1c6b8099b02fb4506ff150a50d6555ef",
+    "tree": "0a23a38a04809c0a087089586cb5842496fb5c64",
+    "sources": {
+      "Inventory/Restock/Junk/FluxJunk.lua": "6f01edb8dd3470a44ded54061fd553d61b50d14cc2717bcd0affb8b5e8514d84",
+      "tests/vendor_open_work.lua": "b0f0d80ebf5ad8ba3a153d4555322a1073419f416224d4260125b793a06e5075",
+      "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da",
+      "Inventory/Restock/Vendor/FluxVendorBuy.lua": "d306732e4c468e3f25a296e960507225c6323f48b4d6770f709d9c56d7534ba3"
+    }
+  },
+  "configuration": {
+    "environment": "Windows-10-10.0.26200-SP0",
+    "reportedSymptom": "User reports vendor-open hitch with no interaction; tested in Classic Era only. Automation settings and first/repeated-open distinction unknown.",
+    "scope": "Production buyer MERCHANT_SHOW/CLOSED events/timers, actual inventory facade/junk module, extracted unmodified production UI availability/settle/button-state callbacks. Rendering, UI layout, restock data and other integrations are mocked/excluded.",
+    "fixtureReuse": "Boot prefix of existing Inventory/Restock/Junk/_tmp_junksmoke.lua; no second runtime framework.",
+    "models": [
+      "Era",
+      "Anniversary",
+      "modern Wrath Classic legacy-API fixture",
+      "Cata legacy-API fixture",
+      "Mists",
+      "Retail native-button fixture",
+      "Forever native-button fixture"
+    ],
+    "nativeBuilds": "none executed; original Wrath 3.3.5 remains unsupported/unverified",
+    "settings": "all automation disabled; 20 slots per carried bag; non-junk items; no targets; mouse/tooltip rendering excluded",
+    "capture": "first cold open through 0.7 modeled seconds, close through 0.1; then 25 matched open/close cycles with unchanged inventory",
+    "warmup": "cold open captured separately; completed before repeated-open capture",
+    "repetitions": "5 alternating fresh-process baseline/candidate pairs",
+    "profiler": "off; live facade read counters only; process durations advisory",
+    "hardware": "Intel Core i7-12700F / 20 logical processors per prior registry evidence; GPU/RAM unavailable",
+    "nativeMetrics": "CPU/allocations/resource totals/latency/frame time/FPS/visual parity/secure behavior pending; observed native hitch not certified fixed"
+  },
+  "configSha256": "fe624669abb3ec006fec44461092be131c1d1e17ada9712a09f3beaa9b594454",
+  "samples": [
+    {
+      "trial": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua",
+        "--source",
+        "tests/fixtures/vendor_open_junk_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.18182350000279257,
+      "metrics": {
+        "era": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL era repeated idle opens reuse unchanged availability\nMETRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL anniversary repeated idle opens reuse unchanged availability\nMETRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL wrath repeated idle opens reuse unchanged availability\nMETRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL cata repeated idle opens reuse unchanged availability\nMETRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL mists repeated idle opens reuse unchanged availability\nMETRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL live repeated idle opens reuse unchanged availability\nMETRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL forever repeated idle opens reuse unchanged availability\nVendor-open work: 265 checks, 7 failures\n"
+    },
+    {
+      "trial": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua"
+      ],
+      "wallSeconds": 0.07202379999944242,
+      "metrics": {
+        "era": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua",
+        "--source",
+        "tests/fixtures/vendor_open_junk_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.17719219999708002,
+      "metrics": {
+        "era": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL era repeated idle opens reuse unchanged availability\nMETRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL anniversary repeated idle opens reuse unchanged availability\nMETRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL wrath repeated idle opens reuse unchanged availability\nMETRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL cata repeated idle opens reuse unchanged availability\nMETRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL mists repeated idle opens reuse unchanged availability\nMETRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL live repeated idle opens reuse unchanged availability\nMETRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL forever repeated idle opens reuse unchanged availability\nVendor-open work: 265 checks, 7 failures\n"
+    },
+    {
+      "trial": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua"
+      ],
+      "wallSeconds": 0.07352130000072066,
+      "metrics": {
+        "era": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua",
+        "--source",
+        "tests/fixtures/vendor_open_junk_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.16958929999964312,
+      "metrics": {
+        "era": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL era repeated idle opens reuse unchanged availability\nMETRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL anniversary repeated idle opens reuse unchanged availability\nMETRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL wrath repeated idle opens reuse unchanged availability\nMETRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL cata repeated idle opens reuse unchanged availability\nMETRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL mists repeated idle opens reuse unchanged availability\nMETRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL live repeated idle opens reuse unchanged availability\nMETRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL forever repeated idle opens reuse unchanged availability\nVendor-open work: 265 checks, 7 failures\n"
+    },
+    {
+      "trial": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua"
+      ],
+      "wallSeconds": 0.0683158000028925,
+      "metrics": {
+        "era": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua",
+        "--source",
+        "tests/fixtures/vendor_open_junk_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.16846600000280887,
+      "metrics": {
+        "era": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL era repeated idle opens reuse unchanged availability\nMETRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL anniversary repeated idle opens reuse unchanged availability\nMETRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL wrath repeated idle opens reuse unchanged availability\nMETRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL cata repeated idle opens reuse unchanged availability\nMETRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL mists repeated idle opens reuse unchanged availability\nMETRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL live repeated idle opens reuse unchanged availability\nMETRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL forever repeated idle opens reuse unchanged availability\nVendor-open work: 265 checks, 7 failures\n"
+    },
+    {
+      "trial": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua"
+      ],
+      "wallSeconds": 0.06765699999959907,
+      "metrics": {
+        "era": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua",
+        "--source",
+        "tests/fixtures/vendor_open_junk_before.txt",
+        "--measure"
+      ],
+      "wallSeconds": 0.18286559999978635,
+      "metrics": {
+        "era": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 300.0,
+          "repeat_reads": 5000.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 360.0,
+          "repeat_reads": 6000.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL era repeated idle opens reuse unchanged availability\nMETRIC anniversary cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL anniversary repeated idle opens reuse unchanged availability\nMETRIC wrath cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL wrath repeated idle opens reuse unchanged availability\nMETRIC cata cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL cata repeated idle opens reuse unchanged availability\nMETRIC mists cold_reads=300 repeat_reads=5000 frames=1 native_reads=0\nFAIL mists repeated idle opens reuse unchanged availability\nMETRIC live cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL live repeated idle opens reuse unchanged availability\nMETRIC forever cold_reads=360 repeat_reads=6000 frames=1 native_reads=182\nFAIL forever repeated idle opens reuse unchanged availability\nVendor-open work: 265 checks, 7 failures\n"
+    },
+    {
+      "trial": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/vendor_open_work.lua"
+      ],
+      "wallSeconds": 0.07092830000328831,
+      "metrics": {
+        "era": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "anniversary": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "wrath": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "cata": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "mists": {
+          "cold_reads": 200.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 0.0
+        },
+        "live": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        },
+        "forever": {
+          "cold_reads": 240.0,
+          "repeat_reads": 0.0,
+          "frames": 1.0,
+          "native_reads": 182.0
+        }
+      },
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    }
+  ],
+  "summary": {
+    "era": {
+      "cold_reads": {
+        "baseline": {
+          "median": 300.0,
+          "min": 300.0,
+          "max": 300.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 5000.0,
+          "min": 5000.0,
+          "max": 5000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "anniversary": {
+      "cold_reads": {
+        "baseline": {
+          "median": 300.0,
+          "min": 300.0,
+          "max": 300.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 5000.0,
+          "min": 5000.0,
+          "max": 5000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "wrath": {
+      "cold_reads": {
+        "baseline": {
+          "median": 300.0,
+          "min": 300.0,
+          "max": 300.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 5000.0,
+          "min": 5000.0,
+          "max": 5000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "cata": {
+      "cold_reads": {
+        "baseline": {
+          "median": 300.0,
+          "min": 300.0,
+          "max": 300.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 5000.0,
+          "min": 5000.0,
+          "max": 5000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "mists": {
+      "cold_reads": {
+        "baseline": {
+          "median": 300.0,
+          "min": 300.0,
+          "max": 300.0
+        },
+        "candidate": {
+          "median": 200.0,
+          "min": 200.0,
+          "max": 200.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 5000.0,
+          "min": 5000.0,
+          "max": 5000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    "live": {
+      "cold_reads": {
+        "baseline": {
+          "median": 360.0,
+          "min": 360.0,
+          "max": 360.0
+        },
+        "candidate": {
+          "median": 240.0,
+          "min": 240.0,
+          "max": 240.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 6000.0,
+          "min": 6000.0,
+          "max": 6000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 182.0,
+          "min": 182.0,
+          "max": 182.0
+        },
+        "candidate": {
+          "median": 182.0,
+          "min": 182.0,
+          "max": 182.0
+        }
+      }
+    },
+    "forever": {
+      "cold_reads": {
+        "baseline": {
+          "median": 360.0,
+          "min": 360.0,
+          "max": 360.0
+        },
+        "candidate": {
+          "median": 240.0,
+          "min": 240.0,
+          "max": 240.0
+        }
+      },
+      "repeat_reads": {
+        "baseline": {
+          "median": 6000.0,
+          "min": 6000.0,
+          "max": 6000.0
+        },
+        "candidate": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "frames": {
+        "baseline": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "candidate": {
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      },
+      "native_reads": {
+        "baseline": {
+          "median": 182.0,
+          "min": 182.0,
+          "max": 182.0
+        },
+        "candidate": {
+          "median": 182.0,
+          "min": 182.0,
+          "max": 182.0
+        }
+      }
+    }
+  },
+  "finalVerification": {
+    "fullReport": "docs/validation/vendor-open-full-2026-10-29.json",
+    "desktopTests": 87,
+    "testFailures": 0,
+    "luaSyntaxFiles": 728,
+    "syntaxFailures": 0,
+    "currentLuaHashesVerified": 728,
+    "classifiedSources": 761,
+    "reachableFiles": 577,
+    "settingDefinitions": 361,
+    "savedVariableRoots": 23,
+    "localLinks": 12769,
+    "ledgerRows": {
+      "parity": 1384,
+      "ownership": 35,
+      "api": 21,
+      "client": 8,
+      "reference": 77,
+      "performance": 157
+    },
+    "checkpointProtectedFilesByteEqual": 348,
+    "checkpointMissingFiles": 0,
+    "scannedActualFilesOutsideGit": 1218,
+    "explicitDevelopmentMarkers": 0,
+    "fixtureCoverage": "Five legacy labels share one tuple-container route; Retail/Forever share one namespaced-container/native-button route. These are not seven native API certifications.",
+    "nativeHitchResolution": "unverified; user observed Era only; first/repeated and automation settings unknown",
+    "nativeAcceptance": "pending on all targets"
+  }
+}

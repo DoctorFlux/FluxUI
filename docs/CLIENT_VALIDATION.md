@@ -102,3 +102,16 @@ full 86-script/727-syntax suite passing. No native client row advances. Follow
 partial funds and alternate costs, cross-pass/shared targets, replenishment/new
 requests, real acceptance/error totals, screenshots/input/combat/taint and matched
 startup/idle/purchase profiling. Reservations do not certify native acknowledgement.
+
+## Vendor-open hitch — native reproduction and acceptance pending
+
+The user has observed an idle vendor-open hitch on Classic Era only; no exact runtime
+build/capture was supplied, and automation/first-versus-repeated behavior are unknown.
+BUG-007/PERF-004 removes a desktop-reproduced redundant junk scan contributor. Seven
+API fixtures pass 265 checks and the full suite 87 scripts/728 syntax files. This
+advances no native client row. Original Wrath 3.3.5 is not covered by the modern
+Wrath fixture. Follow [vendor-open native procedure](VENDOR_OPEN_WORK.md): Era first,
+matched first/repeated opens without actions, recorded settings/addons and raw
+frame-time evidence, cold data/protection/Useful controls, standalone/external
+provider readiness, then each available client. Compare pixels/input/cadence and
+profiling overhead. Do not deploy to another installation without authorization.

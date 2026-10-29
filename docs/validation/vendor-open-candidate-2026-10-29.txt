@@ -1,0 +1,8 @@
+METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0
+METRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0
+METRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0
+METRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0
+METRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0
+METRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182
+METRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182
+Vendor-open work: 265 checks, 0 failures

@@ -119,3 +119,21 @@
   existing merchant harness with focused stock/identity groups rather than duplicate it.
 - Exact read-only Blizzard source hashes support API shape/zero-stock interpretation;
   the 12.1.0.69283 snapshot predates installed clients and does not advance native rows.
+
+## 2026-10-29 — vendor-open availability work
+
+- Prioritize the user's idle vendor-open hitch, reported only on Era so far. Do not
+  assume first-open/repeated-open behavior or automation settings, and do not claim
+  native resolution from a desktop reduction.
+- BUG-007/PERF-004 reproduces repeated fallback bag walks in the real availability
+  path. Cache its exact boolean result under the existing junk owner using reliable
+  bag generation and existing rule/item/list/slot invalidation. A classified count
+  of zero alone is insufficient for cold gray-item data. Retain native-positive
+  precedence, live retry when unready/unreliable, and all callback timing.
+- Reuse the junk-smoke boot fixture and production buyer events plus unmodified UI
+  availability sections. Document excluded rendering/layout/integrations. Seven API
+  fixtures are regression coverage, not native client certification or original
+  Wrath support. Keep cold and repeated-open counts separate.
+- Retain the buyer frame and native count-query controls; add no timers/subscriptions,
+  settings or generic cache service. Native query overhead, CPU/frame times and the
+  remaining classification/index/Already Known/layout candidates need live evidence.

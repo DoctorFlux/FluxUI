@@ -14,18 +14,25 @@ Work continues on the existing change branch. Main remains
 | Disabled window mover | `19c40a0` | 220 checks and 100 toggle cycles; discovery/polling/gestures stop |
 | Queued merchant item identity | `cdd752a` | 660 focused checks; changed/missing listings are skipped before purchase |
 | Finite merchant stock budget | `b505bb8` | 177 stock checks; zero caps buying and shared finite stock is reserved |
+| Repeated vendor junk availability | `e02139a` | 265 checks across seven API fixtures; unchanged availability reuses bag generation |
 
-Latest behavior-changing runtime commit: `b505bb880aeefbab414d957d8d7fbee6820c20a8`,
-tree `cc067974b724c82188d52f24a9800ad485ca261e`. Latest full suite: **86 desktop scripts and
-727 Lua syntax files, zero failures**. The merchant regression passes **837 checks**
-(177 stock and 660 identity). All current Lua hashes match the
-[full report](validation/vendor-stock-full-2026-10-29.json).
+Latest behavior-changing runtime commit: `e02139ab1c6b8099b02fb4506ff150a50d6555ef`,
+tree `0a23a38a04809c0a087089586cb5842496fb5c64`. Latest full suite: **87 desktop scripts and
+728 Lua syntax files, zero failures**. All current Lua hashes match the
+[full report](validation/vendor-open-full-2026-10-29.json).
 
-[BUG-006 evidence](VENDOR_STOCK_BUDGET.md) records zero-stock and reused finite-budget
-failures, corrected partial quantities/accounting, and five matched replay pairs.
-No new merchant-info reads or timers were added; unlimited 40-item queues retain
-five passes. Native acceptance remains pending. Earlier fix/cleanup reports retain
-their own source identities and historical scope.
+The user reports a hitch simply opening a vendor on **Classic Era**; other clients
+have not been tested by the user. [BUG-007/PERF-004 evidence](VENDOR_OPEN_WORK.md)
+reproduces redundant junk-availability scans in seven API fixtures. Five matched
+pairs reduce Era slot-info reads from 300 to 200 on the first open and from 5,000
+to zero across 25 unchanged reopens. Retail/Forever fixture counts fall from
+360 to 240 and 6,000 to zero. Native count queries and callback cadence remain.
+**The reported native hitch is not yet confirmed fixed.** Native CPU, frame times,
+pixels/input/security and cross-client acceptance remain pending.
+
+[BUG-006 evidence](VENDOR_STOCK_BUDGET.md) retains 177 stock plus 660 identity checks.
+Its finite budget reserves submitted requests, not native acknowledgement. Earlier
+fix/cleanup reports retain their own source identities and historical scope.
 
 ## Editorial cleanup
 
@@ -42,7 +49,7 @@ Original requirements and raw records are preserved in [recovery](RECOVERY.md).
 - [Feature inventory](FEATURE_INVENTORY.md): 1,384 ledger rows covering all 26
   product specifications, controls/defaults, commands, bindings, saved roots and
   integrations; 17 documented discrepancies remain explicit.
-- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 20 API
+- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 21 API
   contracts. Source closure: 577 reachable files, zero missing includes.
 - [Client validation](CLIENT_VALIDATION.md): eight distinct client rows and 77
   reference/version/license entries. Installed executables were inspected; their
@@ -60,27 +67,15 @@ Event-dispatch mutation is a documented latent defect with no current production
 unsubscribe trigger found; do not redesign it without an actual consumer.
 
 Auction, guild-bank and void-storage callback audits are deferred by user direction.
-The next independent investigation may cover unchanged-ID price changes or delayed
-purchase acknowledgements, or another reproduced issue outside those domains.
-Those candidates are not yet reproduced defects. See [development tasks](DEVELOPMENT.md).
+Prioritize matched Era first/repeated vendor-open traces and the remaining cold
+classification, merchant index, Already Known and layout candidates if the hitch
+persists. These remaining candidates are unmeasured. See [development tasks](DEVELOPMENT.md).
 
-Editorial validation completed: 85 desktop tests and 726 Lua syntax checks pass;
-all current Lua hashes match the final report. Documentation validation passes
-with 759 classified sources, 577 reachable files, 361 setting definitions,
-23 SavedVariables roots and 12,709 local links. All six CSV ledgers are valid.
-The final scope scan covers 1,195 actual files and finds zero development-tool
-markers outside Git. Native acceptance retains its prior pending status.
-
-Merchant identity documentation validation passes: 760 classified sources, 577
-reachable files, 361 setting definitions, 23 SavedVariables roots and 12,733 local
-links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 19 API,
-eight client, 77 reference and 118 performance rows). All 727 Lua hashes match
-the full report. Requirements/libraries/assets/manifests (346 files) match the fresh
-checkpoint, and the development-tool marker scan remains clear outside Git.
-
-Finite-stock documentation validation passes: 760 classified sources, 577
-reachable files, 361 setting definitions, 23 SavedVariables roots and 12,750 local
-links. All six ledgers have valid row shapes (1,384 parity, 35 ownership, 20 API,
-eight client, 77 reference and 129 performance rows). All 727 current Lua hashes
-match the full report; requirements/libraries/assets/manifests (346 files) match
-the checkpoint. The development-tool marker scan remains clear outside Git.
+Vendor-open documentation validation passes: 761 classified sources, 577 reachable
+files, 361 setting definitions, 23 SavedVariables roots and 12,769 local links. All
+six ledgers have valid row shapes (1,384 parity, 35 ownership, 21 API, eight client,
+77 reference and 157 performance rows). All 728 Lua hashes match the full report.
+The checkpoint comparison finds no missing files and preserves 348 specification/
+library/asset/manifest files byte-for-byte. Explicit development-tool markers remain
+absent across 1,218 actual files outside Git. Legacy fixture labels share one API
+route; Retail/Forever share another, rather than proving seven native contracts.
