@@ -1019,7 +1019,7 @@ function FV.ComputeRestockPurchaseQty(needed, meta, playerMoney, itemID, wallet)
         end
     end
 
-    if meta.numAvailable and meta.numAvailable > 0 then
+    if meta.numAvailable and meta.numAvailable >= 0 then
         buyQty = math.min(buyQty, meta.numAvailable)
     end
 
@@ -1178,6 +1178,10 @@ local function RunBuyPass()
                 table.remove(queue, i)
             else
                 BuyMerchantItem(task.slot, buyQty)
+                -- Reserve finite stock across purchases sharing this index entry.
+                if task.meta.numAvailable and task.meta.numAvailable > 0 then
+                    task.meta.numAvailable = math.max(0, task.meta.numAvailable - received)
+                end
                 DeductPurchaseFromWallet(wallet, task.meta, received)
                 local unitPrice = ResolveUnitPrice(task.meta)
                 FV.AddBatchCopper(-math.floor(unitPrice * received + 0.5))
