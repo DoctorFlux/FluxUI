@@ -67,8 +67,8 @@ local function GetBlizzardDigits(cooldown)
 	return nil
 end
 
-local function SetBlizzardDigitsAlpha(cooldown, alpha)
-	local fs = cooldown and GetBlizzardDigits(cooldown)
+local function SetBlizzardDigitsAlpha(cooldown, alpha, fs)
+	fs = fs or (cooldown and GetBlizzardDigits(cooldown))
 	if fs and fs.SetTextColor then
 		pcall(fs.SetTextColor, fs, 1, 1, 1, alpha)
 	end
@@ -83,8 +83,7 @@ end
 
 --- Blizzard's own countdown text (may be a secret string; SetText accepts it),
 --- else a label from GetCooldownTimes when those numbers are readable.
-local function ReadLabel(cooldown)
-	local fs = GetBlizzardDigits(cooldown)
+local function ReadLabel(cooldown, fs)
 	if fs and fs.GetText then
 		local ok, txt = pcall(fs.GetText, fs)
 		if ok then
@@ -138,21 +137,27 @@ local function EnsureHost(auraItem)
 	return host
 end
 
-local function HideHost(auraItem, cooldown)
+local function HideHost(auraItem, cooldown, digits)
 	local host = hosts[auraItem]
 	if host then
 		host:Hide()
 	end
-	SetBlizzardDigitsAlpha(cooldown, 1)
+	SetBlizzardDigitsAlpha(cooldown, 1, digits)
 end
 
 local function HostLevel(plate, auraItem, cooldown)
 	local level = 0
-	for _, frame in ipairs({ plate, auraItem, cooldown }) do
-		local ok, n = pcall(frame.GetFrameLevel, frame)
-		if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
-			level = n
-		end
+	local ok, n = pcall(plate.GetFrameLevel, plate)
+	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
+		level = n
+	end
+	ok, n = pcall(auraItem.GetFrameLevel, auraItem)
+	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
+		level = n
+	end
+	ok, n = pcall(cooldown.GetFrameLevel, cooldown)
+	if ok and type(n) == "number" and not NP.IsSecret(n) and n > level then
+		level = n
 	end
 	return level + NP.FRAME_LEVEL_OFFSET
 end
@@ -166,26 +171,28 @@ local function UpdateAuraItem(auraItem, plate)
 		HideHost(auraItem, cooldown)
 		return
 	end
-	local label = ReadLabel(cooldown)
+	-- Reuse this poll's text region for alpha; never retain it across aura reuse.
+	local digits = GetBlizzardDigits(cooldown)
+	local label = ReadLabel(cooldown, digits)
 	if label == nil then
-		HideHost(auraItem, cooldown)
+		HideHost(auraItem, cooldown, digits)
 		return
 	end
 
 	local host = EnsureHost(auraItem)
 	pcall(host.text.SetText, host.text, label)
 	if host:GetParent() ~= plate and not pcall(host.SetParent, host, plate) then
-		HideHost(auraItem, cooldown)
+		HideHost(auraItem, cooldown, digits)
 		return
 	end
 	host:ClearAllPoints()
 	if not pcall(host.SetPoint, host, "CENTER", cooldown, "CENTER", 0, 0) then
-		HideHost(auraItem, cooldown)
+		HideHost(auraItem, cooldown, digits)
 		return
 	end
 	pcall(host.SetFrameLevel, host, HostLevel(plate, auraItem, cooldown))
 	host:Show()
-	SetBlizzardDigitsAlpha(cooldown, 0)
+	SetBlizzardDigitsAlpha(cooldown, 0, digits)
 end
 
 local function UpdateList(listFrame, plate)

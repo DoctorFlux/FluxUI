@@ -2284,7 +2284,7 @@ do
 	local j = np.Countdown:find("local function UpdateList(", 1, true)
 	local body = (i and j and np.Countdown:sub(i, j - 1)) or ""
 	local labelAt = body:find("ReadLabel", 1, true)
-	local fadeAt = body:find("SetBlizzardDigitsAlpha(cooldown, 0)", 1, true)
+	local fadeAt = body:find("SetBlizzardDigitsAlpha(cooldown, 0", 1, true)
 	if not labelAt or not fadeAt or fadeAt < labelAt then
 		failures[#failures + 1] = "must not hide blizzard countdown digits before Flux has a label"
 	end
