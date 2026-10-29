@@ -18,8 +18,8 @@ function WindowMover.SetEnabled(enabled)
 	end
 	if enabled then
 		WindowMover.Start()
-		WindowMover.Refresh()
 	end
+	WindowMover.Refresh()
 end
 
 Flux.Module.Register("WindowMover", {

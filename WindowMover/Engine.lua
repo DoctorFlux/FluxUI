@@ -908,6 +908,10 @@ function WindowMover.Attach(entry)
 end
 
 function WindowMover.Scan()
+	-- Discovery installs permanent native hooks; defer it while the option is off.
+	if not WindowMover.Settings().enabled then
+		return 0
+	end
 	local catalog = WindowMover.Catalog and WindowMover.Catalog()
 	if not catalog then
 		return 0
@@ -934,6 +938,9 @@ end
 function WindowMover.Refresh()
 	StopActive()
 	local db = WindowMover.Settings()
+	if panelWatch then
+		if db.enabled then panelWatch:Show() else panelWatch:Hide() end
+	end
 	if not db.enabled then
 		return
 	end
