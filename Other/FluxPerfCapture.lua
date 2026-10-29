@@ -276,6 +276,8 @@ function Capture.Cancel()
     if not active then return end
     if active.timer then active.timer:Cancel() end
     if active.sampler then active.sampler:Cancel() end
+    active.before = nil
+    active.timer, active.sampler = nil, nil
     active = nil
 end
 
@@ -361,6 +363,10 @@ function Capture.Start(seconds)
             functions = Rank(state.before.functions, after.functions, elapsed),
             passes = Rank(state.before.passes, after.passes, elapsed, true),
         }
+        -- Timer callbacks can retain their state after cancellation/completion.
+        -- Keep the compact report, release the full frame/function snapshot.
+        state.before = nil
+        state.timer, state.sampler = nil, nil
         active = nil
         Capture.Print()
     end)
