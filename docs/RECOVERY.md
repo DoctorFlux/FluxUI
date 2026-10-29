@@ -38,3 +38,43 @@ addon or overwrite the checkpoint. No recovery or settings reset was performed.
 The working branch is `codex/modernization-audit-20261029`. `main` remains at the
 original SHA. Creating the branch required sandbox escalation for `.git` writes;
 automatic review approved it. No push or merge is implied.
+
+## Continuation checkpoint 09:32 UTC
+
+Before the second runtime batch, a new checkpoint preserved branch commit
+`201bc8382f9fa6b5d9906200e3331a4ad90c2f13`, tree
+`6976189ef0843924e081d89cd47c83001f8d150f`. The only untracked file was the original
+`FluxUI_Sync_Log.txt`. The first checkpoint remains intact.
+
+```text
+C:\Users\mario\.codex\visualizations\2026\10\29\01a186ea-e332-79a1-9cdc-8e340df7e22b\FluxUI-recovery-20261029T0932Z
+```
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,202 actual files; 33,815,972 uncompressed bytes, including untracked/ignored files | `a04a1143ed95e27d5db1a99f70ea2cde9cc496af6ad1c1110154c431bf7cfef1` |
+| `history.bundle` | All current Git refs/history; bundle verification passed | `d40afdd3df99dfd2c950459087d8d3ae59fcb5268f77ac04a20b88fc3d39e954` |
+| `settings-private.zip` | 403 relevant WTF files; 6,333,742 uncompressed bytes | `e4edce07740b65a59a6077513a94a95f454559595043e56bd7a4053f61bb8e48` |
+
+Capture completed 2026-10-29 09:32:07 UTC after confirming zero WoW processes.
+Every ZIP entry and its original file were hash-verified again. The settings archive
+is a fresh snapshot; no private data was changed by this work or committed to Git.
+Use the same recovery precautions above and preserve newer work before any restore.
+
+## Mail completion checkpoint 09:41 UTC
+
+Before the separate outgoing-mail correction, checkpoint
+`FluxUI-recovery-20261029T094131Z` was created beside the earlier archives. It preserves
+commit `05e9f79160ac641f842f5aba8eabd21f1fe0c1fe`, tree
+`6e612fa6b27282f5e535b361f5cf93ac17d250ba`, and the actual uncommitted audit/evidence
+files and original sync log. No WoW process was running.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| `source.zip` | 1,212 files; 34,104,932 uncompressed bytes | `33964c2ec52c2d06a75e129b07368c73e57fcab1c60e110eda2c13a3eabb9c4d` |
+| `history.bundle` | All refs/history; verified | `62162606f8519ac6b2972e269db6641c043a14cb514e9ea0c1fe26419bd91765` |
+| `settings-private.zip` | 403 WTF files; 6,333,742 uncompressed bytes | `3414146ddf5e7849d5e0c149c323ee7353a7187a8c74ba576daa653ed882728d` |
+
+Capture and ZIP/hash verification completed 2026-10-29 09:41:35 UTC. ZIP archive
+hashes can differ across captures because entry timestamps differ; per-entry hash
+manifests identify file contents. Private archives/manifests remain outside Git.

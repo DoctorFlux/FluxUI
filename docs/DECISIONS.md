@@ -36,3 +36,27 @@
 - Correct documentation when direct source evidence resolves it (`OptionalDeps`,
   Ready handoff, native item identity APIs, `/fluxui bliz`). Preserve unresolved
   product differences/defaults until a focused decision or reproduced defect.
+
+## 2026-10-29 continuation — deferred provider work
+
+- Followed the next-step event audit rather than assuming a historical finding was
+  an active gameplay bug. Production dispatch reproduces skipped callbacks during
+  removal, but the only active removal owner is Context.DisarmEvents and no current
+  production call to its unsubscribe path was found. Keep this latent API defect
+  documented in `EVENT_DISPATCH_AUDIT.md`; defer a hot-path redesign until a concrete
+  consumer or lifecycle migration requires it.
+- Prioritize BUG-002: queued/partial builtin mail and auction scans can outlive
+  Syndicator readiness and overwrite the provider snapshot. Execution-time ownership
+  checks belong at the beginning of each existing StepScan, before debounce/time
+  checks. Cancel its data and OnUpdate work, preserving mailbox/auction open state,
+  standalone scan budgets, close behavior and incomplete-data retries.
+- Keep mail-send/return completion and auction/guild query ownership as separately
+  tracked follow-ups. This scan fix does not claim complete builtin-provider teardown.
+- Reuse the earlier complete 82-test/723-file baseline only after verifying every
+  tested Lua hash matches current bytes. Capture the new focused failure before
+  runtime edits and run full candidate validation after the change.
+- The next controlled replay proved BUG-003 for both SendMail and ReturnInboxItem:
+  completion after Ready mutates the exact character table returned by Syndicator.
+  Treat loss of ownership like existing failure cleanup before resolving the
+  recipient; clear the pending operation and its subscriptions. Keep this separate
+  from scan cancellation, with its own checkpoint, baseline and regression.

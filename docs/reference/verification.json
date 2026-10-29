@@ -1,17 +1,17 @@
 {
-  "captured_at_utc": "2026-10-29T09:18:54.844205+00:00",
+  "captured_at_utc": "2026-10-29T09:46:31.976171+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 723,
-  "lua_corpus_sha256": "e904d08aa492459e4b2b2807dbde197f2528ad3c230ac68079d8dc6efacf8141",
+  "publishable_lua_files": 725,
+  "lua_corpus_sha256": "c95cb10e9ca72b74bbc1a11dc82af305744faa98a4c305b746df37ebadc4e51e",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
-    "passed": 723,
+    "passed": 725,
     "failed": 0
   },
-  "smoke_scripts": 82,
-  "smoke_passed": 82,
+  "smoke_scripts": 84,
+  "smoke_passed": 84,
   "smoke_failed": 0,
   "results": [
     {
@@ -107,7 +107,7 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "anniversary consumables passed\nera consumables passed\ncata consumables passed\nwrath consumables passed\nmists consumables passed\nretail consumables passed\nforever consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+      "output": "mists consumables passed\nanniversary consumables passed\ncata consumables passed\nera consumables passed\nretail consumables passed\nforever consumables passed\nwrath consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
@@ -117,7 +117,7 @@
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "era inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+      "output": "forever inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -192,7 +192,7 @@
     {
       "path": "tests/castbar_school_themes.lua",
       "exitCode": 0,
-      "output": "Particle Lua texture writes over 2s: native=300, fallback=6259 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13839 checks across five client families (native rendering/taint unverified)\n"
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=5987 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13839 checks across five client families (native rendering/taint unverified)\n"
     },
     {
       "path": "tests/chat_column_layout.lua",
@@ -228,6 +228,11 @@
       "path": "tests/data_integrity.lua",
       "exitCode": 0,
       "output": "PASS: 36 data-integrity checks; gear rebuild: 1 GUID + 1 existence queries (100 bag slots)\n"
+    },
+    {
+      "path": "tests/deferred_inventory_handoff.lua",
+      "exitCode": 0,
+      "output": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n"
     },
     {
       "path": "tests/edit_mode_recovery.lua",
@@ -348,6 +353,11 @@
       "path": "tests/owned_item_detection.lua",
       "exitCode": 0,
       "output": "Owned item detection passed: 29 checks\n"
+    },
+    {
+      "path": "tests/pending_mail_provider_handoff.lua",
+      "exitCode": 0,
+      "output": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n"
     },
     {
       "path": "tests/perf_capture.lua",
@@ -1740,7 +1750,7 @@
     },
     {
       "path": "Inventory/Builtin/Auctions.lua",
-      "sha256": "f27ba6a4ec4d0616508cc121f4fc5ae2bacd10c3d7ce15f9a391019622d63302"
+      "sha256": "5465175ed52dfba4c209d1b61a77a8ba23380f73085b22ea9f1111743d58ab2a"
     },
     {
       "path": "Inventory/Builtin/Bags.lua",
@@ -1768,7 +1778,7 @@
     },
     {
       "path": "Inventory/Builtin/Mail.lua",
-      "sha256": "416ac0674bfc6738cf96857c0ac24efbe08cd1b2a2f5e3e419e57d60be2479df"
+      "sha256": "9e64708892ffbd8a8e00d4ac99f6bd952baf65d313ae07a000b207180a75cf31"
     },
     {
       "path": "Inventory/Builtin/Void.lua",
@@ -2999,6 +3009,10 @@
       "sha256": "8f1fc6715fb507b5c6a79d2ed8c3b6f682064394c2f7676cc6198611ac31eea0"
     },
     {
+      "path": "tests/deferred_inventory_handoff.lua",
+      "sha256": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1"
+    },
+    {
       "path": "tests/edit_mode_recovery.lua",
       "sha256": "3401069815b416de910b37bf077547bb3c545e00d6911c3ee3449ce0d9ed7a3f"
     },
@@ -3093,6 +3107,10 @@
     {
       "path": "tests/owned_item_detection.lua",
       "sha256": "f9a470478106042abec646329ac3c97322a0ec5d1d08a85d45f6720f228aa3c6"
+    },
+    {
+      "path": "tests/pending_mail_provider_handoff.lua",
+      "sha256": "c10aa6a4e8597eb23dd25ae2378652cf87758409835f1862e4e1d9dea146038d"
     },
     {
       "path": "tests/perf_capture.lua",

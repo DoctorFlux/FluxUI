@@ -1,0 +1,48 @@
+{
+  "verifiedUtc": "2026-10-29T09:50:49.719687+00:00",
+  "startCommit": "201bc8382f9fa6b5d9906200e3331a4ad90c2f13",
+  "startTree": "6976189ef0843924e081d89cd47c83001f8d150f",
+  "mainUnchanged": "7436820453d2248c84c99fff71507553efc47c19",
+  "changes": [
+    {
+      "id": "BUG-002/PERF-002",
+      "baselineCommit": "201bc8382f9fa6b5d9906200e3331a4ad90c2f13",
+      "baselineTree": "6976189ef0843924e081d89cd47c83001f8d150f",
+      "candidateCommit": "05e9f79160ac641f842f5aba8eabd21f1fe0c1fe",
+      "candidateTree": "6e612fa6b27282f5e535b361f5cf93ac17d250ba",
+      "sourceHashes": {
+        "Inventory/Builtin/Mail.lua": "e6e6600489d5c762859a465e66573c48a2555e13d0fa99ff448c7cebb7ee113a",
+        "Inventory/Builtin/Auctions.lua": "e88456e273ba550aac0d0e001871f89b5d5ccdd9225236d29d42b72695895677",
+        "Inventory/Store.lua": "2e6cb7e3e5235287dd7de590882a333866c0ddcce09c44f0755e5fc344ba35a2",
+        "Inventory/Syndicator/Adapter.lua": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+        "tests/deferred_inventory_handoff.lua": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1",
+        "tests/fixtures/mail_scan_provider_before.txt": "92244006258c3a2e28f33749dd55e98f5d40383a2388e782f544d969b9208f45",
+        "tests/fixtures/auction_scan_provider_before.txt": "bff1c7a870e26e06555ef5624812f88c38899f285f24437b2f0b7aca728aeecf"
+      }
+    },
+    {
+      "id": "BUG-003",
+      "baselineCommit": "05e9f79160ac641f842f5aba8eabd21f1fe0c1fe",
+      "baselineTree": "6e612fa6b27282f5e535b361f5cf93ac17d250ba",
+      "candidateCommit": "ab4e658a98a7ce3ee6688ac6170e7e0991325af0",
+      "candidateTree": "67b4890083fe13e242ffbc47c36ff6037a172f82",
+      "sourceHashes": {
+        "Inventory/Builtin/Mail.lua": "e43f73fbdc78a6865d940f08bab64d1058ba5664461ae170515e31e6e3f3dfc8",
+        "Inventory/Store.lua": "2e6cb7e3e5235287dd7de590882a333866c0ddcce09c44f0755e5fc344ba35a2",
+        "Inventory/Syndicator/Adapter.lua": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+        "tests/pending_mail_provider_handoff.lua": "c10aa6a4e8597eb23dd25ae2378652cf87758409835f1862e4e1d9dea146038d",
+        "tests/fixtures/pending_mail_provider_before.txt": "e6e6600489d5c762859a465e66573c48a2555e13d0fa99ff448c7cebb7ee113a"
+      }
+    }
+  ],
+  "finalFullSuite": {
+    "report": "pending-mail-full-2026-10-29.json",
+    "pass": 84,
+    "fail": 0,
+    "syntaxFiles": 725,
+    "syntaxFailures": 0,
+    "luaCorpusSha256": "c95cb10e9ca72b74bbc1a11dc82af305744faa98a4c305b746df37ebadc4e51e",
+    "currentBytesMatch": true
+  },
+  "native": "all acceptance pending; no native run"
+}

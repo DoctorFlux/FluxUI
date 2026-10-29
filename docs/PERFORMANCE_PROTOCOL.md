@@ -1,4 +1,4 @@
-# Baselines and first change evidence
+# Baseline protocol and currency evidence
 
 The frozen cumulative baseline is commit
 `7436820453d2248c84c99fff71507553efc47c19`, tree
@@ -7,11 +7,13 @@ archive described in [RECOVERY.md](RECOVERY.md). The original full suite was run
 before runtime edits: 81 passing scripts, 722 syntax files, zero failures in
 [modernization-baseline-2026-10-29.json](validation/modernization-baseline-2026-10-29.json).
 
-Candidate runtime commit: `2a7de26052e1b9662deef1b606b5ec95ebefe3aa`, tree
-`86ed71c06dc9bc2117fb60e30d5417976506912a`. Final code/test bytes match the tested
-candidate; subsequent audit commits change documentation only. Full candidate suite:
+BUG-001 candidate runtime commit: `2a7de26052e1b9662deef1b606b5ec95ebefe3aa`, tree
+`86ed71c06dc9bc2117fb60e30d5417976506912a`. This first candidate suite records
 82 passing scripts, 723 syntax files, zero failures in
 [modernization-candidate-2026-10-29.json](validation/modernization-candidate-2026-10-29.json).
+Later BUG-002/BUG-003 commits, baselines and the final 84-script/725-file suite are
+recorded in [provider handoff lifecycle](PROVIDER_HANDOFF_LIFECYCLE.md). Historical
+candidate hashes remain pinned to their own commits rather than relabeled current.
 
 ## Currency provider scenario
 

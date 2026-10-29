@@ -46516,8 +46516,8 @@
       "path": "Inventory/Builtin/Auctions.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 209,
-      "sha256": "f27ba6a4ec4d0616508cc121f4fc5ae2bacd10c3d7ce15f9a391019622d63302",
+      "lines": 215,
+      "sha256": "5465175ed52dfba4c209d1b61a77a8ba23380f73085b22ea9f1111743d58ab2a",
       "clients": [
         "camelot",
         "cata",
@@ -46535,11 +46535,11 @@
       "functions": [
         {
           "name": "Auctions.Refresh",
-          "line": 154
+          "line": 160
         },
         {
           "name": "Auctions.Start",
-          "line": 169
+          "line": 175
         }
       ],
       "events": [],
@@ -46937,8 +46937,8 @@
       "path": "Inventory/Builtin/Mail.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 357,
-      "sha256": "416ac0674bfc6738cf96857c0ac24efbe08cd1b2a2f5e3e419e57d60be2479df",
+      "lines": 365,
+      "sha256": "9e64708892ffbd8a8e00d4ac99f6bd952baf65d313ae07a000b207180a75cf31",
       "clients": [
         "camelot",
         "cata",
@@ -46960,16 +46960,16 @@
         },
         {
           "name": "Mail.Refresh",
-          "line": 215
+          "line": 222
         },
         {
           "name": "Mail.Start",
-          "line": 282
+          "line": 290
         }
       ],
       "events": [
         {
-          "line": 326,
+          "line": 334,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SEND_SUCCESS\""
@@ -46977,7 +46977,7 @@
           "context": "EnsurePendingFrame()f:"
         },
         {
-          "line": 327,
+          "line": 335,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_FAILED\""
@@ -46985,7 +46985,7 @@
           "context": "(\"MAIL_SEND_SUCCESS\")f:"
         },
         {
-          "line": 353,
+          "line": 361,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SUCCESS\""
@@ -46993,7 +46993,7 @@
           "context": "EnsurePendingFrame()f:"
         },
         {
-          "line": 354,
+          "line": 362,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_FAILED\""
@@ -71429,6 +71429,119 @@
       ]
     },
     {
+      "path": "tests/deferred_inventory_handoff.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 252,
+      "sha256": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitName",
+          "line": 29
+        },
+        {
+          "name": "endenv.GetNormalizedRealmName",
+          "line": 30
+        },
+        {
+          "name": "endenv.GetTime",
+          "line": 31
+        },
+        {
+          "name": "returnh.nowendenv.time",
+          "line": 32
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 33
+        },
+        {
+          "name": "frame:SetScript",
+          "line": 35
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 36
+        },
+        {
+          "name": "frame:UnregisterEvent",
+          "line": 37
+        },
+        {
+          "name": "env.GetInboxNumItems",
+          "line": 42
+        },
+        {
+          "name": "returnh.sizeendenv.GetInboxHeaderInfo",
+          "line": 43
+        },
+        {
+          "name": "endenv.GetInboxItem",
+          "line": 47
+        },
+        {
+          "name": "endendenv.GetNumAuctionItems",
+          "line": 51
+        },
+        {
+          "name": "returnh.sizeendenv.GetOwnerAuctionItems",
+          "line": 52
+        },
+        {
+          "name": "endenv.GetAuctionItemInfo",
+          "line": 53
+        },
+        {
+          "name": "andinv.Builtin.Mailorinv.Builtin.Auctionsinv.Builtin.Start",
+          "line": 82
+        },
+        {
+          "name": "endinv.Syndicator.RebuildAll",
+          "line": 83
+        },
+        {
+          "name": "h.installProvider",
+          "line": 87
+        },
+        {
+          "name": "h.fire",
+          "line": 98
+        },
+        {
+          "name": "h.open",
+          "line": 101
+        },
+        {
+          "name": "h.close",
+          "line": 106
+        },
+        {
+          "name": "h.active",
+          "line": 109
+        },
+        {
+          "name": "h.step",
+          "line": 114
+        },
+        {
+          "name": "h.drain",
+          "line": 121
+        },
+        {
+          "name": "h.resetCounts",
+          "line": 128
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/edit_mode_recovery.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -73762,6 +73875,116 @@
         }
       ],
       "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/pending_mail_provider_handoff.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 232,
+      "sha256": "c10aa6a4e8597eb23dd25ae2378652cf87758409835f1862e4e1d9dea146038d",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitName",
+          "line": 35
+        },
+        {
+          "name": "endenv.GetNormalizedRealmName",
+          "line": 36
+        },
+        {
+          "name": "endenv.GetTime",
+          "line": 37
+        },
+        {
+          "name": "endenv.time",
+          "line": 38
+        },
+        {
+          "name": "endenv.SendMail",
+          "line": 39
+        },
+        {
+          "name": "endenv.ReturnInboxItem",
+          "line": 40
+        },
+        {
+          "name": "endenv.hooksecurefunc",
+          "line": 41
+        },
+        {
+          "name": "fnendenv.GetSendMailItem",
+          "line": 45
+        },
+        {
+          "name": "endendenv.GetInboxHeaderInfo",
+          "line": 49
+        },
+        {
+          "name": "endenv.GetInboxItem",
+          "line": 53
+        },
+        {
+          "name": "endendenv.CreateFrame",
+          "line": 57
+        },
+        {
+          "name": "frame:SetScript",
+          "line": 59
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 60
+        },
+        {
+          "name": "frame:UnregisterEvent",
+          "line": 61
+        },
+        {
+          "name": "h.oldinv.Builtin.Start",
+          "line": 80
+        },
+        {
+          "name": "h.installProvider",
+          "line": 84
+        },
+        {
+          "name": "h.action",
+          "line": 100
+        },
+        {
+          "name": "h.event",
+          "line": 104
+        },
+        {
+          "name": "h.subscriptions",
+          "line": 109
+        },
+        {
+          "name": "h.clean",
+          "line": 114
+        },
+        {
+          "name": "h.resetCounts",
+          "line": 122
+        }
+      ],
+      "events": [
+        {
+          "line": 60,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "fnendfunctionframe:"
+        }
+      ],
       "slash": [],
       "widgets": [],
       "loads": [],

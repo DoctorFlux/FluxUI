@@ -410,10 +410,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2426](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2426) | `RegisterEvent` | `"BAG_UPDATE"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2427](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2427) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2428](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2428) | `RegisterEvent` | `"CURSOR_CHANGED"` |
-| [Inventory/Builtin/Mail.lua:326](../../Inventory/Builtin/Mail.lua#L326) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
-| [Inventory/Builtin/Mail.lua:327](../../Inventory/Builtin/Mail.lua#L327) | `RegisterEvent` | `"MAIL_FAILED"` |
-| [Inventory/Builtin/Mail.lua:353](../../Inventory/Builtin/Mail.lua#L353) | `RegisterEvent` | `"MAIL_SUCCESS"` |
-| [Inventory/Builtin/Mail.lua:354](../../Inventory/Builtin/Mail.lua#L354) | `RegisterEvent` | `"MAIL_FAILED"` |
+| [Inventory/Builtin/Mail.lua:334](../../Inventory/Builtin/Mail.lua#L334) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
+| [Inventory/Builtin/Mail.lua:335](../../Inventory/Builtin/Mail.lua#L335) | `RegisterEvent` | `"MAIL_FAILED"` |
+| [Inventory/Builtin/Mail.lua:361](../../Inventory/Builtin/Mail.lua#L361) | `RegisterEvent` | `"MAIL_SUCCESS"` |
+| [Inventory/Builtin/Mail.lua:362](../../Inventory/Builtin/Mail.lua#L362) | `RegisterEvent` | `"MAIL_FAILED"` |
 | [Inventory/CreateSpells.lua:441](../../Inventory/CreateSpells.lua#L441) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Inventory/CreateSpells.lua:457](../../Inventory/CreateSpells.lua#L457) | `RegisterEvent` | `"SPELLS_CHANGED"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:472](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L472) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -6000,8 +6000,8 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Auctions.Refresh` | [L154](../../Inventory/Builtin/Auctions.lua#L154) |
-| `Auctions.Start` | [L169](../../Inventory/Builtin/Auctions.lua#L169) |
+| `Auctions.Refresh` | [L160](../../Inventory/Builtin/Auctions.lua#L160) |
+| `Auctions.Start` | [L175](../../Inventory/Builtin/Auctions.lua#L175) |
 
 ### Inventory/Builtin/Bags.lua
 
@@ -6094,8 +6094,8 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | Declaration | Source |
 |---|---|
 | `Mail.IsOpen` | [L134](../../Inventory/Builtin/Mail.lua#L134) |
-| `Mail.Refresh` | [L215](../../Inventory/Builtin/Mail.lua#L215) |
-| `Mail.Start` | [L282](../../Inventory/Builtin/Mail.lua#L282) |
+| `Mail.Refresh` | [L222](../../Inventory/Builtin/Mail.lua#L222) |
+| `Mail.Start` | [L290](../../Inventory/Builtin/Mail.lua#L290) |
 
 ### Inventory/Builtin/Void.lua
 

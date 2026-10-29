@@ -1,0 +1,55 @@
+mail queued provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24
+mail queued empty-provider nativeReads=105 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24
+mail partial provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24
+mail partial empty-provider nativeReads=56 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=24
+auctions-legacy queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-legacy queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-legacy partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-legacy partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-modern queued provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-modern queued empty-provider nativeReads=71 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-modern partial provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+auctions-modern partial empty-provider nativeReads=38 notifications=1 generationDelta=1 activeAfterFirst=1 providerCount=nil builtinCount=210
+deferred inventory handoff: 210 checks, 42 failures; desktop operation counts only
+FAIL mail queued provider stale scan does no work or publication
+FAIL mail queued provider stale scan retires on its first callback
+FAIL mail queued provider provider snapshot remains intact
+FAIL mail queued provider unchanged provider fingerprint cannot leave stale native facts
+FAIL mail queued empty-provider stale scan does no work or publication
+FAIL mail queued empty-provider stale scan retires on its first callback
+FAIL mail queued empty-provider provider snapshot remains intact
+FAIL mail queued empty-provider unchanged provider fingerprint cannot leave stale native facts
+FAIL mail partial provider stale scan does no work or publication
+FAIL mail partial provider stale scan retires on its first callback
+FAIL mail partial provider provider snapshot remains intact
+FAIL mail partial provider unchanged provider fingerprint cannot leave stale native facts
+FAIL mail partial empty-provider stale scan does no work or publication
+FAIL mail partial empty-provider stale scan retires on its first callback
+FAIL mail partial empty-provider provider snapshot remains intact
+FAIL mail partial empty-provider unchanged provider fingerprint cannot leave stale native facts
+FAIL auctions-legacy queued provider stale scan does no work or publication
+FAIL auctions-legacy queued provider stale scan retires on its first callback
+FAIL auctions-legacy queued provider provider snapshot remains intact
+FAIL auctions-legacy queued empty-provider stale scan does no work or publication
+FAIL auctions-legacy queued empty-provider stale scan retires on its first callback
+FAIL auctions-legacy queued empty-provider provider snapshot remains intact
+FAIL auctions-legacy partial provider stale scan does no work or publication
+FAIL auctions-legacy partial provider stale scan retires on its first callback
+FAIL auctions-legacy partial provider provider snapshot remains intact
+FAIL auctions-legacy partial empty-provider stale scan does no work or publication
+FAIL auctions-legacy partial empty-provider stale scan retires on its first callback
+FAIL auctions-legacy partial empty-provider provider snapshot remains intact
+FAIL auctions-modern queued provider stale scan does no work or publication
+FAIL auctions-modern queued provider stale scan retires on its first callback
+FAIL auctions-modern queued provider provider snapshot remains intact
+FAIL auctions-modern queued empty-provider stale scan does no work or publication
+FAIL auctions-modern queued empty-provider stale scan retires on its first callback
+FAIL auctions-modern queued empty-provider provider snapshot remains intact
+FAIL auctions-modern partial provider stale scan does no work or publication
+FAIL auctions-modern partial provider stale scan retires on its first callback
+FAIL auctions-modern partial provider provider snapshot remains intact
+FAIL auctions-modern partial empty-provider stale scan does no work or publication
+FAIL auctions-modern partial empty-provider stale scan retires on its first callback
+FAIL auctions-modern partial empty-provider provider snapshot remains intact
+FAIL retry handoff cancels before due time without overwriting provider
+FAIL force-close handoff cancels before due time without overwriting provider

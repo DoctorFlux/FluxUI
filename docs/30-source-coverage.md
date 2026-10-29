@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 117 |
+| inactive source | 119 |
 
 ## Addon sources
 
@@ -597,6 +597,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/consumable_restock_clicks.lua](../tests/consumable_restock_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/currency_provider_handoff.lua](../tests/currency_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/data_integrity.lua](../tests/data_integrity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/deferred_inventory_handoff.lua](../tests/deferred_inventory_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_recovery.lua](../tests/edit_mode_recovery.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_settings.lua](../tests/edit_mode_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -621,6 +622,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/native_mouse_suppression.lua](../tests/native_mouse_suppression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/optional_startup.lua](../tests/optional_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/owned_item_detection.lua](../tests/owned_item_detection.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/pending_mail_provider_handoff.lua](../tests/pending_mail_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/perf_capture.lua](../tests/perf_capture.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/portrait_camera.lua](../tests/portrait_camera.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/portrait_transmog_combat.lua](../tests/portrait_transmog_combat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
