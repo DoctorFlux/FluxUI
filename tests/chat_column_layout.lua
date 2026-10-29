@@ -6,9 +6,14 @@ local b = assert(source:find("function FluxCCP:UpdateColumnButtons()", a, true))
 local production = source:sub(a, b - 1)
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
+local socialSource, measure = "Other/FluxChatFrame.lua", false
+for i, value in ipairs(arg or {}) do
+    if value == "--source" then socialSource = assert(arg[i + 1]) end
+    if value == "--measure" then measure = true end
+end
 local function fixture(branch, side, body)
     local env = setmetatable({}, { __index = _G }); env._G = env
-    local state = { combat = false, writes = 0, illegal = 0, created = 0, frames = {} }
+    local state = { combat = false, writes = 0, illegal = 0, created = 0, frames = {}, cycles = 0, points = 0 }
     env.WOW_PROJECT_CLASSIC, env.WOW_PROJECT_BURNING_CRUSADE_CLASSIC, env.WOW_PROJECT_MAINLINE = 2, 5, 1
     env.WOW_PROJECT_ID = branch == "classic_era" and 2 or branch == "classic_anniversary" and 5 or branch == "classic" and 19 or 1
     local client = { isEra = branch == "classic_era", isAnniversary = branch == "classic_anniversary", isForever = branch == "forever",
@@ -22,6 +27,14 @@ local function fixture(branch, side, body)
     local function mutate()
         state.writes = state.writes + 1
         if state.combat then state.illegal = state.illegal + 1; error("combat layout attempted") end
+    end
+    local function dependsOn(region, target, seen)
+        if not region then return false end
+        if region == target then return true end
+        if seen[region] then return false end
+        seen[region] = true
+        return dependsOn(region.parent, target, seen) or
+            dependsOn(region.anchor and region.anchor.target, target, seen)
     end
     local function frame(name, parent, height)
         local r = { name = name, parent = parent, height = height or 27, top = 0, children = {}, events = {}, scripts = {} }
@@ -37,7 +50,8 @@ local function fixture(branch, side, body)
         function r:GetTop()
             if self.anchor then
                 local p = self.anchor
-                return (p.relative == "BOTTOM" and p.target:GetBottom() or p.target:GetTop()) + p.y
+                local edge = p.relative:match("^BOTTOM") and p.target:GetBottom() or p.target:GetTop()
+                return edge + p.y + (self.point:match("^BOTTOM") and self.height or 0)
             end
             return self.top
         end
@@ -49,6 +63,11 @@ local function fixture(branch, side, body)
         function r:IsProtected() return true end
         function r:ClearAllPoints() mutate(); self.top = self:GetTop(); self.anchor = nil end
         function r:SetPoint(point, target, relative, x, y)
+            state.points = state.points + 1
+            if dependsOn(target, self, {}) then
+                state.cycles = state.cycles + 1
+                error("Cannot anchor to a region dependent on it")
+            end
             mutate(); self.point = point; self.target = target
             self.anchor = { target = target, relative = relative, y = y }
         end
@@ -223,3 +242,121 @@ for _, mutation in ipairs(mutations) do
     check(not ok and tostring(err):find(mutation[3], 1, true), "column regression rejected: " .. mutation[3])
 end
 print("chat column: " .. checks .. " checks across five branches, both sides; " .. #mutations .. " regressions rejected")
+
+
+-- Run the real column and social callback together; isolated layouts miss the cycle.
+local socialFile = assert(io.open(socialSource, "rb"))
+local social = socialFile:read("*a"):gsub("\r\n", "\n"); socialFile:close()
+local socialStart = assert(social:find("local quickJoinAnchorHooksDone = false", 1, true))
+local socialEnd = assert(social:find("local function InitSocialButtonPositioning()", socialStart, true))
+social = social:sub(socialStart, socialEnd - 1)
+local socialChecks, failures = 0, 0
+local function expect(value, message)
+    socialChecks = socialChecks + 1
+    if not value then failures = failures + 1; print("FAIL " .. message) end
+end
+local function socialFixture(branch, side)
+    local s, chat, bf, env = fixture(branch, side)
+    local db, timers, hooks = {}, {}, {}
+    env.GetCCPDB = function() return db end
+    env.FriendsMicroButton = nil
+    local qj = env.CreateFrame("Button", "QuickJoinToastButton", bf)
+    env.ChatAlertFrame = { UpdateAnchors = function() end }
+    env.FCF_SetButtonSide, env.FCF_UpdateButtonSide = function() end, function() end
+    env.FluxEditModeBusy = function() return s.busy end
+    env.FluxAfterEditMode = function(fn) s.deferred = fn end
+    env.C_Timer = { After = function(delay, fn) timers[#timers + 1] = { delay, fn } end }
+    env.EventRegistry = { RegisterCallback = function(_, event, fn) hooks[event] = fn end }
+    env.hooksecurefunc = function(owner, method, fn)
+        if type(owner) == "string" then hooks[owner] = method else hooks[method] = fn end
+    end
+    local apply, direct, init = assert(load("local CHAT_SOCIAL_CLUSTER_NUDGE_DOWN = 14\n" .. social ..
+        "\nreturn ApplyRetailChatChannelAndQuickJoin, ApplyQuickJoinAnchorToChannel, InitQuickJoinAnchorHooks",
+        "@production-chat-social", "t", env))()
+    local function invoke(fn, label)
+        local ok, err = pcall(fn)
+        expect(ok, branch .. "/" .. side .. " " .. label .. ": " .. tostring(err))
+        return ok
+    end
+    return s, env, qj, env.ChatFrameChannelButton, db, timers, hooks, apply, direct, init, invoke
+end
+for _, branch in ipairs({ "live", "forever" }) do
+    for _, side in ipairs({ "left", "right" }) do
+        local s, env, qj, channel, db, timers, hooks, apply, direct, init, invoke = socialFixture(branch, side)
+        env.FluxCCP.PlaceColumnButtons()
+        local top, chTop, height = qj:GetTop(), channel:GetTop(), qj:GetHeight()
+        expect(channel.anchor.target == qj, branch .. " native column establishes Channel below QuickJoin")
+        invoke(apply, "existing column callback")
+        expect(qj:GetTop() == top and channel:GetTop() == chTop and qj:GetHeight() == height,
+            branch .. " shared callback retains column geometry")
+        env.FluxCCP.PlaceColumnButtons()
+        local frames = s.created
+        init(); init()
+        for _ = 1, 100 do
+            hooks.FCF_SetButtonSide(env.ChatFrame1)
+            hooks.FCF_UpdateButtonSide(env.ChatFrame1)
+            hooks.UpdateAnchors()
+        end
+        local queued, cycleBefore = #timers, s.cycles
+        expect(queued == 3, branch .. " native hook burst keeps original three retry deadlines")
+        table.sort(timers, function(x, y) return x[1] < y[1] end)
+        for _, timer in ipairs(timers) do invoke(timer[2], "queued native layout callback") end
+        local burstCycles = s.cycles - cycleBefore
+        local burstFrames = s.created - frames
+        expect(s.created == frames, branch .. " repeated native callbacks reuse existing frames")
+        env.FluxCCP.PlaceColumnButtons()
+        -- Native reparenting can temporarily return one button to UIParent.
+        qj:SetParent(env.UIParent)
+        invoke(direct, "QuickJoin reparented while Channel remains owned")
+        env.FluxCCP.PlaceColumnButtons()
+        channel:SetParent(env.UIParent)
+        invoke(direct, "Channel reparented while QuickJoin remains owned")
+        env.FluxCCP.PlaceColumnButtons()
+        channel._fluxChatOptHidden = true; channel:Hide()
+        env.FluxCCP.PlaceColumnButtons()
+        top = qj:GetTop()
+        invoke(direct, "hidden Channel")
+        expect(qj:GetTop() == top, branch .. " hidden Channel keeps social geometry")
+        channel._fluxChatOptHidden = nil; channel:Show()
+        env.FluxCCP.PlaceColumnButtons()
+        db.chat_btn_social = false
+        local points = s.points
+        invoke(direct, "social disabled")
+        expect(s.points == points, branch .. " disabled social callback writes no anchors")
+        db.chat_btn_social = nil
+        env.ChatFrameChannelButton = nil
+        top = qj:GetTop()
+        invoke(direct, "Channel unavailable")
+        expect(qj:GetTop() == top, branch .. " missing Channel keeps owned social geometry")
+        env.ChatFrameChannelButton = channel
+        env.FluxCCP.PlaceColumnButtons()
+        s.busy = true; points = s.points
+        invoke(apply, "Edit Mode busy")
+        expect(s.points == points and s.deferred == apply, branch .. " native Edit Mode defers geometry")
+        s.busy = false; invoke(s.deferred, "Edit Mode exit")
+        env.FluxCCP.PlaceColumnButtons()
+        s.combat = true; local writes = s.writes
+        invoke(apply, "combat callback")
+        expect(s.writes == writes and s.illegal == 0, branch .. " owned column has no protected combat writes")
+        s.combat = false; s.regen()
+        local settled = s.created
+        for _ = 1, 100 do invoke(apply, "settled callback") end
+        expect(s.created == settled, branch .. " settled callbacks create no more frames")
+        expect(s.created == frames + 1, branch .. " one reusable combat waiter handles owned layout")
+        expect(qj:GetTop() == top and channel:GetTop() == chTop, branch .. " settled geometry unchanged")
+        print(("METRIC %s_%s hook_timers=%d burst_cycles=%d burst_new_frames=%d combat_waiters=%d")
+            :format(branch, side, queued, burstCycles, burstFrames, s.created - frames))
+        -- Before column adoption, preserve the original native-anchor fallback.
+        local fallback, native, button, ch, _, _, _, _, anchor = socialFixture(branch, side)
+        invoke = function(fn) local ok = pcall(fn); expect(ok, branch .. " native fallback succeeds") end
+        invoke(anchor)
+        local expected = side == "left" and "BOTTOMLEFT" or "BOTTOMRIGHT"
+        expect(button.point == expected and button.anchor.target == ch and
+            button.anchor.relative == (side == "left" and "TOPLEFT" or "TOPRIGHT") and button.anchor.y == 0 and
+            button:GetBottom() == ch:GetTop(),
+            branch .. " unowned native fallback retains original points and zero gap")
+        native.QuickJoinToastButton = nil; invoke(anchor)
+    end
+end
+print(("QuickJoin column ownership: %d checks, %d failures"):format(socialChecks, failures))
+if failures > 0 and not measure then os.exit(1) end

@@ -1229,6 +1229,12 @@ local function ApplyQuickJoinAnchorToChannel()
     local qj = _G.QuickJoinToastButton
     local ch = _G.ChatFrameChannelButton
     if not qj or not qj.ClearAllPoints then return end
+    -- The column stacks Channel below QuickJoin. Reversing that anchor cycles.
+    local holder = _G.FluxCCPChatColumn
+    if holder and ((qj.GetParent and qj:GetParent() == holder) or
+        (ch and ch.GetParent and ch:GetParent() == holder)) then
+        return
+    end
     if FluxCCP and FluxCCP.IsChatButtonEnabled and not FluxCCP.IsChatButtonEnabled("QuickJoinToastButton") then
         return
     end
