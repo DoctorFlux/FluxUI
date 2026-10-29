@@ -121,6 +121,12 @@ local function Now()
 end
 
 local function StepScan(self)
+	-- Readiness can transfer ownership while this scan waits or spans frames.
+	if Store.UsesSyndicator() then
+		scan, scanAt, firstQueued = nil, nil, nil
+		self:SetScript("OnUpdate", nil)
+		return
+	end
 	if Now() < scanAt then return end
 	if not scan then
 		local n = 0

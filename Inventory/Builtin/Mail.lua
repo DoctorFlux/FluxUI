@@ -141,6 +141,13 @@ end
 
 local ArmInboxScan
 local function StepScan(self)
+	-- Readiness can transfer ownership while this scan waits or spans frames.
+	if Store.UsesSyndicator() then
+		scan, scanAt, firstQueued = nil, nil, nil
+		retryCount = 0
+		self:SetScript("OnUpdate", nil)
+		return
+	end
 	if Now() < scanAt then return end
 	if not scan then
 		scan = { list = {}, index = 1, n = GetInboxNumItems() or 0,
