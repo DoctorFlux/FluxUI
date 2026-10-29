@@ -728,3 +728,9 @@ generated references and validate docs before pushing both main/development refs
 Private recoveries/settings/captures and ignored helper files remain local. Current
 native limitations and remaining optimization gates are not promoted to complete
 by this upload. Git ref verification establishes publication outcome.
+
+Publication outcome: atomic push advanced GitHub main from7436820 to421c05a and
+created the retained development branch at the same payload. Remote refs read
+back exact; local main clean and0 ahead/behind. All735 runtime/test Lua hashes
+still match the passing94-script report. This completion receipt adds docs only;
+no game interaction or source/settings change during upload.

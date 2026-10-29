@@ -1,5 +1,11 @@
 # GitHub publication - 29 October 2026
 
+Completed: payload `421c05a4beee3570e3e43f93044b1389265fb649` was pushed atomically
+to main and the retained development branch. Both GitHub refs were read back and
+matched that commit; local main tracked origin/main with zero commits ahead/behind
+and a clean working tree. The receipt update changes documentation only; all 735
+published Lua hashes still match the passing 94-script publication report.
+
 The user authorized uploading the complete current addon to DoctorFlux/FluxUI and
 explicitly allowed main to be updated. This supersedes the earlier hold on main
 for this publication. Keep the development branch and all existing commit history;

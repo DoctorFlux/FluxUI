@@ -213,3 +213,9 @@ A fresh [publication suite](validation/github-publication-2026-10-29.json) and c
 generated references cover the complete work. [Publication record](GITHUB_PUBLICATION.md)
 retains recovery, source identity, exclusions and non-force-push policy. Native
 pending acceptance remains unchanged. Preserve the development branch/history.
+
+Publication completed: payload `421c05a` is on GitHub main and the retained
+development branch, verified by reading both remote refs. The complete addon,
+tracker fix, tests and current references are included. No force push, private
+settings/captures, archive upload or live game changes. All 735 Lua hashes match
+the fresh 94-script report; native pending checks retain their recorded scope.
