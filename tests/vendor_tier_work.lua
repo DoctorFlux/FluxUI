@@ -151,6 +151,27 @@ for _, modern in ipairs({ false, true }) do
         check(p.ScanVendorBestPurchasable("water", index) == 200, "combo food does not replace pure water")
         check(#s.h.calls == 0, "opening/scanning alone never purchases")
         check(#s.h.frames == 1, "existing buyer event frame reused")
+        -- A food/water vendor never fills the other reference families. Those
+        -- families are still scanned on every subsequent opening of that vendor.
+        for i = 3, #kinds do
+            s.saved[kinds[i]] = 0
+            s.facts[100000 + (i - 1) * 2 + 1] = nil
+            s.facts[100000 + (i - 1) * 2 + 2] = nil
+        end
+        s.saved.food, s.saved.water = 200, 200
+        s.info, s.owned, s.classify = 0, 0, 0
+        for _ = 1, 25 do
+            s.h:event("MERCHANT_CLOSED")
+            s.h:event("MERCHANT_SHOW"); s.h:event("MERCHANT_UPDATE"); s.h:advance(1)
+            check(s.saved.food == 200 and s.saved.water == 200, "reopen keeps existing references")
+            check(s.saved.bandage == 0 and s.saved.healPotion == 0 and s.saved.manaPotion == 0,
+                "unoffered reference families stay empty")
+        end
+        print(("METRIC %s_%d_reopen info=%d owned=%d classify=%d frames=%d purchases=%d")
+            :format(modern and "modern" or "legacy", size, s.info, s.owned, s.classify,
+                #s.h.frames, #s.h.calls))
+        check(s.info == 0 and s.owned == 0, "25 same-vendor reopens skip unrelated usability")
+        check(#s.h.calls == 0 and #s.h.frames == 1, "reopens neither purchase nor allocate event frames")
     end
 end
 print(("Vendor tier work: %d checks, %d failures"):format(checks, failures))
