@@ -295,9 +295,9 @@ function FluxObjectiveTrackerScroll:RecoverStuckDirty(tracker)
     return false
 end
 
--- Forever positions the first module at y=-topModulePadding *after* UpdateTopPadding.
--- Pinning the number is not enough if that method already ran; pull the first visible
--- module up so "All Objectives" sits on the quest list the way retail Flux does.
+-- Both clients reserve header space with topModulePadding (38px in their templates).
+-- The header is outside the scroll body, so remove that gap from the first visible
+-- module after native layout without changing the padding used by Blizzard's Update.
 function FluxObjectiveTrackerScroll:CollapseModuleTopGap(tracker)
     if not self.IsActiveFor(tracker) then
         return
@@ -723,7 +723,7 @@ function FluxObjectiveTrackerScroll:SizeScrollContent(tracker, contentHeight, al
     if v > maxScroll then
         v = maxScroll
     end
-    if v > 0 and math.abs((scrollBody:GetVerticalScroll() or 0) - v) > 0.5 then
+    if math.abs((scrollBody:GetVerticalScroll() or 0) - v) > 0.5 then
         scrollBody:SetVerticalScroll(v)
     end
     return true
@@ -901,6 +901,10 @@ function FluxObjectiveTrackerScroll:_DoSyncAfterUpdate(tracker)
     if tracker:GetParent() ~= scrollContent then
         return
     end
+
+    -- Native layout can restore header padding or change the first visible module
+    -- without changing the stack height. Repair before the cached-height return.
+    self:CollapseModuleTopGap(tracker)
 
     -- Do not LayoutScrollArea or PinLayoutHeight here. Both ran on every
     -- objective Update, ClearAllPoints reset the scroll offset, and forcing
@@ -1161,13 +1165,13 @@ local function installHooks()
         end
     end)
 
-    -- Forever Frame:Update can error in the gamepad pass after Container:Update.
-    -- Mixin.Update is called directly from that path, so this hook still runs.
-    -- Recover dirty even when the ScrollFrame wrap is off (Forever).
-    if isForeverObjectiveTracker(ObjectiveTrackerFrame)
-        and ObjectiveTrackerContainerMixin and ObjectiveTrackerContainerMixin.Update then
+    -- Both clients save Frame.Update in a dirty callback before instance hooks exist.
+    -- That saved function calls ContainerMixin.Update directly; hook this shared
+    -- entry so Retail also corrects the gap and refreshes the scroll range.
+    -- Forever can additionally throw after this call during gamepad navigation.
+    if ObjectiveTrackerContainerMixin and ObjectiveTrackerContainerMixin.Update then
         hooksecurefunc(ObjectiveTrackerContainerMixin, "Update", function(self)
-            if not self then
+            if not self or InCombatLockdown() then
                 return
             end
             if isForeverObjectiveTracker(self) then

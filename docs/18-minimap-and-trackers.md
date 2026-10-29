@@ -24,6 +24,18 @@ Protected reposition/reparent work queues through combat exit. Edit Mode compati
 
 `EnsureViewport`, `ApplyViewportSize`, `LayoutScrollArea`, `SyncAfterUpdate` and `RefreshLayout` are the central operations. Height/anchor hooks keep Blizzard's update pipeline inside the dock. Overflow scrolls instead of extending indefinitely into the bottom HUD. Hidden/zero-height bodies and late async manager initialization have explicit recovery paths.
 
+Retail and Forever both reserve 38px above the first module for the native header.
+Flux moves that header outside the scrolling body, so the first visible module must
+be anchored at the body's top after native layout. Both clients' container update
+now receives the after-hook: Blizzard's saved dirty callback calls that mixin
+directly and bypasses the later frame-instance hook. The deferred sync also repairs
+anchors before its unchanged-height shortcut, covering Campaign/Quests replacements
+with equal stack heights. Native padding values remain untouched. Child resizing
+restores a requested zero scroll offset as well as positive offsets.
+[The regression](../tests/objective_tracker_scroll.lua) replays the supplied native
+Retail/Forever container and frame code with a callback saved before Flux hooks.
+Its 40 geometry/dispatch checks pass; live rendering and taint checks remain pending.
+
 Forever has additional compatibility: `InstallForeverCompat`, `StartForeverLoginPulse` and `KickScrollLayoutOnce` wait for the client's initialization sequence, correct stuck dirty state and stabilize the first dock. Ordinary world transitions do not continually force a full tracker layout. Current source deliberately avoids specialization/level listeners because Forever emits misleading spec events on level-up.
 
 Forever's mouse/keyboard tracker also guards the container update entry during combat. `DirtiableMixin:SetDirtyMethod` captures `Frame.Update` at startup, so callbacks already queued before Flux's dirty-callback wrapper can bypass an instance hook and still reach `ManageFramePositions`. Captured callbacks and direct container updates coalesce until the tick after combat ends; native dirty processing then resumes. The gamepad container entry stays native because its caller performs protected navigation after the container returns. [The combat regression](../Minimap/_tmp_trackercombatsmoke.lua) replays the supplied native dirty/frame/container code, reproduces the original resize with the guard disabled, and checks deferred layout, regen timing and callback replacement. It does not emulate engine taint.
