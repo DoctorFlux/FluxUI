@@ -4,8 +4,9 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md) and the current user instructions.
 Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
 [work log](docs/WORK_LOG.md) and [next session](NEXT_SESSION.md) before editing.
 
-- Work in this existing `_FluxUI` folder and current change branch. Leave main
-  unchanged until the user authorizes a merge. Preserve unrelated local changes.
+- Work in this existing `_FluxUI` folder/repository. The user authorized publishing
+  the current complete work to main on 29 October 2026. Preserve the development
+  branch and history; never force-push or discard newer remote/user changes.
 - Before runtime changes, verify a dated external source/history checkpoint and
   available on-disk settings. Never place backup archives or private settings in AddOns.
 - Preserve features, appearance, cadence, commands, integrations and saved data.

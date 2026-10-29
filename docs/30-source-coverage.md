@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 124 |
+| inactive source | 129 |
 
 ## Addon sources
 
@@ -582,6 +582,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [StatusBars/FluxPVPObjectiveMover.lua](../StatusBars/FluxPVPObjectiveMover.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [16-status-bars.md](16-status-bars.md) |
 | [StatusBars/FluxPVPTracking.lua](../StatusBars/FluxPVPTracking.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [16-status-bars.md](16-status-bars.md) |
 | [StatusBars/FluxStatusBar.lua](../StatusBars/FluxStatusBar.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [16-status-bars.md](16-status-bars.md) |
+| [tests/assisted_highlight_work.lua](../tests/assisted_highlight_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bag_free_slots.lua](../tests/bag_free_slots.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_contract_regression.lua](../tests/bars_contract_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_edit_mode.lua](../tests/bars_edit_mode.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -615,15 +616,19 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/idle_units.lua](../tests/idle_units.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/input_diagnostics.lua](../tests/input_diagnostics.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/late_inventory.lua](../tests/late_inventory.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/loot_roll_lifecycle.lua](../tests/loot_roll_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/modern_spellbook_ownership.lua](../tests/modern_spellbook_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mp5_mana_ticks.lua](../tests/mp5_mana_ticks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/nameplate_countdown_work.lua](../tests/nameplate_countdown_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_menu_input.lua](../tests/native_menu_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_mouse_suppression.lua](../tests/native_mouse_suppression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/objective_tracker_scroll.lua](../tests/objective_tracker_scroll.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/optional_startup.lua](../tests/optional_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/owned_item_detection.lua](../tests/owned_item_detection.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/pending_mail_provider_handoff.lua](../tests/pending_mail_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/perf_capture.lua](../tests/perf_capture.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/perf_capture_retention.lua](../tests/perf_capture_retention.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/portrait_camera.lua](../tests/portrait_camera.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/portrait_transmog_combat.lua](../tests/portrait_transmog_combat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/possession_layout.lua](../tests/possession_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |

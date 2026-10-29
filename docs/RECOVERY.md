@@ -217,6 +217,16 @@ Original automation/profiler values were recorded separately in the native test.
 Private settings, raw exports, account paths and chat screenshots stay outside Git.
 All prior checkpoints/retired originals remain intact. No restore or reset occurred.
 
+
+## Objective tracker checkpoint 14:15 UTC / 15:15 Copenhagen
+
+Before tracker edits, `tracker-checkpoint-20261029T141542Z` in the current external
+visualization workspace preserves baseline e1132d0948906acef72be9e4c28dff60a5736931.
+All 1,244 non-Git source files were archived and every ZIP entry SHA-256 verified;
+all refs/history were bundled and git bundle verify passed. The private manifest
+records each source hash and baseline identity. No settings changes or fresh WTF
+snapshot were needed for this source-only correction. Existing checkpoints remain.
+
 ## Retail audit checkpoint 14:39 UTC / 15:39 Copenhagen
 
 External `Retail-audit-recovery-20261029T143824Z` completed 14:39:06.047547 UTC.
@@ -276,3 +286,14 @@ history `38fa9ae2c8f6dc0f4bad7db113f3cbe4f976ca2693c6ec167de38d42dda3c2d0`.
 Retail/Era and user sync were running; this is on-disk state, not unsaved in-memory
 settings. No private exports/archives enter Git. Era's pre-existing diagnostic root
 is separately retained and restored exactly after native tests.
+
+## 29 October2026,18:39 UTC /19:39 Copenhagen - publication
+
+Verified external `Publish-recovery-20261029T183933Z` covers HEAD `da8d836`, all
+1,295 actual files including pending tracker work, full history and404 on-disk
+settings files. Source38,830,792 bytes;settings6,336,124 bytes. Source ZIP SHA-256
+`aa5a5c570bd72bae11adcd0e5a2dc536935598fda0bed5968bf7ac1e2a8d11ac`;
+settings `c594fd581478400f2005840f73423ea4e5c2cac4bfa3a276106ae8e4bc54501c`;
+history `3344c2fc28b8aad8221ad6be7c95c34617af06a29018b00482ebcb121403ae19`.
+Entries/bundle verify. Clients/sync left untouched; unsaved native state excluded.
+No private archive or account export is committed. Main publication now authorized.

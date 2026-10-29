@@ -519,6 +519,33 @@ unexpected changes. Explicit development-tool markers remain absent across 1,244
 actual files outside Git. Main unchanged; native after whole-vendor acceptance
 remains pending. No additional foreground/game input used during final file work.
 
+
+## 2026-10-29 — objective tracker first-module scroll gap
+
+User screenshot shows Campaign below an empty gap while fully scrolled up; requested
+Retail and Forever coverage. Baseline HEAD e1132d0948906acef72be9e4c28dff60a5736931
+was clean. Verified external source/history checkpoint
+`tracker-checkpoint-20261029T141542Z` preserves 1,244 actual files and all Git refs.
+No settings modified; WoW remained in the background. Existing sync was left alone.
+
+The supplied Retail native XML reserves topModulePadding=38; its OnLoad callback
+captures Frame.Update before Flux hooks and directly invokes ContainerMixin.Update.
+The previous container after-hook was Forever-only, so Retail restored the blank
+header gap and bypassed scroll sync. Both clients now share that after-hook, with
+a combat early return. Deferred sync repairs the first module before its unchanged-
+height shortcut. Native padding/providers remain untouched. SizeScrollContent also
+restores zero after a child-rectangle refresh, removing the positive-offset-only gate.
+
+New tests/objective_tracker_scroll.lua replays the supplied native Retail/Forever
+container and frame code, including the callback captured before hooks. Original
+source: 11 failures among 40 checks; candidate: all 40 pass. Covers Campaign/Quests,
+equal-height section replacement, overwritten anchors, wheel targets, preserved
+scroll offsets, shortened lists, zero restoration and Questie ownership. Existing
+combat and Questie smoke checks pass. Full validation: 90 scripts, 731 Lua syntax
+files, zero failures in validation/objective-tracker-scroll-2026-10-29.json.
+These are desktop dispatch/geometry results using reference trees; installed-client
+rendering, secure execution and taint remain pending. No native performance claim.
+
 ## 2026-10-29 — whole-addon Retail performance and resource audit
 
 Preserved the pre-existing uncommitted tracker correction/test/docs in a verified
@@ -684,3 +711,20 @@ pre-existing diagnostic report, deep-equal after reload. Temporary namespaces an
 closures cleared; both processes left open, Era in world, Retail warning dismissed.
 Updated ownership/client/parity/API/performance/original-plan records. Actual active
 combat/secure input, dense/restricted aura and long-session acceptance stays pending.
+
+## 2026-10-29 - complete GitHub publication preparation
+
+User requested uploading the complete current addon, then explicitly authorized
+main. Inspected working tree/rules/continuity/remotes and preserved a fresh external
+checkpoint including dirty/untracked files/history and404 on-disk settings files.
+Checked/fetched GitHub main at7436820; existing development history descends from
+it. Audited outgoing files/history for private credentials/account paths/archives;
+no findings. No force push, game interaction, settings change or new sync job.
+
+Included the formerly pending tracker source/test/chapter/API row and historical
+focused report in73ca9d2. Focused40 checks pass; the prior complete report's735 Lua
+hashes match the actual combined source. Rerun the full publication suite, reconcile
+generated references and validate docs before pushing both main/development refs.
+Private recoveries/settings/captures and ignored helper files remain local. Current
+native limitations and remaining optimization gates are not promoted to complete
+by this upload. Git ref verification establishes publication outcome.

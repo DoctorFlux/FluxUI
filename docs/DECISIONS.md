@@ -261,3 +261,14 @@
 - Leave the user-owned mirror job unchanged. Verify each source transition; when
   delayed, copy only the known test file into the existing authorized client.
   Restore each original profiling preference and prior diagnostic report.
+
+## 2026-10-29 - authorized main publication
+
+- The user explicitly authorizes uploading the whole current addon and updating
+  main. Preserve the current development branch and complete existing history.
+- Include the formerly pending, already-tested objective-tracker change and its
+  records; do not leave part of the authorized addon unpublished.
+- Fetch/check remote main, fast-forward only when ancestry permits, and push
+  ordinary refs without force. Preserve newer remote work if it appears.
+- Keep private backups/settings/captures and ignored local helpers out of Git.
+  Native pending checks retain their scope despite publication authorization.

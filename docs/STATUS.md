@@ -6,6 +6,14 @@ Work continues on the existing change branch. Main remains
 
 ## Implemented fixes
 
+Objective tracker follow-up: Retail and Forever now correct the first visible
+module after saved native callbacks and unchanged-height syncs; scroll-child
+resizing also restores zero offsets. [Regression](../tests/objective_tracker_scroll.lua):
+40 checks pass (11 failures against the baseline). Latest
+[full validation](validation/objective-tracker-scroll-2026-10-29.json): 90 desktop
+scripts and 731 Lua syntax files, zero failures. Native rendering/taint remains
+pending; the runtime vendor identities below retain their historical scope.
+
 | Change | Runtime commit | Verified scope |
 |---|---|---|
 | Currency provider handoff | `2a7de26` | 150 focused checks; builtin callbacks preserve external snapshots |
@@ -194,3 +202,14 @@ Player aura data/handlers/style remain Blizzard-owned. Original profiler0 Retail
 Both processes remain open; Era is in world, Retail warning dismissed/reconnect.
 Account sessions conflict, so tests run serially. Main/deferred callbacks and the
 user's separate pending tracker changes remain untouched.
+
+## Main publication authorization and combined workspace
+
+The user authorized the complete upload to GitHub and updating main on29 October
+2026. Earlier main holds/pending-tracker notes above describe historical batches.
+The objective-tracker source/test and focused records are now committed in
+`73ca9d2`; all combined runtime changes retain the previously passing735 Lua hashes.
+A fresh [publication suite](validation/github-publication-2026-10-29.json) and current
+generated references cover the complete work. [Publication record](GITHUB_PUBLICATION.md)
+retains recovery, source identity, exclusions and non-force-push policy. Native
+pending acceptance remains unchanged. Preserve the development branch/history.

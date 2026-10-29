@@ -1,17 +1,17 @@
 {
-  "captured_at_utc": "2026-10-29T13:48:28.226060+00:00",
+  "captured_at_utc": "2026-10-29T18:41:46.142355+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 730,
-  "lua_corpus_sha256": "f4f9aa0be616c736a03a00e1243aa9163f2ab340fd4ae9c8363606998d8698bf",
+  "publishable_lua_files": 735,
+  "lua_corpus_sha256": "63d5d48d9d904bbed27192f624a8b0950a2b82e2178f41cdf1b297df3ccfff80",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
-    "passed": 730,
+    "passed": 735,
     "failed": 0
   },
-  "smoke_scripts": 89,
-  "smoke_passed": 89,
+  "smoke_scripts": 94,
+  "smoke_passed": 94,
   "smoke_failed": 0,
   "results": [
     {
@@ -107,7 +107,7 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "retail consumables passed\nera consumables passed\nforever consumables passed\nwrath consumables passed\nmists consumables passed\nanniversary consumables passed\ncata consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+      "output": "mists consumables passed\nanniversary consumables passed\ncata consumables passed\nretail consumables passed\nera consumables passed\nforever consumables passed\nwrath consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
@@ -117,7 +117,7 @@
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -153,6 +153,11 @@
       "path": "RaidFrame/_tmp_raidaurassmoke.lua",
       "exitCode": 0,
       "output": "forever: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nforever missing add private API: aura fallback and native dispellable filtering OK\nforever missing remove private API: aura fallback and native dispellable filtering OK\nlive: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nlive missing add private API: aura fallback and native dispellable filtering OK\nlive missing remove private API: aura fallback and native dispellable filtering OK\nclassic_era: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_era missing add private API: aura fallback and native dispellable filtering OK\nclassic_era missing remove private API: aura fallback and native dispellable filtering OK\nclassic_anniversary: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_anniversary missing add private API: aura fallback and native dispellable filtering OK\nclassic_anniversary missing remove private API: aura fallback and native dispellable filtering OK\nRaid aura smoke OK (4 supplied clients, native methods retained; engine taint requires in-game validation)\n"
+    },
+    {
+      "path": "tests/assisted_highlight_work.lua",
+      "exitCode": 0,
+      "output": "METRIC era_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC era_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC era_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.005000\nMETRIC era_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.009000\nMETRIC anniversary_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC anniversary_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC anniversary_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC anniversary_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC progression_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC progression_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC progression_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC progression_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC live_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC live_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC live_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC live_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC forever_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC forever_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC forever_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC forever_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nAssisted highlight work: 1420 checks, 0 failures\n"
     },
     {
       "path": "tests/bag_free_slots.lua",
@@ -192,12 +197,12 @@
     {
       "path": "tests/castbar_school_themes.lua",
       "exitCode": 0,
-      "output": "Particle Lua texture writes over 2s: native=300, fallback=6106 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13857 checks across five client families (native rendering/taint unverified)\n"
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6093 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13831 checks across five client families (native rendering/taint unverified)\n"
     },
     {
       "path": "tests/chat_column_layout.lua",
       "exitCode": 0,
-      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\n"
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
     },
     {
       "path": "tests/chat_layout.lua",
@@ -320,6 +325,11 @@
       "output": "late inventory: absent, pending, ready and duplicate readiness handoffs passed\n"
     },
     {
+      "path": "tests/loot_roll_lifecycle.lua",
+      "exitCode": 0,
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
       "path": "tests/map_init_watchers.lua",
       "exitCode": 0,
       "output": "map initialization: 8464 checks; five clients plus legacy zoom fallback; 5 mutations rejected; 30 visits modern watcher frames 30 -> 1 (legacy 60 -> 2)\n"
@@ -335,6 +345,11 @@
       "output": "PASS MP5 mana ticks: 127 checks (native rendering and taint unverified)\n"
     },
     {
+      "path": "tests/nameplate_countdown_work.lua",
+      "exitCode": 0,
+      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.031000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.029000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.028000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nNameplate countdown work: 1160 checks, 0 failures\n"
+    },
+    {
       "path": "tests/native_menu_input.lua",
       "exitCode": 0,
       "output": "Native menu/input ownership: 121 checks; five client models; negative control passed\n"
@@ -343,6 +358,11 @@
       "path": "tests/native_mouse_suppression.lua",
       "exitCode": 0,
       "output": "Native mouse suppression/Edit Mode: 2167 checks; five branches; 12 negative controls passed\n"
+    },
+    {
+      "path": "tests/objective_tracker_scroll.lua",
+      "exitCode": 0,
+      "output": "Objective tracker scroll: 40 checks, 0 failures\n"
     },
     {
       "path": "tests/optional_startup.lua",
@@ -362,7 +382,12 @@
     {
       "path": "tests/perf_capture.lua",
       "exitCode": 0,
-      "output": "perf capture: 384 checks across five clients; 12 mutations rejected\n"
+      "output": "perf capture: 382 checks across five clients; 12 mutations rejected\n"
+    },
+    {
+      "path": "tests/perf_capture_retention.lua",
+      "exitCode": 0,
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
     },
     {
       "path": "tests/portrait_camera.lua",
@@ -659,7 +684,7 @@
     },
     {
       "path": "Bars/_tmp_barsmoke.lua",
-      "sha256": "34159a2c0c70034ef5a8165644ed2b51b847e5ad961a534726a071fdb20aca06"
+      "sha256": "89eecc2852c35d01b2e57b7303959444c5ad611d28d23fca4104e5335a92cd00"
     },
     {
       "path": "Bars/_tmp_forevercontrolsmoke.lua",
@@ -719,7 +744,7 @@
     },
     {
       "path": "Bars/Paint.lua",
-      "sha256": "cbe5a28c5bd84bd7d0db88374720d0166b4ede129702c7424832d73386092a75"
+      "sha256": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224"
     },
     {
       "path": "Bars/Pet/Init.lua",
@@ -2547,7 +2572,7 @@
     },
     {
       "path": "Minimap/FluxObjectiveTrackerScroll.lua",
-      "sha256": "d1ceeb19d001d5b0db3c1bbc7c82f28682165f6a2706be5b8cfef34e943006f3"
+      "sha256": "fa7832d6bb67a4ec21afae913d88464389e180cdf6227aa8d71e145bba14183d"
     },
     {
       "path": "Minimap/FluxQuestie.lua",
@@ -2567,7 +2592,7 @@
     },
     {
       "path": "NamePlates/Countdown.lua",
-      "sha256": "449fe74cbd55e8488fd511a9cad20c9e8a9aafd1b7976001cdc08c9a0208fbc8"
+      "sha256": "e43f0bfb60bb6a66b801cd5d8d6dbe65ce8ff6b452247c39012e3c5ffb073271"
     },
     {
       "path": "NamePlates/Level.lua",
@@ -2679,7 +2704,7 @@
     },
     {
       "path": "Other/FluxChatCopyPaste.lua",
-      "sha256": "234f0822e547da404a30a0e726fb280fc55e13650ad99070629a310199b41af9"
+      "sha256": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c"
     },
     {
       "path": "Other/FluxChatFrame.lua",
@@ -2707,11 +2732,11 @@
     },
     {
       "path": "Other/FluxLootRollPosition.lua",
-      "sha256": "8879f37bf9c2dfcd183b66102e42f394643bc40ad688c1f81c63778ab50b1c91"
+      "sha256": "291ba22a149ec0f1d8ea6a1e05aa61009643ead9f3966a88736a294767257b3c"
     },
     {
       "path": "Other/FluxPerfCapture.lua",
-      "sha256": "e29200378c73be645919e76ecd63af2908d3bbf1ebdea6123692732547f27a07"
+      "sha256": "4c7e8f8ca435d158aec71ce8bd59f3fdb326f061ea2900d8c1a583d4cb32c30c"
     },
     {
       "path": "Other/FluxPerfDebug.lua",
@@ -2974,6 +2999,10 @@
       "sha256": "5357903ec1f56c8ddece792502d3ea00a0753405ea7169debf0f77001f8def2e"
     },
     {
+      "path": "tests/assisted_highlight_work.lua",
+      "sha256": "0cc94ad4adb3638558f75b3fa67486c11e9be074aea70bdf3b40090cc5d9a75a"
+    },
+    {
       "path": "tests/bag_free_slots.lua",
       "sha256": "ff50453bd47f7c41c899d04deef9cd7c8ad9f137bf981ca15da932bd5005bd6c"
     },
@@ -3007,7 +3036,7 @@
     },
     {
       "path": "tests/chat_column_layout.lua",
-      "sha256": "cf1ae5f379ddf0e0ed971ba10a84e56f64e407dd9ce20ae9093b3b995b12ea58"
+      "sha256": "b304c5d1c43c537a88ced827605561f5ab9b7d6aba20499e78710e8a0ce0ba5a"
     },
     {
       "path": "tests/chat_layout.lua",
@@ -3106,6 +3135,10 @@
       "sha256": "d41c899ef3163d3a0c758185b5e5200d97c20dd815d6af04e9b87faf3dfd9e6f"
     },
     {
+      "path": "tests/loot_roll_lifecycle.lua",
+      "sha256": "14402c68148fe5b11fb92d3abcd95faf071f6b6a8573c5f42bab35c67aea872d"
+    },
+    {
       "path": "tests/map_init_watchers.lua",
       "sha256": "65cae3e36e795411ebcc7a55efafd999123d2c95010e834dfbd57aa63a38b9ec"
     },
@@ -3118,12 +3151,20 @@
       "sha256": "498625e8ac91d076e5290a5b768dd30d0c74b3c5067ac3e0fbdd7365e70f3a20"
     },
     {
+      "path": "tests/nameplate_countdown_work.lua",
+      "sha256": "642161260b4e5444e9ce9d6a0c33b8429bab8b31b039571176db44fb364e87af"
+    },
+    {
       "path": "tests/native_menu_input.lua",
       "sha256": "01b96bac636878f209a459794ca7c77d58fc3b26bcffd0d7e7601524db719d93"
     },
     {
       "path": "tests/native_mouse_suppression.lua",
       "sha256": "9543990ebf63eeac932e46bbdc9a89f544408c20d9e2455fea6c9a00b86f2fc7"
+    },
+    {
+      "path": "tests/objective_tracker_scroll.lua",
+      "sha256": "5cb90d6a4444a86ada28a0fc66f30015edec18cb8aa9ef4cc2dbccd489367269"
     },
     {
       "path": "tests/optional_startup.lua",
@@ -3140,6 +3181,10 @@
     {
       "path": "tests/perf_capture.lua",
       "sha256": "a2f6bc4de0ab1937f3edc987384275ceeec520887c725007f3cdc1c1aa11c982"
+    },
+    {
+      "path": "tests/perf_capture_retention.lua",
+      "sha256": "23e74db872dba5b9a52bf8f50f2f2a49fd14237ec212f7f1538660e29031b645"
     },
     {
       "path": "tests/portrait_camera.lua",

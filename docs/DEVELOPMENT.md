@@ -4,6 +4,15 @@ Read [contribution guidelines](../CONTRIBUTING.md), [status](STATUS.md),
 [decisions](DECISIONS.md), [work log](WORK_LOG.md) and relevant requirements before
 changing a subsystem. Continue in this existing addon and repository.
 
+Objective tracker follow-up: the first-module gap correction now covers saved
+native container callbacks on Retail and Forever and runs before the cached-height
+sync return. Zero offsets restore after child resizing. The new regression passes
+40 checks and the full report passes 90 scripts/731 syntax files. Native checks:
+fully scroll up with Campaign plus Quests, remove/re-add Campaign, collapse sections,
+resize while scrolled, toggle Questie, and enter/leave combat. Leave WoW in the
+background; these live checks remain pending. [Behavior](18-minimap-and-trackers.md).
+
+
 1. Inspect status/HEAD/main/remotes and preserve newer user edits. Use the current
    change branch; main remains `7436820453d2248c84c99fff71507553efc47c19`.
 2. Keep skipping auction, guild-bank and void-storage callback audits. The current
@@ -161,3 +170,14 @@ python tests/run_validation.py --output docs/validation/next-check.json
 
 Baseline measure reports20 unmet work budgets and exits0 intentionally; candidate
 must pass. Source tokens/settings/features remain the implementation contract.
+
+## Publication handoff
+
+Main publication is now explicitly authorized by the user. Include the complete
+addon and tested tracker correction (`73ca9d2`) with current generated records;
+older instructions to keep that work uncommitted are superseded. Preserve the
+existing development branch and history; no force push or separate release.
+Use [publication validation](validation/github-publication-2026-10-29.json) for the
+combined735-file/94-script corpus and [publication record](GITHUB_PUBLICATION.md)
+for source/recovery scope. The next optimization/native acceptance tasks above
+remain pending; uploading is not a claim that every scenario is certified.

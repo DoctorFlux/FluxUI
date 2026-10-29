@@ -541,9 +541,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Minimap/FluxMinimapButtons.lua:428](../../Minimap/FluxMinimapButtons.lua#L428) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Minimap/FluxObjectiveTrackerScroll.lua:240](../../Minimap/FluxObjectiveTrackerScroll.lua#L240) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Minimap/FluxObjectiveTrackerScroll.lua:610](../../Minimap/FluxObjectiveTrackerScroll.lua#L610) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Minimap/FluxObjectiveTrackerScroll.lua:1062](../../Minimap/FluxObjectiveTrackerScroll.lua#L1062) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Minimap/FluxObjectiveTrackerScroll.lua:1280](../../Minimap/FluxObjectiveTrackerScroll.lua#L1280) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
-| [Minimap/FluxObjectiveTrackerScroll.lua:1513](../../Minimap/FluxObjectiveTrackerScroll.lua#L1513) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Minimap/FluxObjectiveTrackerScroll.lua:1066](../../Minimap/FluxObjectiveTrackerScroll.lua#L1066) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Minimap/FluxObjectiveTrackerScroll.lua:1284](../../Minimap/FluxObjectiveTrackerScroll.lua#L1284) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
+| [Minimap/FluxObjectiveTrackerScroll.lua:1517](../../Minimap/FluxObjectiveTrackerScroll.lua#L1517) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Minimap/FluxQuestie.lua:9](../../Minimap/FluxQuestie.lua#L9) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Minimap/FluxQuestie.lua:10](../../Minimap/FluxQuestie.lua#L10) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Minimap/FluxQuestie.lua:11](../../Minimap/FluxQuestie.lua#L11) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -582,13 +582,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxChatColumnMicros.lua:1241](../../Other/FluxChatColumnMicros.lua#L1241) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [Other/FluxChatColumnMicros.lua:1242](../../Other/FluxChatColumnMicros.lua#L1242) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [Other/FluxChatCopyPaste.lua:611](../../Other/FluxChatCopyPaste.lua#L611) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Other/FluxChatCopyPaste.lua:947](../../Other/FluxChatCopyPaste.lua#L947) | `RegisterEvent` | `"GUILD_ROSTER_UPDATE"` |
-| [Other/FluxChatCopyPaste.lua:948](../../Other/FluxChatCopyPaste.lua#L948) | `RegisterEvent` | `"PLAYER_GUILD_UPDATE"` |
-| [Other/FluxChatCopyPaste.lua:949](../../Other/FluxChatCopyPaste.lua#L949) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatCopyPaste.lua:1091](../../Other/FluxChatCopyPaste.lua#L1091) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxChatCopyPaste.lua:1092](../../Other/FluxChatCopyPaste.lua#L1092) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatCopyPaste.lua:1093](../../Other/FluxChatCopyPaste.lua#L1093) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Other/FluxChatCopyPaste.lua:1261](../../Other/FluxChatCopyPaste.lua#L1261) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Other/FluxChatCopyPaste.lua:972](../../Other/FluxChatCopyPaste.lua#L972) | `RegisterEvent` | `"GUILD_ROSTER_UPDATE"` |
+| [Other/FluxChatCopyPaste.lua:973](../../Other/FluxChatCopyPaste.lua#L973) | `RegisterEvent` | `"PLAYER_GUILD_UPDATE"` |
+| [Other/FluxChatCopyPaste.lua:974](../../Other/FluxChatCopyPaste.lua#L974) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatCopyPaste.lua:1116](../../Other/FluxChatCopyPaste.lua#L1116) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxChatCopyPaste.lua:1117](../../Other/FluxChatCopyPaste.lua#L1117) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatCopyPaste.lua:1118](../../Other/FluxChatCopyPaste.lua#L1118) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxChatCopyPaste.lua:1286](../../Other/FluxChatCopyPaste.lua#L1286) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxChatFrame.lua:1403](../../Other/FluxChatFrame.lua#L1403) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxChatFrame.lua:1404](../../Other/FluxChatFrame.lua#L1404) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxChatFrame.lua:1405](../../Other/FluxChatFrame.lua#L1405) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
@@ -598,9 +598,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxDurationBars.lua:103](../../Other/FluxDurationBars.lua#L103) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxExtraAbilityHUD.lua:209](../../Other/FluxExtraAbilityHUD.lua#L209) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxHUDTooltip.lua:124](../../Other/FluxHUDTooltip.lua#L124) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxLootRollPosition.lua:26](../../Other/FluxLootRollPosition.lua#L26) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Other/FluxLootRollPosition.lua:73](../../Other/FluxLootRollPosition.lua#L73) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxLootRollPosition.lua:74](../../Other/FluxLootRollPosition.lua#L74) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxLootRollPosition.lua:40](../../Other/FluxLootRollPosition.lua#L40) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxLootRollPosition.lua:84](../../Other/FluxLootRollPosition.lua#L84) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxLootRollPosition.lua:85](../../Other/FluxLootRollPosition.lua#L85) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxTalkingHead.lua:193](../../Other/FluxTalkingHead.lua#L193) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxTalkingHead.lua:215](../../Other/FluxTalkingHead.lua#L215) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxTalkingHead.lua:216](../../Other/FluxTalkingHead.lua#L216) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -1709,16 +1709,16 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 | `Paint.UpdateAssistedCombat` | [L2014](../../Bars/Paint.lua#L2014) |
 | `rot.OnUpdate` | [L2047](../../Bars/Paint.lua#L2047) |
 | `Paint.UpdateAssistedHighlight` | [L2122](../../Bars/Paint.lua#L2122) |
-| `Paint.PaintAssistedHighlights` | [L2199](../../Bars/Paint.lua#L2199) |
-| `Paint.PaintAssistedHosts` | [L2210](../../Bars/Paint.lua#L2210) |
-| `Paint.UpdateDisplay` | [L2232](../../Bars/Paint.lua#L2232) |
-| `Paint.UpdateAll` | [L2249](../../Bars/Paint.lua#L2249) |
-| `Paint.HostIsLive` | [L2259](../../Bars/Paint.lua#L2259) |
-| `Paint.MarkDirty` | [L2275](../../Bars/Paint.lua#L2275) |
-| `Paint.Dirty` | [L2283](../../Bars/Paint.lua#L2283) |
-| `Paint.EachDirty` | [L2288](../../Bars/Paint.lua#L2288) |
-| `Paint.Flush` | [L2297](../../Bars/Paint.lua#L2297) |
-| `Paint.ClearCache` | [L2481](../../Bars/Paint.lua#L2481) |
+| `Paint.PaintAssistedHighlights` | [L2203](../../Bars/Paint.lua#L2203) |
+| `Paint.PaintAssistedHosts` | [L2215](../../Bars/Paint.lua#L2215) |
+| `Paint.UpdateDisplay` | [L2237](../../Bars/Paint.lua#L2237) |
+| `Paint.UpdateAll` | [L2254](../../Bars/Paint.lua#L2254) |
+| `Paint.HostIsLive` | [L2264](../../Bars/Paint.lua#L2264) |
+| `Paint.MarkDirty` | [L2280](../../Bars/Paint.lua#L2280) |
+| `Paint.Dirty` | [L2288](../../Bars/Paint.lua#L2288) |
+| `Paint.EachDirty` | [L2293](../../Bars/Paint.lua#L2293) |
+| `Paint.Flush` | [L2302](../../Bars/Paint.lua#L2302) |
+| `Paint.ClearCache` | [L2487](../../Bars/Paint.lua#L2487) |
 
 ### Bars/Pet/Init.lua
 
@@ -7969,17 +7969,17 @@ Owner: [18-minimap-and-trackers.md](../18-minimap-and-trackers.md).
 | `FluxObjectiveTrackerScroll:QueueFullLayout` | [L796](../../Minimap/FluxObjectiveTrackerScroll.lua#L796) |
 | `FluxObjectiveTrackerScroll:LayoutScrollArea` | [L827](../../Minimap/FluxObjectiveTrackerScroll.lua#L827) |
 | `FluxObjectiveTrackerScroll:_DoSyncAfterUpdate` | [L894](../../Minimap/FluxObjectiveTrackerScroll.lua#L894) |
-| `FluxObjectiveTrackerScroll:SyncAfterUpdate` | [L974](../../Minimap/FluxObjectiveTrackerScroll.lua#L974) |
-| `ObjectiveTrackerContainerMixin.UpdateObjectiveTrackerContainerMixin.Update` | [L1134](../../Minimap/FluxObjectiveTrackerScroll.lua#L1134) |
-| `self._fluxSecureDirtyCbthencallback` | [L1138](../../Minimap/FluxObjectiveTrackerScroll.lua#L1138) |
-| `FluxObjectiveTrackerScroll:StartForeverLoginPulse` | [L1268](../../Minimap/FluxObjectiveTrackerScroll.lua#L1268) |
-| `FluxObjectiveTrackerScroll:InstallForeverCompat` | [L1303](../../Minimap/FluxObjectiveTrackerScroll.lua#L1303) |
-| `FluxObjectiveTrackerScroll:ReadyForScrollDock` | [L1319](../../Minimap/FluxObjectiveTrackerScroll.lua#L1319) |
-| `FluxObjectiveTrackerScroll:KickScrollLayoutOnce` | [L1335](../../Minimap/FluxObjectiveTrackerScroll.lua#L1335) |
-| `FluxObjectiveTrackerScroll:EnsureViewport` | [L1355](../../Minimap/FluxObjectiveTrackerScroll.lua#L1355) |
-| `outerViewport:ToggleCollapsed` | [L1400](../../Minimap/FluxObjectiveTrackerScroll.lua#L1400) |
-| `FluxObjectiveTrackerScroll:ApplyViewportSize` | [L1470](../../Minimap/FluxObjectiveTrackerScroll.lua#L1470) |
-| `FluxObjectiveTrackerScroll:RefreshLayout` | [L1491](../../Minimap/FluxObjectiveTrackerScroll.lua#L1491) |
+| `FluxObjectiveTrackerScroll:SyncAfterUpdate` | [L978](../../Minimap/FluxObjectiveTrackerScroll.lua#L978) |
+| `ObjectiveTrackerContainerMixin.UpdateObjectiveTrackerContainerMixin.Update` | [L1138](../../Minimap/FluxObjectiveTrackerScroll.lua#L1138) |
+| `self._fluxSecureDirtyCbthencallback` | [L1142](../../Minimap/FluxObjectiveTrackerScroll.lua#L1142) |
+| `FluxObjectiveTrackerScroll:StartForeverLoginPulse` | [L1272](../../Minimap/FluxObjectiveTrackerScroll.lua#L1272) |
+| `FluxObjectiveTrackerScroll:InstallForeverCompat` | [L1307](../../Minimap/FluxObjectiveTrackerScroll.lua#L1307) |
+| `FluxObjectiveTrackerScroll:ReadyForScrollDock` | [L1323](../../Minimap/FluxObjectiveTrackerScroll.lua#L1323) |
+| `FluxObjectiveTrackerScroll:KickScrollLayoutOnce` | [L1339](../../Minimap/FluxObjectiveTrackerScroll.lua#L1339) |
+| `FluxObjectiveTrackerScroll:EnsureViewport` | [L1359](../../Minimap/FluxObjectiveTrackerScroll.lua#L1359) |
+| `outerViewport:ToggleCollapsed` | [L1404](../../Minimap/FluxObjectiveTrackerScroll.lua#L1404) |
+| `FluxObjectiveTrackerScroll:ApplyViewportSize` | [L1474](../../Minimap/FluxObjectiveTrackerScroll.lua#L1474) |
+| `FluxObjectiveTrackerScroll:RefreshLayout` | [L1495](../../Minimap/FluxObjectiveTrackerScroll.lua#L1495) |
 
 ### Minimap/FluxQuestie.lua
 
@@ -8050,10 +8050,10 @@ Owner: [19-nameplates.md](../19-nameplates.md).
 
 | Declaration | Source |
 |---|---|
-| `Countdown.Added` | [L238](../../NamePlates/Countdown.lua#L238) |
-| `Countdown.Removed` | [L242](../../NamePlates/Countdown.lua#L242) |
-| `Countdown.Refresh` | [L246](../../NamePlates/Countdown.lua#L246) |
-| `Countdown.Poll` | [L250](../../NamePlates/Countdown.lua#L250) |
+| `Countdown.Added` | [L245](../../NamePlates/Countdown.lua#L245) |
+| `Countdown.Removed` | [L249](../../NamePlates/Countdown.lua#L249) |
+| `Countdown.Refresh` | [L253](../../NamePlates/Countdown.lua#L253) |
+| `Countdown.Poll` | [L257](../../NamePlates/Countdown.lua#L257) |
 
 ### NamePlates/Level.lua
 
@@ -8099,16 +8099,16 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 | `FluxCCP.SocialChatButtonName` | [L435](../../Other/FluxChatCopyPaste.lua#L435) |
 | `FluxCCP.IsChatButtonEnabled` | [L445](../../Other/FluxChatCopyPaste.lua#L445) |
 | `FluxCCP.AttachColumnToDock` | [L556](../../Other/FluxChatCopyPaste.lua#L556) |
-| `FluxCCP.PinClassicButtonFrame` | [L648](../../Other/FluxChatCopyPaste.lua#L648) |
-| `FluxCCP.PlaceColumnButtons` | [L698](../../Other/FluxChatCopyPaste.lua#L698) |
-| `FluxCCP:UpdateColumnButtons` | [L842](../../Other/FluxChatCopyPaste.lua#L842) |
-| `FluxCCP:InstallColumnButtons` | [L872](../../Other/FluxChatCopyPaste.lua#L872) |
-| `FluxCCP:loadUrlColor` | [L1119](../../Other/FluxChatCopyPaste.lua#L1119) |
-| `FluxCCP.fluxccpChatWebLinks` | [L1141](../../Other/FluxChatCopyPaste.lua#L1141) |
-| `ItemRefTooltip:SetHyperlink` | [L1213](../../Other/FluxChatCopyPaste.lua#L1213) |
-| `FluxCCP.createUrlLinkFrame` | [L1220](../../Other/FluxChatCopyPaste.lua#L1220) |
-| `FluxCCP:updateChatOptions` | [L1224](../../Other/FluxChatCopyPaste.lua#L1224) |
-| `FluxCCP:RGBToHex` | [L1247](../../Other/FluxChatCopyPaste.lua#L1247) |
+| `FluxCCP.PinClassicButtonFrame` | [L671](../../Other/FluxChatCopyPaste.lua#L671) |
+| `FluxCCP.PlaceColumnButtons` | [L721](../../Other/FluxChatCopyPaste.lua#L721) |
+| `FluxCCP:UpdateColumnButtons` | [L867](../../Other/FluxChatCopyPaste.lua#L867) |
+| `FluxCCP:InstallColumnButtons` | [L897](../../Other/FluxChatCopyPaste.lua#L897) |
+| `FluxCCP:loadUrlColor` | [L1144](../../Other/FluxChatCopyPaste.lua#L1144) |
+| `FluxCCP.fluxccpChatWebLinks` | [L1166](../../Other/FluxChatCopyPaste.lua#L1166) |
+| `ItemRefTooltip:SetHyperlink` | [L1238](../../Other/FluxChatCopyPaste.lua#L1238) |
+| `FluxCCP.createUrlLinkFrame` | [L1245](../../Other/FluxChatCopyPaste.lua#L1245) |
+| `FluxCCP:updateChatOptions` | [L1249](../../Other/FluxChatCopyPaste.lua#L1249) |
+| `FluxCCP:RGBToHex` | [L1272](../../Other/FluxChatCopyPaste.lua#L1272) |
 
 ### Other/FluxChatFrame.lua
 
@@ -8171,7 +8171,7 @@ Owner: [08-shared-services.md](../08-shared-services.md).
 |---|---|
 | `Capture.Print` | [L232](../../Other/FluxPerfCapture.lua#L232) |
 | `Capture.Cancel` | [L275](../../Other/FluxPerfCapture.lua#L275) |
-| `Capture.Start` | [L282](../../Other/FluxPerfCapture.lua#L282) |
+| `Capture.Start` | [L284](../../Other/FluxPerfCapture.lua#L284) |
 
 ### Other/FluxPerfDebug.lua
 
