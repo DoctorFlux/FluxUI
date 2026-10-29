@@ -2119,13 +2119,17 @@ end
 -- Flux hosts are not on ActionBarButtonEventsFrame, so Blizzard's
 -- AssistedCombatManager candidate list never includes them. Paint the
 -- ActionBarButtonAssistedCombatHighlightTemplate ants here.
-function Paint.UpdateAssistedHighlight(host, nextSpellId, spellQueried)
+function Paint.UpdateAssistedHighlight(host, nextSpellId, spellQueried, highlightActive)
 	local widget = host and host.widget
 	if not widget then
 		return
 	end
 	local A = ActionAPI()
-	if not (A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive()) then
+	-- Batch callers share one activation sample; standalone updates stay fresh.
+	if highlightActive == nil then
+		highlightActive = A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive()
+	end
+	if not highlightActive then
 		HideAssistedHighlight(widget)
 		return
 	end
@@ -2198,12 +2202,13 @@ end
 
 function Paint.PaintAssistedHighlights()
 	local A = ActionAPI()
+	local highlightActive = (A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive()) and true or false
 	local nextId
-	if A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive() then
+	if highlightActive then
 		nextId = A.GetAssistedHighlightSpell and A.GetAssistedHighlightSpell()
 	end
 	Bars.ForEachHost(function(host)
-		Paint.UpdateAssistedHighlight(host, nextId, true)
+		Paint.UpdateAssistedHighlight(host, nextId, true, highlightActive)
 	end)
 end
 
@@ -2361,8 +2366,9 @@ function Paint.Flush(tokens)
 	end
 
 	local A = ActionAPI()
+	local highlightActive = (A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive()) and true or false
 	local flushHighlightId
-	if A and A.IsAssistedHighlightActive and A.IsAssistedHighlightActive() then
+	if highlightActive then
 		flushHighlightId = A.GetAssistedHighlightSpell and A.GetAssistedHighlightSpell()
 	end
 
@@ -2374,7 +2380,7 @@ function Paint.Flush(tokens)
 		if live then
 			if full or icon or count then
 				Paint.UpdateAssistedCombat(host)
-				Paint.UpdateAssistedHighlight(host, flushHighlightId, true)
+				Paint.UpdateAssistedHighlight(host, flushHighlightId, true, highlightActive)
 			end
 			if icon then
 				Paint.UpdateIcon(host)
@@ -2409,7 +2415,7 @@ function Paint.Flush(tokens)
 			-- Parked / empty surfaces skip the value lanes, but leftover gold,
 			-- leftover item-count digits, leftover noform icons, leftover equipped borders,
 			-- leftover form-page cooldown swipes, leftover dim, and leftover assist ants still drop.
-			Paint.UpdateAssistedHighlight(host, flushHighlightId, true)
+			Paint.UpdateAssistedHighlight(host, flushHighlightId, true, highlightActive)
 			if cooldown or icon then
 				ClearEmptyCooldown(host)
 			end
