@@ -705,18 +705,18 @@ function Tiers.GetTierCount(kind, merchantIndex)
         if not itemID or n <= 0 or counted[itemID] then
             return 0
         end
+        cls = cls or P.ClassificationForTierCount(kind, itemID, link)
+        if not P.ItemMatchesTier(kind, cls, threshold) then
+            return 0
+        end
         if not P.IsTierItemUsable(kind, itemID, vendorOk and { vendor = true } or nil) then
             return 0
         end
         if fj and fj.IsUpgradeInferior and fj.IsUpgradeInferior(itemID) then
             return 0
         end
-        cls = cls or P.ClassificationForTierCount(kind, itemID, link)
-        if P.ItemMatchesTier(kind, cls, threshold) then
-            counted[itemID] = true
-            return n
-        end
-        return 0
+        counted[itemID] = true
+        return n
     end
 
     -- Vendor SKUs first: merchant tooltips classify even when bag tooltips
@@ -852,13 +852,20 @@ function Tiers.GetBankCountForKind(kind, merchantIndex)
     local function consider(itemID, n, itemLink)
         itemID = tonumber(itemID)
         n = tonumber(n) or 0
-        if not itemID or n <= 0 or not P.IsTierItemUsable(kind, itemID) then
+        if not itemID or n <= 0 then
             return
         end
         local cls = P.ClassificationForTierCount(kind, itemID, itemLink)
-        if P.ItemMatchesTierForBank(kind, cls, ref) then
+        local strictMatch = P.ItemMatchesTierForBank(kind, cls, ref)
+        if not strictMatch and not P.ItemMatchesTierLooseForBank(kind, cls) then
+            return
+        end
+        if not P.IsTierItemUsable(kind, itemID) then
+            return
+        end
+        if strictMatch then
             strict = strict + n
-        elseif P.ItemMatchesTierLooseForBank(kind, cls) then
+        else
             loose = loose + n
         end
     end
