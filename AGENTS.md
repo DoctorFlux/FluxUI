@@ -15,6 +15,9 @@ Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
 - Keep auction, guild-bank and void-storage callbacks out of scope until requested.
 - Leave WoW in the background. Do not take foreground, mouse, keyboard or clipboard
   control while the user uses the PC. Keep profiling optional and restore preferences.
+- Normal warning dismissal, Reconnect and named-character selection are authorized
+  for these tests. Verify the client/window first and test sequentially when sessions
+  displace each other. Preserve prior diagnostic roots as well as profiler preferences.
 - Desktop tests establish their stated scope only. Record native checks as pending
   when unavailable; never infer FPS, taint safety or pixel parity from mock counts.
 - Update the existing continuity records and parity/client/performance ledgers.

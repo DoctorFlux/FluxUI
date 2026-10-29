@@ -244,3 +244,20 @@
   Do not restore retired prompt templates, narrated comments or private artifacts.
 - Preserve the separate tracker work and current branch; main and excluded
   callback audits remain untouched. Keep WoW in the background and profile0.
+
+## 2026-10-29 - action batch facts and native player auras
+
+- Sample activation once within an existing bar paint batch. Pass explicit false;
+  retain fresh standalone queries and the API helper's independent guard. No
+  cross-frame cache, generic framework, animation suppression or slower cadence.
+- Keep top-right player aura data/handlers/styles native. Short-idle measurements
+  do not justify a competing aura painter or prove dense/restricted churn safe.
+- Treat source-derived real-painter matched runs separately from complete-addon
+  CPU/FPS. Both native clients use inactive highlight settings; real active combat
+  input still requires acceptance. Preserve failed/inconclusive scope honestly.
+- The user authorizes normal reconnect/warning dismissal and named character
+  selection for testing. Same-account sessions displace each other: run serially,
+  validate each executable/window and preserve foreground PC use. No credentials.
+- Leave the user-owned mirror job unchanged. Verify each source transition; when
+  delayed, copy only the known test file into the existing authorized client.
+  Restore each original profiling preference and prior diagnostic report.

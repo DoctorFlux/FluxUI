@@ -117,3 +117,14 @@ geometry/alpha/reuse with0 recorded errors. Full93 scripts/734 syntax pass.
 long-session leaks, all-client acceptance and the remaining stage gates stay pending.
 Next attribute assisted-action same-fact paint and remaining lifecycle/resource
 work; preserve cadence, pending tracker changes, background PC use and deferred callbacks.
+
+## Stage 5 action work and player-aura ownership
+
+PERF-010 `677d85c` removes per-button duplicate activation samples inside existing
+paint batches without changing cadence, effects, controls or resources. Desktop
+1420 checks/full94 scripts735 syntax and matched native Retail/Era real-button
+runs pass in their recorded scope. Player native aura ownership/geometry stays
+intact; no aura rewrite justified by the measured idle sample. [Evidence](ACTION_AURA_WORK.md).
+Remaining stage gates include assisted-host queries/paint, real secure inputs,
+active combat effects, dense/restricted aura churn, long sessions and other clients.
+Main, existing settings/features and deferred callback domains remain untouched.

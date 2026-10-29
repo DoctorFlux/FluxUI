@@ -131,3 +131,33 @@ python tests/run_validation.py --output docs/validation/next-check.json
 
 Baseline measure exits0 with15 unmet work budgets; candidate must pass. Preserve
 user tracker changes while staging shared/generated records.
+
+## Next after action/aura batch
+
+Current runtime `677d85c`; use validation/action-highlight-full-2026-10-29.json
+for735 Lua hashes/94 passing scripts. [Audit/evidence](ACTION_AURA_WORK.md) and
+[seven ownership groups](ACTION_AURA_AUDIT.csv). Keep unrelated pending tracker
+source/test/docs uncommitted. Main and deferred callback domains remain protected.
+
+Next attribute assisted-host icon/count/cooldown/usable work (Retail baseline
+4.814ms/s inclusive) and repeated next-spell reads before sharing facts. Preserve
+cadence/identity/animation/input and native aura ownership. Test actual enabled
+highlight/combat/paging/modifiers/pet/stance/vehicle/input, dense/restricted aura
+churn and long-session caches on exact builds. Do not treat one CPU block or stable
+short geometry as FPS/leak-free certification.
+
+Both clients stay open; sessions displace each other, so reconnect/select the named
+characters serially after inspecting each window. No foreground takeover. Original
+profile0 Retail/1 Era and prior diagnostic roots restored. Existing mirror remains
+running unchanged; verify target hashes before reload, with only known test-file
+copy if delivery lags. No new sync job or broad manual deployment.
+
+```powershell
+lua tests/assisted_highlight_work.lua --source tests/fixtures/assisted_highlight_before.txt --measure
+lua tests/assisted_highlight_work.lua
+lua Core/_tmp_playeraurassmoke.lua
+python tests/run_validation.py --output docs/validation/next-check.json
+```
+
+Baseline measure reports20 unmet work budgets and exits0 intentionally; candidate
+must pass. Source tokens/settings/features remain the implementation contract.

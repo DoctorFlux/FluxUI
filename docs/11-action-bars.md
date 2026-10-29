@@ -89,3 +89,13 @@ The user reported `ActionBarController_UpdateAll → StanceBar:Update → HideOv
 [Vehicle refresh](../Bars/Vehicle.lua) now captures namespaced `C_ActionBar` APIs with legacy-global fallbacks and includes possession, bonus and temporary-shapeshift states in its change signature. Possession entry/exit no longer disappears behind an unchanged vehicle/override signature. Out-of-combat repair detects a stale possession page; combat action attributes remain owned by the existing secure drivers. The Lua temporary-token resolver now uses page 11 when no usable index exists, matching its restricted counterpart. Existing temporary-page modifier/promotion rules and native cancel-possession controls remain in effect.
 
 [The possession-layout regression](../tests/possession_layout.lua) executes both supplied branches' native controller, stance visibility, Edit Mode positioning and LayoutFrame methods. A field-ownership/lockdown model rejects the former hidden-child policy and checks 40 combat control transitions per branch, native page completion, combat deferral, Edit Mode and UI restoration. [Bar refresh tests](../tests/bars_refresh_regression.lua) also cover possession-only changes, bonus possession, temporary shapeshifts, override, vehicle, exit, coalescing, stale-page repair and both API surfaces. [The validation run](validation/possession-control-2026-10-23.json) passed 711 Lua syntax checks and all 73 standalone tests. These are desktop/source fixtures, not WoW's taint VM. Fresh `/reload` checks of Mind Control/possession, override/vehicle entry and exit, held modifiers, cancel controls and Edit Mode remain required in Retail and Forever; this change does not establish that every possible native layout taint is resolved.
+
+## Highlight batch work
+
+PERF-010 `677d85c` shares activation within the existing highlight and Flush batches;
+standalone updates remain fresh. No cross-frame cache, cadence change or new
+resource. 1,420 checks cover enabled/disabled/parked/opaque identities, direct calls,
+template geometry/reuse and 100 toggle cycles per branch. Five native pairs on each
+of Retail and Era reduce activation calls 5,800 ->100 per100 passes with identical
+57-button geometry and zero recorded errors. Native enabled/combat/secure input
+and full FPS remain pending. [Audit and exact evidence](ACTION_AURA_WORK.md).

@@ -1,35 +1,47 @@
 # Next session
 
-Continue the original [modernization plan](new%20docs/docs/FluxUI_Modernization_Plan.md)
-in the existing addon and branch. Main stays untouched. Read the current
-[stage tracker](docs/MODERNIZATION_PROGRESS.md), [status](docs/STATUS.md) and
-[development tasks](docs/DEVELOPMENT.md) for exact evidence and pending checks.
+Continue in the existing `_FluxUI` folder/change branch. Main stays untouched.
+Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
+[development tasks](docs/DEVELOPMENT.md) and the [original stage tracker](docs/MODERNIZATION_PROGRESS.md).
+Preserve the separate pending objective-tracker source, test and shared/generated
+records; inspect status and stage only the current batch.
 
-Preserve the separate uncommitted objective-tracker source, test and records.
-Inspect Git status before staging; avoid blanket staging of generated/shared docs.
-Keep auction, guild-bank and void-storage callbacks excluded. Leave WoW in the
-background and retain the user's settings and profiling preferences.
+Current runtime `677d85c` shares activation within bar paint batches. Full actual-
+workspace evidence: [94 scripts/735 Lua files](docs/validation/action-highlight-full-2026-10-29.json).
+[Action/player-aura audit](docs/ACTION_AURA_WORK.md) has five matched native pairs
+per Retail/Era client, exact sources, unchanged57 button/aura-root geometries and
+zero recorded matched-run errors. Native highlight was inactive; active combat/
+secure input, dense/restricted auras and long-session leak acceptance remain pending.
 
 Next priorities:
 
-1. Validate the nameplate countdown optimization natively on exact builds using
-   [matched steps](docs/NAMEPLATE_COUNTDOWN_WORK.md), including aura reuse and
-   restricted-display cases. Desktop fixtures do not certify these checks.
-2. Attribute assisted-action paint and same-fact glow/checked updates before
-   changing their cadence or ownership. Preserve paging and animation continuity.
-3. Stress options/map/inventory/binding/unit/raid resources through repeated
-   enable/disable/open/close cycles and long sessions. Quantify private-cache growth
-   before changing eviction. Continue the stage gates in the original plan.
+1. Attribute assisted-host icon/count/cooldown/usable work and repeated next-spell
+   queries before sharing facts. Retail baseline4.814ms/s is inclusive, not a sum
+   with its children. Preserve identity, effects and response cadence.
+2. Exercise live enabled effects, paging/forms/modifiers/pet/stance/vehicle/input,
+   aura expiry/reapply/reuse and combat/Edit Mode on exact builds. Top-right player
+   aura data/handlers/style remain Blizzard-owned; no replacement painter.
+3. Continue original API/lifecycle/private-cache and long-session gates. Keep
+   auction, guild-bank and void-storage callbacks excluded.
+
+Both clients remain open. Account sessions displace each other: test the named
+characters sequentially using normal warning dismissal/Reconnect/selection.
+Verify current executable/PID/window before messages; do not take foreground or
+PC mouse/keyboard/clipboard. Final state: Era in world, Retail reconnect screen.
+Original profiler0 Retail/1 Era and prior diagnostic roots restored. The existing
+mirror job stays running unchanged (actual timeout1s despite60s text); verify file
+hashes before reload and preserve unknown destination changes. No extra sync job.
 
 Reproduction from the addon root:
 
 ```powershell
-lua tests/nameplate_countdown_work.lua --source tests/fixtures/nameplate_countdown_before.txt --measure
-lua tests/nameplate_countdown_work.lua
+lua tests/assisted_highlight_work.lua --source tests/fixtures/assisted_highlight_before.txt --measure
+lua tests/assisted_highlight_work.lua
+lua Core/_tmp_playeraurassmoke.lua
 python tests/run_validation.py --output docs/validation/next-check.json
 python -B docs/tools/build_reference.py
 python -B docs/tools/validate_docs.py
 ```
 
-Baseline measure mode intentionally exits zero while reporting unmet optimization
-budgets. Candidate mode must pass. No release, settings reset or merge is authorized.
+Baseline measure intentionally exits0 with20 unmet work budgets; candidate must
+pass. No feature removal, settings reset, release or merge is authorized.

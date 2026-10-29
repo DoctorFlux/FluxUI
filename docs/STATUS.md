@@ -173,3 +173,24 @@ uncommitted tracker correction. Candidate source is restored in the normal addon
 folder and loaded natively. Profile0 unchanged; diagnostic root/globals/frames
 removed by normal reload; WoW stays open in background. Main and deferred callbacks
 remain untouched. Root continuity files restored as explicitly requested.
+
+## Latest: action-bar/player-aura batch
+
+Runtime/test `677d85c0f0a476c252e65e5703ca20b78d98528b`, tree
+`05fa9fc0de4f874a9c99cc7d49887890f610ba08`. PERF-010 samples activation once per
+existing paint batch; direct updates stay fresh. [Audit](ACTION_AURA_WORK.md).
+1,420 focused checks/100 toggle cycles per branch/five rejected mutations pass.
+Latest actual-file [full report](validation/action-highlight-full-2026-10-29.json):
+**94 scripts /735 Lua syntax files, zero failures**, including preserved pending
+tracker work. No feature/settings/cadence/geometry reduction or new resource.
+
+Native Retail and Era each pass five alternating real57-button inactive-highlight
+pairs:activation calls5800 ->100 per100 passes, identical button and player-aura
+root geometry, zero recorded matched-run errors. Median elapsed5.303 ->2.728ms
+Retail,8.568 ->3.079ms Era. Whole-addon CPU/FPS comparison is inconclusive; actual
+active combat/secure input, dense/restricted aura churn and long sessions pending.
+Player aura data/handlers/style remain Blizzard-owned. Original profiler0 Retail/
+1 Era restored; temporary data removed and Era prior report deep-equal after cleanup.
+Both processes remain open; Era is in world, Retail warning dismissed/reconnect.
+Account sessions conflict, so tests run serially. Main/deferred callbacks and the
+user's separate pending tracker changes remain untouched.

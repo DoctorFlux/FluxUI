@@ -263,3 +263,16 @@ history `488f0274d690dcebfd04e94ccff64709726b694e688f2dd7ac6cb00b5fcd4d36`.
 Game process state was not independently checked at checkpoint creation; Retail
 was confirmed running for subsequent tests. On-disk settings exclude unsaved
 in-memory changes. No archives/private settings are placed in the repository.
+
+## 29 October 2026,17:01 UTC /18:01 Copenhagen - action/aura batch
+
+External `Bars-auras-recovery-20261029T170131Z` captures HEAD `bda2d8a` /tree
+`4bace2ae6aacfdeba5e40332ebd7e7aa57658f26` plus every pending/untracked actual file.
+1,284 source files /37,888,979 bytes;404 on-disk settings files /6,339,879 bytes.
+All entries and history verify. Source SHA-256
+`df6c395848fa00138f222985207864a2183f4cd5bad90d0e19dda15f76b2780f`;
+settings `21aeec558c0e564909322985ea5a6107bbb393fe0ed73eade0a6c82ecefc4959`;
+history `38fa9ae2c8f6dc0f4bad7db113f3cbe4f976ca2693c6ec167de38d42dda3c2d0`.
+Retail/Era and user sync were running; this is on-disk state, not unsaved in-memory
+settings. No private exports/archives enter Git. Era's pre-existing diagnostic root
+is separately retained and restored exactly after native tests.

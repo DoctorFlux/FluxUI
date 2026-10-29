@@ -221,3 +221,14 @@ one slower candidate pair and overlapping ranges. This is unprotected hidden-wid
 elapsed work, not full gameplay FPS. Whole-addon scene changed; that comparison is
 inconclusive. No new ordinary leak-free/taint certification. Profile0 preserved,
 temporary data removed by normal reload; WoW remains in background.
+
+## Action/player-aura attribution follow-up
+
+[PERF-010](ACTION_AURA_WORK.md) measures duplicate activation reads in the actual bar
+painter. Native Retail five alternating inactive-highlight pairs:5800 ->100 calls
+per100 passes; median elapsed5.303 ->2.728ms, geometry equal/errors0. Era reproduces
+the same call reduction. Whole-addon captures remain inconclusive; no FPS gain.
+Retail's4.814ms/s baseline assisted-host paint overlaps its children and remains a
+next target. Native player aura roots retain handlers/geometry, with small short-idle
+inclusive CPU; no speculative Blizzard aura rewrite. Dense/restricted aura and
+long-session acceptance remains pending. Profiler/diagnostic preferences restored.

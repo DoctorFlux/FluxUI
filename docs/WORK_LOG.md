@@ -644,3 +644,43 @@ profile0 unchanged and WoW stays open in background. No mouse/clipboard/activati
 API replacement, settings reset, new addon/repo, deferred callback audit or main
 change. Actual protected aura rendering/security/FPS, long sessions and other
 clients remain pending. Updated stage/evidence/client/parity/performance/API records.
+
+## 2026-10-29 - PERF-010, action bars and player auras
+
+Inspected current branch/main/dirty work, root rules/continuity, original action/
+unit/minimap requirements, manifests, current paint/watch/API/auras and existing
+regressions. Verified fresh external recovery of1,284 actual files/history and404
+on-disk settings files with both clients/sync running. Preserved pending tracker
+source/test/records. Read the supplied sync script as context; did not execute or
+modify it. Actual timeout1s despite60s text remains external measurement load.
+
+PERF-010 `677d85c` shares one activation boolean within existing highlight/Flush
+batches. False is explicit, direct callers stay fresh and next-spell helper keeps
+its guard. No cache/resource/framework/cadence change. Real-source regression1420
+checks covers100 toggles per branch, state/identity, minirow construction, cleanup,
+geometry and combat effects. Frozen baseline20 work failures; five alternating
+fresh-process pairs have identical operation/resource budgets except activation
+5800 ->100 disabled/5900 ->200 enabled. Five mutations rejected. Full94 scripts/
+735 syntax files pass. Native aura smoke, player ownership and17454 bar-refresh
+checks/19 mutations retain their scope.
+
+Logged in requested Retail/Era characters using observed normal warning dismissal,
+Reconnect and Enter World controls; same-account sessions conflict, so tests ran
+serially. No OS activation/mouse/foreground keyboard/clipboard, credentials,
+restriction bypass or API/script replacement. Retail12.1.5.70575/project1 and
+Era1.15.9.70576/project2(SoD) each pass five alternating real57-button inactive-
+highlight pairs. Exact received ASCII source/probe strings verify;5800 ->100 calls
+per100 passes, medians5.303 ->2.728ms Retail/8.568 ->3.079ms Era. All57 button
+shapes and native aura root anchors/scales/visibility match; matched-run errors0.
+Root native OnEvent references stable during baseline observations. Separate20s
+complete-addon windows after30s warm-up remain inconclusive for overall CPU/FPS.
+Native player aura inclusive idle cost is small; no aura rewrite justified.
+
+Verified577 potentially reachable source files equal on Era baseline. Existing
+mirror lagged the temporary version; copied only verified Paint.lua between the
+known versions and restored candidate in normal source/Era, byte-equal. No second
+addon/repo or extra mirror job. Restored Retail profile0/root nil and Era profile1/
+pre-existing diagnostic report, deep-equal after reload. Temporary namespaces and
+closures cleared; both processes left open, Era in world, Retail warning dismissed.
+Updated ownership/client/parity/API/performance/original-plan records. Actual active
+combat/secure input, dense/restricted aura and long-session acceptance stays pending.

@@ -180,3 +180,16 @@ before/after capture inconclusive. Profile 0 stays unchanged and diagnostics are
 removed by normal reload. [Exact evidence and remaining steps](NAMEPLATE_COUNTDOWN_WORK.md).
 Other clients have desktop controls only for this batch; actual plate-aura pixels,
 secret values, combat/taint, foreground FPS and long-session acceptance remain pending.
+
+## Action-bar/player-aura follow-up
+
+PERF-010 runs sequentially on Retail12.1.5.70575/interface120105/project1 and
+Era1.15.9.70576/interface11509/project2 (SoD realm). Requested characters verified.
+Five alternating real57-button pairs per client reduce activation calls5800 ->100
+per100 passes. Button shapes and native player-aura root anchors/scales/visibility
+match; recorded errors0. Native highlight setting is inactive; enabled combat
+painting and protected input still need real gameplay checks. Small short-idle
+native aura CPU readings do not certify dense/restricted aura churn or leak-free
+sessions. [Evidence](ACTION_AURA_WORK.md). Original profile0 Retail/1 Era restored;
+Retail diagnostic root nil and Era prior report restored, deep-equal. Sessions
+conflict on this account: both processes stay open but testing is sequential.

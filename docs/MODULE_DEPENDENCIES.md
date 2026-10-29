@@ -205,3 +205,13 @@ and module registration; the weak aura->host map remains the same owner. No alia
 framework, event, timer, hook or persistent cache is introduced. Native widget
 fixtures use a temporary local facade, never replace native APIs or register a
 second production module, and disappear on reload. [Evidence](NAMEPLATE_COUNTDOWN_WORK.md).
+
+## Action/aura ownership follow-up
+
+PERF-010 `677d85c` adds one optional activation fact to the existing bar painter;
+only current batch callers provide it. Direct callers and the client API helper
+keep fresh guards. No shared service, persistent cache, timer, hook or frame added.
+Player BuffFrame/DebuffFrame remain native; Flux's placement watcher/hooks retain
+combat/Edit Mode rules. [Seven reviewed groups](ACTION_AURA_AUDIT.csv) distinguish
+top-right player auras from player-cast target/focus debuffs. Further lifecycle,
+private-cache and restricted native churn remains pending. [Evidence](ACTION_AURA_WORK.md).

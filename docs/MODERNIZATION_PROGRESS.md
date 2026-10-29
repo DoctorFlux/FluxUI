@@ -17,12 +17,13 @@ source inventory or desktop tests pass.
 | 2: one client API contract | Existing ownership/dependency and API migration ledger identifies overlapping Core/API and Core/FluxAPI contracts and distinct client flag semantics | Choose one bounded domain, compare actual consumers/return shapes/readiness/security, migrate it, then retire its last duplicate implementation. No third backend. |
 | 3: layout/rendering | Stable chat column/reload/tab geometry verified on Retail; existing unit/layout idle regressions retained | Native pixel/input/geometry acceptance across layouts, scales and clients. Attribute repeated writes before changing paint. |
 | 4: inventory/economy | Provider continuity, merchant validation/stock and redundant tier checks fixed; native Era count getter pairs preserve outputs with lower measured CPU | Whole-vendor after latency, positive bank/warband quantities, cold metadata, external providers and interrupted operations. Auction/guild-bank/void callbacks stay deferred by user instruction. |
-| 5: actions/bindings/feedback | Existing paging, badges, binding and resource regressions retained; Retail assistant tick identified in CPU capture | Matched assisted-action query/paint traces, affected-slot reconciliation, native secure input and animation continuity. Keep current timing. |
+| 5: actions/bindings/feedback | Existing paging/badge/binding controls retained. PERF-010 shares activation within paint batches; desktop and matched native Retail/Era inactive-highlight runs preserve geometry and cleanup | Attribute remaining assisted-host queries/paint, affected-slot reconciliation, native active combat/secure input and animation continuity. Keep current timing. |
 | 6: frames and feature ownership | Unit resources and loot waiters have bounded reuse tests. Nameplate countdown now has measured duplicate-lookup/allocation removal and lifecycle controls | Native countdown reuse/restricted-display acceptance, unit/raid density and private-cache long-session stress. Extract responsibilities only when coupling/measurements justify them. |
 | 7: optional integrations | Inventory includes absent/ready/late-provider requirements and existing Questie/Baganator/Details/Syndicator contracts | Test installed versions and readiness order natively, then consolidate only proven duplicate work. |
 | 8: persistence/package/release | Addon identity, 23 saved roots, options/defaults/assets/licenses preserved; no forced reset or new addon/repository | Non-destructive upgrade/rollback/malformed roots, cumulative native acceptance and reproducible release packaging. No merge/release authorized. |
 
-For the latest bounded batch see [nameplate countdown evidence](NAMEPLATE_COUNTDOWN_WORK.md).
+For the latest bounded batch see [action/player-aura evidence](ACTION_AURA_WORK.md).
+Earlier [nameplate countdown evidence](NAMEPLATE_COUNTDOWN_WORK.md) retains its scope.
 For the broader resource/CPU pass see [Retail audit](RETAIL_PERFORMANCE_AUDIT.md)
 and [26-domain driver inventory](PERFORMANCE_AUDIT.csv). The feature ledger records
 requirements, not universal native certification. Original Wrath 3.3.5 remains
