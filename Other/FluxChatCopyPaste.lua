@@ -620,26 +620,49 @@ local function ColumnScreenNum(v)
     return v
 end
 
---- Match the Live/Forever column at Background TOP minus 4 on every branch.
---- Use the chat frame as the actual anchor: Background is a texture and the
---- column contains secure buttons. The former Classic +55/tab-top offsets
---- raised the entire column above the log.
-local function ColumnTopOffset(chat, contentHeight)
+local COLUMN_TOP_INSET = 8
+
+-- Beside-chat columns share the Micro Menu/tab-row top and Social-button inset.
+-- Keep the chat frame as the anchor; its Background texture cannot own secure
+-- button geometry. Convert edges to the column's scale before comparing them.
+local function ColumnTopOffset(chat, contentHeight, column)
+    local uiScale = UIParent.GetEffectiveScale and ColumnScreenNum(UIParent:GetEffectiveScale()) or 1
+    local chatScale = chat.GetEffectiveScale and ColumnScreenNum(chat:GetEffectiveScale()) or uiScale
+    local columnScale = column and column.GetEffectiveScale and ColumnScreenNum(column:GetEffectiveScale()) or chatScale
+    local ratio = chatScale / columnScale
     local top = chat.GetTop and ColumnScreenNum(chat:GetTop())
+    top = top and top * ratio
     local bg = chat.Background
     local bgTop = bg and bg.GetTop and ColumnScreenNum(bg:GetTop())
-    local offset = -1
+    local bgScale = bg and bg.GetEffectiveScale and ColumnScreenNum(bg:GetEffectiveScale()) or chatScale
+    bgTop = bgTop and bgTop * bgScale / columnScale
+    local inset = 4 * uiScale / columnScale
+    local offset = -uiScale / columnScale
     if top and bgTop then
-        offset = bgTop - top - 4
+        offset = bgTop - top - inset
+    end
+    local options = _G.FluxOptions
+    local position = options and options.GetMicroMenuLayoutPosition and options:GetMicroMenuLayoutPosition() or 2
+    local getTabHeight = _G.FluxChatFrame_GetPrimaryTabHeight
+    if position == 2 and type(getTabHeight) == "function" then
+        local tabHeight = ColumnScreenNum(getTabHeight())
+        if tabHeight then
+            -- Chat can move after this pass during login. A relative tab-row
+            -- offset follows that final pin without needing a tab selection.
+            offset = (tabHeight - COLUMN_TOP_INSET) * uiScale / columnScale
+        end
     end
     -- Classic's taller native shells and count labels can exceed the log's
     -- height. Keep the complete stack above the edit-box floor, rather than
     -- clipping Copy/Options into the action bar or applying a fixed upward nudge.
     contentHeight = ColumnScreenNum(contentHeight)
     local bottom = chat.GetBottom and ColumnScreenNum(chat:GetBottom())
+    bottom = bottom and bottom * ratio
     if top and bottom and contentHeight and contentHeight > 0 then
         local edit = _G.ChatFrame1EditBox
         local editHeight = edit and edit.GetHeight and ColumnScreenNum(edit:GetHeight()) or 32
+        local editScale = edit and edit.GetEffectiveScale and ColumnScreenNum(edit:GetEffectiveScale()) or uiScale
+        editHeight = editHeight * editScale / columnScale
         offset = math.max(offset, bottom - editHeight + contentHeight - top)
     end
     return offset
@@ -665,7 +688,7 @@ function FluxCCP.PinClassicButtonFrame(chat)
     -- One point only. A leftover bottom anchor stretches this strip and drags
     -- the chat frame with it.
     bf:ClearAllPoints()
-    local y = ColumnTopOffset(chat, bf.GetHeight and bf:GetHeight())
+    local y = ColumnTopOffset(chat, bf.GetHeight and bf:GetHeight(), bf)
     if side == "right" then
         bf:SetPoint("TOPLEFT", chat, "TOPRIGHT", 3, y)
     else
@@ -776,7 +799,7 @@ function FluxCCP.PlaceColumnButtons()
     local bgKind = bg.GetObjectType and bg:GetObjectType()
     local bgIsRegion = bgKind == "Texture" or bgKind == "FontString" or bgKind == "MaskTexture" or bgKind == "Line"
     local anchor = bgIsRegion and chat or bg
-    local x, y = 0, ColumnTopOffset(chat)
+    local x, y = 0, ColumnTopOffset(chat, nil, holder)
     local chatTop = chat.GetTop and ColumnScreenNum(chat:GetTop())
     if bgIsRegion and bg.GetTop and chatTop then
         local bgTop = ColumnScreenNum(bg:GetTop())
@@ -822,7 +845,7 @@ function FluxCCP.PlaceColumnButtons()
         local top = holder.GetTop and ColumnScreenNum(holder:GetTop())
         local bottom = stackFrom.GetBottom and ColumnScreenNum(stackFrom:GetBottom())
         if top and bottom then
-            local fittedY = ColumnTopOffset(chat, top - bottom)
+            local fittedY = ColumnTopOffset(chat, top - bottom, holder)
             if fittedY > y then
                 holder:ClearAllPoints()
                 if side == "right" then

@@ -1,16 +1,17 @@
 -- Run production Classic native-strip and modern-holder paths on all five clients.
-local f = assert(io.open("Other/FluxChatCopyPaste.lua", "rb"))
+local columnSource, socialSource, measure = "Other/FluxChatCopyPaste.lua", "Other/FluxChatFrame.lua", false
+for i, value in ipairs(arg or {}) do
+    if value == "--source" then socialSource = assert(arg[i + 1]) end
+    if value == "--column-source" then columnSource = assert(arg[i + 1]) end
+    if value == "--measure" then measure = true end
+end
+local f = assert(io.open(columnSource, "rb"))
 local source = f:read("*a"):gsub("\r\n", "\n"); f:close()
 local a = assert(source:find("local COLUMN_BUTTON_NAMES =", 1, true))
 local b = assert(source:find("function FluxCCP:UpdateColumnButtons()", a, true))
 local production = source:sub(a, b - 1)
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
-local socialSource, measure = "Other/FluxChatFrame.lua", false
-for i, value in ipairs(arg or {}) do
-    if value == "--source" then socialSource = assert(arg[i + 1]) end
-    if value == "--measure" then measure = true end
-end
 local function fixture(branch, side, body)
     local env = setmetatable({}, { __index = _G }); env._G = env
     local state = { combat = false, writes = 0, illegal = 0, created = 0, frames = {}, cycles = 0, points = 0 }
@@ -46,6 +47,9 @@ local function fixture(branch, side, body)
             return not self.parent or not self.parent.IsVisible or self.parent:IsVisible()
         end
         function r:GetParent() return self.parent end
+        function r:GetEffectiveScale()
+            return self.scale or (self.parent and self.parent.GetEffectiveScale and self.parent:GetEffectiveScale()) or 1
+        end
         function r:SetParent(value) mutate(); self.parent = value; value.children[#value.children + 1] = self end
         function r:GetTop()
             if self.anchor then
@@ -93,7 +97,7 @@ local function fixture(branch, side, body)
     function env.UIParent:IsVisible() return true end
     local chat = frame("ChatFrame1", env.UIParent, 240); chat.top = 370
     env.ChatFrame1EditBox = { GetHeight = function() return 32 end }
-    local bg = frame("Background"); bg.top = 373
+    local bg = frame("Background", chat); bg.top = 373
     function bg:GetObjectType() return "Texture" end
     chat.Background = bg
     local bf = frame("ChatFrame1ButtonFrame", chat)
@@ -136,7 +140,8 @@ local function fixture(branch, side, body)
         -- changes inherited visibility without an addon protected-frame write.
         for i, cf in ipairs(windows) do cf.hidden = i ~= index end
     end
-    assert(load("local _, ns = ...\n" .. (body or production), "@production-chat-column", "t", env))("_FluxUI", { Flux = env.Flux })
+    state.topOffset = assert(load("local _, ns = ...\n" .. (body or production) .. "\nreturn ColumnTopOffset",
+        "@production-chat-column", "t", env))("_FluxUI", { Flux = env.Flux })
     function state.regen()
         for _, r in ipairs(state.frames) do
             if r.events.PLAYER_REGEN_ENABLED then r.scripts.OnEvent(r, "PLAYER_REGEN_ENABLED") end
@@ -231,8 +236,11 @@ local function replace(old, new)
     return production:sub(1, at - 1) .. new .. production:sub(at + #old)
 end
 local mutations = {
-    { replace("offset = bgTop - top - 4", "offset = 55"), "classic_era", "first button matches modern" },
-    { replace("local x, y = 0, ColumnTopOffset(chat)", "local x, y = 0, 32"), "classic", "first button matches modern" },
+    { replace(production:find("offset = bgTop - top - inset", 1, true) and "offset = bgTop - top - inset"
+        or "offset = bgTop - top - 4", "offset = 55"), "classic_era", "first button matches modern" },
+    { replace(production:find("ColumnTopOffset(chat, nil, holder)", 1, true)
+        and "local x, y = 0, ColumnTopOffset(chat, nil, holder)" or "local x, y = 0, ColumnTopOffset(chat)",
+        "local x, y = 0, 32"), "classic", "first button matches modern" },
     { production:gsub('if InCombatLockdown%(%) then', 'if false then'), "classic_era", "combat layout" },
     { replace("offset = math.max(offset, bottom - editHeight + contentHeight - top)", "offset = offset"),
         "classic_era", "tall Classic stack keeps every button above edit-box floor" },
@@ -359,4 +367,58 @@ for _, branch in ipairs({ "live", "forever" }) do
     end
 end
 print(("QuickJoin column ownership: %d checks, %d failures"):format(socialChecks, failures))
+
+-- The adjacent Micro Menu includes the tab row; Background starts below it.
+local alignmentChecks, alignmentFailures = 0, 0
+local function aligned(value, message)
+    alignmentChecks = alignmentChecks + 1
+    if not value then alignmentFailures = alignmentFailures + 1; print("FAIL " .. message) end
+end
+for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do
+    for _, side in ipairs({ "left", "right" }) do
+        local s, chat, bf, env = fixture(branch, side)
+        local position, columnTop, tabHeight, reads = 2, 402, 32, 0
+        env.FluxOptions = { GetMicroMenuLayoutPosition = function() return position end }
+        env.FluxChatFrame_GetPrimaryChatTop = function() return columnTop end
+        env.FluxChatFrame_GetPrimaryTabHeight = function() reads = reads + 1; return tabHeight end
+        env.FluxCCP.PlaceColumnButtons()
+        aligned(env.FriendsMicroButton:GetTop() == 394, branch .. ": beside-chat top matches reference inset")
+        columnTop, chat.top, chat.Background.top = 432, 400, 403
+        env.FluxCCP.PlaceColumnButtons()
+        aligned(env.FriendsMicroButton:GetTop() == 424, branch .. ": shared top follows layout resize")
+        columnTop, chat.top, chat.Background.top = 402, 370, 373
+        for _, pos in ipairs({ 1, 3 }) do
+            position = pos; env.FluxCCP.PlaceColumnButtons()
+            aligned(env.FriendsMicroButton:GetTop() == 369, branch .. ": other menu positions retain background alignment")
+        end
+        position = 2; tabHeight = nil; env.FluxCCP.PlaceColumnButtons()
+        aligned(env.FriendsMicroButton:GetTop() == 369, branch .. ": late shared metric uses existing fallback")
+        tabHeight = 32
+        chat.top, chat.Background.top = 80, 83
+        env.FluxCCP.PlaceColumnButtons()
+        local startupPoints = s.points
+        chat.top, chat.Background.top = 370, 373
+        aligned(env.FriendsMicroButton:GetTop() == 394,
+            branch .. ": late login chat pin settles without switching tabs")
+        aligned(s.points == startupPoints, branch .. ": final chat pin needs no extra layout callback")
+        local created, points = s.created, s.points
+        reads = 0
+        for _ = 1, 100 do env.FluxCCP.PlaceColumnButtons() end
+        aligned(s.created == created, branch .. ": alignment introduces no recurring frames")
+        -- Native offsets use the column owner's units, not saved ChatFrame scale.
+        for _, scale in ipairs({ 0.65, 1, 1.4 }) do
+            env.UIParent.scale, chat.scale = 0.75, scale
+            chat.top = (columnTop - tabHeight) * 0.75 / scale
+            local owner = (branch == "classic_era" or branch == "classic_anniversary") and bf or env.UIParent
+            local offset = s.topOffset(chat, nil, owner)
+            local physicalTop = chat:GetTop() * chat:GetEffectiveScale() + offset * owner:GetEffectiveScale()
+            aligned(math.abs(physicalTop - (columnTop - 8) * 0.75) < 0.001,
+                branch .. ": shared physical top survives saved chat scale " .. scale)
+        end
+        print(("ALIGN_METRIC %s_%s shared_tab_reads=%d layout_points=%d new_frames=%d")
+            :format(branch, side, reads, s.points - points, s.created - created))
+    end
+end
+print(("Chat column reference alignment: %d checks, %d failures"):format(alignmentChecks, alignmentFailures))
+failures = failures + alignmentFailures
 if failures > 0 and not measure then os.exit(1) end
