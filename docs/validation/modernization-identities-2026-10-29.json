@@ -1,0 +1,25 @@
+{
+  "recordedAtUtc": "2026-10-29T09:26:20.594723+00:00",
+  "branch": "codex/modernization-audit-20261029",
+  "baseline": {
+    "commit": "7436820453d2248c84c99fff71507553efc47c19",
+    "tree": "6e3af8d646a09ce2182ffd6d2cc287890584825a",
+    "luaCorpusSha256": "041e24f8fa2282afc6cc4fc344a8dc334777c995339568141dc0ecfc8041da36",
+    "syntaxFiles": 722,
+    "pass": 81,
+    "fail": 0,
+    "report": "modernization-baseline-2026-10-29.json"
+  },
+  "candidate": {
+    "runtimeCommit": "2a7de26052e1b9662deef1b606b5ec95ebefe3aa",
+    "runtimeTree": "86ed71c06dc9bc2117fb60e30d5417976506912a",
+    "luaCorpusSha256": "e904d08aa492459e4b2b2807dbde197f2528ad3c230ac68079d8dc6efacf8141",
+    "syntaxFiles": 723,
+    "pass": 82,
+    "fail": 0,
+    "report": "modernization-candidate-2026-10-29.json",
+    "currentBytesMatchTestedCorpus": true
+  },
+  "native": "pending; no native run or matched screenshots this session",
+  "recovery": "../RECOVERY.md"
+}

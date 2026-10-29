@@ -1,0 +1,76 @@
+era repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+era repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+era repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+era repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+era repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+anniversary repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+anniversary repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+anniversary repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+anniversary repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+anniversary repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+mists repetition=1 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+mists repetition=2 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+mists repetition=3 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+mists repetition=4 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+mists repetition=5 events=400 moneyReads=100 requests=300 scans=0 money=654 generationDelta=100
+retail repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+retail repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+retail repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+retail repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+retail repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+forever repetition=1 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+forever repetition=2 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+forever repetition=3 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+forever repetition=4 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+forever repetition=5 events=400 moneyReads=100 requests=400 scans=0 money=654 generationDelta=100
+currency provider handoff: 150 checks, 50 failures; desktop operation counts only
+FAIL era handed-off builtin events perform no currency work (run 1)
+FAIL era builtin events preserve provider snapshots (run 1)
+FAIL era handed-off builtin events perform no currency work (run 2)
+FAIL era builtin events preserve provider snapshots (run 2)
+FAIL era handed-off builtin events perform no currency work (run 3)
+FAIL era builtin events preserve provider snapshots (run 3)
+FAIL era handed-off builtin events perform no currency work (run 4)
+FAIL era builtin events preserve provider snapshots (run 4)
+FAIL era handed-off builtin events perform no currency work (run 5)
+FAIL era builtin events preserve provider snapshots (run 5)
+FAIL anniversary handed-off builtin events perform no currency work (run 1)
+FAIL anniversary builtin events preserve provider snapshots (run 1)
+FAIL anniversary handed-off builtin events perform no currency work (run 2)
+FAIL anniversary builtin events preserve provider snapshots (run 2)
+FAIL anniversary handed-off builtin events perform no currency work (run 3)
+FAIL anniversary builtin events preserve provider snapshots (run 3)
+FAIL anniversary handed-off builtin events perform no currency work (run 4)
+FAIL anniversary builtin events preserve provider snapshots (run 4)
+FAIL anniversary handed-off builtin events perform no currency work (run 5)
+FAIL anniversary builtin events preserve provider snapshots (run 5)
+FAIL mists handed-off builtin events perform no currency work (run 1)
+FAIL mists builtin events preserve provider snapshots (run 1)
+FAIL mists handed-off builtin events perform no currency work (run 2)
+FAIL mists builtin events preserve provider snapshots (run 2)
+FAIL mists handed-off builtin events perform no currency work (run 3)
+FAIL mists builtin events preserve provider snapshots (run 3)
+FAIL mists handed-off builtin events perform no currency work (run 4)
+FAIL mists builtin events preserve provider snapshots (run 4)
+FAIL mists handed-off builtin events perform no currency work (run 5)
+FAIL mists builtin events preserve provider snapshots (run 5)
+FAIL retail handed-off builtin events perform no currency work (run 1)
+FAIL retail builtin events preserve provider snapshots (run 1)
+FAIL retail handed-off builtin events perform no currency work (run 2)
+FAIL retail builtin events preserve provider snapshots (run 2)
+FAIL retail handed-off builtin events perform no currency work (run 3)
+FAIL retail builtin events preserve provider snapshots (run 3)
+FAIL retail handed-off builtin events perform no currency work (run 4)
+FAIL retail builtin events preserve provider snapshots (run 4)
+FAIL retail handed-off builtin events perform no currency work (run 5)
+FAIL retail builtin events preserve provider snapshots (run 5)
+FAIL forever handed-off builtin events perform no currency work (run 1)
+FAIL forever builtin events preserve provider snapshots (run 1)
+FAIL forever handed-off builtin events perform no currency work (run 2)
+FAIL forever builtin events preserve provider snapshots (run 2)
+FAIL forever handed-off builtin events perform no currency work (run 3)
+FAIL forever builtin events preserve provider snapshots (run 3)
+FAIL forever handed-off builtin events perform no currency work (run 4)
+FAIL forever builtin events preserve provider snapshots (run 4)
+FAIL forever handed-off builtin events perform no currency work (run 5)
+FAIL forever builtin events preserve provider snapshots (run 5)
