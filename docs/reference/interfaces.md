@@ -589,10 +589,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxChatCopyPaste.lua:1092](../../Other/FluxChatCopyPaste.lua#L1092) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxChatCopyPaste.lua:1093](../../Other/FluxChatCopyPaste.lua#L1093) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxChatCopyPaste.lua:1261](../../Other/FluxChatCopyPaste.lua#L1261) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Other/FluxChatFrame.lua:1397](../../Other/FluxChatFrame.lua#L1397) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxChatFrame.lua:1398](../../Other/FluxChatFrame.lua#L1398) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatFrame.lua:1399](../../Other/FluxChatFrame.lua#L1399) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Other/FluxChatFrame.lua:1400](../../Other/FluxChatFrame.lua#L1400) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Other/FluxChatFrame.lua:1403](../../Other/FluxChatFrame.lua#L1403) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxChatFrame.lua:1404](../../Other/FluxChatFrame.lua#L1404) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatFrame.lua:1405](../../Other/FluxChatFrame.lua#L1405) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [Other/FluxChatFrame.lua:1406](../../Other/FluxChatFrame.lua#L1406) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxDurationBars.lua:101](../../Other/FluxDurationBars.lua#L101) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxDurationBars.lua:102](../../Other/FluxDurationBars.lua#L102) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxDurationBars.lua:103](../../Other/FluxDurationBars.lua#L103) | `RegisterEvent` | `"ADDON_LOADED"` |

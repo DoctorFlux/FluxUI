@@ -1,10 +1,10 @@
 {
-  "captured_at_utc": "2026-10-29T11:22:31.993306+00:00",
+  "captured_at_utc": "2026-10-29T11:53:21.965262+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
   "publishable_lua_files": 728,
-  "lua_corpus_sha256": "c8c17b2a1807c68e10edfa4dc69da80c05601cc55968400953576da0568acd6d",
+  "lua_corpus_sha256": "8d516be40537bd86cab9e978179dbf6d1467d3e584ef8b8b6a050b1b2d26bd1a",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
     "passed": 728,
@@ -107,7 +107,7 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "mists consumables passed\ncata consumables passed\nwrath consumables passed\nera consumables passed\nanniversary consumables passed\nretail consumables passed\nforever consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+      "output": "anniversary consumables passed\nforever consumables passed\nretail consumables passed\nera consumables passed\ncata consumables passed\nwrath consumables passed\nmists consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
@@ -117,7 +117,7 @@
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "era inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -192,12 +192,12 @@
     {
       "path": "tests/castbar_school_themes.lua",
       "exitCode": 0,
-      "output": "Particle Lua texture writes over 2s: native=300, fallback=6017 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13839 checks across five client families (native rendering/taint unverified)\n"
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6077 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13835 checks across five client families (native rendering/taint unverified)\n"
     },
     {
       "path": "tests/chat_column_layout.lua",
       "exitCode": 0,
-      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\n"
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\n"
     },
     {
       "path": "tests/chat_layout.lua",
@@ -362,7 +362,7 @@
     {
       "path": "tests/perf_capture.lua",
       "exitCode": 0,
-      "output": "perf capture: 384 checks across five clients; 12 mutations rejected\n"
+      "output": "perf capture: 382 checks across five clients; 12 mutations rejected\n"
     },
     {
       "path": "tests/portrait_camera.lua",
@@ -2673,7 +2673,7 @@
     },
     {
       "path": "Other/FluxChatFrame.lua",
-      "sha256": "eabf816ad4caf03396444fe8f571f027fe8ef599d222234e2c2ace07164a7b29"
+      "sha256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22"
     },
     {
       "path": "Other/FluxDurationBars.lua",
@@ -2997,7 +2997,7 @@
     },
     {
       "path": "tests/chat_column_layout.lua",
-      "sha256": "4a4da60ea0514fdb16c98c97a123accb174c4317d11aaca517b9a959a9e3e087"
+      "sha256": "cf1ae5f379ddf0e0ed971ba10a84e56f64e407dd9ce20ae9093b3b995b12ea58"
     },
     {
       "path": "tests/chat_layout.lua",

@@ -164,3 +164,19 @@ with no WoW process running. Baseline `9e17e28310e14f571208c8ecddfa0e36ae616a13`
 Every archive entry was reread and verified against source hashes. Private absolute
 locations/manifests stay outside Git; earlier checkpoints/retired originals remain.
 No restore/settings reset occurred.
+
+## Chat anchor checkpoint 11:47 UTC / 12:47 Copenhagen
+
+External archive: `FluxUI-recovery-20261029T114702Z`. Capture completed 11:47:07 UTC
+with no WoW process running. Baseline `7465e36653a279e7276568eb2b90e147a6c38e93`, tree
+`1fadea2a65a083142392a018dedc0060673fee1d`; working tree was clean.
+
+| Artifact | Coverage | SHA-256 |
+|---|---|---|
+| source.zip | 1,218 actual files; 34,322,656 bytes | `8e9357aeb42208e01350752516dcc7fa910223b7675040339cb8657f5e00fde3` |
+| history.bundle | All refs/history; verified | `7b8a75eb390c845d47aa420d0fb85a2b6f67fda8073466f418ec18de832edae6` |
+| settings-private.zip | 403 files; 6,337,461 bytes | `a5d52b0b014717f320da57924f21eeb17bbb4af8884bea44114988aa17a78b5c` |
+
+Every ZIP entry was reread and verified against its source manifest; Git bundle
+verification passed. Private absolute paths/manifests remain outside Git. Earlier
+checkpoints/retired originals remain intact; no restore/settings reset occurred.

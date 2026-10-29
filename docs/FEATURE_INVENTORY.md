@@ -154,3 +154,12 @@ fixtures pass 265 checks and five matched count pairs; full suite passes 87 scri
 728 syntax files. The user's Era idle-open hitch remains unverified natively.
 Other requirements and all native/visual statuses remain pending or retain their
 previous evidence. [Scope and native checks](VENDOR_OPEN_WORK.md).
+
+## Quick Join anchor ownership
+
+BUG-008 (`5198ded`) adds targeted partial coverage to `SPEC-26-L406`: social/channel
+visibility, missing controls and fallback placement retain their behavior while
+column-owned buttons avoid the reversed dependency that caused SetPoint failure.
+The combined column regression passes 1,819 checks; the full suite passes 87 scripts/
+728 syntax files. Other Chat requirements and native/visual acceptance remain
+pending. [Evidence](CHAT_QUICKJOIN_ANCHOR.md). No option/default was removed.

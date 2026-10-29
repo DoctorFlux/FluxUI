@@ -137,3 +137,19 @@
 - Retain the buyer frame and native count-query controls; add no timers/subscriptions,
   settings or generic cache service. Native query overhead, CPU/frame times and the
   remaining classification/index/Already Known/layout candidates need live evidence.
+
+## 2026-10-29 — Quick Join anchor ownership
+
+- Prioritize the user's concrete native SetPoint error. The column already anchors
+  Channels to Quick Join; the old social callback reverses that edge. Existing
+  isolated column/retry fixtures did not run the two owners together.
+- BUG-008 returns before the fallback reanchor while either button belongs to the
+  Flux column. Check both to survive a native reparent of either one. The enclosing
+  callback still reconciles through PlaceColumnButtons; unmanaged fallback remains.
+- Add parent/anchor cycle detection and correct bottom-point geometry to the existing
+  column fixture, then execute real social/hook/retry callbacks there. Retain its
+  five-branch controls. No competing owner, global API replacement or broad runtime
+  error suppression is needed; preserve column geometry and the three deadlines.
+- The baseline combat exception never reaches its existing waiter. The candidate
+  reaches that deferral and reuses one waiter; it does not add a new runtime frame
+  service. Native geometry, input/taint and performance remain pending.

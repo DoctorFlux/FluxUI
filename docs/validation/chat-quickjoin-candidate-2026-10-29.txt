@@ -1,0 +1,6 @@
+chat column: 1311 checks across five branches, both sides; 4 regressions rejected
+METRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+METRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1
+QuickJoin column ownership: 508 checks, 0 failures

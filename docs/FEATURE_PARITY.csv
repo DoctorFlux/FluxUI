@@ -1728,7 +1728,7 @@ Show or hide buttons on the chat column. A button is hidden from this page when 
 
 URL color, message color, fade, and max lines are stored on `global.chatCopyPaste` and are not rows yet.
 
----",new docs/docs/specs/26-options-map.md:406,7436820453d2248c84c99fff71507553efc47c19,owner-defined; see evidence,AddonOptions/FluxOptionsCatalog.lua,AUDIT-20261029,requirement recorded; compare current owner and discrepancies in FEATURE_INVENTORY.md,requirements capture; not a behavior test,pending native verification,pending matched native capture,docs/26-options-map.md; docs/FEATURE_INVENTORY.md; supplied source SHA256=9cb1981378b53d821ed9180eb4a8d9aa85526aa60a6e006ccaef0d558889b461
+---",new docs/docs/specs/26-options-map.md:406,7436820453d2248c84c99fff71507553efc47c19,owner-defined; see evidence,AddonOptions/FluxOptionsCatalog.lua,BUG-008,targeted partial: column-owned social anchors avoid reversed dependency; unmanaged fallback and Social/Channels visibility retained,1819 combined column/ownership checks; five matched pairs; full 87 scripts/728 syntax pass; other requirements pending,pending native verification,pending matched native capture,docs/26-options-map.md; docs/FEATURE_INVENTORY.md; supplied source SHA256=9cb1981378b53d821ed9180eb4a8d9aa85526aa60a6e006ccaef0d558889b461; tests/chat_column_layout.lua; docs/CHAT_QUICKJOIN_ANCHOR.md; docs/validation/chat-quickjoin-comparison-2026-10-29.json
 SPEC-26-L416,"11. MicroMenu
 → [17-micromenu.md](17-micromenu.md)
 

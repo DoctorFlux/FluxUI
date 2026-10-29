@@ -62866,8 +62866,8 @@
       "path": "Other/FluxChatFrame.lua",
       "classification": "active",
       "chapter": "25-other-qol.md",
-      "lines": 1499,
-      "sha256": "eabf816ad4caf03396444fe8f571f027fe8ef599d222234e2c2ace07164a7b29",
+      "lines": 1505,
+      "sha256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22",
       "clients": [
         "camelot",
         "cata",
@@ -62926,7 +62926,7 @@
       ],
       "events": [
         {
-          "line": 1397,
+          "line": 1403,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -62934,7 +62934,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1398,
+          "line": 1404,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -62942,7 +62942,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 1399,
+          "line": 1405,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -62950,7 +62950,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 1400,
+          "line": 1406,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -62968,13 +62968,13 @@
             920,
             1067,
             1089,
-            1342,
-            1343,
-            1346,
-            1385,
-            1440,
-            1458,
-            1485
+            1348,
+            1349,
+            1352,
+            1391,
+            1446,
+            1464,
+            1491
           ]
         }
       ]
@@ -70678,156 +70678,176 @@
       "path": "tests/chat_column_layout.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 225,
-      "sha256": "4a4da60ea0514fdb16c98c97a123accb174c4317d11aaca517b9a959a9e3e087",
+      "lines": 362,
+      "sha256": "cf1ae5f379ddf0e0ed971ba10a84e56f64e407dd9ce20ae9093b3b995b12ea58",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "env.InCombatLockdown",
-          "line": 18
+          "line": 23
         },
         {
           "name": "returnstate.combatendenv.FCF_GetButtonSide",
-          "line": 19
+          "line": 24
         },
         {
           "name": "returnsideendenv.hooksecurefunc",
-          "line": 20
+          "line": 25
         },
         {
           "name": "r:GetName",
-          "line": 29
+          "line": 42
         },
         {
           "name": "r:GetID",
-          "line": 30
+          "line": 43
         },
         {
           "name": "r:IsVisible",
-          "line": 31
-        },
-        {
-          "name": "r:GetParent",
-          "line": 35
-        },
-        {
-          "name": "r:SetParent",
-          "line": 36
-        },
-        {
-          "name": "r:GetTop",
-          "line": 37
-        },
-        {
-          "name": "r:GetBottom",
           "line": 44
         },
         {
-          "name": "r:GetHeight",
-          "line": 45
-        },
-        {
-          "name": "r:GetLeft",
-          "line": 46
-        },
-        {
-          "name": "r:GetRight",
-          "line": 47
-        },
-        {
-          "name": "r:GetObjectType",
+          "name": "r:GetParent",
           "line": 48
         },
         {
-          "name": "r:IsProtected",
+          "name": "r:SetParent",
           "line": 49
         },
         {
-          "name": "r:ClearAllPoints",
+          "name": "r:GetTop",
           "line": 50
         },
         {
-          "name": "r:SetPoint",
-          "line": 51
-        },
-        {
-          "name": "r:SetSize",
-          "line": 55
-        },
-        {
-          "name": "r:SetFrameStrata",
-          "line": 56
-        },
-        {
-          "name": "r:SetAlpha",
-          "line": 57
-        },
-        {
-          "name": "r:Hide",
+          "name": "r:GetBottom",
           "line": 58
         },
         {
-          "name": "r:Show",
+          "name": "r:GetHeight",
           "line": 59
         },
         {
-          "name": "r:HookScript",
+          "name": "r:GetLeft",
           "line": 60
         },
         {
-          "name": "r:RegisterEvent",
+          "name": "r:GetRight",
           "line": 61
         },
         {
-          "name": "r:UnregisterEvent",
+          "name": "r:GetObjectType",
           "line": 62
         },
         {
-          "name": "r:SetScript",
+          "name": "r:IsProtected",
           "line": 63
         },
         {
-          "name": "rreturnrendenv.CreateFrame",
-          "line": 67
+          "name": "r:ClearAllPoints",
+          "line": 64
         },
         {
-          "name": "env.UIParent:IsVisible",
+          "name": "r:SetPoint",
+          "line": 65
+        },
+        {
+          "name": "r:SetSize",
           "line": 74
         },
         {
-          "name": "bg:GetObjectType",
+          "name": "r:SetFrameStrata",
+          "line": 75
+        },
+        {
+          "name": "r:SetAlpha",
+          "line": 76
+        },
+        {
+          "name": "r:Hide",
+          "line": 77
+        },
+        {
+          "name": "r:Show",
           "line": 78
         },
         {
+          "name": "r:HookScript",
+          "line": 79
+        },
+        {
+          "name": "r:RegisterEvent",
+          "line": 80
+        },
+        {
+          "name": "r:UnregisterEvent",
+          "line": 81
+        },
+        {
+          "name": "r:SetScript",
+          "line": 82
+        },
+        {
+          "name": "rreturnrendenv.CreateFrame",
+          "line": 86
+        },
+        {
+          "name": "env.UIParent:IsVisible",
+          "line": 93
+        },
+        {
+          "name": "bg:GetObjectType",
+          "line": 97
+        },
+        {
           "name": "bf:Layout",
-          "line": 83
+          "line": 102
         },
         {
           "name": ".click",
-          "line": 104
+          "line": 123
         },
         {
           "name": "env.FCFDock_GetSelectedWindow",
-          "line": 107
+          "line": 126
         },
         {
           "name": "state.select",
-          "line": 114
+          "line": 133
         },
         {
           "name": "state.regen",
-          "line": 121
+          "line": 140
         },
         {
           "name": "qj:IsVisible",
-          "line": 183
+          "line": 202
+        },
+        {
+          "name": "env.GetCCPDB",
+          "line": 261
+        },
+        {
+          "name": "env.FCF_UpdateButtonSide",
+          "line": 265
+        },
+        {
+          "name": "endenv.FluxEditModeBusy",
+          "line": 266
+        },
+        {
+          "name": "returns.busyendenv.FluxAfterEditMode",
+          "line": 267
+        },
+        {
+          "name": "env.hooksecurefunc",
+          "line": 270
         }
       ],
       "events": [
         {
-          "line": 61,
+          "line": 80,
           "method": "RegisterEvent",
           "arguments": [
             "event"

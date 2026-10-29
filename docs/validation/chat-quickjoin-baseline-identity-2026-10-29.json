@@ -1,0 +1,10 @@
+{
+  "commit": "7465e36653a279e7276568eb2b90e147a6c38e93",
+  "tree": "1fadea2a65a083142392a018dedc0060673fee1d",
+  "reusedFullReport": "docs/validation/vendor-open-full-2026-10-29.json",
+  "verifiedLuaFiles": 728,
+  "tests": 87,
+  "fail": 0,
+  "normalization": "CRLF to LF only; actual pre-edit archive compared to full source hashes",
+  "sourceSha256": "4ea00c0119d148a1e15d4dc87cb5cb24605438d107ff2e51f8505b24f8cc19bd"
+}

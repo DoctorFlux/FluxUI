@@ -64,3 +64,14 @@ The [full validation record](validation/chat-layout-2026-10-23.json) contains sy
 ## Native source contracts
 
 Blizzard's current primary chat frame uses its Edit Mode path rather than ordinary floating-window position restoration. The chat implementations and background/strip ownership were checked against [Era](https://github.com/Gethe/wow-ui-source/blob/classic_era/Interface/AddOns/Blizzard_ChatFrameBase/Classic/FloatingChatFrame.lua), [Anniversary](https://github.com/Gethe/wow-ui-source/blob/classic_anniversary/Interface/AddOns/Blizzard_ChatFrameBase/Classic/FloatingChatFrame.lua), [progression Classic](https://github.com/Gethe/wow-ui-source/blob/classic/Interface/AddOns/Blizzard_ChatFrameBase/Classic/FloatingChatFrame.lua), [Live](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.lua) and [Forever](https://github.com/Gethe/wow-ui-source/blob/forever/Interface/AddOns/Blizzard_ChatFrameBase/Mainline/FloatingChatFrame.lua). No Blizzard API or widget method is globally replaced by this change.
+
+## Quick Join cycle correction — 29 October 2026
+
+BUG-008 (`5198ded`) addresses the reported SetPoint cycle at the old social callback.
+The column already places Channels below Quick Join; the callback must not reverse
+that dependency. While either button belongs to the column, it leaves anchoring to
+PlaceColumnButtons. Unmanaged native fallback and the original geometry/deadlines
+remain. The existing column fixture now runs both owners with cycle-aware anchors:
+1,819 checks pass after 448 baseline failures among 508 added checks. Full suite:
+87 scripts/728 syntax files pass. [Evidence and native checks](CHAT_QUICKJOIN_ANCHOR.md).
+Affected native clients/builds were not supplied; pixels/input/taint remain pending.

@@ -15,11 +15,19 @@ Work continues on the existing change branch. Main remains
 | Queued merchant item identity | `cdd752a` | 660 focused checks; changed/missing listings are skipped before purchase |
 | Finite merchant stock budget | `b505bb8` | 177 stock checks; zero caps buying and shared finite stock is reserved |
 | Repeated vendor junk availability | `e02139a` | 265 checks across seven API fixtures; unchanged availability reuses bag generation |
+| Quick Join anchor cycle | `5198ded` | 508 new ownership checks plus 1,311 existing column checks; native fallback retained |
 
-Latest behavior-changing runtime commit: `e02139ab1c6b8099b02fb4506ff150a50d6555ef`,
-tree `0a23a38a04809c0a087089586cb5842496fb5c64`. Latest full suite: **87 desktop scripts and
+Latest behavior-changing runtime commit: `5198ded001dde5bbc3fc5d6011239652cbe79dac`,
+tree `ffeca6fce85ff9606c7dab3f38b065bdbfdfeb70`. Latest full suite: **87 desktop scripts and
 728 Lua syntax files, zero failures**. All current Lua hashes match the
-[full report](validation/vendor-open-full-2026-10-29.json).
+[full report](validation/chat-quickjoin-full-2026-10-29.json).
+
+[BUG-008 evidence](CHAT_QUICKJOIN_ANCHOR.md) reproduces the reported Quick Join
+SetPoint cycle when the older social callback reverses the column's Channels-below-
+Quick-Join dependency. It now leaves positioning to the existing column whenever
+either button belongs there. All 1,819 column/ownership checks pass; five matched
+pairs remove cycle rejections without changing the original three retry deadlines.
+The affected native client/build was unspecified; native recheck remains pending.
 
 The user reports a hitch simply opening a vendor on **Classic Era**; other clients
 have not been tested by the user. [BUG-007/PERF-004 evidence](VENDOR_OPEN_WORK.md)
@@ -49,7 +57,7 @@ Original requirements and raw records are preserved in [recovery](RECOVERY.md).
 - [Feature inventory](FEATURE_INVENTORY.md): 1,384 ledger rows covering all 26
   product specifications, controls/defaults, commands, bindings, saved roots and
   integrations; 17 documented discrepancies remain explicit.
-- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 21 API
+- [Ownership map](MODULE_DEPENDENCIES.md): 35 service/domain rows and 22 API
   contracts. Source closure: 577 reachable files, zero missing includes.
 - [Client validation](CLIENT_VALIDATION.md): eight distinct client rows and 77
   reference/version/license entries. Installed executables were inspected; their
@@ -67,15 +75,16 @@ Event-dispatch mutation is a documented latent defect with no current production
 unsubscribe trigger found; do not redesign it without an actual consumer.
 
 Auction, guild-bank and void-storage callback audits are deferred by user direction.
-Prioritize matched Era first/repeated vendor-open traces and the remaining cold
+Prioritize native [chat anchor checks](CHAT_QUICKJOIN_ANCHOR.md), plus matched Era
+first/repeated vendor-open traces and the remaining cold
 classification, merchant index, Already Known and layout candidates if the hitch
 persists. These remaining candidates are unmeasured. See [development tasks](DEVELOPMENT.md).
 
-Vendor-open documentation validation passes: 761 classified sources, 577 reachable
-files, 361 setting definitions, 23 SavedVariables roots and 12,769 local links. All
-six ledgers have valid row shapes (1,384 parity, 35 ownership, 21 API, eight client,
-77 reference and 157 performance rows). All 728 Lua hashes match the full report.
-The checkpoint comparison finds no missing files and preserves 348 specification/
-library/asset/manifest files byte-for-byte. Explicit development-tool markers remain
-absent across 1,218 actual files outside Git. Legacy fixture labels share one API
-route; Retail/Forever share another, rather than proving seven native contracts.
+Chat-anchor documentation validation passes: 761 classified sources, 577 reachable
+files, 361 setting definitions, 23 SavedVariables roots and 12,788 local links.
+All six ledgers have valid row shapes (1,384 parity, 35 ownership, 22 API, eight
+client, 77 reference and 173 performance rows). All 728 Lua hashes match the full
+report. The fresh checkpoint comparison finds no missing files or unexpected
+changes and preserves 348 specification/library/asset/manifest files byte-for-byte.
+Explicit development-tool markers remain absent across 1,225 actual files outside
+Git. Main remains unchanged; native acceptance remains pending.

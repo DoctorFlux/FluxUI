@@ -149,3 +149,14 @@ queries precede reuse; native overhead is unmeasured. Full suite: 87 scripts/728
 syntax files pass. Native resolution of the Era hitch, CPU/allocations/resource
 totals/latency/frame times/FPS and parity remain pending; fewer reads do not prove
 higher FPS. Retain first-open, steady idle and repeated-open traces separately.
+
+## Chat anchor correctness evidence
+
+[BUG-008](CHAT_QUICKJOIN_ANCHOR.md) has five alternating fresh-process replay pairs.
+For each Live/Forever side, three queued callbacks formerly trigger three cycle
+rejections; candidate triggers none. Retry deadlines/count (three) and new burst
+frames (zero) remain. Candidate reaches the existing combat waiter that baseline
+exceptions abort before queuing. The complete suite passes 87 scripts/728 syntax
+files; 1,819 combined column checks pass. These error/resource controls establish
+correctness, not native latency/CPU/FPS. Native startup/idle/layout bursts, allocation,
+frame-time and visual/security acceptance remain pending.

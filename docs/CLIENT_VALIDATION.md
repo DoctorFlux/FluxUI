@@ -115,3 +115,14 @@ matched first/repeated opens without actions, recorded settings/addons and raw
 frame-time evidence, cold data/protection/Useful controls, standalone/external
 provider readiness, then each available client. Compare pixels/input/cadence and
 profiling overhead. Do not deploy to another installation without authorization.
+
+## Quick Join SetPoint cycle — native recheck pending
+
+The user's stack names the social callback and a Channels frame on FluxCCPChatColumn;
+no affected client/build was specified. BUG-008 reproduces and fixes that reversed
+anchor dependency in production-backed Live/Forever Quick Join fixtures on both
+sides. Existing five-branch column controls remain; the full 87-script/728-syntax
+suite passes. No native row advances. Follow [chat native steps](CHAT_QUICKJOIN_ANCHOR.md)
+for reload, native alerts, tab/side changes, Social/Channels visibility, Edit Mode,
+combat/regen, matched screenshots/geometry, input/taint and profiling. Clients with
+only FriendsMicroButton retain their separate path. Original Wrath is unverified.

@@ -366,3 +366,50 @@ The checkpoint comparison finds no missing files and preserves 348 specification
 library/asset/manifest files byte-for-byte. Explicit development-tool markers remain
 absent across 1,218 actual files outside Git. Legacy fixture labels share one API
 route; Retail/Forever share another, rather than proving seven native contracts.
+
+## 2026-10-29 — Quick Join anchor cycle
+
+User supplied the native QuickJoinToastButton:SetPoint cycle at FluxChatFrame.lua
+line 1248; client/build unspecified. Current branch was clean; main remained
+7436820453d2248c84c99fff71507553efc47c19. Read current rules/records, chat options/
+specification, both layout owners and existing tests. A fresh verified external
+checkpoint at 11:47:07 UTC (12:47 Copenhagen) covers all 1,218 files, Git history
+and 403 private settings files with WoW closed. All 728 baseline Lua hashes match
+the previous full 87-script report.
+
+The column anchors Channels below Quick Join. Its older social callback reverses
+that dependency, reproducing the supplied failure. BUG-008 adds a six-line owner
+guard when either button belongs to the column; the surrounding normal layout
+still reconciles it. Native fallback, defaults/settings, dimensions, click scripts
+and 0/0.1/1-second retry deadlines remain. No runtime hooks/timers/frames added.
+
+Extended the existing column test with a cycle-aware parent/anchor graph and
+bottom-point geometry, executing actual social and retry callbacks with the column.
+Baseline passes the original 1,311 checks, then fails 448 of 508 ownership checks.
+Candidate passes all 1,819, including four existing rejected mutations. Other chat
+layout/startup/retry controls pass. Five alternating fresh-process pairs across
+Live/Forever, both sides: cycle failures per three queued callbacks 3 to zero;
+retry callbacks 3 to 3; burst frames zero to zero. Candidate reaches/reuses the
+existing combat waiter that baseline exceptions prevent from being queued.
+
+Commands: `lua tests/chat_column_layout.lua --source tests/fixtures/chat_quickjoin_before.txt --measure`,
+`lua tests/chat_column_layout.lua`, `lua tests/idle_layout_retries.lua`,
+`lua tests/chat_layout.lua`, `lua tests/chat_startup.lua`.
+`python tests/run_validation.py --output docs/validation/chat-quickjoin-full-2026-10-29.json --sync-docs`:
+87 scripts/728 syntax files pass. Measure mode deliberately exits zero for the
+known failing baseline. Native rendering/input/security/CPU/resources/latency/frame
+times/FPS remain pending; preventing an exception is not measured native speedup.
+
+Runtime/test/nonloaded fixture: `5198ded001dde5bbc3fc5d6011239652cbe79dac`, tree
+`ffeca6fce85ff9606c7dab3f38b065bdbfdfeb70`. [Evidence and native steps](CHAT_QUICKJOIN_ANCHOR.md).
+No client sync/deployment, settings reset, main update or push. Vendor-open native
+hitch confirmation remains pending; deferred callbacks remain outside this batch.
+
+Chat-anchor documentation validation passes: 761 classified sources, 577 reachable
+files, 361 setting definitions, 23 SavedVariables roots and 12,788 local links.
+All six ledgers have valid row shapes (1,384 parity, 35 ownership, 22 API, eight
+client, 77 reference and 173 performance rows). All 728 Lua hashes match the full
+report. The fresh checkpoint comparison finds no missing files or unexpected
+changes and preserves 348 specification/library/asset/manifest files byte-for-byte.
+Explicit development-tool markers remain absent across 1,225 actual files outside
+Git. Main remains unchanged; native acceptance remains pending.

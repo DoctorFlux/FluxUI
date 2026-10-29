@@ -1,0 +1,454 @@
+chat column: 1311 checks across five branches, both sides; 4 regressions rejected
+FAIL live/left existing column callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left QuickJoin reparented while Channel remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left Channel reparented while QuickJoin remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live hidden Channel keeps social geometry
+FAIL live missing Channel keeps owned social geometry
+FAIL live/left Edit Mode exit: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left combat callback: tests/chat_column_layout.lua:29: combat layout attempted
+FAIL live owned column has no protected combat writes
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live one reusable combat waiter handles owned layout
+METRIC live_left hook_timers=3 burst_cycles=3 burst_new_frames=0 combat_waiters=0
+FAIL live/right existing column callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right QuickJoin reparented while Channel remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right Channel reparented while QuickJoin remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live hidden Channel keeps social geometry
+FAIL live missing Channel keeps owned social geometry
+FAIL live/right Edit Mode exit: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right combat callback: tests/chat_column_layout.lua:29: combat layout attempted
+FAIL live owned column has no protected combat writes
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL live one reusable combat waiter handles owned layout
+METRIC live_right hook_timers=3 burst_cycles=3 burst_new_frames=0 combat_waiters=0
+FAIL forever/left existing column callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left QuickJoin reparented while Channel remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left Channel reparented while QuickJoin remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever hidden Channel keeps social geometry
+FAIL forever missing Channel keeps owned social geometry
+FAIL forever/left Edit Mode exit: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left combat callback: tests/chat_column_layout.lua:29: combat layout attempted
+FAIL forever owned column has no protected combat writes
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/left settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever one reusable combat waiter handles owned layout
+METRIC forever_left hook_timers=3 burst_cycles=3 burst_new_frames=0 combat_waiters=0
+FAIL forever/right existing column callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right queued native layout callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right QuickJoin reparented while Channel remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right Channel reparented while QuickJoin remains owned: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever hidden Channel keeps social geometry
+FAIL forever missing Channel keeps owned social geometry
+FAIL forever/right Edit Mode exit: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right combat callback: tests/chat_column_layout.lua:29: combat layout attempted
+FAIL forever owned column has no protected combat writes
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever/right settled callback: tests/chat_column_layout.lua:69: Cannot anchor to a region dependent on it
+FAIL forever one reusable combat waiter handles owned layout
+METRIC forever_right hook_timers=3 burst_cycles=3 burst_new_frames=0 combat_waiters=0
+QuickJoin column ownership: 508 checks, 448 failures
