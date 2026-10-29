@@ -350,12 +350,11 @@ function P.ScanVendorBestPurchasable(kind, merchantIndex)
     local best, bestID, bestMeta = 0, nil, nil
     for itemID, meta in pairs(merchantIndex) do
         itemID = tonumber(itemID) or (type(meta) == "table" and tonumber(meta.itemID))
-        if itemID and type(meta) == "table" and meta.isPurchasable ~= false
-            and P.IsTierItemUsable(kind, itemID, { vendor = true }) then
+        if itemID and type(meta) == "table" and meta.isPurchasable ~= false then
             local cls = P.ClassifyMerchantItem(kind, itemID, meta)
             if cls and not cls.wellFed then
                 local v = P.RoundTier(P.TierAxisValue(kind, cls))
-                if v > best then
+                if v > best and P.IsTierItemUsable(kind, itemID, { vendor = true }) then
                     best, bestID, bestMeta = v, itemID, meta
                 end
             end

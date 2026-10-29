@@ -29,13 +29,12 @@ local function ComputeVendorTierStatus(kind, merchantIndex)
     local bestAnyValue = 0
     for itemID, meta in pairs(merchantIndex) do
         itemID = tonumber(itemID) or (type(meta) == "table" and tonumber(meta.itemID))
-        if itemID and type(meta) == "table" and meta.isPurchasable ~= false
-            and P.IsTierItemUsable(kind, itemID, { vendor = true }) then
+        if itemID and type(meta) == "table" and meta.isPurchasable ~= false then
             local cls = P.ClassifyMerchantItem(kind, itemID, meta)
             if cls then
                 local v = P.TierAxisValue(kind, cls)
                 local usableAxis = v > 0 and not (kind == "food" and cls.wellFed)
-                if usableAxis then
+                if usableAxis and P.IsTierItemUsable(kind, itemID, { vendor = true }) then
                     sawAny = true
                     local unitPrice = meta.unitPrice or meta.price
                     if v > bestAnyValue then
