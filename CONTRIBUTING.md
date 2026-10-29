@@ -1,7 +1,9 @@
 # Contributing to FluxUI
 
-Develop in the existing `_FluxUI` folder and `DoctorFlux/FluxUI` repository. Use the
-current change branch and leave main unchanged until a merge is authorized.
+Develop in the existing `_FluxUI` folder and `DoctorFlux/FluxUI` repository. Work
+directly on main: the user requested main only and publication of the current
+local files on 29 October 2026. Do not create other branches unless requested later.
+Preserve existing history and newer local work; do not force-push.
 
 ## Preserve behavior and data
 

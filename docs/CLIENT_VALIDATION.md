@@ -1,5 +1,11 @@
 # Client and reference validation — 29 October 2026
 
+[BUG-012/PERF-011 teleport follow-up](TELEPORT_CAST_WORK.md): user confirms Retail.
+527 desktop assertions pass, including native display empty/opaque models and
+legacy rune controls. Full 95 scripts/736 syntax files pass. No native input,
+reload or capture this batch. Actual interruption latency/combat/taint/pixels and
+non-travel custom-flyout comparisons remain pending.
+
 This record began as a local installation/source audit. Era now has a native vendor attribution capture and five alternating background getter pairs; full visual/security and whole-vendor after acceptance remain pending. [Native evidence](TIER_COUNT_WORK.md). [CLIENT_MATRIX.csv](CLIENT_MATRIX.csv) records installed executable versions separately from `_FluxUI.toc` interface declarations, reference-source versions, and test status. [REFERENCE_MANIFEST.csv](REFERENCE_MANIFEST.csv) pins inspected metadata/license files; its hashes identify those files, not entire upstream packages.
 
 ## Installed roster and evidence limits

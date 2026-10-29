@@ -1,5 +1,18 @@
 # Decisions
 
+## 2026-10-29 — teleport counts/interrupted casts
+
+- User confirms Retail. Native display text, including empty, owns this preset's
+  count. Inaccessible tooltip text cannot establish Classic rune costs.
+- Reuse filtered spell actions for eligibility, skipping reagent/restock rows.
+  Restore macro/face/tooltip on unlock; keep complete updates for list/options/
+  favorites changes, existing combat deferral and success delay.
+- Preserve saved state, known legacy rune counts, click paths and popup styling.
+  Other custom flyouts remain unconfirmed; no speculative shared-effect rewrite.
+- Verified external source/history/on-disk Retail settings before edits. No live
+  game/profile/diagnostic changes or publication. Desktop counts are not native
+  hitch-resolution/FPS/taint acceptance. [Evidence](TELEPORT_CAST_WORK.md).
+
 ## 2026-10-29
 
 - Modernize the existing `_FluxUI` and repository in place. User's current request
@@ -272,3 +285,14 @@
   ordinary refs without force. Preserve newer remote work if it appears.
 - Keep private backups/settings/captures and ignored local helpers out of Git.
   Native pending checks retain their scope despite publication authorization.
+
+## 2026-10-29 - local files authoritative, main only
+
+- User requests no other branch and explicitly authorizes uploading all current
+  local addon files. This supersedes the earlier retained-branch decision.
+- The development branch equals main at b45eb5e, so remove both local/remote refs
+  without losing commits. Keep normal pushes and all existing history.
+- Include the newer local teleport fix and its complete tests/docs; do not reset
+  the workspace to the previously published revision or omit uncommitted work.
+- Keep private recoveries/settings/captures and ignored local helpers outside Git.
+  Publication does not change native acceptance results or live game preferences.

@@ -1,5 +1,22 @@
 # Work log
 
+## 2026-10-29 — teleport counts and interrupted casts
+
+User confirms Retail interrupted teleport/portal lag and unwanted reagent-free
+count. Read continuity/travel requirements, inspected clean main b45eb5e and
+verified fresh external source/history/on-disk Retail settings before edits.
+BUG-012/PERF-011 uses native count text, clears reagent-free legacy digits, stops
+fabricating runes from opaque text, skips reagent construction for eligibility
+and restores the host without popup/key rebuild. No settings/default/cadence or
+other flyout-owner changes. [Exact identities/limits](TELEPORT_CAST_WORK.md).
+
+527 assertions: baseline 14 failures, candidate zero. Three rejected mutations.
+Five alternating desktop pairs: per 100 integrated casts, tooltip calls 2,000 -> 0
+and popup rebuild boundaries 100 -> 0, zero variation. Full 95 scripts / 736 Lua
+files pass. Native reported-hitch resolution/combat/taint/pixels and general
+custom flyouts pending. WoW/profile/diagnostic/settings untouched; no foreground
+input, sync job, commit or push. Existing history preserved.
+
 ## 2026-10-29 â€” audit baseline and first provider fix
 
 Inspected actual main `7436820`, remote, manifests, tests, diagnostics, documentation
@@ -734,3 +751,17 @@ created the retained development branch at the same payload. Remote refs read
 back exact; local main clean and0 ahead/behind. All735 runtime/test Lua hashes
 still match the passing94-script report. This completion receipt adds docs only;
 no game interaction or source/settings change during upload.
+
+## 2026-10-29 - main-only current local snapshot
+
+User requested main only, then clarified that the actual local files must all be
+uploaded. Found newer uncommitted teleport source/test/docs, preserved them in a
+verified external recovery covering1,302 actual files/history and404 on-disk
+settings files. Both branch refs equaled b45eb5e; deleted the fully merged branch
+locally/remotely. Main retains every published commit.
+
+Inspected the local teleport delta and existing evidence. Its full95-script/
+736-Lua report exactly matches current code; focused527 checks pass again. Include
+this local fix and all current records, run the fresh local-snapshot suite, refresh
+references and publish only main. No older checkout, runtime rewrite, force push,
+new branch, private data upload, game input/settings or sync-job change.

@@ -43139,8 +43139,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 3238,
-      "sha256": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6",
+      "lines": 3237,
+      "sha256": "1722862a1b1417df699382172d8b13a37f86f387ef0bd06050c43004efdae8fb",
       "clients": [
         "camelot",
         "cata",
@@ -43162,248 +43162,248 @@
         },
         {
           "name": "Module.GetVendorOptionReagentSummary",
-          "line": 469
+          "line": 456
         },
         {
           "name": "Module.GetKnownTeleportSpells",
-          "line": 612
+          "line": 599
         },
         {
           "name": "Module.GetKnownPortalSpells",
-          "line": 653
+          "line": 640
         },
         {
           "name": "Module.HasAnyTeleportSpell",
-          "line": 692
+          "line": 679
         },
         {
           "name": "Module.HasAnyPortalSpell",
-          "line": 698
+          "line": 685
         },
         {
           "name": "Module.HasAnyTeleportOrPortalSpell",
-          "line": 704
+          "line": 691
         },
         {
           "name": "Module.InvalidateCache",
-          "line": 718
+          "line": 705
         },
         {
           "name": "Module.GetFirstKnownSpell",
-          "line": 727
+          "line": 714
         },
         {
           "name": "Module.GetMode",
-          "line": 746
+          "line": 733
         },
         {
           "name": "Module.SetMode",
-          "line": 771
+          "line": 758
         },
         {
           "name": "Module.ToggleMode",
-          "line": 798
+          "line": 785
         },
         {
           "name": "Module.ClearCheckedVisual",
-          "line": 850
+          "line": 837
         },
         {
           "name": "Module.ClearCheckedVisualNow",
-          "line": 886
+          "line": 873
         },
         {
           "name": "Module.RefreshFlyoutIfOpen",
-          "line": 919
+          "line": 906
         },
         {
           "name": "Module.LockToSpell",
-          "line": 957
+          "line": 944
         },
         {
           "name": "Module.Unlock",
-          "line": 997
+          "line": 984
         },
         {
           "name": "Module.IsLocked",
-          "line": 1043
+          "line": 1033
         },
         {
           "name": "Module.UpdateLockedState",
-          "line": 1048
+          "line": 1038
         },
         {
           "name": "Module.BuildReagentActions",
-          "line": 1148
+          "line": 1138
         },
         {
           "name": "Module.GetRestockTarget",
-          "line": 1215
+          "line": 1205
         },
         {
           "name": "Module.SetRestockTarget",
-          "line": 1231
+          "line": 1221
         },
         {
           "name": "Module.UpdateReagentButtonDisplay",
-          "line": 1249
+          "line": 1239
         },
         {
           "name": "Module.UpdateReagentButtonCountText",
-          "line": 1271
+          "line": 1261
         },
         {
           "name": "Module.ShowReagentButtonCount",
-          "line": 1290
+          "line": 1280
         },
         {
           "name": "Module.BuildFlyoutActions",
-          "line": 1304
+          "line": 1294
         },
         {
           "name": "Module.CountVisibleTeleportDestinations",
-          "line": 1350
+          "line": 1343
         },
         {
           "name": "Module.HasTeleportFlyout",
-          "line": 1363
+          "line": 1356
         },
         {
           "name": "Module.SyncFlyoutEngine",
-          "line": 1413
+          "line": 1406
         },
         {
           "name": "Module.ShowFlyout",
-          "line": 1443
+          "line": 1436
         },
         {
           "name": "Module.HookFlyoutButtons",
-          "line": 1483
+          "line": 1476
         },
         {
           "name": "Module.BuildConditionalCastLine",
-          "line": 1531
+          "line": 1524
         },
         {
           "name": "Module.BuildFlyoutMacro",
-          "line": 1584
+          "line": 1577
         },
         {
           "name": "Module.Register",
-          "line": 1623
+          "line": 1616
         },
         {
           "name": "Module.EnsureButtonForBindingMode",
-          "line": 1649
+          "line": 1642
         },
         {
           "name": "Module.CreateButton",
-          "line": 1662
+          "line": 1655
         },
         {
           "name": "btn.UpdateUsable",
-          "line": 1773
+          "line": 1766
         },
         {
-          "name": "btn.UpdateTextCountbtn.UpdateTextCount",
-          "line": 1801
+          "name": "endendbtn.UpdateTextCount",
+          "line": 1793
         },
         {
           "name": "Module.ApplyMacro",
-          "line": 1838
+          "line": 1837
         },
         {
           "name": "Module.SetupIconProtection",
-          "line": 1876
+          "line": 1875
         },
         {
           "name": "btn.WIcon.SetTexturebtn.WIcon.SetTexture",
-          "line": 1885
+          "line": 1884
         },
         {
           "name": "icon.SetTextureicon.SetTexture",
-          "line": 1905
+          "line": 1904
         },
         {
           "name": "Module.SetupClickHandlers",
-          "line": 1926
+          "line": 1925
         },
         {
           "name": "Module.SetupMiddleClick",
-          "line": 1983
+          "line": 1982
         },
         {
           "name": "Module.SetupRightClick",
-          "line": 1987
+          "line": 1986
         },
         {
           "name": "Module.SetupPreClick",
-          "line": 1992
+          "line": 1991
         },
         {
           "name": "Module.SetupTooltip",
-          "line": 2107
+          "line": 2106
         },
         {
           "name": "Module.ShowTooltip",
-          "line": 2165
+          "line": 2164
         },
         {
           "name": "Module.RefreshTooltip",
-          "line": 2301
+          "line": 2300
         },
         {
           "name": "Module.GetSpellForModifier",
-          "line": 2314
+          "line": 2313
         },
         {
           "name": "Module.GetOppositeModeDisplaySpell",
-          "line": 2402
+          "line": 2401
         },
         {
           "name": "Module.UpdateIcon",
-          "line": 2538
+          "line": 2537
         },
         {
           "name": "Module.UpdateTexture",
-          "line": 2596
+          "line": 2595
         },
         {
           "name": "Module.UpdateFlyoutArrow",
-          "line": 2655
+          "line": 2654
         },
         {
           "name": "Module.Update",
-          "line": 2675
+          "line": 2674
         },
         {
           "name": "Module.UpdateTeleportKeybinding",
-          "line": 2815
+          "line": 2814
         },
         {
           "name": "Module.ClearTeleportKeybinding",
-          "line": 2848
+          "line": 2847
         },
         {
           "name": "Module.UpdateHotkeyText",
-          "line": 2858
+          "line": 2857
         },
         {
           "name": "Module.IsTeleportOrPortalSpell",
-          "line": 3119
+          "line": 3118
         },
         {
           "name": "Module.RefreshReagentCounts",
-          "line": 3158
+          "line": 3157
         },
         {
           "name": "Module.RefreshAllReagentDisplays",
-          "line": 3173
+          "line": 3172
         }
       ],
       "events": [
         {
-          "line": 2904,
+          "line": 2903,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -43411,7 +43411,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 2905,
+          "line": 2904,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -43419,7 +43419,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 2913,
+          "line": 2912,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELLS_CHANGED\""
@@ -43427,7 +43427,7 @@
           "context": "OnSpellBookChanged)elseeventFrame:"
         },
         {
-          "line": 2916,
+          "line": 2915,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_START\"",
@@ -43436,7 +43436,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 2917,
+          "line": 2916,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\"",
@@ -43445,7 +43445,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 2918,
+          "line": 2917,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_STOP\"",
@@ -43454,7 +43454,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 2919,
+          "line": 2918,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_INTERRUPTED\"",
@@ -43463,7 +43463,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 2920,
+          "line": 2919,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_FAILED\"",
@@ -43477,18 +43477,18 @@
           "kind": "alias",
           "name": "SLASH_FLUXTELEPORT1",
           "value": "/fluxtp",
-          "line": 3212
+          "line": 3211
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXTELEPORT2",
           "value": "/fluxtp",
-          "line": 3213
+          "line": 3212
         },
         {
           "kind": "handler",
           "name": "FLUXTELEPORT",
-          "line": 3214
+          "line": 3213
         }
       ],
       "widgets": [],
@@ -43497,13 +43497,13 @@
         {
           "name": "FluxNonCombatGridDB",
           "lines": [
+            734,
+            746,
             747,
-            759,
-            760,
+            766,
+            778,
             779,
-            791,
-            792,
-            793
+            780
           ]
         }
       ]
@@ -75858,6 +75858,156 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/teleport_cast_work.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 160,
+      "sha256": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.GetTime",
+          "line": 18
+        },
+        {
+          "name": "endenv.InCombatLockdown",
+          "line": 19
+        },
+        {
+          "name": "returns.combatendenv.GetSpellTexture",
+          "line": 20
+        },
+        {
+          "name": "returnidendenv.GetItemIcon",
+          "line": 21
+        },
+        {
+          "name": "returnidendenv.GetSpellInfo",
+          "line": 22
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 27
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 29
+        },
+        {
+          "name": "f:SetScript",
+          "line": 31
+        },
+        {
+          "name": "f:SetOwner",
+          "line": 32
+        },
+        {
+          "name": "f:ClearLines",
+          "line": 33
+        },
+        {
+          "name": "f:SetSpellByID",
+          "line": 34
+        },
+        {
+          "name": "f:NumLines",
+          "line": 40
+        },
+        {
+          "name": "m.GetKnownTeleportSpells",
+          "line": 49
+        },
+        {
+          "name": "returnspellsendm.GetKnownPortalSpells",
+          "line": 50
+        },
+        {
+          "name": "returnspellsendm.GetMode",
+          "line": 51
+        },
+        {
+          "name": "m.GetRequiredReagentsForModeenv.GetBagItemCount",
+          "line": 59
+        },
+        {
+          "name": "env.NoteReagentItemID",
+          "line": 59
+        },
+        {
+          "name": "nilm.HasAnyTeleportOrPortalSpell",
+          "line": 91
+        },
+        {
+          "name": "endendm.SyncFlyoutEngine",
+          "line": 97
+        },
+        {
+          "name": "btn.Widget:Show",
+          "line": 132
+        },
+        {
+          "name": "btn.Widget:SetAttribute",
+          "line": 133
+        },
+        {
+          "name": "btn.Widget:HookScript",
+          "line": 134
+        },
+        {
+          "name": "btn:SetAction",
+          "line": 135
+        },
+        {
+          "name": "btn:FullRefresh",
+          "line": 136
+        },
+        {
+          "name": "btn:UpdateUsable",
+          "line": 137
+        },
+        {
+          "name": "btnm.HasAnyTeleportOrPortalSpell",
+          "line": 139
+        },
+        {
+          "name": "returntrueendm.HasAnyTeleportSpell",
+          "line": 140
+        },
+        {
+          "name": "returntrueendm.HasAnyPortalSpell",
+          "line": 141
+        },
+        {
+          "name": "returntrueendm.GetSpellForModifier",
+          "line": 142
+        },
+        {
+          "name": "endm.BuildConditionalCastLine",
+          "line": 143
+        },
+        {
+          "name": "endendm.SyncFlyoutEngine",
+          "line": 147
+        }
+      ],
+      "events": [
+        {
+          "line": 29,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "}}functionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/tier_count_work.lua",

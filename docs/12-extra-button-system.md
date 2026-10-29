@@ -59,6 +59,11 @@ Four utility slots use [Assign.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySl
 
 ## Flyouts and trinkets
 
+Teleport/portal counts follow native display text where available; reagent-free
+spells clear the number. Interrupted casts restore the preset host without popup/
+binding rebuild; destination eligibility skips reagent scans. Known legacy rune
+counts/restock controls remain. [Regression/native limits](TELEPORT_CAST_WORK.md).
+
 The loaded [FlyoutEngine](../ExtraButtonSystem/FlyoutEngine/Init.lua) supports up to 36 secure popup children. `BindHost`, `SetButtons`, `Toggle`, `Close` and `CloseAll` attach consumer-defined lists. Definitions, secure opener/child-close snippets, popup geometry, chrome, arrows and compatibility facades are separated. List/construction changes defer outside combat; prepared handlers can open/close in combat where supported. Only OPEN behavior is implemented in this pass; PRIME/RANDOM/CYCLE constants are not additional shipped behavior.
 
 [Favorites](../ExtraButtonSystem/FlyoutEngine/Favorites.lua) stores per-modifier favorites, promotes available choices, paints stars and extends tooltips. [FluxNCFlyoutOptions](../ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua) stores per-character travel hide/order choices. Missing/zone-unusable favorites fall through to available entries. Favorites and popup layout are different data.

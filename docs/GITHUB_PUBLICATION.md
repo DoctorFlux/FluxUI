@@ -40,3 +40,24 @@ ignored local files to interpret "whole addon" as unrelated private data.
 Verify GitHub main/development refs against the final local commit after push,
 and confirm a clean working tree. The Git refs identify the exact published commit;
 this file describes the prepared payload without embedding its own future hash.
+
+## Current local files and main only
+
+The user subsequently requested no other branch and clarified that the actual
+current local files are authoritative for this upload. The development branch
+pointed to the same b45eb5e commit as main and was deleted locally and on GitHub;
+all published history remains reachable from main. Main is the sole branch.
+
+Include the current teleport count/interruption fix, tests and records from the
+working tree along with current generated references. Its full95-script/736-file
+report matched every current Lua hash before upload, and527 focused checks pass
+again. The fresh [local snapshot validation](validation/main-local-snapshot-2026-10-29.json)
+records the complete publication payload. Do not replace local code with an older
+Git checkout. Native teleport acceptance remains pending as recorded.
+
+Verified external `Main-only-recovery-20261029T191346Z` preserves1,302 actual files,
+all pending/untracked work, history and404 on-disk settings files. Source ZIP SHA
+`cd0efe60d25291476223af5f022a230ef08ced34e199863831984a64f716b26a`.
+Private archives/settings/captures and ignored local helpers remain outside Git.
+Existing games and sync remain untouched. Use an ordinary push to main and verify
+the remote commit and clean working tree afterward.

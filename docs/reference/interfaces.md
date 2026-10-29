@@ -335,14 +335,14 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:3148](../../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L3148) | `RegisterEvent` | `"PLAYER_MOUNT_DISPLAY_CHANGED"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua:816](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L816) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua:817](../../ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua#L817) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2904](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2904) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2905](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2905) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2913](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2913) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2916](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2916) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_START", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2917](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2917) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2918](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2918) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_STOP", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2919](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2919) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_INTERRUPTED", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2920](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2920) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_FAILED", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2903](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2903) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2904](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2904) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2912](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2912) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2915](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2915) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_START", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2916](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2916) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2917](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2917) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_STOP", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2918](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2918) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_INTERRUPTED", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua:2919](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2919) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_FAILED", "player"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:174](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L174) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:175](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L175) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:176](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L176) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
@@ -5494,66 +5494,66 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | Declaration | Source |
 |---|---|
 | `Timer.After` | [L154](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L154) |
-| `Module.GetVendorOptionReagentSummary` | [L469](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L469) |
-| `Module.GetKnownTeleportSpells` | [L612](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L612) |
-| `Module.GetKnownPortalSpells` | [L653](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L653) |
-| `Module.HasAnyTeleportSpell` | [L692](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L692) |
-| `Module.HasAnyPortalSpell` | [L698](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L698) |
-| `Module.HasAnyTeleportOrPortalSpell` | [L704](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L704) |
-| `Module.InvalidateCache` | [L718](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L718) |
-| `Module.GetFirstKnownSpell` | [L727](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L727) |
-| `Module.GetMode` | [L746](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L746) |
-| `Module.SetMode` | [L771](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L771) |
-| `Module.ToggleMode` | [L798](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L798) |
-| `Module.ClearCheckedVisual` | [L850](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L850) |
-| `Module.ClearCheckedVisualNow` | [L886](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L886) |
-| `Module.RefreshFlyoutIfOpen` | [L919](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L919) |
-| `Module.LockToSpell` | [L957](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L957) |
-| `Module.Unlock` | [L997](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L997) |
-| `Module.IsLocked` | [L1043](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1043) |
-| `Module.UpdateLockedState` | [L1048](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1048) |
-| `Module.BuildReagentActions` | [L1148](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1148) |
-| `Module.GetRestockTarget` | [L1215](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1215) |
-| `Module.SetRestockTarget` | [L1231](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1231) |
-| `Module.UpdateReagentButtonDisplay` | [L1249](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1249) |
-| `Module.UpdateReagentButtonCountText` | [L1271](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1271) |
-| `Module.ShowReagentButtonCount` | [L1290](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1290) |
-| `Module.BuildFlyoutActions` | [L1304](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1304) |
-| `Module.CountVisibleTeleportDestinations` | [L1350](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1350) |
-| `Module.HasTeleportFlyout` | [L1363](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1363) |
-| `Module.SyncFlyoutEngine` | [L1413](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1413) |
-| `Module.ShowFlyout` | [L1443](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1443) |
-| `Module.HookFlyoutButtons` | [L1483](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1483) |
-| `Module.BuildConditionalCastLine` | [L1531](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1531) |
-| `Module.BuildFlyoutMacro` | [L1584](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1584) |
-| `Module.Register` | [L1623](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1623) |
-| `Module.EnsureButtonForBindingMode` | [L1649](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1649) |
-| `Module.CreateButton` | [L1662](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1662) |
-| `btn.UpdateUsable` | [L1773](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1773) |
-| `btn.UpdateTextCountbtn.UpdateTextCount` | [L1801](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1801) |
-| `Module.ApplyMacro` | [L1838](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1838) |
-| `Module.SetupIconProtection` | [L1876](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1876) |
-| `btn.WIcon.SetTexturebtn.WIcon.SetTexture` | [L1885](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1885) |
-| `icon.SetTextureicon.SetTexture` | [L1905](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1905) |
-| `Module.SetupClickHandlers` | [L1926](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1926) |
-| `Module.SetupMiddleClick` | [L1983](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1983) |
-| `Module.SetupRightClick` | [L1987](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1987) |
-| `Module.SetupPreClick` | [L1992](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1992) |
-| `Module.SetupTooltip` | [L2107](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2107) |
-| `Module.ShowTooltip` | [L2165](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2165) |
-| `Module.RefreshTooltip` | [L2301](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2301) |
-| `Module.GetSpellForModifier` | [L2314](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2314) |
-| `Module.GetOppositeModeDisplaySpell` | [L2402](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2402) |
-| `Module.UpdateIcon` | [L2538](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2538) |
-| `Module.UpdateTexture` | [L2596](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2596) |
-| `Module.UpdateFlyoutArrow` | [L2655](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2655) |
-| `Module.Update` | [L2675](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2675) |
-| `Module.UpdateTeleportKeybinding` | [L2815](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2815) |
-| `Module.ClearTeleportKeybinding` | [L2848](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2848) |
-| `Module.UpdateHotkeyText` | [L2858](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2858) |
-| `Module.IsTeleportOrPortalSpell` | [L3119](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3119) |
-| `Module.RefreshReagentCounts` | [L3158](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3158) |
-| `Module.RefreshAllReagentDisplays` | [L3173](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3173) |
+| `Module.GetVendorOptionReagentSummary` | [L456](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L456) |
+| `Module.GetKnownTeleportSpells` | [L599](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L599) |
+| `Module.GetKnownPortalSpells` | [L640](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L640) |
+| `Module.HasAnyTeleportSpell` | [L679](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L679) |
+| `Module.HasAnyPortalSpell` | [L685](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L685) |
+| `Module.HasAnyTeleportOrPortalSpell` | [L691](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L691) |
+| `Module.InvalidateCache` | [L705](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L705) |
+| `Module.GetFirstKnownSpell` | [L714](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L714) |
+| `Module.GetMode` | [L733](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L733) |
+| `Module.SetMode` | [L758](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L758) |
+| `Module.ToggleMode` | [L785](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L785) |
+| `Module.ClearCheckedVisual` | [L837](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L837) |
+| `Module.ClearCheckedVisualNow` | [L873](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L873) |
+| `Module.RefreshFlyoutIfOpen` | [L906](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L906) |
+| `Module.LockToSpell` | [L944](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L944) |
+| `Module.Unlock` | [L984](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L984) |
+| `Module.IsLocked` | [L1033](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1033) |
+| `Module.UpdateLockedState` | [L1038](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1038) |
+| `Module.BuildReagentActions` | [L1138](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1138) |
+| `Module.GetRestockTarget` | [L1205](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1205) |
+| `Module.SetRestockTarget` | [L1221](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1221) |
+| `Module.UpdateReagentButtonDisplay` | [L1239](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1239) |
+| `Module.UpdateReagentButtonCountText` | [L1261](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1261) |
+| `Module.ShowReagentButtonCount` | [L1280](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1280) |
+| `Module.BuildFlyoutActions` | [L1294](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1294) |
+| `Module.CountVisibleTeleportDestinations` | [L1343](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1343) |
+| `Module.HasTeleportFlyout` | [L1356](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1356) |
+| `Module.SyncFlyoutEngine` | [L1406](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1406) |
+| `Module.ShowFlyout` | [L1436](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1436) |
+| `Module.HookFlyoutButtons` | [L1476](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1476) |
+| `Module.BuildConditionalCastLine` | [L1524](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1524) |
+| `Module.BuildFlyoutMacro` | [L1577](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1577) |
+| `Module.Register` | [L1616](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1616) |
+| `Module.EnsureButtonForBindingMode` | [L1642](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1642) |
+| `Module.CreateButton` | [L1655](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1655) |
+| `btn.UpdateUsable` | [L1766](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1766) |
+| `endendbtn.UpdateTextCount` | [L1793](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1793) |
+| `Module.ApplyMacro` | [L1837](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1837) |
+| `Module.SetupIconProtection` | [L1875](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1875) |
+| `btn.WIcon.SetTexturebtn.WIcon.SetTexture` | [L1884](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1884) |
+| `icon.SetTextureicon.SetTexture` | [L1904](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1904) |
+| `Module.SetupClickHandlers` | [L1925](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1925) |
+| `Module.SetupMiddleClick` | [L1982](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1982) |
+| `Module.SetupRightClick` | [L1986](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1986) |
+| `Module.SetupPreClick` | [L1991](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L1991) |
+| `Module.SetupTooltip` | [L2106](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2106) |
+| `Module.ShowTooltip` | [L2164](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2164) |
+| `Module.RefreshTooltip` | [L2300](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2300) |
+| `Module.GetSpellForModifier` | [L2313](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2313) |
+| `Module.GetOppositeModeDisplaySpell` | [L2401](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2401) |
+| `Module.UpdateIcon` | [L2537](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2537) |
+| `Module.UpdateTexture` | [L2595](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2595) |
+| `Module.UpdateFlyoutArrow` | [L2654](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2654) |
+| `Module.Update` | [L2674](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2674) |
+| `Module.UpdateTeleportKeybinding` | [L2814](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2814) |
+| `Module.ClearTeleportKeybinding` | [L2847](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2847) |
+| `Module.UpdateHotkeyText` | [L2857](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L2857) |
+| `Module.IsTeleportOrPortalSpell` | [L3118](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3118) |
+| `Module.RefreshReagentCounts` | [L3157](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3157) |
+| `Module.RefreshAllReagentDisplays` | [L3172](../../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua#L3172) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua
 

@@ -318,18 +318,15 @@ local function SpellRequiresReagentsFromTooltip(spellId)
         tip:SetSpellByID(spellId)
     end)
 
-    if not success then return true end
+    if not success then return false end
 
     -- Scan tooltip lines for reagent mentions
     local numLines = tip:NumLines() or 0
-    local sawSecret = false
     for i = 1, numLines do
         local left = _G["FluxNCTeleportPortalSpellScannerTextLeft" .. i]
         if left then
             local line = TooltipLineText(left)
-            if not line then
-                sawSecret = true
-            else
+            if line then
                 local lowerLine = string.lower(line)
                 if lowerLine:find("rune of teleportation", 1, true) or
                    lowerLine:find("rune of portal", 1, true) then
@@ -339,8 +336,8 @@ local function SpellRequiresReagentsFromTooltip(spellId)
         end
     end
 
-    -- Midnight: tooltip bodies are secret. Fail closed so the count still shows.
-    return sawSecret
+    -- Inaccessible text is not evidence of a reagent cost.
+    return false
 end
 
 -- Get reagent item IDs that are required for spells in a given mode (tooltip names → live resolve).
@@ -391,14 +388,11 @@ local function GetRequiredReagentsForMode(mode)
 
             local numLines = tip:NumLines() or 0
             local reagentLabel = (REAGENTS or "Reagents"):lower()
-            local sawSecret = false
             for i = 1, numLines do
                 local left = _G["FluxNCTeleportPortalSpellScannerTextLeft" .. i]
                 if left then
                     local line = TooltipLineText(left)
-                    if not line then
-                        sawSecret = true
-                    else
+                    if line then
                         local lowerLine = string.lower(line)
                         local itemID = tonumber(line:match("item:(%d+)"))
                         if itemID then
@@ -416,13 +410,6 @@ local function GetRequiredReagentsForMode(mode)
                             end
                         end
                     end
-                end
-            end
-            if sawSecret then
-                if mode == Module.MODE_TELEPORT then
-                    requiredReagents[RUNE_OF_TELEPORTATION] = requiredReagents[RUNE_OF_TELEPORTATION] or "Rune of Teleportation"
-                else
-                    requiredReagents[RUNE_OF_PORTAL] = requiredReagents[RUNE_OF_PORTAL] or "Rune of Portals"
                 end
             end
         end
@@ -1031,11 +1018,14 @@ function Module.Unlock()
     
     -- Update button immediately
     if not InCombatLockdown() then
-        Module.Update()
+        -- Casting only changed the host action/face. Destinations, popup layout,
+        -- bindings and visibility still belong to their normal change handlers.
+        Module.ApplyMacro(btn)
         -- Re-enable icon protection and set icon based on current modifiers
         _iconManagedByModule = true
         local currentModKey = GetCurrentHeldModKey()
         Module.UpdateIcon(currentModKey)
+        Module.RefreshTooltip()
     end
 end
 
@@ -1301,7 +1291,7 @@ function Module.ShowReagentButtonCount(button, show)
 end
 
 -- Build flyout actions for current mode
-function Module.BuildFlyoutActions(mode)
+function Module.BuildFlyoutActions(mode, spellsOnly)
     mode = mode or Module.GetMode()
     local spells = (mode == Module.MODE_TELEPORT) and Module.GetKnownTeleportSpells() or Module.GetKnownPortalSpells()
 
@@ -1327,6 +1317,9 @@ function Module.BuildFlyoutActions(mode)
         spellActions = FluxNCFlyoutOptions.ApplyClassTeleportSpells(mode, spellActions)
     end
 
+    -- Arrow/click eligibility needs destinations, not reagent scans/restock rows.
+    if spellsOnly then return spellActions end
+
     local actions = {}
     for _, a in ipairs(spellActions) do
         actions[#actions + 1] = a
@@ -1349,7 +1342,7 @@ end
 --- Visible teleport/portal destinations after hide/order (reagents are not options).
 function Module.CountVisibleTeleportDestinations(mode)
     mode = mode or Module.GetMode()
-    local actions = Module.BuildFlyoutActions(mode)
+    local actions = Module.BuildFlyoutActions(mode, true)
     local n = 0
     for i = 1, #(actions or {}) do
         local a = actions[i]
@@ -1797,7 +1790,6 @@ function Module.CreateButton(allowEmpty)
         end
     end
 
-    local baseUpdateTextCount = btn.UpdateTextCount
     btn.UpdateTextCount = function(self)
         if self.PlaceholderHideCount then
             if self.WCount then
@@ -1805,9 +1797,18 @@ function Module.CreateButton(allowEmpty)
             end
             return
         end
-        if self.MacroMode == "spell" and self.SpellNameRank and baseUpdateTextCount then
-            baseUpdateTextCount(self)
-            return
+        -- The native display text is authoritative, including an empty string.
+        -- Do not turn an inaccessible tooltip into a guessed Classic rune count.
+        local spellId = self._fluxManagedFaceSpellId or self.SpellId
+        if spellId and C_Spell and C_Spell.GetSpellDisplayCount then
+            local ok, text = pcall(C_Spell.GetSpellDisplayCount, spellId)
+            if ok and text ~= nil then
+                if self.WCount then
+                    self.WCount:Show()
+                    self.WCount:SetText(text)
+                end
+                return
+            end
         end
         local mode = Module.GetMode()
         local reagents = GetRequiredReagentsForMode(mode)
@@ -1820,9 +1821,7 @@ function Module.CreateButton(allowEmpty)
                 return
             end
         end
-        if baseUpdateTextCount then
-            baseUpdateTextCount(self)
-        end
+        if self.WCount then self.WCount:SetText("") end
     end
 
     -- Apply styling + macro after custom usability override is installed

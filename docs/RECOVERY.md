@@ -1,5 +1,18 @@
 # Recovery checkpoint 2026-10-29
 
+## Teleport checkpoint — 29 October 2026, 18:53 UTC / 19:53 Copenhagen
+
+External `Flyout-recovery-20261029T185326Z` in the current visualization workspace
+preserves HEAD `b45eb5ecd52472b54eefe0249707c972c45c8d2d`, tree
+`1325e1301dfe2b11f49fd4057ef75bee6fa344d1`. All 1,297 actual non-Git source files
+and 180 Retail on-disk WTF files have verified ZIP entries. Full Git refs/history
+bundle passes verification. Source SHA-256:
+`318b34efcdc39a82c1fce7df512c0b745cd701583b730831e477717bc8d4fd99`;
+settings `5a02c2abfd59c78c1db740f8e6983a283ba7cde5679b54796429fc0dbf808463`;
+history `e3063e0f3065ade5cd4f4f1ac210bb785ad6783971d5e00ffdadbf707eae2640`.
+On-disk state only; client closure/unsaved-state backup not claimed. Earlier
+checkpoints intact. No settings restored or modified.
+
 Before repository edits, the checkout was `main` at
 `7436820453d2248c84c99fff71507553efc47c19`, tree
 `6e3af8d646a09ce2182ffd6d2cc287890584825a`. Remote:
@@ -297,3 +310,15 @@ settings `c594fd581478400f2005840f73423ea4e5c2cac4bfa3a276106ae8e4bc54501c`;
 history `3344c2fc28b8aad8221ad6be7c95c34617af06a29018b00482ebcb121403ae19`.
 Entries/bundle verify. Clients/sync left untouched; unsaved native state excluded.
 No private archive or account export is committed. Main publication now authorized.
+
+## 29 October2026,19:14 UTC /20:14 Copenhagen - main-only cleanup
+
+External `Main-only-recovery-20261029T191346Z` captures main at b45eb5e and every
+current local change, including teleport source/test/docs. Verified1,302 actual
+files /39,310,869 bytes;404 on-disk settings files /6,336,174 bytes and full history.
+Source ZIP SHA `cd0efe60d25291476223af5f022a230ef08ced34e199863831984a64f716b26a`;
+settings `f929b478203a2c4bac5e79149471e35baa40082184272dcde24eddce7fc5d72d`;
+history `46e5661f881b085d48b2509257ca02d93276430e9ad636a359b7a1fd2b1791f6`.
+Private archives remain outside AddOns/Git; live unsaved settings not captured.
+No client or sync interaction. User authorizes publishing the complete local
+snapshot to main only; the removed branch had no unique commits.

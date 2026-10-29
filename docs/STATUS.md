@@ -1,5 +1,13 @@
 # Development status
 
+Latest follow-up: [BUG-012/PERF-011](TELEPORT_CAST_WORK.md) corrects teleport/portal
+counts and removes reagent scans/popup rebuilds from interrupted-cast recovery.
+User confirms Retail. 527 focused checks, three rejected mutations and five
+desktop pairs pass; integrated 100 casts reduce tooltip calls 2,000 -> 0 and
+popup rebuilds 100 -> 0. Full 95 scripts / 736 syntax files pass. Native hitch
+resolution/combat/taint/pixels and other custom flyouts remain pending. No game,
+settings or profiler changes; working-tree fix unpublished.
+
 Updated 29 October 2026. Repository: DoctorFlux/FluxUI; addon: `_FluxUI`.
 Work continues on the existing change branch. Main remains
 `7436820453d2248c84c99fff71507553efc47c19`; no merge or push performed.
@@ -219,3 +227,13 @@ development branch, verified by reading both remote refs. The complete addon,
 tracker fix, tests and current references are included. No force push, private
 settings/captures, archive upload or live game changes. All 735 Lua hashes match
 the fresh 94-script report; native pending checks retain their recorded scope.
+
+## Latest publication scope: local snapshot, main only
+
+The user now requires main only and upload of the current local files, including
+the teleport fix that was not part of b45eb5e. The identical development branch
+was removed locally/on GitHub without losing commits. Earlier branch-retention
+notes are historical and superseded. Current source matches the95-script/736-file
+teleport corpus;527 focused checks pass again. [Fresh publication validation](validation/main-local-snapshot-2026-10-29.json)
+records the complete local snapshot. All current code/test/docs belong in main;
+private backups/settings/captures remain local. Native pending checks are unchanged.

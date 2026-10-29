@@ -1,5 +1,12 @@
 # Baseline protocol and currency evidence
 
+[BUG-012/PERF-011 teleport work](TELEPORT_CAST_WORK.md) records five alternating
+desktop pairs/exact sources: per 100 integrated interruptions, tooltip calls
+2,000 -> 0 and popup rebuild boundaries 100 -> 0, zero variation. 527 focused
+assertions and three rejected mutations pass. Native Retail hitch/CPU/FPS/pixel/
+security acceptance pending. Live preferences/diagnostics unchanged; counts do
+not establish native timing.
+
 The frozen cumulative baseline is commit
 `7436820453d2248c84c99fff71507553efc47c19`, tree
 `6e3af8d646a09ce2182ffd6d2cc287890584825a`, plus the complete actual-file recovery

@@ -1,0 +1,3526 @@
+{
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+  "syntaxFiles": 736,
+  "syntaxFailures": [],
+  "tests": [
+    {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 1.006,
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 4.4705,
+      "output": "Forever control smoke passed: 25920 native mouse/key/mini actions; combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe\n"
+    },
+    {
+      "path": "Bars/_tmp_stockgridsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.1907,
+      "output": "forever: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nlive: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nclassic_anniversary: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nclassic_era: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nmop: native failure route, stock suppression, independent listeners, lifecycle and combat deferral passed\nstock grid smoke passed (4 native snapshots + MoP compatibility fixture; WoW taint/in-game input not modeled)\n"
+    },
+    {
+      "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0309,
+      "output": "Questie battlefield pins smoke OK (Forever/native coexistence, Classic route, shared World Map settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)\n"
+    },
+    {
+      "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0284,
+      "output": "character info smoke OK\n  Era/Anniversary: CSC dropdown on CharacterAttributesFrame\n  Live/Forever: no CSC; pane/ScrollBox hooks + Info Frame pins\n  Forever pet ScrollBox is not pinned\n"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0463,
+      "output": "Forever shared stats OK: native values, live combat text/merged rows, native totals, saved order, row clicks/tooltips; Live/Era/Wrath isolated\n"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0281,
+      "output": "Forever Character status OK: no category injection/native refresh/hooks; owned ilvl + pins + equipment events; original Character show/hide and text methods\n"
+    },
+    {
+      "path": "Core/_tmp_buffdebuffsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0254,
+      "output": "player runtime smoke OK (hidden bar updates, original scripts, overlay filters, vehicles, legacy combos)\n"
+    },
+    {
+      "path": "Core/_tmp_classpowerscalesmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0366,
+      "output": "Class power scale OK: actual scoped options/getter; 9 native classes, container/loose/arcane/totems; Classic row; target suppression; 50-200% and combat deferral\n"
+    },
+    {
+      "path": "Core/_tmp_clientguardsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0339,
+      "output": "client guard smoke OK (Retail 12.1.5, stray flags/APIs, Forever, Era, Anniversary, Mists, unfiltered secret backend loads)\n"
+    },
+    {
+      "path": "Core/_tmp_coresmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0537,
+      "output": "core smoke OK\n  scheduler: layout \u00e2\u2020\u2019 display \u00e2\u2020\u2019 eval; paging defers eval/display\n  modifier: FluxModifierTracker alias, demand-driven OnUpdate\n  context: kinded fingerprint bus on display tier\n  identity: shown-face publish + last-sig skip\n  occupancy: type+id only, no GetMacroSpell\n  formstorm: IsBursting / IsSettling / GetSnapshot\n  hoplag: /fluxhop overlay, off by default\n  aura: slots/index gate on CanAccessSecrets; GetPlayerAuraBySpellID does not\n  secrets: SafeBooleanTest/SafeLooksEmpty/AuraUpdateInfoIsNoop/KeepLastNumber\n  swing: gated off live post-DF + post-Cata classic; Forever uses PLAYER_SWING; CLEU + DurationUtil probed\n"
+    },
+    {
+      "path": "Core/_tmp_foreveraurassmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0294,
+      "output": "Forever native aura smoke OK (original native methods, gains, stacks, refresh, timers, removals, expiration, vehicles, post-combat)\n"
+    },
+    {
+      "path": "Core/_tmp_foreverbarstylesmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.036,
+      "output": "Retail HUD art smoke OK (Forever standalone fills, Live atlases, HP/loss, power, prediction/ghost, recovery, missing atlases, client guards, TGA assets)\n"
+    },
+    {
+      "path": "Core/_tmp_forevercombosmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0344,
+      "output": "Forever combos OK: real native point mixin; rogue/cat, player-only layout, combat gains/spends, target transfers, secret count/max, forms, vehicles, options, deferred init, client guards\n"
+    },
+    {
+      "path": "Core/_tmp_minimaplayoutsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0286,
+      "output": "minimap layout smoke OK (embed/restore, tall windows, combat deferral, native bar methods and cluster geometry preserved)\n"
+    },
+    {
+      "path": "Core/_tmp_playeraurassmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0246,
+      "output": "native aura smoke OK (only stock frame anchors, combat events, embed, Edit Mode, scaling, late load)\n"
+    },
+    {
+      "path": "Core/_tmp_stancehidesmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0428,
+      "output": "stance hide smoke OK (native HANDLE:Hide, 800 combat shows, original scripts, aliases, late buttons, retries, reload, Classic/Forever)\n"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0416,
+      "output": "Ammo OK: Forever durability + repairs + combat ticks; count survives current Paint; bright display-only icon; real stack/ammo counts and other clients preserved\n"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.6679,
+      "output": "mists consumables passed\ncata consumables passed\nforever consumables passed\nretail consumables passed\nanniversary consumables passed\nera consumables passed\nwrath consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0389,
+      "output": "Mount item smoke passed: 30 checks\n"
+    },
+    {
+      "path": "Inventory/_tmp_inventorylag_smoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.3916,
+      "output": "wrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+    },
+    {
+      "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.4177,
+      "output": "Junk smoke OK: actual compatibility/facade/classifier/seller; Live/Forever/Era/Anniversary/Mists; gray rules/lists, async and immediate sales, no duplicates/bulk/cursor fallback, busy retry, protection, relocation, mode switch, close\nJunk visuals OK: native/fallback coin + highlight, pooled/named buttons, uncached grays, protected/empty slots, settings, native coin resets, Baganator item-data refresh\n"
+    },
+    {
+      "path": "MicroMenu/_tmp_bagslotssmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0466,
+      "output": "Bag slot smoke OK (Forever native art/masks, reagent marker/tooltips, native keyring toggle with showKeyring off, key drops, bag equip/swap/unequip, refresh/layout, Live/gamepad/alternative UI guards)\n"
+    },
+    {
+      "path": "MicroMenu/_tmp_micromenusmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0326,
+      "output": "micromenu pos2 smoke OK\n"
+    },
+    {
+      "path": "Minimap/_tmp_questiesmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0429,
+      "output": "Questie tracker smoke OK (Classic/Forever parity, async frames, late addon, native header ownership, overflow, collapse/expand, combat, optional native timer and disabled tracker)\n"
+    },
+    {
+      "path": "Minimap/_tmp_trackercombatsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0418,
+      "output": "tracker combat smoke passed: original closure bypass reproduced; captured/direct/dirty updates defer, regen coalesces, callbacks recover, gamepad entry stays native\n"
+    },
+    {
+      "path": "NamePlates/_tmp_combosmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0506,
+      "output": "Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options\n"
+    },
+    {
+      "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0888,
+      "output": "forever: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nforever missing add private API: aura fallback and native dispellable filtering OK\nforever missing remove private API: aura fallback and native dispellable filtering OK\nlive: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nlive missing add private API: aura fallback and native dispellable filtering OK\nlive missing remove private API: aura fallback and native dispellable filtering OK\nclassic_era: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_era missing add private API: aura fallback and native dispellable filtering OK\nclassic_era missing remove private API: aura fallback and native dispellable filtering OK\nclassic_anniversary: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_anniversary missing add private API: aura fallback and native dispellable filtering OK\nclassic_anniversary missing remove private API: aura fallback and native dispellable filtering OK\nRaid aura smoke OK (4 supplied clients, native methods retained; engine taint requires in-game validation)\n"
+    },
+    {
+      "path": "tests/assisted_highlight_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.1891,
+      "output": "METRIC era_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC era_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC era_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC era_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC anniversary_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC anniversary_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC anniversary_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC anniversary_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC progression_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC progression_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC progression_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC progression_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC live_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC live_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC live_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC live_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC forever_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC forever_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.005000\nMETRIC forever_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC forever_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nAssisted highlight work: 1420 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/bag_free_slots.lua",
+      "exit": 0,
+      "wallSeconds": 0.0381,
+      "output": "shared bag counts: 1102 checks across five branches, native/legacy/timerless APIs; 4 regressions rejected\n"
+    },
+    {
+      "path": "tests/bars_contract_regression.lua",
+      "exit": 0,
+      "wallSeconds": 0.1027,
+      "output": "bars contract regression: 468 production checks across five clients; 13 mutations rejected\n"
+    },
+    {
+      "path": "tests/bars_edit_mode.lua",
+      "exit": 0,
+      "wallSeconds": 0.0308,
+      "output": "Bars Edit Mode: 43 checks; five client models; negative control passed\n"
+    },
+    {
+      "path": "tests/bars_refresh_regression.lua",
+      "exit": 0,
+      "wallSeconds": 0.7799,
+      "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\n"
+    },
+    {
+      "path": "tests/bars_startup_retry.lua",
+      "exit": 0,
+      "wallSeconds": 0.0545,
+      "output": "assistant rate samples: 600; 85 paints per consumer (600 frames; use --baseline for HEAD comparison)\nbars startup retry: 714 checks passed\n"
+    },
+    {
+      "path": "tests/binding_respec_regression.lua",
+      "exit": 0,
+      "wallSeconds": 0.0538,
+      "output": "binding/respec regression: 110 checks passed\n"
+    },
+    {
+      "path": "tests/blizzard_script_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.0522,
+      "output": "Blizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\n"
+    },
+    {
+      "path": "tests/castbar_school_themes.lua",
+      "exit": 0,
+      "wallSeconds": 3.0252,
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6143 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13833 checks across five client families (native rendering/taint unverified)\n"
+    },
+    {
+      "path": "tests/chat_column_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.1249,
+      "output": "chat column: 1311 checks across five branches, both sides; 4 regressions rejected\nMETRIC live_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC live_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_left hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nMETRIC forever_right hook_timers=3 burst_cycles=0 burst_new_frames=0 combat_waiters=1\nQuickJoin column ownership: 508 checks, 0 failures\nALIGN_METRIC live_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC live_right shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC classic_era_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_era_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_left shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_anniversary_right shared_tab_reads=203 layout_points=1000 new_frames=0\nALIGN_METRIC classic_left shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC classic_right shared_tab_reads=203 layout_points=900 new_frames=0\nALIGN_METRIC forever_left shared_tab_reads=103 layout_points=900 new_frames=0\nALIGN_METRIC forever_right shared_tab_reads=103 layout_points=900 new_frames=0\nChat column reference alignment: 190 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/chat_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.0793,
+      "output": "chat layout: 165 checks across five branches; 4 regressions rejected\n"
+    },
+    {
+      "path": "tests/chat_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0558,
+      "output": "Chat startup/tabs: 478 checks; reference-client fades exercised; native rendering/taint unverified\n"
+    },
+    {
+      "path": "tests/combat_queue_supersession.lua",
+      "exit": 0,
+      "wallSeconds": 0.0376,
+      "output": "combat queue supersession: 264 checks; five clients; stale mutation rejected; recovery job executions 4 -> 3 with identical latest result\n"
+    },
+    {
+      "path": "tests/consumable_restock_clicks.lua",
+      "exit": 0,
+      "wallSeconds": 0.1049,
+      "output": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n"
+    },
+    {
+      "path": "tests/currency_provider_handoff.lua",
+      "exit": 0,
+      "wallSeconds": 0.0811,
+      "output": "era repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nera repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nanniversary repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nmists repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nretail repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=1 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=2 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=3 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=4 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\nforever repetition=5 events=400 moneyReads=0 requests=0 scans=0 money=999 generationDelta=0\ncurrency provider handoff: 150 checks, 0 failures; desktop operation counts only\n"
+    },
+    {
+      "path": "tests/data_integrity.lua",
+      "exit": 0,
+      "wallSeconds": 0.0334,
+      "output": "PASS: 36 data-integrity checks; gear rebuild: 1 GUID + 1 existence queries (100 bag slots)\n"
+    },
+    {
+      "path": "tests/deferred_inventory_handoff.lua",
+      "exit": 0,
+      "wallSeconds": 0.0796,
+      "output": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n"
+    },
+    {
+      "path": "tests/edit_mode_recovery.lua",
+      "exit": 0,
+      "wallSeconds": 0.0402,
+      "output": "Edit Mode recovery: 215 checks; five client models and native source methods; negative control passed\n"
+    },
+    {
+      "path": "tests/edit_mode_settings.lua",
+      "exit": 0,
+      "wallSeconds": 0.0341,
+      "output": "Edit Mode settings: 363 checks across five clients; two negative controls passed\n"
+    },
+    {
+      "path": "tests/extra_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0613,
+      "output": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n"
+    },
+    {
+      "path": "tests/grid_child_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0428,
+      "output": "PASS: 18 grid-child startup checks; unknown data is never claimed as configured input\n"
+    },
+    {
+      "path": "tests/hud_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0322,
+      "output": "PASS: 25 HUD-startup checks (extracted actual lifecycle/guard functions; WoW taint still requires live tests)\n"
+    },
+    {
+      "path": "tests/idle_bars.lua",
+      "exit": 0,
+      "wallSeconds": 0.3752,
+      "output": "Forever fallback: 14400 frame callbacks, 900 parses, 0 unit queries\nidle bars: 153 checks passed; 7 production mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_chat.lua",
+      "exit": 0,
+      "wallSeconds": 0.0518,
+      "output": "idle chat: 70 checks; 5 mutations rejected; open-panel writes/2400frames 26400 -> 0; 200-event bag callbacks 200 -> 2\n"
+    },
+    {
+      "path": "tests/idle_hud.lua",
+      "exit": 0,
+      "wallSeconds": 0.1535,
+      "output": "idle HUD after: 600s clock writes=11, formats=11, hidden clock queries=0; 2400 marquee frames text/width/measure/color=0/0/0/0; 2400 idle callbacks after refit=0\nidle HUD stat discovery: 3720 GetChildren calls in 30 refreshes of 124 nodes\nidle HUD: 988 checks across five clients; 13 behavioral mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_info_layout.lua",
+      "exit": 0,
+      "wallSeconds": 3.0827,
+      "output": "idle info layout: width/font/text native calls per fitting3-stat layout = 18/21/21 -> 6/9/9\nidle info layout: 5 behavioral mutations rejected\nidle info layout: 9733 comparisons passed\n"
+    },
+    {
+      "path": "tests/idle_layout_retries.lua",
+      "exit": 0,
+      "wallSeconds": 0.8985,
+      "output": "idle layout retries: 5869 checks across five clients; 6 mutations rejected\nsame-frame chat burst: 903 -> 3 timers; 102 login/world events: 104 -> 1 watcher frames\n"
+    },
+    {
+      "path": "tests/idle_map.lua",
+      "exit": 0,
+      "wallSeconds": 0.0401,
+      "output": "idle map after: 30 visits refreshes=30, zone watchers=1, show/hide hooks=1/1\nidle map: 2493 checks across five client paths; 5 behavioral mutations rejected\n"
+    },
+    {
+      "path": "tests/idle_tiers.lua",
+      "exit": 0,
+      "wallSeconds": 0.0686,
+      "output": "tier candidate checks per five-kind scan: 600 -> 8\nidle tiers: 16527 checks; five client/adapter models; 3 mutations rejected; live usability, async data, references and fallbacks retained\n"
+    },
+    {
+      "path": "tests/idle_trinkets.lua",
+      "exit": 0,
+      "wallSeconds": 0.0661,
+      "output": "idle trinkets: 1563 checks; five client models; 4 mutations rejected; 4800 frames binding queries 9600 -> 0; Lua heap 1275.09KB -> 0.00KB (GC paused in fixture only)\n"
+    },
+    {
+      "path": "tests/idle_unit_geometry.lua",
+      "exit": 0,
+      "wallSeconds": 0.5117,
+      "output": "idle unit geometry: 21727 checks; five clients; 6 mutations rejected; 300 unchanged updates anchor/UV writes 10500 -> 1800\n"
+    },
+    {
+      "path": "tests/idle_units.lua",
+      "exit": 0,
+      "wallSeconds": 0.1193,
+      "output": "idle units: 843 checks; missing-unit ClearModel calls/minute = 1200 -> 4\n  20s/240Hz dispatch: fallback=4800 frame callbacks, native=0 frame callbacks + 100 health timer callbacks; 11 mutations rejected\n  3000 unchanged samples, Lua heap allocated with GC paused: closure control=1171.88KB, candidate=0.00KB\n"
+    },
+    {
+      "path": "tests/input_diagnostics.lua",
+      "exit": 0,
+      "wallSeconds": 0.0475,
+      "output": "Input diagnostics: read-only capture, secrets, false/protected states, restricted reads, click routing, logging mode, bounded callback passed\n"
+    },
+    {
+      "path": "tests/late_inventory.lua",
+      "exit": 0,
+      "wallSeconds": 0.0299,
+      "output": "late inventory: absent, pending, ready and duplicate readiness handoffs passed\n"
+    },
+    {
+      "path": "tests/loot_roll_lifecycle.lua",
+      "exit": 0,
+      "wallSeconds": 0.0315,
+      "output": "METRIC era frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC anniversary frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC progression frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC live frames=3 combat_frames=1 hooks=1 writes=101\nMETRIC forever frames=3 combat_frames=1 hooks=1 writes=101\nLoot roll lifecycle: 2050 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/map_init_watchers.lua",
+      "exit": 0,
+      "wallSeconds": 0.0335,
+      "output": "map initialization: 8464 checks; five clients plus legacy zoom fallback; 5 mutations rejected; 30 visits modern watcher frames 30 -> 1 (legacy 60 -> 2)\n"
+    },
+    {
+      "path": "tests/modern_spellbook_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.0315,
+      "output": "Modern spellbook ownership: 82 checks passed; native taint VM unverified\n"
+    },
+    {
+      "path": "tests/mp5_mana_ticks.lua",
+      "exit": 0,
+      "wallSeconds": 0.0655,
+      "output": "PASS MP5 mana ticks: 127 checks (native rendering and taint unverified)\n"
+    },
+    {
+      "path": "tests/nameplate_countdown_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.5168,
+      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.035000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.042000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.034000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.034000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.038000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.037000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nNameplate countdown work: 1160 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/native_menu_input.lua",
+      "exit": 0,
+      "wallSeconds": 0.0407,
+      "output": "Native menu/input ownership: 121 checks; five client models; negative control passed\n"
+    },
+    {
+      "path": "tests/native_mouse_suppression.lua",
+      "exit": 0,
+      "wallSeconds": 0.0581,
+      "output": "Native mouse suppression/Edit Mode: 2167 checks; five branches; 12 negative controls passed\n"
+    },
+    {
+      "path": "tests/objective_tracker_scroll.lua",
+      "exit": 0,
+      "wallSeconds": 0.0386,
+      "output": "Objective tracker scroll: 40 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/optional_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0316,
+      "output": "optional BigDebuffs startup: late install, idempotency and execution-time combat deferral passed\n"
+    },
+    {
+      "path": "tests/owned_item_detection.lua",
+      "exit": 0,
+      "wallSeconds": 0.0429,
+      "output": "Owned item detection passed: 29 checks\n"
+    },
+    {
+      "path": "tests/pending_mail_provider_handoff.lua",
+      "exit": 0,
+      "wallSeconds": 0.1058,
+      "output": "send existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nsend standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\nreturn existing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn existing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff success providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn missing-mail handoff failure providerLookups=0 providerRowsDelta=0 providerAddedCount=0 savedRowsDelta=0 savedPending=nil retainedEvents=0\nreturn standalone cycles=100 frames=1 retainedEvents=0 successfulCredits=50\npending mail provider handoff: 410 checks, 0 failures; desktop operation counts only\n"
+    },
+    {
+      "path": "tests/perf_capture.lua",
+      "exit": 0,
+      "wallSeconds": 0.0547,
+      "output": "perf capture: 384 checks across five clients; 12 mutations rejected\n"
+    },
+    {
+      "path": "tests/perf_capture_retention.lua",
+      "exit": 0,
+      "wallSeconds": 0.2927,
+      "output": "METRIC live retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC forever retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_era retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic_anniversary retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nMETRIC classic retained_snapshots=0 retained_frame_rows=0 timer_callbacks=40\nCapture retention: 400 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/portrait_camera.lua",
+      "exit": 0,
+      "wallSeconds": 0.036,
+      "output": "Portrait camera: 1191 checks; five client models; three negative controls passed\n"
+    },
+    {
+      "path": "tests/portrait_transmog_combat.lua",
+      "exit": 0,
+      "wallSeconds": 0.0355,
+      "output": "Portrait transmog combat: 616 checks; five capability models; negative control passed\n"
+    },
+    {
+      "path": "tests/possession_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.0506,
+      "output": "possession layout: 100 checks passed; Retail/Forever native controller, stance, Edit Mode and LayoutFrame; original policy rejected\n"
+    },
+    {
+      "path": "tests/queue_eye_lifecycle.lua",
+      "exit": 0,
+      "wallSeconds": 0.03,
+      "output": "Queue eye lifecycle: 61 checks; five client models; negative control passed\n"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.0436,
+      "output": "Raid startup: 2061 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+    },
+    {
+      "path": "tests/salvage_overlay.lua",
+      "exit": 0,
+      "wallSeconds": 0.062,
+      "output": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n"
+    },
+    {
+      "path": "tests/spellbook_native_input.lua",
+      "exit": 0,
+      "wallSeconds": 0.0331,
+      "output": "PASS spellbook native input: 56 checks across five client models; native taint unverified\n"
+    },
+    {
+      "path": "tests/startup_lifecycle.lua",
+      "exit": 0,
+      "wallSeconds": 0.0789,
+      "output": "startup lifecycle: 205 checks passed (five client fixtures; no native taint/render simulation)\n"
+    },
+    {
+      "path": "tests/teleport_cast_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.0359,
+      "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/tier_count_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.418,
+      "output": "METRIC classic_era initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic_anniversary initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC classic initial_checks=17 repeat_checks=425 bank_reads=19500\nMETRIC live initial_checks=18 repeat_checks=450 bank_reads=23400\nMETRIC forever initial_checks=18 repeat_checks=450 bank_reads=23400\nTier count work: 1710 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/transmog_actions.lua",
+      "exit": 0,
+      "wallSeconds": 0.0806,
+      "output": "Transmog actions: 5925 checks; five branches, capability adapters, six negative controls passed\n"
+    },
+    {
+      "path": "tests/unit_click_edges.lua",
+      "exit": 0,
+      "wallSeconds": 0.0304,
+      "output": "Unit click edges: 41 checks; five native source handlers; negative control passed\n"
+    },
+    {
+      "path": "tests/unit_resource_lifecycle.lua",
+      "exit": 0,
+      "wallSeconds": 0.0662,
+      "output": "unit resource lifecycle: 16272 checks, five client models, 7 mutations rejected\n  100 option/enable cycles: watcher frames 201 -> 1; 300 spark paints: style writes 1200 -> 4\n"
+    },
+    {
+      "path": "tests/unitframes_lifecycle_spec.lua",
+      "exit": 0,
+      "wallSeconds": 0.0697,
+      "output": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n"
+    },
+    {
+      "path": "tests/vendor_open_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.0923,
+      "output": "METRIC era cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC anniversary cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC wrath cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC cata cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC mists cold_reads=200 repeat_reads=0 frames=1 native_reads=0\nMETRIC live cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nMETRIC forever cold_reads=240 repeat_reads=0 frames=1 native_reads=182\nVendor-open work: 265 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/vendor_slot_identity.lua",
+      "exit": 0,
+      "wallSeconds": 0.083,
+      "output": "METRIC legacy_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC legacy_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC legacy_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC legacy_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC modern_id_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=4 link_reads=1 spent=10 frames=1\nMETRIC modern_id_stable calls=40 passes=5 id_reads=40 link_reads=0 frames=1\nMETRIC modern_link_debounced_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_debounced_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_manual wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_rebuilt_tier wrong=0 unavailable=0 wrong_cost=0 calls=2 id_reads=0 link_reads=4 spent=10 frames=1\nMETRIC modern_link_stable calls=40 passes=5 id_reads=0 link_reads=40 frames=1\nMETRIC legacy_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC legacy_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC legacy_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC legacy_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC legacy_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_same_pass calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_across_passes calls=10 rejected=0 bought=10 accounted=50 actual_spent=50 passes=2 info_reads=0 frames=1\nMETRIC modern_shared_stock calls=2 rejected=0 bought=3 accounted=15 actual_spent=15 passes=1 info_reads=0 frames=1\nMETRIC modern_sold_out_partial_gold calls=0 rejected=0 bought=0 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_unlimited calls=40 rejected=0 bought=40 accounted=200 actual_spent=200 passes=5 info_reads=0 frames=1\nMETRIC modern_unlimited_partial_gold calls=1 rejected=0 bought=2 accounted=10 actual_spent=10 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_currency calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nMETRIC modern_finite_item_cost calls=1 rejected=0 bought=10 accounted=0 actual_spent=0 passes=1 info_reads=0 frames=1\nVendor slot/stock: 837 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/vendor_tier_work.lua",
+      "exit": 0,
+      "wallSeconds": 0.085,
+      "output": "METRIC legacy_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC legacy_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC legacy_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC legacy_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nMETRIC modern_20 seed_info=9 seed_owned=9 status_info=19 status_owned=19 seed_classify=100 status_classify=200\nMETRIC modern_20_reopen info=0 owned=0 classify=1500 frames=1 purchases=0\nMETRIC modern_200 seed_info=10 seed_owned=10 status_info=20 status_owned=20 seed_classify=1000 status_classify=2000\nMETRIC modern_200_reopen info=0 owned=0 classify=15000 frames=1 purchases=0\nVendor tier work: 340 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/window_mover_disabled.lua",
+      "exit": 0,
+      "wallSeconds": 0.0427,
+      "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/window_runtime_spec.lua",
+      "exit": 0,
+      "wallSeconds": 0.038,
+      "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
+    },
+    {
+      "path": "WindowMover/_tmp_charactercombatsmoke.lua",
+      "exit": 0,
+      "wallSeconds": 0.0271,
+      "output": "Character mover combat OK: native Forever show/layout untouched on keyboard/gamepad; deferred layout recovers; Retail unchanged\n"
+    }
+  ],
+  "pass": 95,
+  "fail": 0,
+  "manifest": [
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxBattlezone.lua",
+      "sha256": "45ed43aa6568f81b90b5cdb9f9ee141580b8568a3d765641eae1539ebbf8c95f"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxExtraButtonVisibility.lua",
+      "sha256": "f0094be606fc37a3cee69db7e456f8c28ce7ec768959d54c0b736e2506cf637a"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxInfoStatOrder.lua",
+      "sha256": "df028169f554c958f218db2e97a0b23186bfd519b9369fc2c080d60a175d9742"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxItemCurrencySlots.lua",
+      "sha256": "fa1c5558e9ec879bc007649b6399fa57f8ad93018b8a90d5b6b8efc23812f410"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxLayoutPreview.lua",
+      "sha256": "bfec8bda22dfe902f3c771e03e877742b6cf7004752569a53f0358f9b9341ceb"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxNCFlyoutPanel.lua",
+      "sha256": "2137f42f261665121b31bbb8752322b44fd340fd42a06a371e23f36396da0a89"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxOptionsToggleGrid.lua",
+      "sha256": "9e3170ac52d459203891f33c73d40b9641edf61abd17423a0c447704f91dfb2c"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxRestockPanel.lua",
+      "sha256": "2236f84f66725ed4ebf4e8e666508c65fdae20e3cee49da2e6b9bf339bdbabb8"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxSpellBlacklistPanel.lua",
+      "sha256": "8bc51ce2b4c83c1b8561def76c563143efeeeb976e1a1371c4ca6d7dc31a89d6"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxSpellBookSlotsPanel.lua",
+      "sha256": "af47feda5c3ecc3e983409f9875eeec24834663653e7fbff187c10a2f79a8f0d"
+    },
+    {
+      "path": "AddonOptions/AceGUIWidget-FluxStanceBarOrderPanel.lua",
+      "sha256": "cdf66bec82c3ebb41d25bc478232b45b3769572570140e3078e66614ea08c0a8"
+    },
+    {
+      "path": "AddonOptions/FluxLayoutPreviewUI.lua",
+      "sha256": "2f7a39b3df3b964f8efd012aea33d9a3a75e576077199f423074aa4c1dccf3fd"
+    },
+    {
+      "path": "AddonOptions/FluxOptions.lua",
+      "sha256": "448ee98dd2aecc31c423f1fa9b3071c31c7c04a97ec07ebdf2d19d0b68c9a248"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsActionBars.lua",
+      "sha256": "0cec8a382ae97f9b5719089f7b418449bcd4f5b92dd31ae8d83b02663cce83ed"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsActionBars_Bar.lua",
+      "sha256": "3c648b55eb705672853672c395084e3433d52c6c9958bbd149732f3fe7342a4e"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsActionBars_Bindings.lua",
+      "sha256": "944caca53451b5bf224f35524ec39104a0f7efd4579b84ba59f167cdf9a07b38"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsActionBars_Extra.lua",
+      "sha256": "11a5d7f74c4a22f3ec786570a7363477f9b10154fa3f249ef6b69d1eb1ddd843"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsActionBars_Stance.lua",
+      "sha256": "9752e6623e1b3e4115595b6d4e8ce94b52cc3a7fa0da63d69d7ac7eab4a8b234"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsBattlezone.lua",
+      "sha256": "0b22356b82ce2088e33b4c8d41af2a127b5e8e34a87cb54c89933c5820bf7fc2"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsBinding.lua",
+      "sha256": "2d5537033198d0fcad12a905871a833f5aadb305b46f628936251625ffa88d73"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsCatalog.lua",
+      "sha256": "e0453657a441a483cb355719de8f05bc5849aafdcee8ebde6a589323ba9de284"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsChat.lua",
+      "sha256": "ee92bdf2a839487530435cdf2fc202623f2b2ff8ad85f3e0a44602d09406b445"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsDefaults.lua",
+      "sha256": "0025d296774f2cdc460ed783d70d6a349204ce01088f44dac4606bf2dd634f17"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsGeneral.lua",
+      "sha256": "75e2e1594fd7dee8afa380ded5fa02599a9a217aa6d41ae37160ca4e8ff7b406"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsInfo.lua",
+      "sha256": "c3971b2bcf37770695215f678bda68aaf0f2630c57fa45b6b8e6e3252ee89c2f"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsLayout.lua",
+      "sha256": "d11e9dca1340694dee4cf65c196455c588c39a77d43622ce20f215bd25705609"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsMicroMenu.lua",
+      "sha256": "eca37810bc2dc8b0e413f1f98a006ff33b9f56e002db58a8ef5fee317ae0c609"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsNameplates.lua",
+      "sha256": "d62156084777d3b16b80fb14fe7afe23caaa3eb854f5cd071aa566ab81205a9c"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "sha256": "43db9f4f59bc5b3b163d81befd91e8e5a868cd7f98ad9da2b7219ca96774e8f4"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsRender.lua",
+      "sha256": "0fc9ddd3cde4062dfce032046c02aa562b638844c8f6c4d3b04aa3f98b7e949e"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsSalvage.lua",
+      "sha256": "ec0a07670b8c98162646ade4382b7eb8848418709a504c4bdb6f367a078ca8de"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsShell.lua",
+      "sha256": "466dfa8700590a9be60c6e729e91905b7b1d7b562e521e35262333784390a7a8"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsStatusBars.lua",
+      "sha256": "8f80634f5c3f67e0307791ec739926bc24b59475a09191619fb174b70e3d1d9b"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsUnitFrames.lua",
+      "sha256": "00a0ff54430db01cf00027e427808a1e8744d88b581922410a4013a93430f976"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsVendor.lua",
+      "sha256": "b070769e35e489ebe4e66e565e183a379d9a5cce8623412e10b89bf51f346f8c"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsWidgets.lua",
+      "sha256": "1f6f5f597f49216f277f353418a96273a51a4d6d598a75c54f9ad8f6ece89d7c"
+    },
+    {
+      "path": "AddonOptions/FluxOptionsWindows.lua",
+      "sha256": "15b8eab66803b819943ff5d24a4abe04ac7adbe974bea37dad18dac5851f05c4"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "sha256": "a98eaa16497dcc79460f91add584597f88a6eca5993e8da534d0ef98d5b000fe"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_CategoryIcons.lua",
+      "sha256": "813be7c24cb7df5b1dd82aee1cf17f8472de2939162c1540d6434a0580424570"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_CategoryVendorBlock.lua",
+      "sha256": "1dc6f8a4876e02366e96ed35f545c93c6a79322a3b3c79015a553df9d453ddf4"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua",
+      "sha256": "6c4ab8bc8c042db9ec5aa848c2c3788618870b951cdea2d61d71f0bb5928ec6b"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua",
+      "sha256": "39ed8c367e85e77abf4444e71db224d898f3f73681a4c819081dcc0f7b737a36"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSetContext.lua",
+      "sha256": "6c754c3ab69108a491aafa12db44a4b9d2031664a1042b67259097f8d99bd300"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "sha256": "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_GearSetShield.lua",
+      "sha256": "7ba8ab10c8105ffe47115544b2cb5b80948eb441f03ee50cb3e52992a12b3873"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_ItemViews.lua",
+      "sha256": "e4d9cad1309a967e3cdc2ef4f9e1cdf6625c6ad3f52bfd5d69d90ef48e9f04e8"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_Junk.lua",
+      "sha256": "9628a448fa03b024abff3a6008269ea57e244d6b0609452be2d725cd58b43ba9"
+    },
+    {
+      "path": "BaganatorCompat/FluxBaganator_Protection.lua",
+      "sha256": "dc98d6ee1648d974bacd06e9b4e84d2a0afc15f6310b7c5aa7b7089a59efcf37"
+    },
+    {
+      "path": "BaganatorCompat/Loader.lua",
+      "sha256": "95790e2dce5beed1766ce56424bd9323db32e3cdd5460cd9212a0d7c6823e8db"
+    },
+    {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "sha256": "89eecc2852c35d01b2e57b7303959444c5ad611d28d23fca4104e5335a92cd00"
+    },
+    {
+      "path": "Bars/_tmp_forevercontrolsmoke.lua",
+      "sha256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
+    },
+    {
+      "path": "Bars/_tmp_stockgridsmoke.lua",
+      "sha256": "1938cecf621da695ec821bc67dbb186d5f8fea41bec273d109dc49cdab37cda9"
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "sha256": "529c274d5b2a9a35a9e11f3b565ebabd3d20467b224c6c3c8de6182c3785ea76"
+    },
+    {
+      "path": "Bars/BindingMode.lua",
+      "sha256": "ebc13cc70e78ee8bfa6777047ac0e2c6eefb3aefa76f99767a81ec1df57dc606"
+    },
+    {
+      "path": "Bars/Blizzard.lua",
+      "sha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6"
+    },
+    {
+      "path": "Bars/BlizzardOptions.lua",
+      "sha256": "61b8a34ef514dedd10a3f74fd74ed0ac8f3634703a0ddb1438e773bc03297c5c"
+    },
+    {
+      "path": "Bars/Clicks.lua",
+      "sha256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a"
+    },
+    {
+      "path": "Bars/Effects.lua",
+      "sha256": "167c272993fd6b6b3e1a092c5266a1b88320d2ddaa26c8ec2e9139ab7bb80c42"
+    },
+    {
+      "path": "Bars/Flyout.lua",
+      "sha256": "0d0952b60295d987fbf5a14b948800514efab0bf374c8fbf84b8bdebdacb64fb"
+    },
+    {
+      "path": "Bars/Hosts.lua",
+      "sha256": "de7ca45aa37e19b8e6a1a7f17e990a7de577e80efd832160cc65396eea83aabf"
+    },
+    {
+      "path": "Bars/Init.lua",
+      "sha256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38"
+    },
+    {
+      "path": "Bars/Layout.lua",
+      "sha256": "cee77ad50dd6d3ac26a6cc446fde95ed7609f11822c132721735806870fe96d3"
+    },
+    {
+      "path": "Bars/MacrotextDisplay.lua",
+      "sha256": "837e53631b4e5b384fed079e161bc9c813b6f177da0a25ef0419cba80d92e69e"
+    },
+    {
+      "path": "Bars/Minis.lua",
+      "sha256": "067bec3fbfdcb8b30462d0ba5dd6a391e5408769bfa81f5eff0b4a043e88fbd8"
+    },
+    {
+      "path": "Bars/Paint.lua",
+      "sha256": "cb77672bd86298536558b0486b13680360dfd6e86ae134fe207a0bbeafee4224"
+    },
+    {
+      "path": "Bars/Pet/Init.lua",
+      "sha256": "88b89cfb82937fb85d60a3f482c3445368eaaf85451e97bdacfe561d6e5e9049"
+    },
+    {
+      "path": "Bars/Pet/Keys.lua",
+      "sha256": "1adf3fec3dc1db0b9c10489896fa1b7353fc269c7494277be9bfd68c240060f7"
+    },
+    {
+      "path": "Bars/Pet/Layout.lua",
+      "sha256": "2f077d6f49e3e539077acdec5681b861665c6939390c1aa8d7a5961ff1cc807a"
+    },
+    {
+      "path": "Bars/Pet/Watch.lua",
+      "sha256": "fef92d30de8eb06c69d56762ad4dfd431045d67e93aa48a9c921959317a24780"
+    },
+    {
+      "path": "Bars/ProgramFace.lua",
+      "sha256": "af75d537203c436f97949fea6de6c5d8c1213924809b7c47fc741969eebf3ddd"
+    },
+    {
+      "path": "Bars/SlotMath.lua",
+      "sha256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a"
+    },
+    {
+      "path": "Bars/SlotProgram.lua",
+      "sha256": "f16577bf7b1a3940a67fcae412f834b66c717cd3c9870ee0defa7b890c22341d"
+    },
+    {
+      "path": "Bars/SpellRank.lua",
+      "sha256": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f"
+    },
+    {
+      "path": "Bars/Stance/Extras.lua",
+      "sha256": "3a4bbdc17b5ec578d9b436e46185d1507a0a248029edf6ed9dec2bdcc9be5948"
+    },
+    {
+      "path": "Bars/Stance/Forms.lua",
+      "sha256": "5d567f4faf5f9424e480e1e58ad66b1264c782a7ec7deac701273aaecb0cf0bc"
+    },
+    {
+      "path": "Bars/Stance/Init.lua",
+      "sha256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7"
+    },
+    {
+      "path": "Bars/Stance/Layout.lua",
+      "sha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7"
+    },
+    {
+      "path": "Bars/Stance/Order.lua",
+      "sha256": "eaa41fbc29459fdea916b10a144db1d47bb51c3e6134ec27c0336f0ce56667ef"
+    },
+    {
+      "path": "Bars/Stance/Watch.lua",
+      "sha256": "dd6405f6475ce5a0f9591a3737596fbc3696c9b553925bbbcd91fa85aad1eeec"
+    },
+    {
+      "path": "Bars/State.lua",
+      "sha256": "94c5a04cd918fc2b530c41622e94bb165ebb440fde970afab9e34a92233d3dfb"
+    },
+    {
+      "path": "Bars/Strip.lua",
+      "sha256": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df"
+    },
+    {
+      "path": "Bars/Vehicle.lua",
+      "sha256": "f44778392115319eed121a22e18db79f91a27eb438a40a331dc144af4d1e0595"
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "sha256": "2a5e85c6a99a579d566f9728552cec22120dbf363a2e9fa1a4f0cbe9e76eb564"
+    },
+    {
+      "path": "Battlezonemap/_tmp_questiepinsmoke.lua",
+      "sha256": "3ff2284b43cbad68838f271ff30eddf85a885fde8ecc5afb82530a78c7113527"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMap.lua",
+      "sha256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+      "sha256": "79c2f7bb0661844c702eb8c6968f9907aec180af7d184759ddf1dce7df195c7b"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapPinTooltips.lua",
+      "sha256": "f2b64d27c46e6b465bad794acfb33e385af21b33a0509690c8cb55c4eb00b2f4"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapProviders.lua",
+      "sha256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapQuestPins.lua",
+      "sha256": "01c4817fc30efd201bf6414ea2c96a2136cfbbf2bdf603a3cdeffb6453016690"
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+      "sha256": "00eaf0863563fcf826b5b32cb8adec764f1397f82e89e4e5f9acab1cbc6ebe43"
+    },
+    {
+      "path": "Battlezonemap/FluxBlizzardMeter.lua",
+      "sha256": "10b19b6edaf7b9d209b9ba342d241b5983c10938749d9acdd880a6167b3f24a0"
+    },
+    {
+      "path": "Battlezonemap/FluxDetails.lua",
+      "sha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61"
+    },
+    {
+      "path": "Battlezonemap/FluxDetailsForever.lua",
+      "sha256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0"
+    },
+    {
+      "path": "Battlezonemap/FluxDetailsWoWSkinTint.lua",
+      "sha256": "9a55f8a95c83d39f0f32ec801b1d12ac11644bd856f1d40646df524363e4ddd0"
+    },
+    {
+      "path": "Battlezonemap/FluxMeterLayout.lua",
+      "sha256": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4"
+    },
+    {
+      "path": "Battlezonemap/FluxThreat.lua",
+      "sha256": "520b3f721e48afba9ebd0cd32e90ee583d835983ed4057f57f4b85a2cdf54885"
+    },
+    {
+      "path": "Battlezonemap/FluxWindowFrame.lua",
+      "sha256": "1795747f9beb829501d24f1f45c385d0fdc78467fe9d4eacb9d389c600f0e62e"
+    },
+    {
+      "path": "Binding/Boot.lua",
+      "sha256": "4f7a07bacb9fda4b41361752a55d08b3f49f55eefcfb1b6c7ad5ed0a327fe03c"
+    },
+    {
+      "path": "Binding/Core/Action.lua",
+      "sha256": "97f48fdf859ff5e3e453860749f0518bcdd9cc50903913041e4843194eee1e78"
+    },
+    {
+      "path": "Binding/Core/Apply.lua",
+      "sha256": "ec55e39d113d36513767cf2efde099557e362d92aadd4ba76fa5e310d1ac4ce1"
+    },
+    {
+      "path": "Binding/Core/BindingTooltip.lua",
+      "sha256": "8e9a3f9f7468f5ef8691ec2c8212b20d0b75e531a774bff8e6b97c3316e6c0de"
+    },
+    {
+      "path": "Binding/Core/ChordMap.lua",
+      "sha256": "0b3328c9ff5f8d26b209617b3fd339ba7c8733c20afce8b76c0516427a566945"
+    },
+    {
+      "path": "Binding/Core/Conditions.lua",
+      "sha256": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661"
+    },
+    {
+      "path": "Binding/Core/DB.lua",
+      "sha256": "3dd80cc0ab32711c0fd4af2d063dac616a77a035ad8ee0d8bcc7181fb648522a"
+    },
+    {
+      "path": "Binding/Core/Engraving.lua",
+      "sha256": "e27fae33a93fe544758b3a1ce967256fe1daba7bbcb846fafaee243cf703b6b3"
+    },
+    {
+      "path": "Binding/Core/Forms.lua",
+      "sha256": "53001467c594b035c67165de4fd34281eb91601020eaa071aa6fea99ae5ae5e6"
+    },
+    {
+      "path": "Binding/Core/MacroFactory.lua",
+      "sha256": "db1f3ba1e5cacff4708583554aed93077b541bf6d33d5caf409ad034f0c92262"
+    },
+    {
+      "path": "Binding/Core/Placement.lua",
+      "sha256": "280c3bcd9be3aeeb923c8289abef73eb374e8dea680c19492186e7e780e78292"
+    },
+    {
+      "path": "Binding/Core/PushPress.lua",
+      "sha256": "558d9171fddb980bb497c7d9a58447eaa169467cd3c457c20248ef0248d86f92"
+    },
+    {
+      "path": "Binding/Core/SecurePool.lua",
+      "sha256": "4d4d02b879b369f9774dc7b62c8fe7da06f6cd800e2fd8df151d2280a4ead83d"
+    },
+    {
+      "path": "Binding/Core/SpellLibrary.lua",
+      "sha256": "6cd7e2824816f076c78673c616a019a9587c7056e841479de963895b14fc268c"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "ac452001f1d59f9c804a0e6260142a4799a1961e6c8e7b735a6fd315c6b05eb5"
+    },
+    {
+      "path": "Binding/Respec.lua",
+      "sha256": "75e606330ab71c70881f13bbac29b6b515c3d7847b12c3df444a03859ecca417"
+    },
+    {
+      "path": "Binding/Slash.lua",
+      "sha256": "6ecd15b2cb32d61c4a2664aa73574239fcc30510c156f919763b2e71f4b45660"
+    },
+    {
+      "path": "Binding/UI/Browser/AceGUIWidget-FluxBindingBrowserEmbed.lua",
+      "sha256": "c91a2abe0e605508112d82ab261e73525a853cba3a7a937dece09023b262caa1"
+    },
+    {
+      "path": "Binding/UI/Browser/Core.lua",
+      "sha256": "61f5b0e24c750e600d6eed11e60f9b5b512d326def71375e5c481b409e08ec67"
+    },
+    {
+      "path": "Binding/UI/Editor/Chrome.lua",
+      "sha256": "140cc0c0d51f9f0aa8bcb2ec712fe80afe6a8b0830f229fd6f238183994f942e"
+    },
+    {
+      "path": "Binding/UI/Editor/Core.lua",
+      "sha256": "1a61a5c56a2e447b934db80d9c7a7c04eaaae462c9dde63d3084570138f7f51e"
+    },
+    {
+      "path": "Binding/UI/Editor/Panels.lua",
+      "sha256": "b66baa570d59e4fcd719c941835a318138b103bfd1f78025be4fd62891fab15e"
+    },
+    {
+      "path": "Binding/UI/Editor/Theme.lua",
+      "sha256": "329eed17da96587e2b93b47766a69e82eb4bf454f7e414af0725493093307d53"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/AceGUIWidget-FluxBlizzardDropdown.lua",
+      "sha256": "e09a978e5cdeca2022952f255e1a4cf2524e374a988e96ba18b1e5bde872748d"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/AceGUIWidget-FluxMultiCastOrderPanel.lua",
+      "sha256": "327885113d55d44a83c0bf62064ea90d482961b1e14e2437c780cc366e6f4f42"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxBindingFrame.lua",
+      "sha256": "efdea3eaa728242afba2e4519d7fad7ded62f8b293100acab5cf9ca52cdfb3f9"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxBindingTabGroup.lua",
+      "sha256": "3abc1eadd56bfb06c3a8abe66348091d41345d511b701624793aa0fdfe81cd9a"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxKeyCapture.lua",
+      "sha256": "7c46385147c7606bd4925251cee80e8452df19c89b0582901e13ff22e2360d42"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxSectionHeading.lua",
+      "sha256": "46592e5df1707f8158e4e74bb9fa10e35627769090a8bc9a884ac384f12a6126"
+    },
+    {
+      "path": "Binding/UI/Editor/Widgets/FluxTargetRow.lua",
+      "sha256": "eb9aaa261d8d25851445f14fa137661e16423205e6a02b490f90e2cf5050b2a7"
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/AceGUIContainer-FluxKeyVisualizerTreeGroup.lua",
+      "sha256": "e8104f7997866d2e596e6a2cd103f0540544df2365d659f014c77afb186cd36e"
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/AceGUIWidget-FluxKeyVisualizerButton.lua",
+      "sha256": "8873a1c8317bb37162411741e9879ffb608409eb9ae073a05d82be8d43b13aa0"
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/Core.lua",
+      "sha256": "a92f9dfe72a9156b7bb4b5c26c49498b79162836b8c0f1981532348956c770e8"
+    },
+    {
+      "path": "Binding/UI/KeyVisualizer/KeyLayouts.lua",
+      "sha256": "f25be4a5fd0a3465829be528a55f5d1dde3e27243ed354bbce4dc574c5fe0e81"
+    },
+    {
+      "path": "Binding/UI/Locale.lua",
+      "sha256": "40ccf1f2990a436efd89e16022720117cb718f8f3fb9c3f0bbdfa0a2431e533b"
+    },
+    {
+      "path": "Binding/UI/Media/Media.lua",
+      "sha256": "123ece6081eed1506300e36921303920e8620c88f47d3b3d81869143d479ef44"
+    },
+    {
+      "path": "Binding/UI/SpellbookBindingHooks.lua",
+      "sha256": "d4c60b24af8349b5973d980113a53d509c17110aba31a6af9b0f85ddac6368a4"
+    },
+    {
+      "path": "Blizzard/Hide.lua",
+      "sha256": "128652b87e2beeb2986492e445438abf6f6198ccd458918eb64a49e7f1cf0f92"
+    },
+    {
+      "path": "BlizzardSettings/Nameplates.lua",
+      "sha256": "a242cbbd236f54afd7132e91e4505d3fa693244246de2e48a301bdfd63c1f7cc"
+    },
+    {
+      "path": "BlizzardSettings/Raid.lua",
+      "sha256": "fc07fed69eec86ad2c594a40f3c067380824653e0adbb3724a658d46e06572f4"
+    },
+    {
+      "path": "BlizzardSettings/Write.lua",
+      "sha256": "eaebcfc5e1a2d0d6a67163f8264efaee2e49f2e81e127fc685284a3454c93891"
+    },
+    {
+      "path": "CharacterInfo/_tmp_characterinfosmoke.lua",
+      "sha256": "c682431b38499e757855522fce5969cb6ac26175dfd5f9975928532245f7e2e2"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatssmoke.lua",
+      "sha256": "cd54622d6dd9cdf32066b5172895cc8e7499730149cb8e907be8e92679707df6"
+    },
+    {
+      "path": "CharacterInfo/_tmp_foreverstatussmoke.lua",
+      "sha256": "ddc40698c4f64908e5d42d5615a292b6bbeb28877ae965c065b2299262d09897"
+    },
+    {
+      "path": "CharacterInfo/GearScore.lua",
+      "sha256": "869a6b75763c98a112b0057c20d6959cdbbead709325979a86a20d9c636a15dd"
+    },
+    {
+      "path": "CharacterInfo/Init.lua",
+      "sha256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a"
+    },
+    {
+      "path": "CharacterInfo/ItemLevel.lua",
+      "sha256": "e8990f3fc889cb14c87d8155b9f6fdf92a7019798ad564388ef5096ef834a7b5"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_br.lua",
+      "sha256": "810460bdc457f025aba45f5f30c668325a22e5987c83c400c467f0e43a58837a"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_cn.lua",
+      "sha256": "8334b6567a7db883aa28ddff0add29275a30a3cc258b2143f3270b498fcd5fe6"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_de.lua",
+      "sha256": "587275f33d4f4576e764fcc7480fc0ef7ae92639dc156f5a9c0f3c274972b8e8"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_en.lua",
+      "sha256": "d73b70ce0b0f808b72c3f9b721344a0804e58841f94fdf3d4f05c975ee03973f"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_es.lua",
+      "sha256": "7e609ffde423aa240ba50971409405b4821fc272844f5f32a951168fb6792920"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_fr.lua",
+      "sha256": "d747adfc8bf8f2a47052e935cf80e9e80d014ddb343e7106088055f80653c678"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_it.lua",
+      "sha256": "96db55a7d04fb7ce5481cc031684fe3c550b172d9eb6e50f56226e29cd3f97c6"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_kr.lua",
+      "sha256": "a7f45639305bf1e3aeaafd22d17a863fa76ca4c4dd0ad074246b30b48cf6e66e"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_ru.lua",
+      "sha256": "88d1bcbda277c140e59ca5bff0d263c1245af3f978ecb98567b6cde7ef7bb24d"
+    },
+    {
+      "path": "CharacterInfo/Localization/Localization_tw.lua",
+      "sha256": "e503b12fbdc55ac668b5ef17984c1ceb0d68aeb61975c2e5c9b811d4e718e43b"
+    },
+    {
+      "path": "CharacterInfo/PaperDollEquipFlyout.lua",
+      "sha256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760"
+    },
+    {
+      "path": "CharacterInfo/PaperDollQuality.lua",
+      "sha256": "e817b231520e89af9b9e3234193ca935b2b630576bfe885fd2eb207814292e10"
+    },
+    {
+      "path": "CharacterInfo/PaperDollSecondaryName.lua",
+      "sha256": "0f54aa973c8f17017d09bce4872fc23f719563a0ff9d96d3a2da049049056a41"
+    },
+    {
+      "path": "CharacterInfo/PaperDollVisibility.lua",
+      "sha256": "4e769d22aefbdd3bde5bad11962ed0b4659b9f6808411d2b9bb76bd9fe6eb307"
+    },
+    {
+      "path": "CharacterInfo/RetailPane.lua",
+      "sha256": "2ab62f0846edc5e7c52ea216e87497b2f9002c43f54dc06fe2707bee41bfae8d"
+    },
+    {
+      "path": "CharacterInfo/Shared.lua",
+      "sha256": "1de3822f38b97be5bf7195da2ba0285beb60bea74a1e58ed17f58278e4c0ad43"
+    },
+    {
+      "path": "CharacterInfo/StatsCritCalculator.lua",
+      "sha256": "16f0acfcd775962ba5b79a2cfaa7a380e522b158f7178e34b8b227285e794b06"
+    },
+    {
+      "path": "CharacterInfo/StatsCustomExtensions.lua",
+      "sha256": "5d28ff3aafdf3f00d792d1c129d9781a8e9bae63febacb823aedbff897ed495a"
+    },
+    {
+      "path": "CharacterInfo/StatsEra.lua",
+      "sha256": "518059148f93d8a790783af509c1504f5cfac8d2e251b82c306f05dd24eb61c1"
+    },
+    {
+      "path": "CharacterInfo/StatsProgression.lua",
+      "sha256": "83cb1d1418e2ae5266ef7e3671763867906cd76a2d795ec164c9597e6f29a22e"
+    },
+    {
+      "path": "CharacterInfo/TacoTip.lua",
+      "sha256": "a94314453277b7613ceab8cd9d2660c95facaf5ddaa21fad1277a1e405b1efb7"
+    },
+    {
+      "path": "ConsoleportCompat/CombatQueue.lua",
+      "sha256": "e5009df4f188673cf431ace4a03a65f23a79d16b89ca4fb75bfdf6b5b08583e7"
+    },
+    {
+      "path": "ConsoleportCompat/Loader.lua",
+      "sha256": "b23e94a02ae7144b7d595d38dfe419d85641d25d29214dfc6ed0c2af5e0f7736"
+    },
+    {
+      "path": "ConsoleportCompat/MicroMenuHooks.lua",
+      "sha256": "e27dff3a28644987f773cf6d2fe7547af367e4724faf1ac2963a5b5790f70e28"
+    },
+    {
+      "path": "ConsoleportCompat/StatusBarHooks.lua",
+      "sha256": "b0d91207a044c496985a5d0c8a8fe094cff4896a2bedc45b060ca7492d930faf"
+    },
+    {
+      "path": "Core/_tmp_buffdebuffsmoke.lua",
+      "sha256": "af9c4a826f4e08a0bcdecbd1a236c417b4e6259588c4612db407a22ff1ea3b77"
+    },
+    {
+      "path": "Core/_tmp_classpowerscalesmoke.lua",
+      "sha256": "5490272ff42476331fdb99107477dc9092f5fc81d9b3523c06ca929336a30d72"
+    },
+    {
+      "path": "Core/_tmp_clientguardsmoke.lua",
+      "sha256": "8578fd1bd2a57c9f0afab50599222b5f4189983fe93d73b8c467ab0818524de7"
+    },
+    {
+      "path": "Core/_tmp_coresmoke.lua",
+      "sha256": "90dc98c8052dfe58f414703ef634ad034b8c34d317e1f701a050f72ce3a03538"
+    },
+    {
+      "path": "Core/_tmp_foreveraurassmoke.lua",
+      "sha256": "684374d6283980d61b8dd540ec8847d53047c671457241737b4d7f52f57f0f4c"
+    },
+    {
+      "path": "Core/_tmp_foreverbarstylesmoke.lua",
+      "sha256": "56e725fe5a5dc25d04846b4e20b04e65398fc3e0f975b393227139703ec325b6"
+    },
+    {
+      "path": "Core/_tmp_forevercombosmoke.lua",
+      "sha256": "16c2a49869faf1ec951cae3d17404d33a1baa8bf8b96b14c09dbdd1b43474213"
+    },
+    {
+      "path": "Core/_tmp_minimaplayoutsmoke.lua",
+      "sha256": "88e50654e8af95d6041e608b41329cc52d70ba00f4214033a587283073005a0f"
+    },
+    {
+      "path": "Core/_tmp_playeraurassmoke.lua",
+      "sha256": "06a3062447abb6c3ac5c2ab880cf218d116de16b451b7aaa3a281618764b2ba7"
+    },
+    {
+      "path": "Core/_tmp_stancehidesmoke.lua",
+      "sha256": "f35b35b578dac0d860cb0c35ed7b4bd22adf5f39541371533342922f9886d833"
+    },
+    {
+      "path": "Core/API/Action.lua",
+      "sha256": "89d559136339c1242ea3753fd5fde3e068edfe735a21f1fbe649b1b142adad7c"
+    },
+    {
+      "path": "Core/API/AddOn.lua",
+      "sha256": "8ca3b213990a450bbd785374f08ddd08012ab126c946d7b4a1e95586c14cae6c"
+    },
+    {
+      "path": "Core/API/Aura.lua",
+      "sha256": "11ef71d9d678c916a03bf668d796d8486e3e3b0af3d53b82666fbeaf1c47c27a"
+    },
+    {
+      "path": "Core/API/Container.lua",
+      "sha256": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2"
+    },
+    {
+      "path": "Core/API/CVar.lua",
+      "sha256": "a69fbed4850b4cfd2115160d0cedd93082be71558f2bc1d7bf5bef9dc1bef3c7"
+    },
+    {
+      "path": "Core/API/Item.lua",
+      "sha256": "03969d6d61cf492bdb187aec1a4715601f9f5817790c493e92274eb8aacdd9e4"
+    },
+    {
+      "path": "Core/API/Name.lua",
+      "sha256": "c5e3cf71eb4db7462f3ac973799b314aedbaf8f68ce987b025550a866dcbd23b"
+    },
+    {
+      "path": "Core/API/Pet.lua",
+      "sha256": "249f66e4455c779b93e85fdc151cab639026cffc63e4daac2a6f56b42afff2b6"
+    },
+    {
+      "path": "Core/API/Secrets.lua",
+      "sha256": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce"
+    },
+    {
+      "path": "Core/API/Secrets_Classic.lua",
+      "sha256": "83079d8de7b23408ae8133d294259938eaa8ae0b637c6abdd439b7392565b96f"
+    },
+    {
+      "path": "Core/API/Secrets_Midnight.lua",
+      "sha256": "346563ff74f64ff32da99561cb6130bcf61bfea08a6a193ac90814bd850b303a"
+    },
+    {
+      "path": "Core/API/Shapeshift.lua",
+      "sha256": "3b572aec399b91dbea65e3e0808ac83901534a86a495648c6528b9ee513b6e50"
+    },
+    {
+      "path": "Core/API/Spec.lua",
+      "sha256": "48ee6142cbf671f56460a7c7706866e0ebc4cc75a772fb8c8a241362df6f4ad8"
+    },
+    {
+      "path": "Core/API/Spell.lua",
+      "sha256": "f85bee3dc04a5fb283a612d5f2d60371cbf1daf68e80357836f6837210b84132"
+    },
+    {
+      "path": "Core/API/Threat.lua",
+      "sha256": "af4d5582af7b9b54281b63edac73ee06e3805e144269081b2c7cf4765fb26524"
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "sha256": "c4fe5de883fa4973703f12eb96c7f40b80c9f8edd055fb8eb8ea5681c06d0480"
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "sha256": "fd7b41830c894237d35253202e555620ecbf32709a10f50d82d3d81d0aeac14d"
+    },
+    {
+      "path": "Core/ButtonFX/Click.lua",
+      "sha256": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab"
+    },
+    {
+      "path": "Core/ButtonFX/Click2.lua",
+      "sha256": "7ca891b3b7be25d0d1a92c50f2784518dcb3a9612a95a1890201dd17875124e0"
+    },
+    {
+      "path": "Core/ButtonFX/Flash.lua",
+      "sha256": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4"
+    },
+    {
+      "path": "Core/ButtonFX/Glow.lua",
+      "sha256": "6062c9b9310b2980eb2c0a98e6daef6fe8d2d2a4e2a49cc98c16ea4a01dbdb2c"
+    },
+    {
+      "path": "Core/ButtonFX/Overlay.lua",
+      "sha256": "50dc114bcd3fbd0a2ff51eef289ea9d599df331f55caf453a0c57f49a2f5eeab"
+    },
+    {
+      "path": "Core/Capabilities.lua",
+      "sha256": "180eb60c917bb1ca6394f85fae524f61f3fe0cd86bf4f148132167352c6abd1d"
+    },
+    {
+      "path": "Core/Client.lua",
+      "sha256": "c4fa44c67eefa67642634532177a1faa18d3435765676cd12470e9fc2dc3bc92"
+    },
+    {
+      "path": "Core/Client_Camelot.lua",
+      "sha256": "9689e0e991026be99b88d544f87f3255e974b09b319467449e8945b416f306b0"
+    },
+    {
+      "path": "Core/DB.lua",
+      "sha256": "e833ac2b21230dfdf3ad55d5f4c7c4a161208356c5090c782767e72be70927c1"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "sha256": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092"
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "sha256": "67b4063ebd6c71ef2724dd8d4a19bf30480a40320475240da832e79e3f112ef7"
+    },
+    {
+      "path": "Core/Engine/Events.lua",
+      "sha256": "9c8d593abc270abe4f5e6d403e9f0c93eb3c593c2f1c2b4acc3a4556ae813454"
+    },
+    {
+      "path": "Core/Engine/FormStorm.lua",
+      "sha256": "361f679a10f92140bd2f194f5b8920dd7e5e46a45759367d23e50cf2e44da4b4"
+    },
+    {
+      "path": "Core/Engine/HopLag.lua",
+      "sha256": "4671d5ae0dec97cf24bed4ab10578095720cfe16fb9946ec8dfe560aa4ed4b16"
+    },
+    {
+      "path": "Core/Engine/Identity.lua",
+      "sha256": "f52ad3724071bd4688ca439322d577bf40b179423ac201ec637fcaf94a20f573"
+    },
+    {
+      "path": "Core/Engine/Modifier.lua",
+      "sha256": "f546dd7e98f541af680722b5ea54da2762445ac03f30d6ef7f6059c776cbad1b"
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "sha256": "8c8c9344283502599c58f53ea5f26f302727937e30bb393d044c3b9fe49c3311"
+    },
+    {
+      "path": "Core/Engine/Perf.lua",
+      "sha256": "db8f3838bb63eff1381833aa03ce0d58f2ba2be493027395f9ac62df6ea01a07"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "sha256": "10e2efc0b97b9bb9a744ee5e9556718504ff5a486c1100f6a4d1bbfa7960f16c"
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "sha256": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "sha256": "2d33fe5938a0075636761b14312681ce7feb656c748cd796dbf42398099723a4"
+    },
+    {
+      "path": "Core/Engine/SpellBook.lua",
+      "sha256": "93e30fb9bcaa94dfdc1e6b502b5ccc051787c13bdd98938e249d04c983923c1f"
+    },
+    {
+      "path": "Core/Engine/SpellBookChrome.lua",
+      "sha256": "3c401a72525511bd748aaefad98733d75ff5264643774472ccc413fbe54855f5"
+    },
+    {
+      "path": "Core/Engine/Ticker.lua",
+      "sha256": "65bbbdd8fb42997f610f4799bba68c44447df9a0a0e720019b6d17e3e79ead0b"
+    },
+    {
+      "path": "Core/Engine/Timer.lua",
+      "sha256": "0f3cb48fadc0bafbd91cd20648806fce478db0d0e39dc8bc9ba975e6bc73bfaa"
+    },
+    {
+      "path": "Core/Flux.lua",
+      "sha256": "6181f8d55f4d2193558df860f1ac212cdd21341705f0f650fbb8c8a691d67fa9"
+    },
+    {
+      "path": "Core/FluxAPI/Actions.lua",
+      "sha256": "e08ef87f80a997052a0735adcf045a0bc3b2d230d8896df5e760109830d68948"
+    },
+    {
+      "path": "Core/FluxAPI/Auras.lua",
+      "sha256": "c6f641e0dc52c979d755be746c3417bd9d919d786bd4981c856f212503aa29d6"
+    },
+    {
+      "path": "Core/FluxAPI/Capabilities.lua",
+      "sha256": "dea5c1783247c5248d7673de32e766f5947ac9cd0936a7503fde7a3ab7d76a23"
+    },
+    {
+      "path": "Core/FluxAPI/Client.lua",
+      "sha256": "0525a7a36d6fbf329a36f730f7c923d8947b49dda4ea84b6b26c5993956a80c4"
+    },
+    {
+      "path": "Core/FluxAPI/CVars.lua",
+      "sha256": "9b15c1fe9629e715b3a790b4e8665446cb087673a6575bf47a3ad9daf445cf61"
+    },
+    {
+      "path": "Core/FluxAPI/Events.lua",
+      "sha256": "f93221f2be82fd941c80be6f8f3fc5f99bd09e40108e52df1609b8eaaf1699f1"
+    },
+    {
+      "path": "Core/FluxAPI/FluxAPI.lua",
+      "sha256": "fca5afbcefb9587d6d53f5f2176dba37d687784161836669373a89a0b15228ce"
+    },
+    {
+      "path": "Core/FluxAPI/FluxAPI_Boot.lua",
+      "sha256": "006751bd1e9740969aea878302cb115c27472c656ecf1be8cfb46bd2ce5def4b"
+    },
+    {
+      "path": "Core/FluxAPI/RetailSecrets.lua",
+      "sha256": "4190863aaa336c3af13caac525c0463342cd5e0127b967d578373e046cb23934"
+    },
+    {
+      "path": "Core/FluxAPI/Secrets.lua",
+      "sha256": "847f629f15fe596cf072a4bcac6ded4496700a702c4748f6869bf14279ae9faa"
+    },
+    {
+      "path": "Core/FluxAPI/Timers.lua",
+      "sha256": "04983308b98f01191feb55aa1507ec02a31b1f79c6ec59a999a59c8ddbd3d947"
+    },
+    {
+      "path": "Core/FluxAPI/UI.lua",
+      "sha256": "2eccfb11d81970f10ecdcdbf9ff57e5ddbee78ee41d95c92f023e7526c0239fb"
+    },
+    {
+      "path": "Core/FluxBlizzardDropdown.lua",
+      "sha256": "da514a8adfd2009443fd798bd0e16f50372c7de03a20ffe3caf2c02b5f1aeaec"
+    },
+    {
+      "path": "Core/Hotkey.lua",
+      "sha256": "b248d68a60d707b3fc996eeafa7b5593a251e99cff6f606111f748ec96cdd116"
+    },
+    {
+      "path": "Core/Module.lua",
+      "sha256": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239"
+    },
+    {
+      "path": "Core/Optional.lua",
+      "sha256": "cb06588714a86bf612faa0941153f96b774b682bce4c566bbfa23e36978cad10"
+    },
+    {
+      "path": "Core/SecureClickProxy.lua",
+      "sha256": "33c60c871c04eebe54ef0bc26291a232022b0640d1f0822ad14d1ffaa924f59f"
+    },
+    {
+      "path": "Core/Slash.lua",
+      "sha256": "a7438da027e35727676515e636a2578747574276939cf53987f5a3293b92c1d1"
+    },
+    {
+      "path": "Core/Startup.lua",
+      "sha256": "cd500c189dc43f5bb1d8d8ee274c94f23d1834bae995c18ee354ed7b7ac8c4e2"
+    },
+    {
+      "path": "Core/StartupClock.lua",
+      "sha256": "d53bcf729278afe70a0ffe94e0f310a07aa2bc5bb3c074ebb48c44c2a7956a5a"
+    },
+    {
+      "path": "ExtraButtonSystem/Combat/Kind.lua",
+      "sha256": "98126d19012cb05fd393a21aea855b57dcd40ac3f96d71035b1b4309cd9d6b2f"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/_tmp_ammosmoke.lua",
+      "sha256": "0e28f4b3c74bbd698aa307d938abcf7afd03524ffff6f7067a4b9504e180c741"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
+      "sha256": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Bandage.lua",
+      "sha256": "faf6d2208ea25de56d3af3ef7ffe00c7397edc74540a2c76d7c497216da66532"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/HealPotion.lua",
+      "sha256": "9fce2630be5cc5a16e30cb73d0eeb1bbf18ea792d3deebf1a1932b538b019639"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/Healthstone.lua",
+      "sha256": "04f0fb127be86d0183e1cf669a16f60530efc26f6f0d0fe2d1e47431bafcebc1"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
+      "sha256": "a2cfee8136cfa1d2b049ee966c25e671bd7b91babec2af9903d07246932f1fb2"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Buttons/ManaPotion.lua",
+      "sha256": "fc47f8deefd8e030a8948f09d146045b7276cc6e96f2a2e71085c943b001dfb3"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/Grid.lua",
+      "sha256": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd"
+    },
+    {
+      "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+      "sha256": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
+      "sha256": "6c60f0143225781137e8976ba9e51875df8b4018dd51ad4c25b4cc21a2a30746"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Action.lua",
+      "sha256": "725c28de19c629a506938f4be0538ce70f6af428a1b370987009aa5ba0a80780"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Badge.lua",
+      "sha256": "00bd98b896aa03d52e946da3493136cea397cdcb9006893ef8459ade1b95599b"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "sha256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "ca8218313b59b363e7af76378884fb8a8290367d8d129f7db091fbcabc3afd17"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Core.lua",
+      "sha256": "7f34d573ccebed949fb977f2a5f1d0fe6fba2211ca6a9fb63c879dd8875363b5"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Events.lua",
+      "sha256": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn.lua",
+      "sha256": "caa9741c0bd85c955e2b1732f2f1889aa681abfd03d636f3e095ec3523738e4b"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn_Compat.lua",
+      "sha256": "8c90c0ce3a7a8c113005eb4814aa92e981aee23853d3408774c8cebd52f3b2e7"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/FluxBtn_Flyout.lua",
+      "sha256": "42676321609dadda3c0c34b86951b64da9c4714c5d0d174a2f1aabd070ad8d69"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Paint.lua",
+      "sha256": "8f473fcdd408d02e3b919f6847c51df407691f25aee48639580e996bb2861f63"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Range.lua",
+      "sha256": "0eafcffa7a1494eb857bf8eccd086574bea29c986fa3bf91197f2132627acfda"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Style.lua",
+      "sha256": "0e9af662ccc436ba60e04c02b152bd4d8e57ab98be537852ff0c688b8c82ad04"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Usability.lua",
+      "sha256": "5b12b7f277acade9df7b51634800a1a6c02c3fb78702a80d4700de43fb8b6129"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Util.lua",
+      "sha256": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/VFX.lua",
+      "sha256": "8a820d83d5c06abe289455779612ad2dc9047d3fd5e5347ba7af8f0627bd56c9"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "sha256": "4e22b2fde9ff08ff2fb62f96e595921fef508fbfcd16bb96997daa2e1257a04f"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Widget.lua",
+      "sha256": "983040afb10f9c4dce6d61e4de9c28b5310b3923ba2c52e39ce643fb5ddd6d30"
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Buttons.lua",
+      "sha256": "7e35133aad83a52c2bd17ed403b23fa275966f65b478cf0dcbf1523b53358179"
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Categories.lua",
+      "sha256": "1e6053c5bfd7350628747cbbec1a735ed37d72d7cf66f654bc2bf8ddfb7f34e2"
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/Core.lua",
+      "sha256": "de23b44cbfe351430395cdc79e61b5f3b27f328badf5b4d4a916d24532e83234"
+    },
+    {
+      "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+      "sha256": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua",
+      "sha256": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutData.lua",
+      "sha256": "593232684d46635aca920cf29c3b531b93b280f23cad8b7c8ca5fecd28751b55"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutFavorites.lua",
+      "sha256": "d6691f83881ba81af3e7ef8d2700cb7ecc7021d4244ba52eef744b03a49cfc64"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutFrame.lua",
+      "sha256": "fc777bafbbdb2660d2dca69fa30ab2c9f276cc9de2887b6f4907b5ba67b6d3e7"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutGenerators.lua",
+      "sha256": "6f26325b1dd0d6497a5c828cc8318f45d6d1a3ee431c77107e6e30979295f5d0"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxFlyoutParser.lua",
+      "sha256": "67bb8ad809f1e702461017d6d0f1bc0819ad34da68a242934628b39c3d9fe0bb"
+    },
+    {
+      "path": "ExtraButtonSystem/Flyout/FluxGridFlyoutBind.lua",
+      "sha256": "737ef30cba5af7ff7069f319c8225df033718be53be3759363b611ce4d5c3148"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+      "sha256": "b08a0bd955f0d207190517fbbc5c233d9ea5d41471f051c096ff6c7e04896d45"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Attach.lua",
+      "sha256": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Chrome.lua",
+      "sha256": "fb7b757ce0a421daa0fdeff22ddc7bb162c0ddc84c127693949df240f0cb91d7"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Def.lua",
+      "sha256": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Favorites.lua",
+      "sha256": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/HostCompat.lua",
+      "sha256": "8840bdf6d3b92180de641cedbe4d1722c48da64722dd0daa3cda81ddfe26c122"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Init.lua",
+      "sha256": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Popup.lua",
+      "sha256": "4260879a1fd6d57542b9522dbbd4548c97151ea6d656e705e2301850205a581e"
+    },
+    {
+      "path": "ExtraButtonSystem/FlyoutEngine/Secure.lua",
+      "sha256": "f3310026cb806e223d85bdeca93e09e44789166d3eaeb8dc352a565e0dd63f3d"
+    },
+    {
+      "path": "ExtraButtonSystem/Init.lua",
+      "sha256": "5272a73080d63f3584055c25f469733a786ec31b1b07ef648bd85a5544822a5c"
+    },
+    {
+      "path": "ExtraButtonSystem/Layout.lua",
+      "sha256": "cda8ba03e615763054a95744373fc7dadf14d1b7ad570c0b0366601ce0fe7e23"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Food.lua",
+      "sha256": "c65a91ca12d6b6f390800b62490e499bac063cd97484d3fef0a92c18df98e1f3"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Mount/Init.lua",
+      "sha256": "c1d6034fe468ea13e54fb78b7db15ccb77c12a8aa07190f7d480a8b96c181a13"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombat/Roles.lua",
+      "sha256": "ee939ac2866cb4ac5c66de865b81c6098c530fea5b49d5b238fa6d92938413fe"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
+      "sha256": "f3a956ea76ae28527fd9a64e4145756b96f6e42e823646a2b9b3fd1d337991a4"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "sha256": "1dfe7689915f4416e2463a651d1167c7c0060f44b8a7d539af745f178045419f"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
+      "sha256": "44bf270d5925ee7c694ae17e0f090d3e8af118ee553d23c31cf4ce2a9d4f5364"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+      "sha256": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
+      "sha256": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+      "sha256": "728fe5df4975dd635f7be7bc03a9ec6444d211969328b3f0d5d08c2493bbc52c"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountCollection.lua",
+      "sha256": "fb4d9fef5a05cc9f9204c4db18a677e783fd3a1093901fa492516ad670fc328e"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/MountItems.lua",
+      "sha256": "8194c2d49dac4b9094ab63fa0016dac0d4e9fa0a1039e16c83e77c13df40f004"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+      "sha256": "1722862a1b1417df699382172d8b13a37f86f387ef0bd06050c43004efdae8fb"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+      "sha256": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua",
+      "sha256": "79725774335eb40c527a4965b3121fc5c80a750db960d75073051b2d89211f55"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua",
+      "sha256": "51465e9627786935c4e825c65ade111c2bdd79c7352080225d1d59569d14188f"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+      "sha256": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+      "sha256": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+      "sha256": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+      "sha256": "2bb620ab14c30df17be7b496b36432d4de7bf803856378a25f887403eaf3ab5d"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+      "sha256": "3aacc36ada1de09ee891067cb2cdb77fa82111d309026377fee337ccc5353301"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua",
+      "sha256": "c459c840fd01c85ab2448c9072a65be60be9430cde8318d0f01b5c67ba5dba92"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua",
+      "sha256": "a2c53d10db4cb7254be784d75e521e369fd852dce60f60de6cd895f50b7530b1"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua",
+      "sha256": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxMacroClickProxies.lua",
+      "sha256": "09378df03d1ecdafc2aeead0384d7f958a17d6132f817d5d78175b3e5c139a4f"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxModifierTracker.lua",
+      "sha256": "1371d7817c2f03c2a9a3ff600d1b6bdfe908bc162e0fc997c79630fdad6bd98b"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxMouseoverRefresh.lua",
+      "sha256": "804c5e887e4d87ef95c8958ab3ba11d48f7aae7faee708bb450a17c70f63ec4f"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxNCFlyoutOptions.lua",
+      "sha256": "c392c3942fd69ec1ffde64632b5afb2012bd047b996aeba46d5177bce1d4b9cd"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxRange.lua",
+      "sha256": "78d783cab717bf473ca58abafa5e79d733bb92766470261dc2540f7fc9973a85"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/FluxTooltipGuard.lua",
+      "sha256": "9c02edb3ffe10e689c926e16d1e340708c48b09de63a243b8168a904b340d9aa"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+      "sha256": "8b7ba726e22842fe98c2fd5ebb2938a52a17ba008f24447fcabb1810d8b48a6c"
+    },
+    {
+      "path": "ExtraButtonSystem/Shared/QtyPopover.lua",
+      "sha256": "4ba76898b77a60f488cc255396432df5652cea0b60a27be1b4922bfdbc2bf432"
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+      "sha256": "3ab177e4885568df30d2a1a813e4412194e73af4344ba42be29468e53e21d355"
+    },
+    {
+      "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+      "sha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0"
+    },
+    {
+      "path": "FluxBorder.lua",
+      "sha256": "32f95e3c04bb7ea3154973b2dff3fee6f9cd302cb913d17f430a1627d852707b"
+    },
+    {
+      "path": "FluxDefaultSettings.lua",
+      "sha256": "9956821a69cecd565125ce0ab227b74cfc1d9fee0da918c3df34e3444dce7133"
+    },
+    {
+      "path": "Inventory/_tmp_inventorylag_smoke.lua",
+      "sha256": "cbd48f33f770bb40361e339834966e438850f8b8276bbff1de59758a09906834"
+    },
+    {
+      "path": "Inventory/Builtin/Auctions.lua",
+      "sha256": "5465175ed52dfba4c209d1b61a77a8ba23380f73085b22ea9f1111743d58ab2a"
+    },
+    {
+      "path": "Inventory/Builtin/Bags.lua",
+      "sha256": "a8ca6a5e62a9411b5db443521a5e207e4979d95c994684fd1b4f2aeb9426a4de"
+    },
+    {
+      "path": "Inventory/Builtin/Bank.lua",
+      "sha256": "5f601364e1d2f3d4363a1bf15a2e21f2dcbf1d376931938866772f5bd87987ad"
+    },
+    {
+      "path": "Inventory/Builtin/Currency.lua",
+      "sha256": "ed9961fb405b999420331bda0121bfb7628e5bc247662722b190d19c1c089b37"
+    },
+    {
+      "path": "Inventory/Builtin/Equip.lua",
+      "sha256": "c550d97014ac4745e6508cc345b37ebde7d57b5f7704ac335af23554f347cbf0"
+    },
+    {
+      "path": "Inventory/Builtin/FluxClassicCombinedBag.lua",
+      "sha256": "15a92981df3ef53d6b70c2c2a88533151adb76700ea51946ecf336c6c6e2562d"
+    },
+    {
+      "path": "Inventory/Builtin/Guild.lua",
+      "sha256": "eae35c0b9e184fe9c097afc2bb306b46d33ae28ecf26c2b0f7f62f1510bf9a33"
+    },
+    {
+      "path": "Inventory/Builtin/Mail.lua",
+      "sha256": "9e64708892ffbd8a8e00d4ac99f6bd952baf65d313ae07a000b207180a75cf31"
+    },
+    {
+      "path": "Inventory/Builtin/Void.lua",
+      "sha256": "f9d007e70ac17e6365fbc075d589a6869ae866e3b78139817c94badd25cfd2c7"
+    },
+    {
+      "path": "Inventory/Builtin/Watch.lua",
+      "sha256": "277b1c21dfff274c0fa1af14a710fc1ac02d0592c56cdce492630f1a546a1b4a"
+    },
+    {
+      "path": "Inventory/Containers.lua",
+      "sha256": "67a59049ac84bbbdd48ad5c57b193542fe8c3b7d04d0e42063fcbcf255673376"
+    },
+    {
+      "path": "Inventory/Craft.lua",
+      "sha256": "4777526a27e4dec41afd6f69a781cf4bd8da45025ec0d6516d86c32b6a3d8a4b"
+    },
+    {
+      "path": "Inventory/CreateSpells.lua",
+      "sha256": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "sha256": "32d1724d2786844b70a1ed564c3fd967ed9f807591caa77a32686dcfba3c8797"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Init.lua",
+      "sha256": "a253302ba007354071201157a3d777c1c30a2352b953f4b1c450c166dd6ca9f6"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Persist.lua",
+      "sha256": "f038502fe010362923a0c130c87ed75927485badfd9d651c785e6811fd9fec1b"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "9bdd15bc17ef646daa71cd8ea12944bbe712933a3b954e32d3d3666f4acd07ec"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Score.lua",
+      "sha256": "9f59620f571ea18846a8738be96a2bd3768f5c97b5d509b4f8f2cc0f925cf063"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/VendorMemory.lua",
+      "sha256": "4fef072968473ef0ccf482ed8d4d466c87097a4af8248e19619e80f9f75e785d"
+    },
+    {
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "sha256": "45a42cf0c6c7fc5d80f92c00a556f7385dae4f6ed55a3204139268e4c4456e06"
+    },
+    {
+      "path": "Inventory/FluxEquipSlotCandidates.lua",
+      "sha256": "ec103630cfe1cbfa5f11105b5799ec3108f0ef3e0028431e244aaac604098698"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv.lua",
+      "sha256": "a7ae3deec1f9f0aa9855cdf5e0ae755aca57797a63d91ba44b8fe704c0a233b9"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Actions.lua",
+      "sha256": "4198148b86e0bac20d7e35a91304e2d44c5c1579d677d70be71429357b7725e6"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Bags.lua",
+      "sha256": "349a25ef99a694fc8629f2206ef741cdf3b4f058863f5047e6fc27c5bb004423"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Bank.lua",
+      "sha256": "9446056e9381f891276c5a7a1cd5db1c2d6b18974935e69644581d1f2993a835"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Compat.lua",
+      "sha256": "7e9e9295b7206103f02df7b3bb1914115cc0bcbe4b7af97535fa014331d925e7"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Containers.lua",
+      "sha256": "583b89471f2951cc00fd75f220c32992469fca1c833091c7421c815053ceccaf"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_CraftConsumables.lua",
+      "sha256": "ff79868bd0ad20c22d6ffe83f66cb10d7b9a7f103922c459dbf01af7a24c2cf1"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Debug.lua",
+      "sha256": "188520d8bf4c492642069acfe35d7c36d60659015b7f67ddcb5301dae497e52c"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Equip.lua",
+      "sha256": "77cf0125f8b8f9a53b9e82afdded799beb2e6432d8f4a96bed38a291190a9f89"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Events.lua",
+      "sha256": "db7d5eb23c7acd73c5b67b0c7cbf02f5541ed1ae6fcc9a4fa6c15035b558cb5d"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Index.lua",
+      "sha256": "c7c424439c8df77079505d0c008dab24c12dbac30d7b165b2c13ef6068171abf"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Professions.lua",
+      "sha256": "57ae923c9ed1b3cd571940c7ab4e2a3cdafea6474c822a85a5f8bb33e3376a08"
+    },
+    {
+      "path": "Inventory/FluxInv/FluxInv_Spells.lua",
+      "sha256": "ea3cb4ce2e297a8af2784bbcd540bac17e5bc1ef189f94cfa8c9d6030b019e29"
+    },
+    {
+      "path": "Inventory/FluxItemClass.lua",
+      "sha256": "59e627c9073ec5fead482768541059d4a4210970caf7ed040d587e1d58e4cb52"
+    },
+    {
+      "path": "Inventory/FluxItemMover.lua",
+      "sha256": "05cb0449f04261bc498f6759603e8d1ce5a7f10bb9f557c95f0b0e984a0da09d"
+    },
+    {
+      "path": "Inventory/Index.lua",
+      "sha256": "748bbc089afd89c7a3dffa6d677d0e79126fb1cc3dd89ec861767255cc4f668d"
+    },
+    {
+      "path": "Inventory/Init.lua",
+      "sha256": "b10466aa9fe216d5a450224374e677a05aaa57481ea3b9393f75945db0795246"
+    },
+    {
+      "path": "Inventory/Ledger.lua",
+      "sha256": "12027043048a9d1859267bb85ac6a497f10157b99822eaf9fbe71b38deed901a"
+    },
+    {
+      "path": "Inventory/LegacyBridge.lua",
+      "sha256": "a133c12021ffd4ddaa8dd0e2a52d7e86ff8bd673b908cac257328d3496f4b7af"
+    },
+    {
+      "path": "Inventory/MountFlyable.lua",
+      "sha256": "bec79a7d520555a0a90b44f81b274000c7d38400c4e9fba91f649d44048d9e48"
+    },
+    {
+      "path": "Inventory/Professions.lua",
+      "sha256": "48978d3e3cf1855a2cc2f43b0051c10da4894771dbe2ab6a321e71fc65811d76"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestock.lua",
+      "sha256": "74d7319c9a6f9d9d78ca559ebc588be47bc5b122d2b94dbd934226979645ff37"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
+      "sha256": "8d574ccf4e458924f0a3c7b82893fe36d704c58c26ea2df9eea30d20b0c1e8f9"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockDebug.lua",
+      "sha256": "96c9e1446a5381f90fda86d744651aaf6ce0a6e5f14bd086092da5b3c05da35a"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+      "sha256": "7c475e793a8b4568ecb77c1d6f0301e39ecec637fa9ea4bcd28fc967a0a010ca"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockLedger.lua",
+      "sha256": "2fb4701f84c1b5bc13d337f553da5e43a59df368ddb29d052693a438e3c7aaca"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockMoveContext.lua",
+      "sha256": "32b68ee17fd21de704380273dbd8440c5ac0ec7fb14bb623a0c2dcb3ff002ae8"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua",
+      "sha256": "c73c888295cf74842d1b8f2d7cdb877985346fcdb8b5909969fbbda7931c0a09"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockMovePlan.lua",
+      "sha256": "b559c9b89e4b6d6441858079641adad38eb634c9d6e7c43ed24fda4f07ebfc78"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockMoves.lua",
+      "sha256": "86d138e6e3b6a971261a0265553c31a426466d8b0ff0fefa1983b0cee646a11e"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockNeed.lua",
+      "sha256": "5304a4842128b8883137afad27eb8cfa9b1f89f7a419c1b5c3e2c8630ef36701"
+    },
+    {
+      "path": "Inventory/Restock/Bank/FluxBankRestockRules.lua",
+      "sha256": "704a0fb38dbd2f75f2048b0f3e08a5d21117be7c7b743ef987e920902385ebdd"
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockList.lua",
+      "sha256": "b8a31fbabfdd8e79e313b0e1ff736a699aa42d05ba7fb29bec0ca2550b8ed611"
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockSession.lua",
+      "sha256": "4d70874a1da1cb82d35c5c97394de72b31e2ec795315a13ac9912d6c9a62b583"
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "sha256": "18017b1a283bea71acb847f15777545a6d30d0640146c16c5778b478d7349dce"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua",
+      "sha256": "6c055d3aa33e574d2a2b7b8fae421fb1bddc1ee76d08cf14b2dc3919111edb35"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua",
+      "sha256": "8c458c154f9901737c06bc630e718574288dbd32f2d3cda6b8842b4d37a16c12"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua",
+      "sha256": "332459f58199d643733d8897bd4148ef2f8e23a05d4720eaabf47a368d336bd5"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua",
+      "sha256": "b54f35b19125388c4d7788922f6db44115d5a636bb602b70117038579259aa9d"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "sha256": "5a8ca01692212b66f1841bb341dce345b46591b3fc5c536f4426d580e089eccc"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua",
+      "sha256": "6299af96801b336895cd7e0517e0faad3ab10956043bc5d1cb3a7c77690d8908"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_UI.lua",
+      "sha256": "5828f013daa63f27be347a606321c49b84a94a3b526fe03f31b669097b505505"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua",
+      "sha256": "78e0e2fb5eff917bae8a7fb696f434338c55eab4843f9f7b7c68b5cc03508631"
+    },
+    {
+      "path": "Inventory/Restock/FluxRestock_Inv.lua",
+      "sha256": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010"
+    },
+    {
+      "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
+      "sha256": "d8f8f396a30f30a0cdc47cd197a0208da713280d182d5b0a084222a471feee30"
+    },
+    {
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "sha256": "6f01edb8dd3470a44ded54061fd553d61b50d14cc2717bcd0affb8b5e8514d84"
+    },
+    {
+      "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+      "sha256": "320bb0f893ed271c8c70e76d516ce6407ba79dd980ef62461de1957a7a911fd7"
+    },
+    {
+      "path": "Inventory/Restock/Junk/FluxSellJunk.lua",
+      "sha256": "d0bdddcc3137178ad50d8d81afd60642f43241f1a3c666a10a5900ab78b1ee73"
+    },
+    {
+      "path": "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
+      "sha256": "96daeee2d0e852a945a963a38042f7d1fef41558720b7477c3ae857b75c8214c"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
+      "sha256": "d1aa23938b150848822bee3eac0d28cc15c4ad551629a165ce2cdf2c2207ff7b"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua",
+      "sha256": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua",
+      "sha256": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua",
+      "sha256": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua",
+      "sha256": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua",
+      "sha256": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua",
+      "sha256": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua",
+      "sha256": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua",
+      "sha256": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua",
+      "sha256": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua",
+      "sha256": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua",
+      "sha256": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
+      "sha256": "db0edd484d89a034e4ca1158523114cb8686378f832a9219fe3a64c8d43be930"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
+      "sha256": "cc406c7ed1c6425ef2af74d2028f573d94ee2e970cc45434d54bfb00456bc5c6"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua",
+      "sha256": "05f3443d04cc550ad98ae0234fd9a24cd41194b0cfa5b394e85d63c68b568cbe"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+      "sha256": "d306732e4c468e3f25a296e960507225c6323f48b4d6770f709d9c56d7534ba3"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+      "sha256": "ff67a771dd316beab66fa9a9008f01fdfbb19e5ca85353b11dfb42b2b3010980"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorRepairUI.lua",
+      "sha256": "9588cca9baf40afe9d08938404a2ea2054ad4cc8c051d1068ce24f3ef5c82ea2"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+      "sha256": "1e9ee5f71cdd19a73824ae879e8f765d599e0c538d8a2430650ffaa1c005d180"
+    },
+    {
+      "path": "Inventory/Restock/Vendor/FluxVendorSession.lua",
+      "sha256": "042a57eca59766968c2d2c1a8501cfd235507d185aaa414779b50125b8cc43bf"
+    },
+    {
+      "path": "Inventory/SpellReagents.lua",
+      "sha256": "ab3cf8eb19638f93e653d7fb1ffc2aca30b46fd941f80de4f515de51992dc144"
+    },
+    {
+      "path": "Inventory/Store.lua",
+      "sha256": "c7930c139f42602ef03d697731141d577eb4c0507c0551bcf6a3f924a3eb0f27"
+    },
+    {
+      "path": "Inventory/Summaries.lua",
+      "sha256": "d9746bc366548f8f1ff7e95d4419aec39b471dd69973695cdd7a700520c8e217"
+    },
+    {
+      "path": "Inventory/Syndicator/Adapter.lua",
+      "sha256": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078"
+    },
+    {
+      "path": "Inventory/Tooltip.lua",
+      "sha256": "4d9a34e34e26b45b9feebb53e8db18a331675a14bc5fb53b82a47b90085e59df"
+    },
+    {
+      "path": "Layout/UnifiedBorder.lua",
+      "sha256": "c3fa85b68bb03fae488ab2d29d2447bb60cac9ee8c1efa7e8abc2ce887f85f1e"
+    },
+    {
+      "path": "libs/AceAddon-3.0/AceAddon-3.0.lua",
+      "sha256": "9aaec858b04820b597155b040dd76ef0d6e8e4f0707e54630001bcfe68497307"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfig-3.0.lua",
+      "sha256": "25d745c5a8b50cf4b145caa55b5aeb389762286690117f51341d4111f98ee462"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigCmd-3.0/AceConfigCmd-3.0.lua",
+      "sha256": "936138368dd8fa2523937428b321dab6ac9b5e0e502c6b49d5faa66dc5d5c609"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigDialog-3.0/AceConfigDialog-3.0.lua",
+      "sha256": "adf3d74fd8a65030ef536caf2eab13065f080ddf576233b5bf33235d41926025"
+    },
+    {
+      "path": "libs/AceConfig-3.0/AceConfigRegistry-3.0/AceConfigRegistry-3.0.lua",
+      "sha256": "7185800770e786eac398cef5d5a4887b31cddda6f5ce6a2683a9f3fdca1454a6"
+    },
+    {
+      "path": "libs/AceConsole-3.0/AceConsole-3.0.lua",
+      "sha256": "3372abc50efcfa4f643bf7c2f3254de19327d28e2040997d672f94d1845a5499"
+    },
+    {
+      "path": "libs/AceDB-3.0/AceDB-3.0.lua",
+      "sha256": "f4b37c05eaa972e51b02c8a477ad40290eada7490c81f3cf511f7b8285aec6f6"
+    },
+    {
+      "path": "libs/AceDBOptions-3.0/AceDBOptions-3.0.lua",
+      "sha256": "698e58102030d4b66d7463ce2c2a7a23338584db7fe3eb28e7717f7e6143a766"
+    },
+    {
+      "path": "libs/AceEvent-3.0/AceEvent-3.0.lua",
+      "sha256": "928729c0edae955407778463d345baa0e59fc8f6f6ad53877b6243e0f225da4e"
+    },
+    {
+      "path": "libs/AceGUI-3.0/AceGUI-3.0.lua",
+      "sha256": "bcfcef55d727f8434606bdba2375929123422e051c27fd1bfcbd95e7ab723ed7"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-BlizOptionsGroup.lua",
+      "sha256": "566551ddd7c8c434d6bb6f4a4c9a67479e6e8a719fcc3a504b18eec4f11e6586"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-DropDownGroup.lua",
+      "sha256": "ecf7743bd5fb9059d4226e35cd2374aa13282eca720938498f85d7f328f8c070"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Frame.lua",
+      "sha256": "fb3f9f3b3414bd3b27e1281c2b8836749e38906458df6b69e9f385fbe041df91"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-InlineGroup.lua",
+      "sha256": "e9458bd6378d017994408618cbc6921ef7e6bbe152e9bbded199255c399468a5"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-ScrollFrame.lua",
+      "sha256": "fef3da3ce311b861d669bc503906cdd0780a372fbea039c1e2d3f75ac6e68709"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-SimpleGroup.lua",
+      "sha256": "d65968489c0fa5749d2e35be69c60d0dd7969189aa14a9031f0654715625d214"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TabGroup.lua",
+      "sha256": "ad73ed3b619cba61778ec39b73206daac423bd1f539241f4a58ff623b0b0b687"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-TreeGroup.lua",
+      "sha256": "f323da78c108641ac7120a596bbe6a7658f6261c426d98b5f486f24259e593d5"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIContainer-Window.lua",
+      "sha256": "d57f41b781d8c021fb69a94e084efadbb891d3a353738e6ca68853da21f94645"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Button.lua",
+      "sha256": "1bcc3592c6315d1369f448316f4bc990c812a37d2a7b5c31fd2324daf6ad7e87"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-CheckBox.lua",
+      "sha256": "81cef4bb6ddef3b8bc31360f292fe7b7a7916d675b9336a697545c9ba9adfd77"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-ColorPicker.lua",
+      "sha256": "d69b7e600acf2e6f9d0e222d40952f4f25115eb6a48c039bfa71d2807668e5ef"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown-Items.lua",
+      "sha256": "aa7d0bd54525e63b9549ec0a41ff3b3595267a377e0ae65da42577856cf03f4b"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-DropDown.lua",
+      "sha256": "42e2a9d9c41bc4f481af1721b6cc45988e2bc5573fd0282499e9bf3af8e8ec20"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-EditBox.lua",
+      "sha256": "97978789450321923f180f7f21b1e5f49c0addd017fd6c5cb334cbcd522f6299"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Heading.lua",
+      "sha256": "ebf0271a8e6f7bce8947cbd339a6a08a6c856bf45e35ae9156c79320521dfa51"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Icon.lua",
+      "sha256": "62df520dba9234f704ac956141e95e9716896b006210f4ae67a9afbff3b93a50"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-InteractiveLabel.lua",
+      "sha256": "e47543663cc5c4272ef6fb6d356fb63a49f6b101d3cc0501e769ac6615442cce"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Keybinding.lua",
+      "sha256": "f91cf498566a9bfd60f42b3bd8b5f7a14d4087d6033795e72ddf50f7fd47177f"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Label.lua",
+      "sha256": "7d953f5fd4cb6ba8fb25c0c732e6dd61564684c57bc5175f4d734d646b99842d"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-MultiLineEditBox.lua",
+      "sha256": "828ede1b08906bcc62821e02ef7ff99dfc03d2658baa25b13cc645bc9790cdac"
+    },
+    {
+      "path": "libs/AceGUI-3.0/widgets/AceGUIWidget-Slider.lua",
+      "sha256": "59b3ee4b813c8e20c4463e9fb1c167bfb8552e1ad6ec512dccfce24c9e4049ca"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BackgroundWidget.lua",
+      "sha256": "a98f491caaec6406204616d12b53e666703100bf93a83e03e4e222635c15b634"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/BorderWidget.lua",
+      "sha256": "a00d00269cb139ae0465994d7076a5533c8d4795f27d6dd5c3c0f90ea0a77f6b"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/FontWidget.lua",
+      "sha256": "2855a05d6a0aa2d3c939c7f41c079ccf3f4adea506c3190707ac2d1bb6221403"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/prototypes.lua",
+      "sha256": "f25f3c53110a7a51668e041edf54e178ea31f6afdc0a0030daed065945045522"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/SoundWidget.lua",
+      "sha256": "87e278a6f518bb25818c610f8858f65cd6a674ed25a3f7600d8b64b1603e9f1f"
+    },
+    {
+      "path": "libs/AceGUI-3.0-SharedMediaWidgets/StatusbarWidget.lua",
+      "sha256": "0d9fe21f7c66d4de9b556125d2d6781b140ae1a0babdda3382f8e012160f8f68"
+    },
+    {
+      "path": "libs/AceHook-3.0/AceHook-3.0.lua",
+      "sha256": "9e8f57d06fa7bfcba6d2a2e9fb8fdfd9fbc040158f4401d4308f8279a26e1378"
+    },
+    {
+      "path": "libs/AceLocale-3.0/AceLocale-3.0.lua",
+      "sha256": "584b30b5cd9da71408cdd83a49469aa4348941e185a42cbd218d964678d88e57"
+    },
+    {
+      "path": "libs/C_Everywhere/C_Everywhere.lua",
+      "sha256": "f8da96f734f692479dd27190868cfc77e42cdd4c7265567590fb02db909ea3fb"
+    },
+    {
+      "path": "libs/C_Everywhere/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/CallbackHandler-1.0/CallbackHandler-1.0.lua",
+      "sha256": "84a15af505e728ac5e5eb6a8eaba8989d1131d5f8ba14d11abcfe4ce086de3c1"
+    },
+    {
+      "path": "libs/CustomSearch-1.0/CustomSearch-1.0.lua",
+      "sha256": "92667711e46349ec911f3ba66d9b382fb3c78b0bf1ee813a61255ca804bfca32"
+    },
+    {
+      "path": "libs/FluxButtonGlowExtensions.lua",
+      "sha256": "ae818e0ed68d9c34d08607addda309fb9955b6c067acf007cff92ba2ac2753e3"
+    },
+    {
+      "path": "libs/FluxLABExtensions.lua",
+      "sha256": "0b2fe5d4f38a9e2e4325795dd0cf6187a0db99f7f3cdfbc49664eeb0aa9e7454"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/API.lua",
+      "sha256": "dc77feafc86c8ca3db8a7eb1a7a88aa4f6c1bf9629dec0135d7756db7cff71e3"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/Filters.lua",
+      "sha256": "1055d557fe2b594537636bb56d626b6db2865a54d9628364dcb56d0881b3c57f"
+    },
+    {
+      "path": "libs/ItemSearch-1.3/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/LibActionButton-1.02/LibActionButton-1.0.lua",
+      "sha256": "1e5e51627243a6593555f4fc5384c2a95bc6eed478a51f6bf6cd1c6e1a15b79d"
+    },
+    {
+      "path": "libs/LibButtonGlow-1.0/LibButtonGlow-1.0.lua",
+      "sha256": "69c32ec22d61324fb35305b06f8bf2ba270ce3b3008d9b18b28d85960edf8038"
+    },
+    {
+      "path": "libs/LibClassicCasterino/LibClassicCasterino.lua",
+      "sha256": "e934f61cdf2a22760b29fb0088d63acb99f0b69bde2eea2293cd664887d84fa0"
+    },
+    {
+      "path": "libs/LibClassicSpellActionCount-1.0/LibClassicSpellActionCount-1.0.lua",
+      "sha256": "7e0864dada9cc161e20f4a07b0f05a16dbe49f6d943fb9539e5a4404834f4759"
+    },
+    {
+      "path": "libs/LibClassicSpellActionCount-1.0/LibStub/LibStub.lua",
+      "sha256": "186bac9553513504fac3a5c4550ff59f3aee9e8a497376134f3ca01de2ed18d0"
+    },
+    {
+      "path": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6"
+    },
+    {
+      "path": "libs/LibDataBroker-1.1.lua",
+      "sha256": "f3d4758f2060215492c9764b1d7dc2a336826d4cd253cd54ff9ff7c6d78f04e2"
+    },
+    {
+      "path": "libs/LibDBIcon-1.0/LibDBIcon-1.0.lua",
+      "sha256": "2067ece0f93dbbf3fc6e633dabd43cc9d425be9ad49dfba6719d148864b2183d"
+    },
+    {
+      "path": "libs/LibDualSpec-1.0/LibDualSpec-1.0.lua",
+      "sha256": "e3cdde3f5ecd964fe5bd03aa2348c77fae6181bf4af4c530ba455bd7c439b4ac"
+    },
+    {
+      "path": "libs/LibDualSpec-1.0/LibStub.lua",
+      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/LibKeyBound-1.0.lua",
+      "sha256": "d5718d6902cd13e1a68cbacf8252424ea165b479c754dc59ecf49bfcf67f8bc6"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-deDE.lua",
+      "sha256": "8cad2c08fae9777716331f6e456dc0188e728201c1ce8c70487391e157fb9cdd"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-enUS.lua",
+      "sha256": "5ae8b61e315caa14120dabe6aa20c50e61d8567ec6233b72884c46282ea8ef6e"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-esES.lua",
+      "sha256": "f5fd5a289bff165712bf4ab2346249bc8084e043a703ee60c870349bfebf8a05"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-esMX.lua",
+      "sha256": "dccee9a4968d4e1a2a2499cae5ed46695fdb64c3ef01b159a04c416e0d4b56ec"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-frFR.lua",
+      "sha256": "28808327af173f01d1f0935e632ed4274e5fcaa50fab2d5eb82d663bec20b910"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-koKR.lua",
+      "sha256": "4adc082cb5a25584f93d989bc6162c87db08e85c57b45e802820eb39ea8a9cb3"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-ruRU.lua",
+      "sha256": "c63214b314826dc6c0c42fe452df320052700cad2c6f8cf102a054b1bb6855a7"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-zhCN.lua",
+      "sha256": "79eaf1f587b1b8f08d32707c2d29aeb7610e1a33cb669d67a7b519c8dc052595"
+    },
+    {
+      "path": "libs/LibKeyBound-1.0/Locale-zhTW.lua",
+      "sha256": "0494e9f1ae24cbb225cac33506fad775e26fd73f1db4c0a9f9cc84633cc160af"
+    },
+    {
+      "path": "libs/LibSharedMedia-3.0/LibSharedMedia-3.0.lua",
+      "sha256": "88fb301fe15edc86b01407640fe587ccbbff72d54c9e06b08b3d792804e0899c"
+    },
+    {
+      "path": "libs/LibStub/LibStub.lua",
+      "sha256": "a59b4c745c1fdb1b5ad22a86394814afecf8549516c18f6a16353960646b47f8"
+    },
+    {
+      "path": "libs/LibWindow-1.1/LibWindow-1.1.lua",
+      "sha256": "306e722c2799d8edbb5d3165d3d8b414e88a5cb544fcbd24b2a2b1a15a893dd4"
+    },
+    {
+      "path": "libs/SecureTabs-2.0/SecureTabs-2.0.lua",
+      "sha256": "fdd306aa1f994faef1e29514362619fff075c58e43832cabdbe315ea387405b6"
+    },
+    {
+      "path": "libs/SimpleSticky.lua",
+      "sha256": "116cf6c0dd24e6a84468e005bc2a87881cfee8568d6e8aa7e6d0375bfaafc4be"
+    },
+    {
+      "path": "libs/Unfit-1.0/Tests.lua",
+      "sha256": "2dcb87830ddc534b7c882f26000093375f0c234be6fe5e5b51fb5f23f8158272"
+    },
+    {
+      "path": "libs/Unfit-1.0/Unfit-1.0.lua",
+      "sha256": "52e5cf67b8e58f349fda0d23ed60853fcf88ff0b7d435cfcbb19fb8f8696fe43"
+    },
+    {
+      "path": "MicroMenu/_tmp_bagslotssmoke.lua",
+      "sha256": "c4df7c05466734c14c0d2a5cc047d672aa3ff6ee5a2aa308f268fc533eef30f8"
+    },
+    {
+      "path": "MicroMenu/_tmp_micromenusmoke.lua",
+      "sha256": "da28196c346a626167c329c65f25be71337b3666e209104d5e4003dbf185db73"
+    },
+    {
+      "path": "MicroMenu/AceGUIWidget-FluxMicroMenuEmbed.lua",
+      "sha256": "99b2ffc6f3afd13ff720f1bd883961169b125dabbc7d0c3e0f79d237660f7b5e"
+    },
+    {
+      "path": "MicroMenu/FluxAddonMicroButton.lua",
+      "sha256": "aee9b43ccf325e6c7f956c946cc0078b65aac1b7ce9d331fe4d2ab95b4f925d2"
+    },
+    {
+      "path": "MicroMenu/FluxBagMicroButton.lua",
+      "sha256": "c2f695e67c25188af3bc47e5c35548155f60fc9c939f867c7443071c132d4884"
+    },
+    {
+      "path": "MicroMenu/FluxCombinedBagHeader.lua",
+      "sha256": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223"
+    },
+    {
+      "path": "MicroMenu/FluxConfigMicroButton.lua",
+      "sha256": "2e704442ad96f8f0e0f5697f523b579abe32a72a802eed784da0f0c13a05497f"
+    },
+    {
+      "path": "MicroMenu/FluxLFGMicroButton.lua",
+      "sha256": "65c682daeeb2f499d99bef9e45a633ca3ff636dbadf7e8b3083eda4fca0c960f"
+    },
+    {
+      "path": "MicroMenu/FluxMacroMicroButton.lua",
+      "sha256": "e790bfc227b5c8254ea9ad145666bef07fc3ee2cf8edebe6727f298c75dc2c76"
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenu.lua",
+      "sha256": "df986aabcbc04c4965f8fc8061676bd0a171fa175287f3164cfbdc94fb8862f4"
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenuConfig.lua",
+      "sha256": "80f106104b17650bd45a8342b8c9376c88b4be92c1de247bde136a5bab10821c"
+    },
+    {
+      "path": "MicroMenu/FluxMicroMenuConfigUI.lua",
+      "sha256": "7d9508babe12a20866a647ab5ddae84d7ea11c6100d29d5f23d2bac662941c91"
+    },
+    {
+      "path": "MicroMenu/FluxMinimapToMicro.lua",
+      "sha256": "4eb6c29f965158f27f405d3b7583bf33e2304916b8de14b1806f078de890d40e"
+    },
+    {
+      "path": "MicroMenu/FluxReloadMicroButton.lua",
+      "sha256": "995ebc74b55a29178624be93ec0815c93b79298f2733af5a6cf19a63f6a4920a"
+    },
+    {
+      "path": "MicroMenu/FluxTradeSkillMicro.lua",
+      "sha256": "9514d1c81da548070bbf228e1cb25b38ada91bb7351cf248a6a21aa8003fab94"
+    },
+    {
+      "path": "Minimap/_tmp_questiesmoke.lua",
+      "sha256": "ff04deb6fea87015a5cbb4e8974d503f33bd50f67e3d300a034e9d4670d80d36"
+    },
+    {
+      "path": "Minimap/_tmp_trackercombatsmoke.lua",
+      "sha256": "d21651defe4c3de0b72233b7484ea61986d91f735e5d4eacefe355d352fe691c"
+    },
+    {
+      "path": "Minimap/FluxBuffDebuffFrames.lua",
+      "sha256": "f7d5688164fb0cb05c8d0c0a0038ea374159d8cbb6c2de2f9629e89f944b379b"
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "sha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+    },
+    {
+      "path": "Minimap/FluxMinimapButtons.lua",
+      "sha256": "3d28cc2dfb193f7e701cca98ce83fff53cebaf3eb29fd2c97792ad8210385562"
+    },
+    {
+      "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+      "sha256": "fa7832d6bb67a4ec21afae913d88464389e180cdf6227aa8d71e145bba14183d"
+    },
+    {
+      "path": "Minimap/FluxQuestie.lua",
+      "sha256": "534793c994a163af6a3702690cf2512fbc706cd5da98b8c80f113155cb626569"
+    },
+    {
+      "path": "NamePlates/_tmp_combosmoke.lua",
+      "sha256": "df92a2454a9e25220fdc64ea8ccd041a04fe8648ca11024192d385b1548faf33"
+    },
+    {
+      "path": "NamePlates/ComboPoints.lua",
+      "sha256": "e0ab99bf4b0d8f165f436d373baec5251474303a521ce31af12bcd35c01a3a76"
+    },
+    {
+      "path": "NamePlates/Core.lua",
+      "sha256": "9c694dc00906eff9e6b15bc354a428a9677e30e00aae0ec6fc8f2c2419e689e5"
+    },
+    {
+      "path": "NamePlates/Countdown.lua",
+      "sha256": "e43f0bfb60bb6a66b801cd5d8d6dbe65ce8ff6b452247c39012e3c5ffb073271"
+    },
+    {
+      "path": "NamePlates/Level.lua",
+      "sha256": "e0d5656f064adae94e5cf1dc1adfde7ec13113fad87a2df475902ba27a1e0a21"
+    },
+    {
+      "path": "NamePlates/Threat.lua",
+      "sha256": "37c4a2c54811274e3e6d8c03b8f41974e9ebc4ef4b564e9c832d157f8957d3db"
+    },
+    {
+      "path": "Other/FluxArenaFramePosition.lua",
+      "sha256": "fbe069ed348e2d1e0413ce404e86d70d2ac796be1f0c1a5b6180a88bc94efbe6"
+    },
+    {
+      "path": "Other/FluxBossFramePosition.lua",
+      "sha256": "63590dfabca4a5e8f3525bde49b8e15e74c10dca0b8b765350e939f358f55a0a"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsCritCalculator.lua",
+      "sha256": "16f0acfcd775962ba5b79a2cfaa7a380e522b158f7178e34b8b227285e794b06"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsCustomExtensions.lua",
+      "sha256": "2e10ed742f09a1690370cc1486a73a13ca9483532f258427d670cd97f072e6f0"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsEra.lua",
+      "sha256": "a2dd179e516bcfb283bdf9c796a06578d4cf9de8e3d5957341dd6cdca1e1c867"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsGearScore.lua",
+      "sha256": "0cc5a7a968eba5b0b87a42b1ab6930976307ed7938d64a1d1493ffed61372912"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsItemLevel.lua",
+      "sha256": "343e8351767957865e7ba2305f7ae1eba209f910d33f6842ddbce28173f0ac08"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsPaperDollEquipFlyout.lua",
+      "sha256": "b2c889ae2cf82c46abb0710e55cc5ab2727b5430ee5d6c6dbd2db99efcb9cc07"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsPaperDollQuality.lua",
+      "sha256": "dec86bb2d73a20909f409c6c274d93698a886aa5f4531fe02cb71d4f143ab090"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsPaperDollVisibility.lua",
+      "sha256": "a1e1e9ed40380a65906a04e4a9bf5a02196b95cc2d32284d0642083e225157d4"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsProgression.lua",
+      "sha256": "4ffd8f26fe4091cbb9baf9e6a48c536375b8a28018dcb195bb546616d99c6c4c"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsRetailIlvlFormat.lua",
+      "sha256": "2cb10ffbdda06954cc0ad844464a69612af1b3f893eb4eff2fc68c62fcb16235"
+    },
+    {
+      "path": "Other/FluxCharacterStats/CharacterStatsTacoTipPaperDollSuppress.lua",
+      "sha256": "af27d6f968854814d8af0e68e5d0453ec1356fbc827c5cb5a622d5db9d66eaa9"
+    },
+    {
+      "path": "Other/FluxCharacterStats/FluxCharacterStatsShared.lua",
+      "sha256": "5807393b300a65c8878076ba8e015b7d030149112f45e9264372478fd144eb39"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_br.lua",
+      "sha256": "810460bdc457f025aba45f5f30c668325a22e5987c83c400c467f0e43a58837a"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_cn.lua",
+      "sha256": "8334b6567a7db883aa28ddff0add29275a30a3cc258b2143f3270b498fcd5fe6"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_de.lua",
+      "sha256": "587275f33d4f4576e764fcc7480fc0ef7ae92639dc156f5a9c0f3c274972b8e8"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_en.lua",
+      "sha256": "d73b70ce0b0f808b72c3f9b721344a0804e58841f94fdf3d4f05c975ee03973f"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_es.lua",
+      "sha256": "7e609ffde423aa240ba50971409405b4821fc272844f5f32a951168fb6792920"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_fr.lua",
+      "sha256": "d747adfc8bf8f2a47052e935cf80e9e80d014ddb343e7106088055f80653c678"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_it.lua",
+      "sha256": "96db55a7d04fb7ce5481cc031684fe3c550b172d9eb6e50f56226e29cd3f97c6"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_kr.lua",
+      "sha256": "a7f45639305bf1e3aeaafd22d17a863fa76ca4c4dd0ad074246b30b48cf6e66e"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_ru.lua",
+      "sha256": "88d1bcbda277c140e59ca5bff0d263c1245af3f978ecb98567b6cde7ef7bb24d"
+    },
+    {
+      "path": "Other/FluxCharacterStats/Localization/Localization_tw.lua",
+      "sha256": "e503b12fbdc55ac668b5ef17984c1ceb0d68aeb61975c2e5c9b811d4e718e43b"
+    },
+    {
+      "path": "Other/FluxChatColumnMicros.lua",
+      "sha256": "470ff6192b5a4f512aa673d4c27949ac0f2b28ebcd8044fbf67412d6315c1919"
+    },
+    {
+      "path": "Other/FluxChatCopyPaste.lua",
+      "sha256": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c"
+    },
+    {
+      "path": "Other/FluxChatFrame.lua",
+      "sha256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22"
+    },
+    {
+      "path": "Other/FluxDurationBars.lua",
+      "sha256": "58bd5ab748f3189d9e429a69be3cbd34c410f67fb4a58a92164e8c4ba0160e09"
+    },
+    {
+      "path": "Other/FluxEquipSlotFlyout.lua",
+      "sha256": "9ec5a00f229d87dfa98c210515fc0d74d39d6578d505497e598355ddce80f07c"
+    },
+    {
+      "path": "Other/FluxExtraAbilityHUD.lua",
+      "sha256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279"
+    },
+    {
+      "path": "Other/FluxHUDTooltip.lua",
+      "sha256": "cec8b0b4db3172112bf98fb0acc731a019f3f7f23133f759451425ae5748fac6"
+    },
+    {
+      "path": "Other/FluxInputDebug.lua",
+      "sha256": "985767bd22edddea4b8da149b53ac931fd470f617d169385076133940ed299c0"
+    },
+    {
+      "path": "Other/FluxLootRollPosition.lua",
+      "sha256": "291ba22a149ec0f1d8ea6a1e05aa61009643ead9f3966a88736a294767257b3c"
+    },
+    {
+      "path": "Other/FluxPerfCapture.lua",
+      "sha256": "4c7e8f8ca435d158aec71ce8bd59f3fdb326f061ea2900d8c1a583d4cb32c30c"
+    },
+    {
+      "path": "Other/FluxPerfDebug.lua",
+      "sha256": "fe97be238db24f25b865b04a8a83125704091c73604e716e574bd44c8768a834"
+    },
+    {
+      "path": "Other/FluxTalkingHead.lua",
+      "sha256": "01b085edce69b45631b427994a5f859c0a19bad7fa8519c88b6839acd0e2594d"
+    },
+    {
+      "path": "Other/FluxTradeFoodWater.lua",
+      "sha256": "db1cc1b737942ae38905d9663c453ef008f0538e9319a336c6de272657c179f0"
+    },
+    {
+      "path": "Other/FluxVehicleExitButton.lua",
+      "sha256": "1718bb3f1991cadacec3ea9f6de5d87098015f46d5d1af111a48475b3310e1c4"
+    },
+    {
+      "path": "Other/FluxVehicleSeats.lua",
+      "sha256": "0374a63183ec83f4205086e6fbbef06e14795184ba6b767fe5062725a49cf694"
+    },
+    {
+      "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+      "sha256": "b64b35d73a8f880ee522214005d33c9f8b82fc5c0baa037247be0b2f5c0cca90"
+    },
+    {
+      "path": "RaidFrame/FluxRaidCompat.lua",
+      "sha256": "17e490b662719c27302a891b2c347119fdf6ba8ef7c9961511295a55fd869aa9"
+    },
+    {
+      "path": "RaidFrame/FluxRaidFrame.lua",
+      "sha256": "6b943ec9c88d1497742e7d71e5115eb526bf65659043b8cfdc997ccc8be4e30b"
+    },
+    {
+      "path": "RaidFrame/FluxRaidFrame_BigDebuffs.lua",
+      "sha256": "b8f629955648be9fbd1d623a818b6ef97fe2165b03810bfcedd1311e1b927584"
+    },
+    {
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "e83d1c0c288d668f414f9af334f9ba10863d319da37e013ebc8208f8b00d1a34"
+    },
+    {
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "sha256": "3b0c70d905c3ec7656d2203342d39e7d36378b4ed0620e29c38768f1857dd820"
+    },
+    {
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "cbfdc2a48df89f62abe4ecb541b6b64fcd30e26a786f9dc02d87e9718167d6e8"
+    },
+    {
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "462fb1e32a4339768d039ec074ed03fcae20f535c473274945e5c70819a065b1"
+    },
+    {
+      "path": "Respec/FluxRespec_ActionBars.lua",
+      "sha256": "608d64a449ba3110fef900a563edbfe0d470a12faf2039e463f089eae47ae533"
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "sha256": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09"
+    },
+    {
+      "path": "Respec/FluxRespec_AtieshDualSpecFix.lua",
+      "sha256": "bc9a5796deb066cceaa1645bb9dd61259d60e06c7a1723a96367995d44b37f1d"
+    },
+    {
+      "path": "Respec/FluxRespec_Compat.lua",
+      "sha256": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32"
+    },
+    {
+      "path": "Respec/FluxRespec_Consumables.lua",
+      "sha256": "f52b3ca1de1dd94bf4a3ea3012c2253d3accf753283aea2a21f491331cb36215"
+    },
+    {
+      "path": "Respec/FluxRespec_Core.lua",
+      "sha256": "6c5b82600ffd097ce3e3e77b7bf47cc67f1aad69c0d601b558f937d789cc6adb"
+    },
+    {
+      "path": "Respec/FluxRespec_Equipment.lua",
+      "sha256": "b5e878a30a774c5d120f094a3ff20b496c53a5b32ee71c0bf94ded43663fdd66"
+    },
+    {
+      "path": "Respec/FluxRespec_EquipmentPresets.lua",
+      "sha256": "b0828d5f20fdba53641b0ac04f777b7a045563bc758f866df92ecc9e6d567704"
+    },
+    {
+      "path": "Respec/FluxRespec_EquipmentSets.lua",
+      "sha256": "63ebd97206a3d65eb2352558df2f0f2430ab2ac7c4359d85e9253714cd067831"
+    },
+    {
+      "path": "Respec/FluxRespec_GearPicker.lua",
+      "sha256": "64d870b894c1857275705869d7da8dccd2b41ff4cef9c5874d1dd22625c0939f"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetEquipGuard.lua",
+      "sha256": "2dbfc03f1c94b4f804c9fcd90fdb038ea25371993d9ce5032a87f00cedf3b293"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetIndex.lua",
+      "sha256": "c72e83d004cfa07b589c00d2fd848dcd009c839fe5beb24b2a5c2e9a2558e68a"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetLock.lua",
+      "sha256": "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetOverlay.lua",
+      "sha256": "b16a9393548419e81e3cd5da56fb94a7b9ae2516af55116d5e3ae8001a23f0b3"
+    },
+    {
+      "path": "Respec/FluxRespec_GearSetTooltip.lua",
+      "sha256": "a156f176cc7ed84d418a83fb8758698cc9b33aed2bf34b9a0684e51fa0fdc197"
+    },
+    {
+      "path": "Respec/FluxRespec_IconPicker.lua",
+      "sha256": "12bc437e99daec2e2aceccac2ad0685130cb0185823c44067cbb001a191044d6"
+    },
+    {
+      "path": "Respec/FluxRespec_Includes.lua",
+      "sha256": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e"
+    },
+    {
+      "path": "Respec/FluxRespec_Inv.lua",
+      "sha256": "e503b361a46b6aaed71eba763e20db228ece4f6a85801ee126e81438962bcac1"
+    },
+    {
+      "path": "Respec/FluxRespec_PresetBundle.lua",
+      "sha256": "420c5b848aacfdb1675d73c252fd1dfc64d13baaf3b45910c33505a294212da9"
+    },
+    {
+      "path": "Respec/FluxRespec_Register.lua",
+      "sha256": "51ef835c4343570c1f90df9d4ee440f68b9109ecaa9997f55cf557a0b010fc16"
+    },
+    {
+      "path": "Respec/FluxRespec_RunePicker.lua",
+      "sha256": "9aeec7f7483e26a81b17a92398cb2172d13ef164a1000e2230cabdfce32b0c6e"
+    },
+    {
+      "path": "Respec/FluxRespec_RunePresets.lua",
+      "sha256": "b41be2d1ed73d03fce5789f086936d6971c03497a364eed2124f992deea6c160"
+    },
+    {
+      "path": "Respec/FluxRespec_Runes.lua",
+      "sha256": "382779e5a85ab8f3ff6807a5196b6e28743177b32223eafa54ed47213ddf3017"
+    },
+    {
+      "path": "Respec/FluxRespec_Talents.lua",
+      "sha256": "e8d64c22e3fbef0a97dd4a1ca70cb9768406760d47869770bab6615baefc4d6b"
+    },
+    {
+      "path": "Respec/FluxRespec_TalentsRetail.lua",
+      "sha256": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6"
+    },
+    {
+      "path": "Respec/FluxRespec_UI.lua",
+      "sha256": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4"
+    },
+    {
+      "path": "Respec/FluxRespec_UI_Gear.lua",
+      "sha256": "e91125a64e3b63822e73f81bc6b3bb42c2372dc091e01fee6a73e3ea317af318"
+    },
+    {
+      "path": "Respec/FluxRespec_UI_Rows.lua",
+      "sha256": "1b0a01e8a71a5f476cd4b7094fa73690ed6d99ee7f80cc6d8466b48980ed0604"
+    },
+    {
+      "path": "Respec/FluxRespec_UI_Runes.lua",
+      "sha256": "9fbd26437d98975ce3ff7454402dc1358437092e6c61a019af554e00ac4a73cb"
+    },
+    {
+      "path": "Respec/FluxRespec_UI_Shared.lua",
+      "sha256": "ba08a1876cee93f2e51a8ead27f2334dccb10e90ee7f08ac8790760b7893be83"
+    },
+    {
+      "path": "Salvage/Data/crushable.lua",
+      "sha256": "d6de98e66f6a9d0bf24c91edf5b9268a3be892647101ed45c76da50b0453a07d"
+    },
+    {
+      "path": "Salvage/Data/disenchantable.lua",
+      "sha256": "02f8998ca1574fac32e8eeac07ea0d81f51fc44a7bf1d52e3e753f84795b9dca"
+    },
+    {
+      "path": "Salvage/Data/keys.lua",
+      "sha256": "16021b6aa890c3b9bb89f23564e8afb4f84225068bd793be53b448f29a358d03"
+    },
+    {
+      "path": "Salvage/Data/millable.lua",
+      "sha256": "927a88744b73650e2bc34f03b12610eb94cd09ce97541b98e076d9af8da4bc4f"
+    },
+    {
+      "path": "Salvage/Data/nondisenchantable.lua",
+      "sha256": "d8bc12d03559772ac84bf6c7e3754d212b7c14a3a90cfeaa2859b08897dd0077"
+    },
+    {
+      "path": "Salvage/Data/openable.lua",
+      "sha256": "ec9ca3d9544558ff54a76324523743667a5e78042e4140933e87b9391679d4d7"
+    },
+    {
+      "path": "Salvage/Data/prospectable.lua",
+      "sha256": "23315da792db35346d899e87a5e339d9b061424fce70c21f412af11f3679ba03"
+    },
+    {
+      "path": "Salvage/Data/scrappable.lua",
+      "sha256": "5234ba78cf2d5fd9a661496a872958f64a53be4fa475a725c797b1b2e1579db4"
+    },
+    {
+      "path": "Salvage/Data/shatterable.lua",
+      "sha256": "a9222cb8315a0c68fce5a67cd3d23f25d8c12907d1d6654cce11ae45a50af72a"
+    },
+    {
+      "path": "Salvage/Data/transmutable.lua",
+      "sha256": "d67f75ac04752e31222fda7b641fea4eb9cd1ae444748740be82d5019ccac08b"
+    },
+    {
+      "path": "Salvage/FluxSalvage.lua",
+      "sha256": "0a68fd5448a07c763fb2e2a76571f78797b4a26e539eaae2c3141f09d2ad7c7c"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Classify.lua",
+      "sha256": "e2599e06ba29accd68bd56f77911fbb7fffc4d43f50ca782b1db60ac42b81f80"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Colors.lua",
+      "sha256": "2482ab356586282b449b42aeded69985a197c86c16e6e63791313e6732e13fd9"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Overlay.lua",
+      "sha256": "e95924b5cb5caa1640eca8327a0fd5bd629b5e539079259dda22e06be59b2405"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Settings.lua",
+      "sha256": "5c89af5e16149e242ee9a0e70fd53d234b97903d04eb96b1e23e19d695ff8756"
+    },
+    {
+      "path": "Salvage/FluxSalvage_Tooltip.lua",
+      "sha256": "56bdb4e163f6bb57ebd1fe1a26932fe93ee0c1aa2243ead566aa24174683b23a"
+    },
+    {
+      "path": "StatusBars/FluxGoldLedger.lua",
+      "sha256": "f875f13195eca71be5181fa2144f84d6fdb07fc3a919af42cd91fcbf6c0876bb"
+    },
+    {
+      "path": "StatusBars/FluxInfoFrame.lua",
+      "sha256": "d335f73a27d320c0281a7ba50e0fcee48c20ff4db01643a43a33b63c971ef456"
+    },
+    {
+      "path": "StatusBars/FluxItemCurrencyTracking.lua",
+      "sha256": "325aaddbb4c2665901d757e4b923974785122f31edfe5d904a1aced39a182174"
+    },
+    {
+      "path": "StatusBars/FluxPVPObjectiveMover.lua",
+      "sha256": "5fe60fb8bec115293fff517722d2283be3c4757b364f883e710f2ca5a677d7bb"
+    },
+    {
+      "path": "StatusBars/FluxPVPTracking.lua",
+      "sha256": "78ae6807da78db89effe452672eefd6225047b7321828385a4ad26e128a8415d"
+    },
+    {
+      "path": "StatusBars/FluxStatusBar.lua",
+      "sha256": "5357903ec1f56c8ddece792502d3ea00a0753405ea7169debf0f77001f8def2e"
+    },
+    {
+      "path": "tests/assisted_highlight_work.lua",
+      "sha256": "0cc94ad4adb3638558f75b3fa67486c11e9be074aea70bdf3b40090cc5d9a75a"
+    },
+    {
+      "path": "tests/bag_free_slots.lua",
+      "sha256": "ff50453bd47f7c41c899d04deef9cd7c8ad9f137bf981ca15da932bd5005bd6c"
+    },
+    {
+      "path": "tests/bars_contract_regression.lua",
+      "sha256": "ecde18a8651a6533614b92b01d72da159ae5544cc2c07b7a9b3e923c0cb65d2d"
+    },
+    {
+      "path": "tests/bars_edit_mode.lua",
+      "sha256": "3eef97b8fefe63ee96788542194f75dc37e6efbc14f366e68702740942ccb379"
+    },
+    {
+      "path": "tests/bars_refresh_regression.lua",
+      "sha256": "52ee5540b0d47a4935ff5bff434d4cf605bbd63e92fe0ff8ca5472b7908db8c1"
+    },
+    {
+      "path": "tests/bars_startup_retry.lua",
+      "sha256": "fb7fbd3ad7e3182c94ccf7092235ec5ba06180e9ca38050db527126467f5e8e0"
+    },
+    {
+      "path": "tests/binding_respec_regression.lua",
+      "sha256": "8e87e426273fa27b623fecf3378437e16dbdfcc08cdd586cac7e01b0f6c47577"
+    },
+    {
+      "path": "tests/blizzard_script_ownership.lua",
+      "sha256": "f3e627f77a9dcd7a085cb8352765aa8bc80cf95285eeb14a0a23eece2a7c0942"
+    },
+    {
+      "path": "tests/castbar_school_themes.lua",
+      "sha256": "6d6b73f83ecc039a9560625e5e2af235609b7fcf5f0b62c6a216f60887c141ef"
+    },
+    {
+      "path": "tests/chat_column_layout.lua",
+      "sha256": "b304c5d1c43c537a88ced827605561f5ab9b7d6aba20499e78710e8a0ce0ba5a"
+    },
+    {
+      "path": "tests/chat_layout.lua",
+      "sha256": "b3b0f542d1df1d45e03c934acf9ae86fb81bb328ef2cd11f55ed01f7a3f621ab"
+    },
+    {
+      "path": "tests/chat_startup.lua",
+      "sha256": "b48f3ba0f25f9e386d17496c0a0e16e80bdef27363efebec24b059f162fccbbd"
+    },
+    {
+      "path": "tests/combat_queue_supersession.lua",
+      "sha256": "8e8fd920475e2d812968433ebd67e155aa716ffefd3d5f0fad0380c1a87e33e3"
+    },
+    {
+      "path": "tests/consumable_restock_clicks.lua",
+      "sha256": "2d0bc7f84eb04e3b25f691386c4414ef075d05842d27d96374cd9ba971586ce4"
+    },
+    {
+      "path": "tests/currency_provider_handoff.lua",
+      "sha256": "cabde189544c785e8bdc6ba5b375119cd43ae7fe923f52583f1d165611449752"
+    },
+    {
+      "path": "tests/data_integrity.lua",
+      "sha256": "8f1fc6715fb507b5c6a79d2ed8c3b6f682064394c2f7676cc6198611ac31eea0"
+    },
+    {
+      "path": "tests/deferred_inventory_handoff.lua",
+      "sha256": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1"
+    },
+    {
+      "path": "tests/edit_mode_recovery.lua",
+      "sha256": "3401069815b416de910b37bf077547bb3c545e00d6911c3ee3449ce0d9ed7a3f"
+    },
+    {
+      "path": "tests/edit_mode_settings.lua",
+      "sha256": "ca6c84d8063181be62ef7b03fe4393378233313667bbd03853c89f7953b664d7"
+    },
+    {
+      "path": "tests/extra_startup.lua",
+      "sha256": "3833c20dd506c43262f2cd956996f9e9f18da9cb45b01d815c6fee31216bcb94"
+    },
+    {
+      "path": "tests/grid_child_startup.lua",
+      "sha256": "dff5caf582a41bf40c124c1822bff1bca26146530bf6174a1a78a2ee9939f72a"
+    },
+    {
+      "path": "tests/hud_startup.lua",
+      "sha256": "83a8f3a829e880a94e3f889780ef7f9af7948f2202fcb0e6e1be9cb2b7e7060f"
+    },
+    {
+      "path": "tests/idle_bars.lua",
+      "sha256": "6f69569822142d5deeb73f0fedb4f049636036d3a830e4a22ab6f374f507cb5e"
+    },
+    {
+      "path": "tests/idle_chat.lua",
+      "sha256": "b10c213eef410cfaea270313f21b71a138b65622323308ebaf92a771d1be4d15"
+    },
+    {
+      "path": "tests/idle_hud.lua",
+      "sha256": "4dd4c012ffea69046582d22cb400e74243db29b8f319f0a0a6c7d11fa4cba43c"
+    },
+    {
+      "path": "tests/idle_info_layout.lua",
+      "sha256": "39e518375ae4c68e13e264241023a5daaa4c509fee257af943d140a2b031a60c"
+    },
+    {
+      "path": "tests/idle_layout_retries.lua",
+      "sha256": "c83952077a1a4e122319ba4095556432741fb81de9de9445aa1701c84c174706"
+    },
+    {
+      "path": "tests/idle_map.lua",
+      "sha256": "a2e57830779c41d24cec6d718c46a53c3094f083d4a85d107f159b5cd8b78054"
+    },
+    {
+      "path": "tests/idle_tiers.lua",
+      "sha256": "5c756f0239ea2c3668239b1b05f915f24b4bdd13948655ba042135607b468a96"
+    },
+    {
+      "path": "tests/idle_trinkets.lua",
+      "sha256": "fd34be659eab5073cb3d51fbfb285b460b053ec5a626b18edec13e04cb7d0172"
+    },
+    {
+      "path": "tests/idle_unit_geometry.lua",
+      "sha256": "79ca09db9d0673065014ab39ff3b8d43b328a9c3561a1bf5105be7d3d2aa6b8b"
+    },
+    {
+      "path": "tests/idle_units.lua",
+      "sha256": "54acc5443e5d3dbba1a24d3235f30e09592adaa68238c8133b83c4e4f35dfba1"
+    },
+    {
+      "path": "tests/input_diagnostics.lua",
+      "sha256": "55e5f7577c7bce607d7311e79b38ed110714f046262c07776de7e74e177d2652"
+    },
+    {
+      "path": "tests/late_inventory.lua",
+      "sha256": "d41c899ef3163d3a0c758185b5e5200d97c20dd815d6af04e9b87faf3dfd9e6f"
+    },
+    {
+      "path": "tests/loot_roll_lifecycle.lua",
+      "sha256": "14402c68148fe5b11fb92d3abcd95faf071f6b6a8573c5f42bab35c67aea872d"
+    },
+    {
+      "path": "tests/map_init_watchers.lua",
+      "sha256": "65cae3e36e795411ebcc7a55efafd999123d2c95010e834dfbd57aa63a38b9ec"
+    },
+    {
+      "path": "tests/modern_spellbook_ownership.lua",
+      "sha256": "e7ae252ee59d72b4473c8fcc7fc2ad5cdc35356326cac8b2b747e4d560013ca5"
+    },
+    {
+      "path": "tests/mp5_mana_ticks.lua",
+      "sha256": "498625e8ac91d076e5290a5b768dd30d0c74b3c5067ac3e0fbdd7365e70f3a20"
+    },
+    {
+      "path": "tests/nameplate_countdown_work.lua",
+      "sha256": "642161260b4e5444e9ce9d6a0c33b8429bab8b31b039571176db44fb364e87af"
+    },
+    {
+      "path": "tests/native_menu_input.lua",
+      "sha256": "01b96bac636878f209a459794ca7c77d58fc3b26bcffd0d7e7601524db719d93"
+    },
+    {
+      "path": "tests/native_mouse_suppression.lua",
+      "sha256": "9543990ebf63eeac932e46bbdc9a89f544408c20d9e2455fea6c9a00b86f2fc7"
+    },
+    {
+      "path": "tests/objective_tracker_scroll.lua",
+      "sha256": "5cb90d6a4444a86ada28a0fc66f30015edec18cb8aa9ef4cc2dbccd489367269"
+    },
+    {
+      "path": "tests/optional_startup.lua",
+      "sha256": "32612cbb7fb4dc07f655b209425bf940c03a73eeba656102dd0d433a29bce8c8"
+    },
+    {
+      "path": "tests/owned_item_detection.lua",
+      "sha256": "f9a470478106042abec646329ac3c97322a0ec5d1d08a85d45f6720f228aa3c6"
+    },
+    {
+      "path": "tests/pending_mail_provider_handoff.lua",
+      "sha256": "c10aa6a4e8597eb23dd25ae2378652cf87758409835f1862e4e1d9dea146038d"
+    },
+    {
+      "path": "tests/perf_capture.lua",
+      "sha256": "a2f6bc4de0ab1937f3edc987384275ceeec520887c725007f3cdc1c1aa11c982"
+    },
+    {
+      "path": "tests/perf_capture_retention.lua",
+      "sha256": "23e74db872dba5b9a52bf8f50f2f2a49fd14237ec212f7f1538660e29031b645"
+    },
+    {
+      "path": "tests/portrait_camera.lua",
+      "sha256": "8773c955a45db7b0514272257e2c11933070a21344d8daf52adbb0183e89ab1a"
+    },
+    {
+      "path": "tests/portrait_transmog_combat.lua",
+      "sha256": "40e2e78ada5f8438feb737f19b25e584a83c8b171498ba5e08bfb690fdaf9f6a"
+    },
+    {
+      "path": "tests/possession_layout.lua",
+      "sha256": "9c0234099490b4b9d014e8248b4bdd1d43012438fd469c7db352b34578f9667f"
+    },
+    {
+      "path": "tests/queue_eye_lifecycle.lua",
+      "sha256": "d5669614207942131b565f8136378cb52d23c5c816c512655d68b37c64975042"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "sha256": "3831d0eeff168791409a21f633e6ba36819c769ea36c46330cb4eca2f5fb9d10"
+    },
+    {
+      "path": "tests/salvage_overlay.lua",
+      "sha256": "25f401d25a325f5245320e8c8751fa3c84edc080371dc11df66116370939bc98"
+    },
+    {
+      "path": "tests/spellbook_native_input.lua",
+      "sha256": "197e850c3e567ffb1e802a4f1c3f08227de867aa32870f1b093c5b500fed4940"
+    },
+    {
+      "path": "tests/startup_lifecycle.lua",
+      "sha256": "f09eb8e940269b3ba2801ec857a09d61ca15ccb6dcebbc7a415b8bce64b3a947"
+    },
+    {
+      "path": "tests/teleport_cast_work.lua",
+      "sha256": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e"
+    },
+    {
+      "path": "tests/tier_count_work.lua",
+      "sha256": "f8d98bc0dfcaab6895dd77f4037c68c7824e4795892baf137c81983ab3b1a43f"
+    },
+    {
+      "path": "tests/transmog_actions.lua",
+      "sha256": "0d12e0ab82dff74abd43a208e6d97b5d07ab05572affe2d30d2f79c797e4bd92"
+    },
+    {
+      "path": "tests/unit_click_edges.lua",
+      "sha256": "920eadc1a5d54da78c1eccd8d092237b72caa29d608e650184a999e5ee238864"
+    },
+    {
+      "path": "tests/unit_resource_lifecycle.lua",
+      "sha256": "0056c964ebd5cc0f9861b5c418b91dd167cd1dcb31e0d9cbfca019599d9c959a"
+    },
+    {
+      "path": "tests/unitframes_lifecycle_spec.lua",
+      "sha256": "97e65ade9a8c4ab549c6a00b8dfbf6833aad8d1799e985b5aa0ae45e88ddf3a7"
+    },
+    {
+      "path": "tests/vendor_open_work.lua",
+      "sha256": "b0f0d80ebf5ad8ba3a153d4555322a1073419f416224d4260125b793a06e5075"
+    },
+    {
+      "path": "tests/vendor_slot_identity.lua",
+      "sha256": "e22a66b812d7d44761aa875c3bf25253b7782e1120b9d1bf103de3c42f580d32"
+    },
+    {
+      "path": "tests/vendor_tier_work.lua",
+      "sha256": "98000e4af2b038c41bfab57709518b071025c93fdc45b2e76d185da492c2bc47"
+    },
+    {
+      "path": "tests/window_mover_disabled.lua",
+      "sha256": "13473896b718b9ead7a2ce2830b3c4c04caa2b7593515893a96b68b4aeab7b1d"
+    },
+    {
+      "path": "tests/window_runtime_spec.lua",
+      "sha256": "56ada17374e9edac7fb840a740fae91106723bb248fa59699dd7b54d398bedae"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/cata/flightData.lua",
+      "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/classic/flightData.lua",
+      "sha256": "6c9c2a6eef9836e71d3d4faebb227cca17d8de84284ab6c8e3e7d9104e645a36"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/mainline/flightData.lua",
+      "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/mop/flightData.lua",
+      "sha256": "6d6ea9496df54690c36af56a47f4e2620059a7305dcfa6bcc741f8e7a2ab6867"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/tbc/flightData.lua",
+      "sha256": "98cfb1c24baf2bc7e434755b1aaa251dea7b0a281bba5660aa7d6d686cdd68a9"
+    },
+    {
+      "path": "UnitFrames/FlightPath/Data/wotlk/flightData.lua",
+      "sha256": "ea49995ab96cbb924d2b652f1df48ed4988396f59965cf416c6a2c4c5fdb7397"
+    },
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "sha256": "8d105f70652583b179603caa65424eca0a5c381abd51ba00c6ee759b0ea635c2"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarSchools.lua",
+      "sha256": "3fcec8350ad4c1e93da0121ddd108ecc01cffd0ed5e3d96fca3cb9cb75837dc4"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarThemes.lua",
+      "sha256": "aa85a95c3c92e17b10072c67210b0238d4f7dc0dff7519b371992cbd6807f5d3"
+    },
+    {
+      "path": "UnitFrames/FluxCastBarVisuals.lua",
+      "sha256": "7e6373d98df2d542f4c77713e1f85594d009f7e6c6e93b20a62c00e36f796edb"
+    },
+    {
+      "path": "UnitFrames/FluxClassPower.lua",
+      "sha256": "d0257ce8faa1c26fa28a0d162ba3802306486dd1c817dcf503e4270f88768b98"
+    },
+    {
+      "path": "UnitFrames/FluxFlightPath.lua",
+      "sha256": "a7fb8c97f06dd08b1a92b9dc4d511dad0236525992eca4944e5564c5133551fc"
+    },
+    {
+      "path": "UnitFrames/FluxForeverComboPoints.lua",
+      "sha256": "3b9b7e4f262c95822b31f2fd5ffdf5c29d500e60654d0f5a64613c6a24ee289a"
+    },
+    {
+      "path": "UnitFrames/FluxHealthLossOverlay.lua",
+      "sha256": "4de81906fb49710dc70847487ac1f2da9d29d9b318e999ca57795d668f142ee8"
+    },
+    {
+      "path": "UnitFrames/FluxLegacyComboPoints.lua",
+      "sha256": "22ac622d8347fa945853e482a66ac8a1b02e37b0c4e81ac6d3f7eff9a3dae0a7"
+    },
+    {
+      "path": "UnitFrames/FluxMP5Overlay.lua",
+      "sha256": "4d84389161fab87f6238127413b4b671fb74ad0ce68886441d9d1ccfa9dc3c58"
+    },
+    {
+      "path": "UnitFrames/FluxPortraitCombatFeedback.lua",
+      "sha256": "3f9e255f90f02655947236d01b3539275b876c1f80c66fc06a0cc30cc14ad274"
+    },
+    {
+      "path": "UnitFrames/FluxPowerCostOverlay.lua",
+      "sha256": "4fc475853f56a11432b1b831f633f3b34525ad35b234bc079910d42e9dc95a6f"
+    },
+    {
+      "path": "UnitFrames/FluxSwingTimer.lua",
+      "sha256": "81f7ddba75b0b1cc9496acbb4e6280b7fc8dc2fe2fcbc06033adabfe05fba035"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Auras.lua",
+      "sha256": "8db435e70b80b4bf1625f12ac65167d116a29e820042817cd63ab1ce04286f9e"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_AurasEngine.lua",
+      "sha256": "249052607883d9bff3000880096b9e59cc9ad80e9d1ff1bfad800998f30560e0"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_AurasOwn.lua",
+      "sha256": "fc1501adb0067882a4637438800e56d51f085a2ceeff38631ea47a316b253b31"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_BigDebuffs.lua",
+      "sha256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "5fcf4ff5c92ea81f2987319ddb215af6e31ce48dcf91889b61c8b57d9aaf0435"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+      "sha256": "f132185b98eb1848d39ed0c10110077b1d97e81fda5985fa7c63da8538eb9f66"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "sha256": "29f23154ff0164e20f46c81eea0c53c0072d9e0c087904c77801fa58a9bdf708"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Lifecycle.lua",
+      "sha256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+      "sha256": "1570f294a136a6b44d749ee0fdcde30214e793d76ad0ce13ed1bb9c1a0b250e3"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+      "sha256": "5105a0b99b7567bdf8e37f7946f331934606256967346809d9d8248d4f598813"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+      "sha256": "a9855d3b6de7c2ea5256c0eb054be259bcf5b67654ef0fa132d453c0c6e1024f"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "sha256": "454ec79dceaba8e54f24b248d2db9ef8295ddbd229b375435e2acc20db0c0f57"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Player.lua",
+      "sha256": "6c876d048ac837e877a3e1bc7eb762a76311a36dd19f4b05e254e90ef280089b"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
+      "sha256": "e0ddf47835df81ef2cce6791175cc977080cc25a7c06365d44891bed2436b6a9"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+      "sha256": "237adef8656fb58ceb7dbea3cbaf00f96463358c55bf2d5c4046e422a845ee08"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0ea171f2f0add3f43a1a8bdf137defcaaa5c9721c1d30f1ea0ed8dd93f6f4f9"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Target.lua",
+      "sha256": "23621aa69f59d6c4899ba3ffb720d327ff7e9970c123a21f3a08aa1ebd09c8b9"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "sha256": "8cca264871aa994ae960f7217af1298170da76fa10b988c3742b6ab6681ce17a"
+    },
+    {
+      "path": "WindowMover/_tmp_charactercombatsmoke.lua",
+      "sha256": "7d06ac5a54358e0cf811fa49ce698fe0924fa05f93709722e9f254597c6cbc6c"
+    },
+    {
+      "path": "WindowMover/Catalog.lua",
+      "sha256": "af6d718652772e0235bbe7499e5ee7d8539238041578285c129a5e2fd71110f0"
+    },
+    {
+      "path": "WindowMover/Engine.lua",
+      "sha256": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c"
+    },
+    {
+      "path": "WindowMover/Init.lua",
+      "sha256": "c5228e269f1e7267dc377c21d7f8271797f943b598897dfa8bb002ba579b4cb9"
+    },
+    {
+      "path": "WindowMover/Resolve.lua",
+      "sha256": "138855208a0139a471dc455cc900991e92802986721540a83f132c690da607cf"
+    }
+  ]
+}

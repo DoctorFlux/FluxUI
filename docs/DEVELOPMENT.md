@@ -1,5 +1,11 @@
 # Development tasks
 
+Latest user priority: verify Retail teleport/portal count and interrupted-cast fix
+after reload. [BUG-012/PERF-011](TELEPORT_CAST_WORK.md) passes 527 focused checks and
+full 95-script / 736-file suite. Native latency/combat/input/pixels and non-travel
+custom flyouts remain pending. Keep foreground PC use undisturbed. Older source/
+publication/task statements below retain historical scope.
+
 Read [contribution guidelines](../CONTRIBUTING.md), [status](STATUS.md),
 [decisions](DECISIONS.md), [work log](WORK_LOG.md) and relevant requirements before
 changing a subsystem. Continue in this existing addon and repository.
@@ -181,3 +187,13 @@ Use [publication validation](validation/github-publication-2026-10-29.json) for 
 combined735-file/94-script corpus and [publication record](GITHUB_PUBLICATION.md)
 for source/recovery scope. The next optimization/native acceptance tasks above
 remain pending; uploading is not a claim that every scenario is certified.
+
+## Main-only local snapshot instruction
+
+The user's latest request supersedes earlier branch-retention/unpublished-work
+instructions: work on main only and publish the actual current local files,
+including the teleport fix and all tests/docs. The redundant branch was removed
+locally/remotely; its commits are already in main. Preserve newer local changes,
+existing history, native pending scope and ignored/private data. Use
+validation/main-local-snapshot-2026-10-29.json for the current95-script/736-file
+publication corpus. Do not create another branch unless the user asks later.

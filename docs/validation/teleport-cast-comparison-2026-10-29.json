@@ -1,0 +1,98 @@
+{
+  "capturedUTC": "2026-10-29T18:57:07.130525+00:00",
+  "scope": "Desktop real-source replay with mocked native APIs/UI boundaries; operation counts only, no native CPU/FPS/latency claim.",
+  "baselineCommit": "b45eb5ecd52472b54eefe0249707c972c45c8d2d",
+  "sources": {
+    "baseline": {
+      "path": "tests\\fixtures\\teleport_cast_before.txt",
+      "sha256": "dedea8c43d47f150888993bc54e2a0445e94ceacb53b141b3c6b3d3cf57b20a6"
+    },
+    "candidate": {
+      "path": "ExtraButtonSystem\\NonCombatGrid\\Buttons\\TeleportPortal.lua",
+      "sha256": "1722862a1b1417df699382172d8b13a37f86f387ef0bd06050c43004efdae8fb"
+    },
+    "test": {
+      "path": "tests\\teleport_cast_work.lua",
+      "sha256": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e"
+    }
+  },
+  "pairs": [
+    [
+      {
+        "variant": "baseline",
+        "exit": 0,
+        "output": "FAIL modern reagent-free count blank\nFAIL native display count and face identity\nFAIL native empty clears prior digits\nFAIL modern destination count skips reagent tooltips\nFAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=6 popup_rebuilds=101\nFAIL legacy reagent-free count blank\nFAIL legacy destination count skips reagent tooltips\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=12 popup_rebuilds=101\nFAIL opaque tooltip does not invent teleport rune\nFAIL opaque tooltip does not invent portal rune\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=2000 popup_rebuilds=100\nteleport cast: 527 checks, 14 failures\n"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+      }
+    ],
+    [
+      {
+        "variant": "baseline",
+        "exit": 0,
+        "output": "FAIL modern reagent-free count blank\nFAIL native display count and face identity\nFAIL native empty clears prior digits\nFAIL modern destination count skips reagent tooltips\nFAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=6 popup_rebuilds=101\nFAIL legacy reagent-free count blank\nFAIL legacy destination count skips reagent tooltips\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=12 popup_rebuilds=101\nFAIL opaque tooltip does not invent teleport rune\nFAIL opaque tooltip does not invent portal rune\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=2000 popup_rebuilds=100\nteleport cast: 527 checks, 14 failures\n"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+      }
+    ],
+    [
+      {
+        "variant": "baseline",
+        "exit": 0,
+        "output": "FAIL modern reagent-free count blank\nFAIL native display count and face identity\nFAIL native empty clears prior digits\nFAIL modern destination count skips reagent tooltips\nFAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=6 popup_rebuilds=101\nFAIL legacy reagent-free count blank\nFAIL legacy destination count skips reagent tooltips\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=12 popup_rebuilds=101\nFAIL opaque tooltip does not invent teleport rune\nFAIL opaque tooltip does not invent portal rune\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=2000 popup_rebuilds=100\nteleport cast: 527 checks, 14 failures\n"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+      }
+    ],
+    [
+      {
+        "variant": "baseline",
+        "exit": 0,
+        "output": "FAIL modern reagent-free count blank\nFAIL native display count and face identity\nFAIL native empty clears prior digits\nFAIL modern destination count skips reagent tooltips\nFAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=6 popup_rebuilds=101\nFAIL legacy reagent-free count blank\nFAIL legacy destination count skips reagent tooltips\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=12 popup_rebuilds=101\nFAIL opaque tooltip does not invent teleport rune\nFAIL opaque tooltip does not invent portal rune\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=2000 popup_rebuilds=100\nteleport cast: 527 checks, 14 failures\n"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+      }
+    ],
+    [
+      {
+        "variant": "baseline",
+        "exit": 0,
+        "output": "FAIL modern reagent-free count blank\nFAIL native display count and face identity\nFAIL native empty clears prior digits\nFAIL modern destination count skips reagent tooltips\nFAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=6 popup_rebuilds=101\nFAIL legacy reagent-free count blank\nFAIL legacy destination count skips reagent tooltips\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=12 popup_rebuilds=101\nFAIL opaque tooltip does not invent teleport rune\nFAIL opaque tooltip does not invent portal rune\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=2000 popup_rebuilds=100\nteleport cast: 527 checks, 14 failures\n"
+      },
+      {
+        "variant": "candidate",
+        "exit": 0,
+        "output": "modern scans=0 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nintegrated scans=0 popup_rebuilds=0\nteleport cast: 527 checks, 0 failures\n"
+      }
+    ]
+  ],
+  "mutations": [
+    {
+      "name": "full-unlock",
+      "exit": 1,
+      "output": "FAIL modern 100 interruptions do not rebuild popup\nFAIL modern stable keys and arrow not rebuilt\nmodern scans=0 popup_rebuilds=101\nFAIL legacy 100 interruptions do not rebuild popup\nFAIL legacy stable keys and arrow not rebuilt\nlegacy scans=6 popup_rebuilds=101\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=200 popup_rebuilds=100\nteleport cast: 527 checks, 5 failures\nlua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-count-disabled",
+      "exit": 1,
+      "output": "FAIL modern count does not tooltip-scan\nFAIL native display count and face identity\nmodern scans=6 popup_rebuilds=0\nlegacy scans=6 popup_rebuilds=0\nFAIL native opaque display passed directly to font string\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=800 popup_rebuilds=0\nteleport cast: 527 checks, 4 failures\nlua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "destination-reagent-scan",
+      "exit": 1,
+      "output": "FAIL modern destination count skips reagent tooltips\nmodern scans=6 popup_rebuilds=0\nFAIL legacy destination count skips reagent tooltips\nlegacy scans=18 popup_rebuilds=0\nFAIL integrated 100 cast interruptions skip tooltip/layout rebuilds\nintegrated scans=400 popup_rebuilds=0\nteleport cast: 527 checks, 3 failures\nlua: ...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\t...l_\\Interface\\AddOns\\_FluxUI\\tests\\teleport_cast_work.lua:160: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

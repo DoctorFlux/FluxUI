@@ -1,15 +1,24 @@
 # Next session
 
+Latest user work: [teleport counts/interruption](docs/TELEPORT_CAST_WORK.md),
+BUG-012/PERF-011. User confirms Retail. Candidate uses native count text and
+restores the host without popup/binding rebuild. 527 focused checks, three
+mutations, five desktop pairs and full 95 scripts / 736 Lua files pass. Native
+reload/interrupted casts and comparison with non-travel custom flyouts pending.
+No live game/settings changes. This fix is included in the current local-snapshot
+publication payload; native acceptance retains its pending scope.
+
 Continue in the existing `_FluxUI` folder/repository. On 29 October 2026 the user
-authorized uploading the complete tested work to main. Preserve the development
-branch and existing history; no force pushes. See [publication record](docs/GITHUB_PUBLICATION.md).
+requested that the current local files be uploaded to main, with no other branch.
+Work on main only and preserve existing history/newer local edits; no force pushes.
+See [publication record](docs/GITHUB_PUBLICATION.md).
 Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
 [development tasks](docs/DEVELOPMENT.md) and the [original stage tracker](docs/MODERNIZATION_PROGRESS.md).
 The formerly pending objective-tracker source/test/records are included in commit
 `73ca9d2`. Inspect current status before new work and preserve any newer user edits.
 
-Current runtime `677d85c` shares activation within bar paint batches. Full actual-
-workspace evidence: [94 scripts/735 Lua files](docs/validation/github-publication-2026-10-29.json).
+Earlier runtime `677d85c` shares activation within bar paint batches. Current full
+workspace evidence: [95 scripts/736 Lua files](docs/validation/main-local-snapshot-2026-10-29.json).
 [Action/player-aura audit](docs/ACTION_AURA_WORK.md) has five matched native pairs
 per Retail/Era client, exact sources, unchanged57 button/aura-root geometries and
 zero recorded matched-run errors. Native highlight was inactive; active combat/
