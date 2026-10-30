@@ -808,3 +808,10 @@ container follows the raised ToT button level in side-by-side placement and
 returns to its original level in stacked placement. Focused power and idle
 geometry checks pass; full validation again passes 96 scripts and 737 Lua
 syntax files. Native pixels remain pending.
+
+Publication: preserved a fresh external source/history checkpoint
+`Publish-unit-power-20261030T101822` with 25 changed files and a verified
+history bundle. The outgoing archive had no private paths or credential-pattern
+matches. GitHub main matched local parent `058efb8`; ordinary push published
+`c313dc98a1e782aee1224554c347cd616f3ad7af`, and GitHub ref readback
+matched. Native acceptance remains pending; no game or settings interaction.

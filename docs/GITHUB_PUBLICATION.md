@@ -61,3 +61,20 @@ all pending/untracked work, history and404 on-disk settings files. Source ZIP SH
 Private archives/settings/captures and ignored local helpers remain outside Git.
 Existing games and sync remain untouched. Use an ordinary push to main and verify
 the remote commit and clean working tree afterward.
+
+## 30 October 2026 - unit power visibility publication
+
+User authorized uploading the current unit-frame changes to GitHub. The
+prepublication external checkpoint `Publish-unit-power-20261030T101822`
+contains the 25 changed source/test/documentation files and a verified history
+bundle. Its source ZIP SHA-256 is
+`a3556e58cec4ef3d6bc4d9a7cb1cee2421b6cffdd17e0ccdd4abf8db174bf6a9`.
+No private settings, archive or credential-pattern match entered the payload.
+The 96-script/737-Lua validation and documentation validator passed.
+
+GitHub main was `058efb8192b537d73e7e1e7f1a7e6afe2fbde575` before upload.
+An ordinary push advanced it to
+`c313dc98a1e782aee1224554c347cd616f3ad7af`; GitHub ref readback matched
+that SHA and the local worktree was clean. Native all-client rendering, combat
+and secret-value acceptance is still pending. This receipt is documentation
+only and does not change game state or settings.

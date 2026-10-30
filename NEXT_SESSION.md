@@ -13,8 +13,9 @@ tested for truth in Lua. Player/target labels move to the expanded HP bar's
 vertical middle for known zero power and restore nested placement on return;
 ToT's separator container follows its raised side-by-side frame level. Native
 text/border pixels remain pending.
-WoW and on-disk settings/profilers were untouched. Working tree is on main with
-uncommitted source/test/docs. Preserve newer user changes before further work.
+WoW and on-disk settings/profilers were untouched. Source/test/docs were
+published on main in `c313dc98a1e782aee1224554c347cd616f3ad7af`.
+Preserve newer user changes before further work.
 
 Latest user work: [teleport counts/interruption](docs/TELEPORT_CAST_WORK.md),
 BUG-012/PERF-011. User confirms Retail. Candidate uses native count text and

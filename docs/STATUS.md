@@ -12,7 +12,8 @@ for known zero power and restore their nested positions when power returns.
 ToT separator chrome now follows its raised side-by-side frame level.
 Focused checks and the full desktop suite pass: 96 scripts, 737 Lua syntax files.
 Native client geometry, combat/taint and secret-value acceptance remain pending.
-Main working tree contains this uncommitted change; no game/settings interaction.
+Published to GitHub main in `c313dc98a1e782aee1224554c347cd616f3ad7af`;
+no game/settings interaction.
 
 Latest follow-up: [BUG-012/PERF-011](TELEPORT_CAST_WORK.md) corrects teleport/portal
 counts and removes reagent scans/popup rebuilds from interrupted-cast recovery.
