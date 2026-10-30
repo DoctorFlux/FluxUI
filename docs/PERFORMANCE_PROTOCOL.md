@@ -1,5 +1,34 @@
 # Baseline protocol and currency evidence
 
+30 October MicroMenu nil-center correction changes the order of existing
+rebuild operations and holds a temporary table of unused children until
+layout finishes. It adds no event, ticker, timer, hook or visible frame.
+Focused and full desktop validation pass (109 tests / 753 syntax files).
+Native paired CPU, allocation, frame-time and FPS measurements remain
+unmeasured on all five clients. [Evidence](17-micromenu.md).
+
+30 October delayed loot correction adds a capped 32-session, 30-second
+event-time queue; it adds no timer, ticker, hook or extra visible row.
+Matching scans the small queue only on existing loot/chat events. Desktop
+108-script/752-syntax suite passes. Native paired CPU, allocations, frame
+time and FPS remain unmeasured on five clients. [Evidence](LOOT_CURSOR.md).
+
+30 October cursor-position correction stores one two-number origin per loot
+window and one reference per visible row; it retains the maximum three rows
+and existing visible-only OnUpdate. No event, timer, ticker or hook was added.
+Desktop fixture and full 108-script/752-syntax suite pass. Native paired
+frame-time, CPU, allocation and FPS measurements remain pending.
+[Evidence](LOOT_CURSOR.md).
+
+
+30 October loot-source correction removes crafted/pushed chat forms and
+adds one timestamp gate for existing chat events; it adds no event, timer,
+ticker, hook or bag scan. The visible-only three-row display is unchanged.
+The focused fixture and full 108-script/752-syntax desktop suite pass.
+Native matched CPU, allocations, frame time and FPS remain unmeasured.
+[Evidence](LOOT_CURSOR.md).
+
+
 30 October FluxLoot callback correction changes one startup registration
 call and no event, timer, ticker, hook or frame count. The signature-aware
 desktop fixture and 107-script/751-syntax full suite pass. Native frame-time,

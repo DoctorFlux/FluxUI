@@ -1,5 +1,60 @@
 # Work log
 
+## 2026-10-30 - fix MicroMenu nil-center startup error
+
+The user's stack shows Blizzard `GetEdgeButton` comparing nil centers during
+`FluxMicroMenu:UpdateLayout()` after the LFG button starts a rebuild.
+Reviewed continuity, on-disk Retail settings, the current code and read-only
+Era Blizzard reference; verified the dated history bundle and preserved
+pre-edit source/settings outside AddOns. Reordered selected/unused child
+parking before native Show/Hide callbacks, with final hiding after layout.
+The focused regression reproduces old ordering and passes after the fix;
+MicroMenu smoke and full desktop validation pass (109 tests / 753 syntax
+files). Native post-fix five-client checks remain pending. Other local work
+was preserved. [Evidence](17-micromenu.md).
+
+## 2026-10-30 - retain delayed loot source positions
+
+The user reports lagged loot from mobs/chests arriving after the cursor moves
+or another source opens. Read continuity and settings, verified the dated
+external Git bundle, and preserved pre-edit source outside AddOns. Added
+bounded pending sessions with captured item/currency/money identities and
+per-source slot/chat reconciliation. The focused fixture checks two reversed
+late item messages, a ten-second duplicate, an uncaptured fast-loot window,
+late currency/money, and expired sessions. Full desktop validation passes
+108 scripts / 752 Lua syntax files. Native five-client event order, pixels,
+taint and frame time remain pending. Unrelated shared work was preserved.
+[Evidence](LOOT_CURSOR.md).
+
+## 2026-10-30 - keep loot alerts at the looting cursor position
+
+The user reports that alerts should stay at the cursor's loot position when
+the mouse moves. Read current source, continuity and on-disk settings;
+verified the dated external history bundle and preserved pre-edit source
+outside AddOns. Replaced per-alert shared-anchor movement with one origin
+captured at loot-window start and retained per visible row. The focused
+fixture covers cursor movement before delayed chat, LOOT_OPENED after
+LOOT_READY, a second overlapping loot batch and after-close currency. Full
+desktop validation passes 108 scripts / 752 Lua syntax files; exact
+candidate hashes are recorded. Native event timing, pixels and frame time
+remain pending on all five clients. Unrelated stance work was preserved.
+[Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - exclude non-loot bag gains from cursor alerts
+
+The user reports crafted and other incoming bag items as false loot alerts.
+Read current source, continuity and on-disk Retail settings; verified a fresh
+main-history bundle and preserved pre-edit loot source outside AddOns. The
+chat fallback now accepts ordinary self-loot only near a loot window, plus
+bonus rolls; crafted and pushed forms are excluded. Currency follows the
+loot-window gate and currency slots cannot become item alerts. Direct slots,
+won rolls, money formatting, defaults and fast pickup remain. Focused fixture
+and full desktop validation pass (108 scripts / 752 Lua syntax files);
+candidate hashes are recorded. Native classification and five-client checks
+remain pending. Unrelated stance work was preserved. [Evidence](LOOT_CURSOR.md).
+
+
 ## 2026-10-30 - correct FluxLoot AceDB callback registration
 
 The user's native stack showed CallbackHandler rejecting a table event name
@@ -1307,3 +1362,36 @@ Private settings, archives, captures and ignored local helpers stay outside Git.
 Use an ordinary main push, verify remote identity and preserve history.
 
 Fresh combined desktop validation: **107 scripts /751 Lua syntax files, zero failures**.
+
+## 30 October 2026 - attached stance scale
+
+30 October 2026: attached stance bars now follow player-frame scale, including
+immediate slider changes and reload; detached placement restores normal size.
+Existing combat deferral is retained. 21 stance and 28 bridge checks pass;
+full suite: 108 scripts /752 Lua syntax files, zero failures. Native pixels,
+input and taint remain pending (no visible WoW process).
+
+Match effective parent scales at the existing stance anchor/layout entrypoints.
+Refresh only the anchor after a player whole-scale change; avoid rediscovery
+and binding work for this geometry correction. Source/history/settings recovery
+and exact before/after hashes are in [the scale record](UNIT_FRAME_SCALE.md).
+No game/settings interaction or competing framework; excluded callbacks unchanged.
+
+## 30 October 2026 - stance, loot and Micro Menu publication
+
+User requested uploading all current local updates to main. The complete payload
+includes attached stance scaling, loot source filtering / cursor pinning / delayed
+source routing, the Micro Menu nil-center fix, tests and their records. All 753
+current normalized Lua hashes exactly match the passing 109-test combined report
+`docs/validation/micromenu-nil-center-full-2026-10-30.json`; no Lua file is missing
+from that report. Reused this verified combined evidence without rerunning an
+unchanged suite. Documentation references and verification index are refreshed.
+Native pending checks retain their stated scope; no game/settings interaction
+or runtime edits were made for publication.
+
+External checkpoint `Publish-updates-20261030T202520Z` preserves 1,376 actual
+local files and verified complete Git history. Source ZIP SHA-256:
+`f6351660aa5a58daffb70c8aa9c3d2a70d5774f1eb112d8ae36d4f8070c1025b`.
+GitHub main matched parent `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+Private settings/captures/archives and ignored local helpers remain outside Git.
+Publish by ordinary push to main, then verify remote identity and clean status.

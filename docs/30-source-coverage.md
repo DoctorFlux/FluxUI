@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 143 |
+| inactive source | 145 |
 
 ## Addon sources
 
@@ -627,6 +627,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/loot_cursor.lua](../tests/loot_cursor.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/loot_roll_lifecycle.lua](../tests/loot_roll_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/micro_menu_nil_center.lua](../tests/micro_menu_nil_center.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/modern_spellbook_ownership.lua](../tests/modern_spellbook_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mp5_mana_ticks.lua](../tests/mp5_mana_ticks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/nameplate_countdown_work.lua](../tests/nameplate_countdown_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -647,6 +648,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/raid_startup.lua](../tests/raid_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/salvage_overlay.lua](../tests/salvage_overlay.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/spellbook_native_input.lua](../tests/spellbook_native_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/stance_player_scale.lua](../tests/stance_player_scale.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/startup_lifecycle.lua](../tests/startup_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/teleport_cast_work.lua](../tests/teleport_cast_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/tier_count_work.lua](../tests/tier_count_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |

@@ -488,13 +488,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [MicroMenu/FluxMicroMenu.lua:435](../../MicroMenu/FluxMicroMenu.lua#L435) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [MicroMenu/FluxMicroMenu.lua:436](../../MicroMenu/FluxMicroMenu.lua#L436) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [MicroMenu/FluxMicroMenu.lua:437](../../MicroMenu/FluxMicroMenu.lua#L437) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3033](../../MicroMenu/FluxMicroMenu.lua#L3033) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [MicroMenu/FluxMicroMenu.lua:3034](../../MicroMenu/FluxMicroMenu.lua#L3034) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [MicroMenu/FluxMicroMenu.lua:3035](../../MicroMenu/FluxMicroMenu.lua#L3035) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [MicroMenu/FluxMicroMenu.lua:3036](../../MicroMenu/FluxMicroMenu.lua#L3036) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [MicroMenu/FluxMicroMenu.lua:3037](../../MicroMenu/FluxMicroMenu.lua#L3037) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3038](../../MicroMenu/FluxMicroMenu.lua#L3038) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
-| [MicroMenu/FluxMicroMenu.lua:3039](../../MicroMenu/FluxMicroMenu.lua#L3039) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
+| [MicroMenu/FluxMicroMenu.lua:3063](../../MicroMenu/FluxMicroMenu.lua#L3063) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [MicroMenu/FluxMicroMenu.lua:3064](../../MicroMenu/FluxMicroMenu.lua#L3064) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [MicroMenu/FluxMicroMenu.lua:3065](../../MicroMenu/FluxMicroMenu.lua#L3065) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [MicroMenu/FluxMicroMenu.lua:3066](../../MicroMenu/FluxMicroMenu.lua#L3066) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [MicroMenu/FluxMicroMenu.lua:3067](../../MicroMenu/FluxMicroMenu.lua#L3067) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [MicroMenu/FluxMicroMenu.lua:3068](../../MicroMenu/FluxMicroMenu.lua#L3068) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
+| [MicroMenu/FluxMicroMenu.lua:3069](../../MicroMenu/FluxMicroMenu.lua#L3069) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [MicroMenu/FluxMicroMenuConfigUI.lua:451](../../MicroMenu/FluxMicroMenuConfigUI.lua#L451) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:751](../../MicroMenu/FluxMinimapToMicro.lua#L751) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:1615](../../MicroMenu/FluxMinimapToMicro.lua#L1615) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -599,9 +599,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxDurationBars.lua:103](../../Other/FluxDurationBars.lua#L103) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxExtraAbilityHUD.lua:209](../../Other/FluxExtraAbilityHUD.lua#L209) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxHUDTooltip.lua:124](../../Other/FluxHUDTooltip.lua#L124) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Other/FluxLoot.lua:325](../../Other/FluxLoot.lua#L325) | `RegisterEvent` | `"LOOT_READY"` |
-| [Other/FluxLoot.lua:328](../../Other/FluxLoot.lua#L328) | `RegisterEvent` | `event` |
-| [Other/FluxLoot.lua:395](../../Other/FluxLoot.lua#L395) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Other/FluxLoot.lua:448](../../Other/FluxLoot.lua#L448) | `RegisterEvent` | `"LOOT_READY"` |
+| [Other/FluxLoot.lua:451](../../Other/FluxLoot.lua#L451) | `RegisterEvent` | `event` |
+| [Other/FluxLoot.lua:537](../../Other/FluxLoot.lua#L537) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxLootRollPosition.lua:40](../../Other/FluxLootRollPosition.lua#L40) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxLootRollPosition.lua:84](../../Other/FluxLootRollPosition.lua#L84) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxLootRollPosition.lua:85](../../Other/FluxLootRollPosition.lua#L85) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -1960,13 +1960,13 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 | Declaration | Source |
 |---|---|
 | `Stance.ComputeLayoutMetrics` | [L38](../../Bars/Stance/Layout.lua#L38) |
-| `Stance.Anchor` | [L124](../../Bars/Stance/Layout.lua#L124) |
-| `Stance.ApplyLayout` | [L204](../../Bars/Stance/Layout.lua#L204) |
-| `Stance.RequestLayout` | [L397](../../Bars/Stance/Layout.lua#L397) |
-| `Stance.RequestSizeOnly` | [L422](../../Bars/Stance/Layout.lua#L422) |
-| `Stance.RequestFormsVisual` | [L426](../../Bars/Stance/Layout.lua#L426) |
-| `Stance.RequestExtrasVisual` | [L446](../../Bars/Stance/Layout.lua#L446) |
-| `Stance.RequestDiscover` | [L466](../../Bars/Stance/Layout.lua#L466) |
+| `Stance.Anchor` | [L133](../../Bars/Stance/Layout.lua#L133) |
+| `Stance.ApplyLayout` | [L214](../../Bars/Stance/Layout.lua#L214) |
+| `Stance.RequestLayout` | [L408](../../Bars/Stance/Layout.lua#L408) |
+| `Stance.RequestSizeOnly` | [L433](../../Bars/Stance/Layout.lua#L433) |
+| `Stance.RequestFormsVisual` | [L437](../../Bars/Stance/Layout.lua#L437) |
+| `Stance.RequestExtrasVisual` | [L457](../../Bars/Stance/Layout.lua#L457) |
+| `Stance.RequestDiscover` | [L477](../../Bars/Stance/Layout.lua#L477) |
 
 ### Bars/Stance/Order.lua
 
@@ -7702,8 +7702,8 @@ Owner: [17-micromenu.md](../17-micromenu.md).
 | `FluxMicroMenu:GetLayoutSpacing` | [L1182](../../MicroMenu/FluxMicroMenu.lua#L1182) |
 | `FluxMicroMenu:GetButtonSizeScale` | [L1201](../../MicroMenu/FluxMicroMenu.lua#L1201) |
 | `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1447](../../MicroMenu/FluxMicroMenu.lua#L1447) |
-| `FluxMicroMenu:RefreshLayout` | [L2609](../../MicroMenu/FluxMicroMenu.lua#L2609) |
-| `FluxMicroMenu:Rebuild` | [L2950](../../MicroMenu/FluxMicroMenu.lua#L2950) |
+| `FluxMicroMenu:RefreshLayout` | [L2614](../../MicroMenu/FluxMicroMenu.lua#L2614) |
+| `FluxMicroMenu:Rebuild` | [L2980](../../MicroMenu/FluxMicroMenu.lua#L2980) |
 
 ### MicroMenu/FluxMicroMenuConfig.lua
 
@@ -8181,8 +8181,8 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 
 | Declaration | Source |
 |---|---|
-| `FluxLoot:Refresh` | [L321](../../Other/FluxLoot.lua#L321) |
-| `FluxLoot:Preview` | [L343](../../Other/FluxLoot.lua#L343) |
+| `FluxLoot:Refresh` | [L444](../../Other/FluxLoot.lua#L444) |
+| `FluxLoot:Preview` | [L470](../../Other/FluxLoot.lua#L470) |
 
 ### Other/FluxPerfCapture.lua
 

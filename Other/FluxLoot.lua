@@ -4,11 +4,14 @@
 local addonName, ns = ...
 local Item = ns.Flux and ns.Flux.Item
 local MAX_ROWS, PICKUP_DELAY = 3, 0.3
+local SESSION_TTL, MAX_SESSIONS = 30, 32
 local rows, pool, seen = {}, {}, {}
 local sincePickup = -100
 local claimsSinceSweep = 0
+local originSerial = 0
 local anchor = CreateFrame("Frame", nil, UIParent)
 anchor:SetSize(250, 1)
+anchor:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 anchor:EnableMouse(false)
 anchor:Hide()
 
@@ -20,18 +23,18 @@ local function Readable(value)
     return type(value) == "string" and not (issecretvalue and issecretvalue(value))
 end
 
-local function Position()
+local function CursorOrigin()
     local x, y = GetCursorPosition()
     local scale = UIParent:GetEffectiveScale()
     x, y = (x or 0) / scale, (y or 0) / scale
     x = math.max(0, math.min(x + 24, UIParent:GetWidth() - 250))
     y = math.max(72, math.min(y - 20, UIParent:GetHeight()))
-    anchor:ClearAllPoints()
-    anchor:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", x, y)
+    originSerial = originSerial + 1
+    return { x = x, y = y, id = originSerial }
 end
 
 local function MakeRow()
-    local row = CreateFrame("Frame", nil, anchor)
+    local row = CreateFrame("Frame", nil, UIParent)
     row:SetSize(250, 28)
     row:EnableMouse(false)
     row.icon = row:CreateTexture(nil, "ARTWORK")
@@ -44,15 +47,26 @@ local function MakeRow()
     return row
 end
 
-local function Show(textValue, icon, quality, whiteText)
+local function Reflow()
+    local offsets = {}
+    for _, row in ipairs(rows) do
+        local key = row.origin.x .. ":" .. row.origin.y
+        local offset = offsets[key] or 0
+        offsets[key] = offset + 1
+        row:ClearAllPoints()
+        row:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", row.origin.x, row.origin.y - offset * 29)
+    end
+end
+
+local function Show(textValue, icon, quality, whiteText, origin)
     local db = Settings()
     if not db or not db.alerts or not Readable(textValue) then return end
     if issecretvalue and issecretvalue(quality) then quality = nil end
     if issecretvalue and issecretvalue(icon) then icon = nil end
     if quality and quality < (db.quality or 0) then return end
-    Position()
     local row = table.remove(pool) or (#rows >= MAX_ROWS and table.remove(rows, MAX_ROWS)) or MakeRow()
     table.insert(rows, 1, row)
+    row.origin = origin or CursorOrigin()
     row.icon:SetTexture(icon or "Interface\\Icons\\INV_Misc_Bag_10")
     row.text:SetText(textValue)
     if whiteText then
@@ -64,11 +78,8 @@ local function Show(textValue, icon, quality, whiteText)
         row.text:SetTextColor(1, 0.82, 0)
     end
     row.deadline = GetTime() + (db.duration or 3)
-    for index, active in ipairs(rows) do
-        active:ClearAllPoints()
-        active:SetPoint("TOPLEFT", anchor, "TOPLEFT", 0, -(index - 1) * 29)
-        active:Show()
-    end
+    Reflow()
+    row:Show()
     anchor:Show()
 end
 
@@ -88,10 +99,7 @@ anchor:SetScript("OnUpdate", function(self)
         end
     end
     if changed then
-        for index, row in ipairs(rows) do
-            row:ClearAllPoints()
-            row:SetPoint("TOPLEFT", anchor, "TOPLEFT", 0, -(index - 1) * 29)
-        end
+        Reflow()
     end
     if #rows == 0 then self:Hide() end
 end)
@@ -103,8 +111,9 @@ end
 
 -- A slot and its chat line are two reports of one pickup. Opposite reports
 -- cancel one another; repeated pickups of the same stack still each show.
-local function Claim(link, count, source)
+local function Claim(link, count, source, origin)
     local key, now = ItemKey(link, count), GetTime()
+    if origin then key = origin.id .. ":" .. key end
     -- Chat-only rewards can arrive without LOOT_CLOSED. Expire old tokens.
     claimsSinceSweep = claimsSinceSweep + 1
     if claimsSinceSweep >= 32 then
@@ -115,7 +124,7 @@ local function Claim(link, count, source)
     end
     local entry = seen[key]
     if not entry or entry.untilTime < now then
-        entry = { slot = 0, chat = 0, untilTime = now + 4 }
+        entry = { slot = 0, chat = 0, untilTime = now + (origin and 30 or 4) }
         seen[key] = entry
     end
     local opposite = source == "slot" and "chat" or "slot"
@@ -124,27 +133,26 @@ local function Claim(link, count, source)
         return false
     end
     entry[source] = entry[source] + 1
-    entry.untilTime = now + 4
+    entry.untilTime = now + (origin and 30 or 4)
     return true
 end
 
-local function NotifyItem(link, count, source)
+local function NotifyItem(link, count, source, origin)
     if type(count) ~= "number" or (issecretvalue and issecretvalue(count)) then count = 1 end
-    if not Readable(link) or not Claim(link, count, source) then return end
+    if not Readable(link) or not Claim(link, count, source, origin) then return end
     local name, _, quality, _, _, _, _, _, _, icon
     if Item and Item.GetInfo then
         name, _, quality, _, _, _, _, _, _, icon = Item.GetInfo(link)
     end
     local label = (Readable(name) and name) or link:match("|h%[(.-)%]|h") or link
     if count and count > 1 then label = label .. " x" .. count end
-    Show(label, icon or (Item and Item.GetIcon and Item.GetIcon(link)), quality)
+    Show(label, icon or (Item and Item.GetIcon and Item.GetIcon(link)), quality, nil, origin)
 end
 
 local formats = {
-    "LOOT_ITEM_SELF_MULTIPLE", "LOOT_ITEM_SELF",
-    "LOOT_ITEM_PUSHED_SELF_MULTIPLE", "LOOT_ITEM_PUSHED_SELF",
-    "LOOT_ITEM_BONUS_ROLL_SELF_MULTIPLE", "LOOT_ITEM_BONUS_ROLL_SELF",
-    "LOOT_ITEM_CREATED_SELF_MULTIPLE", "LOOT_ITEM_CREATED_SELF",
+    { "LOOT_ITEM_SELF_MULTIPLE", true }, { "LOOT_ITEM_SELF", true },
+    { "LOOT_ITEM_BONUS_ROLL_SELF_MULTIPLE", false },
+    { "LOOT_ITEM_BONUS_ROLL_SELF", false },
 }
 
 local function ExpandForms(textValue)
@@ -188,8 +196,8 @@ local function CompilePattern(formatText, anchored)
 end
 
 local selfPatterns = {}
-for _, key in ipairs(formats) do
-    local formatText = _G[key]
+for _, spec in ipairs(formats) do
+    local formatText = _G[spec[1]]
     if type(formatText) == "string" then
         for _, form in ipairs(ExpandForms(formatText)) do
             local pattern, kinds = CompilePattern(form, true)
@@ -197,7 +205,9 @@ for _, key in ipairs(formats) do
             for index, kind in ipairs(kinds) do
                 if kind == "d" then countIndex = index; break end
             end
-            selfPatterns[#selfPatterns + 1] = { pattern = pattern, countIndex = countIndex }
+            selfPatterns[#selfPatterns + 1] = {
+                pattern = pattern, countIndex = countIndex, needsWindow = spec[2],
+            }
         end
     end
 end
@@ -275,24 +285,137 @@ local function SelfLootCount(message)
     for _, form in ipairs(selfPatterns) do
         local values = { message:match(form.pattern) }
         if values[1] then
-            return form.countIndex and (tonumber(values[form.countIndex]) or 1) or 1
+            return form.countIndex and (tonumber(values[form.countIndex]) or 1) or 1,
+                form.needsWindow
         end
     end
     return nil
 end
 
 local captured = {}
+local lootWindowOpen, lootWindowStarted, lootWindowClosed = false, -100, -100
+local lootOrigin
+local sessions, activeSession = {}, nil
+
+local function PruneSessions()
+    local now = GetTime()
+    for index = #sessions, 1, -1 do
+        local session = sessions[index]
+        if session ~= activeSession and session.expires < now then
+            table.remove(sessions, index)
+        end
+    end
+    while #sessions > MAX_SESSIONS do table.remove(sessions, 1) end
+end
+
+local function StartLootWindow()
+    if not lootWindowOpen then
+        wipe(captured)
+        lootOrigin = CursorOrigin()
+        activeSession = {
+            origin = lootOrigin, expires = GetTime() + SESSION_TTL,
+            expectedSlots = 0, knownSlots = 0, slotKnown = {},
+            items = {}, chatAssigned = {}, fallbackUsed = 0,
+            currencies = {}, currencyAssigned = {},
+            moneySlot = false, moneyAssigned = false,
+        }
+        sessions[#sessions + 1] = activeSession
+        PruneSessions()
+    end
+    lootWindowOpen, lootWindowStarted = true, GetTime()
+end
+local function RecentLootWindow()
+    local now = GetTime()
+    return (lootWindowOpen and now - lootWindowStarted <= 60)
+        or now - lootWindowClosed <= 1
+end
+
 local function Capture()
     if not (GetNumLootItems and GetLootSlotLink and GetLootSlotInfo) then return end
-    for slot = 1, GetNumLootItems() do
+    local count = GetNumLootItems()
+    if activeSession then
+        activeSession.expectedSlots = math.max(activeSession.expectedSlots, count)
+    end
+    for slot = 1, count do
+        if activeSession and GetLootSlotType and LOOT_SLOT_MONEY
+            and GetLootSlotType(slot) == LOOT_SLOT_MONEY then
+            activeSession.moneySlot = true
+            if not activeSession.slotKnown[slot] then
+                activeSession.slotKnown[slot] = true
+                activeSession.knownSlots = activeSession.knownSlots + 1
+            end
+        end
         if not captured[slot] then
             local link = GetLootSlotLink(slot)
-            if Readable(link) then
+            if Readable(link) and link:find("|Hitem:", 1, true) then
                 local _, _, count = GetLootSlotInfo(slot)
-                captured[slot] = { link = link, count = (type(count) == "number" and not (issecretvalue and issecretvalue(count))) and count or 1 }
+                count = (type(count) == "number" and not (issecretvalue and issecretvalue(count))) and count or 1
+                captured[slot] = { link = link, count = count, session = activeSession }
+                if activeSession and not activeSession.slotKnown[slot] then
+                    activeSession.slotKnown[slot] = true
+                    activeSession.knownSlots = activeSession.knownSlots + 1
+                    local key = ItemKey(link, count)
+                    activeSession.items[key] = (activeSession.items[key] or 0) + 1
+                end
+            elseif Readable(link) and activeSession then
+                local currencyID = link:match("|Hcurrency:(%d+)")
+                if currencyID and not activeSession.slotKnown[slot] then
+                    activeSession.currencies[currencyID] = (activeSession.currencies[currencyID] or 0) + 1
+                    activeSession.slotKnown[slot] = true
+                    activeSession.knownSlots = activeSession.knownSlots + 1
+                end
             end
         end
     end
+end
+
+local function MatchItemSession(link, count)
+    PruneSessions()
+    local key = ItemKey(link, count)
+    for _, session in ipairs(sessions) do
+        local assigned = session.chatAssigned[key] or 0
+        if (session.items[key] or 0) > assigned then
+            session.chatAssigned[key] = assigned + 1
+            return session
+        end
+    end
+    -- Another addon may empty the window before GetLootSlotLink can see it.
+    for _, session in ipairs(sessions) do
+        local unknown = session.expectedSlots - session.knownSlots
+        if session.expectedSlots == 0 then unknown = 1 end
+        if session.fallbackUsed < unknown then
+            session.fallbackUsed = session.fallbackUsed + 1
+            return session
+        end
+    end
+    return nil
+end
+
+local function MatchCurrencySession(currencyID)
+    PruneSessions()
+    if currencyID then
+        for _, session in ipairs(sessions) do
+            local assigned = session.currencyAssigned[currencyID] or 0
+            if (session.currencies[currencyID] or 0) > assigned then
+                session.currencyAssigned[currencyID] = assigned + 1
+                return session
+            end
+        end
+    end
+    if RecentLootWindow() then return activeSession or sessions[#sessions] end
+    return nil
+end
+
+local function MatchMoneySession()
+    PruneSessions()
+    for _, session in ipairs(sessions) do
+        if session.moneySlot and not session.moneyAssigned then
+            session.moneyAssigned = true
+            return session
+        end
+    end
+    if RecentLootWindow() then return activeSession or sessions[#sessions] end
+    return nil
 end
 
 local function ExternalFasterLoot()
@@ -328,6 +451,10 @@ function FluxLoot:Refresh()
             eventFrame:RegisterEvent(event)
         end
     else
+        lootWindowOpen, lootWindowStarted, lootWindowClosed = false, -100, -100
+        lootOrigin = nil
+        activeSession = nil
+        wipe(sessions)
         anchor:Hide()
         for index = #rows, 1, -1 do
             local row = table.remove(rows, index)
@@ -348,19 +475,25 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     local db = Settings()
     if not db then return end
     if event == "LOOT_READY" then
-        if db.alerts then Capture() end
+        if db.alerts then
+            StartLootWindow()
+            Capture()
+        end
         FastPickup()
     elseif event == "LOOT_OPENED" then
+        StartLootWindow()
         Capture()
     elseif event == "LOOT_SLOT_CLEARED" then
         local slot = ...
         local data = captured[slot]
         if data then
             captured[slot] = nil
-            NotifyItem(data.link, data.count, "slot")
+            NotifyItem(data.link, data.count, "slot", data.session and data.session.origin)
         end
     elseif event == "LOOT_CLOSED" then
-        wipe(captured)
+        lootWindowOpen, lootWindowClosed = false, GetTime()
+        if activeSession then activeSession.expires = GetTime() + SESSION_TTL end
+        activeSession = nil
         for key, entry in pairs(seen) do
             if entry.untilTime < GetTime() then seen[key] = nil end
         end
@@ -369,24 +502,33 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         NotifyItem(link, count or 1, "slot")
     elseif event == "CHAT_MSG_LOOT" then
         local message = ...
-        local count = SelfLootCount(message)
+        local count, needsWindow = SelfLootCount(message)
         if count then
             local link = message:match("(|Hitem:.-|h%[.-%]|h)")
-            if link then NotifyItem(link, count, "chat") end
+            if link then
+                local session = needsWindow and MatchItemSession(link, count) or nil
+                if not needsWindow or session then
+                    NotifyItem(link, count, "chat", session and session.origin)
+                end
+            end
         end
     elseif event == "CHAT_MSG_MONEY" and db.money then
         local copper = ParseMoney(...)
         if copper then
             local amount, icon = MoneyDisplay(copper)
-            Show(amount, icon, nil, true)
+            local session = MatchMoneySession()
+            Show(amount, icon, nil, true, session and session.origin)
         end
     elseif event == "CHAT_MSG_CURRENCY" and db.currency then
         local message = ...
         if Readable(message) then
             local currencyID = message:match("|Hcurrency:(%d+)")
-            local info = currencyID and C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo
-                and C_CurrencyInfo.GetCurrencyInfo(tonumber(currencyID))
-            Show(message, info and info.iconFileID or "Interface\\Icons\\INV_Misc_Coin_01")
+            local session = MatchCurrencySession(currencyID)
+            if session then
+                local info = currencyID and C_CurrencyInfo and C_CurrencyInfo.GetCurrencyInfo
+                    and C_CurrencyInfo.GetCurrencyInfo(tonumber(currencyID))
+                Show(message, info and info.iconFileID or "Interface\\Icons\\INV_Misc_Coin_01", nil, nil, session.origin)
+            end
         end
     end
 end)

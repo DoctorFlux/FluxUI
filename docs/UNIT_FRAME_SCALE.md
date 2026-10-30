@@ -54,3 +54,46 @@ ZIP with 1,307 files, SHA-256
 `08039b6adc152b6ea7f11e07c0fec1d457b284d27518a8434a667afbeaabedb1`,
 and a verified complete Git bundle. On-disk Retail settings were present but
 not modified. Concurrent vehicle/durability and status-bar work was preserved.
+
+## Attached stance-bar scale — 30 October 2026
+
+Failure: reducing the player frame left its attached stance bar at full size.
+The stance root is parented to UIParent, and its border anchor carries position
+without inheriting player scale. It now matches the player's effective scale
+relative to its own parent when placed at the player frame. Buttons, borders,
+text, effects and click surfaces inherit that root scale once. Detaching or
+using a non-Flux player frame restores the stance root to its original scale.
+Scale is synchronized before detached pet-height measurements and at anchor
+refresh. The unit-frame size pass refreshes the stance anchor after a player
+scale change without requesting a button/binding rebuild. Existing combat
+deferral applies; unchanged scale avoids SetScale and extra anchor requests.
+No new settings, hooks, timers, frames or polling were added.
+
+Baseline: `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`. The
+[raw comparison](validation/stance-player-scale-comparison-2026-10-30.json)
+records exact normalized source hashes and the old failure. The new
+[stance fixture](../tests/stance_player_scale.lua) passes 21 checks; the
+[options bridge fixture](../tests/unit_frame_whole_scale.lua) passes 28.
+The [full desktop suite](validation/stance-player-scale-2026-10-30.json) passes
+108 scripts and 752 Lua syntax checks. The old source fails the reduced-scale
+assertion. Existing bar contract/startup regressions also pass.
+
+Before editing, verified external checkpoint `Stance-scale-20261030T191108Z`
+preserved 1,364 source files, complete Git history and 109 on-disk settings
+files. Source ZIP SHA256:
+`25635059be74307afb1b9aae1392c785b79cbab889b9975545c923cdc95f4d54`.
+No WoW process was visible to the workspace. Native client builds, hardware,
+addon/settings snapshot, screenshots, timing and CPU/allocation samples for
+this change are unavailable; native performance and parity are inconclusive.
+Desktop mocks do not establish native pixels, hit areas, FPS or taint safety.
+
+Native regression steps for each supported client: reload outside combat;
+place stance beside the Flux player frame and compare 100%, 50%, 75%, 135%
+and 200% player/target scale with the same profile, UI scale and resolution.
+Check forms/extras, borders, text, click surfaces and bindings; reload at 50%
+and confirm retained size. Switch to the detached stance placement and verify
+its original size, including status/pet stacking; switch back and confirm
+attached size. Disable the Flux player frame and verify fallback placement.
+During combat, change the scale and verify protected geometry waits until
+combat ends, then recheck input and taint. Capture matched before/after images
+and repeated layout-operation timings if performance acceptance is needed.

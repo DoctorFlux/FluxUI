@@ -1301,4 +1301,8 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
     if UFm and UFm.UpdateAllEmulatedHorizontalSqueeze then
         UFm.UpdateAllEmulatedHorizontalSqueeze()
     end
+    local stance = ns.Flux and ns.Flux.Bars and ns.Flux.Bars.Stance
+    if ns.PlayerFrame and ns.PlayerFrame._fluxWholeScaleChanged and stance and stance.Anchor then
+        stance.Anchor()
+    end
 end

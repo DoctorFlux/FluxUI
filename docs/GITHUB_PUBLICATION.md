@@ -150,3 +150,22 @@ Private settings, archives, captures and ignored local helpers stay outside Git.
 Use an ordinary main push, verify remote identity and preserve history.
 
 Fresh combined desktop validation: **107 scripts /751 Lua syntax files, zero failures**.
+
+## 30 October 2026 - stance, loot and Micro Menu publication
+
+User requested uploading all current local updates to main. The complete payload
+includes attached stance scaling, loot source filtering / cursor pinning / delayed
+source routing, the Micro Menu nil-center fix, tests and their records. All 753
+current normalized Lua hashes exactly match the passing 109-test combined report
+`docs/validation/micromenu-nil-center-full-2026-10-30.json`; no Lua file is missing
+from that report. Reused this verified combined evidence without rerunning an
+unchanged suite. Documentation references and verification index are refreshed.
+Native pending checks retain their stated scope; no game/settings interaction
+or runtime edits were made for publication.
+
+External checkpoint `Publish-updates-20261030T202520Z` preserves 1,376 actual
+local files and verified complete Git history. Source ZIP SHA-256:
+`f6351660aa5a58daffb70c8aa9c3d2a70d5774f1eb112d8ae36d4f8070c1025b`.
+GitHub main matched parent `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+Private settings/captures/archives and ignored local helpers remain outside Git.
+Publish by ordinary push to main, then verify remote identity and clean status.

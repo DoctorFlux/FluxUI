@@ -1,5 +1,90 @@
 # Cursor loot and fast pickup — 30 October 2026
 
+Delayed-source correction (30 October): a mob/chest loot session now keeps its
+opening cursor position for 30 seconds after LOOT_CLOSED. Captured item links
+and stack counts route late self-loot chat to the matching session, even after
+another source has been opened; slot and chat reports of the same pickup still
+produce one row. Captured currency IDs and money slot types similarly route
+late currency and money messages. When FasterLoot empties a window before a
+slot link can be captured, one unmatched item message may use that window's
+saved origin. Sessions are bounded to 32 and expire after 30 seconds. This
+does not change the three-second time a visible alert stays on screen.
+
+The desktop fixture covers two closed sources with reversed late item chat,
+ten-second-late chat after a slot alert, an uncaptured FasterLoot window,
+late currency and money after another source, and expiry before later bag
+gains. Full validation passes **108 scripts / 752 Lua syntax files**:
+[result](validation/loot-delayed-source-full-2026-10-30.json).
+[Exact runtime hashes](validation/loot-delayed-source-source-hashes-2026-10-30.json)
+identify the candidate against main `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+Pre-edit source was preserved outside AddOns in
+`flux-loot-before-delayed-source-20261030.zip` (SHA256
+`4A408D72331229F1EE185D0D0C0EF6083E283D9DD2BCF65F8CC19571FE2B4864`)
+beside the verified history bundle. WoW chat does not supply a loot-source
+identity for an uncaptured slot or linkless currency line; if several such
+sources remain pending, the oldest eligible session is used and placement
+can be ambiguous. Native event order, placement, UI scale, taint, pixels and
+frame time remain pending on all five clients.
+
+Cursor-position correction (30 October): the user wants loot to remain where
+the cursor was when the mob was looted, even after moving the cursor. The
+previous `Show` path read `GetCursorPosition` for every alert and moved one
+shared anchor, so a later item or a second loot batch could move earlier
+rows. FluxLoot now captures an origin when LOOT_READY/LOOT_OPENED starts a
+loot window. Slot, item-chat, money and currency rows from that window use
+that origin; LOOT_OPENED does not resample after LOOT_READY. Each row retains
+its origin in UIParent coordinates, so a new loot window can start elsewhere
+without moving still-visible rows. Bonus/group-roll alerts and Preview use
+the cursor position at their own alert event. The snapshot is at the native
+loot event, whose timing relative to the physical click awaits client proof.
+
+The focused fixture moves the cursor between LOOT_READY, LOOT_OPENED, slot,
+chat and LOOT_CLOSED events, then starts another overlapping loot window.
+It checks both batches stay at their original coordinates and later currency
+chat uses the first window's origin. Full desktop validation passes **108
+scripts / 752 Lua syntax files**, zero failures:
+[raw result](validation/loot-cursor-pin-full-2026-10-30.json).
+[Exact runtime hashes](validation/loot-cursor-pin-source-hashes-2026-10-30.json)
+identify this candidate against main `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+Pre-edit source was preserved outside AddOns in
+`flux-loot-before-cursor-pin-20261030.zip` (SHA256
+`E5DD06156DB5EDFF1E35C3B4941F4957933AA2D3C890BCF992565CA30856CD4C`)
+beside the verified history bundle. Native position, pixel, taint and
+frame-time checks remain pending on five clients. Unrelated stance work in
+the shared worktree was preserved.
+
+
+Loot-source correction (30 October): the user reports alerts for items they
+create or otherwise receive in bags. Crafted (`LOOT_ITEM_CREATED_SELF`) and
+pushed/rewarded (`LOOT_ITEM_PUSHED_SELF`) chat lines are no longer accepted.
+Ordinary self-loot chat now requires a matching captured loot session, with a
+bounded fallback for slots emptied before capture. Direct loot-slot clears,
+bonus rolls and won group rolls remain valid loot. Currency chat is shown
+only during that same loot-window period unless a captured currency ID matches
+a pending session; currency slot links are not treated as item rows. The
+one-second grace covers linkless chat emitted just after LOOT_CLOSED;
+a separate currency gain in that interval could still look like loot, and
+native event ordering remains to be checked. Money already uses only native
+"You loot" / split-loot messages and is unchanged. No bag-update scanner or
+new setting was added.
+
+The focused desktop fixture checks crafted and pushed gains both inside and
+outside a loot window, ordinary bag gain outside, direct slot loot, bonus/
+group rolls, currency inside/outside/just after the window, and currency
+slot exclusion. Full desktop validation passes **108 scripts / 752 Lua syntax
+files**, zero failures: [raw result](validation/loot-source-filter-full-2026-10-30.json).
+[Exact runtime hashes](validation/loot-source-filter-source-hashes-2026-10-30.json)
+identify the candidate against main `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+The pre-edit source was preserved outside AddOns in
+`flux-loot-before-source-filter-20261030.zip` (SHA256
+`4050CF47DB98740AC9C4A64A74EB1E3242D90A1795C0B42779454CD791FD5B00`);
+the dated Git history bundle verified with SHA256
+`3CCA4322B0D86E4D61FDF1D8509D43951EC0C9CC9C8047CCD352369D7009F9CC`.
+Native source classification, event order, pixels, taint and frame time are
+pending across the five supported clients. Unrelated stance work in the
+shared worktree was preserved.
+
+
 AceDB callback correction (30 October): the user supplied a native startup
 stack trace at `Other/FluxLoot.lua:402`. FluxLoot passed the database table
 as CallbackHandler's receiver, shifting the event name into a table argument.

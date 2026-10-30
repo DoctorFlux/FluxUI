@@ -1,5 +1,37 @@
 # Micromenu, bag controls and addon buttons
 
+## Nil-center startup correction — 30 October 2026
+
+The user's native stack reaches `MicroMenuContainer:GetEdgeButton` from
+`FluxMicroMenu:UpdateLayout()` while `SocialsMicroButton` is still an
+unpositioned Blizzard `MicroMenu` child. Classic native
+`MicroButton_OnShow` calls `MicroMenuContainer:Layout()` synchronously, and
+the edge calculation compares nil centers. The rebuild now reparents every
+selected button and stages unused layout children before any native
+Show/Hide callback. It finishes hiding unused children after Flux layout,
+without replacing Blizzard's `Layout` or `GetEdgeButton`. The expected
+result is no nil-center error when the LFG button triggers a rebuild, while
+button visibility, order and placement stay the same.
+
+The focused [regression](../tests/micro_menu_nil_center.lua) reproduces the
+old nil-center comparison, checks the new callback order and final parking,
+and passes. The existing MicroMenu smoke also passes. Full desktop
+validation passes **109 tests / 753 Lua syntax files**, zero failures:
+[result](validation/micromenu-nil-center-full-2026-10-30.json).
+[Exact source hashes](validation/micromenu-nil-center-source-hashes-2026-10-30.json)
+identify the candidate against main `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
+The pre-edit source archive was preserved outside AddOns as
+`flux-micromenu-before-nil-center-20261030.zip` (SHA256
+`A1D51607F04F6B58513FF9F89C087001D17691A72F17D89F63C525F74258ED11`);
+the dated history bundle remains verified. The read-only Era reference
+`MicroMenuContainer.lua` has SHA256
+`B64C7406308CC41EC4A6CD833A31C544958E994ED4CC978389195449F76F63A4`;
+`Classic/MainMenuBarMicroButtons.lua` has SHA256
+`42D1C5FCCB1D5C5678F5032C37664BC04595B415DB8E55F56D8D27D091341860`.
+The user's stack establishes the pre-fix failure; native post-fix reload,
+LFG appearance, Edit Mode, combat deferral, pixels, taint and frame time
+remain pending across the five supported clients.
+
 `FluxMicroMenu` replaces the visible micro-button row with a configurable container of native Blizzard buttons, Flux actions, learned professions and selected minimap-addon shortcuts. [FluxMicroMenu.lua](../MicroMenu/FluxMicroMenu.lua) owns creation/discovery, button art, native/custom hover effects, layout and rebuild. It initially anchors top-left; Layout can select another placement.
 
 ## Runtime composition

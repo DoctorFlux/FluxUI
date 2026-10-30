@@ -1,5 +1,45 @@
 # Development status
 
+Latest publication batch (30 October): all local stance-scale, loot-source and
+Micro Menu fixes included for main. All 753 Lua hashes match the passing
+109-test combined report. Native acceptance remains pending.
+
+MicroMenu nil-center correction (30 October 2026): selected and unused
+native children leave Blizzard's MicroMenu before Flux shows or hides them,
+preventing the reported `GetEdgeButton` nil-center path in the desktop
+regression. Full validation passes 109 tests / 753 syntax files. Native
+post-fix reload and five-client placement/taint/performance remain pending.
+[Evidence](17-micromenu.md).
+
+Delayed loot correction (30 October 2026): closed mob/chest sessions retain
+their cursor origin for 30 seconds. Matching item, currency and money reports
+use the saved source even after another source opens; late slot/chat reports
+are deduplicated. Desktop validation: 108 scripts / 752 syntax files pass.
+Native five-client event order, placement and performance remain pending.
+[Evidence](LOOT_CURSOR.md).
+
+Cursor-position correction (30 October 2026): loot rows now retain the
+cursor snapshot from LOOT_READY/LOOT_OPENED; later rows and overlapping loot
+batches cannot move earlier rows when the mouse moves. Focused desktop and
+full validation pass: 108 scripts / 752 Lua syntax files. Native five-client
+pixels and event timing remain pending. [Evidence](LOOT_CURSOR.md).
+
+
+Loot-source correction (30 October 2026): cursor alerts now exclude crafted,
+pushed/rewarded and ordinary outside-window bag gains; loot slots, bonus and
+group rolls remain. Currency requires a recent loot window. Focused desktop
+checks and full validation pass: 108 scripts / 752 Lua syntax files. Native
+classification and five-client acceptance remain pending.
+[Evidence](LOOT_CURSOR.md).
+
+
+30 October 2026: attached stance bars now follow player-frame scale, including
+immediate slider changes and reload; detached placement restores normal size.
+Existing combat deferral is retained. 21 stance and 28 bridge checks pass;
+full suite: 108 scripts /752 Lua syntax files, zero failures. Native pixels,
+input and taint remain pending (no visible WoW process).
+[Evidence and native steps](UNIT_FRAME_SCALE.md).
+
 Current publication batch (30 October): all local cursor loot, fast pickup,
 options, coin art and callback updates are included for main. Native checks
 retain their pending scope in the loot chapter.

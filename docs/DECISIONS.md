@@ -1,5 +1,49 @@
 # Decisions
 
+## 2026-10-30 - clear Blizzard MicroMenu children before native callbacks
+
+- Reparent selected buttons and stage unused layout children before any
+  Show/Hide path in Flux's rebuild. Finish hiding staged children after Flux
+  layout. This prevents Blizzard `MicroButton_OnShow` from finding hidden,
+  unpositioned children in `GetEdgeButton`.
+- Keep Blizzard `Layout` and `GetEdgeButton` untouched, preserve button order,
+  settings and the existing combat/Edit Mode deferral. Native post-fix
+  validation is pending. [Evidence](17-micromenu.md).
+
+## 2026-10-30 - retain pending loot sources through delayed chat
+
+- Keep each loot session's cursor origin and captured slot identities for 30
+  seconds after close, capped at 32 sessions. Match item link and stack count,
+  currency ID or money slot before using a source position. Reconcile a late
+  slot/chat pair by source so it displays once.
+- Allow one item fallback for a window whose slots were emptied before
+  capture. Linkless currency keeps the one-second close grace. Source
+  attribution is ambiguous when multiple uncaptured sources remain pending;
+  native ordering and placement require five-client checks.
+  [Evidence](LOOT_CURSOR.md).
+
+## 2026-10-30 - pin each loot batch to its opening cursor position
+
+- Capture the cursor once when a loot window first becomes ready/open, and
+  carry that origin through slot and delayed chat rows. Keep each row's own
+  UIParent coordinates so another loot window cannot relocate it.
+- For bonus/group rolls without a loot window and Preview, use the cursor at
+  that alert event. Preserve three-row capacity, 3-second default, controls
+  and source filtering. Native click-to-event timing and pixels remain to be
+  checked. [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - restrict cursor alerts to loot sources
+
+- Exclude crafted and pushed/rewarded chat forms. Require a current or
+  just-closed loot window for ordinary self-loot chat and currency chat;
+  keep direct slot clears, bonus rolls and group-roll wins. Do not infer loot
+  from bag changes.
+- Keep a one-second close grace for chat arriving after LOOT_CLOSED. This is
+  a bounded event-order compromise and needs native confirmation. Keep the
+  existing fast pickup, money format and settings. [Evidence](LOOT_CURSOR.md).
+
+
 ## 2026-10-30 - register FluxLoot profile callbacks with the AceDB receiver
 
 - Use `FluxOptions.db.RegisterCallback(FluxLoot, event, FluxLoot.Refresh)`,
@@ -665,3 +709,17 @@
   button level when returning to the stacked layout.
 - Restricted maximum values cannot select a text layout in addon Lua; retain
   the upper HP placement until a nonsecret zero maximum is available.
+
+## 30 October 2026 - attached stance scale
+
+30 October 2026: attached stance bars now follow player-frame scale, including
+immediate slider changes and reload; detached placement restores normal size.
+Existing combat deferral is retained. 21 stance and 28 bridge checks pass;
+full suite: 108 scripts /752 Lua syntax files, zero failures. Native pixels,
+input and taint remain pending (no visible WoW process).
+
+Match effective parent scales at the existing stance anchor/layout entrypoints.
+Refresh only the anchor after a player whole-scale change; avoid rediscovery
+and binding work for this geometry correction. Source/history/settings recovery
+and exact before/after hashes are in [the scale record](UNIT_FRAME_SCALE.md).
+No game/settings interaction or competing framework; excluded callbacks unchanged.

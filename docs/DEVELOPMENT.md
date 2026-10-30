@@ -1,5 +1,29 @@
 # Development tasks
 
+30 October MicroMenu nil-center correction: reparent selected and unused
+native children before their Show/Hide callbacks can invoke Blizzard
+`GetEdgeButton`. [17-micromenu.md](17-micromenu.md) records the regression,
+exact source identity and native limits. Full desktop suite: 109 tests /
+753 syntax files; post-fix native checks pending.
+
+30 October delayed loot correction: pending source sessions retain the
+opening cursor through lagged item/currency/money chat and reconcile late
+slot/chat reports. [LOOT_CURSOR.md](LOOT_CURSOR.md) records the fixture,
+source hashes and native limits. Full desktop suite: 108 scripts / 752 syntax;
+native five-client placement and performance pending.
+
+30 October cursor-position correction: each loot window now retains its
+opening cursor origin for all rows, including delayed chat. The two-batch
+fixture and exact hashes are in [LOOT_CURSOR.md](LOOT_CURSOR.md). Full desktop
+suite: 108 scripts / 752 syntax; native five-client pixels/timing pending.
+
+
+30 October loot-source correction: cursor alerts now exclude crafted and
+pushed gains and gate ordinary self-loot/currency chat to a loot window.
+[LOOT_CURSOR.md](LOOT_CURSOR.md) records the focused fixture, exact source
+identity and native checks. Full desktop suite: 108 scripts / 752 syntax.
+
+
 30 October FluxLoot callback correction: user native stack at line 402,
 signature-aware regression and exact candidate hashes are in
 [LOOT_CURSOR.md](LOOT_CURSOR.md). Focused and full desktop validation pass;

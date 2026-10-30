@@ -1,5 +1,51 @@
 # Next session
 
+Latest publication batch (30 October): all local stance-scale, loot-source and
+Micro Menu fixes included for main. All 753 Lua hashes match the passing
+109-test combined report. Native acceptance remains pending.
+
+MicroMenu nil-center correction (30 October): on the client that produced
+the user's stack and then each supported client, reload with the Flux LFG
+button enabled, open/close Edit Mode, change Micro Menu placement and verify
+native buttons retain their order/visibility without a `GetEdgeButton`
+error. Check combat deferral, pixels, taint and frame time. The user's stack
+is pre-fix evidence; desktop 109-test/753-syntax suite passes, native
+post-fix checks pending. [Evidence](docs/17-micromenu.md).
+
+Delayed loot correction (30 October): sequentially on each supported client,
+loot two mobs/chests at distinct cursor locations, move the cursor and delay
+chat through LOOT_CLOSED/next source. Confirm each item remains at its own
+source position and late slot/chat does not duplicate. Check fast pickup with
+FasterLoot enabled and disabled, currency and money, UI scale, taint, pixels
+and frame time. Ambiguous uncaptured/linkless sources require native review.
+Desktop 108-script/752-syntax suite passes; native checks pending.
+[Evidence](docs/LOOT_CURSOR.md).
+
+Cursor-position correction (30 October): in each supported client, loot a
+multi-item mob/chest, move the cursor before all chat/slot alerts arrive,
+then loot another source while the first rows remain visible. Verify each
+batch stays at its opening cursor position, delayed currency follows it,
+and UI scale/clamping remain correct. Check native pixels, taint and frame
+time. Desktop 108-script/752-syntax suite passes; native checks pending.
+[Evidence](docs/LOOT_CURSOR.md).
+
+
+Loot-source correction (30 October): on each supported client, create an
+item, receive a quest/pushed item, loot a mob/chest, win a group or bonus
+roll, and gain currency both through loot and a quest. Confirm only loot
+appears at cursor, including chat after LOOT_CLOSED; check the one-second
+currency grace, duplicates, taint and frame time. Desktop 108-script/
+752-syntax suite passes; native checks remain pending.
+[Evidence](docs/LOOT_CURSOR.md).
+
+
+30 October 2026: attached stance bars now follow player-frame scale, including
+immediate slider changes and reload; detached placement restores normal size.
+Existing combat deferral is retained. 21 stance and 28 bridge checks pass;
+full suite: 108 scripts /752 Lua syntax files, zero failures. Native pixels,
+input and taint remain pending (no visible WoW process).
+[Evidence and native steps](docs/UNIT_FRAME_SCALE.md).
+
 Current publication batch (30 October): all local cursor loot, fast pickup,
 options, coin art and callback updates are included for main. Native checks
 retain their pending scope in the loot chapter.

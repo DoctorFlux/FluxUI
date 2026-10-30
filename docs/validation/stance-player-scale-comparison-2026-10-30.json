@@ -1,0 +1,35 @@
+{
+  "baselineCommit": "57a252e0e2b467cf7788c3f52aa5d1dd8d83779e",
+  "scope": "Desktop production anchor/options bridge with frame doubles; native pixels, secure VM, combat taint, latency and performance pending. No client process visible; no game interaction.",
+  "baseline": {
+    "exit": 1,
+    "output": "lua: tests/stance_player_scale.lua:4: attached stance follows reduced player scale\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/stance_player_scale.lua:4: in local 'check'\n\ttests/stance_player_scale.lua:26: in main chunk\n\t[C]: in ?\n"
+  },
+  "candidate": {
+    "exit": 0,
+    "output": "stance player scale: 21 checks\n"
+  },
+  "normalization": "CRLF to LF only",
+  "sources": [
+    {
+      "path": "Bars/Stance/Layout.lua",
+      "baselineSha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7",
+      "candidateSha256": "a3fed55d3b10dff53b558c001ab54ef32880975ba82c37276df0c405cf1a19b6"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+      "baselineSha256": "26a8dade32449342761fb342b67be6c0f2bdd9a3de421f903920169646f800f8",
+      "candidateSha256": "84b6e08f29790eaf5086d50fe0b882eaf42401f14773c337a13b14476d27561f"
+    },
+    {
+      "path": "tests/stance_player_scale.lua",
+      "baselineSha256": null,
+      "candidateSha256": "0a03834de405149b9b18d3e0c3d3a84431814714e7673b380d2d08b3e83fccf9"
+    },
+    {
+      "path": "tests/unit_frame_whole_scale.lua",
+      "baselineSha256": "22acd7e54aeccc7cb44bb02bb308d62557512e2a2b41d6672014402cdd11904e",
+      "candidateSha256": "c40a3e259fba871efec93fac4712675a524fe9671400b1c4c8ca2c746ed3e733"
+    }
+  ]
+}

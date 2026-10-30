@@ -1,0 +1,12 @@
+{
+  "baselineCommit": "57a252e0e2b467cf7788c3f52aa5d1dd8d83779e",
+  "baselineSourceSha256": "df986aabcbc04c4965f8fc8061676bd0a171fa175287f3164cfbdc94fb8862f4",
+  "candidateSourceSha256": "729beba468b5f9863b9d1f88a3c40db01279f28b2e4e0e8aa8455e11cc373550",
+  "beforeSourceArchiveSha256": "A1D51607F04F6B58513FF9F89C087001D17691A72F17D89F63C525F74258ED11",
+  "reference": {
+    "tree": "wow-ui-source-classic_era 1.15.9.68808 (read-only reference; user stack does not identify exact build)",
+    "MicroMenuContainer.lua": "B64C7406308CC41EC4A6CD833A31C544958E994ED4CC978389195449F76F63A4",
+    "Classic/MainMenuBarMicroButtons.lua": "42D1C5FCCB1D5C5678F5032C37664BC04595B415DB8E55F56D8D27D091341860"
+  },
+  "scope": "MicroMenu nil-center crash candidate; desktop validated, native post-fix pending"
+}

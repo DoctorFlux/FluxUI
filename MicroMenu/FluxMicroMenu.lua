@@ -2507,9 +2507,8 @@ local function UpdateLayout()
     local usePreDfEditNativeBlizzardSetSizeOnly = (not useDfHudLayout) and useDfVerticalGrid
     for _, btn in ipairs(layoutButtons) do
         if btn then
-            btn:Show()
-            btn:ClearAllPoints()
             btn:SetParent(FluxMicroMenu)
+            btn:ClearAllPoints()
             btn:SetScale(1)
             local btnWidth, btnHeight = FluxStandardizeMicroButton(btn)
             local isFluxScalable = IsFluxUserScalableMicroButton(btn)
@@ -2562,6 +2561,12 @@ local function UpdateLayout()
             end
             table.insert(rowInfo, { btn = btn, w = btnWidth, h = btnHeight })
         end
+    end
+
+    -- Native MicroButton_OnShow runs Blizzard's MicroMenu layout. All kept
+    -- buttons must leave that container before the first Show callback.
+    for _, entry in ipairs(rowInfo) do
+        entry.btn:Show()
     end
 
     if #rowInfo == 0 then
@@ -2692,7 +2697,8 @@ local function ParkFrameOffMicroMenu(frame, parkParent)
     end
 end
 
-local function ParkLeftoverMicroMenuLayoutChildren()
+local stagedMicroMenuChildren = {}
+local function ParkLeftoverMicroMenuLayoutChildren(reparentOnly)
     if InCombatLockdown() then
         return
     end
@@ -2700,7 +2706,10 @@ local function ParkLeftoverMicroMenuLayoutChildren()
     if not menu or not menu.GetChildren then
         return
     end
-    local parkParent = GetParkParentForLeftoverMicroMenuChild()
+    -- The first pass runs before UpdateLayout shows any native button. Keep
+    -- the temporary parent visible so reparenting cannot fire OnShow/OnHide
+    -- while other unpositioned children still belong to Blizzard MicroMenu.
+    local parkParent = reparentOnly and FluxMicroMenu or GetParkParentForLeftoverMicroMenuChild()
     if not parkParent then
         return
     end
@@ -2720,12 +2729,23 @@ local function ParkLeftoverMicroMenuLayoutChildren()
         if child and child.layoutIndex and not keep[child] then
             local childName = child.GetName and child:GetName()
             if not FluxMicroMenu:ShouldLeaveBlizzardButtonShown(childName) then
-                ParkFrameOffMicroMenu(child, parkParent)
+                if reparentOnly then
+                    child:SetParent(parkParent)
+                    stagedMicroMenuChildren[child] = true
+                else
+                    ParkFrameOffMicroMenu(child, parkParent)
+                end
             end
         end
     end
+    if not reparentOnly then
+        for child in pairs(stagedMicroMenuChildren) do
+            ParkFrameOffMicroMenu(child, parkParent)
+            stagedMicroMenuChildren[child] = nil
+        end
+    end
     local ticket = _G.HelpOpenWebTicketButton
-    if ticket then
+    if ticket and not reparentOnly then
         ParkFrameOffMicroMenu(ticket, parkParent)
     end
 end
@@ -2765,12 +2785,22 @@ local function HijackButtons()
     local hiddenParent = _G.FluxHiddenParent
     if FluxMicroMenuConfig and FluxMicroMenuConfig.BuildOrderedMicroButtons then
         newButtons, _ = FluxMicroMenuConfig:BuildOrderedMicroButtons(discovered)
+    end
+    FluxMicroMenu.buttons = newButtons
+    -- Native Show/Hide callbacks can call Blizzard Layout before UpdateLayout.
+    -- Move selected children out first, then stage unused children.
+    for _, btn in ipairs(newButtons) do
+        if btn and btn.GetParent and btn:GetParent() == _G.MicroMenu then
+            btn:SetParent(FluxMicroMenu)
+        end
+    end
+    ParkLeftoverMicroMenuLayoutChildren(true)
+    if FluxMicroMenuConfig and FluxMicroMenuConfig.BuildOrderedMicroButtons then
         if hiddenParent and FluxMicroMenuConfig.ParkHiddenButtons then
             FluxMicroMenuConfig:ParkHiddenButtons(discovered, newButtons, hiddenParent)
         end
         ParkUnavailableOptionalMicroButtons(hiddenParent)
     end
-    FluxMicroMenu.buttons = newButtons
     
     -- Special handling for MainMenuMicroButton to fix tooltip fighting logic
 

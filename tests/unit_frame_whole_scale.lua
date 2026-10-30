@@ -10,7 +10,10 @@ FluxOptions = { GetUnitFrameDB = function() return db end }
 UIParent = { GetEffectiveScale = function() return 1 end }
 InCombatLockdown = function() return false end
 FLUX_API = { hasFocusUnit = true }
-local ns = { UnitFrames = {} }
+local stanceAnchors = 0
+local ns = { UnitFrames = {}, Flux = { Bars = { Stance = {
+    Anchor = function() stanceAnchors = stanceAnchors + 1 end,
+} } } }
 assert(loadfile("UnitFrames/FluxUnitFrames_OptionsBridge.lua"))("_FluxUI", ns)
 local reanchor = FluxUnitFrames_ReanchorUnitFrameScreenPosition
 local stripFloor = FluxUnitFrames_GetPlayerScreenBottomOffset
@@ -62,6 +65,7 @@ check(ns.TargetOfTargetFrame.SeparatorContainer.scale == 1.35, "detached ToT sep
 check(ns.TargetFrame.atlasBorderFrame.scale == 1.35, "detached atlas border follows target scale")
 check(ns.TargetFrame.placeholderBorder.scale == 1.35, "empty target outline follows scale")
 check(anchors == 1, "ToT anchor refreshes")
+check(stanceAnchors == 1, "player scale refreshes stance anchor immediately")
 check(portraitRefreshes == 2, "player and focus 3D portraits reframe after scaling")
 
 ns.TargetOfTargetFrame.parent = UIParent
@@ -71,6 +75,20 @@ check(ns.TargetOfTargetFrame.scale == 0.7, "stacked ToT receives target scale")
 check(ns.TargetOfTargetFrame.SeparatorContainer.scale == 0.7, "stacked separator follows target scale")
 check(ns.TargetOfTargetFrame.atlasBorderFrame.scale == 0.7, "stacked atlas border follows target scale")
 check(portraitRefreshes == 3, "unchanged focus portrait avoids another reframe")
+check(stanceAnchors == 2, "reduced player scale refreshes stance anchor")
+FluxUnitFrames_ApplyFrameSizesFromDB()
+check(stanceAnchors == 2, "unchanged player scale avoids stance work")
+local deferred
+ns.UnitFrames.DeferProtected = function(_, fn) deferred = fn end
+InCombatLockdown = function() return true end
+db.frameScalePlayerTarget = 0.5
+FluxUnitFrames_ApplyFrameSizesFromDB()
+check(stanceAnchors == 2 and ns.PlayerFrame.scale == 0.7 and deferred,
+    "combat defers both player scaling and stance refresh")
+InCombatLockdown = function() return false end
+deferred()
+check(stanceAnchors == 3 and ns.PlayerFrame.scale == 0.5,
+    "combat completion applies player and stance scale together")
 
 local anchor = { scale = 1.35, unit = "player", portraitPosition = "LEFT" }
 function anchor:GetWidth() return 200 end

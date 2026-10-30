@@ -121,6 +121,15 @@ local function WindowFrame()
 	return _G.FluxWindowFrame
 end
 
+local function SyncPlayerScale(frame)
+	local player = Stance.ShouldAnchorToPlayerBorder() and (ns.PlayerFrame or _G.FluxUIPlayerFrame)
+	-- Anchoring does not inherit scale: the secure stance root stays under UIParent.
+	local scale = player and player:GetEffectiveScale() / frame:GetParent():GetEffectiveScale() or 1
+	if frame:GetScale() ~= scale then
+		frame:SetScale(scale)
+	end
+end
+
 function Stance.Anchor()
 	local frame = Stance.GetFrame()
 	if not frame then
@@ -130,6 +139,7 @@ function Stance.Anchor()
 		Defer("bars.stance.anchor", Stance.Anchor)
 		return
 	end
+	SyncPlayerScale(frame)
 	Stance.ApplyBorderChrome()
 	frame:ClearAllPoints()
 	if Stance.ShouldAnchorToPlayerBorder() then
@@ -213,6 +223,7 @@ function Stance.ApplyLayout()
 		end)
 		return false
 	end
+	SyncPlayerScale(frame)
 	if dirty.extrasDiscover and Stance.InvalidateExtras then
 		Stance.InvalidateExtras()
 		dirty.extrasDiscover = false

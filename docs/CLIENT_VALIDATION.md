@@ -1,5 +1,47 @@
 # Client and reference validation — 29 October 2026
 
+30 October MicroMenu nil-center correction: the user's native Classic-path
+stack identifies a pre-fix `GetEdgeButton` failure during Flux's LFG rebuild.
+The focused desktop model reproduces old callback ordering and passes with
+selected/unused children moved before Show/Hide; full suite passes 109 tests /
+753 Lua syntax files. The read-only Era reference confirms synchronous
+`MicroButton_OnShow` layout, but the stack does not name the user's build.
+Native post-fix reload, Edit Mode, placement, combat, pixels, taint and frame
+time remain pending on Era, Anniversary, MoP Classic, Retail Midnight and
+Forever. [Evidence](17-micromenu.md).
+
+30 October delayed loot correction: desktop fixture checks two closed
+mob/chest sources with reversed late item messages, a ten-second duplicate,
+fast-loot capture race, late currency/money, and session expiry. Full suite
+passes 108 scripts / 752 Lua syntax files. Native event order, source
+attribution, UI scale, pixels, taint and frame time remain pending on Era,
+Anniversary, MoP Classic, Retail Midnight and Forever.
+[Evidence](LOOT_CURSOR.md).
+
+30 October cursor-position correction: desktop fixture verifies the cursor
+snapshot at LOOT_READY/LOOT_OPENED, delayed item/currency rows, and two
+overlapping batches with separate retained positions. Full suite passes
+108 scripts / 752 Lua syntax files. Native click-to-event timing, UI scale,
+pixels, taint and frame time remain pending on Era, Anniversary, MoP Classic,
+Retail Midnight and Forever. [Evidence](LOOT_CURSOR.md).
+
+
+30 October loot-source correction: desktop fixture excludes crafted,
+pushed/rewarded and outside-window self-loot chat while retaining slot,
+bonus and won-roll loot; currency follows the loot-window gate. Full suite
+passes 108 scripts / 752 Lua syntax files. Native event order, source
+classification, taint, pixels and frame time remain pending on Era,
+Anniversary, MoP Classic, Retail Midnight and Forever.
+[Evidence](LOOT_CURSOR.md).
+
+
+30 October 2026: attached stance bars now follow player-frame scale, including
+immediate slider changes and reload; detached placement restores normal size.
+Existing combat deferral is retained. 21 stance and 28 bridge checks pass;
+full suite: 108 scripts /752 Lua syntax files, zero failures. Native pixels,
+input and taint remain pending (no visible WoW process).
+[Evidence and native steps](UNIT_FRAME_SCALE.md).
+
 30 October FluxLoot callback correction: the user's native stack identifies
 the pre-fix CallbackHandler argument shift at line 402. A signature-aware
 desktop fixture reproduces the error against the old call and passes with

@@ -22945,8 +22945,8 @@
       "path": "Bars/Stance/Layout.lua",
       "classification": "active",
       "chapter": "11-action-bars.md",
-      "lines": 468,
-      "sha256": "076b3eef0dab5126fe81bd524883840d3b6eeceb4403ba35adbf94e38b7026e7",
+      "lines": 479,
+      "sha256": "a3fed55d3b10dff53b558c001ab54ef32880975ba82c37276df0c405cf1a19b6",
       "clients": [
         "camelot",
         "cata",
@@ -22968,31 +22968,31 @@
         },
         {
           "name": "Stance.Anchor",
-          "line": 124
+          "line": 133
         },
         {
           "name": "Stance.ApplyLayout",
-          "line": 204
+          "line": 214
         },
         {
           "name": "Stance.RequestLayout",
-          "line": 397
+          "line": 408
         },
         {
           "name": "Stance.RequestSizeOnly",
-          "line": 422
+          "line": 433
         },
         {
           "name": "Stance.RequestFormsVisual",
-          "line": 426
+          "line": 437
         },
         {
           "name": "Stance.RequestExtrasVisual",
-          "line": 446
+          "line": 457
         },
         {
           "name": "Stance.RequestDiscover",
-          "line": 466
+          "line": 477
         }
       ],
       "events": [],
@@ -58722,8 +58722,8 @@
       "path": "MicroMenu/FluxMicroMenu.lua",
       "classification": "active",
       "chapter": "17-micromenu.md",
-      "lines": 3197,
-      "sha256": "df986aabcbc04c4965f8fc8061676bd0a171fa175287f3164cfbdc94fb8862f4",
+      "lines": 3227,
+      "sha256": "729beba468b5f9863b9d1f88a3c40db01279f28b2e4e0e8aa8455e11cc373550",
       "clients": [
         "camelot",
         "cata",
@@ -58809,11 +58809,11 @@
         },
         {
           "name": "FluxMicroMenu:RefreshLayout",
-          "line": 2609
+          "line": 2614
         },
         {
           "name": "FluxMicroMenu:Rebuild",
-          "line": 2950
+          "line": 2980
         }
       ],
       "events": [
@@ -58842,7 +58842,7 @@
           "context": "(\"PORTRAITS_UPDATED\")watch:"
         },
         {
-          "line": 3033,
+          "line": 3063,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -58850,7 +58850,7 @@
           "context": "WatchEditModeMicroMenuSanitize()FluxMicroMenu:"
         },
         {
-          "line": 3034,
+          "line": 3064,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -58858,7 +58858,7 @@
           "context": "(\"PLAYER_LOGIN\")FluxMicroMenu:"
         },
         {
-          "line": 3035,
+          "line": 3065,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -58866,7 +58866,7 @@
           "context": "(\"ADDON_LOADED\")FluxMicroMenu:"
         },
         {
-          "line": 3036,
+          "line": 3066,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -58874,7 +58874,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")FluxMicroMenu:"
         },
         {
-          "line": 3037,
+          "line": 3067,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -58882,7 +58882,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")FluxMicroMenu:"
         },
         {
-          "line": 3038,
+          "line": 3068,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TALENT_UPDATE\""
@@ -58890,7 +58890,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")FluxMicroMenu:"
         },
         {
-          "line": 3039,
+          "line": 3069,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIVE_TALENT_GROUP_CHANGED\""
@@ -58903,12 +58903,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXMICRO1",
           "value": "/fluxmicro",
-          "line": 3138
+          "line": 3168
         },
         {
           "kind": "handler",
           "name": "FLUXMICRO",
-          "line": 3139
+          "line": 3169
         }
       ],
       "widgets": [],
@@ -63794,8 +63794,8 @@
       "path": "Other/FluxLoot.lua",
       "classification": "active",
       "chapter": "25-other-qol.md",
-      "lines": 405,
-      "sha256": "31ea1a96f67de24ba3f6de2c716bbac0860c7f4fa11aa996dc62c9762f86189d",
+      "lines": 547,
+      "sha256": "6955923f07024af645678f63b77c2a53281c88654a7ef4e350eefb889c13c687",
       "clients": [
         "camelot",
         "cata",
@@ -63813,16 +63813,16 @@
       "functions": [
         {
           "name": "FluxLoot:Refresh",
-          "line": 321
+          "line": 444
         },
         {
           "name": "FluxLoot:Preview",
-          "line": 343
+          "line": 470
         }
       ],
       "events": [
         {
-          "line": 325,
+          "line": 448,
           "method": "RegisterEvent",
           "arguments": [
             "\"LOOT_READY\""
@@ -63830,7 +63830,7 @@
           "context": ".alertstheneventFrame:"
         },
         {
-          "line": 328,
+          "line": 451,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -63838,7 +63838,7 @@
           "context": "})doeventFrame:"
         },
         {
-          "line": 395,
+          "line": 537,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -74234,72 +74234,80 @@
       "path": "tests/loot_cursor.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 197,
-      "sha256": "5c7642bd2615e037ccfcadcc916d4dfb5362cf0f306af44373eaf7cd669e4d86",
+      "lines": 339,
+      "sha256": "9c48ae783360faead8570c54c19145f289d8799ec32e3da9f880220a639b0893",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "frame:RegisterEvent",
-          "line": 31
-        },
-        {
-          "name": "frame:UnregisterEvent",
           "line": 32
         },
         {
-          "name": "frame:UnregisterAllEvents",
+          "name": "frame:UnregisterEvent",
           "line": 33
         },
         {
-          "name": "frame:SetScript",
+          "name": "frame:UnregisterAllEvents",
           "line": 34
         },
         {
-          "name": "frame:CreateTexture",
+          "name": "frame:SetScript",
           "line": 35
         },
         {
-          "name": "frame:CreateFontString",
+          "name": "frame:CreateTexture",
           "line": 36
         },
         {
-          "name": "frame:Show",
+          "name": "frame:CreateFontString",
           "line": 37
         },
         {
-          "name": "frame:Hide",
+          "name": "frame:ClearAllPoints",
           "line": 38
         },
         {
-          "name": "frame:GetEffectiveScale",
+          "name": "frame:SetPoint",
           "line": 39
         },
         {
-          "name": "frame:GetWidth",
+          "name": "frame:Show",
           "line": 40
         },
         {
-          "name": "frame:GetHeight",
+          "name": "frame:Hide",
           "line": 41
         },
         {
-          "name": ".linkendGetLootSlotInfo",
-          "line": 53
+          "name": "frame:GetEffectiveScale",
+          "line": 42
         },
         {
-          "name": ".countendLootSlot",
-          "line": 54
+          "name": "frame:GetWidth",
+          "line": 43
+        },
+        {
+          "name": "frame:GetHeight",
+          "line": 44
+        },
+        {
+          "name": ".linkendGetLootSlotInfo",
+          "line": 56
+        },
+        {
+          "name": ".countendGetLootSlotType",
+          "line": 57
         },
         {
           "name": "localoptionBuilderFluxOptions.RegisterModuleOptions",
-          "line": 79
+          "line": 86
         }
       ],
       "events": [
         {
-          "line": 31,
+          "line": 32,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -74499,6 +74507,59 @@
         {
           "name": "s:active",
           "line": 77
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/micro_menu_nil_center.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 86,
+      "sha256": "30fcb4d3cbb3d3c7403f87b330863db0efda5f7bd0a84123972586fbbfdbc205",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "menu:GetChildren",
+          "line": 15
+        },
+        {
+          "name": "flux:ShouldLeaveBlizzardButtonShown",
+          "line": 16
+        },
+        {
+          "name": "menu:Layout",
+          "line": 17
+        },
+        {
+          "name": "btn:GetName",
+          "line": 33
+        },
+        {
+          "name": "btn:GetCenter",
+          "line": 34
+        },
+        {
+          "name": "btn:SetParent",
+          "line": 35
+        },
+        {
+          "name": "btn:Show",
+          "line": 42
+        },
+        {
+          "name": "btn:Hide",
+          "line": 48
+        },
+        {
+          "name": "btn:EnableMouse",
+          "line": 53
         }
       ],
       "events": [],
@@ -76828,6 +76889,55 @@
       "sv_sites": []
     },
     {
+      "path": "tests/stance_player_scale.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 47,
+      "sha256": "0a03834de405149b9b18d3e0c3d3a84431814714e7673b380d2d08b3e83fccf9",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "player:GetEffectiveScale",
+          "line": 8
+        },
+        {
+          "name": "frame:GetParent",
+          "line": 10
+        },
+        {
+          "name": "frame:GetScale",
+          "line": 11
+        },
+        {
+          "name": "frame:GetEffectiveScale",
+          "line": 12
+        },
+        {
+          "name": "frame:SetScale",
+          "line": 13
+        },
+        {
+          "name": "frame:ClearAllPoints",
+          "line": 14
+        },
+        {
+          "name": "frame:SetPoint",
+          "line": 15
+        },
+        {
+          "name": "falsestance.Catalog",
+          "line": 44
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/startup_lifecycle.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -77293,111 +77403,115 @@
       "path": "tests/unit_frame_whole_scale.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 116,
-      "sha256": "22acd7e54aeccc7cb44bb02bb308d62557512e2a2b41d6672014402cdd11904e",
+      "lines": 134,
+      "sha256": "c40a3e259fba871efec93fac4712675a524fe9671400b1c4c8ca2c746ed3e733",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "f:SetScale",
-          "line": 29
-        },
-        {
-          "name": "f:GetEffectiveScale",
-          "line": 30
-        },
-        {
-          "name": "f:GetParent",
-          "line": 31
-        },
-        {
-          "name": "f:SetHeight",
           "line": 32
         },
         {
-          "name": "f:SetWidth",
+          "name": "f:GetEffectiveScale",
           "line": 33
         },
         {
-          "name": "f:UpdatePartition",
+          "name": "f:GetParent",
           "line": 34
         },
         {
-          "name": "f:UpdateAtlasBorder",
+          "name": "f:SetHeight",
           "line": 35
         },
         {
-          "name": "f:UpdateOuterBorder",
+          "name": "f:SetWidth",
           "line": 36
         },
         {
-          "name": "f.SeparatorContainer:SetScale",
+          "name": "f:UpdatePartition",
           "line": 37
         },
         {
-          "name": "f.atlasBorderFrame:SetScale",
+          "name": "f:UpdateAtlasBorder",
           "line": 38
         },
         {
+          "name": "f:UpdateOuterBorder",
+          "line": 39
+        },
+        {
+          "name": "f.SeparatorContainer:SetScale",
+          "line": 40
+        },
+        {
+          "name": "f.atlasBorderFrame:SetScale",
+          "line": 41
+        },
+        {
           "name": "ns.UnitFrames.RefreshPortraitAfterDisplayMetrics",
-          "line": 51
+          "line": 54
         },
         {
           "name": "ns.TargetOfTargetFrame._fluxRefreshTotAnchor",
-          "line": 53
+          "line": 56
+        },
+        {
+          "name": "localdeferredns.UnitFrames.DeferProtected",
+          "line": 82
         },
         {
           "name": "anchor:GetWidth",
-          "line": 76
-        },
-        {
-          "name": "anchor:GetHeight",
-          "line": 77
-        },
-        {
-          "name": "anchor:ClearAllPoints",
-          "line": 78
-        },
-        {
-          "name": "anchor:SetPoint",
-          "line": 79
-        },
-        {
-          "name": "UIParent.GetBottom",
-          "line": 93
-        },
-        {
-          "name": "endUIParent.GetEffectiveScale",
           "line": 94
         },
         {
+          "name": "anchor:GetHeight",
+          "line": 95
+        },
+        {
+          "name": "anchor:ClearAllPoints",
+          "line": 96
+        },
+        {
+          "name": "anchor:SetPoint",
+          "line": 97
+        },
+        {
+          "name": "UIParent.GetBottom",
+          "line": 111
+        },
+        {
+          "name": "endUIParent.GetEffectiveScale",
+          "line": 112
+        },
+        {
           "name": "nilUIParent.GetEffectiveScale",
-          "line": 99
+          "line": 117
         },
         {
           "name": "endns.UnitFrames.RegisterInitializer",
-          "line": 101
+          "line": 119
         },
         {
           "name": "focus:ClearAllPoints",
-          "line": 105
+          "line": 123
         },
         {
           "name": "focus:SetPoint",
-          "line": 106
+          "line": 124
         },
         {
           "name": "focus:GetEffectiveScale",
-          "line": 107
+          "line": 125
         },
         {
           "name": "focus:UpdatePartition",
-          "line": 108
+          "line": 126
         },
         {
           "name": "focus:UpdateOuterBorder",
-          "line": 109
+          "line": 127
         }
       ],
       "events": [],
@@ -80549,8 +80663,8 @@
       "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 1304,
-      "sha256": "26a8dade32449342761fb342b67be6c0f2bdd9a3de421f903920169646f800f8",
+      "lines": 1308,
+      "sha256": "84b6e08f29790eaf5086d50fe0b882eaf42401f14773c337a13b14476d27561f",
       "clients": [
         "camelot",
         "cata",

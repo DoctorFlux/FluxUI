@@ -99,3 +99,7 @@ template geometry/reuse and 100 toggle cycles per branch. Five native pairs on e
 of Retail and Era reduce activation calls 5,800 ->100 per100 passes with identical
 57-button geometry and zero recorded errors. Native enabled/combat/secure input
 and full FPS remain pending. [Audit and exact evidence](ACTION_AURA_WORK.md).
+
+Attached stance placement follows the Flux player-frame whole scale; detached
+placement restores its normal scale. Existing combat deferral is retained.
+[Scope and regression checks](UNIT_FRAME_SCALE.md#attached-stance-bar-scale--30-october-2026).
