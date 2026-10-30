@@ -41,6 +41,19 @@ Portal/login snapshots can briefly collapse. `ShouldHoldItemIdentity()` and `Kee
 
 [SmartMount config](../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua) supports account/character ground/flying/multi/utility selections and vendor discovery. [SmartHearth config](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua) only loads when Toy Box capability exists; the basic hearth fallback remains usable without that editor. Their current character/account selection shares `_FluxUI_CharSavedVars.useCharacterSpecific`; the config tables themselves are separate. This scope flag is independent of Ace Action Bars scope.
 
+Toy Box capability checks toy information and ownership separately from the
+Collections Journal opener. The editor uses the earlier `Flux.Cap` capability
+because `FLUX_API` is initialized after it in the TOC. `/fluxhearth config`
+opens Toys; the adjacent Hearthstone selector's left-click flyout chooses an
+owned toy or random mode,
+and right-click restores the basic Hearthstone. The journal loader/opener
+accepts the available modern or legacy client API. [Regression and native
+limits](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+The selector tooltip reads item names through the shared `Flux.Item` service
+and falls back to Toy Box metadata when item data is uncached. This keeps the
+hover help available on clients without the deprecated `GetItemInfo` global.
+
 ## Buff-consumables presets
 
 [Consumables.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua) stores ordered named presets in `_FluxUI_CharSavedVars.consumables`: active preset, items, refresh threshold and learned ground-aura associations. Left-click uses the first eligible item; right-click opens [ConsumablesConfig](../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua). The editor manages item order/presets, thresholds/restock targets and displays cooldown/charge/bag/bank counts using shared [grid cells](../ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua).

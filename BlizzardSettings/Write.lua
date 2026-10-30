@@ -137,6 +137,24 @@ function Write.SetShownValue(variable, value)
 	return pcall(Settings.SetValue, variable, value, true) and true or false
 end
 
+--- Retail's Sticky Targeting checkbox negates deselectOnClick. Its native
+--- setting writes only that CVar; keep all other Settings callbacks behind
+--- MayUseSettingsAPI so nameplate and compact-frame previews stay guarded.
+function Write.SetStickyTargetingOff()
+	if not Write.IsSecretClient() or InCombat() or not (Settings and Settings.GetSetting) then
+		return false
+	end
+	if Write.Matches("deselectOnClick", "1") then
+		return true
+	end
+	local ok, setting = pcall(Settings.GetSetting, "deselectOnClick")
+	if not ok or not setting or not setting.SetValue then
+		return false
+	end
+	local wrote = pcall(setting.SetValue, setting, false, true)
+	return wrote and Write.Matches("deselectOnClick", "1") and true or false
+end
+
 function Write.RefreshShown(...)
 	if not Write.MayUseSettingsAPI() or not (Settings and Settings.NotifyUpdate) then
 		return

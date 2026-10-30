@@ -1,5 +1,23 @@
 # Game defaults, keyboard template and scale
 
+Retail Sticky Targeting now uses Blizzard's registered inverted Controls
+setting when available, then verifies `deselectOnClick=1`; the raw CVar path
+remains for clients without the setting. General modern Settings callbacks
+for protected raid/nameplate frames remain guarded.
+[Historical comparison](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+Retail Sticky Targeting uses native `deselectOnClick=1` for an unchecked
+control. The first-load audit now checks it, and Retail without an engine
+camera maximum uses a 2.6 factor. A previous failed audit receives one
+settings-only retry. [Retail follow-up](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+The first-account and new-character settings pass starts on the first world
+entry, then verifies supported nonbinding CVars after native startup. This
+includes Controls and character-stored nameplate values. It reports one
+completion message, with a bounded failure message if verification cannot
+finish. [First-load completion evidence](NONBINDING_FIRST_LOAD.md). The
+older login-timing description below records earlier behavior.
+
 Current first-account binding setup completes clear, assignment, verification,
 native save/load and re-verification in one call. Modern clients use Blizzard's
 per-action binding context; wrong keys receive at most three immediate

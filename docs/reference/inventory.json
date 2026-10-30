@@ -28412,8 +28412,8 @@
       "path": "BlizzardSettings/Nameplates.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 224,
-      "sha256": "fdb469bc6f26237bba72dccfb4d83401efe20172b855d239f812eae71109ad71",
+      "lines": 221,
+      "sha256": "6d674cf1729939e23af429d067a19e25fd727a01894a9f379c954feca61aa03b",
       "clients": [
         "camelot",
         "cata",
@@ -28464,7 +28464,7 @@
       ],
       "events": [
         {
-          "line": 219,
+          "line": 216,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -28529,8 +28529,8 @@
       "path": "BlizzardSettings/Write.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 260,
-      "sha256": "eaebcfc5e1a2d0d6a67163f8264efaee2e49f2e81e127fc685284a3454c93891",
+      "lines": 278,
+      "sha256": "de7e3a953bca81abefe7f439a350f69153a2e15b70c76f271896244400e951ad",
       "clients": [
         "camelot",
         "cata",
@@ -28587,29 +28587,33 @@
           "line": 133
         },
         {
+          "name": "Write.SetStickyTargetingOff",
+          "line": 143
+        },
+        {
           "name": "Write.RefreshShown",
-          "line": 140
+          "line": 158
         },
         {
           "name": "Write.Notify",
-          "line": 156
+          "line": 174
         },
         {
           "name": "Write.Run",
-          "line": 227
+          "line": 245
         },
         {
           "name": "Write.IsQueued",
-          "line": 242
+          "line": 260
         },
         {
           "name": "Write.Flush",
-          "line": 246
+          "line": 264
         }
       ],
       "events": [
         {
-          "line": 233,
+          "line": 251,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -35328,7 +35332,7 @@
       "classification": "active compatibility",
       "chapter": "08-shared-services.md",
       "lines": 395,
-      "sha256": "dea5c1783247c5248d7673de32e766f5947ac9cd0936a7503fde7a3ab7d76a23",
+      "sha256": "ca181fce205a2705971df6300b715512ff7bab39ff88eca29919a57a2d7d30fb",
       "clients": [
         "camelot",
         "cata",
@@ -43823,8 +43827,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 849,
-      "sha256": "79725774335eb40c527a4965b3121fc5c80a750db960d75073051b2d89211f55",
+      "lines": 863,
+      "sha256": "f00f16ff9428b78ef9e57056c12047d6fcb948718471d34d4035f21f30e9582c",
       "clients": [
         "camelot",
         "cata",
@@ -43842,20 +43846,20 @@
       "functions": [
         {
           "name": "frame:UpdateDisplay",
-          "line": 666
+          "line": 680
         },
         {
           "name": "UnregisterListenerFluxHearthConfig.IsHearthstoneToy",
-          "line": 758
+          "line": 772
         },
         {
           "name": "SlashCmdList.FLUXHEARTH",
-          "line": 808
+          "line": 822
         }
       ],
       "events": [
         {
-          "line": 383,
+          "line": 390,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -43863,7 +43867,7 @@
           "context": "(\"Frame\")f:"
         },
         {
-          "line": 783,
+          "line": 797,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -43871,7 +43875,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 784,
+          "line": 798,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -43884,77 +43888,69 @@
           "kind": "alias",
           "name": "SLASH_FLUXHEARTH1",
           "value": "/fluxhearth",
-          "line": 805
+          "line": 819
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXHEARTH2",
           "value": "/fhc",
-          "line": 806
+          "line": 820
         },
         {
           "kind": "handler",
           "name": "FLUXHEARTH",
-          "line": 808
+          "line": 822
         }
       ],
       "widgets": [],
       "loads": [
         {
-          "line": 352,
-          "method": "LoadAddOn",
-          "arguments": [
-            "\"Blizzard_Collections\""
-          ],
-          "context": ")ifnotCollectionsJournalthen"
-        },
-        {
-          "line": 373,
-          "method": "LoadAddOn",
-          "arguments": [
-            "\"Blizzard_Collections\""
-          ],
-          "context": "CollectionsJournalthenifLoadAddOnthen"
-        },
-        {
-          "line": 375,
+          "line": 354,
           "method": "LoadAddOn",
           "arguments": [
             "\"Blizzard_Collections\""
           ],
           "context": ".LoadAddOnthenC_AddOns."
+        },
+        {
+          "line": 356,
+          "method": "LoadAddOn",
+          "arguments": [
+            "\"Blizzard_Collections\""
+          ],
+          "context": "\"Blizzard_Collections\")elseifLoadAddOnthen"
         }
       ],
       "sv_sites": [
         {
           "name": "FluxNonCombatGridDB",
           "lines": [
-            62,
             63,
-            65,
+            64,
             66,
-            68,
+            67,
             69,
-            129,
-            142
+            70,
+            130,
+            143
           ]
         },
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            73,
             74,
-            78,
+            75,
             79,
-            83,
+            80,
             84,
-            121,
-            127,
-            135,
-            138,
+            85,
+            122,
+            128,
+            136,
             139,
             140,
-            149
+            141,
+            150
           ]
         }
       ]
@@ -46362,8 +46358,8 @@
       "path": "FluxDefaultSettings.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 3228,
-      "sha256": "58e5f4c53c3b487aaf0ec7fbc41d90b161b12a5d5f96c547b01b8801e9f9e326",
+      "lines": 3363,
+      "sha256": "cf42c23c388fbfd0dce36261d3c2be11b0446eb58228a6e305a31c304e181590",
       "clients": [
         "camelot",
         "cata",
@@ -46385,175 +46381,175 @@
         },
         {
           "name": "FluxDefaultSettings.GetMinUIScale",
-          "line": 432
+          "line": 434
         },
         {
           "name": "FluxDefaultSettings.IsUIScaleAtOrBelowMin",
-          "line": 437
+          "line": 439
         },
         {
           "name": "FluxUILayoutSqueeze.SetLastHorizontalSqueezeFactor",
-          "line": 455
+          "line": 457
         },
         {
           "name": "FluxUILayoutSqueeze.GetHorizontalSqueezeFactor",
-          "line": 465
+          "line": 467
         },
         {
           "name": "FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor",
-          "line": 473
+          "line": 475
         },
         {
           "name": "FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactor",
-          "line": 480
+          "line": 482
         },
         {
           "name": "FluxUILayoutSqueeze.GetWidgetHorizontalSqueezeFactor",
-          "line": 485
+          "line": 487
         },
         {
           "name": "FluxUILayoutSqueeze.GetDynamicScaleTargets",
-          "line": 519
+          "line": 521
         },
         {
           "name": "FluxUILayoutSqueeze.GetDynamicScaleTargetsEmulated",
-          "line": 586
+          "line": 588
         },
         {
           "name": "FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactorFromBarX",
-          "line": 651
+          "line": 653
         },
         {
           "name": "FluxUILayoutSqueeze.GetUnitFrameIndependentScaleTargets",
-          "line": 662
+          "line": 664
         },
         {
           "name": "FluxUILayoutSqueeze.ClampUnitFrameIndependentXSqueeze",
-          "line": 706
+          "line": 708
         },
         {
           "name": "FluxUILayoutSqueeze.ComputeEmulatedFullMainBarSqueezeFactors",
-          "line": 730
+          "line": 732
         },
         {
           "name": "FluxUILayoutSqueeze.GetEmulatedDependentCacheKey",
-          "line": 785
+          "line": 787
         },
         {
           "name": "FluxUILayoutSqueeze.InvalidateEmulatedDependentCache",
-          "line": 792
+          "line": 794
         },
         {
           "name": "FluxUILayoutSqueeze.GetCachedEmulatedDependentXFactorForUnitFrames",
-          "line": 798
+          "line": 800
         },
         {
           "name": "FluxUILayoutSqueeze.GetEffectiveEmulatedDependentXFactorForUnitFrames",
-          "line": 814
+          "line": 816
         },
         {
           "name": "FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactor",
-          "line": 823
+          "line": 825
         },
         {
           "name": "FluxUILayoutSqueeze.ComputeVisibleContentWidth",
-          "line": 846
+          "line": 848
         },
         {
           "name": "FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForRow",
-          "line": 853
+          "line": 855
         },
         {
           "name": "FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForFrame",
-          "line": 877
+          "line": 879
         },
         {
           "name": "FluxUILayoutSqueeze.NotifyLayoutDependents",
-          "line": 893
+          "line": 895
         },
         {
           "name": "FluxUILayoutSqueeze.EnsureDisplayRefreshHooks",
-          "line": 989
+          "line": 991
         },
         {
           "name": "FluxUILayoutSqueeze.RequestRefresh",
-          "line": 1005
+          "line": 1007
         },
         {
           "name": "FluxDefaultSettings.GetState",
-          "line": 1053
+          "line": 1055
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateScalarDefaults",
-          "line": 1231
+          "line": 1233
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateClassColorDefault",
-          "line": 1235
+          "line": 1237
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateNpcNameDefaults",
-          "line": 1239
+          "line": 1241
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateBitfieldDefaults",
-          "line": 1243
+          "line": 1245
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateDefaultsPack",
-          "line": 1247
+          "line": 1249
         },
         {
           "name": "FluxDefaultSettings.ScheduleNameplateDefaultsPack",
-          "line": 1251
+          "line": 1253
         },
         {
           "name": "FluxDefaultSettings.ApplySpecialCVarSettings",
-          "line": 1271
+          "line": 1273
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidFrameSettings",
-          "line": 1308
+          "line": 1310
         },
         {
           "name": "FluxDefaultSettings.EnsureNameplateSizeMedium",
-          "line": 1313
+          "line": 1315
         },
         {
           "name": "FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack",
-          "line": 1330
+          "line": 1332
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow",
-          "line": 1334
+          "line": 1336
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack",
-          "line": 1338
+          "line": 1340
         },
         {
           "name": "FluxDefaultSettings.ApplyInterfaceDefaultsPack",
-          "line": 1344
+          "line": 1346
         },
         {
           "name": "FluxDefaultSettings.ApplyStickyTargetingOff",
-          "line": 1352
+          "line": 1354
         },
         {
           "name": "FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
-          "line": 1381
+          "line": 1385
         },
         {
           "name": "FluxDefaultSettings.ApplyMaxCameraDistance",
-          "line": 1407
+          "line": 1408
         },
         {
           "name": "FluxDefaultSettings.ApplyControlsDefaultsPack",
-          "line": 1438
+          "line": 1439
         },
         {
           "name": "FluxDefaultSettings.ApplyChatSettings",
-          "line": 1518
+          "line": 1519
         },
         {
           "name": "FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults",
@@ -46585,43 +46581,47 @@
         },
         {
           "name": "FluxDefaultSettings.PrepareAccountBindingBootstrap",
-          "line": 2216
+          "line": 2217
         },
         {
           "name": "FluxDefaultSettings.EnsureDefaultFluxBindings",
-          "line": 2281
+          "line": 2282
         },
         {
           "name": "FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults",
-          "line": 2328
+          "line": 2329
         },
         {
           "name": "FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults",
-          "line": 2357
+          "line": 2358
         },
         {
           "name": "FluxDefaultSettings.SyncSettingsRegistryProxies",
-          "line": 2366
+          "line": 2367
         },
         {
           "name": "FluxDefaultSettings.ApplyCharacterFirstLogin",
-          "line": 2402
+          "line": 2403
+        },
+        {
+          "name": "FluxDefaultSettings.VerifyInitialNonBindingDefaults",
+          "line": 2437
         },
         {
           "name": "FluxDefaultSettings.VerifyPostLoginDefaults",
-          "line": 2428
+          "line": 2523
         },
         {
           "name": "FluxDefaultSettings.Apply",
-          "line": 2482
+          "line": 2576
         },
         {
           "name": "FluxDefaultSettings.ApplyCVarsOnly",
-          "line": 2762
+          "line": 2857
         },
         {
           "name": "FluxDefaultSettings.PrintDebug",
-          "line": 3164
+          "line": 3300
         }
       ],
       "events": [
@@ -46666,7 +46666,7 @@
           "context": "end)else_conjureNameSync:"
         },
         {
-          "line": 1162,
+          "line": 1164,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -46674,7 +46674,7 @@
           "context": ".pendingSqueezeRefreshthenf:"
         },
         {
-          "line": 2799,
+          "line": 2894,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -46682,7 +46682,7 @@
           "context": "_eventFrame=frameframe:"
         },
         {
-          "line": 2800,
+          "line": 2895,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -46690,7 +46690,7 @@
           "context": "(\"PLAYER_LOGIN\")frame:"
         },
         {
-          "line": 2801,
+          "line": 2896,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -46698,7 +46698,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")frame:"
         },
         {
-          "line": 2803,
+          "line": 2898,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -46706,7 +46706,7 @@
           "context": "(\"UI_SCALE_CHANGED\")frame:"
         },
         {
-          "line": 2806,
+          "line": 2901,
           "method": "RegisterEvent",
           "arguments": [
             "\"COMPACT_UNIT_FRAME_PROFILES_LOADED\""
@@ -46719,12 +46719,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXDEFAULTS1",
           "value": "/fluxdefaults",
-          "line": 3199
+          "line": 3335
         },
         {
           "kind": "handler",
           "name": "FLUXDEFAULTS",
-          "line": 3200
+          "line": 3336
         }
       ],
       "widgets": [],
@@ -46733,37 +46733,51 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            1314,
-            1319,
-            1323,
+            1316,
+            1321,
+            1325,
             1900,
             1901,
             1996,
-            2217,
+            2104,
             2218,
             2219,
-            2283,
+            2220,
+            2284,
             2420,
-            2429,
-            2484,
-            2486,
-            2731,
-            2763,
-            2834,
-            2835,
-            2845,
-            2857,
+            2421,
+            2422,
+            2438,
+            2524,
+            2578,
+            2580,
+            2826,
             2858,
-            2861,
-            3054,
-            3173,
-            3175,
-            3176,
-            3177,
-            3209,
-            3213,
-            3214,
-            3222
+            2929,
+            2930,
+            2940,
+            2946,
+            2948,
+            2949,
+            2950,
+            2952,
+            2953,
+            2957,
+            2958,
+            2960,
+            2962,
+            2963,
+            3161,
+            3162,
+            3195,
+            3309,
+            3311,
+            3312,
+            3313,
+            3345,
+            3348,
+            3349,
+            3357
           ]
         }
       ]
@@ -71846,8 +71860,8 @@
       "path": "tests/default_flux_grid_bindings.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 464,
-      "sha256": "76d2e3b69a6fd4b5b74a3746029a32db59e88ea68cf9856e0fe811bad54e7060",
+      "lines": 467,
+      "sha256": "831bf81b6b5c25a81810ab43bf8c176e5834792179e2d8ad37b80d3ef1b9a2a4",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -71879,39 +71893,91 @@
       "path": "tests/defaults_first_login.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 187,
-      "sha256": "0b69725969285b8bd254583422ab212478710a6bc05db8c3d9e1dc07bd9b5658",
+      "lines": 522,
+      "sha256": "db466b4bb7b16a1cf382e52cb6a516ddaac0622c6164d1f67607eab3d46d8686",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "env.FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
-          "line": 47
+          "line": 49
         },
         {
           "name": "env.FluxDefaultSettings.ApplyRaidFrameSettings",
-          "line": 56
+          "line": 58
         },
         {
           "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
-          "line": 57
+          "line": 59
+        },
+        {
+          "name": "write.SetStickyTargetingOff",
+          "line": 122
+        },
+        {
+          "name": "env.Settings.GetSetting",
+          "line": 168
+        },
+        {
+          "name": "env.InCombat",
+          "line": 171
         },
         {
           "name": "env.FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
-          "line": 86
+          "line": 193
         },
         {
           "name": "env.FluxDefaultSettings.ApplyRaidFrameSettings",
-          "line": 88
+          "line": 195
         },
         {
           "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
-          "line": 89
+          "line": 196
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.VerifyInitialNonBindingDefaults",
+          "line": 197
+        },
+        {
+          "name": "env.FluxDefaultSettings.ApplyControlsDefaultsPack",
+          "line": 260
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyStickyTargetingOff",
+          "line": 263
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyCombatDefaultsPack",
+          "line": 267
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyActionBarDefaultsPack",
+          "line": 270
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
+          "line": 273
+        },
+        {
+          "name": "env.FluxDefaultSettings.ApplyControlsDefaultsPack",
+          "line": 325
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyCombatDefaultsPack",
+          "line": 326
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyActionBarDefaultsPack",
+          "line": 327
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
+          "line": 328
         },
         {
           "name": "endendendsettings.GetMaxCameraDistanceZoomFactor",
-          "line": 121
+          "line": 361
         }
       ],
       "events": [],
@@ -71922,9 +71988,12 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            74,
-            125,
-            129
+            180,
+            232,
+            310,
+            365,
+            369,
+            412
           ]
         }
       ]
@@ -72352,6 +72421,136 @@
       "widgets": [],
       "loads": [],
       "sv_sites": []
+    },
+    {
+      "path": "tests/hearth_config_toy_collection.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 156,
+      "sha256": "1eb72a82a75b0a5999ea98e3bbd0a06aa48fcea454cf6328bc0f3c864bc8e2f6",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitClass",
+          "line": 31
+        },
+        {
+          "name": "endenv.UnitName",
+          "line": 32
+        },
+        {
+          "name": "endenv.GetRealmName",
+          "line": 33
+        },
+        {
+          "name": "endenv.PlayerHasToy",
+          "line": 34
+        },
+        {
+          "name": "env.print",
+          "line": 54
+        },
+        {
+          "name": "endenv.wipe",
+          "line": 55
+        },
+        {
+          "name": "w:RegisterEvent",
+          "line": 61
+        },
+        {
+          "name": "w:UnregisterEvent",
+          "line": 62
+        },
+        {
+          "name": "w:SetScript",
+          "line": 63
+        },
+        {
+          "name": "w:GetScript",
+          "line": 64
+        },
+        {
+          "name": "w:HookScript",
+          "line": 65
+        },
+        {
+          "name": "w:Fire",
+          "line": 69
+        },
+        {
+          "name": "w:Show",
+          "line": 73
+        },
+        {
+          "name": "w:Hide",
+          "line": 74
+        },
+        {
+          "name": "w:IsShown",
+          "line": 75
+        },
+        {
+          "name": "w:GetFrameLevel",
+          "line": 76
+        },
+        {
+          "name": "w:SetTexture",
+          "line": 77
+        },
+        {
+          "name": "w:CreateFontString",
+          "line": 78
+        },
+        {
+          "name": "w:CreateTexture",
+          "line": 79
+        },
+        {
+          "name": "wreturnwendenv.CreateFrame",
+          "line": 85
+        },
+        {
+          "name": "env.ToggleToyCollection",
+          "line": 99
+        },
+        {
+          "name": "endenv.CollectionsJournal_SetTab",
+          "line": 103
+        },
+        {
+          "name": "endendenv.hooksecurefunc",
+          "line": 107
+        },
+        {
+          "name": "falseenv.SetCollectionsJournalShown",
+          "line": 148
+        }
+      ],
+      "events": [
+        {
+          "line": 61,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "false}functionw:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxNonCombatGridDB",
+          "lines": [
+            138,
+            143
+          ]
+        }
+      ]
     },
     {
       "path": "tests/hud_startup.lua",

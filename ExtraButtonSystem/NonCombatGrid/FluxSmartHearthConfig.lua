@@ -1,8 +1,9 @@
 -- FluxSmartHearthConfig.lua - Standalone Hearthstone Configuration System
 -- Mirrors FluxSmartMountConfig structure for account/character-specific settings
 
--- Only load if Toy Box is available (Retail only)
-if not FLUX_API or not FLUX_API.hasToyBox then
+-- Core capabilities load before this file; FLUX_API is initialized later in the TOC.
+local Cap = _G.Flux and _G.Flux.Cap
+if not Cap or not Cap.hasToyBox then
     return
 end
 
@@ -347,16 +348,30 @@ end
 
 local hearthUIInitialized = false
 
-local function OpenToyBox()
-    if not CollectionsJournal then
-        LoadAddOn("Blizzard_Collections")
-    end
-    if CollectionsJournal then
-        if not CollectionsJournal:IsShown() then
-            ToggleCollectionsJournal(3) -- Toy Box tab
-        else
-            CollectionsJournal_SetTab(CollectionsJournal, 3)
+local function GetCollectionsJournal()
+    if not _G.CollectionsJournal then
+        if C_AddOns and C_AddOns.LoadAddOn then
+            C_AddOns.LoadAddOn("Blizzard_Collections")
+        elseif LoadAddOn then
+            LoadAddOn("Blizzard_Collections")
         end
+    end
+    return _G.CollectionsJournal
+end
+
+local function OpenToyBox()
+    local journal = GetCollectionsJournal()
+    if not journal then return end
+    if not journal:IsShown() then
+        if ToggleToyCollection then
+            ToggleToyCollection()
+        elseif ToggleCollectionsJournal then
+            ToggleCollectionsJournal(3)
+        elseif SetCollectionsJournalShown then
+            SetCollectionsJournalShown(true, 3)
+        end
+    elseif CollectionsJournal_SetTab then
+        CollectionsJournal_SetTab(journal, 3)
     end
 end
 
@@ -368,15 +383,7 @@ local function CreateHearthConfigUI()
     if hearthUIInitialized then return end
     
     -- Ensure Blizzard_Collections is loaded
-    if not CollectionsJournal then
-        if LoadAddOn then
-            LoadAddOn("Blizzard_Collections")
-        elseif C_AddOns and C_AddOns.LoadAddOn then
-            C_AddOns.LoadAddOn("Blizzard_Collections")
-        end
-    end
-    
-    local collectionsJournal = _G["CollectionsJournal"]
+    local collectionsJournal = GetCollectionsJournal()
     if not collectionsJournal then
         -- Wait for Blizzard_Collections to load
         local f = CreateFrame("Frame")
@@ -481,8 +488,12 @@ local function CreateHearthConfigUI()
         button:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             local itemID = GetConfiguredHearthItem()
-            local name = GetItemInfo(itemID) or "Hearthstone"
-            GameTooltip:SetText(name, 1, 1, 1)
+            local name = _G.Flux.Item.GetInfo(itemID)
+            if not name and C_ToyBox and C_ToyBox.GetToyInfo then
+                local _, toyName = C_ToyBox.GetToyInfo(itemID)
+                name = toyName
+            end
+            GameTooltip:SetText(name or "Hearthstone", 1, 1, 1)
             GameTooltip:AddLine("Left-click: choose hearthstone", 0.6, 0.8, 1)
             GameTooltip:AddLine("Right-click: use default", 0.6, 0.8, 1)
             GameTooltip:Show()
@@ -500,6 +511,9 @@ local function CreateHearthConfigUI()
                 if toyIcon then iconT = toyIcon end
             end
             -- Item API fallbacks
+            if not iconT and C_Item and C_Item.GetItemIconByID then
+                iconT = C_Item.GetItemIconByID(itemID)
+            end
             if not iconT and GetItemIcon then
                 iconT = GetItemIcon(itemID)
             end
@@ -671,7 +685,7 @@ local function CreateHearthConfigUI()
                 icon:SetTexture(RANDOM_ICON)
             else
                 local itemID = GetConfiguredHearthItem()
-                local iconFile = GetItemIcon(itemID) or 134400
+                local iconFile = ResolveHearthIcon(itemID)
                 icon:SetTexture(iconFile)
             end
             ApplyBorderColor()

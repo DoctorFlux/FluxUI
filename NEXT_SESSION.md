@@ -1,5 +1,60 @@
 # Next session
 
+Latest publication batch (30 October 2026): current first-load settings and
+Hearthstone fixes included for main. Combined desktop validation: 106 scripts,
+748 Lua syntax files, zero failures. Native acceptance remains pending.
+
+Historical Sticky Targeting follow-up (30 October 2026): verify the new
+single-setting native Controls route on Pandasans Retail when its process is
+available in the background. Check `deselectOnClick=1`, unchecked Settings
+checkbox, first-load completion, reload persistence, manual Controls reset,
+taint and frame time. The linked GitHub main source itself matches the old
+local route; the 13 August local pre-rewrite snapshot supplied the distinct
+native setting call. Focused desktop fixture passes 76 checks.
+[Evidence](docs/RETAIL_CONTROLS_CAMERA_FIX.md).
+
+Retail Controls follow-up (30 October 2026): check Pandasans in the real
+Retail client when available in the background. Verify Sticky Targeting is
+unchecked (`deselectOnClick=1`), camera factor reaches the accepted 2.6
+fallback, the prior failed audit retries once without keybinding work, and
+the next reload stays quiet. Check manual Controls reset, taint and frame
+time. Mariosuper Era and other client checks remain pending. The user's
+pre-fix Retail values were `1.900000 / nil / 0`; desktop fixture passes 68
+checks. [Evidence](docs/RETAIL_CONTROLS_CAMERA_FIX.md).
+
+First-load settings follow-up (30 October 2026): native first-account and
+new-character checks are pending. Verify Controls (auto loot, sticky target,
+interact, camera), nameplate size 2 and character scope, raid appearance,
+quiet single completion, later reload preservation, and manual Reset All /
+Reset These Settings. Check Mariosuper Era and Pandasans Retail in the
+background when available, plus Anniversary, Mists and Forever. Record
+protected-frame taint and frame-time evidence without changing profiler
+preferences. Desktop suite: 106 scripts/748 Lua; first-load fixture: 60
+checks. [Evidence](docs/NONBINDING_FIRST_LOAD.md).
+
+Hearthstone selector hover follow-up (30 October 2026): the user's native
+error at line 491 was a direct `GetItemInfo` call with that global absent.
+The selector now uses `Flux.Item.GetInfo` and Toy Box name fallback. Focused
+19-check regression and full 106-script/748-Lua desktop suite pass. Verify
+hover, owned-toy choice, actual button use and reload persistence in the
+native Toy Box client; combat/taint, pixels and frame time remain pending.
+[Evidence](docs/HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Hearthstone Toy Box panel follow-up (30 October 2026): the earlier candidate
+still showed no panel because `FluxSmartHearthConfig.lua` loads before
+`FLUX_API` is initialized. Its guard now reads already-loaded `Flux.Cap`.
+The corrected 17-check TOC-order regression and 106-script/748-Lua full
+desktop suite pass. Native Toy Box visibility, owned-toy selection, secure
+button use and reload persistence remain pending.
+[Evidence](docs/HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Earlier Hearthstone Toy Box config attempt (30 October 2026): the Toy Box
+capability and journal opener were corrected, but the 14-check fixture missed
+the TOC load-order failure. Verify `/fluxhearth config`,
+owned-toy selection, button use and account/character persistence after reload
+on a real Toy Box client; combat/taint, pixels and frame time remain pending.
+[Evidence](docs/HEARTH_CONFIG_TOY_COLLECTION.md).
+
 Atomic binding follow-up (30 October 2026): first-account keys now clear,
 assign, verify, save and load in one call, with Blizzard action contexts on
 modern clients and three immediate attempts only for wrong keys. Focused 507

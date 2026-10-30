@@ -144,8 +144,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Binding/UI/SpellbookBindingHooks.lua:468](../../Binding/UI/SpellbookBindingHooks.lua#L468) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Blizzard/Hide.lua:45](../../Blizzard/Hide.lua#L45) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Blizzard/Hide.lua:194](../../Blizzard/Hide.lua#L194) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [BlizzardSettings/Nameplates.lua:219](../../BlizzardSettings/Nameplates.lua#L219) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [BlizzardSettings/Write.lua:233](../../BlizzardSettings/Write.lua#L233) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [BlizzardSettings/Nameplates.lua:216](../../BlizzardSettings/Nameplates.lua#L216) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [BlizzardSettings/Write.lua:251](../../BlizzardSettings/Write.lua#L251) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [CharacterInfo/ItemLevel.lua:305](../../CharacterInfo/ItemLevel.lua#L305) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [CharacterInfo/ItemLevel.lua:306](../../CharacterInfo/ItemLevel.lua#L306) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [CharacterInfo/ItemLevel.lua:307](../../CharacterInfo/ItemLevel.lua#L307) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
@@ -347,9 +347,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:175](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L175) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:176](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L176) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua:209](../../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua#L209) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:383](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L383) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:783](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L783) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:784](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L784) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:390](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L390) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:797](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L797) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:798](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L798) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:983](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L983) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:1000](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L1000) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:1001](../../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L1001) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -398,12 +398,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [FluxDefaultSettings.lua:58](../../FluxDefaultSettings.lua#L58) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [FluxDefaultSettings.lua:59](../../FluxDefaultSettings.lua#L59) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [FluxDefaultSettings.lua:79](../../FluxDefaultSettings.lua#L79) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [FluxDefaultSettings.lua:1162](../../FluxDefaultSettings.lua#L1162) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [FluxDefaultSettings.lua:2799](../../FluxDefaultSettings.lua#L2799) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [FluxDefaultSettings.lua:2800](../../FluxDefaultSettings.lua#L2800) | `RegisterEvent` | `"DISPLAY_SIZE_CHANGED"` |
-| [FluxDefaultSettings.lua:2801](../../FluxDefaultSettings.lua#L2801) | `RegisterEvent` | `"UI_SCALE_CHANGED"` |
-| [FluxDefaultSettings.lua:2803](../../FluxDefaultSettings.lua#L2803) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [FluxDefaultSettings.lua:2806](../../FluxDefaultSettings.lua#L2806) | `RegisterEvent` | `"COMPACT_UNIT_FRAME_PROFILES_LOADED"` |
+| [FluxDefaultSettings.lua:1164](../../FluxDefaultSettings.lua#L1164) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [FluxDefaultSettings.lua:2894](../../FluxDefaultSettings.lua#L2894) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [FluxDefaultSettings.lua:2895](../../FluxDefaultSettings.lua#L2895) | `RegisterEvent` | `"DISPLAY_SIZE_CHANGED"` |
+| [FluxDefaultSettings.lua:2896](../../FluxDefaultSettings.lua#L2896) | `RegisterEvent` | `"UI_SCALE_CHANGED"` |
+| [FluxDefaultSettings.lua:2898](../../FluxDefaultSettings.lua#L2898) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [FluxDefaultSettings.lua:2901](../../FluxDefaultSettings.lua#L2901) | `RegisterEvent` | `"COMPACT_UNIT_FRAME_PROFILES_LOADED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:1164](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1164) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2424](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2424) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2425](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2425) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -3020,11 +3020,12 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 | `Write.Bit` | [L99](../../BlizzardSettings/Write.lua#L99) |
 | `Write.SetSetting` | [L123](../../BlizzardSettings/Write.lua#L123) |
 | `Write.SetShownValue` | [L133](../../BlizzardSettings/Write.lua#L133) |
-| `Write.RefreshShown` | [L140](../../BlizzardSettings/Write.lua#L140) |
-| `Write.Notify` | [L156](../../BlizzardSettings/Write.lua#L156) |
-| `Write.Run` | [L227](../../BlizzardSettings/Write.lua#L227) |
-| `Write.IsQueued` | [L242](../../BlizzardSettings/Write.lua#L242) |
-| `Write.Flush` | [L246](../../BlizzardSettings/Write.lua#L246) |
+| `Write.SetStickyTargetingOff` | [L143](../../BlizzardSettings/Write.lua#L143) |
+| `Write.RefreshShown` | [L158](../../BlizzardSettings/Write.lua#L158) |
+| `Write.Notify` | [L174](../../BlizzardSettings/Write.lua#L174) |
+| `Write.Run` | [L245](../../BlizzardSettings/Write.lua#L245) |
+| `Write.IsQueued` | [L260](../../BlizzardSettings/Write.lua#L260) |
+| `Write.Flush` | [L264](../../BlizzardSettings/Write.lua#L264) |
 
 ### CharacterInfo/GearScore.lua
 
@@ -5571,9 +5572,9 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 
 | Declaration | Source |
 |---|---|
-| `frame:UpdateDisplay` | [L666](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L666) |
-| `UnregisterListenerFluxHearthConfig.IsHearthstoneToy` | [L758](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L758) |
-| `SlashCmdList.FLUXHEARTH` | [L808](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L808) |
+| `frame:UpdateDisplay` | [L680](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L680) |
+| `UnregisterListenerFluxHearthConfig.IsHearthstoneToy` | [L772](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L772) |
+| `SlashCmdList.FLUXHEARTH` | [L822](../../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L822) |
 
 ### ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua
 
@@ -5938,49 +5939,49 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 | Declaration | Source |
 |---|---|
 | `FluxDefaultSettings.RefreshConjureSharedBindingName` | [L29](../../FluxDefaultSettings.lua#L29) |
-| `FluxDefaultSettings.GetMinUIScale` | [L432](../../FluxDefaultSettings.lua#L432) |
-| `FluxDefaultSettings.IsUIScaleAtOrBelowMin` | [L437](../../FluxDefaultSettings.lua#L437) |
-| `FluxUILayoutSqueeze.SetLastHorizontalSqueezeFactor` | [L455](../../FluxDefaultSettings.lua#L455) |
-| `FluxUILayoutSqueeze.GetHorizontalSqueezeFactor` | [L465](../../FluxDefaultSettings.lua#L465) |
-| `FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor` | [L473](../../FluxDefaultSettings.lua#L473) |
-| `FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactor` | [L480](../../FluxDefaultSettings.lua#L480) |
-| `FluxUILayoutSqueeze.GetWidgetHorizontalSqueezeFactor` | [L485](../../FluxDefaultSettings.lua#L485) |
-| `FluxUILayoutSqueeze.GetDynamicScaleTargets` | [L519](../../FluxDefaultSettings.lua#L519) |
-| `FluxUILayoutSqueeze.GetDynamicScaleTargetsEmulated` | [L586](../../FluxDefaultSettings.lua#L586) |
-| `FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactorFromBarX` | [L651](../../FluxDefaultSettings.lua#L651) |
-| `FluxUILayoutSqueeze.GetUnitFrameIndependentScaleTargets` | [L662](../../FluxDefaultSettings.lua#L662) |
-| `FluxUILayoutSqueeze.ClampUnitFrameIndependentXSqueeze` | [L706](../../FluxDefaultSettings.lua#L706) |
-| `FluxUILayoutSqueeze.ComputeEmulatedFullMainBarSqueezeFactors` | [L730](../../FluxDefaultSettings.lua#L730) |
-| `FluxUILayoutSqueeze.GetEmulatedDependentCacheKey` | [L785](../../FluxDefaultSettings.lua#L785) |
-| `FluxUILayoutSqueeze.InvalidateEmulatedDependentCache` | [L792](../../FluxDefaultSettings.lua#L792) |
-| `FluxUILayoutSqueeze.GetCachedEmulatedDependentXFactorForUnitFrames` | [L798](../../FluxDefaultSettings.lua#L798) |
-| `FluxUILayoutSqueeze.GetEffectiveEmulatedDependentXFactorForUnitFrames` | [L814](../../FluxDefaultSettings.lua#L814) |
-| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactor` | [L823](../../FluxDefaultSettings.lua#L823) |
-| `FluxUILayoutSqueeze.ComputeVisibleContentWidth` | [L846](../../FluxDefaultSettings.lua#L846) |
-| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForRow` | [L853](../../FluxDefaultSettings.lua#L853) |
-| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForFrame` | [L877](../../FluxDefaultSettings.lua#L877) |
-| `FluxUILayoutSqueeze.NotifyLayoutDependents` | [L893](../../FluxDefaultSettings.lua#L893) |
-| `FluxUILayoutSqueeze.EnsureDisplayRefreshHooks` | [L989](../../FluxDefaultSettings.lua#L989) |
-| `FluxUILayoutSqueeze.RequestRefresh` | [L1005](../../FluxDefaultSettings.lua#L1005) |
-| `FluxDefaultSettings.GetState` | [L1053](../../FluxDefaultSettings.lua#L1053) |
-| `FluxDefaultSettings.ApplyNameplateScalarDefaults` | [L1231](../../FluxDefaultSettings.lua#L1231) |
-| `FluxDefaultSettings.ApplyNameplateClassColorDefault` | [L1235](../../FluxDefaultSettings.lua#L1235) |
-| `FluxDefaultSettings.ApplyNameplateNpcNameDefaults` | [L1239](../../FluxDefaultSettings.lua#L1239) |
-| `FluxDefaultSettings.ApplyNameplateBitfieldDefaults` | [L1243](../../FluxDefaultSettings.lua#L1243) |
-| `FluxDefaultSettings.ApplyNameplateDefaultsPack` | [L1247](../../FluxDefaultSettings.lua#L1247) |
-| `FluxDefaultSettings.ScheduleNameplateDefaultsPack` | [L1251](../../FluxDefaultSettings.lua#L1251) |
-| `FluxDefaultSettings.ApplySpecialCVarSettings` | [L1271](../../FluxDefaultSettings.lua#L1271) |
-| `FluxDefaultSettings.ApplyRaidFrameSettings` | [L1308](../../FluxDefaultSettings.lua#L1308) |
-| `FluxDefaultSettings.EnsureNameplateSizeMedium` | [L1313](../../FluxDefaultSettings.lua#L1313) |
-| `FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack` | [L1330](../../FluxDefaultSettings.lua#L1330) |
-| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow` | [L1334](../../FluxDefaultSettings.lua#L1334) |
-| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack` | [L1338](../../FluxDefaultSettings.lua#L1338) |
-| `FluxDefaultSettings.ApplyInterfaceDefaultsPack` | [L1344](../../FluxDefaultSettings.lua#L1344) |
-| `FluxDefaultSettings.ApplyStickyTargetingOff` | [L1352](../../FluxDefaultSettings.lua#L1352) |
-| `FluxDefaultSettings.GetMaxCameraDistanceZoomFactor` | [L1381](../../FluxDefaultSettings.lua#L1381) |
-| `FluxDefaultSettings.ApplyMaxCameraDistance` | [L1407](../../FluxDefaultSettings.lua#L1407) |
-| `FluxDefaultSettings.ApplyControlsDefaultsPack` | [L1438](../../FluxDefaultSettings.lua#L1438) |
-| `FluxDefaultSettings.ApplyChatSettings` | [L1518](../../FluxDefaultSettings.lua#L1518) |
+| `FluxDefaultSettings.GetMinUIScale` | [L434](../../FluxDefaultSettings.lua#L434) |
+| `FluxDefaultSettings.IsUIScaleAtOrBelowMin` | [L439](../../FluxDefaultSettings.lua#L439) |
+| `FluxUILayoutSqueeze.SetLastHorizontalSqueezeFactor` | [L457](../../FluxDefaultSettings.lua#L457) |
+| `FluxUILayoutSqueeze.GetHorizontalSqueezeFactor` | [L467](../../FluxDefaultSettings.lua#L467) |
+| `FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor` | [L475](../../FluxDefaultSettings.lua#L475) |
+| `FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactor` | [L482](../../FluxDefaultSettings.lua#L482) |
+| `FluxUILayoutSqueeze.GetWidgetHorizontalSqueezeFactor` | [L487](../../FluxDefaultSettings.lua#L487) |
+| `FluxUILayoutSqueeze.GetDynamicScaleTargets` | [L521](../../FluxDefaultSettings.lua#L521) |
+| `FluxUILayoutSqueeze.GetDynamicScaleTargetsEmulated` | [L588](../../FluxDefaultSettings.lua#L588) |
+| `FluxUILayoutSqueeze.GetDependentsHorizontalSqueezeFactorFromBarX` | [L653](../../FluxDefaultSettings.lua#L653) |
+| `FluxUILayoutSqueeze.GetUnitFrameIndependentScaleTargets` | [L664](../../FluxDefaultSettings.lua#L664) |
+| `FluxUILayoutSqueeze.ClampUnitFrameIndependentXSqueeze` | [L708](../../FluxDefaultSettings.lua#L708) |
+| `FluxUILayoutSqueeze.ComputeEmulatedFullMainBarSqueezeFactors` | [L732](../../FluxDefaultSettings.lua#L732) |
+| `FluxUILayoutSqueeze.GetEmulatedDependentCacheKey` | [L787](../../FluxDefaultSettings.lua#L787) |
+| `FluxUILayoutSqueeze.InvalidateEmulatedDependentCache` | [L794](../../FluxDefaultSettings.lua#L794) |
+| `FluxUILayoutSqueeze.GetCachedEmulatedDependentXFactorForUnitFrames` | [L800](../../FluxDefaultSettings.lua#L800) |
+| `FluxUILayoutSqueeze.GetEffectiveEmulatedDependentXFactorForUnitFrames` | [L816](../../FluxDefaultSettings.lua#L816) |
+| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactor` | [L825](../../FluxDefaultSettings.lua#L825) |
+| `FluxUILayoutSqueeze.ComputeVisibleContentWidth` | [L848](../../FluxDefaultSettings.lua#L848) |
+| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForRow` | [L855](../../FluxDefaultSettings.lua#L855) |
+| `FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForFrame` | [L879](../../FluxDefaultSettings.lua#L879) |
+| `FluxUILayoutSqueeze.NotifyLayoutDependents` | [L895](../../FluxDefaultSettings.lua#L895) |
+| `FluxUILayoutSqueeze.EnsureDisplayRefreshHooks` | [L991](../../FluxDefaultSettings.lua#L991) |
+| `FluxUILayoutSqueeze.RequestRefresh` | [L1007](../../FluxDefaultSettings.lua#L1007) |
+| `FluxDefaultSettings.GetState` | [L1055](../../FluxDefaultSettings.lua#L1055) |
+| `FluxDefaultSettings.ApplyNameplateScalarDefaults` | [L1233](../../FluxDefaultSettings.lua#L1233) |
+| `FluxDefaultSettings.ApplyNameplateClassColorDefault` | [L1237](../../FluxDefaultSettings.lua#L1237) |
+| `FluxDefaultSettings.ApplyNameplateNpcNameDefaults` | [L1241](../../FluxDefaultSettings.lua#L1241) |
+| `FluxDefaultSettings.ApplyNameplateBitfieldDefaults` | [L1245](../../FluxDefaultSettings.lua#L1245) |
+| `FluxDefaultSettings.ApplyNameplateDefaultsPack` | [L1249](../../FluxDefaultSettings.lua#L1249) |
+| `FluxDefaultSettings.ScheduleNameplateDefaultsPack` | [L1253](../../FluxDefaultSettings.lua#L1253) |
+| `FluxDefaultSettings.ApplySpecialCVarSettings` | [L1273](../../FluxDefaultSettings.lua#L1273) |
+| `FluxDefaultSettings.ApplyRaidFrameSettings` | [L1310](../../FluxDefaultSettings.lua#L1310) |
+| `FluxDefaultSettings.EnsureNameplateSizeMedium` | [L1315](../../FluxDefaultSettings.lua#L1315) |
+| `FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack` | [L1332](../../FluxDefaultSettings.lua#L1332) |
+| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow` | [L1336](../../FluxDefaultSettings.lua#L1336) |
+| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack` | [L1340](../../FluxDefaultSettings.lua#L1340) |
+| `FluxDefaultSettings.ApplyInterfaceDefaultsPack` | [L1346](../../FluxDefaultSettings.lua#L1346) |
+| `FluxDefaultSettings.ApplyStickyTargetingOff` | [L1354](../../FluxDefaultSettings.lua#L1354) |
+| `FluxDefaultSettings.GetMaxCameraDistanceZoomFactor` | [L1385](../../FluxDefaultSettings.lua#L1385) |
+| `FluxDefaultSettings.ApplyMaxCameraDistance` | [L1408](../../FluxDefaultSettings.lua#L1408) |
+| `FluxDefaultSettings.ApplyControlsDefaultsPack` | [L1439](../../FluxDefaultSettings.lua#L1439) |
+| `FluxDefaultSettings.ApplyChatSettings` | [L1519](../../FluxDefaultSettings.lua#L1519) |
 | `FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults` | [L1565](../../FluxDefaultSettings.lua#L1565) |
 | `FluxDefaultSettings.ApplyCombatDefaultsPack` | [L1570](../../FluxDefaultSettings.lua#L1570) |
 | `FluxDefaultSettings.ApplyActionBarDefaultsPack` | [L1705](../../FluxDefaultSettings.lua#L1705) |
@@ -5988,16 +5989,17 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 | `FluxDefaultSettings.FlushBindingRefreshAfterBulk` | [L1812](../../FluxDefaultSettings.lua#L1812) |
 | `FluxDefaultSettings.SavePendingModifiedClicks` | [L1893](../../FluxDefaultSettings.lua#L1893) |
 | `FluxDefaultSettings.ApplyKeybinds` | [L1944](../../FluxDefaultSettings.lua#L1944) |
-| `FluxDefaultSettings.PrepareAccountBindingBootstrap` | [L2216](../../FluxDefaultSettings.lua#L2216) |
-| `FluxDefaultSettings.EnsureDefaultFluxBindings` | [L2281](../../FluxDefaultSettings.lua#L2281) |
-| `FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults` | [L2328](../../FluxDefaultSettings.lua#L2328) |
-| `FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults` | [L2357](../../FluxDefaultSettings.lua#L2357) |
-| `FluxDefaultSettings.SyncSettingsRegistryProxies` | [L2366](../../FluxDefaultSettings.lua#L2366) |
-| `FluxDefaultSettings.ApplyCharacterFirstLogin` | [L2402](../../FluxDefaultSettings.lua#L2402) |
-| `FluxDefaultSettings.VerifyPostLoginDefaults` | [L2428](../../FluxDefaultSettings.lua#L2428) |
-| `FluxDefaultSettings.Apply` | [L2482](../../FluxDefaultSettings.lua#L2482) |
-| `FluxDefaultSettings.ApplyCVarsOnly` | [L2762](../../FluxDefaultSettings.lua#L2762) |
-| `FluxDefaultSettings.PrintDebug` | [L3164](../../FluxDefaultSettings.lua#L3164) |
+| `FluxDefaultSettings.PrepareAccountBindingBootstrap` | [L2217](../../FluxDefaultSettings.lua#L2217) |
+| `FluxDefaultSettings.EnsureDefaultFluxBindings` | [L2282](../../FluxDefaultSettings.lua#L2282) |
+| `FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults` | [L2329](../../FluxDefaultSettings.lua#L2329) |
+| `FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults` | [L2358](../../FluxDefaultSettings.lua#L2358) |
+| `FluxDefaultSettings.SyncSettingsRegistryProxies` | [L2367](../../FluxDefaultSettings.lua#L2367) |
+| `FluxDefaultSettings.ApplyCharacterFirstLogin` | [L2403](../../FluxDefaultSettings.lua#L2403) |
+| `FluxDefaultSettings.VerifyInitialNonBindingDefaults` | [L2437](../../FluxDefaultSettings.lua#L2437) |
+| `FluxDefaultSettings.VerifyPostLoginDefaults` | [L2523](../../FluxDefaultSettings.lua#L2523) |
+| `FluxDefaultSettings.Apply` | [L2576](../../FluxDefaultSettings.lua#L2576) |
+| `FluxDefaultSettings.ApplyCVarsOnly` | [L2857](../../FluxDefaultSettings.lua#L2857) |
+| `FluxDefaultSettings.PrintDebug` | [L3300](../../FluxDefaultSettings.lua#L3300) |
 
 ### Inventory/Builtin/Auctions.lua
 

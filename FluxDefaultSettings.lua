@@ -213,6 +213,8 @@ local FLUX_DEFAULTS = {
     ["softTargetInteract"] = "3",
     ["softTargettingInteractKeySound"] = "0",
     ["stickyTargeting"] = "0",
+    -- Sticky Targeting is displayed through NegateBoolean on this native CVar.
+    ["deselectOnClick"] = "1",
     ["combinedBags"] = "1",
     -- Blizzard mouseover cast stays off. Flux's own mouseover does not turn this CVar on.
     ["enableMouseoverCast"] = "0",
@@ -1354,9 +1356,10 @@ function FluxDefaultSettings.ApplyStickyTargetingOff()
         return false
     end
     local Write = BlizzardSettings.Write
-    Write.CVar("stickyTargeting", "0", true)
-    if not Write.SetShownValue("deselectOnClick", false) then
-        Write.CVar("deselectOnClick", "1", true)
+    Write.CVar("stickyTargeting", "0", false)
+    if not (Write.SetStickyTargetingOff and Write.SetStickyTargetingOff())
+        and not Write.SetShownValue("deselectOnClick", false) then
+        Write.CVar("deselectOnClick", "1", false)
     end
     pcall(function()
         if InterfaceOptionsDisplayPanelStickyTargeting and InterfaceOptionsDisplayPanelStickyTargeting.GetChecked
@@ -1377,7 +1380,8 @@ function FluxDefaultSettings.ApplyStickyTargetingOff()
 end
 
 --- Furthest allowed cameraDistanceMaxZoomFactor for this client.
---- Prefer engine GetCVarMax; Classic accepts up to 4; retail Midnight+ also 4; older retail ~2.6.
+--- Prefer engine GetCVarMax; Classic accepts up to 4. Retail without an
+--- engine maximum uses 2.6: assuming 4 can leave the CVar at its 1.9 default.
 function FluxDefaultSettings.GetMaxCameraDistanceZoomFactor()
     if C_CVar and C_CVar.GetCVarMax then
         local ok, maxV = pcall(C_CVar.GetCVarMax, "cameraDistanceMaxZoomFactor")
@@ -1395,9 +1399,6 @@ function FluxDefaultSettings.GetMaxCameraDistanceZoomFactor()
     end
     local api = FLUX_API
     if api and api.isAnyClassic then
-        return 4
-    end
-    if api and api.isRetail and api.majorVersion and api.majorVersion >= 12 then
         return 4
     end
     return 2.6
@@ -1556,7 +1557,6 @@ function FluxDefaultSettings.ApplyChatSettings()
         end
     end
     
-    print("|cFF00FFFF[FluxDefaultSettings]|r Chat Class Colors enabled globally.")
 end
 
 --- Self Cast = Auto, Focus Cast = None, Mouseover Cast = Off + None,
@@ -1941,7 +1941,7 @@ local function FluxBindingContext(command)
     return ok and context or nil
 end
 
-function FluxDefaultSettings.ApplyKeybinds(onComplete)
+function FluxDefaultSettings.ApplyKeybinds(onComplete, quiet)
     local detection = FluxDefaultSettings._resetDetection
     if InCombatLockdown() then
         detection._pendingKeybindReapply = true
@@ -2001,7 +2001,6 @@ function FluxDefaultSettings.ApplyKeybinds(onComplete)
     detection.justAppliedKeybinds = true
     detection.isResetting = true
     detection._pendingKeybindReapply = false
-    print("|cFF00FFFF[FluxDefaultSettings]|r Applying keybindings...")
 
     local function markFirstWrite()
         if firstWrite then return end
@@ -2102,7 +2101,9 @@ function FluxDefaultSettings.ApplyKeybinds(onComplete)
         end
         if ok then
             FluxDefaultSettings._pendingModifiedClickSave = false
-            print("|cFF00FFFF[FluxDefaultSettings]|r Keybindings saved and verified in the native binding set.")
+            if not quiet and not (FluxUI_DB and FluxUI_DB.firstLoadNonBindingAudit == "pending") then
+                print("|cFF00FFFF[FluxDefaultSettings]|r Keybindings saved and verified in the native binding set.")
+            end
         else
             print("|cFFFF6666[FluxDefaultSettings]|r Keybindings were not saved (" .. reason
                 .. "). Automatic setup will not clear them again; use /fluxdefaults keybinds to retry.")
@@ -2400,7 +2401,6 @@ end
 -- First login on a new character: only the client's character-stored CVars,
 -- including nameplate bitfields, plus the established raid/chat setup.
 function FluxDefaultSettings.ApplyCharacterFirstLogin(charKey)
-    print("|cFF00FFFF[FluxDefaultSettings]|r First login for this character (account already configured). Applying character settings...")
     FLUX_DEFAULTS["uiscale"] = GetOptimalUIScale()
     FLUX_DEFAULTS["cameraDistanceMaxZoomFactor"] = tostring(FluxDefaultSettings.GetMaxCameraDistanceZoomFactor())
     FluxDefaultSettings.ApplyRaidFrameSettings()
@@ -2418,8 +2418,103 @@ function FluxDefaultSettings.ApplyCharacterFirstLogin(charKey)
         end
         if charKey then
             FluxUI_DB.characters[charKey] = true
+            if FluxUI_DB.characterDefaultsAudits
+                and FluxUI_DB.characterDefaultsAudits[charKey] == "pending"
+                and C_Timer and C_Timer.After then
+                C_Timer.After(3, function()
+                    FluxDefaultSettings.VerifyInitialNonBindingDefaults(true, charKey, 1)
+                end)
+            end
         end
         return true
+    end)
+end
+
+-- The first account/character pass can race native startup CVars. Reconcile
+-- supported values once after world entry; only accounts/characters armed by
+-- their first-load path reach this function. Missing and protected values stay
+-- with their existing client-specific owners.
+function FluxDefaultSettings.VerifyInitialNonBindingDefaults(characterOnly, charKey, attempt)
+    local db = FluxUI_DB
+    local audits = db and db.characterDefaultsAudits
+    local pending = characterOnly and audits and audits[charKey] == "pending"
+        or not characterOnly and db and db.firstLoadNonBindingAudit == "pending"
+    if not pending then return true end
+    attempt = attempt or 1
+    local Write = BlizzardSettings.Write
+    local key = characterOnly and ("firstCharacterAudit:" .. charKey) or "firstAccountAudit"
+    return Write.Run(key, function()
+        local firstError
+        local function run(fn, ...)
+            if not fn then return end
+            local ok, err = pcall(fn, ...)
+            if not ok and not firstError then firstError = tostring(err) end
+        end
+        local function included(cvar)
+            if characterOnly then
+                return IsCharacterCVar(cvar)
+                    and (not FluxSkipCoupledDefaultCVar(cvar) or FluxIsNameplateDefaultCVar(cvar))
+            end
+            return not FluxSkipCoupledDefaultCVar(cvar)
+        end
+        -- Let Retail's registered, negated Controls setting see the actual
+        -- reverted value before the generic scalar loop can mask it.
+        if not characterOnly then
+            run(FluxDefaultSettings.ApplyStickyTargetingOff)
+        end
+        for cvar, value in pairs(FLUX_DEFAULTS) do
+            if included(cvar) then
+                local ok, matches = pcall(Write.Matches, cvar, value)
+                if ok and not matches then Write.CVar(cvar, value, false) end
+            end
+        end
+        local nameplates = BlizzardSettings.Nameplates
+        local raid = BlizzardSettings.Raid
+        if characterOnly then
+            if nameplates then run(nameplates.ApplyBitfields, false, IsCharacterCVar) end
+        else
+            if nameplates then run(nameplates.ApplyNow, false) end
+            run(FluxDefaultSettings.ApplyControlsDefaultsPack, false)
+            run(FluxDefaultSettings.ApplyCombatDefaultsPack, false)
+            run(FluxDefaultSettings.ApplyActionBarDefaultsPack, false)
+        end
+        if raid then run(raid.ApplyNow, false) end
+        run(FluxDefaultSettings.ApplyChatSettings)
+
+        local wrong
+        for cvar, value in pairs(FLUX_DEFAULTS) do
+            if included(cvar) then
+                local ok, matches = pcall(Write.Matches, cvar, value)
+                if ok and not matches then wrong = cvar; break end
+            end
+        end
+        if not characterOnly and not Write.IsSecretClient() then
+            for _, entry in ipairs(raid and raid.CVARS or {}) do
+                local ok, matches = pcall(Write.Matches, entry[1], entry[2])
+                if ok and not matches then wrong = wrong or entry[1]; break end
+            end
+        end
+        if not firstError and not wrong then
+            if characterOnly then
+                audits[charKey] = nil
+                print("|cFF00FFFF[FluxDefaultSettings]|r FluxUI character defaults applied.")
+            else
+                db.firstLoadNonBindingAudit = "done"
+                print("|cFF00FFFF[FluxDefaultSettings]|r FluxUI account defaults applied.")
+            end
+            return true
+        end
+        if attempt < 3 then
+            C_Timer.After(0.5, function()
+                FluxDefaultSettings.VerifyInitialNonBindingDefaults(characterOnly, charKey, attempt + 1)
+            end)
+        else
+            if characterOnly then audits[charKey] = "failed"
+            else db.firstLoadNonBindingAudit = "failed" end
+            print("|cFFFF6666[FluxDefaultSettings]|r First-load settings could not be verified ("
+                .. (wrong or firstError or "unknown") .. "). Use /fluxdefaults cvars to retry.")
+        end
+        return false
     end)
 end
 
@@ -2467,7 +2562,6 @@ function FluxDefaultSettings.VerifyPostLoginDefaults()
     local needsCvars = mismatchCount >= 4
 
     if needsCvars then
-        print("|cFF00FFFF[FluxDefaultSettings]|r Post-login verify: client reverted Flux CVars (" .. mismatchCount .. " sentinels); re-applying CVars...")
         FluxDefaultSettings.ApplyCVarsOnly()
         detection.justAppliedCVars = true
         C_Timer.After(2, function()
@@ -2479,7 +2573,7 @@ end
 -- Apply the defaults
 -- @param force boolean: If true, applies even if already applied before
 -- @param deferBindings boolean: First-login bindings wait for the active world set.
-function FluxDefaultSettings.Apply(force, deferBindings)
+function FluxDefaultSettings.Apply(force, deferBindings, quiet)
     -- Initialize DB if needed (SavedVariables)
     if not FluxUI_DB then FluxUI_DB = {} end
     
@@ -2488,7 +2582,6 @@ function FluxDefaultSettings.Apply(force, deferBindings)
         return
     end
 
-    print("|cFF00FFFF[FluxDefaultSettings]|r Applying default settings (Account-Wide)...")
     local count = 0
     
     -- Handlers for Special Cases
@@ -2712,7 +2805,7 @@ function FluxDefaultSettings.Apply(force, deferBindings)
     end)
     
     -- First login waits until world entry selects the native binding set.
-    if not deferBindings then FluxDefaultSettings.ApplyKeybinds() end
+    if not deferBindings then FluxDefaultSettings.ApplyKeybinds(nil, true) end
 
     -- Self cast Auto + focus cast key None; this pack saves modified clicks.
     FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults()
@@ -2726,7 +2819,9 @@ function FluxDefaultSettings.Apply(force, deferBindings)
     -- Apply Chat Settings (Class Colors)
     FluxDefaultSettings.ApplyChatSettings()
     
-    print("|cFF00FFFF[FluxDefaultSettings]|r Defaults applied ("..count.." settings).")
+    if not quiet then
+        print("|cFF00FFFF[FluxDefaultSettings]|r FluxUI defaults applied (" .. count .. " settings).")
+    end
     
     FluxUI_DB.accountDefaultsApplied = true
     
@@ -2759,10 +2854,9 @@ FluxDefaultSettings._resetDetection = {
 }
 
 -- Apply only CVars without keybindings (for partial reset scenarios)
-function FluxDefaultSettings.ApplyCVarsOnly()
+function FluxDefaultSettings.ApplyCVarsOnly(quiet)
     if not FluxUI_DB then FluxUI_DB = {} end
     
-    print("|cFF00FFFF[FluxDefaultSettings]|r Re-applying CVar settings (keybindings unchanged)...")
     local count = 0
     
     -- Handlers for Special Cases
@@ -2784,13 +2878,14 @@ function FluxDefaultSettings.ApplyCVarsOnly()
     FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults()
     FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults()
     
-    print("|cFF00FFFF[FluxDefaultSettings]|r CVars re-applied ("..count.." settings).")
-    
     -- Apply special CVar settings (sticky targeting, etc.)
     FluxDefaultSettings.ApplySpecialCVarSettings()
     
     -- Apply Raid Frame settings (has combat check)
     FluxDefaultSettings.ApplyRaidFrameSettings()
+    if not quiet then
+        print("|cFF00FFFF[FluxDefaultSettings]|r FluxUI CVar defaults applied (" .. count .. " settings).")
+    end
 end
 
 -- Initialize / Event Handler — idle after login except Settings reset callbacks + display scale.
@@ -2845,27 +2940,28 @@ frame:SetScript("OnEvent", function(self, event, ...)
         local firstAccount = not FluxUI_DB.accountDefaultsApplied
         local needsAccountBindings = FluxDefaultSettings.PrepareAccountBindingBootstrap(firstAccount)
 
-        -- Once per **account**: full CVars + proxies + keybinds + raid/chat.
-        -- Once per **new character** (account already done): raid frames + chat colors only (no keybind wipe).
+        -- Start the nonbinding pass after the native world/settings load. Do
+        -- not mark the account or character complete during PLAYER_LOGIN.
         if firstAccount then
-            print("|cFF00FFFF[FluxDefaultSettings]|r First login on this account. Applying full defaults (Controls, Interface, Action Bars, Combat, Social, keybindings)...")
-
-            FluxDefaultSettings._resetDetection.loginGracePeriod = true
-            FluxDefaultSettings._resetDetection.isResetting = true
-
-            local ok = pcall(FluxDefaultSettings.Apply, false, true)
-            if ok and FluxUI_DB.accountDefaultsApplied then
-                FluxUI_DB.characters[charKey] = true
-            end
-            FluxDefaultSettings._resetDetection.isResetting = false
+            FluxUI_DB.firstLoadNonBindingAudit = "pending"
+            FluxDefaultSettings._resetDetection._pendingInitialAccountDefaults = charKey
         elseif not FluxUI_DB.characters[charKey] then
-            print("|cFF00FFFF[FluxDefaultSettings]|r First login for this character. Applying character-specific defaults...")
-
-            FluxDefaultSettings._resetDetection.loginGracePeriod = true
-            FluxDefaultSettings._resetDetection.isResetting = true
-
-            pcall(FluxDefaultSettings.ApplyCharacterFirstLogin, charKey)
-            FluxDefaultSettings._resetDetection.isResetting = false
+            FluxUI_DB.characterDefaultsAudits = FluxUI_DB.characterDefaultsAudits or {}
+            FluxUI_DB.characterDefaultsAudits[charKey] = "pending"
+            FluxDefaultSettings._resetDetection._pendingInitialCharacterDefaults = charKey
+        elseif FluxUI_DB.firstLoadNonBindingAudit == "failed"
+            and not FluxUI_DB.controlsCameraFirstLoadRetry then
+            -- Retry one earlier failed audit after fixing the Retail camera
+            -- fallback and adding sticky targeting to verification. No full
+            -- reset or binding pass runs for this already configured account.
+            FluxUI_DB.controlsCameraFirstLoadRetry = true
+            FluxUI_DB.firstLoadNonBindingAudit = "pending"
+            FluxDefaultSettings._resetDetection._pendingInitialAccountAudit = true
+        elseif FluxUI_DB.firstLoadNonBindingAudit == "pending" then
+            FluxDefaultSettings._resetDetection._pendingInitialAccountAudit = true
+        elseif FluxUI_DB.characterDefaultsAudits
+            and FluxUI_DB.characterDefaultsAudits[charKey] == "pending" then
+            FluxDefaultSettings._resetDetection._pendingInitialCharacterAudit = charKey
         end
         if needsAccountBindings then
             FluxDefaultSettings._resetDetection._pendingLoginBindingSeed = charKey
@@ -2903,7 +2999,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 -- Forever / Live: do not write from this callback (Settings previews run as Flux).
                 -- Queue CVar packs until the panel closes and combat ends.
                 if FluxAvoidBlizzardSettingsCoupling() then
-                    print("|cFF00FFFF[FluxDefaultSettings]|r Detected 'Reset All Settings' - Re-applying FluxUI defaults...")
                     detection.isResetting = true
                     BlizzardSettings.Write.Run("resetAll", function()
                         FluxDefaultSettings.ApplyCVarsOnly()
@@ -2914,7 +3009,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
                     end)
                     return
                 end
-                print("|cFF00FFFF[FluxDefaultSettings]|r Detected 'Reset All Settings' - Re-applying FluxUI defaults...")
                 detection.isResetting = true
                 C_Timer.After(0.1, function()
                     if not InCombatLockdown() then
@@ -2935,8 +3029,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
             -- Hook for "Reset These Settings" (category-specific)
             EventRegistry:RegisterCallback("Settings.CategoryDefaulted", function(_, category)
                 local detection = FluxDefaultSettings._resetDetection
+                if detection.isResetting then return end
                 local categoryName = category and category:GetName() or "Unknown"
-                print("|cFF00FFFF[FluxDefaultSettings]|r Detected 'Reset These Settings' for: " .. categoryName)
                 detection.isResetting = true
                 
                 -- Check if this is the Keybindings category
@@ -2950,19 +3044,26 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 end
 
                 local function ReapplyCategory(key, fn)
-                    print("|cFF00FFFF[FluxDefaultSettings]|r Re-applying FluxUI " .. key .. "...")
-                    local function run()
+                    local reported = false
+                    local failedReported = false
+                    local function run(report)
                         if InCombatLockdown and InCombatLockdown() then
-                            BlizzardSettings.Write.Run("resetCategory:" .. key, run)
+                            BlizzardSettings.Write.Run("resetCategory:" .. key, function() run(report) end)
                             return
                         end
-                        pcall(fn)
-                        print("|cFF00FFFF[FluxDefaultSettings]|r Applied FluxUI " .. key .. ".")
+                        local ok, err = pcall(fn)
+                        if not ok and not failedReported then
+                            failedReported = true
+                            print("|cFFFF6666[FluxDefaultSettings]|r Could not apply FluxUI " .. key .. ": " .. tostring(err))
+                        elseif ok and report and not reported and BlizzardSettings.Write.CanWriteNow() then
+                            reported = true
+                            print("|cFF00FFFF[FluxDefaultSettings]|r Applied FluxUI " .. key .. ".")
+                        end
                     end
                     -- Next frame, while Options is still open, on every client.
-                    C_Timer.After(0, run)
+                    C_Timer.After(0, function() run(false) end)
                     -- Again after Options closes. Each category keeps its own key.
-                    BlizzardSettings.Write.Run("resetCategory:" .. key, run)
+                    BlizzardSettings.Write.Run("resetCategory:" .. key, function() run(true) end)
                     C_Timer.After(1, function()
                         detection.isResetting = false
                     end)
@@ -3034,7 +3135,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
                     end)
                 else
                     ReapplyCategory("defaults", function()
-                        FluxDefaultSettings.ApplyCVarsOnly()
+                        FluxDefaultSettings.ApplyCVarsOnly(true)
                     end)
                 end
             end, "FluxDefaultSettings")
@@ -3042,6 +3143,46 @@ frame:SetScript("OnEvent", function(self, event, ...)
     elseif event == "PLAYER_ENTERING_WORLD" then
         local detection = FluxDefaultSettings._resetDetection
         FluxDefaultSettings._worldEntered = true
+        local firstAccountChar = detection._pendingInitialAccountDefaults
+        local firstCharacter = detection._pendingInitialCharacterDefaults
+        local auditAccount = detection._pendingInitialAccountAudit
+        local auditCharacter = detection._pendingInitialCharacterAudit
+        detection._pendingInitialAccountDefaults = nil
+        detection._pendingInitialCharacterDefaults = nil
+        detection._pendingInitialAccountAudit = nil
+        detection._pendingInitialCharacterAudit = nil
+        if firstAccountChar then
+            C_Timer.After(0, function()
+                BlizzardSettings.Write.Run("firstAccountDefaults", function()
+                    detection.isResetting = true
+                    local ok, err = pcall(FluxDefaultSettings.Apply, false, true, true)
+                    detection.isResetting = false
+                    if not ok then error(err) end
+                    if FluxUI_DB.accountDefaultsApplied then
+                        FluxUI_DB.characters[firstAccountChar] = true
+                        C_Timer.After(3, function()
+                            FluxDefaultSettings.VerifyInitialNonBindingDefaults(false, nil, 1)
+                        end)
+                    end
+                    return true
+                end)
+            end)
+        elseif firstCharacter then
+            C_Timer.After(0, function()
+                BlizzardSettings.Write.Run("firstCharacterDefaults:" .. firstCharacter, function()
+                    detection.isResetting = true
+                    local ok, err = pcall(FluxDefaultSettings.ApplyCharacterFirstLogin, firstCharacter)
+                    detection.isResetting = false
+                    if not ok then error(err) end
+                    return true
+                end)
+            end)
+        elseif auditAccount or auditCharacter then
+            C_Timer.After(0, function()
+                FluxDefaultSettings.VerifyInitialNonBindingDefaults(
+                    not auditAccount, auditCharacter, 1)
+            end)
+        end
         local charKey = detection._pendingLoginBindingSeed
         detection._pendingLoginBindingSeed = nil
         if charKey then
@@ -3103,7 +3244,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
                     FluxSetCVar("useUIScale", "1")
                     FluxSetCVar("uiscale", optimalScale)
                 end)
-                print("|cFF00FFFF[FluxDefaultSettings]|r Display changed - UI scale adjusted to " .. optimalScale)
             end
         end
         if self.pendingSqueezeRefresh then
@@ -3132,7 +3272,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 self.pendingScaleUpdate = true
                 self.pendingSqueezeRefresh = true
                 FluxArmPendingCombatFlush()
-                print("|cFF00FFFF[FluxDefaultSettings]|r Combat detected - UI scale update queued.")
                 return
             end
             local optimalScale = GetOptimalUIScale()
@@ -3141,13 +3280,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
             local numOpt = tonumber(optimalScale)
             local numCur = tonumber(currentScale)
             if (currentUse ~= "1") or (numOpt and numCur and math.abs(numOpt - numCur) > 0.005) then
-                local success = pcall(function()
+                pcall(function()
                     FluxSetCVar("useUIScale", "1")
                     FluxSetCVar("uiscale", optimalScale)
                 end)
-                if success then
-                    print("|cFF00FFFF[FluxDefaultSettings]|r Display changed - UI scale adjusted to " .. optimalScale)
-                end
             end
             if FluxUILayoutSqueeze and FluxUILayoutSqueeze.RequestRefresh then
                 FluxUILayoutSqueeze.RequestRefresh("display_size_settled")
@@ -3207,8 +3343,7 @@ SlashCmdList["FLUXDEFAULTS"] = function(msg)
         FluxDefaultSettings.ApplyCVarsOnly()
     elseif msg == "reset" then
         if FluxUI_DB then FluxUI_DB.accountDefaultsApplied = false end
-        print("|cFF00FFFF[FluxDefaultSettings]|r Account defaults flag cleared. Use |cFFFFFFFF/fluxdefaults apply|r to apply full defaults now, or relog on a character that has never received account defaults.")
-        print("|cFF00FFFF[FluxDefaultSettings]|r Characters already marked as seen are unchanged; use |cFFFFFFFF/fluxdefaults resetchar|r so this character can run character-only defaults on next login.")
+        print("|cFF00FFFF[FluxDefaultSettings]|r Account defaults flag cleared. Use |cFFFFFFFF/fluxdefaults apply|r now or relog to apply defaults; use |cFFFFFFFF/fluxdefaults resetchar|r for this character's defaults.")
     elseif msg == "resetchar" then
         if not FluxUI_DB then FluxUI_DB = {} end
         if not FluxUI_DB.characters then FluxUI_DB.characters = {} end

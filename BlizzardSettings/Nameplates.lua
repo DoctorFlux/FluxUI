@@ -207,9 +207,6 @@ end
 function Nameplates.Apply(force)
 	return Write.Run("nameplates", function()
 		local wrote = Nameplates.ApplyNow(force)
-		if wrote then
-			print("|cFF00FFFF[FluxDefaultSettings]|r Applied FluxUI nameplate defaults.")
-		end
 		return wrote
 	end)
 end

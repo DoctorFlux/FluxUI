@@ -1,5 +1,72 @@
 # Decisions
 
+## 2026-10-30 - use the native negated Sticky Targeting setting on Retail
+
+- The linked GitHub main file is the same pre-fix source. A 13 August local
+  snapshot uses `Settings.GetSetting("deselectOnClick"):SetValue(false, true)`.
+  Restore that route only for this uncoupled Controls setting, verify raw
+  CVar `1`, and retain raw-CVar fallback when the setting is unregistered.
+- Keep the general modern `Settings.SetValue` guard for protected raid and
+  nameplate callback ownership. Avoid the historical repeated raw `0`
+  writes and leave the camera fallback at 2.6 without an engine maximum.
+  [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+## 2026-10-30 - audit native Sticky Targeting and use a writable Retail camera fallback
+
+- Use `deselectOnClick=1` as the authoritative unchecked Sticky Targeting
+  value. Include it in the first-load audit; keep the Retail Settings API
+  taint guard and avoid repeated writes when already correct.
+- When the engine gives no camera maximum, use 2.6 on Retail rather than
+  assuming 4 from its major version. Give accounts with a prior failed
+  first-load audit one settings-only retry; do not repeat binding setup.
+  [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+## 2026-10-30 - complete first-load settings after world entry
+
+- Apply first-account and new-character nonbinding defaults after the first
+  world entry, then audit supported values after startup can settle. Keep the
+  existing safe-write queue and the protected raid CVar guard.
+- Limit mismatch repair to the armed first-load audit, with three attempts.
+  Existing completed accounts keep later changes. Report completion once;
+  manual reset completion and specific failures remain visible.
+  [Evidence](NONBINDING_FIRST_LOAD.md).
+
+## 2026-10-30 - use the item service for Hearthstone selector hover
+
+- The user's native stack trace shows `GetItemInfo` is nil when the selector
+  hover handler runs. Use the already-loaded `Flux.Item.GetInfo` and the Toy
+  Box name for an uncached toy. Retain the existing help text and fallback.
+- Do not install or enable deprecated globals for this panel. The focused
+  fixture removes `GetItemInfo` and reproduces the prior failure.
+  [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+## 2026-10-30 - gate Hearthstone editor on the earlier core capability
+
+- The user's Toy Box still showed no Hearthstone panel. The editor loads at
+  TOC line 145; `FLUX_API` is initialized only at line 204. Its original guard
+  always returned during normal loading. The prior fixture incorrectly
+  supplied that later API at the earlier point.
+- Use `Flux.Cap.hasToyBox`, available from `Core/Capabilities.lua` at TOC line
+  22. Keep the separate later `FLUX_API` flag for its existing consumers.
+  Use the current item icon API before deprecated globals while building the
+  panel, so icon lookup cannot abort creation on modern clients.
+- Verify the actual load order in the regression, with `FLUX_API` absent.
+  Native visibility and secure use remain pending.
+  [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+## 2026-10-30 - make Toy Box capability independent of journal opening
+
+- The first diagnosis treated the journal-toggle condition in
+  `FLUX_API.hasToyBox` as the registration cause. The later TOC audit showed
+  `FLUX_API` itself did not exist when the Hearthstone editor loaded.
+- Define Toy Box capability by the toy query and ownership APIs. Keep journal
+  opening separate, using the available modern or legacy Blizzard loader and
+  native Toys-tab opener. Preserve the existing choice store and UI gestures.
+- This change alone did not make the panel appear; the earlier core-capability
+  decision above completes registration. Native toy selection, reload, secure
+  click and performance checks remain pending.
+  [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 ## 2026-10-30 - finish first-account bindings in one native transaction
 
 - The user saw native assignment/verification fail, then default keys return

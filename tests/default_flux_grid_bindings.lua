@@ -458,7 +458,10 @@ do
 end
 local login = part('if event == "PLAYER_LOGIN" then',
     'elseif event == "PLAYER_ENTERING_WORLD" then')
-check(login:find('FluxDefaultSettings.Apply, false, true', 1, true)
+local world = part('elseif event == "PLAYER_ENTERING_WORLD" then',
+    'elseif event == "COMPACT_UNIT_FRAME_PROFILES_LOADED" then')
+check(login:find('_pendingInitialAccountDefaults = charKey', 1, true)
+    and world:find('FluxDefaultSettings.Apply, false, true', 1, true)
     and login:find('_pendingLoginBindingSeed = charKey', 1, true),
-    "first account defers keyboard work until first world entry")
+    "first account defers defaults and keyboard work until first world entry")
 print("full Flux binding persistence: " .. checks .. " checks passed")

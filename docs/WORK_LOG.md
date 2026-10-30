@@ -1,5 +1,82 @@
 # Work log
 
+## 2026-10-30 - compare historical FluxUI default-settings route
+
+Compared the linked GitHub main file and local Git history: both have the
+same pre-fix Sticky Targeting routine. Read older on-disk FluxUI snapshots
+without changing them; the 13 August pre-rewrite file used the registered
+native negated setting on Retail. Preserved the current source and Git history
+in another dated external checkpoint, then added a single-setting native
+Controls route with CVar readback and raw fallback. The existing modern
+Settings guard for raid/nameplate callbacks stays in force. Focused first-
+load tests pass 76 checks. Native behavior and frame time remain pending.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+## 2026-10-30 - Retail Sticky Targeting and camera audit follow-up
+
+The user supplied native Retail readback `1.900000 / nil / 0` for camera
+factor, engine maximum and `deselectOnClick`. Verified the current Gethe Live
+Controls/setting source, inspected available on-disk settings and saved a dated
+external source/history/settings checkpoint before edits. Added native sticky
+CVar to the first-load table and audit, changed the no-maximum Retail camera
+fallback to 2.6, and allowed one settings-only retry of an earlier failed
+audit. Focused first-load fixture passes 68 checks; post-fix native execution
+and performance remain pending because no WoW process/window was visible.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+## 2026-10-30 - first-load nonbinding settings and chat output
+
+Verified a dated external source/history checkpoint and inspected available
+on-disk settings before edits. Moved first-account/new-character setting
+passes from `PLAYER_LOGIN` to the first world-entry frame. Added a bounded
+post-startup audit for supported CVars and setting packs, including Controls,
+character nameplate values and Classic raid CVars. Removed progress and chat
+class-color messages; manual reset categories now report completion once.
+Focused first-load checks: 60; binding model: 507. Full desktop validation:
+106 scripts and 748 Lua files. Native settings, reload scope, taint and frame
+time remain pending. [Evidence](NONBINDING_FIRST_LOAD.md).
+
+## 2026-10-30 - Hearthstone selector hover error
+
+The user supplied a native stack trace at `FluxSmartHearthConfig.lua:491`:
+hovering the Toy Box selector called a nil `GetItemInfo`. Preserved the current
+local source, Git history and two on-disk WTF settings files in a third dated
+external checkpoint while WoW was closed. The focused fixture reproduced the
+hover failure with the deprecated global unavailable. Replaced the direct
+call with the existing `Flux.Item.GetInfo` service and Toy Box name fallback.
+The 19-check fixture and full 106-script/748-Lua desktop suite pass. Native
+hover, toy choice, secure click, reload persistence and taint need recheck.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+## 2026-10-30 - Hearthstone panel load-order follow-up
+
+The user still did not see the Hearthstone panel beside Toy Box, unlike the
+mount config. Read-only TOC inspection found Hearthstone loads at line 145
+before `FLUX_API` exists at line 204. The previous fixture had injected
+`FLUX_API`, masking the real early return. Preserved the current local tree
+and Git history in a second dated external checkpoint and copied two current
+on-disk WTF settings files there while WoW was closed. Then switched the
+editor guard to the earlier `Flux.Cap.hasToyBox` and routed the default icon
+through the existing resolver with the modern item API. The updated 17-check fixture
+fails against the prior guard and passes with the fix. Full desktop validation
+passes 106 scripts/748 Lua syntax files; native panel and toy use remain
+pending. WoW stayed closed and settings were untouched.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+## 2026-10-30 - Hearthstone Toy Box config window
+
+The user could not use the Hearthstone config window on toy-collection clients
+and needs to choose the Hearthstone toy. Started from clean main
+`52659bd8d22559dc0943ddd999e681d84d705d8e`. Verified an external dated
+source/history checkpoint; with WoW closed, copied two relevant on-disk WTF
+files outside AddOns. The first diagnosis attributed the editor's early return
+to `FLUX_API.hasToyBox` requiring a particular journal toggle. Removed that
+unrelated gate and made the journal opener use modern or legacy load/show APIs.
+The 14-check fixture missed the earlier TOC load-order defect, as documented
+above. Native toy selection, actual secure click, reload persistence,
+taint and frame time remain pending. No game input or settings changes.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 ## 2026-10-30 - atomic context-aware first-account bindings
 
 The user reported exact native assignment/verification failure and asked for
@@ -1143,3 +1220,21 @@ files and verified Git history. Source ZIP SHA-256:
 `f7fb816f0651d264fbd30e9187afb2af8e17170aa39da02580d785b44c5f2176`.
 Private archives/settings/captures and ignored local sync helpers stay outside Git.
 Publish by ordinary push to main and verify remote identity and worktree status.
+
+## 30 October 2026 - latest local updates publication
+
+User requested another upload of all current local updates to main. This batch
+includes first-load nonbinding settings reconciliation, Retail Sticky Targeting
+and camera follow-ups, capability detection and Hearthstone editor load-order /
+item-info fixes, plus their tests and documentation. The fresh combined report
+`docs/validation/main-publication-latest-2026-10-30.json` passes 106 desktop
+scripts and 748 Lua syntax files, with zero failures. Native checks retain
+their pending status; no game input, settings changes or runtime edits were
+performed for publication.
+
+Remote main matched parent `52659bd8d22559dc0943ddd999e681d84d705d8e`.
+External checkpoint `Publish-all-20261030T180617Z` preserves 1,350 actual
+local files and verified Git history; source ZIP SHA-256
+`0c5cb6547bf035eb33ec362603ca544f53079e71f6d31e0e5185d24ef80422d7`.
+Private settings/captures/archives and ignored local helpers remain outside Git.
+Use an ordinary push on main and verify remote identity and clean status.

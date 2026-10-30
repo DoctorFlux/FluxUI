@@ -1,5 +1,55 @@
 # Development status
 
+Latest publication batch (30 October 2026): current first-load settings and
+Hearthstone fixes included for main. Combined desktop validation: 106 scripts,
+748 Lua syntax files, zero failures. Native acceptance remains pending.
+
+Historical Sticky Targeting follow-up (30 October 2026): the linked GitHub
+main file matches the pre-fix local routine. An older dated local FluxUI
+snapshot used Blizzard's registered negated Controls setting. The current
+Retail path now uses that exact native setting for Sticky Targeting only,
+with CVar readback/fallback; protected raid/nameplate Settings callbacks
+remain guarded. Focused desktop checks: 75. Native acceptance is pending.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+Retail Sticky Targeting/camera follow-up (30 October 2026): the user observed
+`deselectOnClick=0`, camera factor `1.9` and no engine CVar maximum after the
+first-load audit failed. The audit now includes the native sticky CVar; the
+Retail camera fallback is 2.6 when the engine reports no maximum. A failed
+audit gets one settings-only retry on the next login. Focused desktop checks:
+68. Native post-fix acceptance and frame time are pending.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+First-load nonbinding defaults (30 October 2026): account and new-character
+passes now run after first world entry and reconcile supported settings after
+native startup. Controls, nameplate scope, Classic raid CVars and quiet
+completion are covered by 60 focused checks; the 106-script/748-Lua desktop
+suite passes. Native client acceptance and frame time remain pending.
+[Evidence](NONBINDING_FIRST_LOAD.md).
+
+Hearthstone selector hover follow-up (30 October 2026): the user's native
+stack trace reports a nil `GetItemInfo` at selector hover. The handler now
+uses the existing `Flux.Item` service and Toy Box name fallback. The corrected
+19-check fixture reproduces the old error and passes with the fix; full
+106-script/748-Lua desktop validation passes. Native hover, selection, secure
+use and persistence remain pending. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Hearthstone config follow-up (30 October 2026): the user still saw no panel
+beside the Toy Box. The first regression had injected `FLUX_API` before its
+actual TOC load. The editor now gates on the already-loaded `Flux.Cap`, so its
+window and command register before the later API bootstrap. The corrected
+17-check fixture fails against the prior code and passes after the fix; full
+106-script/748-Lua desktop validation passes. Native visibility and toy use
+remain pending. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Earlier Hearthstone Toy Box config attempt (30 October 2026): the Toy Box
+capability no longer requires a particular Collections Journal toggle function.
+This alone did not register the editor because `FLUX_API` loaded later.
+The journal loader/opener accepts modern and legacy APIs. The first 14-check
+desktop regression missed the TOC load-order defect; native toy
+selection, persistence, secure use, pixels and frame time remain pending.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 Binding atomic-context follow-up (30 October 2026): after the user's native
 assignment failure report, the first-account keyboard transaction now clears,
 assigns, verifies and saves in one call. Modern clients use Blizzard's action

@@ -1,5 +1,38 @@
 # Development tasks
 
+Current Retail Sticky Targeting check (30 October): exercise the targeted
+registered `deselectOnClick` setting route in a native background client when
+available. Verify checkbox state, CVar readback, first-load/reload behavior,
+manual Controls reset, taint and frame time. The 13 August historical source
+informed this change; 76 desktop checks pass. [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+Current Retail Controls priority (30 October): verify in a background native
+session that `deselectOnClick=1` and camera factor 2.6 persist after the
+settings-only retry, then check a second reload, manual Controls reset,
+taint and frame time. The user's pre-fix readback was `1.900000 / nil / 0`;
+the corrected desktop fixture passes 68 checks. No WoW process was visible
+during this repair. [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+Current Hearthstone hover follow-up (30 October): verify the selector tooltip
+and owned-toy choice in a real Toy Box client. The native stack trace showed
+`GetItemInfo` nil at hover; the focused fixture now covers that path with the
+global unavailable and passes 19 checks. Native secure use, reload scope,
+combat/taint, pixels and frame time remain pending.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Current Hearthstone correction (30 October): load the Toy Box on a real client
+and verify the panel appears beside it. The editor now uses the core capability
+available before its TOC entry; the previous desktop fixture missed that
+order and was superseded by a 17-check regression. Then select an owned toy,
+reload and confirm the grid button uses it. Native combat/taint, pixels and
+frame time remain pending. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+Current Hearthstone follow-up (30 October): verify the Toy Box editor and
+owned-toy choice on actual toy-capable clients after reload. Desktop checks
+cover the missing journal-toggle capability, opener alternatives, visible
+selector and saved item readback; they do not prove native secure item use,
+combat/taint or frame time. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 Current binding priority (30 October): verify the one-call context-aware
 transaction on Mariosuper (Era) and Pandasans (Retail) once their actual
 processes/windows are visible without foreground control. Confirm keys,

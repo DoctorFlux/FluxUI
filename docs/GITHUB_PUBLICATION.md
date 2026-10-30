@@ -114,3 +114,21 @@ An ordinary push advanced main to payload commit
 The dated external `binding-native-failure-checkpoint-20261030` preserves
 pre-edit source and Git history outside AddOns. This receipt changes only
 documentation and does not alter game state or settings.
+
+## 30 October 2026 - latest local updates publication
+
+User requested another upload of all current local updates to main. This batch
+includes first-load nonbinding settings reconciliation, Retail Sticky Targeting
+and camera follow-ups, capability detection and Hearthstone editor load-order /
+item-info fixes, plus their tests and documentation. The fresh combined report
+`docs/validation/main-publication-latest-2026-10-30.json` passes 106 desktop
+scripts and 748 Lua syntax files, with zero failures. Native checks retain
+their pending status; no game input, settings changes or runtime edits were
+performed for publication.
+
+Remote main matched parent `52659bd8d22559dc0943ddd999e681d84d705d8e`.
+External checkpoint `Publish-all-20261030T180617Z` preserves 1,350 actual
+local files and verified Git history; source ZIP SHA-256
+`0c5cb6547bf035eb33ec362603ca544f53079e71f6d31e0e5185d24ef80422d7`.
+Private settings/captures/archives and ignored local helpers remain outside Git.
+Use an ordinary push on main and verify remote identity and clean status.

@@ -36,7 +36,7 @@ FLUX_API.hasC_UnitAuras_GetAuraBaseDuration = (C_UnitAuras ~= nil and C_UnitAura
 FLUX_API.hasSecretValueAPI = (_issecretvalue ~= nil)
 FLUX_API.hasCanAccessValue = (canaccessvalue ~= nil)
 FLUX_API.hasEditMode = (C_EditMode ~= nil) and (EditModeManagerFrame ~= nil)
-FLUX_API.hasToyBox = (C_ToyBox ~= nil) and (C_ToyBox.GetToyInfo ~= nil) and (PlayerHasToy ~= nil) and (ToggleCollectionsJournal ~= nil)
+FLUX_API.hasToyBox = (C_ToyBox ~= nil) and (C_ToyBox.GetToyInfo ~= nil) and (PlayerHasToy ~= nil)
 FLUX_API.hasC_MountJournal = (C_MountJournal ~= nil)
 FLUX_API.hasToggleCollectionsJournal = (ToggleCollectionsJournal ~= nil)
 FLUX_API.hasC_Timer_NewTicker = (C_Timer ~= nil and C_Timer.NewTicker ~= nil)

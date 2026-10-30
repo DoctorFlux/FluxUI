@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 141 |
+| inactive source | 142 |
 
 ## Addon sources
 
@@ -608,6 +608,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_child_startup.lua](../tests/grid_child_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_hotkey_refresh.lua](../tests/grid_hotkey_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/hearth_config_toy_collection.lua](../tests/hearth_config_toy_collection.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/hud_startup.lua](../tests/hud_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/idle_bars.lua](../tests/idle_bars.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/idle_chat.lua](../tests/idle_chat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -1284,9 +1285,8 @@ These load external addon packages; their contents are not bundled FluxUI source
 | [Core/FluxAPI/UI.lua:233](../Core/FluxAPI/UI.lua#L233) | `LoadAddOn("Blizzard_PetJournal")` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:1103](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L1103) | `LoadAddOn("Blizzard_Collections")` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua:1118](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua#L1118) | `LoadAddOn("Blizzard_PetJournal")` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:352](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L352) | `LoadAddOn("Blizzard_Collections")` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:373](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L373) | `LoadAddOn("Blizzard_Collections")` |
-| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:375](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L375) | `LoadAddOn("Blizzard_Collections")` |
+| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:354](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L354) | `LoadAddOn("Blizzard_Collections")` |
+| [ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua:356](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua#L356) | `LoadAddOn("Blizzard_Collections")` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:668](../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L668) | `LoadAddOn("Blizzard_Collections")` |
 | [ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua:670](../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua#L670) | `LoadAddOn("Blizzard_Collections")` |
 | [MicroMenu/FluxMacroMicroButton.lua:19](../MicroMenu/FluxMacroMicroButton.lua#L19) | `LoadAddOn("Blizzard_MacroUI")` |

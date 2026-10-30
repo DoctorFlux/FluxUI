@@ -1,5 +1,46 @@
 # Baseline protocol and currency evidence
 
+30 October historical Sticky Targeting follow-up adds no timer or recurring
+work. When the native Controls setting exists and raw CVar already equals 1,
+it skips the setting call. The rest of the modern Settings API guard is
+unchanged. Focused 75-check desktop fixture covers callback count; native
+frame time, CPU, allocations and FPS remain unmeasured.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+30 October Retail Controls/camera correction replaces a speculative camera
+maximum and adds one native Sticky Targeting CVar to the bounded first-load
+audit. Already-correct Sticky Targeting avoids another CVar write; an earlier
+failed audit gets one settings-only retry. The 68-check desktop fixture does
+not measure native startup frame time, CPU, memory or FPS. No profiler setting
+was changed. [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+30 October first-load settings follow-up moves nonbinding writes to first
+world entry and adds one post-startup audit, limited to three attempts at
+0.5-second intervals when values disagree. Completed accounts do no audit
+polling. Category reset reporting is at most one success message. The full
+106-script/748-Lua desktop suite passes; native frame-time, CPU, memory and
+FPS effects are unmeasured. [Evidence](NONBINDING_FIRST_LOAD.md).
+
+30 October Hearthstone selector hover correction replaces one direct legacy
+item-name call with the existing `Flux.Item.GetInfo` service and a Toy Box
+fallback only when the item name is unavailable. It adds no timer, cache or
+recurring work. The 19-check desktop regression covers behavior; native
+tooltip latency, frame time, CPU and FPS remain unmeasured.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+30 October Hearthstone panel load-order follow-up changes only its startup
+capability lookup from the later `FLUX_API` to already-loaded `Flux.Cap`.
+No timer or recurring resource was added. The corrected 17-check fixture
+and 106-script/748-Lua full desktop suite cover registration behavior, not
+native timing. Editor-open latency, frame time, CPU and FPS remain unmeasured.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+30 October Hearthstone Toy Box config changes one startup capability probe
+and the user-invoked Collections opener. It adds no polling or recurring
+resource. The 14-check focused fixture and 106-script/748-Lua desktop suite
+cover behavior only. Native startup cost, editor opening latency, frame time,
+CPU and FPS are unmeasured. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 30 October atomic-context binding follow-up completes the first-account
 clear, assign, verify and save/load in one call. Ordinary completed-account
 logins do no binding scan or write; retries touch only incorrect keys and stop

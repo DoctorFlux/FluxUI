@@ -1,5 +1,53 @@
 # Client and reference validation — 29 October 2026
 
+30 October historical Sticky Targeting follow-up: the linked GitHub main
+source matches the pre-fix local routine. The older 13 August snapshot uses
+the registered negated setting on Retail; the current targeted route passes
+76 desktop checks. Native Retail/Forever checkbox value, reload persistence,
+taint and frame time remain pending; no WoW process was visible.
+[Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+30 October Retail Controls/camera report: the user's native pre-fix readback
+was camera factor `1.900000`, engine maximum `nil`, Sticky Targeting CVar
+`deselectOnClick=0`, with first-load verification failing on the camera.
+The revised 68-check desktop fixture passes; post-fix Retail acceptance is
+pending. No WoW process/window was visible for a background check. Era and
+other clients remain native pending. [Evidence](RETAIL_CONTROLS_CAMERA_FIX.md).
+
+30 October first-load settings follow-up: the five-client source-driven
+desktop suite passes 60 first-load checks and 507 binding checks; full
+validation passes 106 scripts/748 Lua. Native Controls, nameplates, raid
+appearance, single completion message, reload preservation, Settings reset,
+taint and frame time remain pending for all clients. No WoW process was
+visible; no client was controlled. [Evidence](NONBINDING_FIRST_LOAD.md).
+
+30 October Hearthstone selector native report: the Toy Box choice selector's
+hover handler threw at line 491 because the client's `GetItemInfo` global was
+nil. The new source-driven fixture reproduces that failure and passes 19
+checks after using the shared item service and Toy Box name fallback. Full
+desktop validation passes 106 scripts/748 Lua files. The user's report
+establishes the hover error, not successful toy selection or native post-fix
+acceptance. Hover, choice, secure use, reload persistence, combat/taint and
+pixels remain pending. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+30 October Hearthstone panel follow-up: the user reports the panel remained
+absent beside Toy Box. The previous fixture supplied `FLUX_API` before its
+actual TOC position and could not prove registration. A corrected 17-check
+source-driven fixture verifies the editor registers using earlier `Flux.Cap`
+while `FLUX_API` is absent; full desktop validation passes 106 scripts/748
+Lua syntax files. Native panel visibility, toy selection/use, reload scope,
+combat/taint and pixels remain pending on each Toy Box client.
+[Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
+30 October Hearthstone Toy Box config: a source-driven desktop fixture passes
+14 checks for a toy-capable client without `ToggleCollectionsJournal`, modern
+Collections loading, editor visibility, owned-toy selection/readback and a
+second native opener. Full validation passes 106 scripts/748 Lua syntax files.
+Every Toy Box client still needs native Toy Box opening, tab switching, toy
+choice, actual Hearthstone button use, reload/scope persistence and combat/
+taint checks. Basic fallback on non-toy clients remains to be checked natively.
+No WoW process was visible or controlled. [Evidence](HEARTH_CONFIG_TOY_COLLECTION.md).
+
 30 October atomic-context binding follow-up: the five-client production-source
 model passes 507 checks, with 105 scripts/747 Lua files passing the full desktop
 suite. Mariosuper Era and Pandasans Retail were requested for native testing,
