@@ -1,5 +1,21 @@
 # Next session
 
+Latest work (30 October 2026): [unit power visibility](docs/UNIT_POWER_VISIBILITY.md)
+hides Flux-owned main/raid power bars for known zero maximum and expands health.
+Live/Forever keep full-height health behind power and pass maximum power through
+secret-safe alpha; zero current keeps the resource visible. Focus-target and
+pet-target were health-only already. Focused models and full 96-script/737-Lua
+desktop suite pass; native all-client geometry/combat/taint/secret checks pending.
+Health text uses full-height HP for a known zero maximum and stays in the health
+section for restricted maxima. The Flux separator restores resource alpha after
+partition/chrome repaints, including ToT refreshes; secret maxima are never
+tested for truth in Lua. Player/target labels move to the expanded HP bar's
+vertical middle for known zero power and restore nested placement on return;
+ToT's separator container follows its raised side-by-side frame level. Native
+text/border pixels remain pending.
+WoW and on-disk settings/profilers were untouched. Working tree is on main with
+uncommitted source/test/docs. Preserve newer user changes before further work.
+
 Latest user work: [teleport counts/interruption](docs/TELEPORT_CAST_WORK.md),
 BUG-012/PERF-011. User confirms Retail. Candidate uses native count text and
 restores the host without popup/binding rebuild. 527 focused checks, three

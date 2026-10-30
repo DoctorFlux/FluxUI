@@ -1,5 +1,24 @@
 # Decisions
 
+## 2026-10-30 — empty unit resource bars
+
+- Use maximum power, never current power, to classify an absent main resource.
+  Compare only nonsecret numeric values. On Live/Forever, layer resource over
+  full-height health and forward max power to the secret-accepting alpha sink.
+  This also hides a secret zero without branching on it in Lua.
+- Apply the behavior to Flux-owned unit frames and raid cells. Existing
+  health-only satellites and Blizzard-owned frames keep their respective layouts.
+- Use existing power events and partition code. Raid max-power changes now
+  trigger updates; combat reanchoring waits for regeneration. Preserve the raid
+  hide-power setting, overlays, profile data and frame sizes. Keep text/raid-icon
+  anchors in their original upper area while health extends underneath.
+- After user feedback, center health text across full HP when resource presence
+  is absent/restricted, and retain the original split text area for a known
+  positive maximum. Keep power text parented under the alpha-controlled bar.
+  The Flux separator starts transparent and follows max-power alpha.
+- [Desktop evidence and native limits](UNIT_POWER_VISIBILITY.md). Earlier main
+  branch holds below are historical; 29 October main-only authorization applies.
+
 ## 2026-10-29 — teleport counts/interrupted casts
 
 - User confirms Retail. Native display text, including empty, owns this preset's
@@ -296,3 +315,24 @@
   the workspace to the previously published revision or omit uncommitted work.
 - Keep private recoveries/settings/captures and ignored local helpers outside Git.
   Publication does not change native acceptance results or live game preferences.
+
+## 2026-10-30 - resource separator and text refresh
+
+- Reapply the main separator's maximum-power alpha after partition and border
+  color paint; both paths can repaint its alpha aspect after a power update.
+- Keep restricted-maximum health text in the health section. Only a known zero
+  maximum selects the full-height text area. Do not test secret maxima for
+  truth in Lua; pass them directly to `SetAlpha`.
+- Include target-of-target loss and return in focused desktop regression checks.
+  Native pixel and combat acceptance remain pending.
+
+## 2026-10-30 - expanded HP text and ToT split
+
+- For a known zero maximum, keep player/target HP labels at their existing
+  horizontal sides but center them vertically in the expanded health area.
+  On resource return, refresh health text anchors so nested placement returns.
+- Keep ToT's UIParent separator container ten levels above the ToT button after
+  side-by-side placement changes the button's frame level. Restore the original
+  button level when returning to the stacked layout.
+- Restricted maximum values cannot select a text layout in addon Lua; retain
+  the upper HP placement until a nonsecret zero maximum is available.

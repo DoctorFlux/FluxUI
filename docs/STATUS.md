@@ -1,5 +1,19 @@
 # Development status
 
+Latest unit-frame change (30 October 2026): Flux-owned main and raid power bars
+hide for a known zero maximum; health fills the freed space. On Live/Forever,
+full-height health sits behind a resource layer whose alpha accepts secret max
+power directly. A zero current value keeps its bar. [Behavior and limits](UNIT_POWER_VISIBILITY.md).
+Health text now uses the full-height anchor for a known zero maximum; restricted
+maxima keep text in the health section. The Flux separator reapplies power alpha
+after partition/chrome repaint, including ToT changes; power text follows the
+resource layer's alpha. Player/target HP labels move to the vertical middle
+for known zero power and restore their nested positions when power returns.
+ToT separator chrome now follows its raised side-by-side frame level.
+Focused checks and the full desktop suite pass: 96 scripts, 737 Lua syntax files.
+Native client geometry, combat/taint and secret-value acceptance remain pending.
+Main working tree contains this uncommitted change; no game/settings interaction.
+
 Latest follow-up: [BUG-012/PERF-011](TELEPORT_CAST_WORK.md) corrects teleport/portal
 counts and removes reagent scans/popup rebuilds from interrupted-cast recovery.
 User confirms Retail. 527 focused checks, three rejected mutations and five

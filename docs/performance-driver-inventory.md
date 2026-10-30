@@ -259,7 +259,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [RaidFrame/FluxRaidFrame_BigDebuffs.lua](../RaidFrame/FluxRaidFrame_BigDebuffs.lua) | 0 | 0 | 1 | 1 | 0 |
 | [RaidFrame/FluxRaidLayout.lua](../RaidFrame/FluxRaidLayout.lua) | 0 | 0 | 8 | 0 | 4 |
 | [RaidFrame/FluxRaidPreview.lua](../RaidFrame/FluxRaidPreview.lua) | 0 | 0 | 1 | 4 | 0 |
-| [RaidFrame/FluxRaidUnit.lua](../RaidFrame/FluxRaidUnit.lua) | 0 | 1 | 0 | 0 | 1 |
+| [RaidFrame/FluxRaidUnit.lua](../RaidFrame/FluxRaidUnit.lua) | 0 | 1 | 0 | 1 | 1 |
 | [Respec/FluxRespec_ActionBars.lua](../Respec/FluxRespec_ActionBars.lua) | 0 | 0 | 0 | 1 | 0 |
 | [Respec/FluxRespec_AtieshDualSpecFix.lua](../Respec/FluxRespec_AtieshDualSpecFix.lua) | 0 | 0 | 3 | 8 | 0 |
 | [Respec/FluxRespec_Core.lua](../Respec/FluxRespec_Core.lua) | 0 | 0 | 2 | 8 | 0 |

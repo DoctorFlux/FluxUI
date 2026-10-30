@@ -494,6 +494,8 @@ function FluxRaidVisuals.ApplyCellChrome(frame, opts)
     end
     local pbh = showPower and (tonumber(FluxRaidVisuals.POWER_BAR_HEIGHT) or 0) or 0
     frame.powerBarUsedHeight = pbh
+    local hudBars = ns and ns.UnitFrames and ns.UnitFrames.UsesHudUnitBars
+        and ns.UnitFrames.UsesHudUnitBars()
 
     if frame.background and frame.background.SetColorTexture then
         frame.background:SetColorTexture(0.07, 0.07, 0.08, 1)
@@ -502,7 +504,9 @@ function FluxRaidVisuals.ApplyCellChrome(frame, opts)
     if frame.healthBar then
         frame.healthBar:ClearAllPoints()
         frame.healthBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 1, -1)
-        frame.healthBar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -1, 1 + pbh)
+        -- Live/Forever may restrict max power. Keep HP behind the resource
+        -- layer so a secret zero can reveal the full bar through native alpha.
+        frame.healthBar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -1, hudBars and 1 or 1 + pbh)
         if frame.healthBar.SetStatusBarTexture then
             pcall(frame.healthBar.SetStatusBarTexture, frame.healthBar, "Interface\\RaidFrame\\Raid-Bar-Hp-Fill")
         end
@@ -515,9 +519,19 @@ function FluxRaidVisuals.ApplyCellChrome(frame, opts)
     end
 
     if frame.powerBar then
+        if hudBars and not frame._fluxPowerAboveHealth
+            and not (InCombatLockdown and InCombatLockdown())
+            and frame.healthBar and frame.healthBar.GetFrameLevel then
+            frame.powerBar:SetFrameLevel(frame.healthBar:GetFrameLevel() + 2)
+            frame._fluxPowerAboveHealth = true
+        end
         if showPower then
             frame.powerBar:ClearAllPoints()
-            frame.powerBar:SetPoint("TOPLEFT", frame.healthBar or frame, frame.healthBar and "BOTTOMLEFT" or "BOTTOMLEFT", 0, 0)
+            if hudBars then
+                frame.powerBar:SetPoint("TOPLEFT", frame, "BOTTOMLEFT", 1, 1 + pbh)
+            else
+                frame.powerBar:SetPoint("TOPLEFT", frame.healthBar or frame, frame.healthBar and "BOTTOMLEFT" or "BOTTOMLEFT", 0, 0)
+            end
             frame.powerBar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -1, 1)
             if frame.powerBar.SetStatusBarTexture then
                 pcall(frame.powerBar.SetStatusBarTexture, frame.powerBar, "Interface\\RaidFrame\\Raid-Bar-Resource-Fill")

@@ -64221,8 +64221,8 @@
       "path": "RaidFrame/FluxRaidUnit.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 1136,
-      "sha256": "cbfdc2a48df89f62abe4ecb541b6b64fcd30e26a786f9dc02d87e9718167d6e8",
+      "lines": 1168,
+      "sha256": "6ce37a98ef63d1f1a5a47709e21a519e50e2c198724265bb624689ff50386150",
       "clients": [
         "camelot",
         "cata",
@@ -64244,142 +64244,151 @@
         },
         {
           "name": "FluxRaid_UpdateHealth",
-          "line": 78
+          "line": 84
         },
         {
           "name": "FluxRaid_UpdatePower",
-          "line": 100
+          "line": 106
         },
         {
           "name": "FluxRaid_UpdateHealPrediction",
-          "line": 151
+          "line": 177
         },
         {
           "name": "FluxRaid_UpdateName",
-          "line": 188
+          "line": 214
         },
         {
           "name": "FluxRaid_UpdateStatusText",
-          "line": 215
+          "line": 241
         },
         {
           "name": "FluxRaid_UpdateSelectionHighlight",
-          "line": 293
+          "line": 319
         },
         {
           "name": "FluxRaid_UpdateAggroHighlight",
-          "line": 310
+          "line": 336
         },
         {
           "name": "FluxRaid_UpdateRoleIcon",
-          "line": 353
+          "line": 379
         },
         {
           "name": "FluxRaid_UpdateCenterStatus",
-          "line": 395
+          "line": 421
         },
         {
           "name": "FluxRaid_UpdateReadyCheck",
-          "line": 423
+          "line": 449
         },
         {
           "name": "FluxRaid_UpdateRange",
-          "line": 447
+          "line": 473
         },
         {
           "name": "FluxRaid_UpdateAuras",
-          "line": 543
+          "line": 569
         },
         {
           "name": "FluxRaid_UpdateDispelHighlight",
-          "line": 582
+          "line": 608
         },
         {
           "name": "FluxRaid_PaintUnit",
-          "line": 631
+          "line": 657
         },
         {
           "name": "FluxRaid_BindUnit",
-          "line": 730
+          "line": 762
         },
         {
           "name": "FluxRaid_OnUnitAttributeChanged",
-          "line": 753
+          "line": 785
         },
         {
           "name": "FluxRaidUnit_OnLoad",
-          "line": 764
+          "line": 796
         },
         {
           "name": "FluxRaidUnit_OnShow",
-          "line": 801
+          "line": 833
         },
         {
           "name": "FluxRaidUnit_OnHide",
-          "line": 810
+          "line": 842
         },
         {
           "name": "FluxRaidUnit_OnEnter",
-          "line": 835
+          "line": 867
         },
         {
           "name": "FluxRaidUnit_OnLeave",
-          "line": 843
+          "line": 875
         },
         {
           "name": "ns.FluxRaidRegisterAllMouseoverKeybindFrames",
-          "line": 853
+          "line": 885
         },
         {
           "name": "FluxRaid_ForEachHeaderChild",
-          "line": 863
+          "line": 895
         },
         {
           "name": "FluxRaid_SyncHeaderChildUnits",
-          "line": 888
+          "line": 920
         },
         {
           "name": "FluxRaid_ApplyChromeToChildren",
-          "line": 900
+          "line": 932
         },
         {
           "name": "FluxRaid_SyncAllFluxUnitAuraSettings",
-          "line": 923
+          "line": 955
         },
         {
           "name": "FluxRaid_RefreshVisibleUnits",
-          "line": 931
+          "line": 963
         },
         {
           "name": "FluxRaid_RefreshSelfDisplayNames",
-          "line": 950
-        },
-        {
-          "name": "FluxRaid_EnsureRangePoll",
           "line": 982
         },
         {
+          "name": "FluxRaid_EnsureRangePoll",
+          "line": 1014
+        },
+        {
           "name": "FluxRaid_IsMTMAChild",
-          "line": 991
+          "line": 1023
         },
         {
           "name": "FluxCompactMiniFrameSetup",
-          "line": 1022
+          "line": 1054
         },
         {
           "name": "FluxRaid_AttachOrUpdateMTMATarget",
-          "line": 1067
+          "line": 1099
         },
         {
           "name": "FluxRaid_RefreshMTMATargetAttachments",
-          "line": 1102
+          "line": 1134
         },
         {
           "name": "FluxCompactMiniFrameSetup_G.FluxCompactUnitFrameSetup",
-          "line": 1116
+          "line": 1148
         }
       ],
-      "events": [],
+      "events": [
+        {
+          "line": 64,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_REGEN_ENABLED\""
+          ],
+          "context": ".RegisterEventthenframe:"
+        }
+      ],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -64389,8 +64398,8 @@
       "path": "RaidFrame/FluxRaidVisuals.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 594,
-      "sha256": "462fb1e32a4339768d039ec074ed03fcae20f535c473274945e5c70819a065b1",
+      "lines": 608,
+      "sha256": "76623e13293080e5173c036e304b0cb4833a553b2a4ef322cc468802f6b078aa",
       "clients": [
         "camelot",
         "cata",
@@ -64476,19 +64485,19 @@
         },
         {
           "name": "FluxRaidVisuals.ApplyVisuals",
-          "line": 579
+          "line": 593
         },
         {
           "name": "FluxRaidVisuals.SetupHealAbsorbLayers",
-          "line": 584
+          "line": 598
         },
         {
           "name": "FluxRaidVisuals.SetupReadyCheckIcon",
-          "line": 587
+          "line": 601
         },
         {
           "name": "FluxRaidVisuals.RefreshNeutralBarTracks",
-          "line": 590
+          "line": 604
         }
       ],
       "events": [],
@@ -76194,6 +76203,172 @@
       "sv_sites": []
     },
     {
+      "path": "tests/unit_power_visibility.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 216,
+      "sha256": "2b227ac537a108e475c9d09867b4e6677366fe46a64accbb583e5038788fa537",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "UF.UnitIsAFKDisplay",
+          "line": 35
+        },
+        {
+          "name": "UF.UpdateHealth",
+          "line": 37
+        },
+        {
+          "name": "endUF.UsesHudUnitBars",
+          "line": 38
+        },
+        {
+          "name": "returnmodernendUF.PowerValueForDisplay",
+          "line": 39
+        },
+        {
+          "name": "returnvalueendUF.ApplyResourceBarStyle",
+          "line": 40
+        },
+        {
+          "name": "endUF.RefreshResourceConnection",
+          "line": 41
+        },
+        {
+          "name": "endUF.UpdateResourceSpark",
+          "line": 42
+        },
+        {
+          "name": "endUF.UpdateFullResourcePulse",
+          "line": 43
+        },
+        {
+          "name": "endUF.FrameUsesPortraitLayout",
+          "line": 44
+        },
+        {
+          "name": "returnfalseendUF.UpdateAtlasBorder",
+          "line": 45
+        },
+        {
+          "name": "endUF.UpdateOuterBorder",
+          "line": 46
+        },
+        {
+          "name": "endUF.LayoutThreatBar",
+          "line": 47
+        },
+        {
+          "name": "r:Show",
+          "line": 54
+        },
+        {
+          "name": "r:Hide",
+          "line": 55
+        },
+        {
+          "name": "r:SetHeight",
+          "line": 56
+        },
+        {
+          "name": "r:ClearAllPoints",
+          "line": 57
+        },
+        {
+          "name": "r:SetPoint",
+          "line": 58
+        },
+        {
+          "name": "r:SetWidth",
+          "line": 59
+        },
+        {
+          "name": "r:SetVertexColor",
+          "line": 61
+        },
+        {
+          "name": "r:SetAlpha",
+          "line": 62
+        },
+        {
+          "name": "r:GetNumPoints",
+          "line": 63
+        },
+        {
+          "name": "frame:GetHeight",
+          "line": 71
+        },
+        {
+          "name": "frame:GetWidth",
+          "line": 72
+        },
+        {
+          "name": "frame:IsEventRegistered",
+          "line": 73
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 74
+        },
+        {
+          "name": "frame:UpdatePartition",
+          "line": 75
+        },
+        {
+          "name": "label:IsShown",
+          "line": 160
+        },
+        {
+          "name": "label:SetText",
+          "line": 161
+        },
+        {
+          "name": "label:SetPoint",
+          "line": 162
+        },
+        {
+          "name": "raid:RegisterEvent",
+          "line": 192
+        },
+        {
+          "name": "raid.powerBar:SetShown",
+          "line": 193
+        },
+        {
+          "name": "raid.powerBar:IsShown",
+          "line": 194
+        },
+        {
+          "name": "raid.powerBar:SetMinMaxValues",
+          "line": 195
+        },
+        {
+          "name": "raid.powerBar:SetStatusBarColor",
+          "line": 196
+        },
+        {
+          "name": "raid.powerBar:SetValue",
+          "line": 197
+        }
+      ],
+      "events": [
+        {
+          "line": 192,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": ")}functionraid:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/unit_resource_lifecycle.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -79746,8 +79921,8 @@
       "path": "UnitFrames/FluxUnitFrames_Shared.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 8833,
-      "sha256": "f0ea171f2f0add3f43a1a8bdf137defcaaa5c9721c1d30f1ea0ed8dd93f6f4f9",
+      "lines": 8918,
+      "sha256": "b79020e60ea469665a549ca08f47816388800d94453bbe41fc347775ee81ad81",
       "clients": [
         "camelot",
         "cata",
@@ -79953,183 +80128,183 @@
         },
         {
           "name": "UF.CreateHealthBar",
-          "line": 2891
+          "line": 2895
         },
         {
           "name": "UF.UpdateHealthColor",
-          "line": 3127
+          "line": 3139
         },
         {
           "name": "UF.UpdatePower",
-          "line": 3175
+          "line": 3187
         },
         {
           "name": "UF.CreatePowerBar",
-          "line": 3296
+          "line": 3341
         },
         {
           "name": "UF.CreatePortrait",
-          "line": 3561
+          "line": 3606
         },
         {
           "name": "UF.FrameUsesPortraitLayout",
-          "line": 3773
+          "line": 3818
         },
         {
           "name": "UF.LayoutBigDebuffsCornerPlaceholder",
-          "line": 3790
+          "line": 3835
         },
         {
           "name": "UF.UpdatePortrait",
-          "line": 3930
+          "line": 3975
         },
         {
           "name": "UF.SyncPortraitModelGeometry",
-          "line": 4007
+          "line": 4052
         },
         {
           "name": "UF.RefreshPortraitAfterDisplayMetrics",
-          "line": 4033
+          "line": 4078
         },
         {
           "name": "UF.UpdatePlayerSpecIconOnly",
-          "line": 4161
+          "line": 4206
         },
         {
           "name": "_G.FluxUnitFrames_RefreshPlayerSpecIcon",
-          "line": 4220
+          "line": 4265
         },
         {
           "name": "_G.FluxUnitFrames_GetPlayerSpecIcon",
-          "line": 4281
+          "line": 4326
         },
         {
           "name": "UF.CreateAtlasBorder",
-          "line": 4319
-        },
-        {
-          "name": "UF.UpdateAtlasBorder",
           "line": 4364
         },
         {
+          "name": "UF.UpdateAtlasBorder",
+          "line": 4409
+        },
+        {
           "name": "UF.GuardTooltipStatusBar",
-          "line": 4408
+          "line": 4453
         },
         {
           "name": "mixin:ResetUnitHealth",
-          "line": 4436
+          "line": 4481
         },
         {
           "name": "mixin:UpdateUnitHealth",
-          "line": 4443
+          "line": 4488
         },
         {
           "name": "UF.ShowUnitTooltip",
-          "line": 4451
+          "line": 4496
         },
         {
           "name": "endGameTooltip.UpdateTooltip",
-          "line": 4480
+          "line": 4525
         },
         {
           "name": "UF.HideUnitTooltip",
-          "line": 4492
+          "line": 4537
         },
         {
           "name": "UF.CreateMouseoverHighlight",
-          "line": 4534
+          "line": 4579
         },
         {
           "name": "UF.CreateOuterBorder",
-          "line": 4614
+          "line": 4659
         },
         {
           "name": "outerBorderFrame.SetRightClickMenu",
-          "line": 4847
+          "line": 4892
         },
         {
           "name": "UF.SetFrameLevelIfChanged",
-          "line": 4965
+          "line": 5010
         },
         {
           "name": "UF.UpdatePortraitCombatTint",
-          "line": 5066
+          "line": 5111
         },
         {
           "name": "UF.UpdateBorderColors",
-          "line": 5092
+          "line": 5137
         },
         {
           "name": "UF.UpdateOuterBorder",
-          "line": 5985
+          "line": 6033
         },
         {
           "name": "UF.UpdateAdditionalPower",
-          "line": 6667
+          "line": 6716
         },
         {
           "name": "UF.CreateAdditionalPowerBar",
-          "line": 6823
+          "line": 6872
         },
         {
           "name": "UF.GetThreatBarPosition",
-          "line": 7008
+          "line": 7057
         },
         {
           "name": "UF.CreateThreatBar",
-          "line": 7316
+          "line": 7365
         },
         {
           "name": "UF.LayoutThreatBar",
-          "line": 7383
+          "line": 7432
         },
         {
           "name": "UF.UpdateThreatBar",
-          "line": 7500
+          "line": 7549
         },
         {
           "name": "UF.UpdateFrameVisualElements",
-          "line": 7704
+          "line": 7753
         },
         {
           "name": "UF.UpdateFramePartitionSeparators",
-          "line": 7849
+          "line": 7898
         },
         {
           "name": "UF.GetFluxStylePartitionHealthHeight",
-          "line": 7877
+          "line": 7931
         },
         {
           "name": "UF.UpdateFramePartition",
-          "line": 7891
+          "line": 7945
         },
         {
           "name": "UF.ApplyEmulatedHorizontalSqueezeForFrame",
-          "line": 8491
+          "line": 8572
         },
         {
           "name": "UF.UpdateAllEmulatedHorizontalSqueeze",
-          "line": 8495
+          "line": 8576
         },
         {
           "name": "FluxUnitFrames_UpdateAllEmulatedHorizontalSqueeze",
-          "line": 8507
+          "line": 8588
         },
         {
           "name": "UF.RegisterEmulatedHorizontalSqueeze",
-          "line": 8511
+          "line": 8592
         },
         {
           "name": "UF.CreateBaseFrame",
-          "line": 8556
+          "line": 8637
         },
         {
           "name": "UF.RefreshSelfDisplayNames",
-          "line": 8792
+          "line": 8877
         },
         {
           "name": "FluxUnitFrames_RefreshAppearanceChrome",
-          "line": 8814
+          "line": 8899
         }
       ],
       "events": [
@@ -80166,7 +80341,7 @@
           "context": "PulseFrame=pulseFramepulse:"
         },
         {
-          "line": 4146,
+          "line": 4191,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -80175,7 +80350,7 @@
           "context": ".RegisterUnitEventtheninspectFrame:"
         },
         {
-          "line": 4148,
+          "line": 4193,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_TARGET\""
@@ -80183,7 +80358,7 @@
           "context": "\"player\")elseinspectFrame:"
         },
         {
-          "line": 4809,
+          "line": 4854,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -80191,7 +80366,7 @@
           "context": ")end)pvpTimerFrame:"
         },
         {
-          "line": 4810,
+          "line": 4855,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\""
@@ -80199,7 +80374,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")pvpTimerFrame:"
         },
         {
-          "line": 4844,
+          "line": 4889,
           "method": "RegisterEvent",
           "arguments": [
             "\"RAID_TARGET_UPDATE\""
@@ -80207,7 +80382,7 @@
           "context": ",\"togglemenu\")outerBorderFrame:"
         },
         {
-          "line": 5997,
+          "line": 6045,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80215,7 +80390,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 8003,
+          "line": 8072,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80223,7 +80398,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 8027,
+          "line": 8101,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80231,7 +80406,7 @@
           "context": "\"PLAYER_REGEN_ENABLED\")thenself:"
         },
         {
-          "line": 8520,
+          "line": 8601,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -80239,7 +80414,7 @@
           "context": "(\"Frame\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 8521,
+          "line": 8602,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -80247,7 +80422,7 @@
           "context": "(\"UI_SCALE_CHANGED\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 8522,
+          "line": 8603,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -80255,7 +80430,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 8523,
+          "line": 8604,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80263,7 +80438,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")emulatedSqueezeEventFrame:"
         },
         {
-          "line": 8582,
+          "line": 8663,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -80271,7 +80446,7 @@
           "context": ",OnEvent)frame:"
         },
         {
-          "line": 8583,
+          "line": 8664,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -80279,7 +80454,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")frame:"
         },
         {
-          "line": 8584,
+          "line": 8665,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -80287,7 +80462,7 @@
           "context": "(\"UI_SCALE_CHANGED\")frame:"
         },
         {
-          "line": 8585,
+          "line": 8666,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_SHAPESHIFT_FORM\""
@@ -80295,7 +80470,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")frame:"
         },
         {
-          "line": 8586,
+          "line": 8667,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_HEALTH\"",
@@ -80304,7 +80479,7 @@
           "context": "(\"UPDATE_SHAPESHIFT_FORM\")frame:"
         },
         {
-          "line": 8587,
+          "line": 8668,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MAXHEALTH\"",
@@ -80313,7 +80488,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8588,
+          "line": 8669,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_POWER_UPDATE\"",
@@ -80322,7 +80497,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8589,
+          "line": 8670,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_MAXPOWER\"",
@@ -80331,7 +80506,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8590,
+          "line": 8671,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_DISPLAYPOWER\"",
@@ -80340,7 +80515,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8598,
+          "line": 8679,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -80348,7 +80523,7 @@
           "context": "==\"target\"thenframe:"
         },
         {
-          "line": 8599,
+          "line": 8680,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80356,7 +80531,7 @@
           "context": "(\"PLAYER_TARGET_CHANGED\")frame:"
         },
         {
-          "line": 8603,
+          "line": 8684,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -80365,7 +80540,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 8605,
+          "line": 8686,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -80374,7 +80549,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8606,
+          "line": 8687,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -80383,7 +80558,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8607,
+          "line": 8688,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -80391,7 +80566,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8608,
+          "line": 8689,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_THREAT_LIST_UPDATE\""
@@ -80399,7 +80574,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")frame:"
         },
         {
-          "line": 8610,
+          "line": 8691,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -80408,7 +80583,7 @@
           "context": "==\"targettarget\"thenframe:"
         },
         {
-          "line": 8611,
+          "line": 8692,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -80416,7 +80591,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8612,
+          "line": 8693,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80424,7 +80599,7 @@
           "context": "(\"PLAYER_TARGET_CHANGED\")frame:"
         },
         {
-          "line": 8615,
+          "line": 8696,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -80433,7 +80608,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")frame:"
         },
         {
-          "line": 8620,
+          "line": 8701,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -80442,7 +80617,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 8621,
+          "line": 8702,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -80451,7 +80626,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8626,
+          "line": 8707,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -80459,7 +80634,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")elseframe:"
         },
         {
-          "line": 8628,
+          "line": 8709,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80467,7 +80642,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")endframe:"
         },
         {
-          "line": 8630,
+          "line": 8711,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -80476,7 +80651,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 8631,
+          "line": 8712,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -80485,7 +80660,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8632,
+          "line": 8713,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -80494,7 +80669,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8633,
+          "line": 8714,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -80502,7 +80677,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8634,
+          "line": 8715,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_THREAT_LIST_UPDATE\""
@@ -80510,7 +80685,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")frame:"
         },
         {
-          "line": 8636,
+          "line": 8717,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -80519,7 +80694,7 @@
           "context": "==\"focustarget\"thenframe:"
         },
         {
-          "line": 8640,
+          "line": 8721,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FOCUS_CHANGED\""
@@ -80527,7 +80702,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")elseframe:"
         },
         {
-          "line": 8642,
+          "line": 8723,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -80536,7 +80711,7 @@
           "context": "\"PLAYER_FOCUS_CHANGED\")endframe:"
         },
         {
-          "line": 8643,
+          "line": 8724,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80544,7 +80719,7 @@
           "context": ",\"focus\")frame:"
         },
         {
-          "line": 8645,
+          "line": 8726,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_CLASSIFICATION_CHANGED\"",
@@ -80553,7 +80728,7 @@
           "context": "(frame)frame:"
         },
         {
-          "line": 8646,
+          "line": 8727,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_LEVEL\"",
@@ -80562,7 +80737,7 @@
           "context": ",unit)frame:"
         },
         {
-          "line": 8649,
+          "line": 8730,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_PET\""
@@ -80570,7 +80745,7 @@
           "context": "==\"player\"thenframe:"
         },
         {
-          "line": 8654,
+          "line": 8735,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_NAME_UPDATE\"",
@@ -80580,7 +80755,7 @@
           "context": "\"UNIT_HAPPINESS\")endframe:"
         },
         {
-          "line": 8658,
+          "line": 8739,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -80588,7 +80763,7 @@
           "context": ",\"pet\")frame:"
         },
         {
-          "line": 8659,
+          "line": 8740,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -80596,7 +80771,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 8660,
+          "line": 8741,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\""
@@ -80604,7 +80779,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")frame:"
         },
         {
-          "line": 8664,
+          "line": 8745,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -80612,7 +80787,7 @@
           "context": "\"PLAYER_FLAGS_CHANGED\")endframe:"
         },
         {
-          "line": 8665,
+          "line": 8746,
           "method": "RegisterEvent",
           "arguments": [
             "\"RAID_ROSTER_UPDATE\""
@@ -80620,7 +80795,7 @@
           "context": "(\"GROUP_ROSTER_UPDATE\")frame:"
         },
         {
-          "line": 8666,
+          "line": 8747,
           "method": "RegisterEvent",
           "arguments": [
             "\"PARTY_LEADER_CHANGED\""
@@ -80628,7 +80803,7 @@
           "context": "(\"RAID_ROSTER_UPDATE\")frame:"
         },
         {
-          "line": 8670,
+          "line": 8751,
           "method": "RegisterEvent",
           "arguments": [
             "\"PARTY_LOOT_METHOD_CHANGED\""
@@ -80636,7 +80811,7 @@
           "context": "function()frame:"
         },
         {
-          "line": 8674,
+          "line": 8755,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_FACTION\"",
@@ -80645,7 +80820,7 @@
           "context": "end)endframe:"
         },
         {
-          "line": 8675,
+          "line": 8756,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"PLAYER_FLAGS_CHANGED\"",
@@ -80654,7 +80829,7 @@
           "context": ".unit)frame:"
         },
         {
-          "line": 8679,
+          "line": 8760,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED\""
@@ -80662,7 +80837,7 @@
           "context": ".unit)frame:"
         },
         {
-          "line": 8680,
+          "line": 8761,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_NEW_AREA\""
@@ -80670,7 +80845,7 @@
           "context": "(\"ZONE_CHANGED\")frame:"
         },
         {
-          "line": 8681,
+          "line": 8762,
           "method": "RegisterEvent",
           "arguments": [
             "\"ZONE_CHANGED_INDOORS\""
@@ -80678,7 +80853,7 @@
           "context": "(\"ZONE_CHANGED_NEW_AREA\")frame:"
         },
         {
-          "line": 8682,
+          "line": 8763,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -80686,7 +80861,7 @@
           "context": "(\"ZONE_CHANGED_INDOORS\")frame:"
         },
         {
-          "line": 8805,
+          "line": 8890,
           "method": "RegisterEvent",
           "arguments": [
             "\"CVAR_UPDATE\""
@@ -80883,8 +81058,8 @@
       "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 348,
-      "sha256": "8cca264871aa994ae960f7217af1298170da76fa10b988c3742b6ab6681ce17a",
+      "lines": 356,
+      "sha256": "d91e9dfe3826b85c688f3a3b44da7994c8d0c028806bf12dc3e2afb66ba5c2e5",
       "clients": [
         "camelot",
         "cata",
@@ -80902,16 +81077,16 @@
       "functions": [
         {
           "name": "FluxUnitFrames_RestoreBlizzardTotDefaultParent",
-          "line": 262
+          "line": 270
         },
         {
           "name": "FluxUnitFrames_ApplyRuntimeToT",
-          "line": 274
+          "line": 282
         }
       ],
       "events": [
         {
-          "line": 105,
+          "line": 113,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""

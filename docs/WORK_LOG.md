@@ -1,5 +1,28 @@
 # Work log
 
+## 2026-10-30 — unit power visibility
+
+Read the continuity/specification records; verified clean main
+`058efb8192b537d73e7e1e7f1a7e6afe2fbde575`, the dated external
+source/history/settings checkpoint and present on-disk Retail settings before
+runtime edits. Inspected Gethe's `live` UI source and local client contracts.
+Flux-owned main and raid frames now hide known zero-maximum power bars and let
+health fill the inner region; power returns on capacity changes. After user
+feedback that Live/Forever health still looked split, verified source annotations
+and placed full-height health behind a power layer with native secret-safe alpha.
+Raid combat reanchoring waits for regeneration. Existing
+health-only satellites require no change. [Details](UNIT_POWER_VISIBILITY.md).
+Follow-up: health text now follows full-height HP for absent/restricted power;
+known positive power keeps the split-area text anchor. The Flux separator starts
+transparent and follows max-power alpha. Verified the existing dated external
+source/history/settings checkpoint still exists; Retail on-disk `Config.wtf`
+changed outside this work and was not opened for writing.
+
+Focused models pass. Full desktop validation passes 96 scripts / 737 Lua files.
+Native checks across clients, secure combat, restricted values and pixels remain
+pending. WoW remained in the background; no settings/profiler/diagnostic or
+other addon state changed. Main contains uncommitted source, test and records.
+
 ## 2026-10-29 — teleport counts and interrupted casts
 
 User confirms Retail interrupted teleport/portal lag and unwanted reagent-free
@@ -765,3 +788,23 @@ Inspected the local teleport delta and existing evidence. Its full95-script/
 this local fix and all current records, run the fresh local-snapshot suite, refresh
 references and publish only main. No older checkout, runtime rewrite, force push,
 new branch, private data upload, game input/settings or sync-job change.
+
+## 2026-10-30 - unit power separator and text follow-up
+
+User observed a middle border after target/ToT changes, misplaced text on
+resource units, and a missing ToT split border. Retained the existing full-height
+health layer. Reapplied separator alpha after partition and border-color paint,
+kept restricted-max health text in the upper health area, and removed a Lua
+truthiness test of a secret maximum. Expanded the focused desktop model with a
+separator repaint and ToT zero/positive/secret transitions. Full validation:
+96 scripts, 737 Lua syntax files, zero failures. Native all-client geometry,
+secret and combat checks remain pending. No game or settings changes.
+
+Follow-up: user specified that HP text should be vertically centered when
+there is no resource, with the prior placement when resource returns, and asked
+to repair ToT's HP/resource split. Player/target known-zero transitions now
+refresh text anchors, including on `UNIT_MAXPOWER`. ToT's UIParent separator
+container follows the raised ToT button level in side-by-side placement and
+returns to its original level in stacked placement. Focused power and idle
+geometry checks pass; full validation again passes 96 scripts and 737 Lua
+syntax files. Native pixels remain pending.

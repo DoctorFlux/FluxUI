@@ -14,6 +14,20 @@ Watched-unit visibility distinguishes a real resolved unit from the optional emp
 
 ## Health, resources and feedback
 
+When the displayed unit's main resource has a known maximum of zero, Flux hides
+the power bar and extends health through its space. An empty current resource
+keeps its bar. Live/Forever place health behind the resource layer and forward
+secret maximum power to its alpha, so a secret zero also reveals health. The same rule
+applies to Flux raid cells; focus-target and pet-target are already health-only.
+Health text centers in the full HP area for a known zero maximum; restricted
+maxima keep text in the upper health section. The separator alpha is restored
+after partition and chrome repaints. Player/target HP labels move to the
+expanded bar's vertical middle for known zero power and restore their nested
+corner layout when power returns. ToT's separator container follows its raised
+frame level in side-by-side placement;
+power text and the Flux separator disappear with a zero maximum.
+See [the current validation record](UNIT_POWER_VISIBILITY.md).
+
 Health and power use compatible native APIs, class/resource art and supported percent/display helpers. Shared code owns heal prediction, absorbs/heal absorbs, dead/ghost/AFK labels, disconnect behavior, class/reaction colors, full-resource pulses and secondary resources. Health/power text, level/class/PvP/combat/raid indicators, portrait combat feedback and mouseover highlights are separately gated options.
 
 Secret values must flow to supported display widgets rather than ordinary arithmetic/comparisons. A numeric-looking return is not automatically safe. Shared polling rejects unusable cached values. One poll frame replaces per-unit OnUpdate loops: default health cadence is 0.2s and threat 0.5s, with demand/visibility and combat gating. Event updates still supply the primary state changes. `FluxUI_GetUnitFramePollStats()` exposes the poll inventory.

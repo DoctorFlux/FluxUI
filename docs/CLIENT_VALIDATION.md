@@ -1,5 +1,10 @@
 # Client and reference validation — 29 October 2026
 
+30 October unit-frame follow-up: [zero-maximum resource behavior](UNIT_POWER_VISIBILITY.md)
+passes desktop models and the 96-script/737-Lua full suite. Native checks are
+pending for every client in `CLIENT_MATRIX.csv`, including combat, restricted
+values, raid cells and pixels. Prior native results below do not certify this change.
+
 [BUG-012/PERF-011 teleport follow-up](TELEPORT_CAST_WORK.md): user confirms Retail.
 527 desktop assertions pass, including native display empty/opaque models and
 legacy rune controls. Full 95 scripts/736 syntax files pass. No native input,

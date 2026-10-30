@@ -49,7 +49,7 @@ function FluxRaid_ShouldShowPowerBar(frame)
     if opt and opt.displayPowerBar == false then
         return false
     end
-    return true
+    return not (frame and frame._fluxNoMainPower)
 end
 
 local function ApplyPowerVisibility(frame)
@@ -59,6 +59,12 @@ local function ApplyPowerVisibility(frame)
     end
     local pbh = show and (FluxRaidVisuals.POWER_BAR_HEIGHT or 0) or 0
     if frame.powerBarUsedHeight ~= pbh and frame.healthBar then
+        if InCombatLockdown and InCombatLockdown() then
+            frame._fluxPowerLayoutPending = true
+            if frame.RegisterEvent then frame:RegisterEvent("PLAYER_REGEN_ENABLED") end
+            return
+        end
+        frame._fluxPowerLayoutPending = nil
         frame.powerBarUsedHeight = pbh
         FluxRaidVisuals.ApplyCellChrome(frame, { showPower = show })
     end
@@ -101,15 +107,35 @@ function FluxRaid_UpdatePower(frame)
     local bar = frame and frame.powerBar
     local unit = UnitOf(frame)
     if not bar or type(unit) ~= "string" or unit == "" then return end
-    ApplyPowerVisibility(frame)
-    if not bar:IsShown() then return end
-    pcall(bar.SetMinMaxValues, bar, 0, 100)
-    local powerType
+    local powerType, powerToken
     if UnitPowerType then
         local ok, pt, token = pcall(UnitPowerType, unit)
         if ok and not IsSecret(pt) then powerType = pt end
-        if ok and not IsSecret(token) and token and PowerBarColor and PowerBarColor[token] then
-            local c = PowerBarColor[token]
+        if ok and not IsSecret(token) then powerToken = token end
+    end
+    -- A zero current value is still a valid resource. Unknown or secret maxima
+    -- keep the bar visible because addon code cannot safely classify them.
+    frame._fluxNoMainPower = false
+    if UnitPowerMax then
+        local ok, maximum = pcall(UnitPowerMax, unit, powerType)
+        if ok then
+            if ns and ns.UnitFrames and ns.UnitFrames.UsesHudUnitBars
+                and ns.UnitFrames.UsesHudUnitBars() then
+                -- SetAlpha is an allowed secret sink; zero reveals the HP
+                -- underneath without comparing a restricted maximum in Lua.
+                bar:SetAlpha(maximum)
+            end
+            if not IsSecret(maximum) and type(maximum) == "number" then
+                frame._fluxNoMainPower = maximum <= 0
+            end
+        end
+    end
+    ApplyPowerVisibility(frame)
+    if not bar:IsShown() then return end
+    pcall(bar.SetMinMaxValues, bar, 0, 100)
+    if powerType or powerToken then
+        if powerToken and PowerBarColor and PowerBarColor[powerToken] then
+            local c = PowerBarColor[powerToken]
             pcall(bar.SetStatusBarColor, bar, c.r, c.g, c.b)
         elseif powerType and FluxRaidVisuals.POWER_COLORS and FluxRaidVisuals.POWER_COLORS[powerType] then
             local c = FluxRaidVisuals.POWER_COLORS[powerType]
@@ -664,6 +690,7 @@ local UNIT_EVENTS = {
     "UNIT_HEALTH",
     "UNIT_MAXHEALTH",
     "UNIT_POWER_UPDATE",
+    "UNIT_MAXPOWER",
     "UNIT_DISPLAYPOWER",
     "UNIT_NAME_UPDATE",
     "UNIT_CONNECTION",
@@ -687,6 +714,11 @@ local function RegisterUnitEvents(frame, unit)
 end
 
 local function OnUnitEvent(self, event, arg1)
+    if event == "PLAYER_REGEN_ENABLED" then
+        if self.UnregisterEvent then self:UnregisterEvent("PLAYER_REGEN_ENABLED") end
+        if self._fluxPowerLayoutPending then ApplyPowerVisibility(self) end
+        return
+    end
     if event == "UNIT_TARGET" and self._fluxRaidUnit and not self._fluxRaidMini then
         if FluxRaid_AttachOrUpdateMTMATarget then
             FluxRaid_AttachOrUpdateMTMATarget(self, UnitOf(self))
@@ -701,7 +733,7 @@ local function OnUnitEvent(self, event, arg1)
         FluxRaid_UpdateHealth(self)
         FluxRaid_UpdateStatusText(self)
         FluxRaid_UpdateHealPrediction(self)
-    elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_DISPLAYPOWER" then
+    elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_MAXPOWER" or event == "UNIT_DISPLAYPOWER" then
         FluxRaid_UpdatePower(self)
     elseif event == "UNIT_NAME_UPDATE" or event == "UNIT_CONNECTION" or event == "UNIT_FLAGS" then
         FluxRaid_UpdateName(self)

@@ -2796,6 +2796,7 @@ function UF.UpdateHealth(self, unit)
         fs:Hide()
     end
 
+    local healthTextAnchor = self.Health._fluxTextAnchor or self.Health
     if healthTextMode == "none" then
         HideHealthText(self.Health.Value)
         HideHealthText(self.Health.Percent)
@@ -2805,7 +2806,7 @@ function UF.UpdateHealth(self, unit)
             self.Health.Percent:Show()
             SetPercentLabel(self.Health.Percent, percent)
             self.Health.Percent:ClearAllPoints()
-            self.Health.Percent:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+            self.Health.Percent:SetPoint("CENTER", healthTextAnchor, "CENTER", 0, 0)
         end
     else
         local showValues = healthTextMode == "both" or healthTextMode == "values"
@@ -2840,32 +2841,35 @@ function UF.UpdateHealth(self, unit)
         if unit == "player" or unit == "target" then
             local nested = (unit == "player" and PlayerUnitUsesFluxPetLayout())
                 or (unit == "target" and TargetUnitUsesSideBySideTotTextLayout(unit))
+            -- Without a resource, both HP labels sit at the vertical middle of
+            -- the expanded health bar. A resource restores the corner layout.
+            if self._fluxHasMainPower == false then nested = false end
             local layout = nested and "nest" or "solo"
             if showValues and self.Health.Value and self.Health.Value:IsShown() then
                 if nested then
-                    PlaceBarText(self.Health.Value, layout .. ":hv", "TOPRIGHT", self.Health, "TOPRIGHT", -5, -5)
+                    PlaceBarText(self.Health.Value, layout .. ":hv", "TOPRIGHT", healthTextAnchor, "TOPRIGHT", -5, -5)
                 else
-                    PlaceBarText(self.Health.Value, layout .. ":hv", "RIGHT", self.Health, "RIGHT", -5, 0)
+                    PlaceBarText(self.Health.Value, layout .. ":hv", "RIGHT", healthTextAnchor, "RIGHT", -5, 0)
                 end
             elseif showValues and self.Health.Value then
                 self.Health.Value:ClearAllPoints()
-                self.Health.Value:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+                self.Health.Value:SetPoint("CENTER", healthTextAnchor, "CENTER", 0, 0)
             end
             if showPercentText and self.Health.Percent then
                 if percentOnly then
-                    PlaceBarText(self.Health.Percent, layout .. ":hp", "CENTER", self.Health, "CENTER", 0, 0)
+                    PlaceBarText(self.Health.Percent, layout .. ":hp", "CENTER", healthTextAnchor, "CENTER", 0, 0)
                 elseif nested then
-                    PlaceBarText(self.Health.Percent, layout .. ":hp:n", "TOPLEFT", self.Health, "TOPLEFT", 5, -5)
+                    PlaceBarText(self.Health.Percent, layout .. ":hp:n", "TOPLEFT", healthTextAnchor, "TOPLEFT", 5, -5)
                 else
-                    PlaceBarText(self.Health.Percent, layout .. ":hp:s", "LEFT", self.Health, "LEFT", 5, 0)
+                    PlaceBarText(self.Health.Percent, layout .. ":hp:s", "LEFT", healthTextAnchor, "LEFT", 5, 0)
                 end
             end
         elseif showValues and not showPercentText and self.Health.Value then
             self.Health.Value:ClearAllPoints()
-            self.Health.Value:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+            self.Health.Value:SetPoint("CENTER", healthTextAnchor, "CENTER", 0, 0)
         elseif percentOnly and showPercentText and self.Health.Percent then
             self.Health.Percent:ClearAllPoints()
-            self.Health.Percent:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+            self.Health.Percent:SetPoint("CENTER", healthTextAnchor, "CENTER", 0, 0)
         end
     end
 
@@ -2893,6 +2897,14 @@ function UF.CreateHealthBar(frame)
     health:SetStatusBarTexture(TEXTURE_BAR)
     health:GetStatusBarTexture():SetHorizTile(false)
     health:SetFrameLevel(frame:GetFrameLevel() + 2)
+    if UF.UsesHudUnitBars() then
+        local textAnchor = CreateFrame("Frame", nil, health)
+        textAnchor:SetPoint("TOPLEFT", health, "TOPLEFT")
+        textAnchor:SetPoint("TOPRIGHT", health, "TOPRIGHT")
+        textAnchor:SetHeight(1)
+        textAnchor:EnableMouse(false)
+        health._fluxTextAnchor = textAnchor
+    end
 
     -- Color options (similar to oUF)
     health.colorClass = true        -- Color by class for players
@@ -3188,6 +3200,39 @@ function UF.UpdatePower(self, unit)
     local power = API.SafeUnitPower(unit, powerType)
     local maxPower = API.SafeUnitPowerMax(unit, powerType)
 
+    -- On Live/Forever the maximum may be secret. SetAlpha accepts that value
+    -- natively: zero makes the entire resource layer (including text/background)
+    -- transparent, while a positive maximum keeps it over the full-height HP.
+    local secretMaximum = API.IsSecretValue and API.IsSecretValue(maxPower)
+    if UF.UsesHudUnitBars() then
+        local resourceAlpha = 1
+        if secretMaximum then
+            resourceAlpha = maxPower
+        elseif maxPower ~= nil then
+            resourceAlpha = maxPower
+        end
+        self._fluxMainPowerAlpha = resourceAlpha
+        self.Power:SetAlpha(resourceAlpha)
+        if self.HealthPowerSeparator then self.HealthPowerSeparator:SetAlpha(resourceAlpha) end
+    end
+
+    -- Only a known zero maximum means the unit has no main resource. Current
+    -- power can be zero for ordinary mana/rage/energy bars, and Midnight may
+    -- return a secret maximum that addons cannot compare.
+    local hasMainPower = nil
+    if not secretMaximum and type(maxPower) == "number" then
+        hasMainPower = maxPower > 0
+    end
+    if self._fluxHasMainPower ~= hasMainPower then
+        self._fluxHasMainPower = hasMainPower
+        if self.UpdatePartition then self:UpdatePartition() end
+        -- Target/player text can use the nested corner layout. Reanchor it when
+        -- the resource disappears or returns, including UNIT_MAXPOWER updates.
+        if (unit == "player" or unit == "target") and self.Health then
+            UF.UpdateHealth(self, unit)
+        end
+    end
+
     local displayPower = UF.PowerValueForDisplay(self.Power, power)
     if ns.PowerCostOverlay and ns.PowerCostOverlay.BeforePowerApplied then
         ns.PowerCostOverlay.BeforePowerApplied(self.Power)
@@ -3297,7 +3342,7 @@ function UF.CreatePowerBar(frame)
     local power = CreateFrame("StatusBar", nil, frame)
     power:SetStatusBarTexture(TEXTURE_BAR)
     power:GetStatusBarTexture():SetHorizTile(false)
-    power:SetFrameLevel(frame:GetFrameLevel() + 2)
+    power:SetFrameLevel(frame:GetFrameLevel() + (UF.UsesHudUnitBars() and 4 or 2))
     power:SetClipsChildren(true)
     
     local bg = power:CreateTexture(nil, "BACKGROUND")
@@ -5146,6 +5191,9 @@ function UF.UpdateBorderColors(self)
             -- Sync Separators with chrome accent
             if self.HealthPowerSeparator then
                 self.HealthPowerSeparator:SetVertexColor(borderR, borderG, borderB, 1)
+                if UF.UsesHudUnitBars() then
+                    self.HealthPowerSeparator:SetAlpha(self._fluxMainPowerAlpha)
+                end
             end
             if self.PowerAdditionalSeparator then
                 self.PowerAdditionalSeparator:SetVertexColor(borderR, borderG, borderB, 1)
@@ -6423,13 +6471,14 @@ function UF.UpdateOuterBorder(self)
             self.raidIcon:Hide()
         else
         -- Size the raid icon to 90% of HP bar height
-        local healthBarHeight = self.Health and self.Health:GetHeight() or 20
+        local healthAnchor = self.Health and (self.Health._fluxTextAnchor or self.Health)
+        local healthBarHeight = healthAnchor and healthAnchor:GetHeight() or 20
         local iconSize = healthBarHeight * 0.9
         self.raidIcon:SetSize(iconSize, iconSize)
 
         -- Position at center of HP bar
         self.raidIcon:ClearAllPoints()
-        self.raidIcon:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        self.raidIcon:SetPoint("CENTER", healthAnchor, "CENTER", 0, 0)
 
         -- Update the raid icon state
         local index = GetRaidTargetIndex(self.unit)
@@ -7846,18 +7895,23 @@ function UF.UpdateFrameVisualElements(self)
 end
 
 -- HP / power / mana splitter textures (hosted on UIParent SeparatorContainer — combat-safe)
-function UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, showAdditional)
+function UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, showAdditional, showMainPower)
     if not self.HealthPowerSeparator and not self.PowerAdditionalSeparator then return end
 
     local r, g, b = GetChromeSeparatorRGB(self.unit or "player")
 
-    if self.HealthPowerSeparator then
+    if self.HealthPowerSeparator and showMainPower then
         self.HealthPowerSeparator:ClearAllPoints()
         local sepY = -2 - hHeight - (padding / 2)
         self.HealthPowerSeparator:SetPoint("CENTER", self, "TOP", 0, sepY)
         self.HealthPowerSeparator:SetWidth(self:GetWidth())
         self.HealthPowerSeparator:SetVertexColor(r, g, b, 1)
         self.HealthPowerSeparator:Show()
+        if UF.UsesHudUnitBars() then
+            self.HealthPowerSeparator:SetAlpha(self._fluxMainPowerAlpha)
+        end
+    elseif self.HealthPowerSeparator then
+        self.HealthPowerSeparator:Hide()
     end
 
     if self.AdditionalPower and showAdditional and self.PowerAdditionalSeparator then
@@ -7904,6 +7958,7 @@ function UF.UpdateFramePartition(self)
         local bottomInset = 2 -- pair with tighter Border bottom on focustarget (see FluxUnitFrames_FocusTarget)
         local innerHeight = totalHeight - topInset - bottomInset
         if innerHeight < 10 then innerHeight = 10 end
+        if self.Health._fluxTextAnchor then self.Health._fluxTextAnchor:SetHeight(innerHeight) end
         local inCombat = InCombatLockdown()
 
         if inCombat then
@@ -7960,6 +8015,7 @@ function UF.UpdateFramePartition(self)
     local barAreaRight = self.barAreaRight or -2 -- Standard right inset
 
     local showAdditional = self.isAdditionalPowerShown
+    local showMainPower = self._fluxHasMainPower ~= false or showAdditional
 
     local hPct, rPct, mPct
     if showAdditional then
@@ -7984,6 +8040,19 @@ function UF.UpdateFramePartition(self)
     if mHeight > 0 then mHeight = mHeight - (padding / 2) end
     if rHeight > 0 then rHeight = rHeight - (padding / 2) end
     hHeight = hHeight - (padding / 2)
+    local splitHealthHeight = hHeight
+    if self.Health._fluxTextAnchor then
+        -- A restricted maximum cannot select a layout in Lua. Keep health text
+        -- in the HP section until a known zero maximum permits the full area.
+        local textHeight = splitHealthHeight
+        if UF.UsesHudUnitBars() and not showAdditional and self._fluxHasMainPower == false then
+            textHeight = innerHeight
+        end
+        self.Health._fluxTextAnchor:SetHeight(textHeight)
+    end
+    if not showMainPower or (UF.UsesHudUnitBars() and not showAdditional) then
+        hHeight = innerHeight
+    end
 
     local inCombat = InCombatLockdown()
 
@@ -8006,7 +8075,12 @@ function UF.UpdateFramePartition(self)
         end
 
         self.Health:SetHeight(hHeight)
-        self.Power:SetHeight(rHeight)
+        if showMainPower then
+            self.Power:SetHeight(rHeight)
+            self.Power:Show()
+        else
+            self.Power:Hide()
+        end
 
         if self.AdditionalPower then
             if showAdditional then
@@ -8027,7 +8101,7 @@ function UF.UpdateFramePartition(self)
             self:RegisterEvent("PLAYER_REGEN_ENABLED")
         end
 
-        UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, showAdditional)
+        UF.UpdateFramePartitionSeparators(self, splitHealthHeight, rHeight, padding, showAdditional, showMainPower)
         UF.UpdateAtlasBorder(self)
         UF.UpdateOuterBorder(self)
         if hasPortrait then
@@ -8058,9 +8132,16 @@ function UF.UpdateFramePartition(self)
 
     -- Apply Power (Resource)
     self.Power:ClearAllPoints()
-    self.Power:SetPoint("TOPLEFT", self.Health, "BOTTOMLEFT", 0, -padding)
-    self.Power:SetPoint("TOPRIGHT", self.Health, "BOTTOMRIGHT", 0, -padding)
+    -- Fixed frame anchor lets health extend behind the power layer without
+    -- moving that layer when a secret maximum changes during combat.
+    self.Power:SetPoint("TOPLEFT", self, "TOPLEFT", barAreaLeft, -2 - splitHealthHeight - padding)
+    self.Power:SetPoint("TOPRIGHT", self, "TOPRIGHT", barAreaRight, -2 - splitHealthHeight - padding)
     self.Power:SetHeight(rHeight)
+    if showMainPower then
+        self.Power:Show()
+    else
+        self.Power:Hide()
+    end
 
     -- Apply Additional Power (UIParent child — full anchor refresh out of combat)
     if self.AdditionalPower then
@@ -8074,7 +8155,7 @@ function UF.UpdateFramePartition(self)
         end
     end
 
-    UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, showAdditional)
+    UF.UpdateFramePartitionSeparators(self, splitHealthHeight, rHeight, padding, showAdditional, showMainPower)
 
     UF.UpdateAtlasBorder(self)
     UF.UpdateOuterBorder(self)
@@ -8739,6 +8820,10 @@ function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
 
     -- Create Separators (Early)
     frame.HealthPowerSeparator = CreateSeparator(frame)
+    if UF.UsesHudUnitBars() then
+        frame._fluxMainPowerAlpha = 0
+        frame.HealthPowerSeparator:SetAlpha(0)
+    end
     frame.PowerAdditionalSeparator = CreateSeparator(frame)
     frame.PowerAdditionalSeparator:Hide()
 

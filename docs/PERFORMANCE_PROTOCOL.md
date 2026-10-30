@@ -1,5 +1,10 @@
 # Baseline protocol and currency evidence
 
+30 October unit power visibility adds event-driven layout only when resource
+presence changes. No matched native timing or FPS measurement was taken; the
+[desktop checks](UNIT_POWER_VISIBILITY.md) establish behavior only. Performance
+and long-session acceptance remain pending for this candidate.
+
 [BUG-012/PERF-011 teleport work](TELEPORT_CAST_WORK.md) records five alternating
 desktop pairs/exact sources: per 100 integrated interruptions, tooltip calls
 2,000 -> 0 and popup rebuild boundaries 100 -> 0, zero variation. 527 focused

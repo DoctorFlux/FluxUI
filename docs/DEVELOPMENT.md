@@ -1,5 +1,12 @@
 # Development tasks
 
+Current user priority (30 October): finish native all-client checks for
+[unit power visibility](UNIT_POWER_VISIBILITY.md) when background-safe access is
+available. Verify health/power geometry, combat/taint and restricted values;
+the 96-script/737-file desktop suite does not establish these native results.
+Main is the current branch; older change-branch/hold instructions below are
+historical and superseded by the 29 October user request.
+
 Latest user priority: verify Retail teleport/portal count and interrupted-cast fix
 after reload. [BUG-012/PERF-011](TELEPORT_CAST_WORK.md) passes 527 focused checks and
 full 95-script / 736-file suite. Native latency/combat/input/pixels and non-travel

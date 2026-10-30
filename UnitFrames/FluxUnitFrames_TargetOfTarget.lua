@@ -42,6 +42,7 @@ local function InitializeTargetOfTargetFrame()
     end
 
     local frame = UF.CreateBaseFrame("targettarget", UIParent, frameWidth, frameHeight)
+    local originalFrameLevel = frame:GetFrameLevel()
     frame.barAreaLeft = -2
     frame.barAreaRight = -6
 
@@ -96,7 +97,14 @@ local function InitializeTargetOfTargetFrame()
             if frame:GetParent() ~= UIParent then
                 frame:SetParent(UIParent)
             end
+            frame:SetFrameLevel(originalFrameLevel)
             frame:SetPoint("TOPLEFT", tf.outerBorderFrame, "BOTTOMRIGHT", 0, -12)
+        end
+        -- This chrome is parented to UIParent for combat-safe positioning. Keep
+        -- it above ToT after the side-by-side layout raises the unit frame.
+        if frame.SeparatorContainer then
+            frame.SeparatorContainer:SetFrameStrata(frame:GetFrameStrata())
+            frame.SeparatorContainer:SetFrameLevel(frame:GetFrameLevel() + 10)
         end
         return true
     end
