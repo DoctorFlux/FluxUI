@@ -1005,6 +1005,101 @@ Source: [AddonOptions/FluxOptionsLayout.lua:64](../../AddonOptions/FluxOptionsLa
 |---|---|
 | dialogControl | `"FluxLayoutPreview"` [source](../../AddonOptions/FluxOptionsLayout.lua#L67) |
 
+## FluxOptionsLoot.lua
+
+[AddonOptions/FluxOptionsLoot.lua](../../AddonOptions/FluxOptionsLoot.lua)
+
+### &lt;anonymous&gt; · Loot · L14
+
+Source: [AddonOptions/FluxOptionsLoot.lua:14](../../AddonOptions/FluxOptionsLoot.lua#L14). Type: `"group"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### header · Loot · L17
+
+Source: [AddonOptions/FluxOptionsLoot.lua:17](../../AddonOptions/FluxOptionsLoot.lua#L17). Type: `"header"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### fast · Fast loot · L18
+
+Source: [AddonOptions/FluxOptionsLoot.lua:18](../../AddonOptions/FluxOptionsLoot.lua#L18). Type: `"toggle"`.
+
+Pick up loot as soon as it is ready, respecting your Auto Loot modifier. If the separate FasterLoot addon is enabled, it remains in charge; disable that addon to use this switch.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() return LootDB().fast end` [source](../../AddonOptions/FluxOptionsLoot.lua#L21) |
+| set | `function(_, value) LootDB().fast = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L22) |
+
+### alerts · Show loot at cursor · L24
+
+Source: [AddonOptions/FluxOptionsLoot.lua:24](../../AddonOptions/FluxOptionsLoot.lua#L24). Type: `"toggle"`.
+
+Show a short, non-clickable list next to the cursor when you receive loot.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() return LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L27) |
+| set | `function(_, value) LootDB().alerts = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L28) |
+
+### money · Money · L30
+
+Source: [AddonOptions/FluxOptionsLoot.lua:30](../../AddonOptions/FluxOptionsLoot.lua#L30). Type: `"toggle"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() return LootDB().money end` [source](../../AddonOptions/FluxOptionsLoot.lua#L33) |
+| set | `function(_, value) LootDB().money = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L34) |
+| disabled | `function() return not LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L32) |
+
+### currency · Currency · L36
+
+Source: [AddonOptions/FluxOptionsLoot.lua:36](../../AddonOptions/FluxOptionsLoot.lua#L36). Type: `"toggle"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() return LootDB().currency end` [source](../../AddonOptions/FluxOptionsLoot.lua#L39) |
+| set | `function(_, value) LootDB().currency = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L40) |
+| disabled | `function() return not LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L38) |
+
+### quality · Minimum item quality · L42
+
+Source: [AddonOptions/FluxOptionsLoot.lua:42](../../AddonOptions/FluxOptionsLoot.lua#L42). Type: `"select"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `{ [0] = "All", [1] = "Common", [2] = "Uncommon", [3] = "Rare", [4] = "Epic" }` [source](../../AddonOptions/FluxOptionsLoot.lua#L44) |
+| get | `function() return LootDB().quality end` [source](../../AddonOptions/FluxOptionsLoot.lua#L46) |
+| set | `function(_, value) LootDB().quality = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L47) |
+| disabled | `function() return not LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L45) |
+
+### duration · Disappear after (seconds) · L49
+
+Source: [AddonOptions/FluxOptionsLoot.lua:49](../../AddonOptions/FluxOptionsLoot.lua#L49). Type: `"range"`.
+
+How long each loot alert stays beside the cursor. Default: 3 seconds.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `2` [source](../../AddonOptions/FluxOptionsLoot.lua#L50) |
+| max | `8` [source](../../AddonOptions/FluxOptionsLoot.lua#L50) |
+| step | `1` [source](../../AddonOptions/FluxOptionsLoot.lua#L50) |
+| get | `function() return LootDB().duration end` [source](../../AddonOptions/FluxOptionsLoot.lua#L53) |
+| set | `function(_, value) LootDB().duration = value; Changed() end` [source](../../AddonOptions/FluxOptionsLoot.lua#L54) |
+| disabled | `function() return not LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L52) |
+
+### preview · Preview · L56
+
+Source: [AddonOptions/FluxOptionsLoot.lua:56](../../AddonOptions/FluxOptionsLoot.lua#L56). Type: `"execute"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| func | `function() if FluxLoot and FluxLoot.Preview then FluxLoot:Preview() end end` [source](../../AddonOptions/FluxOptionsLoot.lua#L59) |
+| disabled | `function() return not LootDB().alerts end` [source](../../AddonOptions/FluxOptionsLoot.lua#L58) |
+
 ## FluxOptionsMicroMenu.lua
 
 [AddonOptions/FluxOptionsMicroMenu.lua](../../AddonOptions/FluxOptionsMicroMenu.lua)

@@ -1,5 +1,24 @@
 # Development tasks
 
+30 October FluxLoot callback correction: user native stack at line 402,
+signature-aware regression and exact candidate hashes are in
+[LOOT_CURSOR.md](LOOT_CURSOR.md). Focused and full desktop validation pass;
+native post-fix login/profile acceptance remains pending.
+
+
+30 October cursor money alert follow-up: gold/silver/copper symbols, white
+numbers and threshold-selected icons are documented in
+[LOOT_CURSOR.md](LOOT_CURSOR.md). The focused desktop fixture and full
+107-script/751-syntax runner pass; native five-client acceptance remains
+pending.
+
+
+30 October cursor loot: Tools → Loot controls and slot/chat alerts are
+documented in [LOOT_CURSOR.md](LOOT_CURSOR.md). Run `lua tests/loot_cursor.lua`
+for the focused desktop event model and `python tests/run_validation.py --output
+docs/validation/loot-cursor-full-2026-10-30.json` for the full desktop suite.
+Native five-client acceptance remains pending.
+
 Current Retail Sticky Targeting check (30 October): exercise the targeted
 registered `deselectOnClick` setting route in a native background client when
 available. Verify checkbox state, CVar readback, first-load/reload behavior,

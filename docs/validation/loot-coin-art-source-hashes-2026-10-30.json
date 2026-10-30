@@ -1,0 +1,12 @@
+{
+  "baselineCommit": "b68f2545fa53e83a7eb8482b73e2c0569ecdcc38",
+  "priorCandidateManifest": "docs/validation/loot-cursor-defaults-source-hashes-2026-10-30.json",
+  "scope": "Money denomination symbol/threshold/white-number follow-up; desktop validated, native pending",
+  "files": {
+    "_FluxUI.toc": "08299a8a385a61fa8d51696ac07fa29a1d074a22f55daf7e1532e8c88841682a",
+    "AddonOptions/FluxOptionsCatalog.lua": "9e56439a847d640292d53e57bd0a5ac0d5846a5d845bc56dc179c0e6b57f4f03",
+    "AddonOptions/FluxOptionsDefaults.lua": "9b4d971a008d6f5d0a0188824f5c5d6f1f9a9335324ebb99fa3028d44d011120",
+    "AddonOptions/FluxOptionsLoot.lua": "ee7ca67464e1880f8da14cab97667cf8975d7a10cf3f0db68c709e343a30d7f4",
+    "Other/FluxLoot.lua": "7183dd2e5ab372fa2b8bdac99ef79a74f03fee66bdb499589bf628fa4b62ebae"
+  }
+}

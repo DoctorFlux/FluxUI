@@ -1,5 +1,40 @@
 # Development status
 
+Current publication batch (30 October): all local cursor loot, fast pickup,
+options, coin art and callback updates are included for main. Native checks
+retain their pending scope in the loot chapter.
+
+Cursor loot callback correction (30 October 2026): the user's native startup
+trace showed CallbackHandler received a table instead of an event string.
+FluxLoot now uses the same receiver/event/method order as FluxOptions. The
+focused fixture reproduced the old failure and passes after the fix; full
+desktop suite: 107 scripts / 751 Lua syntax files, zero failures. Native
+post-fix login and profile switching remain pending. [Evidence](LOOT_CURSOR.md).
+
+
+Cursor money alerts (30 October 2026): received gold, silver and copper now
+show coin symbols with white numbers; the leading icon reflects the highest
+denomination. Localized money templates are parsed once at load. Focused
+checks and full desktop validation pass (107 scripts / 751 Lua files).
+Native five-client art, locale, taint and performance remain pending.
+[Evidence](LOOT_CURSOR.md).
+
+
+Cursor loot default follow-up (30 October 2026): fast pickup and cursor alerts
+now both default on for all five supported clients. The duration control is
+explicitly **Disappear after (seconds)**, default 3 seconds. Existing saved
+values remain intact. [Evidence](LOOT_CURSOR.md).
+Focused and full desktop checks pass: 107 scripts / 751 syntax files;
+native validation remains pending.
+
+
+Cursor loot (30 October 2026): Tools → Loot now offers independent fast pickup
+and cursor alerts with simple money, currency, rarity and duration settings.
+The installed FasterLoot retains pickup ownership while loaded. Focused
+desktop event checks and full validation pass: 107 scripts / 751 Lua syntax
+files. Native five-client loot, pixels, taint and performance remain pending.
+[Evidence](LOOT_CURSOR.md).
+
 Latest publication batch (30 October 2026): current first-load settings and
 Hearthstone fixes included for main. Combined desktop validation: 106 scripts,
 748 Lua syntax files, zero failures. Native acceptance remains pending.

@@ -18,6 +18,7 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [AddonOptions/FluxOptionsGeneral.lua:104](../../AddonOptions/FluxOptionsGeneral.lua#L104) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsInfo.lua:173](../../AddonOptions/FluxOptionsInfo.lua#L173) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsLayout.lua:76](../../AddonOptions/FluxOptionsLayout.lua#L76) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [AddonOptions/FluxOptionsLoot.lua:66](../../AddonOptions/FluxOptionsLoot.lua#L66) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsMicroMenu.lua:306](../../AddonOptions/FluxOptionsMicroMenu.lua#L306) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsNameplates.lua:272](../../AddonOptions/FluxOptionsNameplates.lua#L272) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsShell.lua:766](../../AddonOptions/FluxOptionsShell.lua#L766) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
@@ -598,6 +599,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxDurationBars.lua:103](../../Other/FluxDurationBars.lua#L103) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxExtraAbilityHUD.lua:209](../../Other/FluxExtraAbilityHUD.lua#L209) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxHUDTooltip.lua:124](../../Other/FluxHUDTooltip.lua#L124) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Other/FluxLoot.lua:325](../../Other/FluxLoot.lua#L325) | `RegisterEvent` | `"LOOT_READY"` |
+| [Other/FluxLoot.lua:328](../../Other/FluxLoot.lua#L328) | `RegisterEvent` | `event` |
+| [Other/FluxLoot.lua:395](../../Other/FluxLoot.lua#L395) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Other/FluxLootRollPosition.lua:40](../../Other/FluxLootRollPosition.lua#L40) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxLootRollPosition.lua:84](../../Other/FluxLootRollPosition.lua#L84) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxLootRollPosition.lua:85](../../Other/FluxLootRollPosition.lua#L85) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -8170,6 +8174,15 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 |---|---|
 | `Debug.Capture` | [L100](../../Other/FluxInputDebug.lua#L100) |
 | `SlashCmdList.FLUXINPUT` | [L175](../../Other/FluxInputDebug.lua#L175) |
+
+### Other/FluxLoot.lua
+
+Owner: [25-other-qol.md](../25-other-qol.md).
+
+| Declaration | Source |
+|---|---|
+| `FluxLoot:Refresh` | [L321](../../Other/FluxLoot.lua#L321) |
+| `FluxLoot:Preview` | [L343](../../Other/FluxLoot.lua#L343) |
 
 ### Other/FluxPerfCapture.lua
 

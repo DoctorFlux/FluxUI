@@ -1,5 +1,41 @@
 # Next session
 
+Current publication batch (30 October): all local cursor loot, fast pickup,
+options, coin art and callback updates are included for main. Native checks
+retain their pending scope in the loot chapter.
+
+FluxLoot callback correction (30 October): verify a real login/reload emits
+no `RegisterCallback` event-name error, then change, copy and reset a profile
+and confirm loot events follow the selected profile. Repeat on each supported
+client when available in the background; preserve settings and profiler
+preferences. The user's stack proves the old failure, while desktop fixture
+and full suite pass after correction. [Evidence](docs/LOOT_CURSOR.md).
+
+
+Cursor money alert follow-up (30 October): verify real received amounts on
+all five supported clients: copper-only, exactly 1 silver, mixed silver and
+copper, exactly 1 gold, and mixed gold/silver/copper. Check white numbers,
+coin symbols, threshold-selected leading icon, localized chat variants,
+3-second expiry, pixels, taint and frame time. Desktop checks pass; native
+acceptance remains pending. [Evidence](docs/LOOT_CURSOR.md).
+
+
+Cursor loot default follow-up (30 October): verify new profiles on each of the
+five supported clients start with fast pickup and cursor alerts on and
+**Disappear after (seconds)** at 3. Check that existing saved choices persist
+and the installed FasterLoot still owns pickup while enabled. Native checks
+remain pending. [Evidence](docs/LOOT_CURSOR.md).
+
+
+Cursor loot (30 October 2026): verify Tools → Loot on Era, Anniversary,
+MoP Classic, Retail Midnight and Forever, sequentially in the background.
+Check loot speed with FasterLoot both enabled and disabled, cursor placement,
+localized self-loot/money/currency, repeated identical items, group rolls,
+rarity, toggles, reload persistence, combat/taint, pixels and frame time.
+Desktop event fixture and 107-script/751-Lua suite pass; these do not certify
+native acceptance. [Evidence](docs/LOOT_CURSOR.md).
+
+
 Latest publication batch (30 October 2026): current first-load settings and
 Hearthstone fixes included for main. Combined desktop validation: 106 scripts,
 748 Lua syntax files, zero failures. Native acceptance remains pending.

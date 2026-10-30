@@ -293,6 +293,7 @@ AddonOptions\FluxOptionsActionBars_Bindings.lua
 AddonOptions\FluxOptionsActionBars_Extra.lua
 AddonOptions\FluxOptionsActionBars_Stance.lua
 AddonOptions\FluxOptionsGeneral.lua
+AddonOptions\FluxOptionsLoot.lua
 AddonOptions\FluxLayoutPreviewUI.lua
 AddonOptions\AceGUIWidget-FluxLayoutPreview.lua
 AddonOptions\FluxOptionsLayout.lua
@@ -469,6 +470,7 @@ Other\FluxChatCopyPaste.xml
 Other\FluxChatColumnMicros.lua
 Other\FluxChatCopyPaste.lua
 Other\FluxLootRollPosition.lua
+Other\FluxLoot.lua
 
 Salvage\Data\keys.lua
 Salvage\Data\nondisenchantable.lua

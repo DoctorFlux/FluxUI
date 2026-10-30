@@ -16,6 +16,14 @@ end
 FluxOptionsDefaults = {
     profile = {
         settingsScope = "account",
+        loot = {
+            fast = true, -- FasterLoot keeps pickup ownership while that separate addon is loaded.
+            alerts = true,
+            money = true,
+            currency = true,
+            quality = 0,
+            duration = 3,
+        },
         microMenu = {
             native = {},
             --- See FluxOptions:GetMicroMenuDB; scope is Micro Menu tab only (not Layout tab).

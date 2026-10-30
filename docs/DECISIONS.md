@@ -1,5 +1,49 @@
 # Decisions
 
+## 2026-10-30 - register FluxLoot profile callbacks with the AceDB receiver
+
+- Use `FluxOptions.db.RegisterCallback(FluxLoot, event, FluxLoot.Refresh)`,
+  following the established FluxOptions call shape. The receiver is FluxLoot;
+  the event is a string; the method refreshes event ownership after profile
+  changes, copies and resets.
+- Keep loot settings, alert appearance and pickup behavior unchanged. The
+  user's stack trace is pre-fix native evidence; post-fix native validation
+  is still pending. [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - show looted money with denomination coin art
+
+- Parse only the client's own received-money messages using its localized
+  money templates. Show white numbers and MoneyFrame gold/silver/copper
+  symbols, with a leading copper/silver/gold icon selected at 100 and 10,000
+  copper. Skip unparsed or zero messages rather than repeating raw chat text.
+- Reuse the coin art already used by Flux vendor chat. Keep item and currency
+  alerts, timing, settings and fast pickup unchanged. Native client checks
+  remain pending. [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - default cursor alerts and fast pickup on
+
+- The user clarified that both switches should default on for all five
+  supported clients. Keep the separate FasterLoot ownership guard while it is
+  loaded, so two addons do not call LootSlot for the same LOOT_READY event.
+- Name the existing duration control **Disappear after (seconds)** and keep
+  its 3-second default. Preserve saved values; do not reset profiles.
+  [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - add profile-scoped cursor loot and optional fast pickup
+
+- Keep the installed FasterLoot addon independent; Flux skips its fast pickup
+  path while FasterLoot is loaded. Both switches now default on by user
+  follow-up. Avoid changing the user's addon list or Auto Loot preference.
+- Use existing AceDB and item services, a three-row visible-only display,
+  and loot-slot/chat reconciliation for alerts. Keep loot roll positioning and
+  auction, guild-bank and void-storage callbacks untouched.
+- Treat desktop event fixtures as limited evidence; native acceptance on each
+  supported client is still required. [Evidence](LOOT_CURSOR.md).
+
+
 ## 2026-10-30 - use the native negated Sticky Targeting setting on Retail
 
 - The linked GitHub main file is the same pre-fix source. A 13 August local

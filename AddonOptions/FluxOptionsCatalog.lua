@@ -9,7 +9,7 @@ ns.FluxOptionsCatalog = {
     groups = {
         { id = "general", label = "General", pages = { "general", "nameplates", "windows", "profiles" }, description = "Scope, nameplates, windows, and profiles." },
         { id = "hud", label = "HUD", pages = { "layout", "actionbars", "statusBars", "info", "micromenu", "chat", "unitframes", "fluxwindow" }, description = "Layout, bars, unit frames, chat, and the Flux window." },
-        { id = "tools", label = "Tools", pages = { "vendor", "binding" }, description = "Inventory and the binding editor." },
+        { id = "tools", label = "Tools", pages = { "vendor", "loot", "binding" }, description = "Inventory, loot, and the binding editor." },
     },
 
     -- Header names whose section (and everything after it, until the next
@@ -101,6 +101,11 @@ ns.FluxOptionsCatalog = {
             icon = ICON .. "INV_Misc_Bag_10",
             description = "Vendor repair and junk, restock targets, and salvage.",
             search = "inventory vendor junk sell repair restock salvage mill prospect disenchant bag indicator automation",
+        },
+        loot = {
+            name = "Loot",
+            icon = ICON .. "INV_Misc_Bag_10",
+            description = "Fast looting and loot alerts beside the cursor.",
         },
         binding = {
             name = "Binding",

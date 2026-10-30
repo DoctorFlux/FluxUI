@@ -1,5 +1,36 @@
 # Client and reference validation — 29 October 2026
 
+30 October FluxLoot callback correction: the user's native stack identifies
+the pre-fix CallbackHandler argument shift at line 402. A signature-aware
+desktop fixture reproduces the error against the old call and passes with
+the corrected receiver/event/method order; full suite passes 107 scripts /
+751 Lua syntax files. Native post-fix login and profile change/copy/reset
+remain pending on all five supported clients. [Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor money follow-up: desktop checks pass for localized positive
+money parsing, gold/silver/copper symbols, white numbers and exact 1 silver/
+1 gold leading-icon thresholds. Full suite passes 107 scripts / 751 syntax
+files. Native money text, icons, pixels, taint and frame time remain pending
+on Era, Anniversary, MoP Classic, Retail Midnight and Forever.
+[Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor loot default follow-up: the shared default table now starts
+fast pickup and cursor alerts on, with 3-second expiry, on all five supported
+clients. The desktop fixture exercises the actual default and option control.
+Native new-profile, existing-profile and FasterLoot coexistence checks remain
+pending. [Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor loot: the new profile-scoped fast pickup and cursor alerts
+have a focused desktop event fixture and a passing 107-script/751-Lua full
+suite. Native loot behavior, locale parsing, cursor pixels, FasterLoot
+coexistence, combat/taint and frame time are pending for Era, Anniversary,
+MoP Classic, Retail Midnight and Forever. No client or profiler was changed.
+[Evidence](LOOT_CURSOR.md).
+
+
 30 October historical Sticky Targeting follow-up: the linked GitHub main
 source matches the pre-fix local routine. The older 13 August snapshot uses
 the registered negated setting on Retail; the current targeted route passes

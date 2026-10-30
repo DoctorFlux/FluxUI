@@ -1,5 +1,35 @@
 # Baseline protocol and currency evidence
 
+30 October FluxLoot callback correction changes one startup registration
+call and no event, timer, ticker, hook or frame count. The signature-aware
+desktop fixture and 107-script/751-syntax full suite pass. Native frame-time,
+CPU and FPS effects remain unmeasured; post-fix login/profile checks are
+pending. [Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor money follow-up compiles localized money patterns once at
+load and formats only received CHAT_MSG_MONEY events. It adds no event,
+timer, ticker, hook or visible row. Desktop checks and the 107-script/
+751-syntax suite pass. Native matched CPU, allocations, frame time and FPS
+remain unmeasured on all five clients. [Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor loot default follow-up changes initial preference state and
+the duration control label only. It adds no event, timer, ticker or hook; the
+existing visible-only three-row OnUpdate remains. Native matched frame-time,
+CPU, memory and FPS measurements remain pending on all five clients.
+[Evidence](LOOT_CURSOR.md).
+
+
+30 October cursor loot adds one frame OnUpdate only while up to three alerts
+are visible; no ticker, timer or hook is added. Its transient dedup tokens are
+swept periodically and cleared when alerts are disabled. Fast pickup uses a
+0.3-second event guard and skips work while FasterLoot is loaded. Desktop
+event checks and the 107-script/751-Lua suite pass. No native frame-time,
+CPU, allocation or FPS measurement exists yet; keep native profiling optional
+and restore preferences. [Evidence](LOOT_CURSOR.md).
+
+
 30 October historical Sticky Targeting follow-up adds no timer or recurring
 work. When the native Controls setting exists and raw CVar already equals 1,
 it skips the setting call. The rest of the modern Settings API guard is

@@ -26,6 +26,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [AddonOptions/FluxOptionsGeneral.lua](../AddonOptions/FluxOptionsGeneral.lua) | 0 | 0 | 0 | 1 | 0 |
 | [AddonOptions/FluxOptionsInfo.lua](../AddonOptions/FluxOptionsInfo.lua) | 0 | 0 | 0 | 1 | 0 |
 | [AddonOptions/FluxOptionsLayout.lua](../AddonOptions/FluxOptionsLayout.lua) | 0 | 0 | 0 | 1 | 0 |
+| [AddonOptions/FluxOptionsLoot.lua](../AddonOptions/FluxOptionsLoot.lua) | 0 | 0 | 0 | 1 | 0 |
 | [AddonOptions/FluxOptionsMicroMenu.lua](../AddonOptions/FluxOptionsMicroMenu.lua) | 0 | 0 | 0 | 1 | 0 |
 | [AddonOptions/FluxOptionsNameplates.lua](../AddonOptions/FluxOptionsNameplates.lua) | 0 | 0 | 0 | 1 | 0 |
 | [AddonOptions/FluxOptionsRender.lua](../AddonOptions/FluxOptionsRender.lua) | 0 | 0 | 0 | 0 | 1 |
@@ -248,6 +249,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Other/FluxExtraAbilityHUD.lua](../Other/FluxExtraAbilityHUD.lua) | 0 | 0 | 1 | 1 | 4 |
 | [Other/FluxHUDTooltip.lua](../Other/FluxHUDTooltip.lua) | 0 | 0 | 1 | 1 | 1 |
 | [Other/FluxInputDebug.lua](../Other/FluxInputDebug.lua) | 0 | 0 | 1 | 0 | 0 |
+| [Other/FluxLoot.lua](../Other/FluxLoot.lua) | 1 | 0 | 0 | 3 | 0 |
 | [Other/FluxLootRollPosition.lua](../Other/FluxLootRollPosition.lua) | 4 | 0 | 0 | 3 | 1 |
 | [Other/FluxPerfCapture.lua](../Other/FluxPerfCapture.lua) | 3 | 1 | 1 | 0 | 0 |
 | [Other/FluxPerfDebug.lua](../Other/FluxPerfDebug.lua) | 3 | 0 | 0 | 0 | 0 |

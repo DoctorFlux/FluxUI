@@ -1,5 +1,56 @@
 # Work log
 
+## 2026-10-30 - correct FluxLoot AceDB callback registration
+
+The user's native stack showed CallbackHandler rejecting a table event name
+at FluxLoot line 402. Read current source, continuity and present on-disk
+settings; verified the external history bundle and preserved a dated external
+pre-fix source archive. The focused test was tightened to CallbackHandler's
+receiver/event/method signature and reproduced the old error. Corrected the
+one registration call to match FluxOptions. Focused and full desktop checks
+pass (107 scripts / 751 Lua syntax files); candidate hashes are recorded.
+Native post-fix login and profile changes remain pending on five clients.
+[Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - denomination art for cursor money alerts
+
+Read current source, continuity and on-disk Retail settings; verified the
+external Git bundle and preserved the uncommitted pre-edit loot source in a
+dated external archive. Replaced generic money chat rows with localized
+positive-amount parsing, white numbers and denomination coin art. The leading
+icon switches at 1 silver and 1 gold. The focused fixture exercises both
+thresholds, mixed amounts, plural grammar and rejected non-loot chat. Full
+desktop validation passes 107 scripts / 751 Lua files; candidate hashes are
+recorded. Native five-client pixels, locale, taint and performance remain
+pending. [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - cursor loot default follow-up
+
+The user clarified on/on defaults across five clients and a visible
+three-second disappearance setting. Verified the earlier external Git history
+bundle, inspected present Retail saved variables and preserved the current
+uncommitted loot source in a dated external archive before editing. Set the
+Flux fast pickup default on, retained the cursor-alert and 3-second defaults,
+and renamed the duration control. The focused fixture now loads actual
+defaults, exercises the control and checks expiry. Full desktop validation:
+107 scripts / 751 syntax files, zero failures. The exact runtime candidate
+hashes are recorded; native acceptance remains pending. [Evidence](LOOT_CURSOR.md).
+
+
+## 2026-10-30 - cursor loot and optional fast pickup
+
+Verified clean main `b68f2545`, a dated external source/history bundle and
+present on-disk Retail settings before edits. Inspected the installed
+FasterLoot 20261016 and Looti 4.1.2 source/license read-only. Added Tools →
+Loot controls, a three-row cursor display and optional LOOT_READY pickup.
+The separate FasterLoot addon retains ownership while loaded. Focused mock
+event checks pass; full desktop validation passes 107 scripts and 751 Lua
+syntax files. Native loot, pixels, taint and performance remain pending for
+all five clients. [Evidence](LOOT_CURSOR.md).
+
+
 ## 2026-10-30 - compare historical FluxUI default-settings route
 
 Compared the linked GitHub main file and local Git history: both have the
@@ -1238,3 +1289,21 @@ local files and verified Git history; source ZIP SHA-256
 `0c5cb6547bf035eb33ec362603ca544f53079e71f6d31e0e5185d24ef80422d7`.
 Private settings/captures/archives and ignored local helpers remain outside Git.
 Use an ordinary push on main and verify remote identity and clean status.
+
+## 30 October 2026 - cursor loot publication
+
+User requested uploading all current local updates to main again. Include the
+cursor loot and fast-pickup module, Tools / Loot options, money alert coin art,
+profile callback correction, tests and evidence. Native post-fix acceptance
+remains pending as documented in `docs/LOOT_CURSOR.md`. Publication makes no
+runtime edits and does not interact with the game or saved settings.
+
+External checkpoint `Publish-loot-20261030T190738Z` preserves 1,363 actual
+local files and verified Git history, including untracked work. Source archive
+SHA-256: `ef98ebb61f9e132697f5b69b699b544b82059444c436c4d56c8123cfd8af24d3`.
+GitHub main matched parent `b68f2545fa53e83a7eb8482b73e2c0569ecdcc38`.
+The combined publication evidence is `docs/validation/loot-publication-2026-10-30.json`.
+Private settings, archives, captures and ignored local helpers stay outside Git.
+Use an ordinary main push, verify remote identity and preserve history.
+
+Fresh combined desktop validation: **107 scripts /751 Lua syntax files, zero failures**.
