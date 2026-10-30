@@ -95,3 +95,22 @@ files and verified Git history. Source ZIP SHA-256:
 `f7fb816f0651d264fbd30e9187afb2af8e17170aa39da02580d785b44c5f2176`.
 Private archives/settings/captures and ignored local sync helpers stay outside Git.
 Publish by ordinary push to main and verify remote identity and worktree status.
+
+## 30 October 2026 - first-load defaults and binding publication
+
+The user authorized uploading the current local addon files to GitHub main.
+The 56-file payload includes first-load settings, one-call account keybinding
+setup, raid/nameplate updates, focused tests and continuity records. The
+[binding validation](validation/binding-atomic-context-2026-10-30.json) passes
+105 scripts and 747 Lua syntax files; documentation validation passes. The
+staged Lua hashes matched that report. Private settings, backup archives and
+ignored texture assets were not staged. Native Mariosuper Era and Pandasans
+Retail acceptance remains pending because their windows were unavailable to
+this workspace.
+
+Remote main matched parent `efee8006391876687898f7c90f6e0cbd8c22fb1a`.
+An ordinary push advanced main to payload commit
+`224fa6112b5239a75a866f31b78ad2ac75154b49`; GitHub ref readback matched.
+The dated external `binding-native-failure-checkpoint-20261030` preserves
+pre-edit source and Git history outside AddOns. This receipt changes only
+documentation and does not alter game state or settings.
