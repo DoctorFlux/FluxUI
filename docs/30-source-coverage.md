@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 131 |
+| inactive source | 135 |
 
 ## Addon sources
 
@@ -599,6 +599,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/currency_provider_handoff.lua](../tests/currency_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/data_integrity.lua](../tests/data_integrity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/deferred_inventory_handoff.lua](../tests/deferred_inventory_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/durability_vehicle_layout.lua](../tests/durability_vehicle_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_recovery.lua](../tests/edit_mode_recovery.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_settings.lua](../tests/edit_mode_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -641,9 +642,12 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/tier_count_work.lua](../tests/tier_count_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/transmog_actions.lua](../tests/transmog_actions.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_click_edges.lua](../tests/unit_click_edges.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/unit_frame_whole_scale.lua](../tests/unit_frame_whole_scale.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_power_visibility.lua](../tests/unit_power_visibility.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_resource_lifecycle.lua](../tests/unit_resource_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unitframes_lifecycle_spec.lua](../tests/unitframes_lifecycle_spec.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/vehicle_seat_layout.lua](../tests/vehicle_seat_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/vendor_money_chat.lua](../tests/vendor_money_chat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/vendor_open_work.lua](../tests/vendor_open_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/vendor_slot_identity.lua](../tests/vendor_slot_identity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/vendor_tier_work.lua](../tests/vendor_tier_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |

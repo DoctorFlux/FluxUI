@@ -4364,6 +4364,9 @@ end
 function UF.CreateAtlasBorder(frame, borderInsetY)
     -- UIParent: ClearAllPoints is blocked on children of SecureUnitButton during combat lockdown
     local atlasBorderFrame = CreateFrame("Frame", nil, UIParent)
+    -- This chrome is detached from the scaled SecureUnitButton. Match its
+    -- effective scale so border tiles and insets grow with the whole frame.
+    atlasBorderFrame:SetScale(frame:GetEffectiveScale() / UIParent:GetEffectiveScale())
     atlasBorderFrame:SetFrameStrata(frame:GetFrameStrata())
     atlasBorderFrame:SetFrameLevel(frame:GetFrameLevel() + 2) -- 2 levels above individual borders
     frame.atlasBorderFrame = atlasBorderFrame
@@ -8651,6 +8654,11 @@ function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
 
     frame.unit = unit
 
+    if FluxUnitFrames_GetWholeFrameScale and (unit == "player" or unit == "target"
+        or unit == "targettarget" or unit == "focus" or unit == "focustarget") then
+        frame:SetScale(FluxUnitFrames_GetWholeFrameScale(unit))
+    end
+
     -- Set size (defaults if not provided)
     width = width or 250
     height = height or 100
@@ -8796,6 +8804,10 @@ function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
 
     -- Separator textures must not live under SecureUnitButton (ClearAllPoints blocked in combat)
     local sepContainer = CreateFrame("Frame", nil, UIParent)
+    if unit == "player" or unit == "target" or unit == "targettarget"
+        or unit == "focus" or unit == "focustarget" then
+        sepContainer:SetScale(frame:GetEffectiveScale() / UIParent:GetEffectiveScale())
+    end
     sepContainer:SetFrameStrata(frame:GetFrameStrata())
     sepContainer:SetFrameLevel(frame:GetFrameLevel() + 10)
     sepContainer:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)

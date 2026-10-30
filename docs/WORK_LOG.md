@@ -1,5 +1,87 @@
 # Work log
 
+## 2026-10-30 — merchant chat coin denominations
+
+User reported `Repaired for 3494236c` and requested denomination amounts with
+gold/silver/copper symbols for all vendor chat. Read continuity and vendor specs;
+preserved unrelated working-tree changes. Verified the dated external 1,307-file
+source ZIP against its recorded SHA-256 and the complete Git bundle; Retail on-disk
+settings were present. Changed the three merchant money chat paths to use explicit
+coin textures and denomination math, retaining transaction accounting/messages.
+Focused chat and vendor identity tests pass. Full desktop validation passes 100
+scripts/741 Lua syntax files with zero failures. Native texture rendering is
+pending; no client, settings, profiler or sync interaction.
+
+## 2026-10-30 — scale follow-up: portrait and strip
+
+User reported displaced 3D portrait and unit frame overlap with the action
+strip. Preserved newer vehicle/durability and status-bar work. Before editing,
+verified an external 1,307-file source ZIP and complete Git bundle plus presence
+of on-disk Retail settings. Corrected portrait offset double scaling, converted
+focus chat/aura coordinates, normalized strip top and player bottom anchor
+across frame scales, and refreshed the model/camera only when scale changes.
+Player and target also apply the corrected anchor on first creation.
+Focused production tests pass 23 checks, including 50% and 135% strip clearance;
+portrait camera control passes 1,191 checks. Full desktop suite passes 99
+scripts/740 Lua syntax files. Native pixels, clicks, combat/taint and FPS
+remain pending. No game, settings, profiler or sync interaction.
+
+## 2026-10-30 — whole unit-frame scale
+
+Read continuity, options and unit-frame requirements; preserved the concurrent
+vehicle-seat changes. Baseline main `021b524893229fece34eff503a8ac1cf66388363`.
+Verified a fresh dated external 1,303-file source archive and complete Git
+history bundle, plus presence of on-disk Retail settings, before editing.
+Added 50–200% shared player/target and independent focus scale controls to the
+existing unit-frame scope/defaults. Root frames, satellites, detached chrome,
+class resources and micro-menu target cap follow scale; combat uses the existing
+deferred layout pass. The production-bridge regression passes 17 checks and
+the full desktop validation report is linked in [the scale record](UNIT_FRAME_SCALE.md).
+Native geometry, input, combat/taint, pixels and performance remain pending.
+No game, settings, profiler or sync interaction.
+
+After the user supplied a screenshot showing an unscaled border and overlap
+with the action strip, traced the atlas border to its `UIParent` host. Matched
+its effective scale to the unit root and added clearance when the player or
+side-by-side target grows beyond 100%. The 100% Y anchor remains unchanged.
+Full 98-script/739-Lua suite passes after the correction; native pixels and
+click acceptance remain pending.
+
+## 2026-10-30 — vehicle seat layout
+
+Read continuity and QoL specifications on clean main `021b524893229fece34eff503a8ac1cf66388363`.
+The dated external `Publish-unit-power-20261030T101822` source/history checkpoint
+is recorded in the publication ledger; on-disk Retail WTF settings remain present.
+Changed only the Flux-owned seat indicator: micro menu position 2 puts its top-left
+at the screen corner; parent scale 0.7 reduces artwork and seat hit areas together.
+Other menu positions keep the durability anchor. Combat deferral and native
+stock-indicator ownership remain. Focused layout check and the original
+97-script/738-Lua desktop suite passed. Native geometry/input/taint and client pixels pending.
+No client, settings, profiler or sync interaction. Candidate source SHA-256
+`5a460a55026dcc320a2308299028c908b939a5135d5098a890638e9d525dff83`.
+
+User screenshot showed the frame still low. The first condition wrongly required
+status position 2 as well; existing defaults use menu 2/status 3. Removed that
+extra gate and expanded the regression to cover menu 2 with status 1, 2 and 3.
+Focused regression passes. A 98-script/739-Lua suite passed, but parallel unit
+frame edits changed source afterward and the documentation validator reports
+their verification manifest stale. Native screenshot recheck remains pending.
+Revised source SHA-256: `d55b22025caad3edbc96931fe9ae9681affb39c4105c1ad6cf9f1acb9820fd64`.
+
+User clarified that top-left micro/status chrome must stay fixed, with vehicle
+seats and equipment durability together below it. The durability owner now
+reserves the scaled seat width and chooses the lower visible top-left chrome;
+vehicle seats anchor to its left. Empty chrome starts the pair at the screen
+top-left, with prior PvP clearance retained. Focused production-slice checks
+cover menu only, status only, both, neither, PvP, load order and combat.
+Full actual-file desktop validation passes 99 scripts/740 Lua syntax files;
+generated source inventory and documentation validation pass. This includes
+the preserved concurrent unit-frame scale changes; it does not establish
+native rendering or input.
+Candidate source SHA-256: seats `12bbd63adfdffc520a646be83ea9a36a888cf36d3029ce9bde3892270149c06d`;
+status owner `8312374088485e5bbe9811f02960eda627e1163ff6412b6c1b38c83325c09b44`.
+Native geometry, input, taint and pixels remain pending.
+
 ## 2026-10-30 — unit power visibility
 
 Read the continuity/specification records; verified clean main
@@ -815,3 +897,20 @@ history bundle. The outgoing archive had no private paths or credential-pattern
 matches. GitHub main matched local parent `058efb8`; ordinary push published
 `c313dc98a1e782aee1224554c347cd616f3ad7af`, and GitHub ref readback
 matched. Native acceptance remains pending; no game or settings interaction.
+
+## 30 October 2026 - combined local updates publication
+
+User requested all current updates on main again. The publication includes the
+local unit-frame scale controls and alignment fixes, vehicle/durability placement,
+status-bar changes, vendor denomination messages, tests and their records.
+The fresh [combined validation](validation/main-publication-2026-10-30.json)
+passes 100 scripts and 741 Lua syntax files with zero failures. Native acceptance
+retains the pending scope recorded in the feature chapters. No game/settings
+interaction or runtime edits were made for publication.
+
+Remote main matched parent `021b524893229fece34eff503a8ac1cf66388363`.
+External checkpoint `Publish-all-20261030T104001Z` preserves 1,314 actual local
+files and verified Git history. Source ZIP SHA-256:
+`f7fb816f0651d264fbd30e9187afb2af8e17170aa39da02580d785b44c5f2176`.
+Private archives/settings/captures and ignored local sync helpers stay outside Git.
+Publish by ordinary push to main and verify remote identity and worktree status.

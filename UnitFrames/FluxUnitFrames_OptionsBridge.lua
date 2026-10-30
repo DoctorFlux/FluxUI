@@ -150,6 +150,16 @@ function FluxUnitFrames_GetClassPowerScale()
     return math.max(0.5, math.min(2, scale))
 end
 
+--- Scale the complete Flux unit-frame group. Player and target share a control;
+--- their dependent target frame follows target, and focus target follows focus.
+function FluxUnitFrames_GetWholeFrameScale(unit)
+    local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+    local key = (unit == "focus" or unit == "focustarget") and "frameScaleFocus" or "frameScalePlayerTarget"
+    local scale = tonumber(db and db[key]) or 1
+    if scale ~= scale then scale = 1 end
+    return math.max(0.5, math.min(2, scale))
+end
+
 function FluxUnitFrames_ShouldShowLevel(unit)
     return FluxUnitFrames_DisplayEnabled(unit, "level")
 end
@@ -319,7 +329,11 @@ function _G.FluxUnitFrames_GetPlayerScreenBottomOffset()
         end
         local t, b = frame:GetTop(), UIParent:GetBottom()
         if type(t) == "number" and type(b) == "number" and t == t and b == b then
-            local v = t - b
+            -- GetTop is expressed in the frame's effective scale, while the
+            -- unit frame anchor below uses UIParent coordinates.
+            local frameScale = frame.GetEffectiveScale and frame:GetEffectiveScale() or 1
+            local parentScale = UIParent.GetEffectiveScale and UIParent:GetEffectiveScale() or 1
+            local v = parentScale > 0 and (t * frameScale / parentScale - b) or (t - b)
             if v > y then
                 y = v
             end
@@ -413,11 +427,21 @@ function FluxUnitFrames_ReanchorUnitFrameScreenPosition(fr, unit)
     local pw = fr:GetWidth() or 100
     local ph = fr:GetHeight() or 50
     local pos = fr.portraitPosition or "LEFT"
+    -- SetPoint offsets are in the scaled frame's local units. The portrait
+    -- half-width is already a local dimension; multiplying it again drifts it.
     local cx = FluxUnitFrames_GetScreenAnchorCenterOffsetX(unit, pos, pw, ph)
     local py = _G.FluxUnitFrames_GetPlayerScreenBottomOffset and _G.FluxUnitFrames_GetPlayerScreenBottomOffset() or 96
     local sideBySide = FluxUnitFrames_GetPlayerTargetPlacement() == 2
         and FluxUnitFrames_ShouldUseFlux("player")
         and FluxUnitFrames_ShouldUseFlux("target")
+    -- The bottom anchor offset is also in frame-local units. Convert the
+    -- strip top from UIParent units for both smaller and larger frame scales.
+    if unit == "player" or (unit == "target" and sideBySide) then
+        local scale = FluxUnitFrames_GetWholeFrameScale("player")
+        if scale ~= 1 then
+            py = (py + 4) / scale
+        end
+    end
 
     if sideBySide and (unit == "player" or unit == "target") then
         --- Seam between frames at horizontal screen center: BOTTOMRIGHT(player) and BOTTOMLEFT(target) to UIParent BOTTOM with +/- half gap.
@@ -952,9 +976,10 @@ function FluxUnitFrames_GetPlacement1TargetLeftForMicroMenuCap()
         portraitPos = tf.portraitPosition
     end
     local cx = FluxUnitFrames_GetScreenAnchorCenterOffsetX("target", portraitPos, w, h)
+    local scale = FluxUnitFrames_GetWholeFrameScale("target")
     local centerX = parentW * 0.5
-    local offsetX = (portraitPos == "LEFT") and cx or -cx
-    return centerX + offsetX - w * 0.5
+    local offsetX = (portraitPos == "LEFT") and cx * scale or -cx * scale
+    return centerX + offsetX - w * scale * 0.5
 end
 
 _G.FluxUnitFrames_GetPlacement1TargetLeftForMicroMenuCap = FluxUnitFrames_GetPlacement1TargetLeftForMicroMenuCap
@@ -1143,6 +1168,35 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
 
     local UFm = ns.UnitFrames
 
+    local function scaleFrame(fr, scale)
+        if not fr then return end
+        local previous = fr.GetScale and fr:GetScale() or fr._fluxLastWholeScale or 1
+        fr:SetScale(scale)
+        fr._fluxLastWholeScale = scale
+        fr._fluxWholeScaleChanged = previous ~= scale
+        if fr.atlasBorderFrame then
+            fr.atlasBorderFrame:SetScale(fr:GetEffectiveScale() / UIParent:GetEffectiveScale())
+        end
+        if fr.SeparatorContainer then
+            fr.SeparatorContainer:SetScale(fr:GetEffectiveScale() / UIParent:GetEffectiveScale())
+        end
+    end
+
+    local pairScale = FluxUnitFrames_GetWholeFrameScale("player")
+    local focusScale = FluxUnitFrames_GetWholeFrameScale("focus")
+    scaleFrame(ns.PlayerFrame, pairScale)
+    scaleFrame(ns.TargetFrame, pairScale)
+    scaleFrame(ns.FocusFrame, focusScale)
+    scaleFrame(ns.FocusTargetFrame, focusScale)
+    local tot = ns.TargetOfTargetFrame
+    if tot then
+        -- ToT is parented to target only in the side-by-side layout.
+        scaleFrame(tot, tot:GetParent() == ns.TargetFrame and 1 or pairScale)
+    end
+    if ns.TargetFrame and ns.TargetFrame.placeholderBorder then
+        ns.TargetFrame.placeholderBorder:SetScale(pairScale)
+    end
+
     local function refreshCastBar(fr)
         if fr and fr.CastBar and fr.CastBar.UpdateLayout then
             pcall(function()
@@ -1180,6 +1234,9 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
             fr:SetWidth(w)
         end
         afterSize(fr)
+        if fr._fluxWholeScaleChanged and fr.Portrait and UFm and UFm.RefreshPortraitAfterDisplayMetrics then
+            UFm.RefreshPortraitAfterDisplayMetrics(fr)
+        end
         if unit == "player" and ns.ClassPower and ns.ClassPower.UpdatePosition and ns.PlayerFrame then
             pcall(ns.ClassPower.UpdatePosition, ns.PlayerFrame)
         end
@@ -1219,6 +1276,9 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
 
     if ns.FocusTargetFrame and FluxUnitFrames_ShouldUseFlux("focustarget") and FluxUnitFrames_MatchFocusTargetToFocus then
         FluxUnitFrames_MatchFocusTargetToFocus()
+    end
+    if ns.TargetOfTargetFrame and ns.TargetOfTargetFrame._fluxRefreshTotAnchor then
+        ns.TargetOfTargetFrame._fluxRefreshTotAnchor()
     end
 
     -- Portrait-on screen centering uses frame height; re-apply anchor after width/height sliders change.

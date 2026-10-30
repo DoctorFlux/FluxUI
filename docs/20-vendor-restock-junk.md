@@ -58,6 +58,8 @@ Explicit Useful marks protect every quality. A positive manual restock target pr
 
 Repair dispatch checks whether this merchant repairs and whether guild repair exists/has allowance before the chosen priority; manual repair can use its own path. UI totals and completion text are observations of the session and money changes, not an atomic all-or-nothing transaction.
 
+Merchant chat amounts for the net vendor line, standalone junk sale and manual repair now split copper into gold, silver and copper with the matching coin textures. The transaction math and existing messages are unchanged; zero lower denominations remain visible so a whole-gold amount is unambiguous. Desktop checks cover the reported 3,494,236-copper example and gain/expense/repair lines; native chat rendering remains pending.
+
 [`FluxJunkOverlay.lua`](../Inventory/Restock/Junk/FluxJunkOverlay.lua) decorates native or compatible bag/bank buttons with coin/highlight and registered slot decorators. Dirty-bag/slot counts can paint immediately; bank, login, vendor and transfer work have coalesced/deferred paths. Protection context is shared with Respec so overlay refreshes do not independently rescan every saved profile. [`FluxVendorJunkPanel.lua`](../Inventory/Restock/Junk/FluxVendorJunkPanel.lua) supplies Useful/Junk views, focused items, asynchronous item-data updates and list-change callbacks.
 
 ## Item targets, reagents, and consumable tiers

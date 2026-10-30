@@ -1,5 +1,31 @@
 # Client and reference validation — 29 October 2026
 
+30 October vendor chat: desktop checks cover full denominations and gold, silver,
+copper texture tokens for gain, expense and manual repair. The existing vendor
+identity fixture passes. Native chat texture rendering and merchant transaction
+checks remain pending on every client; no game interaction was performed.
+
+30 October scale follow-up: desktop checks now cover 50% and 135% player
+clearance, portrait centering, focus/chat mixed scales and conditional 3D
+portrait refresh. Full 99-script/740-Lua suite passes. Native portrait crop,
+action-strip clearance, hit areas, combat and pixels remain pending for every
+client in `CLIENT_MATRIX.csv`. [Scale record](UNIT_FRAME_SCALE.md).
+
+30 October whole unit-frame scale: the focused production-bridge model covers
+dependent roots, detached chrome and both ToT parent layouts; full desktop
+validation is in [the scale record](UNIT_FRAME_SCALE.md). Each client in
+`CLIENT_MATRIX.csv` still needs native player/target/focus size, class resource,
+cast/aura/indicator alignment, hit-area, combat/taint and pixel checks. No
+client was controlled for this change.
+
+30 October vehicle/durability layout: [the seat owner](../Other/FluxVehicleSeats.lua)
+and [durability owner](../StatusBars/FluxStatusBar.lua) pass source-driven desktop
+checks for menu-only, status-only, both and clear top-left chrome, PvP clearance,
+load order, 70% seat scale and combat deferral. All clients in
+`CLIENT_MATRIX.csv` have desktop coverage from the full 99-script/740-Lua suite;
+native seat/durability art, click target, combat/taint and pixel checks remain
+pending for this change.
+
 30 October unit-frame follow-up: [zero-maximum resource behavior](UNIT_POWER_VISIBILITY.md)
 passes desktop models and the 96-script/737-Lua full suite. Native checks are
 pending for every client in `CLIENT_MATRIX.csv`, including combat, restricted

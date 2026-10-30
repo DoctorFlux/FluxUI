@@ -100,6 +100,13 @@ local function InitializeTargetOfTargetFrame()
             frame:SetFrameLevel(originalFrameLevel)
             frame:SetPoint("TOPLEFT", tf.outerBorderFrame, "BOTTOMRIGHT", 0, -12)
         end
+        frame:SetScale(sideBySide and 1 or (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("target") or 1))
+        if frame.atlasBorderFrame then
+            frame.atlasBorderFrame:SetScale(frame:GetEffectiveScale() / UIParent:GetEffectiveScale())
+        end
+        if frame.SeparatorContainer then
+            frame.SeparatorContainer:SetScale(frame:GetEffectiveScale() / UIParent:GetEffectiveScale())
+        end
         -- This chrome is parented to UIParent for combat-safe positioning. Keep
         -- it above ToT after the side-by-side layout raises the unit frame.
         if frame.SeparatorContainer then

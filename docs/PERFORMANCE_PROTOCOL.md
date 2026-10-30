@@ -1,5 +1,26 @@
 # Baseline protocol and currency evidence
 
+30 October vendor chat formatting changes only message text. No performance or
+FPS claim is made; the 100-script/741-Lua desktop validation covers source and
+regression behavior, while native merchant cadence and rendering remain pending.
+
+30 October portrait/strip scale follow-up calls the existing portrait refresh
+only when a scale value actually changes. Desktop checks cover that gate and
+the full suite passes. No matched native timing, allocations or FPS samples
+were taken; performance acceptance remains pending. [Scale record](UNIT_FRAME_SCALE.md).
+
+30 October whole unit-frame scale reuses the existing layout refresh on slider
+changes and adds no periodic work. The desktop suite passes, but no matched
+native timing, allocations or FPS samples were taken. Performance acceptance
+for this candidate is pending; see [scale behavior](UNIT_FRAME_SCALE.md) and
+the row in [results](PERFORMANCE_RESULTS.csv).
+
+30 October vehicle/durability layout changes two frame anchors and seat scale.
+Focused desktop geometry/deferral checks and the full suite pass. No native
+timing, allocation or FPS samples were taken, so performance acceptance remains
+pending for this candidate. Source identities and scope are in
+[the work log](WORK_LOG.md) and [the result row](PERFORMANCE_RESULTS.csv).
+
 30 October unit power visibility adds event-driven layout only when resource
 presence changes. No matched native timing or FPS measurement was taken; the
 [desktop checks](UNIT_POWER_VISIBILITY.md) establish behavior only. Performance

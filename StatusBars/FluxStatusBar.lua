@@ -2013,9 +2013,19 @@ end
 
 local FluxDurabilityFrame = nil
 local FluxDurabilityTextures = {}
-local DURABILITY_TOPLEFT_X = 8
-local DURABILITY_TOPLEFT_Y = -120
 local DURABILITY_TOPLEFT_PVP_GAP = -6
+local VEHICLE_SEAT_FALLBACK_WIDTH = 128 * 0.7 + 4
+
+local function DurabilitySeatOffset()
+    local seat = _G.FluxVehicleSeatIndicator
+    if seat and seat.GetWidth and seat.GetScale then
+        local width, scale = seat:GetWidth(), seat:GetScale()
+        if type(width) == "number" and type(scale) == "number" then
+            return width * scale + 4
+        end
+    end
+    return VEHICLE_SEAT_FALLBACK_WIDTH
+end
 
 -- Create custom DurabilityFrame
 local function CreateFluxDurabilityFrame()
@@ -2246,7 +2256,7 @@ local function FluxDurabilityFrame_SetAlerts()
         FluxDurabilityFrame:SetWidth(width)
     end
     
-    -- Vehicle seats sit to the right of this frame (FluxVehicleSeats), so they no longer replace it.
+    -- Vehicle seats occupy the reserved slot left of this frame (FluxVehicleSeats).
     local isNotShowingCompactArenaFrame = not CompactArenaFrame or not CompactArenaFrame:IsShown()
     FluxDurabilityFrame.shouldShow = numAlerts > 0 and isNotShowingCompactArenaFrame
     
@@ -2304,11 +2314,12 @@ function UpdateFluxDurabilityFramePosition()
 
     if not InCombatLockdown() then
         FluxDurabilityFrame:ClearAllPoints()
-        -- Top-left. If the micro menu and/or status strip is in that corner,
-        -- sit under the lower of the two so both stay above the repair icons.
+        -- Reserve the left slot for vehicle seats. Keep both indicators below
+        -- whichever visible top-left chrome frame reaches lower on screen.
+        local seatOffset = DurabilitySeatOffset()
         local under = LowerTopLeftFrame(_G.FluxMicroMenu, _G.FluxStatusBarContainer)
         if under then
-            FluxDurabilityFrame:SetPoint("TOPLEFT", under, "BOTTOMLEFT", 0, -4)
+            FluxDurabilityFrame:SetPoint("TOPLEFT", under, "BOTTOMLEFT", seatOffset, -4)
             if FluxVehicleSeats_UpdateAnchor then
                 FluxVehicleSeats_UpdateAnchor()
             end
@@ -2330,7 +2341,7 @@ function UpdateFluxDurabilityFramePosition()
                 local pvpCenterX = (pvpLeft + pvpRight) / 2
                 local pvpInLeftThird = pvpCenterX <= (uiLeft + (uiWidth / 3))
                 if pvpNearTop and pvpInLeftThird then
-                    FluxDurabilityFrame:SetPoint("TOPLEFT", pvpObj, "BOTTOMLEFT", 0, DURABILITY_TOPLEFT_PVP_GAP)
+                    FluxDurabilityFrame:SetPoint("TOPLEFT", pvpObj, "BOTTOMLEFT", seatOffset, DURABILITY_TOPLEFT_PVP_GAP)
                     if FluxVehicleSeats_UpdateAnchor then
                         FluxVehicleSeats_UpdateAnchor()
                     end
@@ -2339,7 +2350,7 @@ function UpdateFluxDurabilityFramePosition()
             end
         end
 
-        FluxDurabilityFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", DURABILITY_TOPLEFT_X, DURABILITY_TOPLEFT_Y)
+        FluxDurabilityFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", seatOffset, 0)
     end
     if FluxVehicleSeats_UpdateAnchor then
         FluxVehicleSeats_UpdateAnchor()

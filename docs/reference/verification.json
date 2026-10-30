@@ -1,17 +1,17 @@
 {
-  "captured_at_utc": "2026-10-30T09:13:53.099900+00:00",
+  "captured_at_utc": "2026-10-30T10:40:37.987231+00:00",
   "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
   "evidence_level": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
   "source_hash_normalization": "CRLF to LF; all other bytes, including BOM, preserved",
-  "publishable_lua_files": 737,
-  "lua_corpus_sha256": "99f5a3c35aadace73a3d47ff2c08e17fba60f5eb5be58b266468b3930b7f6362",
+  "publishable_lua_files": 741,
+  "lua_corpus_sha256": "f2d692026a7cf00660b77bff4b8d8a87e4e728f5e4abc37c8845a0029ed0bece",
   "syntax_check": {
     "command": "luac -p (batches; individual checks after batch failure)",
-    "passed": 737,
+    "passed": 741,
     "failed": 0
   },
-  "smoke_scripts": 96,
-  "smoke_passed": 96,
+  "smoke_scripts": 100,
+  "smoke_passed": 100,
   "smoke_failed": 0,
   "results": [
     {
@@ -107,7 +107,7 @@
     {
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "exitCode": 0,
-      "output": "retail consumables passed\nanniversary consumables passed\nmists consumables passed\nwrath consumables passed\nforever consumables passed\nera consumables passed\ncata consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
+      "output": "retail consumables passed\nera consumables passed\nanniversary consumables passed\nwrath consumables passed\ncata consumables passed\nmists consumables passed\nforever consumables passed\nforever burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nretail burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nera burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nanniversary burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nmists burst: 100 unrelated updates, 0 scans/selections/classifications/binds\nConsumable smoke passed: 1473 checks\n"
     },
     {
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/_tmp_mountitemsmoke.lua",
@@ -117,7 +117,7 @@
     {
       "path": "Inventory/_tmp_inventorylag_smoke.lua",
       "exitCode": 0,
-      "output": "forever inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nera inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
+      "output": "era inventory/mail/AH pipeline passed (built-in + Syndicator)\nanniversary inventory/mail/AH pipeline passed (built-in + Syndicator)\nwrath inventory/mail/AH pipeline passed (built-in + Syndicator)\ncata inventory/mail/AH pipeline passed (built-in + Syndicator)\nmists inventory/mail/AH pipeline passed (built-in + Syndicator)\nretail inventory/mail/AH pipeline passed (built-in + Syndicator)\nforever inventory/mail/AH pipeline passed (built-in + Syndicator)\nInventory lag smoke passed: 1732 checks\n"
     },
     {
       "path": "Inventory/Restock/Junk/_tmp_junksmoke.lua",
@@ -157,7 +157,7 @@
     {
       "path": "tests/assisted_highlight_work.lua",
       "exitCode": 0,
-      "output": "METRIC era_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC era_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC era_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC era_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC anniversary_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC anniversary_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC anniversary_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC anniversary_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC progression_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC progression_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC progression_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC progression_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC live_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC live_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC live_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC live_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nMETRIC forever_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC forever_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC forever_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC forever_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nAssisted highlight work: 1420 checks, 0 failures\n"
+      "output": "METRIC era_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC era_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC era_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC era_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC anniversary_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.002000\nMETRIC anniversary_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC anniversary_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC anniversary_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC progression_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC progression_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC progression_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC progression_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC live_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC live_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC live_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.004000\nMETRIC live_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.007000\nMETRIC forever_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.001000\nMETRIC forever_enabled active_reads=200 next_reads=100 candidates=5700 shows=100 hides=5600 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC forever_flush_disabled active_reads=100 next_reads=0 candidates=0 shows=0 hides=5700 plays=0 stops=5700 frames=57 cpu_seconds=0.003000\nMETRIC forever_flush_enabled active_reads=200 next_reads=100 candidates=5700 shows=5600 hides=100 plays=0 stops=5700 frames=57 cpu_seconds=0.008000\nAssisted highlight work: 1420 checks, 0 failures\n"
     },
     {
       "path": "tests/bag_free_slots.lua",
@@ -197,7 +197,7 @@
     {
       "path": "tests/castbar_school_themes.lua",
       "exitCode": 0,
-      "output": "Particle Lua texture writes over 2s: native=300, fallback=6104 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13853 checks across five client families (native rendering/taint unverified)\n"
+      "output": "Particle Lua texture writes over 2s: native=300, fallback=6207 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 13830 checks across five client families (native rendering/taint unverified)\n"
     },
     {
       "path": "tests/chat_column_layout.lua",
@@ -238,6 +238,11 @@
       "path": "tests/deferred_inventory_handoff.lua",
       "exitCode": 0,
       "output": "mail queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nmail partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nmail partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-legacy partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-legacy partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern queued provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern queued empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\nauctions-modern partial provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=99 builtinCount=nil\nauctions-modern partial empty-provider nativeReads=0 notifications=0 generationDelta=0 activeAfterFirst=0 providerCount=nil builtinCount=nil\ndeferred inventory handoff: 210 checks, 0 failures; desktop operation counts only\n"
+    },
+    {
+      "path": "tests/durability_vehicle_layout.lua",
+      "exitCode": 0,
+      "output": "durability and vehicle layout passed\n"
     },
     {
       "path": "tests/edit_mode_recovery.lua",
@@ -347,7 +352,7 @@
     {
       "path": "tests/nameplate_countdown_work.lua",
       "exitCode": 0,
-      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.032000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.031000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.033000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.033000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.032000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.036000\nNameplate countdown work: 1160 checks, 0 failures\n"
+      "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.437500 cpu_seconds=0.029000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.027000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.032000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.029000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.030000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.028000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.030000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=300 anchors=300 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=0.062500 cpu_seconds=0.029000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=10000 anchors=10000 frames=102 heap_kib=1015.687500 cpu_seconds=0.031000\nNameplate countdown work: 1160 checks, 0 failures\n"
     },
     {
       "path": "tests/native_menu_input.lua",
@@ -382,7 +387,7 @@
     {
       "path": "tests/perf_capture.lua",
       "exitCode": 0,
-      "output": "perf capture: 382 checks across five clients; 12 mutations rejected\n"
+      "output": "perf capture: 384 checks across five clients; 12 mutations rejected\n"
     },
     {
       "path": "tests/perf_capture_retention.lua",
@@ -450,6 +455,11 @@
       "output": "Unit click edges: 41 checks; five native source handlers; negative control passed\n"
     },
     {
+      "path": "tests/unit_frame_whole_scale.lua",
+      "exitCode": 0,
+      "output": "unit frame whole scale: 23 checks\n"
+    },
+    {
       "path": "tests/unit_power_visibility.lua",
       "exitCode": 0,
       "output": "unit power visibility: main split, combat, secret and raid checks passed\n"
@@ -463,6 +473,16 @@
       "path": "tests/unitframes_lifecycle_spec.lua",
       "exitCode": 0,
       "output": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n"
+    },
+    {
+      "path": "tests/vehicle_seat_layout.lua",
+      "exitCode": 0,
+      "output": "vehicle seat layout passed\n"
+    },
+    {
+      "path": "tests/vendor_money_chat.lua",
+      "exitCode": 0,
+      "output": "Vendor money chat OK: denominations, textures, gain, expense, manual repair, standalone vendor\n"
     },
     {
       "path": "tests/vendor_open_work.lua",
@@ -586,7 +606,7 @@
     },
     {
       "path": "AddonOptions/FluxOptionsDefaults.lua",
-      "sha256": "0025d296774f2cdc460ed783d70d6a349204ce01088f44dac4606bf2dd634f17"
+      "sha256": "240a26529097372966ac985beaa1d85979ea2ceaf8a653727b72a6d8cedd0ff9"
     },
     {
       "path": "AddonOptions/FluxOptionsGeneral.lua",
@@ -630,7 +650,7 @@
     },
     {
       "path": "AddonOptions/FluxOptionsUnitFrames.lua",
-      "sha256": "00a0ff54430db01cf00027e427808a1e8744d88b581922410a4013a93430f976"
+      "sha256": "6c4da9ebdf754981f78f2e594ce61a9bf4be7b9ed3d7b6386668dab7b79d6277"
     },
     {
       "path": "AddonOptions/FluxOptionsVendor.lua",
@@ -2082,7 +2102,7 @@
     },
     {
       "path": "Inventory/Restock/Junk/FluxSellJunk.lua",
-      "sha256": "d0bdddcc3137178ad50d8d81afd60642f43241f1a3c666a10a5900ab78b1ee73"
+      "sha256": "02614249d5063181bf592014ebdb3dfe68fd2c02fee881f7a458e433cd605f9a"
     },
     {
       "path": "Inventory/Restock/Junk/FluxVendorJunkPanel.lua",
@@ -2154,7 +2174,7 @@
     },
     {
       "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
-      "sha256": "d306732e4c468e3f25a296e960507225c6323f48b4d6770f709d9c56d7534ba3"
+      "sha256": "9149b61039bd9075c2689b77c8633dbdad6eeb397e00741c5e05755b04d78176"
     },
     {
       "path": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
@@ -2766,7 +2786,7 @@
     },
     {
       "path": "Other/FluxVehicleSeats.lua",
-      "sha256": "0374a63183ec83f4205086e6fbbef06e14795184ba6b767fe5062725a49cf694"
+      "sha256": "12bbd63adfdffc520a646be83ea9a36a888cf36d3029ce9bde3892270149c06d"
     },
     {
       "path": "RaidFrame/_tmp_raidaurassmoke.lua",
@@ -3006,7 +3026,7 @@
     },
     {
       "path": "StatusBars/FluxStatusBar.lua",
-      "sha256": "5357903ec1f56c8ddece792502d3ea00a0753405ea7169debf0f77001f8def2e"
+      "sha256": "8312374088485e5bbe9811f02960eda627e1163ff6412b6c1b38c83325c09b44"
     },
     {
       "path": "tests/assisted_highlight_work.lua",
@@ -3075,6 +3095,10 @@
     {
       "path": "tests/deferred_inventory_handoff.lua",
       "sha256": "837e042da7ec66e4f014e37e3da9b089aa8389c840004e55a5ee7884261ab0f1"
+    },
+    {
+      "path": "tests/durability_vehicle_layout.lua",
+      "sha256": "44aa1b71797df38f0f818034e0171b2a8958af6579132e9891c94cbad3281e2d"
     },
     {
       "path": "tests/edit_mode_recovery.lua",
@@ -3245,6 +3269,10 @@
       "sha256": "920eadc1a5d54da78c1eccd8d092237b72caa29d608e650184a999e5ee238864"
     },
     {
+      "path": "tests/unit_frame_whole_scale.lua",
+      "sha256": "22acd7e54aeccc7cb44bb02bb308d62557512e2a2b41d6672014402cdd11904e"
+    },
+    {
       "path": "tests/unit_power_visibility.lua",
       "sha256": "2b227ac537a108e475c9d09867b4e6677366fe46a64accbb583e5038788fa537"
     },
@@ -3255,6 +3283,14 @@
     {
       "path": "tests/unitframes_lifecycle_spec.lua",
       "sha256": "97e65ade9a8c4ab549c6a00b8dfbf6833aad8d1799e985b5aa0ae45e88ddf3a7"
+    },
+    {
+      "path": "tests/vehicle_seat_layout.lua",
+      "sha256": "ef8ac7f615475455a096df24f641bbcc053787e10623f09250e33989820d7a68"
+    },
+    {
+      "path": "tests/vendor_money_chat.lua",
+      "sha256": "1774e2fde333df92d69cd43ca656009c1aad2c417d7898c489f6e46e1fd54ea3"
     },
     {
       "path": "tests/vendor_open_work.lua",
@@ -3318,7 +3354,7 @@
     },
     {
       "path": "UnitFrames/FluxClassPower.lua",
-      "sha256": "d0257ce8faa1c26fa28a0d162ba3802306486dd1c817dcf503e4270f88768b98"
+      "sha256": "754d04e54dce37078a44ff8e4b9a9fa4927de7006a2a6bea7a045b6c2b5b92e4"
     },
     {
       "path": "UnitFrames/FluxFlightPath.lua",
@@ -3374,7 +3410,7 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Focus.lua",
-      "sha256": "f132185b98eb1848d39ed0c10110077b1d97e81fda5985fa7c63da8538eb9f66"
+      "sha256": "1bd1202785cdd061190949fadcaa130be88bcce8833abe018b80f69d42486611"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
@@ -3386,7 +3422,7 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
-      "sha256": "1570f294a136a6b44d749ee0fdcde30214e793d76ad0ce13ed1bb9c1a0b250e3"
+      "sha256": "26a8dade32449342761fb342b67be6c0f2bdd9a3de421f903920169646f800f8"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Pet.lua",
@@ -3402,7 +3438,7 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Player.lua",
-      "sha256": "6c876d048ac837e877a3e1bc7eb762a76311a36dd19f4b05e254e90ef280089b"
+      "sha256": "d127ea9a0fdf10e13282f2023c954b3c175a77ca93c7577aba360dd3f359662f"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
@@ -3414,15 +3450,15 @@
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Shared.lua",
-      "sha256": "b79020e60ea469665a549ca08f47816388800d94453bbe41fc347775ee81ad81"
+      "sha256": "6280249597c778fcf37bb670930be55676391e404e3a6f230004fae888c4953d"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_Target.lua",
-      "sha256": "23621aa69f59d6c4899ba3ffb720d327ff7e9970c123a21f3a08aa1ebd09c8b9"
+      "sha256": "c32b482770b0de94a90a3339e04aafa8cabbbce033f7eee15dccfe57a242ded6"
     },
     {
       "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
-      "sha256": "d91e9dfe3826b85c688f3a3b44da7994c8d0c028806bf12dc3e2afb66ba5c2e5"
+      "sha256": "6e6ef6ce18c5cc057b32d816ccc413588f1711b839a750a0cf543371834b2df0"
     },
     {
       "path": "WindowMover/_tmp_charactercombatsmoke.lua",

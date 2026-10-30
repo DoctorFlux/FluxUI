@@ -17,6 +17,23 @@ FluxSellJunk = FluxSellJunk or {}
 local SJ = FluxSellJunk
 local FV = FluxVendorAuto
 
+-- Chat amounts use the same coin art on clients without GetCoinTextureString.
+function FV.FormatVendorMoney(copper)
+    copper = math.floor(math.abs(tonumber(copper) or 0))
+    local gold = math.floor(copper / 10000)
+    local silver = math.floor(copper % 10000 / 100)
+    local remainder = copper % 100
+    local parts = {}
+    if gold > 0 then
+        parts[#parts + 1] = gold .. "|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t"
+    end
+    if silver > 0 or gold > 0 then
+        parts[#parts + 1] = silver .. "|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t"
+    end
+    parts[#parts + 1] = remainder .. "|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t"
+    return table.concat(parts, " ")
+end
+
 local SELL_BATCH_SIZE = 6
 local CLICK_BURST_SIZE = 40
 local CONTINUE_DELAY = 0.15
@@ -315,7 +332,7 @@ local function FinishSellSession(announce, skipUI)
         if FV.AddBatchCopper then
             FV.AddBatchCopper(total)
         else
-            local text = GetCoinTextureString and GetCoinTextureString(total) or (tostring(total) .. "c")
+            local text = FV.FormatVendorMoney(total)
             print("|cff00ffff[FluxUI]|r Sold junk for " .. text .. ".")
         end
     end
@@ -626,7 +643,7 @@ function FV.ReportManualRepairDelta(moneyBefore)
     local run = function()
         local delta = GetMoney() - moneyBefore
         if delta < 0 then
-            local text = GetCoinTextureString and GetCoinTextureString(-delta) or (tostring(-delta) .. "c")
+            local text = FV.FormatVendorMoney(-delta)
             print("|cff00ffff[FluxUI]|r Repaired for " .. text .. ".")
         end
     end

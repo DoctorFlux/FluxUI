@@ -2517,597 +2517,625 @@ When off, only the bar column is shown and it stays centered at the bottom of th
 | get | `function() return GetDB().showPortraitPlayer ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1062) |
 | set | `function(_, v) GetDB().showPortraitPlayer = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1065) |
 
-### playerWidth · Width · L1070
+### playerTargetScale · Player + target scale (%) · L1070
 
 Source: [AddonOptions/FluxOptionsUnitFrames.lua:1070](../../AddonOptions/FluxOptionsUnitFrames.lua#L1070). Type: `"range"`.
 
-| Contract | Source expression / implementation |
-|---|---|
-| min | `150` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1075) |
-| max | `600` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1076) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1077) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("player", "width") end fs.player = fs.player or {} local raw = fs.player.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("player", "widt…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1078) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.player = fs.player or {} fs.player.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1090) |
-
-### playerHeight · Height · L1100
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1100](../../AddonOptions/FluxOptionsUnitFrames.lua#L1100). Type: `"range"`.
+Scales the complete player and target frames and their attached cast bars, auras, indicators and target-of-target frame.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1105) |
-| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1106) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1107) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("player", "height") end fs.player = fs.player or {} local raw = fs.player.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("player", "he…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1108) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.player = fs.player or {} fs.player.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1120) |
+| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1073) |
+| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1073) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1073) |
+| get | `function() return (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("player") or 1) * 100 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1074) |
+| set | `function(_, value) GetDB().frameScalePlayerTarget = math.max(50, math.min(200, tonumber(value) or 100)) / 100 AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1077) |
 
-### playerHealthSplit · Health / resource split % · L1130
+### playerWidth · Width · L1082
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1130](../../AddonOptions/FluxOptionsUnitFrames.lua#L1130). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1082](../../AddonOptions/FluxOptionsUnitFrames.lua#L1082). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `150` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1087) |
+| max | `600` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1088) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1089) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("player", "width") end fs.player = fs.player or {} local raw = fs.player.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("player", "widt…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1090) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.player = fs.player or {} fs.player.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1102) |
+
+### playerHeight · Height · L1112
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1112](../../AddonOptions/FluxOptionsUnitFrames.lua#L1112). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1117) |
+| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1118) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1119) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("player", "height") end fs.player = fs.player or {} local raw = fs.player.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("player", "he…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1120) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.player = fs.player or {} fs.player.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1132) |
+
+### playerHealthSplit · Health / resource split % · L1142
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1142](../../AddonOptions/FluxOptionsUnitFrames.lua#L1142). Type: `"range"`.
 
 Share of the inner bar stack for health when only health + main resource are shown. Alternate power (third bar) still uses a fixed three-way split.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1136) |
-| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1137) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1138) |
-| get | `function() return HealthPartitionGetFor("player") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1139) |
-| set | `function(_, val) HealthPartitionSetFor("player", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1142) |
+| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1148) |
+| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1149) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1150) |
+| get | `function() return HealthPartitionGetFor("player") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1151) |
+| set | `function(_, val) HealthPartitionSetFor("player", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1154) |
 
-### unitTarget · Target · L1149
+### unitTarget · Target · L1161
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1149](../../AddonOptions/FluxOptionsUnitFrames.lua#L1149). Type: `"group"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1161](../../AddonOptions/FluxOptionsUnitFrames.lua#L1161). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### targetShowPortrait · Show portrait strip · L1154
+### targetShowPortrait · Show portrait strip · L1166
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1154](../../AddonOptions/FluxOptionsUnitFrames.lua#L1154). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1166](../../AddonOptions/FluxOptionsUnitFrames.lua#L1166). Type: `"toggle"`.
 
 When off, only the bar column is shown and it stays centered at the top of the screen. When on, the side portrait strip is shown (3D vs flat is under General -&gt; Features). Applies immediately; BigDebuffs and similar mods receive a refresh hook.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showPortraitTarget ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1160) |
-| set | `function(_, v) GetDB().showPortraitTarget = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1163) |
+| get | `function() return GetDB().showPortraitTarget ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1172) |
+| set | `function(_, v) GetDB().showPortraitTarget = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1175) |
 
-### targetNoTargetPlaceholder · Empty target placeholder · L1168
+### targetNoTargetPlaceholder · Empty target placeholder · L1180
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1168](../../AddonOptions/FluxOptionsUnitFrames.lua#L1168). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1180](../../AddonOptions/FluxOptionsUnitFrames.lua#L1180). Type: `"toggle"`.
 
 When enabled, a subtle gray outline marks the target frame area while you have nothing targeted. Turn off to hide that box.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showTargetNoTargetPlaceholder ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1174) |
-| set | `function(_, v) GetDB().showTargetNoTargetPlaceholder = v and true or false AfterTargetPlaceholderChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1177) |
+| get | `function() return GetDB().showTargetNoTargetPlaceholder ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1186) |
+| set | `function(_, v) GetDB().showTargetNoTargetPlaceholder = v and true or false AfterTargetPlaceholderChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1189) |
 
-### targetSizeFollowsPlayerNote · Layout is set to side-by-side (Layout tab): target width and height match the Player tab - adjust size there. · L1182
+### targetSizeFollowsPlayerNote · Layout is set to side-by-side (Layout tab): target width and height match the Player tab - adjust size there. · L1194
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1182](../../AddonOptions/FluxOptionsUnitFrames.lua#L1182). Type: `"description"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-| hidden | `function() return not IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1188) |
-
-### targetWidth · Width · L1192
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1192](../../AddonOptions/FluxOptionsUnitFrames.lua#L1192). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1194](../../AddonOptions/FluxOptionsUnitFrames.lua#L1194). Type: `"description"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1197) |
-| max | `800` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1198) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1199) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("target", "width") end fs.target = fs.target or {} local raw = fs.target.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("target", "widt…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1203) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.target = fs.target or {} fs.target.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1215) |
-| hidden | `function() return IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1200) |
+| hidden | `function() return not IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1200) |
 
-### targetHeight · Height · L1225
+### targetWidth · Width · L1204
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1225](../../AddonOptions/FluxOptionsUnitFrames.lua#L1225). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1204](../../AddonOptions/FluxOptionsUnitFrames.lua#L1204). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1230) |
-| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1231) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1232) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("target", "height") end fs.target = fs.target or {} local raw = fs.target.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("target", "he…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1236) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.target = fs.target or {} fs.target.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1248) |
-| hidden | `function() return IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1233) |
+| min | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1209) |
+| max | `800` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1210) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1211) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("target", "width") end fs.target = fs.target or {} local raw = fs.target.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("target", "widt…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1215) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.target = fs.target or {} fs.target.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1227) |
+| hidden | `function() return IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1212) |
 
-### targetHealthSplit · Health / resource split % · L1258
+### targetHeight · Height · L1237
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1258](../../AddonOptions/FluxOptionsUnitFrames.lua#L1258). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1237](../../AddonOptions/FluxOptionsUnitFrames.lua#L1237). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1242) |
+| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1243) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1244) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("target", "height") end fs.target = fs.target or {} local raw = fs.target.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("target", "he…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1248) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.target = fs.target or {} fs.target.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1260) |
+| hidden | `function() return IsSideBySidePlayerTargetLayout() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1245) |
+
+### targetHealthSplit · Health / resource split % · L1270
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1270](../../AddonOptions/FluxOptionsUnitFrames.lua#L1270). Type: `"range"`.
 
 Share of the inner bar stack for health when only health + main resource are shown.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1264) |
-| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1265) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1266) |
-| get | `function() return HealthPartitionGetFor("target") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1267) |
-| set | `function(_, val) HealthPartitionSetFor("target", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1270) |
+| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1276) |
+| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1277) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1278) |
+| get | `function() return HealthPartitionGetFor("target") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1279) |
+| set | `function(_, val) HealthPartitionSetFor("target", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1282) |
 
-### targetAurasHeader · Auras · L1274
+### targetAurasHeader · Auras · L1286
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1274](../../AddonOptions/FluxOptionsUnitFrames.lua#L1274). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### targetAuraBuffSize · Buff icon size · L1279
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1279](../../AddonOptions/FluxOptionsUnitFrames.lua#L1279). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1286](../../AddonOptions/FluxOptionsUnitFrames.lua#L1286). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1284) |
-| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1285) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1286) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.buffSize or 35 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1287) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.buffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1292) |
 
-### targetAuraDebuffSize · Debuff icon size · L1299
+### targetAuraBuffSize · Buff icon size · L1291
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1299](../../AddonOptions/FluxOptionsUnitFrames.lua#L1299). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1291](../../AddonOptions/FluxOptionsUnitFrames.lua#L1291). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1304) |
-| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1305) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1306) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.debuffSize or 35 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1307) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.debuffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1312) |
+| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1296) |
+| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1297) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1298) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.buffSize or 35 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1299) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.buffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1304) |
 
-### targetAuraLockOwnDebuffSize · Lock own debuff size · L1319
+### targetAuraDebuffSize · Debuff icon size · L1311
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1319](../../AddonOptions/FluxOptionsUnitFrames.lua#L1319). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1311](../../AddonOptions/FluxOptionsUnitFrames.lua#L1311). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1316) |
+| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1317) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1318) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.debuffSize or 35 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1319) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.debuffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1324) |
+
+### targetAuraLockOwnDebuffSize · Lock own debuff size · L1331
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1331](../../AddonOptions/FluxOptionsUnitFrames.lua#L1331). Type: `"toggle"`.
 
 Keep your player/pet/vehicle debuffs at full boosted size (~1.38x). Other players' debuffs can shrink to fit the panel (Classic) or stay at the configured size (Midnight/Forever). When off, yours can shrink down to Own debuff min scale.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1325) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.lockOwnDebuffSize = v and true or false AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1330) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1337) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.lockOwnDebuffSize = v and true or false AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1342) |
 
-### targetAuraOwnDebuffMinScale · Own debuff min scale · L1337
+### targetAuraOwnDebuffMinScale · Own debuff min scale · L1349
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1337](../../AddonOptions/FluxOptionsUnitFrames.lua#L1337). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1349](../../AddonOptions/FluxOptionsUnitFrames.lua#L1349). Type: `"range"`.
 
 When lock is off, the smallest your own debuffs can get (100% = full boosted size, 50% = half of boosted). They stay larger than other players' icons while the panel is shrinking. Disabled while lock is on. On Midnight/Forever this sets own icon size directly (those frames do not fit-shrink).
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1343) |
-| max | `100` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1344) |
-| step | `5` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1345) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} local s = tonumber(d.auraTarget.ownDebuffMinScale) or 0.75 return math.floor(s * 100 + 0.5) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1353) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.ownDebuffMinScale = (tonumber(v) or 75) / 100 AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1359) |
-| disabled | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1348) |
+| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1355) |
+| max | `100` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1356) |
+| step | `5` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1357) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} local s = tonumber(d.auraTarget.ownDebuffMinScale) or 0.75 return math.floor(s * 100 + 0.5) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1365) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.ownDebuffMinScale = (tonumber(v) or 75) / 100 AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1371) |
+| disabled | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1360) |
 
-### targetAuraBuffSpacing · Buff spacing · L1366
+### targetAuraBuffSpacing · Buff spacing · L1378
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1366](../../AddonOptions/FluxOptionsUnitFrames.lua#L1366). Type: `"range"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1371) |
-| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1372) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1373) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.buffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1374) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.buffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1379) |
-
-### targetAuraDebuffSpacing · Debuff spacing · L1386
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1386](../../AddonOptions/FluxOptionsUnitFrames.lua#L1386). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1378](../../AddonOptions/FluxOptionsUnitFrames.lua#L1378). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1391) |
-| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1392) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1393) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.debuffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1394) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.debuffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1399) |
+| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1383) |
+| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1384) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1385) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.buffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1386) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.buffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1391) |
 
-### targetAuraMaxBuffs · Max buff icons · L1406
+### targetAuraDebuffSpacing · Debuff spacing · L1398
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1406](../../AddonOptions/FluxOptionsUnitFrames.lua#L1406). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1398](../../AddonOptions/FluxOptionsUnitFrames.lua#L1398). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1403) |
+| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1404) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1405) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.debuffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1406) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.debuffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1411) |
+
+### targetAuraMaxBuffs · Max buff icons · L1418
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1418](../../AddonOptions/FluxOptionsUnitFrames.lua#L1418). Type: `"range"`.
 
 Increasing above the previous cap rebuilds the buff panel once.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `8` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1412) |
-| max | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1413) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1414) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.maxBuffs or 32 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1415) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.maxBuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1420) |
+| min | `8` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1424) |
+| max | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1425) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1426) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.maxBuffs or 32 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1427) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.maxBuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1432) |
 
-### targetAuraMaxDebuffs · Max debuff icons · L1427
+### targetAuraMaxDebuffs · Max debuff icons · L1439
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1427](../../AddonOptions/FluxOptionsUnitFrames.lua#L1427). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1439](../../AddonOptions/FluxOptionsUnitFrames.lua#L1439). Type: `"range"`.
 
 Increasing above the previous cap rebuilds the debuff panel once.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `4` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1433) |
-| max | `24` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1434) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1435) |
-| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.maxDebuffs or 16 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1436) |
-| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.maxDebuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1441) |
+| min | `4` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1445) |
+| max | `24` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1446) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1447) |
+| get | `function() local d = GetDB() d.auraTarget = d.auraTarget or {} return d.auraTarget.maxDebuffs or 16 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1448) |
+| set | `function(_, v) local d = GetDB() d.auraTarget = d.auraTarget or {} d.auraTarget.maxDebuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1453) |
 
-### targetThreatHeader · Threat · L1448
+### targetThreatHeader · Threat · L1460
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1448](../../AddonOptions/FluxOptionsUnitFrames.lua#L1448). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### targetThreatBarVisibility · Threat bar visibility · L1453
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1453](../../AddonOptions/FluxOptionsUnitFrames.lua#L1453). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1460](../../AddonOptions/FluxOptionsUnitFrames.lua#L1460). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `THREAT_BAR_VISIBILITY_VALUES` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1459) |
-| get | `function() return GetThreatBarVisibility() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1461) |
-| set | `function(_, v) SetThreatBarVisibility(v) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1464) |
 
-### targetThreatBarPosition · Threat bar position · L1468
+### targetThreatBarVisibility · Threat bar visibility · L1465
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1468](../../AddonOptions/FluxOptionsUnitFrames.lua#L1468). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1465](../../AddonOptions/FluxOptionsUnitFrames.lua#L1465). Type: `"select"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `THREAT_BAR_VISIBILITY_VALUES` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1471) |
+| get | `function() return GetThreatBarVisibility() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1473) |
+| set | `function(_, v) SetThreatBarVisibility(v) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1476) |
+
+### targetThreatBarPosition · Threat bar position · L1480
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1480](../../AddonOptions/FluxOptionsUnitFrames.lua#L1480). Type: `"select"`.
 
 Portrait overlays the portrait when you have threat. Between reserves a strip between the frame chrome and auras. Left/Right are vertical strips for enemy NPCs only. In side-by-side Layout, Left is coerced to Right so the strip stays on the outer edge.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ portrait = "Portrait overlay", between = "Between chrome and auras", left = "Left (vertical)", right = "Right (vertical)", }` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1474) |
-| get | `function() local v = GetDB().threatBarPositionTarget if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then return "portrait" end return v end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1480) |
-| set | `function(_, v) if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then v = "portrait" end GetDB().threatBarPositionTarget = v if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1487) |
+| values | `{ portrait = "Portrait overlay", between = "Between chrome and auras", left = "Left (vertical)", right = "Right (vertical)", }` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1486) |
+| get | `function() local v = GetDB().threatBarPositionTarget if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then return "portrait" end return v end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1492) |
+| set | `function(_, v) if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then v = "portrait" end GetDB().threatBarPositionTarget = v if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1499) |
 
-### unitTargetOfTarget · Target of target · L1500
+### unitTargetOfTarget · Target of target · L1512
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1500](../../AddonOptions/FluxOptionsUnitFrames.lua#L1500). Type: `"group"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### totWidth · Width · L1505
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1505](../../AddonOptions/FluxOptionsUnitFrames.lua#L1505). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1512](../../AddonOptions/FluxOptionsUnitFrames.lua#L1512). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `80` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1510) |
-| max | `300` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1511) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1512) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("targettarget", "width") end fs.targettarget = fs.targettarget or {} local raw = fs.targettarget.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return De…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1513) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.targettarget = fs.targettarget or {} fs.targettarget.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1525) |
 
-### totHeight · Height · L1535
+### totWidth · Width · L1517
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1535](../../AddonOptions/FluxOptionsUnitFrames.lua#L1535). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1517](../../AddonOptions/FluxOptionsUnitFrames.lua#L1517). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1540) |
-| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1541) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1542) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("targettarget", "height") end fs.targettarget = fs.targettarget or {} local raw = fs.targettarget.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return …` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1543) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.targettarget = fs.targettarget or {} fs.targettarget.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1555) |
+| min | `80` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1522) |
+| max | `300` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1523) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1524) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("targettarget", "width") end fs.targettarget = fs.targettarget or {} local raw = fs.targettarget.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return De…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1525) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.targettarget = fs.targettarget or {} fs.targettarget.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1537) |
 
-### totHealthSplit · Health / resource split % · L1565
+### totHeight · Height · L1547
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1565](../../AddonOptions/FluxOptionsUnitFrames.lua#L1565). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1547](../../AddonOptions/FluxOptionsUnitFrames.lua#L1547). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1552) |
+| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1553) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1554) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("targettarget", "height") end fs.targettarget = fs.targettarget or {} local raw = fs.targettarget.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return …` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1555) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.targettarget = fs.targettarget or {} fs.targettarget.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1567) |
+
+### totHealthSplit · Health / resource split % · L1577
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1577](../../AddonOptions/FluxOptionsUnitFrames.lua#L1577). Type: `"range"`.
 
 Share of the inner bar stack for health when only health + main resource are shown.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1571) |
-| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1572) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1573) |
-| get | `function() return HealthPartitionGetFor("targettarget") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1574) |
-| set | `function(_, val) HealthPartitionSetFor("targettarget", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1577) |
+| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1583) |
+| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1584) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1585) |
+| get | `function() return HealthPartitionGetFor("targettarget") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1586) |
+| set | `function(_, val) HealthPartitionSetFor("targettarget", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1589) |
 
-### unitFocus · Focus · L1584
+### unitFocus · Focus · L1596
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1584](../../AddonOptions/FluxOptionsUnitFrames.lua#L1584). Type: `"group"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1596](../../AddonOptions/FluxOptionsUnitFrames.lua#L1596). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| hidden | `function() return not HasFocusUnit() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1588) |
+| hidden | `function() return not HasFocusUnit() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1600) |
 
-### focusShowPortrait · Show portrait strip · L1590
+### focusShowPortrait · Show portrait strip · L1602
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1590](../../AddonOptions/FluxOptionsUnitFrames.lua#L1590). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1602](../../AddonOptions/FluxOptionsUnitFrames.lua#L1602). Type: `"toggle"`.
 
 When off, only the bar column is shown (focus frame repositions from chat; focus target bar matches width). When on, the side portrait strip is shown (3D vs flat is under General -&gt; Features). Applies immediately.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showPortraitFocus ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1596) |
-| set | `function(_, v) GetDB().showPortraitFocus = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1599) |
+| get | `function() return GetDB().showPortraitFocus ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1608) |
+| set | `function(_, v) GetDB().showPortraitFocus = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1611) |
 
-### focusWidth · Width · L1604
+### focusFrameScale · Focus scale (%) · L1616
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1604](../../AddonOptions/FluxOptionsUnitFrames.lua#L1604). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1616](../../AddonOptions/FluxOptionsUnitFrames.lua#L1616). Type: `"range"`.
 
-| Contract | Source expression / implementation |
-|---|---|
-| min | `80` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1609) |
-| max | `250` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1610) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1611) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("focus", "width") end fs.focus = fs.focus or {} local raw = fs.focus.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("focus", "width") e…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1612) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.focus = fs.focus or {} fs.focus.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1624) |
-
-### focusHeight · Height · L1634
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1634](../../AddonOptions/FluxOptionsUnitFrames.lua#L1634). Type: `"range"`.
+Scales the complete focus frame, attached cast bar, auras, indicators and focus-target frame.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1639) |
-| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1640) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1641) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("focus", "height") end fs.focus = fs.focus or {} local raw = fs.focus.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("focus", "height"…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1642) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.focus = fs.focus or {} fs.focus.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1654) |
+| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1619) |
+| max | `200` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1619) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1619) |
+| get | `function() return (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("focus") or 1) * 100 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1620) |
+| set | `function(_, value) GetDB().frameScaleFocus = math.max(50, math.min(200, tonumber(value) or 100)) / 100 AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1623) |
 
-### focusHealthSplit · Health / resource split % · L1664
+### focusWidth · Width · L1628
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1664](../../AddonOptions/FluxOptionsUnitFrames.lua#L1664). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1628](../../AddonOptions/FluxOptionsUnitFrames.lua#L1628). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `80` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1633) |
+| max | `250` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1634) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1635) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("focus", "width") end fs.focus = fs.focus or {} local raw = fs.focus.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("focus", "width") e…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1636) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.focus = fs.focus or {} fs.focus.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1648) |
+
+### focusHeight · Height · L1658
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1658](../../AddonOptions/FluxOptionsUnitFrames.lua#L1658). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1663) |
+| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1664) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1665) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("focus", "height") end fs.focus = fs.focus or {} local raw = fs.focus.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("focus", "height"…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1666) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.focus = fs.focus or {} fs.focus.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1678) |
+
+### focusHealthSplit · Health / resource split % · L1688
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1688](../../AddonOptions/FluxOptionsUnitFrames.lua#L1688). Type: `"range"`.
 
 Share of the inner bar stack for health; also used for the focus target-of-target strip height.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1670) |
-| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1671) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1672) |
-| get | `function() return HealthPartitionGetFor("focus") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1673) |
-| set | `function(_, val) HealthPartitionSetFor("focus", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1676) |
+| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1694) |
+| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1695) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1696) |
+| get | `function() return HealthPartitionGetFor("focus") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1697) |
+| set | `function(_, val) HealthPartitionSetFor("focus", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1700) |
 
-### focusAurasHeader · Auras · L1680
+### focusAurasHeader · Auras · L1704
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1680](../../AddonOptions/FluxOptionsUnitFrames.lua#L1680). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### focusAuraBuffSize · Buff icon size · L1685
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1685](../../AddonOptions/FluxOptionsUnitFrames.lua#L1685). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1704](../../AddonOptions/FluxOptionsUnitFrames.lua#L1704). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1690) |
-| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1691) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1692) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.buffSize or 20 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1693) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.buffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1698) |
 
-### focusAuraDebuffSize · Debuff icon size · L1705
+### focusAuraBuffSize · Buff icon size · L1709
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1705](../../AddonOptions/FluxOptionsUnitFrames.lua#L1705). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1709](../../AddonOptions/FluxOptionsUnitFrames.lua#L1709). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1710) |
-| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1711) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1712) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.debuffSize or 20 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1713) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.debuffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1718) |
+| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1714) |
+| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1715) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1716) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.buffSize or 20 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1717) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.buffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1722) |
 
-### focusAuraLockOwnDebuffSize · Lock own debuff size · L1725
+### focusAuraDebuffSize · Debuff icon size · L1729
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1725](../../AddonOptions/FluxOptionsUnitFrames.lua#L1725). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1729](../../AddonOptions/FluxOptionsUnitFrames.lua#L1729). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `14` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1734) |
+| max | `56` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1735) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1736) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.debuffSize or 20 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1737) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.debuffSize = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1742) |
+
+### focusAuraLockOwnDebuffSize · Lock own debuff size · L1749
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1749](../../AddonOptions/FluxOptionsUnitFrames.lua#L1749). Type: `"toggle"`.
 
 Keep your player/pet/vehicle debuffs at full boosted size (~1.38x). Other players' debuffs can shrink to fit the panel (Classic) or stay at the configured size (Midnight/Forever). When off, yours can shrink down to Own debuff min scale.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1731) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.lockOwnDebuffSize = v and true or false AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1736) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1755) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.lockOwnDebuffSize = v and true or false AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1760) |
 
-### focusAuraOwnDebuffMinScale · Own debuff min scale · L1743
+### focusAuraOwnDebuffMinScale · Own debuff min scale · L1767
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1743](../../AddonOptions/FluxOptionsUnitFrames.lua#L1743). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1767](../../AddonOptions/FluxOptionsUnitFrames.lua#L1767). Type: `"range"`.
 
 When lock is off, the smallest your own debuffs can get (100% = full boosted size, 50% = half of boosted). They stay larger than other players' icons while the panel is shrinking. Disabled while lock is on. On Midnight/Forever this sets own icon size directly (those frames do not fit-shrink).
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1749) |
-| max | `100` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1750) |
-| step | `5` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1751) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} local s = tonumber(d.auraFocus.ownDebuffMinScale) or 0.75 return math.floor(s * 100 + 0.5) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1759) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.ownDebuffMinScale = (tonumber(v) or 75) / 100 AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1765) |
-| disabled | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1754) |
+| min | `50` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1773) |
+| max | `100` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1774) |
+| step | `5` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1775) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} local s = tonumber(d.auraFocus.ownDebuffMinScale) or 0.75 return math.floor(s * 100 + 0.5) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1783) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.ownDebuffMinScale = (tonumber(v) or 75) / 100 AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1789) |
+| disabled | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.lockOwnDebuffSize ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1778) |
 
-### focusAuraBuffSpacing · Buff spacing · L1772
+### focusAuraBuffSpacing · Buff spacing · L1796
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1772](../../AddonOptions/FluxOptionsUnitFrames.lua#L1772). Type: `"range"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1777) |
-| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1778) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1779) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.buffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1780) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.buffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1785) |
-
-### focusAuraDebuffSpacing · Debuff spacing · L1792
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1792](../../AddonOptions/FluxOptionsUnitFrames.lua#L1792). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1796](../../AddonOptions/FluxOptionsUnitFrames.lua#L1796). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1797) |
-| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1798) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1799) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.debuffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1800) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.debuffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1805) |
+| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1801) |
+| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1802) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1803) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.buffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1804) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.buffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1809) |
 
-### focusAuraMaxBuffs · Max buff icons · L1812
+### focusAuraDebuffSpacing · Debuff spacing · L1816
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1812](../../AddonOptions/FluxOptionsUnitFrames.lua#L1812). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1816](../../AddonOptions/FluxOptionsUnitFrames.lua#L1816). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `0` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1821) |
+| max | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1822) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1823) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.debuffSpacing or 2 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1824) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.debuffSpacing = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1829) |
+
+### focusAuraMaxBuffs · Max buff icons · L1836
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1836](../../AddonOptions/FluxOptionsUnitFrames.lua#L1836). Type: `"range"`.
 
 Increasing above the previous cap rebuilds the buff panel once.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `8` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1818) |
-| max | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1819) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1820) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.maxBuffs or 32 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1821) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.maxBuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1826) |
+| min | `8` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1842) |
+| max | `40` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1843) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1844) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.maxBuffs or 32 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1845) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.maxBuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1850) |
 
-### focusAuraMaxDebuffs · Max debuff icons · L1833
+### focusAuraMaxDebuffs · Max debuff icons · L1857
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1833](../../AddonOptions/FluxOptionsUnitFrames.lua#L1833). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1857](../../AddonOptions/FluxOptionsUnitFrames.lua#L1857). Type: `"range"`.
 
 Increasing above the previous cap rebuilds the debuff panel once.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `4` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1839) |
-| max | `24` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1840) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1841) |
-| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.maxDebuffs or 16 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1842) |
-| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.maxDebuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1847) |
+| min | `4` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1863) |
+| max | `24` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1864) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1865) |
+| get | `function() local d = GetDB() d.auraFocus = d.auraFocus or {} return d.auraFocus.maxDebuffs or 16 end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1866) |
+| set | `function(_, v) local d = GetDB() d.auraFocus = d.auraFocus or {} d.auraFocus.maxDebuffs = v AfterAuraOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1871) |
 
-### focusThreatHeader · Threat · L1854
+### focusThreatHeader · Threat · L1878
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1854](../../AddonOptions/FluxOptionsUnitFrames.lua#L1854). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### focusThreatBarVisibility · Threat bar visibility · L1859
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1859](../../AddonOptions/FluxOptionsUnitFrames.lua#L1859). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1878](../../AddonOptions/FluxOptionsUnitFrames.lua#L1878). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `THREAT_BAR_VISIBILITY_VALUES` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1865) |
-| get | `function() return GetThreatBarVisibility() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1867) |
-| set | `function(_, v) SetThreatBarVisibility(v) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1870) |
 
-### focusThreatBarPosition · Threat bar position · L1874
+### focusThreatBarVisibility · Threat bar visibility · L1883
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1874](../../AddonOptions/FluxOptionsUnitFrames.lua#L1874). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1883](../../AddonOptions/FluxOptionsUnitFrames.lua#L1883). Type: `"select"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `THREAT_BAR_VISIBILITY_VALUES` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1889) |
+| get | `function() return GetThreatBarVisibility() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1891) |
+| set | `function(_, v) SetThreatBarVisibility(v) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1894) |
+
+### focusThreatBarPosition · Threat bar position · L1898
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1898](../../AddonOptions/FluxOptionsUnitFrames.lua#L1898). Type: `"select"`.
 
 Portrait overlays the portrait when you have threat. Between reserves a strip between the frame chrome and auras. Left/Right are vertical strips for enemy NPCs only.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ portrait = "Portrait overlay", between = "Between chrome and auras", left = "Left (vertical)", right = "Right (vertical)", }` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1880) |
-| get | `function() local v = GetDB().threatBarPositionFocus if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then return "portrait" end return v end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1886) |
-| set | `function(_, v) if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then v = "portrait" end GetDB().threatBarPositionFocus = v if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1893) |
+| values | `{ portrait = "Portrait overlay", between = "Between chrome and auras", left = "Left (vertical)", right = "Right (vertical)", }` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1904) |
+| get | `function() local v = GetDB().threatBarPositionFocus if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then return "portrait" end return v end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1910) |
+| set | `function(_, v) if v ~= "between" and v ~= "left" and v ~= "right" and v ~= "portrait" then v = "portrait" end GetDB().threatBarPositionFocus = v if FluxUnitFrames_ApplyThreatBarOptionsFromDB then FluxUnitFrames_ApplyThreatBarOptionsFromDB() end end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1917) |
 
-### unitPet · Pet · L1906
+### unitPet · Pet · L1930
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1906](../../AddonOptions/FluxOptionsUnitFrames.lua#L1906). Type: `"group"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1930](../../AddonOptions/FluxOptionsUnitFrames.lua#L1930). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### petShowPortrait · Show portrait strip · L1911
+### petShowPortrait · Show portrait strip · L1935
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1911](../../AddonOptions/FluxOptionsUnitFrames.lua#L1911). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1935](../../AddonOptions/FluxOptionsUnitFrames.lua#L1935). Type: `"toggle"`.
 
 When off, only the pet bar column is shown (no portrait strip). When on, the side portrait strip is shown (3D vs flat is under General -&gt; Features). Applies immediately; the pet frame re-anchors to the player frame.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showPortraitPet ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1917) |
-| set | `function(_, v) GetDB().showPortraitPet = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1920) |
+| get | `function() return GetDB().showPortraitPet ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1941) |
+| set | `function(_, v) GetDB().showPortraitPet = v and true or false AfterPortraitOptionsChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1944) |
 
-### petShowCastBar · Show cast bar · L1925
+### petShowCastBar · Show cast bar · L1949
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1925](../../AddonOptions/FluxOptionsUnitFrames.lua#L1925). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1949](../../AddonOptions/FluxOptionsUnitFrames.lua#L1949). Type: `"toggle"`.
 
 Overlay a cast/channel bar on the pet resource bar. Off by default.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showCastBarPet == true end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1931) |
-| set | `function(_, v) GetDB().showCastBarPet = v and true or false AfterFeatureChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1934) |
+| get | `function() return GetDB().showCastBarPet == true end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1955) |
+| set | `function(_, v) GetDB().showCastBarPet = v and true or false AfterFeatureChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1958) |
 
-### petShowTooltipAuras · Show auras on mouseover · L1939
+### petShowTooltipAuras · Show auras on mouseover · L1963
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1939](../../AddonOptions/FluxOptionsUnitFrames.lua#L1939). Type: `"toggle"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1963](../../AddonOptions/FluxOptionsUnitFrames.lua#L1963). Type: `"toggle"`.
 
 When hovering the pet frame, show buff and debuff icons with cooldown countdown next to the unit tooltip.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() return GetDB().showPetTooltipAuras ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1945) |
-| set | `function(_, v) GetDB().showPetTooltipAuras = v and true or false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1948) |
+| get | `function() return GetDB().showPetTooltipAuras ~= false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1969) |
+| set | `function(_, v) GetDB().showPetTooltipAuras = v and true or false end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1972) |
 
-### petWidth · Width · L1952
+### petWidth · Width · L1976
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1952](../../AddonOptions/FluxOptionsUnitFrames.lua#L1952). Type: `"range"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-| min | `60` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1957) |
-| max | `220` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1958) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1959) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pet", "width") end fs.pet = fs.pet or {} local raw = fs.pet.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pet", "width") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1960) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pet = fs.pet or {} fs.pet.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1972) |
-
-### petHeight · Height · L1982
-
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:1982](../../AddonOptions/FluxOptionsUnitFrames.lua#L1982). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:1976](../../AddonOptions/FluxOptionsUnitFrames.lua#L1976). Type: `"range"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1987) |
-| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1988) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1989) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pet", "height") end fs.pet = fs.pet or {} local raw = fs.pet.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pet", "height") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1990) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pet = fs.pet or {} fs.pet.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2002) |
+| min | `60` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1981) |
+| max | `220` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1982) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1983) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pet", "width") end fs.pet = fs.pet or {} local raw = fs.pet.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pet", "width") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1984) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pet = fs.pet or {} fs.pet.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L1996) |
 
-### petHealthSplit · Health / resource split % · L2012
+### petHeight · Height · L2006
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:2012](../../AddonOptions/FluxOptionsUnitFrames.lua#L2012). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:2006](../../AddonOptions/FluxOptionsUnitFrames.lua#L2006). Type: `"range"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+| min | `30` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2011) |
+| max | `120` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2012) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2013) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pet", "height") end fs.pet = fs.pet or {} local raw = fs.pet.height if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pet", "height") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2014) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pet = fs.pet or {} fs.pet.height = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2026) |
+
+### petHealthSplit · Health / resource split % · L2036
+
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:2036](../../AddonOptions/FluxOptionsUnitFrames.lua#L2036). Type: `"range"`.
 
 Share of the inner bar stack for health when only health + main resource are shown.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2018) |
-| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2019) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2020) |
-| get | `function() return HealthPartitionGetFor("pet") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2021) |
-| set | `function(_, val) HealthPartitionSetFor("pet", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2024) |
+| min | `35` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2042) |
+| max | `85` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2043) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2044) |
+| get | `function() return HealthPartitionGetFor("pet") end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2045) |
+| set | `function(_, val) HealthPartitionSetFor("pet", val) end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2048) |
 
-### unitPetTarget · Pet target · L2031
+### unitPetTarget · Pet target · L2055
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:2031](../../AddonOptions/FluxOptionsUnitFrames.lua#L2031). Type: `"group"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:2055](../../AddonOptions/FluxOptionsUnitFrames.lua#L2055). Type: `"group"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### petTargetWidth · Width · L2036
+### petTargetWidth · Width · L2060
 
-Source: [AddonOptions/FluxOptionsUnitFrames.lua:2036](../../AddonOptions/FluxOptionsUnitFrames.lua#L2036). Type: `"range"`.
+Source: [AddonOptions/FluxOptionsUnitFrames.lua:2060](../../AddonOptions/FluxOptionsUnitFrames.lua#L2060). Type: `"range"`.
 
 Vertical health strip next to the pet frame; height always matches the pet frame.
 
 | Contract | Source expression / implementation |
 |---|---|
-| min | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2042) |
-| max | `48` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2043) |
-| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2044) |
-| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pettarget", "width") end fs.pettarget = fs.pettarget or {} local raw = fs.pettarget.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pe…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2045) |
-| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pettarget = fs.pettarget or {} fs.pettarget.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2057) |
+| min | `12` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2066) |
+| max | `48` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2067) |
+| step | `1` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2068) |
+| get | `function() local fs = FrameSizesBucket() if not fs then return DefaultDim("pettarget", "width") end fs.pettarget = fs.pettarget or {} local raw = fs.pettarget.width if raw ~= nil then return FrameSizeStorageToEffective(raw) end return DefaultDim("pe…` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2069) |
+| set | `function(_, v) local fs = FrameSizesBucket() if not fs then return end fs.pettarget = fs.pettarget or {} fs.pettarget.width = FrameSizeEffectiveToStorage(v) AfterLayoutSizingChange() end` [source](../../AddonOptions/FluxOptionsUnitFrames.lua#L2081) |
 
 ### Factory expansions
 

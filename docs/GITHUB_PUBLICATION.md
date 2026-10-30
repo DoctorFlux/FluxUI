@@ -78,3 +78,20 @@ An ordinary push advanced it to
 that SHA and the local worktree was clean. Native all-client rendering, combat
 and secret-value acceptance is still pending. This receipt is documentation
 only and does not change game state or settings.
+
+## 30 October 2026 - combined local updates publication
+
+User requested all current updates on main again. The publication includes the
+local unit-frame scale controls and alignment fixes, vehicle/durability placement,
+status-bar changes, vendor denomination messages, tests and their records.
+The fresh [combined validation](validation/main-publication-2026-10-30.json)
+passes 100 scripts and 741 Lua syntax files with zero failures. Native acceptance
+retains the pending scope recorded in the feature chapters. No game/settings
+interaction or runtime edits were made for publication.
+
+Remote main matched parent `021b524893229fece34eff503a8ac1cf66388363`.
+External checkpoint `Publish-all-20261030T104001Z` preserves 1,314 actual local
+files and verified Git history. Source ZIP SHA-256:
+`f7fb816f0651d264fbd30e9187afb2af8e17170aa39da02580d785b44c5f2176`.
+Private archives/settings/captures and ignored local sync helpers stay outside Git.
+Publish by ordinary push to main and verify remote identity and worktree status.

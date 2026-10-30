@@ -1,5 +1,40 @@
 # Development status
 
+Current publication batch (30 October 2026): all local scale, vehicle/durability,
+status-bar and vendor message updates are included for main. Fresh combined
+validation passes **100 scripts /741 Lua syntax files, zero failures**.
+See [publication record](GITHUB_PUBLICATION.md). Native pending checks remain pending.
+
+Vendor chat follow-up (30 October 2026): repair, standalone junk sale and net
+vendor money lines now show gold/silver/copper denominations with matching coin
+symbols. The reported 3,494,236 copper displays as 349 gold, 42 silver, 36 copper.
+Focused chat and existing vendor identity checks pass; full desktop validation
+passes 100 scripts/741 Lua syntax files. Native chat texture rendering remains
+pending. No game or settings interaction.
+
+Unit-frame scale follow-up (30 October 2026): corrected portrait centering and
+focus alignment for scaled frame coordinates. Player and side-by-side target
+now clear the action strip at both smaller and larger sizes; scaled strip
+coordinates are converted to UIParent space. The 3D portrait reframes only
+when scale changes. Focused 23 checks and the full 99-script/740-Lua desktop
+suite pass; native geometry, pixels and combat/taint remain pending.
+
+Latest unit-frame scale (30 October 2026): Unit Frames now has a shared
+player/target whole-frame scale and a separate focus scale, each 50–200% with
+100% default. Attached cast bars, auras, portraits, indicators, dependent
+target frames and supported class resources follow the parent scale. The
+focused production-bridge check passes; full desktop validation and native
+acceptance are recorded in [the scale chapter](UNIT_FRAME_SCALE.md).
+
+Latest vehicle/durability layout (30 October 2026): the 70%-scale seat indicator
+sits left of the equipment durability frame. When either visible micro menu or
+status strip occupies the top-left, both sit below the lower chrome frame while
+the strip stays fixed. With clear chrome they start at the screen top-left; a
+top-left PvP widget keeps its clearance. Focused source-driven anchor checks
+and the full 99-script/740-Lua desktop suite pass. Native seat art, click
+geometry, combat and all-client pixels remain
+pending. No game, settings or profiler interaction.
+
 Latest unit-frame change (30 October 2026): Flux-owned main and raid power bars
 hide for a known zero maximum; health fills the freed space. On Live/Forever,
 full-height health sits behind a resource layer whose alpha accepts secret max

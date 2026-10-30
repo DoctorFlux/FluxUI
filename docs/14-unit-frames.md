@@ -12,6 +12,10 @@ Watched-unit visibility distinguishes a real resolved unit from the optional emp
 
 [OptionsBridge.lua](../UnitFrames/FluxUnitFrames_OptionsBridge.lua) interprets account/character settings through `GetUnitFrameDB`, supplies feature/display predicates and applies frame sizes, portraits, aura layouts, threat, partitions and overall geometry. Placement-specific stored sizes convert to effective dimensions; shared horizontal squeeze is applied without changing the saved dimensions. Layout placement has its own scope; see [layout](06-layout.md).
 
+The Player tab has a shared player/target whole-frame scale and the Focus tab
+has an independent scale. Both also scale attached visuals and dependent target
+frames; [details and native limits](UNIT_FRAME_SCALE.md).
+
 ## Health, resources and feedback
 
 When the displayed unit's main resource has a known maximum of zero, Flux hides

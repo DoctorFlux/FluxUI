@@ -1,5 +1,48 @@
 # Decisions
 
+## 2026-10-30 - vendor chat coin amounts
+
+- Keep existing vendor net accounting and repair/junk messages. Format their chat
+  amounts into full gold/silver/copper denominations with native coin texture paths.
+- Use the shared merchant formatter when the junk/repair module is loaded, while
+  keeping standalone vendor loading capable of the same output.
+- Desktop string checks do not establish native texture rendering; verify in-game
+  chat on each client when background-safe access is available.
+
+## 2026-10-30 — portrait and strip scale correction
+
+- Treat `SetPoint` offsets as frame-local. Do not multiply portrait center
+  offset by the frame scale again. Normalize chat/aura positions by effective
+  scale before moving focus.
+- Convert the action strip top to UIParent units, then the player/side-by-side
+  target bottom offset to frame-local units. Keep a four-unit clearance when
+  scale differs from 100%; preserve the original 100% anchor.
+- Refresh a 3D portrait after an actual scale change through the existing
+  display-metrics helper. [Evidence](UNIT_FRAME_SCALE.md).
+
+## 2026-10-30 — whole unit-frame scale
+
+- Give player and target one multiplier, and focus a separate multiplier, in
+  their existing Unit Frames tabs and account/character scope. Keep saved
+  width/height and class-power size controls independent.
+- Scale root frames so their children inherit it. Match detached separators,
+  atlas borders, target placeholder and Blizzard-owned class resources explicitly.
+  Clear the action strip edge at changed scales. Avoid a
+  second scale on ToT when it is parented to target.
+- Use existing combat-deferred sizing refresh. [Behavior and pending native
+  checks](UNIT_FRAME_SCALE.md).
+
+## 2026-10-30 — vehicle seat corner and scale
+
+- Reserve a seat-width slot to the left of equipment durability. When the
+  visible micro menu or status strip occupies the top-left, keep the chrome
+  fixed and put both indicators below whichever extends lower. Otherwise start
+  the pair at the screen top-left, preserving PvP-widget clearance.
+- Scale the parent indicator to 0.7 so native art and seat buttons keep their
+  proportions and hit areas. Keep stock indicator mute and vehicle events intact.
+- Existing combat deferral and the status owner's anchor refresh continue to
+  apply. Focused desktop layout checks pass; native pixels, clicks and taint are pending.
+
 ## 2026-10-30 — empty unit resource bars
 
 - Use maximum power, never current power, to classify an absent main resource.

@@ -170,6 +170,11 @@ local function InitializePlayerFrame()
     end
 
     ns.PlayerFrame = frame
+    -- Apply the scale-aware anchor on first creation as well as later option
+    -- changes; the initial fallback point above predates the full frame tree.
+    if FluxUnitFrames_ReanchorUnitFrameScreenPosition then
+        FluxUnitFrames_ReanchorUnitFrameScreenPosition(frame, "player")
+    end
 
     -- Respec build-matched spec icon override (FluxRespec loads after UnitFrames; refresh once player strip exists).
     if _G.C_Timer and _G.C_Timer.After then

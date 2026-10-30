@@ -55,8 +55,8 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [UnitFrames/FluxFlightPath.lua:544](../../UnitFrames/FluxFlightPath.lua#L544) | handler | `FLUXFLIGHTPATH` | `` |
 | [MicroMenu/FluxMicroMenu.lua:3138](../../MicroMenu/FluxMicroMenu.lua#L3138) | alias | `SLASH_FLUXMICRO1` | `/fluxmicro` |
 | [MicroMenu/FluxMicroMenu.lua:3139](../../MicroMenu/FluxMicroMenu.lua#L3139) | handler | `FLUXMICRO` | `` |
-| [StatusBars/FluxStatusBar.lua:3052](../../StatusBars/FluxStatusBar.lua#L3052) | alias | `SLASH_FLUXSTATUS1` | `/fluxstatus` |
-| [StatusBars/FluxStatusBar.lua:3053](../../StatusBars/FluxStatusBar.lua#L3053) | handler | `FLUXSTATUS` | `` |
+| [StatusBars/FluxStatusBar.lua:3063](../../StatusBars/FluxStatusBar.lua#L3063) | alias | `SLASH_FLUXSTATUS1` | `/fluxstatus` |
+| [StatusBars/FluxStatusBar.lua:3064](../../StatusBars/FluxStatusBar.lua#L3064) | handler | `FLUXSTATUS` | `` |
 | [StatusBars/FluxPVPObjectiveMover.lua:374](../../StatusBars/FluxPVPObjectiveMover.lua#L374) | alias | `SLASH_FLUXPVP1` | `/fluxpvp` |
 | [StatusBars/FluxPVPObjectiveMover.lua:375](../../StatusBars/FluxPVPObjectiveMover.lua#L375) | handler | `FLUXPVP` | `` |
 | [Battlezonemap/FluxWindowFrame.lua:1254](../../Battlezonemap/FluxWindowFrame.lua#L1254) | alias | `SLASH_FLUXWINDOW1` | `/fluxwindow` |

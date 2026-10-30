@@ -12,7 +12,7 @@
       BAG_UPDATE_DELAYED (merchant open) -> continue sell/buy batches, refresh
                           the merchant UI data (debounced by the UI itself).
       MERCHANT_UPDATE  -> debounced index rebuild.
-      MERCHANT_CLOSED  -> finish the batch, report one net gold line.
+      MERCHANT_CLOSED  -> finish the batch, report one net coin line.
 
     Purchases: needs come from FluxVendorAuto.GetRestockTargetItems (bag counts
     are O(1) snapshot reads); stack math follows Restocker and caps by gold +
@@ -77,7 +77,7 @@ local function IsMerchantOpen()
 end
 
 -- ---------------------------------------------------------------------------
--- BATCH REPORTER (one net gold line per vendor visit)
+-- BATCH REPORTER (one net coin line per vendor visit)
 -- ---------------------------------------------------------------------------
 
 local batchState = {
@@ -86,11 +86,23 @@ local batchState = {
 }
 
 local function FormatCopper(copper)
-    copper = math.abs(tonumber(copper) or 0)
-    if GetCoinTextureString then
-        return GetCoinTextureString(copper)
+    if FV.FormatVendorMoney then
+        return FV.FormatVendorMoney(copper)
     end
-    return tostring(copper) .. "c"
+    -- Standalone vendor consumers may load without the junk/repair module.
+    copper = math.floor(math.abs(tonumber(copper) or 0))
+    local gold = math.floor(copper / 10000)
+    local silver = math.floor(copper % 10000 / 100)
+    local remainder = copper % 100
+    local parts = {}
+    if gold > 0 then
+        parts[#parts + 1] = gold .. "|TInterface\\MoneyFrame\\UI-GoldIcon:0:0:2:0|t"
+    end
+    if silver > 0 or gold > 0 then
+        parts[#parts + 1] = silver .. "|TInterface\\MoneyFrame\\UI-SilverIcon:0:0:2:0|t"
+    end
+    parts[#parts + 1] = remainder .. "|TInterface\\MoneyFrame\\UI-CopperIcon:0:0:2:0|t"
+    return table.concat(parts, " ")
 end
 
 function FV.AddBatchCopper(copper)

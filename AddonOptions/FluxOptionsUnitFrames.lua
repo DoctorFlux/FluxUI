@@ -1067,6 +1067,18 @@ local function BuildUnitFrameOptions()
                         AfterPortraitOptionsChange()
                     end,
                 },
+                playerTargetScale = {
+                    type = "range", name = "Player + target scale (%)", order = 0.7,
+                    desc = "Scales the complete player and target frames and their attached cast bars, auras, indicators and target-of-target frame.",
+                    width = "full", min = 50, max = 200, step = 1,
+                    get = function()
+                        return (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("player") or 1) * 100
+                    end,
+                    set = function(_, value)
+                        GetDB().frameScalePlayerTarget = math.max(50, math.min(200, tonumber(value) or 100)) / 100
+                        AfterLayoutSizingChange()
+                    end,
+                },
                 playerWidth = {
                     type = "range",
                     name = "Width",
@@ -1599,6 +1611,18 @@ local function BuildUnitFrameOptions()
                     set = function(_, v)
                         GetDB().showPortraitFocus = v and true or false
                         AfterPortraitOptionsChange()
+                    end,
+                },
+                focusFrameScale = {
+                    type = "range", name = "Focus scale (%)", order = 0.7,
+                    desc = "Scales the complete focus frame, attached cast bar, auras, indicators and focus-target frame.",
+                    width = "full", min = 50, max = 200, step = 1,
+                    get = function()
+                        return (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("focus") or 1) * 100
+                    end,
+                    set = function(_, value)
+                        GetDB().frameScaleFocus = math.max(50, math.min(200, tonumber(value) or 100)) / 100
+                        AfterLayoutSizingChange()
                     end,
                 },
                 focusWidth = {

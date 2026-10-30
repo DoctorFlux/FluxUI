@@ -10,6 +10,8 @@ XP displays progress/rested/predicted quest progress where supported; reputation
 
 Events include player XP/level/rested changes, faction, money/currency, quest log, durability and combat exit. Inventory listeners refresh tracked counts; composition changes notify unified layout, PvP anchors and the Flux Window through a coalesced path. Stock status presentation is suppressed while Flux provides these strips. ConsolePort suppression is a separate integration; see [integrations](29-integrations.md).
 
+The equipment durability frame and vehicle seats form a horizontal pair below whichever visible micro menu or status strip extends lower in the top-left corner. When that corner is clear, the pair starts at the screen top-left, except that a top-left PvP objective widget keeps its existing clearance. The strip's own position remains unchanged.
+
 ## Account gold ledger
 
 [FluxGoldLedger.lua](../StatusBars/FluxGoldLedger.lua) stores `FluxUIGoldLedger` and identifies characters using normalized name/realm keys. It saves current money, consolidates duplicate entries, scopes/sorts account rows and caches summed contexts. The gold hover presents known characters and totals with realm/faction policy; bag money widgets can share the tooltip.

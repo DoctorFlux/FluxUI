@@ -182,6 +182,10 @@ The wider chat-copy schema also contains URL color/message color/fade/max-line f
 
 Master Player/Target/Target-of-target/Focus/Focus-target/Pet/Pet-target switches default on, with focus-capability gates. Unit Frames and Party/raid have separate scope/reset controls. `useFluxRaidFrames` defaults on. Settings switch runtime ownership through the appropriate coordinator; see [unit frames](14-unit-frames.md) and [raid frames](15-raid-frames.md).
 
+Player has a shared player/target whole-frame scale; Focus has a separate whole-frame
+scale (50–200%, 100% default). Both use the unit-frame scope and include attached
+elements and dependent target frames. See [scale behavior](UNIT_FRAME_SCALE.md).
+
 Shared unit options include 3D portraits, portrait combat tint, health-loss/power-cost/MP5 overlays, weapon swing timer and flight timers/bar/tooltips, all default on where supported. Pet cast bar defaults off. Threat visibility defaults group; numeric threat is shared with Nameplates.
 
 Per-unit groups expose applicable portrait, cast bar/time, health/power text, level/class/PvP/combat/raid indicators, mouseover, prediction/absorb and class-resource controls. Their exact per-unit defaults differ and are fully listed under `profile.unitFrames.display` and `char.unitFrames.display` in [defaults](reference/defaults.md). A generated toggle helper's true fallback is not a substitute for checking those seeded defaults.

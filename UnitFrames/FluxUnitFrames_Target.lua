@@ -271,6 +271,9 @@ local function InitializeTargetFrame()
     end
 
     ns.TargetFrame = frame
+    if FluxUnitFrames_ReanchorUnitFrameScreenPosition then
+        FluxUnitFrames_ReanchorUnitFrameScreenPosition(frame, "target")
+    end
 
     -- Placeholder Border Visibility Management (also used when re-enabling Flux target at runtime)
     function frame:UpdateFluxTargetPlaceholderVisibility()

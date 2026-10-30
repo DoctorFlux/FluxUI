@@ -56,8 +56,14 @@ function FluxUIPositionFocusFrameDefault()
         return
     end
 
-    local dx = cr - bl
-    local dy = ct - bt
+    -- Chat and aura coordinates are returned in their own effective scales.
+    -- Convert the physical difference to this frame's local anchor units.
+    local chatScale = ChatFrame1.GetEffectiveScale and ChatFrame1:GetEffectiveScale() or 1
+    local buffScale = buff.GetEffectiveScale and buff:GetEffectiveScale() or 1
+    local frameScale = frame.GetEffectiveScale and frame:GetEffectiveScale() or 1
+    if frameScale <= 0 then frameScale = 1 end
+    local dx = (cr * chatScale - bl * buffScale) / frameScale
+    local dy = (ct * chatScale - bt * buffScale) / frameScale
     frame:ClearAllPoints()
     frame:SetPoint("TOPLEFT", ChatFrame1, "TOPRIGHT", dx, dy)
 end

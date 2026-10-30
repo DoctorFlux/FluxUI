@@ -1,5 +1,6 @@
--- Flux vehicle seat indicator. Blizzard-shaped skin, anchored to the right of
--- FluxDurabilityFrame. The stock VehicleSeatIndicator stays in place at alpha 0
+-- Flux vehicle seat indicator. Blizzard-shaped skin left of the durability
+-- frame, sharing its top-left chrome clearance.
+-- The stock VehicleSeatIndicator stays in place at alpha 0
 -- so Edit Mode layout is not Hide()'d or reparented.
 
 local addonName, ns = ...
@@ -7,6 +8,7 @@ local addonName, ns = ...
 local SEAT_SIZE = 25
 local SKIN_SIZE = 128
 local GAP = 4
+local INDICATOR_SCALE = 0.7
 
 local indicator
 local buttons = {}
@@ -335,9 +337,9 @@ function FluxVehicleSeats_UpdateAnchor()
     local durability = _G.FluxDurabilityFrame
     indicator:ClearAllPoints()
     if durability then
-        indicator:SetPoint("TOPLEFT", durability, "TOPRIGHT", GAP, 0)
+        indicator:SetPoint("TOPRIGHT", durability, "TOPLEFT", -GAP / INDICATOR_SCALE, 0)
     else
-        indicator:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 8 + 60 + GAP, -120)
+        indicator:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, 0)
     end
     indicator._fluxNeedsAnchor = nil
 end
@@ -348,6 +350,7 @@ local function EnsureIndicator()
     end
     indicator = CreateFrame("Frame", "FluxVehicleSeatIndicator", UIParent)
     indicator:SetSize(SKIN_SIZE, SKIN_SIZE)
+    indicator:SetScale(INDICATOR_SCALE)
     indicator:SetFrameStrata("HIGH")
     indicator:SetFrameLevel(20)
     indicator:Hide()

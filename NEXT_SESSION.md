@@ -1,5 +1,40 @@
 # Next session
 
+Current publication batch (30 October 2026): all local scale, vehicle/durability,
+status-bar and vendor message updates are included for main. Fresh combined
+validation passes **100 scripts /741 Lua syntax files, zero failures**.
+See [publication record](docs/GITHUB_PUBLICATION.md). Native pending checks remain pending.
+
+Vendor chat amounts now split copper into gold/silver/copper with matching coin
+symbols in repair, junk sale and net vendor lines. Full desktop validation passes
+100 scripts/741 Lua syntax files; native chat rendering remains pending. The
+reported 3,494,236-copper repair should read 349 gold, 42 silver, 36 copper.
+Preserve unrelated unit-frame, vehicle and status-bar working-tree changes.
+
+Unit-frame scale follow-up: portrait offsets and focus alignment now use
+frame-local coordinates; player and side-by-side target clear the action strip
+at 50–200% scale. 3D portrait camera refreshes on an actual scale change.
+Focused 23 checks and full 99-script/740-Lua desktop suite pass.
+[Evidence](docs/UNIT_FRAME_SCALE.md). Native pixels, click areas and
+combat/taint remain pending. Preserve concurrent vehicle/durability and
+status-bar changes.
+
+New unit-frame scale controls: Player tab sets shared player/target size;
+Focus tab sets focus size (50–200%, default 100%). The root and attached
+elements, dependent target frames, detached chrome and class resources scale
+together. [Scope and pending native checks](docs/UNIT_FRAME_SCALE.md). The
+focused bridge model passes 17 checks; full 98-script/739-Lua report is in that chapter.
+Preserve concurrent vehicle-seat work and verify native pixels, hit areas and
+combat/taint when background-safe access is available.
+
+Latest vehicle/durability change (30 October 2026): the 70%-scale seat indicator
+sits left of equipment durability. If the micro menu or status strip is visible
+at the top-left, both indicators sit below the lower strip without moving it.
+Otherwise the pair starts at the screen top-left, subject to PvP-widget clearance.
+Focused source-driven checks and the full 99-script/740-Lua desktop suite pass.
+Native vehicle art, seat clicks, combat,
+taint and all-client pixels remain pending. No client/settings interaction.
+
 Latest work (30 October 2026): [unit power visibility](docs/UNIT_POWER_VISIBILITY.md)
 hides Flux-owned main/raid power bars for known zero maximum and expands health.
 Live/Forever keep full-height health behind power and pass maximum power through
