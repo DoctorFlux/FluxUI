@@ -535,6 +535,81 @@ Source: [AddonOptions/FluxOptionsActionBars_Stance.lua:56](../../AddonOptions/Fl
 |---|---|
 | dialogControl | `"FluxStanceBarOrderPanel"` [source](../../AddonOptions/FluxOptionsActionBars_Stance.lua#L61) |
 
+## FluxOptionsAppearance.lua
+
+[AddonOptions/FluxOptionsAppearance.lua](../../AddonOptions/FluxOptionsAppearance.lua)
+
+### &lt;anonymous&gt; · Appearance · L10
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:10](../../AddonOptions/FluxOptionsAppearance.lua#L10). Type: `"group"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### header · Borders and buttons · L15
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:15](../../AddonOptions/FluxOptionsAppearance.lua#L15). Type: `"header"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### description · Minecraft style uses the original inventory bevel, slot and button pixels from your local Minecraft Java 1.20… · L16
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:16](../../AddonOptions/FluxOptionsAppearance.lua#L16). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### style · UI style · L22
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:22](../../AddonOptions/FluxOptionsAppearance.lua#L22). Type: `"select"`.
+
+Changes FluxUI border art and supported button frames. The Minecraft textures are built locally from your installed game and are not included in the public addon.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `{ default = "FluxUI default", minecraft = "Minecraft", }` [source](../../AddonOptions/FluxOptionsAppearance.lua#L28) |
+| get | `function() return FluxOptions.db.profile.appearance.style or "default" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L33) |
+| set | `function(_, val) FluxOptions.db.profile.appearance.style = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L36) |
+
+### accentHeader · Accent · L41
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:41](../../AddonOptions/FluxOptionsAppearance.lua#L41). Type: `"header"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### accentDesc · The default style tints FluxUI chrome with this accent. Minecraft panel borders keep their original gray pixe… · L42
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:42](../../AddonOptions/FluxOptionsAppearance.lua#L42). Type: `"description"`.
+
+| Contract | Source expression / implementation |
+|---|---|
+
+### borderAccent · Accent · L48
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:48](../../AddonOptions/FluxOptionsAppearance.lua#L48). Type: `"select"`.
+
+Class color matches your class. Default atlas leaves atlas-based art untinted, except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `{ class = "Class color", atlas = "Default atlas (no tint)", custom = "Custom color", }` [source](../../AddonOptions/FluxOptionsAppearance.lua#L54) |
+| get | `function() return FluxOptions.db.profile.appearance.borderAccent or "class" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L59) |
+| set | `function(_, val) FluxOptions.db.profile.appearance.borderAccent = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L62) |
+
+### customAccent · Custom accent color · L67
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:67](../../AddonOptions/FluxOptionsAppearance.lua#L67). Type: `"color"`.
+
+Used when Accent is set to Custom.
+
+| Contract | Source expression / implementation |
+|---|---|
+| get | `function() local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 } return c.r or 1, c.g or 1, c.b or 1 end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L73) |
+| set | `function(_, r, g, b) local c = FluxOptions.db.profile.appearance.customAccent if not c then c = {} FluxOptions.db.profile.appearance.customAccent = c end c.r, c.g, c.b = r, g, b RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L77) |
+| hidden | `function() return (FluxOptions.db.profile.appearance.borderAccent or "class") ~= "custom" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L86) |
+
 ## FluxOptionsBattlezone.lua
 
 [AddonOptions/FluxOptionsBattlezone.lua](../../AddonOptions/FluxOptionsBattlezone.lua)

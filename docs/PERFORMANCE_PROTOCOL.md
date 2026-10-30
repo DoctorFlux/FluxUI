@@ -1,5 +1,81 @@
 # Baseline protocol and currency evidence
 
+30 October atomic-context binding follow-up completes the first-account
+clear, assign, verify and save/load in one call. Ordinary completed-account
+logins do no binding scan or write; retries touch only incorrect keys and stop
+after three attempts. This meets the requested immediate setup but may
+concentrate work in one startup frame. No native frame-time, CPU, allocation
+or FPS measurement is available. [Evidence](BINDING_ATOMIC_CONTEXT.md).
+
+30 October binding persistence rewrite removes the early PLAYER_LOGIN
+SaveBindings and limits the first-account pass to eight SetBinding writes per
+frame. It adds one native LoadBindings after SaveBindings and read-only key
+verification before marking completion. Existing version-6 accounts skip
+binding scans and writes. No native frame-time, CPU, allocation or FPS samples
+were collected. [Behavior record](BINDING_PERSISTENCE_REWRITE.md).
+
+30 October binding repeat correction: a new account starts on its first
+world-entry frame, and the automatic attempt is consumed before its first
+native key write. Existing accounts and completed or old pending markers skip
+native binding scans and writes. The first pass retains one registry scan and
+at most eight `SetBinding` calls per frame. No native frame-time, CPU,
+allocation or FPS samples were collected. [Behavior record](ACCOUNT_BINDINGS_ONCE.md).
+
+30 October account-only binding correction removes automatic keybinding work
+from new-character logins and Blizzard Settings reset callbacks. Existing
+accounts migrate to completion without a native binding scan or write. Only a
+pending first-account setup uses one registry scan and at most eight writes
+per frame. No matched native frame time, CPU, allocation or FPS measurements
+were collected. [Behavior record](ACCOUNT_BINDINGS_ONCE.md).
+
+30 October one-time binding correction removes the `UPDATE_BINDINGS` reset
+watcher and cross-login registry verification. Completed scopes return before
+native registry reads. One-time setup uses one registry scan and at most
+eight `SetBinding` calls per frame, with a frame boundary between clearing,
+applying and saving. An in-progress pass finishes through its callback without
+a polling timer. Desktop counters establish those bounds only; no matched
+native frame time, startup CPU, allocation or FPS capture was collected.
+[Behavior record](FULL_BINDING_RESET.md).
+
+30 October full binding reset batches the one-time clear and supported
+template apply in groups of eight. Pending scopes scan the native binding
+registry at login and after late binding events; confirmed scopes stop
+automatic work. No matched startup timing, allocation or FPS samples were
+collected; native performance remains pending.
+[Behavior record](FULL_BINDING_RESET.md).
+
+30 October binding persistence adds one cross-login verification and only
+retries missing expected Flux commands while the seed remains pending. It does
+not scan or rewrite confirmed scopes on later logins. No matched startup
+timing, allocation or FPS samples were collected; native performance remains
+pending. [Behavior record](DEFAULT_GRID_BINDINGS.md).
+
+30 October protected-client raid settings reuse the existing option refresh
+and combat queue. Preview reads Flux's current raid DB when painted. No matched
+timing, allocation or FPS samples were collected; native performance remains
+pending. [Behavior record](RAID_OWNED_SETTINGS.md).
+
+30 October raid/nameplate defaults adds a bounded Classic profile retry only
+when a first-login profile is pending and one nameplate-size migration check
+per account. No matched timing, allocation or FPS samples were collected;
+native performance remains pending. [Behavior record](RAID_NAMEPLATE_DEFAULTS.md).
+
+30 October same-login binding correction adds one first-world-entry binding
+scan, one verification scan five seconds later, and bounded retries only if the
+native set or save is unavailable. No matched startup timing, allocation or
+FPS samples were collected. [Behavior record](DEFAULT_GRID_BINDINGS.md).
+
+30 October grid binding repair runs one bounded scan of the Flux template per
+native binding scope, then saves and refreshes the existing override owners.
+No matched startup timing, allocation or FPS samples were collected; native
+performance remains pending. [Behavior record](DEFAULT_GRID_BINDINGS.md).
+
+30 October first-login defaults adds one bounded CVarInfo classification pass
+only for a previously unseen character, plus writes for confirmed character
+CVars. No matched runtime timing or allocation samples exist. Desktop tests
+cover behavior only; native startup timing, FPS and resource cost remain pending
+on all clients. [Source and test record](DEFAULTS_FIRST_LOGIN.md).
+
 30 October vendor chat formatting changes only message text. No performance or
 FPS claim is made; the 100-script/741-Lua desktop validation covers source and
 regression behavior, while native merchant cadence and rendering remain pending.

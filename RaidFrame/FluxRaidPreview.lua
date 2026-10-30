@@ -234,6 +234,20 @@ local function GetPreviewAuraSettings()
     }
 end
 
+local function PreviewRaidSetting(optionKey, cvar, fallback)
+    if FluxRaidVisuals and FluxRaidVisuals.UseOwnRaidSettings
+        and FluxRaidVisuals.UseOwnRaidSettings() then
+        local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+        if db and db[optionKey] ~= nil then return db[optionKey] end
+        return fallback
+    end
+    if type(fallback) == "string" then
+        local value = C_CVar and C_CVar.GetCVar and C_CVar.GetCVar(cvar)
+        return value ~= nil and value ~= "" and value or fallback
+    end
+    return not FluxRaid_GetCVarBool or FluxRaid_GetCVarBool(cvar, fallback)
+end
+
 local function ApplyDemoAuras(frame, idx)
     EnsurePreviewAuraIcons(frame)
     LayoutPreviewAuraIcons(frame)
@@ -244,9 +258,9 @@ local function ApplyDemoAuras(frame, idx)
         if frame._fluxAuraBuff[i] then frame._fluxAuraBuff[i]:Hide() end
     end
     local showDebuffs = aur.demoDebuffs and aur.nDebuff > 0
-        and (not FluxRaid_GetCVarBool or FluxRaid_GetCVarBool("raidFramesDisplayDebuffs", true))
+        and PreviewRaidSetting("displayDebuffs", "raidFramesDisplayDebuffs", true)
     local showBuffs = aur.demoBuffs and aur.nBuff > 0
-        and (not FluxRaid_GetCVarBool or FluxRaid_GetCVarBool("raidFramesDisplayBuffs", true))
+        and PreviewRaidSetting("displayBuffs", "raidFramesDisplayBuffs", true)
     if showDebuffs then
         for i = 1, min(PREVIEW_AURA_SLOTS, aur.nDebuff) do
             local d = DEMO_DEBUFFS[((i - 1) % #DEMO_DEBUFFS) + 1]
@@ -374,7 +388,7 @@ end
 
 local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, powerPct, role, idx, outOfRange)
     ApplyPreviewVisualLayout(frame)
-    local classColor = not FluxRaid_GetCVarBool or FluxRaid_GetCVarBool("raidFramesDisplayClassColor", true)
+    local classColor = PreviewRaidSetting("useClassColors", "raidFramesDisplayClassColor", true)
     local r, g, b = 0, 1, 0
     if classColor and classFile then
         r, g, b = GetClassColor(classFile)
@@ -393,7 +407,7 @@ local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, p
         frame.healthBar:SetValue((hpPct or 1) * 100)
         frame.healthBar:SetStatusBarColor(r, g, b)
     end
-    local ht = C_CVar and C_CVar.GetCVar and C_CVar.GetCVar("raidFramesHealthText") or "perc"
+    local ht = PreviewRaidSetting("healthText", "raidFramesHealthText", "perc")
     if frame.statusText then
         if ht == "none" then
             frame.statusText:SetText("")
@@ -403,7 +417,7 @@ local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, p
             frame.statusText:SetText(string.format("%.0f%%", (hpPct or 1) * 100))
         end
     end
-    local showPower = not FluxRaid_GetCVarBool or FluxRaid_GetCVarBool("raidFramesDisplayPowerBars", true)
+    local showPower = PreviewRaidSetting("displayPowerBar", "raidFramesDisplayPowerBars", true)
     local pc = FluxRaidVisuals.POWER_COLORS and FluxRaidVisuals.POWER_COLORS[powerType or 0]
     if frame.powerBar then
         if showPower and pc then

@@ -46,9 +46,10 @@ do
         return source:sub(start, finish - 1)
     end
     local verify = fragment("function FluxDefaultSettings.VerifyPostLoginDefaults()", "-- Apply the defaults")
-    local reset = fragment("function FluxDefaultSettings.ApplyKeybinds()", "--- Re-apply softTargetEnemy")
+    local reset = fragment("local FLUX_BINDING_SEED_VERSION = 6", "--- Re-apply softTargetEnemy")
     for _, customF5 in ipairs({ "JUMP", "", "CLICK MyCustomButton:LeftButton" }) do
         local bindings = { F5 = customF5, ["CTRL-9"] = "CUSTOM_ACTION" }
+        local savedBindings = { F5 = customF5, ["CTRL-9"] = "CUSTOM_ACTION" }
         local writes, cvarWrites, queue, saves = 0, 0, {}, 0
         local env = environment({
             FluxUI_DB = { accountDefaultsApplied = true },
@@ -56,13 +57,24 @@ do
             print = function() end,
             InCombatLockdown = function() return false end,
             GetBindingAction = function(key) return bindings[key] or "" end,
-            GetNumBindings = function() return 2 end,
+            GetNumBindings = function() return 3 end,
             GetBinding = function(i)
                 if i == 1 then return "JUMP", "F5" end
-                return "CUSTOM_ACTION", "CTRL-9"
+                if i == 2 then return "CUSTOM_ACTION", "CTRL-9" end
+                return "FLUXRELOADUI"
             end,
-            SetBinding = function(key, action) writes = writes + 1; bindings[key] = action end,
-            SaveBindings = function() saves = saves + 1 end,
+            SetBinding = function(key, action) writes = writes + 1; bindings[key] = action; return true end,
+            SaveBindings = function()
+                saves = saves + 1
+                savedBindings = {}
+                for key, action in pairs(bindings) do savedBindings[key] = action end
+                return true
+            end,
+            LoadBindings = function()
+                bindings = {}
+                for key, action in pairs(savedBindings) do bindings[key] = action end
+                return true
+            end,
             GetCurrentBindingSet = function() return 2 end,
             C_Timer = { After = function(_, fn) queue[#queue + 1] = fn end },
         })
@@ -71,7 +83,7 @@ do
         local scope = [[
 local FLUX_DEFAULTS = { showTutorials = "0", autoLootDefault = "1", deselectOnClick = "0" }
 local DefaultKeyTemplate = { F5 = "FLUXRELOADUI" }
-local KEYBIND_BATCH_SIZE = 8
+local KEYBIND_REPAIR_PASSES = 3
 local FluxGetCVarDefault = function() return "1" end
 local FluxGetCVar = function() return "1" end
 local FluxArmPendingCombatFlush = function() end

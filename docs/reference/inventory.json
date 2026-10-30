@@ -11578,6 +11578,190 @@
       "sv_sites": []
     },
     {
+      "path": "AddonOptions/FluxOptionsAppearance.lua",
+      "classification": "inactive source",
+      "chapter": "26-options-map.md",
+      "lines": 102,
+      "sha256": "c56ff64ce3c0eca22e1a322d95de2f52ae92e8ffe8c7cc610bb0fc1ecf39848e",
+      "clients": [],
+      "parents": [],
+      "settings": [
+        {
+          "key": "<anonymous>",
+          "line": 10,
+          "fields": {
+            "name": "\"Appearance\"",
+            "type": "\"group\"",
+            "order": "2",
+            "args": "{\n            header = { type = \"header\", name = \"Borders and buttons\", order = 1 },\n            description = {\n                type = \"description\",\n                name = \"Minecraft style uses the original inventory bevel, slot and button pixels from your local Minecraft Java 1.20.1 installation. FluxBorder keeps its existing corners, edges and UV coordinates.\\n\",\n                order = 2,\n                fontSize = \"medium\",\n            },\n            style = {\n                type = \"select\",\n                name = \"UI style\",\n                desc = \"Changes FluxUI border art and supported button frames. The Minecraft textures are built locally from your installed game and are not included in the public addon.\",\n                order = 3,\n                width = \"full\",\n                values = {\n                    default = \"FluxUI default\",\n                    minecraft = \"Minecraft\",\n                },\n                sorting = { \"default\", \"minecraft\" },\n                get = function()\n                    return FluxOptions.db.profile.appearance.style or \"default\"\n                end,\n                set = function(_, val)\n                    FluxOptions.db.profile.appearance.style = val\n                    RefreshAppearance()\n                end,\n            },\n            accentHeader = { type = \"header\", name = \"Accent\", order = 10 },\n            accentDesc = {\n                type = \"description\",\n                name = \"The default style tints FluxUI chrome with this accent. Minecraft panel borders keep their original gray pixels; selected options and other accent surfaces still use this color.\\n\",\n                order = 11,\n                fontSize = \"medium\",\n            },\n            borderAccent = {\n                type = \"select\",\n                name = \"Accent\",\n                desc = \"Class color matches your class. Default atlas leaves atlas-based art untinted, except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below.\",\n                order = 12,\n                width = \"full\",\n                values = {\n                    class = \"Class color\",\n                    atlas = \"Default atlas (no tint)\",\n                    custom = \"Custom color\",\n                },\n                get = function()\n                    return FluxOptions.db.profile.appearance.borderAccent or \"class\"\n                end,\n                set = function(_, val)\n                    FluxOptions.db.profile.appearance.borderAccent = val\n                    RefreshAppearance()\n                end,\n            },\n            customAccent = {\n                type = \"color\",\n                name = \"Custom accent color\",\n                desc = \"Used when Accent is set to Custom.\",\n                order = 13,\n                hasAlpha = false,\n                get = function()\n                    local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 }\n                    return c.r or 1, c.g or 1, c.b or 1\n                end,\n                set = function(_, r, g, b)\n                    local c = FluxOptions.db.profile.appearance.customAccent\n                    if not c then\n                        c = {}\n                        FluxOptions.db.profile.appearance.customAccent = c\n                    end\n                    c.r, c.g, c.b = r, g, b\n                    RefreshAppearance()\n                end,\n                hidden = function()\n                    return (FluxOptions.db.profile.appearance.borderAccent or \"class\") ~= \"custom\"\n                end,\n            },\n        }"
+          },
+          "field_lines": {
+            "name": 11,
+            "type": 12,
+            "order": 13,
+            "args": 14
+          },
+          "parent_line": null
+        },
+        {
+          "key": "header",
+          "line": 15,
+          "fields": {
+            "type": "\"header\"",
+            "name": "\"Borders and buttons\"",
+            "order": "1"
+          },
+          "field_lines": {
+            "type": 15,
+            "name": 15,
+            "order": 15
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "description",
+          "line": 16,
+          "fields": {
+            "type": "\"description\"",
+            "name": "\"Minecraft style uses the original inventory bevel, slot and button pixels from your local Minecraft Java 1.20.1 installation. FluxBorder keeps its existing corners, edges and UV coordinates.\\n\"",
+            "order": "2",
+            "fontSize": "\"medium\""
+          },
+          "field_lines": {
+            "type": 17,
+            "name": 18,
+            "order": 19,
+            "fontSize": 20
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "style",
+          "line": 22,
+          "fields": {
+            "type": "\"select\"",
+            "name": "\"UI style\"",
+            "desc": "\"Changes FluxUI border art and supported button frames. The Minecraft textures are built locally from your installed game and are not included in the public addon.\"",
+            "order": "3",
+            "width": "\"full\"",
+            "values": "{\n                    default = \"FluxUI default\",\n                    minecraft = \"Minecraft\",\n                }",
+            "sorting": "{ \"default\", \"minecraft\" }",
+            "get": "function()\n                    return FluxOptions.db.profile.appearance.style or \"default\"\n                end",
+            "set": "function(_, val)\n                    FluxOptions.db.profile.appearance.style = val\n                    RefreshAppearance()\n                end"
+          },
+          "field_lines": {
+            "type": 23,
+            "name": 24,
+            "desc": 25,
+            "order": 26,
+            "width": 27,
+            "values": 28,
+            "sorting": 32,
+            "get": 33,
+            "set": 36
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "accentHeader",
+          "line": 41,
+          "fields": {
+            "type": "\"header\"",
+            "name": "\"Accent\"",
+            "order": "10"
+          },
+          "field_lines": {
+            "type": 41,
+            "name": 41,
+            "order": 41
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "accentDesc",
+          "line": 42,
+          "fields": {
+            "type": "\"description\"",
+            "name": "\"The default style tints FluxUI chrome with this accent. Minecraft panel borders keep their original gray pixels; selected options and other accent surfaces still use this color.\\n\"",
+            "order": "11",
+            "fontSize": "\"medium\""
+          },
+          "field_lines": {
+            "type": 43,
+            "name": 44,
+            "order": 45,
+            "fontSize": 46
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "borderAccent",
+          "line": 48,
+          "fields": {
+            "type": "\"select\"",
+            "name": "\"Accent\"",
+            "desc": "\"Class color matches your class. Default atlas leaves atlas-based art untinted, except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below.\"",
+            "order": "12",
+            "width": "\"full\"",
+            "values": "{\n                    class = \"Class color\",\n                    atlas = \"Default atlas (no tint)\",\n                    custom = \"Custom color\",\n                }",
+            "get": "function()\n                    return FluxOptions.db.profile.appearance.borderAccent or \"class\"\n                end",
+            "set": "function(_, val)\n                    FluxOptions.db.profile.appearance.borderAccent = val\n                    RefreshAppearance()\n                end"
+          },
+          "field_lines": {
+            "type": 49,
+            "name": 50,
+            "desc": 51,
+            "order": 52,
+            "width": 53,
+            "values": 54,
+            "get": 59,
+            "set": 62
+          },
+          "parent_line": 14
+        },
+        {
+          "key": "customAccent",
+          "line": 67,
+          "fields": {
+            "type": "\"color\"",
+            "name": "\"Custom accent color\"",
+            "desc": "\"Used when Accent is set to Custom.\"",
+            "order": "13",
+            "hasAlpha": "false",
+            "get": "function()\n                    local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 }\n                    return c.r or 1, c.g or 1, c.b or 1\n                end",
+            "set": "function(_, r, g, b)\n                    local c = FluxOptions.db.profile.appearance.customAccent\n                    if not c then\n                        c = {}\n                        FluxOptions.db.profile.appearance.customAccent = c\n                    end\n                    c.r, c.g, c.b = r, g, b\n                    RefreshAppearance()\n                end",
+            "hidden": "function()\n                    return (FluxOptions.db.profile.appearance.borderAccent or \"class\") ~= \"custom\"\n                end"
+          },
+          "field_lines": {
+            "type": 68,
+            "name": 69,
+            "desc": 70,
+            "order": 71,
+            "hasAlpha": 72,
+            "get": 73,
+            "set": 77,
+            "hidden": 86
+          },
+          "parent_line": 14
+        }
+      ],
+      "functions": [],
+      "events": [
+        {
+          "line": 95,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"ADDON_LOADED\""
+          ],
+          "context": "(\"Frame\")initFrame:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "AddonOptions/FluxOptionsBattlezone.lua",
       "classification": "active",
       "chapter": "26-options-map.md",
@@ -28228,8 +28412,8 @@
       "path": "BlizzardSettings/Nameplates.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 222,
-      "sha256": "a242cbbd236f54afd7132e91e4505d3fa693244246de2e48a301bdfd63c1f7cc",
+      "lines": 224,
+      "sha256": "fdb469bc6f26237bba72dccfb4d83401efe20172b855d239f812eae71109ad71",
       "clients": [
         "camelot",
         "cata",
@@ -28263,24 +28447,24 @@
         },
         {
           "name": "Nameplates.Differs",
-          "line": 141
+          "line": 143
         },
         {
           "name": "Nameplates.ApplyNow",
-          "line": 165
+          "line": 167
         },
         {
           "name": "Nameplates.ApplyHealthText",
-          "line": 190
+          "line": 192
         },
         {
           "name": "Nameplates.Apply",
-          "line": 205
+          "line": 207
         }
       ],
       "events": [
         {
-          "line": 217,
+          "line": 219,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -28297,8 +28481,8 @@
       "path": "BlizzardSettings/Raid.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 139,
-      "sha256": "fc07fed69eec86ad2c594a40f3c067380824653e0adbb3724a658d46e06572f4",
+      "lines": 146,
+      "sha256": "5558505cd83072c0f633bd3c7f3d5f03e79a2d8a7aa1a4549e2b5897221a4159",
       "clients": [
         "camelot",
         "cata",
@@ -28324,15 +28508,15 @@
         },
         {
           "name": "Raid.ApplyNow",
-          "line": 93
+          "line": 98
         },
         {
           "name": "Raid.Apply",
-          "line": 128
+          "line": 133
         },
         {
           "name": "Raid.OnProfilesLoaded",
-          "line": 135
+          "line": 140
         }
       ],
       "events": [],
@@ -45491,8 +45675,8 @@
       "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 472,
-      "sha256": "8b7ba726e22842fe98c2fd5ebb2938a52a17ba008f24447fcabb1810d8b48a6c",
+      "lines": 481,
+      "sha256": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
       "clients": [
         "camelot",
         "cata",
@@ -45534,16 +45718,16 @@
         },
         {
           "name": "HotkeyUtil.RefreshAfterBindingChange",
-          "line": 326
+          "line": 332
         },
         {
           "name": "HotkeyUtil.FlushAfterBulkBindings",
-          "line": 361
+          "line": 366
         }
       ],
       "events": [
         {
-          "line": 408,
+          "line": 415,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_BINDINGS\""
@@ -45551,7 +45735,7 @@
           "context": "bindingUpdatePending=falseeventFrame:"
         },
         {
-          "line": 409,
+          "line": 416,
           "method": "RegisterEvent",
           "arguments": [
             "\"MODIFIER_STATE_CHANGED\""
@@ -45559,7 +45743,7 @@
           "context": "(\"UPDATE_BINDINGS\")eventFrame:"
         },
         {
-          "line": 410,
+          "line": 417,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -46178,8 +46362,8 @@
       "path": "FluxDefaultSettings.lua",
       "classification": "active",
       "chapter": "05-defaults-and-bindings.md",
-      "lines": 2803,
-      "sha256": "9956821a69cecd565125ce0ab227b74cfc1d9fee0da918c3df34e3444dce7133",
+      "lines": 3228,
+      "sha256": "58e5f4c53c3b487aaf0ec7fbc41d90b161b12a5d5f96c547b01b8801e9f9e326",
       "clients": [
         "camelot",
         "cata",
@@ -46301,127 +46485,143 @@
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateScalarDefaults",
-          "line": 1229
+          "line": 1231
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateClassColorDefault",
-          "line": 1233
+          "line": 1235
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateNpcNameDefaults",
-          "line": 1237
+          "line": 1239
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateBitfieldDefaults",
-          "line": 1241
+          "line": 1243
         },
         {
           "name": "FluxDefaultSettings.ApplyNameplateDefaultsPack",
-          "line": 1245
+          "line": 1247
         },
         {
           "name": "FluxDefaultSettings.ScheduleNameplateDefaultsPack",
-          "line": 1249
+          "line": 1251
         },
         {
           "name": "FluxDefaultSettings.ApplySpecialCVarSettings",
-          "line": 1269
+          "line": 1271
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidFrameSettings",
-          "line": 1306
+          "line": 1308
+        },
+        {
+          "name": "FluxDefaultSettings.EnsureNameplateSizeMedium",
+          "line": 1313
         },
         {
           "name": "FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack",
-          "line": 1310
+          "line": 1330
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow",
-          "line": 1314
+          "line": 1334
         },
         {
           "name": "FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack",
-          "line": 1318
+          "line": 1338
         },
         {
           "name": "FluxDefaultSettings.ApplyInterfaceDefaultsPack",
-          "line": 1324
+          "line": 1344
         },
         {
           "name": "FluxDefaultSettings.ApplyStickyTargetingOff",
-          "line": 1332
+          "line": 1352
         },
         {
           "name": "FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
-          "line": 1361
+          "line": 1381
         },
         {
           "name": "FluxDefaultSettings.ApplyMaxCameraDistance",
-          "line": 1387
+          "line": 1407
         },
         {
           "name": "FluxDefaultSettings.ApplyControlsDefaultsPack",
-          "line": 1418
+          "line": 1438
         },
         {
           "name": "FluxDefaultSettings.ApplyChatSettings",
-          "line": 1498
+          "line": 1518
         },
         {
           "name": "FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults",
-          "line": 1545
+          "line": 1565
         },
         {
           "name": "FluxDefaultSettings.ApplyCombatDefaultsPack",
-          "line": 1550
+          "line": 1570
         },
         {
           "name": "FluxDefaultSettings.ApplyActionBarDefaultsPack",
-          "line": 1680
+          "line": 1705
         },
         {
           "name": "FluxDefaultSettings.ShouldSuppressBindingRefresh",
-          "line": 1771
+          "line": 1797
         },
         {
           "name": "FluxDefaultSettings.FlushBindingRefreshAfterBulk",
-          "line": 1786
+          "line": 1812
+        },
+        {
+          "name": "FluxDefaultSettings.SavePendingModifiedClicks",
+          "line": 1893
         },
         {
           "name": "FluxDefaultSettings.ApplyKeybinds",
-          "line": 1860
+          "line": 1944
+        },
+        {
+          "name": "FluxDefaultSettings.PrepareAccountBindingBootstrap",
+          "line": 2216
+        },
+        {
+          "name": "FluxDefaultSettings.EnsureDefaultFluxBindings",
+          "line": 2281
         },
         {
           "name": "FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults",
-          "line": 1987
+          "line": 2328
         },
         {
           "name": "FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults",
-          "line": 2016
+          "line": 2357
         },
         {
           "name": "FluxDefaultSettings.SyncSettingsRegistryProxies",
-          "line": 2025
+          "line": 2366
         },
         {
           "name": "FluxDefaultSettings.ApplyCharacterFirstLogin",
-          "line": 2046
+          "line": 2402
         },
         {
           "name": "FluxDefaultSettings.VerifyPostLoginDefaults",
-          "line": 2054
+          "line": 2428
         },
         {
           "name": "FluxDefaultSettings.Apply",
-          "line": 2107
+          "line": 2482
         },
         {
           "name": "FluxDefaultSettings.ApplyCVarsOnly",
-          "line": 2386
+          "line": 2762
         },
         {
           "name": "FluxDefaultSettings.PrintDebug",
-          "line": 2752
+          "line": 3164
         }
       ],
       "events": [
@@ -46466,7 +46666,7 @@
           "context": "end)else_conjureNameSync:"
         },
         {
-          "line": 1161,
+          "line": 1162,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -46474,7 +46674,7 @@
           "context": ".pendingSqueezeRefreshthenf:"
         },
         {
-          "line": 2423,
+          "line": 2799,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -46482,7 +46682,7 @@
           "context": "_eventFrame=frameframe:"
         },
         {
-          "line": 2424,
+          "line": 2800,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -46490,7 +46690,7 @@
           "context": "(\"PLAYER_LOGIN\")frame:"
         },
         {
-          "line": 2425,
+          "line": 2801,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -46498,7 +46698,7 @@
           "context": "(\"DISPLAY_SIZE_CHANGED\")frame:"
         },
         {
-          "line": 2427,
+          "line": 2803,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -46506,7 +46706,7 @@
           "context": "(\"UI_SCALE_CHANGED\")frame:"
         },
         {
-          "line": 2430,
+          "line": 2806,
           "method": "RegisterEvent",
           "arguments": [
             "\"COMPACT_UNIT_FRAME_PROFILES_LOADED\""
@@ -46519,12 +46719,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXDEFAULTS1",
           "value": "/fluxdefaults",
-          "line": 2774
+          "line": 3199
         },
         {
           "kind": "handler",
           "name": "FLUXDEFAULTS",
-          "line": 2775
+          "line": 3200
         }
       ],
       "widgets": [],
@@ -46533,23 +46733,37 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            2055,
-            2109,
-            2111,
-            2356,
-            2387,
-            2434,
-            2435,
-            2447,
-            2455,
-            2457,
-            2465,
-            2761,
+            1314,
+            1319,
+            1323,
+            1900,
+            1901,
+            1996,
+            2217,
+            2218,
+            2219,
+            2283,
+            2420,
+            2429,
+            2484,
+            2486,
+            2731,
             2763,
-            2784,
-            2788,
-            2789,
-            2797
+            2834,
+            2835,
+            2845,
+            2857,
+            2858,
+            2861,
+            3054,
+            3173,
+            3175,
+            3176,
+            3177,
+            3209,
+            3213,
+            3214,
+            3222
           ]
         }
       ]
@@ -64186,8 +64400,8 @@
       "path": "RaidFrame/FluxRaidPreview.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 760,
-      "sha256": "3b0c70d905c3ec7656d2203342d39e7d36378b4ed0620e29c38768f1857dd820",
+      "lines": 774,
+      "sha256": "7d8eabb81864c1038f561db7e1db790a90f7c1580973291c9932cb41a4d0afe3",
       "clients": [
         "camelot",
         "cata",
@@ -64205,44 +64419,44 @@
       "functions": [
         {
           "name": "FluxRaidPreviewUnit_OnLoad",
-          "line": 284
+          "line": 298
         },
         {
           "name": "FluxRaidPreview_ApplyIdleHighlights",
-          "line": 359
+          "line": 373
         },
         {
           "name": "FluxRaidPreview_RefreshLayout",
-          "line": 628
+          "line": 642
         },
         {
           "name": "FluxRaidPreview.Show",
-          "line": 660
+          "line": 674
         },
         {
           "name": "FluxRaidPreview.Hide",
-          "line": 670
+          "line": 684
         },
         {
           "name": "FluxRaidPreview.Toggle",
-          "line": 677
+          "line": 691
         },
         {
           "name": "FluxRaidPreview.RefreshFromOptions",
-          "line": 685
+          "line": 699
         },
         {
           "name": "FluxRaidPreviewUnit_OnEnter",
-          "line": 694
+          "line": 708
         },
         {
           "name": "FluxRaidPreviewUnit_OnLeave",
-          "line": 709
+          "line": 723
         }
       ],
       "events": [
         {
-          "line": 716,
+          "line": 730,
           "method": "RegisterEvent",
           "arguments": [
             "\"CVAR_UPDATE\""
@@ -64250,7 +64464,7 @@
           "context": "(\"Frame\")previewCvarListener:"
         },
         {
-          "line": 735,
+          "line": 749,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -64258,7 +64472,7 @@
           "context": "(\"Frame\")previewSessionListener:"
         },
         {
-          "line": 736,
+          "line": 750,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -64266,7 +64480,7 @@
           "context": "(\"PLAYER_LOGIN\")previewSessionListener:"
         },
         {
-          "line": 737,
+          "line": 751,
           "method": "RegisterEvent",
           "arguments": [
             "\"GROUP_ROSTER_UPDATE\""
@@ -64283,8 +64497,8 @@
       "path": "RaidFrame/FluxRaidUnit.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 1168,
-      "sha256": "6ce37a98ef63d1f1a5a47709e21a519e50e2c198724265bb624689ff50386150",
+      "lines": 1169,
+      "sha256": "3783ce13f258c6b1e9766e68e2c401288baba6c77a5f96faa6db7b170a4c797a",
       "clients": [
         "camelot",
         "cata",
@@ -64326,119 +64540,119 @@
         },
         {
           "name": "FluxRaid_UpdateSelectionHighlight",
-          "line": 319
+          "line": 320
         },
         {
           "name": "FluxRaid_UpdateAggroHighlight",
-          "line": 336
+          "line": 337
         },
         {
           "name": "FluxRaid_UpdateRoleIcon",
-          "line": 379
+          "line": 380
         },
         {
           "name": "FluxRaid_UpdateCenterStatus",
-          "line": 421
+          "line": 422
         },
         {
           "name": "FluxRaid_UpdateReadyCheck",
-          "line": 449
+          "line": 450
         },
         {
           "name": "FluxRaid_UpdateRange",
-          "line": 473
+          "line": 474
         },
         {
           "name": "FluxRaid_UpdateAuras",
-          "line": 569
+          "line": 570
         },
         {
           "name": "FluxRaid_UpdateDispelHighlight",
-          "line": 608
+          "line": 609
         },
         {
           "name": "FluxRaid_PaintUnit",
-          "line": 657
+          "line": 658
         },
         {
           "name": "FluxRaid_BindUnit",
-          "line": 762
+          "line": 763
         },
         {
           "name": "FluxRaid_OnUnitAttributeChanged",
-          "line": 785
+          "line": 786
         },
         {
           "name": "FluxRaidUnit_OnLoad",
-          "line": 796
+          "line": 797
         },
         {
           "name": "FluxRaidUnit_OnShow",
-          "line": 833
+          "line": 834
         },
         {
           "name": "FluxRaidUnit_OnHide",
-          "line": 842
+          "line": 843
         },
         {
           "name": "FluxRaidUnit_OnEnter",
-          "line": 867
+          "line": 868
         },
         {
           "name": "FluxRaidUnit_OnLeave",
-          "line": 875
+          "line": 876
         },
         {
           "name": "ns.FluxRaidRegisterAllMouseoverKeybindFrames",
-          "line": 885
+          "line": 886
         },
         {
           "name": "FluxRaid_ForEachHeaderChild",
-          "line": 895
+          "line": 896
         },
         {
           "name": "FluxRaid_SyncHeaderChildUnits",
-          "line": 920
+          "line": 921
         },
         {
           "name": "FluxRaid_ApplyChromeToChildren",
-          "line": 932
+          "line": 933
         },
         {
           "name": "FluxRaid_SyncAllFluxUnitAuraSettings",
-          "line": 955
+          "line": 956
         },
         {
           "name": "FluxRaid_RefreshVisibleUnits",
-          "line": 963
+          "line": 964
         },
         {
           "name": "FluxRaid_RefreshSelfDisplayNames",
-          "line": 982
+          "line": 983
         },
         {
           "name": "FluxRaid_EnsureRangePoll",
-          "line": 1014
+          "line": 1015
         },
         {
           "name": "FluxRaid_IsMTMAChild",
-          "line": 1023
+          "line": 1024
         },
         {
           "name": "FluxCompactMiniFrameSetup",
-          "line": 1054
+          "line": 1055
         },
         {
           "name": "FluxRaid_AttachOrUpdateMTMATarget",
-          "line": 1099
+          "line": 1100
         },
         {
           "name": "FluxRaid_RefreshMTMATargetAttachments",
-          "line": 1134
+          "line": 1135
         },
         {
           "name": "FluxCompactMiniFrameSetup_G.FluxCompactUnitFrameSetup",
-          "line": 1148
+          "line": 1149
         }
       ],
       "events": [
@@ -64460,8 +64674,8 @@
       "path": "RaidFrame/FluxRaidVisuals.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 608,
-      "sha256": "76623e13293080e5173c036e304b0cb4833a553b2a4ef322cc468802f6b078aa",
+      "lines": 619,
+      "sha256": "eb6fb2ff4b074ddfe52beb1d5f6b4f2ca3ce3f216191364fff695142859fd003",
       "clients": [
         "camelot",
         "cata",
@@ -64510,56 +64724,60 @@
           "line": 282
         },
         {
+          "name": "FluxRaidVisuals.UseOwnRaidSettings",
+          "line": 299
+        },
+        {
           "name": "FluxRaidVisuals.SyncAuraDisplayOptions",
-          "line": 297
+          "line": 304
         },
         {
           "name": "FluxRaidVisuals.EnsureAuraMaxSlots",
-          "line": 337
+          "line": 344
         },
         {
           "name": "FluxRaidVisuals.ConfigurePrivateAuras",
-          "line": 370
+          "line": 377
         },
         {
           "name": "FluxRaidVisuals.UpdatePrivateAuraUnit",
-          "line": 423
+          "line": 430
         },
         {
           "name": "FluxRaidVisuals.SyncPrivateAuraSettings",
-          "line": 445
+          "line": 452
         },
         {
           "name": "FluxRaidVisuals.PushAuraDisplayToFrame",
-          "line": 469
+          "line": 476
         },
         {
           "name": "FluxRaidVisuals.NeutralizeBlizzardSharedUpdateAllSetup",
-          "line": 479
-        },
-        {
-          "name": "FluxRaidVisuals.ResealCompactUnitFrameOnUpdate",
-          "line": 482
-        },
-        {
-          "name": "FluxRaidVisuals.ApplyCellChrome",
           "line": 486
         },
         {
+          "name": "FluxRaidVisuals.ResealCompactUnitFrameOnUpdate",
+          "line": 489
+        },
+        {
+          "name": "FluxRaidVisuals.ApplyCellChrome",
+          "line": 493
+        },
+        {
           "name": "FluxRaidVisuals.ApplyVisuals",
-          "line": 593
+          "line": 604
         },
         {
           "name": "FluxRaidVisuals.SetupHealAbsorbLayers",
-          "line": 598
+          "line": 609
         },
         {
           "name": "FluxRaidVisuals.SetupReadyCheckIcon",
-          "line": 601
+          "line": 612
         },
         {
           "name": "FluxRaidVisuals.RefreshNeutralBarTracks",
-          "line": 604
+          "line": 615
         }
       ],
       "events": [],
@@ -70186,27 +70404,27 @@
       "path": "tests/binding_respec_regression.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 285,
-      "sha256": "8e87e426273fa27b623fecf3378437e16dbdfcc08cdd586cac7e01b0f6c47577",
+      "lines": 297,
+      "sha256": "05b118b9be8baf171bbe8e36c531eff4fe07fa6f14af9e048806f1386581a24b",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "env.FluxDefaultSettings.ApplyCVarsOnly",
-          "line": 69
+          "line": 81
         },
         {
           "name": "endenv.FluxDefaultSettings.FlushBindingRefreshAfterBulk",
-          "line": 70
+          "line": 82
         },
         {
           "name": "ifnotoptions.noAPIthenenv.FluxSpellBindings_ApplySnapshot",
-          "line": 120
+          "line": 132
         },
         {
           "name": "localcancelledenv.FluxSpellBindings_CancelPendingApply",
-          "line": 187
+          "line": 199
         }
       ],
       "events": [],
@@ -70217,14 +70435,14 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            54
+            55
           ]
         },
         {
           "name": "FluxBindingDB3",
           "lines": [
-            201,
-            263
+            213,
+            275
           ]
         }
       ]
@@ -71625,6 +71843,93 @@
       ]
     },
     {
+      "path": "tests/default_flux_grid_bindings.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 464,
+      "sha256": "76d2e3b69a6fd4b5b74a3746029a32db59e88ea68cf9856e0fe811bad54e7060",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "defaults.FlushBindingRefreshAfterBulk",
+          "line": 125
+        },
+        {
+          "name": "enddefaults.FinishLoginBindingSeed",
+          "line": 128
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxUI_DB",
+          "lines": [
+            47,
+            434
+          ]
+        }
+      ]
+    },
+    {
+      "path": "tests/defaults_first_login.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 187,
+      "sha256": "0b69725969285b8bd254583422ab212478710a6bc05db8c3d9e1dc07bd9b5658",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
+          "line": 47
+        },
+        {
+          "name": "env.FluxDefaultSettings.ApplyRaidFrameSettings",
+          "line": 56
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
+          "line": 57
+        },
+        {
+          "name": "env.FluxDefaultSettings.GetMaxCameraDistanceZoomFactor",
+          "line": 86
+        },
+        {
+          "name": "env.FluxDefaultSettings.ApplyRaidFrameSettings",
+          "line": 88
+        },
+        {
+          "name": "endenv.FluxDefaultSettings.ApplyChatSettings",
+          "line": 89
+        },
+        {
+          "name": "endendendsettings.GetMaxCameraDistanceZoomFactor",
+          "line": 121
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxUI_DB",
+          "lines": [
+            74,
+            125,
+            129
+          ]
+        }
+      ]
+    },
+    {
       "path": "tests/deferred_inventory_handoff.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -72003,6 +72308,43 @@
         {
           "name": "nilenv.LoadSavedVars",
           "line": 80
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/grid_hotkey_refresh.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 78,
+      "sha256": "a717ab2cccca9f7e5d596fde869a339cfca2f540811aef78761f9cc7831573eb",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "endendhotkey.GetWidth",
+          "line": 17
+        },
+        {
+          "name": "endhotkey.GetFont",
+          "line": 18
+        },
+        {
+          "name": "endhotkey.SetText",
+          "line": 19
+        },
+        {
+          "name": "valueendhotkey.Show",
+          "line": 20
+        },
+        {
+          "name": "trueendhotkey.Hide",
+          "line": 21
         }
       ],
       "events": [],
@@ -75204,6 +75546,71 @@
         {
           "name": "env.CreateFrame",
           "line": 31
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/raid_nameplate_defaults.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 149,
+      "sha256": "d412690ff90f431ec6ad36ac09efc3f97e9bc3cac3055a38d9d52d803f24b50e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.FluxRaid_IsFluxRaidEnabled",
+          "line": 56
+        },
+        {
+          "name": "raid.OnProfilesLoaded",
+          "line": 70
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxUI_DB",
+          "lines": [
+            108
+          ]
+        }
+      ]
+    },
+    {
+      "path": "tests/raid_owned_settings.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 81,
+      "sha256": "4ced0a750dc624f9a753d75eea9d2aa7b9f18128359cc25ea30063219c1a18f5",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "fs:Hide",
+          "line": 65
+        },
+        {
+          "name": "fs:Show",
+          "line": 66
+        },
+        {
+          "name": "fs:SetFormattedText",
+          "line": 67
+        },
+        {
+          "name": "fs:SetText",
+          "line": 68
         }
       ],
       "events": [],

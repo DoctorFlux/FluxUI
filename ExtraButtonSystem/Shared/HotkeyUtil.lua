@@ -322,6 +322,12 @@ end
 -- EVENT HANDLING
 -- ============================================================================
 
+local function ActiveExtraButtons()
+    local ebs = Flux and Flux.EBS
+    if ebs and ebs.buttons then return ebs.buttons end
+    return FluxButtonEvents and FluxButtonEvents.ActiveButtons
+end
+
 --- Light refresh for a single keybind change (hotkey text + bound Extra buttons only).
 function HotkeyUtil.RefreshAfterBindingChange()
     if InCombatLockdown and InCombatLockdown() then
@@ -329,10 +335,9 @@ function HotkeyUtil.RefreshAfterBindingChange()
         return
     end
     HotkeyUtil._deferredLightRefresh = nil
-    if not (FluxButtonEvents and FluxButtonEvents.ActiveButtons) then
-        return
-    end
-    for _, btn in ipairs(FluxButtonEvents.ActiveButtons) do
+    local buttons = ActiveExtraButtons()
+    if not buttons then return end
+    for _, btn in ipairs(buttons) do
         if btn and btn.HotkeyBinding then
             HotkeyUtil.UpdateHotkeyText(btn, btn.HotkeyBinding, btn.HotkeyAddDynamicModifiers, btn.HotkeyHasModifierAssignments, btn.HotkeyIconSize)
 
@@ -366,17 +371,19 @@ function HotkeyUtil.FlushAfterBulkBindings()
     HotkeyUtil._deferredFlush = nil
 
     -- Secure override rebinds (not just hotkey text)
-    local modules = {
-        _G.FluxNCFood,
-        _G.FluxNCWater,
-        _G.FluxNCConsumables,
-        _G.FluxCombatHealthstone,
-        _G.FluxCombatManaGem,
-        _G.FluxCombatHealPotion,
-        _G.FluxCombatManaPotion,
-        _G.FluxCombatBandage,
-        _G.FluxTrinketMenu,
-    }
+    local modules = {}
+    local function addModule(module)
+        if module then modules[#modules + 1] = module end
+    end
+    addModule(_G.FluxNCFood)
+    addModule(_G.FluxNCWater)
+    addModule(_G.FluxNCConsumables)
+    addModule(_G.FluxCombatHealthstone)
+    addModule(_G.FluxCombatManaGem)
+    addModule(_G.FluxCombatHealPotion)
+    addModule(_G.FluxCombatManaPotion)
+    addModule(_G.FluxCombatBandage)
+    addModule(_G.FluxTrinketMenu)
     for i = 1, #modules do
         local m = modules[i]
         if m then
@@ -448,8 +455,9 @@ eventFrame:SetScript("OnEvent", function(self, event)
             if Timer.After then
                 Timer.After(0.05, function()
                     self._modifierUpdatePending = false
-                    if FluxButtonEvents and FluxButtonEvents.ActiveButtons then
-                        for _, btn in ipairs(FluxButtonEvents.ActiveButtons) do
+                    local buttons = ActiveExtraButtons()
+                    if buttons then
+                        for _, btn in ipairs(buttons) do
                             if btn and btn.HotkeyBinding and (btn.HotkeyAddDynamicModifiers or btn.HotkeyHasModifierAssignments) then
                                 HotkeyUtil.UpdateHotkeyText(btn, btn.HotkeyBinding, btn.HotkeyAddDynamicModifiers, btn.HotkeyHasModifierAssignments, btn.HotkeyIconSize)
                             end
@@ -459,8 +467,9 @@ eventFrame:SetScript("OnEvent", function(self, event)
             else
                 -- Fallback for older clients
                 self._modifierUpdatePending = false
-                if FluxButtonEvents and FluxButtonEvents.ActiveButtons then
-                    for _, btn in ipairs(FluxButtonEvents.ActiveButtons) do
+                local buttons = ActiveExtraButtons()
+                if buttons then
+                    for _, btn in ipairs(buttons) do
                         if btn and btn.HotkeyBinding and (btn.HotkeyAddDynamicModifiers or btn.HotkeyHasModifierAssignments) then
                             HotkeyUtil.UpdateHotkeyText(btn, btn.HotkeyBinding, btn.HotkeyAddDynamicModifiers, btn.HotkeyHasModifierAssignments, btn.HotkeyIconSize)
                         end

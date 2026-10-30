@@ -1,5 +1,234 @@
 # Work log
 
+## 2026-10-30 - atomic context-aware first-account bindings
+
+The user reported exact native assignment/verification failure and asked for
+all keys to clear, apply, verify and save in one pass. Used the dated external
+`binding-native-failure-checkpoint-20261030` before edits. Source inspection
+found false/nil return handling could reject a correct native action, and
+Blizzard's Retail UI supplies per-action binding context that Flux omitted.
+Updated the transaction to use context where available, retry only mismatches
+up to three times, name unresolved keys, and save/load in one call. Updated the
+five-client model for context-required writes, transient failure and nil
+successful returns. Focused 507 checks, binding/respec 110 checks and full
+105-script/747-Lua desktop suite pass. Process/window and WTF inspection did
+not expose the user's open clients. WTF folders appeared transiently during
+read-only inspection, including an Era account cache with 117 binding rows and
+four bridge rows; that does not prove live state or post-change reload.
+Mariosuper Era/Pandasans Retail native verification, taint and frame time
+remain pending. [Evidence](BINDING_ATOMIC_CONTEXT.md).
+
+## 2026-10-30 - native binding persistence rewrite
+
+The user reported that first-load keybindings returned to game defaults after
+reload. With WoW closed, the Retail account cache measured 29 bytes and only
+one modified-click row; character bindings were empty, while SavedVariables
+recorded account binding marker 5. Backed up these private settings, source,
+tests and Git history outside AddOns. The early SaveBindings call in
+ApplyCombatDefaultsPack was consistent with the empty cache, and marker 5 did
+not prove a native save.
+
+Replaced the binding pipeline with account-set selection, one preflight scan,
+eight-write batches, template verification, SaveBindings/LoadBindings
+round-trip verification, success-only version-6 completion and rollback on
+failure. Removed the early SaveBindings; modified clicks now save only after
+native bindings are available or with the full template. Added a one-time
+version-5 empty-cache repair. Focused 501 checks across five client models
+and full 105-script/747-Lua desktop validation pass; native acceptance and
+performance remain pending. [Evidence](BINDING_PERSISTENCE_REWRITE.md).
+
+## 2026-10-30 - stop full binding replay after reload
+
+The user confirmed Flux prints the exact "Applying keybindings..." message
+again after reload. Inspected all production call sites and on-disk account
+metadata with WoW closed. Preserved the current source/test/history and
+available Era account settings and binding cache in a dated external
+checkpoint. The previous successful-save-only marker could remain pending
+after a partial native write, authorizing another full reset next login.
+Changed the automatic first-account pass to claim version 5 before its first
+binding write, migrate old pending markers to consumed, skip when four native
+Flux bridge bindings already exist, and ignore overlapping batch requests.
+No-write missing registration can still start in the same login. Focused 544
+checks across five client models, full 105-script/747-Lua suite pass; native
+input and frame time remain pending. [Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+## 2026-10-30 - account-only automatic keybindings
+
+The user reports that the full keyboard reset still runs on character logins.
+Read the linked DoctorFlux/FluxUI repository and local main history: its
+original bootstrap was gated by the first-account defaults flag. Inspected
+the closed Retail client read-only: the account binding cache has the four
+reported bridge commands, while the newer completion table is empty.
+Preserved current source/history and account settings in a dated external
+checkpoint. Replaced per-character eligibility with one account-wide pending
+state captured before account defaults are marked applied. Existing accounts
+and prior successful character markers migrate without another reset. Removed
+automatic keybind replays from Blizzard Settings reset callbacks. Focused
+528-check five-client desktop model and full 105-script/747-Lua suite pass;
+native key presses, persistence and frame time remain pending.
+[Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+## 2026-10-30 - one-time binding reset and frame pacing
+
+The user clarified that the full binding setup should run once and requested
+an optimized, lag-free path. Created a new external source/history checkpoint;
+WoW was closed, and available account/character binding caches and Flux saved
+settings were copied outside AddOns. Removed cross-login confirmation and
+`UPDATE_BINDINGS` reset replay. A verified successful save now marks the
+active scope complete; an earlier pending version-4 marker is accepted
+without replay. Combined the registry preflight and clear-list collection
+into one scan, and separated clear/apply/save across frames with at most
+eight native binding writes per frame. The focused production test passes
+521 checks across five modeled clients; native frame time remains pending.
+[Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - full first-load binding reset
+
+The user reported that bridge bindings were still never applied and requested
+clearing all keys before setting the full template on every client. Read
+continuity, development and binding specifications; preserved the current
+source and history in an external dated checkpoint. WoW was closed; the
+inspected Retail WTF tree had AddOns.txt files but no binding cache. Replaced
+the missing-Flux-key seed with a one-time full active-set clear/apply for old
+markers, with registration preflight, supported-command filtering, full
+verification before save, late-binding event repair and version-4 cross-login
+confirmation. Expanded the production-source test to 521 checks across five
+client models and retained the 110-check binding/Respec regression. Full
+105-script/747-Lua desktop suite passes. Native input, hotkey labels,
+persistence, taint and timing remain pending.
+[Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - full first-load binding reset
+
+The user reported that bridge bindings were still never applied and requested
+clearing all keys before setting the full template on every client. Read
+continuity, development and binding specifications; preserved the current
+source and history in an external dated checkpoint. WoW was closed; the
+inspected Retail WTF tree had AddOns.txt files but no binding cache. Replaced
+the missing-Flux-key seed with a one-time full active-set clear/apply for old
+markers, with registration preflight, supported-command filtering, full
+verification before save, late-binding event repair and version-4 cross-login
+confirmation. Expanded the production-source test to 521 checks across five
+client models and retained the 110-check binding/Respec regression. Full
+105-script/747-Lua desktop suite passes. Native input, hotkey labels,
+persistence, taint and timing remain pending.
+[Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - grid binding persistence after reload
+
+The user reported that first-load bridge keys did not stay bound after reload.
+Found a path where the full first-account keybind batch resumed a queued seed
+and finalized version 2 before its delayed verification. Created an external
+dated source/history checkpoint and checked the local Gethe Settings binding
+set loader. The post-batch/combat path now uses the same provisional and
+delayed check as world entry. Version 3 waits for cross-login confirmation;
+missing saved Flux commands get repaired and retried, while confirmed
+intentional unbinds stay untouched. Focused 37-check simulated reload test
+and full 105-script/747-Lua desktop validation pass. Native persistence,
+secure clicks and hotkey labels remain pending.
+[Evidence](DEFAULT_GRID_BINDINGS.md).
+
+## 2026-10-30 - protected-client raid options
+
+The user selected the taint guard after the native Blizzard raid settings
+request. Checked Gethe's CUF profile callbacks and Interface Settings source,
+created a dated external source/history checkpoint and checked available WTF
+settings. Flux's existing raid options now remain authoritative for live
+status text and power-bar chrome on Retail/Forever, and the preview uses the
+same options for class colors, power, health text and auras. Classic retains
+native reads; no native raid writes were added. Nine focused tests, raid
+startup/aura smoke, Edit Mode safety and the full 105-script/747-Lua desktop
+suite pass. Native appearance, Settings values, protected execution and
+performance remain unverified. [Evidence](RAID_OWNED_SETTINGS.md).
+
+## 2026-10-30 - protected-client raid options
+
+The user selected the taint guard after the native Blizzard raid settings
+request. Checked Gethe's CUF profile callbacks and Interface Settings source,
+created a dated external source/history checkpoint and checked available WTF
+settings. Flux's existing raid options now remain authoritative for live
+status text and power-bar chrome on Retail/Forever, and the preview uses the
+same options for class colors, power, health text and auras. Classic retains
+native reads; no native raid writes were added. Nine focused tests, raid
+startup/aura smoke, Edit Mode safety and the full 105-script/747-Lua desktop
+suite pass. Native appearance, Settings values, protected execution and
+performance remain unverified. [Evidence](RAID_OWNED_SETTINGS.md).
+
+## 2026-10-30 - raid profile and nameplate defaults
+
+The user reported that Blizzard raid power bars, class colors and frame size
+did not apply, and requested nameplate size `2` instead of `3`. Read continuity,
+the defaults writer and local Gethe source; verified main and on-disk settings
+availability. Preserved the three affected sources and verified Git history in
+an external dated checkpoint. No private settings or WoW process were changed.
+
+The Classic raid profile helper previously returned success when no active
+profile existed. It now keeps work pending, completes the full raid pack after
+profile load and retries briefly after first world entry. Retail/Forever native
+compact-frame callbacks remain excluded by the existing taint guard. Updated
+both nameplate default tables to `2` and added a one-time old-`3` migration
+that retains other sizes. Classic native frame size now applies even with Flux
+raid frames enabled. Focused 15 checks, existing 363-check five-client
+Edit Mode guard regression and full 104-script/746-Lua desktop validation pass.
+Native all-client settings/taint/pixel checks remain pending.
+[Evidence](RAID_NAMEPLATE_DEFAULTS.md).
+
+## 2026-10-30 - same-login grid binding correction
+
+The user reported the first repair required another reload, then that it was
+not assigning the keys at all. Read current repository continuity and Gethe
+binding-set source; inspected available on-disk settings read-only; preserved
+the current candidate and verified Git history in a second external checkpoint.
+The old path saved a completion marker at `PLAYER_LOGIN`, before later native
+binding-set selection could be checked, and excluded Blizzard's stock `Y`
+achievement action from smart mount replacement.
+
+Moved the seed to first world entry, added a second in-login verification and
+bounded retries, upgraded old markers to version `2`, and allowed stock `Y`.
+After the user reported both grids' labels absent, traced the refresh to an
+unused legacy button list and a sparse module array. The live EBS registry and
+dense loaded-module list now refresh labels and secure click owners. Focused
+29 binding and 7 hotkey checks and full 103-script/745-Lua desktop validation
+pass. No WoW window or settings were controlled. Native first-load key clicks, labels and
+combat/taint on each client remain pending. [Evidence](DEFAULT_GRID_BINDINGS.md).
+
+## 2026-10-30 - missing default grid bindings
+
+The user reported Hearthstone, teleport and mount grid keys missing after
+first-login defaults, then confirmed those keys should be set by the defaults.
+Read continuity and binding owners, preserved other working-tree changes and
+made an external dated source/history checkpoint; its Git bundle verified.
+Read-only Retail on-disk inspection found two binding caches, one with the four
+reported Flux commands and one without; the target keys were unbound in the
+latter. No account names, private settings or game state were exported.
+
+Added a one-time, active-binding-set seed for missing Flux commands, preserving
+custom target keys and alternate assignments. It queues behind bulk setup or
+combat and refreshes the existing secure override owners. Focused 21 checks,
+prior 42/110 defaults/binding checks and full 102-script/744-Lua desktop suite
+pass. Native key clicks and all-client verification remain pending; no WoW
+process, setting or profiler was controlled. [Source/evidence](DEFAULT_GRID_BINDINGS.md).
+
+## 2026-10-30 - first-login defaults on new characters
+
+Read repository rules, continuity, defaults/persistence specs and current
+runtime. Preserved the large pre-existing working tree. Created an external
+dated source/history checkpoint before runtime edits; verified its Git bundle
+and confirmed 11 on-disk account WTF files were available. Read Gethe branch
+versions for Live, Forever, Era, Anniversary and MoP and the Live Controls/CUF
+source. No WoW process, settings, input or profiler was touched.
+
+New-character setup now filters `FLUX_DEFAULTS` and nameplate bitfields by
+client-reported character CVar scope. It keeps raid/chat setup and preserves
+account CVars/bindings. First-account and new-character seen flags require their
+respective setup to succeed; the new-character marker waits for its queued CVar
+job. The focused regression passes 42 checks; binding regression passes 110.
+At the user's direction, removed the
+untracked obsolete `tests/minecraft_appearance.lua`; the fresh full suite then
+passes 101 scripts/743 Lua syntax files. Generated source and verification
+indexes were refreshed. Native all-client acceptance and performance remain
+pending. See [the exact-source record](DEFAULTS_FIRST_LOGIN.md).
+
 ## 2026-10-30 — merchant chat coin denominations
 
 User reported `Repaired for 3494236c` and requested denomination amounts with

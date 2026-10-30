@@ -257,7 +257,7 @@ local FLUX_DEFAULTS = {
     ["nameplateShowOffscreen"] = "1",
     ["nameplateShowFriendlyPlayers"] = "0",
     ["nameplateShowSelf"] = "0", -- Personal resource display off
-    ["nameplateSize"] = "3", -- Enum.NamePlateSize.Large
+    ["nameplateSize"] = "2", -- Enum.NamePlateSize.Medium
     ["nameplateAuraScale"] = "1.2", -- 120%
     ["nameplateStyle"] = "2", -- Enum.NamePlateStyle.Block (Blocky bars / Forever Block)
     ["nameplateShowClassColor"] = "1", -- enemy players
@@ -1156,6 +1156,7 @@ local function FluxArmPendingCombatFlush()
     if FluxDefaultSettings._pendingSoftTargetReassert
         or FluxDefaultSettings._pendingStickyTargeting
         or (FluxDefaultSettings._resetDetection and FluxDefaultSettings._resetDetection._pendingKeybindReapply)
+        or (FluxDefaultSettings._resetDetection and FluxDefaultSettings._resetDetection._pendingFluxBindingSeed)
         or f.pendingScaleUpdate
         or f.pendingSqueezeRefresh then
         f:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -1170,6 +1171,7 @@ local function FluxDisarmPendingCombatFlushIfIdle()
     if FluxDefaultSettings._pendingSoftTargetReassert
         or FluxDefaultSettings._pendingStickyTargeting
         or (FluxDefaultSettings._resetDetection and FluxDefaultSettings._resetDetection._pendingKeybindReapply)
+        or (FluxDefaultSettings._resetDetection and FluxDefaultSettings._resetDetection._pendingFluxBindingSeed)
         or f.pendingScaleUpdate
         or f.pendingSqueezeRefresh then
         return
@@ -1305,6 +1307,24 @@ end
 -- Never call CompactUnitFrameProfiles:ApplyCurrentSettings from addon code.
 function FluxDefaultSettings.ApplyRaidFrameSettings()
     return BlizzardSettings.Raid.Apply(true)
+end
+
+-- Migrate only the previous Large default; retain other user choices.
+function FluxDefaultSettings.EnsureNameplateSizeMedium()
+    if not FluxUI_DB or FluxUI_DB.nameplateSizeDefaultV2 then return true end
+    local Write = BlizzardSettings.Write
+    return Write.Run("nameplateSizeDefaultV2", function()
+        local current = Write.Get("nameplateSize")
+        if current == nil or tonumber(current) ~= 3 then
+            FluxUI_DB.nameplateSizeDefaultV2 = true
+            return true
+        end
+        if Write.CVar("nameplateSize", "2", false) and Write.Matches("nameplateSize", "2") then
+            FluxUI_DB.nameplateSizeDefaultV2 = true
+            return true
+        end
+        return false
+    end)
 end
 
 function FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack(force)
@@ -1627,8 +1647,13 @@ function FluxDefaultSettings.ApplyCombatDefaultsPack(force)
         SetModifiedClick("SELFCAST", "NONE")
         SetModifiedClick("FOCUSCAST", "NONE")
         SetModifiedClick("MOUSEOVERCAST", "NONE")
-        if SaveBindings and GetCurrentBindingSet then
-            SaveBindings(GetCurrentBindingSet())
+        -- PLAYER_LOGIN can run before native bindings are loaded. Saving here
+        -- can replace the account binding cache with only modified-click rows.
+        -- The first-account keyboard pass persists these clicks with its final
+        -- SaveBindings after the native binding set is ready.
+        FluxDefaultSettings._pendingModifiedClickSave = true
+        if FluxDefaultSettings._worldEntered and C_Timer and C_Timer.After then
+            C_Timer.After(0, FluxDefaultSettings.SavePendingModifiedClicks)
         end
         wrote = true
     end)
@@ -1764,8 +1789,9 @@ end
 
 -- Apply Keybindings.
 -- Each SetBinding fires UPDATE_BINDINGS; Flux listeners + LAB skip while suppress is on.
--- Clear + template are batched across frames (skip no-ops), then one FlushBindingRefreshAfterBulk.
-local KEYBIND_BATCH_SIZE = 8
+-- The first account setup completes its clear, assignments and native save in one pass.
+-- A failed native write is retried only while its key still has the wrong action.
+local KEYBIND_REPAIR_PASSES = 3
 
 --- True while bulk keybind apply / Blizzard Defaults is in progress — skip expensive UPDATE_BINDINGS work.
 function FluxDefaultSettings.ShouldSuppressBindingRefresh()
@@ -1857,29 +1883,189 @@ function FluxDefaultSettings.FlushBindingRefreshAfterBulk()
     end)
 end
 
-function FluxDefaultSettings.ApplyKeybinds()
-    local detection = FluxDefaultSettings._resetDetection
+local FLUX_BINDING_SEED_VERSION = 6
+local FLUX_BINDING_READY = "ready6"
+local FLUX_BINDING_LEGACY = "legacy-check6"
+local FLUX_BINDING_ATTEMPTED = "attempted6"
+local FLUX_BINDING_FAILED = "failed6"
+local FLUX_BINDING_SAVED = "saved6"
 
+function FluxDefaultSettings.SavePendingModifiedClicks()
+    if not FluxDefaultSettings._pendingModifiedClickSave or not FluxDefaultSettings._worldEntered then
+        return false
+    end
+    local detection = FluxDefaultSettings._resetDetection
+    if detection._keybindBatchActive or detection._pendingLoginBindingSeed
+        or detection._pendingFluxBindingSeed or InCombatLockdown() then return false end
+    local marker = FluxUI_DB and FluxUI_DB.defaultFluxBindingsChecked
+        and FluxUI_DB.defaultFluxBindingsChecked.account
+    if marker == FLUX_BINDING_READY or marker == FLUX_BINDING_LEGACY
+        or marker == FLUX_BINDING_ATTEMPTED then return false end
+    if SettingsPanel and SettingsPanel.IsShown and SettingsPanel:IsShown() then
+        return false -- Blizzard's SettingsPanel.OnHide saves its modified clicks.
+    end
+    local set = GetCurrentBindingSet and GetCurrentBindingSet()
+    if (set ~= 1 and set ~= 2) or not (GetNumBindings and GetBinding and SaveBindings) then
+        return false
+    end
+    -- Never persist an unloaded empty keyboard just to save modified clicks.
+    local hasKeys = false
+    for i = 1, GetNumBindings() do
+        local _, key1, key2 = GetBinding(i)
+        if key1 or key2 then hasKeys = true; break end
+    end
+    if not hasKeys then return false end
+    local ok, result = pcall(SaveBindings, set)
+    if ok and result ~= false then
+        FluxDefaultSettings._pendingModifiedClickSave = false
+        return true
+    end
+    return false
+end
+
+-- Use the account binding set for the one automatic setup. Blizzard's own
+-- Settings.SelectAccountBindings uses LoadBindings(Account) before SaveBindings.
+local function FluxSelectAccountBindingSet()
+    if not GetCurrentBindingSet then return false end
+    local current = GetCurrentBindingSet()
+    if current == 1 then return true end
+    if current ~= 2 or not LoadBindings then return false end
+    local ok, result = pcall(LoadBindings, 1)
+    return ok and result ~= false and GetCurrentBindingSet() == 1
+end
+
+local function FluxBindingContext(command)
+    if not command or not C_KeyBindings
+        or not C_KeyBindings.GetBindingContextForAction then return nil end
+    local ok, context = pcall(C_KeyBindings.GetBindingContextForAction, command)
+    return ok and context or nil
+end
+
+function FluxDefaultSettings.ApplyKeybinds(onComplete)
+    local detection = FluxDefaultSettings._resetDetection
     if InCombatLockdown() then
-        print("|cFF00FFFF[FluxDefaultSettings]|r Combat detected — keybinds queued until combat ends.")
         detection._pendingKeybindReapply = true
         FluxArmPendingCombatFlush()
-        return
+        return false
+    end
+    if detection._keybindBatchActive then return false end
+
+    local bindingSet = GetCurrentBindingSet and GetCurrentBindingSet()
+    if bindingSet ~= 1 and bindingSet ~= 2 then
+        if onComplete then onComplete(false, bindingSet, "binding set unavailable") end
+        return false
+    end
+    if not (GetNumBindings and GetBinding and GetBindingAction and SetBinding
+        and SaveBindings and LoadBindings) then
+        if onComplete then onComplete(false, bindingSet, "native binding API unavailable") end
+        return false
     end
 
-    if detection._applyingKeybinds and detection._keybindBatchActive then
-        detection._reapplyKeybindsQueued = true
-        return
+    -- One registry scan captures every key for the clear phase and a rollback
+    -- snapshot. No native binding is changed until all Flux commands exist.
+    local supported, clearSeen, clearList, clearContext, original = {}, {}, {}, {}, {}
+    for i = 1, GetNumBindings() do
+        local command, key1, key2 = GetBinding(i)
+        if command then supported[command] = true end
+        for _, key in ipairs({ key1, key2 }) do
+            if key and key ~= "" and not clearSeen[key] then
+                clearSeen[key] = true
+                clearList[#clearList + 1] = key
+                clearContext[key] = FluxBindingContext(command)
+                original[#original + 1] = { key, command, clearContext[key] }
+            end
+        end
+    end
+    for _, command in pairs(DefaultKeyTemplate) do
+        if command:sub(1, 4) == "FLUX" and not supported[command] then
+            if onComplete then onComplete(false, bindingSet, "Flux command unavailable") end
+            return false
+        end
     end
 
+    local templateList, assignedKeys = {}, {}
+    for key, command in pairs(DefaultKeyTemplate) do
+        if supported[command] then
+            templateList[#templateList + 1] = { key, command, FluxBindingContext(command) }
+            assignedKeys[key] = true
+        end
+    end
+    table.sort(clearList)
+    table.sort(templateList, function(a, b) return a[1] < b[1] end)
+
+    local markers = FluxUI_DB and FluxUI_DB.defaultFluxBindingsChecked
+    local claimed = false
+    local firstWrite = false
     detection._applyingKeybinds = true
     detection._keybindBatchActive = true
-    detection._reapplyKeybindsQueued = false
     detection.justAppliedKeybinds = true
     detection.isResetting = true
     detection._pendingKeybindReapply = false
-
     print("|cFF00FFFF[FluxDefaultSettings]|r Applying keybindings...")
+
+    local function markFirstWrite()
+        if firstWrite then return end
+        firstWrite = true
+        if type(markers) == "table" and (markers.account == FLUX_BINDING_READY
+            or markers.account == FLUX_BINDING_LEGACY
+            or markers.account == FLUX_BINDING_FAILED) then
+            markers.account = FLUX_BINDING_ATTEMPTED
+            claimed = true
+        end
+        detection._pendingFluxBindingSeed = nil
+    end
+
+    local function actionFor(key, context)
+        if context ~= nil then
+            return GetBindingAction(key, nil, context) or ""
+        end
+        return GetBindingAction(key, false) or ""
+    end
+
+    local function mismatch()
+        for _, entry in ipairs(templateList) do
+            local key, command, context = entry[1], entry[2], entry[3]
+            local actual = actionFor(key, context)
+            if actual ~= command then
+                return key .. " -> " .. command .. " (got " .. actual .. ")"
+            end
+        end
+        for _, key in ipairs(clearList) do
+            if not assignedKeys[key] then
+                local actual = actionFor(key, clearContext[key])
+                if actual ~= "" then
+                    return key .. " should be unbound (got " .. actual .. ")"
+                end
+            end
+        end
+        return nil
+    end
+
+    local function writeKey(key, command, context)
+        if actionFor(key, context) == (command or "") then return true end
+        if InCombatLockdown() or GetCurrentBindingSet() ~= bindingSet then return false end
+        markFirstWrite()
+        -- The resulting native action is authoritative. Some client versions
+        -- return nil for a successful unbind, so a return value alone cannot
+        -- reject an otherwise correct complete keyboard.
+        local ok = pcall(SetBinding, key, command, context)
+        return ok and actionFor(key, context) == (command or "")
+    end
+
+    local function repairKeys(list, expected)
+        for _ = 1, KEYBIND_REPAIR_PASSES do
+            local wrong
+            for _, entry in ipairs(list) do
+                local key, command, context = expected(entry)
+                if not writeKey(key, command, context) then wrong = key end
+            end
+            if not wrong then return true end
+            if InCombatLockdown() or GetCurrentBindingSet() ~= bindingSet then
+                return false
+            end
+        end
+        return false
+    end
 
     local function releaseGuards()
         C_Timer.After(2, function()
@@ -1887,97 +2073,252 @@ function FluxDefaultSettings.ApplyKeybinds()
             detection.isResetting = false
             detection._applyingKeybinds = false
             detection._keybindBatchActive = false
-            -- Final Extra Button rebind after suppress ends (catches deferred + late Settings settle).
-            if not InCombatLockdown or not InCombatLockdown() then
+            if not InCombatLockdown() then
                 if _G.FluxNCHotkeyUtil and _G.FluxNCHotkeyUtil.FlushAfterBulkBindings then
                     pcall(_G.FluxNCHotkeyUtil.FlushAfterBulkBindings)
                 end
             elseif _G.FluxNCHotkeyUtil then
                 _G.FluxNCHotkeyUtil._deferredFlush = true
             end
-            if detection._reapplyKeybindsQueued then
-                detection._reapplyKeybindsQueued = false
-                FluxDefaultSettings.ApplyKeybinds()
+            if detection._pendingFluxBindingSeed then
+                local charKey = detection._pendingFluxBindingSeed
+                detection._pendingFluxBindingSeed = nil
+                if FluxDefaultSettings.FinishLoginBindingSeed then
+                    FluxDefaultSettings.FinishLoginBindingSeed(charKey, 1)
+                end
+                FluxDisarmPendingCombatFlushIfIdle()
             end
         end)
     end
 
-    local keepKeys = {}
-    for key in pairs(DefaultKeyTemplate) do
-        keepKeys[key] = true
-    end
-
-    -- Dedupe clear keys (same key can appear as key1 and key2 on different rows).
-    local clearSeen = {}
-    local clearList = {}
-    for i = 1, GetNumBindings() do
-        local _, key1, key2 = GetBinding(i)
-        if key1 and not keepKeys[key1] and not clearSeen[key1] then
-            clearSeen[key1] = true
-            clearList[#clearList + 1] = key1
+    local function complete(ok, reason)
+        -- The native round trip proves this session's saved set. Confirm it
+        -- once after the next actual client reload before sealing version 6.
+        if claimed then
+            markers.account = ok and FLUX_BINDING_SAVED or FLUX_BINDING_FAILED
+            markers.atomicContextRetryUsed = true
+            markers.atomicContextValidated = ok or nil
+            markers.atomicContextRetryRequired = nil
         end
-        if key2 and not keepKeys[key2] and not clearSeen[key2] then
-            clearSeen[key2] = true
-            clearList[#clearList + 1] = key2
-        end
-    end
-
-    -- Only rewrite template keys that differ from current (avoids redundant SetBinding storms).
-    local templateList = {}
-    for key, command in pairs(DefaultKeyTemplate) do
-        if GetBindingAction(key) ~= command then
-            templateList[#templateList + 1] = { key, command }
-        end
-    end
-
-    local function runBatch(list, startIndex, applyFn, onDone)
-        if InCombatLockdown() then
-            C_Timer.After(2, function()
-                runBatch(list, startIndex, applyFn, onDone)
-            end)
-            return
-        end
-        local last = math.min(startIndex + KEYBIND_BATCH_SIZE - 1, #list)
-        for i = startIndex, last do
-            applyFn(list[i])
-        end
-        if last < #list then
-            C_Timer.After(0, function()
-                runBatch(list, last + 1, applyFn, onDone)
-            end)
+        if ok then
+            FluxDefaultSettings._pendingModifiedClickSave = false
+            print("|cFF00FFFF[FluxDefaultSettings]|r Keybindings saved and verified in the native binding set.")
         else
-            onDone()
+            print("|cFFFF6666[FluxDefaultSettings]|r Keybindings were not saved (" .. reason
+                .. "). Automatic setup will not clear them again; use /fluxdefaults keybinds to retry.")
         end
-    end
-
-    local function finishApply()
-        if InCombatLockdown() then
-            C_Timer.After(2, finishApply)
-            return
-        end
-        SaveBindings(GetCurrentBindingSet())
         FluxDefaultSettings.FlushBindingRefreshAfterBulk()
-        print("|cFF00FFFF[FluxDefaultSettings]|r Keybindings applied!")
+        if onComplete then onComplete(ok, bindingSet, reason) end
         releaseGuards()
     end
 
-    local function applyTemplateBatches()
-        if #templateList == 0 then
-            finishApply()
+    -- Restore the old native set if assignment fails. If a saved round trip
+    -- fails, put the captured original bindings back before saving again.
+    local function rollback(saved, reason)
+        if not saved then
+            pcall(LoadBindings, bindingSet)
+            complete(false, reason)
             return
         end
-        runBatch(templateList, 1, function(entry)
-            SetBinding(entry[1], entry[2])
-        end, finishApply)
+        local undoSeen, undo = {}, {}
+        local function addUndo(key, context)
+            local id = key .. ":" .. tostring(context)
+            if undoSeen[id] then return end
+            undoSeen[id] = true
+            undo[#undo + 1] = { key, context }
+        end
+        for _, key in ipairs(clearList) do addUndo(key, clearContext[key]) end
+        for _, entry in ipairs(templateList) do
+            addUndo(entry[1], entry[3])
+        end
+        table.sort(undo, function(a, b) return a[1] < b[1] end)
+        local cleared = repairKeys(undo,
+            function(entry) return entry[1], nil, entry[2] end)
+        local restored = cleared and repairKeys(original,
+            function(entry) return entry[1], entry[2], entry[3] end)
+        if restored then pcall(SaveBindings, bindingSet) end
+        pcall(LoadBindings, bindingSet)
+        complete(false, reason .. (restored and "" or "; rollback incomplete"))
     end
 
-    if #clearList > 0 then
-        runBatch(clearList, 1, function(key)
-            SetBinding(key, nil)
-        end, applyTemplateBatches)
-    else
-        applyTemplateBatches()
+    local function finishApply()
+        local wrong = mismatch()
+        if InCombatLockdown() or GetCurrentBindingSet() ~= bindingSet or wrong then
+            rollback(false, wrong or "native binding set changed during assignment")
+            return
+        end
+        -- LoadBindings can restore the older modified clicks. Reassert these
+        -- before the one final save, after the keyboard is fully assigned.
+        if FluxDefaultSettings._pendingModifiedClickSave and SetModifiedClick then
+            pcall(SetModifiedClick, "SELFCAST", "NONE")
+            pcall(SetModifiedClick, "FOCUSCAST", "NONE")
+            pcall(SetModifiedClick, "MOUSEOVERCAST", "NONE")
+        end
+        local saveOK, saved = pcall(SaveBindings, bindingSet)
+        if not saveOK or saved == false then
+            rollback(false, "SaveBindings failed")
+            return
+        end
+        -- A successful return alone did not prove persistence in the prior
+        -- implementation. Round-trip through the native saved binding set.
+        local loadOK, loaded = pcall(LoadBindings, bindingSet)
+        wrong = mismatch()
+        if not loadOK or loaded == false or GetCurrentBindingSet() ~= bindingSet
+            or wrong then
+            rollback(true, "native save/load round trip failed"
+                .. (wrong and ": " .. wrong or ""))
+            return
+        end
+        complete(true)
     end
+
+    local function applyTemplate()
+        if #templateList == 0 then
+            complete(false, "no supported template keys")
+            return
+        end
+        if not repairKeys(templateList,
+            function(entry) return entry[1], entry[2], entry[3] end) then
+            rollback(false, mismatch() or "native binding set changed during assignment")
+            return
+        end
+        finishApply()
+    end
+    if #clearList > 0 then
+        if not repairKeys(clearList,
+            function(key) return key, nil, clearContext[key] end) then
+            local wrong
+            for _, key in ipairs(clearList) do
+                local actual = actionFor(key, clearContext[key])
+                if actual ~= "" then
+                    wrong = key .. " could not be unbound (got " .. actual .. ")"
+                    break
+                end
+            end
+            rollback(false, wrong or "native binding set changed during clear")
+        else
+            applyTemplate()
+        end
+    else
+        applyTemplate()
+    end
+    return true
+end
+
+-- The automatic account bootstrap uses version 6. An attempted pass is never
+-- replayed automatically; an old version-4/5 completion is checked once
+-- against the native account binding set so a failed earlier save can repair.
+local function IsLegacyFluxBindingMarker(marker)
+    return marker == 4 or marker == 5 or marker == "pending" or marker == "ready5"
+        or (type(marker) == "table" and marker.version == 4 and marker.pending)
+end
+
+function FluxDefaultSettings.PrepareAccountBindingBootstrap(firstAccount)
+    FluxUI_DB.defaultFluxBindingsChecked = type(FluxUI_DB.defaultFluxBindingsChecked) == "table"
+        and FluxUI_DB.defaultFluxBindingsChecked or {}
+    local markers = FluxUI_DB.defaultFluxBindingsChecked
+    local marker = markers.account
+    if marker == FLUX_BINDING_SEED_VERSION then
+        if markers.atomicContextValidated then return false end
+        -- Version 6 could have been sealed by the old bridge-only check.
+        -- Inspect it once with the corrected context-aware native lookup.
+        markers.atomicContextValidated = true
+        markers.account = FLUX_BINDING_LEGACY
+        return true
+    end
+    if marker == FLUX_BINDING_FAILED then
+        if markers.atomicContextRetryUsed then return false end
+        -- Old failed6 accounts need one attempt with the corrected writer.
+        markers.atomicContextRetryUsed = true
+        markers.atomicContextRetryRequired = true
+        markers.account = FLUX_BINDING_READY
+        return true
+    end
+    if marker == FLUX_BINDING_SAVED then return true end
+    -- A reload during an unfinished batch discarded its unsaved native keys.
+    -- Resume once the native set is available; already saved bridge keys make
+    -- EnsureDefaultFluxBindings complete without a second full clear.
+    if marker == FLUX_BINDING_ATTEMPTED then
+        markers.account = FLUX_BINDING_READY
+        return true
+    end
+    if marker == FLUX_BINDING_READY or marker == FLUX_BINDING_LEGACY then return true end
+    if IsLegacyFluxBindingMarker(marker) then
+        markers.account = FLUX_BINDING_LEGACY
+        return true
+    end
+    for key, old in pairs(markers) do
+        if key ~= "account" and IsLegacyFluxBindingMarker(old) then
+            markers.account = FLUX_BINDING_LEGACY
+            return true
+        end
+    end
+    if firstAccount then
+        markers.account = FLUX_BINDING_READY
+        return true
+    end
+    -- Existing accounts without an old attempt retain their custom keys.
+    markers.account = FLUX_BINDING_SEED_VERSION
+    markers.atomicContextValidated = true
+    return false
+end
+
+local function FluxHasExistingBridgeBindings()
+    if not GetBindingAction then return false end
+    for _, entry in ipairs({
+        { "7", "FLUXGRIDHEARTH" }, { "8", "FLUXCLASS_TELEPORT" },
+        { "Y", "FLUXGRIDSMARTMOUNT" }, { "6", "FLUXGRIDVENDORMOUNT" },
+    }) do
+        local context = FluxBindingContext(entry[2])
+        local action = context ~= nil
+            and GetBindingAction(entry[1], nil, context)
+            or GetBindingAction(entry[1], false)
+        if action ~= entry[2] then return false end
+    end
+    return true
+end
+
+function FluxDefaultSettings.EnsureDefaultFluxBindings(charKey)
+    local detection = FluxDefaultSettings._resetDetection
+    local markers = FluxUI_DB and FluxUI_DB.defaultFluxBindingsChecked
+    if type(markers) ~= "table" then return true end
+    local marker = markers.account
+    if marker ~= FLUX_BINDING_READY and marker ~= FLUX_BINDING_LEGACY
+        and marker ~= FLUX_BINDING_SAVED then return true end
+    if InCombatLockdown() or detection._keybindBatchActive then
+        detection._pendingFluxBindingSeed = charKey
+        if InCombatLockdown() then FluxArmPendingCombatFlush() end
+        return false
+    end
+    if not FluxSelectAccountBindingSet() then return false end
+    if not markers.atomicContextRetryRequired and FluxHasExistingBridgeBindings() then
+        markers.account = FLUX_BINDING_SEED_VERSION
+        markers.atomicContextValidated = true
+        return true
+    end
+    if marker == FLUX_BINDING_SAVED then
+        if markers.accountRepairUsed then
+            markers.account = FLUX_BINDING_FAILED
+            print("|cFFFF6666[FluxDefaultSettings]|r Saved keybindings were lost after reload. Automatic repair is exhausted; use /fluxdefaults keybinds after checking the game's binding storage.")
+            return true
+        end
+        markers.accountRepairUsed = true
+        markers.account = FLUX_BINDING_READY
+    elseif marker == FLUX_BINDING_LEGACY then
+        markers.accountRepairUsed = true
+    end
+    local attempts = detection._bindingResetAttempts or 0
+    if attempts >= 3 then return false end
+    detection._bindingResetAttempts = attempts + 1
+    local started = FluxDefaultSettings.ApplyKeybinds(function(ok)
+        if not ok and (markers.account == FLUX_BINDING_READY
+            or markers.account == FLUX_BINDING_LEGACY)
+            and detection._bindingResetAttempts < 3 then
+            detection._pendingFluxBindingSeed = charKey
+        end
+    end)
+    if started then return nil end
+    return false
 end
 
 --- Re-apply softTargetEnemy and the unit-frame cast bar from FLUX_DEFAULTS.
@@ -2042,11 +2383,44 @@ function FluxDefaultSettings.SyncSettingsRegistryProxies()
     Write.SetSetting("FOCUSCAST", "NONE")
 end
 
---- First login on a **new character** when account-wide defaults already ran: raid frame APIs + chat class colors only (no keybind wipe).
-function FluxDefaultSettings.ApplyCharacterFirstLogin()
-    print("|cFF00FFFF[FluxDefaultSettings]|r First login for this character (account already configured). Raid frames + chat colors...")
+-- CVar scope comes from the client. An unknown scope must not turn an existing
+-- account preference into a new-character reset. Both legacy tuple and modern
+-- C_CVar table return shapes occur across supported clients.
+local function IsCharacterCVar(cvar)
+    local getInfo = (C_CVar and C_CVar.GetCVarInfo) or GetCVarInfo
+    if not getInfo then return false end
+    local ok, info, _, _, character = pcall(getInfo, cvar)
+    if not ok then return false end
+    if type(info) == "table" then
+        return info.isStoredServerCharacter == true
+    end
+    return character == true
+end
+
+-- First login on a new character: only the client's character-stored CVars,
+-- including nameplate bitfields, plus the established raid/chat setup.
+function FluxDefaultSettings.ApplyCharacterFirstLogin(charKey)
+    print("|cFF00FFFF[FluxDefaultSettings]|r First login for this character (account already configured). Applying character settings...")
+    FLUX_DEFAULTS["uiscale"] = GetOptimalUIScale()
+    FLUX_DEFAULTS["cameraDistanceMaxZoomFactor"] = tostring(FluxDefaultSettings.GetMaxCameraDistanceZoomFactor())
     FluxDefaultSettings.ApplyRaidFrameSettings()
     FluxDefaultSettings.ApplyChatSettings()
+    return BlizzardSettings.Write.Run("characterDefaults", function()
+        local Write = BlizzardSettings.Write
+        for cvar, value in pairs(FLUX_DEFAULTS) do
+            if IsCharacterCVar(cvar) then
+                Write.CVar(cvar, value, false)
+            end
+        end
+        local nameplates = BlizzardSettings.Nameplates
+        if nameplates and nameplates.ApplyBitfields then
+            nameplates.ApplyBitfields(false, IsCharacterCVar)
+        end
+        if charKey then
+            FluxUI_DB.characters[charKey] = true
+        end
+        return true
+    end)
 end
 
 -- Check client CVar reverts once the login grace window ends. A binding which
@@ -2104,7 +2478,8 @@ end
 
 -- Apply the defaults
 -- @param force boolean: If true, applies even if already applied before
-function FluxDefaultSettings.Apply(force)
+-- @param deferBindings boolean: First-login bindings wait for the active world set.
+function FluxDefaultSettings.Apply(force, deferBindings)
     -- Initialize DB if needed (SavedVariables)
     if not FluxUI_DB then FluxUI_DB = {} end
     
@@ -2336,10 +2711,10 @@ function FluxDefaultSettings.Apply(force)
         end)
     end)
     
-    -- Apply Keybinds (has its own combat check)
-    FluxDefaultSettings.ApplyKeybinds()
+    -- First login waits until world entry selects the native binding set.
+    if not deferBindings then FluxDefaultSettings.ApplyKeybinds() end
 
-    -- Self cast Auto + focus cast key None (after keybind SaveBindings so modified clicks persist)
+    -- Self cast Auto + focus cast key None; this pack saves modified clicks.
     FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults()
     
     -- Apply special CVar settings (sticky targeting, etc.)
@@ -2378,8 +2753,9 @@ FluxDefaultSettings._resetDetection = {
     _applyingKeybinds = false,     -- Re-entrancy guard for ApplyKeybinds batching
     _keybindBatchActive = false,   -- True while clear/template batches are running
     _flushingBindingRefresh = false, -- Allow one-shot flush during suppress window
-    _reapplyKeybindsQueued = false,
     _pendingKeybindReapply = false, -- Debounce UPDATE_BINDINGS → ApplyKeybinds
+    _pendingFluxBindingSeed = nil, -- One-time full binding reset after bulk/combat
+    _pendingLoginBindingSeed = nil, -- Check after first world entry, when native bindings are loaded
 }
 
 -- Apply only CVars without keybindings (for partial reset scenarios)
@@ -2429,6 +2805,30 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 pcall(function()
     frame:RegisterEvent("COMPACT_UNIT_FRAME_PROFILES_LOADED")
 end)
+local function FluxFinishLoginBindingSeed(charKey, attempt)
+    local ok, complete = pcall(FluxDefaultSettings.EnsureDefaultFluxBindings, charKey)
+    if ok and complete then
+        FluxDefaultSettings.SavePendingModifiedClicks()
+        return
+    end
+    if ok and complete == nil then return end
+    if attempt >= 3 then return end
+    -- Retry only when the set is unavailable, blocked or its save failed.
+    C_Timer.After(attempt == 1 and 5 or 2, function()
+        FluxFinishLoginBindingSeed(charKey, attempt + 1)
+    end)
+end
+FluxDefaultSettings.FinishLoginBindingSeed = FluxFinishLoginBindingSeed
+local function FluxFinishPendingRaidProfile(attempt)
+    local raid = BlizzardSettings.Raid
+    if not raid or not raid.profilePending then return end
+    raid.OnProfilesLoaded()
+    if raid.profilePending and attempt < 3 then
+        C_Timer.After(attempt == 1 and 1 or 2, function()
+            FluxFinishPendingRaidProfile(attempt + 1)
+        end)
+    end
+end
 frame:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" then
         if not FluxUI_DB then FluxUI_DB = {} end
@@ -2442,17 +2842,21 @@ frame:SetScript("OnEvent", function(self, event, ...)
             charKey = UnitName("player") .. "-" .. GetRealmName()
         end
 
+        local firstAccount = not FluxUI_DB.accountDefaultsApplied
+        local needsAccountBindings = FluxDefaultSettings.PrepareAccountBindingBootstrap(firstAccount)
+
         -- Once per **account**: full CVars + proxies + keybinds + raid/chat.
         -- Once per **new character** (account already done): raid frames + chat colors only (no keybind wipe).
-        if not FluxUI_DB.accountDefaultsApplied then
+        if firstAccount then
             print("|cFF00FFFF[FluxDefaultSettings]|r First login on this account. Applying full defaults (Controls, Interface, Action Bars, Combat, Social, keybindings)...")
 
             FluxDefaultSettings._resetDetection.loginGracePeriod = true
             FluxDefaultSettings._resetDetection.isResetting = true
 
-            pcall(function() FluxDefaultSettings.Apply() end)
-
-            FluxUI_DB.characters[charKey] = true
+            local ok = pcall(FluxDefaultSettings.Apply, false, true)
+            if ok and FluxUI_DB.accountDefaultsApplied then
+                FluxUI_DB.characters[charKey] = true
+            end
             FluxDefaultSettings._resetDetection.isResetting = false
         elseif not FluxUI_DB.characters[charKey] then
             print("|cFF00FFFF[FluxDefaultSettings]|r First login for this character. Applying character-specific defaults...")
@@ -2460,10 +2864,11 @@ frame:SetScript("OnEvent", function(self, event, ...)
             FluxDefaultSettings._resetDetection.loginGracePeriod = true
             FluxDefaultSettings._resetDetection.isResetting = true
 
-            pcall(function() FluxDefaultSettings.ApplyCharacterFirstLogin() end)
-
-            FluxUI_DB.characters[charKey] = true
+            pcall(FluxDefaultSettings.ApplyCharacterFirstLogin, charKey)
             FluxDefaultSettings._resetDetection.isResetting = false
+        end
+        if needsAccountBindings then
+            FluxDefaultSettings._resetDetection._pendingLoginBindingSeed = charKey
         end
         
         if FluxUILayoutSqueeze and FluxUILayoutSqueeze.EnsureDisplayRefreshHooks then
@@ -2496,13 +2901,12 @@ frame:SetScript("OnEvent", function(self, event, ...)
                     return
                 end
                 -- Forever / Live: do not write from this callback (Settings previews run as Flux).
-                -- Queue the CVar packs and keybinds until the panel closes and combat ends.
+                -- Queue CVar packs until the panel closes and combat ends.
                 if FluxAvoidBlizzardSettingsCoupling() then
                     print("|cFF00FFFF[FluxDefaultSettings]|r Detected 'Reset All Settings' - Re-applying FluxUI defaults...")
                     detection.isResetting = true
                     BlizzardSettings.Write.Run("resetAll", function()
                         FluxDefaultSettings.ApplyCVarsOnly()
-                        FluxDefaultSettings.ApplyKeybinds()
                         FluxDefaultSettings.ApplyChatSettings()
                     end)
                     C_Timer.After(1, function()
@@ -2514,11 +2918,11 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 detection.isResetting = true
                 C_Timer.After(0.1, function()
                     if not InCombatLockdown() then
-                        FluxDefaultSettings.Apply(true)
+                        FluxDefaultSettings.Apply(true, true)
                     else
                         C_Timer.After(2, function()
                             if not InCombatLockdown() then
-                                FluxDefaultSettings.Apply(true)
+                                FluxDefaultSettings.Apply(true, true)
                             end
                         end)
                     end
@@ -2604,27 +3008,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 end
                 
                 if isKeybindings then
-                    -- Do NOT wipe bindings here — Blizzard already reset the category.
-                    -- Suppress refresh immediately (gap before delayed ApplyKeybinds);
-                    -- ApplyKeybinds owns guard lifetime (no early isResetting clear).
-                    -- Debounce: ignore duplicate CategoryDefaulted while already applying.
-                    if detection._applyingKeybinds or detection._keybindBatchActive or detection.justAppliedKeybinds then
-                        return
-                    end
-                    detection.justAppliedKeybinds = true
-                    detection.isResetting = true
-                    print("|cFF00FFFF[FluxDefaultSettings]|r Re-applying FluxUI keybindings...")
-                    C_Timer.After(0.1, function()
-                        if InCombatLockdown() then
-                            C_Timer.After(2, function()
-                                if not InCombatLockdown() then
-                                    FluxDefaultSettings.ApplyKeybinds()
-                                end
-                            end)
-                        else
-                            FluxDefaultSettings.ApplyKeybinds()
-                        end
-                    end)
+                    -- Blizzard owns later keybinding resets. Automatic Flux
+                    -- setup is only the first account bootstrap.
+                    detection.isResetting = false
+                    return
                 elseif isNameplates then
                     ReapplyCategory("nameplate defaults", function()
                         BlizzardSettings.Nameplates.ApplyNow(true)
@@ -2653,6 +3040,26 @@ frame:SetScript("OnEvent", function(self, event, ...)
             end, "FluxDefaultSettings")
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
+        local detection = FluxDefaultSettings._resetDetection
+        FluxDefaultSettings._worldEntered = true
+        local charKey = detection._pendingLoginBindingSeed
+        detection._pendingLoginBindingSeed = nil
+        if charKey then
+            C_Timer.After(0, function()
+                FluxFinishLoginBindingSeed(charKey, 1)
+            end)
+        elseif FluxDefaultSettings._pendingModifiedClickSave then
+            C_Timer.After(0, FluxDefaultSettings.SavePendingModifiedClicks)
+        end
+        if FluxUI_DB and FluxUI_DB.accountDefaultsApplied then
+            pcall(FluxDefaultSettings.EnsureNameplateSizeMedium)
+        end
+        -- Retry an initial Classic profile whose loaded event ran early.
+        if BlizzardSettings.Raid.profilePending then
+            C_Timer.After(0.5, function()
+                FluxFinishPendingRaidProfile(1)
+            end)
+        end
         -- Classic (and some retail loads) clamp camera zoom on zone; re-assert max only if needed.
         if C_Timer and C_Timer.After then
             C_Timer.After(0, function()
@@ -2675,6 +3082,11 @@ frame:SetScript("OnEvent", function(self, event, ...)
         if detection and detection._pendingKeybindReapply then
             detection._pendingKeybindReapply = false
             pcall(FluxDefaultSettings.ApplyKeybinds)
+        end
+        if detection and detection._pendingFluxBindingSeed then
+            local charKey = detection._pendingFluxBindingSeed
+            detection._pendingFluxBindingSeed = nil
+            FluxFinishLoginBindingSeed(charKey, 1)
         end
         if FluxDefaultSettings._pendingSoftTargetReassert then
             FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults()
@@ -2761,6 +3173,19 @@ function FluxDefaultSettings.PrintDebug()
     local charSeen = FluxUI_DB and FluxUI_DB.characters and FluxUI_DB.characters[charKey]
     print("|cFF00FFFF[FluxDefaultSettings]|r State: " .. state)
     print("  Account defaults applied: " .. tostring(FluxUI_DB and FluxUI_DB.accountDefaultsApplied or false))
+    local marker = FluxUI_DB and FluxUI_DB.defaultFluxBindingsChecked
+        and FluxUI_DB.defaultFluxBindingsChecked.account
+    print("  Account binding setup: " .. tostring(marker or "not recorded"))
+    print("  Native binding set: " .. tostring(GetCurrentBindingSet and GetCurrentBindingSet() or "unavailable"))
+    if GetBindingKey then
+        local bound = 0
+        for _, command in ipairs({ "FLUXGRIDHEARTH", "FLUXCLASS_TELEPORT",
+            "FLUXGRIDSMARTMOUNT", "FLUXGRIDVENDORMOUNT" }) do
+            local key1, key2 = GetBindingKey(command)
+            if key1 or key2 then bound = bound + 1 end
+        end
+        print("  Bridge bindings present: " .. bound .. "/4")
+    end
     print("  This character in saved first-login list: " .. tostring(charSeen or false) .. " (" .. charKey .. ")")
     if #info > 0 then
         print("  Differences found:")

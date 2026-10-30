@@ -1,5 +1,40 @@
 # Development tasks
 
+Current binding priority (30 October): verify the one-call context-aware
+transaction on Mariosuper (Era) and Pandasans (Retail) once their actual
+processes/windows are visible without foreground control. Confirm keys,
+reload persistence, no repeat setup, grid labels and frame time.
+[Evidence](BINDING_ATOMIC_CONTEXT.md).
+
+Current user priority (30 October): verify the version-6 native binding
+transaction on actual clients, especially Retail's empty account-cache
+migration and first-load reload persistence. The desktop
+[evidence](BINDING_PERSISTENCE_REWRITE.md) cannot certify secure input,
+disk persistence, hotkey labels, taint or frame time.
+
+Current user priority (30 October): verify native no-replay on reload and
+immediate first-account binding setup after the version-5 attempt gate.
+Desktop [evidence](ACCOUNT_BINDINGS_ONCE.md) covers five client models; native
+secure keys, saved-variable persistence and frame time remain pending.
+
+Current user priority (30 October): verify account-only automatic keybindings
+on native clients. One successful first-account setup must be followed by no
+automatic full keyboard reset on character logins or Settings callbacks.
+Desktop [evidence](ACCOUNT_BINDINGS_ONCE.md) cannot prove real input,
+persistence, protected execution or frame time.
+
+Current user priority (30 October): verify the corrected one-time binding
+reset and its native frame time. A successfully saved active scope must never
+reset on a later login; desktop tests cover the one-scan/eight-write frame
+bound, while real latency, input and persistence still need client checks.
+[Evidence](FULL_BINDING_RESET.md).
+
+Current user priority (30 October): native verification of the new full
+first-load binding reset on every client and active account/character binding
+scope. The user explicitly requested clearing all keys before applying the
+Flux template; [desktop evidence](FULL_BINDING_RESET.md) cannot prove actual
+key presses, labels, persistence or protected execution.
+
 Current user priority (30 October): finish native all-client checks for
 [unit power visibility](UNIT_POWER_VISIBILITY.md) when background-safe access is
 available. Verify health/power geometry, combat/taint and restricted values;

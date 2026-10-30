@@ -179,7 +179,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua) | 1 | 2 | 6 | 2 | 3 |
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua) | 0 | 0 | 3 | 15 | 0 |
 | [FluxBorder.lua](../FluxBorder.lua) | 0 | 0 | 0 | 1 | 0 |
-| [FluxDefaultSettings.lua](../FluxDefaultSettings.lua) | 1 | 0 | 32 | 11 | 2 |
+| [FluxDefaultSettings.lua](../FluxDefaultSettings.lua) | 1 | 0 | 33 | 11 | 2 |
 | [Inventory/Builtin/Auctions.lua](../Inventory/Builtin/Auctions.lua) | 4 | 0 | 0 | 0 | 0 |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua](../Inventory/Builtin/FluxClassicCombinedBag.lua) | 0 | 0 | 3 | 6 | 4 |
 | [Inventory/Builtin/Mail.lua](../Inventory/Builtin/Mail.lua) | 3 | 0 | 0 | 4 | 2 |

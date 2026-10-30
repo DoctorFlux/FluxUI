@@ -1,5 +1,91 @@
 # Client and reference validation — 29 October 2026
 
+30 October atomic-context binding follow-up: the five-client production-source
+model passes 507 checks, with 105 scripts/747 Lua files passing the full desktop
+suite. Mariosuper Era and Pandasans Retail were requested for native testing,
+but no WoW process/window was visible in the workspace. Client WTF folders
+appeared only transiently during read-only inspection, so they cannot prove
+the live client state or a post-change reload.
+Actual first-login/reload persistence, bridge clicks, grid labels, no replay,
+taint and frame time remain pending. [Evidence](BINDING_ATOMIC_CONTEXT.md).
+
+30 October binding persistence rewrite: 501 focused checks across five
+modeled clients verify first-account native account-set save/load, empty-cache
+version-5 repair, reload preservation, rollback and eight-write batches.
+Full 105-script/747-Lua desktop suite passes. Actual client disk persistence,
+bridge key presses, labels, taint and frame time remain pending.
+[Evidence](BINDING_PERSISTENCE_REWRITE.md).
+
+30 October binding repeat correction: 544 focused desktop checks across five
+modeled clients cover first-account same-login application, strict no-replay
+after partial writes/save failure, old pending marker migration, lost account
+marker with existing native bridge keys, overlap suppression and the
+eight-write frame bound. Full 105-script/747-Lua suite passes. Actual client
+reload, binding persistence, hotkey labels and secure input remain pending.
+[Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+30 October account-only binding correction: 528 focused desktop checks across
+five modeled clients cover first-account arming, single global completion,
+old-marker migration, no character/binding-set replay, Settings callback
+isolation and the eight-write frame bound. Full 105-script/747-Lua suite
+passes. Actual first-account keys, later character behavior, persistence and
+frame time remain pending. [Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+30 October one-time binding correction: 521 focused desktop checks cover a
+single full reset, completed-scope no-scan/no-write behavior across reload,
+one registry scan and at most eight binding writes per frame on five modeled
+clients. Native first-load keys, persistence, secure clicks, labels, combat
+and actual frame time remain pending. [Evidence](FULL_BINDING_RESET.md).
+
+30 October full binding reset: 521 focused desktop checks cover all-key clear,
+supported Flux template apply, active-set save, late native replacement,
+cross-login confirmation, combat and failure paths across five client models.
+The full 105-script/747-Lua suite passes. Actual first-login/reload bindings,
+secure key presses, hotkey labels, account/character scope and taint remain
+pending on every client. [Evidence](FULL_BINDING_RESET.md).
+
+30 October binding persistence: 35 focused desktop checks now cover a Flux
+bridge assignment lost on reload, repair, and cross-login completion. The
+full 105-script/747-Lua suite passes. Native first login, first reload,
+account/character binding sets, real bridge clicks and both grids' hotkey
+labels remain pending on every client. [Evidence](DEFAULT_GRID_BINDINGS.md).
+
+30 October protected-client raid options: nine focused checks cover Flux-owned
+class colors, power bars and health text against conflicting native CVars,
+preview ownership and retained Classic reads. The full 105-script/747-Lua
+desktop suite passes. Native first-login/new-character appearance, Blizzard
+Settings values, real protected raid cells, combat and Edit Mode remain
+pending. [Evidence](RAID_OWNED_SETTINGS.md).
+
+30 October raid/nameplate follow-up: 15 focused desktop checks cover late
+Classic raid profile completion and Medium nameplate defaults/migration;
+104 scripts/746 Lua files pass in full validation. Native Classic power bars,
+class colors and frame size, all-client nameplate size and Retail/Forever
+protected raid behavior remain pending. [Evidence](RAID_NAMEPLATE_DEFAULTS.md).
+
+30 October same-login binding follow-up: the prior repair did not assign keys
+on the user's first load; the user also reports missing combat/noncombat grid
+labels. The revised world-entry and delayed check pass 29 focused binding
+checks; the live EBS hotkey refresh passes 7 focused checks. Full validation
+passes 103 scripts/745 Lua files.
+Each client still needs a first-load native check of `7`, `8`, `Y`, `6`, labels,
+binding-set persistence and combat/taint. [Evidence](DEFAULT_GRID_BINDINGS.md).
+
+30 October grid binding follow-up: the active native binding-set seed passes
+21 desktop checks for default grid commands, custom-key preservation, account/
+character scopes and deferred work. Full validation passes 102 scripts/744 Lua
+files. Every client in `CLIENT_MATRIX.csv` still needs a reload on a suitable
+test character, actual key click and hotkey label checks, persistence across
+reload and combat/taint observation. [Evidence](DEFAULT_GRID_BINDINGS.md).
+
+30 October first-login defaults: 42 production-source checks cover modern table,
+tuple and legacy CVarInfo shapes, character/account/missing scopes and filtered
+nameplate bitfields. The full 101-script/743-Lua desktop suite passes. For every
+client in `CLIENT_MATRIX.csv`, native fresh-account and new-character CVar
+classification/application, queue completion, bindings, Settings UI, combat and
+taint remain pending. Gethe branch versions and exact candidate source identities
+are in [the defaults record](DEFAULTS_FIRST_LOGIN.md). No client was controlled.
+
 30 October vendor chat: desktop checks cover full denominations and gold, silver,
 copper texture tokens for gain, expense and manual repair. The existing vendor
 identity fixture passes. Native chat texture rendering and merchant transaction

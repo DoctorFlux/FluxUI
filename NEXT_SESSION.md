@@ -1,5 +1,130 @@
 # Next session
 
+Atomic binding follow-up (30 October 2026): first-account keys now clear,
+assign, verify, save and load in one call, with Blizzard action contexts on
+modern clients and three immediate attempts only for wrong keys. Focused 507
+checks and 105-script/747-Lua desktop validation pass. The user's Mariosuper
+Era and Pandasans Retail clients were not visible in this workspace process
+or window view, so native first-login/reload keys, labels, no replay, taint and
+frame time remain pending. [Evidence](docs/BINDING_ATOMIC_CONTEXT.md).
+
+Binding persistence rewrite (30 October 2026): first-load Retail account
+cache was 29 bytes with no bindings although marker 5 claimed completion.
+Source now avoids SaveBindings during PLAYER_LOGIN, selects account bindings
+at first world entry, applies and verifies the template, SaveBindings(1),
+LoadBindings(1), verifies again, then checks disk persistence on the next
+login before recording version 6. Old version-5 empty
+cache gets one migration repair. Focused 501 checks and 105-script/747-Lua
+desktop suite pass. Native first-load/reload persistence, bridge key presses,
+labels, taint and frame time remain pending.
+[Evidence](docs/BINDING_PERSISTENCE_REWRITE.md).
+
+Binding repeat follow-up (30 October 2026): the user confirmed the exact
+"Applying keybindings..." line repeated after reload on existing clients.
+Version 5 now claims a truly new account's first pass before its first native
+write. Old pending markers and four already bound Flux bridge commands skip
+repeat setup; overlapping requests cannot queue a second clear. The new
+account still starts on the first world-entry frame. Focused 544 checks and
+105-script/747-Lua desktop validation pass. Native reload/no-replay, bridge
+key presses, hotkey labels, persistence and frame time remain pending.
+[Evidence](docs/ACCOUNT_BINDINGS_ONCE.md).
+
+Account-only binding correction (30 October 2026): user requires exactly one
+automatic full template application on the first load of the whole account.
+The previous per-character marker caused repeats; Settings reset callbacks
+also had keyboard replay paths. Now only a pending first-account bootstrap
+starts a full pass, and completion is account-wide. Existing accounts and
+successful old character markers migrate without reset. Focused 528 checks
+and full 105-script/747-Lua desktop validation pass. Native first-account
+key presses, later character/no-replay, persistence and frame time pending.
+[Evidence](docs/ACCOUNT_BINDINGS_ONCE.md).
+
+One-time binding correction (30 October 2026): user requires exactly one
+successful full setup per active binding set and no repeated login reset.
+Version 4 now marks completion after the verified save, accepts preceding
+pending version-4 markers, and removes `UPDATE_BINDINGS` replay. The setup
+uses one registry scan and a maximum of eight binding writes per frame, with
+clear/apply/save phases separated. Focused 521-check desktop test passes;
+native first-load keys, reload persistence and frame time remain pending.
+[Evidence](docs/FULL_BINDING_RESET.md).
+
+Full binding reset follow-up (30 October 2026): user explicitly requested
+clearing the active native binding set before applying the complete Flux
+keyboard template on every client. Version 4 forces one batched full reset
+for older markers, verifies the supported template before save, repairs late
+native binding-set replacement in the same login and confirms persistence
+after a later login. Focused 521 checks and full 105-script/747-Lua desktop
+suite pass. Native first-login/reload key presses, grid labels, account and
+character sets, combat and taint checks remain pending on each client.
+[Evidence](docs/FULL_BINDING_RESET.md).
+
+Binding persistence follow-up (30 October 2026): first-account full keybind
+batch could finalize its queued seed before the late native-set check. Version
+3 keeps saved Flux keys pending across login sessions and repairs a key lost
+on reload before marking success. Old version-2 markers recheck. Focused 35
+checks and full 105-script/747-Lua desktop validation pass. Native first
+login/reload and actual bridge key/button/label tests remain pending on each
+client and binding scope. [Evidence](docs/DEFAULT_GRID_BINDINGS.md).
+
+Protected-client raid settings follow-up (30 October 2026): user chose to keep
+the taint guard. Retail/Forever Flux raid cells and preview now follow own
+class color, power, health text and aura options despite native CVar values;
+existing own frame sizing applies at world entry. Blizzard Interface values
+stay native-owned. Nine focused checks and full 105-script/747-Lua desktop
+validation pass. Verify first account/new character, real raid cells, combat,
+Edit Mode and Settings in native clients before acceptance.
+[Evidence](docs/RAID_OWNED_SETTINGS.md).
+
+Protected-client raid settings follow-up (30 October 2026): user chose to keep
+the taint guard. Retail/Forever Flux raid cells and preview now follow own
+class color, power, health text and aura options despite native CVar values;
+existing own frame sizing applies at world entry. Blizzard Interface values
+stay native-owned. Nine focused checks and full 105-script/747-Lua desktop
+validation pass. Verify first account/new character, real raid cells, combat,
+Edit Mode and Settings in native clients before acceptance.
+[Evidence](docs/RAID_OWNED_SETTINGS.md).
+
+Raid/nameplate defaults follow-up (30 October 2026): user reported Blizzard
+raid power bars, class colors and frame size missing at first login and asked
+for Medium nameplate size `2`. Classic profile application now waits for the
+active native profile and reapplies its CVar pack after load, with bounded
+first-world-entry retries. Both nameplate default tables use `2`; existing
+size `3` migrates once, preserving other choices. Retail/Forever native raid
+settings remain guarded because addon-owned compact-frame callbacks can taint
+protected frames. Focused 15 checks and full 104-script/746-Lua desktop suite
+pass. Native first-load checks on every client remain pending.
+[Evidence](docs/RAID_NAMEPLATE_DEFAULTS.md).
+
+Same-login binding follow-up (30 October 2026): the user reports no bridge
+keys on first load. The revised path writes at first world entry and verifies
+again five seconds later before marking the active binding set complete. The
+old `true` marker is upgraded to version `2`; stock achievement `Y` can become
+smart mount, while custom assignments are retained. The live EBS grid registry
+now refreshes hotkey labels, and a dense module list refreshes combat click
+owners. Focused 29 binding and 7 label checks and full 103-script/745-Lua
+desktop validation pass. Native first-load presses for
+Hearthstone `7`, teleport `8`, smart mount `Y`, vendor mount `6`, labels and
+combat/taint remain pending on all clients. [Evidence](docs/DEFAULT_GRID_BINDINGS.md).
+
+Default grid binding repair (30 October 2026): missing Flux template keys now
+seed once into the current account or character binding set. The reported
+Hearthstone (`7`), teleport (`8`), smart mount (`Y`) and vendor mount (`6`)
+routes are covered. Existing custom targets and alternate bindings survive;
+combat/full-template work defers the seed. Focused 21 checks and full desktop
+102 scripts/744 Lua syntax files pass. Reload the affected character for the
+one-time repair when native checking is appropriate. Verify actual key clicks,
+labels, persistence, combat/taint and every client; no game/settings interaction
+was performed. [Evidence](docs/DEFAULT_GRID_BINDINGS.md).
+
+First-login defaults (30 October 2026): new characters apply only CVars and
+nameplate bitfields that the active client reports as character-stored, then the
+existing raid/chat setup. Full account setup and keyboard-template behavior are
+unchanged. The focused 42 checks and full 101-script/743-Lua desktop suite pass.
+Native fresh-account/fresh-character behavior across the client roster, queue
+completion and secure/visual checks remain pending. The post-login three-sentinel
+check still has an unreachable four-mismatch threshold; preserve customized
+values when addressing it. [Evidence](docs/DEFAULTS_FIRST_LOGIN.md).
+
 Current publication batch (30 October 2026): all local scale, vehicle/durability,
 status-bar and vendor message updates are included for main. Fresh combined
 validation passes **100 scripts /741 Lua syntax files, zero failures**.

@@ -2,7 +2,7 @@
 -- Applied on the first account apply, /fluxdefaults, and when FluxDefaultSettings
 -- queues it after Options Defaults. The full pack does not re-apply at login.
 -- Missing CVars are skipped, so one table covers Era, Anniversary, Forever, and Live.
--- nameplateSize 3 is Large on every client.
+-- nameplateSize 2 is Medium on every client.
 local addonName, ns = ...
 local BS = ns.Flux.BlizzardSettings
 local Write = BS.Write
@@ -11,7 +11,7 @@ local Nameplates = {}
 BS.Nameplates = Nameplates
 
 --- Show all / enemies / minions / minus / offscreen. Friendly players off.
---- Large size, 120% auras, Block style (Blocky bars on Era / Anniversary / Live).
+--- Medium size, 120% auras, Block style (Blocky bars on Era / Anniversary / Live).
 Nameplates.SCALARS = {
 	nameplateShowAll = "1",
 	nameplateShowEnemies = "1",
@@ -20,7 +20,7 @@ Nameplates.SCALARS = {
 	nameplateShowFriendlyPlayers = "0",
 	nameplateShowSelf = "0",
 	nameplateShowOffscreen = "1",
-	nameplateSize = "3",
+	nameplateSize = "2",
 	nameplateAuraScale = "1.2",
 	nameplateStyle = "2",
 }
@@ -126,14 +126,16 @@ function Nameplates.ApplyNpcNames(force)
 	return ApplyMap(Nameplates.NPC_NAMES, force)
 end
 
-function Nameplates.ApplyBitfields(force)
+function Nameplates.ApplyBitfields(force, includeCVar)
 	local wrote = false
 	for _, entry in ipairs(Nameplates.BITFIELDS) do
-		EachBit(entry, function(index, on)
-			if Write.Bit(entry.cvar, index, on, force) then
-				wrote = true
-			end
-		end)
+		if not includeCVar or includeCVar(entry.cvar) then
+			EachBit(entry, function(index, on)
+				if Write.Bit(entry.cvar, index, on, force) then
+					wrote = true
+				end
+			end)
+		end
 	end
 	return wrote
 end

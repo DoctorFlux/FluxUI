@@ -294,6 +294,13 @@ local function RaidOptionFlag(db, key, defaultOn)
     return db[key] and true or false
 end
 
+-- Native CUF CVars stay owned by Blizzard on secret clients. Flux-owned
+-- buttons and their preview use the independently scoped raid options there.
+function FluxRaidVisuals.UseOwnRaidSettings()
+    local write = ns.Flux and ns.Flux.BlizzardSettings and ns.Flux.BlizzardSettings.Write
+    return write and write.IsSecretClient and write.IsSecretClient() and true or false
+end
+
 function FluxRaidVisuals.SyncAuraDisplayOptions(opt)
     if type(opt) ~= "table" then return end
     local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
@@ -490,7 +497,11 @@ function FluxRaidVisuals.ApplyCellChrome(frame, opts)
     local fh = tonumber(opts.height) or FluxRaidVisuals.FRAME_HEIGHT
     local showPower = opts.showPower
     if showPower == nil then
-        showPower = CVarBool("raidFramesDisplayPowerBars", true)
+        if FluxRaidVisuals.UseOwnRaidSettings() then
+            showPower = not (frame.optionTable and frame.optionTable.displayPowerBar == false)
+        else
+            showPower = CVarBool("raidFramesDisplayPowerBars", true)
+        end
     end
     local pbh = showPower and (tonumber(FluxRaidVisuals.POWER_BAR_HEIGHT) or 0) or 0
     frame.powerBarUsedHeight = pbh

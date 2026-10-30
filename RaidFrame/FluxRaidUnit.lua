@@ -243,7 +243,8 @@ function FluxRaid_UpdateStatusText(frame)
     if not fs then return end
     local opt = frame.optionTable
     local mode = (opt and (opt._fluxHealthText or opt.healthText)) or "perc"
-    if C_CVar and C_CVar.GetCVar then
+    if not (FluxRaidVisuals and FluxRaidVisuals.UseOwnRaidSettings
+        and FluxRaidVisuals.UseOwnRaidSettings()) and C_CVar and C_CVar.GetCVar then
         local cv = C_CVar.GetCVar("raidFramesHealthText")
         if type(cv) == "string" and cv ~= "" then mode = cv end
     end

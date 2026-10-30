@@ -1,5 +1,180 @@
 # Decisions
 
+## 2026-10-30 - finish first-account bindings in one native transaction
+
+- The user saw native assignment/verification fail, then default keys return
+  after reload. Blizzard's modern keybinding UI passes an action-specific
+  context to binding APIs; Flux omitted it.
+- Use that context where available, validate resulting actions rather than a
+  single API return, retry only wrong keys up to three times, and complete
+  clear/assign/save/load in the same call. Keep rollback and the one-account
+  marker; do not add an automatic polling loop.
+- Native performance, secure input and disk persistence remain pending.
+  [Evidence](BINDING_ATOMIC_CONTEXT.md).
+
+## 2026-10-30 - complete bindings only after native save/load verification
+
+- The version-5 attempt gate claimed completion while the Retail account
+  binding cache contained no key bindings.
+- Remove SaveBindings from the PLAYER_LOGIN combat-settings pack. Apply the
+  keyboard at first world entry to the account binding set, then verify
+  SaveBindings, LoadBindings and the supported template before marking
+  account version 6 complete after the next real login confirms the saved keys.
+- Repair older version-4/5 accounts once if native bridge keys are missing.
+  Preserve unmarked accounts and already bound accounts. Roll back failures
+  and resume only an interrupted unsaved pass.
+  [Evidence](BINDING_PERSISTENCE_REWRITE.md).
+
+## 2026-10-30 - consume the automatic attempt before its first binding write
+
+- The user observed full keyboard replay after reload, including accounts that
+  had already loaded Flux. A final save/verification failure can leave the old
+  `"pending"` marker behind after native keys were changed.
+- A new account gets one automatic pass at first world entry; version 5 claims
+  that pass before the first `SetBinding`. Failed partial passes do not replay.
+  No-write unavailability may retry within the bounded first-login path.
+- Treat old pending/completed markers and existing four bridge bindings as
+  evidence to skip a repeat. Ignore overlapping full-reset requests while a
+  batch is active. Manual `/fluxdefaults keybinds` remains available.
+  [Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+## 2026-10-30 - apply automatic bindings once for the whole account
+
+- The user clarified that automatic keybindings must run on first account
+  load only. Keep one account-wide pending/completed state, independent of
+  Blizzard's account or character binding-set selection.
+- Migrate any successful version-4 character marker to account completion;
+  leave existing accounts with no pending first-account setup untouched.
+  A failed first-account attempt may retry until its one successful save.
+- Remove Flux keyboard replay from Blizzard Settings reset callbacks. Keep
+  explicit Flux keyboard reset commands and the batched eight-write limit.
+  [Evidence](ACCOUNT_BINDINGS_ONCE.md).
+
+## 2026-10-30 - complete the full binding reset after one successful save
+
+- Apply the full reset once for each active native account or character
+  binding set. Mark version 4 complete immediately after verifying and saving
+  that set; accept prior version-4 pending saves without another clear.
+- Remove automatic replay on `UPDATE_BINDINGS` and cross-login verification.
+  A failed or unavailable attempt may retry until one successful save, with
+  the existing three-attempt login cap. Explicit user reset commands remain.
+- Scan the binding registry once per reset, cap writes at eight per frame and
+  separate clear, apply and save phases. Confirmed scopes do no further
+  registry scans. Native FPS/latency remains unmeasured.
+  [Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - reset the active native binding set before Flux defaults
+
+- The user explicitly requested a full clear before applying the complete
+  template on all clients. This supersedes the general no-forced-reset rule
+  for the one-time first-load repair and replaces custom keys in unconfirmed
+  account/character binding scopes.
+- Require all Flux XML commands to be registered before clearing. Skip native
+  template commands missing from that client. Clear all active keys in batches,
+  apply the supported template, verify it, then save that active set.
+- Upgrade old markers to version 4, verify across login sessions, and react to
+  late `UPDATE_BINDINGS` while pending. Bound retries to three per scope per
+  login; confirmed scopes preserve later edits. Native acceptance is pending.
+  [Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - reset the active native binding set before Flux defaults
+
+- The user explicitly requested a full clear before applying the complete
+  template on all clients. This supersedes the general no-forced-reset rule
+  for the one-time first-load repair and replaces custom keys in unconfirmed
+  account/character binding scopes.
+- Require all Flux XML commands to be registered before clearing. Skip native
+  template commands missing from that client. Clear all active keys in batches,
+  apply the supported template, verify it, then save that active set.
+- Upgrade old markers to version 4, verify across login sessions, and react to
+  late `UPDATE_BINDINGS` while pending. Bound retries to three per scope per
+  login; confirmed scopes preserve later edits. Native acceptance is pending.
+  [Evidence](FULL_BINDING_RESET.md).
+
+## 2026-10-30 - verify default grid bindings across login sessions
+
+- Keep post-batch and post-combat bridge binding seeds provisional until a
+  delayed active-set check. A completed seed must survive a following login.
+- Recheck earlier completion markers. Repair lost assignments only when their
+  target is free or still has a known stock action; preserve custom target
+  actions and intentional unbinds after confirmation.
+- Preserve account/character binding scope and existing secure override
+  refresh. Native first-load/reload checks remain pending.
+  [Evidence](DEFAULT_GRID_BINDINGS.md).
+
+## 2026-10-30 - use Flux-owned raid settings on protected clients
+
+- The user chose to retain the Retail/Forever native compact-frame taint
+  guard. Do not write native raid CVars or trigger Blizzard Settings/CUF
+  callbacks from Flux on these clients.
+- Use the existing account/character Flux raid options for live unit chrome,
+  status text and preview. Preserve Classic native profile/CVar behavior and
+  existing Flux frame dimensions. Keep Blizzard Interface values native-owned.
+- Require native first-account/new-character, combat and Edit Mode acceptance
+  before claiming game behavior or taint safety. [Evidence](RAID_OWNED_SETTINGS.md).
+
+## 2026-10-30 - use Flux-owned raid settings on protected clients
+
+- The user chose to retain the Retail/Forever native compact-frame taint
+  guard. Do not write native raid CVars or trigger Blizzard Settings/CUF
+  callbacks from Flux on these clients.
+- Use the existing account/character Flux raid options for live unit chrome,
+  status text and preview. Preserve Classic native profile/CVar behavior and
+  existing Flux frame dimensions. Keep Blizzard Interface values native-owned.
+- Require native first-account/new-character, combat and Edit Mode acceptance
+  before claiming game behavior or taint safety. [Evidence](RAID_OWNED_SETTINGS.md).
+
+## 2026-10-30 - complete Classic raid profiles and use Medium nameplates
+
+- Keep missing/late Classic active raid profiles pending, then apply the full
+  native raid pack after profile load through the existing writer queue.
+  Bound the first-world-entry fallback and leave successful profiles alone.
+- Set `nameplateSize` to `2` in both defaults sources. Migrate an existing `3`
+  once; preserve any other chosen size and retry a failed or deferred write.
+- Retain the Retail/Forever compact-frame write guard. Its protected callback
+  ownership remains unresolved for automatic Blizzard raid-setting writes;
+  native client acceptance remains pending.
+
+## 2026-10-30 - finalize grid bindings after first world entry
+
+- Use the first `PLAYER_ENTERING_WORLD` after login to write the active native
+  binding set, then verify it again shortly afterward before persisting the
+  completion marker. Queue behind full-template work or combat and retry an
+  unavailable set or failed write within the same login.
+- Recheck the old `true` marker once using version `2`; permit the known stock
+  achievement action on `Y` to yield to smart mount. Preserve custom target
+  actions and later intentional unbinds after version `2` is recorded.
+- Refresh labels from `Flux.EBS.buttons`, the loaded grid registry, with a
+  legacy fallback. Iterate only loaded modules in the bulk secure rebind pass
+  so nil optional modules cannot truncate combat refresh.
+- Native first-load input and all-client acceptance remain pending.
+
+## 2026-10-30 - seed missing Flux keys on the active binding set
+
+- Continue the full template on first account setup. Once per native binding
+  scope, seed only missing Flux commands into free target keys; allow stock
+  action buttons 6–8 to yield to the existing grid defaults. Preserve custom
+  target actions and commands already bound elsewhere.
+- Save the active account/character set and refresh secure button overrides.
+  Defer through the existing combat and bulk-binding lifecycle. Persist a
+  scope marker only after save succeeds, so a user unbind later is respected.
+- Include previously seen characters because the earlier new-character path
+  marked them seen without assigning per-character Flux keys. Native clicks
+  and other clients remain pending.
+
+## 2026-10-30 - first-login defaults by client CVar scope
+
+- Keep the established full account-first setup and keyboard template. For later
+  new characters, apply only CVars the active client reports as character-stored,
+  plus the existing raid/chat setup. Unknown scope cannot authorize an account
+  preference write; existing custom bindings remain untouched.
+- Route character CVar and bitfield writes through the existing Blizzard Settings
+  write queue and retain Retail/Forever compact-frame restrictions. Deferred or failed
+  character CVar work does not mark the character seen before completion.
+- Leave the unreachable post-login three-sentinel/four-mismatch check unchanged
+  until a repair can avoid replaying all CVars over user preferences. Native
+  fresh-character acceptance is pending for each client.
+
 ## 2026-10-30 - vendor chat coin amounts
 
 - Keep existing vendor net accounting and repair/junk messages. Format their chat

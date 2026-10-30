@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 135 |
+| inactive source | 141 |
 
 ## Addon sources
 
@@ -43,6 +43,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [AddonOptions/FluxOptionsActionBars_Bindings.lua](../AddonOptions/FluxOptionsActionBars_Bindings.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/FluxOptionsActionBars_Extra.lua](../AddonOptions/FluxOptionsActionBars_Extra.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/FluxOptionsActionBars_Stance.lua](../AddonOptions/FluxOptionsActionBars_Stance.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
+| [AddonOptions/FluxOptionsAppearance.lua](../AddonOptions/FluxOptionsAppearance.lua) | inactive source | — | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/FluxOptionsBattlezone.lua](../AddonOptions/FluxOptionsBattlezone.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/FluxOptionsBinding.lua](../AddonOptions/FluxOptionsBinding.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/FluxOptionsCatalog.lua](../AddonOptions/FluxOptionsCatalog.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
@@ -598,12 +599,15 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/consumable_restock_clicks.lua](../tests/consumable_restock_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/currency_provider_handoff.lua](../tests/currency_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/data_integrity.lua](../tests/data_integrity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/default_flux_grid_bindings.lua](../tests/default_flux_grid_bindings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/defaults_first_login.lua](../tests/defaults_first_login.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/deferred_inventory_handoff.lua](../tests/deferred_inventory_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/durability_vehicle_layout.lua](../tests/durability_vehicle_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_recovery.lua](../tests/edit_mode_recovery.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_settings.lua](../tests/edit_mode_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_child_startup.lua](../tests/grid_child_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/grid_hotkey_refresh.lua](../tests/grid_hotkey_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/hud_startup.lua](../tests/hud_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/idle_bars.lua](../tests/idle_bars.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/idle_chat.lua](../tests/idle_chat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -634,6 +638,8 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/portrait_transmog_combat.lua](../tests/portrait_transmog_combat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/possession_layout.lua](../tests/possession_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/queue_eye_lifecycle.lua](../tests/queue_eye_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/raid_nameplate_defaults.lua](../tests/raid_nameplate_defaults.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/raid_owned_settings.lua](../tests/raid_owned_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/raid_startup.lua](../tests/raid_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/salvage_overlay.lua](../tests/salvage_overlay.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/spellbook_native_input.lua](../tests/spellbook_native_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |

@@ -63,30 +63,35 @@ function Raid.ApplyProfile()
 		Raid.profilePending = true
 		return false
 	end
-	Raid.profilePending = false
+	local activeOk, profile = pcall(GetActiveRaidProfile)
+	if not activeOk or not profile or profile == "" then
+		Raid.profilePending = true
+		return false
+	end
+	if RaidProfileExists then
+		local existsOk, exists = pcall(RaidProfileExists, profile)
+		if not existsOk or not exists then
+			Raid.profilePending = true
+			return false
+		end
+	end
 	local ok = pcall(function()
-		local profile = GetActiveRaidProfile()
-		if not profile or profile == "" then
-			return
-		end
-		if RaidProfileExists and not RaidProfileExists(profile) then
-			return
-		end
 		SetRaidProfileOption(profile, "displayPowerBar", true)
 		SetRaidProfileOption(profile, "useClassColors", true)
 		SetRaidProfileOption(profile, "healthText", "perc")
 		SetRaidProfileOption(profile, "displayNonBossDebuffs", true)
 		SetRaidProfileOption(profile, "displayOnlyDispellableDebuffs", true)
 		pcall(SetRaidProfileOption, profile, "displayHealPrediction", true)
+		SetRaidProfileOption(profile, "frameHeight", 36)
+		SetRaidProfileOption(profile, "frameWidth", 72)
 		if not IsFluxRaidEnabled() then
 			SetRaidProfileOption(profile, "keepGroupsTogether", true)
 			SetRaidProfileOption(profile, "horizontalGroups", false)
-			SetRaidProfileOption(profile, "frameHeight", 36)
-			SetRaidProfileOption(profile, "frameWidth", 72)
 			SetRaidProfileOption(profile, "displayPets", false)
 			SetRaidProfileOption(profile, "displayMainTankAndAssist", true)
 		end
 	end)
+	Raid.profilePending = not ok
 	return ok
 end
 
@@ -134,6 +139,8 @@ end
 --- COMPACT_UNIT_FRAME_PROFILES_LOADED: finish a profile write that ran before profiles existed.
 function Raid.OnProfilesLoaded()
 	if Raid.profilePending then
-		Write.Run("raidProfile", Raid.ApplyProfile)
+		-- Profile loading can replace the earlier CVar writes. Finish the full
+		-- native pack once the profile is usable, using the existing write queue.
+		Raid.Apply(true)
 	end
 end

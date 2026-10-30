@@ -1,6 +1,6 @@
 # Compact raid and party frames
 
-Flux owns compact party/raid cells and their layout while reading familiar Blizzard raid settings. Cells are **Flux-owned secure unit buttons**, not inherited Blizzard CompactUnitFrameTemplate cells. [FluxRaidFrame.xml](../RaidFrame/FluxRaidFrame.xml) loads compat, visuals, layout, unit paint, orchestration, preview and BigDebuffs support, then declares the cell template and event driver.
+Flux owns compact party/raid cells and their layout. Classic can read familiar Blizzard raid settings; Retail and Forever use Flux's own raid options because native compact-frame writes remain guarded. Cells are **Flux-owned secure unit buttons**, not inherited Blizzard CompactUnitFrameTemplate cells. [FluxRaidFrame.xml](../RaidFrame/FluxRaidFrame.xml) loads compat, visuals, layout, unit paint, orchestration, preview and BigDebuffs support, then declares the cell template and event driver.
 
 ## Components and data flow
 
@@ -34,7 +34,7 @@ Other clients use a small Flux-owned icon row. Buff/debuff focus changes organiz
 
 ## Options and live preview
 
-`FluxOptions:GetRaidFrameDB()` selects account/character settings. Controls include enable Flux raid/party, class-colored names, sizing, manager size, opacity, aura scale/focus and dispel border. Familiar Blizzard toggles remain CVars: class colors, power, health text, aura display and dispellable filtering. Resetting Flux sizing is different from resetting Blizzard CVars. Exact labels/defaults are in [options](26-options-map.md).
+`FluxOptions:GetRaidFrameDB()` selects account/character settings. Controls include enable Flux raid/party, class-colored names, sizing, manager size, opacity, aura scale/focus and dispel border. On Retail and Forever, Flux's own controls drive class-colored health bars, power bars, health text, buffs, debuffs and its frame dimensions without changing native Blizzard Settings. Classic retains native CVar and raid profile behavior. Resetting Flux sizing is different from resetting Blizzard CVars. Exact labels/defaults are in [options](26-options-map.md) and the [protected-client decision](RAID_OWNED_SETTINGS.md).
 
 [Preview.lua](../RaidFrame/FluxRaidPreview.lua) provides session-only synthetic cells for 5–40 members, optional MT slots and demo buff/debuff counts. `Show`, `Hide`, `Toggle` and `RefreshFromOptions` update the preview. `/fluxui raidpreview` toggles it. It clears on reload and is not an actual raid roster or evidence that protected real-unit behavior works.
 

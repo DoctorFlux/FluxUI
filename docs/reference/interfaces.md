@@ -144,7 +144,7 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Binding/UI/SpellbookBindingHooks.lua:468](../../Binding/UI/SpellbookBindingHooks.lua#L468) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Blizzard/Hide.lua:45](../../Blizzard/Hide.lua#L45) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Blizzard/Hide.lua:194](../../Blizzard/Hide.lua#L194) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [BlizzardSettings/Nameplates.lua:217](../../BlizzardSettings/Nameplates.lua#L217) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [BlizzardSettings/Nameplates.lua:219](../../BlizzardSettings/Nameplates.lua#L219) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [BlizzardSettings/Write.lua:233](../../BlizzardSettings/Write.lua#L233) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [CharacterInfo/ItemLevel.lua:305](../../CharacterInfo/ItemLevel.lua#L305) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [CharacterInfo/ItemLevel.lua:306](../../CharacterInfo/ItemLevel.lua#L306) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -372,9 +372,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1167](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1167) | `RegisterEvent` | `"PLAYER_MOUNT_DISPLAY_CHANGED"` |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1169](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1169) | `RegisterUnitEvent` | `"UNIT_PET", "player"` |
 | [ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua:626](../../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua#L626) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/Shared/HotkeyUtil.lua:408](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L408) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/Shared/HotkeyUtil.lua:409](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L409) | `RegisterEvent` | `"MODIFIER_STATE_CHANGED"` |
-| [ExtraButtonSystem/Shared/HotkeyUtil.lua:410](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L410) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/Shared/HotkeyUtil.lua:415](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L415) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
+| [ExtraButtonSystem/Shared/HotkeyUtil.lua:416](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L416) | `RegisterEvent` | `"MODIFIER_STATE_CHANGED"` |
+| [ExtraButtonSystem/Shared/HotkeyUtil.lua:417](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L417) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua:819](../../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua#L819) | `RegisterEvent` | `"GLOBAL_MOUSE_UP"` |
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua:820](../../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua#L820) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua:131](../../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua#L131) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -398,12 +398,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [FluxDefaultSettings.lua:58](../../FluxDefaultSettings.lua#L58) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [FluxDefaultSettings.lua:59](../../FluxDefaultSettings.lua#L59) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [FluxDefaultSettings.lua:79](../../FluxDefaultSettings.lua#L79) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [FluxDefaultSettings.lua:1161](../../FluxDefaultSettings.lua#L1161) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [FluxDefaultSettings.lua:2423](../../FluxDefaultSettings.lua#L2423) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [FluxDefaultSettings.lua:2424](../../FluxDefaultSettings.lua#L2424) | `RegisterEvent` | `"DISPLAY_SIZE_CHANGED"` |
-| [FluxDefaultSettings.lua:2425](../../FluxDefaultSettings.lua#L2425) | `RegisterEvent` | `"UI_SCALE_CHANGED"` |
-| [FluxDefaultSettings.lua:2427](../../FluxDefaultSettings.lua#L2427) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [FluxDefaultSettings.lua:2430](../../FluxDefaultSettings.lua#L2430) | `RegisterEvent` | `"COMPACT_UNIT_FRAME_PROFILES_LOADED"` |
+| [FluxDefaultSettings.lua:1162](../../FluxDefaultSettings.lua#L1162) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [FluxDefaultSettings.lua:2799](../../FluxDefaultSettings.lua#L2799) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [FluxDefaultSettings.lua:2800](../../FluxDefaultSettings.lua#L2800) | `RegisterEvent` | `"DISPLAY_SIZE_CHANGED"` |
+| [FluxDefaultSettings.lua:2801](../../FluxDefaultSettings.lua#L2801) | `RegisterEvent` | `"UI_SCALE_CHANGED"` |
+| [FluxDefaultSettings.lua:2803](../../FluxDefaultSettings.lua#L2803) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [FluxDefaultSettings.lua:2806](../../FluxDefaultSettings.lua#L2806) | `RegisterEvent` | `"COMPACT_UNIT_FRAME_PROFILES_LOADED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:1164](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1164) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2424](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2424) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua:2425](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2425) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -621,10 +621,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxVehicleExitButton.lua:160](../../Other/FluxVehicleExitButton.lua#L160) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxVehicleExitButton.lua:161](../../Other/FluxVehicleExitButton.lua#L161) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [RaidFrame/FluxRaidFrame_BigDebuffs.lua:151](../../RaidFrame/FluxRaidFrame_BigDebuffs.lua#L151) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [RaidFrame/FluxRaidPreview.lua:716](../../RaidFrame/FluxRaidPreview.lua#L716) | `RegisterEvent` | `"CVAR_UPDATE"` |
-| [RaidFrame/FluxRaidPreview.lua:735](../../RaidFrame/FluxRaidPreview.lua#L735) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [RaidFrame/FluxRaidPreview.lua:736](../../RaidFrame/FluxRaidPreview.lua#L736) | `RegisterEvent` | `"PLAYER_TARGET_CHANGED"` |
-| [RaidFrame/FluxRaidPreview.lua:737](../../RaidFrame/FluxRaidPreview.lua#L737) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
+| [RaidFrame/FluxRaidPreview.lua:730](../../RaidFrame/FluxRaidPreview.lua#L730) | `RegisterEvent` | `"CVAR_UPDATE"` |
+| [RaidFrame/FluxRaidPreview.lua:749](../../RaidFrame/FluxRaidPreview.lua#L749) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [RaidFrame/FluxRaidPreview.lua:750](../../RaidFrame/FluxRaidPreview.lua#L750) | `RegisterEvent` | `"PLAYER_TARGET_CHANGED"` |
+| [RaidFrame/FluxRaidPreview.lua:751](../../RaidFrame/FluxRaidPreview.lua#L751) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
 | [RaidFrame/FluxRaidUnit.lua:64](../../RaidFrame/FluxRaidUnit.lua#L64) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Respec/FluxRespec_ActionBars.lua:544](../../Respec/FluxRespec_ActionBars.lua#L544) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Respec/FluxRespec_AtieshDualSpecFix.lua:403](../../Respec/FluxRespec_AtieshDualSpecFix.lua#L403) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -2987,10 +2987,10 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 | `Nameplates.ApplyClassColor` | [L121](../../BlizzardSettings/Nameplates.lua#L121) |
 | `Nameplates.ApplyNpcNames` | [L125](../../BlizzardSettings/Nameplates.lua#L125) |
 | `Nameplates.ApplyBitfields` | [L129](../../BlizzardSettings/Nameplates.lua#L129) |
-| `Nameplates.Differs` | [L141](../../BlizzardSettings/Nameplates.lua#L141) |
-| `Nameplates.ApplyNow` | [L165](../../BlizzardSettings/Nameplates.lua#L165) |
-| `Nameplates.ApplyHealthText` | [L190](../../BlizzardSettings/Nameplates.lua#L190) |
-| `Nameplates.Apply` | [L205](../../BlizzardSettings/Nameplates.lua#L205) |
+| `Nameplates.Differs` | [L143](../../BlizzardSettings/Nameplates.lua#L143) |
+| `Nameplates.ApplyNow` | [L167](../../BlizzardSettings/Nameplates.lua#L167) |
+| `Nameplates.ApplyHealthText` | [L192](../../BlizzardSettings/Nameplates.lua#L192) |
+| `Nameplates.Apply` | [L207](../../BlizzardSettings/Nameplates.lua#L207) |
 
 ### BlizzardSettings/Raid.lua
 
@@ -3000,9 +3000,9 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 |---|---|
 | `Raid.ApplyTutorials` | [L50](../../BlizzardSettings/Raid.lua#L50) |
 | `Raid.ApplyProfile` | [L57](../../BlizzardSettings/Raid.lua#L57) |
-| `Raid.ApplyNow` | [L93](../../BlizzardSettings/Raid.lua#L93) |
-| `Raid.Apply` | [L128](../../BlizzardSettings/Raid.lua#L128) |
-| `Raid.OnProfilesLoaded` | [L135](../../BlizzardSettings/Raid.lua#L135) |
+| `Raid.ApplyNow` | [L98](../../BlizzardSettings/Raid.lua#L98) |
+| `Raid.Apply` | [L133](../../BlizzardSettings/Raid.lua#L133) |
+| `Raid.OnProfilesLoaded` | [L140](../../BlizzardSettings/Raid.lua#L140) |
 
 ### BlizzardSettings/Write.lua
 
@@ -5824,8 +5824,8 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `HotkeyUtil.UpdateHotkeyTextMultiple` | [L268](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L268) |
 | `HotkeyUtil.AddTooltipBinding` | [L289](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L289) |
 | `HotkeyUtil.AddTooltipBindings` | [L299](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L299) |
-| `HotkeyUtil.RefreshAfterBindingChange` | [L326](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L326) |
-| `HotkeyUtil.FlushAfterBulkBindings` | [L361](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L361) |
+| `HotkeyUtil.RefreshAfterBindingChange` | [L332](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L332) |
+| `HotkeyUtil.FlushAfterBulkBindings` | [L366](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L366) |
 
 ### ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua
 
@@ -5963,37 +5963,41 @@ Owner: [05-defaults-and-bindings.md](../05-defaults-and-bindings.md).
 | `FluxUILayoutSqueeze.EnsureDisplayRefreshHooks` | [L989](../../FluxDefaultSettings.lua#L989) |
 | `FluxUILayoutSqueeze.RequestRefresh` | [L1005](../../FluxDefaultSettings.lua#L1005) |
 | `FluxDefaultSettings.GetState` | [L1053](../../FluxDefaultSettings.lua#L1053) |
-| `FluxDefaultSettings.ApplyNameplateScalarDefaults` | [L1229](../../FluxDefaultSettings.lua#L1229) |
-| `FluxDefaultSettings.ApplyNameplateClassColorDefault` | [L1233](../../FluxDefaultSettings.lua#L1233) |
-| `FluxDefaultSettings.ApplyNameplateNpcNameDefaults` | [L1237](../../FluxDefaultSettings.lua#L1237) |
-| `FluxDefaultSettings.ApplyNameplateBitfieldDefaults` | [L1241](../../FluxDefaultSettings.lua#L1241) |
-| `FluxDefaultSettings.ApplyNameplateDefaultsPack` | [L1245](../../FluxDefaultSettings.lua#L1245) |
-| `FluxDefaultSettings.ScheduleNameplateDefaultsPack` | [L1249](../../FluxDefaultSettings.lua#L1249) |
-| `FluxDefaultSettings.ApplySpecialCVarSettings` | [L1269](../../FluxDefaultSettings.lua#L1269) |
-| `FluxDefaultSettings.ApplyRaidFrameSettings` | [L1306](../../FluxDefaultSettings.lua#L1306) |
-| `FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack` | [L1310](../../FluxDefaultSettings.lua#L1310) |
-| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow` | [L1314](../../FluxDefaultSettings.lua#L1314) |
-| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack` | [L1318](../../FluxDefaultSettings.lua#L1318) |
-| `FluxDefaultSettings.ApplyInterfaceDefaultsPack` | [L1324](../../FluxDefaultSettings.lua#L1324) |
-| `FluxDefaultSettings.ApplyStickyTargetingOff` | [L1332](../../FluxDefaultSettings.lua#L1332) |
-| `FluxDefaultSettings.GetMaxCameraDistanceZoomFactor` | [L1361](../../FluxDefaultSettings.lua#L1361) |
-| `FluxDefaultSettings.ApplyMaxCameraDistance` | [L1387](../../FluxDefaultSettings.lua#L1387) |
-| `FluxDefaultSettings.ApplyControlsDefaultsPack` | [L1418](../../FluxDefaultSettings.lua#L1418) |
-| `FluxDefaultSettings.ApplyChatSettings` | [L1498](../../FluxDefaultSettings.lua#L1498) |
-| `FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults` | [L1545](../../FluxDefaultSettings.lua#L1545) |
-| `FluxDefaultSettings.ApplyCombatDefaultsPack` | [L1550](../../FluxDefaultSettings.lua#L1550) |
-| `FluxDefaultSettings.ApplyActionBarDefaultsPack` | [L1680](../../FluxDefaultSettings.lua#L1680) |
-| `FluxDefaultSettings.ShouldSuppressBindingRefresh` | [L1771](../../FluxDefaultSettings.lua#L1771) |
-| `FluxDefaultSettings.FlushBindingRefreshAfterBulk` | [L1786](../../FluxDefaultSettings.lua#L1786) |
-| `FluxDefaultSettings.ApplyKeybinds` | [L1860](../../FluxDefaultSettings.lua#L1860) |
-| `FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults` | [L1987](../../FluxDefaultSettings.lua#L1987) |
-| `FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults` | [L2016](../../FluxDefaultSettings.lua#L2016) |
-| `FluxDefaultSettings.SyncSettingsRegistryProxies` | [L2025](../../FluxDefaultSettings.lua#L2025) |
-| `FluxDefaultSettings.ApplyCharacterFirstLogin` | [L2046](../../FluxDefaultSettings.lua#L2046) |
-| `FluxDefaultSettings.VerifyPostLoginDefaults` | [L2054](../../FluxDefaultSettings.lua#L2054) |
-| `FluxDefaultSettings.Apply` | [L2107](../../FluxDefaultSettings.lua#L2107) |
-| `FluxDefaultSettings.ApplyCVarsOnly` | [L2386](../../FluxDefaultSettings.lua#L2386) |
-| `FluxDefaultSettings.PrintDebug` | [L2752](../../FluxDefaultSettings.lua#L2752) |
+| `FluxDefaultSettings.ApplyNameplateScalarDefaults` | [L1231](../../FluxDefaultSettings.lua#L1231) |
+| `FluxDefaultSettings.ApplyNameplateClassColorDefault` | [L1235](../../FluxDefaultSettings.lua#L1235) |
+| `FluxDefaultSettings.ApplyNameplateNpcNameDefaults` | [L1239](../../FluxDefaultSettings.lua#L1239) |
+| `FluxDefaultSettings.ApplyNameplateBitfieldDefaults` | [L1243](../../FluxDefaultSettings.lua#L1243) |
+| `FluxDefaultSettings.ApplyNameplateDefaultsPack` | [L1247](../../FluxDefaultSettings.lua#L1247) |
+| `FluxDefaultSettings.ScheduleNameplateDefaultsPack` | [L1251](../../FluxDefaultSettings.lua#L1251) |
+| `FluxDefaultSettings.ApplySpecialCVarSettings` | [L1271](../../FluxDefaultSettings.lua#L1271) |
+| `FluxDefaultSettings.ApplyRaidFrameSettings` | [L1308](../../FluxDefaultSettings.lua#L1308) |
+| `FluxDefaultSettings.EnsureNameplateSizeMedium` | [L1313](../../FluxDefaultSettings.lua#L1313) |
+| `FluxDefaultSettings.ScheduleRaidArenaFrameDefaultsPack` | [L1330](../../FluxDefaultSettings.lua#L1330) |
+| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPackNow` | [L1334](../../FluxDefaultSettings.lua#L1334) |
+| `FluxDefaultSettings.ApplyRaidArenaFrameDefaultsPack` | [L1338](../../FluxDefaultSettings.lua#L1338) |
+| `FluxDefaultSettings.ApplyInterfaceDefaultsPack` | [L1344](../../FluxDefaultSettings.lua#L1344) |
+| `FluxDefaultSettings.ApplyStickyTargetingOff` | [L1352](../../FluxDefaultSettings.lua#L1352) |
+| `FluxDefaultSettings.GetMaxCameraDistanceZoomFactor` | [L1381](../../FluxDefaultSettings.lua#L1381) |
+| `FluxDefaultSettings.ApplyMaxCameraDistance` | [L1407](../../FluxDefaultSettings.lua#L1407) |
+| `FluxDefaultSettings.ApplyControlsDefaultsPack` | [L1438](../../FluxDefaultSettings.lua#L1438) |
+| `FluxDefaultSettings.ApplyChatSettings` | [L1518](../../FluxDefaultSettings.lua#L1518) |
+| `FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults` | [L1565](../../FluxDefaultSettings.lua#L1565) |
+| `FluxDefaultSettings.ApplyCombatDefaultsPack` | [L1570](../../FluxDefaultSettings.lua#L1570) |
+| `FluxDefaultSettings.ApplyActionBarDefaultsPack` | [L1705](../../FluxDefaultSettings.lua#L1705) |
+| `FluxDefaultSettings.ShouldSuppressBindingRefresh` | [L1797](../../FluxDefaultSettings.lua#L1797) |
+| `FluxDefaultSettings.FlushBindingRefreshAfterBulk` | [L1812](../../FluxDefaultSettings.lua#L1812) |
+| `FluxDefaultSettings.SavePendingModifiedClicks` | [L1893](../../FluxDefaultSettings.lua#L1893) |
+| `FluxDefaultSettings.ApplyKeybinds` | [L1944](../../FluxDefaultSettings.lua#L1944) |
+| `FluxDefaultSettings.PrepareAccountBindingBootstrap` | [L2216](../../FluxDefaultSettings.lua#L2216) |
+| `FluxDefaultSettings.EnsureDefaultFluxBindings` | [L2281](../../FluxDefaultSettings.lua#L2281) |
+| `FluxDefaultSettings.ReassertSoftTargetEnemyFromDefaults` | [L2328](../../FluxDefaultSettings.lua#L2328) |
+| `FluxDefaultSettings.ScheduleSoftTargetEnemyReassertFromDefaults` | [L2357](../../FluxDefaultSettings.lua#L2357) |
+| `FluxDefaultSettings.SyncSettingsRegistryProxies` | [L2366](../../FluxDefaultSettings.lua#L2366) |
+| `FluxDefaultSettings.ApplyCharacterFirstLogin` | [L2402](../../FluxDefaultSettings.lua#L2402) |
+| `FluxDefaultSettings.VerifyPostLoginDefaults` | [L2428](../../FluxDefaultSettings.lua#L2428) |
+| `FluxDefaultSettings.Apply` | [L2482](../../FluxDefaultSettings.lua#L2482) |
+| `FluxDefaultSettings.ApplyCVarsOnly` | [L2762](../../FluxDefaultSettings.lua#L2762) |
+| `FluxDefaultSettings.PrintDebug` | [L3164](../../FluxDefaultSettings.lua#L3164) |
 
 ### Inventory/Builtin/Auctions.lua
 
@@ -8316,15 +8320,15 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 
 | Declaration | Source |
 |---|---|
-| `FluxRaidPreviewUnit_OnLoad` | [L284](../../RaidFrame/FluxRaidPreview.lua#L284) |
-| `FluxRaidPreview_ApplyIdleHighlights` | [L359](../../RaidFrame/FluxRaidPreview.lua#L359) |
-| `FluxRaidPreview_RefreshLayout` | [L628](../../RaidFrame/FluxRaidPreview.lua#L628) |
-| `FluxRaidPreview.Show` | [L660](../../RaidFrame/FluxRaidPreview.lua#L660) |
-| `FluxRaidPreview.Hide` | [L670](../../RaidFrame/FluxRaidPreview.lua#L670) |
-| `FluxRaidPreview.Toggle` | [L677](../../RaidFrame/FluxRaidPreview.lua#L677) |
-| `FluxRaidPreview.RefreshFromOptions` | [L685](../../RaidFrame/FluxRaidPreview.lua#L685) |
-| `FluxRaidPreviewUnit_OnEnter` | [L694](../../RaidFrame/FluxRaidPreview.lua#L694) |
-| `FluxRaidPreviewUnit_OnLeave` | [L709](../../RaidFrame/FluxRaidPreview.lua#L709) |
+| `FluxRaidPreviewUnit_OnLoad` | [L298](../../RaidFrame/FluxRaidPreview.lua#L298) |
+| `FluxRaidPreview_ApplyIdleHighlights` | [L373](../../RaidFrame/FluxRaidPreview.lua#L373) |
+| `FluxRaidPreview_RefreshLayout` | [L642](../../RaidFrame/FluxRaidPreview.lua#L642) |
+| `FluxRaidPreview.Show` | [L674](../../RaidFrame/FluxRaidPreview.lua#L674) |
+| `FluxRaidPreview.Hide` | [L684](../../RaidFrame/FluxRaidPreview.lua#L684) |
+| `FluxRaidPreview.Toggle` | [L691](../../RaidFrame/FluxRaidPreview.lua#L691) |
+| `FluxRaidPreview.RefreshFromOptions` | [L699](../../RaidFrame/FluxRaidPreview.lua#L699) |
+| `FluxRaidPreviewUnit_OnEnter` | [L708](../../RaidFrame/FluxRaidPreview.lua#L708) |
+| `FluxRaidPreviewUnit_OnLeave` | [L723](../../RaidFrame/FluxRaidPreview.lua#L723) |
 
 ### RaidFrame/FluxRaidUnit.lua
 
@@ -8338,35 +8342,35 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 | `FluxRaid_UpdateHealPrediction` | [L177](../../RaidFrame/FluxRaidUnit.lua#L177) |
 | `FluxRaid_UpdateName` | [L214](../../RaidFrame/FluxRaidUnit.lua#L214) |
 | `FluxRaid_UpdateStatusText` | [L241](../../RaidFrame/FluxRaidUnit.lua#L241) |
-| `FluxRaid_UpdateSelectionHighlight` | [L319](../../RaidFrame/FluxRaidUnit.lua#L319) |
-| `FluxRaid_UpdateAggroHighlight` | [L336](../../RaidFrame/FluxRaidUnit.lua#L336) |
-| `FluxRaid_UpdateRoleIcon` | [L379](../../RaidFrame/FluxRaidUnit.lua#L379) |
-| `FluxRaid_UpdateCenterStatus` | [L421](../../RaidFrame/FluxRaidUnit.lua#L421) |
-| `FluxRaid_UpdateReadyCheck` | [L449](../../RaidFrame/FluxRaidUnit.lua#L449) |
-| `FluxRaid_UpdateRange` | [L473](../../RaidFrame/FluxRaidUnit.lua#L473) |
-| `FluxRaid_UpdateAuras` | [L569](../../RaidFrame/FluxRaidUnit.lua#L569) |
-| `FluxRaid_UpdateDispelHighlight` | [L608](../../RaidFrame/FluxRaidUnit.lua#L608) |
-| `FluxRaid_PaintUnit` | [L657](../../RaidFrame/FluxRaidUnit.lua#L657) |
-| `FluxRaid_BindUnit` | [L762](../../RaidFrame/FluxRaidUnit.lua#L762) |
-| `FluxRaid_OnUnitAttributeChanged` | [L785](../../RaidFrame/FluxRaidUnit.lua#L785) |
-| `FluxRaidUnit_OnLoad` | [L796](../../RaidFrame/FluxRaidUnit.lua#L796) |
-| `FluxRaidUnit_OnShow` | [L833](../../RaidFrame/FluxRaidUnit.lua#L833) |
-| `FluxRaidUnit_OnHide` | [L842](../../RaidFrame/FluxRaidUnit.lua#L842) |
-| `FluxRaidUnit_OnEnter` | [L867](../../RaidFrame/FluxRaidUnit.lua#L867) |
-| `FluxRaidUnit_OnLeave` | [L875](../../RaidFrame/FluxRaidUnit.lua#L875) |
-| `ns.FluxRaidRegisterAllMouseoverKeybindFrames` | [L885](../../RaidFrame/FluxRaidUnit.lua#L885) |
-| `FluxRaid_ForEachHeaderChild` | [L895](../../RaidFrame/FluxRaidUnit.lua#L895) |
-| `FluxRaid_SyncHeaderChildUnits` | [L920](../../RaidFrame/FluxRaidUnit.lua#L920) |
-| `FluxRaid_ApplyChromeToChildren` | [L932](../../RaidFrame/FluxRaidUnit.lua#L932) |
-| `FluxRaid_SyncAllFluxUnitAuraSettings` | [L955](../../RaidFrame/FluxRaidUnit.lua#L955) |
-| `FluxRaid_RefreshVisibleUnits` | [L963](../../RaidFrame/FluxRaidUnit.lua#L963) |
-| `FluxRaid_RefreshSelfDisplayNames` | [L982](../../RaidFrame/FluxRaidUnit.lua#L982) |
-| `FluxRaid_EnsureRangePoll` | [L1014](../../RaidFrame/FluxRaidUnit.lua#L1014) |
-| `FluxRaid_IsMTMAChild` | [L1023](../../RaidFrame/FluxRaidUnit.lua#L1023) |
-| `FluxCompactMiniFrameSetup` | [L1054](../../RaidFrame/FluxRaidUnit.lua#L1054) |
-| `FluxRaid_AttachOrUpdateMTMATarget` | [L1099](../../RaidFrame/FluxRaidUnit.lua#L1099) |
-| `FluxRaid_RefreshMTMATargetAttachments` | [L1134](../../RaidFrame/FluxRaidUnit.lua#L1134) |
-| `FluxCompactMiniFrameSetup_G.FluxCompactUnitFrameSetup` | [L1148](../../RaidFrame/FluxRaidUnit.lua#L1148) |
+| `FluxRaid_UpdateSelectionHighlight` | [L320](../../RaidFrame/FluxRaidUnit.lua#L320) |
+| `FluxRaid_UpdateAggroHighlight` | [L337](../../RaidFrame/FluxRaidUnit.lua#L337) |
+| `FluxRaid_UpdateRoleIcon` | [L380](../../RaidFrame/FluxRaidUnit.lua#L380) |
+| `FluxRaid_UpdateCenterStatus` | [L422](../../RaidFrame/FluxRaidUnit.lua#L422) |
+| `FluxRaid_UpdateReadyCheck` | [L450](../../RaidFrame/FluxRaidUnit.lua#L450) |
+| `FluxRaid_UpdateRange` | [L474](../../RaidFrame/FluxRaidUnit.lua#L474) |
+| `FluxRaid_UpdateAuras` | [L570](../../RaidFrame/FluxRaidUnit.lua#L570) |
+| `FluxRaid_UpdateDispelHighlight` | [L609](../../RaidFrame/FluxRaidUnit.lua#L609) |
+| `FluxRaid_PaintUnit` | [L658](../../RaidFrame/FluxRaidUnit.lua#L658) |
+| `FluxRaid_BindUnit` | [L763](../../RaidFrame/FluxRaidUnit.lua#L763) |
+| `FluxRaid_OnUnitAttributeChanged` | [L786](../../RaidFrame/FluxRaidUnit.lua#L786) |
+| `FluxRaidUnit_OnLoad` | [L797](../../RaidFrame/FluxRaidUnit.lua#L797) |
+| `FluxRaidUnit_OnShow` | [L834](../../RaidFrame/FluxRaidUnit.lua#L834) |
+| `FluxRaidUnit_OnHide` | [L843](../../RaidFrame/FluxRaidUnit.lua#L843) |
+| `FluxRaidUnit_OnEnter` | [L868](../../RaidFrame/FluxRaidUnit.lua#L868) |
+| `FluxRaidUnit_OnLeave` | [L876](../../RaidFrame/FluxRaidUnit.lua#L876) |
+| `ns.FluxRaidRegisterAllMouseoverKeybindFrames` | [L886](../../RaidFrame/FluxRaidUnit.lua#L886) |
+| `FluxRaid_ForEachHeaderChild` | [L896](../../RaidFrame/FluxRaidUnit.lua#L896) |
+| `FluxRaid_SyncHeaderChildUnits` | [L921](../../RaidFrame/FluxRaidUnit.lua#L921) |
+| `FluxRaid_ApplyChromeToChildren` | [L933](../../RaidFrame/FluxRaidUnit.lua#L933) |
+| `FluxRaid_SyncAllFluxUnitAuraSettings` | [L956](../../RaidFrame/FluxRaidUnit.lua#L956) |
+| `FluxRaid_RefreshVisibleUnits` | [L964](../../RaidFrame/FluxRaidUnit.lua#L964) |
+| `FluxRaid_RefreshSelfDisplayNames` | [L983](../../RaidFrame/FluxRaidUnit.lua#L983) |
+| `FluxRaid_EnsureRangePoll` | [L1015](../../RaidFrame/FluxRaidUnit.lua#L1015) |
+| `FluxRaid_IsMTMAChild` | [L1024](../../RaidFrame/FluxRaidUnit.lua#L1024) |
+| `FluxCompactMiniFrameSetup` | [L1055](../../RaidFrame/FluxRaidUnit.lua#L1055) |
+| `FluxRaid_AttachOrUpdateMTMATarget` | [L1100](../../RaidFrame/FluxRaidUnit.lua#L1100) |
+| `FluxRaid_RefreshMTMATargetAttachments` | [L1135](../../RaidFrame/FluxRaidUnit.lua#L1135) |
+| `FluxCompactMiniFrameSetup_G.FluxCompactUnitFrameSetup` | [L1149](../../RaidFrame/FluxRaidUnit.lua#L1149) |
 
 ### RaidFrame/FluxRaidVisuals.lua
 
@@ -8382,19 +8386,20 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 | `FluxRaidVisuals.GetAuraOrganizationType` | [L242](../../RaidFrame/FluxRaidVisuals.lua#L242) |
 | `FluxRaidVisuals.UsesPrivateAuras` | [L273](../../RaidFrame/FluxRaidVisuals.lua#L273) |
 | `FluxRaidVisuals.GetFluxRaidOptionTable` | [L282](../../RaidFrame/FluxRaidVisuals.lua#L282) |
-| `FluxRaidVisuals.SyncAuraDisplayOptions` | [L297](../../RaidFrame/FluxRaidVisuals.lua#L297) |
-| `FluxRaidVisuals.EnsureAuraMaxSlots` | [L337](../../RaidFrame/FluxRaidVisuals.lua#L337) |
-| `FluxRaidVisuals.ConfigurePrivateAuras` | [L370](../../RaidFrame/FluxRaidVisuals.lua#L370) |
-| `FluxRaidVisuals.UpdatePrivateAuraUnit` | [L423](../../RaidFrame/FluxRaidVisuals.lua#L423) |
-| `FluxRaidVisuals.SyncPrivateAuraSettings` | [L445](../../RaidFrame/FluxRaidVisuals.lua#L445) |
-| `FluxRaidVisuals.PushAuraDisplayToFrame` | [L469](../../RaidFrame/FluxRaidVisuals.lua#L469) |
-| `FluxRaidVisuals.NeutralizeBlizzardSharedUpdateAllSetup` | [L479](../../RaidFrame/FluxRaidVisuals.lua#L479) |
-| `FluxRaidVisuals.ResealCompactUnitFrameOnUpdate` | [L482](../../RaidFrame/FluxRaidVisuals.lua#L482) |
-| `FluxRaidVisuals.ApplyCellChrome` | [L486](../../RaidFrame/FluxRaidVisuals.lua#L486) |
-| `FluxRaidVisuals.ApplyVisuals` | [L593](../../RaidFrame/FluxRaidVisuals.lua#L593) |
-| `FluxRaidVisuals.SetupHealAbsorbLayers` | [L598](../../RaidFrame/FluxRaidVisuals.lua#L598) |
-| `FluxRaidVisuals.SetupReadyCheckIcon` | [L601](../../RaidFrame/FluxRaidVisuals.lua#L601) |
-| `FluxRaidVisuals.RefreshNeutralBarTracks` | [L604](../../RaidFrame/FluxRaidVisuals.lua#L604) |
+| `FluxRaidVisuals.UseOwnRaidSettings` | [L299](../../RaidFrame/FluxRaidVisuals.lua#L299) |
+| `FluxRaidVisuals.SyncAuraDisplayOptions` | [L304](../../RaidFrame/FluxRaidVisuals.lua#L304) |
+| `FluxRaidVisuals.EnsureAuraMaxSlots` | [L344](../../RaidFrame/FluxRaidVisuals.lua#L344) |
+| `FluxRaidVisuals.ConfigurePrivateAuras` | [L377](../../RaidFrame/FluxRaidVisuals.lua#L377) |
+| `FluxRaidVisuals.UpdatePrivateAuraUnit` | [L430](../../RaidFrame/FluxRaidVisuals.lua#L430) |
+| `FluxRaidVisuals.SyncPrivateAuraSettings` | [L452](../../RaidFrame/FluxRaidVisuals.lua#L452) |
+| `FluxRaidVisuals.PushAuraDisplayToFrame` | [L476](../../RaidFrame/FluxRaidVisuals.lua#L476) |
+| `FluxRaidVisuals.NeutralizeBlizzardSharedUpdateAllSetup` | [L486](../../RaidFrame/FluxRaidVisuals.lua#L486) |
+| `FluxRaidVisuals.ResealCompactUnitFrameOnUpdate` | [L489](../../RaidFrame/FluxRaidVisuals.lua#L489) |
+| `FluxRaidVisuals.ApplyCellChrome` | [L493](../../RaidFrame/FluxRaidVisuals.lua#L493) |
+| `FluxRaidVisuals.ApplyVisuals` | [L604](../../RaidFrame/FluxRaidVisuals.lua#L604) |
+| `FluxRaidVisuals.SetupHealAbsorbLayers` | [L609](../../RaidFrame/FluxRaidVisuals.lua#L609) |
+| `FluxRaidVisuals.SetupReadyCheckIcon` | [L612](../../RaidFrame/FluxRaidVisuals.lua#L612) |
+| `FluxRaidVisuals.RefreshNeutralBarTracks` | [L615](../../RaidFrame/FluxRaidVisuals.lua#L615) |
 
 ### Respec/FluxRespec_ActionBars.lua
 

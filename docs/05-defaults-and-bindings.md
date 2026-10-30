@@ -1,12 +1,18 @@
 # Game defaults, keyboard template and scale
 
+Current first-account binding setup completes clear, assignment, verification,
+native save/load and re-verification in one call. Modern clients use Blizzard's
+per-action binding context; wrong keys receive at most three immediate
+attempts. [Atomic-context follow-up](BINDING_ATOMIC_CONTEXT.md). The older
+eight-write batching description below records the previous implementation.
+
 [FluxDefaultSettings.lua](../FluxDefaultSettings.lua) owns game-setting setup, the keyboard template, reset detection and shared horizontal squeeze. These differ from AceDB option defaults and conditional Binding documents. See [09-persistence.md](09-persistence.md), [13-binding-system.md](13-binding-system.md) and [31-commands-and-bindings.md](31-commands-and-bindings.md).
 
 ## Automatic application
 
-Full settings **and keybindings** apply automatically on first account login when `FluxUI_DB.accountDefaultsApplied` is false. Encountered characters are recorded in `FluxUI_DB.characters[charKey]`. A later new character receives `ApplyCharacterFirstLogin`: raid setup and chat class colors, without full keyboard-template application.
+Full settings apply on first account login when FluxUI_DB.accountDefaultsApplied is false. Encountered characters are recorded in FluxUI_DB.characters[charKey]. A later new character receives ApplyCharacterFirstLogin: character-stored CVars, nameplate bitfields, raid setup and chat class colors. The first-account keyboard pass starts on the first world-entry frame, selects the native account binding set, clears all bound keys and applies the supported Flux template. It records saved6 after SaveBindings(1), LoadBindings(1) and full key verification, then confirms version 6 after the next login restores the four bridge bindings. Older version-4/5 accounts with missing native bridge keys receive one migration repair; already bound and unmarked existing accounts keep their bindings. Unknown CVar scope is skipped so account preferences are preserved. The path accepts both C_CVar.GetCVarInfo table results and legacy GetCVarInfo tuples; unsupported CVars remain no-ops. Dynamic UI scale and camera maximum are recalculated before the character-scope filter. [Binding persistence rewrite](BINDING_PERSISTENCE_REWRITE.md).
 
-There is no opt-in installer prompt in this flow. `Apply(force)` skips an already-applied account unless forced. Full application calls setting packs, keybind application, modified-click setup, raid/profile setup and chat setup, then marks the account flag. Some work is protected/deferred; the flag does not prove that every individual write succeeded.
+There is no opt-in installer prompt in this flow. `Apply(force)` skips an already-applied account unless forced. Full application calls setting packs, keybind application, modified-click setup, raid/profile setup and chat setup, then marks the account flag. The first character is now marked seen only after `Apply` succeeds and sets that flag; a new character is marked seen only after its queued character CVar work completes without a Lua error. Some work is protected/deferred; the flags do not prove that every individual write succeeded.
 
 The event frame also tracks display/UI scale changes and compact raid profile readiness. Regen handling is armed for pending key/scale/squeeze work. A five-second login grace period suppresses reset detection; `VerifyPostLoginDefaults` runs afterward, retrying during combat.
 
@@ -29,7 +35,9 @@ The event frame also tracks display/UI scale changes and compact raid profile re
 | Alt-wheel up/down | Trinket 1/2. |
 | `B/0/H/P/Shift-P/N/L/J/M/O` | Bags, character, PVP, spellbook, pet book, talents, quest log, guild, map and social. |
 
-`ApplyKeybinds` clears existing keys outside this template and changes differing template assignments, in batches of eight across frames. It saves the current set using `SaveBindings(GetCurrentBindingSet())`. Combat queues or pauses application; repeated calls use guards and can queue one reapply. Applying the template can therefore replace custom bindings; it does more than fill unbound Flux commands.
+ApplyKeybinds scans the native registry once, clears every bound key in batches of eight, applies every supported Flux template assignment, verifies the keys, saves the active set, loads that saved set and verifies again. The automatic first-account path selects the account set; an explicit manual reset retains the selected native set. A failed write/save restores the old set and records a failed state without an automatic reload loop. An interrupted unsaved pass can resume on the next login. [Binding persistence rewrite](BINDING_PERSISTENCE_REWRITE.md).
+
+`PrepareAccountBindingBootstrap` arms the full reset only on the first account load or when that first attempt is still pending. `EnsureDefaultFluxBindings` waits for all Flux commands to register, then applies the template to the current native binding set. Version `4` records account-wide completion after a verified save. Older completed character markers migrate without another reset; existing accounts without pending setup are also left alone. Combat and an in-progress full-template batch defer the first-account pass. See [the regression record](ACCOUNT_BINDINGS_ONCE.md).
 
 Bulk suppression prevents each `UPDATE_BINDINGS` from rebuilding every consumer. `FlushBindingRefreshAfterBulk` consolidates bar, mouseover, Extra Buttons, utility and trinket refresh, followed by guard release and a final late Extra Button refresh.
 
@@ -37,13 +45,13 @@ Bulk suppression prevents each `UPDATE_BINDINGS` from rebuilding every consumer.
 
 ## Settings packs and write routes
 
-`FLUX_DEFAULTS` groups controls, mouse/camera, names/nameplates, interface, raid/PVP, action bars, combat, social/chat and UI scale. Examples include auto-loot, combined bags, key-down actions, numeric cooldowns, enemy nameplates/class colors, large nameplates with 120% auras, compact party/power/heal displays, camera zoom and classic inline whispers. A table entry is not proof of a write on every client: missing APIs/CVars and coupled settings have specific guards.
+`FLUX_DEFAULTS` groups controls, mouse/camera, names/nameplates, interface, raid/PVP, action bars, combat, social/chat and UI scale. Examples include auto-loot, combined bags, key-down actions, numeric cooldowns, enemy nameplates/class colors, Medium nameplates with 120% auras, compact party/power/heal displays, camera zoom and classic inline whispers. An existing nameplate size `3` migrates once to `2`; other values stay intact. A table entry is not proof of a write on every client: missing APIs/CVars and coupled settings have specific guards. [Raid/nameplate follow-up](RAID_NAMEPLATE_DEFAULTS.md).
 
 | Owner | Actual behavior |
 |---|---|
 | [BlizzardSettings/Write.lua](../BlizzardSettings/Write.lua) | `Run(key, fn)` queues keyed work in combat or while SettingsPanel is open; flushes on regen/after hide. Low-level `CVar`/`Bit` check combat, existence and equality. Settings-sensitive callers must use the queued route. |
 | [Nameplates.lua](../BlizzardSettings/Nameplates.lua) | Scalars, NPC flags, class colors and enum bitfields. Full pack runs on setup/reset/request; only health amount/percent bits reassert on world entry. |
-| [Raid.lua](../BlizzardSettings/Raid.lua) | Tutorials, raid/PVP CVars and available active raid-profile fields. Profile writes can wait for compact profiles. Flux raid enablement affects Blizzard layout defaults. |
+| [Raid.lua](../BlizzardSettings/Raid.lua) | Tutorials, raid/PVP CVars and available active raid-profile fields. Classic profile writes remain pending until an active profile exists, then the full pack reapplies. Retail/Forever native compact-frame writes remain guarded for taint safety; Flux-owned raid frames use their own options. Flux raid enablement affects Blizzard layout defaults. |
 | `Flux.CVar` / legacy `FluxSetCVar` | General guarded routes block selected coupled nameplate/raid/target-cast settings. They are distinct from curated packs. |
 | `FluxDefaultSettings` methods | Controls, combat, bars, camera/interface/chat and modified-click packs, with client exclusions and guarded helpers. |
 
@@ -53,11 +61,11 @@ Camera maximum zoom is resolved by `GetMaxCameraDistanceZoomFactor`; the table's
 
 ## Reset detection and state semantics
 
-Official Settings reset callbacks and legacy hooks/heuristics can reapply full/category packs. Modern Retail/Forever defer sensitive reset jobs until Settings closes; full resets can reapply keys. Resetting Blizzard settings can therefore cause Flux recommendations to return.
+Official Settings reset callbacks and legacy hooks/heuristics can reapply CVar and category packs. Modern Retail/Forever defer sensitive reset jobs until Settings closes. Blizzard Settings resets do not replay the Flux keyboard template; explicit Flux keyboard reset commands still can.
 
 `GetState()` labels a small critical-CVar sample `FRESH`/`MODIFIED` by comparing to **Blizzard `GetCVarDefault`**, rather than the full Flux recommendation table. It is not an audit that Flux defaults are intact.
 
-Automatic `VerifyPostLoginDefaults` and binding-change verification preserve customized keybindings. A different F5 assignment no longer reapplies keys or triggers a CVar reset. Explicit reset-to-Flux-defaults still applies the keyboard template. Existing first-account setup and explicit Blizzard reset handling are separate paths; see the [implementation report](43-startup-optimization.md).
+Automatic `VerifyPostLoginDefaults` and binding-change verification preserve customized keybindings. A different F5 assignment no longer reapplies keys or triggers a CVar reset. The three-CVar post-login sentinel currently requires four mismatches, so it cannot automatically repair a later client reset; this remains a separate pending fix because broad replay could overwrite customized settings. Explicit reset-to-Flux-defaults still applies the keyboard template. Existing first-account setup and explicit Blizzard reset handling are separate paths; see the [implementation report](43-startup-optimization.md).
 
 ## Commands and reset boundaries
 
@@ -217,7 +225,7 @@ The tables below reproduce every literal entry from `DefaultKeyTemplate` and `FL
 | `nameplateShowOffscreen` | `1` |
 | `nameplateShowFriendlyPlayers` | `0` |
 | `nameplateShowSelf` | `0` |
-| `nameplateSize` | `3` |
+| `nameplateSize` | `2` |
 | `nameplateAuraScale` | `1.2` |
 | `nameplateStyle` | `2` |
 | `nameplateShowClassColor` | `1` |
