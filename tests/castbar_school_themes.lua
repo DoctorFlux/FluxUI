@@ -76,6 +76,7 @@ local function fixture(branch, capabilities)
     function methods:SetBlendMode(value) self.blend = value end
     function methods:SetRotation(value) spriteWrite(self);self.rotation = value end
     function methods:SetVertexColor(...) spriteWrite(self);self.color = {...} end
+    function methods:GetVertexColor() return env.unpack(self.color) end
     function methods:SetDesaturated(value) self.desaturated = value end
     function methods:SetGradient(...) self.gradient = {...};state.work.gradients=state.work.gradients+1 end
     function methods:SetGradientAlpha(...) self.gradient = {...};state.work.gradients=state.work.gradients+1 end
@@ -928,13 +929,23 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
     local function reset() for _,bar in ipairs({player,target,focus,pet}) do bar:Hide() end end
     s.Cast("player",133)
     check(player:GetStatusBarTexture():GetAlpha()==0 and s.claimed>0, "themed fill / swing slot claim")
+    local playerVisual=getVisuals(fx)[player]
+    check(playerVisual.fill.parent==player.TimerBar,
+        branch.." school fill shares the actual unit-frame progress bar")
+    check(player.Spark.color[1]==playerVisual.theme.bright[1]
+        and player.Spark.color[2]==playerVisual.theme.bright[2]
+        and player.Spark.color[3]==playerVisual.theme.bright[3],
+        branch.." native unit-frame tip spark matches school color")
     check(s.VisibleDrivers()==1, "one animation driver")
     local writes=player.TimerBar.manualWrites; local values=player.TimerBar.valueWrites
     fx.Update(player,0.1)
     check(player.TimerBar.manualWrites==writes and player.TimerBar.valueWrites==values, "visuals never change timers")
     local data=s.GetDB().castBarThemes
     data.colors=false; fx.Refresh()
-    check(player:GetStatusBarTexture():GetAlpha()==1 and s.VisibleDrivers()==1, "fill toggle independent of particles/glow")
+    check(player:GetStatusBarTexture():GetAlpha()==1 and s.VisibleDrivers()==1,
+        "fill toggle independent of particles/glow")
+    check(player.Spark.color[1]==1 and player.Spark.color[2]==1 and player.Spark.color[3]==1,
+        branch.." disabling fill colors restores native tip spark")
     data.particles=false; data.halo=false; data.edge=false; data.backdrop=false; fx.Refresh()
     check(s.VisibleDrivers()==0, "static/disabled effects have no animation driver")
     data.colors=true; fx.Refresh()
@@ -1036,6 +1047,8 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) d
     local s,e,ns=fixture(branch)
     local native=e.CreateFrame("StatusBar",nil,e.UIParent)
     native:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+    native.Spark=native:CreateTexture()
+    native.Spark:SetVertexColor(0.2,0.3,0.4,0.8)
     local proxy=e.CreateFrame("Frame",nil,e.UIParent)
     proxy.TimerBar=native
     proxy._fluxNativeCast=native
@@ -1047,16 +1060,24 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) d
     fx.Begin(proxy,"nameplate1",133,"Boule de feu",false,nil,true)
     local v=getVisuals(fx)[proxy]
     check(v and v.theme and v.fill.parent==native,branch.." nameplate paints native bar with shared theme")
-    check(native:GetStatusBarTexture():GetAlpha()==1,branch.." nameplate preserves native source fill")
+    check(native:GetStatusBarTexture():GetAlpha()==0,branch.." nameplate hides native fill under school fill")
+    check(native.Spark.color[1]==v.theme.bright[1] and native.Spark.color[2]==v.theme.bright[2]
+        and native.Spark.color[3]==v.theme.bright[3],branch.." nameplate tip spark matches school color")
     fx.Update(proxy,0.1)
     check(proxy._fluxSchoolCast and proxy._fluxSchoolCast.nameplate,branch.." nameplate animation uses native progress")
     s.GetDB().castBarThemes.nameplates=false;fx.Refresh()
-    check(not v.fill:IsShown() and native:GetStatusBarTexture():GetAlpha()==1,
+    check(not v.fill:IsShown() and native:GetStatusBarTexture():GetAlpha()==1
+        and native.Spark.color[1]==0.2 and native.Spark.color[2]==0.3
+        and native.Spark.color[3]==0.4 and native.Spark.color[4]==0.8,
         branch.." nameplate toggle restores native appearance")
     s.GetDB().castBarThemes.nameplates=true;fx.Refresh()
-    check(v.fill:IsShown(),branch.." nameplate toggle restores school appearance")
+    check(v.fill:IsShown() and native:GetStatusBarTexture():GetAlpha()==0,
+        branch.." nameplate toggle restores school appearance")
     native:Hide();fx.Update(proxy,0.1)
-    check(proxy._fluxSchoolCast==nil and not v.fill:IsShown(),branch.." hidden native bar clears painted fill")
+    check(proxy._fluxSchoolCast==nil and not v.fill:IsShown()
+        and native:GetStatusBarTexture():GetAlpha()==1 and native.Spark.color[1]==0.2
+        and native.Spark.color[4]==0.8,
+        branch.." hidden native bar restores Blizzard fill and tip")
 end
 
 local files={"cast_dot","cast_flame","cast_leaf","cast_snow","cast_spark","arcane_rune","shadow_skull",

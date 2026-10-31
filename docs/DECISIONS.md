@@ -1,5 +1,16 @@
 # Decisions
 
+## 2026-10-31 - restore cast fill geometry and school-colored tip
+
+- Create the school texture on the actual `TimerBar` for both Flux unit bars
+  and Blizzard nameplates. Hide and restore the native source texture only
+  while school colors are active, preserving progress geometry and native
+  cast ownership.
+- Tint the native Spark to the school color alongside the Flux leading-edge
+  glow; restore its prior vertex color when the theme clears. Keep interrupt
+  feedback and all existing options. Native pixels/taint remain pending.
+  [Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 ## 2026-10-31 - style Blizzard nameplate casts with shared school themes
 
 - Reuse `CastBarThemes` and the existing observed-school/metadata resolver for

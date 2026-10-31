@@ -1,5 +1,11 @@
 # Development tasks
 
+31 October cast fill/tip correction: shared renderer now parents school fill
+to the actual progress bar, hides/restores Blizzard's underlying fill and
+tints/restores the native tip Spark. The focused test rejects the published
+source; full 110-test/755-syntax desktop suite passes. Native acceptance is
+pending. [Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 31 October Blizzard nameplate cast school themes: same Flux school renderer as
 target/focus over Blizzard's own status bar, with a default-on option and
 secret-value fallback. The 48-check nameplate model and full 110-test/755-Lua

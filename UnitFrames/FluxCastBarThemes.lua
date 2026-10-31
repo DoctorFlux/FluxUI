@@ -443,9 +443,10 @@ end
 local function build(bar)
     local v = {bar = bar, pool = {}, liveParticles = 0, luaParticles=0, clock = 0, carry = 0, scale = 1,emitterIndex=0}
     local timer = bar.TimerBar
-    -- A nameplate proxy owns the lifecycle; the painted fill stays on the
-    -- Blizzard status bar below its native text, shield, and indicators.
-    v.fill = (bar._fluxSchoolNameplate and timer or bar):CreateTexture(nil, "ARTWORK", nil, 7)
+    -- The painted fill must share the progress bar's frame and draw layer on
+    -- both Flux unit bars and Blizzard nameplates. The outer frame can sit
+    -- below native chrome and make the fill disappear entirely.
+    v.fill = timer:CreateTexture(nil, "ARTWORK", nil, 7)
     v.fill:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
     v.fill:Hide()
     v.layers={v.fill}
@@ -492,6 +493,24 @@ local function restoreFill(v)
     end
 end
 
+local function restoreSpark(v)
+    local spark, color = v.spark, v.sparkColor
+    if spark and color then spark:SetVertexColor(color[1], color[2], color[3], color[4] or 1) end
+    v.spark, v.sparkColor = nil, nil
+end
+
+local function tintSpark(v, color)
+    local native = v.bar._fluxNativeCast or v.bar
+    local spark = native.Spark
+    if not (spark and spark.GetVertexColor and spark.SetVertexColor) then return end
+    if v.spark ~= spark then
+        restoreSpark(v)
+        v.spark = spark
+        v.sparkColor = {spark:GetVertexColor()}
+    end
+    spark:SetVertexColor(color[1], color[2], color[3], v.sparkColor[4] or 1)
+end
+
 local function tintTiers(v, color)
     for i, tier in ipairs(v.bar.StageTiers or {}) do
         local components=v.theme and v.theme.components
@@ -516,6 +535,7 @@ function FX.Reset(bar, forget)
     local v = visuals[bar]
     if v and v.theme then
         restoreFill(v)
+        restoreSpark(v)
         if v.tiersTinted then tintTiers(v, nil) end
         v.halo:Hide(); v.edge:Hide()
         for _,texture in ipairs(v.backdrops) do texture:Hide() end
@@ -559,15 +579,17 @@ local function style(v)
     bindFill(v)
     if enabled(db, "colors") then
         local source = v.bar.TimerBar:GetStatusBarTexture()
-        if not v.bar._fluxSchoolNameplate and source and v.source ~= source then
+        if source and v.source ~= source then
             if v.source then v.source:SetAlpha(v.sourceAlpha or 1) end
             v.source, v.sourceAlpha = source, source:GetAlpha()
         end
-        if source and not v.bar._fluxSchoolNameplate then source:SetAlpha(0) end
+        if source then source:SetAlpha(0) end
         paintFill(v,enabled(db,"gradient"))
         tintTiers(v, theme.bright)
+        tintSpark(v, theme.bright)
     else
         restoreFill(v)
+        restoreSpark(v)
         if v.tiersTinted then tintTiers(v, nil) end
     end
     v.halo:SetVertexColor(unpack(theme.glow))
@@ -660,7 +682,9 @@ function FX.Update(bar, dt)
         local index=math.floor(v.clock*2)%#components+1
         if v.glowIndex~=index then
             v.halo:SetVertexColor(unpack(components[index].glow))
-            v.edge:SetVertexColor(unpack(components[index%#components+1].bright))
+            local tipColor = components[index%#components+1].bright
+            v.edge:SetVertexColor(unpack(tipColor))
+            if enabled(db,"colors") then tintSpark(v, tipColor) end
             v.glowIndex=index
         end
         v.edge:SetAlpha((0.65 + 0.25 * math.sin(v.clock * 6)) * glow)
@@ -776,7 +800,7 @@ function FX.Finish(bar)
             if v.source then v.source:SetAlpha(v.sourceAlpha or 1) end
             v.source,v.sourceAlpha=source,source:GetAlpha()
         end
-        if source and not bar._fluxSchoolNameplate then source:SetAlpha(0) end
+        if source then source:SetAlpha(0) end
     end
     finishAppearance(v,db)
     if not needsUpdates(v,db) then active[bar]=nil;sleepIfIdle() end

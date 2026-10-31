@@ -8,6 +8,10 @@ host and a fill texture anchored to the native fill, using the same palettes,
 gradient, halo, leading edge, backdrop and particles as unit-frame cast bars.
 No replacement nameplate casting bar or spell-ID list was added.
 
+The initial published pass had a [fill-parent and tip-color defect](CAST_SCHOOL_FILL_TIP_FIX.md).
+The follow-up restores the shared unit-frame fill and makes the school color
+visible on nameplates; its native visual checks remain pending.
+
 The **Unit frames → Cast bar school themes → Blizzard nameplates** toggle
 defaults on in both settings scopes. The shared master and appearance controls
 apply to it. Existing saved choices are retained. On Retail/Forever, a secret

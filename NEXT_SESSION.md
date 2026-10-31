@@ -1,5 +1,13 @@
 # Next session
 
+31 October cast fill/tip correction: sequentially verify actual target,
+focus and Blizzard nameplate casts on every supported client. Check visible
+school fill and matching moving-tip Spark for single/hybrid schools; finish,
+interrupt, option toggle, plate reuse, Retail/Forever secret fallback and
+combat `SetUnit` taint. Desktop 110-test/755-Lua suite passes; native pixels
+and matched performance remain pending.
+[Evidence](docs/CAST_SCHOOL_FILL_TIP_FIX.md).
+
 31 October nameplate school themes: sequentially validate Retail, Forever,
 Era and Anniversary native Blizzard cast bars in combat. Check target/focus
 and nameplate school color/effect parity, finish/interrupt/reuse/toggle,

@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+31 October cast fill/tip follow-up: the user reported missing color and
+unit-frame fill on all clients. The desktop regression fails against the
+published source and passes with progress-bar parenting, native source
+hide/restore and school Spark tint. Full 110-test/755-Lua suite passes.
+Native all-client pixels, combat taint and frame time remain pending.
+[Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 31 October nameplate cast-school styling: desktop 48-check native-bar lifecycle
 model plus shared renderer checks pass on Retail, Forever, Era and Anniversary
 branches; full 110-test/755-Lua validation passes. Native client cast/channel,

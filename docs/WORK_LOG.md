@@ -1,5 +1,18 @@
 # Work log
 
+## 2026-10-31 - repair missing school fill and moving-tip tint
+
+The user observed absent school color on all clients, no unit-frame cast fill
+and an uncolored tip glow. Inspected the published renderer, Blizzard cast
+source and existing options/tests; verified a fresh external source/history
+bundle and copied four closed-client settings files outside AddOns. Restored
+fill creation on `TimerBar`, hid/restored the underlying native nameplate fill
+and tinted/restored the native Spark. Expanded the shared renderer regression;
+it fails on the published source at the wrong fill parent and passes on the
+candidate. Full desktop validation passes 110 scripts/755 syntax files.
+Native pixels, combat taint and matched frame time remain pending.
+[Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 ## 2026-10-31 - school colors and effects on Blizzard nameplate cast bars
 
 The user requested the same school visuals as target/focus on Retail, Forever,

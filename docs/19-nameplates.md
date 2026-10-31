@@ -20,6 +20,9 @@ The **Blizzard nameplates** toggle under Unit frames → Cast bar school themes
 defaults on. Secret or unresolved spell identity preserves Blizzard's fill.
 Desktop lifecycle and renderer checks pass; native combat taint, pixel parity
 and frame time remain pending. [Exact record](NAMEPLATE_CASTBAR_SCHOOLS.md).
+The [fill/tip correction](CAST_SCHOOL_FILL_TIP_FIX.md) hides Blizzard's
+underlying fill only during a readable school theme and tints its native
+Spark to the school; both restore when the theme clears.
 
 ## Threat and level
 

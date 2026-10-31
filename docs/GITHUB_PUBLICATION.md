@@ -1,5 +1,12 @@
 # GitHub publication - 29 October 2026
 
+31 October cast fill/tip correction: the published nameplate integration
+regressed unit-frame fill geometry and left the nameplate source opaque.
+The current main candidate restores fill visibility and tints the native
+moving Spark to the school. The baseline fails the focused regression;
+full desktop 110-test/755-Lua validation passes. Native acceptance is
+pending. [Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 31 October 2026 school-theme batch: current local main adds the shared Flux
 school colors and effects to Blizzard's own nameplate cast bars on Retail,
 Forever, Era and Anniversary. The 110-test/755-Lua desktop report passes;

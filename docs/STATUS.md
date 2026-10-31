@@ -1,5 +1,13 @@
 # Development status
 
+31 October cast-school correction: the first nameplate integration put the
+unit-frame fill on its outer frame and left Blizzard's nameplate fill opaque.
+The shared renderer now paints on the actual progress bar, hides/restores the
+native fill and tints/restores the moving tip spark to the school. The focused
+regression fails against the previous source and passes after correction;
+full desktop validation passes 110 tests/755 Lua files. Native pixels,
+combat taint and performance remain pending. [Evidence](CAST_SCHOOL_FILL_TIP_FIX.md).
+
 31 October 2026: Blizzard's nameplate casting bars now receive the shared
 unit-frame school colors and effects on Retail, Forever, Era and Anniversary
 when spell identity is readable. Secret/unknown identities retain native

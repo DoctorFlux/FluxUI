@@ -55,6 +55,9 @@ The shared school renderer also paints [Blizzard's nameplate cast bar](NAMEPLATE
 with the same colors and effects when spell identity is readable. The
 nameplate remains native-owned and has its own toggle in these unit-frame
 settings. Restricted identity keeps the native appearance.
+The [31 October fill and tip correction](CAST_SCHOOL_FILL_TIP_FIX.md) keeps
+the themed fill on the actual progress bar and matches the moving Spark to
+the active school color; native visual acceptance is pending.
 
 [SwingTimer](../UnitFrames/FluxSwingTimer.lua) shares the player's cast-bar slot. Real casts can claim it; `HideForCastBarClaim` and `OnCastBarSlotReleased` coordinate ownership. Applicable Classic clients use combat-log/weapon events; Forever uses its supported swing APIs/events, including ranged/wand/throw variants. Cata/Mists and Live should not be assumed to have the same legacy swing path merely because the file loads.
 
