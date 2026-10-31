@@ -1,5 +1,12 @@
 # Development status
 
+31 October nameplate backdrop correction: school artwork now draws from a
+Flux host at the plate's frame level, behind Blizzard cast and health chrome.
+The unit-frame backdrop, school fill and tip keep their existing placement.
+The focused layer regression rejects the previous source; full desktop
+validation passes 112 tests/757 Lua files. Native pixels, taint and frame
+time remain pending. [Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 31 October combat grid usability: mana gem and healthstone now darken while
 dead/ghost and respect a live unusable item result once bags settle. Focused
 14-check loaded-paint regression and full 111-test/756-Lua desktop validation

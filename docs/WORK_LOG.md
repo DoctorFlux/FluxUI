@@ -1,5 +1,18 @@
 # Work log
 
+## 2026-10-31 - lower nameplate cast-school backdrop artwork
+
+The user reported school backdrop art appearing in front of Blizzard
+nameplate chrome. Read continuity, current renderer and the read-only
+Blizzard NamePlates XML; verified a dated external history/source and
+four-settings checkpoint before edits. Moved only nameplate backdrop art
+to a separate noninteractive plate-level host, with level reconciliation
+while casts run. Unit-frame artwork and fill/edge/halo/particle ownership
+remain as before. The focused regression fails on the baseline at the
+backdrop-layer assertion and passes after correction; full desktop suite:
+112 tests/757 Lua files. Native visual/taint/performance checks pending.
+[Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 ## 2026-10-31 - correct conjured combat-item usability tint
 
 The user reported that mana gem and healthstone stayed bright when the other

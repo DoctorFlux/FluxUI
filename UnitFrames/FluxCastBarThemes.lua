@@ -418,10 +418,25 @@ local function backdropStyle(v, theme, texture)
 end
 
 local bindFill
+local function syncBackdropHost(v)
+    if v.backdropHost then
+        local parent = v.bar:GetParent()
+        if not parent then v.backdropHost:Hide(); return end
+        if v.backdropHost:GetParent() ~= parent then v.backdropHost:SetParent(parent) end
+        local ok, level = pcall(parent.GetFrameLevel, parent)
+        level = ok and Schools.Plain(level) or nil
+        if type(level) ~= "number" then v.backdropHost:Hide(); return end
+        level = math.max(0, level)
+        if v.backdropHost:GetFrameLevel() ~= level then v.backdropHost:SetFrameLevel(level) end
+        v.backdropHost:Show()
+    end
+end
+
 function FX.Layout(bar)
     local v = visuals[bar]
     if not v then return end
     local timer = bar.TimerBar
+    syncBackdropHost(v)
     local h = math.max(1, timer:GetHeight())
     v.layoutWidth,v.layoutHeight=timer:GetWidth(),timer:GetHeight()
     local scale = math.min(1.5, math.max(0.35, h / 22))
@@ -443,6 +458,18 @@ end
 local function build(bar)
     local v = {bar = bar, pool = {}, liveParticles = 0, luaParticles=0, clock = 0, carry = 0, scale = 1,emitterIndex=0}
     local timer = bar.TimerBar
+    local backdropParent = bar
+    if bar._fluxSchoolNameplate then
+        -- A BACKGROUND texture on the higher-level Flux proxy still covers
+        -- Blizzard's cast bar. Give artwork its own lower-level plate host.
+        local host = CreateFrame("Frame", nil, bar:GetParent())
+        host:SetAllPoints(timer)
+        host:EnableMouse(false)
+        v.backdropHost = host
+        backdropParent = host
+        syncBackdropHost(v)
+    end
+    v.backdropParent = backdropParent
     -- The painted fill must share the progress bar's frame and draw layer on
     -- both Flux unit bars and Blizzard nameplates. The outer frame can sit
     -- below native chrome and make the fill disappear entirely.
@@ -463,7 +490,7 @@ local function build(bar)
     v.halo:SetDesaturated(true)
     v.halo:SetBlendMode("ADD")
     v.halo:Hide()
-    v.backdrop = bar:CreateTexture(nil, "BACKGROUND", nil, -7)
+    v.backdrop = backdropParent:CreateTexture(nil, "BACKGROUND", nil, -7)
     v.backdrop:SetBlendMode("ADD")
     v.backdrop:Hide()
     v.backdrops={v.backdrop}
@@ -601,7 +628,7 @@ local function style(v)
     for i,component in ipairs(theme.components) do
         local texture=v.backdrops[i]
         if not texture then
-            texture=v.bar:CreateTexture(nil,"BACKGROUND",nil,-7)
+            texture=v.backdropParent:CreateTexture(nil,"BACKGROUND",nil,-7)
             texture:SetBlendMode("ADD")
             v.backdrops[i]=texture
         end
@@ -674,6 +701,7 @@ function FX.Update(bar, dt)
         return
     end
     dt = math.min(math.max(dt, 0), 0.1)
+    syncBackdropHost(v)
     v.clock = v.clock + dt
     local db = settings()
     if not v.finished then

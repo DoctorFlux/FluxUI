@@ -1,5 +1,15 @@
 # Decisions
 
+## 2026-10-31 - place nameplate school artwork behind native chrome
+
+- Parent nameplate backdrop textures to a Flux host at the plate's frame
+  level. Follow plate parent/level changes during active casts. Keep the
+  Blizzard cast bar as the fill/progress owner and retain higher edge, halo
+  and particle effects.
+- Preserve unit-frame artwork geometry, opacity, controls and timing. Native
+  pixels, combat taint and matched frame time remain pending.
+  [Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 ## 2026-10-31 - tint conjured combat items from live usability
 
 - Treat death/ghost as unusable for combat mana gem and healthstone faces,

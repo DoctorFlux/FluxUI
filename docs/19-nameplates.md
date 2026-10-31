@@ -23,6 +23,9 @@ and frame time remain pending. [Exact record](NAMEPLATE_CASTBAR_SCHOOLS.md).
 The [fill/tip correction](CAST_SCHOOL_FILL_TIP_FIX.md) hides Blizzard's
 underlying fill only during a readable school theme and tints its native
 Spark to the school; both restore when the theme clears.
+The [backdrop layer correction](NAMEPLATE_BACKDROP_LAYER.md) puts school
+artwork at the plate level behind native cast and health chrome, while fill,
+tip, halo and particle effects keep their existing hosts.
 
 ## Threat and level
 

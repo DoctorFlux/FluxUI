@@ -1,5 +1,11 @@
 # Client and reference validation — 29 October 2026
 
+31 October nameplate backdrop: desktop renderer checks place single/hybrid
+artwork below native chrome, including plate-level changes during a cast;
+the prior source fails the new layer assertion. Full 112-test/757-Lua suite
+passes. Native four-client pixels, combat taint and frame time remain pending.
+[Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 31 October combat grid conjured-item tint: the user's native observation is
 that mana gem and healthstone stay bright while other combat items darken on
 death. The corrected loaded-paint desktop fixture passes 14 checks, baseline

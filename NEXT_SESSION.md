@@ -1,5 +1,13 @@
 # Next session
 
+31 October nameplate backdrop: sequentially check single/hybrid school casts
+on Retail, Forever, Era and Anniversary at several plate sizes and during
+target switching/reuse. Confirm artwork stays behind cast text, shield,
+health text and selection chrome while fill/tip/halo/particles remain visible.
+Check secret fallback, combat taint, pixels and matched frame time. Desktop
+112-test/757-Lua suite passes; native acceptance remains pending.
+[Evidence](docs/NAMEPLATE_BACKDROP_LAYER.md).
+
 31 October combat grid usability: sequentially check mana gem and healthstone
 beside potion/bandage on every supported client while alive, dead/ghost and
 revived; also at full health/mana, on cooldown, at zero/replenished charges and

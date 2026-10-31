@@ -1,5 +1,12 @@
 # GitHub publication - 29 October 2026
 
+31 October nameplate backdrop correction: candidate artwork is placed behind
+Blizzard cast and health chrome while the fill, tip, halo and particles keep
+their existing layers. Baseline fails the focused layer assertion; full
+desktop validation passes 112 tests/757 Lua syntax files. Native visual,
+combat and performance acceptance remains pending.
+[Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 31 October combat grid usability publication: payload
 `155fa8aafda5169a23eae1a06df42eafb696b756` was pushed to main and the
 remote ref was read back at that exact commit. The working tree was clean

@@ -1,5 +1,10 @@
 # Development tasks
 
+31 October nameplate cast backdrop: artwork now uses a plate-level host below
+Blizzard cast/health chrome. A baseline-rejecting layer test and the full
+112-test/757-Lua desktop suite pass. Native pixels/taint/performance pending.
+[Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
 31 October combat grid conjured-item usability: verify gem and healthstone
 tint in native alive/dead/ghost, full-resource, cooldown and empty/replenished
 states alongside other combat items. The loaded-paint fixture passes 14 checks;

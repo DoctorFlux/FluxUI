@@ -932,6 +932,8 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
     local playerVisual=getVisuals(fx)[player]
     check(playerVisual.fill.parent==player.TimerBar,
         branch.." school fill shares the actual unit-frame progress bar")
+    check(playerVisual.backdrop.parent==player and not playerVisual.backdropHost,
+        branch.." unit-frame school artwork keeps its existing parent")
     check(player.Spark.color[1]==playerVisual.theme.bright[1]
         and player.Spark.color[2]==playerVisual.theme.bright[2]
         and player.Spark.color[3]==playerVisual.theme.bright[3],
@@ -1046,6 +1048,7 @@ end
 for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) do
     local s,e,ns=fixture(branch)
     local native=e.CreateFrame("StatusBar",nil,e.UIParent)
+    native:SetFrameLevel(100) -- Blizzard_NamePlates.xml castBar frameLevel.
     native:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     native.Spark=native:CreateTexture()
     native.Spark:SetVertexColor(0.2,0.3,0.4,0.8)
@@ -1060,6 +1063,29 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) d
     fx.Begin(proxy,"nameplate1",133,"Boule de feu",false,nil,true)
     local v=getVisuals(fx)[proxy]
     check(v and v.theme and v.fill.parent==native,branch.." nameplate paints native bar with shared theme")
+    check(v.backdropHost and v.backdrop.parent==v.backdropHost
+        and v.backdropHost:GetParent()==proxy:GetParent()
+        and v.backdropHost:GetFrameLevel()==proxy:GetParent():GetFrameLevel()
+        and v.backdropHost:GetFrameLevel()<native:GetFrameLevel(),
+        branch.." nameplate backdrop stays below plate chrome and Blizzard's cast bar")
+    local priorPlateLevel=proxy:GetParent():GetFrameLevel()
+    proxy:GetParent():SetFrameLevel(priorPlateLevel+5)
+    fx.Update(proxy,0.1)
+    check(v.backdropHost:GetFrameLevel()==proxy:GetParent():GetFrameLevel(),
+        branch.." nameplate backdrop follows plate level changes during a cast")
+    proxy:GetParent():SetFrameLevel(priorPlateLevel)
+    local plate=proxy:GetParent()
+    local getPlateLevel=plate.GetFrameLevel
+    plate.GetFrameLevel=function() return s.secret end
+    fx.Update(proxy,0.1)
+    check(not v.backdropHost:IsShown(),branch.." secret plate level hides backdrop artwork")
+    plate.GetFrameLevel=getPlateLevel
+    fx.Update(proxy,0.1)
+    check(v.backdropHost:IsShown(),branch.." readable plate level restores backdrop artwork")
+    ns.CastBarSchools.Learn(44614,20)
+    fx.Begin(proxy,"nameplate1",44614,"Frostfire Bolt",false,nil,true)
+    check(v.backdrops[2] and v.backdrops[2].parent==v.backdropHost,
+        branch.." hybrid nameplate backdrops share the lower host")
     check(native:GetStatusBarTexture():GetAlpha()==0,branch.." nameplate hides native fill under school fill")
     check(native.Spark.color[1]==v.theme.bright[1] and native.Spark.color[2]==v.theme.bright[2]
         and native.Spark.color[3]==v.theme.bright[3],branch.." nameplate tip spark matches school color")
