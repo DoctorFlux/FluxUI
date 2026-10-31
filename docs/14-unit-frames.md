@@ -51,6 +51,11 @@ Player resource rows and nameplate combo rows are independent presentations. Cla
 
 [FluxCastBar.lua](../UnitFrames/FluxCastBar.lua) handles unit casting/channel/empower presentation, latency/timing, interrupt feedback, text and border style. `CreateCastBar`, `RefreshCastForUnit`, `StartCustomTimer` and `StopCustomTimer` serve unit frames and custom timer consumers. `SyncBlizzardCastBars()` avoids simultaneous conflicting presentation.
 
+The shared school renderer also paints [Blizzard's nameplate cast bar](NAMEPLATE_CASTBAR_SCHOOLS.md)
+with the same colors and effects when spell identity is readable. The
+nameplate remains native-owned and has its own toggle in these unit-frame
+settings. Restricted identity keeps the native appearance.
+
 [SwingTimer](../UnitFrames/FluxSwingTimer.lua) shares the player's cast-bar slot. Real casts can claim it; `HideForCastBarClaim` and `OnCastBarSlotReleased` coordinate ownership. Applicable Classic clients use combat-log/weapon events; Forever uses its supported swing APIs/events, including ranged/wand/throw variants. Cata/Mists and Live should not be assumed to have the same legacy swing path merely because the file loads.
 
 [FlightPath](../UnitFrames/FluxFlightPath.lua) adds taxi duration tooltips and cast-bar progress, with a route-time database selected by client-specific XML. Lookup prefers faction-scoped account overrides, then supplied static data; character storage remembers node names. `GetFlightTimeForNodes`, `SetOverride` and `ClearOverride` expose this boundary. Flight timing is measured/learned rather than guaranteed exact; missing routes remain unknown. Data is attributed to RestedXP and has separate licensing; see [assets](34-assets.md).

@@ -1,6 +1,6 @@
 # Nameplate overlays and chrome
 
-`Flux.NamePlates` adds threat/level/combo/countdown presentation around existing Blizzard nameplates. It does not create a replacement nameplate suite. Current behavior is defined by [Core.lua](../NamePlates/Core.lua), [Threat.lua](../NamePlates/Threat.lua), [Level.lua](../NamePlates/Level.lua), [Countdown.lua](../NamePlates/Countdown.lua) and [ComboPoints.lua](../NamePlates/ComboPoints.lua).
+`Flux.NamePlates` adds threat/level/combo/countdown and casting-school presentation around existing Blizzard nameplates. It does not create a replacement nameplate suite. Current behavior is defined by [Core.lua](../NamePlates/Core.lua), [Threat.lua](../NamePlates/Threat.lua), [Level.lua](../NamePlates/Level.lua), [Countdown.lua](../NamePlates/Countdown.lua), [ComboPoints.lua](../NamePlates/ComboPoints.lua) and [CastBarSchools.lua](../NamePlates/CastBarSchools.lua).
 
 ## Lifecycle and ownership
 
@@ -8,7 +8,18 @@ Core tracks `activeUnits` from `NAME_PLATE_UNIT_ADDED/REMOVED`, reconciles exist
 
 Flux text/border hosts parent to the nameplate itself, not UnitFrame/its children, and release to UIParent on removal. Preview unit tokens are excluded. Unit tokens, object access and displayed values are checked for secrets where applicable. Reuse/removal must clear retained per-unit state and tint.
 
-**The file header's broad claim that nothing writes Blizzard regions is not true of the complete current implementation.** `TintPlateChrome`/`ResetPlateChrome` recolor native borders, level indicators and selection regions. Level/countdown code fades native artwork/digits, and client-specific Core code changes selected anchors/visibility. This reference describes those actual side effects rather than treating the header as an enforced invariant; see [findings](40-findings.md).
+`TintPlateChrome`/`ResetPlateChrome` recolor native borders, level indicators and selection regions. Level/countdown code fades native artwork/digits, client-specific Core code changes selected anchors/visibility, and cast-school styling adds a fill texture to the native casting bar. These side effects require native taint checks; see [findings](40-findings.md).
+
+## Blizzard casting bar school themes
+
+The shared [unit-frame school renderer](../UnitFrames/FluxCastBarThemes.lua)
+now paints Blizzard's `CastBarsContainer.castBar` on Retail, Forever, Era and
+Anniversary. Its noninteractive visual host follows the native bar; Blizzard
+continues to own progress, text, shield, indicators, cast events and fading.
+The **Blizzard nameplates** toggle under Unit frames → Cast bar school themes
+defaults on. Secret or unresolved spell identity preserves Blizzard's fill.
+Desktop lifecycle and renderer checks pass; native combat taint, pixel parity
+and frame time remain pending. [Exact record](NAMEPLATE_CASTBAR_SCHOOLS.md).
 
 ## Threat and level
 

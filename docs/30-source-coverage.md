@@ -479,6 +479,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [Minimap/FluxQuestie.lua](../Minimap/FluxQuestie.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [18-minimap-and-trackers.md](18-minimap-and-trackers.md) |
 | [NamePlates/_tmp_combosmoke.lua](../NamePlates/_tmp_combosmoke.lua) | development harness | — | [19-nameplates.md](19-nameplates.md) |
 | [NamePlates/ComboPoints.lua](../NamePlates/ComboPoints.lua) | active | camelot, classic, tbc, vanilla | [19-nameplates.md](19-nameplates.md) |
+| [NamePlates/CastBarSchools.lua](../NamePlates/CastBarSchools.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [19-nameplates.md](19-nameplates.md); [nameplate cast themes](NAMEPLATE_CASTBAR_SCHOOLS.md) |
 | [NamePlates/Core.lua](../NamePlates/Core.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [19-nameplates.md](19-nameplates.md) |
 | [NamePlates/Countdown.lua](../NamePlates/Countdown.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [19-nameplates.md](19-nameplates.md) |
 | [NamePlates/Level.lua](../NamePlates/Level.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [19-nameplates.md](19-nameplates.md) |

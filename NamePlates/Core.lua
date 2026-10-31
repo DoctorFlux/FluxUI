@@ -1,8 +1,6 @@
 -- NamePlates/Core.lua — shared state and driver for Flux nameplate overlays.
--- Flux only reads Blizzard plates. Each overlay is a Flux frame parented to the
--- nameplate and anchored with SetPoint. Nothing in NamePlates/ writes a Blizzard
--- global, mixin, frame field, or script, calls a Blizzard update function, or
--- measures a Blizzard region: in 12.x any of those taints the plate's SetUnit.
+-- Flux keeps Blizzard's nameplate and cast lifecycle. Some modules style
+-- native regions, so keep those writes scoped and verify 12.x SetUnit taint.
 local addonName, ns = ...
 local Flux = ns.Flux
 

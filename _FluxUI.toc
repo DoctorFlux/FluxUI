@@ -461,6 +461,7 @@ CharacterInfo\PaperDollEquipFlyout.lua
 CharacterInfo\Init.lua
 Other\FluxDurationBars.lua
 NamePlates\Core.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
+NamePlates\CastBarSchools.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\ComboPoints.lua [AllowLoadGameType vanilla, tbc, classic, camelot]
 NamePlates\Threat.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]
 NamePlates\Level.lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic, camelot, mainline]

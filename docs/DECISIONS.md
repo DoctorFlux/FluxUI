@@ -1,5 +1,17 @@
 # Decisions
 
+## 2026-10-31 - style Blizzard nameplate casts with shared school themes
+
+- Reuse `CastBarThemes` and the existing observed-school/metadata resolver for
+  target, focus and nameplate appearance. Keep Blizzard's nameplate status bar,
+  cast lifecycle, text, shield and important-cast indicators as owners.
+- Attach a Flux visual host and a fill region to the native status bar. Hook
+  each native nameplate bar's cast transitions after Blizzard runs; never replace its
+  methods or persist secret identity. Restricted/unknown identities leave the
+  native bar visible. Retain the existing appearance controls and add one
+  nameplate toggle in unit-frame settings. Native taint, pixels and frame time
+  remain pending. [Evidence](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 ## 2026-10-30 - clear Blizzard MicroMenu children before native callbacks
 
 - Reparent selected buttons and stage unused layout children before any

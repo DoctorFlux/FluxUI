@@ -69,6 +69,11 @@ Source: [General builder](../AddonOptions/FluxOptionsGeneral.lua).
 
 ### Nameplates
 
+The cast-school **Blizzard nameplates** toggle is in Unit frames → Cast bar
+school themes because it shares the target/focus renderer and appearance
+controls. It defaults on; secret or unidentified casts retain Blizzard's
+normal fill. [Implementation and limits](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 | Control | Values / default / effect |
 |---|---|
 | Threat visibility | always / group / never; group default. |

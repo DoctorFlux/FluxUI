@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+31 October nameplate cast-school styling: desktop 48-check native-bar lifecycle
+model plus shared renderer checks pass on Retail, Forever, Era and Anniversary
+branches; full 110-test/755-Lua validation passes. Native client cast/channel,
+secret fallback, interrupt/fade, native text/shield visibility, `SetUnit` taint,
+pixel parity and matched performance checks remain pending.
+[Evidence](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 30 October MicroMenu nil-center correction: the user's native Classic-path
 stack identifies a pre-fix `GetEdgeButton` failure during Flux's LFG rebuild.
 The focused desktop model reproduces old callback ordering and passes with

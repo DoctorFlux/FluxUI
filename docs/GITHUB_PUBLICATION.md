@@ -1,5 +1,12 @@
 # GitHub publication - 29 October 2026
 
+31 October 2026 school-theme batch: current local main adds the shared Flux
+school colors and effects to Blizzard's own nameplate cast bars on Retail,
+Forever, Era and Anniversary. The 110-test/755-Lua desktop report passes;
+native taint, pixels and performance remain pending. The verified source/
+history and four settings checkpoint is outside AddOns. See
+[the implementation record](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 Completed: payload `421c05a4beee3570e3e43f93044b1389265fb649` was pushed atomically
 to main and the retained development branch. Both GitHub refs were read back and
 matched that commit; local main tracked origin/main with zero commits ahead/behind

@@ -1,5 +1,11 @@
 # Development tasks
 
+31 October Blizzard nameplate cast school themes: same Flux school renderer as
+target/focus over Blizzard's own status bar, with a default-on option and
+secret-value fallback. The 48-check nameplate model and full 110-test/755-Lua
+desktop suite pass; native combat/pixels/performance pending.
+[Evidence](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 30 October MicroMenu nil-center correction: reparent selected and unused
 native children before their Show/Hide callbacks can invoke Blizzard
 `GetEdgeButton`. [17-micromenu.md](17-micromenu.md) records the regression,

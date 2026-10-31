@@ -1,5 +1,12 @@
 # Development status
 
+31 October 2026: Blizzard's nameplate casting bars now receive the shared
+unit-frame school colors and effects on Retail, Forever, Era and Anniversary
+when spell identity is readable. Secret/unknown identities retain native
+appearance. The native status bar remains the cast owner. Focused 48-check
+nameplate model and full 110-script/755-Lua desktop validation pass; native
+combat taint, pixels and performance are pending. [Evidence](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 Latest publication batch (30 October): all local stance-scale, loot-source and
 Micro Menu fixes included for main. All 753 Lua hashes match the passing
 109-test combined report. Native acceptance remains pending.

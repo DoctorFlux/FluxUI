@@ -1,5 +1,12 @@
 # Next session
 
+31 October nameplate school themes: sequentially validate Retail, Forever,
+Era and Anniversary native Blizzard cast bars in combat. Check target/focus
+and nameplate school color/effect parity, finish/interrupt/reuse/toggle,
+secret fallback, text/shield/important-cast visibility, `SetUnit` taint and
+matched frame time. Desktop 110 tests/755 syntax files pass; native evidence
+is pending. [Evidence](docs/NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 Latest publication batch (30 October): all local stance-scale, loot-source and
 Micro Menu fixes included for main. All 753 Lua hashes match the passing
 109-test combined report. Native acceptance remains pending.

@@ -2,7 +2,7 @@ local addonName, ns = ...
 
 local function CastBarThemeDefaults()
     return {
-        enabled = true, player = true, target = true, focus = true, pet = true,
+        enabled = true, player = true, target = true, focus = true, pet = true, nameplates = true,
         colors = true, gradient = true, particles = true, halo = true, edge = true, backdrop = true,
         spellVisuals = true, inferVisuals = true,
         density = 100, glowOpacity = 100, backdropOpacity = 100,

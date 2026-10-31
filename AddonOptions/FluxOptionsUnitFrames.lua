@@ -618,7 +618,7 @@ end
 
 local function BuildCastBarThemeOptions()
     local defaults = {
-        enabled = true, player = true, target = true, focus = true, pet = true,
+        enabled = true, player = true, target = true, focus = true, pet = true, nameplates = true,
         colors = true, gradient = true, particles = true, halo = true, edge = true, backdrop = true,
         spellVisuals = true, inferVisuals = true,
         density = 100, glowOpacity = 100, backdropOpacity = 100,
@@ -659,6 +659,8 @@ local function BuildCastBarThemeOptions()
     toggle("focus", "Focus", 5)
     toggle("pet", "Pet", 6)
     args.pet.desc = "Applies when the pet cast bar is enabled on the Pet page."
+    toggle("nameplates", "Blizzard nameplates", 6.5)
+    args.nameplates.desc = "Paints the existing Blizzard nameplate cast bar with the same Flux school colors and effects. Restricted spell identities keep Blizzard's normal appearance."
     args.detection={type="header",name="Spell appearance",order=7}
     toggle("spellVisuals","Spell-specific visual themes",8)
     args.spellVisuals.desc="Use electric colors and particles for lightning spells, and fire orange with rock brown, flames and rock fragments for Volcanic (Fire + Nature). Turn off to use their base school themes instead. Chaos uses all six magic schools."

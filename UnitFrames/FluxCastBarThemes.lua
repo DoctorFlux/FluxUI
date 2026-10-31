@@ -235,7 +235,7 @@ local function stepParticles(v, dt)
 end
 
 local DEFAULTS = {
-    enabled = true, player = true, target = true, focus = true, pet = true,
+    enabled = true, player = true, target = true, focus = true, pet = true, nameplates = true,
     colors = true, gradient = true, particles = true, halo = true, edge = true, backdrop = true,
     spellVisuals = true, inferVisuals = true,
     density = 100, glowOpacity = 100, backdropOpacity = 100,
@@ -443,7 +443,9 @@ end
 local function build(bar)
     local v = {bar = bar, pool = {}, liveParticles = 0, luaParticles=0, clock = 0, carry = 0, scale = 1,emitterIndex=0}
     local timer = bar.TimerBar
-    v.fill = timer:CreateTexture(nil, "ARTWORK", nil, 7)
+    -- A nameplate proxy owns the lifecycle; the painted fill stays on the
+    -- Blizzard status bar below its native text, shield, and indicators.
+    v.fill = (bar._fluxSchoolNameplate and timer or bar):CreateTexture(nil, "ARTWORK", nil, 7)
     v.fill:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
     v.fill:Hide()
     v.layers={v.fill}
@@ -557,11 +559,11 @@ local function style(v)
     bindFill(v)
     if enabled(db, "colors") then
         local source = v.bar.TimerBar:GetStatusBarTexture()
-        if source and v.source ~= source then
+        if not v.bar._fluxSchoolNameplate and source and v.source ~= source then
             if v.source then v.source:SetAlpha(v.sourceAlpha or 1) end
             v.source, v.sourceAlpha = source, source:GetAlpha()
         end
-        if source then source:SetAlpha(0) end
+        if source and not v.bar._fluxSchoolNameplate then source:SetAlpha(0) end
         paintFill(v,enabled(db,"gradient"))
         tintTiers(v, theme.bright)
     else
@@ -644,7 +646,8 @@ end
 function FX.Update(bar, dt)
     local v = visuals[bar]
     if not v or not v.theme then return end
-    if not bar:IsVisible() or bar.customTimer or bar.interrupted or bar._fluxPetCastDisabled then
+    if not bar:IsVisible() or (bar._fluxNativeCast and not bar._fluxNativeCast:IsShown())
+        or bar.customTimer or bar.interrupted or bar._fluxPetCastDisabled then
         FX.Reset(bar, true)
         return
     end
@@ -667,8 +670,9 @@ function FX.Update(bar, dt)
         local width = bar.TimerBar:GetWidth()
         -- Accessible progress narrows the spawn region; otherwise native clipping
         -- handles the full-width distribution. Never derive geometry from secrets.
-        local low, high = bar:GetMinMaxValues()
-        local value = Schools.Plain(bar:GetValue())
+        local progressBar = bar._fluxSchoolNameplate and bar.TimerBar or bar
+        local low, high = progressBar:GetMinMaxValues()
+        local value = Schools.Plain(progressBar:GetValue())
         low, high = Schools.Plain(low), Schools.Plain(high)
         if type(low) == "number" and type(high) == "number" and type(value) == "number" and high > low then
             width = width * math.max(0, math.min(1, (value - low) / (high - low)))
@@ -714,7 +718,8 @@ end
 function FX.Apply(bar)
     local record, db = bar._fluxSchoolCast, settings()
     local unit = record and record.unit
-    if unit == "vehicle" then unit = "player" end
+    if record and record.nameplate then unit = "nameplates"
+    elseif unit == "vehicle" then unit = "player" end
     if not record or not enabled(db, "enabled") or not DEFAULTS[unit] or not enabled(db, unit)
         or bar.customTimer or bar.interrupted or bar._fluxPetCastDisabled then
         FX.Reset(bar)
@@ -743,13 +748,14 @@ function FX.Apply(bar)
     else active[bar] = nil; sleepIfIdle() end
 end
 
-function FX.Begin(bar, unit, spellID, name, tradeSkill, eventSpellID)
+function FX.Begin(bar, unit, spellID, name, tradeSkill, eventSpellID, nameplate)
     FX.Reset(bar, true)
     local class
     if UnitClass then local _, token = UnitClass(unit); class = Schools.Plain(token) end
     -- Keep only accessible cast identity. Never retain a secret as a lookup key.
     bar._fluxSchoolCast = {unit = unit, id = Schools.Plain(spellID) or Schools.Plain(eventSpellID), name = Schools.Plain(name),
-        trade=Schools.Plain(tradeSkill),tradeUnknown=tradeSkill~=nil and Schools.Plain(tradeSkill)==nil, class = class}
+        trade=Schools.Plain(tradeSkill),tradeUnknown=tradeSkill~=nil and Schools.Plain(tradeSkill)==nil,
+        class = class, nameplate = nameplate and true or nil}
     FX.Apply(bar)
 end
 
@@ -770,7 +776,7 @@ function FX.Finish(bar)
             if v.source then v.source:SetAlpha(v.sourceAlpha or 1) end
             v.source,v.sourceAlpha=source,source:GetAlpha()
         end
-        if source then source:SetAlpha(0) end
+        if source and not bar._fluxSchoolNameplate then source:SetAlpha(0) end
     end
     finishAppearance(v,db)
     if not needsUpdates(v,db) then active[bar]=nil;sleepIfIdle() end
@@ -787,7 +793,9 @@ end
 function FX.Refresh()
     -- Include default/unmapped casts awaiting data and newly constructed bars.
     for bar in pairs(attached) do
-        if bar:IsVisible() then FX.Apply(bar) else FX.Reset(bar, true) end
+        if bar:IsVisible() and (not bar._fluxNativeCast or bar._fluxNativeCast:IsShown()) then
+            FX.Apply(bar)
+        else FX.Reset(bar, true) end
     end
     FX.SyncEvents()
 end
@@ -826,7 +834,7 @@ end
 local function wantsCombatLog()
     local db = settings()
     if not enabled(db, "enabled") then return false end
-    for _, unit in ipairs({"player", "target", "focus", "pet"}) do
+    for _, unit in ipairs({"player", "target", "focus", "pet", "nameplates"}) do
         if enabled(db, unit) then return true end
     end
     return false

@@ -1,5 +1,6 @@
 -- Execute production school lookup, renderer, options, and cast lifecycle with
 -- desktop WoW mocks. These checks cannot emulate native secret geometry/taint.
+math.randomseed(20261031)
 local checks = 0
 local function check(ok, message) checks = checks + 1; assert(ok, message) end
 local function loadAddon(path, env, ns)
@@ -774,6 +775,7 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary","cl
     themeOptions.enabled=true;fx.Refresh()
     check(s.combatLogCalls.register==(restricted and 0 or 2),branch.." re-enable respects combat-log permission")
     for _,unit in ipairs({"player","target","focus","pet"}) do themeOptions[unit]=false end
+    themeOptions.nameplates=false
     fx.Refresh();fx.Refresh()
     check(s.combatLogCalls.unregister==(restricted and 0 or 2),branch.." all unit toggles disabled detach once")
 end
@@ -1009,11 +1011,14 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
     check(s.GetDB().castBarThemes.density==175,"intensity saved in current unit-frame scope")
     options.player.set(nil,false)
     options.reset.func()
-    check(options.player.get() and options.colors.get() and options.density.get()==100,"school-theme reset restores defaults")
+    check(options.player.get() and options.nameplates.get() and options.colors.get() and options.density.get()==100,
+        "school-theme reset restores unit and Blizzard-nameplate defaults")
     options.enabled.set(nil,false)
     check(options.pet.disabled() and not options.enabled.disabled(),"master disables subordinate controls")
     loadAddon("AddonOptions/FluxOptionsDefaults.lua",e,ns)
     local defaults=e.FluxOptionsDefaults
+    check(defaults.profile.unitFrames.castBarThemes.nameplates and defaults.char.unitFrames.castBarThemes.nameplates,
+        "Blizzard nameplates enabled in both settings scopes")
     check(defaults.profile.unitFrames.castBarThemes.enabled and defaults.char.unitFrames.castBarThemes.enabled,"defaults in both settings scopes")
     check(defaults.profile.unitFrames.castBarThemes~=defaults.char.unitFrames.castBarThemes,"settings scopes do not share a theme table")
     options.reset.func()
@@ -1027,6 +1032,33 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
 end
 
 -- Every emitted texture is available locally, including on atlas-free clients.
+for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) do
+    local s,e,ns=fixture(branch)
+    local native=e.CreateFrame("StatusBar",nil,e.UIParent)
+    native:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+    local proxy=e.CreateFrame("Frame",nil,e.UIParent)
+    proxy.TimerBar=native
+    proxy._fluxNativeCast=native
+    proxy._fluxSchoolNameplate=true
+    proxy.casting=true
+    proxy:SetAllPoints(native)
+    local fx=ns.CastBarThemes
+    fx.Attach(proxy)
+    fx.Begin(proxy,"nameplate1",133,"Boule de feu",false,nil,true)
+    local v=getVisuals(fx)[proxy]
+    check(v and v.theme and v.fill.parent==native,branch.." nameplate paints native bar with shared theme")
+    check(native:GetStatusBarTexture():GetAlpha()==1,branch.." nameplate preserves native source fill")
+    fx.Update(proxy,0.1)
+    check(proxy._fluxSchoolCast and proxy._fluxSchoolCast.nameplate,branch.." nameplate animation uses native progress")
+    s.GetDB().castBarThemes.nameplates=false;fx.Refresh()
+    check(not v.fill:IsShown() and native:GetStatusBarTexture():GetAlpha()==1,
+        branch.." nameplate toggle restores native appearance")
+    s.GetDB().castBarThemes.nameplates=true;fx.Refresh()
+    check(v.fill:IsShown(),branch.." nameplate toggle restores school appearance")
+    native:Hide();fx.Update(proxy,0.1)
+    check(proxy._fluxSchoolCast==nil and not v.fill:IsShown(),branch.." hidden native bar clears painted fill")
+end
+
 local files={"cast_dot","cast_flame","cast_leaf","cast_snow","cast_spark","arcane_rune","shadow_skull",
     "lightning_bolt","volcanic_rock",
     "backdrop_magearcane","backdrop_paladin","backdrop_frost","backdrop_warlock","backdrop_priestshadow",

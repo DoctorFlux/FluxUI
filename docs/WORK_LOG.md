@@ -1,5 +1,19 @@
 # Work log
 
+## 2026-10-31 - school colors and effects on Blizzard nameplate cast bars
+
+The user requested the same school visuals as target/focus on Retail, Forever,
+Era and Anniversary nameplates while keeping Blizzard's own cast bar. Read
+continuity, current unit/nameplate source and read-only Gethe client snapshots;
+verified a dated external Git bundle and copied four closed-client settings
+files outside AddOns before editing. Extended the shared renderer for a
+Blizzard status bar with a Flux visual host, preserving native progress/text/
+shield ownership. Added native nameplate-bar post-hooks and a default-on unit-frame
+option. Secret/unknown spell identities fall back to native appearance.
+Focused 48-check nameplate model and full 110-test/755-syntax desktop suite
+pass. Native client pixels, combat taint and matched frame-time measurements
+remain pending. [Evidence](NAMEPLATE_CASTBAR_SCHOOLS.md).
+
 ## 2026-10-30 - fix MicroMenu nil-center startup error
 
 The user's stack shows Blizzard `GetEdgeButton` comparing nil centers during
