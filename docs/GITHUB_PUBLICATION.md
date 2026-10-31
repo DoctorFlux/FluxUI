@@ -1,5 +1,14 @@
 # GitHub publication - 29 October 2026
 
+31 October secret-channel fallback publication: payload
+`e6782e4e3ffcbb6fa7521d06651bd9f6d63625ed` was pushed to main and
+`git ls-remote origin refs/heads/main` read back that exact commit. Secret
+or missing channel spell IDs retain the native/default cast appearance;
+readable magic schools keep their themes. The isolated staged payload passed
+111 desktop tests and 756 Lua syntax files with zero failures. Native
+Retail/Forever visual and taint acceptance remains pending.
+[Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 31 October secret-channel fallback: explicit nameplate channel-ID selection
 avoids boolean-testing secret values. The baseline fails the adjacent-field
 fixture; 56 nameplate checks pass. Unknown/physical/item casts retain default
