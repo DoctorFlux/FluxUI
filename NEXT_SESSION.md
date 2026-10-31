@@ -1,5 +1,13 @@
 # Next session
 
+31 October combat grid usability: sequentially check mana gem and healthstone
+beside potion/bandage on every supported client while alive, dead/ghost and
+revived; also at full health/mana, on cooldown, at zero/replenished charges and
+during a zone-load bag hold. Confirm visual tint, counts, secure clicks,
+hotkeys, combat taint and matched frame time. Desktop 111-test/756-Lua suite
+passes; native acceptance is pending.
+[Evidence](docs/COMBAT_GRID_CONJURED_USABILITY.md).
+
 31 October cast fill/tip correction: sequentially verify actual target,
 focus and Blizzard nameplate casts on every supported client. Check visible
 school fill and matching moving-tip Spark for single/hybrid schools; finish,

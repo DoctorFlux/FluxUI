@@ -24,6 +24,8 @@ Macro parsing identifies required display probes and watches relevant context. S
 
 [ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) supplies owned ladders, better-tier promotion, charge-aware counts, use/conjure macros, creation right-clicks, key overrides and tooltips. Mana gems distinguish charged later gems from single-use Vanilla gems, retaining the preferred usable item and choosing the next conjure spell. Healthstones similarly separate creation/use and learned-spell support.
 
+Mana gem and healthstone item faces follow live item usability once bags are reliable, and both darken while dead or ghost. Empty charges remain dark; an unreliable load-screen snapshot retains the prior face. [The correction record](COMBAT_GRID_CONJURED_USABILITY.md) separates desktop checks from pending native tint and secure-use validation.
+
 Portal/login snapshots can briefly collapse. `ShouldHoldItemIdentity()` and `KeepConsumableSlot()` retain useful faces while facts are unreliable; secure changes wait for safe application. A retained icon is not evidence that a fresh bag scan finished.
 
 [Ammo.lua](../ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua) supports older ammunition and Forever durable throwing weapons. Durable throws display remaining durability, refreshed by equipment/durability events, rather than a stack count. Visibility also depends on class/client relevance.

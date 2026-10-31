@@ -1,5 +1,16 @@
 # Decisions
 
+## 2026-10-31 - tint conjured combat items from live usability
+
+- Treat death/ghost as unusable for combat mana gem and healthstone faces,
+  even when the native item API reports an owned item usable.
+- Once bag data is reliable, let the live item usability result darken these
+  faces for other situational blocks. Keep the existing empty-charge rule,
+  loading-screen hold, visibility policy, secure actions and bindings.
+- Use the existing life-event paint lane. Native all-client tint, input,
+  taint, pixel and frame-time acceptance remains pending.
+  [Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 ## 2026-10-31 - restore cast fill geometry and school-colored tip
 
 - Create the school texture on the actual `TimerBar` for both Flux unit bars

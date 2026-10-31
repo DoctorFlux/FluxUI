@@ -2188,7 +2188,7 @@ local function ToyUsable(toyId)
 	return true, false
 end
 
-local function CombineItemUsable(itemId)
+local function CombineItemUsable(itemId, trustOwnedFalse)
 	if not itemId then
 		return nil, nil
 	end
@@ -2202,7 +2202,7 @@ local function CombineItemUsable(itemId)
 		su, sm = SpellUsable(spell)
 	end
 	-- Item.IsUsable is false while GetItemCount is still 0 after a loading screen.
-	if iu == false and SnapshotStackCount(itemId) > 0 then
+	if iu == false and not trustOwnedFalse and SnapshotStackCount(itemId) > 0 then
 		iu = true
 	end
 	if su == false or iu == false then
@@ -2213,6 +2213,12 @@ local function CombineItemUsable(itemId)
 		return true, (sm == true) or (im == true)
 	end
 	return nil, nil
+end
+
+-- The combat gem and stone retain an item face for conjure and charge tracking.
+-- Once bags are settled, their live item usability still owns the tint.
+local function ConjuredCombatItemUsable(itemId)
+	return CombineItemUsable(itemId, BagsAreReliable())
 end
 
 local function ItemIsEquipped(itemId)
@@ -2353,6 +2359,15 @@ function Paint.UpdateUsable(btn)
 		ApplyUsableVisual(btn, 1, 1, 1, false)
 		return
 	end
+	-- IsUsableItem can report an owned conjured item as usable while dead.
+	-- The existing PLAYER_DEAD/ALIVE/UNGHOST watcher repaints this state.
+	if (btn.IsManaGemButton or btn.IsHealthstoneButton)
+		and ((UnitIsDeadOrGhost and UnitIsDeadOrGhost("player"))
+			or (UnitIsDead and UnitIsDead("player"))) then
+		btn._lastUsable = false
+		ApplyUsableVisual(btn, COLOR_UNUSABLE[1], COLOR_UNUSABLE[2], COLOR_UNUSABLE[3], false)
+		return
+	end
 	if not btn.ActionType or btn.ActionValue == nil then
 		btn._fluxRankDesaturated = false
 		if btn.Widget then
@@ -2394,18 +2409,14 @@ function Paint.UpdateUsable(btn)
 	elseif t == "toy" then
 		usable, noMana = ToyUsable(btn.ToyId or btn.ItemId or btn.ActionValue)
 	elseif t == "item" then
-		if btn.IsManaGemButton then
-			-- Mana gem usable tint ignores item-use spell / IsUsableItem
-			-- (false on cooldown and at full mana). Count/charges tint below.
-			usable = true
-			noMana = false
+		if btn.IsManaGemButton or btn.IsHealthstoneButton then
+			usable, noMana = ConjuredCombatItemUsable(btn.ItemId or btn.ActionValue)
 		else
 			usable, noMana = CombineItemUsable(btn.ItemId or btn.ActionValue)
 		end
 	elseif IsMacroLike(btn) then
-		if btn.IsManaGemButton then
-			usable = true
-			noMana = false
+		if btn.IsManaGemButton or btn.IsHealthstoneButton then
+			usable, noMana = ConjuredCombatItemUsable(btn.ItemId or MacroShownItem(btn))
 		else
 			local spell = MacroShownSpell(btn)
 			if spell then
@@ -2527,7 +2538,7 @@ function Paint.UpdateUsable(btn)
 	usable = AsBool(usable)
 	-- KeepOr of a leftover false is why 0→1 charges stayed gray when
 	-- IsUsable was still nil/false for a frame after the swipe ended.
-	if charge == "ready" then
+	if charge == "ready" and not (btn.IsManaGemButton or btn.IsHealthstoneButton) then
 		if usable == false then
 			usable = true
 		elseif usable == nil then

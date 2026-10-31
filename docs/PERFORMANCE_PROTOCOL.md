@@ -1,5 +1,12 @@
 # Baseline protocol and currency evidence
 
+31 October combat grid gem/stone tint adds no event, timer, ticker, hook or
+secure write or extra item-usability read. The existing usable paint and
+life-event lanes evaluate the same live item result after bags settle.
+The 14-check loaded-paint fixture and full 111-test/756-Lua desktop suite pass.
+Native matched CPU, allocation, frame-time and FPS measurements remain
+pending on every supported client. [Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 30 October MicroMenu nil-center correction changes the order of existing
 rebuild operations and holds a temporary table of unused children until
 layout finishes. It adds no event, ticker, timer, hook or visible frame.

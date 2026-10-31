@@ -1,5 +1,11 @@
 # Development status
 
+31 October combat grid usability: mana gem and healthstone now darken while
+dead/ghost and respect a live unusable item result once bags settle. Focused
+14-check loaded-paint regression and full 111-test/756-Lua desktop validation
+pass. Native tint, clicks, taint, pixels and performance remain pending.
+[Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 31 October cast-school correction: the first nameplate integration put the
 unit-frame fill on its outer frame and left Blizzard's nameplate fill opaque.
 The shared renderer now paints on the actual progress bar, hides/restores the

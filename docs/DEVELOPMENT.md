@@ -1,5 +1,12 @@
 # Development tasks
 
+31 October combat grid conjured-item usability: verify gem and healthstone
+tint in native alive/dead/ghost, full-resource, cooldown and empty/replenished
+states alongside other combat items. The loaded-paint fixture passes 14 checks;
+full desktop validation passes 111 tests/756 Lua files. Native clicks, taint,
+pixels and matched frame time remain pending.
+[Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 31 October cast fill/tip correction: shared renderer now parents school fill
 to the actual progress bar, hides/restores Blizzard's underlying fill and
 tints/restores the native tip Spark. The focused test rejects the published

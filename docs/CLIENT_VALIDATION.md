@@ -1,5 +1,13 @@
 # Client and reference validation — 29 October 2026
 
+31 October combat grid conjured-item tint: the user's native observation is
+that mana gem and healthstone stay bright while other combat items darken on
+death. The corrected loaded-paint desktop fixture passes 14 checks, baseline
+fails at dead gem, and the full 111-test/756-Lua suite passes. Actual Retail,
+Forever, Era, Anniversary and MoP Classic death/revival, full-resource,
+cooldown, count, input, pixel and taint checks remain pending.
+[Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 31 October cast fill/tip follow-up: the user reported missing color and
 unit-frame fill on all clients. The desktop regression fails against the
 published source and passes with progress-bar parenting, native source

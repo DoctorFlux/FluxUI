@@ -1,5 +1,18 @@
 # Work log
 
+## 2026-10-31 - correct conjured combat-item usability tint
+
+The user reported that mana gem and healthstone stayed bright when the other
+combat grid items darkened on death, and asked for other unusable states to
+work too. Read continuity and the combat-grid paint path, inspected on-disk
+Retail settings, and verified a dated external Git history/source checkpoint.
+WoW was closed. The shared paint path now honors death/ghost and reliable
+live item usability for those two faces while preserving empty-charge and
+loading-screen holds. The loaded-paint fixture fails on baseline and passes
+14 candidate checks; full desktop validation passes 111 tests/756 Lua files.
+Native tint, clicks, taint, pixels and performance remain pending.
+[Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 ## 2026-10-31 - repair missing school fill and moving-tip tint
 
 The user observed absent school color on all clients, no unit-frame cast fill

@@ -1,5 +1,11 @@
 # GitHub publication - 29 October 2026
 
+31 October combat grid usability candidate: mana gem and healthstone item
+faces now darken on death/ghost and when the settled live item result is
+unusable. The 14-check loaded-paint fixture and full 111-test/756-Lua desktop
+suite pass. Native tint, input, taint, pixels and frame time remain pending.
+[Evidence](COMBAT_GRID_CONJURED_USABILITY.md).
+
 31 October cast fill/tip correction: the published nameplate integration
 regressed unit-frame fill geometry and left the nameplate source opaque.
 The current main candidate restores fill visibility and tints the native
