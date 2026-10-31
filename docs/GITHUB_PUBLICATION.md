@@ -1,6 +1,8 @@
 # GitHub publication - 29 October 2026
 
-31 October nameplate backdrop correction: candidate artwork is placed behind
+31 October nameplate backdrop correction: payload
+`48f35b6a4732d1a369647c7299b2d9f35afc18a8` was pushed to main and
+the remote ref was read back at that exact commit. The artwork is placed behind
 Blizzard cast and health chrome while the fill, tip, halo and particles keep
 their existing layers. Baseline fails the focused layer assertion; full
 desktop validation passes 112 tests/757 Lua syntax files. Native visual,
