@@ -9,6 +9,7 @@ Generated from [FluxOptionsDefaults.lua](../../AddonOptions/FluxOptionsDefaults.
 | `target` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L5) |
 | `focus` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L5) |
 | `pet` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L5) |
+| `nameplates` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L5) |
 | `colors` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L6) |
 | `gradient` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L6) |
 | `particles` | `true` | [definition](../../AddonOptions/FluxOptionsDefaults.lua#L6) |

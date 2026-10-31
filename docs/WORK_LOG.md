@@ -1,5 +1,18 @@
 # Work log
 
+## 2026-10-31 - keep default cast appearance for inaccessible schools
+
+The user clarified that item, channel, physical and other casts with no
+accessible magic school should keep their default appearance. The earlier
+neutral-effect candidate was removed before publication. A read-only audit
+of Retail/Forever API declarations found no school in the never-secret
+castBarID. The published nameplate channel code could boolean-test a secret
+ID with `and/or`; explicit selection now lets the existing fallback run.
+The new fixture fails on baseline by borrowing the adjacent empowered field,
+then passes 56 nameplate checks with the fix. The shared renderer still passes
+13,898 checks. Native secret, pixel, taint and frame-time checks pending.
+[Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 ## 2026-10-31 - lower nameplate cast-school backdrop artwork
 
 The user reported school backdrop art appearing in front of Blizzard

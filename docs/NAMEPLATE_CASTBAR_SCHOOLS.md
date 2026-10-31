@@ -13,6 +13,9 @@ The follow-up restores the shared unit-frame fill and makes the school color
 visible on nameplates; its native visual checks remain pending.
 The [backdrop follow-up](NAMEPLATE_BACKDROP_LAYER.md) moves nameplate-only
 school artwork behind Blizzard cast and health chrome.
+The [secret-channel fallback follow-up](SECRET_CHANNEL_FALLBACK.md) avoids
+testing a possibly secret channel ID and keeps Blizzard's default appearance
+when no magic school can be established.
 
 The **Unit frames → Cast bar school themes → Blizzard nameplates** toggle
 defaults on in both settings scopes. The shared master and appearance controls

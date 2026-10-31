@@ -22,7 +22,9 @@ local function castInfo(unit, channel)
     local ok, name, _, _, _, _, trade, _, channelSpellID, castingSpellID = pcall(fn, unit)
     if not ok then return end
     -- UnitChannelInfo and UnitCastingInfo put spellID at positions 8 and 9.
-    local id = channel and channelSpellID or castingSpellID
+    -- A channel spell ID can be secret; do not boolean-test it with `or`.
+    local id
+    if channel then id = channelSpellID else id = castingSpellID end
     return Schools.Plain(id), Schools.Plain(name), Schools.Plain(trade)
 end
 

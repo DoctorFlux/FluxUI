@@ -1,5 +1,11 @@
 # GitHub publication - 29 October 2026
 
+31 October secret-channel fallback: explicit nameplate channel-ID selection
+avoids boolean-testing secret values. The baseline fails the adjacent-field
+fixture; 56 nameplate checks pass. Unknown/physical/item casts retain default
+appearance, and native Retail/Forever acceptance remains pending.
+[Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 31 October nameplate backdrop correction: payload
 `48f35b6a4732d1a369647c7299b2d9f35afc18a8` was pushed to main and
 the remote ref was read back at that exact commit. The artwork is placed behind

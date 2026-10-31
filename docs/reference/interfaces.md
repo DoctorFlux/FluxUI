@@ -23,7 +23,7 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [AddonOptions/FluxOptionsNameplates.lua:272](../../AddonOptions/FluxOptionsNameplates.lua#L272) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsShell.lua:766](../../AddonOptions/FluxOptionsShell.lua#L766) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [AddonOptions/FluxOptionsStatusBars.lua:536](../../AddonOptions/FluxOptionsStatusBars.lua#L536) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [AddonOptions/FluxOptionsUnitFrames.lua:2101](../../AddonOptions/FluxOptionsUnitFrames.lua#L2101) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [AddonOptions/FluxOptionsUnitFrames.lua:2103](../../AddonOptions/FluxOptionsUnitFrames.lua#L2103) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsWindows.lua:274](../../AddonOptions/FluxOptionsWindows.lua#L274) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [BaganatorCompat/FluxBaganator_BankRestock.lua:246](../../BaganatorCompat/FluxBaganator_BankRestock.lua#L246) | `RegisterEvent` | `"BANKFRAME_OPENED"` |
 | [BaganatorCompat/FluxBaganator_BankRestock.lua:247](../../BaganatorCompat/FluxBaganator_BankRestock.lua#L247) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -552,12 +552,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [NamePlates/ComboPoints.lua:137](../../NamePlates/ComboPoints.lua#L137) | `RegisterEvent` | `event` |
 | [NamePlates/ComboPoints.lua:141](../../NamePlates/ComboPoints.lua#L141) | `RegisterUnitEvent` | `event, "player", "vehicle"` |
 | [NamePlates/ComboPoints.lua:144](../../NamePlates/ComboPoints.lua#L144) | `RegisterUnitEvent` | `"UNIT_POWER_POINT_CHARGE", "player", "vehicle"` |
-| [NamePlates/Core.lua:566](../../NamePlates/Core.lua#L566) | `RegisterEvent` | `"NAME_PLATE_UNIT_ADDED"` |
-| [NamePlates/Core.lua:567](../../NamePlates/Core.lua#L567) | `RegisterEvent` | `"NAME_PLATE_UNIT_REMOVED"` |
-| [NamePlates/Core.lua:568](../../NamePlates/Core.lua#L568) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [NamePlates/Core.lua:569](../../NamePlates/Core.lua#L569) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
-| [NamePlates/Core.lua:570](../../NamePlates/Core.lua#L570) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [NamePlates/Core.lua:571](../../NamePlates/Core.lua#L571) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [NamePlates/Core.lua:564](../../NamePlates/Core.lua#L564) | `RegisterEvent` | `"NAME_PLATE_UNIT_ADDED"` |
+| [NamePlates/Core.lua:565](../../NamePlates/Core.lua#L565) | `RegisterEvent` | `"NAME_PLATE_UNIT_REMOVED"` |
+| [NamePlates/Core.lua:566](../../NamePlates/Core.lua#L566) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [NamePlates/Core.lua:567](../../NamePlates/Core.lua#L567) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
+| [NamePlates/Core.lua:568](../../NamePlates/Core.lua#L568) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [NamePlates/Core.lua:569](../../NamePlates/Core.lua#L569) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
 | [Other/FluxArenaFramePosition.lua:133](../../Other/FluxArenaFramePosition.lua#L133) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Other/FluxArenaFramePosition.lua:134](../../Other/FluxArenaFramePosition.lua#L134) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxArenaFramePosition.lua:135](../../Other/FluxArenaFramePosition.lua#L135) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
@@ -758,8 +758,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [UnitFrames/FluxCastBar.lua:2896](../../UnitFrames/FluxCastBar.lua#L2896) | `RegisterEvent` | `"UNIT_SPELLCAST_SENT"` |
 | [UnitFrames/FluxCastBar.lua:3466](../../UnitFrames/FluxCastBar.lua#L3466) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [UnitFrames/FluxCastBar.lua:3467](../../UnitFrames/FluxCastBar.lua#L3467) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [UnitFrames/FluxCastBarThemes.lua:892](../../UnitFrames/FluxCastBarThemes.lua#L892) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [UnitFrames/FluxCastBarThemes.lua:893](../../UnitFrames/FluxCastBarThemes.lua#L893) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [UnitFrames/FluxCastBarThemes.lua:952](../../UnitFrames/FluxCastBarThemes.lua#L952) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [UnitFrames/FluxCastBarThemes.lua:953](../../UnitFrames/FluxCastBarThemes.lua#L953) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxClassPower.lua:631](../../UnitFrames/FluxClassPower.lua#L631) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [UnitFrames/FluxClassPower.lua:632](../../UnitFrames/FluxClassPower.lua#L632) | `RegisterEvent` | `"PLAYER_SPECIALIZATION_CHANGED"` |
 | [UnitFrames/FluxClassPower.lua:633](../../UnitFrames/FluxClassPower.lua#L633) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
@@ -4837,28 +4837,28 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Paint.UpdateCount` | [L1163](../../ExtraButtonSystem/Engine/Paint.lua#L1163) |
 | `Paint.UpdateCooldown` | [L1856](../../ExtraButtonSystem/Engine/Paint.lua#L1856) |
 | `Paint.UpdateAllCooldowns` | [L2006](../../ExtraButtonSystem/Engine/Paint.lua#L2006) |
-| `Paint.UpdateUsable` | [L2336](../../ExtraButtonSystem/Engine/Paint.lua#L2336) |
-| `Paint.NotePlayerCast` | [L2556](../../ExtraButtonSystem/Engine/Paint.lua#L2556) |
-| `Paint.UpdateFlash` | [L2950](../../ExtraButtonSystem/Engine/Paint.lua#L2950) |
-| `Paint.FlushFlash` | [L2988](../../ExtraButtonSystem/Engine/Paint.lua#L2988) |
-| `Paint.UpdateChecked` | [L3003](../../ExtraButtonSystem/Engine/Paint.lua#L3003) |
-| `Paint.FlushIcons` | [L3143](../../ExtraButtonSystem/Engine/Paint.lua#L3143) |
-| `Paint.RequestIcon` | [L3167](../../ExtraButtonSystem/Engine/Paint.lua#L3167) |
-| `Paint.FlushChecked` | [L3201](../../ExtraButtonSystem/Engine/Paint.lua#L3201) |
-| `Paint.ArmCheckedPoll` | [L3275](../../ExtraButtonSystem/Engine/Paint.lua#L3275) |
-| `Paint.RequestChecked` | [L3283](../../ExtraButtonSystem/Engine/Paint.lua#L3283) |
-| `Paint.RequestCheckedSettle` | [L3299](../../ExtraButtonSystem/Engine/Paint.lua#L3299) |
-| `Paint.UpdateGlow` | [L3312](../../ExtraButtonSystem/Engine/Paint.lua#L3312) |
-| `Paint.UpdateEquipped` | [L3436](../../ExtraButtonSystem/Engine/Paint.lua#L3436) |
-| `Paint.UpdateRange` | [L3549](../../ExtraButtonSystem/Engine/Paint.lua#L3549) |
-| `Paint.Update` | [L3568](../../ExtraButtonSystem/Engine/Paint.lua#L3568) |
-| `Paint.UpdateLiveFace` | [L3588](../../ExtraButtonSystem/Engine/Paint.lua#L3588) |
-| `Paint.FlushEval` | [L3599](../../ExtraButtonSystem/Engine/Paint.lua#L3599) |
-| `Paint.FlushCounts` | [L3705](../../ExtraButtonSystem/Engine/Paint.lua#L3705) |
-| `FluxButton:UpdateEmptyBackground` | [L3757](../../ExtraButtonSystem/Engine/Paint.lua#L3757) |
-| `FluxButton:UpdateUsable` | [L3761](../../ExtraButtonSystem/Engine/Paint.lua#L3761) |
-| `FluxButton:UpdateCooldown` | [L3765](../../ExtraButtonSystem/Engine/Paint.lua#L3765) |
-| `FluxButton:UpdateEquipped` | [L3769](../../ExtraButtonSystem/Engine/Paint.lua#L3769) |
+| `Paint.UpdateUsable` | [L2342](../../ExtraButtonSystem/Engine/Paint.lua#L2342) |
+| `Paint.NotePlayerCast` | [L2567](../../ExtraButtonSystem/Engine/Paint.lua#L2567) |
+| `Paint.UpdateFlash` | [L2961](../../ExtraButtonSystem/Engine/Paint.lua#L2961) |
+| `Paint.FlushFlash` | [L2999](../../ExtraButtonSystem/Engine/Paint.lua#L2999) |
+| `Paint.UpdateChecked` | [L3014](../../ExtraButtonSystem/Engine/Paint.lua#L3014) |
+| `Paint.FlushIcons` | [L3154](../../ExtraButtonSystem/Engine/Paint.lua#L3154) |
+| `Paint.RequestIcon` | [L3178](../../ExtraButtonSystem/Engine/Paint.lua#L3178) |
+| `Paint.FlushChecked` | [L3212](../../ExtraButtonSystem/Engine/Paint.lua#L3212) |
+| `Paint.ArmCheckedPoll` | [L3286](../../ExtraButtonSystem/Engine/Paint.lua#L3286) |
+| `Paint.RequestChecked` | [L3294](../../ExtraButtonSystem/Engine/Paint.lua#L3294) |
+| `Paint.RequestCheckedSettle` | [L3310](../../ExtraButtonSystem/Engine/Paint.lua#L3310) |
+| `Paint.UpdateGlow` | [L3323](../../ExtraButtonSystem/Engine/Paint.lua#L3323) |
+| `Paint.UpdateEquipped` | [L3447](../../ExtraButtonSystem/Engine/Paint.lua#L3447) |
+| `Paint.UpdateRange` | [L3560](../../ExtraButtonSystem/Engine/Paint.lua#L3560) |
+| `Paint.Update` | [L3579](../../ExtraButtonSystem/Engine/Paint.lua#L3579) |
+| `Paint.UpdateLiveFace` | [L3599](../../ExtraButtonSystem/Engine/Paint.lua#L3599) |
+| `Paint.FlushEval` | [L3610](../../ExtraButtonSystem/Engine/Paint.lua#L3610) |
+| `Paint.FlushCounts` | [L3716](../../ExtraButtonSystem/Engine/Paint.lua#L3716) |
+| `FluxButton:UpdateEmptyBackground` | [L3768](../../ExtraButtonSystem/Engine/Paint.lua#L3768) |
+| `FluxButton:UpdateUsable` | [L3772](../../ExtraButtonSystem/Engine/Paint.lua#L3772) |
+| `FluxButton:UpdateCooldown` | [L3776](../../ExtraButtonSystem/Engine/Paint.lua#L3776) |
+| `FluxButton:UpdateEquipped` | [L3780](../../ExtraButtonSystem/Engine/Paint.lua#L3780) |
 
 ### ExtraButtonSystem/Engine/Range.lua
 
@@ -8011,6 +8011,17 @@ Owner: [18-minimap-and-trackers.md](../18-minimap-and-trackers.md).
 | `FluxQuestie:SizeQuestFrame` | [L298](../../Minimap/FluxQuestie.lua#L298) |
 | `FluxQuestie:StyleLines` | [L371](../../Minimap/FluxQuestie.lua#L371) |
 
+### NamePlates/CastBarSchools.lua
+
+Owner: [19-nameplates.md](../19-nameplates.md).
+
+| Declaration | Source |
+|---|---|
+| `module.Added` | [L81](../../NamePlates/CastBarSchools.lua#L81) |
+| `module.Removed` | [L116](../../NamePlates/CastBarSchools.lua#L116) |
+| `module.Refresh` | [L125](../../NamePlates/CastBarSchools.lua#L125) |
+| `module.Poll` | [L135](../../NamePlates/CastBarSchools.lua#L135) |
+
 ### NamePlates/ComboPoints.lua
 
 Owner: [19-nameplates.md](../19-nameplates.md).
@@ -8028,33 +8039,33 @@ Owner: [19-nameplates.md](../19-nameplates.md).
 
 | Declaration | Source |
 |---|---|
-| `NP.IsClassicFamily` | [L28](../../NamePlates/Core.lua#L28) |
-| `NP.IsSecretClient` | [L45](../../NamePlates/Core.lua#L45) |
-| `NP.IsLiveClient` | [L54](../../NamePlates/Core.lua#L54) |
-| `NP.PlateTextOffsetY` | [L63](../../NamePlates/Core.lua#L63) |
-| `NP.IsThreatSupported` | [L74](../../NamePlates/Core.lua#L74) |
-| `NP.IsLevelSupported` | [L78](../../NamePlates/Core.lua#L78) |
-| `NP.GetDB` | [L96](../../NamePlates/Core.lua#L96) |
-| `NP.IsSecret` | [L123](../../NamePlates/Core.lua#L123) |
-| `NP.IsUsable` | [L140](../../NamePlates/Core.lua#L140) |
-| `NP.BoolTest` | [L152](../../NamePlates/Core.lua#L152) |
-| `NP.GetPlate` | [L166](../../NamePlates/Core.lua#L166) |
-| `NP.GetParts` | [L181](../../NamePlates/Core.lua#L181) |
-| `NP.CreateHost` | [L206](../../NamePlates/Core.lua#L206) |
-| `NP.AttachHost` | [L216](../../NamePlates/Core.lua#L216) |
-| `NP.ReleaseHost` | [L232](../../NamePlates/Core.lua#L232) |
-| `NP.UsesClassicHealthBar` | [L241](../../NamePlates/Core.lua#L241) |
-| `NP.CreateClientPlate` | [L272](../../NamePlates/Core.lua#L272) |
-| `NP.FitPlate` | [L287](../../NamePlates/Core.lua#L287) |
-| `NP.IsUnitTarget` | [L303](../../NamePlates/Core.lua#L303) |
-| `NP.ShowPlate` | [L311](../../NamePlates/Core.lua#L311) |
-| `NP.SetThreatTint` | [L335](../../NamePlates/Core.lua#L335) |
-| `NP.ThreatTint` | [L346](../../NamePlates/Core.lua#L346) |
-| `NP.TintPlateChrome` | [L406](../../NamePlates/Core.lua#L406) |
-| `NP.ResetPlateChrome` | [L426](../../NamePlates/Core.lua#L426) |
-| `NP.RegisterModule` | [L465](../../NamePlates/Core.lua#L465) |
-| `NP.RefreshUnit` | [L535](../../NamePlates/Core.lua#L535) |
-| `NP.RefreshAll` | [L541](../../NamePlates/Core.lua#L541) |
+| `NP.IsClassicFamily` | [L26](../../NamePlates/Core.lua#L26) |
+| `NP.IsSecretClient` | [L43](../../NamePlates/Core.lua#L43) |
+| `NP.IsLiveClient` | [L52](../../NamePlates/Core.lua#L52) |
+| `NP.PlateTextOffsetY` | [L61](../../NamePlates/Core.lua#L61) |
+| `NP.IsThreatSupported` | [L72](../../NamePlates/Core.lua#L72) |
+| `NP.IsLevelSupported` | [L76](../../NamePlates/Core.lua#L76) |
+| `NP.GetDB` | [L94](../../NamePlates/Core.lua#L94) |
+| `NP.IsSecret` | [L121](../../NamePlates/Core.lua#L121) |
+| `NP.IsUsable` | [L138](../../NamePlates/Core.lua#L138) |
+| `NP.BoolTest` | [L150](../../NamePlates/Core.lua#L150) |
+| `NP.GetPlate` | [L164](../../NamePlates/Core.lua#L164) |
+| `NP.GetParts` | [L179](../../NamePlates/Core.lua#L179) |
+| `NP.CreateHost` | [L204](../../NamePlates/Core.lua#L204) |
+| `NP.AttachHost` | [L214](../../NamePlates/Core.lua#L214) |
+| `NP.ReleaseHost` | [L230](../../NamePlates/Core.lua#L230) |
+| `NP.UsesClassicHealthBar` | [L239](../../NamePlates/Core.lua#L239) |
+| `NP.CreateClientPlate` | [L270](../../NamePlates/Core.lua#L270) |
+| `NP.FitPlate` | [L285](../../NamePlates/Core.lua#L285) |
+| `NP.IsUnitTarget` | [L301](../../NamePlates/Core.lua#L301) |
+| `NP.ShowPlate` | [L309](../../NamePlates/Core.lua#L309) |
+| `NP.SetThreatTint` | [L333](../../NamePlates/Core.lua#L333) |
+| `NP.ThreatTint` | [L344](../../NamePlates/Core.lua#L344) |
+| `NP.TintPlateChrome` | [L404](../../NamePlates/Core.lua#L404) |
+| `NP.ResetPlateChrome` | [L424](../../NamePlates/Core.lua#L424) |
+| `NP.RegisterModule` | [L463](../../NamePlates/Core.lua#L463) |
+| `NP.RefreshUnit` | [L533](../../NamePlates/Core.lua#L533) |
+| `NP.RefreshAll` | [L539](../../NamePlates/Core.lua#L539) |
 
 ### NamePlates/Countdown.lua
 
@@ -9295,16 +9306,16 @@ Owner: [14-unit-frames.md](../14-unit-frames.md).
 |---|---|
 | `FX.ThemeForMask` | [L259](../../UnitFrames/FluxCastBarThemes.lua#L259) |
 | `FX.ResolveTheme` | [L299](../../UnitFrames/FluxCastBarThemes.lua#L299) |
-| `FX.Layout` | [L421](../../UnitFrames/FluxCastBarThemes.lua#L421) |
-| `FX.Reset` | [L513](../../UnitFrames/FluxCastBarThemes.lua#L513) |
-| `FX.Update` | [L644](../../UnitFrames/FluxCastBarThemes.lua#L644) |
-| `FX.Apply` | [L714](../../UnitFrames/FluxCastBarThemes.lua#L714) |
-| `FX.Begin` | [L746](../../UnitFrames/FluxCastBarThemes.lua#L746) |
-| `FX.Finish` | [L756](../../UnitFrames/FluxCastBarThemes.lua#L756) |
-| `FX.Attach` | [L779](../../UnitFrames/FluxCastBarThemes.lua#L779) |
-| `FX.Refresh` | [L787](../../UnitFrames/FluxCastBarThemes.lua#L787) |
-| `FX.ObserveCast` | [L796](../../UnitFrames/FluxCastBarThemes.lua#L796) |
-| `FX.SyncEvents` | [L864](../../UnitFrames/FluxCastBarThemes.lua#L864) |
+| `FX.Layout` | [L435](../../UnitFrames/FluxCastBarThemes.lua#L435) |
+| `FX.Reset` | [L561](../../UnitFrames/FluxCastBarThemes.lua#L561) |
+| `FX.Update` | [L695](../../UnitFrames/FluxCastBarThemes.lua#L695) |
+| `FX.Apply` | [L770](../../UnitFrames/FluxCastBarThemes.lua#L770) |
+| `FX.Begin` | [L803](../../UnitFrames/FluxCastBarThemes.lua#L803) |
+| `FX.Finish` | [L814](../../UnitFrames/FluxCastBarThemes.lua#L814) |
+| `FX.Attach` | [L837](../../UnitFrames/FluxCastBarThemes.lua#L837) |
+| `FX.Refresh` | [L845](../../UnitFrames/FluxCastBarThemes.lua#L845) |
+| `FX.ObserveCast` | [L856](../../UnitFrames/FluxCastBarThemes.lua#L856) |
+| `FX.SyncEvents` | [L924](../../UnitFrames/FluxCastBarThemes.lua#L924) |
 
 ### UnitFrames/FluxCastBarVisuals.lua
 

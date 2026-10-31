@@ -1,5 +1,12 @@
 # Next session
 
+31 October secret-channel fallback: on Retail and Forever, test target/focus
+and Blizzard nameplate casts in combat. Readable magic should keep school
+colors; secret, item, physical and unidentified casts should keep default
+appearance. Include channels, plate reuse, text/shield, combat taint, pixels
+and matched frame time. Desktop 56-check nameplate regression passes;
+native acceptance is pending. [Evidence](docs/SECRET_CHANNEL_FALLBACK.md).
+
 31 October nameplate backdrop: sequentially check single/hybrid school casts
 on Retail, Forever, Era and Anniversary at several plate sizes and during
 target switching/reuse. Confirm artwork stays behind cast text, shield,

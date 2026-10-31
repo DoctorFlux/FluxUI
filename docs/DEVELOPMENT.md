@@ -1,5 +1,11 @@
 # Development tasks
 
+31 October secret-channel fallback: verify nameplate channels with secret or
+missing spell IDs keep default appearance, while readable magic keeps its
+school theme. Explicit ID selection passes a baseline-rejecting 56-check
+fixture. Native Retail/Forever combat, pixel and taint checks pending.
+[Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 31 October nameplate cast backdrop: artwork now uses a plate-level host below
 Blizzard cast/health chrome. A baseline-rejecting layer test and the full
 112-test/757-Lua desktop suite pass. Native pixels/taint/performance pending.

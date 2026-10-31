@@ -1,5 +1,12 @@
 # Development status
 
+31 October secret-channel fallback: nameplate channel IDs are selected
+without testing a possibly secret value. Unknown, item, physical and
+restricted casts keep their default bar; readable magic casts retain school
+themes. Baseline fails the adjacent-field regression; 56 nameplate and
+13,898 renderer desktop checks pass. Native Retail/Forever acceptance is
+pending. [Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 31 October nameplate backdrop correction: school artwork now draws from a
 Flux host at the plate's frame level, behind Blizzard cast and health chrome.
 The unit-frame backdrop, school fill and tip keep their existing placement.

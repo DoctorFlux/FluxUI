@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+31 October secret-channel fallback: Retail/Forever unit API declarations
+confirm cast identity can be secret; castBarID supplies no magic school.
+Explicit channel-ID selection keeps the native/default bar when identity
+cannot be read. Baseline rejects the 56-check nameplate fixture; the shared
+renderer passes 13,898 checks. Native combat, pixels, taint and frame time
+remain pending. [Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 31 October nameplate backdrop: desktop renderer checks place single/hybrid
 artwork below native chrome, including plate-level changes during a cast;
 the prior source fails the new layer assertion. Full 112-test/757-Lua suite

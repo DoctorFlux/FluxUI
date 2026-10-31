@@ -26,6 +26,9 @@ Spark to the school; both restore when the theme clears.
 The [backdrop layer correction](NAMEPLATE_BACKDROP_LAYER.md) puts school
 artwork at the plate level behind native cast and health chrome, while fill,
 tip, halo and particle effects keep their existing hosts.
+The [secret-channel fallback correction](SECRET_CHANNEL_FALLBACK.md) selects
+the channel spell ID without boolean-testing it; an inaccessible or nonmagic
+school keeps the default native appearance.
 
 ## Threat and level
 

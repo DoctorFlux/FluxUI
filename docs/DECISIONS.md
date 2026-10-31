@@ -1,5 +1,15 @@
 # Decisions
 
+## 2026-10-31 - default appearance for inaccessible cast schools
+
+- Keep native/default cast appearance when the addon cannot establish a
+  magic school, including items, physical spells and secret casts. Keep
+  readable magic themes and Blizzard nameplate bar ownership.
+- Select the channel spell ID with an explicit branch so Lua never tests a
+  secret value or borrows the adjacent empowered return field. Do not infer
+  a school from `castBarID`; it is only a cast identifier.
+  [Evidence](SECRET_CHANNEL_FALLBACK.md).
+
 ## 2026-10-31 - place nameplate school artwork behind native chrome
 
 - Parent nameplate backdrop textures to a Flux host at the plate's frame

@@ -52,11 +52,12 @@ for _, branch in ipairs({"retail", "forever", "era", "anniversary"}) do
         end
     end
     local currentName, currentID, currentTrade = "Fireball", 133, false
+    local channelName, channelID, channelEmpowered = "Frost Channel", 116, false
     env.UnitCastingInfo = function()
         return currentName, currentName, nil, 0, 1000, currentTrade, nil, false, currentID
     end
     env.UnitChannelInfo = function()
-        return "Frost Channel", "Frost Channel", nil, 0, 1000, false, false, 116
+        return channelName, channelName, nil, 0, 1000, false, false, channelID, channelEmpowered
     end
     local ns = {
         Flux = {NamePlates = {
@@ -91,6 +92,15 @@ for _, branch in ipairs({"retail", "forever", "era", "anniversary"}) do
     start(bar, "UNIT_SPELLCAST_START")
     check(#calls.begin == prior and first[1]._fluxSchoolCast == nil,
         branch .. " secret identity leaves native appearance")
+    channelName, channelID = secret, secret
+    start(bar, "UNIT_SPELLCAST_CHANNEL_START")
+    check(#calls.begin == prior and first[1]._fluxSchoolCast == nil,
+        branch .. " secret channel identity leaves native appearance")
+    channelID, channelEmpowered = false, true
+    start(bar, "UNIT_SPELLCAST_CHANNEL_START")
+    check(#calls.begin == prior and first[1]._fluxSchoolCast == nil,
+        branch .. " missing channel ID never borrows the empowered flag as a spell ID")
+    channelName, channelID, channelEmpowered = "Frost Channel", 116, false
     currentName, currentID = "Frostbolt", 116
     start(bar, "UNIT_SPELLCAST_START")
     bar.shown = false
