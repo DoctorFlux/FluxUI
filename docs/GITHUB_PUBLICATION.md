@@ -1,6 +1,9 @@
 # GitHub publication - 29 October 2026
 
-31 October combat grid usability candidate: mana gem and healthstone item
+31 October combat grid usability publication: payload
+`155fa8aafda5169a23eae1a06df42eafb696b756` was pushed to main and the
+remote ref was read back at that exact commit. The working tree was clean
+after publication. Mana gem and healthstone item
 faces now darken on death/ghost and when the settled live item result is
 unusable. The 14-check loaded-paint fixture and full 111-test/756-Lua desktop
 suite pass. Native tint, input, taint, pixels and frame time remain pending.
