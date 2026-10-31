@@ -1,5 +1,13 @@
 # Development status
 
+31 October equipped trinket tint correction: ready equipped trinkets no
+longer darken solely because the item is absent from bags. Genuinely
+unusable use spells and the combat grid gem/stone tint retain their rules.
+Focused 8-check trinket and 14-check combat grid fixtures pass; current
+published-source full desktop suite passes 112 tests/757 Lua files. Native input,
+pixels, taint and performance remain pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October secret-channel fallback: nameplate channel IDs are selected
 without testing a possibly secret value. Unknown, item, physical and
 restricted casts keep their default bar; readable magic casts retain school

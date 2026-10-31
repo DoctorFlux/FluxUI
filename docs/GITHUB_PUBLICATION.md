@@ -1,5 +1,12 @@
 # GitHub publication - 29 October 2026
 
+31 October equipped trinket tint candidate: the managed `/use 13|14` face
+uses the equipped-item ownership fallback, restoring bright color for ready
+equipped trinkets while leaving truly unusable spells and combat-grid
+gem/stone tint intact. Focused checks and the isolated published-source
+112-test/757-Lua desktop suite pass; native acceptance remains pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October secret-channel fallback publication: payload
 `e6782e4e3ffcbb6fa7521d06651bd9f6d63625ed` was pushed to main and
 `git ls-remote origin refs/heads/main` read back that exact commit. Secret

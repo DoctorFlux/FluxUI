@@ -1,5 +1,12 @@
 # Development tasks
 
+31 October equipped trinket tint: verify ready equipped on-use/passive
+trinkets stay bright while a genuinely unusable use spell can darken. Check
+cooldown, dead/revive, bag flyout, secure clicks, keybinds and swap queue on
+each native client. Focused loaded-paint fixtures pass; isolated published-source
+desktop suite passes 112 tests/757 Lua files. Native acceptance pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October secret-channel fallback: verify nameplate channels with secret or
 missing spell IDs keep default appearance, while readable magic keeps its
 school theme. Explicit ID selection passes a baseline-rejecting 56-check

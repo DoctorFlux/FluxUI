@@ -1,5 +1,12 @@
 # Next session
 
+31 October equipped trinket tint: sequentially verify ready equipped on-use
+and passive trinkets, cooldown, dead/revive and bag flyout on all supported
+clients. Check `/use 13|14`, keys, swap queue, gem/stone tint, pixels, taint
+and matched frame time. Focused trinket and combat-grid desktop fixtures pass;
+native acceptance remains pending.
+[Evidence](docs/TRINKET_EQUIPPED_USABILITY.md).
+
 31 October secret-channel fallback: on Retail and Forever, test target/focus
 and Blizzard nameplate casts in combat. Readable magic should keep school
 colors; secret, item, physical and unidentified casts should keep default

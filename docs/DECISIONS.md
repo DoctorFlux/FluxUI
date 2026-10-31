@@ -1,5 +1,15 @@
 # Decisions
 
+## 2026-10-31 - count equipped trinket faces as owned for tint
+
+- For the trinket menu's managed `/use 13|14` item face, preserve the existing
+  owned-item usability fallback when native `IsUsableItem` is false. The
+  equipped item is absent from bag-only counts.
+- Keep use-spell unusability, cooldown paint, empty-slot desaturation,
+  secure clicks, keybinds and the combat grid gem/stone rule. Native five-client
+  visual, input, taint and performance acceptance remains pending.
+  [Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 ## 2026-10-31 - default appearance for inaccessible cast schools
 
 - Keep native/default cast appearance when the addon cannot establish a

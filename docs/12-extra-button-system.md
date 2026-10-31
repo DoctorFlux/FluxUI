@@ -85,6 +85,8 @@ The loaded [FlyoutEngine](../ExtraButtonSystem/FlyoutEngine/Init.lua) supports u
 
 [TrinketMenu](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua) presents equipped trinkets, scans bag alternatives, builds shared-engine flyouts and maintains the runtime `TM.CombatQueue` for swaps. The three older TrinketMenu SavedVariables remain declared but are not consumed by these active files. [Manager](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua) anchors it and reacts to equipment, cooldown, keys, pet battles, scale and combat. Binding mode and trinket commands route to live widgets.
 
+Equipped `/use 13` and `/use 14` faces retain the owned-item usability fallback even though the equipped item is absent from bag counts. A genuinely unusable use spell can still darken; empty slots remain desaturated. [The trinket tint correction](TRINKET_EQUIPPED_USABILITY.md) records the focused check and native limits.
+
 ## Controls and checks
 
 [FluxExtraButtonVisibility](../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua) supplies mode cycles, relevance gates, binding-mode forcing and layout notifications. Mana Gem/Class Teleport offer Off/Auto; consumables use Hidden/Always. Food/water normalize saved Auto to Always, with further mana/relevance gates. The assistant policy exists but `GetOptionsIds()` currently excludes its icon from the visibility editor. [Options](26-options-map.md) records scopes/defaults, [custom widgets](35-custom-widget-controls.md) records detailed gestures and effective-mode rules, and [commands](31-commands-and-bindings.md) lists aliases.

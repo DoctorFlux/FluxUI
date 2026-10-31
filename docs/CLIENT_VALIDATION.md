@@ -1,5 +1,13 @@
 # Client and reference validation — 29 October 2026
 
+31 October equipped trinket tint: the user's native observation is that an
+equipped, ready trinket with a use effect stays dark while alive. The
+baseline loaded-paint test reproduces this, the candidate passes 8 focused
+checks, and combat gem/stone controls pass 14 checks. Isolated published-source
+desktop validation passes 112 tests/757 Lua syntax files. Five-client native
+ready/cooldown/dead/revive tint, clicks, keybinds, pixels and taint remain
+pending. [Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October secret-channel fallback: Retail/Forever unit API declarations
 confirm cast identity can be secret; castBarID supplies no magic school.
 Explicit channel-ID selection keeps the native/default bar when identity

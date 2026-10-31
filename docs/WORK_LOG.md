@@ -1,5 +1,18 @@
 # Work log
 
+## 2026-10-31 - restore ready equipped trinket color
+
+The user observed that equipped trinkets with a use effect stayed dark while
+alive and off cooldown after the combat-grid tint update. Read continuity,
+the shared painter and trinket owner; preserved ongoing unrelated chat and
+cast work; inspected settings and verified a new external source/history and
+closed-client settings checkpoint. The item painter now treats the trinket
+menu's managed equipped face as owned without changing other macro faces.
+The baseline fails the focused ready-trinket check; the candidate passes eight
+trinket and 14 combat-grid checks. Isolated published-source desktop validation
+passes 112 tests/757 Lua syntax files. Native acceptance remains pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 ## 2026-10-31 - keep default cast appearance for inaccessible schools
 
 The user clarified that item, channel, physical and other casts with no

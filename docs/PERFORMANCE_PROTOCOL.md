@@ -1,5 +1,13 @@
 # Baseline protocol and currency evidence
 
+31 October equipped trinket tint reuses the existing usable-paint lane and
+managed face ID. It adds no event, timer, ticker, hook, secure write or item
+query; the equipped face skips a bag count fallback when its native item
+usability is false. Focused loaded-paint checks and the isolated published-source
+112-test/757-Lua desktop suite pass. Matched native CPU, allocation,
+frame-time and FPS measurements remain pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October combat grid gem/stone tint adds no event, timer, ticker, hook or
 secure write or extra item-usability read. The existing usable paint and
 life-event lanes evaluate the same live item result after bags settle.

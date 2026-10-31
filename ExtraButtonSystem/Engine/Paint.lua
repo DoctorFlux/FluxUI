@@ -2188,7 +2188,7 @@ local function ToyUsable(toyId)
 	return true, false
 end
 
-local function CombineItemUsable(itemId, trustOwnedFalse)
+local function CombineItemUsable(itemId, trustOwnedFalse, equippedFace)
 	if not itemId then
 		return nil, nil
 	end
@@ -2202,7 +2202,7 @@ local function CombineItemUsable(itemId, trustOwnedFalse)
 		su, sm = SpellUsable(spell)
 	end
 	-- Item.IsUsable is false while GetItemCount is still 0 after a loading screen.
-	if iu == false and not trustOwnedFalse and SnapshotStackCount(itemId) > 0 then
+	if iu == false and not trustOwnedFalse and (equippedFace or SnapshotStackCount(itemId) > 0) then
 		iu = true
 	end
 	if su == false or iu == false then
@@ -2424,7 +2424,10 @@ function Paint.UpdateUsable(btn)
 			else
 				local iid = MacroShownItem(btn)
 				if iid then
-					usable, noMana = CombineItemUsable(iid)
+					-- A trinket's /use 13|14 face is equipped, not in the bag snapshot.
+					-- Preserve the owned-item fallback for that exact managed face.
+					local equippedFace = btn.inventorySlot and btn._fluxManagedFaceItemId
+					usable, noMana = CombineItemUsable(iid, nil, equippedFace)
 				else
 					usable = true
 					noMana = false
