@@ -1,6 +1,9 @@
 # GitHub publication - 29 October 2026
 
-1 November passive trinket tint candidate: equipped trinkets without an
+1 November passive trinket tint publication: payload
+`01391dd4780e684339915b521604e955e729e008` was pushed to main and
+read back from the remote ref. Unrelated local chat/durability edits stayed
+unstaged. Equipped trinkets without an
 on-use spell now dim, while ready on-use trinkets remain bright. The revised
 10-check loaded-paint fixture and isolated 112-test/757-Lua desktop suite
 pass; native acceptance remains pending.
