@@ -60,8 +60,14 @@ flux.EBS.Paint.UpdateUsable(second)
 check(second.WIcon.color, 1, "second equipped slot stays bright")
 state.hasSpell = false
 flux.EBS.Paint.UpdateUsable(second)
-check(second.WIcon.color, 1, "passive equipped trinket stays bright")
+check(second.WIcon.color, 0.4, "passive equipped trinket is dim")
+state.itemUsable = true
+flux.EBS.Paint.UpdateUsable(second)
+check(second.WIcon.color, 0.4, "passive trinket stays dim even if item API says usable")
 state.hasSpell = true
+flux.EBS.Paint.UpdateUsable(second)
+check(second.WIcon.color, 1, "on-use trinket becomes bright after equip swap")
+state.itemUsable = false
 
 local ordinary = face(nil)
 flux.EBS.Paint.UpdateUsable(ordinary)

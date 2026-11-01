@@ -1,5 +1,17 @@
 # Work log
 
+## 2026-11-01 - dim passive equipped trinkets
+
+The user clarified that a trinket without an on-use effect must be dim. The
+previous fixture explicitly expected passive trinkets bright. Read current
+continuity/source and on-disk settings; verified a dated external source/
+history checkpoint and copied closed Retail config outside AddOns. Added a
+passive check in the equipped-face paint path and updated the loaded-paint
+fixture to distinguish passive, ready on-use and unusable on-use. Baseline
+fails at passive; candidate passes 10 focused checks and the isolated
+112-test/757-Lua desktop suite. Native acceptance pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 ## 2026-10-31 - restore ready equipped trinket color
 
 The user observed that equipped trinkets with a use effect stayed dark while

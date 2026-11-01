@@ -1,5 +1,11 @@
 # GitHub publication - 29 October 2026
 
+1 November passive trinket tint candidate: equipped trinkets without an
+on-use spell now dim, while ready on-use trinkets remain bright. The revised
+10-check loaded-paint fixture and isolated 112-test/757-Lua desktop suite
+pass; native acceptance remains pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October equipped trinket tint publication: payload
 `4056cef1ef2ac88eb55b635aeb4daa9633c6c0b9` was pushed to main and
 `git ls-remote origin refs/heads/main` read back that exact commit. The

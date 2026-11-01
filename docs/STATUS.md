@@ -1,5 +1,11 @@
 # Development status
 
+1 November trinket tint clarification: equipped passive trinkets now dim;
+ready on-use trinkets remain bright. Focused 10-check painter fixture rejects
+the published passive behavior; isolated full desktop suite passes 112 tests/
+757 Lua syntax files. Native acceptance pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October equipped trinket tint correction: ready equipped trinkets no
 longer darken solely because the item is absent from bags. Genuinely
 unusable use spells and the combat grid gem/stone tint retain their rules.

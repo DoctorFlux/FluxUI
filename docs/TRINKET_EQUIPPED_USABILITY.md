@@ -1,5 +1,27 @@
 # Equipped trinket tint correction — 31 October 2026
 
+## 1 November follow-up: passive trinkets
+
+The user clarified that equipped trinkets without an on-use effect should be
+dim. The first correction also brightened passive trinkets, which was not the
+intended rule. The equipped-face path now requires a readable item-use spell;
+without one it paints inactive, even if `IsUsableItem` returns true. Ready
+on-use trinkets remain bright, and a genuinely unusable use spell stays dark.
+The revised loaded-paint fixture passes 10 checks and rejects the published
+baseline at the passive trinket. The isolated published-source suite passes
+112 tests/757 Lua syntax files in
+`validation/trinket-passive-2026-11-01.json`. Baseline main was
+`db5c3288047bdedf9080f71e18cb6ae6a3c485d1`; Paint baseline SHA-256 was
+`e4993da8bed4033673aad9bb600a1a73f5965bfe3f068b3b933053b178782079`
+and candidate SHA-256 is
+`d6e089f508c97bba4c15fe53c3b1acc317085d7ade3d46d7828ebb54c87bab90`.
+A verified complete Git bundle, source copy and closed Retail `Config.wtf`
+are outside AddOns at
+`C:\Users\mario\.codex\visualizations\2026\10\31\01a191bd-d58d-74a3-bbdf-1b69e0cce168\FluxUI-trinket-passive-20261101`;
+bundle SHA-256 is
+`90708215a2f172be38ba290bd20629e12d00975c84e779e3d2f4abb3382404e8`.
+Native pixels, clicks, taint and frame time remain pending.
+
 The user observed that equipped trinkets with a use effect stayed dark while
 alive and off cooldown after the combat grid tint update. This is a separate
 shared-paint path: the trinket menu presents `/use 13` and `/use 14` as managed

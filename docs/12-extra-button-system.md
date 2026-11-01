@@ -87,6 +87,8 @@ The loaded [FlyoutEngine](../ExtraButtonSystem/FlyoutEngine/Init.lua) supports u
 
 Equipped `/use 13` and `/use 14` faces retain the owned-item usability fallback even though the equipped item is absent from bag counts. A genuinely unusable use spell can still darken; empty slots remain desaturated. [The trinket tint correction](TRINKET_EQUIPPED_USABILITY.md) records the focused check and native limits.
 
+1 November clarification: an equipped trinket without an on-use spell is dim; a ready on-use trinket remains bright.
+
 ## Controls and checks
 
 [FluxExtraButtonVisibility](../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua) supplies mode cycles, relevance gates, binding-mode forcing and layout notifications. Mana Gem/Class Teleport offer Off/Auto; consumables use Hidden/Always. Food/water normalize saved Auto to Always, with further mana/relevance gates. The assistant policy exists but `GetOptionsIds()` currently excludes its icon from the visibility editor. [Options](26-options-map.md) records scopes/defaults, [custom widgets](35-custom-widget-controls.md) records detailed gestures and effective-mode rules, and [commands](31-commands-and-bindings.md) lists aliases.

@@ -1,5 +1,11 @@
 # Baseline protocol and currency evidence
 
+1 November passive trinket tint uses the existing item-spell lookup in the
+equipped usability paint path and adds no event, timer, ticker, hook, secure
+write or item query. The isolated 112-test/757-Lua desktop suite passes;
+matched native frame-time and FPS measurements remain pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October equipped trinket tint reuses the existing usable-paint lane and
 managed face ID. It adds no event, timer, ticker, hook, secure write or item
 query; the equipped face skips a bag count fallback when its native item

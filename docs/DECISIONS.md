@@ -1,5 +1,14 @@
 # Decisions
 
+## 2026-11-01 - dim equipped passive trinkets
+
+- Apply the equipped-ownership usability fallback only when the managed
+  trinket face has an on-use spell. No use spell means an inactive tint,
+  regardless of the generic item API's usable result.
+- Retain bright ready on-use faces, genuinely unusable spell dimming, secure
+  slot actions and combat-grid mana gem/healthstone rules. Native checks remain
+  pending. [Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 ## 2026-10-31 - count equipped trinket faces as owned for tint
 
 - For the trinket menu's managed `/use 13|14` item face, preserve the existing

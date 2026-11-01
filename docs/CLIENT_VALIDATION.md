@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+1 November passive trinket correction: the user's intended rule is dim for an
+equipped trinket with no on-use spell and bright for a ready on-use trinket.
+Baseline fails the new passive check; candidate passes 10 focused checks and
+112 isolated desktop tests/757 Lua syntax files. Native five-client use
+effect, cooldown, click, pixel and taint acceptance remains pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
 31 October equipped trinket tint: the user's native observation is that an
 equipped, ready trinket with a use effect stays dark while alive. The
 baseline loaded-paint test reproduces this, the candidate passes 8 focused

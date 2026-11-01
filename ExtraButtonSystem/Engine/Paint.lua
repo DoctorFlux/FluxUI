@@ -2197,6 +2197,11 @@ local function CombineItemUsable(itemId, trustOwnedFalse, equippedFace)
 	end
 	local iu, im = ItemUsable(itemId)
 	local spell = ItemSpellIdent(itemId)
+	-- An equipped passive trinket has no click effect even if the item API
+	-- calls the equipped item usable. Keep its menu face visibly inactive.
+	if equippedFace and not spell then
+		return false, false
+	end
 	local su, sm
 	if spell then
 		su, sm = SpellUsable(spell)

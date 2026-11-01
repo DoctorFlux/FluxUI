@@ -1,5 +1,11 @@
 # Next session
 
+1 November trinket tint: on every client compare an equipped passive trinket
+with a ready on-use trinket; then check unusable use spell, cooldown, dead/
+revived state, tooltip, slot 13/14 clicks and bag flyout. Native pixels,
+taint and frame time remain pending after 10 focused desktop checks.
+[Evidence](docs/TRINKET_EQUIPPED_USABILITY.md).
+
 31 October equipped trinket tint: sequentially verify ready equipped on-use
 and passive trinkets, cooldown, dead/revive and bag flyout on all supported
 clients. Check `/use 13|14`, keys, swap queue, gem/stone tint, pixels, taint

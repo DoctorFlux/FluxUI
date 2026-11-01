@@ -1,6 +1,12 @@
 # Development tasks
 
-31 October equipped trinket tint: verify ready equipped on-use/passive
+1 November trinket tint: verify passive equipped trinkets dim and ready on-use
+trinkets stay bright; check use spell restrictions, cooldown, empty slot,
+combat input and pixels. Focused 10 checks and isolated 112-test/757-Lua
+desktop suite pass; native acceptance pending.
+[Evidence](TRINKET_EQUIPPED_USABILITY.md).
+
+31 October equipped trinket tint: verify ready equipped on-use
 trinkets stay bright while a genuinely unusable use spell can darken. Check
 cooldown, dead/revive, bag flyout, secure clicks, keybinds and swap queue on
 each native client. Focused loaded-paint fixtures pass; isolated published-source
