@@ -9292,6 +9292,22 @@
   },
   "files": [
     {
+      "path": "_tmp_striplines.lua",
+      "classification": "development harness",
+      "chapter": "34-assets.md",
+      "lines": 55,
+      "sha256": "b78ded9a1e17ed0b14a9cd46aee898f9b868c19eb7a24ee3464145cc9289fe24",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "AddonOptions/AceGUIWidget-FluxBattlezone.lua",
       "classification": "active",
       "chapter": "26-options-map.md",
@@ -38874,8 +38890,8 @@
       "path": "ExtraButtonSystem/Engine/Paint.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 3782,
-      "sha256": "a354bfe241eaa3259bb8d661e18f8df4c49e1f4cef4e9a5db8010e440606f4f1",
+      "lines": 3790,
+      "sha256": "d6e089f508c97bba4c15fe53c3b1acc317085d7ade3d46d7828ebb54c87bab90",
       "clients": [
         "camelot",
         "cata",
@@ -38941,91 +38957,91 @@
         },
         {
           "name": "Paint.UpdateUsable",
-          "line": 2342
+          "line": 2347
         },
         {
           "name": "Paint.NotePlayerCast",
-          "line": 2567
+          "line": 2575
         },
         {
           "name": "Paint.UpdateFlash",
-          "line": 2961
+          "line": 2969
         },
         {
           "name": "Paint.FlushFlash",
-          "line": 2999
+          "line": 3007
         },
         {
           "name": "Paint.UpdateChecked",
-          "line": 3014
+          "line": 3022
         },
         {
           "name": "Paint.FlushIcons",
-          "line": 3154
+          "line": 3162
         },
         {
           "name": "Paint.RequestIcon",
-          "line": 3178
+          "line": 3186
         },
         {
           "name": "Paint.FlushChecked",
-          "line": 3212
+          "line": 3220
         },
         {
           "name": "Paint.ArmCheckedPoll",
-          "line": 3286
-        },
-        {
-          "name": "Paint.RequestChecked",
           "line": 3294
         },
         {
+          "name": "Paint.RequestChecked",
+          "line": 3302
+        },
+        {
           "name": "Paint.RequestCheckedSettle",
-          "line": 3310
+          "line": 3318
         },
         {
           "name": "Paint.UpdateGlow",
-          "line": 3323
+          "line": 3331
         },
         {
           "name": "Paint.UpdateEquipped",
-          "line": 3447
+          "line": 3455
         },
         {
           "name": "Paint.UpdateRange",
-          "line": 3560
+          "line": 3568
         },
         {
           "name": "Paint.Update",
-          "line": 3579
+          "line": 3587
         },
         {
           "name": "Paint.UpdateLiveFace",
-          "line": 3599
+          "line": 3607
         },
         {
           "name": "Paint.FlushEval",
-          "line": 3610
+          "line": 3618
         },
         {
           "name": "Paint.FlushCounts",
-          "line": 3716
+          "line": 3724
         },
         {
           "name": "FluxButton:UpdateEmptyBackground",
-          "line": 3768
-        },
-        {
-          "name": "FluxButton:UpdateUsable",
-          "line": 3772
-        },
-        {
-          "name": "FluxButton:UpdateCooldown",
           "line": 3776
         },
         {
-          "name": "FluxButton:UpdateEquipped",
+          "name": "FluxButton:UpdateUsable",
           "line": 3780
+        },
+        {
+          "name": "FluxButton:UpdateCooldown",
+          "line": 3784
+        },
+        {
+          "name": "FluxButton:UpdateEquipped",
+          "line": 3788
         }
       ],
       "events": [],
@@ -63107,8 +63123,8 @@
       "path": "Other/FluxChatColumnMicros.lua",
       "classification": "active",
       "chapter": "25-other-qol.md",
-      "lines": 1275,
-      "sha256": "470ff6192b5a4f512aa673d4c27949ac0f2b28ebcd8044fbf67412d6315c1919",
+      "lines": 1314,
+      "sha256": "0f639f3d71cd2fc4095daaeb96e3f0e69ddf728ff1915c486ddfecac6928e830",
       "clients": [
         "camelot",
         "cata",
@@ -63134,7 +63150,7 @@
         },
         {
           "name": "FluxChatColumnMicros.Create",
-          "line": 1268
+          "line": 1307
         }
       ],
       "events": [
@@ -63227,7 +63243,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")waiter:"
         },
         {
-          "line": 1238,
+          "line": 1268,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_INVENTORY_DURABILITY\""
@@ -63235,7 +63251,7 @@
           "context": "(\"Frame\")events:"
         },
         {
-          "line": 1239,
+          "line": 1269,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_INVENTORY_ALERTS\""
@@ -63243,15 +63259,31 @@
           "context": "(\"UPDATE_INVENTORY_DURABILITY\")events:"
         },
         {
-          "line": 1240,
+          "line": 1270,
           "method": "RegisterEvent",
           "arguments": [
-            "\"PLAYER_ENTERING_WORLD\""
+            "\"PLAYER_EQUIPMENT_CHANGED\""
           ],
           "context": "(\"UPDATE_INVENTORY_ALERTS\")events:"
         },
         {
-          "line": 1241,
+          "line": 1271,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"UNIT_INVENTORY_CHANGED\""
+          ],
+          "context": "(\"PLAYER_EQUIPMENT_CHANGED\")events:"
+        },
+        {
+          "line": 1272,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_ENTERING_WORLD\""
+          ],
+          "context": "(\"UNIT_INVENTORY_CHANGED\")events:"
+        },
+        {
+          "line": 1273,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_PORTRAIT_UPDATE\""
@@ -63259,7 +63291,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")events:"
         },
         {
-          "line": 1242,
+          "line": 1274,
           "method": "RegisterEvent",
           "arguments": [
             "\"PORTRAITS_UPDATED\""
@@ -71444,6 +71476,22 @@
       "sv_sites": []
     },
     {
+      "path": "tests/chat_character_durability.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 108,
+      "sha256": "087af214db9aa345b0fcfc926a11a8d455b5d0111bb395f5f77ac418620701ed",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/chat_column_layout.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -77515,6 +77563,47 @@
           "context": "=ffunctionf:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/trinket_equipped_usability.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 87,
+      "sha256": "50f360a0a841a8896f58ac9a1e812162d39cc9f6c478bf9147213f4503d7097e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitIsDeadOrGhost",
+          "line": 12
+        },
+        {
+          "name": "returnstate.deadendenv.UnitIsDead",
+          "line": 13
+        },
+        {
+          "name": "icon:SetVertexColor",
+          "line": 38
+        },
+        {
+          "name": "icon:SetDesaturated",
+          "line": 39
+        },
+        {
+          "name": "trueflux.Inventory.GetCount",
+          "line": 78
+        },
+        {
+          "name": "endflux.Inventory.GetLiveCount",
+          "line": 79
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -85805,18 +85894,18 @@
     },
     {
       "path": "Texture/CastBarSchools/build-assets.ps1",
-      "bytes": 3369,
-      "sha256": "2d2acce9b9fad6866736eb9d6148eeff005fd1aae5e041154c991ecf4ad291e0"
+      "bytes": 3317,
+      "sha256": "276627d9a6fa49c1c4644b7ac4225e85b0baf4b0465caef70fc1ae40b1f811df"
     },
     {
       "path": "Texture/CastBarSchools/build-fills.py",
-      "bytes": 3202,
-      "sha256": "7322e401f45972923a3c08269b087ae82bd6b003b8f84b2ad247b4fbb264a54a"
+      "bytes": 3129,
+      "sha256": "62b841c4f63ee38a0268ae93d5f30cf783a5ff30b74877933af4e9601254a32a"
     },
     {
       "path": "Texture/CastBarSchools/build-procedural.py",
-      "bytes": 6340,
-      "sha256": "dd76c6cd1ed30d8617ef024def8268a3550e8ec0ae9cc36cfa5e423cdce10caf"
+      "bytes": 6189,
+      "sha256": "ab0682543851bf52f878d8441ad7c670710ab622296fb3d2b4b1f5607ee83be4"
     },
     {
       "path": "Texture/CastBarSchools/cast_dot.tga",

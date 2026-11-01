@@ -17,13 +17,14 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active | 482 |
 | active compatibility | 33 |
 | bundled library | 97 |
-| development harness | 29 |
-| inactive source | 147 |
+| development harness | 30 |
+| inactive source | 149 |
 
 ## Addon sources
 
 | Source | Classification | TOC clients | Chapter |
 |---|---|---|---|
+| [_tmp_striplines.lua](../_tmp_striplines.lua) | development harness | — | [34-assets.md](34-assets.md) |
 | [AddonOptions/AceGUIWidget-FluxBattlezone.lua](../AddonOptions/AceGUIWidget-FluxBattlezone.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/AceGUIWidget-FluxExtraButtonVisibility.lua](../AddonOptions/AceGUIWidget-FluxExtraButtonVisibility.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
 | [AddonOptions/AceGUIWidget-FluxInfoStatOrder.lua](../AddonOptions/AceGUIWidget-FluxInfoStatOrder.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [26-options-map.md](26-options-map.md) |
@@ -594,6 +595,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/binding_respec_regression.lua](../tests/binding_respec_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/blizzard_script_ownership.lua](../tests/blizzard_script_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/castbar_school_themes.lua](../tests/castbar_school_themes.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/chat_character_durability.lua](../tests/chat_character_durability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/chat_column_layout.lua](../tests/chat_column_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/chat_layout.lua](../tests/chat_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/chat_startup.lua](../tests/chat_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -655,6 +657,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/teleport_cast_work.lua](../tests/teleport_cast_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/tier_count_work.lua](../tests/tier_count_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/transmog_actions.lua](../tests/transmog_actions.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/trinket_equipped_usability.lua](../tests/trinket_equipped_usability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_click_edges.lua](../tests/unit_click_edges.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_frame_whole_scale.lua](../tests/unit_frame_whole_scale.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/unit_power_visibility.lua](../tests/unit_power_visibility.lua) | inactive source | — | [34-assets.md](34-assets.md) |

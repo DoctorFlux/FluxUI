@@ -577,11 +577,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Other/FluxChatColumnMicros.lua:1059](../../Other/FluxChatColumnMicros.lua#L1059) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Other/FluxChatColumnMicros.lua:1184](../../Other/FluxChatColumnMicros.lua#L1184) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxChatColumnMicros.lua:1185](../../Other/FluxChatColumnMicros.lua#L1185) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatColumnMicros.lua:1238](../../Other/FluxChatColumnMicros.lua#L1238) | `RegisterEvent` | `"UPDATE_INVENTORY_DURABILITY"` |
-| [Other/FluxChatColumnMicros.lua:1239](../../Other/FluxChatColumnMicros.lua#L1239) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
-| [Other/FluxChatColumnMicros.lua:1240](../../Other/FluxChatColumnMicros.lua#L1240) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Other/FluxChatColumnMicros.lua:1241](../../Other/FluxChatColumnMicros.lua#L1241) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
-| [Other/FluxChatColumnMicros.lua:1242](../../Other/FluxChatColumnMicros.lua#L1242) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
+| [Other/FluxChatColumnMicros.lua:1268](../../Other/FluxChatColumnMicros.lua#L1268) | `RegisterEvent` | `"UPDATE_INVENTORY_DURABILITY"` |
+| [Other/FluxChatColumnMicros.lua:1269](../../Other/FluxChatColumnMicros.lua#L1269) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
+| [Other/FluxChatColumnMicros.lua:1270](../../Other/FluxChatColumnMicros.lua#L1270) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
+| [Other/FluxChatColumnMicros.lua:1271](../../Other/FluxChatColumnMicros.lua#L1271) | `RegisterEvent` | `"UNIT_INVENTORY_CHANGED"` |
+| [Other/FluxChatColumnMicros.lua:1272](../../Other/FluxChatColumnMicros.lua#L1272) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Other/FluxChatColumnMicros.lua:1273](../../Other/FluxChatColumnMicros.lua#L1273) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
+| [Other/FluxChatColumnMicros.lua:1274](../../Other/FluxChatColumnMicros.lua#L1274) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [Other/FluxChatCopyPaste.lua:611](../../Other/FluxChatCopyPaste.lua#L611) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Other/FluxChatCopyPaste.lua:972](../../Other/FluxChatCopyPaste.lua#L972) | `RegisterEvent` | `"GUILD_ROSTER_UPDATE"` |
 | [Other/FluxChatCopyPaste.lua:973](../../Other/FluxChatCopyPaste.lua#L973) | `RegisterEvent` | `"PLAYER_GUILD_UPDATE"` |
@@ -4837,28 +4839,28 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Paint.UpdateCount` | [L1163](../../ExtraButtonSystem/Engine/Paint.lua#L1163) |
 | `Paint.UpdateCooldown` | [L1856](../../ExtraButtonSystem/Engine/Paint.lua#L1856) |
 | `Paint.UpdateAllCooldowns` | [L2006](../../ExtraButtonSystem/Engine/Paint.lua#L2006) |
-| `Paint.UpdateUsable` | [L2342](../../ExtraButtonSystem/Engine/Paint.lua#L2342) |
-| `Paint.NotePlayerCast` | [L2567](../../ExtraButtonSystem/Engine/Paint.lua#L2567) |
-| `Paint.UpdateFlash` | [L2961](../../ExtraButtonSystem/Engine/Paint.lua#L2961) |
-| `Paint.FlushFlash` | [L2999](../../ExtraButtonSystem/Engine/Paint.lua#L2999) |
-| `Paint.UpdateChecked` | [L3014](../../ExtraButtonSystem/Engine/Paint.lua#L3014) |
-| `Paint.FlushIcons` | [L3154](../../ExtraButtonSystem/Engine/Paint.lua#L3154) |
-| `Paint.RequestIcon` | [L3178](../../ExtraButtonSystem/Engine/Paint.lua#L3178) |
-| `Paint.FlushChecked` | [L3212](../../ExtraButtonSystem/Engine/Paint.lua#L3212) |
-| `Paint.ArmCheckedPoll` | [L3286](../../ExtraButtonSystem/Engine/Paint.lua#L3286) |
-| `Paint.RequestChecked` | [L3294](../../ExtraButtonSystem/Engine/Paint.lua#L3294) |
-| `Paint.RequestCheckedSettle` | [L3310](../../ExtraButtonSystem/Engine/Paint.lua#L3310) |
-| `Paint.UpdateGlow` | [L3323](../../ExtraButtonSystem/Engine/Paint.lua#L3323) |
-| `Paint.UpdateEquipped` | [L3447](../../ExtraButtonSystem/Engine/Paint.lua#L3447) |
-| `Paint.UpdateRange` | [L3560](../../ExtraButtonSystem/Engine/Paint.lua#L3560) |
-| `Paint.Update` | [L3579](../../ExtraButtonSystem/Engine/Paint.lua#L3579) |
-| `Paint.UpdateLiveFace` | [L3599](../../ExtraButtonSystem/Engine/Paint.lua#L3599) |
-| `Paint.FlushEval` | [L3610](../../ExtraButtonSystem/Engine/Paint.lua#L3610) |
-| `Paint.FlushCounts` | [L3716](../../ExtraButtonSystem/Engine/Paint.lua#L3716) |
-| `FluxButton:UpdateEmptyBackground` | [L3768](../../ExtraButtonSystem/Engine/Paint.lua#L3768) |
-| `FluxButton:UpdateUsable` | [L3772](../../ExtraButtonSystem/Engine/Paint.lua#L3772) |
-| `FluxButton:UpdateCooldown` | [L3776](../../ExtraButtonSystem/Engine/Paint.lua#L3776) |
-| `FluxButton:UpdateEquipped` | [L3780](../../ExtraButtonSystem/Engine/Paint.lua#L3780) |
+| `Paint.UpdateUsable` | [L2347](../../ExtraButtonSystem/Engine/Paint.lua#L2347) |
+| `Paint.NotePlayerCast` | [L2575](../../ExtraButtonSystem/Engine/Paint.lua#L2575) |
+| `Paint.UpdateFlash` | [L2969](../../ExtraButtonSystem/Engine/Paint.lua#L2969) |
+| `Paint.FlushFlash` | [L3007](../../ExtraButtonSystem/Engine/Paint.lua#L3007) |
+| `Paint.UpdateChecked` | [L3022](../../ExtraButtonSystem/Engine/Paint.lua#L3022) |
+| `Paint.FlushIcons` | [L3162](../../ExtraButtonSystem/Engine/Paint.lua#L3162) |
+| `Paint.RequestIcon` | [L3186](../../ExtraButtonSystem/Engine/Paint.lua#L3186) |
+| `Paint.FlushChecked` | [L3220](../../ExtraButtonSystem/Engine/Paint.lua#L3220) |
+| `Paint.ArmCheckedPoll` | [L3294](../../ExtraButtonSystem/Engine/Paint.lua#L3294) |
+| `Paint.RequestChecked` | [L3302](../../ExtraButtonSystem/Engine/Paint.lua#L3302) |
+| `Paint.RequestCheckedSettle` | [L3318](../../ExtraButtonSystem/Engine/Paint.lua#L3318) |
+| `Paint.UpdateGlow` | [L3331](../../ExtraButtonSystem/Engine/Paint.lua#L3331) |
+| `Paint.UpdateEquipped` | [L3455](../../ExtraButtonSystem/Engine/Paint.lua#L3455) |
+| `Paint.UpdateRange` | [L3568](../../ExtraButtonSystem/Engine/Paint.lua#L3568) |
+| `Paint.Update` | [L3587](../../ExtraButtonSystem/Engine/Paint.lua#L3587) |
+| `Paint.UpdateLiveFace` | [L3607](../../ExtraButtonSystem/Engine/Paint.lua#L3607) |
+| `Paint.FlushEval` | [L3618](../../ExtraButtonSystem/Engine/Paint.lua#L3618) |
+| `Paint.FlushCounts` | [L3724](../../ExtraButtonSystem/Engine/Paint.lua#L3724) |
+| `FluxButton:UpdateEmptyBackground` | [L3776](../../ExtraButtonSystem/Engine/Paint.lua#L3776) |
+| `FluxButton:UpdateUsable` | [L3780](../../ExtraButtonSystem/Engine/Paint.lua#L3780) |
+| `FluxButton:UpdateCooldown` | [L3784](../../ExtraButtonSystem/Engine/Paint.lua#L3784) |
+| `FluxButton:UpdateEquipped` | [L3788](../../ExtraButtonSystem/Engine/Paint.lua#L3788) |
 
 ### ExtraButtonSystem/Engine/Range.lua
 
@@ -8108,7 +8110,7 @@ Owner: [25-other-qol.md](../25-other-qol.md).
 |---|---|
 | `true_G.CharacterFrame_OnShow` | [L594](../../Other/FluxChatColumnMicros.lua#L594) |
 | `true_G.CharacterFrame_OnHide` | [L601](../../Other/FluxChatColumnMicros.lua#L601) |
-| `FluxChatColumnMicros.Create` | [L1268](../../Other/FluxChatColumnMicros.lua#L1268) |
+| `FluxChatColumnMicros.Create` | [L1307](../../Other/FluxChatColumnMicros.lua#L1307) |
 
 ### Other/FluxChatCopyPaste.lua
 

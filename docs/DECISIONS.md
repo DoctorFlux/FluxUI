@@ -19,6 +19,17 @@
   visual, input, taint and performance acceptance remains pending.
   [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+## 2026-10-31 - retain chat durability through world-entry data gaps
+
+- Treat a no-data read during `PLAYER_ENTERING_WORLD` as transient for a
+  bounded two-second window. Keep the last label, accept player inventory
+  and equipment events, and retry after 0.5 and then 1.5 seconds only while
+  no readable value has arrived. Expire the label if both retries fail.
+- Ignore a retry from an older world entry. Preserve secure button behavior,
+  minimum-slot percentage, color, settings and saved data. Native teleport,
+  pixel, taint and frame-time checks remain pending.
+  [Evidence](CHAT_CHARACTER_DURABILITY.md).
+
 ## 2026-10-31 - default appearance for inaccessible cast schools
 
 - Keep native/default cast appearance when the addon cannot establish a
@@ -38,6 +49,15 @@
 - Preserve unit-frame artwork geometry, opacity, controls and timing. Native
   pixels, combat taint and matched frame time remain pending.
   [Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
+## 2026-10-31 - show full chat character durability
+
+- Show the character-button percentage for any readable equipped durability,
+  including `100%`. Hide it only when no equipped slot supplies readable
+  durability. Keep lowest-slot calculation, colors, event cadence, button
+  geometry, secure clicks and saved options unchanged.
+- Native pixel, equipment-change, combat/taint and frame-time acceptance is
+  pending. [Evidence](CHAT_CHARACTER_DURABILITY.md).
 
 ## 2026-10-31 - tint conjured combat items from live usability
 
@@ -796,3 +816,11 @@ Refresh only the anchor after a player whole-scale change; avoid rediscovery
 and binding work for this geometry correction. Source/history/settings recovery
 and exact before/after hashes are in [the scale record](UNIT_FRAME_SCALE.md).
 No game/settings interaction or competing framework; excluded callbacks unchanged.
+
+## 1 November 2026 - repository front page
+
+Use a root [README](../README.md) for the requested GitHub-page feature overview.
+Keep each feature summary brief and link to the existing full reference; include
+client gates, companion-addon ownership and first-setup effects. Publish current
+local files on main with history preserved. This is a repository front-page
+change; no hosted site, new addon, new branch or separate repository is needed.

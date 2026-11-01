@@ -241,7 +241,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [NamePlates/Core.lua](../NamePlates/Core.lua) | 3 | 0 | 0 | 6 | 2 |
 | [Other/FluxArenaFramePosition.lua](../Other/FluxArenaFramePosition.lua) | 0 | 0 | 1 | 4 | 0 |
 | [Other/FluxBossFramePosition.lua](../Other/FluxBossFramePosition.lua) | 0 | 0 | 1 | 4 | 0 |
-| [Other/FluxChatColumnMicros.lua](../Other/FluxChatColumnMicros.lua) | 1 | 0 | 3 | 16 | 6 |
+| [Other/FluxChatColumnMicros.lua](../Other/FluxChatColumnMicros.lua) | 1 | 0 | 5 | 18 | 6 |
 | [Other/FluxChatCopyPaste.lua](../Other/FluxChatCopyPaste.lua) | 0 | 0 | 1 | 8 | 26 |
 | [Other/FluxChatFrame.lua](../Other/FluxChatFrame.lua) | 0 | 1 | 15 | 4 | 5 |
 | [Other/FluxDurationBars.lua](../Other/FluxDurationBars.lua) | 0 | 0 | 0 | 3 | 1 |

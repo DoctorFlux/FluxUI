@@ -235,3 +235,27 @@ local files and verified complete Git history. Source ZIP SHA-256:
 GitHub main matched parent `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
 Private settings/captures/archives and ignored local helpers remain outside Git.
 Publish by ordinary push to main, then verify remote identity and clean status.
+
+## 1 November 2026 - GitHub feature overview and current local publication
+
+1 November 2026 GitHub publication: added a root README with a compact feature
+overview covering the current inventory, links to all detailed feature controls,
+client-specific availability, companion integrations, installation and command
+entry points. The complete local payload includes the pending chat durability
+loading-screen correction. Fresh combined desktop validation passes 113 scripts
+and 758 Lua syntax files; native pending checks retain their recorded scope.
+
+The README describes shipped feature families, not every historical specification
+as implemented. Existing detailed feature/options/commands/integration references
+remain authoritative for controls and client gates; no new competing inventory
+or universal client-certification claim was added. No runtime edits, live game
+interaction, settings/profiler changes or excluded callback work in this task.
+
+External checkpoint `Publish-readme-20261101T130027Z` preserves 1,396 actual
+files and verified Git history, including all pending/untracked work. Source
+archive SHA-256: `5981eedb563317b7e56ea089022528741a966a4ec72ac3672a5c3aef6a6b873f`.
+Remote main matched parent `0e73e74a6e782a30fd04289bc84bbf551c440fd8`.
+The [fresh publication report](validation/github-readme-publication-2026-11-01.json)
+covers the complete local Lua source. Publish all current addon/test/docs and the
+new README by ordinary push to main, then read back the remote identity. Private
+settings, recoveries, captures and ignored sync helpers stay outside Git.

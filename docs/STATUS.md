@@ -1,5 +1,12 @@
 # Development status
 
+1 November 2026 GitHub publication: added a root README with a compact feature
+overview covering the current inventory, links to all detailed feature controls,
+client-specific availability, companion integrations, installation and command
+entry points. The complete local payload includes the pending chat durability
+loading-screen correction. Fresh combined desktop validation passes 113 scripts
+and 758 Lua syntax files; native pending checks retain their recorded scope.
+
 1 November trinket tint clarification: equipped passive trinkets now dim;
 ready on-use trinkets remain bright. Focused 10-check painter fixture rejects
 the published passive behavior; isolated full desktop suite passes 112 tests/
@@ -14,6 +21,13 @@ published-source full desktop suite passes 112 tests/757 Lua files. Native input
 pixels, taint and performance remain pending.
 [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+31 October chat durability teleport follow-up: world entry now keeps the
+last readable percentage while equipment data is transiently unavailable,
+then refreshes from player inventory/equipment events or bounded retries.
+Focused loading-screen cases and the full 112-test/757-Lua desktop suite pass;
+native teleport, pixels, secure input, taint and frame time are pending.
+[Evidence](CHAT_CHARACTER_DURABILITY.md).
+
 31 October secret-channel fallback: nameplate channel IDs are selected
 without testing a possibly secret value. Unknown, item, physical and
 restricted casts keep their default bar; readable magic casts retain school
@@ -27,6 +41,12 @@ The unit-frame backdrop, school fill and tip keep their existing placement.
 The focused layer regression rejects the previous source; full desktop
 validation passes 112 tests/757 Lua files. Native pixels, taint and frame
 time remain pending. [Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
+31 October chat character durability: the percentage now shows `100%` when
+equipped gear has readable full durability; unreadable or absent durability
+still leaves the label hidden. The focused state check and full 112-test/
+757-Lua desktop suite pass. Native pixels, equipment changes, combat/taint
+and frame time remain pending. [Evidence](CHAT_CHARACTER_DURABILITY.md).
 
 31 October combat grid usability: mana gem and healthstone now darken while
 dead/ghost and respect a live unusable item result once bags settle. Focused

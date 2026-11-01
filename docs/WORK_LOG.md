@@ -25,6 +25,24 @@ trinket and 14 combat-grid checks. Isolated published-source desktop validation
 passes 112 tests/757 Lua syntax files. Native acceptance remains pending.
 [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+## 2026-10-31 - chat durability after teleport
+
+The user reported that the character-button percentage disappears after a
+teleport loading screen. The previous candidate scanned immediately on
+`PLAYER_ENTERING_WORLD` and hid the label on a transient no-data return.
+Checked main, the working tree, continuity records, the dated external
+checkpoint's presence and current Retail WTF setting read-only before
+editing; no setting override or user data was changed.
+
+The painter now retains the last visible percentage through a bounded
+world-entry data gap. Player inventory/equipment events or one 0.5-second
+retry restore it; a final retry 1.5 seconds later hides it only if data is
+still absent. Stale callbacks from an older world entry do no work. The
+focused fixture covers event timing, repeated transitions, full/damaged/
+empty/secret data; full 112-test/757-Lua desktop suite passes. Native
+teleport, clicks, pixels, combat taint and matched frame time remain pending.
+[Evidence](CHAT_CHARACTER_DURABILITY.md). WoW stayed in the background.
+
 ## 2026-10-31 - keep default cast appearance for inaccessible schools
 
 The user clarified that item, channel, physical and other casts with no
@@ -37,6 +55,29 @@ The new fixture fails on baseline by borrowing the adjacent empowered field,
 then passes 56 nameplate checks with the fix. The shared renderer still passes
 13,898 checks. Native secret, pixel, taint and frame-time checks pending.
 [Evidence](SECRET_CHANNEL_FALLBACK.md).
+
+## 2026-10-31 - chat character durability percentage
+
+The user reported no percentage under the chat-frame character button. Main
+was `0c197f5`; the working tree was initially clean. During inspection,
+unrelated cast-bar source/test edits appeared; they were left untouched.
+Read contribution/continuity/spec records and checked the dated external
+29 October source/history/settings tree and current Retail WTF account
+settings read-only. The external checkpoint `.git` was inaccessible to this
+sandbox, while prior source/history verification is recorded in this log.
+The current account settings have no explicit `chat_btn_durability` override.
+
+The loaded painter hid the label at `lowest >= 100`. It now tracks whether
+any equipped slot has readable durability and shows `100%` in that case,
+while preserving the hidden state for empty/restricted data. Existing
+events, slot scan, secure button, colors and settings remain. Source hashes,
+focused cases and pending native checks are in
+[CHAT_CHARACTER_DURABILITY.md](CHAT_CHARACTER_DURABILITY.md). The focused
+test and full 112-test/757-Lua desktop suite pass; native client checks and
+matched performance measurements remain pending. WoW and settings were not
+controlled or changed. Regenerated source-derived reference pages and the
+verification index from the current workspace; `validate_docs.py` passes
+with 790 classified sources and 580 TOC/XML-reachable files.
 
 ## 2026-10-31 - lower nameplate cast-school backdrop artwork
 
@@ -1486,3 +1527,27 @@ local files and verified complete Git history. Source ZIP SHA-256:
 GitHub main matched parent `57a252e0e2b467cf7788c3f52aa5d1dd8d83779e`.
 Private settings/captures/archives and ignored local helpers remain outside Git.
 Publish by ordinary push to main, then verify remote identity and clean status.
+
+## 1 November 2026 - GitHub feature overview and current local publication
+
+1 November 2026 GitHub publication: added a root README with a compact feature
+overview covering the current inventory, links to all detailed feature controls,
+client-specific availability, companion integrations, installation and command
+entry points. The complete local payload includes the pending chat durability
+loading-screen correction. Fresh combined desktop validation passes 113 scripts
+and 758 Lua syntax files; native pending checks retain their recorded scope.
+
+The README describes shipped feature families, not every historical specification
+as implemented. Existing detailed feature/options/commands/integration references
+remain authoritative for controls and client gates; no new competing inventory
+or universal client-certification claim was added. No runtime edits, live game
+interaction, settings/profiler changes or excluded callback work in this task.
+
+External checkpoint `Publish-readme-20261101T130027Z` preserves 1,396 actual
+files and verified Git history, including all pending/untracked work. Source
+archive SHA-256: `5981eedb563317b7e56ea089022528741a966a4ec72ac3672a5c3aef6a6b873f`.
+Remote main matched parent `0e73e74a6e782a30fd04289bc84bbf551c440fd8`.
+The [fresh publication report](validation/github-readme-publication-2026-11-01.json)
+covers the complete local Lua source. Publish all current addon/test/docs and the
+new README by ordinary push to main, then read back the remote identity. Private
+settings, recoveries, captures and ignored sync helpers stay outside Git.

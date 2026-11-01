@@ -14,6 +14,19 @@ usability is false. Focused loaded-paint checks and the isolated published-sourc
 frame-time and FPS measurements remain pending.
 [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+31 October chat durability teleport follow-up adds two player-inventory
+event registrations and at most two one-shot timers after a world-entry
+no-data read. Both timers stop work after a successful read or newer world
+entry. No ticker or permanent OnUpdate was added. Focused event fixture and
+full 112-test/757-Lua desktop suite pass; native paired CPU, allocations,
+frame time and FPS remain unmeasured. [Evidence](CHAT_CHARACTER_DURABILITY.md).
+
+31 October chat character durability changes one condition in the existing
+inventory-event painter. It adds no event, scan, timer, hook or frame. Focused
+state checks and full 112-test/757-Lua desktop validation pass. Native paired
+CPU, allocations, frame time and FPS remain unmeasured on every supported
+client. [Evidence](CHAT_CHARACTER_DURABILITY.md).
+
 31 October combat grid gem/stone tint adds no event, timer, ticker, hook or
 secure write or extra item-usability read. The existing usable paint and
 life-event lanes evaluate the same live item result after bags settle.

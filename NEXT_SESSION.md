@@ -1,5 +1,12 @@
 # Next session
 
+1 November 2026 GitHub publication: added a root README with a compact feature
+overview covering the current inventory, links to all detailed feature controls,
+client-specific availability, companion integrations, installation and command
+entry points. The complete local payload includes the pending chat durability
+loading-screen correction. Fresh combined desktop validation passes 113 scripts
+and 758 Lua syntax files; native pending checks retain their recorded scope.
+
 1 November trinket tint: on every client compare an equipped passive trinket
 with a ready on-use trinket; then check unusable use spell, cooldown, dead/
 revived state, tooltip, slot 13/14 clicks and bag flyout. Native pixels,
@@ -12,6 +19,14 @@ clients. Check `/use 13|14`, keys, swap queue, gem/stone tint, pixels, taint
 and matched frame time. Focused trinket and combat-grid desktop fixtures pass;
 native acceptance remains pending.
 [Evidence](docs/TRINKET_EQUIPPED_USABILITY.md).
+
+31 October chat durability teleport follow-up: after reload, teleport through
+a loading screen and confirm the character-button percentage remains visible
+or returns when player equipment loads. Repeat with damaged/full gear, gear
+swap and no readable durability; check clicks, text pixels, combat taint and
+matched frame time on each client. Desktop timing/event fixture and full
+112-test/757-Lua suite pass; native acceptance is pending.
+[Evidence](docs/CHAT_CHARACTER_DURABILITY.md).
 
 31 October secret-channel fallback: on Retail and Forever, test target/focus
 and Blizzard nameplate casts in combat. Readable magic should keep school
@@ -27,6 +42,13 @@ health text and selection chrome while fill/tip/halo/particles remain visible.
 Check secret fallback, combat taint, pixels and matched frame time. Desktop
 112-test/757-Lua suite passes; native acceptance remains pending.
 [Evidence](docs/NAMEPLATE_BACKDROP_LAYER.md).
+
+31 October chat character durability: sequentially check the native chat
+button on each supported client with fully repaired, damaged and no readable
+durability gear. Confirm `100%` is visible, lower values/color update on
+inventory events, empty data hides text, and button clicks, pixels, combat
+taint and frame time remain correct. Desktop 112 tests/757 syntax files pass;
+native acceptance is pending. [Evidence](docs/CHAT_CHARACTER_DURABILITY.md).
 
 31 October combat grid usability: sequentially check mana gem and healthstone
 beside potion/bandage on every supported client while alive, dead/ghost and

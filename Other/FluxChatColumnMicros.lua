@@ -1206,8 +1206,11 @@ local function CreateCharacterButton(parent)
     end)
     WatchCharacterFrame(btn)
 
+    local worldDurabilityPending = false
+    local worldDurabilitySerial = 0
     local function UpdateDurability()
         local lowest = 100
+        local hasDurability = false
         if GetInventoryItemDurability then
             for slot = 1, 18 do
                 local cur, mx = GetInventoryItemDurability(slot)
@@ -1215,6 +1218,7 @@ local function CreateCharacterButton(parent)
                     cur, mx = nil, nil
                 end
                 if cur and mx and mx > 0 then
+                    hasDurability = true
                     local pctValue = (cur / mx) * 100
                     if pctValue < lowest then
                         lowest = pctValue
@@ -1226,17 +1230,45 @@ local function CreateCharacterButton(parent)
         if btn.icon then
             btn.icon:SetVertexColor(1, 1, 1, 1)
         end
-        if lowest >= 100 then
-            pct:Hide()
-            return
+        if not hasDurability then
+            if not worldDurabilityPending then
+                pct:Hide()
+            end
+            return false
         end
+        worldDurabilityPending = false
         pct:SetText(math.floor(lowest) .. "%")
         pct:SetTextColor(DurabilityTextColor(lowest))
         pct:Show()
+        return true
+    end
+    local function RefreshDurabilityAfterWorld()
+        worldDurabilitySerial = worldDurabilitySerial + 1
+        worldDurabilityPending = true
+        if UpdateDurability() then
+            return
+        end
+        if not (C_Timer and C_Timer.After) then
+            worldDurabilityPending = false
+            UpdateDurability()
+            return
+        end
+        local serial = worldDurabilitySerial
+        C_Timer.After(0.5, function()
+            if serial ~= worldDurabilitySerial or not worldDurabilityPending then return end
+            if UpdateDurability() then return end
+            C_Timer.After(1.5, function()
+                if serial ~= worldDurabilitySerial or not worldDurabilityPending then return end
+                worldDurabilityPending = false
+                UpdateDurability()
+            end)
+        end)
     end
     local events = CreateFrame("Frame")
     events:RegisterEvent("UPDATE_INVENTORY_DURABILITY")
     events:RegisterEvent("UPDATE_INVENTORY_ALERTS")
+    events:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+    events:RegisterEvent("UNIT_INVENTORY_CHANGED")
     events:RegisterEvent("PLAYER_ENTERING_WORLD")
     events:RegisterEvent("UNIT_PORTRAIT_UPDATE")
     events:RegisterEvent("PORTRAITS_UPDATED")
@@ -1250,6 +1282,13 @@ local function CreateCharacterButton(parent)
         end
         if event == "PORTRAITS_UPDATED" then
             ApplyPortrait(btn)
+            return
+        end
+        if event == "UNIT_INVENTORY_CHANGED" and unit ~= "player" then
+            return
+        end
+        if event == "PLAYER_ENTERING_WORLD" then
+            RefreshDurabilityAfterWorld()
             return
         end
         UpdateDurability()

@@ -13,6 +13,13 @@ each native client. Focused loaded-paint fixtures pass; isolated published-sourc
 desktop suite passes 112 tests/757 Lua files. Native acceptance pending.
 [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+31 October chat durability teleport follow-up: native teleport/loading-screen
+recovery now needs sequential verification on every supported client. Test
+normal repairs and gear swaps, repeated world entries, truly unreadable gear,
+secure clicks, pixels, combat taint and frame time. Focused timing/event
+fixture and full 112-test/757-Lua desktop suite pass.
+[Evidence](CHAT_CHARACTER_DURABILITY.md).
+
 31 October secret-channel fallback: verify nameplate channels with secret or
 missing spell IDs keep default appearance, while readable magic keeps its
 school theme. Explicit ID selection passes a baseline-rejecting 56-check
@@ -23,6 +30,13 @@ fixture. Native Retail/Forever combat, pixel and taint checks pending.
 Blizzard cast/health chrome. A baseline-rejecting layer test and the full
 112-test/757-Lua desktop suite pass. Native pixels/taint/performance pending.
 [Evidence](NAMEPLATE_BACKDROP_LAYER.md).
+
+31 October chat character durability: verify `100%` under the button on
+fully repaired gear, lower percentages after damage, and hidden text when
+there is no readable durability. Focused state checks and full 112-test/
+757-Lua desktop validation pass; native pixel, equipment-change, secure
+input, taint and frame-time checks remain pending.
+[Evidence](CHAT_CHARACTER_DURABILITY.md).
 
 31 October combat grid conjured-item usability: verify gem and healthstone
 tint in native alive/dead/ghost, full-resource, cooldown and empty/replenished

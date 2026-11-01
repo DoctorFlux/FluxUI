@@ -197,3 +197,13 @@ removed. Existing tracker correction is preserved as separate uncommitted work.
 ## Shared chat column follow-up
 
 BUG-011 gives SPEC-26-L406 partial alignment/lifecycle coverage: shared inset8, reload-safe relative tab offset, primary dock anchor for all tabs, selected Copy target unchanged.2,009 checks/five desktop pairs and native Retail seven-selection geometry pass. [Evidence](CHAT_COLUMN_ALIGNMENT.md). Other requirements/native clients/security remain pending.
+
+## GitHub visitor overview — 1 November 2026
+
+The root [README](../README.md#features-at-a-glance) summarizes the feature
+families above, including newer loot alerts and school-themed cast bars, and
+links to their existing detailed chapters. It also covers companion ownership,
+client differences, setup effects and installation. The full options, defaults,
+custom controls, commands and integration inventories remain linked rather
+than being duplicated on the repository front page. This editorial overview
+does not promote historical requirements or pending native checks to complete.

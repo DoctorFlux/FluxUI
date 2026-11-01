@@ -23,7 +23,7 @@ Settings live in **`FluxOptions.db.global.chatCopyPaste`**, so they are account/
 | Social | Friends/quick-join native affordance. |
 | Channels | Native channel button. |
 | Guild | Guild opener with online-member count. |
-| Character Info | Character micro-button appearance with durability percentage. |
+| Character Info | Character micro-button appearance with the lowest readable equipped durability percentage, including `100%`; no readable durability hides the label. |
 | Bags | Bag opener/count/tooltip behavior matching the Flux bag micro button. |
 | Copy Chat | Copy the selected chat window. |
 | FluxUI Options | Left-click Flux options; right-click Blizzard settings. |
@@ -33,7 +33,7 @@ Each toggle is hidden when its corresponding client/frame control does not exist
 
 `FluxCCP:InstallColumnButtons`, `PlaceColumnButtons`, `AttachColumnToDock`, and `UpdateColumnButtons` own the column. Native social/channel/menu buttons and Flux-owned buttons share placement; guild roster updates refresh the guild count. Combat-deferred dock changes retry on `PLAYER_REGEN_ENABLED`.
 
-[`FluxChatColumnMicros.lua`](../Other/FluxChatColumnMicros.lua) creates bag and character controls whose names deliberately do not end in `MicroButton`, preventing Micro Menu discovery from collecting them. Character opening uses a secure click to the native Character micro button on clients where a direct Lua `ToggleCharacter` would taint the native panel. It refreshes portrait/durability/status state from native events and applies late-binding/combat retry guards. The bag copy reuses shared bag behavior; it does not maintain a second bag-content index.
+[`FluxChatColumnMicros.lua`](../Other/FluxChatColumnMicros.lua) creates bag and character controls whose names deliberately do not end in `MicroButton`, preventing Micro Menu discovery from collecting them. Character opening uses a secure click to the native Character micro button on clients where a direct Lua `ToggleCharacter` would taint the native panel. It refreshes portrait/durability/status state from native events and applies late-binding/combat retry guards. During teleport/loading-screen inventory gaps, the character percentage keeps its last visible value until player equipment returns or a bounded two-second retry expires. The bag copy reuses shared bag behavior; it does not maintain a second bag-content index.
 
 ## Trade food and water
 

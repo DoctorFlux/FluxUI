@@ -15,12 +15,26 @@ desktop validation passes 112 tests/757 Lua syntax files. Five-client native
 ready/cooldown/dead/revive tint, clicks, keybinds, pixels and taint remain
 pending. [Evidence](TRINKET_EQUIPPED_USABILITY.md).
 
+31 October chat durability teleport follow-up: focused desktop events model
+empty durability at world entry, first/late return, player-only inventory
+refresh, expiry and repeated teleports. Full 112-test/757-Lua suite passes.
+Native loading-screen recovery, clicks, pixels, combat taint and frame time
+remain pending on all five supported clients.
+[Evidence](CHAT_CHARACTER_DURABILITY.md).
+
 31 October secret-channel fallback: Retail/Forever unit API declarations
 confirm cast identity can be secret; castBarID supplies no magic school.
 Explicit channel-ID selection keeps the native/default bar when identity
 cannot be read. Baseline rejects the 56-check nameplate fixture; the shared
 renderer passes 13,898 checks. Native combat, pixels, taint and frame time
 remain pending. [Evidence](SECRET_CHANNEL_FALLBACK.md).
+
+31 October chat character durability: the loaded painter distinguishes
+readable full durability from absent/restricted values. The focused desktop
+fixture covers `100%`, `75%`, `0%`, secret and empty readings; full
+112-test/757-Lua validation passes. Native character-button text, equipment
+changes, pixels, clicks, combat/taint and frame time remain pending on every
+supported client. [Evidence](CHAT_CHARACTER_DURABILITY.md).
 
 31 October nameplate backdrop: desktop renderer checks place single/hybrid
 artwork below native chrome, including plate-level changes during a cast;
