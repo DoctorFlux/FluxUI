@@ -718,6 +718,24 @@ local function AttachToBlizzardBank(anchor)
     return true
 end
 
+local function AttachToCombinedBank(anchor)
+    if not anchor or not anchor.IsShown or not anchor:IsShown() then
+        return false
+    end
+    btn:SetParent(anchor)
+    btn:SetFrameStrata(anchor:GetFrameStrata() or "HIGH")
+    btn:SetFrameLevel((anchor:GetFrameLevel() or 1) + 25)
+    btn:ClearAllPoints()
+    -- Keep the button below the title strip and above the bank bag slot row.
+    btn:SetPoint("TOPLEFT", anchor, "TOPLEFT", 65, -31)
+    MatchRepairButtonSize(btn)
+    btn:Show()
+    if autoToggle then
+        autoToggle:SetFrameLevel(btn:GetFrameLevel() + 5)
+    end
+    return true
+end
+
 function Button.AttachToBank()
     EnsureButton()
     if UsesAlternativeBagUI() then
@@ -741,6 +759,12 @@ function Button.AttachToBank()
             AttachToBlizzardBank(hiddenDefault)
             Button.RefreshIdle()
         end
+        return
+    end
+
+    local combined = _G.FluxCombinedBank
+    if combined and AttachToCombinedBank(combined) then
+        Button.RefreshIdle()
         return
     end
 

@@ -1,7 +1,8 @@
 -- Era / Anniversary combined backpack.
 -- Those clients have no ContainerFrameCombinedBags. This window reuses each
 -- player bag's item buttons (so clicks, tooltips, and cooldowns stay Blizzard's)
--- and lays them out like the Forever gamepad combined bag. Bank frames are not taken.
+-- and lays them out like the Forever gamepad combined bag. Bank ownership is
+-- handled by FluxClassicCombinedBank.lua.
 local addonName, ns = ...
 local Flux = ns.Flux or _G.Flux
 
@@ -2427,6 +2428,12 @@ watcher:RegisterEvent("BAG_UPDATE")
 watcher:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 watcher:RegisterEvent("CURSOR_CHANGED")
 watcher:SetScript("OnEvent", function(_, event)
+	if UsesAltBag() then
+		if combined:IsShown() then
+			combined:Hide()
+		end
+		return
+	end
 	if event == "ADDON_LOADED" or event == "PLAYER_ENTERING_WORLD" then
 		InstallWrappers()
 		InstallAnchorGuard()

@@ -81,6 +81,7 @@ Inventory\Ledger.lua
 Inventory\Tooltip.lua
 Inventory\Builtin\Bags.lua
 Inventory\Builtin\FluxClassicCombinedBag.lua
+Inventory\Builtin\FluxClassicCombinedBank.lua
 Inventory\Builtin\Bank.lua
 Inventory\Builtin\Equip.lua
 Inventory\Builtin\Mail.lua

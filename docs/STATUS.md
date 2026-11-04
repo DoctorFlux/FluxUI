@@ -1,5 +1,14 @@
 # Development status
 
+4 November 2026 Classic combined bank: Era and Anniversary now host native
+character-bank item buttons, bank bag contents, six/seven bank bag equipment
+slots and Blizzard's purchase controls in a ten-column Flux window. Plain bank
+bag slot clicks no longer toggle separate bags; Baganator receives early and
+late UI ownership; the existing bank restock button anchors to the new view.
+Focused loaded-module checks pass 33 per client model; native pixels,
+interaction, taint and performance remain pending.
+[Evidence](CLASSIC_COMBINED_BANK.md).
+
 1 November 2026 GitHub publication: added a root README with a compact feature
 overview covering the current inventory, links to all detailed feature controls,
 client-specific availability, companion integrations, installation and command

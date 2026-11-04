@@ -31,6 +31,11 @@ The following matrix describes code in this working tree, not tested compatibili
 
 Syndicator supplies facts; Baganator supplies bag views and configuration. The Syndicator adapter listens for readiness and cache changes, publishes the shared inventory context and avoids a competing account ledger. The Baganator bridge consumes Flux junk/Respec/preset state and can run only the features whose APIs and dependencies are ready. Neither a Baganator view nor Syndicator's cached count automatically authorizes moving a bank item.
 
+On Era and Anniversary, a loaded Baganator also owns the visible bag and
+character-bank windows. Flux's combined bag and combined bank stay inactive;
+late loading closes/releases them and restores Blizzard's bank controls before
+Baganator presents its views. See [combined bank evidence](CLASSIC_COMBINED_BANK.md).
+
 Baganator ownership includes modifications to its active category/section order and corner settings, plus selected cursor-operation wrappers such as `SellCursorItem`. Item identity is handled by local adapters; `C_Item.GetItemGUID` and `C_Item.DoesItemExist` remain native. These contracts are documented in [Baganator](24-baganator-compat.md); describing the integration as passive decoration would hide meaningful behavior.
 
 ## Meter backend and Forever Details compatibility

@@ -183,6 +183,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [FluxDefaultSettings.lua](../FluxDefaultSettings.lua) | 1 | 0 | 39 | 11 | 2 |
 | [Inventory/Builtin/Auctions.lua](../Inventory/Builtin/Auctions.lua) | 4 | 0 | 0 | 0 | 0 |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua](../Inventory/Builtin/FluxClassicCombinedBag.lua) | 0 | 0 | 3 | 6 | 4 |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua](../Inventory/Builtin/FluxClassicCombinedBank.lua) | 0 | 0 | 1 | 8 | 2 |
 | [Inventory/Builtin/Mail.lua](../Inventory/Builtin/Mail.lua) | 3 | 0 | 0 | 4 | 2 |
 | [Inventory/Builtin/Watch.lua](../Inventory/Builtin/Watch.lua) | 0 | 0 | 1 | 0 | 0 |
 | [Inventory/CreateSpells.lua](../Inventory/CreateSpells.lua) | 0 | 0 | 0 | 2 | 0 |

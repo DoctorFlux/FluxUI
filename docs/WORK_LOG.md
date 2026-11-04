@@ -1,5 +1,25 @@
 # Work log
 
+## 2026-11-04 - Era/Anniversary combined bank
+
+The user requested a bank equivalent of Flux's combined bag, bank bag slot
+visibility and purchases, then clarified that Baganator must own both views
+when loaded and bank bag slot clicks must never toggle separate bags. Read
+continuity/specs, checked the clean main tree, verified the dated external
+source/history bundle and on-disk Era/Anniversary settings, and inspected
+Gethe's loaded Vanilla/TBC bank paths. Added a ten-column bank window with
+native item buttons, purchased bag contents, native slot row and purchase
+footer; late Baganator handoff restores original native parents/scripts.
+The user's subsequent native trace showed a newly equipped bank bag could
+cause Blizzard `ContainerFrame_GenerateFrame` to anchor an item still hosted
+by Flux. The opener now returns hosted buttons before opening missing bank
+bags and rehosts them afterward. The full-slot state also hides the purchase
+button and next-slot cost while retaining current gold. The bank restock button
+now anchors beside the new window's bag slot row and returns to Baganator's
+view on handoff. Focused Era and Anniversary models pass 33 checks each;
+the full desktop suite and native status are in [evidence](CLASSIC_COMBINED_BANK.md).
+Native visual, input, taint and performance acceptance remains pending.
+
 ## 2026-11-01 - dim passive equipped trinkets
 
 The user clarified that a trinket without an on-use effect must be dim. The

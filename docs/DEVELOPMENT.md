@@ -1,5 +1,10 @@
 # Development tasks
 
+4 November combined Classic bank: complete native Era and Anniversary
+acceptance for [BANK-C01 through BANK-C05](CLASSIC_COMBINED_BANK.md),
+including plain-click no-toggle bank bag slots, purchase state, Baganator
+handoff and visual/performance comparison. Focused desktop models pass.
+
 1 November trinket tint: verify passive equipped trinkets dim and ready on-use
 trinkets stay bright; check use spell restrictions, cooldown, empty slot,
 combat input and pixels. Focused 10 checks and isolated 112-test/757-Lua

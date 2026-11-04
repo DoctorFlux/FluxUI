@@ -1,5 +1,15 @@
 # Client and reference validation — 29 October 2026
 
+4 November Era/Anniversary combined bank: inspected versioned Gethe Vanilla
+and TBC bank source mirrors and their loaded TOC paths; installed clients are
+newer and upstream mirror commits are unavailable. Loaded-module desktop
+models pass 33 checks each for native button/container IDs, six/seven bank
+bag slots, compact purchase controls, no-toggle slot clicks, drag/drop,
+restock attachment, late Baganator
+handoff and close/restore. The full suite result is in
+[evidence](CLASSIC_COMBINED_BANK.md). Native screenshots, item operations,
+purchase confirmation, taint, FPS and frame time are pending.
+
 1 November passive trinket correction: the user's intended rule is dim for an
 equipped trinket with no on-use spell and bright for a ready on-use trinket.
 Baseline fails the new passive check; candidate passes 10 focused checks and

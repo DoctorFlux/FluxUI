@@ -405,12 +405,20 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [FluxDefaultSettings.lua:2896](../../FluxDefaultSettings.lua#L2896) | `RegisterEvent` | `"UI_SCALE_CHANGED"` |
 | [FluxDefaultSettings.lua:2898](../../FluxDefaultSettings.lua#L2898) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [FluxDefaultSettings.lua:2901](../../FluxDefaultSettings.lua#L2901) | `RegisterEvent` | `"COMPACT_UNIT_FRAME_PROFILES_LOADED"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:1164](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1164) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:2424](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2424) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:2425](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2425) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:2426](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2426) | `RegisterEvent` | `"BAG_UPDATE"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:2427](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2427) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
-| [Inventory/Builtin/FluxClassicCombinedBag.lua:2428](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2428) | `RegisterEvent` | `"CURSOR_CHANGED"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:1165](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1165) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:2425](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2425) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:2426](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2426) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:2427](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2427) | `RegisterEvent` | `"BAG_UPDATE"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:2428](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2428) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
+| [Inventory/Builtin/FluxClassicCombinedBag.lua:2429](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2429) | `RegisterEvent` | `"CURSOR_CHANGED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:500](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L500) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:501](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L501) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:502](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L502) | `RegisterEvent` | `"BANKFRAME_OPENED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:503](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L503) | `RegisterEvent` | `"BANKFRAME_CLOSED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:504](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L504) | `RegisterEvent` | `"BAG_UPDATE"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:505](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L505) | `RegisterEvent` | `"PLAYERBANKSLOTS_CHANGED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:506](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L506) | `RegisterEvent` | `"PLAYERBANKBAGSLOTS_CHANGED"` |
+| [Inventory/Builtin/FluxClassicCombinedBank.lua:507](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L507) | `RegisterEvent` | `"PLAYER_MONEY"` |
 | [Inventory/Builtin/Mail.lua:334](../../Inventory/Builtin/Mail.lua#L334) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
 | [Inventory/Builtin/Mail.lua:335](../../Inventory/Builtin/Mail.lua#L335) | `RegisterEvent` | `"MAIL_FAILED"` |
 | [Inventory/Builtin/Mail.lua:361](../../Inventory/Builtin/Mail.lua#L361) | `RegisterEvent` | `"MAIL_SUCCESS"` |
@@ -6074,22 +6082,22 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `EnsureEdgeStrips` | [L107](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L107) |
-| `frame:SetPortraitToAsset` | [L186](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L186) |
-| `frame:SetTitle` | [L217](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L217) |
-| `slotRow:Layout` | [L1294](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1294) |
-| `combined:EnumerateValidItems` | [L1728](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1728) |
-| `end_G.FluxRefreshInBagSlots` | [L1890](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1890) |
-| `ToggleAllBags` | [L2016](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2016) |
-| `ToggleBackpack` | [L2028](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2028) |
-| `ToggleBag` | [L2040](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2040) |
-| `OpenBag` | [L2052](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2052) |
-| `OpenBackpack` | [L2062](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2062) |
-| `OpenAllBags` | [L2071](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2071) |
-| `CloseAllBags` | [L2089](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2089) |
-| `bar.Layoutbar.Layout` | [L2132](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2132) |
-| `hidden:Layout` | [L2221](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2221) |
-| `bar.Layoutbar.Layout` | [L2236](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2236) |
+| `EnsureEdgeStrips` | [L108](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L108) |
+| `frame:SetPortraitToAsset` | [L187](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L187) |
+| `frame:SetTitle` | [L218](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L218) |
+| `slotRow:Layout` | [L1295](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1295) |
+| `combined:EnumerateValidItems` | [L1729](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1729) |
+| `end_G.FluxRefreshInBagSlots` | [L1891](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L1891) |
+| `ToggleAllBags` | [L2017](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2017) |
+| `ToggleBackpack` | [L2029](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2029) |
+| `ToggleBag` | [L2041](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2041) |
+| `OpenBag` | [L2053](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2053) |
+| `OpenBackpack` | [L2063](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2063) |
+| `OpenAllBags` | [L2072](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2072) |
+| `CloseAllBags` | [L2090](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2090) |
+| `bar.Layoutbar.Layout` | [L2133](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2133) |
+| `hidden:Layout` | [L2222](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2222) |
+| `bar.Layoutbar.Layout` | [L2237](../../Inventory/Builtin/FluxClassicCombinedBag.lua#L2237) |
 
 ### Inventory/Builtin/Guild.lua
 
@@ -6649,7 +6657,7 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 | `Button.RefreshLive` | [L431](../../Inventory/Restock/Bank/FluxBankRestockButton.lua#L431) |
 | `Button.FindBaganatorBankView` | [L454](../../Inventory/Restock/Bank/FluxBankRestockButton.lua#L454) |
 | `Button.AttachToBaganatorBank` | [L619](../../Inventory/Restock/Bank/FluxBankRestockButton.lua#L619) |
-| `Button.AttachToBank` | [L721](../../Inventory/Restock/Bank/FluxBankRestockButton.lua#L721) |
+| `Button.AttachToBank` | [L739](../../Inventory/Restock/Bank/FluxBankRestockButton.lua#L739) |
 
 ### Inventory/Restock/Bank/FluxBankRestockDebug.lua
 

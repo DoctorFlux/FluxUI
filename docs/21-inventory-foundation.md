@@ -1,6 +1,6 @@
 # Inventory: sources, snapshots, ledgers, and item knowledge
 
-This is the current implementation reference for `Flux.Inventory`, its adapters, and the item/profession services built beside it. The inventory foundation supplies facts to buttons, restock, salvage, Respec, tooltips, and status bars. There is also a Flux combined-bag window on Era/Anniversary; saying Flux only supplies inventory data would miss that active feature.
+This is the current implementation reference for `Flux.Inventory`, its adapters, and the item/profession services built beside it. The inventory foundation supplies facts to buttons, restock, salvage, Respec, tooltips, and status bars. Era/Anniversary also have Flux combined bag and character-bank windows when no alternative bag UI owns them. The bank hosts Blizzard item buttons, bank bag slots and purchase controls; see [combined bank evidence](CLASSIC_COMBINED_BANK.md). Saying Flux only supplies inventory data would miss these active features.
 
 ## Ownership and initialization
 

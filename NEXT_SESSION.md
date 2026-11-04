@@ -1,5 +1,12 @@
 # Next session
 
+4 November Classic combined bank: verify Era and Anniversary native banker
+interaction, ten-column layout, six/seven bank bag slots, cursor drag/drop,
+purchase confirmation/cost, item clicks, Baganator early/late ownership and
+the bank restock button's click/drag/auto toggle. Desktop lifecycle models pass; native screenshots,
+taint and matched performance are pending. Keep WoW in the background and
+test named characters sequentially. [Evidence](docs/CLASSIC_COMBINED_BANK.md).
+
 1 November 2026 GitHub publication: added a root README with a compact feature
 overview covering the current inventory, links to all detailed feature controls,
 client-specific availability, companion integrations, installation and command

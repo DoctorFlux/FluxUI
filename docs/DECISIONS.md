@@ -1,5 +1,18 @@
 # Decisions
 
+## 2026-11-04 - combined Classic character bank
+
+- Match the existing Era/Anniversary combined bag with a ten-column bank grid,
+  a coin portrait, bank bag slot row and Blizzard's live purchase controls.
+  Host native bank buttons under frames with their original container IDs;
+  keep Blizzard's bank frame shown for events and purchase state.
+- Bank bag slots are for viewing, dragging and equipping only. Plain clicks do
+  not open or close bag frames; the combined window displays purchased bag
+  contents. Restore the original button scripts and parents on close/handoff.
+- Give Baganator exclusive bag and bank UI ownership at startup and late load.
+  No saved-variable migration or noncharacter bank callback changes.
+  [Evidence](CLASSIC_COMBINED_BANK.md).
+
 ## 2026-11-01 - dim equipped passive trinkets
 
 - Apply the equipped-ownership usability fallback only when the managed
