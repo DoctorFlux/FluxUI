@@ -19,6 +19,8 @@ now anchors beside the new window's bag slot row and returns to Baganator's
 view on handoff. Focused Era and Anniversary models pass 33 checks each;
 the full desktop suite and native status are in [evidence](CLASSIC_COMBINED_BANK.md).
 Native visual, input, taint and performance acceptance remains pending.
+Published the complete validated payload to main as
+`410f32e3adb29addbe0380952f5caf0b99522bfd`; GitHub main readback matched.
 
 ## 2026-11-01 - dim passive equipped trinkets
 

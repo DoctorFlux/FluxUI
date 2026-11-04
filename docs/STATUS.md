@@ -8,6 +8,7 @@ late UI ownership; the existing bank restock button anchors to the new view.
 Focused loaded-module checks pass 33 per client model; native pixels,
 interaction, taint and performance remain pending.
 [Evidence](CLASSIC_COMBINED_BANK.md).
+Published source/records on main in `410f32e3adb29addbe0380952f5caf0b99522bfd`.
 
 1 November 2026 GitHub publication: added a root README with a compact feature
 overview covering the current inventory, links to all detailed feature controls,

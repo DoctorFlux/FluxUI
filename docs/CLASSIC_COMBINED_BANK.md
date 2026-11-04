@@ -1,5 +1,8 @@
 # Classic combined bank — 4 November 2026
 
+Published to GitHub main as
+`410f32e3adb29addbe0380952f5caf0b99522bfd` on 4 November 2026.
+
 ## Requirements and scope
 
 | ID | Requirement | Implementation | Evidence still needed |
