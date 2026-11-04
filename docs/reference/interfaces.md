@@ -471,6 +471,50 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Layout/UnifiedBorder.lua:858](../../Layout/UnifiedBorder.lua#L858) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Layout/UnifiedBorder.lua:859](../../Layout/UnifiedBorder.lua#L859) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
 | [Layout/UnifiedBorder.lua:860](../../Layout/UnifiedBorder.lua#L860) | `RegisterEvent` | `"CURSOR_CHANGED"` |
+| [Mail/CategoryAttach.lua:166](../../Mail/CategoryAttach.lua#L166) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/CategoryAttach.lua:167](../../Mail/CategoryAttach.lua#L167) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Contacts.lua:278](../../Mail/Contacts.lua#L278) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Mail/Contacts.lua:279](../../Mail/Contacts.lua#L279) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Contacts.lua:280](../../Mail/Contacts.lua#L280) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Contacts.lua:281](../../Mail/Contacts.lua#L281) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Contacts.lua:282](../../Mail/Contacts.lua#L282) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Contacts.lua:283](../../Mail/Contacts.lua#L283) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
+| [Mail/Contacts.lua:284](../../Mail/Contacts.lua#L284) | `RegisterEvent` | `"MAIL_FAILED"` |
+| [Mail/Conveniences.lua:172](../../Mail/Conveniences.lua#L172) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Conveniences.lua:173](../../Mail/Conveniences.lua#L173) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Conveniences.lua:174](../../Mail/Conveniences.lua#L174) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Conveniences.lua:175](../../Mail/Conveniences.lua#L175) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Conveniences.lua:176](../../Mail/Conveniences.lua#L176) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/Conveniences.lua:177](../../Mail/Conveniences.lua#L177) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
+| [Mail/Conveniences.lua:178](../../Mail/Conveniences.lua#L178) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/DoNotWant.lua:101](../../Mail/DoNotWant.lua#L101) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/DoNotWant.lua:102](../../Mail/DoNotWant.lua#L102) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/DoNotWant.lua:103](../../Mail/DoNotWant.lua#L103) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/DoNotWant.lua:104](../../Mail/DoNotWant.lua#L104) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/DoNotWant.lua:105](../../Mail/DoNotWant.lua#L105) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/OpenAll.lua:127](../../Mail/OpenAll.lua#L127) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/OpenAll.lua:128](../../Mail/OpenAll.lua#L128) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/OpenAll.lua:129](../../Mail/OpenAll.lua#L129) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/OpenAll.lua:130](../../Mail/OpenAll.lua#L130) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/OpenAll.lua:131](../../Mail/OpenAll.lua#L131) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/QuickAttach.lua:73](../../Mail/QuickAttach.lua#L73) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/QuickAttach.lua:74](../../Mail/QuickAttach.lua#L74) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/QuickAttach.lua:75](../../Mail/QuickAttach.lua#L75) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/QuickAttach.lua:76](../../Mail/QuickAttach.lua#L76) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/QuickAttach.lua:77](../../Mail/QuickAttach.lua#L77) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/Select.lua:303](../../Mail/Select.lua#L303) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Select.lua:304](../../Mail/Select.lua#L304) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Select.lua:305](../../Mail/Select.lua#L305) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/Select.lua:306](../../Mail/Select.lua#L306) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Select.lua:307](../../Mail/Select.lua#L307) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Select.lua:308](../../Mail/Select.lua#L308) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/Settings.lua:330](../../Mail/Settings.lua#L330) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Settings.lua:331](../../Mail/Settings.lua#L331) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/TradeBlock.lua:30](../../Mail/TradeBlock.lua#L30) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/TradeBlock.lua:31](../../Mail/TradeBlock.lua#L31) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/TradeBlock.lua:32](../../Mail/TradeBlock.lua#L32) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/TradeBlock.lua:33](../../Mail/TradeBlock.lua#L33) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/TradeBlock.lua:34](../../Mail/TradeBlock.lua#L34) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
 | [MicroMenu/FluxAddonMicroButton.lua:103](../../MicroMenu/FluxAddonMicroButton.lua#L103) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxAddonMicroButton.lua:628](../../MicroMenu/FluxAddonMicroButton.lua#L628) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [MicroMenu/FluxAddonMicroButton.lua:629](../../MicroMenu/FluxAddonMicroButton.lua#L629) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -7650,6 +7694,79 @@ Owner: [06-layout.md](../06-layout.md).
 | `UnifiedBorder.GamepadStripFrames` | [L171](../../Layout/UnifiedBorder.lua#L171) |
 | `UnifiedBorder.GetActionGridBorderTop` | [L967](../../Layout/UnifiedBorder.lua#L967) |
 | `UnifiedBorder.RefreshGapAppearance` | [L984](../../Layout/UnifiedBorder.lua#L984) |
+
+### Mail/CategoryAttach.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.AttachCategory` | [L76](../../Mail/CategoryAttach.lua#L76) |
+
+### Mail/Contacts.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.AddContact` | [L48](../../Mail/Contacts.lua#L48) |
+| `Mail.RemoveContact` | [L55](../../Mail/Contacts.lua#L55) |
+| `Mail.RecordRecipient` | [L62](../../Mail/Contacts.lua#L62) |
+| `Mail.GetRecipients` | [L94](../../Mail/Contacts.lua#L94) |
+| `Mail.FillDraft` | [L132](../../Mail/Contacts.lua#L132) |
+
+### Mail/Conveniences.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.ForwardOpenText` | [L120](../../Mail/Conveniences.lua#L120) |
+
+### Mail/OpenAll.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.OpenAll` | [L75](../../Mail/OpenAll.lua#L75) |
+| `Mail.OnJobStateChangedMail.OnJobStateChanged` | [L89](../../Mail/OpenAll.lua#L89) |
+
+### Mail/QuickAttach.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.AttachBagItem` | [L29](../../Mail/QuickAttach.lua#L29) |
+
+### Mail/Select.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.ProcessSelected` | [L216](../../Mail/Select.lua#L216) |
+| `Mail.TakeSelected` | [L239](../../Mail/Select.lua#L239) |
+
+### Mail/Settings.lua
+
+Owner: [34-assets.md](../34-assets.md).
+
+| Declaration | Source |
+|---|---|
+| `Mail.GetProfileName` | [L57](../../Mail/Settings.lua#L57) |
+| `Mail.SwitchProfile` | [L59](../../Mail/Settings.lua#L59) |
+| `Mail.CopyProfile` | [L70](../../Mail/Settings.lua#L70) |
+| `Mail.ResetProfile` | [L78](../../Mail/Settings.lua#L78) |
+| `Mail.DeleteProfile` | [L83](../../Mail/Settings.lua#L83) |
+| `Mail.GetSetting` | [L90](../../Mail/Settings.lua#L90) |
+| `Mail.SetSetting` | [L102](../../Mail/Settings.lua#L102) |
+| `Mail.IsEnabled` | [L119](../../Mail/Settings.lua#L119) |
+| `Mail.Print` | [L123](../../Mail/Settings.lua#L123) |
+| `Mail.OnSettingsChanged` | [L129](../../Mail/Settings.lua#L129) |
+| `Mail.OpenSettingsMenu` | [L134](../../Mail/Settings.lua#L134) |
+| `Mail.OpenModuleMenu` | [L140](../../Mail/Settings.lua#L140) |
 
 ### MicroMenu/FluxAddonMicroButton.lua
 

@@ -1,5 +1,43 @@
 # Work log
 
+## 2026-11-04 - Postal-like mail conveniences
+
+Read repository continuity, Postal v4.3.4 and five local Blizzard mail source
+mirrors. Verified a clean main at `1b319d19aa00fffa7e798a66d045e55902af6706`,
+made a dated Git bundle outside AddOns, and privately copied 20 available
+settings files outside AddOns while no WoW process was visible. The CurseForge
+source page and installed license both say All Rights Reserved; no Postal code
+was incorporated. The user chose direct UI implementation and explicitly
+allowed use of FluxUI inventory services.
+
+Added nine Flux-owned mail modules and an additive `FluxMailDB` root. The
+Postal-shaped Open All button delegates to the native take APIs through a
+single confirmed action worker; the native Open All button is restored when
+the module is disabled. `GetInboxText` invoice is the fifth return, correcting
+the outdated Postal assumption. Included category attachment, expiry action,
+trade blocking with CVar restoration, module submenus, speed/free-slot options
+and named profile snapshots. The full desktop runner passes 122 scripts and
+777 Lua syntax files; the generated source inventory was rebuilt. No client
+was launched or foregrounded, no game preference was changed, and no native
+performance or taint result is claimed. Open requirements and client steps are in
+[MAIL_INTEGRATION.md](MAIL_INTEGRATION.md).
+
+User follow-up: the top and Open All dropdowns were not working as expected,
+and Select reported completion while leaving attachments. Split the dropdowns
+into two menu frames with level-specific routing; restored the Retail menu
+button frame level and keep the custom Open All above native redraws. Fixed
+the worker to scan all receive slots, including sparse high slots, retry
+delayed item metadata, and report remaining mail. Added Shift range and Ctrl
+sender selection. Rechecked local Blizzard dropdown/item APIs for Retail,
+Forever, Era, Anniversary and MoP; desktop tests cover the shared paths but
+native client behavior remains pending. The full 122-script/777-file suite
+passes after the corrections.
+The user then reported the top arrow still had no usable mouse hit area.
+The button now explicitly enables mouse input, registers left-button release,
+uses its exact 25x25 hit rect and sits above mail title/close chrome on every
+client. The direct button click is covered by a focused desktop test. No WoW
+process was visible for native pointer verification.
+
 ## 2026-11-04 - Era/Anniversary combined bank
 
 The user requested a bank equivalent of Flux's combined bag, bank bag slot
@@ -1573,3 +1611,21 @@ The [fresh publication report](validation/github-readme-publication-2026-11-01.j
 covers the complete local Lua source. Publish all current addon/test/docs and the
 new README by ordinary push to main, then read back the remote identity. Private
 settings, recoveries, captures and ignored sync helpers stay outside Git.
+
+## 4 November 2026 - publish current local mail work
+
+User requested all current local updates on GitHub main. Include the built-in
+mail modules, TOC/settings wiring, tests, README feature summary and existing
+implementation/validation records. All 777 current normalized Lua hashes and
+the complete Lua file set match the passing 122-script report
+`docs/validation/mail-integration-2026-11-04.json`; no runtime edit or repeat
+full suite was needed for publication. Mail attachment forwarding, repeat send,
+advanced completion and native acceptance retain their documented pending scope.
+
+External checkpoint `Publish-all-20261104T175541Z` preserves 1,421 actual
+local files and verified complete Git history, including untracked work.
+Source ZIP SHA-256: `fe1f8879d41952e1cc9debc30c000fef49fdcaa6f1dddb09295ca7994e1b76ef`.
+GitHub main matched parent `1b319d19aa00fffa7e798a66d045e55902af6706`.
+Private recoveries/settings/captures and ignored local helpers remain outside
+Git. Use an ordinary push to main; verify remote identity and clean status.
+No game, settings, sync-job or profiler interaction during publication.

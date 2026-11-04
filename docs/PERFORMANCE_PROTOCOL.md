@@ -1,5 +1,12 @@
 # Baseline protocol and currency evidence
 
+4 November built-in mail uses event handlers and short one-shot timers only
+while a selected-take job is active. The contacts picker reads known characters
+when opened; no continuous inbox scan or ticker was added. Desktop suite passes
+118 scripts/768 syntax files. Matched native CPU, allocation, frame-time and
+FPS measurements are pending; none are inferred from the desktop counts.
+[Evidence](MAIL_INTEGRATION.md).
+
 1 November passive trinket tint uses the existing item-spell lookup in the
 equipped usability paint path and adds no event, timer, ticker, hook, secure
 write or item query. The isolated 112-test/757-Lua desktop suite passes;

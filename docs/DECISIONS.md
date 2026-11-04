@@ -1,5 +1,21 @@
 # Decisions
 
+## 2026-11-04 - built-in mail source and ownership
+
+- Treat Postal v4.3.4 as a behavior reference. Its installed `LICENSE.txt`
+  and CurseForge project mark it All Rights Reserved; do not vendor or adapt
+  its files into FluxUI. Keep its saved data separate until a specific
+  migration contract is established.
+- Keep the native MailFrame and native sending/taking APIs. The Flux Open All
+  control uses a single confirmed action worker and restores Blizzard's Open
+  All when disabled. Add Flux-owned controls around the frame and use `Flux.Container` and the existing
+  inventory character store for bag/alt facts. Do not change inventory's
+  Syndicator mail-provider handoff.
+- Use the fifth return of `GetInboxText` for invoice detection in each local
+  Blizzard mail source mirror. Preserve the user's direct-implementation
+  choice; native visual/interaction acceptance remains pending.
+  [Evidence](MAIL_INTEGRATION.md).
+
 ## 2026-11-04 - combined Classic character bank
 
 - Match the existing Era/Anniversary combined bag with a ten-column bank grid,

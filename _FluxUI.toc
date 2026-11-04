@@ -4,7 +4,7 @@
 ## Notes: UI overhaul (Retail Midnight, Forever, Classic Era, Anniversary, MoP Classic)
 ## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames
 ## Dep: Blizzard_CombatLog [AllowLoadGameType camelot]
-## SavedVariables: FluxUI_DB, FluxUI_Options, FluxNonCombatGridDB, FluxFlyoutFavorites_Data, FluxUIGoldLedger, FluxSalvageDB, FluxInvDB, FluxUIInventoryDB, FluxPerfCaptureDB
+## SavedVariables: FluxUI_DB, FluxUI_Options, FluxNonCombatGridDB, FluxFlyoutFavorites_Data, FluxUIGoldLedger, FluxSalvageDB, FluxInvDB, FluxUIInventoryDB, FluxPerfCaptureDB, FluxMailDB
 ## SavedVariablesPerCharacter: _FluxUI_CharSavedVars, FluxSpellBookSlotsDB, FluxNCUtilitySlotsDB, FluxSpellBindingProfilesDB, FluxSpellDirectBindDB, FluxSpellProfileBindingsDB, FluxBindingProfilesPerStateDB, FluxBindingDBv2, FluxBindingDB3, FluxTradeSkillScannerDB, TrinketMenuOptions, TrinketMenuPerOptions, TrinketMenuQueue, FluxNCFlyoutCharDB
 ## Bindings: Bindings.xml
 
@@ -90,6 +90,15 @@ Inventory\Builtin\Void.lua
 Inventory\Builtin\Guild.lua
 Inventory\Builtin\Currency.lua
 Inventory\Builtin\Watch.lua
+Mail\Settings.lua
+Mail\Contacts.lua
+Mail\Conveniences.lua
+Mail\QuickAttach.lua
+Mail\CategoryAttach.lua
+Mail\Select.lua
+Mail\OpenAll.lua
+Mail\DoNotWant.lua
+Mail\TradeBlock.lua
 Inventory\Syndicator\Adapter.lua
 Inventory\LegacyBridge.lua
 Inventory\FluxItemClass.lua

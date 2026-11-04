@@ -223,6 +223,15 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Inventory/Syndicator/Adapter.lua](../Inventory/Syndicator/Adapter.lua) | 0 | 0 | 3 | 0 | 0 |
 | [Inventory/Tooltip.lua](../Inventory/Tooltip.lua) | 0 | 0 | 0 | 0 | 4 |
 | [Layout/UnifiedBorder.lua](../Layout/UnifiedBorder.lua) | 3 | 0 | 2 | 4 | 6 |
+| [Mail/CategoryAttach.lua](../Mail/CategoryAttach.lua) | 0 | 0 | 1 | 2 | 0 |
+| [Mail/Contacts.lua](../Mail/Contacts.lua) | 0 | 0 | 1 | 7 | 1 |
+| [Mail/Conveniences.lua](../Mail/Conveniences.lua) | 0 | 0 | 1 | 7 | 2 |
+| [Mail/DoNotWant.lua](../Mail/DoNotWant.lua) | 0 | 0 | 1 | 5 | 2 |
+| [Mail/OpenAll.lua](../Mail/OpenAll.lua) | 0 | 0 | 1 | 5 | 2 |
+| [Mail/QuickAttach.lua](../Mail/QuickAttach.lua) | 0 | 0 | 0 | 5 | 2 |
+| [Mail/Select.lua](../Mail/Select.lua) | 0 | 0 | 2 | 6 | 2 |
+| [Mail/Settings.lua](../Mail/Settings.lua) | 0 | 0 | 1 | 2 | 0 |
+| [Mail/TradeBlock.lua](../Mail/TradeBlock.lua) | 0 | 0 | 0 | 5 | 0 |
 | [MicroMenu/FluxAddonMicroButton.lua](../MicroMenu/FluxAddonMicroButton.lua) | 0 | 0 | 2 | 3 | 2 |
 | [MicroMenu/FluxBagMicroButton.lua](../MicroMenu/FluxBagMicroButton.lua) | 0 | 0 | 4 | 5 | 6 |
 | [MicroMenu/FluxCombinedBagHeader.lua](../MicroMenu/FluxCombinedBagHeader.lua) | 0 | 0 | 1 | 4 | 6 |

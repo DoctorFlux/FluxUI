@@ -1,6 +1,6 @@
 # SavedVariables and schemas
 
-The [TOC](../_FluxUI.toc) declares **nine account-wide roots and fourteen per-character roots**. [Core/DB.lua](../Core/DB.lua) ensures tables for most retained names; individual features own schema/defaults/migrations. `FluxPerfCaptureDB` is declared but is owned directly by the capture module, not the Core bootstrap lists.
+The [TOC](../_FluxUI.toc) declares **ten account-wide roots and fourteen per-character roots**. [Core/DB.lua](../Core/DB.lua) ensures tables for most retained names; individual features own schema/defaults/migrations. `FluxPerfCaptureDB` and `FluxMailDB` are owned directly by their feature modules, not the Core bootstrap lists.
 
 This is schema documentation, not a dump of personal saved values. [Declaration/reference evidence](reference/declarations.md) distinguishes loaded consumers from unloaded source. Exact-token references are discovery aids: alias-based access and constructed keys require tracing the owner.
 
@@ -17,6 +17,7 @@ This is schema documentation, not a dump of personal saved values. [Declaration/
 | `FluxInvDB` | Still active for profession cache: `professions[characterKey].bySkillLine`. It is not proof that the old FluxInv scanner is loaded. [profession store](../Inventory/Professions.lua#L160). |
 | `FluxUIInventoryDB` | Builtin account inventory ledger, schema initialized with `Version=1`, `Characters`, `Guilds`, `Warband`, `Pending`, `Summaries`. When Syndicator supplies storage, the Store facade delegates instead of maintaining this as the current writer. [Store](../Inventory/Store.lua#L42), [inventory](21-inventory-foundation.md). |
 | `FluxPerfCaptureDB` | Last completed diagnostic capture. Stores client/build/profiling information, CPU/FPS/environment data and ranked sampled rows. Replaced by subsequent completed captures; not an ongoing telemetry database. [capture owner](../Other/FluxPerfCapture.lua). |
+| `FluxMailDB` | Built-in mail settings, named profile snapshots, contacts, recent recipients, known alts, category recipient defaults and last sent draft. Mail modules own their branches; this root is separate from the installed Postal addon's data. [settings](../Mail/Settings.lua), [contacts](../Mail/Contacts.lua), [category attachment](../Mail/CategoryAttach.lua). |
 
 ## Per-character roots
 

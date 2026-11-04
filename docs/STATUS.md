@@ -1,5 +1,25 @@
 # Development status
 
+4 November publication batch: all current local mail work included for main.
+All 777 Lua files match the passing 122-test combined report. Native checks
+and unfinished mail parity remain pending as recorded below.
+
+4 November 2026 built-in mail work: FluxUI now has Postal-shaped menu,
+BlackBook, Open All, Select, category attachment, Forward, CarbonCopy and
+DoNotWant controls. Opening Speed includes 0.00 seconds; Select and Open All
+have separate Keep free space choices. Account contacts/recent recipients/alts,
+native mail actions, Alt-left attachment via `Flux.Container`, copyable mail,
+money subject and mailbox gain are present. Profile snapshots and module
+switches persist in `FluxMailDB`; trade blocking restores the prior CVar.
+Postal v4.3.4 is All Rights Reserved, and no Postal files/data were copied.
+Desktop validation passes 122 scripts/777 Lua files. Full 1:1 behavior is still
+open for attachment forwarding, Express repeat sending and advanced BlackBook
+completion; native visual/input/taint/performance checks are pending.
+The top and Open All dropdowns now have separate routing; the mail worker scans
+all attachment slots and waits briefly for delayed metadata before reporting
+leftover items.
+[Evidence](MAIL_INTEGRATION.md).
+
 4 November 2026 Classic combined bank: Era and Anniversary now host native
 character-bank item buttons, bank bag contents, six/seven bank bag equipment
 slots and Blizzard's purchase controls in a ten-column Flux window. Plain bank

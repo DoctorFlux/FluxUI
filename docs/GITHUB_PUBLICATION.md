@@ -259,3 +259,21 @@ The [fresh publication report](validation/github-readme-publication-2026-11-01.j
 covers the complete local Lua source. Publish all current addon/test/docs and the
 new README by ordinary push to main, then read back the remote identity. Private
 settings, recoveries, captures and ignored sync helpers stay outside Git.
+
+## 4 November 2026 - publish current local mail work
+
+User requested all current local updates on GitHub main. Include the built-in
+mail modules, TOC/settings wiring, tests, README feature summary and existing
+implementation/validation records. All 777 current normalized Lua hashes and
+the complete Lua file set match the passing 122-script report
+`docs/validation/mail-integration-2026-11-04.json`; no runtime edit or repeat
+full suite was needed for publication. Mail attachment forwarding, repeat send,
+advanced completion and native acceptance retain their documented pending scope.
+
+External checkpoint `Publish-all-20261104T175541Z` preserves 1,421 actual
+local files and verified complete Git history, including untracked work.
+Source ZIP SHA-256: `fe1f8879d41952e1cc9debc30c000fef49fdcaa6f1dddb09295ca7994e1b76ef`.
+GitHub main matched parent `1b319d19aa00fffa7e798a66d045e55902af6706`.
+Private recoveries/settings/captures and ignored local helpers remain outside
+Git. Use an ordinary push to main; verify remote identity and clean status.
+No game, settings, sync-job or profiler interaction during publication.

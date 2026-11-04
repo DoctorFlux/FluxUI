@@ -1,5 +1,16 @@
 # Client and reference validation — 29 October 2026
 
+4 November built-in mail: all five local Blizzard mirrors declare `MAIL_SHOW`,
+`MAIL_CLOSED`, `MAIL_SEND_SUCCESS` and native Open All; Retail/Forever use
+`Blizzard_MailFrame`, Era/Anniversary/MoP use the Classic MailFrame path.
+Retail/Forever inbox redraw differs (`InboxFrame:Update()` on Forever), so
+Flux selected checkboxes hook the available method or global function. The
+local mirrors are older than some installed builds; bundled live/forever/
+classic commit pins are inventory evidence only. Focused desktop checks 67;
+full suite 118 scripts/768 syntax files, zero failures. Native per-client
+mailbox open/close, actual item/money operations, visual placement, combat
+taint and timing remain pending. [Evidence](MAIL_INTEGRATION.md).
+
 4 November Era/Anniversary combined bank: inspected versioned Gethe Vanilla
 and TBC bank source mirrors and their loaded TOC paths; installed clients are
 newer and upstream mirror commits are unavailable. Loaded-module desktop

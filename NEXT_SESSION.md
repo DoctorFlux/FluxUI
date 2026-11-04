@@ -1,5 +1,23 @@
 # Next session
 
+4 November publication batch: all current local mail work included for main.
+All 777 Lua files match the passing 122-test combined report. Native checks
+and unfinished mail parity remain pending as recorded below.
+
+4 November built-in mail: the user requires 1:1 Postal v4.3.4 controls and
+settings. Read the [integration matrix](docs/MAIL_INTEGRATION.md). The current
+controls match the inspected sizes/anchors, with separate fast opening and
+bag reserve menus, but attachment forwarding, Express repeat send and advanced
+BlackBook completion still need implementation. Native-check the menus,
+buttons, recent-send persistence, selected take/return, C.O.D./full-bag guards,
+category and Alt-left attachment, copy/invoices, subject, trade CVar restoration
+and mailbox gain on Retail, Forever, Era, Anniversary and MoP. Leave clients
+in the background and test sequentially. Preserve the All Rights Reserved
+source boundary. Desktop suite: 122 scripts/777 Lua syntax pass; native pixels,
+input, taint and matched performance pending.
+The latest correction split main/Open All dropdown frames and fixed sparse
+attachments/delayed item metadata; test these exact flows in each client.
+
 4 November Classic combined bank: verify Era and Anniversary native banker
 interaction, ten-column layout, six/seven bank bag slots, cursor drag/drop,
 purchase confirmation/cost, item clicks, Baganator early/late ownership and

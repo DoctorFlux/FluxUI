@@ -6,7 +6,7 @@ The complete declared-name/owner index is [32-saved-variables.md](32-saved-varia
 
 ## Bootstrap and stores
 
-[`_FluxUI.toc`](../_FluxUI.toc) declares nine account-wide and fourteen per-character SavedVariables. [`Core/DB.lua`](../Core/DB.lua) exposes `Flux.DB.GetAccount`, `GetOptions`, `GetChar` and `EnsureAll`:
+[`_FluxUI.toc`](../_FluxUI.toc) declares ten account-wide and fourteen per-character SavedVariables. [`Core/DB.lua`](../Core/DB.lua) exposes `Flux.DB.GetAccount`, `GetOptions`, `GetChar` and `EnsureAll`:
 
 - `GetAccount` ensures `FluxUI_DB`, a shared legacy settings/state container.
 - `GetOptions` ensures the raw `FluxUI_Options` table; it is not the same accessor as the initialized AceDB object.
