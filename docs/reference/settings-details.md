@@ -1121,7 +1121,7 @@ Source: [AddonOptions/FluxOptionsMicroMenu.lua:73](../../AddonOptions/FluxOption
 | Contract | Source expression / implementation |
 |---|---|
 
-### &lt;anonymous&gt; · MicroMenu · L85
+### options · MicroMenu · L85
 
 Source: [AddonOptions/FluxOptionsMicroMenu.lua:85](../../AddonOptions/FluxOptionsMicroMenu.lua#L85). Type: `"group"`.
 

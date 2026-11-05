@@ -13403,8 +13403,8 @@
       "path": "AddonOptions/FluxOptionsMicroMenu.lua",
       "classification": "active",
       "chapter": "26-options-map.md",
-      "lines": 315,
-      "sha256": "eca37810bc2dc8b0e413f1f98a006ff33b9f56e002db58a8ef5fee317ae0c609",
+      "lines": 321,
+      "sha256": "16bcb5b7a84362340a61090c00b1d2087d64b4295a94643143786d481df571d2",
       "clients": [
         "camelot",
         "cata",
@@ -13464,7 +13464,7 @@
           "parent_line": null
         },
         {
-          "key": "<anonymous>",
+          "key": "options",
           "line": 85,
           "fields": {
             "name": "\"MicroMenu\"",
@@ -13836,7 +13836,7 @@
       "functions": [],
       "events": [
         {
-          "line": 306,
+          "line": 312,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59754,8 +59754,8 @@
       "path": "MicroMenu/FluxMicroMenu.lua",
       "classification": "active",
       "chapter": "17-micromenu.md",
-      "lines": 3230,
-      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
+      "lines": 3232,
+      "sha256": "e5d02b4e9bac75fc451d8b3e7b0c30c1db0dd617e98d849e4d6b52cd41d60bb9",
       "clients": [
         "camelot",
         "cata",
@@ -59821,31 +59821,31 @@
         },
         {
           "name": "FluxMicroMenu:IsNativeRowAvailableOnClient",
-          "line": 1084
+          "line": 1085
         },
         {
           "name": "FluxMicroMenu:GetDefaultUnifiedRowIds",
-          "line": 1121
+          "line": 1122
         },
         {
           "name": "FluxMicroMenu:GetLayoutSpacing",
-          "line": 1185
+          "line": 1186
         },
         {
           "name": "FluxMicroMenu:GetButtonSizeScale",
-          "line": 1204
+          "line": 1205
         },
         {
           "name": "_G.FluxMicroMenu_GetBesideChatColumnRightX",
-          "line": 1450
+          "line": 1451
         },
         {
           "name": "FluxMicroMenu:RefreshLayout",
-          "line": 2617
+          "line": 2618
         },
         {
           "name": "FluxMicroMenu:Rebuild",
-          "line": 2983
+          "line": 2985
         }
       ],
       "events": [
@@ -59874,7 +59874,7 @@
           "context": "(\"PORTRAITS_UPDATED\")watch:"
         },
         {
-          "line": 3066,
+          "line": 3068,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -59882,7 +59882,7 @@
           "context": "WatchEditModeMicroMenuSanitize()FluxMicroMenu:"
         },
         {
-          "line": 3067,
+          "line": 3069,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59890,7 +59890,7 @@
           "context": "(\"PLAYER_LOGIN\")FluxMicroMenu:"
         },
         {
-          "line": 3068,
+          "line": 3070,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59898,7 +59898,7 @@
           "context": "(\"ADDON_LOADED\")FluxMicroMenu:"
         },
         {
-          "line": 3069,
+          "line": 3071,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -59906,7 +59906,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")FluxMicroMenu:"
         },
         {
-          "line": 3070,
+          "line": 3072,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -59914,7 +59914,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")FluxMicroMenu:"
         },
         {
-          "line": 3071,
+          "line": 3073,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TALENT_UPDATE\""
@@ -59922,7 +59922,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")FluxMicroMenu:"
         },
         {
-          "line": 3072,
+          "line": 3074,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIVE_TALENT_GROUP_CHANGED\""
@@ -59935,12 +59935,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXMICRO1",
           "value": "/fluxmicro",
-          "line": 3171
+          "line": 3173
         },
         {
           "kind": "handler",
           "name": "FLUXMICRO",
-          "line": 3172
+          "line": 3174
         }
       ],
       "widgets": [],
@@ -60646,8 +60646,8 @@
       "path": "MicroMenu/FluxTradeSkillMicro.lua",
       "classification": "active",
       "chapter": "17-micromenu.md",
-      "lines": 1103,
-      "sha256": "9514d1c81da548070bbf228e1cb25b38ada91bb7351cf248a6a21aa8003fab94",
+      "lines": 1106,
+      "sha256": "ffbb245801e69b9d6a9ae991dc3c68afaa69ac6caae4bfb0f9cf319d98742aa2",
       "clients": [
         "camelot",
         "cata",
@@ -60665,124 +60665,124 @@
       "functions": [
         {
           "name": "M:GetDB",
-          "line": 90
+          "line": 93
         },
         {
           "name": "M:IsEnabled",
-          "line": 95
+          "line": 98
         },
         {
           "name": "M:EnsureRowVisible",
-          "line": 101
+          "line": 104
         },
         {
           "name": "M:BootstrapVisibilityIfNeeded",
-          "line": 108
+          "line": 111
         },
         {
           "name": "M:MakeKey",
-          "line": 137
+          "line": 140
         },
         {
           "name": "M:SafeGlobalKey",
-          "line": 155
+          "line": 158
         },
         {
           "name": "M:GetIndividualGlobalName",
-          "line": 159
+          "line": 162
         },
         {
           "name": "M:GetFlyoutGlobalName",
-          "line": 163
+          "line": 166
         },
         {
           "name": "M:GetSkillDisplayName",
-          "line": 167
+          "line": 170
         },
         {
           "name": "M:IsSkillKnown",
-          "line": 181
+          "line": 184
         },
         {
           "name": "M:ShouldKeepRowInOrder",
-          "line": 191
+          "line": 194
         },
         {
           "name": "M:EnumerateSkills",
-          "line": 297
+          "line": 300
         },
         {
           "name": "M:GetLearnedSkills",
-          "line": 383
+          "line": 386
         },
         {
           "name": "M:ResolvePlacement",
-          "line": 394
+          "line": 397
         },
         {
           "name": "M:ShouldShowFlyoutButton",
-          "line": 448
+          "line": 451
         },
         {
           "name": "M:IsIndividualOnBar",
-          "line": 454
+          "line": 457
         },
         {
           "name": "M:IsRowActiveOnBar",
-          "line": 464
+          "line": 467
         },
         {
           "name": "M:GetActiveBarRowIds",
-          "line": 480
+          "line": 483
         },
         {
           "name": "M:MigrateSavedRowKeys",
-          "line": 553
+          "line": 556
         },
         {
           "name": "M:OpenSkill",
-          "line": 622
+          "line": 625
         },
         {
           "name": "M:OpenSkillByKey",
-          "line": 658
+          "line": 661
         },
         {
           "name": "M:UpdateFlyoutLayout",
-          "line": 724
+          "line": 727
         },
         {
           "name": "M:ClampFlyoutToScreen",
-          "line": 796
+          "line": 799
         },
         {
           "name": "M:ToggleFlyout",
-          "line": 855
+          "line": 858
         },
         {
           "name": "M:HideFlyout",
-          "line": 887
+          "line": 890
         },
         {
           "name": "M:EnsureIndividualButton",
-          "line": 902
+          "line": 905
         },
         {
           "name": "M:EnsureFlyoutButton",
-          "line": 941
+          "line": 944
         },
         {
           "name": "M:SyncButtons",
-          "line": 986
+          "line": 989
         },
         {
           "name": "M:Refresh",
-          "line": 1034
+          "line": 1037
         }
       ],
       "events": [
         {
-          "line": 700,
+          "line": 703,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_STARTED_MOVING\""
@@ -60790,7 +60790,7 @@
           "context": "flyoutHost=buttonHostcontainer:"
         },
         {
-          "line": 1073,
+          "line": 1076,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -60798,7 +60798,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1074,
+          "line": 1077,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -60806,7 +60806,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 1075,
+          "line": 1078,
           "method": "RegisterEvent",
           "arguments": [
             "\"SKILL_LINES_CHANGED\""
@@ -60814,7 +60814,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 1076,
+          "line": 1079,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -60822,7 +60822,7 @@
           "context": "(\"SKILL_LINES_CHANGED\")eventFrame:"
         },
         {
-          "line": 1080,
+          "line": 1083,
           "method": "RegisterEvent",
           "arguments": [
             "\"LEARNED_SPELL_IN_SKILL_LINE\""
@@ -60830,7 +60830,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 1081,
+          "line": 1084,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELLS_CHANGED\""
@@ -60845,29 +60845,29 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            65,
-            66,
-            86,
-            575,
-            576
+            68,
+            69,
+            89,
+            578,
+            579
           ]
         },
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            43,
-            44,
             46,
             47,
             49,
             50,
-            57,
-            92,
-            110,
-            578,
-            579,
-            580,
-            589
+            52,
+            53,
+            60,
+            95,
+            113,
+            581,
+            582,
+            583,
+            592
           ]
         }
       ]

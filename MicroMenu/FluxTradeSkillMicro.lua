@@ -2,6 +2,9 @@
 -- Learned trade skills as micromenu buttons + optional flyout popup.
 -- Layout modes: perProfession | fixedSplit | global (allIndividual / oneFlyout / both).
 
+-- Forever does not use profession micro buttons or their flyout service.
+if FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever) then return end
+
 if not FluxMicroMenu or not FluxMicroMenu.CreateMicroButton then return end
 
 FluxTradeSkillMicro = FluxTradeSkillMicro or {}

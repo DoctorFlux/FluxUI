@@ -1,5 +1,43 @@
 # Micromenu, bag controls and addon buttons
 
+## Forever trade-skill micro removal - 5 November 2026
+
+The user requested no trade-skill micro menu on Forever. Both existing Forever
+identity flags now stop FluxTradeSkillMicro before its namespace, frames, timers,
+events or skill scanning are created. This removes individual profession buttons
+and the shared secondary-skill flyout. ProfessionMicroButton is excluded through
+the same local eligibility/optional-button parking used for Adventure Guide, so
+no native profession button or empty slot is left. The tradeSkills option entries
+are omitted on Forever; the general editor, button sizing and other clients keep
+their existing behavior. Stored trade-skill settings/order entries remain intact.
+Native profession windows, learned spells, keybinds and crafting APIs are unchanged.
+This is an explicit Forever UI removal, not a global capability change or reset.
+
+Baseline0602a31a1ba5d36b04a9a197715ffd0ac5e4c029. External recovery
+Forever-tradeskills-20261105T101715Z preserves1,451 actual files, verified history
+and123 available on-disk settings outside AddOns (not unsaved in-memory settings).
+Source ZIP SHA256:
+`daba71d80494274317e19100d4a3259f557aaac906cdcb42ae3037d853e58904`.
+[Raw pairs/exact candidate hashes](validation/forever-tradeskills-comparison-2026-11-05.json).
+[Full validation/source manifest](validation/forever-tradeskills-2026-11-05.json).
+
+Five alternating fresh-process desktop pairs load the real trade-skill startup,
+menu eligibility and options code under mocked native frames/APIs. Two Forever
+identity aliases and four other client labels: baseline10 failures, candidate0
+of48 checks. Frame counts across six models24 to16: four trade startup frames
+removed per Forever identity model. Event/timer registration stays zero on those
+models; non-Forever module/options and stored settings controls pass. Zero warmup;
+wall times include interpreter startup/assertions and are not native performance.
+Full129 scripts/784 syntax files pass. No new frames, timers, event subscriptions,
+hooks or settings roots are added; existing native parking handles re-show.
+
+After sync and /reload, confirm no profession icons/flyout or trade-skill controls
+in Forever's micro menu, with compact spacing in all menu positions and no late
+reappearance after profession updates/combat. Confirm native crafting access still
+works and other clients retain their configured profession rows/options. Screenshot,
+gamepad, input/taint and native performance checks remain pending; no connected
+game runtime or foreground/input/clipboard control was used.
+
 ## Forever Adventure Guide exclusion - 5 November 2026
 
 The user explicitly requested no Adventure Guide micro button on Forever.

@@ -82,7 +82,7 @@ local function BuildPerSkillArgs()
 end
 
 BuildMicroMenuOptions = function()
-    return {
+    local options = {
     name = "MicroMenu",
     type = "group",
     order = 50,
@@ -300,6 +300,12 @@ BuildMicroMenuOptions = function()
         },
     },
 }
+    if FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever) then
+        for key in pairs(options.args) do
+            if key:match("^tradeSkills") then options.args[key] = nil end
+        end
+    end
+    return options
 end
 
 local initFrame = CreateFrame("Frame")

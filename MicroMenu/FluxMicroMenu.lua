@@ -1058,7 +1058,8 @@ function FluxMicroMenu:HasBlizzardGroupFinderMicroButton()
 end
 
 local function ClientHasMicroMenuFeature(rowId)
-    if rowId == "EJMicroButton" and FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever) then
+    if (rowId == "EJMicroButton" or rowId == "ProfessionMicroButton")
+        and FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever) then
         return false
     end
     if FLUX_API and FLUX_API.ClientHasMicroMenuFeature then
@@ -2633,6 +2634,7 @@ end
 -- ---------------------------------------------------------------------------
 
 local OPTIONAL_MICRO_MENU_STUB_NAMES = {
+    "ProfessionMicroButton",
     "AchievementMicroButton",
     "PlayerSpellsMicroButton",
     "HousingMicroButton",

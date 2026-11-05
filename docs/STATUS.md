@@ -1,5 +1,15 @@
 # Development status
 
+5 November Forever trade-skill micro removal: the module now exits before
+creating buttons/flyout frames or registering scans/events on Forever. The native
+ProfessionMicroButton is excluded and parked through the existing micro menu
+policy; trade-skill option controls are omitted only there. Saved profession
+preferences remain stored; other clients and native profession access stay.
+Focused48 checks pass (baseline10 failures); five matched pairs remove4 startup
+frames per Forever model, with no startup event/timer work. Full129 scripts/784
+Lua syntax pass. Native menu/config/pixel/taint confirmation pending after reload.
+[Evidence](17-micromenu.md#forever-trade-skill-micro-removal---5-november-2026).
+
 5 November Forever native bank and micro menu: at the user's request, Forever's
 Blizzard bank is excluded from window movement, bank-frame latch scripts, bank
 junk/item decoration and native restock-button attachment. Bank tracking remains

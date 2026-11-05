@@ -19,7 +19,7 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [AddonOptions/FluxOptionsInfo.lua:173](../../AddonOptions/FluxOptionsInfo.lua#L173) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsLayout.lua:76](../../AddonOptions/FluxOptionsLayout.lua#L76) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsLoot.lua:66](../../AddonOptions/FluxOptionsLoot.lua#L66) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [AddonOptions/FluxOptionsMicroMenu.lua:306](../../AddonOptions/FluxOptionsMicroMenu.lua#L306) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [AddonOptions/FluxOptionsMicroMenu.lua:312](../../AddonOptions/FluxOptionsMicroMenu.lua#L312) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsNameplates.lua:272](../../AddonOptions/FluxOptionsNameplates.lua#L272) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [AddonOptions/FluxOptionsShell.lua:766](../../AddonOptions/FluxOptionsShell.lua#L766) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [AddonOptions/FluxOptionsStatusBars.lua:536](../../AddonOptions/FluxOptionsStatusBars.lua#L536) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -542,24 +542,24 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [MicroMenu/FluxMicroMenu.lua:435](../../MicroMenu/FluxMicroMenu.lua#L435) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [MicroMenu/FluxMicroMenu.lua:436](../../MicroMenu/FluxMicroMenu.lua#L436) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [MicroMenu/FluxMicroMenu.lua:437](../../MicroMenu/FluxMicroMenu.lua#L437) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3066](../../MicroMenu/FluxMicroMenu.lua#L3066) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [MicroMenu/FluxMicroMenu.lua:3067](../../MicroMenu/FluxMicroMenu.lua#L3067) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [MicroMenu/FluxMicroMenu.lua:3068](../../MicroMenu/FluxMicroMenu.lua#L3068) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [MicroMenu/FluxMicroMenu.lua:3069](../../MicroMenu/FluxMicroMenu.lua#L3069) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [MicroMenu/FluxMicroMenu.lua:3070](../../MicroMenu/FluxMicroMenu.lua#L3070) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3071](../../MicroMenu/FluxMicroMenu.lua#L3071) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
-| [MicroMenu/FluxMicroMenu.lua:3072](../../MicroMenu/FluxMicroMenu.lua#L3072) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
+| [MicroMenu/FluxMicroMenu.lua:3068](../../MicroMenu/FluxMicroMenu.lua#L3068) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [MicroMenu/FluxMicroMenu.lua:3069](../../MicroMenu/FluxMicroMenu.lua#L3069) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [MicroMenu/FluxMicroMenu.lua:3070](../../MicroMenu/FluxMicroMenu.lua#L3070) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [MicroMenu/FluxMicroMenu.lua:3071](../../MicroMenu/FluxMicroMenu.lua#L3071) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [MicroMenu/FluxMicroMenu.lua:3072](../../MicroMenu/FluxMicroMenu.lua#L3072) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [MicroMenu/FluxMicroMenu.lua:3073](../../MicroMenu/FluxMicroMenu.lua#L3073) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
+| [MicroMenu/FluxMicroMenu.lua:3074](../../MicroMenu/FluxMicroMenu.lua#L3074) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [MicroMenu/FluxMicroMenuConfigUI.lua:451](../../MicroMenu/FluxMicroMenuConfigUI.lua#L451) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:751](../../MicroMenu/FluxMinimapToMicro.lua#L751) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:1615](../../MicroMenu/FluxMinimapToMicro.lua#L1615) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [MicroMenu/FluxMinimapToMicro.lua:1616](../../MicroMenu/FluxMinimapToMicro.lua#L1616) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:700](../../MicroMenu/FluxTradeSkillMicro.lua#L700) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1073](../../MicroMenu/FluxTradeSkillMicro.lua#L1073) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1074](../../MicroMenu/FluxTradeSkillMicro.lua#L1074) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1075](../../MicroMenu/FluxTradeSkillMicro.lua#L1075) | `RegisterEvent` | `"SKILL_LINES_CHANGED"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1076](../../MicroMenu/FluxTradeSkillMicro.lua#L1076) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1080](../../MicroMenu/FluxTradeSkillMicro.lua#L1080) | `RegisterEvent` | `"LEARNED_SPELL_IN_SKILL_LINE"` |
-| [MicroMenu/FluxTradeSkillMicro.lua:1081](../../MicroMenu/FluxTradeSkillMicro.lua#L1081) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:703](../../MicroMenu/FluxTradeSkillMicro.lua#L703) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1076](../../MicroMenu/FluxTradeSkillMicro.lua#L1076) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1077](../../MicroMenu/FluxTradeSkillMicro.lua#L1077) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1078](../../MicroMenu/FluxTradeSkillMicro.lua#L1078) | `RegisterEvent` | `"SKILL_LINES_CHANGED"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1079](../../MicroMenu/FluxTradeSkillMicro.lua#L1079) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1083](../../MicroMenu/FluxTradeSkillMicro.lua#L1083) | `RegisterEvent` | `"LEARNED_SPELL_IN_SKILL_LINE"` |
+| [MicroMenu/FluxTradeSkillMicro.lua:1084](../../MicroMenu/FluxTradeSkillMicro.lua#L1084) | `RegisterEvent` | `"SPELLS_CHANGED"` |
 | [Minimap/FluxBuffDebuffFrames.lua:94](../../Minimap/FluxBuffDebuffFrames.lua#L94) | `RegisterEvent` | `event` |
 | [Minimap/FluxMinimap.lua:74](../../Minimap/FluxMinimap.lua#L74) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Minimap/FluxMinimap.lua:75](../../Minimap/FluxMinimap.lua#L75) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -7827,13 +7827,13 @@ Owner: [17-micromenu.md](../17-micromenu.md).
 | `FluxMicroMenu:InvalidateDiscoverCache` | [L974](../../MicroMenu/FluxMicroMenu.lua#L974) |
 | `FluxMicroMenu:GetDiscoveredMicroButtonNames` | [L1026](../../MicroMenu/FluxMicroMenu.lua#L1026) |
 | `FluxMicroMenu:HasBlizzardGroupFinderMicroButton` | [L1050](../../MicroMenu/FluxMicroMenu.lua#L1050) |
-| `FluxMicroMenu:IsNativeRowAvailableOnClient` | [L1084](../../MicroMenu/FluxMicroMenu.lua#L1084) |
-| `FluxMicroMenu:GetDefaultUnifiedRowIds` | [L1121](../../MicroMenu/FluxMicroMenu.lua#L1121) |
-| `FluxMicroMenu:GetLayoutSpacing` | [L1185](../../MicroMenu/FluxMicroMenu.lua#L1185) |
-| `FluxMicroMenu:GetButtonSizeScale` | [L1204](../../MicroMenu/FluxMicroMenu.lua#L1204) |
-| `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1450](../../MicroMenu/FluxMicroMenu.lua#L1450) |
-| `FluxMicroMenu:RefreshLayout` | [L2617](../../MicroMenu/FluxMicroMenu.lua#L2617) |
-| `FluxMicroMenu:Rebuild` | [L2983](../../MicroMenu/FluxMicroMenu.lua#L2983) |
+| `FluxMicroMenu:IsNativeRowAvailableOnClient` | [L1085](../../MicroMenu/FluxMicroMenu.lua#L1085) |
+| `FluxMicroMenu:GetDefaultUnifiedRowIds` | [L1122](../../MicroMenu/FluxMicroMenu.lua#L1122) |
+| `FluxMicroMenu:GetLayoutSpacing` | [L1186](../../MicroMenu/FluxMicroMenu.lua#L1186) |
+| `FluxMicroMenu:GetButtonSizeScale` | [L1205](../../MicroMenu/FluxMicroMenu.lua#L1205) |
+| `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1451](../../MicroMenu/FluxMicroMenu.lua#L1451) |
+| `FluxMicroMenu:RefreshLayout` | [L2618](../../MicroMenu/FluxMicroMenu.lua#L2618) |
+| `FluxMicroMenu:Rebuild` | [L2985](../../MicroMenu/FluxMicroMenu.lua#L2985) |
 
 ### MicroMenu/FluxMicroMenuConfig.lua
 
@@ -7971,35 +7971,35 @@ Owner: [17-micromenu.md](../17-micromenu.md).
 
 | Declaration | Source |
 |---|---|
-| `M:GetDB` | [L90](../../MicroMenu/FluxTradeSkillMicro.lua#L90) |
-| `M:IsEnabled` | [L95](../../MicroMenu/FluxTradeSkillMicro.lua#L95) |
-| `M:EnsureRowVisible` | [L101](../../MicroMenu/FluxTradeSkillMicro.lua#L101) |
-| `M:BootstrapVisibilityIfNeeded` | [L108](../../MicroMenu/FluxTradeSkillMicro.lua#L108) |
-| `M:MakeKey` | [L137](../../MicroMenu/FluxTradeSkillMicro.lua#L137) |
-| `M:SafeGlobalKey` | [L155](../../MicroMenu/FluxTradeSkillMicro.lua#L155) |
-| `M:GetIndividualGlobalName` | [L159](../../MicroMenu/FluxTradeSkillMicro.lua#L159) |
-| `M:GetFlyoutGlobalName` | [L163](../../MicroMenu/FluxTradeSkillMicro.lua#L163) |
-| `M:GetSkillDisplayName` | [L167](../../MicroMenu/FluxTradeSkillMicro.lua#L167) |
-| `M:IsSkillKnown` | [L181](../../MicroMenu/FluxTradeSkillMicro.lua#L181) |
-| `M:ShouldKeepRowInOrder` | [L191](../../MicroMenu/FluxTradeSkillMicro.lua#L191) |
-| `M:EnumerateSkills` | [L297](../../MicroMenu/FluxTradeSkillMicro.lua#L297) |
-| `M:GetLearnedSkills` | [L383](../../MicroMenu/FluxTradeSkillMicro.lua#L383) |
-| `M:ResolvePlacement` | [L394](../../MicroMenu/FluxTradeSkillMicro.lua#L394) |
-| `M:ShouldShowFlyoutButton` | [L448](../../MicroMenu/FluxTradeSkillMicro.lua#L448) |
-| `M:IsIndividualOnBar` | [L454](../../MicroMenu/FluxTradeSkillMicro.lua#L454) |
-| `M:IsRowActiveOnBar` | [L464](../../MicroMenu/FluxTradeSkillMicro.lua#L464) |
-| `M:GetActiveBarRowIds` | [L480](../../MicroMenu/FluxTradeSkillMicro.lua#L480) |
-| `M:MigrateSavedRowKeys` | [L553](../../MicroMenu/FluxTradeSkillMicro.lua#L553) |
-| `M:OpenSkill` | [L622](../../MicroMenu/FluxTradeSkillMicro.lua#L622) |
-| `M:OpenSkillByKey` | [L658](../../MicroMenu/FluxTradeSkillMicro.lua#L658) |
-| `M:UpdateFlyoutLayout` | [L724](../../MicroMenu/FluxTradeSkillMicro.lua#L724) |
-| `M:ClampFlyoutToScreen` | [L796](../../MicroMenu/FluxTradeSkillMicro.lua#L796) |
-| `M:ToggleFlyout` | [L855](../../MicroMenu/FluxTradeSkillMicro.lua#L855) |
-| `M:HideFlyout` | [L887](../../MicroMenu/FluxTradeSkillMicro.lua#L887) |
-| `M:EnsureIndividualButton` | [L902](../../MicroMenu/FluxTradeSkillMicro.lua#L902) |
-| `M:EnsureFlyoutButton` | [L941](../../MicroMenu/FluxTradeSkillMicro.lua#L941) |
-| `M:SyncButtons` | [L986](../../MicroMenu/FluxTradeSkillMicro.lua#L986) |
-| `M:Refresh` | [L1034](../../MicroMenu/FluxTradeSkillMicro.lua#L1034) |
+| `M:GetDB` | [L93](../../MicroMenu/FluxTradeSkillMicro.lua#L93) |
+| `M:IsEnabled` | [L98](../../MicroMenu/FluxTradeSkillMicro.lua#L98) |
+| `M:EnsureRowVisible` | [L104](../../MicroMenu/FluxTradeSkillMicro.lua#L104) |
+| `M:BootstrapVisibilityIfNeeded` | [L111](../../MicroMenu/FluxTradeSkillMicro.lua#L111) |
+| `M:MakeKey` | [L140](../../MicroMenu/FluxTradeSkillMicro.lua#L140) |
+| `M:SafeGlobalKey` | [L158](../../MicroMenu/FluxTradeSkillMicro.lua#L158) |
+| `M:GetIndividualGlobalName` | [L162](../../MicroMenu/FluxTradeSkillMicro.lua#L162) |
+| `M:GetFlyoutGlobalName` | [L166](../../MicroMenu/FluxTradeSkillMicro.lua#L166) |
+| `M:GetSkillDisplayName` | [L170](../../MicroMenu/FluxTradeSkillMicro.lua#L170) |
+| `M:IsSkillKnown` | [L184](../../MicroMenu/FluxTradeSkillMicro.lua#L184) |
+| `M:ShouldKeepRowInOrder` | [L194](../../MicroMenu/FluxTradeSkillMicro.lua#L194) |
+| `M:EnumerateSkills` | [L300](../../MicroMenu/FluxTradeSkillMicro.lua#L300) |
+| `M:GetLearnedSkills` | [L386](../../MicroMenu/FluxTradeSkillMicro.lua#L386) |
+| `M:ResolvePlacement` | [L397](../../MicroMenu/FluxTradeSkillMicro.lua#L397) |
+| `M:ShouldShowFlyoutButton` | [L451](../../MicroMenu/FluxTradeSkillMicro.lua#L451) |
+| `M:IsIndividualOnBar` | [L457](../../MicroMenu/FluxTradeSkillMicro.lua#L457) |
+| `M:IsRowActiveOnBar` | [L467](../../MicroMenu/FluxTradeSkillMicro.lua#L467) |
+| `M:GetActiveBarRowIds` | [L483](../../MicroMenu/FluxTradeSkillMicro.lua#L483) |
+| `M:MigrateSavedRowKeys` | [L556](../../MicroMenu/FluxTradeSkillMicro.lua#L556) |
+| `M:OpenSkill` | [L625](../../MicroMenu/FluxTradeSkillMicro.lua#L625) |
+| `M:OpenSkillByKey` | [L661](../../MicroMenu/FluxTradeSkillMicro.lua#L661) |
+| `M:UpdateFlyoutLayout` | [L727](../../MicroMenu/FluxTradeSkillMicro.lua#L727) |
+| `M:ClampFlyoutToScreen` | [L799](../../MicroMenu/FluxTradeSkillMicro.lua#L799) |
+| `M:ToggleFlyout` | [L858](../../MicroMenu/FluxTradeSkillMicro.lua#L858) |
+| `M:HideFlyout` | [L890](../../MicroMenu/FluxTradeSkillMicro.lua#L890) |
+| `M:EnsureIndividualButton` | [L905](../../MicroMenu/FluxTradeSkillMicro.lua#L905) |
+| `M:EnsureFlyoutButton` | [L944](../../MicroMenu/FluxTradeSkillMicro.lua#L944) |
+| `M:SyncButtons` | [L989](../../MicroMenu/FluxTradeSkillMicro.lua#L989) |
+| `M:Refresh` | [L1037](../../MicroMenu/FluxTradeSkillMicro.lua#L1037) |
 
 ### Minimap/FluxBuffDebuffFrames.lua
 
