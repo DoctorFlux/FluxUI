@@ -1,5 +1,15 @@
 # Client and reference validation — 29 October 2026
 
+5 November Syndicator mail/auction snapshots: unchanged mail now compares
+normalized records without sorted fingerprint strings; unchanged auction callbacks
+retain records/count maps and skip FluxUI publication. Link-only mail metadata now
+updates correctly. Five matched desktop pairs:500 sorts/500,000 string keys,
+500,000 auction row replacements,500 maps and500 pulses become zero for the
+synthetic unchanged burst.80 checks pass, three mutants rejected; full131 scripts/
+786 syntax pass. Real changed lists still publish at the original cadence; native
+Forever Baganator+Syndicator lag attribution/improvement remains pending.
+[Evidence and next checks](MAIL_AUCTION_GUARDS.md#snapshot-change-checks).
+
 5 November mail/auction safeguard: user reports Forever lag with Baganator840
 and Syndicator289 on mailbox open/close, auction buying and sales; cannot run
 native captures and requested safeguards. Resolved owned item-data completions

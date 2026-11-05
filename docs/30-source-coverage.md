@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 166 |
+| inactive source | 167 |
 
 ## Addon sources
 
@@ -680,6 +680,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/startup_lifecycle.lua](../tests/startup_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/status_reputation_clicks.lua](../tests/status_reputation_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/syndicator_consumable_updates.lua](../tests/syndicator_consumable_updates.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/syndicator_list_snapshots.lua](../tests/syndicator_list_snapshots.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/teleport_cast_work.lua](../tests/teleport_cast_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/tier_count_work.lua](../tests/tier_count_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/transmog_actions.lua](../tests/transmog_actions.lua) | inactive source | — | [34-assets.md](34-assets.md) |

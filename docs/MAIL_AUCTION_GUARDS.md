@@ -1,5 +1,69 @@
 # Mail and auction duplicate metadata safeguards
 
+## Snapshot change checks
+
+Follow-up: the user still reports mailbox open/close and auction buying/selling
+lag on Forever with Baganator and Syndicator. There remains no native capture,
+so no claim is made that prior or current changes resolve that live pause.
+
+The Syndicator adapter generated and sorted index/item/count fingerprint strings
+on every mail refresh. Auction callbacks unconditionally rebuilt all listing
+records/count maps, bumped generation and published, even if canonical facts were
+unchanged. The adapter now compares normalized index/itemID/count/link records
+against the actual published snapshot. Equal lists return without allocating
+fingerprints or replacing records/maps, and equal auction callbacks do not publish.
+Actual changes retain the same snapshot builder; auction changes publish directly
+and mail keeps its existing0.2s debounce/0.6s cap. Empty lists, sparse indices,
+legacy record aliases and normalized IDs/counts remain supported. No native API,
+provider callback, sale/purchase operation or third-party addon code was replaced.
+No new state table, frame, event, hook, polling or timer was added.
+
+Intentional bug correction: the old mail fingerprint omitted item links, so a
+link-only metadata completion could leave the published link stale until a later
+quantity/item change. Link differences now rebuild/publish on the existing mail
+cadence. The regression explicitly checks that failure and expected update.
+
+Baseline1138fbcc02506fc63cb19c0191ec89fcf5b27e77; verified external recovery
+Mail-auction-snapshots-20261105T112252Z preserves1,459 actual files, verified Git
+history and123 on-disk settings outside AddOns. Source ZIP SHA256:
+`fe86e9ff57864e5fe486a5ea3b7c707c4e88131a83fec18011c1a636bdcfadd5`.
+[Exact hash, raw pairs and mutations](validation/syndicator-lists-comparison-2026-11-05.json).
+[Full report/source manifest](validation/syndicator-lists-2026-11-05.json).
+[Production adapter regression](../tests/syndicator_list_snapshots.lua).
+
+Five alternating fresh-process desktop pairs: five client labels,1,000 mail and
+1,000 listing records,100 unchanged checks/callbacks per model after one initial
+publication. Baseline25 failures versus candidate0 of80 checks. Across the stable
+burst,500 fingerprint sorts and500,000 temporary index strings become0;500,000
+auction row replacements,500 count-map replacements and500 FluxUI pulses become0.
+These are synthetic sizes/event volumes, not observed user-session data or native
+allocations/latency. Three mutants are rejected: ignoring links, ignoring removals,
+and unconditional auction publication. Purchase delivery, sold quantity removal,
+zero counts, sparse indices, empty data, foreign callbacks and debounce controls
+pass. Existing provider-handoff and combined builtin/Syndicator tests pass;
+full131 scripts/786 Lua syntax files pass.
+
+The comparison is linear and allocation-free for unchanged snapshots; a changed
+list may incur an additional linear comparison before the existing rebuild,
+particularly when its first difference is late in iteration. This is a tradeoff,
+not a measured native speedup for every changed transaction. Source operations
+are cache reads, not additional game API scans. Native CPU/allocation/frame-time,
+changed-transaction latency and actual provider event volume are unmeasured.
+Wall samples include test startup/controls and are not native operation latency.
+Guild-bank and void callbacks remain unchanged. The installed addon versions were
+last verified as Baganator840/Syndicator289 and Forever executable1.60.1.70790;
+active runtime GetBuildInfo/settings/hardware remain uncaptured.
+
+After sync and /reload, native acceptance remains the four distinct scenarios:
+mail opening, mail closing, AH buying and own-auction sales. Verify new/removed
+items, quantities, delayed item links, delivery, tooltips and existing mail features
+with both integrations enabled. Match baseline/candidate scene/profile/addons and
+warm-up/capture durations before interpreting CPU/frame time. If the large pauses
+remain, obtain native attribution, including external-addon work; do not keep
+assuming unchanged FluxUI snapshots are the sole cause. No foreground/input,
+mail take, auction purchase, profiler preference or optional feature was changed
+by these tools. The user previously could not run the requested capture.
+
 The user confirms Forever with Baganator and Syndicator: lag on mailbox opening,
 closing, buying at AH and when buyers purchase the user's listings. They cannot
 run the requested capture and explicitly asked for other safeguards. No connected

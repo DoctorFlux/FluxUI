@@ -7655,28 +7655,28 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Adapter.RebuildBags` | [L155](../../Inventory/Syndicator/Adapter.lua#L155) |
-| `Adapter.RebuildBank` | [L204](../../Inventory/Syndicator/Adapter.lua#L204) |
-| `Adapter.GetLastBagsChangeKind` | [L252](../../Inventory/Syndicator/Adapter.lua#L252) |
-| `Adapter.GetLastBagsAddedItemIDs` | [L256](../../Inventory/Syndicator/Adapter.lua#L256) |
-| `Adapter.GetLastBagsRemovedItemIDs` | [L260](../../Inventory/Syndicator/Adapter.lua#L260) |
-| `Adapter.GetLastBagsDirtyBags` | [L264](../../Inventory/Syndicator/Adapter.lua#L264) |
-| `Adapter.GetLastBankChangeKind` | [L268](../../Inventory/Syndicator/Adapter.lua#L268) |
-| `Adapter.GetLastBankAddedItemIDs` | [L272](../../Inventory/Syndicator/Adapter.lua#L272) |
-| `Adapter.GetLastBankRemovedItemIDs` | [L276](../../Inventory/Syndicator/Adapter.lua#L276) |
-| `Adapter.GetLastBankDirtyBags` | [L280](../../Inventory/Syndicator/Adapter.lua#L280) |
-| `Adapter.TakeBagsItemSets` | [L284](../../Inventory/Syndicator/Adapter.lua#L284) |
-| `Adapter.TakeBankItemSets` | [L288](../../Inventory/Syndicator/Adapter.lua#L288) |
-| `Adapter.RebuildWarband` | [L292](../../Inventory/Syndicator/Adapter.lua#L292) |
-| `Adapter.RebuildEquip` | [L317](../../Inventory/Syndicator/Adapter.lua#L317) |
-| `Adapter.RebuildMail` | [L387](../../Inventory/Syndicator/Adapter.lua#L387) |
-| `Adapter.RebuildVoid` | [L399](../../Inventory/Syndicator/Adapter.lua#L399) |
-| `Adapter.RebuildAuctions` | [L417](../../Inventory/Syndicator/Adapter.lua#L417) |
-| `Adapter.RebuildGuild` | [L422](../../Inventory/Syndicator/Adapter.lua#L422) |
-| `Adapter.RebuildCurrencies` | [L444](../../Inventory/Syndicator/Adapter.lua#L444) |
-| `Adapter.RebuildWarbandCurrency` | [L469](../../Inventory/Syndicator/Adapter.lua#L469) |
-| `Adapter.RebuildAll` | [L480](../../Inventory/Syndicator/Adapter.lua#L480) |
-| `Adapter.Start` | [L663](../../Inventory/Syndicator/Adapter.lua#L663) |
+| `Adapter.RebuildBags` | [L154](../../Inventory/Syndicator/Adapter.lua#L154) |
+| `Adapter.RebuildBank` | [L203](../../Inventory/Syndicator/Adapter.lua#L203) |
+| `Adapter.GetLastBagsChangeKind` | [L251](../../Inventory/Syndicator/Adapter.lua#L251) |
+| `Adapter.GetLastBagsAddedItemIDs` | [L255](../../Inventory/Syndicator/Adapter.lua#L255) |
+| `Adapter.GetLastBagsRemovedItemIDs` | [L259](../../Inventory/Syndicator/Adapter.lua#L259) |
+| `Adapter.GetLastBagsDirtyBags` | [L263](../../Inventory/Syndicator/Adapter.lua#L263) |
+| `Adapter.GetLastBankChangeKind` | [L267](../../Inventory/Syndicator/Adapter.lua#L267) |
+| `Adapter.GetLastBankAddedItemIDs` | [L271](../../Inventory/Syndicator/Adapter.lua#L271) |
+| `Adapter.GetLastBankRemovedItemIDs` | [L275](../../Inventory/Syndicator/Adapter.lua#L275) |
+| `Adapter.GetLastBankDirtyBags` | [L279](../../Inventory/Syndicator/Adapter.lua#L279) |
+| `Adapter.TakeBagsItemSets` | [L283](../../Inventory/Syndicator/Adapter.lua#L283) |
+| `Adapter.TakeBankItemSets` | [L287](../../Inventory/Syndicator/Adapter.lua#L287) |
+| `Adapter.RebuildWarband` | [L291](../../Inventory/Syndicator/Adapter.lua#L291) |
+| `Adapter.RebuildEquip` | [L316](../../Inventory/Syndicator/Adapter.lua#L316) |
+| `Adapter.RebuildMail` | [L388](../../Inventory/Syndicator/Adapter.lua#L388) |
+| `Adapter.RebuildVoid` | [L398](../../Inventory/Syndicator/Adapter.lua#L398) |
+| `Adapter.RebuildAuctions` | [L416](../../Inventory/Syndicator/Adapter.lua#L416) |
+| `Adapter.RebuildGuild` | [L424](../../Inventory/Syndicator/Adapter.lua#L424) |
+| `Adapter.RebuildCurrencies` | [L446](../../Inventory/Syndicator/Adapter.lua#L446) |
+| `Adapter.RebuildWarbandCurrency` | [L471](../../Inventory/Syndicator/Adapter.lua#L471) |
+| `Adapter.RebuildAll` | [L482](../../Inventory/Syndicator/Adapter.lua#L482) |
+| `Adapter.Start` | [L664](../../Inventory/Syndicator/Adapter.lua#L664) |
 
 ### Inventory/Tooltip.lua
 

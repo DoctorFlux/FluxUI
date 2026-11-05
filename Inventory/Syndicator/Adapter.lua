@@ -6,7 +6,6 @@ local Adapter = Inv.Syndicator
 
 local bound = false
 local waiting = false
-local lastMailFingerprint
 local MAIL_DEBOUNCE = 0.2
 local mailPending, mailFirst, mailDue
 
@@ -367,31 +366,31 @@ local function FillFromList(slotArray, snap)
 	snap.generation = (snap.generation or 0) + 1
 end
 
-local function MailListFingerprint(slotArray)
-	if type(slotArray) ~= "table" then
-		return ""
-	end
-	local parts = {}
-	for index, rec in pairs(slotArray) do
-		local id = rec and NumericItemID(rec.itemID)
-		if id then
-			local n = tonumber(rec.itemCount or rec.count) or 1
-			parts[#parts + 1] = tostring(index) .. "=" .. id .. ":" .. n
+local function ListMatchesSnapshot(slotArray, snap)
+	if not snap or not snap.byIndex or not snap.generation or snap.generation == 0 then return false end
+	local remaining = 0
+	if type(slotArray) == "table" then
+		for index, rec in pairs(slotArray) do
+			local id = rec and NumericItemID(rec.itemID)
+			if id then
+				local old = snap.byIndex[index]
+				if not old or old.itemID ~= id or old.count ~= (tonumber(rec.itemCount or rec.count) or 1)
+					or old.link ~= (rec.itemLink or rec.link) then return false end
+				remaining = remaining + 1
+			end
 		end
 	end
-	table.sort(parts)
-	return table.concat(parts, ";")
+	for _ in pairs(snap.byIndex) do remaining = remaining - 1 end
+	return remaining == 0
 end
 
 --- Returns true when the live mail snapshot actually changed.
 function Adapter.RebuildMail()
 	local char = CurrentCharacter()
 	local mail = char and char.mail
-	local fp = MailListFingerprint(mail)
-	if fp == lastMailFingerprint then
+	if ListMatchesSnapshot(mail, Inv.snapshots.mail) then
 		return false
 	end
-	lastMailFingerprint = fp
 	FillFromList(mail, Inv.snapshots.mail)
 	return true
 end
@@ -416,7 +415,10 @@ end
 
 function Adapter.RebuildAuctions()
 	local char = CurrentCharacter()
-	FillFromList(char and char.auctions, Inv.snapshots.auctions)
+	local auctions = char and char.auctions
+	if ListMatchesSnapshot(auctions, Inv.snapshots.auctions) then return false end
+	FillFromList(auctions, Inv.snapshots.auctions)
+	return true
 end
 
 function Adapter.RebuildGuild()
@@ -627,8 +629,7 @@ local function Bind()
 		if not IsCurrentCharacter(character) then
 			return
 		end
-		Adapter.RebuildAuctions()
-		Request("auctions")
+		if Adapter.RebuildAuctions() then Request("auctions") end
 	end)
 	cb:RegisterCallback("GuildCacheUpdate", function()
 		Adapter.RebuildGuild()
