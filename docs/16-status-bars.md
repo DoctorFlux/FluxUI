@@ -1,5 +1,9 @@
 # Status bars, gold, currencies and Info Frame
 
+XP and reputation left-clicks toggle the native Reputation panel outside combat,
+including Forever after the user-confirmed native API probe. Right click does
+not select a panel. [Fix evidence](FOREVER_REPUTATION_CLICK.md).
+
 Flux's status system has six loaded components: XP/reputation/gold-strip composition, account gold ledger, item-currency tracking, Info Frame, legacy PvP tracking and PvP objective placement. They share layout/chrome but own different data. [FluxStatusBar.lua](../StatusBars/FluxStatusBar.lua) creates the bar container and reconciles active cells.
 
 ## Strip composition and updates

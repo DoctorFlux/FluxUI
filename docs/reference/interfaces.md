@@ -797,19 +797,19 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [StatusBars/FluxPVPTracking.lua:371](../../StatusBars/FluxPVPTracking.lua#L371) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [StatusBars/FluxPVPTracking.lua:372](../../StatusBars/FluxPVPTracking.lua#L372) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [StatusBars/FluxStatusBar.lua:2569](../../StatusBars/FluxStatusBar.lua#L2569) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [StatusBars/FluxStatusBar.lua:2950](../../StatusBars/FluxStatusBar.lua#L2950) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [StatusBars/FluxStatusBar.lua:2951](../../StatusBars/FluxStatusBar.lua#L2951) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [StatusBars/FluxStatusBar.lua:2952](../../StatusBars/FluxStatusBar.lua#L2952) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [StatusBars/FluxStatusBar.lua:2953](../../StatusBars/FluxStatusBar.lua#L2953) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [StatusBars/FluxStatusBar.lua:2954](../../StatusBars/FluxStatusBar.lua#L2954) | `RegisterEvent` | `"PLAYER_XP_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2955](../../StatusBars/FluxStatusBar.lua#L2955) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [StatusBars/FluxStatusBar.lua:2956](../../StatusBars/FluxStatusBar.lua#L2956) | `RegisterEvent` | `"UPDATE_EXHAUSTION"` |
-| [StatusBars/FluxStatusBar.lua:2957](../../StatusBars/FluxStatusBar.lua#L2957) | `RegisterEvent` | `"PLAYER_UPDATE_RESTING"` |
-| [StatusBars/FluxStatusBar.lua:2958](../../StatusBars/FluxStatusBar.lua#L2958) | `RegisterEvent` | `"UPDATE_FACTION"` |
-| [StatusBars/FluxStatusBar.lua:2959](../../StatusBars/FluxStatusBar.lua#L2959) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2960](../../StatusBars/FluxStatusBar.lua#L2960) | `RegisterEvent` | `"PLAYER_MONEY"` |
-| [StatusBars/FluxStatusBar.lua:2961](../../StatusBars/FluxStatusBar.lua#L2961) | `RegisterEvent` | `"CURRENCY_DISPLAY_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2962](../../StatusBars/FluxStatusBar.lua#L2962) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
+| [StatusBars/FluxStatusBar.lua:2932](../../StatusBars/FluxStatusBar.lua#L2932) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [StatusBars/FluxStatusBar.lua:2933](../../StatusBars/FluxStatusBar.lua#L2933) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [StatusBars/FluxStatusBar.lua:2934](../../StatusBars/FluxStatusBar.lua#L2934) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [StatusBars/FluxStatusBar.lua:2935](../../StatusBars/FluxStatusBar.lua#L2935) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [StatusBars/FluxStatusBar.lua:2936](../../StatusBars/FluxStatusBar.lua#L2936) | `RegisterEvent` | `"PLAYER_XP_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2937](../../StatusBars/FluxStatusBar.lua#L2937) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [StatusBars/FluxStatusBar.lua:2938](../../StatusBars/FluxStatusBar.lua#L2938) | `RegisterEvent` | `"UPDATE_EXHAUSTION"` |
+| [StatusBars/FluxStatusBar.lua:2939](../../StatusBars/FluxStatusBar.lua#L2939) | `RegisterEvent` | `"PLAYER_UPDATE_RESTING"` |
+| [StatusBars/FluxStatusBar.lua:2940](../../StatusBars/FluxStatusBar.lua#L2940) | `RegisterEvent` | `"UPDATE_FACTION"` |
+| [StatusBars/FluxStatusBar.lua:2941](../../StatusBars/FluxStatusBar.lua#L2941) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2942](../../StatusBars/FluxStatusBar.lua#L2942) | `RegisterEvent` | `"PLAYER_MONEY"` |
+| [StatusBars/FluxStatusBar.lua:2943](../../StatusBars/FluxStatusBar.lua#L2943) | `RegisterEvent` | `"CURRENCY_DISPLAY_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2944](../../StatusBars/FluxStatusBar.lua#L2944) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
 | [UnitFrames/FluxCastBar.lua:2863](../../UnitFrames/FluxCastBar.lua#L2863) | `RegisterUnitEvent` | `event, unit` |
 | [UnitFrames/FluxCastBar.lua:2896](../../UnitFrames/FluxCastBar.lua#L2896) | `RegisterEvent` | `"UNIT_SPELLCAST_SENT"` |
 | [UnitFrames/FluxCastBar.lua:3466](../../UnitFrames/FluxCastBar.lua#L3466) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -9392,7 +9392,7 @@ Owner: [16-status-bars.md](../16-status-bars.md).
 | `_G.FluxStatusBar_GetBottomOverlayHeight` | [L2427](../../StatusBars/FluxStatusBar.lua#L2427) |
 | `_G.FluxStatusBar_GetBottomOverlayHeightForAlignedChrome` | [L2446](../../StatusBars/FluxStatusBar.lua#L2446) |
 | `UpdateLayout` | [L2635](../../StatusBars/FluxStatusBar.lua#L2635) |
-| `endend_G.FluxStatusBarUpdateLayout` | [L3113](../../StatusBars/FluxStatusBar.lua#L3113) |
+| `endend_G.FluxStatusBarUpdateLayout` | [L3095](../../StatusBars/FluxStatusBar.lua#L3095) |
 
 ### UnitFrames/FluxCastBar.lua
 

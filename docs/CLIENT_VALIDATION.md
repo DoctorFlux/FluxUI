@@ -1,5 +1,15 @@
 # Client and reference validation — 29 October 2026
 
+5 November Forever reputation click fix: the user confirmed the native
+ToggleCharacter("ReputationFrame") call opens Reputation out of combat after
+WoW's custom-script prompt. Both bars now call that API directly; the wrong
+CharacterMicroButton overlays and Forever early return were removed for these
+bars only. Combat guard, other client behavior, tooltips and other proxies remain.
+Five desktop pairs: baseline18 failures versus0 of180 checks; full128 scripts/783
+syntax pass. Final native bar clicks/taint/gamepad checks remain pending; no
+/run macro or confirmation popup is introduced by the addon.
+[Evidence and native checks](FOREVER_REPUTATION_CLICK.md).
+
 5 November auction opening regression: the user's Retail stack showed Update
 running before the ScrollBox view exists. Both modern highlighting variants now
 check GetView before iterating; later initialized updates still paint normally.

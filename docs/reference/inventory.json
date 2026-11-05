@@ -31466,8 +31466,8 @@
       "path": "Core/_tmp_coresmoke.lua",
       "classification": "development harness",
       "chapter": "08-shared-services.md",
-      "lines": 1594,
-      "sha256": "90dc98c8052dfe58f414703ef634ad034b8c34d317e1f701a050f72ce3a03538",
+      "lines": 1584,
+      "sha256": "6bb602f4e5a541f108d9b5ccdbfa5cf32d428bd6b34c6947f0f41c1018d8b568",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -70910,8 +70910,8 @@
       "path": "StatusBars/FluxStatusBar.lua",
       "classification": "active",
       "chapter": "16-status-bars.md",
-      "lines": 3123,
-      "sha256": "8312374088485e5bbe9811f02960eda627e1163ff6412b6c1b38c83325c09b44",
+      "lines": 3105,
+      "sha256": "b8254e6e10d01cb2f09d27197dad85d3181f78a8ebab7d06e6032dbadbab00ed",
       "clients": [
         "camelot",
         "cata",
@@ -70953,7 +70953,7 @@
         },
         {
           "name": "endend_G.FluxStatusBarUpdateLayout",
-          "line": 3113
+          "line": 3095
         }
       ],
       "events": [
@@ -70966,7 +70966,7 @@
           "context": "(\"Frame\")regenFlushNotifyFrame:"
         },
         {
-          "line": 2950,
+          "line": 2932,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -70974,7 +70974,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 2951,
+          "line": 2933,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -70982,7 +70982,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 2952,
+          "line": 2934,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -70990,7 +70990,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 2953,
+          "line": 2935,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -70998,7 +70998,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 2954,
+          "line": 2936,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_XP_UPDATE\""
@@ -71006,7 +71006,7 @@
           "context": "(\"ADDON_LOADED\")eventFrame:"
         },
         {
-          "line": 2955,
+          "line": 2937,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -71014,7 +71014,7 @@
           "context": "(\"PLAYER_XP_UPDATE\")eventFrame:"
         },
         {
-          "line": 2956,
+          "line": 2938,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_EXHAUSTION\""
@@ -71022,7 +71022,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")eventFrame:"
         },
         {
-          "line": 2957,
+          "line": 2939,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_UPDATE_RESTING\""
@@ -71030,7 +71030,7 @@
           "context": "(\"UPDATE_EXHAUSTION\")eventFrame:"
         },
         {
-          "line": 2958,
+          "line": 2940,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_FACTION\""
@@ -71038,7 +71038,7 @@
           "context": "(\"PLAYER_UPDATE_RESTING\")eventFrame:"
         },
         {
-          "line": 2959,
+          "line": 2941,
           "method": "RegisterEvent",
           "arguments": [
             "\"QUEST_LOG_UPDATE\""
@@ -71046,7 +71046,7 @@
           "context": "(\"UPDATE_FACTION\")eventFrame:"
         },
         {
-          "line": 2960,
+          "line": 2942,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_MONEY\""
@@ -71054,7 +71054,7 @@
           "context": "(\"QUEST_LOG_UPDATE\")eventFrame:"
         },
         {
-          "line": 2961,
+          "line": 2943,
           "method": "RegisterEvent",
           "arguments": [
             "\"CURRENCY_DISPLAY_UPDATE\""
@@ -71062,7 +71062,7 @@
           "context": "(\"PLAYER_MONEY\")eventFrame:"
         },
         {
-          "line": 2962,
+          "line": 2944,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_INVENTORY_ALERTS\""
@@ -71075,12 +71075,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXSTATUS1",
           "value": "/fluxstatus",
-          "line": 3063
+          "line": 3045
         },
         {
           "kind": "handler",
           "name": "FLUXSTATUS",
-          "line": 3064
+          "line": 3046
         }
       ],
       "widgets": [],
@@ -79417,6 +79417,31 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/status_reputation_clicks.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 52,
+      "sha256": "efab439b19f334907f97144ab49072c18d3bdfe31cd27786cd9f231e1c95672f",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "envenv.InCombatLockdown",
+          "line": 16
+        },
+        {
+          "name": "returns.combatendenv.IsForeverClient",
+          "line": 17
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/syndicator_consumable_updates.lua",

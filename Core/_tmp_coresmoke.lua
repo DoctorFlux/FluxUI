@@ -1509,16 +1509,6 @@ end
 local statusSrc = read("../StatusBars/FluxStatusBar.lua")
 has(statusSrc, "local function CanOpenCurrencyTab()", "gold bar currency shortcut is gated")
 has(statusSrc, "and not IsForeverClient()", "Forever gold bar never calls ToggleCharacter")
-has(statusSrc, "proxy.Attach(RepBar", "Forever rep bar opens Character Info by secure click")
-do
-	local openAt = statusSrc:find("local function OpenReputationFrame()", 1, true)
-	local gateAt = openAt and statusSrc:find("if IsForeverClient() then", openAt, true)
-	local toggleAt = openAt and statusSrc:find('ToggleCharacter("ReputationFrame")', openAt, true)
-	if not gateAt or not toggleAt or gateAt > toggleAt then
-		failures[#failures + 1] = "Forever rep bar must not call ToggleCharacter"
-	end
-end
-
 local dropdownSrc = read("FluxBlizzardDropdown.lua")
 has(dropdownSrc, "function DD.WantsGamepadMenu", "Flux dropdowns can request Blizzard's gamepad menu off Forever gamepad")
 if dropdownSrc:find("TreatAsCore", 1, true) or dropdownSrc:find("function PromptedBindingFooterMixin:RefreshBindingGroup", 1, true) then

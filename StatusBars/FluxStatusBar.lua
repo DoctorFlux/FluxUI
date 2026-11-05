@@ -2852,9 +2852,6 @@ end)
 
 -- Click to open reputation frame (on both bars)
 local function OpenReputationFrame()
-    if IsForeverClient() then
-        return
-    end
     if not InCombatLockdown() then
         if ToggleCharacter then
             ToggleCharacter("ReputationFrame")
@@ -2885,21 +2882,6 @@ RepBar:SetScript("OnMouseUp", function(self, button)
         OpenReputationFrame()
     end
 end)
-
--- Forever: left click is a secure click of CharacterMicroButton (Character Info).
-do
-    local proxy = Flux and Flux.SecureClickProxy
-    if proxy and IsForeverClient() then
-        local function CharacterButton()
-            return _G.CharacterMicroButton
-        end
-        local function Always()
-            return true
-        end
-        proxy.Attach(ExpBar, { target = CharacterButton, enabled = Always, clicks = "LeftButtonUp" })
-        proxy.Attach(RepBar, { target = CharacterButton, enabled = Always, clicks = "LeftButtonUp" })
-    end
-end
 
 -------------------------------------------------------------------------------
 -- EVENT HANDLING
