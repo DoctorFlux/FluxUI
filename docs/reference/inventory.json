@@ -42585,8 +42585,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 1220,
-      "sha256": "751ef9e986d3a4d363dac4e539054d27ca42a6c4f1251ab40626e34e959ee63e",
+      "lines": 1215,
+      "sha256": "6a5620341e7794e454b64dc317a7680d03cdd336cdafc02d47e4d5fb8806ea98",
       "clients": [
         "camelot",
         "cata",
@@ -42636,72 +42636,72 @@
         },
         {
           "name": "Config.UpdateIconCooldown",
-          "line": 731
+          "line": 732
         },
         {
           "name": "Config.UpdateAllCooldowns",
-          "line": 737
+          "line": 738
         },
         {
           "name": "Config.UpdateThresholdDisplay",
-          "line": 744
+          "line": 745
         },
         {
           "name": "Config.ApplyThresholdChange",
-          "line": 765
+          "line": 766
         },
         {
           "name": "Config.UpdateAllItemCounts",
-          "line": 793
+          "line": 794
         },
         {
           "name": "Config.HandleItemDrop",
-          "line": 804
+          "line": 805
         },
         {
           "name": "Config.AddItem",
-          "line": 814
+          "line": 815
         },
         {
           "name": "Config.PromptNewPreset",
-          "line": 854
+          "line": 849
         },
         {
           "name": "Config.ConfirmDeletePreset",
-          "line": 914
+          "line": 909
         },
         {
           "name": "Config.Show",
-          "line": 959
+          "line": 954
         },
         {
           "name": "Config.ShowChronoboonRestockFlyout",
-          "line": 1010
+          "line": 1005
         },
         {
           "name": "Config.Hide",
-          "line": 1054
+          "line": 1049
         },
         {
           "name": "Config.Toggle",
-          "line": 1080
+          "line": 1075
         },
         {
           "name": "Config.IsShown",
-          "line": 1092
+          "line": 1087
         },
         {
           "name": "Config.StartUpdateTicker",
-          "line": 1101
+          "line": 1096
         },
         {
           "name": "Config.StopUpdateTicker",
-          "line": 1131
+          "line": 1126
         }
       ],
       "events": [
         {
-          "line": 1109,
+          "line": 1104,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELL_UPDATE_COOLDOWN\""
@@ -42709,7 +42709,7 @@
           "context": "_updateTicker=tickerFrametickerFrame:"
         },
         {
-          "line": 1110,
+          "line": 1105,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIONBAR_SLOT_CHANGED\""
@@ -42717,7 +42717,7 @@
           "context": "(\"SPELL_UPDATE_COOLDOWN\")tickerFrame:"
         },
         {
-          "line": 1144,
+          "line": 1139,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -42725,7 +42725,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1145,
+          "line": 1140,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -47251,8 +47251,8 @@
       "path": "Inventory/Builtin/Auctions.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 223,
-      "sha256": "7737d3b022b03c334b3f914854472be1ffbfe4faddbf0da7f660da2eb82b0c8a",
+      "lines": 239,
+      "sha256": "ec02d39d3e83815e57775596272854f967a0183a39009efaa547a61c972aee6a",
       "clients": [
         "camelot",
         "cata",
@@ -47270,11 +47270,11 @@
       "functions": [
         {
           "name": "Auctions.Refresh",
-          "line": 178
+          "line": 194
         },
         {
           "name": "Auctions.Start",
-          "line": 193
+          "line": 209
         }
       ],
       "events": [],
@@ -47764,8 +47764,8 @@
       "path": "Inventory/Builtin/Mail.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 365,
-      "sha256": "9e64708892ffbd8a8e00d4ac99f6bd952baf65d313ae07a000b207180a75cf31",
+      "lines": 366,
+      "sha256": "e01251d91221f5d2d5d70bf3a069fb6632c1dc94991ad93c87782532526156ff",
       "clients": [
         "camelot",
         "cata",
@@ -47783,20 +47783,20 @@
       "functions": [
         {
           "name": "Mail.IsOpen",
-          "line": 134
+          "line": 120
         },
         {
           "name": "Mail.Refresh",
-          "line": 222
+          "line": 223
         },
         {
           "name": "Mail.Start",
-          "line": 290
+          "line": 291
         }
       ],
       "events": [
         {
-          "line": 334,
+          "line": 335,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SEND_SUCCESS\""
@@ -47804,7 +47804,7 @@
           "context": "EnsurePendingFrame()f:"
         },
         {
-          "line": 335,
+          "line": 336,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_FAILED\""
@@ -47812,7 +47812,7 @@
           "context": "(\"MAIL_SEND_SUCCESS\")f:"
         },
         {
-          "line": 361,
+          "line": 362,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SUCCESS\""
@@ -47820,7 +47820,7 @@
           "context": "EnsurePendingFrame()f:"
         },
         {
-          "line": 362,
+          "line": 363,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_FAILED\""
@@ -52224,7 +52224,7 @@
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
       "lines": 1508,
-      "sha256": "b8a31fbabfdd8e79e313b0e1ff736a699aa42d05ba7fb29bec0ca2550b8ed611",
+      "sha256": "2193301d557d4e659a3d285adf663a727f4aa7a6cb445f397e77bd5764e61222",
       "clients": [
         "camelot",
         "cata",
@@ -72214,6 +72214,221 @@
       "sv_sites": []
     },
     {
+      "path": "tests/builtin_auction_publication.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 287,
+      "sha256": "8bb7aaac38682e438d500c29f8b13b163e626a0216dca9f1b4256f8ed9749737",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "endendendendendenv.tonumber",
+          "line": 42
+        },
+        {
+          "name": "endenv.ipairs",
+          "line": 46
+        },
+        {
+          "name": "keyendenv.wipe",
+          "line": 54
+        },
+        {
+          "name": "endendenv.GetTime",
+          "line": 60
+        },
+        {
+          "name": "returns.nowendenv.debugprofilestop",
+          "line": 61
+        },
+        {
+          "name": "returns.clockendenv.time",
+          "line": 62
+        },
+        {
+          "name": "env.CreateFrame",
+          "line": 64
+        },
+        {
+          "name": "f:SetScript",
+          "line": 65
+        },
+        {
+          "name": "countenv.GetOwnerAuctionItems",
+          "line": 81
+        },
+        {
+          "name": "endenv.GetAuctionItemInfo",
+          "line": 82
+        },
+        {
+          "name": "idendenv.GetAuctionItemLink",
+          "line": 88
+        },
+        {
+          "name": "s:event",
+          "line": 115
+        },
+        {
+          "name": "s:open",
+          "line": 116
+        },
+        {
+          "name": "s:step",
+          "line": 117
+        },
+        {
+          "name": "s:drain",
+          "line": 143
+        },
+        {
+          "name": "s:measure",
+          "line": 151
+        },
+        {
+          "name": "s:reset",
+          "line": 160
+        },
+        {
+          "name": "truestopped.onRead",
+          "line": 269
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/builtin_mail_publication.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 237,
+      "sha256": "628fedaebfdb6e12cff123405c01dcb49eb0404c46970745ba499417b3b75b74",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.UnitName",
+          "line": 41
+        },
+        {
+          "name": "ende.GetNormalizedRealmName",
+          "line": 42
+        },
+        {
+          "name": "ende.GetTime",
+          "line": 43
+        },
+        {
+          "name": "returnh.nowende.time",
+          "line": 44
+        },
+        {
+          "name": "ende.debugprofilestop",
+          "line": 45
+        },
+        {
+          "name": "e.wipe",
+          "line": 52
+        },
+        {
+          "name": "nilendreturntende.CreateFrame",
+          "line": 59
+        },
+        {
+          "name": "f:SetScript",
+          "line": 61
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 62
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 63
+        },
+        {
+          "name": "h:read",
+          "line": 67
+        },
+        {
+          "name": "endende.GetInboxNumItems",
+          "line": 73
+        },
+        {
+          "name": "returnnende.GetInboxHeaderInfo",
+          "line": 74
+        },
+        {
+          "name": "endende.GetInboxItem",
+          "line": 78
+        },
+        {
+          "name": "rec.qualityendende.GetInboxItemLink",
+          "line": 82
+        },
+        {
+          "name": "e.ReturnInboxItem",
+          "line": 83
+        },
+        {
+          "name": "ende.GetSendMailItem",
+          "line": 84
+        },
+        {
+          "name": "endende.hooksecurefunc",
+          "line": 85
+        },
+        {
+          "name": "fnendinv.Notify",
+          "line": 86
+        },
+        {
+          "name": "h:event",
+          "line": 102
+        },
+        {
+          "name": "h:tick",
+          "line": 106
+        },
+        {
+          "name": "h:drain",
+          "line": 124
+        },
+        {
+          "name": "h:reset",
+          "line": 128
+        },
+        {
+          "name": ".mailh.onRead",
+          "line": 137
+        },
+        {
+          "name": "s.inv.snapshots.mails.onRead",
+          "line": 213
+        }
+      ],
+      "events": [
+        {
+          "line": 62,
+          "method": "RegisterEvent",
+          "arguments": [
+            "k"
+          ],
+          "context": "fnendfunctionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/castbar_school_themes.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -73532,6 +73747,31 @@
           "context": "{}functionframe:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/consumable_config_visibility.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 83,
+      "sha256": "52dc1dfd67aa1bb283c982d5846503beadf183ad76fb83cbb5c2ec8fc34e14b9",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.GetItemInfo",
+          "line": 23
+        },
+        {
+          "name": "ornilendenv.CreateFrame",
+          "line": 24
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -80300,6 +80540,35 @@
           "context": ")endfunctionmethods:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/restock_charge_bank_iterator.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 89,
+      "sha256": "9af96b7b6eeb7fca78cbbec26ca2ac8eba54b5c16f43a5f052b73f3d9e29da5b",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "ifwithIteratorthenbank.ForEachOpenStack",
+          "line": 20
+        },
+        {
+          "name": "env.CreateFrame",
+          "line": 44
+        },
+        {
+          "name": "env.FluxRestockItemRegistryregistry.GetSlotCharges",
+          "line": 57
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],

@@ -14,7 +14,8 @@ local started = false
 local mailboxOpen = false
 local pendingOutgoing
 local pendingFrame
-local lastFingerprint
+local lastByIndex, lastCount
+local hasCompleted = false
 local scanFrame
 local scan, scanAt, firstQueued
 local retryCount = 0
@@ -59,62 +60,47 @@ local function MailHasAttachments(hasItem)
 	return n and n > 0
 end
 
-local function FingerprintList(list)
-	if type(list) ~= "table" or #list == 0 then
-		return ""
-	end
-	local parts = {}
-	for i = 1, #list do
-		local rec = list[i]
-		local id = rec and NumericID(rec.itemID)
-		if id then
-			parts[#parts + 1] = id .. ":" .. (tonumber(rec.itemCount or rec.count) or 1)
-		end
-	end
-	return table.concat(parts, ";")
+local function DiscardProviderScan()
+	scan, scanAt, firstQueued = nil, nil, nil
+	lastByIndex, lastCount, hasCompleted = nil, nil, false
+	retryCount = 0
+	if scanFrame then scanFrame:SetScript("OnUpdate", nil) end
 end
 
-local function ApplyList(list, characterName)
+local function IsCurrentScan(job)
+	if scan ~= job then return false end
+	if Store.UsesSyndicator() then
+		DiscardProviderScan()
+		return false
+	end
+	return true
+end
+
+local function ApplyList(job)
+	local char = Store.EnsureCurrentCharacter()
+	if not IsCurrentScan(job) then return false end
 	local snap = Inv.snapshots.mail
-	if snap and (not characterName or characterName == Store.GetCurrentCharacterName()) then
-		if not snap.byIndex then
-			snap.byIndex = {}
-		end
-		if wipe then
-			wipe(snap.byIndex)
-		else
-			for k in pairs(snap.byIndex) do
-				snap.byIndex[k] = nil
-			end
-		end
-		local counts = {}
-		for i = 1, #list do
-			local rec = list[i]
-			local id = rec and NumericID(rec.itemID)
-			if id then
-				local n = tonumber(rec.itemCount or rec.count) or 1
-				snap.byIndex[i] = { itemID = id, count = n, link = rec.itemLink or rec.link }
-				counts[id] = (counts[id] or 0) + n
-			end
-		end
-		snap.counts = counts
+	if snap then
+		-- No consumer caches the inner mail map. Publish completed maps together;
+		-- normalized rows/counts have already been prepared within the scan budget.
+		snap.byIndex, snap.counts = job.byIndex, job.counts
 		snap.generation = (snap.generation or 0) + 1
 	end
-	if not Store.UsesSyndicator() then
-		local char = characterName and Store.GetCharacter(characterName) or Store.EnsureCurrentCharacter()
-		if char then
-			char.mail = list
-			Store.MarkPending(characterName or Store.GetCurrentCharacterName(), "all")
-		end
+	if char then
+		char.mail = job.list
+		Store.MarkPending(Store.GetCurrentCharacterName(), "all")
 	end
+	lastByIndex, lastCount, hasCompleted = job.byIndex, #job.list, true
+	return true
 end
 
 -- GetInboxItem only. GetInboxItemLink hitchs the client on a full inbox.
-local function CaptureAttachment(into, mailIndex, attachIndex, expiration)
+local function CaptureAttachment(into, mailIndex, attachIndex, expiration, job)
 	if not GetInboxItem then
 		return
 	end
 	local _, itemID, texture, count, quality = GetInboxItem(mailIndex, attachIndex)
+	if job and not IsCurrentScan(job) then return nil, true end
 	itemID = NumericID(itemID)
 	if not itemID then
 		return
@@ -128,7 +114,7 @@ local function CaptureAttachment(into, mailIndex, attachIndex, expiration)
 		quality = quality,
 		expirationTime = expiration,
 	}
-	return true
+	return into[#into]
 end
 
 function Mail.IsOpen()
@@ -143,16 +129,19 @@ local ArmInboxScan
 local function StepScan(self)
 	-- Readiness can transfer ownership while this scan waits or spans frames.
 	if Store.UsesSyndicator() then
-		scan, scanAt, firstQueued = nil, nil, nil
-		retryCount = 0
-		self:SetScript("OnUpdate", nil)
+		DiscardProviderScan()
 		return
 	end
 	if Now() < scanAt then return end
 	if not scan then
-		scan = { list = {}, index = 1, n = GetInboxNumItems() or 0,
+		scan = { list = {}, byIndex = {}, counts = {}, previous = lastByIndex,
+			changed = not hasCompleted, index = 1,
 			maxAttach = MaxReceiveSlots(), now = (time and time()) or 0 }
 		firstQueued = nil
+		local job = scan
+		local n = GetInboxNumItems()
+		if not IsCurrentScan(job) then return end
+		job.n = n or 0
 	end
 	local job = scan
 	local calls, startedAt = 0, debugprofilestop and debugprofilestop()
@@ -161,6 +150,7 @@ local function StepScan(self)
 			local daysLeft, hasItem
 			if GetInboxHeaderInfo then
 				local _, _, _, _, _, _, days, has = GetInboxHeaderInfo(job.index)
+				if not IsCurrentScan(job) then return end
 				daysLeft, hasItem = days, has
 			end
 			calls = calls + 1
@@ -172,8 +162,20 @@ local function StepScan(self)
 				job.index = job.index + 1
 			end
 		else
-			if CaptureAttachment(job.list, job.index, job.attach, job.expiration) then
+			local rec, interrupted = CaptureAttachment(job.list, job.index, job.attach, job.expiration, job)
+			if interrupted then return end
+			if rec then
 				job.captured = job.captured + 1
+				local index = #job.list
+				local old = job.previous and job.previous[index]
+				local matches = old and old.itemID == rec.itemID and old.count == rec.itemCount
+				if not matches then job.changed = true end
+				local row = old
+				if not matches or old.link ~= nil then
+					row = { itemID = rec.itemID, count = rec.itemCount }
+				end
+				job.byIndex[index] = row
+				job.counts[rec.itemID] = (job.counts[rec.itemID] or 0) + rec.itemCount
 			end
 			calls = calls + 1
 			job.attach = job.attach + 1
@@ -185,11 +187,11 @@ local function StepScan(self)
 		if startedAt and debugprofilestop() - startedAt >= BUDGET_MS then break end
 	end
 	if job.index <= job.n then return end
-	scan = nil
 	self:SetScript("OnUpdate", nil)
 	-- Never publish a partial inbox or recurse through Scheduler -> Refresh.
 	-- Truly missing IDs get at most two retries, not an expanding timer tree.
 	if job.incomplete then
+		scan = nil
 		if mailboxOpen and retryCount < 2 then
 			retryCount = retryCount + 1
 			ArmInboxScan(nil, true)
@@ -197,16 +199,15 @@ local function StepScan(self)
 		end
 		return
 	end
-	local fp = FingerprintList(job.list)
-	if fp ~= lastFingerprint then
-		lastFingerprint = fp
-		ApplyList(job.list)
-		Inv.Notify({ mail = true })
-	end
+	local changed = job.changed or #job.list ~= lastCount
+	if changed and not ApplyList(job) then return end
+	scan = nil
+	if changed then Inv.Notify({ mail = true }) end
 end
 
 ArmInboxScan = function(force, retry)
-	if Store.UsesSyndicator() or not GetInboxNumItems or (not mailboxOpen and not force) then return end
+	if Store.UsesSyndicator() then DiscardProviderScan(); return end
+	if not GetInboxNumItems or (not mailboxOpen and not force) then return end
 	local now = Now()
 	firstQueued = firstQueued or now
 	scanAt = math.min(now + QUIET_TIME, firstQueued + MAX_WAIT)

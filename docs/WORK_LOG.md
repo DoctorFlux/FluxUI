@@ -1,5 +1,12 @@
 # Work log
 
+Preserved newer main commits for consumable visibility and bank charge iteration
+through `2c0e7b8`. All current normalized Lua hashes/file membership match their
+combined passing 149-script/804-Lua report; the earlier 147/802 snapshot result
+is not relabelled. New external recovery Mail-auction-publication-20261105T183217Z
+preserves 1,519 actual files, 122 settings and history including all pending work,
+source SHA256 `eb8e2855cc54ad55cfa43a670b4b4d1957f0ffa6c3d6c424c8dbef3ba10d3557`.
+
 5 November native stack follow-up: user trace at 19:19:57 identified
 `FluxRestockList.lua:1307` calling missing `FluxRestock.Inv.Bank.ForEachSlot`
 while the Consumables config grid queried charges. Verified baseline main
@@ -15,6 +22,48 @@ files before editing. Fixed deferred item save and button-first refresh in the
 shared config. Five baseline/candidate desktop pairs pass eight checks each;
 full validation passes 148 scripts and 803 Lua files. Native client checks
 pending. [Case and hashes](CONSUMABLE_TARGET_DETECTION.md).
+
+5 November renewed report: each Buy or Cancel adds lag to the next operation.
+Added explicit operation-count and retained-resource curves to the flow scope;
+source/provider audits continue separately from the validated snapshot batch.
+
+Approved native check: Forever70790/interface16001, FluxUI/Syndicator/Baganator
+all loaded, source Syndicator, profiler0. Candidate files byte-matched and reloaded
+19:15:51 CET; source/marker/profile0 verified19:17. Mail/auction caches0/0 at19:18.
+No transaction, profiler toggle or enable change. BugTabs1.4.9 owns capture;
+an incorrect BugGrabber method query caused a probe error, not a runtime regression.
+Previous foregrounds restored when changed; captures remain private. Transaction,
+freeze, rendering, taint and leak acceptance remain pending.
+
+5 November snapshot preparation, desktop validation complete: verified baseline
+`437fda79136582282dde0f3989f3cb70c4411bad` and external checkpoint
+Mail-auction-publication-20261105T173546Z (1,503 actual files, 122 on-disk settings,
+verified all-ref history), source SHA256
+`4921e61d4bce4f648bd95b428f7a0acea9eb11dfc99b0c66d1d5b32fd9a31f48`.
+Moved built-in mail/auction snapshot preparation inside existing scan budgets,
+with private completed maps and atomic publication. Consumer inspection supports
+the intentional internal-map identity change; region objects, public Index APIs,
+original equality/cadence and publication counts remain. Auction replay passes
+5,884 checks versus baseline 144 failures in 5,436; peak metered work 5,216→104,
+unchanged fingerprint visits 10,240→0, getter-reentry errors 20→0, publications
+20→20. Mail replay passes 8,194 checks versus baseline 25 failures in 8,203.
+Arrival normalization remains 1,600 records, with peak per-update constructors
+1,600→46; five unchanged scans retain all 8,000 capture rows but fingerprint
+fields fall 8,000→0 and normalization stays zero. A quantity change normalizes
+1 record instead of 1,600; old-map clears fall 1,600→0 on that change and on the
+last two money-only messages. Ten alternating pairs and eight rejected mutants
+pass. Full validation passes 147 scripts / 802 Lua syntax files; all 802 current
+normalized hashes match the manifest. Independent review accepted both sources
+and reentry guards. [Raw comparisons and candidate hashes](validation/builtin-publication-comparison-2026-11-05.json),
+[full report](validation/builtin-publication-2026-11-05.json).
+No native freeze, latency, allocation-byte or FPS claim.
+External Syndicator 289 cold-post callback/retry failure was reproduced read-only
+and left unchanged; it does not explain unloaded-provider freezes. No game input,
+profiling or enable-flag change was used. [Flow scope](MAIL_AUCTION_REWORK.md),
+[mail preparation](BUILTIN_MAIL_PUBLICATION.md),
+[auction preparation](BUILTIN_AUCTION_PUBLICATION.md),
+[external evidence](EXTERNAL_SYNDICATOR_POSTING.md). Money-update cost inspection
+is a separate read-only finding; no money-path runtime change was made.
 
 5 November publication: ordinary push to main completed for runtime
 `7a06b85f633d1945b7d6bf615636f486f3d7e627`, tree

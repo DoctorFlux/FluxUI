@@ -14,6 +14,24 @@ window before that refresh. Keep weapon compatibility limited to button
 availability and preserve physical inventory/restock counts. No saved-data
 migration or client-specific branch is needed.
 
+5 November publication preparation: reuse the mail/auction scan jobs and their
+existing per-frame budgets to prepare complete normalized maps before atomic
+publication. Retain original equality, scan cadence, stable region objects and
+Index results. Change the internal index-map identity only at completed changed
+generations: the repository consumer audit found no cached inner mail/auction
+index or public GetSnapshot exposure for those regions. This trades temporary
+staging maps for removal of unbudgeted final copy/clear/fingerprint bursts; native
+getters and downstream listeners remain separate cost boundaries. Buy-to-mail is
+a distinct delivery and collection path, not an assumed direct bag update.
+Keep external Syndicator's reproduced cold-post callback/retry defect separate
+and unfixed here; do not wrap external globals or suppress its errors. Neither
+finding attributes or resolves the reported whole-game freeze. No game input or
+profiling; preserve background operation and settings.
+[Flow scope](MAIL_AUCTION_REWORK.md),
+[mail preparation](BUILTIN_MAIL_PUBLICATION.md),
+[auction preparation](BUILTIN_AUCTION_PUBLICATION.md),
+[external reference](EXTERNAL_SYNDICATOR_POSTING.md).
+
 5 November mail/auction lifecycle: keep Blizzard responsible for posting, sales,
 buying, cancellation and confirmation dialogs. Flux's built-in observer must
 check provider ownership before a native owned-list query and latch its attempt

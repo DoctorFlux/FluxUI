@@ -1,5 +1,11 @@
 # Development status
 
+Current combined source verification passes 149 scripts / 804 Lua files, including
+the newer consumable visibility and bank-charge fixes committed during this audit.
+Every current normalized Lua hash matches the
+[combined report](validation/restock-charge-bank-iterator-2026-11-05.json).
+The snapshot-only 147/802 report below retains its earlier exact scope.
+
 5 November native Consumables config stack: opening with the bank available
 reached a nil `FluxRestock.Inv.Bank.ForEachSlot`. The shared restock charge
 scanner now uses `ForEachOpenStack`; five paired desktop regressions and full
@@ -13,12 +19,51 @@ shown before refresh. Five paired desktop fixtures and full 148-script/803-Lua
 validation pass. Native client confirmation remains pending.
 See [evidence](CONSUMABLE_TARGET_DETECTION.md).
 
-Published runtime: `7a06b85f633d1945b7d6bf615636f486f3d7e627`, source tree
+The latest user report is progressive: each auction Buy or Cancel makes the next
+operation slower. A separate retention/repeated-work audit is active; the
+validated snapshot batch below is not proof that this growth is fixed.
+
+Fresh approved Forever checks confirm build70790, all three FluxUI/Syndicator/
+Baganator loaded and source Syndicator. Candidate files matched before the
+19:15:51 CET reload; source/marker and profiler0 were confirmed afterward.
+No buy/cancel/loot test ran; current provider mail/auction caches were empty.
+BugTabs1.4.9 is the current logger. One incorrect BugGrabber API probe caused a
+diagnostic error; no error history or logger setting was changed.
+
+Completed desktop batch: built-in mailbox and auction snapshot preparation,
+based on published main `437fda79136582282dde0f3989f3cb70c4411bad`. Buy-to-mail delivery is explicitly
+included with mailbox open/close, individual/final Open All, post, sale, buy and
+cancel-to-mail flows. The two scans now prepare complete private index/count maps
+within their existing per-frame budgets and swap them only on completed changed
+generations. Region objects and Index APIs remain stable; original equality,
+cadence and one-publication behavior remain. The internal map identity change is
+intentional: current consumers neither expose mail/auction GetSnapshot regions
+nor retain their inner index maps. [Flow scope](MAIL_AUCTION_REWORK.md),
+[mail preparation](BUILTIN_MAIL_PUBLICATION.md),
+[auction preparation](BUILTIN_AUCTION_PUBLICATION.md).
+
+Auction replay passes 5,884 checks; baseline fails 144 of 5,436 dynamic checks.
+Peak metered operations fall 5,216→104, unchanged fingerprint visits 10,240→0 and
+getter-reentry errors 20→0; publications remain 20. Mail replay passes 8,194
+checks versus baseline 25 failures in 8,203. Its 1,600 arrival records still
+allocate, spread across updates with peak constructors 1,600→46; one quantity
+change needs 1 normalized record instead of 1,600. Ten alternating pairs and
+eight rejected mutants pass; full validation passes 147 scripts / 802 Lua syntax
+files. All 802 normalized source hashes match. Exact candidate source hashes and
+raw samples are in [the comparison](validation/builtin-publication-comparison-2026-11-05.json).
+These are mocked work boundaries, not native latency, FPS, memory bytes or proof
+that the whole-game freezes are fixed.
+The separate external Syndicator 289 cold-post callback/retry defect is documented
+read-only and remains unfixed; it cannot explain the unloaded-provider freeze.
+[External finding](EXTERNAL_SYNDICATOR_POSTING.md). No connected native test tool
+is available; preserve background operation, profile0, flags and diagnostic roots.
+
+Earlier published runtime: `7a06b85f633d1945b7d6bf615636f486f3d7e627`, source tree
 `4e31f10131923c3d002faffe8036e631d1537402`. GitHub main read-back matched;
 all 800 normalized Lua files match the passing validation manifest. Subsequent
 publication-record updates change documentation only.
 
-Current mail/auction lifecycle work is based on published main
+Earlier mail/auction lifecycle work is based on published main
 `e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Built-in auction opens now check
 provider ownership before querying and coalesce duplicate/reentrant show calls.
 Open All can stop the active job after its last eligible mail disappears;

@@ -3,9 +3,11 @@
 Current priority, 5 November: [mail and auction performance work](MAIL_AUCTION_REWORK.md)
 tracks opening/closing, loot, posting, buyer sales, purchases and cancellation
 across all five clients and optional providers. Keep these requirements separate
-from unfinished mail features. `e860ce6` is published on main; the lifecycle
-follow-up uses that exact baseline. Native candidate identity and matched freeze
-captures are still pending. Leave WoW in the background and preserve enable flags
+from unfinished mail features. The snapshot work uses baseline `437fda7`; preserve
+newer consumable work through `2c0e7b8` and the combined 149/804 passing source.
+Progressive Buy/Cancel cost is tracked in [growth evidence](PURCHASE_GROWTH_AUDIT.md).
+Partial Forever source/startup checks passed; matched transaction/freeze captures
+remain pending. Leave WoW in the background and preserve enable flags
 and profiler0. Earlier dated tasks below retain their historical scope; renewed
 auction requests supersede their auction-callback exclusion. Guild-bank and void
 callbacks remain excluded.

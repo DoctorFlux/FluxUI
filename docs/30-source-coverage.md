@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 181 |
+| inactive source | 185 |
 
 ## Addon sources
 
@@ -608,6 +608,8 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/bars_startup_retry.lua](../tests/bars_startup_retry.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/binding_respec_regression.lua](../tests/binding_respec_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/blizzard_script_ownership.lua](../tests/blizzard_script_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/builtin_auction_publication.lua](../tests/builtin_auction_publication.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/builtin_mail_publication.lua](../tests/builtin_mail_publication.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/castbar_school_themes.lua](../tests/castbar_school_themes.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/chat_character_durability.lua](../tests/chat_character_durability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/chat_column_layout.lua](../tests/chat_column_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -616,6 +618,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/classic_combined_bank.lua](../tests/classic_combined_bank.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/combat_grid_conjured_usability.lua](../tests/combat_grid_conjured_usability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/combat_queue_supersession.lua](../tests/combat_queue_supersession.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/consumable_config_visibility.lua](../tests/consumable_config_visibility.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_restock_clicks.lua](../tests/consumable_restock_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_weapon_targets.lua](../tests/consumable_weapon_targets.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_zero_reset.lua](../tests/consumable_zero_reset.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -686,6 +689,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/raid_nameplate_defaults.lua](../tests/raid_nameplate_defaults.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/raid_owned_settings.lua](../tests/raid_owned_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/raid_startup.lua](../tests/raid_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/restock_charge_bank_iterator.lua](../tests/restock_charge_bank_iterator.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/salvage_overlay.lua](../tests/salvage_overlay.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/spellbook_native_input.lua](../tests/spellbook_native_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/stance_player_scale.lua](../tests/stance_player_scale.lua) | inactive source | — | [34-assets.md](34-assets.md) |

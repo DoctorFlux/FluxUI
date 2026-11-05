@@ -159,7 +159,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/FlyoutEngine/Popup.lua](../ExtraButtonSystem/FlyoutEngine/Popup.lua) | 2 | 0 | 0 | 0 | 1 |
 | [ExtraButtonSystem/Init.lua](../ExtraButtonSystem/Init.lua) | 0 | 0 | 3 | 0 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua) | 5 | 1 | 17 | 14 | 1 |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua) | 5 | 0 | 6 | 4 | 0 |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua) | 5 | 0 | 5 | 4 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua) | 0 | 0 | 3 | 4 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua) | 3 | 1 | 13 | 11 | 1 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua) | 3 | 0 | 21 | 18 | 1 |
@@ -182,7 +182,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua) | 0 | 0 | 3 | 15 | 0 |
 | [FluxBorder.lua](../FluxBorder.lua) | 0 | 0 | 0 | 1 | 0 |
 | [FluxDefaultSettings.lua](../FluxDefaultSettings.lua) | 1 | 0 | 39 | 11 | 2 |
-| [Inventory/Builtin/Auctions.lua](../Inventory/Builtin/Auctions.lua) | 4 | 0 | 0 | 0 | 0 |
+| [Inventory/Builtin/Auctions.lua](../Inventory/Builtin/Auctions.lua) | 6 | 0 | 0 | 0 | 0 |
 | [Inventory/Builtin/FluxClassicCombinedBag.lua](../Inventory/Builtin/FluxClassicCombinedBag.lua) | 0 | 0 | 3 | 6 | 4 |
 | [Inventory/Builtin/FluxClassicCombinedBank.lua](../Inventory/Builtin/FluxClassicCombinedBank.lua) | 0 | 0 | 1 | 8 | 2 |
 | [Inventory/Builtin/Mail.lua](../Inventory/Builtin/Mail.lua) | 3 | 0 | 0 | 4 | 2 |

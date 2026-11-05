@@ -298,10 +298,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6213](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6213) | `RegisterEvent` | `"PLAYER_UNGHOST"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6214](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6214) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6215](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6215) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1109](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1109) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1110](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1110) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1144](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1144) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1145](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1145) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1104](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1104) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1105](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1105) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1139](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1139) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1140](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1140) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:536](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L536) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:537](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L537) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:538](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L538) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
@@ -421,10 +421,10 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Builtin/FluxClassicCombinedBank.lua:505](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L505) | `RegisterEvent` | `"PLAYERBANKSLOTS_CHANGED"` |
 | [Inventory/Builtin/FluxClassicCombinedBank.lua:506](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L506) | `RegisterEvent` | `"PLAYERBANKBAGSLOTS_CHANGED"` |
 | [Inventory/Builtin/FluxClassicCombinedBank.lua:507](../../Inventory/Builtin/FluxClassicCombinedBank.lua#L507) | `RegisterEvent` | `"PLAYER_MONEY"` |
-| [Inventory/Builtin/Mail.lua:334](../../Inventory/Builtin/Mail.lua#L334) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
-| [Inventory/Builtin/Mail.lua:335](../../Inventory/Builtin/Mail.lua#L335) | `RegisterEvent` | `"MAIL_FAILED"` |
-| [Inventory/Builtin/Mail.lua:361](../../Inventory/Builtin/Mail.lua#L361) | `RegisterEvent` | `"MAIL_SUCCESS"` |
-| [Inventory/Builtin/Mail.lua:362](../../Inventory/Builtin/Mail.lua#L362) | `RegisterEvent` | `"MAIL_FAILED"` |
+| [Inventory/Builtin/Mail.lua:335](../../Inventory/Builtin/Mail.lua#L335) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
+| [Inventory/Builtin/Mail.lua:336](../../Inventory/Builtin/Mail.lua#L336) | `RegisterEvent` | `"MAIL_FAILED"` |
+| [Inventory/Builtin/Mail.lua:362](../../Inventory/Builtin/Mail.lua#L362) | `RegisterEvent` | `"MAIL_SUCCESS"` |
+| [Inventory/Builtin/Mail.lua:363](../../Inventory/Builtin/Mail.lua#L363) | `RegisterEvent` | `"MAIL_FAILED"` |
 | [Inventory/CreateSpells.lua:441](../../Inventory/CreateSpells.lua#L441) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Inventory/CreateSpells.lua:457](../../Inventory/CreateSpells.lua#L457) | `RegisterEvent` | `"SPELLS_CHANGED"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:472](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L472) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -5349,22 +5349,22 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Config.ShowChronoboonRestockEdit` | [L454](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L454) |
 | `Config.ShowIconTooltip` | [L525](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L525) |
 | `Config.RefreshUI` | [L702](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L702) |
-| `Config.UpdateIconCooldown` | [L731](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L731) |
-| `Config.UpdateAllCooldowns` | [L737](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L737) |
-| `Config.UpdateThresholdDisplay` | [L744](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L744) |
-| `Config.ApplyThresholdChange` | [L765](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L765) |
-| `Config.UpdateAllItemCounts` | [L793](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L793) |
-| `Config.HandleItemDrop` | [L804](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L804) |
-| `Config.AddItem` | [L814](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L814) |
-| `Config.PromptNewPreset` | [L854](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L854) |
-| `Config.ConfirmDeletePreset` | [L914](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L914) |
-| `Config.Show` | [L959](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L959) |
-| `Config.ShowChronoboonRestockFlyout` | [L1010](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1010) |
-| `Config.Hide` | [L1054](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1054) |
-| `Config.Toggle` | [L1080](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1080) |
-| `Config.IsShown` | [L1092](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1092) |
-| `Config.StartUpdateTicker` | [L1101](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1101) |
-| `Config.StopUpdateTicker` | [L1131](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1131) |
+| `Config.UpdateIconCooldown` | [L732](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L732) |
+| `Config.UpdateAllCooldowns` | [L738](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L738) |
+| `Config.UpdateThresholdDisplay` | [L745](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L745) |
+| `Config.ApplyThresholdChange` | [L766](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L766) |
+| `Config.UpdateAllItemCounts` | [L794](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L794) |
+| `Config.HandleItemDrop` | [L805](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L805) |
+| `Config.AddItem` | [L815](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L815) |
+| `Config.PromptNewPreset` | [L849](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L849) |
+| `Config.ConfirmDeletePreset` | [L909](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L909) |
+| `Config.Show` | [L954](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L954) |
+| `Config.ShowChronoboonRestockFlyout` | [L1005](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1005) |
+| `Config.Hide` | [L1049](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1049) |
+| `Config.Toggle` | [L1075](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1075) |
+| `Config.IsShown` | [L1087](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1087) |
+| `Config.StartUpdateTicker` | [L1096](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1096) |
+| `Config.StopUpdateTicker` | [L1126](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1126) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua
 
@@ -6065,8 +6065,8 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Auctions.Refresh` | [L178](../../Inventory/Builtin/Auctions.lua#L178) |
-| `Auctions.Start` | [L193](../../Inventory/Builtin/Auctions.lua#L193) |
+| `Auctions.Refresh` | [L194](../../Inventory/Builtin/Auctions.lua#L194) |
+| `Auctions.Start` | [L209](../../Inventory/Builtin/Auctions.lua#L209) |
 
 ### Inventory/Builtin/Bags.lua
 
@@ -6158,9 +6158,9 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Mail.IsOpen` | [L134](../../Inventory/Builtin/Mail.lua#L134) |
-| `Mail.Refresh` | [L222](../../Inventory/Builtin/Mail.lua#L222) |
-| `Mail.Start` | [L290](../../Inventory/Builtin/Mail.lua#L290) |
+| `Mail.IsOpen` | [L120](../../Inventory/Builtin/Mail.lua#L120) |
+| `Mail.Refresh` | [L223](../../Inventory/Builtin/Mail.lua#L223) |
+| `Mail.Start` | [L291](../../Inventory/Builtin/Mail.lua#L291) |
 
 ### Inventory/Builtin/Void.lua
 

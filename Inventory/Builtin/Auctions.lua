@@ -12,7 +12,7 @@ Builtin.Auctions = Auctions
 local started = false
 local houseOpen = false
 local queryAttempted = false
-local scanFrame, scan, scanAt, firstQueued, lastFingerprint
+local scanFrame, scan, scanAt, firstQueued, lastList
 
 local function Request()
 	Auctions.Refresh()
@@ -32,37 +32,35 @@ local function NumericID(value)
 	return nil
 end
 
-local function ApplyList(list)
-	local parts = {}
-	for i, rec in ipairs(list) do
-		parts[i] = rec.itemID .. ":" .. rec.itemCount .. ":" .. (rec.auctionID or "")
+local function PrepareRecord(job)
+	local i = #job.list
+	local rec = job.list[i]
+	local old = lastList and lastList[i]
+	if not old or old.itemID ~= rec.itemID or old.itemCount ~= rec.itemCount
+		or (old.auctionID ~= rec.auctionID
+			and tostring(old.auctionID or "") ~= tostring(rec.auctionID or "")) then
+		job.changed = true
 	end
-	local fp = table.concat(parts, ";")
-	if fp == lastFingerprint then return false end
-	lastFingerprint = fp
+	local id, n, link = rec.itemID, rec.itemCount, rec.itemLink or rec.link
+	if id > 0 then
+		local snap = Inv.snapshots.auctions
+		local row = snap and snap.byIndex and snap.byIndex[i]
+		if not row or row.itemID ~= id or row.count ~= n or row.link ~= link then
+			row = { itemID = id, count = n, link = link }
+		end
+		job.byIndex[i] = row
+		job.counts[id] = (job.counts[id] or 0) + n
+	end
+end
+
+local function ApplyList(job)
+	local list = job.list
+	if not job.changed and #list == #lastList then return false end
+	lastList = list
 	local snap = Inv.snapshots.auctions
 	if snap then
-		if not snap.byIndex then
-			snap.byIndex = {}
-		end
-		if wipe then
-			wipe(snap.byIndex)
-		else
-			for k in pairs(snap.byIndex) do
-				snap.byIndex[k] = nil
-			end
-		end
-		local counts = {}
-		for i = 1, #list do
-			local rec = list[i]
-			local id = rec and NumericID(rec.itemID)
-			if id then
-				local n = tonumber(rec.itemCount or rec.count) or 1
-				snap.byIndex[i] = { itemID = id, count = n, link = rec.itemLink or rec.link }
-				counts[id] = (counts[id] or 0) + n
-			end
-		end
-		snap.counts = counts
+		-- Keep incomplete generations private; publication must not copy every row.
+		snap.byIndex, snap.counts = job.byIndex, job.counts
 		snap.generation = (snap.generation or 0) + 1
 	end
 	if not Store.UsesSyndicator() then
@@ -80,8 +78,9 @@ local function IsAuctioneer(kind)
 	return e and kind == e.Auctioneer
 end
 
-local function ReadLegacy(index, list)
+local function ReadLegacy(index, list, job)
 	local info = { GetAuctionItemInfo("owner", index) }
+	if scan ~= job or Store.UsesSyndicator() then return end
 	-- name, texture, count, quality, ..., itemID at 17 on modern Classic
 	local count = tonumber(info[3]) or 1
 	local quality = info[4]
@@ -130,27 +129,44 @@ local function StepScan(self)
 	end
 	if Now() < scanAt then return end
 	if not scan then
+		local job = { list = {}, byIndex = {}, counts = {}, index = 1, changed = lastList == nil }
+		scan = job
+		firstQueued = nil
 		local n = 0
 		if Cap.hasLegacyAuctionHouse then
 			n = GetNumAuctionItems and GetNumAuctionItems("owner") or 0
 		elseif C_AuctionHouse and C_AuctionHouse.GetNumOwnedAuctions then
 			n = C_AuctionHouse.GetNumOwnedAuctions() or 0
 		end
-		scan = { list = {}, index = 1, n = n }
-		firstQueued = nil
+		-- Native getters may synchronously replace this generation or close the AH.
+		if scan ~= job then return end
+		if Store.UsesSyndicator() then
+			scan, scanAt, firstQueued = nil, nil, nil
+			self:SetScript("OnUpdate", nil)
+			return
+		end
+		job.n = n
 	end
+	local job = scan
 	local startedAt = debugprofilestop and debugprofilestop()
 	local calls = 0
-	while scan.index <= scan.n and calls < 32 do
-		if Cap.hasLegacyAuctionHouse then ReadLegacy(scan.index, scan.list) else ReadModern(scan.index, scan.list) end
-		scan.index, calls = scan.index + 1, calls + 1
+	while job.index <= job.n and calls < 32 do
+		local size = #job.list
+		if Cap.hasLegacyAuctionHouse then ReadLegacy(job.index, job.list, job) else ReadModern(job.index, job.list) end
+		if scan ~= job then return end
+		if Store.UsesSyndicator() then
+			scan, scanAt, firstQueued = nil, nil, nil
+			self:SetScript("OnUpdate", nil)
+			return
+		end
+		if #job.list > size then PrepareRecord(job) end
+		job.index, calls = job.index + 1, calls + 1
 		if startedAt and debugprofilestop() - startedAt >= 1 then break end
 	end
-	if scan.index <= scan.n then return end
-	local list = scan.list
+	if job.index <= job.n then return end
 	scan = nil
 	self:SetScript("OnUpdate", nil)
-	if ApplyList(list) then Inv.Notify({ auctions = true }) end
+	if ApplyList(job) then Inv.Notify({ auctions = true }) end
 end
 
 local function Close()

@@ -17,6 +17,47 @@ is pending, as are Era, Anniversary and progression client checks. Inspect
 reload persistence, zero-effective-count weapon enchant visibility, tooltips,
 secure click, and actual layout. See [case record](CONSUMABLE_TARGET_DETECTION.md).
 
+5 November built-in snapshot preparation, baseline published `437fda7`: auction
+and mail production fixtures pass 5,884 and 8,194 checks. Five alternating pairs
+per fixture, eight rejected mutants and final full 147 scripts / 802 Lua syntax
+files pass. The auction baseline fails 144 of 5,436 dynamic checks; the final mail
+baseline fails 25 of 8,203. Client/provider labels are shared contracts with mocked
+native APIs, not native client or provider certification. See
+[auction preparation](BUILTIN_AUCTION_PUBLICATION.md),
+[inbox preparation](BUILTIN_MAIL_PUBLICATION.md),
+[raw comparison and source hashes](validation/builtin-publication-comparison-2026-11-05.json)
+and [complete flow scope](MAIL_AUCTION_REWORK.md).
+
+Both sources stage normalized index/count maps inside existing scan budgets and
+publish only completed changed generations. Region objects, public Index APIs,
+original equality and cadence remain. The intentional internal byIndex map
+identity change follows the consumer search; current callers neither retain
+those inner maps nor expose mail/auction regions through GetSnapshot. Staging
+adds temporary maps; reduced preparation bursts do not establish lower total
+native CPU, memory bytes or FPS improvement.
+
+Partial native startup/source check: the user approved brief read-only access to
+Forever PID 39984, the verified Forever executable, with MarioSuper in world.
+At 19:14 CET, GetBuildInfo returned 1.60.1/build70790/interface16001 (build date
+Nov3), and FluxUI, Syndicator and Baganator all reported loaded. At 19:15:37,
+the source was Syndicator, itemDataRevision was 20261105.1 and scriptProfile was 0.
+Byte parity of both changed source files plus Init was verified before the
+19:15:51 reload. At 19:17:31, source/revision/profile0 were confirmed again;
+at 19:18, cache mail and auction counts were both zero. This is partial startup
+and source evidence, not acceptance of the changed built-in scan paths: the
+active source was Syndicator. The older 17:37 unloaded setup is separate history.
+
+No Buy, cancel, loot, enabling/disabling or profiling was performed. Previous
+windows were restored and no further foreground work is planned. The user
+identifies BugTabs1.4.9; BugGrabberDB was nil. One GetSessionId diagnostic failed because of an incorrect probe assumption;
+that failure is not a native FluxUI regression.
+Error history and logger settings were not cleared or changed; private raw
+captures remain outside Git. All native transactions, freeze removal, taint,
+pixels and long-session retention remain pending across clients/providers/bags,
+including Buy-to-mail and final Open All. The [external Syndicator cold-post
+finding](EXTERNAL_SYNDICATOR_POSTING.md) remains read-only and unfixed. Original
+and modern Wrath remain distinct and unverified. No native freeze cure is claimed.
+
 5 November mail/auction lifecycle candidate, baseline `e860ce6` already published:
 real auction modules pass 628 checks and real Settings/Select/OpenAll modules
 pass 880 checks. Five alternating pairs per fixture, eight rejected mutants and

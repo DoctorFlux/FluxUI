@@ -1,5 +1,13 @@
 # Next session
 
+Current combined Lua source matches all 804 hashes in
+`docs/validation/restock-charge-bank-iterator-2026-11-05.json` (149 passes).
+Preserve the newer consumable commits through main `2c0e7b8`; they arrived during
+this audit. Recovery Mail-auction-publication-20261105T183217Z covers all 1,519
+actual files, 122 on-disk settings and full history, including uncommitted work;
+source SHA256 `eb8e2855cc54ad55cfa43a670b4b4d1957f0ffa6c3d6c424c8dbef3ba10d3557`.
+Original snapshot comparison and 147/802 source report retain their own identities.
+
 Consumables config native follow-up: reopen with a charged item while the
 bank is open and closed on Retail and Forever, then on Era, Anniversary, and
 supported progression clients. Confirm the nil iterator error is gone,
@@ -14,12 +22,62 @@ tooltip, secure click, error and layout checks across supported clients. The
 shared source desktop fix passes five paired fixtures and full 148/803 suite;
 native evidence is pending. See docs/CONSUMABLE_TARGET_DETECTION.md.
 
-Published runtime is `7a06b85f633d1945b7d6bf615636f486f3d7e627` (tree
+Latest steering: each Buy or Cancel makes the next operation slower. Continue
+the progressive-cost audit after publishing this validated snapshot batch.
+Capture 10/100/500-operation curves for retained pending mail, source reads,
+copied rows, frames, callbacks, timers, hooks and error history with each provider.
+The current snapshot changes do not establish that this growth has been removed.
+Preserve all real mail facts and check collection cleanup rather than truncating.
+
+Fresh native state: approved checks at 19:14–19:20 CET verified Forever70790,
+FluxUI/Syndicator/Baganator loaded and source Syndicator; byte-matched files were
+reloaded19:15:51 and profiler0/source marker20261105.1 confirmed afterward.
+Provider mail/auction caches were empty; no transactions/performance test ran.
+Use BugTabs1.4.9's public `BugTabs.sessionErrors`/own saved schema; BugGrabberDB
+is nil in this session. An attempted BugGrabber method query generated one probe
+error. Do not clear it or mistake it for an addon regression. Foreground checks
+are finished; resume background work and preserve all preferences.
+
+Desktop-validated continuation: Buy-to-mail is explicitly in scope. Baseline main
+`437fda79136582282dde0f3989f3cb70c4411bad` is published; verified external
+Mail-auction-publication-20261105T173546Z preserves 1,503 actual files, 122
+on-disk settings files and all-ref history (source SHA256
+`4921e61d4bce4f648bd95b428f7a0acea9eb11dfc99b0c66d1d5b32fd9a31f48`).
+`Inventory/Builtin/Mail.lua` and `Auctions.lua` now prepare
+completed index/count maps within their existing scan budget. Baseline desktop
+replays prove an unbudgeted final fingerprint/copy/clear phase, including clearing
+a large old attachment map when only two money messages remain. Keep the region
+object, publish only complete generations, preserve original equality/cadence and
+retain public Index APIs. The consumer audit found no cached inner mail/auction
+index maps or public GetSnapshot exposure for these regions; internal map identity
+changes are intentional and documented.
+Tests `builtin_mail_publication.lua` and `builtin_auction_publication.lua` pass
+baseline-rejecting replays. Auction replay is frozen at 5,884 passing checks; baseline fails
+144 of 5,436 dynamic checks. Peak metered work 5,216→104, unchanged fingerprint
+visits 10,240→0, getter-reentry errors 20→0; publications stay 20. Mail passes
+8,194 checks versus baseline 25 failures in 8,203; peak arrival normalization
+falls 1,600→46 constructors/update while retaining 1,600 total. Ten alternating
+pairs, eight mutants and full 147 scripts / 802 syntax checks pass; all 802
+normalized source hashes match. Reports:
+`docs/validation/builtin-publication-comparison-2026-11-05.json` and
+`docs/validation/builtin-publication-2026-11-05.json`.
+Read [flow scope](docs/MAIL_AUCTION_REWORK.md),
+[mail preparation](docs/BUILTIN_MAIL_PUBLICATION.md) and
+[auction preparation](docs/BUILTIN_AUCTION_PUBLICATION.md). No connected native
+test tool is available. Current native candidate identity, freeze removal and all-client
+acceptance remain pending; leave WoW background and profiler0 untouched.
+Read [external Syndicator finding](docs/EXTERNAL_SYNDICATOR_POSTING.md) separately:
+the reference-only cold-post callback error does not explain an unloaded-provider
+freeze. Do not patch or suppress external globals/errors.
+Money-update cost inspection remains a separate read-only finding for a future
+justified slice; no money-path runtime change is included here.
+
+Earlier published runtime is `7a06b85f633d1945b7d6bf615636f486f3d7e627` (tree
 `4e31f10131923c3d002faffe8036e631d1537402`), verified on GitHub main.
 Publication-record updates are documentation only; the 800-file Lua manifest
 still matches. Start with native loaded-source verification as described below.
 
-Current lifecycle phase starts from published main
+Earlier lifecycle phase starts from published main
 `e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Read
 [mail/auction flow scope](docs/MAIL_AUCTION_REWORK.md),
 [query ownership](docs/AUCTION_QUERY_OWNERSHIP.md) and

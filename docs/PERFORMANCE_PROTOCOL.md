@@ -1,5 +1,47 @@
 # Baseline protocol and currency evidence
 
+5 November built-in snapshot preparation, baseline `437fda7`: ten alternating
+fresh-process pairs and eight rejected mutants pass. Auction maximum metered
+operations per update fall from 5,216 to 104, unchanged fingerprint visits from
+10,240 to zero and getter-reentry Lua errors from twenty to zero. Publications
+remain twenty and unchanged normalized-row creations remain zero. Staged index
+writes add 30,720 writes across the measured scans. These counters cover selected
+mocked reads/conversions/map work, not every Lua instruction or native time.
+
+The mail arrival still creates 1,600 normalized records in total, spread from a
+peak of 1,600 to 46 per update; arrival fingerprint visits fall from 1,600 to zero.
+Five unchanged scans retain 8,000 capture rows and zero normalized constructions
+in both versions, while fingerprint visits fall from 8,000 to zero. One quantity
+change creates 1,600 to one normalized records and clears 1,600 to zero old rows.
+The two-money-message case also clears 1,600 to zero old index rows. Persistent
+capture-row allocations remain; no total allocation-byte reduction is claimed.
+
+Auction and mail candidates pass 5,884 and 8,194 checks. Final whole-addon
+validation passes 147 scripts / 802 syntax files; exact source/fixture hashes,
+raw samples and zero counter variation are in the
+[comparison](validation/builtin-publication-comparison-2026-11-05.json).
+Both sources prepare private maps within existing budgets and atomically publish
+complete generations. No new timer, event, scheduler or framework is added.
+Temporary maps are a peak-resource tradeoff; individual native getters and
+Store/listener work remain separate boundaries. See
+[auction](BUILTIN_AUCTION_PUBLICATION.md) and [mail](BUILTIN_MAIL_PUBLICATION.md).
+
+An approved Forever startup/source check supplies limited native evidence:
+FluxUI/Syndicator/Baganator loaded at 19:14 CET on build70790/interface16001;
+source Syndicator, revision20261105.1 and profile0 at 19:15:37. Changed-file/Init
+byte parity was checked before reload at 19:15:51, and source/revision/profile0
+were confirmed at 19:17:31. Mail/auction cache counts were zero at 19:18.
+The external source was active, so the changed built-in scan paths were not
+exercised. No transaction, profiler, instrumentation or enabled-state change was
+used; previous windows were restored. These checks do not supply native timing,
+CPU, memory-byte, FPS, taint or freeze-removal evidence. The 147/802 report and
+source hashes remain the desktop acceptance record for this phase.
+
+All native mail/AH transactions, Buy-to-mail, final-message collection, leaks and
+pixel acceptance remain pending on all relevant client/provider/bag combinations.
+Preserve profile0, diagnostic roots and logger settings. The external Syndicator
+cold-post defect remains read-only and unfixed; no native freeze cure is claimed.
+
 5 November mail/auction lifecycle candidate, baseline `e860ce6`: ten alternating
 fresh-process pairs and eight rejected mutants cover two production fixtures.
 Across five client labels and both show-event orders, initial/duplicate-show

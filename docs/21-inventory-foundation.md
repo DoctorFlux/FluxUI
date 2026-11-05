@@ -1,5 +1,11 @@
 # Inventory: sources, snapshots, ledgers, and item knowledge
 
+Current built-in [mail](BUILTIN_MAIL_PUBLICATION.md) and
+[auction](BUILTIN_AUCTION_PUBLICATION.md) scans prepare completed generations
+within their existing budgets and publish their internal maps atomically.
+The [mail/auction flow record](MAIL_AUCTION_REWORK.md) separates this desktop
+evidence from pending native purchase, sale, cancellation and mailbox checks.
+
 This is the current implementation reference for `Flux.Inventory`, its adapters, and the item/profession services built beside it. The inventory foundation supplies facts to buttons, restock, salvage, Respec, tooltips, and status bars. Era/Anniversary also have Flux combined bag and character-bank windows when no alternative bag UI owns them. The bank hosts Blizzard item buttons, bank bag slots and purchase controls; see [combined bank evidence](CLASSIC_COMBINED_BANK.md). Saying Flux only supplies inventory data would miss these active features.
 
 ## Ownership and initialization
