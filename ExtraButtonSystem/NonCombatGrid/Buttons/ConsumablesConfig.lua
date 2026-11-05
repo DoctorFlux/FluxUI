@@ -704,10 +704,6 @@ function Config.RefreshUI()
     local frame = Config._frame
     if not frame or not GridUI then return end
 
-    if FluxNCConsumables and FluxNCConsumables.ForceUpdate then
-        FluxNCConsumables.ForceUpdate()
-    end
-
     Config.UpdateThresholdDisplay()
 
     if FluxNCConsumables and FluxNCConsumables.GetActivePreset and frame.presetDropdown then
@@ -725,6 +721,11 @@ function Config.RefreshUI()
 
     if frame.ResizeFrame then
         frame.ResizeFrame()
+    end
+
+    -- Keep the saved list visible even if the live button update fails.
+    if FluxNCConsumables and FluxNCConsumables.ForceUpdate then
+        FluxNCConsumables.ForceUpdate()
     end
 end
 
@@ -812,26 +813,20 @@ function Config.HandleItemDrop()
 end
 
 function Config.AddItem(itemID)
-    if not itemID then return end
+    itemID = tonumber(itemID)
+    if not itemID or itemID < 1 or itemID % 1 ~= 0 then return end
     
     if FluxNCConsumables and FluxNCConsumables.IsChronoboonItem
         and FluxNCConsumables.IsChronoboonItem(itemID) then
         return
     end
     
-    -- Validate it's an actual item
-    local itemName = GetItemInfo(itemID)
-    if not itemName then
-        -- Request item info and try again
+    -- The item cursor already supplies the ID. Save it before waiting for
+    -- uncached metadata; the grid shows a placeholder icon until it arrives.
+    if not GetItemInfo(itemID) then
         if C_Item and C_Item.RequestLoadItemDataByID then
             C_Item.RequestLoadItemDataByID(itemID)
         end
-        Timer.After(0.5, function()
-            if GetItemInfo(itemID) then
-                Config.AddItem(itemID)
-            end
-        end)
-        return
     end
     
     -- Add to consumables list
@@ -994,8 +989,8 @@ function Config.Show(anchorButton)
         end
     end
     
-    Config.RefreshUI()
     frame:Show()
+    Config.RefreshUI()
     
     -- Initialize SuperCharged buff state tracking for live updates
     if FluxNCConsumables and FluxNCConsumables.HasSuperchargedChronoboonBuff then

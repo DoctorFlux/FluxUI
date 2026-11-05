@@ -1,5 +1,34 @@
 # Configured consumable targets — 5 November 2026
 
+## Config visibility follow-up — 5 November 2026
+
+The Retail and Forever config report exposed two editor failure paths. A dropped
+item with an uncached name was never saved until a one-shot metadata retry
+succeeded; if it did not, the item stayed absent from the preset. Also,
+`RefreshUI` updated the live button before rebuilding the saved grid, so any
+button update error stopped rendering every configured entry. The editor now
+saves a valid cursor item ID immediately, requests metadata for later icon/name
+display, rebuilds the saved grid before updating the button, and shows the
+window before refreshing it. Saved entries remain listed even when their
+effective usable count is zero because of weapon compatibility.
+
+Baseline main `437fda79136582282dde0f3989f3cb70c4411bad` and a verified
+external `FluxUI-consumable-config-prechange-20261105.bundle` preserve history.
+External worktree/settings archives preserve 22 then-current unrelated edits
+and four on-disk `_FluxUI.lua` settings files; no private settings or archives
+are in AddOns. Baseline/candidate config source SHA256 values are
+`751ef9e986d3a4d363dac4e539054d27ca42a6c4f1251ab40626e34e959ee63e`
+and `6a5620341e7794e454b64dc317a7680d03cdd336cdafc02d47e4d5fb8806ea98`.
+Five paired desktop fixtures reproduce the old missing-entry behavior and pass
+the candidate with eight checks per run; the full desktop validation passes
+148 scripts and 803 Lua syntax files. [Comparison and exact hashes](validation/consumable-config-visibility-comparison-2026-11-05.json);
+[full validation](validation/consumable-config-visibility-2026-11-05.json).
+These mocks establish editor control flow and persistence only. Native Retail,
+Forever, Era, Anniversary, and progression checks remain pending: add a cold
+item, reload, switch presets, try an incompatible weapon enchant, and inspect
+the saved grid, tooltip, errors, secure click, and visual layout. No native
+performance or pixel result is inferred from desktop tests.
+
 ## Contract and change
 
 | ID | Requirement | Implementation |
