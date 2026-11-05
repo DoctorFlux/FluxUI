@@ -146,7 +146,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/CombatGrid/Grid.lua](../ExtraButtonSystem/CombatGrid/Grid.lua) | 0 | 0 | 4 | 0 | 0 |
 | [ExtraButtonSystem/CombatGrid/GridManager.lua](../ExtraButtonSystem/CombatGrid/GridManager.lua) | 0 | 1 | 1 | 3 | 0 |
 | [ExtraButtonSystem/Engine/Action.lua](../ExtraButtonSystem/Engine/Action.lua) | 2 | 0 | 0 | 0 | 4 |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) | 0 | 0 | 14 | 6 | 8 |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) | 0 | 0 | 14 | 7 | 8 |
 | [ExtraButtonSystem/Engine/Paint.lua](../ExtraButtonSystem/Engine/Paint.lua) | 0 | 0 | 4 | 0 | 0 |
 | [ExtraButtonSystem/Engine/Style.lua](../ExtraButtonSystem/Engine/Style.lua) | 0 | 0 | 0 | 0 | 1 |
 | [ExtraButtonSystem/Engine/Watch.lua](../ExtraButtonSystem/Engine/Watch.lua) | 0 | 0 | 11 | 0 | 0 |

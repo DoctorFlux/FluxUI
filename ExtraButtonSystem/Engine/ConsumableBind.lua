@@ -148,6 +148,11 @@ local function BagCount(itemID, includeCharges, kind)
     stacks = tonumber(stacks) or 0
     local Item = _G.Flux and _G.Flux.Item
     if not includeCharges or (Item and Item.UsesConsumableCharges and Item.UsesConsumableCharges(itemID, kind) == false) then
+        -- Syndicator can wait for unrelated item metadata before publishing.
+        -- Once bags are reliable, a live zero must release the old action.
+        if inv.source == "syndicator" and inv.GetLiveCount and inv.IsReliable and inv.IsReliable() and not SoftHolding() then
+            return tonumber(inv.GetLiveCount(itemID, { charges = false, bags = true, bank = false, warband = false })) or stacks
+        end
         return stacks
     end
     if stacks <= 0 then
@@ -2536,6 +2541,7 @@ local FACE_MODULES = {
     { key = "FluxNCWater", kind = "water" },
     { key = "FluxCombatHealPotion", kind = "healPotion" },
     { key = "FluxCombatManaPotion", kind = "manaPotion" },
+    { key = "FluxCombatBandage", kind = "bandage" },
 }
 local faceRefreshQueued = false
 
@@ -2641,6 +2647,7 @@ do
     local watch = CreateFrame("Frame")
     watch:RegisterEvent("PLAYER_REGEN_DISABLED")
     watch:RegisterEvent("PLAYER_REGEN_ENABLED")
+    watch:RegisterEvent("BAG_UPDATE_DELAYED")
     local function PaintSwapFaces()
         local Flux = _G.Flux
         local Action = Flux and Flux.EBS and Flux.EBS.Action
@@ -2662,7 +2669,22 @@ do
             end
         end
     end
-    watch:SetScript("OnEvent", function()
+    watch:SetScript("OnEvent", function(_, event)
+        if event == "BAG_UPDATE_DELAYED" then
+            local inv = Inv()
+            if not inv or inv.source ~= "syndicator" or SoftHolding() then return end
+            -- Use the existing count/reset path while the provider callback is
+            -- pending. Empty placeholders do not need another selection pass.
+            for i = 1, #FACE_MODULES do
+                local module = _G[FACE_MODULES[i].key]
+                if module and module.RefreshCountOnly and (module._trackedItemID or module._latchItemID
+                    or (module.Button and module.Button._fluxCombatSwapBody)) then
+                    if SwapSecureBusy() then module._pendingUpdate = true end
+                    module.RefreshCountOnly()
+                end
+            end
+            return
+        end
         PaintSwapFaces()
         -- [combat] can lag the regen event by a frame. Recount once it has flipped.
         if C_Timer and C_Timer.After then
@@ -2839,7 +2861,12 @@ function Refresh.Attach(opts)
         end
         -- Reliable path: copies when copies > 1, else remaining uses (including 0).
         -- keep live tracking at 0 so Paint does not blank the digit.
-        if itemID then
+        local inv = Inv()
+        if not charges and inv and inv.source == "syndicator" then
+            -- BagCount already verified this stack against live bags. Keep
+            -- Paint from replacing it with the delayed provider snapshot.
+            btn:SetCount(count, nil)
+        elseif itemID then
             local B = Bridge()
             if B and B.DisplayItemCount then
                 count = B.DisplayItemCount(itemID, { preferCopies = charges, kind = kind }) or count

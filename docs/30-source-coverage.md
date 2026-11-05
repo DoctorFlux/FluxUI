@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 159 |
+| inactive source | 160 |
 
 ## Addon sources
 
@@ -613,6 +613,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/combat_grid_conjured_usability.lua](../tests/combat_grid_conjured_usability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/combat_queue_supersession.lua](../tests/combat_queue_supersession.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_restock_clicks.lua](../tests/consumable_restock_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/consumable_zero_reset.lua](../tests/consumable_zero_reset.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/currency_provider_handoff.lua](../tests/currency_provider_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/data_integrity.lua](../tests/data_integrity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/default_flux_grid_bindings.lua](../tests/default_flux_grid_bindings.lua) | inactive source | — | [34-assets.md](34-assets.md) |

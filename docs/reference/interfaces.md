@@ -273,12 +273,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/CombatGrid/GridManager.lua:336](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L336) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/CombatGrid/GridManager.lua:337](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L337) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/CombatGrid/GridManager.lua:338](../../ExtraButtonSystem/CombatGrid/GridManager.lua#L338) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:1872](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1872) | `RegisterEvent` | `"TRADE_SKILL_SHOW"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:2642](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2642) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:2643](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2643) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3371](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3371) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3372](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3372) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua:3373](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3373) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:1877](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1877) | `RegisterEvent` | `"TRADE_SKILL_SHOW"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:2648](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2648) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:2649](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2649) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:2650](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2650) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3398](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3398) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3399](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3399) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua:3400](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3400) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/ExtraButtons/Buttons.lua:122](../../ExtraButtonSystem/ExtraButtons/Buttons.lua#L122) | `RegisterEvent` | `"CURSOR_CHANGED"` |
 | [ExtraButtonSystem/ExtraButtons/UI.lua:579](../../ExtraButtonSystem/ExtraButtons/UI.lua#L579) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/ExtraButtons/UI.lua:758](../../ExtraButtonSystem/ExtraButtons/UI.lua#L758) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -4813,65 +4814,65 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 |---|---|
 | `Bridge.ShouldHoldItemIdentity` | [L85](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L85) |
 | `Bridge.KeepConsumableSlot` | [L90](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L90) |
-| `Bridge.BagCount` | [L208](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L208) |
-| `Bridge.DisplayItemCount` | [L215](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L215) |
-| `Bridge.IsManaGemChargeBased` | [L246](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L246) |
-| `Bridge.ShouldUseChargeBasedManaGemOnly` | [L253](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L253) |
-| `Bridge.KnowsManaGemConjureSpell` | [L356](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L356) |
-| `Bridge.IsManaGemConjureFree` | [L380](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L380) |
-| `Bridge.ShouldStickyManaGemItem` | [L390](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L390) |
-| `Bridge.GetPreferredManaGemItemID` | [L395](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L395) |
-| `Bridge.GetNextManaGemConjureSpell` | [L403](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L403) |
-| `Bridge.GetBestOwned` | [L485](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L485) |
-| `Bridge.GetOwnedLadder` | [L637](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L637) |
-| `Bridge.PromoteIfBetter` | [L843](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L843) |
-| `Bridge.CanCreate` | [L895](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L895) |
-| `Bridge.GetPreferredCreateSpell` | [L904](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L904) |
-| `Bridge.GetFoodConjureSpell` | [L915](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L915) |
-| `Bridge.GetFoodSecondaryConjureSpell` | [L923](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L923) |
-| `Bridge.GetWaterConjureSpell` | [L931](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L931) |
-| `Bridge.GetWaterSecondaryConjureSpell` | [L939](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L939) |
-| `Bridge.ApplyRightClickMacro` | [L954](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L954) |
-| `Bridge.ResolveSpellName` | [L973](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L973) |
-| `Bridge.ApplyRightClickSpell` | [L1000](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1000) |
-| `Bridge.ApplyShiftRightClickSpell` | [L1057](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1057) |
-| `Bridge.ApplyCtrlRightClickSpell` | [L1113](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1113) |
-| `Bridge.ApplyUseAndConjureBindings` | [L1172](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1172) |
-| `Bridge.BuildUseItemMacro` | [L1250](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1250) |
-| `Bridge.BuildCastSequenceMacro` | [L1258](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1258) |
-| `Bridge.After` | [L1279](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1279) |
-| `Bridge.DeleteOneOwned` | [L1290](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1290) |
-| `Bridge.IsConjured` | [L1326](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1326) |
-| `Bridge.DeleteOneConjuredOwned` | [L1353](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1353) |
-| `Bridge.ApplyBinding` | [L1361](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1361) |
-| `Bridge.FormatSpellTooltipLine` | [L1394](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1394) |
-| `Bridge.ResetFluxTooltipGap` | [L1509](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1509) |
-| `Bridge._EnsureFluxTooltipGap` | [L1516](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1516) |
-| `Bridge.AppendConjureSpellLines` | [L1524](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1524) |
-| `Bridge.AppendTierStatusLines` | [L1674](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1674) |
-| `Bridge.AppendDeleteStackHint` | [L1767](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1767) |
-| `Bridge.WireRestockEdit` | [L1803](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1803) |
-| `Bridge.GetRestockClickHint` | [L1845](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1845) |
-| `Bridge.AppendRestockEditHint` | [L1849](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1849) |
-| `Bridge.GetBestCraftable` | [L1941](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1941) |
-| `Bridge.CanCraft` | [L1950](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1950) |
-| `Bridge.GetCraftMacro` | [L1959](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1959) |
-| `Bridge.ApplyCraftOrRestockRightClick` | [L1997](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1997) |
-| `Bridge.AppendCraftTooltipLines` | [L2051](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2051) |
-| `Bridge.ApplyMiddleClickNoUse` | [L2088](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2088) |
-| `Bridge.SuppressCheckedVisual` | [L2131](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2131) |
-| `Bridge.SuppressCheckedVisualSettle` | [L2171](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2171) |
-| `Bridge.GetConsumableCombatSwap` | [L2211](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2211) |
-| `Bridge.SetConsumableCombatSwap` | [L2223](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2223) |
-| `Bridge.CombatSwapTooltipKind` | [L2238](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2238) |
-| `Bridge.SyncSwapEmptyFace` | [L2355](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2355) |
-| `Bridge.ApplyCombatSwap` | [L2452](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2452) |
-| `Bridge.RefreshConsumableCombatSwap` | [L2518](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2518) |
-| `Bridge.QueueConsumableFaceRefresh` | [L2615](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2615) |
-| `Refresh.Attach` | [L2708](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2708) |
-| `Module.Update` | [L3050](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3050) |
-| `Module.RefreshCountOnly` | [L3257](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3257) |
-| `Module.Update` | [L3529](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3529) |
+| `Bridge.BagCount` | [L213](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L213) |
+| `Bridge.DisplayItemCount` | [L220](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L220) |
+| `Bridge.IsManaGemChargeBased` | [L251](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L251) |
+| `Bridge.ShouldUseChargeBasedManaGemOnly` | [L258](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L258) |
+| `Bridge.KnowsManaGemConjureSpell` | [L361](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L361) |
+| `Bridge.IsManaGemConjureFree` | [L385](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L385) |
+| `Bridge.ShouldStickyManaGemItem` | [L395](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L395) |
+| `Bridge.GetPreferredManaGemItemID` | [L400](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L400) |
+| `Bridge.GetNextManaGemConjureSpell` | [L408](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L408) |
+| `Bridge.GetBestOwned` | [L490](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L490) |
+| `Bridge.GetOwnedLadder` | [L642](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L642) |
+| `Bridge.PromoteIfBetter` | [L848](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L848) |
+| `Bridge.CanCreate` | [L900](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L900) |
+| `Bridge.GetPreferredCreateSpell` | [L909](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L909) |
+| `Bridge.GetFoodConjureSpell` | [L920](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L920) |
+| `Bridge.GetFoodSecondaryConjureSpell` | [L928](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L928) |
+| `Bridge.GetWaterConjureSpell` | [L936](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L936) |
+| `Bridge.GetWaterSecondaryConjureSpell` | [L944](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L944) |
+| `Bridge.ApplyRightClickMacro` | [L959](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L959) |
+| `Bridge.ResolveSpellName` | [L978](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L978) |
+| `Bridge.ApplyRightClickSpell` | [L1005](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1005) |
+| `Bridge.ApplyShiftRightClickSpell` | [L1062](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1062) |
+| `Bridge.ApplyCtrlRightClickSpell` | [L1118](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1118) |
+| `Bridge.ApplyUseAndConjureBindings` | [L1177](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1177) |
+| `Bridge.BuildUseItemMacro` | [L1255](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1255) |
+| `Bridge.BuildCastSequenceMacro` | [L1263](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1263) |
+| `Bridge.After` | [L1284](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1284) |
+| `Bridge.DeleteOneOwned` | [L1295](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1295) |
+| `Bridge.IsConjured` | [L1331](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1331) |
+| `Bridge.DeleteOneConjuredOwned` | [L1358](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1358) |
+| `Bridge.ApplyBinding` | [L1366](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1366) |
+| `Bridge.FormatSpellTooltipLine` | [L1399](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1399) |
+| `Bridge.ResetFluxTooltipGap` | [L1514](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1514) |
+| `Bridge._EnsureFluxTooltipGap` | [L1521](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1521) |
+| `Bridge.AppendConjureSpellLines` | [L1529](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1529) |
+| `Bridge.AppendTierStatusLines` | [L1679](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1679) |
+| `Bridge.AppendDeleteStackHint` | [L1772](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1772) |
+| `Bridge.WireRestockEdit` | [L1808](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1808) |
+| `Bridge.GetRestockClickHint` | [L1850](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1850) |
+| `Bridge.AppendRestockEditHint` | [L1854](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1854) |
+| `Bridge.GetBestCraftable` | [L1946](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1946) |
+| `Bridge.CanCraft` | [L1955](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1955) |
+| `Bridge.GetCraftMacro` | [L1964](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L1964) |
+| `Bridge.ApplyCraftOrRestockRightClick` | [L2002](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2002) |
+| `Bridge.AppendCraftTooltipLines` | [L2056](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2056) |
+| `Bridge.ApplyMiddleClickNoUse` | [L2093](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2093) |
+| `Bridge.SuppressCheckedVisual` | [L2136](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2136) |
+| `Bridge.SuppressCheckedVisualSettle` | [L2176](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2176) |
+| `Bridge.GetConsumableCombatSwap` | [L2216](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2216) |
+| `Bridge.SetConsumableCombatSwap` | [L2228](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2228) |
+| `Bridge.CombatSwapTooltipKind` | [L2243](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2243) |
+| `Bridge.SyncSwapEmptyFace` | [L2360](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2360) |
+| `Bridge.ApplyCombatSwap` | [L2457](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2457) |
+| `Bridge.RefreshConsumableCombatSwap` | [L2523](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2523) |
+| `Bridge.QueueConsumableFaceRefresh` | [L2621](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2621) |
+| `Refresh.Attach` | [L2730](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L2730) |
+| `Module.Update` | [L3077](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3077) |
+| `Module.RefreshCountOnly` | [L3284](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3284) |
+| `Module.Update` | [L3556](../../ExtraButtonSystem/Engine/ConsumableBind.lua#L3556) |
 
 ### ExtraButtonSystem/Engine/Paint.lua
 

@@ -37758,8 +37758,8 @@
       "path": "ExtraButtonSystem/Engine/_tmp_consumablesmoke.lua",
       "classification": "development harness",
       "chapter": "12-extra-button-system.md",
-      "lines": 559,
-      "sha256": "6c60f0143225781137e8976ba9e51875df8b4018dd51ad4c25b4cc21a2a30746",
+      "lines": 560,
+      "sha256": "aefbd9e3042ac31366977881034dd243ad0509ce289ed43174e4c51755e8c42d",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -38356,8 +38356,8 @@
       "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 3604,
-      "sha256": "ca8218313b59b363e7af76378884fb8a8290367d8d129f7db091fbcabc3afd17",
+      "lines": 3631,
+      "sha256": "bafe27593a9c17fb601b160b07607a77c530e3cbc450c5d6d559ac9f80e33522",
       "clients": [
         "camelot",
         "cata",
@@ -38383,244 +38383,244 @@
         },
         {
           "name": "Bridge.BagCount",
-          "line": 208
+          "line": 213
         },
         {
           "name": "Bridge.DisplayItemCount",
-          "line": 215
+          "line": 220
         },
         {
           "name": "Bridge.IsManaGemChargeBased",
-          "line": 246
+          "line": 251
         },
         {
           "name": "Bridge.ShouldUseChargeBasedManaGemOnly",
-          "line": 253
+          "line": 258
         },
         {
           "name": "Bridge.KnowsManaGemConjureSpell",
-          "line": 356
+          "line": 361
         },
         {
           "name": "Bridge.IsManaGemConjureFree",
-          "line": 380
+          "line": 385
         },
         {
           "name": "Bridge.ShouldStickyManaGemItem",
-          "line": 390
-        },
-        {
-          "name": "Bridge.GetPreferredManaGemItemID",
           "line": 395
         },
         {
+          "name": "Bridge.GetPreferredManaGemItemID",
+          "line": 400
+        },
+        {
           "name": "Bridge.GetNextManaGemConjureSpell",
-          "line": 403
+          "line": 408
         },
         {
           "name": "Bridge.GetBestOwned",
-          "line": 485
+          "line": 490
         },
         {
           "name": "Bridge.GetOwnedLadder",
-          "line": 637
+          "line": 642
         },
         {
           "name": "Bridge.PromoteIfBetter",
-          "line": 843
+          "line": 848
         },
         {
           "name": "Bridge.CanCreate",
-          "line": 895
+          "line": 900
         },
         {
           "name": "Bridge.GetPreferredCreateSpell",
-          "line": 904
+          "line": 909
         },
         {
           "name": "Bridge.GetFoodConjureSpell",
-          "line": 915
+          "line": 920
         },
         {
           "name": "Bridge.GetFoodSecondaryConjureSpell",
-          "line": 923
+          "line": 928
         },
         {
           "name": "Bridge.GetWaterConjureSpell",
-          "line": 931
+          "line": 936
         },
         {
           "name": "Bridge.GetWaterSecondaryConjureSpell",
-          "line": 939
+          "line": 944
         },
         {
           "name": "Bridge.ApplyRightClickMacro",
-          "line": 954
+          "line": 959
         },
         {
           "name": "Bridge.ResolveSpellName",
-          "line": 973
+          "line": 978
         },
         {
           "name": "Bridge.ApplyRightClickSpell",
-          "line": 1000
+          "line": 1005
         },
         {
           "name": "Bridge.ApplyShiftRightClickSpell",
-          "line": 1057
+          "line": 1062
         },
         {
           "name": "Bridge.ApplyCtrlRightClickSpell",
-          "line": 1113
+          "line": 1118
         },
         {
           "name": "Bridge.ApplyUseAndConjureBindings",
-          "line": 1172
+          "line": 1177
         },
         {
           "name": "Bridge.BuildUseItemMacro",
-          "line": 1250
+          "line": 1255
         },
         {
           "name": "Bridge.BuildCastSequenceMacro",
-          "line": 1258
+          "line": 1263
         },
         {
           "name": "Bridge.After",
-          "line": 1279
+          "line": 1284
         },
         {
           "name": "Bridge.DeleteOneOwned",
-          "line": 1290
+          "line": 1295
         },
         {
           "name": "Bridge.IsConjured",
-          "line": 1326
+          "line": 1331
         },
         {
           "name": "Bridge.DeleteOneConjuredOwned",
-          "line": 1353
+          "line": 1358
         },
         {
           "name": "Bridge.ApplyBinding",
-          "line": 1361
+          "line": 1366
         },
         {
           "name": "Bridge.FormatSpellTooltipLine",
-          "line": 1394
+          "line": 1399
         },
         {
           "name": "Bridge.ResetFluxTooltipGap",
-          "line": 1509
+          "line": 1514
         },
         {
           "name": "Bridge._EnsureFluxTooltipGap",
-          "line": 1516
+          "line": 1521
         },
         {
           "name": "Bridge.AppendConjureSpellLines",
-          "line": 1524
+          "line": 1529
         },
         {
           "name": "Bridge.AppendTierStatusLines",
-          "line": 1674
+          "line": 1679
         },
         {
           "name": "Bridge.AppendDeleteStackHint",
-          "line": 1767
+          "line": 1772
         },
         {
           "name": "Bridge.WireRestockEdit",
-          "line": 1803
+          "line": 1808
         },
         {
           "name": "Bridge.GetRestockClickHint",
-          "line": 1845
+          "line": 1850
         },
         {
           "name": "Bridge.AppendRestockEditHint",
-          "line": 1849
+          "line": 1854
         },
         {
           "name": "Bridge.GetBestCraftable",
-          "line": 1941
+          "line": 1946
         },
         {
           "name": "Bridge.CanCraft",
-          "line": 1950
+          "line": 1955
         },
         {
           "name": "Bridge.GetCraftMacro",
-          "line": 1959
+          "line": 1964
         },
         {
           "name": "Bridge.ApplyCraftOrRestockRightClick",
-          "line": 1997
+          "line": 2002
         },
         {
           "name": "Bridge.AppendCraftTooltipLines",
-          "line": 2051
+          "line": 2056
         },
         {
           "name": "Bridge.ApplyMiddleClickNoUse",
-          "line": 2088
+          "line": 2093
         },
         {
           "name": "Bridge.SuppressCheckedVisual",
-          "line": 2131
+          "line": 2136
         },
         {
           "name": "Bridge.SuppressCheckedVisualSettle",
-          "line": 2171
+          "line": 2176
         },
         {
           "name": "Bridge.GetConsumableCombatSwap",
-          "line": 2211
+          "line": 2216
         },
         {
           "name": "Bridge.SetConsumableCombatSwap",
-          "line": 2223
+          "line": 2228
         },
         {
           "name": "Bridge.CombatSwapTooltipKind",
-          "line": 2238
+          "line": 2243
         },
         {
           "name": "Bridge.SyncSwapEmptyFace",
-          "line": 2355
+          "line": 2360
         },
         {
           "name": "Bridge.ApplyCombatSwap",
-          "line": 2452
+          "line": 2457
         },
         {
           "name": "Bridge.RefreshConsumableCombatSwap",
-          "line": 2518
+          "line": 2523
         },
         {
           "name": "Bridge.QueueConsumableFaceRefresh",
-          "line": 2615
+          "line": 2621
         },
         {
           "name": "Refresh.Attach",
-          "line": 2708
+          "line": 2730
         },
         {
           "name": "Module.Update",
-          "line": 3050
+          "line": 3077
         },
         {
           "name": "Module.RefreshCountOnly",
-          "line": 3257
+          "line": 3284
         },
         {
           "name": "Module.Update",
-          "line": 3529
+          "line": 3556
         }
       ],
       "events": [
         {
-          "line": 1872,
+          "line": 1877,
           "method": "RegisterEvent",
           "arguments": [
             "\"TRADE_SKILL_SHOW\""
@@ -38628,7 +38628,7 @@
           "context": "(\"Frame\")tradeSkillCheckedFrame:"
         },
         {
-          "line": 2642,
+          "line": 2648,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -38636,7 +38636,7 @@
           "context": "(\"Frame\")watch:"
         },
         {
-          "line": 2643,
+          "line": 2649,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -38644,7 +38644,15 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")watch:"
         },
         {
-          "line": 3371,
+          "line": 2650,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"BAG_UPDATE_DELAYED\""
+          ],
+          "context": "(\"PLAYER_REGEN_ENABLED\")watch:"
+        },
+        {
+          "line": 3398,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -38652,7 +38660,7 @@
           "context": "(\"Frame\")leave:"
         },
         {
-          "line": 3372,
+          "line": 3399,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_BINDINGS\""
@@ -38660,7 +38668,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")leave:"
         },
         {
-          "line": 3373,
+          "line": 3400,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -73427,6 +73435,35 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/consumable_zero_reset.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 97,
+      "sha256": "3f00210481821f25448de9e1c7f2404e2b8e5f9a01d6f33619f2914339fc425e",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "s:publish",
+          "line": 22
+        },
+        {
+          "name": "endendifnotself.boundthenself.inv.Syndicator.RebuildAll",
+          "line": 28
+        },
+        {
+          "name": "s:lateCallback",
+          "line": 33
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/currency_provider_handoff.lua",

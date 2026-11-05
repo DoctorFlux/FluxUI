@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+5 November live-zero follow-up: exhausted food/water/potion/bandage buttons
+now reset from reliable live bags before Syndicator's delayed cache callback.
+The painter retains the verified count; loading holds and combat deferral
+remain. Button-level375 checks pass (baseline200 failures), three mutations
+rejected; full124 scripts/779 Lua syntax pass. Native acceptance pending.
+[Evidence and native steps](SYNDICATOR_CONSUMABLE_UPDATES.md).
+
 5 November Syndicator consumables: batched bag callbacks now retain every
 added/removed item and dirty bag until publication. This fixes a reproduced
 missed selector update for better items and last-use depletion across food,

@@ -324,6 +324,7 @@ do
     s.load("Inventory/Syndicator/Adapter.lua"); s.inv.source = "syndicator"; s.inv.SetMerchantOpen(true)
     local scans = s.scans
     for _, n in ipairs({ 5, 1, 0, 4 }) do
+        s:set(0, 1, 1251, n) -- Provider and live bags describe the same transfer.
         char.bags[1] = n > 0 and { { itemID = 1251, itemCount = n } } or {}
         s.inv.Syndicator.RebuildBags(); s.inv.Notify({ bags = true, tier = "light" }); s:advance(0.4)
         if n > 0 then s:expect(btn, 1251, n, "Syndicator bank transfer") else eq(btn.ItemId, nil, "Syndicator empty") end

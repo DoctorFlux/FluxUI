@@ -1644,3 +1644,18 @@ with the existing inventory helper. Keep last-change getters readable; begin a
 fresh classification after publication. No polling, framework, client API change,
 settings reset or excluded callback modification. User authorizes publication
 to main. [Source/recovery/native limits](SYNDICATOR_CONSUMABLE_UPDATES.md).
+
+## 5 November 2026 - live-zero consumable reset
+
+5 November live-zero follow-up: exhausted food/water/potion/bandage buttons
+now reset from reliable live bags before Syndicator's delayed cache callback.
+The painter retains the verified count; loading holds and combat deferral
+remain. Button-level375 checks pass (baseline200 failures), three mutations
+rejected; full124 scripts/779 Lua syntax pass. Native acceptance pending.
+
+The prior notification regression did not cover provider-cache delay. Keep
+external inventory ownership but verify these stack counts through the existing
+live-count adapter; reuse the shared watcher and existing reset/combat paths.
+The previous upload authorization remains applicable to this follow-up.
+[Exact source, recovery and limitations](SYNDICATOR_CONSUMABLE_UPDATES.md).
+No settings reset, native interaction or excluded callback change.

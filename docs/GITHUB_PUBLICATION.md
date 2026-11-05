@@ -293,3 +293,18 @@ in [the fix record](SYNDICATOR_CONSUMABLE_UPDATES.md). GitHub main matched the
 local baseline before publication. Keep normal main history, no force push or
 other branch; read back the remote commit and verify clean status after push.
 Private recoveries/settings/captures remain outside Git; no client interaction.
+
+## 5 November 2026 - live-zero consumable reset
+
+5 November live-zero follow-up: exhausted food/water/potion/bandage buttons
+now reset from reliable live bags before Syndicator's delayed cache callback.
+The painter retains the verified count; loading holds and combat deferral
+remain. Button-level375 checks pass (baseline200 failures), three mutations
+rejected; full124 scripts/779 Lua syntax pass. Native acceptance pending.
+
+The prior notification regression did not cover provider-cache delay. Keep
+external inventory ownership but verify these stack counts through the existing
+live-count adapter; reuse the shared watcher and existing reset/combat paths.
+The previous upload authorization remains applicable to this follow-up.
+[Exact source, recovery and limitations](SYNDICATOR_CONSUMABLE_UPDATES.md).
+No settings reset, native interaction or excluded callback change.

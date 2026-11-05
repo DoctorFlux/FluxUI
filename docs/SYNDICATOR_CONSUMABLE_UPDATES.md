@@ -87,3 +87,63 @@ Native performance/visual/taint acceptance remains pending.
 6. Repeat a matched case without Syndicator and on each supported client.
    Use equal scenes/profile/resolution for screenshot comparisons. Capture
    repeated matched baseline/candidate runs before making performance claims.
+
+## Reliable live-zero reset follow-up — 5 November 2026
+
+The first regression above stopped at selector notifications. It did not cover
+native bags changing before the provider cache callback. The user's follow-up
+requires the button itself to release an exhausted action even during that gap.
+
+The new button-level fixture reproduces it: live bags are empty, the provider
+snapshot still says three, and the old button remains assigned. Noncharged
+`BagCount` returned snapshot stacks and the painter could restore a stale digit.
+Food, water, both potions and bandages now use the existing reliable live-count
+adapter under external Syndicator. Their verified stack digit is kept explicit
+so the painter cannot replace it with the older snapshot. The existing shared
+watch frame listens to `BAG_UPDATE_DELAYED` and refreshes only tracked/latched
+or prepared swap-face modules. Empty placeholders skip the path. A reliable
+zero uses the existing lower-tier promotion or placeholder/clear logic; a
+partner-only swap face also participates when its home latch is empty.
+
+Loading-screen holds remain authoritative. During combat the digit can reach
+zero, with action clearing deferred to combat exit. Charge-based gem/stone
+logic and builtin-provider count behavior keep their existing path. No native
+API, companion cache or settings are modified. One existing frame gains one
+native event subscription; no new frame, polling or timer is introduced.
+
+Baseline: `774f3fdc4592452d0862b6b520b386b2f3372389`. Exact candidate
+hashes and raw samples are in the [zero-reset comparison](validation/consumable-zero-comparison-2026-11-05.json).
+The [new test](../tests/consumable_zero_reset.lua) reuses the existing fixture's
+production APIs, inventory, provider adapter, ranking/scanner, action/reset and
+painter. Provider/native state and secure frame operations remain mocks. The
+older Syndicator transfer control now updates its live bags alongside its
+provider cache instead of modeling contradictory ownership accidentally.
+
+Five alternating matched fresh-process pairs run 375 assertions each. Baseline
+fails 200; candidate passes375; three mutations removing the native event,
+live-stack read or painter protection are rejected. Cases include current
+zero/nonzero counts before the provider callback, reset/cleared identity and
+action, no resurrection by a stale callback, fallback, reacquisition, repaint,
+load hold, combat/regen and prepared partner-only faces. One hundred repeated
+nonempty events add no selector scans, binds or frames in each kind/client
+case. The existing consumer fixture passes1,473 checks, including seven client
+models and unchanged builtin burst work. [Full validation](validation/consumable-zero-reset-2026-11-05.json):
+**124 scripts /779 syntax files, zero failures**.
+
+Verified external `Consumable-zero-20261105T070615Z` preserves1,425 actual
+source files, complete history and136 available settings files outside AddOns.
+Source ZIP SHA256: `b7b6a5994fd7be27a1d632d716565399ae2c350029c29b70e827c3d1c02d839a`.
+No game process/connected client is available. Native exact builds, hardware,
+settings/addon lists, screenshots, secure VM/taint, CPU/allocation/latency and
+frame-time samples remain unavailable; desktop wall times include fixture
+cost and do not establish native performance. No game/profiler/settings input.
+
+Native acceptance: reload the candidate and remove/use the last food, water,
+healing potion, mana potion and bandage while Syndicator is enabled. Verify
+normal out-of-combat updates reset to the next owned tier or configured empty/
+conjure state without a second reload. Reacquire and repeat with lower/higher
+tiers, both combat-swap settings and a partner-only face. In combat verify
+zero text without protected writes, then reset on exit. Teleport/reload while
+bags are briefly unavailable must retain the loading hold. Check native keys,
+clicks, counts, icon/tint, screenshots and taint on every supported client;
+record matched repeated scenarios before claiming CPU/FPS gains.
