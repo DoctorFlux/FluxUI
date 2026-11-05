@@ -153,3 +153,17 @@ combat/recovery, timings and matched screenshots. No automatic purchase, mail ta
 foreground/input/clipboard operation or feature disabling occurred in this session.
 If spikes persist, obtain attribution before changing provider or mail/auction
 behavior; the supplied reports alone do not establish the remaining cause.
+
+## Progressive owned-list refresh — 5 November 2026
+
+Syndicator289 publishes each appended owned-auction row. FluxUI now rebuilds the
+final available list once through its existing inventory scheduler function,
+before listeners. The selected native owned-list event also handles empty final
+lists. Ten 500-row desktop models: rebuilds5,000 to10, record writes1,252,500 to5,000;
+publications remain10. Five pairs and meaningful regressions pass.
+
+This improves the external-provider full-refresh path only. The current failing
+Forever runtime was confirmed Syndicator-unloaded in game; a single sale callback
+is linear. Built-in mail/auction scans already debounce and yield; the existing
+1,732-check lag smoke test passes. No live lag cause or cure is established.
+[Full protocol, reference comparison, native reload and limits](RAID_MAIL_AUCTION_FOLLOWUP.md).

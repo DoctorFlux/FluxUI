@@ -102,17 +102,36 @@ local function CreateCopyFrame()
 end
 
 local function UpdateCopyButton()
-	local available = CopyText() ~= nil
-	if copyButton then copyButton:SetShown(available and (not Mail.IsEnabled or Mail.IsEnabled("CarbonCopy"))) end
-	if forwardButton then
-		forwardButton:SetShown(available and (not Mail.IsEnabled or Mail.IsEnabled("Forward")))
-		local index = InboxFrame and InboxFrame.openMailID
-		local money, cod, items
-		if index and GetInboxHeaderInfo then
-			local _, _, _, _, headerMoney, headerCOD, _, headerItems = GetInboxHeaderInfo(index)
-			money, cod, items = headerMoney, headerCOD, headerItems
+	local copyEnabled = not Mail.IsEnabled or Mail.IsEnabled("CarbonCopy")
+	local forwardEnabled = not Mail.IsEnabled or Mail.IsEnabled("Forward")
+	local visible = false
+	if OpenMailFrame then
+		if OpenMailFrame.IsVisible then visible = OpenMailFrame:IsVisible()
+		elseif OpenMailFrame.IsShown then visible = OpenMailFrame:IsShown() end
+	end
+	if not visible or (not copyEnabled and not forwardEnabled) then
+		if copyButton then copyButton:Hide() end
+		if forwardButton then forwardButton:Hide() end
+		return
+	end
+
+	local available = false
+	local money, cod, items
+	local index = InboxFrame and InboxFrame.openMailID
+	if type(index) == "number" and index > 0 and GetInboxHeaderInfo and GetInboxText then
+		local _, _, sender, subject, headerMoney, headerCOD, _, headerItems = GetInboxHeaderInfo(index)
+		money, cod, items = headerMoney, headerCOD, headerItems
+		if sender or subject then
+			local body, _, _, _, isInvoice = GetInboxText(index)
+			available = not not (body or isInvoice)
 		end
-		forwardButton:SetEnabled(available and (tonumber(money) or 0) == 0
+	end
+	-- Availability needs no invoice expansion or copy string. Build fresh text
+	-- only when the user requests Copy, and reuse this header for Forward.
+	if copyButton then copyButton:SetShown(available and copyEnabled) end
+	if forwardButton then
+		forwardButton:SetShown(available and forwardEnabled)
+		forwardButton:SetEnabled(available and forwardEnabled and (tonumber(money) or 0) == 0
 			and (tonumber(cod) or 0) == 0 and (tonumber(items) or 0) == 0)
 	end
 end

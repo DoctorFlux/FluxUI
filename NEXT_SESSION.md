@@ -1,5 +1,67 @@
 # Next session
 
+Current user isolation: FluxUI is fully unloaded; the user reports no freezes
+with it unloaded. Leave it disabled and send no further game input. Current mail/
+auction and shared inventory work remain under investigation; the five validated
+contract fixes below do not establish a cure. Focus the next audit on built-in
+provider semantics, downstream fanout and mail/auction UI hook reentry.
+
+Latest phase: the native mail-command guard prevents progression/completion
+while C_Mail reports pending, with bounded8s wait and existing cadence retained.
+Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
+completions; three mutants rejected. Final full validation:140 scripts /795 Lua
+syntax files pass. Earlier139/794 evidence describes the preceding four-fix tree.
+The user still reports live sale/mail freezes, including Open All at Processing
+Message2 and final mail; no live cure is claimed.
+[Guard, source contract and pending native checks](docs/MAIL_NATIVE_COMMAND.md).
+
+Reproduce with `lua tests/mail_native_command.lua`; final full report:
+`docs/validation/mail-native-command-2026-11-05.json`. Native source comparison:
+`docs/NATIVE_MAIL_AUCTION_REFERENCE.md`. Do not repeat the failed heavy frame
+capture; preserve profile0 and prior nil report. Prioritize narrow attribution of
+mailbox/auction events and retain crash evidence before any optional profiler.
+
+5 November raid/mail/auction follow-up: read
+[current evidence and acceptance steps](docs/RAID_MAIL_AUCTION_FOLLOWUP.md) first.
+Baseline `8681672`; preserve the external Raid-mail-followup-20261105T132922Z
+checkpoint. Full validation passes 139 scripts / 794 Lua syntax files:
+`python tests/run_validation.py --output docs/validation/raid-mail-auction-followup-2026-11-05.json --sync-docs`.
+Focused reproduction commands: `lua tests/raid_header_precreation.lua`,
+`lua tests/mail_loot_scheduling.lua`, `lua tests/mail_copy_availability.lua` and
+`lua tests/auction_refresh_batching.lua`. Five alternating pairs and eight
+rejected mutants are in the linked comparison report. Progressive auction
+refresh batching is linear in the modeled burst; a single formatted sale was
+already linear, so its live spike/error chain remains unresolved. UNKNOWN header
+attribution and native pet-driver capability remain pending. Forever is running;
+the earlier no-client inference came from sandbox-limited process visibility.
+The user reports Syndicator is not loaded in the current failing setup. Installed
+Syndicator 289 is reference material; investigate the built-in provider and fresh
+error history independently. Reporter-only warnings occurred at 14:53:50,
+15:03:09 and 15:27:44; the initiating error remains unknown.
+Approved native reload completed15:32:54CET. Read-only commands confirmed
+Forever1.60.1/build70790/interface16001, FluxUI loaded, Syndicator unloaded;
+at15:35:48 raid setup ready, scriptProfile0, session23 with11 historical /0 current
+errors. The user confirmed the same freeze after reload; it is not resolved.
+The old error history was saved privately; reporter counter50 still lacks an
+initiating fault. Initial focus checks safely refused input, but a later split
+chat attempt activated shortcuts; use atomic verified chat input only during an
+authorized brief exception. A subsequent optional60s CPU capture started15:42:20
+after scriptProfile1/reload15:41:45. User-reported crash during many auction-mail
+opens ended PID38964; replacement PID33872 started15:48:36. No new crash report
+was found and capture data was lost before save: no benchmark. Restored0/reload
+15:50:55; FLUXCLEANUP0 true false verified15:51:34, original capture root nil
+preserved by literal-only comparison. Prior foreground was restored. No profiling
+cleanup remains; the exception is complete and background-only operation resumes.
+Do not repeat the heavy capture. Read
+[native mail/auction comparison](docs/NATIVE_MAIL_AUCTION_REFERENCE.md), finish
+the smallest native command-pending guard and its regression (currently pending),
+then consider narrower diagnostics avoiding full EnumerateFrames. Keep the new
+external native-command-baseline checkpoint from14:53:38UTC (1,484 source files,
+verified settings ZIP);139/794 remains the preceding completed batch's result.
+Reproduce mailbox open/close, text/invoice/loot and auction refresh/sales separately
+on available clients and provider/bag combinations; do not infer FPS, taint or
+pixel parity from desktop counts. Guild-bank/void callbacks remain excluded.
+
 5 November meter/header error fix: read
 [exact failures, source pins and pending native steps](docs/METER_RAID_NATIVE_OWNERSHIP.md).
 `lua tests/native_meter_ownership.lua` passes 180 checks;

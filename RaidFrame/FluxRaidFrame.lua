@@ -203,6 +203,10 @@ function EventHandlers:PLAYER_REGEN_ENABLED()
     end
 end
 
+function EventHandlers:PET_BATTLE_CLOSE()
+    if FluxRaid_QueueReadinessRetry then FluxRaid_QueueReadinessRetry() end
+end
+
 function EventHandlers:COMPACT_UNIT_FRAME_PROFILES_LOADED()
     if FluxRaid_DisableBlizzardNow then
         FluxRaid_DisableBlizzardNow()
@@ -275,6 +279,9 @@ function FluxRaid_OnLoad(self)
         "READY_CHECK_FINISHED",
         "RAID_TARGET_UPDATE",
     }
+    if FluxRaidCompat.CanUsePetBattleStateDriver and FluxRaidCompat.CanUsePetBattleStateDriver() then
+        events[#events + 1] = "PET_BATTLE_CLOSE"
+    end
     for _, event in ipairs(events) do
         pcall(self.RegisterEvent, self, event)
     end

@@ -1,5 +1,55 @@
 # Work log
 
+Current user isolation: FluxUI is fully unloaded; the user reports no freezes
+with it unloaded. Leave it disabled and send no further game input. Current mail/
+auction and shared inventory work remain under investigation; the five validated
+contract fixes below do not establish a cure. Focus the next audit on built-in
+provider semantics, downstream fanout and mail/auction UI hook reentry.
+
+Latest phase: the native mail-command guard prevents progression/completion
+while C_Mail reports pending, with bounded8s wait and existing cadence retained.
+Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
+completions; three mutants rejected. Final full validation:140 scripts /795 Lua
+syntax files pass. Earlier139/794 evidence describes the preceding four-fix tree.
+The user still reports live sale/mail freezes, including Open All at Processing
+Message2 and final mail; no live cure is claimed.
+[Guard, source contract and pending native checks](MAIL_NATIVE_COMMAND.md).
+
+5 November follow-up: preserved clean main `8681672` in external
+Raid-mail-followup-20261105T132922Z (1,476 actual source files, verified all-ref
+history, 127 on-disk Flux settings files). Fixed incomplete raid readiness,
+duplicate/stale mail wakes, hidden/disabled mail availability work and quadratic
+progressive Syndicator auction rebuilds. Five alternating baseline/candidate
+pairs per scenario repeat unchanged counts; 290 raid, 3,140 mail-worker, 380
+mail-availability and 365 auction checks pass. Eight mutants are rejected; full
+139 scripts / 794 Lua syntax checks pass. Read-only host inspection corrected
+the sandbox-limited no-client inference and captured Forever without changing
+foreground. Its saved UNKNOWN event predates baseline 868; the fresh user report
+contains only reporter execution-limit warnings at 14:53:50, 15:03:09 and 15:27:44.
+The user clarified Syndicator is not loaded in this failing runtime; installed
+289 is reference evidence, not an enabled-addon observation. Built-in inventory
+and the initial warning remain under investigation. No native lag/taint acceptance
+is claimed. Approved Forever reload succeeded15:32:54CET; read-only commands confirmed
+1.60.1/build70790/interface16001, FluxUI loaded, Syndicator unloaded, raid ready
+and scriptProfile0 unchanged. No current-session errors printed at15:35:48.
+Saved old history has reporter-only counter50; private four-file archive verified.
+A split chat attempt activated shortcuts; atomic final commands succeeded and
+restored the previous window. No controlled lag/combat/transaction pass claimed.
+The user then confirmed the same freeze after reload. Optional scriptProfile1
+reload completed15:41:45 and a 60s CPU capture began15:42:20; a reported crash
+while opening many auction mails ended PID38964 and replacement PID33872 started
+15:48:36. No new Errors/Logs crash report was found. Capture was lost before save,
+so no benchmark was obtained. Restored scriptProfile0 plus reload15:50:55;
+15:51:34 chat verified FLUXCLEANUP0 true false. Literal-only comparison against
+the private archive preserved the original nil capture root. Previous foreground
+restored; no profiling cleanup remains and the foreground exception is complete.
+New external native-command-baseline checkpoint at14:53:38UTC preserves1,484
+source files and verified settings ZIP; original Git history stays at8681672.
+The next native command-pending guard is pending; the 139/794 count above covers
+the completed four-fix batch only.
+[Raw evidence](RAID_MAIL_AUCTION_FOLLOWUP.md) and
+[native mail/auction source comparison](NATIVE_MAIL_AUCTION_REFERENCE.md).
+
 5 November: read all 17 supplied errors (15 Forever icon warnings, two UNKNOWN
 header blocks); preserved clean main aa253cc and all newer consumable work in
 Meter-header-errors-20261105T125630Z (1,471 files, verified Git history, 127 on-disk

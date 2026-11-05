@@ -64,3 +64,22 @@ action: native-check the implemented flows sequentially across the five clients,
 then finish attachment forwarding, Express repeat sending, BlackBook completion,
 and update this matrix. Current tree has uncommitted `_FluxUI.toc`, nine
 `Mail/*.lua` modules, eight focused tests, this record and a desktop report.
+
+## 5 November follow-up: worker scheduling and mail details
+
+The worker now coalesces duplicate inbox-update wakes for the same run/action and
+rejects old action watchdogs. Copy/Forward availability skips effectively hidden
+or disabled controls and avoids full invoice formatting. Default opening speed,
+server confirmation, copy contents, forwarding restrictions and all settings stay.
+Focused tests pass 3,140 worker and 380 availability checks; full 139 scripts /
+794 Lua syntax pass. [Exact comparison and native limits](RAID_MAIL_AUCTION_FOLLOWUP.md).
+
+The user still reports mail loot/close and auction hitches with Syndicator unloaded.
+A brief approved Forever reload and read-only commands confirm build 70790 and
+FluxUI loaded, not a latency pass. The requirements matrix above records the
+earlier implementation slice; its pending features remain pending.
+
+The subsequent [native command guard](MAIL_NATIVE_COMMAND.md) also waits for the
+public pending-command flag, retaining configured cadence and bounded timeout.
+The final desktop suite passes140 scripts/795 Lua syntax; native freeze removal
+and transaction acceptance remain pending.

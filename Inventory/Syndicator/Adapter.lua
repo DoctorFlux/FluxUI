@@ -8,6 +8,7 @@ local bound = false
 local waiting = false
 local MAIL_DEBOUNCE = 0.2
 local mailPending, mailFirst, mailDue
+local auctionsPending = false
 
 -- Last rebuild classification per region, so Syndicator and builtin hand
 -- listeners the same ctx (changeKind / added / removed / dirtyBags).
@@ -496,6 +497,18 @@ local function Request(token)
 	Flux.Scheduler.Request("inventory", token)
 end
 
+local function QueueAuctions()
+	if Inv.source ~= "syndicator" or auctionsPending then return end
+	auctionsPending = true
+	-- Syndicator emits a callback for every row while rebuilding owned auctions.
+	-- Read the final list once, before this bucket's existing inventory listeners.
+	Flux.Scheduler.Request("inventory", "syndicatorAuctionRefresh", function(tokens)
+		auctionsPending = false
+		if Inv.source ~= "syndicator" then return end
+		if Adapter.RebuildAuctions() then tokens.auctions = true end
+	end)
+end
+
 local function FlushMail()
 	local now = (GetTime and GetTime()) or 0
 	if now < mailDue and C_Timer and C_Timer.After then
@@ -629,8 +642,18 @@ local function Bind()
 		if not IsCurrentCharacter(character) then
 			return
 		end
-		if Adapter.RebuildAuctions() then Request("auctions") end
+		QueueAuctions()
 	end)
+	local cap = Flux.Cap
+	if Flux.Events and Flux.Events.Register and cap
+		and (cap.hasAuctionHouse or cap.hasLegacyAuctionHouse or cap.hasModernAuctionHouse) then
+		-- A full owned-list refresh with zero rows emits no provider callback.
+		-- Defer this fallback too, so provider event order cannot publish old data.
+		local cons = Constants()
+		local legacy = cons and cons.IsLegacyAH
+		if legacy == nil then legacy = cap.hasLegacyAuctionHouse end
+		Flux.Events.Register(legacy and "AUCTION_OWNED_LIST_UPDATE" or "OWNED_AUCTIONS_UPDATED", QueueAuctions)
+	end
 	cb:RegisterCallback("GuildCacheUpdate", function()
 		Adapter.RebuildGuild()
 		Request("guild")

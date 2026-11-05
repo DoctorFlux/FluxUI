@@ -4,7 +4,7 @@ local checks,failed=0,0
 local totals={sorts=0,keys=0,auctionRows=0,auctionMaps=0,auctionPulses=0}
 local function check(ok,label)checks=checks+1;if not ok then failed=failed+1;print("FAIL "..label)end end
 for _,client in ipairs({"forever","retail","era","anniversary","mists"})do
- local h={now=10,timers={},callbacks={},requests={},sorts=0,keys=0}
+ local h={now=10,timers={},callbacks={},requests={},sorts=0,keys=0,inventoryFns={},inventoryTokens={}}
  local e=setmetatable({}, {__index=_G});e._G=e
  e.GetTime=function()return h.now end
  e.table=setmetatable({sort=function(...)h.sorts=h.sorts+1;return table.sort(...)end},{__index=table})
@@ -17,7 +17,15 @@ for _,client in ipairs({"forever","retail","era","anniversary","mists"})do
  end
  local inv={Syndicator={},HasWarband=function()return false end,Containers={NewItemSetLog=function()return {}end},Store={SetUsesSyndicator=function()end},
   snapshots={mail={byIndex={},counts={},generation=0},auctions={byIndex={},counts={},generation=0}}}
- local flux={Inventory=inv,Scheduler={Request=function(_,token)h.requests[token]=(h.requests[token] or 0)+1 end}}
+ local flux={Inventory=inv,Scheduler={Request=function(_,token,fn)
+  if fn then h.inventoryFns[#h.inventoryFns+1]=fn;h.inventoryTokens[token]=true
+  else h.requests[token]=(h.requests[token] or 0)+1 end
+ end}}
+ local function flushInventory()
+  local fns,tokens=h.inventoryFns,h.inventoryTokens;h.inventoryFns,h.inventoryTokens={},{}
+  for _,fn in ipairs(fns)do fn(tokens)end
+  if tokens.auctions then h.requests.auctions=(h.requests.auctions or 0)+1 end
+ end
  e.Syndicator={API={IsReady=function()return true end,GetCurrentCharacter=function()return "Fixture" end,
   GetCharacter=function()return char end},CallbackRegistry={RegisterCallback=function(_,key,fn)h.callbacks[key]=fn end}}
  assert(loadfile(source,"t",e))("_FluxUI",{Flux=flux})
@@ -30,7 +38,7 @@ for _,client in ipairs({"forever","retail","era","anniversary","mists"})do
  for i=1,100 do
   local old={};for k,v in pairs(auction.byIndex)do old[k]=v end
   local counts=auction.counts
-  a.RebuildMail();h.callbacks.AuctionsCacheUpdate(nil,"Fixture")
+  a.RebuildMail();h.callbacks.AuctionsCacheUpdate(nil,"Fixture");flushInventory()
   for k,v in pairs(auction.byIndex)do if old[k]~=v then rows=rows+1 end end
   if counts~=auction.counts then maps=maps+1 end
  end
@@ -41,7 +49,7 @@ for _,client in ipairs({"forever","retail","era","anniversary","mists"})do
  totals.auctionMaps=totals.auctionMaps+maps;totals.auctionPulses=totals.auctionPulses+(h.requests.auctions or 0)
  local function flush()
   local safety=0
-  while #h.timers>0 do local t=table.remove(h.timers,1);h.now=t.due;t.fn();safety=safety+1;assert(safety<100)end
+  while #h.timers>0 do local t=table.remove(h.timers,1);h.now=t.due;t.fn();flushInventory();safety=safety+1;assert(safety<100)end
  end
  -- Delayed item-link metadata is observable even when item IDs/counts match.
  local oldGen=mail.generation;char.mail[1].itemLink="item:101:updated"
@@ -51,12 +59,12 @@ for _,client in ipairs({"forever","retail","era","anniversary","mists"})do
  check(h.requests.mail==1,"changed mail publishes once")
  -- Buyer delivery/seller removal/quantity corrections, including sparse keys.
  local removed=char.auctions[1000];local count=auction.counts[removed.itemID]
- char.auctions[1000]=nil;h.requests={};h.callbacks.AuctionsCacheUpdate(nil,"Fixture")
+ char.auctions[1000]=nil;h.requests={};h.callbacks.AuctionsCacheUpdate(nil,"Fixture");flushInventory()
  check(auction.counts[removed.itemID]==count-removed.itemCount,"sale removes listed quantity")
- check(h.requests.auctions==1,"sale publishes immediately once")
- char.auctions[100000]={itemID="900",count=7,link="item:900"};h.callbacks.AuctionsCacheUpdate(nil,"Fixture")
+ check(h.requests.auctions==1,"sale publishes once at its inventory tier")
+ char.auctions[100000]={itemID="900",count=7,link="item:900"};h.callbacks.AuctionsCacheUpdate(nil,"Fixture");flushInventory()
  check(auction.byIndex[100000].count==7 and auction.counts[900]==7,"sparse listing and legacy fields retained")
- char.auctions[100000].count=0;h.callbacks.AuctionsCacheUpdate(nil,"Fixture")
+ char.auctions[100000].count=0;h.callbacks.AuctionsCacheUpdate(nil,"Fixture");flushInventory()
  check(auction.counts[900]==0,"zero count retained")
  char.mail[100000]={itemID=901,itemCount=4,itemLink="item:901"}
  h.requests={};for i=1,20 do h.callbacks.MailCacheUpdate(nil,"Fixture")end

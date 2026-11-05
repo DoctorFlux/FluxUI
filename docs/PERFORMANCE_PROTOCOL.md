@@ -1,5 +1,47 @@
 # Baseline protocol and currency evidence
 
+Latest phase: the native mail-command guard prevents progression/completion
+while C_Mail reports pending, with bounded8s wait and existing cadence retained.
+Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
+completions; three mutants rejected. Final full validation:140 scripts /795 Lua
+syntax files pass. Earlier139/794 evidence describes the preceding four-fix tree.
+The user still reports live sale/mail freezes, including Open All at Processing
+Message2 and final mail; no live cure is claimed.
+[Guard, source contract and pending native checks](MAIL_NATIVE_COMMAND.md).
+
+Latest native outcome: the user confirmed the same freeze after reload with
+Syndicator unloaded. A later optional60s CPU capture was lost before save when
+the old process exited during reported bulk mail. No new crash report identifies
+a cause. Profile0 and the prior nil capture root were restored/verified15:51:34;
+foreground returned. This is failed/inconclusive operational evidence, not a
+benchmark pass. See [capture details and cleanup](RAID_MAIL_AUCTION_FOLLOWUP.md).
+
+5 November raid/mail/auction follow-up, baseline `8681672`: five alternating
+fresh-process pairs per scenario produce identical operation/resource counts.
+Duplicate mail bursts create 4,000 to 40 progress timers/header checks; visible
+availability avoids 2,000 invoice expansions, and hidden/disabled reads fall to
+zero. Stale action watchdogs cannot advance later mail before its configured
+opening delay. Raid incomplete pools retain native fallback: modeled denied
+missing-child creations fall from nine to zero per contract model; ordinary
+startup remains 80 children and safe recovery completes the same capacity.
+
+Progressive 500-row Syndicator refreshes across ten models fall from 5,000 to ten
+Flux rebuilds and 1,252,500 to 5,000 row writes, using the existing inventory
+scheduler. Publications remain ten. Single formatted-sale callbacks were linear;
+this does not establish the source of the reported sale hitch/error storm.
+All 139 scripts / 794 syntax files pass; eight mutants are rejected. Native CPU,
+allocation bytes, latency, leak behavior and frame time remain unmeasured. Raw
+wall ranges include startup/assertions and are not native performance evidence.
+The user now reports Syndicator is not loaded in the failing runtime. The
+provider batching result therefore does not demonstrate a fix for that current
+AH/mail spike; fresh attribution must cover the built-in provider and active
+error-reporting path as well.
+An approved Forever reload/read-only check confirmed build70790/interface16001,
+FluxUI loaded and Syndicator unloaded. The15:35:48 session snapshot had no new
+error messages, raid setup ready and scriptProfile0 unchanged. This is not a
+matched latency/FPS or memory-leak measurement. No profiler/capture roots reset.
+[Warm-up, sizes, hashes, raw samples and limitations](RAID_MAIL_AUCTION_FOLLOWUP.md).
+
 5 November meter/header correction: five matched desktop pairs avoid 1,000
 unchanged type calls, 1,000 session calls and 1,000 pool walks per synthetic meter
 workload; separate gamepad patch timers 9 to zero. Raid pools move missing-child

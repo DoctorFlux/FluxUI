@@ -9,6 +9,7 @@ local lastCheck
 local takeButton, returnButton, worker
 local opened = false
 local run = 0
+local pendingWakes = {}
 local MAX_WAIT = 8
 local originalFirstPoint, originalWidths, originalExpiry = nil, {}, {}
 
@@ -97,6 +98,10 @@ end
 
 local function Stop(message)
 	local group = worker and worker.group or "Select"
+	for key, wake in pairs(pendingWakes) do
+		if wake.timer and wake.timer.Cancel then wake.timer:Cancel() end
+		pendingWakes[key] = nil
+	end
 	worker = nil
 	run = run + 1
 	RefreshRows()
@@ -105,10 +110,27 @@ local function Stop(message)
 end
 
 local Step
-local function Schedule(delay)
-	if not C_Timer or not C_Timer.After then Stop("Mail timer unavailable."); return end
-	local id = run
-	C_Timer.After(delay, function() if worker and run == id then Step() end end)
+local function Schedule(delay, timeout)
+	if not C_Timer or (not C_Timer.After and not C_Timer.NewTimer) then Stop("Mail timer unavailable."); return end
+	if not worker then return end
+	local key = timeout and "timeout" or "progress"
+	local id, action = run, worker.pending
+	local when = GetTime and (GetTime() + delay)
+	local old = pendingWakes[key]
+	if old and old.run == id and old.action == action
+		and (not when or not old.when or old.when <= when) then return end
+	if old and old.timer and old.timer.Cancel then old.timer:Cancel() end
+	local wake = { run = id, action = action, when = when }
+	pendingWakes[key] = wake
+	local function Resume()
+		if pendingWakes[key] ~= wake then return end
+		pendingWakes[key] = nil
+		-- Inbox updates can repeat, and an old action's watchdog can outlive it.
+		-- Only its current action may resume at the originally requested delay.
+		if worker and run == id and worker.pending == action then Step() end
+	end
+	if C_Timer.NewTimer then wake.timer = C_Timer.NewTimer(delay, Resume)
+	else C_Timer.After(delay, Resume) end
 end
 
 local function ProgressPending()
@@ -144,9 +166,37 @@ local function ProgressPending()
 	return false
 end
 
+local function WaitForNativeCommand()
+	if not (C_Mail and type(C_Mail.IsCommandPending) == "function" and C_Mail.IsCommandPending()) then
+		if worker.nativeWaitStarted and not worker.pending then
+			local wake = pendingWakes.timeout
+			if wake and wake.action == nil then
+				if wake.timer and wake.timer.Cancel then wake.timer:Cancel() end
+				pendingWakes.timeout = nil
+			end
+		end
+		worker.nativeWaitStarted = nil
+		return false
+	end
+	local now = GetTime()
+	local since = worker.pending and worker.pending.started or worker.nativeWaitStarted or now
+	worker.nativeWaitStarted = since
+	local remaining = MAX_WAIT - (now - since)
+	if remaining <= 0 then
+		Stop("Stopped: a mailbox command is still pending. Try again when it finishes.")
+	else
+		Schedule(math.min(0.1, remaining))
+		Schedule(remaining, true)
+	end
+	return true
+end
+
 Step = function()
 	if not worker then return end
 	if not opened or not MailFrame or not MailFrame:IsShown() then Stop(); return end
+	-- Header/item updates can arrive before the client's command completes.
+	-- Like native Open All, wait for its command gate before advancing the job.
+	if WaitForNativeCommand() then return end
 	if not ProgressPending() then return end
 	while worker.position <= #worker.list do
 		local row = worker.list[worker.position]
@@ -163,7 +213,7 @@ Step = function()
 				worker.pending = { action = worker.mode, index = row.index, header = h,
 					started = GetTime and GetTime() or 0 }
 				if worker.mode == "return" then ReturnInboxItem(row.index) else DeleteInboxItem(row.index) end
-				Schedule(MAX_WAIT)
+				Schedule(MAX_WAIT, true)
 				return
 			end
 			worker.skipped = true
@@ -195,7 +245,7 @@ Step = function()
 				worker.pending = { action = action, index = row.index, slot = slot,
 					count = count, header = h, started = GetTime and GetTime() or 0 }
 				if action == "money" then TakeInboxMoney(row.index) else TakeInboxItem(row.index, slot) end
-				Schedule(MAX_WAIT)
+				Schedule(MAX_WAIT, true)
 				return
 			end
 		end

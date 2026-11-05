@@ -51,3 +51,18 @@ Other clients use a small Flux-owned icon row. Buff/debuff focus changes organiz
 Check party→raid→solo, group ordering, MT/MA counts/targets, roster reassignment during combat, pet-battle visibility, CVar changes, resize/scale, disabling Flux ownership, range/offline alpha, ready checks and target highlights. On secret clients verify private aura anchors persist across settings changes but rebind on unit changes; on Classic verify dispellable-only filtering and owned icons. BigDebuffs needs absent/present cases.
 
 The [raid aura smoke harness](../RaidFrame/_tmp_raidaurassmoke.lua) executes reference private-aura methods with mocked registration and explicitly cannot prove taint/protected execution. Live validation remains separate in [verification](41-verification.md).
+
+## Incomplete header readiness — 5 November 2026
+
+Custom ownership now waits for actual child capacity. If an ancestor is hidden
+during precreation, incomplete headers remain hidden with native fallback; the
+existing coalescer/combat queue retries on owned-container reveal. An installed
+owned pet-state driver's late show also retries without replacing its native
+handler. Normal bounded capacity remains 80. The inherited XML-template global
+capability predicate still needs native presence validation.
+
+290 focused checks pass; hidden-ancestor modeled denied creations fall from nine
+to zero, with safe recovery. Forever build70790 reported secureConfigured=true
+after reload, but native roster/combat/MTMA/pet-battle acceptance is pending. The
+stored UNKNOWN event predates the preceding fix and has no identified header or
+taint writer. [Evidence and remaining checks](RAID_MAIL_AUCTION_FOLLOWUP.md).

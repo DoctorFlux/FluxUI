@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 172 |
+| inactive source | 176 |
 
 ## Addon sources
 
@@ -599,6 +599,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/assisted_highlight_work.lua](../tests/assisted_highlight_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_active_rows.lua](../tests/auction_active_rows.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_metadata_work.lua](../tests/auction_metadata_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/auction_refresh_batching.lua](../tests/auction_refresh_batching.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bag_free_slots.lua](../tests/bag_free_slots.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_contract_regression.lua](../tests/bars_contract_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_edit_mode.lua](../tests/bars_edit_mode.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -653,6 +654,9 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/late_inventory.lua](../tests/late_inventory.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/loot_cursor.lua](../tests/loot_cursor.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/loot_roll_lifecycle.lua](../tests/loot_roll_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/mail_copy_availability.lua](../tests/mail_copy_availability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/mail_loot_scheduling.lua](../tests/mail_loot_scheduling.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/mail_native_command.lua](../tests/mail_native_command.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/micro_menu_nil_center.lua](../tests/micro_menu_nil_center.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/modern_spellbook_ownership.lua](../tests/modern_spellbook_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |

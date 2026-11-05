@@ -30,7 +30,18 @@ local function fixture(client, inCombat, enabled)
     function methods:SetID(id) legal(self); self.id = id end
     function methods:GetID() return self.id end
     function methods:GetName() return self.name end
-    function methods:SetAttribute(key, value) legal(self); self.attributes[key] = value; metrics.attributes = metrics.attributes + 1 end
+    function methods:SetAttribute(key, value)
+        legal(self); self.attributes[key] = value; metrics.attributes = metrics.attributes + 1
+        -- Native secure headers allocate their pool in response to the negative
+        -- starting index. Readiness now verifies these actual child attributes.
+        if self.template == "FluxRaidGroupHeaderTemplate" and key == "startingIndex"
+            and type(value) == "number" and value < 1 and self:IsVisible() then
+            local capacity = (self.attributes.unitsPerColumn or 5) * (self.attributes.maxColumns or 1)
+            for index = 1, capacity do
+                self.attributes["child" .. index] = self.attributes["child" .. index] or {}
+            end
+        end
+    end
     function methods:GetAttribute(key) return self.attributes[key] end
     function methods:SetPoint(...) legal(self); self.point = { ... } end
     function methods:ClearAllPoints() legal(self); self.point = nil end
@@ -74,7 +85,7 @@ local function fixture(client, inCombat, enabled)
     e.CreateFrame = function(kind, name, parent, template)
         local protected = template == "FluxRaidGroupHeaderTemplate" or template == "SecureHandlerStateTemplate"
         check(not (protected and e.combat), "secure headers must not be created during lockdown")
-        local frame = setmetatable({ kind = kind, name = name, parent = parent, protected = protected,
+        local frame = setmetatable({ kind = kind, name = name, parent = parent, protected = protected, template = template,
             children = {}, attributes = {}, scripts = {}, events = {}, shown = false, width = 72, height = 10 }, { __index = methods })
         if name then e[name] = frame end
         frames[#frames + 1] = frame

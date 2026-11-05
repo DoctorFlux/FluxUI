@@ -148,3 +148,11 @@ hardware and resolution/UI scale. Keep previous diagnostic roots/preferences.
    and roster/resize bursts. Optional profiling must record overhead and be
    restored. If `UNKNOWN()` remains, capture the actual header name and taint
    provenance before attributing it to this module; do not suppress the warning.
+
+## Follow-up
+
+The [raid/mail/auction follow-up](RAID_MAIL_AUCTION_FOLLOWUP.md) corrects the caller
+that ignored incomplete raid child capacity. It also records the approved Forever
+reload, current loaded-provider state and reporter-only warning history. The
+original UNKNOWN header/taint writer remains unattributed; desktop readiness
+checks and a native solo setup read do not certify combat or roster transitions.

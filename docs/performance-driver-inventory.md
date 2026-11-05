@@ -230,7 +230,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Mail/DoNotWant.lua](../Mail/DoNotWant.lua) | 0 | 0 | 1 | 5 | 2 |
 | [Mail/OpenAll.lua](../Mail/OpenAll.lua) | 0 | 0 | 1 | 5 | 2 |
 | [Mail/QuickAttach.lua](../Mail/QuickAttach.lua) | 0 | 0 | 0 | 5 | 2 |
-| [Mail/Select.lua](../Mail/Select.lua) | 0 | 0 | 2 | 6 | 2 |
+| [Mail/Select.lua](../Mail/Select.lua) | 0 | 0 | 3 | 6 | 2 |
 | [Mail/Settings.lua](../Mail/Settings.lua) | 0 | 0 | 1 | 2 | 0 |
 | [Mail/TradeBlock.lua](../Mail/TradeBlock.lua) | 0 | 0 | 0 | 5 | 0 |
 | [MicroMenu/FluxAddonMicroButton.lua](../MicroMenu/FluxAddonMicroButton.lua) | 0 | 0 | 2 | 3 | 2 |
@@ -270,7 +270,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Other/FluxVehicleSeats.lua](../Other/FluxVehicleSeats.lua) | 0 | 0 | 1 | 0 | 1 |
 | [RaidFrame/FluxRaidFrame.lua](../RaidFrame/FluxRaidFrame.lua) | 0 | 0 | 2 | 0 | 0 |
 | [RaidFrame/FluxRaidFrame_BigDebuffs.lua](../RaidFrame/FluxRaidFrame_BigDebuffs.lua) | 0 | 0 | 1 | 1 | 0 |
-| [RaidFrame/FluxRaidLayout.lua](../RaidFrame/FluxRaidLayout.lua) | 0 | 0 | 8 | 0 | 4 |
+| [RaidFrame/FluxRaidLayout.lua](../RaidFrame/FluxRaidLayout.lua) | 0 | 0 | 8 | 0 | 6 |
 | [RaidFrame/FluxRaidPreview.lua](../RaidFrame/FluxRaidPreview.lua) | 0 | 0 | 1 | 4 | 0 |
 | [RaidFrame/FluxRaidUnit.lua](../RaidFrame/FluxRaidUnit.lua) | 0 | 1 | 0 | 1 | 1 |
 | [Respec/FluxRespec_ActionBars.lua](../Respec/FluxRespec_ActionBars.lua) | 0 | 0 | 0 | 1 | 0 |

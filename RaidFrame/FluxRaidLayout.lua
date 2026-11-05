@@ -147,6 +147,12 @@ local RefreshGroupVisibility
 local ConfigureAndRefresh
 local DisableBlizzardRaidFrames
 
+local function PetBattleBlocksReadiness()
+    local driver = State.petBattleDriver
+    return State.petBattleDriverReady and driver and driver.GetAttribute
+        and driver:GetAttribute("state-groupupdate") == "hide"
+end
+
 PositionBlizzardRaidManager = function()
     if not FluxRaid_IsFluxRaidEnabled() then return end
     if not (Compat.CanPositionRaidManager and Compat.CanPositionRaidManager()) then return end
@@ -438,15 +444,15 @@ LayoutHeaders = function()
 end
 
 local function PrecreateHeaderChildren(header)
-    if not header then return end
-    if InCombatLockdown() then return end
+    if not header then return false end
+    if InCombatLockdown() then return false end
     local maxColumns = header:GetAttribute("maxColumns") or 1
     local unitsPerColumn = header:GetAttribute("unitsPerColumn") or 5
     local startingIndex = header:GetAttribute("startingIndex") or 1
     local maxUnits = maxColumns * unitsPerColumn
     if header:GetAttribute("child" .. maxUnits) then
         header._fluxPrecreated = true
-        return
+        return true
     end
     local container = State.containerFrame
     local containerWasShown = container and container:IsShown()
@@ -462,6 +468,7 @@ local function PrecreateHeaderChildren(header)
     header._fluxPrecreated = header:GetAttribute("child" .. maxUnits) ~= nil
     if not wasShown then header:Hide() end
     if container and not containerWasShown then container:Hide() end
+    return header._fluxPrecreated
 end
 
 local function SetHeaderAttributes(header, groupFilter, showRaid, showParty, showPlayer)
@@ -500,10 +507,11 @@ ConfigureRaidMode = function()
     end
     local inRaid = IsInRaid()
     local inGroup = IsInGroup()
+    local ready = true
     if inRaid then
         for i = 1, GROUP_COUNT do
             SetHeaderAttributes(State.raidHeaders[i], tostring(i), true, false, false)
-            PrecreateHeaderChildren(State.raidHeaders[i])
+            ready = PrecreateHeaderChildren(State.raidHeaders[i]) and ready
         end
         local mtmaHeader = State.mtmaHeader
         if mtmaHeader then
@@ -515,11 +523,13 @@ ConfigureRaidMode = function()
             mtmaHeader:SetAttribute("columnSpacing", GRP_SPACING)
             mtmaHeader:SetAttribute("xOffset", 0)
             mtmaHeader:SetAttribute("yOffset", -(MTMA_TARGET_HEIGHT + MTMA_TARGET_GAP + 1))
-            PrecreateHeaderChildren(mtmaHeader)
+            ready = PrecreateHeaderChildren(mtmaHeader) and ready
+        else
+            ready = false
         end
     elseif inGroup then
         SetHeaderAttributes(State.raidHeaders[1], "1", false, true, true)
-        PrecreateHeaderChildren(State.raidHeaders[1])
+        ready = PrecreateHeaderChildren(State.raidHeaders[1])
         for i = 2, GROUP_COUNT do
             State.raidHeaders[i]:Hide()
         end
@@ -530,6 +540,7 @@ ConfigureRaidMode = function()
         end
         if State.mtmaHeader then State.mtmaHeader:Hide() end
     end
+    return ready
 end
 
 RefreshGroupVisibility = function()
@@ -623,11 +634,28 @@ ConfigureAndRefresh = function()
         if State.containerFrame then State.containerFrame:Hide() end
         return
     end
+    if not State.secureConfigured and PetBattleBlocksReadiness() then
+        Queue(ConfigureAndRefresh)
+        return
+    end
     if configureAndRefreshQueued then return end
     configureAndRefreshQueued = true
     pendingCombatWork[ConfigureAndRefresh] = nil
     local ok, err = pcall(function()
-        ConfigureRaidMode()
+        if not ConfigureRaidMode() then
+            -- A hidden ancestor can prevent native pool allocation. Keep those
+            -- headers hidden through a combat reveal and retain Blizzard's UI.
+            State.secureConfigured = false
+            for i = 1, GROUP_COUNT do
+                if State.raidHeaders[i] then State.raidHeaders[i]:Hide() end
+            end
+            if State.mtmaHeader then State.mtmaHeader:Hide() end
+            if FluxRaid_RestoreBlizzardRaidFrames then FluxRaid_RestoreBlizzardRaidFrames() end
+            Queue(ConfigureAndRefresh)
+            -- An owned-container OnShow retries after its ancestor returns.
+            if State.containerFrame then State.containerFrame:Show() end
+            return
+        end
         RefreshGroupVisibility()
         PositionContainer()
         if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
@@ -652,7 +680,9 @@ ConfigureAndRefresh = function()
                 FluxRaid_RefreshMTMATargetAttachments()
             end
         end
+        local wasReady = State.secureConfigured
         State.secureConfigured = true
+        if not wasReady and DisableBlizzardRaidFrames then DisableBlizzardRaidFrames() end
         C_Timer.After(0, function()
             if InCombatLockdown() then Queue(ConfigureAndRefresh); return end
             if not FluxRaid_IsFluxRaidEnabled() then return end
@@ -665,15 +695,7 @@ ConfigureAndRefresh = function()
     if not ok then error(err) end
 end
 
-function FluxRaid_QueueConfigureAndRefresh()
-    if configureAndRefreshQueued or InCombatLockdown() then
-        Queue(ConfigureAndRefresh)
-        return
-    end
-    if not State.secureConfigured then
-        ConfigureAndRefresh()
-        return
-    end
+local function ScheduleConfigureAndRefresh()
     if refreshScheduled then return end
     refreshScheduled = true
     local function Refresh()
@@ -683,6 +705,23 @@ function FluxRaid_QueueConfigureAndRefresh()
     if ns.Flux and ns.Flux.Timer then ns.Flux.Timer.After(0, Refresh)
     elseif C_Timer and C_Timer.After then C_Timer.After(0, Refresh)
     else Refresh() end
+end
+
+function FluxRaid_QueueReadinessRetry()
+    if not State.isInitialized or State.secureConfigured or not FluxRaid_IsFluxRaidEnabled() then return end
+    ScheduleConfigureAndRefresh()
+end
+
+function FluxRaid_QueueConfigureAndRefresh()
+    if configureAndRefreshQueued or InCombatLockdown() then
+        Queue(ConfigureAndRefresh)
+        return
+    end
+    if not State.secureConfigured then
+        ConfigureAndRefresh()
+        return
+    end
+    ScheduleConfigureAndRefresh()
 end
 
 -- Blizzard hide / restore. The Blizzard grid is reparented under Flux's hidden
@@ -887,6 +926,16 @@ end
 function FluxRaid_InitLayoutFrames()
     if InCombatLockdown() then Queue(FluxRaid_InitLayoutFrames); return false end
     State.containerFrame = _G["FluxRaidContainer"]
+    local container = State.containerFrame
+    if container and container.HookScript and not container._fluxRaidReadinessHooked then
+        container._fluxRaidReadinessHooked = true
+        container:HookScript("OnShow", function()
+            if not State.isInitialized or State.secureConfigured or configureAndRefreshQueued
+                or not FluxRaid_IsFluxRaidEnabled() then return end
+            if PetBattleBlocksReadiness() or InCombatLockdown() then Queue(ConfigureAndRefresh); return end
+            ScheduleConfigureAndRefresh()
+        end)
+    end
     if State.containerFrame and State.containerFrame.SetClipsChildren then
         pcall(State.containerFrame.SetClipsChildren, State.containerFrame, false)
     end
@@ -941,6 +990,15 @@ function FluxRaid_InstallPetBattleDriver()
     end
     RegisterStateDriver(stateFrame, "groupupdate", "[petbattle] hide; show")
     State.petBattleDriverReady = true
+    if stateFrame.HookScript and not stateFrame._fluxReadinessHooked then
+        stateFrame._fluxReadinessHooked = true
+        stateFrame:HookScript("OnAttributeChanged", function(_, name, value)
+            -- The native driver may update after PET_BATTLE_CLOSE's next turn.
+            if name == "state-groupupdate" and value == "show" then
+                FluxRaid_QueueReadinessRetry()
+            end
+        end)
+    end
     return true
 end
 

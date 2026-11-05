@@ -1,5 +1,36 @@
 # Decisions
 
+5 November native mail readiness: use the public native command-pending flag in
+addition to data confirmation, before advancing or finishing a worker. Reuse two
+existing wake slots, retain configured minimum speed, stop busy waits at8s and
+invalidate a completed foreign command's watchdog. API absence keeps prior
+behavior. This corrects reproduced overlap, not the unmeasured freeze/crash cause.
+[Evidence and tradeoffs](MAIL_NATIVE_COMMAND.md).
+
+5 November follow-up: make actual raid child capacity the readiness gate and keep
+native fallback until safe handoff. Reuse the existing configure/combat queues;
+observe only owned frames and preserve native restricted attribute handlers.
+Give mail progress/timeout wakes current-run and action identities, preserving
+configured cadence and confirmation semantics. Read Copy/Forward availability
+without assembling copy text. Batch Syndicator's progressive auction callbacks
+inside the existing inventory bucket, before listeners, and use the appropriate
+native owned-list event for empty refreshes. Keep direct rebuilds synchronous,
+provider readiness/handoff and guild-bank/void scope unchanged. These reproduced
+contract failures justify the fixes; they do not identify the live single-sale
+stall, BugGrabber warning initiator or UNKNOWN taint writer. Do not suppress error
+capture or edit third-party addons to produce a pass. The user reports Syndicator
+disabled in the current failing runtime, so treat its installed 289 source as
+reference evidence only. Investigate the built-in provider and fresh error history
+independently; do not attribute the ongoing stall to the optional provider.
+After the same freeze persisted after reload and the heavy capture was lost in
+a reported crash, restore scriptProfile0 and the prior nil capture root; do not
+repeat that capture. Return to background-only operation after the authorized
+exception. Compare native command-pending mail checks across all five pinned
+clients before the smallest further guard, and prefer narrower diagnostics that
+avoid full EnumerateFrames. That guard remains pending implementation/validation.
+[Source, regression and native acceptance limits](RAID_MAIL_AUCTION_FOLLOWUP.md).
+[Native mail/auction comparison](NATIVE_MAIL_AUCTION_REFERENCE.md).
+
 5 November: leave Blizzard meter rendering/Init and duration/visibility methods
 native; preserve Flux tint with secure after-only hooks and actual selection
 changes through native owners. Do not add another secret-field patch, sanitizer

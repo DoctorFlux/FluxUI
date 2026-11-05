@@ -14,7 +14,8 @@ Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
   Record intentional bug fixes, exact source identities and meaningful regressions.
 - Use the supplied plan/specifications as requirements, reconciled against current
   behavior. Prefer existing services and small, measured changes over new frameworks.
-- Keep auction, guild-bank and void-storage callbacks out of scope until requested.
+- Auction callbacks are in scope following the renewed November lag requests.
+  Keep guild-bank and void-storage callbacks out of scope until requested.
 - Leave WoW in the background. Do not take foreground, mouse, keyboard or clipboard
   control while the user uses the PC. Keep profiling optional and restore preferences.
 - Normal warning dismissal, Reconnect and named-character selection are authorized

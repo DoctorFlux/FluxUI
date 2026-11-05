@@ -482,13 +482,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Mail/Contacts.lua:282](../../Mail/Contacts.lua#L282) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
 | [Mail/Contacts.lua:283](../../Mail/Contacts.lua#L283) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
 | [Mail/Contacts.lua:284](../../Mail/Contacts.lua#L284) | `RegisterEvent` | `"MAIL_FAILED"` |
-| [Mail/Conveniences.lua:172](../../Mail/Conveniences.lua#L172) | `RegisterEvent` | `"MAIL_SHOW"` |
-| [Mail/Conveniences.lua:173](../../Mail/Conveniences.lua#L173) | `RegisterEvent` | `"MAIL_CLOSED"` |
-| [Mail/Conveniences.lua:174](../../Mail/Conveniences.lua#L174) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
-| [Mail/Conveniences.lua:175](../../Mail/Conveniences.lua#L175) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
-| [Mail/Conveniences.lua:176](../../Mail/Conveniences.lua#L176) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
-| [Mail/Conveniences.lua:177](../../Mail/Conveniences.lua#L177) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
-| [Mail/Conveniences.lua:178](../../Mail/Conveniences.lua#L178) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/Conveniences.lua:191](../../Mail/Conveniences.lua#L191) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Conveniences.lua:192](../../Mail/Conveniences.lua#L192) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Conveniences.lua:193](../../Mail/Conveniences.lua#L193) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Conveniences.lua:194](../../Mail/Conveniences.lua#L194) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Conveniences.lua:195](../../Mail/Conveniences.lua#L195) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/Conveniences.lua:196](../../Mail/Conveniences.lua#L196) | `RegisterEvent` | `"MAIL_SEND_SUCCESS"` |
+| [Mail/Conveniences.lua:197](../../Mail/Conveniences.lua#L197) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
 | [Mail/DoNotWant.lua:101](../../Mail/DoNotWant.lua#L101) | `RegisterEvent` | `"MAIL_SHOW"` |
 | [Mail/DoNotWant.lua:102](../../Mail/DoNotWant.lua#L102) | `RegisterEvent` | `"MAIL_CLOSED"` |
 | [Mail/DoNotWant.lua:103](../../Mail/DoNotWant.lua#L103) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
@@ -504,12 +504,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Mail/QuickAttach.lua:75](../../Mail/QuickAttach.lua#L75) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
 | [Mail/QuickAttach.lua:76](../../Mail/QuickAttach.lua#L76) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
 | [Mail/QuickAttach.lua:77](../../Mail/QuickAttach.lua#L77) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
-| [Mail/Select.lua:303](../../Mail/Select.lua#L303) | `RegisterEvent` | `"MAIL_SHOW"` |
-| [Mail/Select.lua:304](../../Mail/Select.lua#L304) | `RegisterEvent` | `"MAIL_CLOSED"` |
-| [Mail/Select.lua:305](../../Mail/Select.lua#L305) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
-| [Mail/Select.lua:306](../../Mail/Select.lua#L306) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
-| [Mail/Select.lua:307](../../Mail/Select.lua#L307) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
-| [Mail/Select.lua:308](../../Mail/Select.lua#L308) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/Select.lua:353](../../Mail/Select.lua#L353) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Select.lua:354](../../Mail/Select.lua#L354) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Select.lua:355](../../Mail/Select.lua#L355) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/Select.lua:356](../../Mail/Select.lua#L356) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Select.lua:357](../../Mail/Select.lua#L357) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Select.lua:358](../../Mail/Select.lua#L358) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
 | [Mail/Settings.lua:330](../../Mail/Settings.lua#L330) | `RegisterEvent` | `"MAIL_SHOW"` |
 | [Mail/Settings.lua:331](../../Mail/Settings.lua#L331) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
 | [Mail/TradeBlock.lua:30](../../Mail/TradeBlock.lua#L30) | `RegisterEvent` | `"MAIL_SHOW"` |
@@ -7653,28 +7653,28 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Adapter.RebuildBags` | [L154](../../Inventory/Syndicator/Adapter.lua#L154) |
-| `Adapter.RebuildBank` | [L203](../../Inventory/Syndicator/Adapter.lua#L203) |
-| `Adapter.GetLastBagsChangeKind` | [L251](../../Inventory/Syndicator/Adapter.lua#L251) |
-| `Adapter.GetLastBagsAddedItemIDs` | [L255](../../Inventory/Syndicator/Adapter.lua#L255) |
-| `Adapter.GetLastBagsRemovedItemIDs` | [L259](../../Inventory/Syndicator/Adapter.lua#L259) |
-| `Adapter.GetLastBagsDirtyBags` | [L263](../../Inventory/Syndicator/Adapter.lua#L263) |
-| `Adapter.GetLastBankChangeKind` | [L267](../../Inventory/Syndicator/Adapter.lua#L267) |
-| `Adapter.GetLastBankAddedItemIDs` | [L271](../../Inventory/Syndicator/Adapter.lua#L271) |
-| `Adapter.GetLastBankRemovedItemIDs` | [L275](../../Inventory/Syndicator/Adapter.lua#L275) |
-| `Adapter.GetLastBankDirtyBags` | [L279](../../Inventory/Syndicator/Adapter.lua#L279) |
-| `Adapter.TakeBagsItemSets` | [L283](../../Inventory/Syndicator/Adapter.lua#L283) |
-| `Adapter.TakeBankItemSets` | [L287](../../Inventory/Syndicator/Adapter.lua#L287) |
-| `Adapter.RebuildWarband` | [L291](../../Inventory/Syndicator/Adapter.lua#L291) |
-| `Adapter.RebuildEquip` | [L316](../../Inventory/Syndicator/Adapter.lua#L316) |
-| `Adapter.RebuildMail` | [L388](../../Inventory/Syndicator/Adapter.lua#L388) |
-| `Adapter.RebuildVoid` | [L398](../../Inventory/Syndicator/Adapter.lua#L398) |
-| `Adapter.RebuildAuctions` | [L416](../../Inventory/Syndicator/Adapter.lua#L416) |
-| `Adapter.RebuildGuild` | [L424](../../Inventory/Syndicator/Adapter.lua#L424) |
-| `Adapter.RebuildCurrencies` | [L446](../../Inventory/Syndicator/Adapter.lua#L446) |
-| `Adapter.RebuildWarbandCurrency` | [L471](../../Inventory/Syndicator/Adapter.lua#L471) |
-| `Adapter.RebuildAll` | [L482](../../Inventory/Syndicator/Adapter.lua#L482) |
-| `Adapter.Start` | [L664](../../Inventory/Syndicator/Adapter.lua#L664) |
+| `Adapter.RebuildBags` | [L155](../../Inventory/Syndicator/Adapter.lua#L155) |
+| `Adapter.RebuildBank` | [L204](../../Inventory/Syndicator/Adapter.lua#L204) |
+| `Adapter.GetLastBagsChangeKind` | [L252](../../Inventory/Syndicator/Adapter.lua#L252) |
+| `Adapter.GetLastBagsAddedItemIDs` | [L256](../../Inventory/Syndicator/Adapter.lua#L256) |
+| `Adapter.GetLastBagsRemovedItemIDs` | [L260](../../Inventory/Syndicator/Adapter.lua#L260) |
+| `Adapter.GetLastBagsDirtyBags` | [L264](../../Inventory/Syndicator/Adapter.lua#L264) |
+| `Adapter.GetLastBankChangeKind` | [L268](../../Inventory/Syndicator/Adapter.lua#L268) |
+| `Adapter.GetLastBankAddedItemIDs` | [L272](../../Inventory/Syndicator/Adapter.lua#L272) |
+| `Adapter.GetLastBankRemovedItemIDs` | [L276](../../Inventory/Syndicator/Adapter.lua#L276) |
+| `Adapter.GetLastBankDirtyBags` | [L280](../../Inventory/Syndicator/Adapter.lua#L280) |
+| `Adapter.TakeBagsItemSets` | [L284](../../Inventory/Syndicator/Adapter.lua#L284) |
+| `Adapter.TakeBankItemSets` | [L288](../../Inventory/Syndicator/Adapter.lua#L288) |
+| `Adapter.RebuildWarband` | [L292](../../Inventory/Syndicator/Adapter.lua#L292) |
+| `Adapter.RebuildEquip` | [L317](../../Inventory/Syndicator/Adapter.lua#L317) |
+| `Adapter.RebuildMail` | [L389](../../Inventory/Syndicator/Adapter.lua#L389) |
+| `Adapter.RebuildVoid` | [L399](../../Inventory/Syndicator/Adapter.lua#L399) |
+| `Adapter.RebuildAuctions` | [L417](../../Inventory/Syndicator/Adapter.lua#L417) |
+| `Adapter.RebuildGuild` | [L425](../../Inventory/Syndicator/Adapter.lua#L425) |
+| `Adapter.RebuildCurrencies` | [L447](../../Inventory/Syndicator/Adapter.lua#L447) |
+| `Adapter.RebuildWarbandCurrency` | [L472](../../Inventory/Syndicator/Adapter.lua#L472) |
+| `Adapter.RebuildAll` | [L483](../../Inventory/Syndicator/Adapter.lua#L483) |
+| `Adapter.Start` | [L687](../../Inventory/Syndicator/Adapter.lua#L687) |
 
 ### Inventory/Tooltip.lua
 
@@ -7722,7 +7722,7 @@ Owner: [34-assets.md](../34-assets.md).
 
 | Declaration | Source |
 |---|---|
-| `Mail.ForwardOpenText` | [L120](../../Mail/Conveniences.lua#L120) |
+| `Mail.ForwardOpenText` | [L139](../../Mail/Conveniences.lua#L139) |
 
 ### Mail/OpenAll.lua
 
@@ -7747,8 +7747,8 @@ Owner: [34-assets.md](../34-assets.md).
 
 | Declaration | Source |
 |---|---|
-| `Mail.ProcessSelected` | [L216](../../Mail/Select.lua#L216) |
-| `Mail.TakeSelected` | [L239](../../Mail/Select.lua#L239) |
+| `Mail.ProcessSelected` | [L266](../../Mail/Select.lua#L266) |
+| `Mail.TakeSelected` | [L289](../../Mail/Select.lua#L289) |
 
 ### Mail/Settings.lua
 
@@ -8421,17 +8421,18 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 | `EventHandlers:CVAR_UPDATE` | [L189](../../RaidFrame/FluxRaidFrame.lua#L189) |
 | `EventHandlers:PLAYER_ENTERING_WORLD` | [L193](../../RaidFrame/FluxRaidFrame.lua#L193) |
 | `EventHandlers:PLAYER_REGEN_ENABLED` | [L200](../../RaidFrame/FluxRaidFrame.lua#L200) |
-| `EventHandlers:COMPACT_UNIT_FRAME_PROFILES_LOADED` | [L206](../../RaidFrame/FluxRaidFrame.lua#L206) |
-| `EventHandlers:DISPLAY_SIZE_CHANGED` | [L212](../../RaidFrame/FluxRaidFrame.lua#L212) |
-| `EventHandlers:UI_SCALE_CHANGED` | [L218](../../RaidFrame/FluxRaidFrame.lua#L218) |
-| `EventHandlers:PLAYER_TARGET_CHANGED` | [L224](../../RaidFrame/FluxRaidFrame.lua#L224) |
-| `EventHandlers:PLAYER_ROLES_ASSIGNED` | [L230](../../RaidFrame/FluxRaidFrame.lua#L230) |
-| `EventHandlers:READY_CHECK` | [L236](../../RaidFrame/FluxRaidFrame.lua#L236) |
-| `EventHandlers:READY_CHECK_CONFIRM` | [L242](../../RaidFrame/FluxRaidFrame.lua#L242) |
-| `EventHandlers:READY_CHECK_FINISHED` | [L248](../../RaidFrame/FluxRaidFrame.lua#L248) |
-| `EventHandlers:RAID_TARGET_UPDATE` | [L254](../../RaidFrame/FluxRaidFrame.lua#L254) |
-| `FluxRaid_OnLoad` | [L260](../../RaidFrame/FluxRaidFrame.lua#L260) |
-| `FluxRaid_OnEvent` | [L304](../../RaidFrame/FluxRaidFrame.lua#L304) |
+| `EventHandlers:PET_BATTLE_CLOSE` | [L206](../../RaidFrame/FluxRaidFrame.lua#L206) |
+| `EventHandlers:COMPACT_UNIT_FRAME_PROFILES_LOADED` | [L210](../../RaidFrame/FluxRaidFrame.lua#L210) |
+| `EventHandlers:DISPLAY_SIZE_CHANGED` | [L216](../../RaidFrame/FluxRaidFrame.lua#L216) |
+| `EventHandlers:UI_SCALE_CHANGED` | [L222](../../RaidFrame/FluxRaidFrame.lua#L222) |
+| `EventHandlers:PLAYER_TARGET_CHANGED` | [L228](../../RaidFrame/FluxRaidFrame.lua#L228) |
+| `EventHandlers:PLAYER_ROLES_ASSIGNED` | [L234](../../RaidFrame/FluxRaidFrame.lua#L234) |
+| `EventHandlers:READY_CHECK` | [L240](../../RaidFrame/FluxRaidFrame.lua#L240) |
+| `EventHandlers:READY_CHECK_CONFIRM` | [L246](../../RaidFrame/FluxRaidFrame.lua#L246) |
+| `EventHandlers:READY_CHECK_FINISHED` | [L252](../../RaidFrame/FluxRaidFrame.lua#L252) |
+| `EventHandlers:RAID_TARGET_UPDATE` | [L258](../../RaidFrame/FluxRaidFrame.lua#L258) |
+| `FluxRaid_OnLoad` | [L264](../../RaidFrame/FluxRaidFrame.lua#L264) |
+| `FluxRaid_OnEvent` | [L311](../../RaidFrame/FluxRaidFrame.lua#L311) |
 
 ### RaidFrame/FluxRaidFrame_BigDebuffs.lua
 
@@ -8451,22 +8452,23 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 | `FluxRaid_GetMTMAChildStep` | [L49](../../RaidFrame/FluxRaidLayout.lua#L49) |
 | `FluxRaid_QueueWork` | [L57](../../RaidFrame/FluxRaidLayout.lua#L57) |
 | `FluxRaid_GetMTMARosterCount` | [L129](../../RaidFrame/FluxRaidLayout.lua#L129) |
-| `FluxRaid_GetPreviewStackVerticalPosition` | [L214](../../RaidFrame/FluxRaidLayout.lua#L214) |
-| `FluxRaidFrame_UpdatePosition` | [L219](../../RaidFrame/FluxRaidLayout.lua#L219) |
-| `FluxRaid_ComputeSyntheticGroup2ColumnLeftX` | [L237](../../RaidFrame/FluxRaidLayout.lua#L237) |
-| `FluxRaid_GetPlacement2FocusAnchorBottomRight` | [L265](../../RaidFrame/FluxRaidLayout.lua#L265) |
-| `FluxRaid_GetFirstGroupNthMemberBottomFromScreen` | [L593](../../RaidFrame/FluxRaidLayout.lua#L593) |
-| `FluxRaid_QueueConfigureAndRefresh` | [L668](../../RaidFrame/FluxRaidLayout.lua#L668) |
-| `FluxRaid_InstallManagerHooks` | [L771](../../RaidFrame/FluxRaidLayout.lua#L771) |
-| `FluxRaid_ScheduleBlizzardGridHideCheck` | [L787](../../RaidFrame/FluxRaidLayout.lua#L787) |
-| `FluxRaid_ApplyBlizzardCompactGridHidden` | [L800](../../RaidFrame/FluxRaidLayout.lua#L800) |
-| `FluxRaid_RestoreBlizzardRaidFrames` | [L821](../../RaidFrame/FluxRaidLayout.lua#L821) |
-| `FluxRaid_RunPendingCombatWork` | [L844](../../RaidFrame/FluxRaidLayout.lua#L844) |
-| `FluxRaid_OnRosterOrPartyChanged` | [L870](../../RaidFrame/FluxRaidLayout.lua#L870) |
-| `FluxRaid_InitLayoutFrames` | [L887](../../RaidFrame/FluxRaidLayout.lua#L887) |
-| `FluxRaid_InstallPetBattleDriver` | [L908](../../RaidFrame/FluxRaidLayout.lua#L908) |
-| `FluxRaid_DisableBlizzardNow` | [L947](../../RaidFrame/FluxRaidLayout.lua#L947) |
-| `FluxRaid_PositionContainer` | [L951](../../RaidFrame/FluxRaidLayout.lua#L951) |
+| `FluxRaid_GetPreviewStackVerticalPosition` | [L220](../../RaidFrame/FluxRaidLayout.lua#L220) |
+| `FluxRaidFrame_UpdatePosition` | [L225](../../RaidFrame/FluxRaidLayout.lua#L225) |
+| `FluxRaid_ComputeSyntheticGroup2ColumnLeftX` | [L243](../../RaidFrame/FluxRaidLayout.lua#L243) |
+| `FluxRaid_GetPlacement2FocusAnchorBottomRight` | [L271](../../RaidFrame/FluxRaidLayout.lua#L271) |
+| `FluxRaid_GetFirstGroupNthMemberBottomFromScreen` | [L604](../../RaidFrame/FluxRaidLayout.lua#L604) |
+| `FluxRaid_QueueReadinessRetry` | [L710](../../RaidFrame/FluxRaidLayout.lua#L710) |
+| `FluxRaid_QueueConfigureAndRefresh` | [L715](../../RaidFrame/FluxRaidLayout.lua#L715) |
+| `FluxRaid_InstallManagerHooks` | [L810](../../RaidFrame/FluxRaidLayout.lua#L810) |
+| `FluxRaid_ScheduleBlizzardGridHideCheck` | [L826](../../RaidFrame/FluxRaidLayout.lua#L826) |
+| `FluxRaid_ApplyBlizzardCompactGridHidden` | [L839](../../RaidFrame/FluxRaidLayout.lua#L839) |
+| `FluxRaid_RestoreBlizzardRaidFrames` | [L860](../../RaidFrame/FluxRaidLayout.lua#L860) |
+| `FluxRaid_RunPendingCombatWork` | [L883](../../RaidFrame/FluxRaidLayout.lua#L883) |
+| `FluxRaid_OnRosterOrPartyChanged` | [L909](../../RaidFrame/FluxRaidLayout.lua#L909) |
+| `FluxRaid_InitLayoutFrames` | [L926](../../RaidFrame/FluxRaidLayout.lua#L926) |
+| `FluxRaid_InstallPetBattleDriver` | [L957](../../RaidFrame/FluxRaidLayout.lua#L957) |
+| `FluxRaid_DisableBlizzardNow` | [L1005](../../RaidFrame/FluxRaidLayout.lua#L1005) |
+| `FluxRaid_PositionContainer` | [L1009](../../RaidFrame/FluxRaidLayout.lua#L1009) |
 
 ### RaidFrame/FluxRaidPreview.lua
 

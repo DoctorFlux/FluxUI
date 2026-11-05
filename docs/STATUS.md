@@ -1,5 +1,51 @@
 # Development status
 
+Current user isolation: FluxUI is fully unloaded; the user reports no freezes
+with it unloaded. Leave it disabled and send no further game input. Current mail/
+auction and shared inventory work remain under investigation; the five validated
+contract fixes below do not establish a cure. Focus the next audit on built-in
+provider semantics, downstream fanout and mail/auction UI hook reentry.
+
+Latest phase: the native mail-command guard prevents progression/completion
+while C_Mail reports pending, with bounded8s wait and existing cadence retained.
+Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
+completions; three mutants rejected. Final full validation:140 scripts /795 Lua
+syntax files pass. Earlier139/794 evidence describes the preceding four-fix tree.
+The user still reports live sale/mail freezes, including Open All at Processing
+Message2 and final mail; no live cure is claimed.
+[Guard, source contract and pending native checks](MAIL_NATIVE_COMMAND.md).
+
+5 November raid/mail/auction follow-up, baseline `8681672`: incomplete raid child
+pools now retain native fallback until ready; duplicate mail wakes are coalesced
+and stale action watchdogs cannot advance later mail early. Hidden/disabled
+Copy/Forward availability skips mail reads and visible checks avoid invoice
+formatting. Syndicator progressive owned-auction refreshes now rebuild once in
+the existing inventory bucket: 5,000 rebuilds / 1,252,500 modeled row writes become
+10 / 5,000; publications stay 10. Five alternating pairs per scenario, eight
+rejected mutants and all 139 scripts / 794 Lua syntax checks pass. Features,
+default mail speed and public direct rebuild behavior remain. The single-sale
+spike and UNKNOWN header writer remain unattributed. The user reports Syndicator
+is not loaded in the current failing setup; installed/reference Syndicator 289
+does not establish an active provider. Further warnings at 15:03:09 and 15:27:44,
+as well as 14:53:50, still identify the reporter only. Built-in inventory paths
+and the initiating error remain under investigation. Read-only host inspection
+confirmed Forever running; the earlier sandbox-limited no-client inference was
+withdrawn. Approved Forever reload succeeded15:32:54CET. Native commands confirm
+1.60.1/build70790/interface16001, FluxUI loaded and Syndicator unloaded. At15:35:48,
+raid setup was ready, scriptProfile0 and session23 had 11 historical / zero
+current errors. The user confirmed the same freeze after this reload. An optional
+60s CPU capture began15:42:20 after enabling scriptProfile and reloading15:41:45;
+the user reported a crash while opening many auction mails. The old process
+exited and a replacement started15:48:36. Capture data was lost before save;
+no benchmark or new crash report was recovered. Profiling was restored to0,
+reloaded15:50:55 and verified15:51:34; the prior capture root remained nil and
+the previous foreground window was restored. No profiling cleanup remains.
+Native command-pending mail guards and a narrower diagnostic remain the next
+work; no fix or new test count is claimed for them. Heavy capture will not be
+repeated. Transaction, combat, taint and measured lag acceptance remain pending.
+[Evidence](RAID_MAIL_AUCTION_FOLLOWUP.md) and
+[native mail/auction source comparison](NATIVE_MAIL_AUCTION_REFERENCE.md).
+
 5 November supplied meter/header errors: removed native entry/Init/duration/
 visibility replacements responsible for re-entering addon code before Forever's
 secret icon comparison. Kept post-render green/white tint and native tab visibility;

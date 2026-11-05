@@ -25,7 +25,7 @@ local function harness(region, modern)
     local env = setmetatable({}, { __index = _G }); env._G = env
     local h = { now = 0, events = {}, callbacks = {}, frames = {}, ready = false,
         reads = 0, notifications = 0, requests = 0, queries = 0, binds = 0,
-        size = region == "mail" and 8 or 70, itemCount = 3, missing = false }
+        size = region == "mail" and 8 or 70, itemCount = 3, missing = false, inventoryFns = {} }
     env.UnitName = function() return "Test" end
     env.GetNormalizedRealmName = function() return "Realm" end
     env.GetTime = function() return h.now end
@@ -70,10 +70,13 @@ local function harness(region, modern)
         Notify = function() h.notifications = h.notifications + 1 end }
     local ns = { Flux = { Inventory = inv,
         Cap = { hasModernAuctionHouse = modern, hasLegacyAuctionHouse = not modern },
-        Scheduler = { Request = function() h.requests = h.requests + 1 end },
+        Scheduler = { Request = function(_, _, fn)
+            h.requests = h.requests + 1
+            if fn then h.inventoryFns[#h.inventoryFns + 1] = fn end
+        end },
         Events = { Register = function(event, fn)
-            assert(not h.events[event], "duplicate native event registration")
-            h.events[event] = fn
+            h.events[event] = h.events[event] or {}
+            h.events[event][#h.events[event] + 1] = fn
         end } } }
     for _, path in ipairs({ "Inventory/Store.lua", sources[region], "Inventory/Syndicator/Adapter.lua" }) do
         assert(loadfile(path, "t", env))("_FluxUI", ns)
@@ -96,7 +99,12 @@ local function harness(region, modern)
         end } }
     end
     function h.fire(event, ...)
-        if h.events[event] then h.events[event](event, ...) end
+        for _, fn in ipairs(h.events[event] or {}) do fn(event, ...) end
+    end
+    function h.flushInventory()
+        local fns = h.inventoryFns; h.inventoryFns = {}
+        local tokens = {}
+        for _, fn in ipairs(fns) do fn(tokens) end
     end
     function h.open()
         if region == "mail" then h.fire("MAIL_SHOW")
@@ -208,6 +216,7 @@ for _, config in ipairs({ { "mail", false }, { "auctions", false }, { "auctions"
             end
             h.character[region] = { { itemID = 333, itemCount = 17 } }
             h.callbacks[region == "mail" and "MailCacheUpdate" or "AuctionsCacheUpdate"](nil, "Test-Realm")
+            h.flushInventory()
             check(snap.counts[333] == 17 and snap.counts[222] == nil and snap.counts[111] == nil and h.requests == 1,
                 label .. " future provider updates remain responsive")
             h.callbacks.Ready(); inv.Syndicator.Start(); h.module.Start()
@@ -218,7 +227,10 @@ for _, config in ipairs({ { "mail", false }, { "auctions", false }, { "auctions"
     local readyFirst = harness(region, modern)
     readyFirst.installProvider(false); readyFirst.ready = true; readyFirst.inv.Syndicator.Start()
     readyFirst.module.Start(); readyFirst.module.Refresh(); readyFirst.open(); readyFirst.step(1)
-    check(next(readyFirst.events) == nil and readyFirst.reads == 0 and readyFirst.active() == 0,
+    local ownedEvent = modern and "OWNED_AUCTIONS_UPDATED" or "AUCTION_OWNED_LIST_UPDATE"
+    local onlyProviderFallback = readyFirst.events[ownedEvent] and #readyFirst.events[ownedEvent] == 1
+    for event in pairs(readyFirst.events) do if event ~= ownedEvent then onlyProviderFallback = false end end
+    check(onlyProviderFallback and readyFirst.reads == 0 and readyFirst.active() == 0,
         name .. " already-ready provider never starts native region")
 end
 

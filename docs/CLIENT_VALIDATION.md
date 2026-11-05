@@ -1,5 +1,45 @@
 # Client and reference validation — 29 October 2026
 
+Latest phase: the native mail-command guard prevents progression/completion
+while C_Mail reports pending, with bounded8s wait and existing cadence retained.
+Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
+completions; three mutants rejected. Final full validation:140 scripts /795 Lua
+syntax files pass. Earlier139/794 evidence describes the preceding four-fix tree.
+The user still reports live sale/mail freezes, including Open All at Processing
+Message2 and final mail; no live cure is claimed.
+[Guard, source contract and pending native checks](MAIL_NATIVE_COMMAND.md).
+
+Latest native outcome: the user confirmed the same freeze after reload with
+Syndicator unloaded. A later optional60s CPU capture was lost before save when
+the old process exited during reported bulk mail. No new crash report identifies
+a cause. Profile0 and the prior nil capture root were restored/verified15:51:34;
+foreground returned. This is failed/inconclusive operational evidence, not a
+benchmark pass. See [capture details and cleanup](RAID_MAIL_AUCTION_FOLLOWUP.md).
+
+5 November raid/mail/auction follow-up: baseline `8681672`; shared loaded-module
+contracts pass 290 raid, 3,140 mail-worker, 380 mail-detail and 365 auction checks;
+full 139 scripts / 794 Lua syntax pass. Five alternating pairs per scenario and
+eight rejected mutants cover incomplete raid pools, duplicate/stale mail wakes,
+hidden/disabled detail work and progressive Syndicator auction lists. Client and
+provider labels are shared-contract models, not native-client emulation.
+
+Sandbox process enumeration initially hid the game; host inspection confirmed
+Forever 1.60.1.70790 and a background 1906 by 1032 auction/bag capture without
+changing focus. Approved reload completed15:32:54CET. Native commands confirmed
+1.60.1/build70790/interface16001, FluxUI loaded and Syndicator unloaded; at15:35:48
+raid setup ready, scriptProfile0 and no current-session error messages printed.
+Prior windows were restored after successful checks. This is partial startup
+sanity only; the full addon list remains uncaptured. All-client mailbox loot,
+secure raid/pet-battle behavior, native errors, pixels and matched performance
+remain pending. The stored UNKNOWN event predates the previous correction; the
+new reporter warnings still do not identify an initiating addon. Original and
+modern Wrath remain separate and uncertified.
+The user subsequently reports Syndicator is not loaded in the current failing
+session, while AH/mail lag and reporter warnings at 15:03:09 and 15:27:44 remain.
+This differs from the installed-provider source fixture; it does not establish an
+active Syndicator route. The runtime enabled-addon list is still uncaptured.
+[Exact source pins, observations and remaining steps](RAID_MAIL_AUCTION_FOLLOWUP.md).
+
 5 November meter/header ownership: compared Forever 1.60.1.70790 and Retail
 12.1.5.70783 native meter paths; checked visible-header allocation gate on pinned
 Era 1.15.9.70576, Anniversary 2.5.6.70577 and MoP 5.5.4.70631 sources too. Shared
