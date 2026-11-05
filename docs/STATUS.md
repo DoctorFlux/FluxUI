@@ -1,5 +1,14 @@
 # Development status
 
+5 November hidden inventory work: fixed effective-visibility filtering for
+Baganator protection/shield refresh and default-bag painting. Skin-tag discovery
+and one coalesced post-layout reveal refresh keep current slots protected; native
+reveal/disabled/bank guards remain. Five desktop pairs: 400,800 hidden-pool burst
+callbacks become 800 visible-row callbacks per metric; default-bag hidden work
+becomes zero. 325 focused checks, six rejected mutants, full 133 scripts / 788 Lua
+pass. Reported Forever mail/AH lag and all-client native acceptance remain pending.
+[Evidence and exact pending checks](HIDDEN_INVENTORY_WORK.md).
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now

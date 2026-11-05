@@ -1,0 +1,449 @@
+{
+  "baselineCommit": "2dd6cfd53394240861476b632c42dff34c64f2f2",
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z",
+    "sourceFiles": 1462,
+    "settingsFiles": 123,
+    "sourceSha256": "b31d629042f1e398778a79081cbf281a22d62f2e6f967f80a74d0a1f57a2baf7",
+    "history": "all-ref bundle verified;actual files incl ignored/untracked;on-disk settings only"
+  },
+  "candidateFiles": {
+    "BaganatorCompat/FluxBaganator_ItemViews.lua": "0bf0e29bbb867207a5cf3d4569b81f8932271bfecd2cd366af239e8a7c6360b6",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+    "tests/visible_baganator_work.lua": "9c1ad44a430d5b6b31e44c27cd9a9ecd5876a8cadd215fa318fa6d12dfcff958",
+    "tests/visible_native_bag_work.lua": "8e551767c5afcd5575e3a1f0164d556f6143dde1bbe45956aeabeca3efebb74b",
+    "Core/_tmp_coresmoke.lua": "7b7055cb5edf51d9a0f9964d25c66ce9992ef302c6f0969f28969b4ebf9dc943"
+  },
+  "normalization": "SHA256 after CRLF to LF;no other byte changes",
+  "host": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700F",
+    "ramGPU": "CIM read unavailable;not captured",
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "installedClients": [
+    {
+      "client": "Era",
+      "installed_version": "1.15.9",
+      "installed_build": "70576",
+      "executable_path": "F:\\World of Warcraft\\_classic_era_\\WowClassic.exe"
+    },
+    {
+      "client": "Anniversary",
+      "installed_version": "2.5.6",
+      "installed_build": "70577",
+      "executable_path": "F:\\World of Warcraft\\_anniversary_\\WowClassic.exe"
+    },
+    {
+      "client": "MoP",
+      "installed_version": "5.5.4",
+      "installed_build": "70631",
+      "executable_path": "F:\\World of Warcraft\\_classic_\\WowClassic.exe"
+    },
+    {
+      "client": "Retail Midnight",
+      "installed_version": "12.1.5",
+      "installed_build": "70783",
+      "executable_path": "F:\\World of Warcraft\\_retail_\\Wow.exe"
+    },
+    {
+      "client": "Forever Camelot",
+      "installed_version": "1.60.1",
+      "installed_build": "70790",
+      "executable_path": "F:\\World of Warcraft\\_forever_\\Wow.exe"
+    },
+    {
+      "client": "Wrath modern",
+      "installed_version": "unknown",
+      "installed_build": "unknown",
+      "executable_path": "not found"
+    },
+    {
+      "client": "Wrath original 3.3.5",
+      "installed_version": "3.3.5",
+      "installed_build": "12340",
+      "executable_path": "F:\\World of Warcraft\\_Ascension\\Wow.exe"
+    },
+    {
+      "client": "Cata retained",
+      "installed_version": "unknown",
+      "installed_build": "unknown",
+      "executable_path": "not found"
+    }
+  ],
+  "native": {
+    "GetBuildInfo": "uncaptured",
+    "hardwareSettingsAddons": "active graphics/profile/enabled addon list/RAM/GPU not captured",
+    "source": "Forever eac30af597e5aaa43a60f6675ef5fdcea100375f 1.60.1.70790;SimpleScriptRegionAPIDocumentation.lua IsVisible declared;load/runtime/secret permissions not certified",
+    "externalAddons": "Baganator840/Syndicator289 read from installed TOCs;no external edits/code copies",
+    "cpuMemoryAllocationsLatencyFrameTime": "unavailable;not inferred from desktop counts",
+    "acceptance": "PENDING all native mailbox open/close/receive/open-message and auction buy/sell/provider combinations"
+  },
+  "scenarios": {
+    "baganator": {
+      "fixture": "tests/visible_baganator_work.lua",
+      "baselineArg": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua",
+      "candidateArg": null,
+      "runs": [
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+          ],
+          "wallSeconds": 1.092185800007428,
+          "exit": 1,
+          "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nvisible Baganator work: 260 checks, 120 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+          "pair": 1,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua"
+          ],
+          "wallSeconds": 0.26972110000497196,
+          "exit": 0,
+          "raw": "visible Baganator work: 260 checks, 0 failures; burst guards=800 shields=800 itemReads=800\n",
+          "pair": 1,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+          ],
+          "wallSeconds": 1.0737361999927089,
+          "exit": 1,
+          "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nvisible Baganator work: 260 checks, 120 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+          "pair": 2,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua"
+          ],
+          "wallSeconds": 0.2660593000036897,
+          "exit": 0,
+          "raw": "visible Baganator work: 260 checks, 0 failures; burst guards=800 shields=800 itemReads=800\n",
+          "pair": 2,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+          ],
+          "wallSeconds": 1.0894640000042273,
+          "exit": 1,
+          "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nvisible Baganator work: 260 checks, 120 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+          "pair": 3,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua"
+          ],
+          "wallSeconds": 0.2873007000016514,
+          "exit": 0,
+          "raw": "visible Baganator work: 260 checks, 0 failures; burst guards=800 shields=800 itemReads=800\n",
+          "pair": 3,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+          ],
+          "wallSeconds": 1.0629960999940522,
+          "exit": 1,
+          "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nvisible Baganator work: 260 checks, 120 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+          "pair": 4,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua"
+          ],
+          "wallSeconds": 0.2969579999917187,
+          "exit": 0,
+          "raw": "visible Baganator work: 260 checks, 0 failures; burst guards=800 shields=800 itemReads=800\n",
+          "pair": 4,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+          ],
+          "wallSeconds": 1.0495905999996467,
+          "exit": 1,
+          "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL character-select burst coalesces one layout barrier\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL repeated discovery does not multiply hooks\nFAIL legacy numeric frame-name fallback stays supported\nvisible Baganator work: 260 checks, 120 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+          "pair": 5,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_baganator_work.lua"
+          ],
+          "wallSeconds": 0.2638390000065556,
+          "exit": 0,
+          "raw": "visible Baganator work: 260 checks, 0 failures; burst guards=800 shields=800 itemReads=800\n",
+          "pair": 5,
+          "variant": "candidate"
+        }
+      ],
+      "wallRange": {
+        "baseline": {
+          "min": 1.0495905999996467,
+          "max": 1.092185800007428
+        },
+        "candidate": {
+          "min": 0.2638390000065556,
+          "max": 0.2969579999917187
+        }
+      }
+    },
+    "native": {
+      "fixture": "tests/visible_native_bag_work.lua",
+      "baselineArg": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures",
+      "candidateArg": null,
+      "runs": [
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures"
+          ],
+          "wallSeconds": 0.05211109999800101,
+          "exit": 1,
+          "raw": "native bags era unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+          "pair": 1,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua"
+          ],
+          "wallSeconds": 0.040827799995895475,
+          "exit": 0,
+          "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n",
+          "pair": 1,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures"
+          ],
+          "wallSeconds": 0.037326699995901436,
+          "exit": 1,
+          "raw": "native bags era unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+          "pair": 2,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua"
+          ],
+          "wallSeconds": 0.04114659999322612,
+          "exit": 0,
+          "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n",
+          "pair": 2,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures"
+          ],
+          "wallSeconds": 0.04601580000598915,
+          "exit": 1,
+          "raw": "native bags era unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+          "pair": 3,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua"
+          ],
+          "wallSeconds": 0.04064940000534989,
+          "exit": 0,
+          "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n",
+          "pair": 3,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures"
+          ],
+          "wallSeconds": 0.043197099992539734,
+          "exit": 1,
+          "raw": "native bags era unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+          "pair": 4,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua"
+          ],
+          "wallSeconds": 0.04323290000320412,
+          "exit": 0,
+          "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n",
+          "pair": 4,
+          "variant": "candidate"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\baseline-fixtures"
+          ],
+          "wallSeconds": 0.045683000003919005,
+          "exit": 1,
+          "raw": "native bags era unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=6 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+          "pair": 5,
+          "variant": "baseline"
+        },
+        {
+          "command": [
+            "lua",
+            "tests/visible_native_bag_work.lua"
+          ],
+          "wallSeconds": 0.03662649999023415,
+          "exit": 0,
+          "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nvisible native bag work: 65 checks, 0 failures\n",
+          "pair": 5,
+          "variant": "candidate"
+        }
+      ],
+      "wallRange": {
+        "baseline": {
+          "min": 0.037326699995901436,
+          "max": 0.05211109999800101
+        },
+        "candidate": {
+          "min": 0.03662649999023415,
+          "max": 0.04323290000320412
+        }
+      }
+    }
+  },
+  "design": {
+    "baganator": "5 client x2 integration labels share real ItemViews/Protection/GearSetShield modules;1000 hidden-parent rows,2visible;40 forced refreshes after listener installation warmup;counts exclude startup/reveal controls;absent Baganator controls for builtin/Syndicator;not native client/provider emulation",
+    "native": "5 client contract labels;3 paint passes;1 visible,1 own-hidden,1 hidden-parent container;unified/nonunified contracts;alternative-UI bypass;shown/reveal/current slot,disabled,inaccessible bank,async junk hook and IsShown fallback controls",
+    "profile": "No native profiler;no forced GC;five alternating baseline/candidate fresh-process pairs;wall includes process startup/assertions/synthetic fixture construction and is not native latency or a performance claim;sample count variation zero",
+    "lifecycle": "Baganator one initial root-registry scan,one filtered persistent root listener,once-per-root OnShow hook,one coalesced pending After(0);existing merchant/BagShow .2 timers stay;skin registry still linearly traversed per visible-button refresh.Native one OnShow hook per eligible existing frame;disabled/bank/gamepad guards remain;unified combined .05 reveal pass stays"
+  },
+  "mutations": [
+    {
+      "command": [
+        "lua",
+        "tests/visible_baganator_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\baganator-hidden-parents\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+      ],
+      "wallSeconds": 1.1776219000021229,
+      "exit": 1,
+      "raw": "FAIL retail/baganator shown children of hidden parents are excluded\nFAIL retail/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL retail/baganator+syndicator shown children of hidden parents are excluded\nFAIL retail/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL forever/baganator shown children of hidden parents are excluded\nFAIL forever/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL forever/baganator+syndicator shown children of hidden parents are excluded\nFAIL forever/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL era/baganator shown children of hidden parents are excluded\nFAIL era/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL era/baganator+syndicator shown children of hidden parents are excluded\nFAIL era/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL anniversary/baganator shown children of hidden parents are excluded\nFAIL anniversary/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL anniversary/baganator+syndicator shown children of hidden parents are excluded\nFAIL anniversary/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL mists/baganator shown children of hidden parents are excluded\nFAIL mists/baganator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nFAIL mists/baganator+syndicator shown children of hidden parents are excluded\nFAIL mists/baganator+syndicator repeated protection work scales with two visible rows\nFAIL bank, cached and previous-skin pools remain dormant\nFAIL standalone shield painter also excludes hidden ancestor pools\nvisible Baganator work: 260 checks, 40 failures; burst guards=400800 shields=400800 itemReads=400800\n",
+      "name": "baganator-hidden-parents",
+      "sourceSha256": "71473c28993388823a4de7526473b930029f130c01c1f15ec8c6424ee8cc9881"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_baganator_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\baganator-no-reveal\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+      ],
+      "wallSeconds": 0.24568300000100862,
+      "exit": 1,
+      "raw": "FAIL retail/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL retail/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL forever/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL forever/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL era/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL era/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL anniversary/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL anniversary/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL mists/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nFAIL mists/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement hidden view is tracked before direct reveal\nFAIL replacement-view refresh reads final slot identity\nvisible Baganator work: 260 checks, 70 failures; burst guards=800 shields=800 itemReads=800\n",
+      "name": "baganator-no-reveal",
+      "sourceSha256": "bb215a3abf6efeb894268f2804b2a49806955c4ec7a4039ff7337ffd0ff2a26e"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_baganator_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\baganator-stale-show-slots\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+      ],
+      "wallSeconds": 0.33220050000818446,
+      "exit": 1,
+      "raw": "FAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL character-select burst coalesces one layout barrier\nFAIL same-root character change paints newly visible cached/live rows\nFAIL layout barrier rearms after completing\nFAIL replacement-view refresh reads final slot identity\nvisible Baganator work: 260 checks, 50 failures; burst guards=800 shields=800 itemReads=800\n",
+      "name": "baganator-stale-show-slots",
+      "sourceSha256": "3f6ca7c5bb584eaa378f5ab9b7c8aa30acf32b21826f181435da42d971b4bc5b"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_baganator_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\baganator-no-tagged-discovery\\BaganatorCompat\\FluxBaganator_ItemViews.lua"
+      ],
+      "wallSeconds": 0.27476559999922756,
+      "exit": 1,
+      "raw": "FAIL retail/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL retail/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL forever/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL forever/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL era/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL era/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL anniversary/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL anniversary/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL mists/baganator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nFAIL mists/baganator+syndicator direct bank-root reveal repaints on the next timer turn\nFAIL reveal refresh observes slot reassignment after OnShow\nFAIL tagged blizzard skin bank is discovered and hooked once\nFAIL repeated discovery does not multiply hooks\nvisible Baganator work: 260 checks, 40 failures; burst guards=800 shields=800 itemReads=800\n",
+      "name": "baganator-no-tagged-discovery",
+      "sourceSha256": "a7c7fab905ebe7fa711b309695dc9bd5772433090232b93376e6a0a217cae4d0"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_native_bag_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\native-hidden-parents"
+      ],
+      "wallSeconds": 0.06345259999216069,
+      "exit": 1,
+      "raw": "native bags era unified=false hidden updates=3 hidden item reads=6 visible item reads=6\nFAIL era skips hidden native Update calls\nFAIL era skips hidden-parent item classification\nFAIL era asynchronous native junk callback skips hidden parents\nFAIL era hidden parents are not visible paint targets\nFAIL era protection context skips hidden parents\nFAIL era missing visibility API keeps hidden-frame fallback\nnative bags anniversary unified=false hidden updates=3 hidden item reads=6 visible item reads=6\nFAIL anniversary skips hidden native Update calls\nFAIL anniversary skips hidden-parent item classification\nFAIL anniversary asynchronous native junk callback skips hidden parents\nFAIL anniversary hidden parents are not visible paint targets\nFAIL anniversary protection context skips hidden parents\nFAIL anniversary missing visibility API keeps hidden-frame fallback\nnative bags mists unified=false hidden updates=3 hidden item reads=6 visible item reads=6\nFAIL mists skips hidden native Update calls\nFAIL mists skips hidden-parent item classification\nFAIL mists asynchronous native junk callback skips hidden parents\nFAIL mists hidden parents are not visible paint targets\nFAIL mists protection context skips hidden parents\nFAIL mists missing visibility API keeps hidden-frame fallback\nnative bags retail unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL retail skips hidden-parent item classification\nFAIL retail asynchronous native junk callback skips hidden parents\nFAIL retail hidden parents are not visible paint targets\nFAIL retail protection context skips hidden parents\nFAIL retail missing visibility API keeps hidden-frame fallback\nnative bags forever unified=true hidden updates=0 hidden item reads=3 visible item reads=3\nFAIL forever skips hidden-parent item classification\nFAIL forever asynchronous native junk callback skips hidden parents\nFAIL forever hidden parents are not visible paint targets\nFAIL forever protection context skips hidden parents\nFAIL forever missing visibility API keeps hidden-frame fallback\nvisible native bag work: 65 checks, 28 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+      "name": "native-hidden-parents",
+      "sourceSha256": "d1293873849e42c6eb76a037859945a48a44552f4870a24382d2e06092f18129"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/visible_native_bag_work.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\mutants\\native-no-reveal"
+      ],
+      "wallSeconds": 0.056580100004794076,
+      "exit": 1,
+      "raw": "native bags era unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nFAIL era ancestor reveal refreshes skipped slot paints\nFAIL era protection context skips hidden parents\nnative bags anniversary unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nFAIL anniversary ancestor reveal refreshes skipped slot paints\nFAIL anniversary protection context skips hidden parents\nnative bags mists unified=false hidden updates=0 hidden item reads=0 visible item reads=6\nFAIL mists ancestor reveal refreshes skipped slot paints\nFAIL mists protection context skips hidden parents\nnative bags retail unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nFAIL retail ancestor reveal refreshes skipped slot paints\nFAIL retail protection context skips hidden parents\nnative bags forever unified=true hidden updates=0 hidden item reads=0 visible item reads=3\nFAIL forever ancestor reveal refreshes skipped slot paints\nFAIL forever protection context skips hidden parents\nvisible native bag work: 65 checks, 10 failures\nlua: tests/visible_native_bag_work.lua:154: hidden native bag work regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/visible_native_bag_work.lua:154: in main chunk\n\t[C]: in ?\n",
+      "name": "native-no-reveal",
+      "sourceSha256": "ccfcd1ba2d599cdf6b54ca77d875007850b08b69040d98fbd9fb159fca5558f0"
+    }
+  ],
+  "referenceHashes": {
+    "Baganator.toc": "255eead7e237398e168c42de3796f30be3cbb5ad41d0c34010102e8e58ad6d2b",
+    "API/Main.lua": "d8824857fbebd2041dcc218881965aa8bcb983a81aa08064f2b544d257384c3f",
+    "Skins/Initialize.lua": "ced392b1d15f437ea5cff2d076773943828b30babc9c9c038ecf03f2f8976443",
+    "ItemViewCommon/BackpackView.lua": "773ea5c5595837ba57f8b8139fdf6491e29f4a4cab16c1fd8e16d19c30713e17",
+    "ItemViewCommon/BankView.lua": "578280faf6244ea3d79b527b9bc247c81bf9b342c7926b4d8ed64231a492061d",
+    "ViewManagement/Initialize.lua": "e5ff2c7aa39d26fa399d8944c9db147522c17bbb7a85680e420bc9b5c638ddb1"
+  },
+  "initialFullValidation": {
+    "result": "132 pass/1 static core-source-check failure,788 syntax pass",
+    "reason": "Core smoke searched old literal global Update spelling;generalized to method Update call without weakening gamepad-before-call ordering",
+    "privateReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Hidden-inventory-work-20261105T121000Z\\validation-attempt1.json"
+  },
+  "candidateLuaCorpusSha256": "2778032a6232bdcfc7ca10a569202456d91ca5b9d2b06dbd340a133b6978ef36",
+  "fullValidation": {
+    "report": "docs/validation/hidden-inventory-work-2026-11-05.json",
+    "scriptsPassed": 133,
+    "scriptsFailed": 0,
+    "syntaxFiles": 788,
+    "syntaxFailures": 0
+  }
+}

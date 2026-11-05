@@ -20869,8 +20869,8 @@
       "path": "BaganatorCompat/FluxBaganator_ItemViews.lua",
       "classification": "active compatibility",
       "chapter": "24-baganator-compat.md",
-      "lines": 252,
-      "sha256": "e4d9cad1309a967e3cdc2ef4f9e1cdf6625c6ad3f52bfd5d69d90ef48e9f04e8",
+      "lines": 325,
+      "sha256": "0bf0e29bbb867207a5cf3d4569b81f8932271bfecd2cd366af239e8a7c6360b6",
       "clients": [
         "camelot",
         "cata",
@@ -20888,31 +20888,31 @@
       "functions": [
         {
           "name": "Compat.TrackBaganatorView",
-          "line": 16
+          "line": 43
         },
         {
           "name": "Compat.ForEachVisibleBaganatorView",
-          "line": 22
+          "line": 66
         },
         {
           "name": "Compat.ResolveBaganatorItemButtonSlot",
-          "line": 48
-        },
-        {
-          "name": "Compat.ForEachRegisteredBaganatorItemButton",
           "line": 95
         },
         {
+          "name": "Compat.ForEachRegisteredBaganatorItemButton",
+          "line": 142
+        },
+        {
           "name": "Compat.ForEachBaganatorItemButton",
-          "line": 120
+          "line": 167
         },
         {
           "name": "Compat.ForEachVisibleItemButton",
-          "line": 210
+          "line": 257
         },
         {
           "name": "Compat.InitBaganatorViewTracking",
-          "line": 233
+          "line": 284
         }
       ],
       "events": [],
@@ -31467,7 +31467,7 @@
       "classification": "development harness",
       "chapter": "08-shared-services.md",
       "lines": 1584,
-      "sha256": "6bb602f4e5a541f108d9b5ccdbfa5cf32d428bd6b34c6947f0f41c1018d8b568",
+      "sha256": "7b7055cb5edf51d9a0f9964d25c66ce9992ef302c6f0969f28969b4ebf9dc943",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -54141,8 +54141,8 @@
       "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 1984,
-      "sha256": "0943c80c651e671a6b6927b579a3d5ad3841fe6ef5c9acd5783b0ddd8a5711a8",
+      "lines": 1995,
+      "sha256": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
       "clients": [
         "camelot",
         "cata",
@@ -54160,11 +54160,11 @@
       "functions": [
         {
           "name": "Overlay.ArePaintTargetsVisible",
-          "line": 607
+          "line": 612
         },
         {
           "name": "Overlay.ScheduleCharacterBagTransferPaint",
-          "line": 782
+          "line": 781
         },
         {
           "name": "Overlay.UpdateAll",
@@ -54204,52 +54204,52 @@
         },
         {
           "name": "Overlay.RepaintInferiorVisuals",
-          "line": 1499
+          "line": 1501
         },
         {
           "name": "Overlay.ScheduleInferiorRepaintBurst",
-          "line": 1508
+          "line": 1510
         },
         {
           "name": "Overlay.CancelInferiorRepaintBurst",
-          "line": 1564
+          "line": 1566
         },
         {
           "name": "Overlay.OnLoginPulseEndSettled",
-          "line": 1569
+          "line": 1571
         },
         {
           "name": "Overlay.FlushDeferredPaint",
-          "line": 1617
+          "line": 1619
         },
         {
           "name": "Overlay.NotifyBankActivity",
-          "line": 1694
+          "line": 1705
         },
         {
           "name": "Overlay.EnsureHooks",
-          "line": 1713
+          "line": 1724
         },
         {
           "name": "Overlay.RegisterSlotDecorator",
-          "line": 1866
+          "line": 1877
         },
         {
           "name": "Overlay.InvalidateSlotDecorators",
-          "line": 1874
+          "line": 1885
         },
         {
           "name": "Overlay.RepaintSlotDecorators",
-          "line": 1887
+          "line": 1898
         },
         {
           "name": "Overlay.RefreshProtectionContext",
-          "line": 1902
+          "line": 1913
         }
       ],
       "events": [
         {
-          "line": 1857,
+          "line": 1868,
           "method": "RegisterEvent",
           "arguments": [
             "ev"
@@ -54257,7 +54257,7 @@
           "context": "function()slotFrame:"
         },
         {
-          "line": 1941,
+          "line": 1952,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -54265,7 +54265,7 @@
           "context": "(\"Frame\")deferHookFrame:"
         },
         {
-          "line": 1942,
+          "line": 1953,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE_DELAYED\""
@@ -54273,7 +54273,7 @@
           "context": "(\"PLAYER_LOGIN\")deferHookFrame:"
         },
         {
-          "line": 1943,
+          "line": 1954,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_SHOW\""
@@ -54281,7 +54281,7 @@
           "context": "(\"BAG_UPDATE_DELAYED\")deferHookFrame:"
         },
         {
-          "line": 1944,
+          "line": 1955,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_CLOSED\""
@@ -80953,6 +80953,148 @@
         {
           "name": "falses.score.IsUsableForVendor",
           "line": 139
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/visible_baganator_work.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 238,
+      "sha256": "9c1ad44a430d5b6b31e44c27cd9a9ecd5876a8cadd215fa318fa6d12dfcff958",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "r:IsShown",
+          "line": 13
+        },
+        {
+          "name": "r:IsVisible",
+          "line": 14
+        },
+        {
+          "name": "r:HookScript",
+          "line": 15
+        },
+        {
+          "name": "r:Show",
+          "line": 19
+        },
+        {
+          "name": "r:Hide",
+          "line": 24
+        },
+        {
+          "name": "registry:RegisterCallback",
+          "line": 36
+        },
+        {
+          "name": "registry:TriggerEvent",
+          "line": 40
+        },
+        {
+          "name": "timer:Cancel",
+          "line": 51
+        },
+        {
+          "name": "endendende.CreateFrame",
+          "line": 64
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 66
+        },
+        {
+          "name": "frame:SetScript",
+          "line": 67
+        },
+        {
+          "name": "shield:SetShown",
+          "line": 101
+        },
+        {
+          "name": "e.FluxBaganatorCompatcompat.InstallBaganatorItemContextOverride",
+          "line": 123
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/visible_native_bag_work.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 154,
+      "sha256": "8e551767c5afcd5575e3a1f0164d556f6143dde1bbe45956aeabeca3efebb74b",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.GetTime",
+          "line": 17
+        },
+        {
+          "name": "returnstate.nowendenv.wipe",
+          "line": 18
+        },
+        {
+          "name": "f:IsShown",
+          "line": 34
+        },
+        {
+          "name": "f:IsVisible",
+          "line": 35
+        },
+        {
+          "name": "f:GetID",
+          "line": 36
+        },
+        {
+          "name": "f:HookScript",
+          "line": 37
+        },
+        {
+          "name": "f:SetScript",
+          "line": 38
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 39
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 40
+        },
+        {
+          "name": "f:Update",
+          "line": 41
+        },
+        {
+          "name": "idreturnfendenv.CreateFrame",
+          "line": 57
+        },
+        {
+          "name": "endenv.hooksecurefunc",
+          "line": 58
+        },
+        {
+          "name": "env.FluxUI_UsesAlternativeBagUI",
+          "line": 68
+        },
+        {
+          "name": "env.FluxVendorJunk.GetDisplay",
+          "line": 141
         }
       ],
       "events": [],

@@ -1,5 +1,14 @@
 # Client and reference validation — 29 October 2026
 
+5 November hidden inventory: freshly read executables Era 1.15.9.70576,
+Anniversary 2.5.6.70577, MoP 5.5.4.70631, Retail 12.1.5.70783, Forever
+1.60.1.70790. Installed Baganator 840/Syndicator 289 references checked read-only.
+Shared-contract desktop checks: 260 integration + 65 native-bag pass; full 133/788
+pass. Labels do not emulate native clients/providers. Native timings, secure
+behavior, pixels and mailbox/AH lag improvement remain pending in every provider
+configuration; original/modern Wrath remain distinct and uncertified.
+[Reproduction and per-client checklist](HIDDEN_INVENTORY_WORK.md).
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now

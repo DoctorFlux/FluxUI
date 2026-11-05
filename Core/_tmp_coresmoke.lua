@@ -1483,7 +1483,7 @@ has(junkOverlay, "if not frame or ForeverGamepadUI() then", "junk overlay paints
 do
 	local refreshAt = junkOverlay:find("local function RefreshBagContainersForPaint", 1, true)
 	local gateAt = refreshAt and junkOverlay:find("if ForeverGamepadUI() then", refreshAt, true)
-	local updateAt = refreshAt and junkOverlay:find("pcall(_G.ContainerFrameCombinedBags.Update", refreshAt, true)
+	local updateAt = refreshAt and junkOverlay:find("pcall%([^,\r\n]*%.Update", refreshAt)
 	if not gateAt or not updateAt or gateAt > updateAt then
 		failures[#failures + 1] = "junk overlay must not call the bag's Update in Forever gamepad UI"
 	end

@@ -131,6 +131,12 @@ local function ForeverGamepadUI()
     return _G.FluxUI_IsForeverGamepadUI and _G.FluxUI_IsForeverGamepadUI() or false
 end
 
+local function FrameIsVisible(frame)
+    if not frame then return false end
+    if frame.IsVisible then return frame:IsVisible() end
+    return frame.IsShown and frame:IsShown() or false
+end
+
 local function ShouldPaintContainer(frame)
     if not frame or ForeverGamepadUI() then
         return false
@@ -393,7 +399,7 @@ end
 -- resolve their own (bag, slot) for a button, everything after that is
 -- identical (junk lookup, glow/icon show-hide, paint-once caching).
 local function PaintButtonForSlot(button, bag, slot, showIcons, showGlow)
-    if not button or not button.IsShown or not button:IsShown() then
+    if not FrameIsVisible(button) then
         if button then
             PruneButtonDecor(button)
         end
@@ -570,14 +576,13 @@ local function CollectCharacterDirtyBags(dirtyBags, out)
 end
 
 local function CharacterBagsVisible()
-    if _G.ContainerFrameCombinedBags and _G.ContainerFrameCombinedBags.IsShown
-        and _G.ContainerFrameCombinedBags:IsShown() then
+    if FrameIsVisible(_G.ContainerFrameCombinedBags) then
         return true
     end
     local i = 1
     local frame = _G["ContainerFrame" .. i]
     while frame do
-        if frame.IsShown and frame:IsShown() and ShouldPaintContainer(frame) then
+        if FrameIsVisible(frame) and ShouldPaintContainer(frame) then
             return true
         end
         i = i + 1
@@ -616,10 +621,7 @@ local function MaybeFlushLoginSettlePaint()
 end
 
 PaintContainerFrameDirect = function(frame, dirtyBags)
-    if not frame or not ShouldPaintContainer(frame) then
-        return
-    end
-    if frame.IsShown and not frame:IsShown() then
+    if not FrameIsVisible(frame) or not ShouldPaintContainer(frame) then
         return
     end
     local paintAll = not dirtyBags or not next(dirtyBags)
@@ -636,15 +638,12 @@ local function BuildUnifiedCharacterBagWorkList(dirtyBags, wantsAll)
     local work = {}
     local paintAll = wantsAll or not dirtyBags or not next(dirtyBags)
     local function addFrame(frame)
-        if not frame or not ShouldPaintContainer(frame) then
-            return
-        end
-        if frame.IsShown and not frame:IsShown() then
+        if not FrameIsVisible(frame) or not ShouldPaintContainer(frame) then
             return
         end
         ForEachItemButton(frame, function(button)
             local bag, slot = ResolveButtonBagSlot(button, frame)
-            if SlotKeyOk(bag, slot) and (paintAll or dirtyBags[bag]) then
+            if FrameIsVisible(button) and SlotKeyOk(bag, slot) and (paintAll or dirtyBags[bag]) then
                 work[#work + 1] = { button = button, bag = bag, slot = slot }
             end
         end)
@@ -859,6 +858,7 @@ local function ScheduleUnifiedContainerPaint(frame)
 end
 
 local function UpdateContainer(frame, force)
+    if not FrameIsVisible(frame) then return end
     MaybeFlushLoginSettlePaint()
     if containerPainting or not ShouldPaintContainer(frame) then
         return
@@ -1447,13 +1447,15 @@ local function RefreshBagContainersForPaint()
         return
     end
     Overlay.EnsureHooks()
-    if _G.ContainerFrameCombinedBags and _G.ContainerFrameCombinedBags.Update then
-        pcall(_G.ContainerFrameCombinedBags.Update, _G.ContainerFrameCombinedBags)
+    local combined = _G.ContainerFrameCombinedBags
+    -- Blizzard Update queues item refreshes too, even when its parent is hidden.
+    if FrameIsVisible(combined) and ShouldPaintContainer(combined) and combined.Update then
+        pcall(combined.Update, combined)
     end
     local i = 1
     local frame = _G["ContainerFrame" .. i]
     while frame do
-        if frame.Update then
+        if FrameIsVisible(frame) and ShouldPaintContainer(frame) and frame.Update then
             pcall(frame.Update, frame)
         end
         i = i + 1
@@ -1480,14 +1482,14 @@ local function RepaintVisibleContainers(force, bankGridOnly)
     end
     if _G.ContainerFrameCombinedBags then
         -- Merchant open alone must not paint hidden bag frames.
-        if _G.ContainerFrameCombinedBags:IsShown() then
+        if FrameIsVisible(_G.ContainerFrameCombinedBags) then
             UpdateContainer(_G.ContainerFrameCombinedBags, force)
         end
     end
     local i = 1
     local frame = _G["ContainerFrame" .. i]
     while frame do
-        if frame:IsShown() then
+        if FrameIsVisible(frame) then
             UpdateContainer(frame, force)
         end
         i = i + 1
@@ -1659,6 +1661,15 @@ local function HookFrame(frame)
         end
         UpdateContainer(self)
     end)
+    if frame.HookScript then
+        frame:HookScript("OnShow", function(self)
+            if ShouldSkipAllPaint() or not ShouldPaintContainer(self) then return end
+            -- Combined unified bags already own a delayed reveal pass.
+            if HasUnifiedBankUI() and self == _G.ContainerFrameCombinedBags then return end
+            containerPaintCooldown[self] = nil
+            UpdateContainer(self)
+        end)
+    end
 end
 
 local function HookUpdateJunkItem()
@@ -1671,7 +1682,7 @@ local function HookUpdateJunkItem()
     end
     Overlay._updateJunkItemHooked = true
     hooksecurefunc(mixin, "UpdateJunkItem", function(self)
-        if ShouldSkipJunkPaint() or ForeverGamepadUI() then
+        if not FrameIsVisible(self) or ShouldSkipJunkPaint() or ForeverGamepadUI() then
             return
         end
         local bag, slot = ResolveButtonBagSlot(self)
@@ -1906,7 +1917,7 @@ function Overlay.RefreshProtectionContext()
     end
 
     local function paintProtection(button, bag, slot)
-        if not button or not button.IsShown or not button:IsShown() then
+        if not FrameIsVisible(button) then
             return
         end
         if not SlotKeyOk(bag, slot) then
@@ -1916,7 +1927,7 @@ function Overlay.RefreshProtectionContext()
     end
 
     local function paintFrame(frame)
-        if not frame or not frame.IsShown or not frame:IsShown() or ForeverGamepadUI() then
+        if not FrameIsVisible(frame) or ForeverGamepadUI() then
             return
         end
         ForEachItemButton(frame, function(button)

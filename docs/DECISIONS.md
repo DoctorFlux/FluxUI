@@ -1,5 +1,14 @@
 # Decisions
 
+5 November: filter effective visibility in the existing shared Baganator traversal
+and native overlay; retain all-button installation and provider ownership. Use
+public tagged skin roots, not assumed numeric frame names. Reveal refresh runs
+once after layout dispatch because Baganator assigns slots after showing roots;
+merchant/BagShow debounce and unified native reveal cadence stay. No per-item
+reveal hooks or ViewComplete polling. Default-overlay improvement is separate
+from the normally bypassed Baganator path. Native hitch attribution remains open.
+[Evidence, lifecycle cost and limits](HIDDEN_INVENTORY_WORK.md).
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now

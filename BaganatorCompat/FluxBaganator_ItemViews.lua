@@ -5,17 +5,61 @@ FluxBaganatorCompat = FluxBaganatorCompat or {}
 local Compat = FluxBaganatorCompat
 
 local trackedViews = {}
+local revealRefreshPending = false
 
 local KNOWN_VIEW_FRAME_PREFIXES = {
     "Baganator_SingleViewBackpackViewFrame",
     "Baganator_CategoryViewBackpackViewFrame",
+    "Baganator_SingleViewBankViewFrame",
+    "Baganator_CategoryViewBankViewFrame",
     "Baganator_SingleViewBankView",
     "Baganator_CategoryViewBankView",
 }
 
+local function RefreshProtectionOnReveal()
+    if Compat.RefreshBaganatorGearSetProtection then
+        Compat.RefreshBaganatorGearSetProtection()
+    elseif Compat.RequestBaganatorProtectionRefresh then
+        Compat.RequestBaganatorProtectionRefresh()
+    end
+end
+
+local function QueueProtectionOnReveal()
+    -- Native show/view handlers can update slot identities later in the same
+    -- dispatch. Coalesce one refresh after those layout changes have finished.
+    if C_Timer and C_Timer.After then
+        if not revealRefreshPending then
+            revealRefreshPending = true
+            C_Timer.After(0, function()
+                revealRefreshPending = false
+                RefreshProtectionOnReveal()
+            end)
+        end
+    else
+        RefreshProtectionOnReveal()
+    end
+end
+
 function Compat.TrackBaganatorView(view)
-    if view then
+    if view and not trackedViews[view] then
         trackedViews[view] = true
+        -- Direct backpack toggles do not emit BagShow. Refresh skipped hidden
+        -- guards/shields after the returning view updates its layout.
+        if view.HookScript then
+            view:HookScript("OnShow", QueueProtectionOnReveal)
+        end
+    end
+end
+
+local function TrackRegisteredView(details)
+    if not details or details.regionType ~= "ButtonFrame" or type(details.tags) ~= "table" then
+        return
+    end
+    for i = 1, #details.tags do
+        if details.tags[i] == "backpack" or details.tags[i] == "bank" then
+            Compat.TrackBaganatorView(details.region)
+            return
+        end
     end
 end
 
@@ -26,11 +70,14 @@ function Compat.ForEachVisibleBaganatorView(callback)
 
     local seen = {}
     local function visit(view)
-        if not view or seen[view] or not view.IsVisible or not view:IsVisible() then
+        if not view or seen[view] then
+            return
+        end
+        Compat.TrackBaganatorView(view)
+        if not view.IsVisible or not view:IsVisible() then
             return
         end
         seen[view] = true
-        Compat.TrackBaganatorView(view)
         callback(view)
     end
 
@@ -215,7 +262,11 @@ function Compat.ForEachVisibleItemButton(callback)
     local function visit(button)
         if button and not seenButtons[button] then
             -- Registered skins include bank/warband pools that are not on screen.
-            if button.IsShown and not button:IsShown() then
+            if button.IsVisible then
+                if not button:IsVisible() then
+                    return
+                end
+            elseif button.IsShown and not button:IsShown() then
                 return
             end
             seenButtons[button] = true
@@ -240,13 +291,35 @@ function Compat.InitBaganatorViewTracking()
     end
     Compat._baganatorViewTrackingInitialized = true
 
+    -- Current Baganator uses skin keys in frame names. Discover its public
+    -- tagged roots once, including hidden and subsequently created skin groups.
+    local skins = _G.Baganator.API and _G.Baganator.API.Skins
+    if skins then
+        if skins.RegisterListener then
+            skins.RegisterListener(TrackRegisteredView)
+        end
+        local frames = skins.GetAllFrames and skins.GetAllFrames()
+        if type(frames) == "table" then
+            for i = 1, #frames do
+                TrackRegisteredView(frames[i])
+            end
+        end
+    end
+
     local function ScanVisibleViews()
         Compat.ForEachVisibleBaganatorView(function()
         end)
     end
 
     registry:RegisterCallback("BagShow", ScanVisibleViews)
-    registry:RegisterCallback("BackpackFrameChanged", ScanVisibleViews)
-    -- Skip ViewComplete: bag transfers fire it constantly; BagShow/BackpackFrameChanged
-    -- are enough to discover views.
+    local function ViewChanged()
+        ScanVisibleViews()
+        QueueProtectionOnReveal()
+    end
+    registry:RegisterCallback("BackpackFrameChanged", ViewChanged)
+    registry:RegisterCallback("BankViewChanged", ViewChanged)
+    registry:RegisterCallback("CharacterSelect", ViewChanged)
+    ScanVisibleViews()
+    -- Skip ViewComplete: bag transfers fire it constantly; the visibility and
+    -- explicit view-change paths above cover discovery and reveal.
 end

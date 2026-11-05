@@ -1,5 +1,19 @@
 # Next session
 
+5 November hidden inventory changes validated for publication on main; see
+[reproduction, source identities and native checklist](docs/HIDDEN_INVENTORY_WORK.md).
+Run `lua tests/visible_baganator_work.lua` (260 checks) and
+`lua tests/visible_native_bag_work.lua` (65 checks). Full validation:
+`python tests/run_validation.py --output docs/validation/hidden-inventory-work-2026-11-05.json --sync-docs`;
+final 133 scripts / 788 syntax pass. Native checks are pending, not failed or
+certified. When captures become possible, prioritize Forever mailbox open/close,
+receive/open-message and buy/sell with Baganator 840 + Syndicator 289, then each
+available client/provider combination and reveal/skin/protection parity. The user
+cannot capture now; leave WoW in the background and preserve preferences. The
+skin registry still scans linearly; do not infer live hitch removal from the
+400,800-to-800 synthetic callback reduction. Guild-bank/void callbacks stay out
+of scope. Continue independent justified work if native access remains absent.
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now

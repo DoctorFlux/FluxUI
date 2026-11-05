@@ -1,5 +1,14 @@
 # Baseline protocol and currency evidence
 
+5 November hidden inventory: five alternating desktop pairs reduce Baganator
+hidden classification/guard/shield work (400,800 to 800 callbacks per metric),
+while retaining linear skin-registry traversal. Default-bag hidden native Updates
+and item reads become zero; visible reads stay. Warm-up, synthetic sizes, raw
+samples, wall-time ranges, source hashes and six rejected mutants are recorded.
+133 scripts / 788 syntax pass. CPU, memory/allocation, operation latency, frame
+time, native resource counts and live hitch improvement remain unmeasured.
+[Protocol and limits](HIDDEN_INVENTORY_WORK.md).
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now

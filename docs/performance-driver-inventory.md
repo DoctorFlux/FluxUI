@@ -43,6 +43,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [BaganatorCompat/FluxBaganator_GearSetContext.lua](../BaganatorCompat/FluxBaganator_GearSetContext.lua) | 0 | 0 | 0 | 0 | 1 |
 | [BaganatorCompat/FluxBaganator_GearSets.lua](../BaganatorCompat/FluxBaganator_GearSets.lua) | 0 | 0 | 3 | 1 | 0 |
 | [BaganatorCompat/FluxBaganator_GearSetShield.lua](../BaganatorCompat/FluxBaganator_GearSetShield.lua) | 0 | 0 | 1 | 1 | 0 |
+| [BaganatorCompat/FluxBaganator_ItemViews.lua](../BaganatorCompat/FluxBaganator_ItemViews.lua) | 0 | 0 | 1 | 0 | 1 |
 | [BaganatorCompat/FluxBaganator_Junk.lua](../BaganatorCompat/FluxBaganator_Junk.lua) | 0 | 0 | 1 | 0 | 0 |
 | [BaganatorCompat/FluxBaganator_Protection.lua](../BaganatorCompat/FluxBaganator_Protection.lua) | 0 | 0 | 2 | 3 | 0 |
 | [BaganatorCompat/Loader.lua](../BaganatorCompat/Loader.lua) | 0 | 0 | 1 | 3 | 0 |
@@ -207,7 +208,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua](../Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua) | 0 | 0 | 4 | 0 | 0 |
 | [Inventory/Restock/FluxRestock_Inv.lua](../Inventory/Restock/FluxRestock_Inv.lua) | 0 | 0 | 9 | 0 | 0 |
 | [Inventory/Restock/Junk/FluxJunk.lua](../Inventory/Restock/Junk/FluxJunk.lua) | 0 | 0 | 1 | 2 | 0 |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua](../Inventory/Restock/Junk/FluxJunkOverlay.lua) | 0 | 0 | 11 | 5 | 9 |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua](../Inventory/Restock/Junk/FluxJunkOverlay.lua) | 0 | 0 | 11 | 5 | 10 |
 | [Inventory/Restock/Junk/FluxSellJunk.lua](../Inventory/Restock/Junk/FluxSellJunk.lua) | 0 | 0 | 5 | 0 | 0 |
 | [Inventory/Restock/Junk/FluxVendorJunkPanel.lua](../Inventory/Restock/Junk/FluxVendorJunkPanel.lua) | 0 | 0 | 2 | 2 | 0 |
 | [Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua](../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua) | 2 | 0 | 0 | 1 | 0 |

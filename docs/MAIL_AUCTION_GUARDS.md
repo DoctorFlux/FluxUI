@@ -1,5 +1,12 @@
 # Mail and auction duplicate metadata safeguards
 
+5 November follow-up: hidden Baganator pools passed `IsShown` under hidden
+parents and still received protection/classification/shield work. Shared visible
+traversal now filters effective visibility, with tagged skin discovery and bounded
+post-layout reveal refresh. The separate default-bag path also avoids closed-frame
+Updates. [Evidence, scope and pending mailbox/AH acceptance](HIDDEN_INVENTORY_WORK.md).
+The reported live pauses remain unconfirmed as resolved.
+
 ## Snapshot change checks
 
 Follow-up: the user still reports mailbox open/close and auction buying/selling

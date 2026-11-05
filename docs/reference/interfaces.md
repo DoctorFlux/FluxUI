@@ -447,11 +447,11 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Restock/Core/FluxRestockSettings.lua:226](../../Inventory/Restock/Core/FluxRestockSettings.lua#L226) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Junk/FluxJunk.lua:1648](../../Inventory/Restock/Junk/FluxJunk.lua#L1648) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Inventory/Restock/Junk/FluxJunk.lua:1649](../../Inventory/Restock/Junk/FluxJunk.lua#L1649) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1857](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1857) | `RegisterEvent` | `ev` |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1941](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1941) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1942](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1942) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1943](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1943) | `RegisterEvent` | `"MERCHANT_SHOW"` |
-| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1944](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1944) | `RegisterEvent` | `"MERCHANT_CLOSED"` |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1868](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1868) | `RegisterEvent` | `ev` |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1952](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1952) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1953](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1953) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1954](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1954) | `RegisterEvent` | `"MERCHANT_SHOW"` |
+| [Inventory/Restock/Junk/FluxJunkOverlay.lua:1955](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1955) | `RegisterEvent` | `"MERCHANT_CLOSED"` |
 | [Inventory/Restock/Junk/FluxVendorJunkPanel.lua:681](../../Inventory/Restock/Junk/FluxVendorJunkPanel.lua#L681) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Junk/FluxVendorJunkPanel.lua:739](../../Inventory/Restock/Junk/FluxVendorJunkPanel.lua#L739) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua:153](../../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua#L153) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -1495,13 +1495,13 @@ Owner: [24-baganator-compat.md](../24-baganator-compat.md).
 
 | Declaration | Source |
 |---|---|
-| `Compat.TrackBaganatorView` | [L16](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L16) |
-| `Compat.ForEachVisibleBaganatorView` | [L22](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L22) |
-| `Compat.ResolveBaganatorItemButtonSlot` | [L48](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L48) |
-| `Compat.ForEachRegisteredBaganatorItemButton` | [L95](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L95) |
-| `Compat.ForEachBaganatorItemButton` | [L120](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L120) |
-| `Compat.ForEachVisibleItemButton` | [L210](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L210) |
-| `Compat.InitBaganatorViewTracking` | [L233](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L233) |
+| `Compat.TrackBaganatorView` | [L43](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L43) |
+| `Compat.ForEachVisibleBaganatorView` | [L66](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L66) |
+| `Compat.ResolveBaganatorItemButtonSlot` | [L95](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L95) |
+| `Compat.ForEachRegisteredBaganatorItemButton` | [L142](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L142) |
+| `Compat.ForEachBaganatorItemButton` | [L167](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L167) |
+| `Compat.ForEachVisibleItemButton` | [L257](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L257) |
+| `Compat.InitBaganatorViewTracking` | [L284](../../BaganatorCompat/FluxBaganator_ItemViews.lua#L284) |
 
 ### BaganatorCompat/FluxBaganator_Junk.lua
 
@@ -7325,8 +7325,8 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 
 | Declaration | Source |
 |---|---|
-| `Overlay.ArePaintTargetsVisible` | [L607](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L607) |
-| `Overlay.ScheduleCharacterBagTransferPaint` | [L782](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L782) |
+| `Overlay.ArePaintTargetsVisible` | [L612](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L612) |
+| `Overlay.ScheduleCharacterBagTransferPaint` | [L781](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L781) |
 | `Overlay.UpdateAll` | [L897](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L897) |
 | `Overlay.UpdateDirtyBags` | [L934](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L934) |
 | `Overlay.UpdateAllBank` | [L1263](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1263) |
@@ -7336,17 +7336,17 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 | `Overlay.ScheduleBankTransferPaint` | [L1397](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1397) |
 | `Overlay.ApplyBankOnlyContext` | [L1411](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1411) |
 | `Overlay.MarkBankGridDirty` | [L1421](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1421) |
-| `Overlay.RepaintInferiorVisuals` | [L1499](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1499) |
-| `Overlay.ScheduleInferiorRepaintBurst` | [L1508](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1508) |
-| `Overlay.CancelInferiorRepaintBurst` | [L1564](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1564) |
-| `Overlay.OnLoginPulseEndSettled` | [L1569](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1569) |
-| `Overlay.FlushDeferredPaint` | [L1617](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1617) |
-| `Overlay.NotifyBankActivity` | [L1694](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1694) |
-| `Overlay.EnsureHooks` | [L1713](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1713) |
-| `Overlay.RegisterSlotDecorator` | [L1866](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1866) |
-| `Overlay.InvalidateSlotDecorators` | [L1874](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1874) |
-| `Overlay.RepaintSlotDecorators` | [L1887](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1887) |
-| `Overlay.RefreshProtectionContext` | [L1902](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1902) |
+| `Overlay.RepaintInferiorVisuals` | [L1501](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1501) |
+| `Overlay.ScheduleInferiorRepaintBurst` | [L1510](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1510) |
+| `Overlay.CancelInferiorRepaintBurst` | [L1566](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1566) |
+| `Overlay.OnLoginPulseEndSettled` | [L1571](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1571) |
+| `Overlay.FlushDeferredPaint` | [L1619](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1619) |
+| `Overlay.NotifyBankActivity` | [L1705](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1705) |
+| `Overlay.EnsureHooks` | [L1724](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1724) |
+| `Overlay.RegisterSlotDecorator` | [L1877](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1877) |
+| `Overlay.InvalidateSlotDecorators` | [L1885](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1885) |
+| `Overlay.RepaintSlotDecorators` | [L1898](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1898) |
+| `Overlay.RefreshProtectionContext` | [L1913](../../Inventory/Restock/Junk/FluxJunkOverlay.lua#L1913) |
 
 ### Inventory/Restock/Junk/FluxSellJunk.lua
 

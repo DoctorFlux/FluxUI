@@ -1,5 +1,14 @@
 # Work log
 
+5 November: preserved clean main 2dd6cfd in external
+Hidden-inventory-work-20261105T121000Z (1,462 files, verified history, 123 on-disk
+settings). Reproduced hidden-parent protection/paint work; corrected filtering,
+skin root discovery and final-layout reveal refresh. Five matched pairs stable;
+260 Baganator / 65 default-bag checks pass, six mutants rejected. Initial core
+smoke literal-call check failed after aliasing and was generalized; final 133
+scripts / 788 syntax files pass. No native/input/settings/transaction control.
+[Raw results and pending acceptance](HIDDEN_INVENTORY_WORK.md).
+
 5 November Syndicator mail/auction snapshots: unchanged mail now compares
 normalized records without sorted fingerprint strings; unchanged auction callbacks
 retain records/count maps and skip FluxUI publication. Link-only mail metadata now
