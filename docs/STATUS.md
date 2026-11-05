@@ -1,5 +1,31 @@
 # Development status
 
+5 November minimap/mail follow-up: a provider-independent frame-retention defect
+is reproduced in `FluxMinimap:PositionIndicators()`. The native-frame lookup did
+not reuse its own named fallback. Five hundred layout calls created 500 fallback
+frames; ten unchanged mail updates grew one to 1,024, with corresponding event
+listeners and layout hooks. Reusing `FluxMinimapMailFrame` retains one existing
+20×15 icon, original native-frame preference, anchors, tooltip and event cadence.
+[Lifecycle evidence and native checks](MINIMAP_MAIL_LIFECYCLE.md).
+Focused 504 checks, five alternating pairs and five rejected mutants pass;
+baseline fails 100 of 494 attempted checks because safety caps omit final checks.
+
+A reload is required to retire frames accumulated by the previous implementation.
+The user reports Forever's minimap flickers or disappears as mail changes; this
+retention defect fits the report but native flicker/freeze removal is pending.
+No new game input, foreground control or profiler change was used. Also corrected
+Retail AlreadyKnown's missing-tooltip result handling: 48 checks pass and repeated
+fixture errors fall 1,002→0, with later classification preserved. Its native
+Forever loading is unverified. [Retail scope](AUCTION_COLD_TOOLTIP.md).
+Combined validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](validation/minimap-mail-lifecycle-2026-11-05.json).
+External Syndicator remains unchanged; its private proposal is deferred while this lifecycle fix is
+validated. Preserve all settings, error history and other pending native checks.
+Read-only host/file checks around 19:45 UTC found Forever PID39984 still running
+and both edited runtime files byte-identical across all five synced clients.
+This confirms on-disk delivery only; no new reload or loaded-code check ran.
+
 Provider snapshot row reuse is desktop-validated. Only FluxUI's shared
 `FillFromList` changes: completed mail/auction maps reuse identical per-index
 records and swap together. Existing unchanged checks, provider facts, counts,

@@ -742,7 +742,7 @@ function FluxMinimap:PositionIndicators()
 
     -- 2. Mail Icon (Left of Tracking when visible)
     -- Check for mail frame across different clients
-    local mailFrame = MiniMapMailFrame or (Minimap and Minimap.MailFrame)
+    local mailFrame = MiniMapMailFrame or (Minimap and Minimap.MailFrame) or FluxMinimapMailFrame
 
     -- If mail frame doesn't exist, create a fallback one
     if not mailFrame and Minimap then

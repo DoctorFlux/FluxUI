@@ -1,5 +1,21 @@
 # Decisions
 
+5 November minimap mail ownership: reuse the existing named Flux fallback after
+the two existing native-frame choices. Do not adopt/reparent Forever's different
+32×24 native indicator or alter the accepted 20×15 fallback, anchors, tooltip,
+events or timing. The defect is resource ownership: repeated layouts and mail
+events created more frames and listeners. A normal reload retires old instances;
+the new lookup prevents their recreation. This correction is independent of
+inventory provider selection. Native flicker, freeze, pixels and FPS remain
+pending. Keep WoW background and external reference addons unmodified.
+[Lifecycle record](MINIMAP_MAIL_LIFECYCLE.md).
+
+Treat Retail missing tooltip data as unresolved and uncached, using the existing
+uncollected paint until a later normal update has data. Do not add polling,
+continuations or broad error suppression. This is a separate reproduced Retail
+error-amplification fix, not native Forever freeze acceptance.
+[Tooltip contract](AUCTION_COLD_TOOLTIP.md).
+
 5 November provider row reuse: change only FluxUI's shared `FillFromList`.
 Prepare complete maps, reuse an immutable previous per-index row only for exact
 ID/count/link equality, and swap maps before the existing generation publication.

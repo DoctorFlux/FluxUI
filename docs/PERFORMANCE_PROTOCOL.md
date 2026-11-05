@@ -1,5 +1,27 @@
 # Baseline protocol and currency evidence
 
+5 November minimap mail ownership: measure repeated layouts separately from
+mail-event delivery. The production-function replay creates 500 fallback frames
+from 500 layouts and 1,024 from ten unchanged mail events before correction.
+The candidate reuses one 20×15 frame, one texture, two event registrations and
+two layout hooks. This boundary is independent of provider presence. New event
+registrations are dispatched only on subsequent mocked events; no undocumented
+native same-dispatch behavior is assumed. Reload removes already retained frames.
+[Raw pairs, identities and limits](MINIMAP_MAIL_LIFECYCLE.md).
+Five alternating pairs have identical resource counts; candidate 504 checks pass
+versus 100 baseline failures / 494 attempts. Five semantic mutants are rejected.
+Whole-harness times differ in completed work due to the cap and cannot establish
+native operation latency.
+
+The separate Retail cold-tooltip replay produces 1,002→0 errors over two
+provider-presence fixtures; five alternating pairs and four mutants pass.
+Tooltip queries remain on normal row paints, with no timer, load request or
+continuation added. Full native hardware/settings, resource bytes, operation
+latency and frame-time measurements were not captured. Neither replay certifies
+native flicker, freeze removal, FPS, pixels or taint. Combined validation passes 153 scripts / 808 Lua syntax files with an unchanged
+808-file source drift guard.
+[Full report](validation/minimap-mail-lifecycle-2026-11-05.json). [Tooltip evidence](AUCTION_COLD_TOOLTIP.md).
+
 5 November provider snapshot row reuse, baseline `7f47a566`: five alternating
 fresh-process pairs and five rejected mutants pass. For each separate mail and
 auction 500-append workload, normalized record constructors fall from 125,250

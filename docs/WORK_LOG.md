@@ -1,5 +1,38 @@
 # Work log
 
+5 November minimap mail lifecycle and Retail tooltip readiness: baseline
+`c1a5f901467ff5015938442c74580d6d4781cbaa`. Verified external checkpoint
+Mail-auction-publication-20261105T194013Z preserves 1,529 actual files, 122
+available on-disk settings files and all-ref Git history, including the pending
+tooltip work. Source ZIP SHA256:
+`a6fb41fd4042442bd9d9c6d5c70320fe9001feadd068312e3b328d0dfb694449`.
+Archive integrity and history verification passed; unsaved game memory is
+excluded. The minimap production-function replay reproduces 500 frames from
+500 layouts and 1,024 from ten unchanged mail events. Reusing the named fallback
+retains one frame without changing appearance, native preference or cadence.
+Reload is required to discard previously accumulated frames.
+[Minimap evidence](MINIMAP_MAIL_LIFECYCLE.md).
+Focused 504 checks pass versus 100 failures / 494 baseline attempts; five alternating
+pairs and five rejected mutants pass with identical resource counts.
+[Raw comparison](validation/minimap-mail-lifecycle-comparison-2026-11-05.json).
+
+The separate Retail tooltip guard passes 48 checks versus six baseline failures;
+five alternating pairs reproduce 1,002→0 errors and four semantic mutants are
+rejected. Existing active-row checks pass. Combined validation passes
+153 scripts / 808 Lua syntax files with an unchanged
+808-file source drift guard.
+[Full report](validation/minimap-mail-lifecycle-2026-11-05.json),
+[tooltip evidence](AUCTION_COLD_TOOLTIP.md).
+No game input, foreground control, profiler/settings changes or external addon
+edits occurred. Historical 19:15 Forever source/reload checks predate both changes.
+Native transactions, flicker, pixels, taint and performance remain pending;
+the user's whole-game freeze is not yet accepted as resolved.
+Read-only host inspection around 19:45 UTC confirmed the same Forever PID39984;
+both runtime candidates matched byte-for-byte in all five synced client folders.
+Minimap SHA256 `448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a`;
+AlreadyKnown SHA256 `ee9042d3a8e3cb6dec70f7658b355b9595ce84b1e80803fbd81f97dd578db6f1`.
+This is on-disk parity, not loaded-candidate or native operation acceptance.
+
 5 November provider row reuse: baseline `7f47a566e573a132dcac4a0e67f8b590cee8d08a`,
 Adapter SHA256 `d242e0c07e789197335bde1d0deb27586c41b6fad24560add6846452408df561`.
 Verified checkpoint Mail-auction-publication-20261105T183839Z preserved 1,520

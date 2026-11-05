@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 187 |
+| inactive source | 189 |
 
 ## Addon sources
 
@@ -598,6 +598,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [StatusBars/FluxStatusBar.lua](../StatusBars/FluxStatusBar.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [16-status-bars.md](16-status-bars.md) |
 | [tests/assisted_highlight_work.lua](../tests/assisted_highlight_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_active_rows.lua](../tests/auction_active_rows.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/auction_cold_tooltip.lua](../tests/auction_cold_tooltip.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_metadata_work.lua](../tests/auction_metadata_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_query_ownership.lua](../tests/auction_query_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_refresh_batching.lua](../tests/auction_refresh_batching.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -668,6 +669,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/mail_native_command.lua](../tests/mail_native_command.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/micro_menu_nil_center.lua](../tests/micro_menu_nil_center.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/minimap_mail_lifecycle.lua](../tests/minimap_mail_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/modern_spellbook_ownership.lua](../tests/modern_spellbook_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mp5_mana_ticks.lua](../tests/mp5_mana_ticks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/nameplate_castbar_schools.lua](../tests/nameplate_castbar_schools.lua) | inactive source | — | [34-assets.md](34-assets.md) |

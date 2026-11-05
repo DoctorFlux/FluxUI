@@ -1,5 +1,30 @@
 # Client and reference validation — 29 October 2026
 
+5 November minimap/mail follow-up: Forever's pinned native XML places mail at
+`MinimapCluster.IndicatorFrame.MailFrame`, whereas the existing Flux lookup
+checked older native locations and omitted its own named fallback. The corrected
+lookup reuses that fallback with the same 20×15 appearance and cadence. Actual
+production-function replay reproduces frame/listener growth without an inventory
+provider. This is source/desktop evidence, not a native rendering or FPS result.
+[Exact lifecycle scope and steps](MINIMAP_MAIL_LIFECYCLE.md).
+Focused 504 checks pass versus 100 baseline failures / 494 attempts; five alternating
+pairs and five rejected mutants pass.
+
+A reload is required to retire previously retained frames. No new foreground
+control, game input or profiling occurred. All new native client/provider/bag
+transaction, minimap flicker, geometry, protection and performance checks remain
+pending. The approved 19:15 Forever reload predates this fix. Retail tooltip
+readiness separately passes 48 checks, five matched pairs and four mutants;
+its Forever loader selection remains unverified. Original Wrath stays distinct
+and unsupported by these native claims. Combined validation passes
+153 scripts / 808 Lua syntax files with an unchanged
+808-file source drift guard.
+[Full report](validation/minimap-mail-lifecycle-2026-11-05.json),
+[Retail tooltip scope](AUCTION_COLD_TOOLTIP.md).
+Read-only host/file checks around 19:45 UTC verified the same Forever PID39984
+and both runtime candidates byte-identical in all five synced client folders.
+Loaded-code identity was not checked; on-disk parity is not native acceptance.
+
 5 November provider snapshot row reuse, baseline `7f47a566`: the real Adapter/
 Scheduler fixture passes all 700 checks; its exact baseline fails 190 of 700.
 Five alternating pairs and five rejected mutants cover mail and owned-auction

@@ -1,0 +1,1053 @@
+{
+  "date": "2026-11-05",
+  "baselineCommit": "c1a5f901467ff5015938442c74580d6d4781cbaa",
+  "checkpoint": "Mail-auction-publication-20261105T194013Z",
+  "sourceHashes": {
+    "baseline": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e",
+    "candidate": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a",
+    "test": "f239a56d14552b576b9fc856e5df5fe01df62f550ec7a80cef6d75796d2ec6d6"
+  },
+  "sourceHashesAfter": {
+    "baseline": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e",
+    "candidate": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a",
+    "test": "f239a56d14552b576b9fc856e5df5fe01df62f550ec7a80cef6d75796d2ec6d6"
+  },
+  "sourceDrift": false,
+  "method": {
+    "warmup": "one unrecorded candidate replay",
+    "repetitions": 5,
+    "order": "alternating AB/BA",
+    "captureDuration": "fixed10/100/500operations; whole-harness wall time recorded separately",
+    "baselineCap": 32768,
+    "dispatcher": "snapshot existing listeners; new listeners wait until next event",
+    "profiler": "none; no live game input, profiling, native API calls or preference changes",
+    "scope": "actual production PositionIndicators function with explicit native frame/API mocks",
+    "providers": "absent vs presence-only Syndicator/Baganator namespaces, no external provider behavior emulated",
+    "native": "pending Forever70790, Retail, Era, Anniversary and progression operation/rendering/taint validation",
+    "measurements": "resource and operation counts; elapsed values are desktop whole-harness wall time, not addon CPU/FPS",
+    "notAvailable": [
+      "nativeCPU",
+      "nativeMemory",
+      "nativeFPS",
+      "nativeFrameTimes",
+      "nativeOperationLatency"
+    ]
+  },
+  "variation": {
+    "baseline": {
+      "wallSeconds": {
+        "min": 3.886137699999381,
+        "median": 3.9558211999828927,
+        "max": 4.127532799990149
+      },
+      "failures": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    "candidate": {
+      "wallSeconds": {
+        "min": 0.050120600004447624,
+        "median": 0.05020820000208914,
+        "max": 0.052696900005685166
+      },
+      "failures": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "result": "PASS",
+  "host": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+    "logicalCpuCount": 20,
+    "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "samples": [
+        {
+          "label": "baseline",
+          "elapsedSeconds": 4.127532799990149,
+          "returnCode": 0,
+          "checks": 494,
+          "failures": 100,
+          "raw": "pair-1-baseline.txt",
+          "sourceSha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+        },
+        {
+          "label": "candidate",
+          "elapsedSeconds": 0.05020820000208914,
+          "returnCode": 0,
+          "checks": 504,
+          "failures": 0,
+          "raw": "pair-1-candidate.txt",
+          "sourceSha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a"
+        }
+      ]
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "samples": [
+        {
+          "label": "candidate",
+          "elapsedSeconds": 0.05019809998339042,
+          "returnCode": 0,
+          "checks": 504,
+          "failures": 0,
+          "raw": "pair-2-candidate.txt",
+          "sourceSha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a"
+        },
+        {
+          "label": "baseline",
+          "elapsedSeconds": 3.9558211999828927,
+          "returnCode": 0,
+          "checks": 494,
+          "failures": 100,
+          "raw": "pair-2-baseline.txt",
+          "sourceSha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+        }
+      ]
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "samples": [
+        {
+          "label": "baseline",
+          "elapsedSeconds": 4.020009400002891,
+          "returnCode": 0,
+          "checks": 494,
+          "failures": 100,
+          "raw": "pair-3-baseline.txt",
+          "sourceSha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+        },
+        {
+          "label": "candidate",
+          "elapsedSeconds": 0.051709000021219254,
+          "returnCode": 0,
+          "checks": 504,
+          "failures": 0,
+          "raw": "pair-3-candidate.txt",
+          "sourceSha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a"
+        }
+      ]
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "samples": [
+        {
+          "label": "candidate",
+          "elapsedSeconds": 0.052696900005685166,
+          "returnCode": 0,
+          "checks": 504,
+          "failures": 0,
+          "raw": "pair-4-candidate.txt",
+          "sourceSha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a"
+        },
+        {
+          "label": "baseline",
+          "elapsedSeconds": 3.886137699999381,
+          "returnCode": 0,
+          "checks": 494,
+          "failures": 100,
+          "raw": "pair-4-baseline.txt",
+          "sourceSha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+        }
+      ]
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "samples": [
+        {
+          "label": "baseline",
+          "elapsedSeconds": 3.916364699980477,
+          "returnCode": 0,
+          "checks": 494,
+          "failures": 100,
+          "raw": "pair-5-baseline.txt",
+          "sourceSha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e"
+        },
+        {
+          "label": "candidate",
+          "elapsedSeconds": 0.050120600004447624,
+          "returnCode": 0,
+          "checks": 504,
+          "failures": 0,
+          "raw": "pair-5-candidate.txt",
+          "sourceSha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a"
+        }
+      ]
+    }
+  ],
+  "mutants": [
+    {
+      "label": "remove-fallback-reuse",
+      "elapsedSeconds": 4.083111699990695,
+      "returnCode": 0,
+      "checks": 494,
+      "failures": 100,
+      "raw": "mutant-remove-fallback-reuse.txt",
+      "sourceSha256": "081b74b80e6b91610ec9b1bd3e2995b130d683bbb83f0224f5dada601b69baf4",
+      "rejected": true
+    },
+    {
+      "label": "reuse-only-with-unread",
+      "elapsedSeconds": 1.9722417000157293,
+      "returnCode": 0,
+      "checks": 500,
+      "failures": 40,
+      "raw": "mutant-reuse-only-with-unread.txt",
+      "sourceSha256": "436966ff4b9575e54b452c31526454040bb68058e364899c2c9358b4849e0cdc",
+      "rejected": true
+    },
+    {
+      "label": "prefer-fallback-to-native",
+      "elapsedSeconds": 0.06420490000164136,
+      "returnCode": 0,
+      "checks": 504,
+      "failures": 1,
+      "raw": "mutant-prefer-fallback-to-native.txt",
+      "sourceSha256": "dc789783ca1f9efa4f86db59d03848e195d5a9d348649bd853f5d2fbc1514ec1",
+      "rejected": true
+    },
+    {
+      "label": "change-mail-offset",
+      "elapsedSeconds": 0.0639552999928128,
+      "returnCode": 0,
+      "checks": 504,
+      "failures": 1,
+      "raw": "mutant-change-mail-offset.txt",
+      "sourceSha256": "a6dff6d34bfc9a5407d3d1efad1985666b1acda1355c993128deba80cd88eea4",
+      "rejected": true
+    },
+    {
+      "label": "drop-mail-event-layout",
+      "elapsedSeconds": 0.0546252999920398,
+      "returnCode": 0,
+      "checks": 504,
+      "failures": 37,
+      "raw": "mutant-drop-mail-event-layout.txt",
+      "sourceSha256": "cad1c78aebecd70fe2262ade5c9e6032dc9aae69255e08a1f048418984e5cdec",
+      "rejected": true
+    }
+  ],
+  "curveVariationAcrossPairs": {
+    "baseline": "identical deterministic resource counts",
+    "candidate": "identical deterministic resource counts"
+  },
+  "providerPresenceCurvesMatch": {
+    "baseline": true,
+    "candidate": true
+  },
+  "curveColumns": [
+    "shape",
+    "scenario",
+    "n",
+    "completed",
+    "status",
+    "frames",
+    "textures",
+    "registrations",
+    "hooks",
+    "calls",
+    "deliveries",
+    "listeners"
+  ],
+  "curves": {
+    "baseline": [
+      [
+        "cluster",
+        "layout",
+        10,
+        10,
+        "complete",
+        10,
+        10,
+        20,
+        20,
+        10,
+        0,
+        10
+      ],
+      [
+        "cluster",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        1024,
+        1024,
+        2048,
+        2048,
+        1024,
+        1023,
+        1024
+      ],
+      [
+        "cluster",
+        "toggle",
+        10,
+        9,
+        "AUDIT_FRAME_CAP",
+        32768,
+        32768,
+        65536,
+        65536,
+        32769,
+        16384,
+        32768
+      ],
+      [
+        "cluster",
+        "layout",
+        100,
+        100,
+        "complete",
+        100,
+        100,
+        200,
+        200,
+        100,
+        0,
+        100
+      ],
+      [
+        "cluster",
+        "unchanged",
+        100,
+        15,
+        "AUDIT_FRAME_CAP",
+        32768,
+        32768,
+        65536,
+        65536,
+        32769,
+        32768,
+        32768
+      ],
+      [
+        "cluster",
+        "toggle",
+        100,
+        9,
+        "AUDIT_FRAME_CAP",
+        32768,
+        32768,
+        65536,
+        65536,
+        32769,
+        16384,
+        32768
+      ],
+      [
+        "cluster",
+        "layout",
+        500,
+        500,
+        "complete",
+        500,
+        500,
+        1000,
+        1000,
+        500,
+        0,
+        500
+      ],
+      [
+        "cluster",
+        "unchanged",
+        500,
+        15,
+        "AUDIT_FRAME_CAP",
+        32768,
+        32768,
+        65536,
+        65536,
+        32769,
+        32768,
+        32768
+      ],
+      [
+        "cluster",
+        "toggle",
+        500,
+        9,
+        "AUDIT_FRAME_CAP",
+        32768,
+        32768,
+        65536,
+        65536,
+        32769,
+        16384,
+        32768
+      ],
+      [
+        "global",
+        "layout",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        10,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        11,
+        10,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        21,
+        10,
+        1
+      ],
+      [
+        "global",
+        "layout",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        100,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        101,
+        100,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        201,
+        100,
+        1
+      ],
+      [
+        "global",
+        "layout",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        500,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        501,
+        500,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        1001,
+        500,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        10,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        11,
+        10,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        21,
+        10,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        100,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        101,
+        100,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        201,
+        100,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        500,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        501,
+        500,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        1001,
+        500,
+        1
+      ]
+    ],
+    "candidate": [
+      [
+        "cluster",
+        "layout",
+        10,
+        10,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        10,
+        0,
+        1
+      ],
+      [
+        "cluster",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        11,
+        10,
+        1
+      ],
+      [
+        "cluster",
+        "toggle",
+        10,
+        10,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        21,
+        10,
+        1
+      ],
+      [
+        "cluster",
+        "layout",
+        100,
+        100,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        100,
+        0,
+        1
+      ],
+      [
+        "cluster",
+        "unchanged",
+        100,
+        100,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        101,
+        100,
+        1
+      ],
+      [
+        "cluster",
+        "toggle",
+        100,
+        100,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        201,
+        100,
+        1
+      ],
+      [
+        "cluster",
+        "layout",
+        500,
+        500,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        500,
+        0,
+        1
+      ],
+      [
+        "cluster",
+        "unchanged",
+        500,
+        500,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        501,
+        500,
+        1
+      ],
+      [
+        "cluster",
+        "toggle",
+        500,
+        500,
+        "complete",
+        1,
+        1,
+        2,
+        2,
+        1001,
+        500,
+        1
+      ],
+      [
+        "global",
+        "layout",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        10,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        11,
+        10,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        21,
+        10,
+        1
+      ],
+      [
+        "global",
+        "layout",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        100,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        101,
+        100,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        201,
+        100,
+        1
+      ],
+      [
+        "global",
+        "layout",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        500,
+        0,
+        1
+      ],
+      [
+        "global",
+        "unchanged",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        501,
+        500,
+        1
+      ],
+      [
+        "global",
+        "toggle",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        1001,
+        500,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        10,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        11,
+        10,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        10,
+        10,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        21,
+        10,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        100,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        101,
+        100,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        100,
+        100,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        201,
+        100,
+        1
+      ],
+      [
+        "minimap",
+        "layout",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        500,
+        0,
+        1
+      ],
+      [
+        "minimap",
+        "unchanged",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        501,
+        500,
+        1
+      ],
+      [
+        "minimap",
+        "toggle",
+        500,
+        500,
+        "complete",
+        0,
+        0,
+        2,
+        2,
+        1001,
+        500,
+        1
+      ]
+    ]
+  },
+  "scopeNotes": [
+    "CURVE rows record absent providers; presence-only fixtures match exactly and do not emulate provider API behavior.",
+    "Baseline capped loops omit final visibility checks:494 attempted/100failed; complete candidate504/0.",
+    "Whole-harness wall times include mocks and deliberately capped baseline loops; no native CPU, FPS or latency conclusion.",
+    "Native reload required to retire old retained WoW frames; native flicker/disappearance and transaction acceptance pending.",
+    "Private full stdout/stderr samples are preserved outside AddOns; no game screenshots or settings are published."
+  ]
+}

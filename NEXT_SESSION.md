@@ -1,5 +1,34 @@
 # Next session
 
+Priority: load and accept the minimap mail lifecycle fix. Read
+[the lifecycle record](docs/MINIMAP_MAIL_LIFECYCLE.md) and
+[Retail tooltip readiness](docs/AUCTION_COLD_TOOLTIP.md). Baseline `c1a5f90`;
+external Mail-auction-publication-20261105T194013Z preserves 1,529 actual files,
+122 settings and all-ref history, source SHA256
+`a6fb41fd4042442bd9d9c6d5c70320fe9001feadd068312e3b328d0dfb694449`.
+Combined validation passes 153 scripts / 808 Lua syntax files with an unchanged
+808-file source drift guard.
+[Full report](docs/validation/minimap-mail-lifecycle-2026-11-05.json). Reproduce with
+`lua tests/minimap_mail_lifecycle.lua` and `lua tests/auction_cold_tooltip.lua`.
+Minimap 504 checks, five alternating pairs and five mutants pass; tooltip 48 checks,
+five pairs and four mutants pass. Raw comparison reports accompany the full run.
+
+A normal reload after source sync is required: retained WoW frames/listeners
+from the old lookup survive disk edits. Leave WoW in the background while the
+user uses the PC; no new foreground permission is inferred from old checks.
+Read-only checks around 19:45 UTC found both runtime candidates already identical
+in all five client folders and Forever PID39984 still running; no reload occurred.
+Verify loaded file identity and build before measuring. Separately check mailbox
+open/close, item/money loot, second-last/final Open All, Buy-to-mail, cancel,
+post and buyer-sale bursts, minimap mail visibility/tooltip and normal/embedded
+geometry. Repeat on every installed client with/without external Syndicator and
+Baganator where available. Match resolution, scale, profile and game state.
+Preserve profile0, settings and BugTabs history. Native freeze/flicker removal,
+CPU, memory bytes, frame times, pixels and taint remain pending. The earlier
+19:15 Forever reload predates these fixes. External Syndicator's private proposal
+is deferred and uninstalled; do not apply it without authorization or discard
+known inventory facts. Guild-bank and void callbacks remain excluded.
+
 Provider row-reuse slice: read
 [scope and exact identities](docs/PROVIDER_SNAPSHOT_ROW_REUSE.md). Preserve newer
 consumable work through `e2c6464`, and external recovery

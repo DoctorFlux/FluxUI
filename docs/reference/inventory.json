@@ -54979,8 +54979,8 @@
       "path": "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 825,
-      "sha256": "1d7695767084e483497390a8fda0794c81ba8f1f0af8cbdffa4f1d1609339da3",
+      "lines": 827,
+      "sha256": "f17741c195fde39fd4898535ab072df67684296df61d5bc25c27525ecda82688",
       "clients": [
         "mainline"
       ],
@@ -54991,20 +54991,20 @@
       "functions": [
         {
           "name": "f:ADDON_LOADED",
-          "line": 490
+          "line": 492
         },
         {
           "name": "f:PLAYER_ENTERING_WORLD",
-          "line": 512
+          "line": 514
         },
         {
           "name": "SlashCmdList.ALREADYKNOWN",
-          "line": 792
+          "line": 794
         }
       ],
       "events": [
         {
-          "line": 483,
+          "line": 485,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -55012,7 +55012,7 @@
           "context": ")end)f:"
         },
         {
-          "line": 484,
+          "line": 486,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -55025,18 +55025,18 @@
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN1",
           "value": "/alreadyknown",
-          "line": 738
+          "line": 740
         },
         {
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN2",
           "value": "/ak",
-          "line": 739
+          "line": 741
         },
         {
           "kind": "handler",
           "name": "ALREADYKNOWN",
-          "line": 792
+          "line": 794
         }
       ],
       "widgets": [],
@@ -60986,7 +60986,7 @@
       "classification": "active",
       "chapter": "18-minimap-and-trackers.md",
       "lines": 2686,
-      "sha256": "d5f6c48a568ebd1d135253ee42d20693ffa048e0b08feed30443272028ea536e",
+      "sha256": "448c762562c5bb2d62aeca43139d1ca5e42eb56b41ad86f4254caa34f78d670a",
       "clients": [
         "camelot",
         "cata",
@@ -71246,6 +71246,35 @@
       "sv_sites": []
     },
     {
+      "path": "tests/auction_cold_tooltip.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 135,
+      "sha256": "3426a081e9fb7c9167c6d3effbc54ee8f7a057cac4326afd99731ee8df22dcba",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.hooksecurefunc",
+          "line": 45
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 46
+        },
+        {
+          "name": "h.refresh",
+          "line": 68
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/auction_metadata_work.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -78103,6 +78132,152 @@
         }
       ],
       "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/minimap_mail_lifecycle.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 213,
+      "sha256": "f239a56d14552b576b9fc856e5df5fe01df62f550ec7a80cef6d75796d2ec6d6",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "w:SetScript",
+          "line": 24
+        },
+        {
+          "name": "w:GetScript",
+          "line": 25
+        },
+        {
+          "name": "w:HookScript",
+          "line": 26
+        },
+        {
+          "name": "w:RegisterEvent",
+          "line": 30
+        },
+        {
+          "name": "w:IsShown",
+          "line": 36
+        },
+        {
+          "name": "w:IsVisible",
+          "line": 37
+        },
+        {
+          "name": "w:Fire",
+          "line": 38
+        },
+        {
+          "name": "w:Show",
+          "line": 42
+        },
+        {
+          "name": "w:Hide",
+          "line": 46
+        },
+        {
+          "name": "w:SetParent",
+          "line": 50
+        },
+        {
+          "name": "w:GetParent",
+          "line": 51
+        },
+        {
+          "name": "w:SetPoint",
+          "line": 52
+        },
+        {
+          "name": "w:ClearAllPoints",
+          "line": 53
+        },
+        {
+          "name": "w:SetSize",
+          "line": 54
+        },
+        {
+          "name": "w:GetFrameLevel",
+          "line": 55
+        },
+        {
+          "name": "w:SetFrameLevel",
+          "line": 56
+        },
+        {
+          "name": "w:CreateTexture",
+          "line": 57
+        },
+        {
+          "name": "t:SetAtlas",
+          "line": 60
+        },
+        {
+          "name": "t:SetAllPoints",
+          "line": 61
+        },
+        {
+          "name": "t:Show",
+          "line": 62
+        },
+        {
+          "name": "t:Hide",
+          "line": 63
+        },
+        {
+          "name": "e.InCombatLockdown",
+          "line": 70
+        },
+        {
+          "name": "returnh.combatende.HasNewMail",
+          "line": 71
+        },
+        {
+          "name": "e.GameTooltip_Hide",
+          "line": 80
+        },
+        {
+          "name": "ende.MinimapMailFrameUpdate",
+          "line": 81
+        },
+        {
+          "name": "ende.CreateFrame",
+          "line": 82
+        },
+        {
+          "name": "e.FluxMinimap.PositionIndicatorse.FluxMinimap.PositionIndicators",
+          "line": 116
+        },
+        {
+          "name": "h:position",
+          "line": 117
+        },
+        {
+          "name": "h:mailFrame",
+          "line": 118
+        },
+        {
+          "name": "h:event",
+          "line": 119
+        }
+      ],
+      "events": [
+        {
+          "line": 30,
+          "method": "RegisterEvent",
+          "arguments": [
+            "k"
+          ],
+          "context": "vendfunctionw:"
+        }
+      ],
       "slash": [],
       "widgets": [],
       "loads": [],

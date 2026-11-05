@@ -326,10 +326,12 @@ end
 		end
 
 		local tooltipData = C_TooltipInfo.GetHyperlink(itemLink)
+		local lines = tooltipData and tooltipData.lines
+		if not lines then return false end
 
-		for i, line in ipairs(tooltipData.lines) do
+		for i, line in ipairs(lines) do
 			if line.leftText then
-				local lineResult = _checkTooltipLine(line.leftText, i, tooltipData.lines, itemId, itemLink)
+				local lineResult = _checkTooltipLine(line.leftText, i, lines, itemId, itemLink)
 				if lineResult == true then
 					knownTable[itemLink] = true -- Mark as known for later use
 					return true

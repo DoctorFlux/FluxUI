@@ -27,6 +27,14 @@ slower. Treat this as a growth investigation: compare operation 1, 10, 100 and
 Distinguish legitimate pending-mail ownership from unnecessary repeated work or
 leaked registrations. Do not truncate pending mail or drop features to cap cost.
 
+The minimap mail indicator is a separate provider-independent growth boundary.
+Its lookup omitted the named fallback it created, so repeated mail notifications
+multiplied frames, listeners and layout hooks. The [fallback reuse correction](MINIMAP_MAIL_LIFECYCLE.md)
+preserves the icon and requires a reload to retire old frames. It addresses a
+reproduced retention defect; native transaction/flicker acceptance is pending.
+Retail [cold tooltip readiness](AUCTION_COLD_TOOLTIP.md) separately prevents
+repeated row-paint errors without adding polling or caching unresolved results.
+
 ## Ownership and acceptance
 
 | ID | Required behavior / owner | Current evidence and next acceptance |

@@ -78,9 +78,9 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:523](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L523) | alias | `SLASH_FLUXBANKRESTOCKDEBUG1` | `/fluxbankdebug` |
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:524](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L524) | alias | `SLASH_FLUXBANKRESTOCKDEBUG2` | `/fbrdebug` |
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:525](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L525) | handler | `FLUXBANKRESTOCKDEBUG` | `` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:738](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L738) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:739](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L739) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:792](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L792) | handler | `ALREADYKNOWN` | `` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:740](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L740) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:741](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L741) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:794](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L794) | handler | `ALREADYKNOWN` | `` |
 | [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:766](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L766) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
 | [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:767](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L767) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
 | [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:820](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L820) | handler | `ALREADYKNOWN` | `` |
