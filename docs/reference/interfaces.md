@@ -455,9 +455,9 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/Restock/Junk/FluxVendorJunkPanel.lua:681](../../Inventory/Restock/Junk/FluxVendorJunkPanel.lua#L681) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Junk/FluxVendorJunkPanel.lua:739](../../Inventory/Restock/Junk/FluxVendorJunkPanel.lua#L739) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua:153](../../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua#L153) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:485](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L485) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:486](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L486) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:565](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L565) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:481](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L481) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:482](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L482) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:561](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L561) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua:94](../../Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua#L94) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua:3434](../../Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua#L3434) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua:3435](../../Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua#L3435) | `RegisterEvent` | `"MERCHANT_SHOW"` |
@@ -7436,9 +7436,9 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 
 | Declaration | Source |
 |---|---|
-| `f:ADDON_LOADED` | [L492](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L492) |
-| `f:PLAYER_ENTERING_WORLD` | [L514](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L514) |
-| `SlashCmdList.ALREADYKNOWN` | [L794](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L794) |
+| `f:ADDON_LOADED` | [L488](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L488) |
+| `f:PLAYER_ENTERING_WORLD` | [L510](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L510) |
+| `SlashCmdList.ALREADYKNOWN` | [L790](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L790) |
 
 ### Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua
 
@@ -7446,9 +7446,9 @@ Owner: [20-vendor-restock-junk.md](../20-vendor-restock-junk.md).
 
 | Declaration | Source |
 |---|---|
-| `f:ADDON_LOADED` | [L572](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L572) |
-| `SlashCmdList.ALREADYKNOWN` | [L822](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L822) |
-| `_hookMerchantAK.RefreshAuctionHouse` | [L848](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L848) |
+| `f:ADDON_LOADED` | [L568](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L568) |
+| `SlashCmdList.ALREADYKNOWN` | [L818](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L818) |
+| `_hookMerchantAK.RefreshAuctionHouse` | [L844](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L844) |
 
 ### Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua
 

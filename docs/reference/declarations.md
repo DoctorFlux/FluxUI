@@ -78,12 +78,12 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:523](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L523) | alias | `SLASH_FLUXBANKRESTOCKDEBUG1` | `/fluxbankdebug` |
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:524](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L524) | alias | `SLASH_FLUXBANKRESTOCKDEBUG2` | `/fbrdebug` |
 | [Inventory/Restock/Bank/FluxBankRestockDebug.lua:525](../../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L525) | handler | `FLUXBANKRESTOCKDEBUG` | `` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:740](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L740) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:741](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L741) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:794](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L794) | handler | `ALREADYKNOWN` | `` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:768](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L768) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:769](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L769) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
-| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:822](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L822) | handler | `ALREADYKNOWN` | `` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:736](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L736) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:737](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L737) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnown.lua:790](../../Inventory/Restock/Vendor/FluxAlreadyKnown.lua#L790) | handler | `ALREADYKNOWN` | `` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:764](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L764) | alias | `SLASH_ALREADYKNOWN1` | `/alreadyknown` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:765](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L765) | alias | `SLASH_ALREADYKNOWN2` | `/ak` |
+| [Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua:818](../../Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua#L818) | handler | `ALREADYKNOWN` | `` |
 | [Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua:132](../../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua#L132) | alias | `SLASH_BUYEMALL1` | `/buyemall` |
 | [Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua:133](../../Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua#L133) | handler | `BUYEMALL` | `` |
 

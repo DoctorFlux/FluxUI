@@ -1,5 +1,11 @@
 # Client and reference validation — 29 October 2026
 
+5 November auction Buy investigation: active-row highlighting uses the native
+view instead of the retained child pool. Five matched desktop pairs:200,600
+versus600 traversal visits;200 classifications unchanged;116 checks pass and
+two mutants rejected. Full126/781 passes. Native Buy spike and every client/provider
+integration remain pending. [Evidence and steps](AUCTION_PURCHASE_REFRESH.md).
+
 5 November utility pet faces: the user clarified a question-mark/wrong-icon
 symptom. The manager now owns the selected journal-pet icon and tooltip via
 existing override surfaces, with modifier changes, metadata completion and

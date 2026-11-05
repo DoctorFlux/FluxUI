@@ -1,0 +1,203 @@
+{
+  "baselineCommit": "24cffd22c3e347d55c1c22a3bae820ba9850e09b",
+  "candidateIdentity": "SHA256 of changed runtime files below (before commit)",
+  "runtimeHashes": {
+    "FluxAlreadyKnown.lua": "fbaf0e8ce7f157df49a836af3ae2ec16e88827a20f43a3c1b45ae74b8e3e33ad",
+    "FluxAlreadyKnownClassic.lua": "ce1cdad3469d789037d93b09fb283039485fbfca9c5e0454f96c9dc4b9b19d32"
+  },
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Auction-buy-20261105T075700Z",
+    "head": "24cffd22c3e347d55c1c22a3bae820ba9850e09b",
+    "sourceFiles": 1432,
+    "settingsFiles": 123,
+    "sourceSha256": "c2cb3fac9930ab479dbbc7f387c191d4a9cfe7496f8c6278ff08afb416b7365a"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "lua": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "scenario": "20 updates; 3 active rows; 1000 released children with rowData cleared; each of 5 client flag labels x 2 provider labels; production UI modules; APIs/pool mocked; legacy fallback controls also tested",
+  "profile": "Fresh process per variant; no scriptProfile; no warmup; one scenario per process; five alternating pairs; wall time includes startup and asserts; not a native latency benchmark",
+  "limitations": "Provider labels exercise the same UI module without inventory dependency; no native provider integration certified. No WoW processes/tool connection available. Native CPU/memory/secure/pixels/frame time/FPS pending. Large pool synthetic, not measured in user session. Classifications unchanged. No claim that the reported Buy spike is resolved.",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.09554939999361522,
+      "exit": 1,
+      "raw": "FAIL retail/builtin does not enumerate pooled children\nFAIL retail/builtin visits only active rows\nFAIL retail/syndicator does not enumerate pooled children\nFAIL retail/syndicator visits only active rows\nFAIL forever/builtin does not enumerate pooled children\nFAIL forever/builtin visits only active rows\nFAIL forever/syndicator does not enumerate pooled children\nFAIL forever/syndicator visits only active rows\nFAIL era/builtin does not enumerate pooled children\nFAIL era/builtin visits only active rows\nFAIL era/syndicator does not enumerate pooled children\nFAIL era/syndicator visits only active rows\nFAIL anniversary/builtin does not enumerate pooled children\nFAIL anniversary/builtin visits only active rows\nFAIL anniversary/syndicator does not enumerate pooled children\nFAIL anniversary/syndicator visits only active rows\nFAIL mists/builtin does not enumerate pooled children\nFAIL mists/builtin visits only active rows\nFAIL mists/syndicator does not enumerate pooled children\nFAIL mists/syndicator visits only active rows\nauction active rows: 116 checks, 20 failures; burst visits=200600, classifications=200\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.0545123999909265,
+      "exit": 0,
+      "raw": "auction active rows: 116 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.05713320001086686,
+      "exit": 1,
+      "raw": "FAIL retail/builtin does not enumerate pooled children\nFAIL retail/builtin visits only active rows\nFAIL retail/syndicator does not enumerate pooled children\nFAIL retail/syndicator visits only active rows\nFAIL forever/builtin does not enumerate pooled children\nFAIL forever/builtin visits only active rows\nFAIL forever/syndicator does not enumerate pooled children\nFAIL forever/syndicator visits only active rows\nFAIL era/builtin does not enumerate pooled children\nFAIL era/builtin visits only active rows\nFAIL era/syndicator does not enumerate pooled children\nFAIL era/syndicator visits only active rows\nFAIL anniversary/builtin does not enumerate pooled children\nFAIL anniversary/builtin visits only active rows\nFAIL anniversary/syndicator does not enumerate pooled children\nFAIL anniversary/syndicator visits only active rows\nFAIL mists/builtin does not enumerate pooled children\nFAIL mists/builtin visits only active rows\nFAIL mists/syndicator does not enumerate pooled children\nFAIL mists/syndicator visits only active rows\nauction active rows: 116 checks, 20 failures; burst visits=200600, classifications=200\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.051698399998713285,
+      "exit": 0,
+      "raw": "auction active rows: 116 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.05870860000140965,
+      "exit": 1,
+      "raw": "FAIL retail/builtin does not enumerate pooled children\nFAIL retail/builtin visits only active rows\nFAIL retail/syndicator does not enumerate pooled children\nFAIL retail/syndicator visits only active rows\nFAIL forever/builtin does not enumerate pooled children\nFAIL forever/builtin visits only active rows\nFAIL forever/syndicator does not enumerate pooled children\nFAIL forever/syndicator visits only active rows\nFAIL era/builtin does not enumerate pooled children\nFAIL era/builtin visits only active rows\nFAIL era/syndicator does not enumerate pooled children\nFAIL era/syndicator visits only active rows\nFAIL anniversary/builtin does not enumerate pooled children\nFAIL anniversary/builtin visits only active rows\nFAIL anniversary/syndicator does not enumerate pooled children\nFAIL anniversary/syndicator visits only active rows\nFAIL mists/builtin does not enumerate pooled children\nFAIL mists/builtin visits only active rows\nFAIL mists/syndicator does not enumerate pooled children\nFAIL mists/syndicator visits only active rows\nauction active rows: 116 checks, 20 failures; burst visits=200600, classifications=200\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.048869400008697994,
+      "exit": 0,
+      "raw": "auction active rows: 116 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.0600245000096038,
+      "exit": 1,
+      "raw": "FAIL retail/builtin does not enumerate pooled children\nFAIL retail/builtin visits only active rows\nFAIL retail/syndicator does not enumerate pooled children\nFAIL retail/syndicator visits only active rows\nFAIL forever/builtin does not enumerate pooled children\nFAIL forever/builtin visits only active rows\nFAIL forever/syndicator does not enumerate pooled children\nFAIL forever/syndicator visits only active rows\nFAIL era/builtin does not enumerate pooled children\nFAIL era/builtin visits only active rows\nFAIL era/syndicator does not enumerate pooled children\nFAIL era/syndicator visits only active rows\nFAIL anniversary/builtin does not enumerate pooled children\nFAIL anniversary/builtin visits only active rows\nFAIL anniversary/syndicator does not enumerate pooled children\nFAIL anniversary/syndicator visits only active rows\nFAIL mists/builtin does not enumerate pooled children\nFAIL mists/builtin visits only active rows\nFAIL mists/syndicator does not enumerate pooled children\nFAIL mists/syndicator visits only active rows\nauction active rows: 116 checks, 20 failures; burst visits=200600, classifications=200\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.05404259999340866,
+      "exit": 0,
+      "raw": "auction active rows: 116 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.058342699994682334,
+      "exit": 1,
+      "raw": "FAIL retail/builtin does not enumerate pooled children\nFAIL retail/builtin visits only active rows\nFAIL retail/syndicator does not enumerate pooled children\nFAIL retail/syndicator visits only active rows\nFAIL forever/builtin does not enumerate pooled children\nFAIL forever/builtin visits only active rows\nFAIL forever/syndicator does not enumerate pooled children\nFAIL forever/syndicator visits only active rows\nFAIL era/builtin does not enumerate pooled children\nFAIL era/builtin visits only active rows\nFAIL era/syndicator does not enumerate pooled children\nFAIL era/syndicator visits only active rows\nFAIL anniversary/builtin does not enumerate pooled children\nFAIL anniversary/builtin visits only active rows\nFAIL anniversary/syndicator does not enumerate pooled children\nFAIL anniversary/syndicator visits only active rows\nFAIL mists/builtin does not enumerate pooled children\nFAIL mists/builtin visits only active rows\nFAIL mists/syndicator does not enumerate pooled children\nFAIL mists/syndicator visits only active rows\nauction active rows: 116 checks, 20 failures; burst visits=200600, classifications=200\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.052877099995384924,
+      "exit": 0,
+      "raw": "auction active rows: 116 checks, 0 failures; burst visits=600, classifications=200\n"
+    }
+  ],
+  "referenceMirrors": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "sources": [
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+          "sha256": "407222661a1e194f2b0641befad24d9a5ccb83b0aac7a9a8fc79c4277e0843e9"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBoxListView.lua",
+          "sha256": "258eea72190b51d6a9a163d60c1cb95d12e6a15fc2db92bf00a7b311b296de7e"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\TableBuilder.lua",
+          "sha256": "1fc51f3e88a1bfce4d4426d522eb13f40f17ee6d9d4d0450134ea3d297805719"
+        }
+      ]
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "sources": [
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+          "sha256": "407222661a1e194f2b0641befad24d9a5ccb83b0aac7a9a8fc79c4277e0843e9"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBoxListView.lua",
+          "sha256": "f25ff89c43600fa550b95af133460fec29226d335555df9e450f59d07b443ad9"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\TableBuilder.lua",
+          "sha256": "1fc51f3e88a1bfce4d4426d522eb13f40f17ee6d9d4d0450134ea3d297805719"
+        }
+      ]
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "sources": [
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+          "sha256": "3ef70681626bddbf285058c82aa01c95b135ca83cfc4371768834da23eded11a"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBoxListView.lua",
+          "sha256": "0b7a4fb4224006d639ef6e1bd35ec8cd4836e893fecdec5f2902ffc88540adc3"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\TableBuilder.lua",
+          "sha256": "1fc51f3e88a1bfce4d4426d522eb13f40f17ee6d9d4d0450134ea3d297805719"
+        }
+      ]
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "sources": [
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+          "sha256": "66b07ecebe15f35991dce836e271b1cd58a1406ba1fa28eb940cd2d11124a580"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBoxListView.lua",
+          "sha256": "2b7394e5e93f509d0a8a75fc81b0dec1e936093f11ae61e8bf4e2df2f6aa2f0d"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\TableBuilder.lua",
+          "sha256": "b0e26ce68c2d72440ef356e40159e2404187626ebb9165abc71871628f6ccf13"
+        }
+      ]
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "sources": [
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+          "sha256": "3ef70681626bddbf285058c82aa01c95b135ca83cfc4371768834da23eded11a"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBoxListView.lua",
+          "sha256": "0b7a4fb4224006d639ef6e1bd35ec8cd4836e893fecdec5f2902ffc88540adc3"
+        },
+        {
+          "path": "Interface\\AddOns\\Blizzard_SharedXML\\TableBuilder.lua",
+          "sha256": "1fc51f3e88a1bfce4d4426d522eb13f40f17ee6d9d4d0450134ea3d297805719"
+        }
+      ]
+    }
+  ],
+  "mutationChecks": [
+    {
+      "label": "skip-refresh",
+      "exit": 1,
+      "raw": "FAIL retail/builtin visits only active rows\nFAIL unknown active items still recheck on every refresh\nlua: tests/auction_active_rows.lua:74: attempt to index a nil value (field 'color')\nstack traceback:\n\ttests/auction_active_rows.lua:74: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "no-known-color",
+      "exit": 1,
+      "raw": "FAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nFAIL known monochrome\nFAIL newly learned item repaints immediately\nauction active rows: 116 checks, 20 failures; burst visits=600, classifications=200\n"
+    }
+  ],
+  "executableMetadata": {
+    "Retail": "12.1.5.70783",
+    "Forever": "1.60.1.70790",
+    "Era": "1.15.9.70576",
+    "Anniversary": "2.5.6.70577",
+    "MoP": "5.5.4.70631"
+  }
+}

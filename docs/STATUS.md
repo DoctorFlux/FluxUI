@@ -1,5 +1,14 @@
 # Development status
 
+5 November auction Buy investigation: active-row highlighting now uses the
+ScrollBox view rather than enumerating its retained child pool. Five matched
+production-module desktop replays: 200,600 versus 600 traversal visits, with
+200 item classifications unchanged; 116 checks pass, two mutations rejected.
+Full126 scripts/781 Lua syntax pass. Both provider labels exercise the shared
+UI path; native provider integration and the reported Buy spike remain pending.
+No game process or connected runtime tool was available; no foreground input.
+[Evidence and exact next captures](AUCTION_PURCHASE_REFRESH.md).
+
 5 November utility pet faces: the user clarified a question-mark/wrong-icon
 symptom. The manager now owns the selected journal-pet icon and tooltip via
 existing override surfaces, with modifier changes, metadata completion and

@@ -1,5 +1,15 @@
 # Work log
 
+## 2026-11-05 - auction refresh traversal
+
+Verified external source/history/settings recovery at Auction-buy-20261105T075700Z
+before edits on clean main24cffd22. Read external Syndicator289 read-only.
+5 November auction Buy investigation: active-row highlighting uses the native
+view instead of the retained child pool. Five matched desktop pairs:200,600
+versus600 traversal visits;200 classifications unchanged;116 checks pass and
+two mutants rejected. Full126/781 passes. Native Buy spike and every client/provider
+integration remain pending. [Evidence and steps](AUCTION_PURCHASE_REFRESH.md).
+
 ## 2026-11-04 - Postal-like mail conveniences
 
 Read repository continuity, Postal v4.3.4 and five local Blizzard mail source

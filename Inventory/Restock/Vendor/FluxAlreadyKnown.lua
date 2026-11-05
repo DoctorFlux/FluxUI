@@ -344,44 +344,40 @@ end
 --[[----------------------------------------------------------------------------
 	AuctionHouse
 ----------------------------------------------------------------------------]]--
-	local function _hookAH(self) -- Most of this found from FrameXML/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseItemList.lua
-		if not AK.ShouldRun() then return end
-		-- self = AuctionHouseFrame.BrowseResultsFrame.ItemList.ScrollBox
-
-		-- Derived from https://www.townlong-yak.com/framexml/10.0.0/Blizzard_AuctionHouseUI/Blizzard_AuctionHouseItemList.lua#322
-		--self.ScrollBox:ForEachFrame(function(button)
-		local children = { self.ScrollTarget:GetChildren() }
-		for i = 1, #children do
-			local button = children[i]
-			--Debug(">", button.rowData.itemKey.itemID, button.cells[2].Text:GetText())
-			if button and button.rowData and button.rowData.itemKey.itemID then
-				local itemLink
-				if button.rowData.itemKey.itemID == 82800 then -- BattlePet
-					itemLink = format("|Hbattlepet:%d::::::|h[Dummy]|h", button.rowData.itemKey.battlePetSpeciesID)
-				else -- Normal item
-					itemLink = format("item:%d", button.rowData.itemKey.itemID)
-				end
-
-				if itemLink and _checkIfKnown(itemLink) then
-					-- Highlight
-					button.SelectedHighlight:Show()
-					button.SelectedHighlight:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
-					button.SelectedHighlight:SetAlpha(.2)
-					-- Icon
-					button.cells[2].Icon:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
-					button.cells[2].IconBorder:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
-					button.cells[2].Icon:SetDesaturated((GetDB().monochrome))
-				else
-					-- Highlight
-					button.SelectedHighlight:SetVertexColor(1, 1, 1)
-					-- Icon
-					button.cells[2].Icon:SetVertexColor(1, 1, 1)
-					button.cells[2].IconBorder:SetVertexColor(1, 1, 1)
-					button.cells[2].Icon:SetDesaturated(false)
-				end
+	local function PaintAuctionRow(button)
+		if button and button.rowData and button.rowData.itemKey.itemID then
+			local itemLink
+			if button.rowData.itemKey.itemID == 82800 then -- BattlePet
+				itemLink = format("|Hbattlepet:%d::::::|h[Dummy]|h", button.rowData.itemKey.battlePetSpeciesID)
+			else -- Normal item
+				itemLink = format("item:%d", button.rowData.itemKey.itemID)
 			end
-		--end)
+
+			if itemLink and _checkIfKnown(itemLink) then
+				-- Highlight
+				button.SelectedHighlight:Show()
+				button.SelectedHighlight:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
+				button.SelectedHighlight:SetAlpha(.2)
+				-- Icon
+				button.cells[2].Icon:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
+				button.cells[2].IconBorder:SetVertexColor(GetDB().r, GetDB().g, GetDB().b)
+				button.cells[2].Icon:SetDesaturated((GetDB().monochrome))
+			else
+				-- Highlight
+				button.SelectedHighlight:SetVertexColor(1, 1, 1)
+				-- Icon
+				button.cells[2].Icon:SetVertexColor(1, 1, 1)
+				button.cells[2].IconBorder:SetVertexColor(1, 1, 1)
+				button.cells[2].Icon:SetDesaturated(false)
+			end
 		end
+	end
+
+	local function _hookAH(self)
+		if not AK.ShouldRun() then return end
+		-- ScrollTarget also owns released rows. Visit the active view without
+		-- allocating or traversing its retained frame pool on each update.
+		self:ForEachFrame(PaintAuctionRow)
 	end
 
 

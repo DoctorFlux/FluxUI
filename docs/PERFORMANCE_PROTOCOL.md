@@ -1,5 +1,11 @@
 # Baseline protocol and currency evidence
 
+5 November auction Buy investigation: active-row highlighting uses the native
+view instead of the retained child pool. Five matched desktop pairs:200,600
+versus600 traversal visits;200 classifications unchanged;116 checks pass and
+two mutants rejected. Full126/781 passes. Native Buy spike and every client/provider
+integration remain pending. [Evidence and steps](AUCTION_PURCHASE_REFRESH.md).
+
 4 November built-in mail uses event handlers and short one-shot timers only
 while a selected-take job is active. The contacts picker reads known characters
 when opened; no continuous inbox scan or ticker was added. Desktop suite passes

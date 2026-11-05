@@ -54971,8 +54971,8 @@
       "path": "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 827,
-      "sha256": "db0edd484d89a034e4ca1158523114cb8686378f832a9219fe3a64c8d43be930",
+      "lines": 823,
+      "sha256": "0dfc5f513627fc320f808aba6c9add35cdfd52ed7c5cf9a351f567cd46a4f537",
       "clients": [
         "mainline"
       ],
@@ -54983,20 +54983,20 @@
       "functions": [
         {
           "name": "f:ADDON_LOADED",
-          "line": 492
+          "line": 488
         },
         {
           "name": "f:PLAYER_ENTERING_WORLD",
-          "line": 514
+          "line": 510
         },
         {
           "name": "SlashCmdList.ALREADYKNOWN",
-          "line": 794
+          "line": 790
         }
       ],
       "events": [
         {
-          "line": 485,
+          "line": 481,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -55004,7 +55004,7 @@
           "context": ")end)f:"
         },
         {
-          "line": 486,
+          "line": 482,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -55017,18 +55017,18 @@
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN1",
           "value": "/alreadyknown",
-          "line": 740
+          "line": 736
         },
         {
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN2",
           "value": "/ak",
-          "line": 741
+          "line": 737
         },
         {
           "kind": "handler",
           "name": "ALREADYKNOWN",
-          "line": 794
+          "line": 790
         }
       ],
       "widgets": [],
@@ -55039,8 +55039,8 @@
       "path": "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 858,
-      "sha256": "cc406c7ed1c6425ef2af74d2028f573d94ee2e970cc45434d54bfb00456bc5c6",
+      "lines": 854,
+      "sha256": "7b18b94cbe7f675396593056876d994e491c81b17ee72e726c9f13e52d4b317e",
       "clients": [
         "cata",
         "classic",
@@ -55056,20 +55056,20 @@
       "functions": [
         {
           "name": "f:ADDON_LOADED",
-          "line": 572
+          "line": 568
         },
         {
           "name": "SlashCmdList.ALREADYKNOWN",
-          "line": 822
+          "line": 818
         },
         {
           "name": "_hookMerchantAK.RefreshAuctionHouse",
-          "line": 848
+          "line": 844
         }
       ],
       "events": [
         {
-          "line": 565,
+          "line": 561,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -55082,18 +55082,18 @@
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN1",
           "value": "/alreadyknown",
-          "line": 768
+          "line": 764
         },
         {
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN2",
           "value": "/ak",
-          "line": 769
+          "line": 765
         },
         {
           "kind": "handler",
           "name": "ALREADYKNOWN",
-          "line": 822
+          "line": 818
         }
       ],
       "widgets": [],
@@ -71164,6 +71164,63 @@
         {
           "name": "s:metric",
           "line": 89
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/auction_active_rows.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 107,
+      "sha256": "061e8d3311a470d8341c936eed744b8a8f45691dfb62afe5ebc70369b4340519",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.hooksecurefunc",
+          "line": 30
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 31
+        },
+        {
+          "name": "frame:SetScript",
+          "line": 33
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 34
+        },
+        {
+          "name": "frame:SetOwner",
+          "line": 35
+        },
+        {
+          "name": "frame:SetHyperlink",
+          "line": 36
+        },
+        {
+          "name": "frame:ClearLines",
+          "line": 37
+        },
+        {
+          "name": "frame:NumLines",
+          "line": 38
+        },
+        {
+          "name": "env.FauxScrollFrame_GetOffset",
+          "line": 96
+        },
+        {
+          "name": "endenv.GetAuctionItemLink",
+          "line": 97
         }
       ],
       "events": [],

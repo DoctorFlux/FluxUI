@@ -1,5 +1,15 @@
 # Decisions
 
+## 5 November 2026 - auction refresh pool ownership
+
+The user requested the immediate Buy spike on all clients, with and without
+Syndicator. This authorizes the auction purchase path; guild-bank and void
+callbacks remain excluded. Use the native active-row iterator, retain the
+existing classifier and tint writes, and keep the bounded legacy UI path.
+Do not claim this bounded traversal optimization fixes the reported spike: no
+native capture exists. Gold refresh duplication and Syn mail publication remain
+investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_REFRESH.md).
+
 ## 2026-11-04 - built-in mail source and ownership
 
 - Treat Postal v4.3.4 as a behavior reference. Its installed `LICENSE.txt`
