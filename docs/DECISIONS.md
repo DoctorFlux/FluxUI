@@ -1,5 +1,12 @@
 # Decisions
 
+5 November Consumables countdown: use the active buff's public expiration
+minus the configured refresh threshold as the visual deadline for the button,
+wisp lock, and config cell. Keep actual item cooldowns separate, and omit an
+uncomputable numeric countdown when aura expiration is secret. Share the
+calculation from `Consumables.lua`; do not alter buff eligibility or stored
+threshold values.
+
 5 November charge scanner: use the restock bank adapter's public
 `ForEachOpenStack(opts, callback)` when scanning charge maxima for an open
 bank. Include character bank and supported warband stacks. Keep the bag-only

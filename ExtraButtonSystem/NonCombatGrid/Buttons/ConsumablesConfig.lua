@@ -787,6 +787,7 @@ function Config.ApplyThresholdChange()
     if FluxNCConsumables and FluxNCConsumables.SetRefreshThreshold then
         FluxNCConsumables.SetRefreshThreshold(totalSeconds)
         Config.UpdateThresholdDisplay()
+        Config.UpdateAllCooldowns()
         NotifyRestockPanel()
     end
 end

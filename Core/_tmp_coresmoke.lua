@@ -642,7 +642,7 @@ if paintSrc:find("fromItem or btn.IsFoodButton", 1, true) then
 end
 
 local gridUiSrc = read("../ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua")
-has(gridUiSrc, "GetBuffRemaining", "consumable config cells use shared remaining helper")
+has(gridUiSrc, "GetRefreshTimerInfo", "consumable config cells use shared refresh timer")
 
 local ufShared = read("../UnitFrames/FluxUnitFrames_Shared.lua")
 has(ufShared, "ClientUsesRealHealthNumbers", "health text does not treat Classic/Forever max<=100 as percent-scaled")

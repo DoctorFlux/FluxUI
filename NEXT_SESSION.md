@@ -1,5 +1,12 @@
 # Next session
 
+Consumables timer native follow-up: on Retail, Forever, Era, Anniversary,
+and supported progression, verify a buff shows `remaining − threshold` on
+the main button, wisp lock, and config cell, and the buff timer clears at
+the threshold while normal item cooldowns still display. Check a live
+threshold change, reload, combat, secret aura, and pixels. Desktop 150/805
+passes; see docs/CONSUMABLE_REFRESH_TIMER.md.
+
 Current combined Lua source matches all 804 hashes in
 `docs/validation/restock-charge-bank-iterator-2026-11-05.json` (149 passes).
 Preserve the newer consumable commits through main `2c0e7b8`; they arrived during

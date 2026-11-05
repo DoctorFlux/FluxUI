@@ -1,5 +1,11 @@
 # Development status
 
+5 November Consumables timer: main button, wisp lock, and config cells now
+count down to buff refresh eligibility (`remaining − threshold`) and clear
+the buff timer at that point. Five paired desktop checks and full
+150-script/805-Lua validation pass; native client confirmation remains pending.
+[Rule and evidence](CONSUMABLE_REFRESH_TIMER.md).
+
 Current combined source verification passes 149 scripts / 804 Lua files, including
 the newer consumable visibility and bank-charge fixes committed during this audit.
 Every current normalized Lua hash matches the

@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+5 November Consumables refresh timer: shared button/wisp/config countdown
+uses public buff expiration minus refresh threshold. Five paired loaded-module
+fixtures pass baseline and candidate (14/24 checks); full 150-script/805-Lua
+desktop validation passes. Retail, Forever, Era, Anniversary, and progression
+native confirmation remains pending, including visual and combat checks.
+[Timer evidence](CONSUMABLE_REFRESH_TIMER.md).
+
 5 November user native trace: open-bank charge detection in the Consumables
 config called an absent restock-bank method and stopped grid construction.
 The shared adapter call now uses `ForEachOpenStack` with character/warband

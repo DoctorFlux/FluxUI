@@ -257,7 +257,7 @@ local function BuffRemainingSeconds(buff)
     if not buff then
         return 0
     end
-    local exp = PublicAuraNumber(buff.expirationTime) or (type(buff.expirationTime) == "number" and buff.expirationTime) or nil
+    local exp = PublicAuraNumber(buff.expirationTime)
     if exp and exp > 0 then
         local rem = exp - GetTime()
         local tmod = PublicAuraNumber(buff.timeMod)
@@ -796,6 +796,30 @@ end
 function Module.GetRefreshThreshold()
     local data = LoadSavedVars()
     return data.refreshThreshold or 300  -- Default 5 minutes
+end
+
+-- Public countdown to the point where the active buff can be refreshed.
+-- A secret expiration cannot be shifted safely, so it has no numeric timer.
+function Module.GetRefreshTimerInfo(buff)
+    if not buff then return nil end
+    local expiration = PublicAuraNumber(buff.expirationTime)
+    if not expiration or expiration <= 0 then return nil end
+    local timeMod = PublicAuraNumber(buff.timeMod) or 1
+    if timeMod <= 0 then timeMod = 1 end
+    local threshold = math.max(0, tonumber(Module.GetRefreshThreshold()) or 0)
+    local refreshAt = expiration - threshold * timeMod
+    local rawRemaining = refreshAt - GetTime()
+    if rawRemaining <= 0 then return nil end
+    local maxDuration = PublicAuraNumber(buff.maxDuration)
+        or PublicAuraNumber(buff.duration) or 0
+    local duration = math.max(rawRemaining, maxDuration - threshold * timeMod)
+    return {
+        startTime = refreshAt - duration,
+        duration = duration,
+        expirationTime = refreshAt,
+        timeMod = timeMod,
+        remaining = rawRemaining / timeMod,
+    }
 end
 
 -- Set refresh threshold (in seconds)
@@ -4572,8 +4596,9 @@ function Module.UpdateWispLockCooldown(btn, minRemaining, minRemainingBuff)
         return
     end
     
-    local threshold = Module.GetRefreshThreshold() or 0
-    if minRemaining <= threshold then
+    local timer = Module.GetRefreshTimerInfo(minRemainingBuff)
+    if not timer then
+        ClearConsumableAuraTimer(btn)
         local cooldown = btn.WCooldown or (btn.Widget and btn.Widget.cooldown)
         if cooldown then cooldown:Hide() end
         return
@@ -4600,36 +4625,7 @@ function Module.UpdateWispLockCooldown(btn, minRemaining, minRemainingBuff)
     -- Force show cooldown (FluxButton might hide it for placeholders)
     cooldown:Show()
     
-    -- Cooldown ring shows proportional fill: from buff apply to refresh point
-    -- startTime = when buff was applied; duration = maxDuration - threshold (period until refresh)
-    -- Ring fills proportionally: 15min remaining of 30min buff = half filled
-    local maxDuration = 0
-    if minRemainingBuff and minRemainingBuff.maxDuration and minRemainingBuff.maxDuration > 0 and isfinite(minRemainingBuff.maxDuration) then
-        maxDuration = minRemainingBuff.maxDuration
-    elseif minRemainingBuff and minRemainingBuff.duration and minRemainingBuff.duration > 0 and isfinite(minRemainingBuff.duration) then
-        maxDuration = minRemainingBuff.duration
-    else
-        maxDuration = minRemaining
-    end
-    
-    local expirationTime = 0
-    if minRemainingBuff and minRemainingBuff.expirationTime and isfinite(minRemainingBuff.expirationTime) then
-        expirationTime = minRemainingBuff.expirationTime
-    else
-        expirationTime = GetTime() + minRemaining
-    end
-    
-    -- Period from "buff applied" to "time to refresh" = maxDuration - threshold
-    local displayDuration = math.max(1, maxDuration - threshold)
-    -- When buff was applied
-    local startTime = expirationTime - maxDuration
-    
-    if not isfinite(startTime) or not isfinite(displayDuration) or displayDuration <= 0 then
-        cooldown:Hide()
-        return
-    end
-    
-    cooldown:SetCooldown(startTime, displayDuration)
+    cooldown:SetCooldown(timer.startTime, timer.duration)
     cooldown.noCooldownCount = true
     cooldown:Show()
     ApplyConsumableAuraTimer(btn, minRemainingBuff)
@@ -4898,6 +4894,7 @@ ClearConsumableAuraTimer = function(btn)
     if not btn then
         return
     end
+    local hadAuraTimer = btn.FluxConsumableAuraCooldown
     btn.FluxConsumableAuraCooldown = nil
     btn.StanceBuffCooldownStart = nil
     btn.StanceBuffCooldownDuration = nil
@@ -4908,36 +4905,30 @@ ClearConsumableAuraTimer = function(btn)
     if Stance and Stance.SyncAuraCountdown then
         Stance.SyncAuraCountdown(btn)
     end
+    if hadAuraTimer then
+        local Paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
+        if Paint and Paint.UpdateCooldown then
+            Paint.UpdateCooldown(btn)
+        end
+    end
 end
 
 ApplyConsumableAuraTimer = function(btn, buff)
     if not btn then
         return
     end
-    if not buff then
+    local timer = Module.GetRefreshTimerInfo(buff)
+    if not timer then
         ClearConsumableAuraTimer(btn)
         return
-    end
-    local remaining = BuffRemainingSeconds(buff)
-    if remaining <= 0 then
-        ClearConsumableAuraTimer(btn)
-        return
-    end
-    local exp = PublicAuraNumber(buff.expirationTime) or buff.expirationTime
-    local maxDuration = buff.maxDuration or buff.duration or 0
-    if (not maxDuration or maxDuration <= 0) and type(exp) == "number" and exp > 0 then
-        maxDuration = remaining
-    end
-    local startTime
-    if type(exp) == "number" and exp > 0 and maxDuration and maxDuration > 0 then
-        startTime = exp - maxDuration
     end
     btn.FluxConsumableAuraCooldown = true
-    btn.StanceBuffCooldownStart = startTime
-    btn.StanceBuffCooldownDuration = maxDuration
-    btn.StanceBuffDurationObject = buff.durationObject
-    btn.StanceBuffExpirationTime = exp
-    btn.StanceBuffTimeMod = buff.timeMod
+    btn.StanceBuffCooldownStart = timer.startTime
+    btn.StanceBuffCooldownDuration = timer.duration
+    -- The aura duration object runs to full expiration, past the refresh point.
+    btn.StanceBuffDurationObject = nil
+    btn.StanceBuffExpirationTime = timer.expirationTime
+    btn.StanceBuffTimeMod = timer.timeMod
     local Stance = _G.Flux and _G.Flux.Bars and _G.Flux.Bars.Stance
     if Stance and Stance.SyncAuraCountdown then
         Stance.SyncAuraCountdown(btn)

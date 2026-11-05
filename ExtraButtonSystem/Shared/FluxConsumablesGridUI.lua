@@ -751,56 +751,15 @@ function GridUI.UpdateCellCooldown(cell, itemID)
     end
 
     local buff = Cons and Cons.FindBuffForItem and Cons.FindBuffForItem(itemID)
-    local remaining = 0
-    if Cons and Cons.GetBuffRemaining then
-        remaining = Cons.GetBuffRemaining(buff)
-    elseif buff and buff.expirationTime and buff.expirationTime > 0 then
-        remaining = buff.expirationTime - GetTime()
-    end
-    if buff and remaining > 0 then
-        local maxDuration = buff.maxDuration or buff.duration or 0
-        if maxDuration <= 0 and buff.spellID and GetSpellInfo then
-            local _, _, _, _, _, _, _, _, _, spellMaxDuration = GetSpellInfo(buff.spellID)
-            if spellMaxDuration and spellMaxDuration > 0 then
-                maxDuration = spellMaxDuration / 1000
-            end
-        end
-        if maxDuration <= 0 then
-            if remaining > 3600 then
-                maxDuration = 7200
-            elseif remaining > 1800 then
-                maxDuration = 3600
-            elseif remaining > 0 then
-                maxDuration = 1800
-            else
-                cell.cooldown:Hide()
-                if cell.timerText then
-                    cell.timerText:Hide()
-                end
-                return
-            end
-        end
-        local startTime
-        if buff.expirationTime and buff.expirationTime > 0 then
-            startTime = buff.expirationTime - maxDuration
-            if startTime > GetTime() then
-                startTime = GetTime()
-                maxDuration = remaining
-            end
-        else
-            startTime = GetTime() - (maxDuration - remaining)
-        end
-        if buff.durationObject and cell.cooldown.SetCooldownFromDurationObject then
-            pcall(cell.cooldown.SetCooldownFromDurationObject, cell.cooldown, buff.durationObject)
-        else
-            cell.cooldown:SetCooldown(startTime, maxDuration)
-        end
+    local timer = Cons and Cons.GetRefreshTimerInfo and Cons.GetRefreshTimerInfo(buff)
+    if timer then
+        cell.cooldown:SetCooldown(timer.startTime, timer.duration)
         cell.cooldown:Show()
         if cell.timerText then
-            if remaining >= 90 then
-                cell.timerText:SetText(tostring(math.ceil(remaining / 60)) .. "m")
+            if timer.remaining >= 90 then
+                cell.timerText:SetText(tostring(math.ceil(timer.remaining / 60)) .. "m")
             else
-                cell.timerText:SetText(tostring(math.floor(remaining + 1e-6)))
+                cell.timerText:SetText(tostring(math.floor(timer.remaining + 1e-6)))
             end
             cell.timerText:SetTextColor(1, 1, 1, 1)
             cell.timerText:Show()

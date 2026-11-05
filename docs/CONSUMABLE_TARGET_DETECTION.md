@@ -1,5 +1,9 @@
 # Configured consumable targets — 5 November 2026
 
+The refresh countdown now stops at the configured threshold. See
+[CONSUMABLE_REFRESH_TIMER.md](CONSUMABLE_REFRESH_TIMER.md) for the timer rule
+and validation.
+
 Native follow-up: the user supplied a charge-scan exception while opening the
 config with an open bank. The restock bank iterator mismatch and its correction
 are recorded in [RESTOCK_CHARGE_BANK_ITERATOR.md](RESTOCK_CHARGE_BANK_ITERATOR.md).

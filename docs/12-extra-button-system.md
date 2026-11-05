@@ -62,6 +62,8 @@ hover help available on clients without the deprecated `GetItemInfo` global.
 
 Eligibility checks ownership, cooldown, aura duration, Well Fed equivalence, weapon enchant applicability and supported families. When covered buffs exceed the refresh threshold, the display enters **wisp lock**. Weapon-enchant selection can prefer the weapon needing replenishment. Ground-placeable items can learn their aura association. Applicable Classic clients also handle regular/supercharged Chronoboon variants, world buffs and restock quantities.
 
+The button, wisp lock, and config cell buff countdowns end at the refresh threshold (`buff remaining − threshold`), when the item becomes eligible again. Actual item cooldowns remain separate; see [consumable refresh timer](CONSUMABLE_REFRESH_TIMER.md).
+
 Configured items now show detected flask/elixir/Well Fed food/weapon-enchant
 category in the existing tooltips. A weapon enchant with an explicit tooltip
 weapon-type restriction is counted and targeted only when an equipped weapon

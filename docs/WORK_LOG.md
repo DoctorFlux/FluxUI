@@ -1,5 +1,13 @@
 # Work log
 
+5 November Consumables timer: verified baseline `2c0e7b8`, external all-ref
+history checkpoint and on-disk settings before editing. The old button and
+config timer ran to full buff expiry after the item had become eligible at
+the refresh threshold. Shared refresh deadline now drives button digits,
+wisp swipe, and config cell swipe/digits. Five baseline/candidate pairs pass;
+full worktree validation passes 150 scripts/805 Lua files. Native checks
+pending. [Case record](CONSUMABLE_REFRESH_TIMER.md).
+
 Preserved newer main commits for consumable visibility and bank charge iteration
 through `2c0e7b8`. All current normalized Lua hashes/file membership match their
 combined passing 149-script/804-Lua report; the earlier 147/802 snapshot result
