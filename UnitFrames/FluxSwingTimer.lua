@@ -3,6 +3,8 @@ ns.SwingTimer = {}
 local ST = ns.SwingTimer
 local API = ns.API
 local Border = ns.Border
+local CastThemes = ns.CastBarThemes
+local Schools = ns.CastBarSchools
 
 local function FluxCap()
     return ns.Flux and ns.Flux.Cap
@@ -426,25 +428,32 @@ local function GetEffectiveRangedWeaponSpeed()
     return (mainSpeed and mainSpeed > 0) and mainSpeed or 1
 end
 
-local function PlayerMainHandIsWand()
+local classicRangedWandID, classicRangedWandResult
+local function PlayerClassicRangedIsWand()
     if not GetInventoryItemID then
         return false
     end
-    local id = GetInventoryItemID("player", MAINHAND_SLOT)
-    if not id or IsSecret(id) or id == 0 then
+    local id = GetInventoryItemID("player", RANGED_SLOT)
+    if IsSecret(id) or id == nil or id == 0 then
         return false
     end
+    if id == classicRangedWandID then return classicRangedWandResult end
     local class, sub
-    if GetItemInfo then
+    if C_Item and C_Item.GetItemInfoInstant then
+        local ok, _, _, _, _, _, itemClass, itemSub = pcall(C_Item.GetItemInfoInstant, id)
+        if ok then class, sub = itemClass, itemSub end
+    end
+    if class == nil and GetItemInfo then
         local ok, _, _, _, _, _, _, _, _, _, _, _, itemClass, itemSub = pcall(GetItemInfo, id)
         if ok then
             class, sub = itemClass, itemSub
         end
     end
-    if class == nil or IsSecret(class) or IsSecret(sub) then
+    if IsSecret(class) or IsSecret(sub) or class == nil then
         return false
     end
-    return class == 2 and sub == 19 -- Weapon, Wand
+    classicRangedWandID, classicRangedWandResult = id, class == 2 and sub == 19
+    return classicRangedWandResult -- Weapon, Wand
 end
 
 local function GetPlayerClassFile()
@@ -466,7 +475,7 @@ local function GetRangedSlotWeaponSubclass()
         return nil
     end
     local id = GetInventoryItemID("player", RANGED_SLOT)
-    if not id or IsSecret(id) or id == 0 then
+    if IsSecret(id) or id == nil or id == 0 then
         return nil
     end
     if C_Item and C_Item.GetItemInfoInstant then
@@ -506,11 +515,100 @@ local function PlayerRangedSlotIsWand()
     return sid == WAND_SHOOT_SPELL_ID or sid == GetWandShootSpellID()
 end
 
+-- Shoot is a shared spell for every wand. Its spell ID cannot identify the
+-- equipped wand's damage school, so read the equipment tooltip on changes.
+local wandSchoolItem, wandSchoolMask, wandSchoolQueried
+local wandSchoolTooltip
+local WAND_SCHOOLS = { 2, 4, 8, 16, 32, 64 }
+
+local function InvalidateWandSchool()
+    wandSchoolItem, wandSchoolMask, wandSchoolQueried = nil, nil, nil
+end
+
+local function IsEquippedWand()
+    if UseNativePlayerSwing() then return PlayerRangedSlotIsWand() end
+    return PlayerClassicRangedIsWand()
+end
+
+local function SchoolFromDamageLine(value)
+    if Schools and Schools.Plain then value = Schools.Plain(value) end
+    if type(value) ~= "string" then return nil end
+    local line = value:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower()
+    local damage = type(DAMAGE) == "string" and DAMAGE:lower() or "damage"
+    -- Require the weapon's damage range, not an Equip/Use paragraph that may
+    -- mention a different spell school or bonus damage amount.
+    if not line:find("^%s*[%d%.,]+%s*%-%s*[%d%.,]+")
+        or not line:find(damage, 1, true) then return nil end
+    for _, mask in ipairs(WAND_SCHOOLS) do
+        local label
+        if C_Spell and C_Spell.GetSchoolString then
+            label = C_Spell.GetSchoolString(mask)
+        elseif GetSchoolString then
+            label = GetSchoolString(mask)
+        end
+        if Schools and Schools.Plain then label = Schools.Plain(label) end
+        if type(label) == "string" and label ~= "" and line:find(label:lower(), 1, true) then
+            return mask
+        end
+    end
+end
+
+local function EquippedRangedItem()
+    local item = GetInventoryItemLink and GetInventoryItemLink("player", RANGED_SLOT)
+    if IsSecret(item) then return nil end
+    if item == nil and GetInventoryItemID then item = GetInventoryItemID("player", RANGED_SLOT) end
+    if IsSecret(item) then return nil end
+    return item
+end
+
+local function ResolveWandSchool()
+    if not IsEquippedWand() then return nil end
+    local slot = RANGED_SLOT
+    local item = EquippedRangedItem()
+    if item == nil then return nil end
+    if wandSchoolQueried and wandSchoolItem == item then return wandSchoolMask end
+    wandSchoolItem, wandSchoolMask, wandSchoolQueried = item, nil, true
+
+    if C_TooltipInfo and type(C_TooltipInfo.GetInventoryItem) == "function" then
+        local ok, data = pcall(C_TooltipInfo.GetInventoryItem, "player", slot)
+        if ok and not IsSecret(data) and type(data) == "table"
+            and not IsSecret(data.lines) and type(data.lines) == "table" then
+            for _, line in ipairs(data.lines) do
+                local mask = not IsSecret(line) and type(line) == "table" and SchoolFromDamageLine(line.leftText)
+                if mask then wandSchoolMask = mask; return mask end
+            end
+        end
+    end
+
+    -- Classic clients can expose only GameTooltip's SetInventoryItem route.
+    -- Forever stays on its structured tooltip path to avoid combat tooltip
+    -- mutation on a client with restricted values.
+    if not UseNativePlayerSwing() and CreateFrame then
+        if not wandSchoolTooltip then
+            local ok, tooltip = pcall(CreateFrame, "GameTooltip", "FluxSwingSchoolTooltip", UIParent, "GameTooltipTemplate")
+            if ok then wandSchoolTooltip = tooltip end
+        end
+        if wandSchoolTooltip then
+            wandSchoolTooltip:SetOwner(UIParent, "ANCHOR_NONE")
+            local ok = pcall(wandSchoolTooltip.SetInventoryItem, wandSchoolTooltip, "player", slot)
+            if ok then
+                for i = 1, wandSchoolTooltip:NumLines() do
+                    local text = _G["FluxSwingSchoolTooltipTextLeft" .. i]
+                    local mask = text and SchoolFromDamageLine(text:GetText())
+                    if mask then wandSchoolMask = mask; break end
+                end
+            end
+            wandSchoolTooltip:Hide()
+        end
+    end
+    return wandSchoolMask
+end
+
 -- Wind-up before a shot fires.
 -- TBC WeaponSwingTimer_Hunter: MAGE/PRIEST/WARLOCK use fixed 0.52; hunter uses 0.52 * haste modifier.
 -- Retail Flux: wand matches caster branch (fixed 0.52); hunter uses 0.65.
 local function GetEffectiveAutoCastTime()
-    if PlayerMainHandIsWand() then
+    if PlayerClassicRangedIsWand() then
         return 0.52
     end
     return 0.65
@@ -621,7 +719,7 @@ local function GetRangedSwingLabelAndSpellID()
         end
         return SHOOT_SPELL_NAME, sid
     end
-    if PlayerMainHandIsWand() then
+    if PlayerClassicRangedIsWand() then
         return SHOOT_SPELL_NAME, GetWandShootSpellID()
     end
     return "Auto Shot", AUTO_SHOT_SPELL_ID
@@ -634,7 +732,7 @@ local function ResetRangedShotTimer()
     local range_speed = GetEffectiveRangedWeaponSpeed()
     if range_speed <= 0 then range_speed = 0.001 end
     local act = GetEffectiveAutoCastTime()
-    local margin = PlayerMainHandIsWand() and 0.05 or 0.01
+    local margin = PlayerClassicRangedIsWand() and 0.05 or 0.01
     if (curr_time + margin - lastRangedShotTime) > (range_speed - act) then
         lastRangedShotTime = curr_time - range_speed + act
     elseif curr_time ~= lastRangedShotTime then
@@ -1132,6 +1230,21 @@ end
 -- ---------------------------------------------------------------------------
 -- Layout
 -- ---------------------------------------------------------------------------
+local function RefreshWandTheme()
+    if not rangedWSTFrame or not CastThemes then return end
+    local mask = ShouldShowRangedOverlay() and IsEquippedWand() and ResolveWandSchool() or nil
+    local record = rangedWSTFrame._fluxSchoolCast
+    if mask and rangedWSTFrame:IsVisible() then
+        if not record or record.explicitMask ~= mask then
+            CastThemes.BeginMask(rangedWSTFrame, "player", mask)
+        else
+            CastThemes.Apply(rangedWSTFrame)
+        end
+    elseif record then
+        CastThemes.Reset(rangedWSTFrame, true)
+    end
+end
+
 local function UpdateSwingLayout()
     EnsureSwingFrameAttached()
     if not swingFrame or not castBar then return end
@@ -1204,6 +1317,7 @@ local function UpdateSwingLayout()
     if UseNativePlayerSwing() then
         UpdateNativeRangeState()
     end
+    RefreshWandTheme()
 end
 
 local function UpdateIcon()
@@ -1538,7 +1652,7 @@ local function SwingTimer_OnUpdate(self, elapsed)
             if UseNativePlayerSwing() then
                 wandHold = PlayerRangedSlotIsWand()
             else
-                wandHold = PlayerMainHandIsWand()
+                wandHold = PlayerClassicRangedIsWand()
             end
         end
         if wandHold then
@@ -1849,6 +1963,7 @@ local function OnEvent(self, event, ...)
         UpdateNativeRangeState()
 
     elseif event == "WEAPON_SLOT_CHANGED" then
+        InvalidateWandSchool()
         local oldHasOff = hasOffhand
         local oldHasRanged = hasRangedWeapon
         UpdateMainSpeed()
@@ -1859,6 +1974,7 @@ local function OnEvent(self, event, ...)
             UpdateSwingLayout()
         end
         UpdateIcon()
+        RefreshWandTheme()
 
     elseif event == "ADDON_LOADED" then
         local addonLoaded = ...
@@ -1929,6 +2045,7 @@ local function OnEvent(self, event, ...)
     elseif event == "UNIT_INVENTORY_CHANGED" then
         local unit = ...
         if unit == "player" then
+            if EquippedRangedItem() ~= wandSchoolItem then InvalidateWandSchool() end
             local oldHasOff = hasOffhand
             local oldHasRanged = hasRangedWeapon
             UpdateMainSpeed()
@@ -1938,6 +2055,18 @@ local function OnEvent(self, event, ...)
                 UpdateSwingLayout()
             end
             UpdateIcon()
+            RefreshWandTheme()
+        end
+
+    elseif event == "GET_ITEM_INFO_RECEIVED" then
+        local loadedID = ...
+        if wandSchoolQueried and not wandSchoolMask and not IsSecret(loadedID)
+            and GetInventoryItemID then
+            local equippedID = GetInventoryItemID("player", RANGED_SLOT)
+            if not IsSecret(equippedID) and equippedID == loadedID then
+                InvalidateWandSchool()
+                RefreshWandTheme()
+            end
         end
 
     elseif event == "START_AUTOREPEAT_SPELL" then
@@ -1995,6 +2124,7 @@ local function OnEvent(self, event, ...)
         end
 
     elseif event == "PLAYER_ENTERING_WORLD" then
+        InvalidateWandSchool()
         playerGUID = UnitGUID("player")
         meleeAutoAttacking = false
         ZeroTimers()
@@ -2023,6 +2153,7 @@ local function ApplySwingTimerEventRegistration()
         swingTimerEventFrame:RegisterEvent("PLAYER_LEAVE_COMBAT")
     end)
     swingTimerEventFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+    swingTimerEventFrame:RegisterEvent("GET_ITEM_INFO_RECEIVED")
     swingTimerEventFrame:RegisterEvent("START_AUTOREPEAT_SPELL")
     swingTimerEventFrame:RegisterEvent("STOP_AUTOREPEAT_SPELL")
     swingTimerEventFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
@@ -2094,19 +2225,23 @@ end
 -- Uses same casting-bar atlas as melee; colors match WST default_settings cooldown / auto_cast.
 -- ---------------------------------------------------------------------------
 local function CreateRangedWSTOneBar(parent)
-    local f = CreateFrame("Frame", nil, parent)
+    local f = CreateFrame("StatusBar", nil, parent)
     f:SetFrameLevel((parent:GetFrameLevel() or 0) + 3)
+    f:SetMinMaxValues(0, 1)
+    f:SetValue(0)
+    f.TimerBar = f -- shared school renderer uses this status bar's live fill
     f:Hide()
     local bg = f:CreateTexture(nil, "BACKGROUND")
     bg:SetAllPoints(f)
     bg:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
-    bg:SetVertexColor(0.15, 0.15, 0.15, 1)
+    bg:SetVertexColor(0.3, 0.3, 0.3, 1)
     f.bg = bg
     local cooldown = f:CreateTexture(nil, "ARTWORK")
     cooldown:SetPoint("TOPLEFT", f, "TOPLEFT", 0, 0)
     cooldown:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
     SetAtlasLegacy(cooldown, "ui-castingbar-filling-standard")
     cooldown:SetVertexColor(unpack(WST_RANGED_COOLDOWN_RGBA))
+    f:SetStatusBarTexture(cooldown)
     f.cooldownTex = cooldown
     local clip = f:CreateTexture(nil, "OVERLAY", nil, 1)
     clip:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, 0)
@@ -2114,6 +2249,7 @@ local function CreateRangedWSTOneBar(parent)
     SetAtlasLegacy(clip, "ui-castingbar-filling-standard")
     clip:SetVertexColor(unpack(WST_RANGED_AUTO_CAST_RGBA))
     f.clipTex = clip
+    if CastThemes then CastThemes.Attach(f) end
     return f
 end
 
@@ -2132,7 +2268,7 @@ UpdateRangedWSTVisuals = function(speed, rangedTimer, fullFlashHold)
         if rangedWSTFrame.clipTex then rangedWSTFrame.clipTex:Hide() end
         if fullFlashHold then
             rangedWSTFrame.cooldownTex:SetVertexColor(unpack(WST_RANGED_COOLDOWN_RGBA))
-            rangedWSTFrame.cooldownTex:SetWidth(W)
+            rangedWSTFrame:SetValue(1)
             rangedWSTFrame.cooldownTex:SetHeight(H)
             return
         end
@@ -2140,7 +2276,7 @@ UpdateRangedWSTVisuals = function(speed, rangedTimer, fullFlashHold)
         if new_width < 2 then new_width = 2 end
         new_width = math.min(new_width, W)
         rangedWSTFrame.cooldownTex:SetVertexColor(unpack(WST_RANGED_COOLDOWN_RGBA))
-        rangedWSTFrame.cooldownTex:SetWidth(new_width)
+        rangedWSTFrame:SetValue(new_width / W)
         rangedWSTFrame.cooldownTex:SetHeight(H)
         return
     end
@@ -2151,7 +2287,7 @@ UpdateRangedWSTVisuals = function(speed, rangedTimer, fullFlashHold)
         if rangedWSTFrame.clipTex then rangedWSTFrame.clipTex:Hide() end
         if fullFlashHold then
             rangedWSTFrame.cooldownTex:SetVertexColor(unpack(WST_RANGED_AUTO_CAST_RGBA))
-            rangedWSTFrame.cooldownTex:SetWidth(W)
+            rangedWSTFrame:SetValue(1)
             rangedWSTFrame.cooldownTex:SetHeight(H)
             return
         end
@@ -2167,7 +2303,7 @@ UpdateRangedWSTVisuals = function(speed, rangedTimer, fullFlashHold)
         end
         if new_width < 2 then new_width = 2 end
         new_width = math.min(new_width, W)
-        rangedWSTFrame.cooldownTex:SetWidth(new_width)
+        rangedWSTFrame:SetValue(new_width / W)
         rangedWSTFrame.cooldownTex:SetHeight(H)
         return
     end
@@ -2193,7 +2329,7 @@ UpdateRangedWSTVisuals = function(speed, rangedTimer, fullFlashHold)
         clip_w = math.max(0.001, math.min(clip_w, W))
     end
 
-    rangedWSTFrame.cooldownTex:SetWidth(timer_width)
+    rangedWSTFrame:SetValue(timer_width / W)
     rangedWSTFrame.cooldownTex:SetHeight(H)
     rangedWSTFrame.clipTex:SetWidth(clip_w)
     rangedWSTFrame.clipTex:SetHeight(H)
@@ -2218,7 +2354,7 @@ local function CreateSwingBar(parent)
     local bg = bar:CreateTexture(nil, "BACKGROUND")
     bg:SetPoint("CENTER", bar, "CENTER", 0, 0)
     bg:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
-    bg:SetVertexColor(0.15, 0.15, 0.15, 1)
+    bg:SetVertexColor(0.3, 0.3, 0.3, 1)
     bar.bg = bg
 
     return bar

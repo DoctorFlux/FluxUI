@@ -297,6 +297,12 @@ function FX.ThemeForMask(mask,profile)
 end
 
 function FX.ResolveTheme(record,options)
+    if record and record.explicitMask then
+        local mask = Schools.Plain(record.explicitMask)
+        local theme = FX.ThemeForMask(mask)
+        if theme then return theme, {mask=mask, schoolMask=mask, inferred=false} end
+        return nil
+    end
     local info=SpellVisuals and SpellVisuals.Resolve(record,options)
     if not info then return nil end
     local theme=FX.ThemeForMask(info.mask,info.profile)
@@ -808,6 +814,18 @@ function FX.Begin(bar, unit, spellID, name, tradeSkill, eventSpellID, nameplate)
     bar._fluxSchoolCast = {unit = unit, id = Schools.Plain(spellID) or Schools.Plain(eventSpellID), name = Schools.Plain(name),
         trade=Schools.Plain(tradeSkill),tradeUnknown=tradeSkill~=nil and Schools.Plain(tradeSkill)==nil,
         class = class, nameplate = nameplate and true or nil}
+    FX.Apply(bar)
+end
+
+-- Equipped wand damage is an item property, not the school of Shoot (5019).
+-- The swing timer supplies a readable item-school mask to the same renderer.
+function FX.BeginMask(bar, unit, mask)
+    FX.Reset(bar, true)
+    mask=Schools.Plain(mask)
+    if type(mask)~="number" then return end
+    local class
+    if UnitClass then local _, token = UnitClass(unit); class = Schools.Plain(token) end
+    bar._fluxSchoolCast = {unit=unit, explicitMask=mask, class=class}
     FX.Apply(bar)
 end
 

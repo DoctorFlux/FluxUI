@@ -61,6 +61,11 @@ the active school color; native visual acceptance is pending.
 
 [SwingTimer](../UnitFrames/FluxSwingTimer.lua) shares the player's cast-bar slot. Real casts can claim it; `HideForCastBarClaim` and `OnCastBarSlotReleased` coordinate ownership. Applicable Classic clients use combat-log/weapon events; Forever uses its supported swing APIs/events, including ranged/wand/throw variants. Cata/Mists and Live should not be assumed to have the same legacy swing path merely because the file loads.
 
+On Era, Anniversary and Forever, an equipped wand with a readable damage
+school now uses the same school fill and effects as a spell cast (for example,
+a Fire wand uses Fire cast art). The ordinary swing timer remains for other
+weapons or unknown school data. [Implementation and pending native checks](SWING_WAND_CAST_THEME.md).
+
 [FlightPath](../UnitFrames/FluxFlightPath.lua) adds taxi duration tooltips and cast-bar progress, with a route-time database selected by client-specific XML. Lookup prefers faction-scoped account overrides, then supplied static data; character storage remembers node names. `GetFlightTimeForNodes`, `SetOverride` and `ClearOverride` expose this boundary. Flight timing is measured/learned rather than guaranteed exact; missing routes remain unknown. Data is attributed to RestedXP and has separate licensing; see [assets](34-assets.md).
 
 ## Auras, threat and integrations

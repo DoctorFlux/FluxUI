@@ -64,6 +64,7 @@ local function fixture(branch, capabilities)
     function methods:SetPoint(...) spriteWrite(self);state.work.positions=state.work.positions+1;self.points[#self.points+1] = {...} end
     function methods:SetAllPoints(target) self.allPoints = target end
     function methods:EnableMouse(value) self.mouse = value end
+    function methods:SetOwner() end
     function methods:SetClipsChildren(value) self.clipped = value end
     function methods:SetTexture(path)
         state.work.textures=state.work.textures+1
@@ -675,6 +676,117 @@ local lastNativeWrites,lastFallbackWrites
 local function getVisuals(fx)
     for i=1,30 do local key,value=debug.getupvalue(fx.Update,i);if key=="visuals" then return value end;if not key then break end end
     error("renderer state not found")
+end
+-- A wand supplies its item damage school directly to the cast renderer.
+for _,branch in ipairs({"classic_era","classic_anniversary","forever"}) do
+    local s,e,ns=fixture(branch)
+    local bar=s.NewBar("player")
+    local fx=ns.CastBarThemes
+    fx.BeginMask(bar,"player",4)
+    local visual=getVisuals(fx)[bar]
+    check(visual and visual.theme==fx.ThemeForMask(4) and visual.fill:IsShown(),
+        branch.." Fire wand uses the Fire cast fill and effects")
+    check(bar.TimerBar:GetStatusBarTexture():GetAlpha()==0,
+        branch.." Fire wand hides only the original status-bar fill")
+    fx.Reset(bar,true)
+    check(bar.TimerBar:GetStatusBarTexture():GetAlpha()==1 and bar._fluxSchoolCast==nil,
+        branch.." unequip restores the original fill and clears the school")
+    fx.BeginMask(bar,"player",16)
+    check(getVisuals(fx)[bar].theme==fx.ThemeForMask(16),
+        branch.." a Frost replacement changes to the Frost cast theme")
+    fx.BeginMask(bar,"player",s.secret)
+    check(bar._fluxSchoolCast==nil and bar.TimerBar:GetStatusBarTexture():GetAlpha()==1,
+        branch.." inaccessible item schools keep the default bar")
+end
+-- The actual swing module reads the equipped ranged slot and hands that mask
+-- to the same renderer when Shoot starts. Item changes replace the theme.
+for _,branch in ipairs({"classic_era","classic_anniversary","forever"}) do
+    local s,e,ns=fixture(branch)
+    local equippedSchool=4
+    local itemSub, cold, misleading, tooltipReads = 19, false, false, 0
+    s.schoolNames={[4]="Fire",[16]="Frost"}
+    e.DAMAGE="Damage"
+    e.GetInventoryItemID=function(_,slot) if slot==18 then return itemSub==2 and 7003 or (equippedSchool==4 and 7001 or 7002) end end
+    e.GetInventoryItemLink=function(_,slot) if slot==18 then return "item:"..(itemSub==2 and 7003 or (equippedSchool==4 and 7001 or 7002)) end end
+    e.GetItemInfo=function() return nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,2,itemSub end
+    if branch~="classic_era" then
+        e.C_Item={GetItemInfoInstant=function(id)return id,nil,nil,nil,nil,2,itemSub end}
+    end
+    e.C_TooltipInfo={GetInventoryItem=function()
+        tooltipReads=tooltipReads+1
+        return {lines=cold and {} or {{leftText=misleading and "Equip: Increases Fire Damage by 10"
+            or "12 - 24 "..s.schoolNames[equippedSchool].." "..e.DAMAGE}}}
+    end}
+    e.UnitAttackSpeed=function()return 2,nil,2 end
+    e.UnitRangedDamage=function()return 2 end
+    ns.API.GetSpellInfo=function()return nil,nil,132208 end
+    ns.Border.SetClassColor=function()end
+    local bar=s.NewBar("player")
+    loadAddon("UnitFrames/FluxSwingTimer.lua",e,ns)
+    ns.SwingTimer.AttachToCastBar(bar,"player")
+    local events, ranged
+    for _,frame in ipairs(s.frames) do
+        if frame.events.START_AUTOREPEAT_SPELL then events=frame end
+        if frame.cooldownTex and frame.TimerBar==frame then ranged=frame end
+    end
+    check(events and ranged,branch.." swing event and ranged status bar exist")
+    events.scripts.OnEvent(events,"START_AUTOREPEAT_SPELL")
+    check(getVisuals(ns.CastBarThemes)[ranged].theme==ns.CastBarThemes.ThemeForMask(4),
+        branch.." equipped Fire wand paints the Fire cast theme")
+    equippedSchool=16
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(getVisuals(ns.CastBarThemes)[ranged].theme==ns.CastBarThemes.ThemeForMask(16),
+        branch.." equipped Frost wand replaces the theme without a new bar")
+    local priorReads=tooltipReads
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(tooltipReads==priorReads,branch.." unchanged inventory does not rescan the wand tooltip")
+    equippedSchool=4;cold=true
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(ranged._fluxSchoolCast==nil,branch.." cold item tooltip keeps the default appearance")
+    cold=false
+    events.scripts.OnEvent(events,"GET_ITEM_INFO_RECEIVED",7001)
+    check(getVisuals(ns.CastBarThemes)[ranged].theme==ns.CastBarThemes.ThemeForMask(4),
+        branch.." item-data arrival restores the Fire theme")
+    itemSub=2
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(ranged._fluxSchoolCast==nil and ranged:GetStatusBarTexture():GetAlpha()==1,
+        branch.." replacing the wand with a bow restores the normal fill")
+    s.schoolNames[4]="Feu";e.DAMAGE="Dégâts";itemSub=19
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(getVisuals(ns.CastBarThemes)[ranged].theme==ns.CastBarThemes.ThemeForMask(4),
+        branch.." localized damage text and school name resolve the same Fire theme")
+    equippedSchool=16;misleading=true
+    events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+    check(ranged._fluxSchoolCast==nil,
+        branch.." an Equip bonus cannot masquerade as the wand damage school")
+    if branch~="forever" then
+        e.C_TooltipInfo=nil
+        local createFrame=e.CreateFrame
+        e.CreateFrame=function(kind,name,parent,...)
+            local frame=createFrame(kind,name,parent,...)
+            if kind=="GameTooltip" then
+                function frame:SetOwner() end
+                function frame:SetInventoryItem()
+                    e._G.FluxSwingSchoolTooltipTextLeft1={GetText=function()return "12 - 24 Feu Dégâts" end}
+                end
+                function frame:NumLines()return 1 end
+            end
+            return frame
+        end
+        for _,frame in ipairs(s.frames) do
+            if frame.kind=="GameTooltip" then
+                function frame:SetInventoryItem()
+                    e._G.FluxSwingSchoolTooltipTextLeft1={GetText=function()return "12 - 24 Feu Dégâts" end}
+                end
+                function frame:NumLines()return 1 end
+            end
+        end
+        itemSub=2;events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+        itemSub=19;equippedSchool=4;misleading=false
+        events.scripts.OnEvent(events,"UNIT_INVENTORY_CHANGED","player")
+        check(getVisuals(ns.CastBarThemes)[ranged].theme==ns.CastBarThemes.ThemeForMask(4),
+            branch.." legacy GameTooltip fallback resolves localized wand damage")
+    end
 end
 for _,branch in ipairs({"live","forever","classic_era","classic_anniversary","classic"}) do
     local costs={}
