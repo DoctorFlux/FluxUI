@@ -1,5 +1,15 @@
 # Development tasks
 
+Current priority, 5 November: [mail and auction performance work](MAIL_AUCTION_REWORK.md)
+tracks opening/closing, loot, posting, buyer sales, purchases and cancellation
+across all five clients and optional providers. Keep these requirements separate
+from unfinished mail features. `e860ce6` is published on main; the lifecycle
+follow-up uses that exact baseline. Native candidate identity and matched freeze
+captures are still pending. Leave WoW in the background and preserve enable flags
+and profiler0. Earlier dated tasks below retain their historical scope; renewed
+auction requests supersede their auction-callback exclusion. Guild-bank and void
+callbacks remain excluded.
+
 5 November consumable targets: complete native acceptance for CTD-01 through
 CTD-04 in [CONSUMABLE_TARGET_DETECTION.md](CONSUMABLE_TARGET_DETECTION.md),
 especially a real staff-only coating versus dagger/sword, off-hand targeting,

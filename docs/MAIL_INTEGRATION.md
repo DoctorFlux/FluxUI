@@ -1,5 +1,10 @@
 # Built-in mail work
 
+Current performance and lifecycle work is tracked in the
+[mail/auction rework matrix](MAIL_AUCTION_REWORK.md), including provider handoff,
+pending native commands, final-mail cancellation and module/profile disable.
+The original requirements and unfinished features below remain in force.
+
 ## Scope and source boundary (4 November 2026)
 
 The user requested Postal-like mail behavior inside `_FluxUI` for every supported

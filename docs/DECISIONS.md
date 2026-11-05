@@ -1,5 +1,19 @@
 # Decisions
 
+5 November mail/auction lifecycle: keep Blizzard responsible for posting, sales,
+buying, cancellation and confirmation dialogs. Flux's built-in observer must
+check provider ownership before a native owned-list query and latch its attempt
+before native reentry. Reset that latch on close while preserving modern trigger
+timing and cached-fact refreshes. Stop active mail jobs before an empty eligibility
+scan, and stop only jobs whose owning module is disabled. Reuse wake cancellation,
+settings notifications and existing cadence; leave an issued native command alone.
+The reproduced failures justify these small changes, not a claim that whole-game
+freezes are fixed. Preserve background operation, profile0 and enable flags while
+candidate identity remains unverified in the replacement Forever process.
+[Whole flow scope](MAIL_AUCTION_REWORK.md),
+[auction details](AUCTION_QUERY_OWNERSHIP.md),
+[mail details](MAIL_JOB_LIFECYCLE.md).
+
 5 November built-in inventory follow-up: reuse the item-data service and its lazy
 frame, coalesce native loads/callbacks, gate retry work at0.4s/earliest deadline
 and cap active attempts at four requests/eight seconds. Keep bounded passive

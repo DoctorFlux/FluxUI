@@ -1,5 +1,29 @@
 # Work log
 
+5 November lifecycle follow-up: verified published main baseline
+`e860ce6de499a7702b91e8a8d74f115fbc9e0293` and external checkpoint
+Mail-auction-lifecycle-20261105T171132Z (1,496 actual files, 75 on-disk settings,
+verified all-ref history), source SHA256
+`38c16e1f0d1d928ffb6015a89ad10e78f991dc038d0d738f7d3483ace86a0e5e`.
+Fixed duplicate/reentrant built-in auction queries and queries after provider
+handoff, final-mail job cancellation and work after owning-module disable.
+Auction candidate passes 628 checks; baseline fails 72 of 1,330 dynamic checks.
+Duplicate queries 714→10, foreign-provider queries 700→0 and reentry queries
+278→10. Mail candidate passes 880 checks; baseline fails 330. Disabled requests
+90→0, disabled readiness reads 810→0 and missed final cancellation 20→0.
+Ten alternating baseline/candidate pairs and eight rejected mutants pass;
+full validation passes 145 scripts / 800 Lua syntax files. Counts are mocked operations, not native
+latency or a freeze cure. [Raw comparisons](validation/mail-auction-lifecycle-comparison-2026-11-05.json),
+[flow coverage](MAIL_AUCTION_REWORK.md), [queries](AUCTION_QUERY_OWNERSHIP.md),
+[mail lifecycle](MAIL_JOB_LIFECYCLE.md).
+
+Background host inspection found the prior PID47424 gone and Forever PID25172
+started at 17:55 CET. Its candidate identity is unverified; the historical unloaded
+probe still does not establish the state during reported freezes. No game input,
+profiling or addon-enable mutations were used this batch. Preserve profile0 and
+background operation. Native freeze attribution and all-client acceptance remain
+pending. Prior three inventory fixes are already published in main `e860ce6`.
+
 5 November built-in inventory phase: baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff`
 already committed/pushed to main contains the prior five contract fixes. Verified
 external Builtin-inventory-20261105T152153Z checkpoint:1,488 actual files,75 on-disk
@@ -19,7 +43,7 @@ counts, not native CPU, memory-byte, frame-time or freeze-removal measurements.
 [item data](BUILTIN_ITEM_DATA.md), [summaries](INVENTORY_SUMMARY_PRUNING.md),
 [currency](GOLD_CURRENCY_ITERATION.md).
 
-Latest native evidence: the user reports re-enabled FluxUI and continued whole-
+Earlier native evidence: the user reports re-enabled FluxUI and continued whole-
 game freezes on sold auctions, cancellation-to-mail, individual mail items and
 Open All's second-last/final transition. The only verified active Forever process
 was PID47424. At17:35 CET FXBUILD showed legacy/nil source revision/profile0 and

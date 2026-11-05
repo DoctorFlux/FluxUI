@@ -73,7 +73,10 @@ local function UpdateButton()
 end
 
 function Mail.OpenAll()
-	if not opened or not Mail.IsEnabled("OpenAll") or not GetInboxNumItems or not GetInboxHeaderInfo then return end
+	if not opened then return end
+	-- The last command can still be pending after its eligible contents disappear.
+	if Mail.openAllRunning then Mail.ProcessSelected("take", {}, "OpenAll"); return end
+	if not Mail.IsEnabled("OpenAll") or not GetInboxNumItems or not GetInboxHeaderInfo then return end
 	local count = GetInboxNumItems() or 0
 	local override = IsShiftKeyDown and IsShiftKeyDown() or false
 	local list = {}

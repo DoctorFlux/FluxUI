@@ -47251,8 +47251,8 @@
       "path": "Inventory/Builtin/Auctions.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 215,
-      "sha256": "5465175ed52dfba4c209d1b61a77a8ba23380f73085b22ea9f1111743d58ab2a",
+      "lines": 223,
+      "sha256": "7737d3b022b03c334b3f914854472be1ffbfe4faddbf0da7f660da2eb82b0c8a",
       "clients": [
         "camelot",
         "cata",
@@ -47270,11 +47270,11 @@
       "functions": [
         {
           "name": "Auctions.Refresh",
-          "line": 160
+          "line": 178
         },
         {
           "name": "Auctions.Start",
-          "line": 175
+          "line": 193
         }
       ],
       "events": [],
@@ -58878,8 +58878,8 @@
       "path": "Mail/OpenAll.lua",
       "classification": "active",
       "chapter": "34-assets.md",
-      "lines": 145,
-      "sha256": "99342498ad5cf506d0419d8fd4287a36640a6560900302bda623d612606291b6",
+      "lines": 148,
+      "sha256": "d05a08c3afbcebc43861417cb204e85aa44259c9988b959563c8efa365520c4b",
       "clients": [
         "camelot",
         "cata",
@@ -58901,12 +58901,12 @@
         },
         {
           "name": "Mail.OnJobStateChangedMail.OnJobStateChanged",
-          "line": 89
+          "line": 92
         }
       ],
       "events": [
         {
-          "line": 127,
+          "line": 130,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SHOW\""
@@ -58914,7 +58914,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 128,
+          "line": 131,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_CLOSED\""
@@ -58922,7 +58922,7 @@
           "context": "(\"MAIL_SHOW\")frame:"
         },
         {
-          "line": 129,
+          "line": 132,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_INBOX_UPDATE\""
@@ -58930,7 +58930,7 @@
           "context": "(\"MAIL_CLOSED\")frame:"
         },
         {
-          "line": 130,
+          "line": 133,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_INTERACTION_MANAGER_FRAME_SHOW\""
@@ -58938,7 +58938,7 @@
           "context": "(\"MAIL_INBOX_UPDATE\")frame:"
         },
         {
-          "line": 131,
+          "line": 134,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_INTERACTION_MANAGER_FRAME_HIDE\""
@@ -59028,8 +59028,8 @@
       "path": "Mail/Select.lua",
       "classification": "active",
       "chapter": "34-assets.md",
-      "lines": 375,
-      "sha256": "677de9840d93ca6b5b69fc35de09b883adfa01ff3c60ca356bdf585c7b294c16",
+      "lines": 380,
+      "sha256": "b5a1021c7075013f9c7091b82de7e6f1fc9b9d562b46a86072a5a1489f270002",
       "clients": [
         "camelot",
         "cata",
@@ -59047,16 +59047,16 @@
       "functions": [
         {
           "name": "Mail.ProcessSelected",
-          "line": 266
+          "line": 271
         },
         {
           "name": "Mail.TakeSelected",
-          "line": 289
+          "line": 294
         }
       ],
       "events": [
         {
-          "line": 353,
+          "line": 358,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_SHOW\""
@@ -59064,7 +59064,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 354,
+          "line": 359,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_CLOSED\""
@@ -59072,7 +59072,7 @@
           "context": "(\"MAIL_SHOW\")frame:"
         },
         {
-          "line": 355,
+          "line": 360,
           "method": "RegisterEvent",
           "arguments": [
             "\"MAIL_INBOX_UPDATE\""
@@ -59080,7 +59080,7 @@
           "context": "(\"MAIL_CLOSED\")frame:"
         },
         {
-          "line": 356,
+          "line": 361,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_INTERACTION_MANAGER_FRAME_SHOW\""
@@ -59088,7 +59088,7 @@
           "context": "(\"MAIL_INBOX_UPDATE\")frame:"
         },
         {
-          "line": 357,
+          "line": 362,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_INTERACTION_MANAGER_FRAME_HIDE\""
@@ -59096,7 +59096,7 @@
           "context": "(\"PLAYER_INTERACTION_MANAGER_FRAME_SHOW\")frame:"
         },
         {
-          "line": 358,
+          "line": 363,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEAVING_WORLD\""
@@ -71312,6 +71312,71 @@
       "sv_sites": []
     },
     {
+      "path": "tests/auction_query_ownership.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 148,
+      "sha256": "5b4a3c2ee372fe3b240bcc0c293f4f2eacae67e3b1cd07421cd71ab99552fecb",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.GetTime",
+          "line": 18
+        },
+        {
+          "name": "endende.GetOwnerAuctionItems",
+          "line": 26
+        },
+        {
+          "name": "ende.GetNumAuctionItems",
+          "line": 27
+        },
+        {
+          "name": "s.rowsende.GetAuctionItemInfo",
+          "line": 28
+        },
+        {
+          "name": "r.idendende.IsUsingLegacyAuctionClient",
+          "line": 32
+        },
+        {
+          "name": "e.CreateFrame",
+          "line": 49
+        },
+        {
+          "name": "f:SetScript",
+          "line": 50
+        },
+        {
+          "name": "s:event",
+          "line": 54
+        },
+        {
+          "name": "s:open",
+          "line": 55
+        },
+        {
+          "name": "s:advance",
+          "line": 59
+        },
+        {
+          "name": "s:queries",
+          "line": 65
+        },
+        {
+          "name": "r.onQuery",
+          "line": 112
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/auction_refresh_batching.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -77198,6 +77263,139 @@
       "widgets": [],
       "loads": [],
       "sv_sites": []
+    },
+    {
+      "path": "tests/mail_job_lifecycle.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 212,
+      "sha256": "0f7fd5cb567df611a8e297632ff876c37bb8af518fd4a0abd24a3a9b5baa48e3",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "f:RegisterEvent",
+          "line": 18
+        },
+        {
+          "name": "f:SetScript",
+          "line": 19
+        },
+        {
+          "name": "f:SetShown",
+          "line": 20
+        },
+        {
+          "name": "f:IsShown",
+          "line": 21
+        },
+        {
+          "name": "f:SetText",
+          "line": 22
+        },
+        {
+          "name": "f:SetEnabled",
+          "line": 23
+        },
+        {
+          "name": "f:GetFrameLevel",
+          "line": 24
+        },
+        {
+          "name": "fendreturnfende.CreateFrame",
+          "line": 31
+        },
+        {
+          "name": "e.GetTime",
+          "line": 33
+        },
+        {
+          "name": "t:Cancel",
+          "line": 37
+        },
+        {
+          "name": "treturntende.C_Timer.After",
+          "line": 41
+        },
+        {
+          "name": "e.GetInboxNumItems",
+          "line": 49
+        },
+        {
+          "name": "s.inboxende.GetInboxHeaderInfo",
+          "line": 50
+        },
+        {
+          "name": "falseendende.GetInboxItem",
+          "line": 55
+        },
+        {
+          "name": "trueende.TakeInboxMoney",
+          "line": 66
+        },
+        {
+          "name": "ende.TakeInboxItem",
+          "line": 67
+        },
+        {
+          "name": "ende.ReturnInboxItem",
+          "line": 68
+        },
+        {
+          "name": "ende.DeleteInboxItem",
+          "line": 69
+        },
+        {
+          "name": "ende.InboxItemCanDelete",
+          "line": 70
+        },
+        {
+          "name": "s:event",
+          "line": 75
+        },
+        {
+          "name": "s:advance",
+          "line": 80
+        },
+        {
+          "name": "s:activeTimers",
+          "line": 90
+        },
+        {
+          "name": "s:start",
+          "line": 95
+        },
+        {
+          "name": "s:ackMoney",
+          "line": 103
+        },
+        {
+          "name": "s:closed",
+          "line": 106
+        }
+      ],
+      "events": [
+        {
+          "line": 18,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "}}functionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxMailDB",
+          "lines": [
+            155
+          ]
+        }
+      ]
     },
     {
       "path": "tests/mail_loot_scheduling.lua",

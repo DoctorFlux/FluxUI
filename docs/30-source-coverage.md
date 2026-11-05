@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 179 |
+| inactive source | 181 |
 
 ## Addon sources
 
@@ -599,6 +599,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/assisted_highlight_work.lua](../tests/assisted_highlight_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_active_rows.lua](../tests/auction_active_rows.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_metadata_work.lua](../tests/auction_metadata_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/auction_query_ownership.lua](../tests/auction_query_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_refresh_batching.lua](../tests/auction_refresh_batching.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bag_free_slots.lua](../tests/bag_free_slots.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_contract_regression.lua](../tests/bars_contract_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -658,6 +659,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/loot_cursor.lua](../tests/loot_cursor.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/loot_roll_lifecycle.lua](../tests/loot_roll_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mail_copy_availability.lua](../tests/mail_copy_availability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/mail_job_lifecycle.lua](../tests/mail_job_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mail_loot_scheduling.lua](../tests/mail_loot_scheduling.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/mail_native_command.lua](../tests/mail_native_command.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |

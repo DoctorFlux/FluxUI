@@ -1,8 +1,32 @@
 # Next session
 
-Current phase: baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff` is already on
-GitHub main; three further runtime fixes are desktop-validated, not yet native-
-verified. Read [item data](docs/BUILTIN_ITEM_DATA.md),
+Current lifecycle phase starts from published main
+`e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Read
+[mail/auction flow scope](docs/MAIL_AUCTION_REWORK.md),
+[query ownership](docs/AUCTION_QUERY_OWNERSHIP.md) and
+[mail job lifecycle](docs/MAIL_JOB_LIFECYCLE.md). Preserve external checkpoint
+Mail-auction-lifecycle-20261105T171132Z (1,496 files, 75 settings, verified history;
+source SHA256 `38c16e1f0d1d928ffb6015a89ad10e78f991dc038d0d738f7d3483ace86a0e5e`).
+Focused 628 auction / 880 mail checks pass; ten alternating pairs and eight mutants
+are in `docs/validation/mail-auction-lifecycle-comparison-2026-11-05.json`.
+Full validation passes 145 scripts / 800 Lua syntax files. Reproduce with
+`lua tests/auction_query_ownership.lua` and `lua tests/mail_job_lifecycle.lua`;
+the final full report is `docs/validation/mail-auction-lifecycle-2026-11-05.json`.
+
+The freeze remains unresolved. Before native acceptance, establish actual loaded
+source/client identity: the old PID47424 exited; later background inspection found
+Forever PID25172 started at 17:55 CET. No native input, profiling or enable-flag
+change was made in this batch. Keep WoW background, profile0 and flags unchanged.
+Do not repeat heavy frame captures. Separate mailbox open/close, individual/final
+Open All, post, sell, buy, cancel-to-mail and provider handoff; verify configured
+cadence, last-mail cancellation and module/profile disable on each available
+client/provider combination. Native performance, taint and pixels remain pending.
+Guild-bank and void-storage callbacks remain excluded; ordinary main publication
+is authorized without force push.
+
+Earlier published phase `e860ce6`, based on
+`b664bb0b93ac566a34744aec5895e927a7a1ffff`: three runtime fixes are published and
+desktop-validated, not yet native-verified. Read [item data](docs/BUILTIN_ITEM_DATA.md),
 [summary pruning](docs/INVENTORY_SUMMARY_PRUNING.md) and
 [currency iteration](docs/GOLD_CURRENCY_ITERATION.md). Preserve external
 Builtin-inventory-20261105T152153Z (1,488 files,75 settings, verified history;
@@ -14,7 +38,7 @@ Reproduce with `lua tests/item_data_request_coalescing.lua`,
 `lua tests/inventory_summary_pruning.lua`, `lua tests/gold_currency_iteration.lua`
 and `python tests/run_validation.py --output docs/validation/builtin-inventory-2026-11-05.json --sync-docs`.
 
-Resolve source/client identity before interpreting another native run: the user
+Historical source/client identity investigation: the user
 reports re-enabled FluxUI and continued whole-game freezes on sold auctions,
 cancellation-to-mail, individual items and Open All's second-last/final step.
 The only verified active Forever process PID47424 reported17:35 CET legacy/nil

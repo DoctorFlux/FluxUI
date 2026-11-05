@@ -1,8 +1,14 @@
 # Native mailbox and auction reference — 5 November 2026
 
+The current [rework matrix](MAIL_AUCTION_REWORK.md) separates all requested flows,
+desktop fixes and pending native checks. The loaded-state observations below
+belong to the earlier approved session; later probes observed an unloaded state
+and the process changed again. None verifies the current candidate or measures
+the reported freeze.
+
 The user reports the current Forever mailbox/auction freezes with Syndicator
 unloaded. Installed reference code and provider-labelled desktop fixtures do not
-establish the active provider. The parent session's native reload/read-only
+establish the active provider. Earlier approved native reload/read-only
 diagnostics separately confirmed Forever 1.60.1, build 70790, interface 16001,
 FluxUI loaded and Syndicator unloaded. This source review is not a native latency
 measurement or acceptance of the reported freezes.

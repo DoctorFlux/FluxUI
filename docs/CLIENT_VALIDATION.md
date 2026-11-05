@@ -1,5 +1,27 @@
 # Client and reference validation — 29 October 2026
 
+5 November mail/auction lifecycle candidate, baseline `e860ce6` already published:
+real auction modules pass 628 checks and real Settings/Select/OpenAll modules
+pass 880 checks. Five alternating pairs per fixture, eight rejected mutants and
+full 145 scripts / 800 Lua syntax files pass. The two fixes prevent duplicate or
+foreign-provider owned-list queries, permit final-mail cancellation and stop a
+job when its owning module is disabled. Client labels, timer variants and provider
+states exercise shared contracts, not native client emulation.
+[Query ownership](AUCTION_QUERY_OWNERSHIP.md),
+[mail job lifecycle](MAIL_JOB_LIFECYCLE.md) and
+[full flow/ownership matrix](MAIL_AUCTION_REWORK.md).
+
+Background host inspection found only Forever PID 25172, started at 17:55 CET.
+The 17:37 unloaded observation below belongs to an earlier process; it does not
+establish the current loaded state. No current candidate identity, transactions
+or freeze removal have been verified. No game input, profiling or settings
+mutation occurred in this phase. All five clients still need native mail/auction
+and provider/bag acceptance with and without supported Syndicator/Baganator
+configurations, including the last two messages, owner disable/profile changes,
+reopen, post/buy/cancel and naturally observed sales. Original and modern Wrath
+remain separate and unverified. Desktop query/action counts cannot certify
+native CPU, allocations, latency, taint, rendering or FPS.
+
 5 November built-in inventory/currency candidate, baseline `b664bb0`: production
 module fixtures pass 790 metadata-ownership, 81 summary-pruning and 512 currency
 iteration checks. Five alternating pairs per scenario and twelve rejected mutants
@@ -11,7 +33,7 @@ and unverified. See [item data](BUILTIN_ITEM_DATA.md),
 [summary retention](INVENTORY_SUMMARY_PRUNING.md) and
 [currency iteration](GOLD_CURRENCY_ITERATION.md).
 
-Current native evidence supersedes assumptions about what is loaded: the user
+Earlier inventory-phase native observations: the user
 reports re-enabling FluxUI and whole-game freezes during many buyer sales with a
 delayed spike, auction cancellation followed by mailbox entry, Open All from two
 messages to one, and individual attachment mail. Read-only checks at 17:35 CET

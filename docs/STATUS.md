@@ -1,7 +1,27 @@
 # Development status
 
-Current phase, baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff` already on
-GitHub main: three further contract fixes are desktop-validated. Built-in item
+Current mail/auction lifecycle work is based on published main
+`e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Built-in auction opens now check
+provider ownership before querying and coalesce duplicate/reentrant show calls.
+Open All can stop the active job after its last eligible mail disappears;
+disabling a job's owning module stops future owned actions and waits. Existing
+native commands, settings, controls and retrieval cadence remain. Focused auction
+628 and mail 880 checks pass; ten alternating pairs and eight rejected mutants
+are recorded. Full validation passes 145 scripts / 800 Lua syntax files.
+[Full flow scope](MAIL_AUCTION_REWORK.md),
+[auction query ownership](AUCTION_QUERY_OWNERSHIP.md),
+[mail job lifecycle](MAIL_JOB_LIFECYCLE.md).
+
+Whole-game freezes remain unresolved. The historical 17:37 unloaded observation
+conflicts with the user's re-enabled report; that process later exited. Background
+inspection found Forever PID25172, started at 17:55 CET, without verifying its
+loaded candidate. No game input, profiling or addon-enable change was made in
+this batch. Preserve profile0, addon flags and background operation; native
+post/sell/cancel-to-mail, individual and final Open All checks remain pending.
+
+Published built-in inventory phase `e860ce6`, based on
+`b664bb0b93ac566a34744aec5895e927a7a1ffff`: three contract fixes are published
+and desktop-validated. Built-in item
 loads coalesce requests and bag callbacks, bound each active attempt to four
 requests/eight seconds, retain slot-bounded late owners and one passive unknown-
 slot observer per bag, stop idle work and clear ownership on provider handoff.
@@ -16,7 +36,7 @@ mutants pass. No native freeze cure, FPS or measured allocation claim is made.
 
 The user reports re-enabling FluxUI and continued whole-game freezes on sold
 auctions, cancellation-to-mail, individual items and Open All's final transition.
-The latest verified Forever process (PID47424), however, reported FluxUI and
+The historical Forever process (PID47424), however, reported FluxUI and
 Syndicator both unloaded at17:37 CET;17:35 showed legacy/nil source revision and
 scriptProfile0. Client1.60.1/build70790/interface16001 was confirmed. This differs
 from the reported enabled state; the new runtime tag and all three fixes remain

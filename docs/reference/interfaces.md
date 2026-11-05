@@ -494,22 +494,22 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Mail/DoNotWant.lua:103](../../Mail/DoNotWant.lua#L103) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
 | [Mail/DoNotWant.lua:104](../../Mail/DoNotWant.lua#L104) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
 | [Mail/DoNotWant.lua:105](../../Mail/DoNotWant.lua#L105) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
-| [Mail/OpenAll.lua:127](../../Mail/OpenAll.lua#L127) | `RegisterEvent` | `"MAIL_SHOW"` |
-| [Mail/OpenAll.lua:128](../../Mail/OpenAll.lua#L128) | `RegisterEvent` | `"MAIL_CLOSED"` |
-| [Mail/OpenAll.lua:129](../../Mail/OpenAll.lua#L129) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
-| [Mail/OpenAll.lua:130](../../Mail/OpenAll.lua#L130) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
-| [Mail/OpenAll.lua:131](../../Mail/OpenAll.lua#L131) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/OpenAll.lua:130](../../Mail/OpenAll.lua#L130) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/OpenAll.lua:131](../../Mail/OpenAll.lua#L131) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/OpenAll.lua:132](../../Mail/OpenAll.lua#L132) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/OpenAll.lua:133](../../Mail/OpenAll.lua#L133) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/OpenAll.lua:134](../../Mail/OpenAll.lua#L134) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
 | [Mail/QuickAttach.lua:73](../../Mail/QuickAttach.lua#L73) | `RegisterEvent` | `"MAIL_SHOW"` |
 | [Mail/QuickAttach.lua:74](../../Mail/QuickAttach.lua#L74) | `RegisterEvent` | `"MAIL_CLOSED"` |
 | [Mail/QuickAttach.lua:75](../../Mail/QuickAttach.lua#L75) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
 | [Mail/QuickAttach.lua:76](../../Mail/QuickAttach.lua#L76) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
 | [Mail/QuickAttach.lua:77](../../Mail/QuickAttach.lua#L77) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
-| [Mail/Select.lua:353](../../Mail/Select.lua#L353) | `RegisterEvent` | `"MAIL_SHOW"` |
-| [Mail/Select.lua:354](../../Mail/Select.lua#L354) | `RegisterEvent` | `"MAIL_CLOSED"` |
-| [Mail/Select.lua:355](../../Mail/Select.lua#L355) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
-| [Mail/Select.lua:356](../../Mail/Select.lua#L356) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
-| [Mail/Select.lua:357](../../Mail/Select.lua#L357) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
-| [Mail/Select.lua:358](../../Mail/Select.lua#L358) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
+| [Mail/Select.lua:358](../../Mail/Select.lua#L358) | `RegisterEvent` | `"MAIL_SHOW"` |
+| [Mail/Select.lua:359](../../Mail/Select.lua#L359) | `RegisterEvent` | `"MAIL_CLOSED"` |
+| [Mail/Select.lua:360](../../Mail/Select.lua#L360) | `RegisterEvent` | `"MAIL_INBOX_UPDATE"` |
+| [Mail/Select.lua:361](../../Mail/Select.lua#L361) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
+| [Mail/Select.lua:362](../../Mail/Select.lua#L362) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_HIDE"` |
+| [Mail/Select.lua:363](../../Mail/Select.lua#L363) | `RegisterEvent` | `"PLAYER_LEAVING_WORLD"` |
 | [Mail/Settings.lua:330](../../Mail/Settings.lua#L330) | `RegisterEvent` | `"MAIL_SHOW"` |
 | [Mail/Settings.lua:331](../../Mail/Settings.lua#L331) | `RegisterEvent` | `"PLAYER_INTERACTION_MANAGER_FRAME_SHOW"` |
 | [Mail/TradeBlock.lua:30](../../Mail/TradeBlock.lua#L30) | `RegisterEvent` | `"MAIL_SHOW"` |
@@ -6065,8 +6065,8 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Auctions.Refresh` | [L160](../../Inventory/Builtin/Auctions.lua#L160) |
-| `Auctions.Start` | [L175](../../Inventory/Builtin/Auctions.lua#L175) |
+| `Auctions.Refresh` | [L178](../../Inventory/Builtin/Auctions.lua#L178) |
+| `Auctions.Start` | [L193](../../Inventory/Builtin/Auctions.lua#L193) |
 
 ### Inventory/Builtin/Bags.lua
 
@@ -7732,7 +7732,7 @@ Owner: [34-assets.md](../34-assets.md).
 | Declaration | Source |
 |---|---|
 | `Mail.OpenAll` | [L75](../../Mail/OpenAll.lua#L75) |
-| `Mail.OnJobStateChangedMail.OnJobStateChanged` | [L89](../../Mail/OpenAll.lua#L89) |
+| `Mail.OnJobStateChangedMail.OnJobStateChanged` | [L92](../../Mail/OpenAll.lua#L92) |
 
 ### Mail/QuickAttach.lua
 
@@ -7748,8 +7748,8 @@ Owner: [34-assets.md](../34-assets.md).
 
 | Declaration | Source |
 |---|---|
-| `Mail.ProcessSelected` | [L266](../../Mail/Select.lua#L266) |
-| `Mail.TakeSelected` | [L289](../../Mail/Select.lua#L289) |
+| `Mail.ProcessSelected` | [L271](../../Mail/Select.lua#L271) |
+| `Mail.TakeSelected` | [L294](../../Mail/Select.lua#L294) |
 
 ### Mail/Settings.lua
 

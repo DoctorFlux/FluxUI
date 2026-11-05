@@ -11,6 +11,7 @@ Builtin.Auctions = Auctions
 
 local started = false
 local houseOpen = false
+local queryAttempted = false
 local scanFrame, scan, scanAt, firstQueued, lastFingerprint
 
 local function Request()
@@ -153,8 +154,25 @@ local function StepScan(self)
 end
 
 local function Close()
-	houseOpen, scan, firstQueued = false, nil, nil
+	houseOpen, queryAttempted, scan, firstQueued = false, false, nil, nil
 	if scanFrame then scanFrame:SetScript("OnUpdate", nil) end
+end
+
+local function Open(fromInteraction)
+	if Store.UsesSyndicator() then return end
+	houseOpen = true
+	if not queryAttempted then
+		-- Both show events can describe one opening. Latch before calling native
+		-- code, which can deliver callbacks before it returns.
+		if Cap.hasLegacyAuctionHouse and GetOwnerAuctionItems then
+			queryAttempted = true
+			pcall(GetOwnerAuctionItems)
+		elseif fromInteraction and C_AuctionHouse and C_AuctionHouse.QueryOwnedAuctions then
+			queryAttempted = true
+			pcall(C_AuctionHouse.QueryOwnedAuctions, {})
+		end
+	end
+	Request()
 end
 
 function Auctions.Refresh()
@@ -185,13 +203,7 @@ function Auctions.Start()
 		if not IsAuctioneer(kind) then
 			return
 		end
-		houseOpen = true
-		if Cap.hasLegacyAuctionHouse and GetOwnerAuctionItems then
-			pcall(GetOwnerAuctionItems)
-		elseif C_AuctionHouse and C_AuctionHouse.QueryOwnedAuctions then
-			pcall(C_AuctionHouse.QueryOwnedAuctions, {})
-		end
-		Request()
+		Open(true)
 	end)
 	Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", function(_, kind)
 		if IsAuctioneer(kind) then
@@ -199,11 +211,7 @@ function Auctions.Start()
 		end
 	end)
 	Flux.Events.Register("AUCTION_HOUSE_SHOW", function()
-		houseOpen = true
-		if Cap.hasLegacyAuctionHouse and GetOwnerAuctionItems then
-			pcall(GetOwnerAuctionItems)
-		end
-		Request()
+		Open(false)
 	end)
 	Flux.Events.Register("AUCTION_HOUSE_CLOSED", Close)
 	Flux.Events.Register("AUCTION_OWNED_LIST_UPDATE", function()

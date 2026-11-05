@@ -90,12 +90,6 @@ local function ApplyLayout()
 	end
 end
 
-if Mail.OnSettingsChanged then
-	Mail.OnSettingsChanged(function(group, key)
-		if group == "Modules" and key == "Select" then ApplyLayout(); RefreshRows() end
-	end)
-end
-
 local function Stop(message)
 	local group = worker and worker.group or "Select"
 	for key, wake in pairs(pendingWakes) do
@@ -107,6 +101,16 @@ local function Stop(message)
 	RefreshRows()
 	if Mail.OnJobStateChanged then Mail.OnJobStateChanged(false, group, message) end
 	if message and (Option(group, "SpamChat", true) or message:find("Stopped", 1, true)) then Notice(message) end
+end
+
+if Mail.OnSettingsChanged then
+	Mail.OnSettingsChanged(function(group, key)
+		if group ~= "Modules" then return end
+		if worker and Mail.IsEnabled and not Mail.IsEnabled(worker.group) then
+			Stop("Stopped: mail module disabled.")
+		end
+		if key == "Select" or key == nil then ApplyLayout(); RefreshRows() end
+	end)
 end
 
 local Step
@@ -194,6 +198,7 @@ end
 Step = function()
 	if not worker then return end
 	if not opened or not MailFrame or not MailFrame:IsShown() then Stop(); return end
+	if Mail.IsEnabled and not Mail.IsEnabled(worker.group) then Stop("Stopped: mail module disabled."); return end
 	-- Header/item updates can arrive before the client's command completes.
 	-- Like native Open All, wait for its command gate before advancing the job.
 	if WaitForNativeCommand() then return end

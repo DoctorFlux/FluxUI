@@ -1,5 +1,31 @@
 # Baseline protocol and currency evidence
 
+5 November mail/auction lifecycle candidate, baseline `e860ce6`: ten alternating
+fresh-process pairs and eight rejected mutants cover two production fixtures.
+Across five client labels and both show-event orders, initial/duplicate-show
+owned-list queries fall from 714 to ten; queries after provider handoff from 700
+to zero; modeled synchronous reentry from 278 to ten. Query timing remains on the
+existing modern interaction-show trigger. Cached-row refreshes retain the existing
+debounce, and a real close/reopen permits a fresh query.
+
+The separate mail lifecycle fixture retains all 880 checks: requests from disabled
+jobs fall from 90 to zero, readiness reads after disable from 810 to zero and
+missed final-mail cancellations from twenty to zero. Already-issued native commands
+remain untouched. New jobs retain the existing immediate first action, configured
+delay and confirmation. No new timer, framework, global replacement or idle work
+is added. Auction candidate 628 checks, mail candidate 880 checks and full 145
+scripts / 800 syntax files pass. The auction baseline executes 1,330 checks because
+query-argument assertions run on every repeated query.
+[Exact hashes, raw samples and variation](validation/mail-auction-lifecycle-comparison-2026-11-05.json).
+
+These are mocked operation counts, not native CPU, network time, allocation bytes,
+frame time or FPS. All current candidate native acceptance remains pending; a
+background process observation is not a loaded-tree check. No game input, profiler
+or settings changes were used. Preserve the earlier failed-capture evidence and
+restored preferences. Follow the [separate flow checklist](MAIL_AUCTION_REWORK.md)
+for matched mailbox/loot/final-message, post/buy/cancel-to-mail and burst-sale runs
+on each available client/provider/bag combination before claiming freeze removal.
+
 5 November built-in inventory/currency candidate, baseline `b664bb0`: fifteen
 alternating fresh-process pairs cover three production fixtures. Cold-slot
 metadata requests/waiters fall from 10,000 to ten; successful completion marks and
