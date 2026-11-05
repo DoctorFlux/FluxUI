@@ -1,12 +1,31 @@
 # Development status
 
-Current user isolation: FluxUI is fully unloaded; the user reports no freezes
-with it unloaded. Leave it disabled and send no further game input. Current mail/
-auction and shared inventory work remain under investigation; the five validated
-contract fixes below do not establish a cure. Focus the next audit on built-in
-provider semantics, downstream fanout and mail/auction UI hook reentry.
+Current phase, baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff` already on
+GitHub main: three further contract fixes are desktop-validated. Built-in item
+loads coalesce requests and bag callbacks, bound each active attempt to four
+requests/eight seconds, retain slot-bounded late owners and one passive unknown-
+slot observer per bag, stop idle work and clear ownership on provider handoff.
+Runtime revision `Inv.itemDataRevision='20261105.1'` identifies this item-data
+implementation. Partial summaries prune only all-zero rows after repopulation;
+modern gold currency iteration rejects invalid/repeated IDs without truncating
+valid lists or changing the legacy path. Full 143 scripts / 798 syntax checks,
+790/81/512 focused checks, five alternating pairs per scenario and 12 rejected
+mutants pass. No native freeze cure, FPS or measured allocation claim is made.
+[Item data](BUILTIN_ITEM_DATA.md), [summaries](INVENTORY_SUMMARY_PRUNING.md),
+[currency iteration](GOLD_CURRENCY_ITERATION.md).
 
-Latest phase: the native mail-command guard prevents progression/completion
+The user reports re-enabling FluxUI and continued whole-game freezes on sold
+auctions, cancellation-to-mail, individual items and Open All's final transition.
+The latest verified Forever process (PID47424), however, reported FluxUI and
+Syndicator both unloaded at17:37 CET;17:35 showed legacy/nil source revision and
+scriptProfile0. Client1.60.1/build70790/interface16001 was confirmed. This differs
+from the reported enabled state; the new runtime tag and all three fixes remain
+unverified natively. Keep addon flags unchanged until clarified, keep WoW in the
+background, and do not repeat profiler1 or heavy frame captures. Prior foreground
+was restored; private images remain outside Git. Earlier isolation was historical,
+not an assertion of the current user-reported state.
+
+Earlier published phase: the native mail-command guard prevents progression/completion
 while C_Mail reports pending, with bounded8s wait and existing cadence retained.
 Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
 completions; three mutants rejected. Final full validation:140 scripts /795 Lua

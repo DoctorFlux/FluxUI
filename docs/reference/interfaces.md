@@ -437,7 +437,7 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:628](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L628) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
 | [Inventory/FluxItemClass.lua:658](../../Inventory/FluxItemClass.lua#L658) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/FluxItemClass.lua:659](../../Inventory/FluxItemClass.lua#L659) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
-| [Inventory/Init.lua:242](../../Inventory/Init.lua#L242) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
+| [Inventory/Init.lua:315](../../Inventory/Init.lua#L315) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:516](../../Inventory/Restock/Bank/FluxBankRestock.lua#L516) | `RegisterEvent` | `"BAG_UPDATE"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:517](../../Inventory/Restock/Bank/FluxBankRestock.lua#L517) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:518](../../Inventory/Restock/Bank/FluxBankRestock.lua#L518) | `RegisterEvent` | `"ITEM_UNLOCKED"` |
@@ -796,20 +796,20 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [StatusBars/FluxPVPTracking.lua:370](../../StatusBars/FluxPVPTracking.lua#L370) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [StatusBars/FluxPVPTracking.lua:371](../../StatusBars/FluxPVPTracking.lua#L371) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [StatusBars/FluxPVPTracking.lua:372](../../StatusBars/FluxPVPTracking.lua#L372) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [StatusBars/FluxStatusBar.lua:2569](../../StatusBars/FluxStatusBar.lua#L2569) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [StatusBars/FluxStatusBar.lua:2932](../../StatusBars/FluxStatusBar.lua#L2932) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [StatusBars/FluxStatusBar.lua:2933](../../StatusBars/FluxStatusBar.lua#L2933) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [StatusBars/FluxStatusBar.lua:2934](../../StatusBars/FluxStatusBar.lua#L2934) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [StatusBars/FluxStatusBar.lua:2935](../../StatusBars/FluxStatusBar.lua#L2935) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [StatusBars/FluxStatusBar.lua:2936](../../StatusBars/FluxStatusBar.lua#L2936) | `RegisterEvent` | `"PLAYER_XP_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2937](../../StatusBars/FluxStatusBar.lua#L2937) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [StatusBars/FluxStatusBar.lua:2938](../../StatusBars/FluxStatusBar.lua#L2938) | `RegisterEvent` | `"UPDATE_EXHAUSTION"` |
-| [StatusBars/FluxStatusBar.lua:2939](../../StatusBars/FluxStatusBar.lua#L2939) | `RegisterEvent` | `"PLAYER_UPDATE_RESTING"` |
-| [StatusBars/FluxStatusBar.lua:2940](../../StatusBars/FluxStatusBar.lua#L2940) | `RegisterEvent` | `"UPDATE_FACTION"` |
-| [StatusBars/FluxStatusBar.lua:2941](../../StatusBars/FluxStatusBar.lua#L2941) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2942](../../StatusBars/FluxStatusBar.lua#L2942) | `RegisterEvent` | `"PLAYER_MONEY"` |
-| [StatusBars/FluxStatusBar.lua:2943](../../StatusBars/FluxStatusBar.lua#L2943) | `RegisterEvent` | `"CURRENCY_DISPLAY_UPDATE"` |
-| [StatusBars/FluxStatusBar.lua:2944](../../StatusBars/FluxStatusBar.lua#L2944) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
+| [StatusBars/FluxStatusBar.lua:2577](../../StatusBars/FluxStatusBar.lua#L2577) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [StatusBars/FluxStatusBar.lua:2940](../../StatusBars/FluxStatusBar.lua#L2940) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [StatusBars/FluxStatusBar.lua:2941](../../StatusBars/FluxStatusBar.lua#L2941) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [StatusBars/FluxStatusBar.lua:2942](../../StatusBars/FluxStatusBar.lua#L2942) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [StatusBars/FluxStatusBar.lua:2943](../../StatusBars/FluxStatusBar.lua#L2943) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [StatusBars/FluxStatusBar.lua:2944](../../StatusBars/FluxStatusBar.lua#L2944) | `RegisterEvent` | `"PLAYER_XP_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2945](../../StatusBars/FluxStatusBar.lua#L2945) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [StatusBars/FluxStatusBar.lua:2946](../../StatusBars/FluxStatusBar.lua#L2946) | `RegisterEvent` | `"UPDATE_EXHAUSTION"` |
+| [StatusBars/FluxStatusBar.lua:2947](../../StatusBars/FluxStatusBar.lua#L2947) | `RegisterEvent` | `"PLAYER_UPDATE_RESTING"` |
+| [StatusBars/FluxStatusBar.lua:2948](../../StatusBars/FluxStatusBar.lua#L2948) | `RegisterEvent` | `"UPDATE_FACTION"` |
+| [StatusBars/FluxStatusBar.lua:2949](../../StatusBars/FluxStatusBar.lua#L2949) | `RegisterEvent` | `"QUEST_LOG_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2950](../../StatusBars/FluxStatusBar.lua#L2950) | `RegisterEvent` | `"PLAYER_MONEY"` |
+| [StatusBars/FluxStatusBar.lua:2951](../../StatusBars/FluxStatusBar.lua#L2951) | `RegisterEvent` | `"CURRENCY_DISPLAY_UPDATE"` |
+| [StatusBars/FluxStatusBar.lua:2952](../../StatusBars/FluxStatusBar.lua#L2952) | `RegisterEvent` | `"UPDATE_INVENTORY_ALERTS"` |
 | [UnitFrames/FluxCastBar.lua:2863](../../UnitFrames/FluxCastBar.lua#L2863) | `RegisterUnitEvent` | `event, unit` |
 | [UnitFrames/FluxCastBar.lua:2896](../../UnitFrames/FluxCastBar.lua#L2896) | `RegisterEvent` | `"UNIT_SPELLCAST_SENT"` |
 | [UnitFrames/FluxCastBar.lua:3466](../../UnitFrames/FluxCastBar.lua#L3466) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -6210,15 +6210,15 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 | `C.IsReagentBag` | [L505](../../Inventory/Containers.lua#L505) |
 | `C.IsReagentBank` | [L514](../../Inventory/Containers.lua#L514) |
 | `C.SkipEquipCandidateBag` | [L533](../../Inventory/Containers.lua#L533) |
-| `C.ReadSlot` | [L612](../../Inventory/Containers.lua#L612) |
-| `C.PatchSlots` | [L618](../../Inventory/Containers.lua#L618) |
-| `C.ScanBag` | [L645](../../Inventory/Containers.lua#L645) |
-| `C.CountsFromByBag` | [L666](../../Inventory/Containers.lua#L666) |
-| `C.DiffSlots` | [L690](../../Inventory/Containers.lua#L690) |
-| `C.ChangedFromDelta` | [L713](../../Inventory/Containers.lua#L713) |
-| `C.NewItemSetLog` | [L735](../../Inventory/Containers.lua#L735) |
-| `C.NoteItemSets` | [L740](../../Inventory/Containers.lua#L740) |
-| `C.TakeItemSets` | [L755](../../Inventory/Containers.lua#L755) |
+| `C.ReadSlot` | [L625](../../Inventory/Containers.lua#L625) |
+| `C.PatchSlots` | [L653](../../Inventory/Containers.lua#L653) |
+| `C.ScanBag` | [L687](../../Inventory/Containers.lua#L687) |
+| `C.CountsFromByBag` | [L723](../../Inventory/Containers.lua#L723) |
+| `C.DiffSlots` | [L747](../../Inventory/Containers.lua#L747) |
+| `C.ChangedFromDelta` | [L770](../../Inventory/Containers.lua#L770) |
+| `C.NewItemSetLog` | [L792](../../Inventory/Containers.lua#L792) |
+| `C.NoteItemSets` | [L797](../../Inventory/Containers.lua#L797) |
+| `C.TakeItemSets` | [L812](../../Inventory/Containers.lua#L812) |
 
 ### Inventory/Craft.lua
 
@@ -6509,52 +6509,53 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Inv.LoadPersistedBankCounts` | [L61](../../Inventory/Init.lua#L61) |
-| `Inv.PersistBankCounts` | [L84](../../Inventory/Init.lua#L84) |
-| `Inv.SnapshotCountKeys` | [L119](../../Inventory/Init.lua#L119) |
-| `Inv.ClassifyCountKeys` | [L132](../../Inventory/Init.lua#L132) |
-| `Inv.MergeChangeKind` | [L169](../../Inventory/Init.lua#L169) |
-| `Inv.IsScanPending` | [L205](../../Inventory/Init.lua#L205) |
-| `Inv.RequestItemData` | [L254](../../Inventory/Init.lua#L254) |
-| `Inv.NoteItemDataArrived` | [L274](../../Inventory/Init.lua#L274) |
-| `Inv.IsBagStorm` | [L354](../../Inventory/Init.lua#L354) |
-| `Inv.NotifyBagStorm` | [L377](../../Inventory/Init.lua#L377) |
-| `Inv.EndBagStorm` | [L391](../../Inventory/Init.lua#L391) |
-| `Inv.OnStormSettled` | [L399](../../Inventory/Init.lua#L399) |
-| `Inv.RegisterStormSettled` | [L414](../../Inventory/Init.lua#L414) |
-| `Inv.UnregisterStormSettled` | [L421](../../Inventory/Init.lua#L421) |
-| `Inv.SetMerchantOpen` | [L425](../../Inventory/Init.lua#L425) |
-| `Inv.IsMerchantOpen` | [L429](../../Inventory/Init.lua#L429) |
-| `Inv.SetMailboxOpen` | [L434](../../Inventory/Init.lua#L434) |
-| `Inv.IsMailboxOpen` | [L454](../../Inventory/Init.lua#L454) |
-| `Inv.ShouldDeferHeavyWork` | [L468](../../Inventory/Init.lua#L468) |
-| `Inv.GetLastAddedItemIDs` | [L673](../../Inventory/Init.lua#L673) |
-| `Inv.Notify` | [L716](../../Inventory/Init.lua#L716) |
-| `Inv.Register` | [L787](../../Inventory/Init.lua#L787) |
-| `Inv.Unregister` | [L805](../../Inventory/Init.lua#L805) |
-| `Inv.GetListenerInfo` | [L811](../../Inventory/Init.lua#L811) |
-| `Inv.GetSource` | [L828](../../Inventory/Init.lua#L828) |
-| `Inv.IsReady` | [L832](../../Inventory/Init.lua#L832) |
-| `Inv.SnapshotLooksCollapsed` | [L871](../../Inventory/Init.lua#L871) |
-| `Inv.MarkUnreliable` | [L884](../../Inventory/Init.lua#L884) |
-| `Inv.BeginLoginHold` | [L918](../../Inventory/Init.lua#L918) |
-| `Inv.IsLoginHold` | [L938](../../Inventory/Init.lua#L938) |
-| `Inv.NoteLoginBagsDelayed` | [L950](../../Inventory/Init.lua#L950) |
-| `Inv.IsReliable` | [L1005](../../Inventory/Init.lua#L1005) |
-| `Inv.NoteRefreshSettling` | [L1017](../../Inventory/Init.lua#L1017) |
-| `Inv.HasWarband` | [L1081](../../Inventory/Init.lua#L1081) |
-| `Inv.IsBaganatorBankViewShown` | [L1161](../../Inventory/Init.lua#L1161) |
-| `Inv.IsBaganatorBankLiveShown` | [L1188](../../Inventory/Init.lua#L1188) |
-| `Inv.RegisterBankStateListener` | [L1207](../../Inventory/Init.lua#L1207) |
-| `Inv.ShouldKeepBankOpen` | [L1243](../../Inventory/Init.lua#L1243) |
-| `Inv.SetBankOpenLatch` | [L1247](../../Inventory/Init.lua#L1247) |
-| `Inv.SetBaganatorBankLive` | [L1259](../../Inventory/Init.lua#L1259) |
-| `Inv.IsBaganatorBankLive` | [L1282](../../Inventory/Init.lua#L1282) |
-| `Inv.IsBankLive` | [L1288](../../Inventory/Init.lua#L1288) |
-| `Inv.CanTakeFromBank` | [L1310](../../Inventory/Init.lua#L1310) |
-| `Inv.IsBankOpen` | [L1329](../../Inventory/Init.lua#L1329) |
-| `Inv.PrepareHUD` | [L1389](../../Inventory/Init.lua#L1389) |
-| `Inv.Start` | [L1402](../../Inventory/Init.lua#L1402) |
+| `Inv.LoadPersistedBankCounts` | [L62](../../Inventory/Init.lua#L62) |
+| `Inv.PersistBankCounts` | [L85](../../Inventory/Init.lua#L85) |
+| `Inv.SnapshotCountKeys` | [L120](../../Inventory/Init.lua#L120) |
+| `Inv.ClassifyCountKeys` | [L133](../../Inventory/Init.lua#L133) |
+| `Inv.MergeChangeKind` | [L170](../../Inventory/Init.lua#L170) |
+| `Inv.IsScanPending` | [L211](../../Inventory/Init.lua#L211) |
+| `Inv.RequestItemData` | [L323](../../Inventory/Init.lua#L323) |
+| `Inv.PruneItemDataForBag` | [L355](../../Inventory/Init.lua#L355) |
+| `Inv.NoteItemDataArrived` | [L394](../../Inventory/Init.lua#L394) |
+| `Inv.IsBagStorm` | [L474](../../Inventory/Init.lua#L474) |
+| `Inv.NotifyBagStorm` | [L497](../../Inventory/Init.lua#L497) |
+| `Inv.EndBagStorm` | [L511](../../Inventory/Init.lua#L511) |
+| `Inv.OnStormSettled` | [L519](../../Inventory/Init.lua#L519) |
+| `Inv.RegisterStormSettled` | [L534](../../Inventory/Init.lua#L534) |
+| `Inv.UnregisterStormSettled` | [L541](../../Inventory/Init.lua#L541) |
+| `Inv.SetMerchantOpen` | [L545](../../Inventory/Init.lua#L545) |
+| `Inv.IsMerchantOpen` | [L549](../../Inventory/Init.lua#L549) |
+| `Inv.SetMailboxOpen` | [L554](../../Inventory/Init.lua#L554) |
+| `Inv.IsMailboxOpen` | [L574](../../Inventory/Init.lua#L574) |
+| `Inv.ShouldDeferHeavyWork` | [L588](../../Inventory/Init.lua#L588) |
+| `Inv.GetLastAddedItemIDs` | [L793](../../Inventory/Init.lua#L793) |
+| `Inv.Notify` | [L836](../../Inventory/Init.lua#L836) |
+| `Inv.Register` | [L907](../../Inventory/Init.lua#L907) |
+| `Inv.Unregister` | [L925](../../Inventory/Init.lua#L925) |
+| `Inv.GetListenerInfo` | [L931](../../Inventory/Init.lua#L931) |
+| `Inv.GetSource` | [L948](../../Inventory/Init.lua#L948) |
+| `Inv.IsReady` | [L952](../../Inventory/Init.lua#L952) |
+| `Inv.SnapshotLooksCollapsed` | [L991](../../Inventory/Init.lua#L991) |
+| `Inv.MarkUnreliable` | [L1004](../../Inventory/Init.lua#L1004) |
+| `Inv.BeginLoginHold` | [L1038](../../Inventory/Init.lua#L1038) |
+| `Inv.IsLoginHold` | [L1058](../../Inventory/Init.lua#L1058) |
+| `Inv.NoteLoginBagsDelayed` | [L1070](../../Inventory/Init.lua#L1070) |
+| `Inv.IsReliable` | [L1125](../../Inventory/Init.lua#L1125) |
+| `Inv.NoteRefreshSettling` | [L1137](../../Inventory/Init.lua#L1137) |
+| `Inv.HasWarband` | [L1201](../../Inventory/Init.lua#L1201) |
+| `Inv.IsBaganatorBankViewShown` | [L1281](../../Inventory/Init.lua#L1281) |
+| `Inv.IsBaganatorBankLiveShown` | [L1308](../../Inventory/Init.lua#L1308) |
+| `Inv.RegisterBankStateListener` | [L1327](../../Inventory/Init.lua#L1327) |
+| `Inv.ShouldKeepBankOpen` | [L1363](../../Inventory/Init.lua#L1363) |
+| `Inv.SetBankOpenLatch` | [L1367](../../Inventory/Init.lua#L1367) |
+| `Inv.SetBaganatorBankLive` | [L1386](../../Inventory/Init.lua#L1386) |
+| `Inv.IsBaganatorBankLive` | [L1409](../../Inventory/Init.lua#L1409) |
+| `Inv.IsBankLive` | [L1415](../../Inventory/Init.lua#L1415) |
+| `Inv.CanTakeFromBank` | [L1437](../../Inventory/Init.lua#L1437) |
+| `Inv.IsBankOpen` | [L1456](../../Inventory/Init.lua#L1456) |
+| `Inv.PrepareHUD` | [L1517](../../Inventory/Init.lua#L1517) |
+| `Inv.Start` | [L1530](../../Inventory/Init.lua#L1530) |
 
 ### Inventory/Ledger.lua
 
@@ -7643,9 +7644,9 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `Summaries.GetTooltipInfo` | [L187](../../Inventory/Summaries.lua#L187) |
-| `Summaries.GetTooltipInfoByItemID` | [L267](../../Inventory/Summaries.lua#L267) |
-| `Summaries.GetTooltipInfoByLink` | [L279](../../Inventory/Summaries.lua#L279) |
+| `Summaries.GetTooltipInfo` | [L199](../../Inventory/Summaries.lua#L199) |
+| `Summaries.GetTooltipInfoByItemID` | [L279](../../Inventory/Summaries.lua#L279) |
+| `Summaries.GetTooltipInfoByLink` | [L291](../../Inventory/Summaries.lua#L291) |
 
 ### Inventory/Syndicator/Adapter.lua
 
@@ -9386,13 +9387,13 @@ Owner: [16-status-bars.md](../16-status-bars.md).
 
 | Declaration | Source |
 |---|---|
-| `UpdateExpBar` | [L1766](../../StatusBars/FluxStatusBar.lua#L1766) |
-| `UpdateFluxDurabilityFramePosition` | [L2310](../../StatusBars/FluxStatusBar.lua#L2310) |
-| `_G.FluxStatusBar_GetLocation2MinBottomOffset` | [L2406](../../StatusBars/FluxStatusBar.lua#L2406) |
-| `_G.FluxStatusBar_GetBottomOverlayHeight` | [L2427](../../StatusBars/FluxStatusBar.lua#L2427) |
-| `_G.FluxStatusBar_GetBottomOverlayHeightForAlignedChrome` | [L2446](../../StatusBars/FluxStatusBar.lua#L2446) |
-| `UpdateLayout` | [L2635](../../StatusBars/FluxStatusBar.lua#L2635) |
-| `endend_G.FluxStatusBarUpdateLayout` | [L3095](../../StatusBars/FluxStatusBar.lua#L3095) |
+| `UpdateExpBar` | [L1774](../../StatusBars/FluxStatusBar.lua#L1774) |
+| `UpdateFluxDurabilityFramePosition` | [L2318](../../StatusBars/FluxStatusBar.lua#L2318) |
+| `_G.FluxStatusBar_GetLocation2MinBottomOffset` | [L2414](../../StatusBars/FluxStatusBar.lua#L2414) |
+| `_G.FluxStatusBar_GetBottomOverlayHeight` | [L2435](../../StatusBars/FluxStatusBar.lua#L2435) |
+| `_G.FluxStatusBar_GetBottomOverlayHeightForAlignedChrome` | [L2454](../../StatusBars/FluxStatusBar.lua#L2454) |
+| `UpdateLayout` | [L2643](../../StatusBars/FluxStatusBar.lua#L2643) |
+| `endend_G.FluxStatusBarUpdateLayout` | [L3103](../../StatusBars/FluxStatusBar.lua#L3103) |
 
 ### UnitFrames/FluxCastBar.lua
 

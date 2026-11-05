@@ -114,3 +114,14 @@ Sorting stacks first, then orders items in the applicable bag groups, using live
 Syndicator bag updates now preserve every added/removed item across a batched
 notification, so better consumables and last-use depletion reach selection.
 [Regression and native checks](SYNDICATOR_CONSUMABLE_UPDATES.md).
+
+## Built-in request and summary ownership — 5 November 2026
+
+The existing lazy item-data frame now coalesces requests/callbacks, bounds active
+retry work and retains late updates through slot ownership and passive unknown-
+bag observers. A partial bag summary removes only derived all-zero owner rows.
+The source records and saved roots remain; external-provider handoff clears the
+built-in work. Read the [item-data lifecycle](BUILTIN_ITEM_DATA.md) and
+[summary-cache correction](INVENTORY_SUMMARY_PRUNING.md) for exact failures,
+tradeoffs and desktop/native evidence limits. Runtime item-data revision
+`20261105.1` is available in the existing inventory diagnostic output.

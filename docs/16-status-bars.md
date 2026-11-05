@@ -61,3 +61,10 @@ One-second stat refresh is started/stopped with visible-frame demand; player-sta
 Status Bar/Info settings and Layout placement have separate scope getters; Info pins and item-currency slots remain per character. Inventory-tooltip realm/faction/equipped/guild policy and gold-entry deletion appear alongside these options but affect inventory/ledger consumers. [Options](26-options-map.md) distinguishes the controls. `/fluxstatus refresh` forces bar/layout refresh and `testdurability` exercises alert placement; its advertised `debug` branch is currently a no-op. [Commands](31-commands-and-bindings.md) records the parser.
 
 Verify rested/max-level transitions, faction/currency changes, item drag/clear and async icon completion, scoped gold totals, deleted character recovery, Info pin order across reload/Respec, unavailable providers, long text, all placements and ConsolePort coexistence. The updated [Forever stat smoke](../CharacterInfo/_tmp_foreverstatssmoke.lua) passed on Lua 5.4.6 on 2026-10-22 after the latest concurrent Info Frame change. It exercises shared values/alias migration, restricted-value rejection, live formatted/merged text, refresh with unchanged layout samples, visible/hidden native-total selection, row clicks/indicators/tooltips, Respec import and combat/post-open recovery against real addon functions with mocked WoW APIs. Its secret tokens and native text renderer are simulated; actual secret-value/taint behavior and tooltip forwarding still require in-game checks. [Verification](41-verification.md) identifies the tested source contents.
+
+## Watched currency reply validation — 5 November 2026
+
+The modern gold-strip path stops on invalid or repeated public currency IDs.
+Valid rows retain their order, formatting and layout without an arbitrary count
+cap; the legacy branch is unchanged. The repeated-reply defect is reproduced in
+a desktop fixture, not in a native capture. [Evidence](GOLD_CURRENCY_ITERATION.md).

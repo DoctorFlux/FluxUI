@@ -566,20 +566,32 @@ local function LocationItemIDAndCount(bag, slot)
 	return id, count
 end
 
-local function RecordFromInfo(bag, slot, info, empty, inv)
-	if not info and not empty then
-		local locID, locCount = LocationItemIDAndCount(bag, slot)
-		if locID then
-			if inv and inv.RequestItemData and C_Item and C_Item.IsItemDataCachedByID
-				and not C_Item.IsItemDataCachedByID(locID) then
-				inv.RequestItemData(locID, function()
-					inv.NoteItemDataArrived(bag)
-				end)
-			end
-			return { itemID = locID, count = (locCount and locCount > 0) and locCount or 1 }
-		end
-		return nil
+local itemDataBagCallbacks = {}
+local itemDataBagSlots = {}
+local itemDataUnknownSlots = {}
+
+local function ItemDataBagCallback(bag, inv)
+	local callback = itemDataBagCallbacks[bag]
+	if not callback then
+		callback = function() inv.NoteItemDataArrived(bag) end
+		itemDataBagCallbacks[bag] = callback
 	end
+	return callback
+end
+
+local function RecordFromLocation(bag, slot, inv)
+	local locID, locCount = LocationItemIDAndCount(bag, slot)
+	if locID then
+		local needsData = C_Item and C_Item.IsItemDataCachedByID and not C_Item.IsItemDataCachedByID(locID)
+		if needsData and inv and inv.RequestItemData then
+			inv.RequestItemData(locID, ItemDataBagCallback(bag, inv), bag)
+		end
+		return { itemID = locID, count = (locCount and locCount > 0) and locCount or 1 }, needsData
+	end
+end
+
+local function RecordFromInfo(bag, slot, info, empty, inv)
+	if not info and not empty then return RecordFromLocation(bag, slot, inv) end
 	if not info then
 		return nil
 	end
@@ -592,7 +604,7 @@ local function RecordFromInfo(bag, slot, info, empty, inv)
 		id = Flux.Secrets.SafeGetNumber(info.itemID, 0)
 	end
 	if not id or id <= 0 then
-		return nil
+		return RecordFromLocation(bag, slot, inv)
 	end
 	local count = tonumber(info.stackCount) or tonumber(info.count)
 	if (not count or count <= 0) and Flux.Secrets and Flux.Secrets.SafeGetNumber then
@@ -608,10 +620,33 @@ local function RecordFromInfo(bag, slot, info, empty, inv)
 	}
 end
 
---- One slot, or nil when it is empty.
-function C.ReadSlot(bag, slot)
+--- One slot, or nil when empty; the second result reports a known identity/empty.
+--- Batch callers defer ownership pruning until their changed slots are recorded.
+function C.ReadSlot(bag, slot, deferPrune)
+	bag, slot = tonumber(bag) or bag, tonumber(slot) or slot
+	if bag == nil or slot == nil then return nil, false end
 	local info, empty = Flux.Container.GetItemInfo(bag, slot)
-	return RecordFromInfo(bag, slot, info, empty, Flux.Inventory)
+	local inv = Flux.Inventory
+	local rec, needsData = RecordFromInfo(bag, slot, info, empty, inv)
+	local known = rec ~= nil or empty == true
+	local waiting = itemDataBagSlots[bag]
+	if waiting and waiting[slot] and rec and rec.itemID == waiting[slot].itemID
+		and not needsData and C_Item and C_Item.IsItemDataCachedByID then
+		needsData = not C_Item.IsItemDataCachedByID(rec.itemID)
+	end
+	if needsData and not waiting then waiting = {}; itemDataBagSlots[bag] = waiting end
+	-- Keep only one last-known cold record per slot. An unreadable slot cannot
+	-- retain the history of replacements in other, readable slots.
+	if waiting and known then waiting[slot] = needsData and rec or nil end
+	local unknown = itemDataUnknownSlots[bag]
+	if not known and slot ~= nil and bag ~= nil then
+		unknown = unknown or {}; itemDataUnknownSlots[bag] = unknown; unknown[slot] = true
+	elseif unknown then unknown[slot] = nil end
+	if (waiting or unknown) and not deferPrune and inv.PruneItemDataForBag then
+		local ambiguous = unknown and next(unknown) ~= nil
+		inv.PruneItemDataForBag(bag, waiting, ambiguous, false, ambiguous and ItemDataBagCallback(bag, inv))
+	end
+	return rec, known
 end
 
 --- Write `slotSet` into an existing slot table and diff just those slots.
@@ -619,7 +654,7 @@ function C.PatchSlots(slots, bag, slotSet, touched, delta)
 	slots = slots or {}
 	for slot in pairs(slotSet) do
 		local old = slots[slot]
-		local new = C.ReadSlot(bag, slot)
+		local new = C.ReadSlot(bag, slot, true)
 		if old then
 			local id = old.itemID
 			if not new or new.itemID ~= id or new.count ~= old.count or new.link ~= old.link then
@@ -638,13 +673,22 @@ function C.PatchSlots(slots, bag, slotSet, touched, delta)
 			slots[slot] = nil
 		end
 	end
+	local waiting = itemDataBagSlots[tonumber(bag) or bag]
+	local inv = Flux.Inventory
+	local unknown = itemDataUnknownSlots[tonumber(bag) or bag]
+	if (waiting or unknown) and inv.PruneItemDataForBag then
+		local ambiguous = unknown and next(unknown) ~= nil
+		inv.PruneItemDataForBag(bag, waiting, ambiguous, false, ambiguous and ItemDataBagCallback(bag, inv))
+	end
 	return slots
 end
 
 --- Scan one container into { [slot] = { itemID, count, link } }.
 function C.ScanBag(bag)
+	bag = tonumber(bag) or bag
 	local bySlot = {}
 	local n = GetNumSlots(bag)
+	local capacityKnown = n > 0
 	if n <= 0 then
 		local inv = Flux.Inventory
 		if inv and inv.IsBankOpen and inv.IsBankOpen() and C.IsBankContainer(bag) then
@@ -655,9 +699,22 @@ function C.ScanBag(bag)
 		return bySlot
 	end
 	for slot = 1, n do
-		local rec = C.ReadSlot(bag, slot)
+		local rec = C.ReadSlot(bag, slot, true)
 		if rec then
 			bySlot[slot] = rec
+		end
+	end
+	local inv = Flux.Inventory
+	local waiting = itemDataBagSlots[bag]
+	local unknown = itemDataUnknownSlots[bag]
+	if waiting or unknown then
+		if capacityKnown then
+			if waiting then for slot in pairs(waiting) do if slot > n then waiting[slot] = nil end end end
+			if unknown then for slot in pairs(unknown) do if slot > n then unknown[slot] = nil end end end
+		end
+		if inv.PruneItemDataForBag then
+			local ambiguous = unknown and next(unknown) ~= nil
+			inv.PruneItemDataForBag(bag, waiting, ambiguous, true, ambiguous and ItemDataBagCallback(bag, inv))
 		end
 	end
 	return bySlot

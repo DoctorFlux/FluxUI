@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 176 |
+| inactive source | 179 |
 
 ## Addon sources
 
@@ -635,6 +635,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/flux_mail_quick_attach.lua](../tests/flux_mail_quick_attach.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_select.lua](../tests/flux_mail_select.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_settings.lua](../tests/flux_mail_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/gold_currency_iteration.lua](../tests/gold_currency_iteration.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_child_startup.lua](../tests/grid_child_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_hotkey_refresh.lua](../tests/grid_hotkey_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/hearth_config_toy_collection.lua](../tests/hearth_config_toy_collection.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -650,6 +651,8 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/idle_unit_geometry.lua](../tests/idle_unit_geometry.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/idle_units.lua](../tests/idle_units.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/input_diagnostics.lua](../tests/input_diagnostics.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/inventory_summary_pruning.lua](../tests/inventory_summary_pruning.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/item_data_request_coalescing.lua](../tests/item_data_request_coalescing.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/item_metadata_idempotence.lua](../tests/item_metadata_idempotence.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/late_inventory.lua](../tests/late_inventory.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/loot_cursor.lua](../tests/loot_cursor.lua) | inactive source | — | [34-assets.md](34-assets.md) |

@@ -78,7 +78,19 @@ local function GenerateCharacter(fullName, state)
 		end
 	end
 	WalkByBag(char.bags, summary, "bags")
-	if state ~= Store.PendingBags() then
+	if state == Store.PendingBags() then
+		-- Prune after repopulating bags so live rows keep their identity. Keep
+		-- other location facts, including nonzero fields from a newer schema.
+		for key, row in pairs(summary) do
+			if type(row) == "table" then
+				local empty = true
+				for _, count in pairs(row) do
+					if count ~= 0 then empty = false; break end
+				end
+				if empty then summary[key] = nil end
+			end
+		end
+	else
 		WalkByBag(char.bank, summary, "bank")
 		WalkSlots(char.mail, summary, "mail")
 		WalkSlots(char.equipped, summary, "equipped")

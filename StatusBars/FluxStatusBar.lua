@@ -1514,10 +1514,18 @@ local function UpdateGoldBar()
     
     -- Retail API (Backpack specific tracking)
     if C_CurrencyInfo and C_CurrencyInfo.GetBackpackCurrencyInfo then
-        local i = 1
+        local i, seen = 1, {}
         while true do
             local info = C_CurrencyInfo.GetBackpackCurrencyInfo(i)
             if not info then break end
+            -- Watched currencies have unique public IDs. A repeated or empty
+            -- reply must not turn a money update into unbounded string growth.
+            local currencyID = info.currencyTypesID
+            if type(currencyID) ~= "number" or (issecretvalue and issecretvalue(currencyID))
+                or currencyID <= 0 or currencyID % 1 ~= 0 or seen[currencyID] then
+                break
+            end
+            seen[currencyID] = true
             
             local iconStr = string.format("|T%s:0:0:2:0|t", info.iconFileID)
             currencyText = currencyText .. "   " .. FormatNumber(info.quantity) .. iconStr

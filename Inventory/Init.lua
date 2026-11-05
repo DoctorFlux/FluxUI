@@ -10,6 +10,7 @@ Inv.Syndicator = Inv.Syndicator or {}
 Inv.source = nil
 Inv.ready = false
 Inv.started = false
+Inv.itemDataRevision = "20261105.1"
 
 Inv.snapshots = {
 	bags = { byBag = {}, counts = {}, generation = 0 },
@@ -195,79 +196,198 @@ end
 -- Request the real data and rescan that bag when it lands.
 
 local pendingItemData = {}
+local itemDataBagObservers = {}
 local pendingItemDataCount = 0
 local itemDataFrame
+local itemDataListening = false
 local itemDataElapsed = 0
+local itemDataDeadline
 local ITEM_DATA_RETRY = 0.4
+local ITEM_DATA_MAX_REQUESTS, ITEM_DATA_MAX_WAIT = 4, 8
+local ClearItemData
 
---- True while item data requested by a scan is still outstanding. Mirrors
+--- True during the bounded active wait for item data requested by a scan. Mirrors
 --- Syndicator.API.IsBagEventPending() so movers can avoid acting mid-scan.
 function Inv.IsScanPending()
+	if Inv.source == "syndicator" then ClearItemData(); return false end
 	return pendingItemDataCount > 0
 end
 
-local function ResolveItemData(itemID)
-	local callbacks = pendingItemData[itemID]
-	if not callbacks then
-		return
+local function StopIdleItemData()
+	if pendingItemDataCount == 0 and itemDataFrame then
+		itemDataElapsed = 0
+		itemDataDeadline = nil
+		itemDataFrame:SetScript("OnUpdate", nil)
 	end
-	pendingItemData[itemID] = nil
-	pendingItemDataCount = pendingItemDataCount - 1
-	for i = 1, #callbacks do
-		Flux.Safecall(callbacks[i])
+	if not next(pendingItemData) and not next(itemDataBagObservers) and itemDataFrame and itemDataListening then
+		itemDataFrame:UnregisterEvent("ITEM_DATA_LOAD_RESULT")
+		itemDataListening = false
+	end
+end
+
+ClearItemData = function()
+	if not next(pendingItemData) and not next(itemDataBagObservers) then return end
+	WipeTable(pendingItemData)
+	WipeTable(itemDataBagObservers)
+	pendingItemDataCount = 0
+	StopIdleItemData()
+end
+
+local function ResolveItemData(itemID)
+	local entry = pendingItemData[itemID]
+	local callbacks = entry and entry.callbacks
+	if entry then
+		pendingItemData[itemID] = nil
+		if entry.active then pendingItemDataCount = pendingItemDataCount - 1 end
+	end
+	for bag, observer in pairs(itemDataBagObservers) do
+		if not observer.notified then
+			local C, bank = Inv.Containers, Inv.Builtin and Inv.Builtin.Bank
+			local readable = C and C.IsCarriedBag(bag)
+				or (bank and bank.IsOpen and bank.IsOpen() and C and C.IsBankContainer(bag))
+			if readable then
+				observer.notified = true
+				callbacks = callbacks or {}
+				local duplicate = false
+				for i = 1, #callbacks do if callbacks[i] == observer.callback then duplicate = true; break end end
+				if not duplicate then callbacks[#callbacks + 1] = observer.callback end
+			end
+		end
+	end
+	StopIdleItemData()
+	if callbacks then
+		for i = 1, #callbacks do
+			if Inv.source == "syndicator" then ClearItemData(); return end
+			Flux.Safecall(callbacks[i])
+		end
 	end
 end
 
 local function OnItemDataUpdate(self, elapsed)
+	if Inv.source == "syndicator" then ClearItemData(); return end
 	itemDataElapsed = itemDataElapsed + (elapsed or 0)
-	if itemDataElapsed > ITEM_DATA_RETRY then
-		itemDataElapsed = 0
-		if C_Item and C_Item.RequestLoadItemDataByID then
-			for itemID in pairs(pendingItemData) do
-				C_Item.RequestLoadItemDataByID(itemID)
+	local retry = itemDataElapsed >= ITEM_DATA_RETRY
+	local now = GetTime()
+	if not retry and (not itemDataDeadline or now < itemDataDeadline) then return end
+	if retry then itemDataElapsed = 0 end
+	itemDataDeadline = nil
+	local load = C_Item and C_Item.RequestLoadItemDataByID
+	local requests
+	for itemID, entry in pairs(pendingItemData) do
+		if entry.active then
+			if not load or now - entry.started >= ITEM_DATA_MAX_WAIT then
+				entry.active = false
+				pendingItemDataCount = pendingItemDataCount - 1
+			else
+				local deadline = entry.started + ITEM_DATA_MAX_WAIT
+				itemDataDeadline = math.min(itemDataDeadline or deadline, deadline)
+				if retry and entry.requests < ITEM_DATA_MAX_REQUESTS then
+					requests = requests or {}
+					requests[#requests + 1], requests[#requests + 2] = itemID, entry
+				end
 			end
 		end
 	end
-	if next(pendingItemData) == nil then
-		itemDataElapsed = 0
-		self:SetScript("OnUpdate", nil)
+	-- Native completion can run synchronously and mutate the pending map.
+	if requests then
+		for i = 1, #requests, 2 do
+			if Inv.source == "syndicator" then ClearItemData(); return end
+			local itemID, entry = requests[i], requests[i + 1]
+			if pendingItemData[itemID] == entry and entry.active then
+				entry.requests = entry.requests + 1
+				load(itemID)
+			end
+		end
 	end
+	StopIdleItemData()
 end
 
 local function EnsureItemDataFrame()
-	if itemDataFrame then
-		return itemDataFrame
+	if not itemDataFrame then
+		itemDataFrame = CreateFrame("Frame")
+		itemDataFrame:SetScript("OnEvent", function(_, _, itemID, success)
+			if Inv.source == "syndicator" then ClearItemData(); return end
+			itemID = tonumber(itemID)
+			if itemID and success ~= false then ResolveItemData(itemID) end
+		end)
 	end
-	itemDataFrame = CreateFrame("Frame")
-	itemDataFrame:RegisterEvent("ITEM_DATA_LOAD_RESULT")
-	itemDataFrame:SetScript("OnEvent", function(_, _, itemID)
-		itemID = tonumber(itemID)
-		if itemID then
-			ResolveItemData(itemID)
-		end
-	end)
+	if not itemDataListening then
+		itemDataFrame:RegisterEvent("ITEM_DATA_LOAD_RESULT")
+		itemDataListening = true
+	end
 	return itemDataFrame
 end
 
---- Queue `callback` until itemID's data is cached. Coalesces by itemID, so many
---- slots holding the same item share one request.
-function Inv.RequestItemData(itemID, callback)
+--- Coalesce each item's initial request; retain each distinct callback once.
+--- Bag-owned callbacks survive the bounded retry deadline for a late success.
+function Inv.RequestItemData(itemID, callback, bag)
+	if Inv.source == "syndicator" then ClearItemData(); return false end
 	itemID = tonumber(itemID)
-	if not itemID or type(callback) ~= "function" then
-		return
+	local load = C_Item and C_Item.RequestLoadItemDataByID
+	if not itemID or type(callback) ~= "function" or type(load) ~= "function" then
+		return false
 	end
-	local list = pendingItemData[itemID]
-	if not list then
-		list = {}
-		pendingItemData[itemID] = list
-		pendingItemDataCount = pendingItemDataCount + 1
+	local entry = pendingItemData[itemID]
+	if not entry then
+		entry = { callbacks = {}, owners = {} }
+		pendingItemData[itemID] = entry
 	end
-	list[#list + 1] = callback
+	local registered = entry.owners[callback] ~= nil
+	if not registered then
+		entry.callbacks[#entry.callbacks + 1] = callback
+		entry.owners[callback] = tonumber(bag) or false
+	end
+	-- Normal scans cannot restart an expired request for the same bag owner.
+	-- New owners and explicit callers without a bag can request another attempt.
+	if entry.active or (registered and bag ~= nil) then return true end
+	entry.active, entry.started, entry.requests = true, GetTime(), 1
+	local deadline = entry.started + ITEM_DATA_MAX_WAIT
+	itemDataDeadline = math.min(itemDataDeadline or deadline, deadline)
+	pendingItemDataCount = pendingItemDataCount + 1
 	local frame = EnsureItemDataFrame()
 	frame:SetScript("OnUpdate", OnItemDataUpdate)
-	if C_Item and C_Item.RequestLoadItemDataByID then
-		C_Item.RequestLoadItemDataByID(itemID)
+	load(itemID)
+	return true
+end
+
+--- Retire bag callbacks absent from the container's last-known cold slot map.
+--- Callers without a bag owner retain their explicit callback until completion.
+function Inv.PruneItemDataForBag(bag, slots, ambiguous, scanned, callback)
+	if Inv.source == "syndicator" then ClearItemData(); return end
+	bag = tonumber(bag)
+	if bag == nil then return end
+	if not ambiguous then itemDataBagObservers[bag] = nil
+	elseif not itemDataBagObservers[bag] and type(callback) == "function" then
+		itemDataBagObservers[bag] = { callback = callback }
+		EnsureItemDataFrame()
+	elseif scanned and itemDataBagObservers[bag] then itemDataBagObservers[bag].notified = false end
+	if not next(pendingItemData) then
+		if itemDataListening and not next(itemDataBagObservers) then StopIdleItemData() end
+		return
 	end
+	local present = {}
+	if slots then for _, rec in pairs(slots) do present[rec.itemID] = true end end
+	for itemID, entry in pairs(pendingItemData) do
+		if not present[itemID] then
+			for i = #entry.callbacks, 1, -1 do
+				local callback = entry.callbacks[i]
+				if entry.owners[callback] == bag then
+					-- A cold item can move into an unidentified slot. Keep one
+					-- bag observer instead of retaining every historical item ID.
+					if ambiguous and not itemDataBagObservers[bag] then
+						itemDataBagObservers[bag] = { callback = callback }
+					end
+					entry.owners[callback] = nil
+					table.remove(entry.callbacks, i)
+				end
+			end
+			if #entry.callbacks == 0 then
+				pendingItemData[itemID] = nil
+				if entry.active then pendingItemDataCount = pendingItemDataCount - 1 end
+			end
+		end
+	end
+	StopIdleItemData()
 end
 
 --- Item data for a scanned slot landed: rescan that container.
@@ -1250,6 +1370,13 @@ function Inv.SetBankOpenLatch(open)
 		Inv.PersistBankCounts()
 	end
 	bankOpenLatch = open
+	if not open and next(itemDataBagObservers) then
+		local C = Inv.Containers
+		for bag in pairs(itemDataBagObservers) do
+			if C and not C.IsCarriedBag(bag) then itemDataBagObservers[bag] = nil end
+		end
+		StopIdleItemData()
+	end
 	if open and Inv.Containers and Inv.Containers.Invalidate then
 		Inv.Containers.Invalidate()
 	end
@@ -1377,6 +1504,7 @@ local function HookScheduler()
 	end
 	schedulerHooked = true
 	Flux.Scheduler.Register("inventory", function(tokens)
+		if Inv.source == "syndicator" then ClearItemData() end
 		if Inv.source == "builtin" and Inv.Builtin.Flush then
 			Inv.Builtin.Flush(tokens)
 		end
@@ -1651,6 +1779,7 @@ SlashCmdList["FLUXINV"] = function(msg)
 		.. " mailbox=" .. yn(InvMod.IsMailboxOpen and InvMod.IsMailboxOpen())
 		.. " deferHeavy=" .. yn(InvMod.ShouldDeferHeavyWork and InvMod.ShouldDeferHeavyWork())
 		.. " scanPending=" .. yn(InvMod.IsScanPending and InvMod.IsScanPending())
+		.. " itemDataRevision=" .. tostring(InvMod.itemDataRevision or "legacy")
 		.. " listeners=" .. tostring(#(InvMod.GetListenerInfo and InvMod.GetListenerInfo() or {})))
 	local unique = InvMod.Index and InvMod.Index.UniqueCount and InvMod.Index.UniqueCount("bags") or 0
 	print("  unique bag items=" .. tostring(unique))

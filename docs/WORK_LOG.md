@@ -1,12 +1,35 @@
 # Work log
 
-Current user isolation: FluxUI is fully unloaded; the user reports no freezes
-with it unloaded. Leave it disabled and send no further game input. Current mail/
-auction and shared inventory work remain under investigation; the five validated
-contract fixes below do not establish a cure. Focus the next audit on built-in
-provider semantics, downstream fanout and mail/auction UI hook reentry.
+5 November built-in inventory phase: baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff`
+already committed/pushed to main contains the prior five contract fixes. Verified
+external Builtin-inventory-20261105T152153Z checkpoint:1,488 actual files,75 on-disk
+settings and all-ref history; source SHA256
+`c2a7f2c073d38a90133cff6e5fc494164430338149ef65343ca61ab507ca537a`.
+Added bounded/coalesced built-in item loading with late/unknown-slot ownership,
+all-zero summary pruning and defensive modern currency termination. The final
+corrected fixtures pass790/81/512 checks; five alternating pairs each (15 total)
+and12 rejected mutants, plus full143 scripts /798 syntax checks, pass.
+Modeled requests/waiters10,000→10, dirty marks/pulses10,200→20 and ambiguous retained
+IDs10,020→20. Summary rows2,000→1, zero rows1,999→0 and visits1,999,000→5,998.
+Repeated currency replies change13,000 queries/no completion to400 queries/200
+completions; actual native bad replies remain unverified. These are desktop
+counts, not native CPU, memory-byte, frame-time or freeze-removal measurements.
+[Raw comparisons](validation/builtin-inventory-comparison-2026-11-05.json),
+[full validation](validation/builtin-inventory-2026-11-05.json),
+[item data](BUILTIN_ITEM_DATA.md), [summaries](INVENTORY_SUMMARY_PRUNING.md),
+[currency](GOLD_CURRENCY_ITERATION.md).
 
-Latest phase: the native mail-command guard prevents progression/completion
+Latest native evidence: the user reports re-enabled FluxUI and continued whole-
+game freezes on sold auctions, cancellation-to-mail, individual mail items and
+Open All's second-last/final transition. The only verified active Forever process
+was PID47424. At17:35 CET FXBUILD showed legacy/nil source revision/profile0 and
+Syndicator false;17:37 FXLOADED was false/false, FXCLIENT1.60.1/70790/16001 and
+FXGLOBALS nil/nil. The observed unloaded client conflicts with the reported
+enabled state; final revision20261105.1 and all three changes are native-pending.
+No addon flags were changed, no profiler1/heavy frame capture was repeated and
+the previous foreground was restored. Private images remain outside Git.
+
+Earlier published phase: the native mail-command guard prevents progression/completion
 while C_Mail reports pending, with bounded8s wait and existing cadence retained.
 Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
 completions; three mutants rejected. Final full validation:140 scripts /795 Lua

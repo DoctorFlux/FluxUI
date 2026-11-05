@@ -47909,8 +47909,8 @@
       "path": "Inventory/Containers.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 763,
-      "sha256": "67a59049ac84bbbdd48ad5c57b193542fe8c3b7d04d0e42063fcbcf255673376",
+      "lines": 820,
+      "sha256": "81cef9d8bd8d2cee37fd3b49d85360ff4ef9a6d8206fdc17b88a0f631091feac",
       "clients": [
         "camelot",
         "cata",
@@ -48024,39 +48024,39 @@
         },
         {
           "name": "C.ReadSlot",
-          "line": 612
+          "line": 625
         },
         {
           "name": "C.PatchSlots",
-          "line": 618
+          "line": 653
         },
         {
           "name": "C.ScanBag",
-          "line": 645
+          "line": 687
         },
         {
           "name": "C.CountsFromByBag",
-          "line": 666
+          "line": 723
         },
         {
           "name": "C.DiffSlots",
-          "line": 690
+          "line": 747
         },
         {
           "name": "C.ChangedFromDelta",
-          "line": 713
+          "line": 770
         },
         {
           "name": "C.NewItemSetLog",
-          "line": 735
+          "line": 792
         },
         {
           "name": "C.NoteItemSets",
-          "line": 740
+          "line": 797
         },
         {
           "name": "C.TakeItemSets",
-          "line": 755
+          "line": 812
         }
       ],
       "events": [],
@@ -50692,8 +50692,8 @@
       "path": "Inventory/Init.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 1662,
-      "sha256": "a05221905f3a90d313209827873f3c990992d62017b5ada1067b35f270c90931",
+      "lines": 1791,
+      "sha256": "3271e22d40fc52bb9640d344ba8de4acba239bdd3099ddd76a5f6412d2041e8d",
       "clients": [
         "camelot",
         "cata",
@@ -50711,197 +50711,201 @@
       "functions": [
         {
           "name": "Inv.LoadPersistedBankCounts",
-          "line": 61
+          "line": 62
         },
         {
           "name": "Inv.PersistBankCounts",
-          "line": 84
+          "line": 85
         },
         {
           "name": "Inv.SnapshotCountKeys",
-          "line": 119
+          "line": 120
         },
         {
           "name": "Inv.ClassifyCountKeys",
-          "line": 132
+          "line": 133
         },
         {
           "name": "Inv.MergeChangeKind",
-          "line": 169
+          "line": 170
         },
         {
           "name": "Inv.IsScanPending",
-          "line": 205
+          "line": 211
         },
         {
           "name": "Inv.RequestItemData",
-          "line": 254
+          "line": 323
+        },
+        {
+          "name": "Inv.PruneItemDataForBag",
+          "line": 355
         },
         {
           "name": "Inv.NoteItemDataArrived",
-          "line": 274
+          "line": 394
         },
         {
           "name": "Inv.IsBagStorm",
-          "line": 354
+          "line": 474
         },
         {
           "name": "Inv.NotifyBagStorm",
-          "line": 377
+          "line": 497
         },
         {
           "name": "Inv.EndBagStorm",
-          "line": 391
+          "line": 511
         },
         {
           "name": "Inv.OnStormSettled",
-          "line": 399
+          "line": 519
         },
         {
           "name": "Inv.RegisterStormSettled",
-          "line": 414
+          "line": 534
         },
         {
           "name": "Inv.UnregisterStormSettled",
-          "line": 421
+          "line": 541
         },
         {
           "name": "Inv.SetMerchantOpen",
-          "line": 425
+          "line": 545
         },
         {
           "name": "Inv.IsMerchantOpen",
-          "line": 429
+          "line": 549
         },
         {
           "name": "Inv.SetMailboxOpen",
-          "line": 434
+          "line": 554
         },
         {
           "name": "Inv.IsMailboxOpen",
-          "line": 454
+          "line": 574
         },
         {
           "name": "Inv.ShouldDeferHeavyWork",
-          "line": 468
+          "line": 588
         },
         {
           "name": "Inv.GetLastAddedItemIDs",
-          "line": 673
+          "line": 793
         },
         {
           "name": "Inv.Notify",
-          "line": 716
+          "line": 836
         },
         {
           "name": "Inv.Register",
-          "line": 787
+          "line": 907
         },
         {
           "name": "Inv.Unregister",
-          "line": 805
+          "line": 925
         },
         {
           "name": "Inv.GetListenerInfo",
-          "line": 811
+          "line": 931
         },
         {
           "name": "Inv.GetSource",
-          "line": 828
+          "line": 948
         },
         {
           "name": "Inv.IsReady",
-          "line": 832
+          "line": 952
         },
         {
           "name": "Inv.SnapshotLooksCollapsed",
-          "line": 871
+          "line": 991
         },
         {
           "name": "Inv.MarkUnreliable",
-          "line": 884
+          "line": 1004
         },
         {
           "name": "Inv.BeginLoginHold",
-          "line": 918
+          "line": 1038
         },
         {
           "name": "Inv.IsLoginHold",
-          "line": 938
+          "line": 1058
         },
         {
           "name": "Inv.NoteLoginBagsDelayed",
-          "line": 950
+          "line": 1070
         },
         {
           "name": "Inv.IsReliable",
-          "line": 1005
+          "line": 1125
         },
         {
           "name": "Inv.NoteRefreshSettling",
-          "line": 1017
+          "line": 1137
         },
         {
           "name": "Inv.HasWarband",
-          "line": 1081
+          "line": 1201
         },
         {
           "name": "Inv.IsBaganatorBankViewShown",
-          "line": 1161
+          "line": 1281
         },
         {
           "name": "Inv.IsBaganatorBankLiveShown",
-          "line": 1188
+          "line": 1308
         },
         {
           "name": "Inv.RegisterBankStateListener",
-          "line": 1207
+          "line": 1327
         },
         {
           "name": "Inv.ShouldKeepBankOpen",
-          "line": 1243
+          "line": 1363
         },
         {
           "name": "Inv.SetBankOpenLatch",
-          "line": 1247
+          "line": 1367
         },
         {
           "name": "Inv.SetBaganatorBankLive",
-          "line": 1259
+          "line": 1386
         },
         {
           "name": "Inv.IsBaganatorBankLive",
-          "line": 1282
+          "line": 1409
         },
         {
           "name": "Inv.IsBankLive",
-          "line": 1288
+          "line": 1415
         },
         {
           "name": "Inv.CanTakeFromBank",
-          "line": 1310
+          "line": 1437
         },
         {
           "name": "Inv.IsBankOpen",
-          "line": 1329
+          "line": 1456
         },
         {
           "name": "Inv.PrepareHUD",
-          "line": 1389
+          "line": 1517
         },
         {
           "name": "Inv.Start",
-          "line": 1402
+          "line": 1530
         }
       ],
       "events": [
         {
-          "line": 242,
+          "line": 315,
           "method": "RegisterEvent",
           "arguments": [
             "\"ITEM_DATA_LOAD_RESULT\""
           ],
-          "context": "(\"Frame\")itemDataFrame:"
+          "context": "notitemDataListeningthenitemDataFrame:"
         }
       ],
       "slash": [
@@ -50909,12 +50913,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXINV1",
           "value": "/fluxinv",
-          "line": 1590
+          "line": 1718
         },
         {
           "kind": "handler",
           "name": "FLUXINV",
-          "line": 1591
+          "line": 1719
         }
       ],
       "widgets": [],
@@ -50923,9 +50927,9 @@
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            52,
             53,
-            62
+            54,
+            63
           ]
         }
       ]
@@ -55999,8 +56003,8 @@
       "path": "Inventory/Summaries.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 286,
-      "sha256": "d9746bc366548f8f1ff7e95d4419aec39b471dd69973695cdd7a700520c8e217",
+      "lines": 298,
+      "sha256": "921fdc06521a2d36dec9c1af7ace454a9423e0869c0b58a35a825d8b5d3e676c",
       "clients": [
         "camelot",
         "cata",
@@ -56018,15 +56022,15 @@
       "functions": [
         {
           "name": "Summaries.GetTooltipInfo",
-          "line": 187
+          "line": 199
         },
         {
           "name": "Summaries.GetTooltipInfoByItemID",
-          "line": 267
+          "line": 279
         },
         {
           "name": "Summaries.GetTooltipInfoByLink",
-          "line": 279
+          "line": 291
         }
       ],
       "events": [],
@@ -70910,8 +70914,8 @@
       "path": "StatusBars/FluxStatusBar.lua",
       "classification": "active",
       "chapter": "16-status-bars.md",
-      "lines": 3105,
-      "sha256": "b8254e6e10d01cb2f09d27197dad85d3181f78a8ebab7d06e6032dbadbab00ed",
+      "lines": 3113,
+      "sha256": "f38b765da532aadabf77794d4c11470f0bad60123e35ddd7b38279cd154ae996",
       "clients": [
         "camelot",
         "cata",
@@ -70929,36 +70933,36 @@
       "functions": [
         {
           "name": "UpdateExpBar",
-          "line": 1766
+          "line": 1774
         },
         {
           "name": "UpdateFluxDurabilityFramePosition",
-          "line": 2310
+          "line": 2318
         },
         {
           "name": "_G.FluxStatusBar_GetLocation2MinBottomOffset",
-          "line": 2406
+          "line": 2414
         },
         {
           "name": "_G.FluxStatusBar_GetBottomOverlayHeight",
-          "line": 2427
+          "line": 2435
         },
         {
           "name": "_G.FluxStatusBar_GetBottomOverlayHeightForAlignedChrome",
-          "line": 2446
+          "line": 2454
         },
         {
           "name": "UpdateLayout",
-          "line": 2635
+          "line": 2643
         },
         {
           "name": "endend_G.FluxStatusBarUpdateLayout",
-          "line": 3095
+          "line": 3103
         }
       ],
       "events": [
         {
-          "line": 2569,
+          "line": 2577,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -70966,7 +70970,7 @@
           "context": "(\"Frame\")regenFlushNotifyFrame:"
         },
         {
-          "line": 2932,
+          "line": 2940,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -70974,7 +70978,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 2933,
+          "line": 2941,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -70982,7 +70986,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 2934,
+          "line": 2942,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -70990,7 +70994,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 2935,
+          "line": 2943,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -70998,7 +71002,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 2936,
+          "line": 2944,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_XP_UPDATE\""
@@ -71006,7 +71010,7 @@
           "context": "(\"ADDON_LOADED\")eventFrame:"
         },
         {
-          "line": 2937,
+          "line": 2945,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -71014,7 +71018,7 @@
           "context": "(\"PLAYER_XP_UPDATE\")eventFrame:"
         },
         {
-          "line": 2938,
+          "line": 2946,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_EXHAUSTION\""
@@ -71022,7 +71026,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")eventFrame:"
         },
         {
-          "line": 2939,
+          "line": 2947,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_UPDATE_RESTING\""
@@ -71030,7 +71034,7 @@
           "context": "(\"UPDATE_EXHAUSTION\")eventFrame:"
         },
         {
-          "line": 2940,
+          "line": 2948,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_FACTION\""
@@ -71038,7 +71042,7 @@
           "context": "(\"PLAYER_UPDATE_RESTING\")eventFrame:"
         },
         {
-          "line": 2941,
+          "line": 2949,
           "method": "RegisterEvent",
           "arguments": [
             "\"QUEST_LOG_UPDATE\""
@@ -71046,7 +71050,7 @@
           "context": "(\"UPDATE_FACTION\")eventFrame:"
         },
         {
-          "line": 2942,
+          "line": 2950,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_MONEY\""
@@ -71054,7 +71058,7 @@
           "context": "(\"QUEST_LOG_UPDATE\")eventFrame:"
         },
         {
-          "line": 2943,
+          "line": 2951,
           "method": "RegisterEvent",
           "arguments": [
             "\"CURRENCY_DISPLAY_UPDATE\""
@@ -71062,7 +71066,7 @@
           "context": "(\"PLAYER_MONEY\")eventFrame:"
         },
         {
-          "line": 2944,
+          "line": 2952,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_INVENTORY_ALERTS\""
@@ -71075,12 +71079,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXSTATUS1",
           "value": "/fluxstatus",
-          "line": 3045
+          "line": 3053
         },
         {
           "kind": "handler",
           "name": "FLUXSTATUS",
-          "line": 3046
+          "line": 3054
         }
       ],
       "widgets": [],
@@ -75089,6 +75093,115 @@
       "sv_sites": []
     },
     {
+      "path": "tests/gold_currency_iteration.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 190,
+      "sha256": "e3478cdf1fc6856aecdf1462660af3b735443be4be4a549dab6f6f2a6676779d",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "f:SetText",
+          "line": 34
+        },
+        {
+          "name": "f:GetText",
+          "line": 38
+        },
+        {
+          "name": "f:Show",
+          "line": 39
+        },
+        {
+          "name": "f:Hide",
+          "line": 40
+        },
+        {
+          "name": "s.bar:GetWidth",
+          "line": 44
+        },
+        {
+          "name": "s.bar:SetStatusBarColor",
+          "line": 45
+        },
+        {
+          "name": "s.bar:SetValue",
+          "line": 46
+        },
+        {
+          "name": "s.bare.ApplyGoldBarBackgroundColor",
+          "line": 48
+        },
+        {
+          "name": "ende.GetMoney",
+          "line": 49
+        },
+        {
+          "name": "returns.moneyende.FormatNumber",
+          "line": 50
+        },
+        {
+          "name": "ende.FormatMoneyFull",
+          "line": 51
+        },
+        {
+          "name": "nende.FormatMoneyCompact",
+          "line": 52
+        },
+        {
+          "name": "nende.GetGoldItemTrackSignature",
+          "line": 53
+        },
+        {
+          "name": "e.PositionGoldBarRegionHits",
+          "line": 57
+        },
+        {
+          "name": "ende.issecretvalue",
+          "line": 58
+        },
+        {
+          "name": "e.GetCurrencyListSize",
+          "line": 68
+        },
+        {
+          "name": "s.rowsende.GetCurrencyListInfo",
+          "line": 69
+        },
+        {
+          "name": "s:update",
+          "line": 81
+        },
+        {
+          "name": "s:expectCurrency",
+          "line": 87
+        },
+        {
+          "name": "s:expectStableUI",
+          "line": 92
+        },
+        {
+          "name": "repeated.reply",
+          "line": 138
+        },
+        {
+          "name": "bad.reply",
+          "line": 160
+        },
+        {
+          "name": "bad.reply",
+          "line": 164
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/grid_child_startup.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -76615,6 +76728,132 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/inventory_summary_pruning.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 190,
+      "sha256": "cf8158f503d0b19f845463e16dd07165ecc5c2f03200969d4c5a8562b09cd650",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitName",
+          "line": 13
+        },
+        {
+          "name": "endenv.GetNormalizedRealmName",
+          "line": 14
+        },
+        {
+          "name": "endenv.UnitFactionGroup",
+          "line": 15
+        },
+        {
+          "name": "endenv.GetAutoCompleteRealms",
+          "line": 16
+        },
+        {
+          "name": "env.pairs",
+          "line": 18
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxUIInventoryDB",
+          "lines": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "path": "tests/item_data_request_coalescing.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 354,
+      "sha256": "cd93ce5ca91548e2d4203b8289e6e9fcccb0c562b158ac103871967ba5cf24a2",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.GetTime",
+          "line": 25
+        },
+        {
+          "name": "returns.nowende.CreateFrame",
+          "line": 26
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 27
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 28
+        },
+        {
+          "name": "f:SetScript",
+          "line": 29
+        },
+        {
+          "name": "e.pairs",
+          "line": 64
+        },
+        {
+          "name": "s:fill",
+          "line": 74
+        },
+        {
+          "name": "s:scan",
+          "line": 78
+        },
+        {
+          "name": "s:event",
+          "line": 83
+        },
+        {
+          "name": "s:tick",
+          "line": 90
+        },
+        {
+          "name": "s:advance",
+          "line": 96
+        },
+        {
+          "name": "s:armed",
+          "line": 99
+        },
+        {
+          "name": "s:pending",
+          "line": 103
+        },
+        {
+          "name": "s:counts",
+          "line": 106
+        }
+      ],
+      "events": [
+        {
+          "line": 27,
+          "method": "RegisterEvent",
+          "arguments": [
+            "key"
+          ],
+          "context": "};functionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/item_metadata_idempotence.lua",

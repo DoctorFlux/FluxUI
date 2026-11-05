@@ -1,5 +1,34 @@
 # Baseline protocol and currency evidence
 
+5 November built-in inventory/currency candidate, baseline `b664bb0`: fifteen
+alternating fresh-process pairs cover three production fixtures. Cold-slot
+metadata requests/waiters fall from 10,000 to ten; successful completion marks and
+inventory requests from 10,200 to twenty each. A separate unavailable-data case
+uses 270 to forty native-request mocks. Retained item IDs after 1,000 known-slot
+replacements beside an unreadable slot fall from 10,020 to twenty. These are
+modeled operations/records, not native memory bytes or measured request latency.
+The finite active retry period retains passive late-result and unknown-bag
+recovery; ownership follows observed slots rather than historical IDs.
+
+A separate 2,000-replacement summary workload retains 2,000 to one character rows
+and performs 1,999,000 to 5,998 production row visits. Pruning adds a pass over
+current ownership while retaining nonzero/unknown nonbag facts. Repeated currency
+replies use 13,000 fixture queries with zero completed updates versus 400 with all
+200 complete; the baseline fixture budget ends each loop at query65. An actual
+native repeated reply has not been observed. Valid currency data keeps its reads
+and adds one small local set; no general CPU/allocation reduction is claimed.
+790 + 81 + 512 focused checks, twelve mutants and full 143 scripts / 798 syntax
+pass. [Raw pairs, exact hashes and limits](validation/builtin-inventory-comparison-2026-11-05.json).
+
+Live whole-game freezes remain reported for sales bursts/delayed spikes, cancel
+to mailbox, Open All two-to-one and individual attachment collection. At 17:37
+CET, read-only Forever checks showed FluxUI unloaded, so the current candidate's
+loaded state and native effect remain unverified despite the user's re-enable
+report. No new profiling or enabled-state change occurred; profile0 and existing
+diagnostics remain. Earlier lost captures and startup observations are not timing
+evidence for these changes. All native CPU, allocation bytes, long-session leak,
+latency, protection, rendering and FPS acceptance remains pending.
+
 Latest phase: the native mail-command guard prevents progression/completion
 while C_Mail reports pending, with bounded8s wait and existing cadence retained.
 Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature

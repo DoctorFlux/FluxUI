@@ -1,12 +1,33 @@
 # Next session
 
-Current user isolation: FluxUI is fully unloaded; the user reports no freezes
-with it unloaded. Leave it disabled and send no further game input. Current mail/
-auction and shared inventory work remain under investigation; the five validated
-contract fixes below do not establish a cure. Focus the next audit on built-in
-provider semantics, downstream fanout and mail/auction UI hook reentry.
+Current phase: baseline `b664bb0b93ac566a34744aec5895e927a7a1ffff` is already on
+GitHub main; three further runtime fixes are desktop-validated, not yet native-
+verified. Read [item data](docs/BUILTIN_ITEM_DATA.md),
+[summary pruning](docs/INVENTORY_SUMMARY_PRUNING.md) and
+[currency iteration](docs/GOLD_CURRENCY_ITERATION.md). Preserve external
+Builtin-inventory-20261105T152153Z (1,488 files,75 settings, verified history;
+source SHA256 `c2a7f2c073d38a90133cff6e5fc494164430338149ef65343ca61ab507ca537a`).
+Final full validation passes143 scripts /798 syntax files; five alternating
+pairs per scenario and12 mutants are in
+`docs/validation/builtin-inventory-comparison-2026-11-05.json`.
+Reproduce with `lua tests/item_data_request_coalescing.lua`,
+`lua tests/inventory_summary_pruning.lua`, `lua tests/gold_currency_iteration.lua`
+and `python tests/run_validation.py --output docs/validation/builtin-inventory-2026-11-05.json --sync-docs`.
 
-Latest phase: the native mail-command guard prevents progression/completion
+Resolve source/client identity before interpreting another native run: the user
+reports re-enabled FluxUI and continued whole-game freezes on sold auctions,
+cancellation-to-mail, individual items and Open All's second-last/final step.
+The only verified active Forever process PID47424 reported17:35 CET legacy/nil
+source revision/profile0, then17:37 FluxUI false/Syndicator false and nil globals;
+client1.60.1/build70790/interface16001. This contradicts the reported enabled
+state; final `Inv.itemDataRevision='20261105.1'` has not been verified in game.
+Keep addon flags unchanged until clarified, leave WoW in the background and
+preserve profile0/diagnostic roots. The previous foreground was restored. Do not
+repeat profiler1 or heavy EnumerateFrames capture. Native checks for all three
+fixes and all client/provider combinations remain pending; do not infer a cure
+or FPS from desktop counts. Guild-bank/void callbacks remain excluded.
+
+Earlier published phase: the native mail-command guard prevents progression/completion
 while C_Mail reports pending, with bounded8s wait and existing cadence retained.
 Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
 completions; three mutants rejected. Final full validation:140 scripts /795 Lua

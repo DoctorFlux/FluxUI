@@ -1,5 +1,20 @@
 # Decisions
 
+5 November built-in inventory follow-up: reuse the item-data service and its lazy
+frame, coalesce native loads/callbacks, gate retry work at0.4s/earliest deadline
+and cap active attempts at four requests/eight seconds. Keep bounded passive
+ownership so late success and unreadable moved items still refresh their bags;
+disarm idle work and retire it on external-provider handoff. Prune all-zero
+derived character rows after partial bag repopulation, preserving live row
+identity and other ownership facts. Stop invalid/repeated modern currency IDs
+without a valid-list size cap or changing legacy iteration. These are reproduced
+contract corrections, not proof of the native freeze cause. Latest native loaded
+flags conflict with the user's re-enabled report; preserve flags and background
+operation until clarified. Do not repeat heavy frame captures or profiler1.
+[Item-data ownership](BUILTIN_ITEM_DATA.md),
+[summary retention](INVENTORY_SUMMARY_PRUNING.md),
+[currency contract](GOLD_CURRENCY_ITERATION.md).
+
 5 November native mail readiness: use the public native command-pending flag in
 addition to data confirmation, before advancing or finishing a worker. Reuse two
 existing wake slots, retain configured minimum speed, stop busy waits at8s and

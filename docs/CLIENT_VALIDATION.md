@@ -1,5 +1,31 @@
 # Client and reference validation — 29 October 2026
 
+5 November built-in inventory/currency candidate, baseline `b664bb0`: production
+module fixtures pass 790 metadata-ownership, 81 summary-pruning and 512 currency
+iteration checks. Five alternating pairs per scenario and twelve rejected mutants
+are recorded; final full validation passes 143 scripts / 798 Lua syntax files.
+The metadata labels cover shared client/provider contracts, not native emulation.
+Modern currency structures are source-verified for Forever/Retail; the three
+legacy branches retain their existing code. Original/modern Wrath remain distinct
+and unverified. See [item data](BUILTIN_ITEM_DATA.md),
+[summary retention](INVENTORY_SUMMARY_PRUNING.md) and
+[currency iteration](GOLD_CURRENCY_ITERATION.md).
+
+Current native evidence supersedes assumptions about what is loaded: the user
+reports re-enabling FluxUI and whole-game freezes during many buyer sales with a
+delayed spike, auction cancellation followed by mailbox entry, Open All from two
+messages to one, and individual attachment mail. Read-only checks at 17:35 CET
+returned a legacy/nil source marker; direct checks at 17:37 showed both addon
+loaded flags false and Flux/FluxUI globals nil. The only observed game was Forever
+PID 47424, reporting 1.60.1 / 70790 / interface16001, scriptProfile0 and Syndicator
+unloaded. The exact candidate tree is therefore not verified as loaded, despite
+the user's re-enable report. Previous window restored; no enabling or CPU capture
+was performed. All new native feature, transaction, protection, pixel, retention
+and performance acceptance remains pending. The next permitted check must verify
+`Flux.Inventory.itemDataRevision == "20261105.1"` before interpreting results.
+Historical startup observations and earlier phase results below do not certify
+this candidate.
+
 Latest phase: the native mail-command guard prevents progression/completion
 while C_Mail reports pending, with bounded8s wait and existing cadence retained.
 Five matched desktop pairs reproduce360 to0 unsafe requests and40 to0 premature
