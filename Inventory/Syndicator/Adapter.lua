@@ -127,8 +127,10 @@ end
 
 --- Record which bags this rebuild touched. Syndicator hands us the dirty set,
 --- so a full rebuild reports every bag it walked.
-local function NoteDirty(change, dirtyBags, ids)
-	Wipe(change.dirty)
+local function NoteDirty(change, dirtyBags, ids, itemSets)
+	if not (itemSets and itemSets.any) then
+		Wipe(change.dirty)
+	end
 	if dirtyBags then
 		for bagID in pairs(dirtyBags) do
 			change.dirty[bagID] = true
@@ -140,8 +142,14 @@ local function NoteDirty(change, dirtyBags, ids)
 	end
 end
 
-local function Classify(change, snap, beforeKeys)
-	change.kind, change.added, change.removed = Inv.ClassifyCountKeys(beforeKeys, snap.counts)
+local function Classify(change, snap, beforeKeys, itemSets)
+	local kind, added, removed = Inv.ClassifyCountKeys(beforeKeys, snap.counts)
+	-- Several cache callbacks can precede one inventory publication. Retain
+	-- every ownership change until TakeBagsItemSets consumes that batch.
+	if itemSets and itemSets.any then
+		kind, added, removed = Inv.MergeChangeKind(change.kind, change.added, change.removed, kind, added, removed)
+	end
+	change.kind, change.added, change.removed = kind, added, removed
 end
 
 function Adapter.RebuildBags(dirtyBags)
@@ -161,8 +169,8 @@ function Adapter.RebuildBags(dirtyBags)
 		end
 		snap.counts = counts
 		snap.generation = (snap.generation or 0) + 1
-		NoteDirty(bagsChange, dirtyBags, cons and cons.AllBagIndexes)
-		Classify(bagsChange, snap, keyBuf)
+		NoteDirty(bagsChange, dirtyBags, cons and cons.AllBagIndexes, bagsItemSets)
+		Classify(bagsChange, snap, keyBuf, bagsItemSets)
 		C.NoteItemSets(bagsItemSets, nil)
 		if Inv.NoteRefreshSettling then
 			Inv.NoteRefreshSettling()
@@ -185,8 +193,8 @@ function Adapter.RebuildBags(dirtyBags)
 		C.DiffSlots(old, snap.byBag[bagID], touched, delta)
 	end
 	snap.generation = (snap.generation or 0) + 1
-	NoteDirty(bagsChange, dirtyBags, nil)
-	Classify(bagsChange, snap, keyBuf)
+	NoteDirty(bagsChange, dirtyBags, nil, bagsItemSets)
+	Classify(bagsChange, snap, keyBuf, bagsItemSets)
 	C.NoteItemSets(bagsItemSets, touched, C.ChangedFromDelta(delta))
 	if Inv.NoteRefreshSettling then
 		Inv.NoteRefreshSettling()

@@ -56023,8 +56023,8 @@
       "path": "Inventory/Syndicator/Adapter.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 687,
-      "sha256": "6484933439a0830fb1c652054bc1384b9e66a824e58f684427ba31cc91f3d078",
+      "lines": 695,
+      "sha256": "87c94ac5ef38912d2a08a0aa37adf81ae673b9b1f6fccfa92b54267ad9278d01",
       "clients": [
         "camelot",
         "cata",
@@ -56042,91 +56042,91 @@
       "functions": [
         {
           "name": "Adapter.RebuildBags",
-          "line": 147
+          "line": 155
         },
         {
           "name": "Adapter.RebuildBank",
-          "line": 196
+          "line": 204
         },
         {
           "name": "Adapter.GetLastBagsChangeKind",
-          "line": 244
-        },
-        {
-          "name": "Adapter.GetLastBagsAddedItemIDs",
-          "line": 248
-        },
-        {
-          "name": "Adapter.GetLastBagsRemovedItemIDs",
           "line": 252
         },
         {
-          "name": "Adapter.GetLastBagsDirtyBags",
+          "name": "Adapter.GetLastBagsAddedItemIDs",
           "line": 256
         },
         {
-          "name": "Adapter.GetLastBankChangeKind",
+          "name": "Adapter.GetLastBagsRemovedItemIDs",
           "line": 260
         },
         {
-          "name": "Adapter.GetLastBankAddedItemIDs",
+          "name": "Adapter.GetLastBagsDirtyBags",
           "line": 264
         },
         {
-          "name": "Adapter.GetLastBankRemovedItemIDs",
+          "name": "Adapter.GetLastBankChangeKind",
           "line": 268
         },
         {
-          "name": "Adapter.GetLastBankDirtyBags",
+          "name": "Adapter.GetLastBankAddedItemIDs",
           "line": 272
         },
         {
-          "name": "Adapter.TakeBagsItemSets",
+          "name": "Adapter.GetLastBankRemovedItemIDs",
           "line": 276
         },
         {
-          "name": "Adapter.TakeBankItemSets",
+          "name": "Adapter.GetLastBankDirtyBags",
           "line": 280
         },
         {
-          "name": "Adapter.RebuildWarband",
+          "name": "Adapter.TakeBagsItemSets",
           "line": 284
         },
         {
+          "name": "Adapter.TakeBankItemSets",
+          "line": 288
+        },
+        {
+          "name": "Adapter.RebuildWarband",
+          "line": 292
+        },
+        {
           "name": "Adapter.RebuildEquip",
-          "line": 309
+          "line": 317
         },
         {
           "name": "Adapter.RebuildMail",
-          "line": 379
+          "line": 387
         },
         {
           "name": "Adapter.RebuildVoid",
-          "line": 391
+          "line": 399
         },
         {
           "name": "Adapter.RebuildAuctions",
-          "line": 409
+          "line": 417
         },
         {
           "name": "Adapter.RebuildGuild",
-          "line": 414
+          "line": 422
         },
         {
           "name": "Adapter.RebuildCurrencies",
-          "line": 436
+          "line": 444
         },
         {
           "name": "Adapter.RebuildWarbandCurrency",
-          "line": 461
+          "line": 469
         },
         {
           "name": "Adapter.RebuildAll",
-          "line": 472
+          "line": 480
         },
         {
           "name": "Adapter.Start",
-          "line": 655
+          "line": 663
         }
       ],
       "events": [],
@@ -79237,6 +79237,51 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/syndicator_consumable_updates.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 119,
+      "sha256": "cd79238c165fd27bf6d87e75c1cd82b449137bcbadb780961952333e79274a14",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "envenv.GetTime",
+          "line": 12
+        },
+        {
+          "name": "env.CreateFrame",
+          "line": 15
+        },
+        {
+          "name": "inv.Syndicatoradapter.RebuildAll",
+          "line": 36
+        },
+        {
+          "name": "best.RequestRecompute",
+          "line": 44
+        },
+        {
+          "name": "h.pulse",
+          "line": 48
+        },
+        {
+          "name": "h.flush",
+          "line": 52
+        },
+        {
+          "name": "adapterh.callbacksCount",
+          "line": 62
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/teleport_cast_work.lua",

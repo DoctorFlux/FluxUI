@@ -110,3 +110,7 @@ Sorting stacks first, then orders items in the applicable bag groups, using live
 ## Reading related contracts
 
 [Vendor, junk and bank restock](20-vendor-restock-junk.md), [Salvage](22-salvage.md), [Respec](23-respec.md), and [Baganator](24-baganator-compat.md) consume this foundation. The [SavedVariables reference](32-saved-variables.md), [API/events index](33-api-and-events.md), and [source coverage](30-source-coverage.md) provide the complete inventories. Source inspection and local smoke tests do not establish real bank permission behavior, protected execution, secure taint, or scan performance in the game.
+
+Syndicator bag updates now preserve every added/removed item across a batched
+notification, so better consumables and last-use depletion reach selection.
+[Regression and native checks](SYNDICATOR_CONSUMABLE_UPDATES.md).

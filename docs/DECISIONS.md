@@ -853,3 +853,18 @@ Keep each feature summary brief and link to the existing full reference; include
 client gates, companion-addon ownership and first-setup effects. Publish current
 local files on main with history preserved. This is a repository front-page
 change; no hosted site, new addon, new branch or separate repository is needed.
+
+## 5 November 2026 - Syndicator consumable batch metadata
+
+5 November Syndicator consumables: batched bag callbacks now retain every
+added/removed item and dirty bag until publication. This fixes a reproduced
+missed selector update for better items and last-use depletion across food,
+water, potions and bandages. Five desktop pairs: baseline 200 failures versus
+candidate 0 per400 checks; three mutations rejected. Full suite123/778 passes.
+Native gameplay, pixels, taint and performance remain pending.
+
+Reuse the existing bag item-set log as the batch lifetime and merge classifications
+with the existing inventory helper. Keep last-change getters readable; begin a
+fresh classification after publication. No polling, framework, client API change,
+settings reset or excluded callback modification. User authorizes publication
+to main. [Source/recovery/native limits](SYNDICATOR_CONSUMABLE_UPDATES.md).

@@ -1,5 +1,13 @@
 # Client and reference validation — 29 October 2026
 
+5 November Syndicator consumables: batched bag callbacks now retain every
+added/removed item and dirty bag until publication. This fixes a reproduced
+missed selector update for better items and last-use depletion across food,
+water, potions and bandages. Five desktop pairs: baseline 200 failures versus
+candidate 0 per400 checks; three mutations rejected. Full suite123/778 passes.
+Native gameplay, pixels, taint and performance remain pending.
+[Evidence and exact native checks](SYNDICATOR_CONSUMABLE_UPDATES.md).
+
 4 November built-in mail: all five local Blizzard mirrors declare `MAIL_SHOW`,
 `MAIL_CLOSED`, `MAIL_SEND_SUCCESS` and native Open All; Retail/Forever use
 `Blizzard_MailFrame`, Era/Anniversary/MoP use the Classic MailFrame path.

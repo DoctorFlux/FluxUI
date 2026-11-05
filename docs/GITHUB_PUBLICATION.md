@@ -277,3 +277,19 @@ GitHub main matched parent `1b319d19aa00fffa7e798a66d045e55902af6706`.
 Private recoveries/settings/captures and ignored local helpers remain outside
 Git. Use an ordinary push to main; verify remote identity and clean status.
 No game, settings, sync-job or profiler interaction during publication.
+
+## 5 November 2026 - Syndicator consumable update fix
+
+User authorized publishing the fix on main. The payload retains all bag
+identity changes and dirty bags across batched Syndicator callbacks. Baseline
+`223e95024727ad2935a52bba3f0ddc6a4cfef7eb` fails 200 of400 source-driven
+checks; candidate passes400, including 200-callback bursts, with three rejected
+mutations and five alternating matched pairs. Full validation:123 scripts/778
+Lua syntax files, zero failures. Native checks retain their pending scope.
+
+Recovery `Syndicator-grid-20261105T062052Z` covers actual source/history and
+133 on-disk settings files outside AddOns. Exact hashes and raw evidence are
+in [the fix record](SYNDICATOR_CONSUMABLE_UPDATES.md). GitHub main matched the
+local baseline before publication. Keep normal main history, no force push or
+other branch; read back the remote commit and verify clean status after push.
+Private recoveries/settings/captures remain outside Git; no client interaction.

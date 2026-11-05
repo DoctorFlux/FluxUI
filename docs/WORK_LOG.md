@@ -1629,3 +1629,18 @@ GitHub main matched parent `1b319d19aa00fffa7e798a66d045e55902af6706`.
 Private recoveries/settings/captures and ignored local helpers remain outside
 Git. Use an ordinary push to main; verify remote identity and clean status.
 No game, settings, sync-job or profiler interaction during publication.
+
+## 5 November 2026 - Syndicator consumable batch metadata
+
+5 November Syndicator consumables: batched bag callbacks now retain every
+added/removed item and dirty bag until publication. This fixes a reproduced
+missed selector update for better items and last-use depletion across food,
+water, potions and bandages. Five desktop pairs: baseline 200 failures versus
+candidate 0 per400 checks; three mutations rejected. Full suite123/778 passes.
+Native gameplay, pixels, taint and performance remain pending.
+
+Reuse the existing bag item-set log as the batch lifetime and merge classifications
+with the existing inventory helper. Keep last-change getters readable; begin a
+fresh classification after publication. No polling, framework, client API change,
+settings reset or excluded callback modification. User authorizes publication
+to main. [Source/recovery/native limits](SYNDICATOR_CONSUMABLE_UPDATES.md).

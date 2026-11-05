@@ -94,3 +94,7 @@ Equipped `/use 13` and `/use 14` faces retain the owned-item usability fallback 
 [FluxExtraButtonVisibility](../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua) supplies mode cycles, relevance gates, binding-mode forcing and layout notifications. Mana Gem/Class Teleport offer Off/Auto; consumables use Hidden/Always. Food/water normalize saved Auto to Always, with further mana/relevance gates. The assistant policy exists but `GetOptionsIds()` currently excludes its icon from the visibility editor. [Options](26-options-map.md) records scopes/defaults, [custom widgets](35-custom-widget-controls.md) records detailed gestures and effective-mode rules, and [commands](31-commands-and-bindings.md) lists aliases.
 
 Check use/conjure distinction, modifier favorites, empty/uncached items, charge exhaustion, portal holds, combat edits, zone-disabled bag mounts, cast locks and queued trinket swaps in game. Consumable/ammo mock harnesses cover selected logic, not Blizzard secure execution.
+
+Syndicator bag updates now preserve every added/removed item across a batched
+notification, so better consumables and last-use depletion reach selection.
+[Regression and native checks](SYNDICATOR_CONSUMABLE_UPDATES.md).
