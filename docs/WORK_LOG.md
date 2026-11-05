@@ -1,5 +1,12 @@
 # Work log
 
+5 November publication: ordinary push to main completed for runtime
+`7a06b85f633d1945b7d6bf615636f486f3d7e627`, tree
+`4e31f10131923c3d002faffe8036e631d1537402`; remote read-back matched and
+the working tree was clean. All 800 Lua files match the tested manifest.
+This final publication record changes documentation only. No native acceptance
+is implied by publication or synced on-disk files.
+
 5 November lifecycle follow-up: verified published main baseline
 `e860ce6de499a7702b91e8a8d74f115fbc9e0293` and external checkpoint
 Mail-auction-lifecycle-20261105T171132Z (1,496 actual files, 75 on-disk settings,

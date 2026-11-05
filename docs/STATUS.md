@@ -1,5 +1,10 @@
 # Development status
 
+Published runtime: `7a06b85f633d1945b7d6bf615636f486f3d7e627`, source tree
+`4e31f10131923c3d002faffe8036e631d1537402`. GitHub main read-back matched;
+all 800 normalized Lua files match the passing validation manifest. Subsequent
+publication-record updates change documentation only.
+
 Current mail/auction lifecycle work is based on published main
 `e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Built-in auction opens now check
 provider ownership before querying and coalesce duplicate/reentrant show calls.

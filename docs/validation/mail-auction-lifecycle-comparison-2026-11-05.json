@@ -435,7 +435,10 @@
     "fixtureSHA256LF": {
       "tests/auction_query_ownership.lua": "5b4a3c2ee372fe3b240bcc0c293f4f2eacae67e3b1cd07421cd71ab99552fecb",
       "tests/mail_job_lifecycle.lua": "0f7fd5cb567df611a8e297632ff876c37bb8af518fd4a0abd24a3a9b5baa48e3"
-    }
+    },
+    "commit": "7a06b85f633d1945b7d6bf615636f486f3d7e627",
+    "tree": "4e31f10131923c3d002faffe8036e631d1537402",
+    "publication": "Ordinary push and GitHub main read-back matched this commit. Later publication-record edits are documentation only; the tested Lua corpus is unchanged."
   },
   "diskDelivery": {
     "checkedUTC": "2026-11-05T17:28:46.424838+00:00",

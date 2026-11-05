@@ -16,6 +16,11 @@ management. Blizzard continues to own posting, buying, cancellation and their
 confirmation dialogs. FluxUI observes inventory facts and adds its existing
 mail controls and decorations.
 
+The renewed report explicitly includes Buy followed by delivery to the mailbox.
+Track the purchase acknowledgement, closed-mailbox period, later mailbox entry
+and collection as separate stages; a bag-update replay alone cannot validate
+this flow.
+
 ## Ownership and acceptance
 
 | ID | Required behavior / owner | Current evidence and next acceptance |

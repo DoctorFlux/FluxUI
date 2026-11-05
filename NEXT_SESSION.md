@@ -1,5 +1,10 @@
 # Next session
 
+Published runtime is `7a06b85f633d1945b7d6bf615636f486f3d7e627` (tree
+`4e31f10131923c3d002faffe8036e631d1537402`), verified on GitHub main.
+Publication-record updates are documentation only; the 800-file Lua manifest
+still matches. Start with native loaded-source verification as described below.
+
 Current lifecycle phase starts from published main
 `e860ce6de499a7702b91e8a8d74f115fbc9e0293`. Read
 [mail/auction flow scope](docs/MAIL_AUCTION_REWORK.md),
@@ -20,7 +25,9 @@ change was made in this batch. Keep WoW background, profile0 and flags unchanged
 Do not repeat heavy frame captures. Separate mailbox open/close, individual/final
 Open All, post, sell, buy, cancel-to-mail and provider handoff; verify configured
 cadence, last-mail cancellation and module/profile disable on each available
-client/provider combination. Native performance, taint and pixels remain pending.
+client/provider combination. Include Buy-to-mail delivery, later mailbox entry
+and looting separately from immediate bag delivery. Native performance, taint
+and pixels remain pending.
 Guild-bank and void-storage callbacks remain excluded; ordinary main publication
 is authorized without force push.
 
