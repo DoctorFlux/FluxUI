@@ -1450,7 +1450,7 @@ local function ShouldHoldItemIdentity()
     return false
 end
 
-function Module.GetItemCount(itemID)
+function Module.GetPhysicalItemCount(itemID)
     itemID = tonumber(itemID)
     if not itemID then return 0 end
     local Flux = _G.Flux
@@ -1470,6 +1470,28 @@ function Module.GetItemCount(itemID)
     end
     if inv and inv.Bags and inv.Bags.GetCount then
         return inv.Bags.GetCount(itemID) or 0
+    end
+    return 0
+end
+
+-- The button's available count is zero when an owned coating has no equipped
+-- weapon it can actually target. Restock still reads physical bag quantities.
+function Module.GetItemCount(itemID)
+    local count = Module.GetPhysicalItemCount(itemID)
+    if count <= 0 or not Module.IsWeaponEnchantItem or not Module.IsWeaponEnchantItem(itemID) then
+        return count
+    end
+    local mainHand = GetInventorySlotInfo and GetInventorySlotInfo("MainHandSlot") or 16
+    local offHand = GetInventorySlotInfo and GetInventorySlotInfo("SecondaryHandSlot") or 17
+    if Module.CanEnchantApplyToSlot(itemID, mainHand)
+        or Module.CanEnchantApplyToSlot(itemID, offHand) then
+        return count
+    end
+    if GetInventorySlotInfo then
+        local ok, ranged = pcall(GetInventorySlotInfo, "RangedSlot")
+        if ok and ranged and Module.CanEnchantApplyToSlot(itemID, ranged) then
+            return count
+        end
     end
     return 0
 end
@@ -3107,19 +3129,22 @@ end
 -- Tooltip keywords that indicate a temporary weapon enchant
 local WEAPON_ENCHANT_TOOLTIP_KEYWORDS = {
     "apply to weapon", "apply to your weapon", "enchant weapon", "use on your weapon",
-    "use: apply to weapon", "use: apply to your weapon", "applies to weapon",
+    "apply to a weapon", "use: apply to weapon", "use: apply to your weapon", "applies to weapon",
     "temporary weapon enchant", "weapon coating", "weapon oil",
 }
 
--- Check if item tooltip indicates weapon enchant (fallback for items not in FluxFlyoutData)
-local function ItemTooltipIndicatesWeaponEnchant(itemID)
-    if not itemID then return false end
+local function GetWeaponEnchantTooltipText(itemID)
+    if not itemID then return nil end
     local link = select(2, GetItemInfo(itemID)) or ("item:" .. tostring(itemID))
-    if not link then return false end
+    local IC = _G.FluxItemClass
+    if IC and IC.GetTooltipText then
+        local text = IC.GetTooltipText(itemID, link)
+        if text and text ~= "" then return text:lower() end
+    end
     local tip = EnsureWeaponEnchantScanTooltip()
     tip:ClearLines()
     local ok = pcall(function() tip:SetHyperlink(link) end)
-    if not ok then return false end
+    if not ok then return nil end
     local text = ""
     for i = 2, tip:NumLines() do
         local left = _G["FluxConsumablesWeaponEnchantScanTooltipTextLeft" .. i]
@@ -3128,21 +3153,125 @@ local function ItemTooltipIndicatesWeaponEnchant(itemID)
             if t ~= "" then text = text .. "\n" .. t end
         end
     end
+    return text ~= "" and text or nil
+end
+
+-- Check if item tooltip indicates weapon enchant (fallback for items not in FluxFlyoutData)
+local function ItemTooltipIndicatesWeaponEnchant(itemID)
+    local text = GetWeaponEnchantTooltipText(itemID)
+    if not text then return false, false end
     for _, kw in ipairs(WEAPON_ENCHANT_TOOLTIP_KEYWORDS) do
         if text:find(kw, 1, true) then
-            return true
+            return true, true
         end
     end
-    return false
+    if text:find("appl", 1, true) or text:find("coat", 1, true)
+        or text:find("imbue", 1, true) or text:find("attach", 1, true) then
+        local rule = Module.GetWeaponEnchantTargetRule and Module.GetWeaponEnchantTargetRule(itemID)
+        if rule and rule.subClasses then return true, true end
+    end
+    -- A partial tooltip (for example only a level requirement) can fill in
+    -- later; cache a negative result only after its use text is present.
+    return false, text:find("use:", 1, true) ~= nil
+end
+
+-- A tooltip can narrow an item's target further than "melee weapon". These
+-- numeric subclass IDs come from ItemWeaponSubclass and avoid localized weapon
+-- type names. Parse only target/restriction lines, not unrelated item flavor.
+local WEAPON_TARGET_WORDS = {
+    { "staff", "Staff", { [10] = true } },
+    { "staves", "Staff", { [10] = true } },
+    { "dagger", "Dagger", { [15] = true } },
+    { "sword", "Sword", { [7] = true, [8] = true } },
+    { "axe", "Axe", { [0] = true, [1] = true } },
+    { "mace", "Mace", { [4] = true, [5] = true } },
+    { "fist weapon", "Fist weapon", { [13] = true } },
+    { "polearm", "Polearm", { [6] = true } },
+    { "wand", "Wand", { [19] = true } },
+    { "crossbow", "Crossbow", { [18] = true } },
+    { "bow", "Bow", { [2] = true } },
+    { "gun", "Gun", { [3] = true } },
+    { "fishing pole", "Fishing pole", { [20] = true } },
+}
+
+local targetRuleCache = {}
+function Module.GetWeaponEnchantTargetRule(itemID)
+    itemID = tonumber(itemID)
+    if not itemID then return nil end
+    if targetRuleCache[itemID] then return targetRuleCache[itemID] end
+    local text = GetWeaponEnchantTooltipText(itemID)
+    if not text then return nil end -- retry when item metadata finishes loading
+    local rule = { subClasses = {}, names = {} }
+    for line in text:gmatch("[^\n]+") do
+        local targetLine = line:find("appl", 1, true)
+            or line:find("usable on", 1, true)
+            or line:find("use on", 1, true)
+            or line:find("used on", 1, true)
+            or line:find("requires", 1, true)
+            or line:find("only work", 1, true)
+            or line:find("coat", 1, true)
+            or line:find("imbue", 1, true)
+            or line:find("attach", 1, true)
+        if targetLine then
+            for _, entry in ipairs(WEAPON_TARGET_WORDS) do
+                local word, name, ids = entry[1], entry[2], entry[3]
+                if line:find("%f[%a]" .. word .. "s?%f[%A]") or line:find("%f[%a]" .. word .. "%f[%A]") then
+                    rule.names[name] = true
+                    for subClassID in pairs(ids) do rule.subClasses[subClassID] = true end
+                end
+            end
+        end
+    end
+    if not next(rule.subClasses) then
+        if not text:find("use:", 1, true) then return nil end
+        rule = { unrestricted = true }
+    end
+    targetRuleCache[itemID] = rule
+    return rule
+end
+
+function Module.GetConsumableDescription(itemID)
+    if Module.IsWeaponEnchantItem(itemID) then
+        local rule = Module.GetWeaponEnchantTargetRule(itemID)
+        local target = "Melee weapon (specific type not detected)"
+        if not rule then
+            target = "Target pending item data"
+        elseif not rule.unrestricted then
+            local names = {}
+            for name in pairs(rule.names) do names[#names + 1] = name end
+            table.sort(names)
+            target = table.concat(names, ", ") .. " only"
+        end
+        local slot = Module.GetWeaponEnchantSlot(itemID)
+        local mainHand = GetInventorySlotInfo and GetInventorySlotInfo("MainHandSlot") or 16
+        local offHand = GetInventorySlotInfo and GetInventorySlotInfo("SecondaryHandSlot") or 17
+        local nextTarget = slot == mainHand and "Main hand"
+            or slot == offHand and "Off hand"
+            or slot and "Ranged"
+            or "None now"
+        return "Weapon enchant", target, nextTarget
+    end
+    if Module.ItemGrantsWellFed(itemID) then return "Well Fed food" end
+    local name = GetItemInfo(itemID)
+    local lower = type(name) == "string" and name:lower() or ""
+    if lower:find("flask", 1, true) then return "Flask" end
+    if lower:find("elixir", 1, true) then return "Elixir" end
+    return "Consumable"
 end
 
 -- Check if an item is a weapon enchant (oils, poisons, sharpening stones, etc.)
+local weaponEnchantClassification = {}
 function Module.IsWeaponEnchantItem(itemID)
     if not itemID then return false end
+    itemID = tonumber(itemID) or itemID
+    if weaponEnchantClassification[itemID] ~= nil then
+        return weaponEnchantClassification[itemID]
+    end
     
     -- Check FluxFlyoutData table if available
     if FluxFlyoutData and FluxFlyoutData.ItemEnchantTemp then
         if FluxFlyoutData.ItemEnchantTemp[itemID] == true then
+            weaponEnchantClassification[itemID] = true
             return true
         end
     end
@@ -3161,16 +3290,19 @@ function Module.IsWeaponEnchantItem(itemID)
         if lowerName:match("oil") or lowerName:match("poison") or 
            lowerName:match("sharpening") or lowerName:match("weightstone") or
            lowerName:match("coating") or lowerName:match("enchant") then
+            weaponEnchantClassification[itemID] = true
             return true
         end
     end
     
     -- Fallback: Tooltip scan for "Apply to weapon", "Enchant weapon", etc.
     -- Catches mana oils and other temp enchants not in FluxFlyoutData or with different spell names
-    if ItemTooltipIndicatesWeaponEnchant(itemID) then
+    local indicated, hasTooltip = ItemTooltipIndicatesWeaponEnchant(itemID)
+    if indicated then
+        weaponEnchantClassification[itemID] = true
         return true
     end
-    
+    if hasTooltip then weaponEnchantClassification[itemID] = false end
     return false
 end
 
@@ -3184,21 +3316,38 @@ function Module.CanEnchantApplyToSlot(enchantItemID, slotID)
     if not weaponItemID then return false end
     
     -- Get weapon item info
-    local weaponName, weaponLink, _, _, _, weaponType, weaponSubType, _, weaponEquipLoc = GetItemInfo(weaponItemID)
-    if not weaponType or not weaponEquipLoc then 
+    local _, _, _, _, _, weaponType, _, _, weaponEquipLoc = GetItemInfo(weaponItemID)
+    local instant = (C_Item and C_Item.GetItemInfoInstant) or GetItemInfoInstant
+    local classID, subClassID
+    if instant then
+        local ok, _, _, _, instantEquipLoc, _, itemClassID, itemSubClassID = pcall(instant, weaponItemID)
+        if ok then
+            classID, subClassID = itemClassID, itemSubClassID
+            weaponEquipLoc = instantEquipLoc or weaponEquipLoc
+        end
+    end
+    if not weaponEquipLoc then
         -- Return false until item data is available.
         return false
     end
     
     -- Weapon must be a weapon type
-    if weaponType ~= "Weapon" then return false end
+    if classID ~= nil then
+        if classID ~= 2 then return false end
+    elseif weaponType ~= "Weapon" then
+        return false
+    end
     
     -- Get enchant item info to determine enchant type
     local enchantName, _, _, _, _, enchantType, enchantSubType = GetItemInfo(enchantItemID)
     if not enchantName then return false end
     
-    -- Check enchant item name/type to determine compatibility
-    local enchantNameLower = enchantName:lower()
+    local rule = Module.GetWeaponEnchantTargetRule(enchantItemID)
+    if rule and not rule.unrestricted then
+        -- A known restriction is strict. Missing subclass metadata is unknown,
+        -- so never select an arbitrary equipped weapon as its target.
+        return subClassID ~= nil and rule.subClasses[subClassID] == true
+    end
     
     -- Helper: Check if weapon is melee (not ranged, not shield, not holdable)
     local function IsMeleeWeapon(equipLoc)
@@ -3223,18 +3372,7 @@ function Module.CanEnchantApplyToSlot(enchantItemID, slotID)
         return false
     end
     
-    -- Oils, poisons, sharpening stones, and coatings only work on melee weapons
-    if enchantNameLower:match("oil") or 
-       enchantNameLower:match("poison") or 
-       enchantNameLower:match("sharpening") or 
-       enchantNameLower:match("weightstone") or
-       enchantNameLower:match("coating") then
-        -- Must be a melee weapon
-        return IsMeleeWeapon(weaponEquipLoc)
-    end
-    
-    -- For other enchant types, be conservative - only allow if it's explicitly a melee weapon
-    -- This prevents trying to enchant incompatible items
+    -- No explicit subtype restriction: retain the established melee rule.
     return IsMeleeWeapon(weaponEquipLoc)
 end
 
@@ -3347,11 +3485,17 @@ function Module.GetWeaponEnchantSlot(itemID)
     -- Most weapon enchants (oils, poisons, sharpening stones) don't work on ranged
     local enchantName = GetItemInfo(itemID)
     local canWorkOnRanged = false
+    local targetRule = Module.GetWeaponEnchantTargetRule(itemID)
+    if targetRule and targetRule.subClasses then
+        canWorkOnRanged = targetRule.subClasses[2] or targetRule.subClasses[3]
+            or targetRule.subClasses[18] or targetRule.subClasses[19]
+            or targetRule.subClasses[20] or false
+    end
     if enchantName then
         local enchantNameLower = enchantName:lower()
         -- Most enchants don't work on ranged, but check for exceptions
         -- For now, assume only unknown enchant types might work on ranged
-        if not enchantNameLower:match("oil") and 
+        if not canWorkOnRanged and not enchantNameLower:match("oil") and
            not enchantNameLower:match("poison") and 
            not enchantNameLower:match("sharpening") and 
            not enchantNameLower:match("weightstone") and
@@ -3947,8 +4091,7 @@ function Module.RebindPreferredUseSlot(btn)
     if btn.ConsumablesIsWeaponEnchant then
         local targetSlot = Module.GetWeaponEnchantSlot(itemID)
         if not targetSlot then
-            BindRegularConsumableUse(btn, itemID, prefer)
-            return true
+            return false
         end
         local useCmd
         if bag and slot then
@@ -4545,12 +4688,10 @@ local function SetItemMode(btn, itemID, buff)
         -- Get target slot for weapon enchant
         local targetSlot = Module.GetWeaponEnchantSlot(itemID)
         
-        -- If no compatible slot found, fall back to regular item usage
+        -- Never bind a plain /use for a coating with no current target.
         if not targetSlot then
-            -- No compatible weapon slot - use as regular item (game will show error if needed)
-            -- Prefer lowest charges when available, else lowest stack
-            BindRegularConsumableUse(btn, itemID, "charges")
-            btn.ConsumablesItemID = itemID
+            SetPlaceholder(btn)
+            return
         else
             -- Get item name for macro
             local itemName, _, _ = GetCachedItemInfo(itemID)
@@ -5782,7 +5923,8 @@ function Module.ShowTooltip()
                 
                 if count <= 0 then
                     -- No items in bags
-                    statusText = "Missing"
+                    local carried = Module.GetPhysicalItemCount(itemID)
+                    statusText = carried > 0 and "No verified target (x0)" or "Missing"
                     statusColor = {1, 0.3, 0.3}  -- Dark red for missing
                 elseif isChronoboon and isSupercharged then
                     -- SuperCharged Chronoboon - show count only
@@ -5879,6 +6021,12 @@ function Module.ShowTooltip()
                     1, 1, 1,  -- Item name color (white)
                     statusColor[1], statusColor[2], statusColor[3]  -- Status color
                 )
+                local category, target, nextTarget = Module.GetConsumableDescription(itemID)
+                if target then
+                    GameTooltip:AddLine("  " .. category .. " · " .. target .. " · Next: " .. nextTarget, 0.65, 0.8, 1)
+                elseif category ~= "Consumable" then
+                    GameTooltip:AddLine("  " .. category, 0.65, 0.8, 1)
+                end
             end
         end
     end
@@ -6064,6 +6212,7 @@ function Module.RegisterEvents()
     eventFrame:RegisterEvent("PLAYER_ALIVE")
     eventFrame:RegisterEvent("PLAYER_UNGHOST")
     eventFrame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+    eventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 
     local function runBuffDurationCheck()
         if not Module._button then
@@ -6333,6 +6482,17 @@ function Module.RegisterEvents()
                         Module._wispLockMinRemaining = currentRemaining
                         Module.UpdateWispLockCooldown(Module._button, currentRemaining, buff)
                     end
+                end
+            end
+        elseif event == "PLAYER_EQUIPMENT_CHANGED" then
+            if not Module._registered or not Module._button then return end
+            local mainHand = GetInventorySlotInfo and GetInventorySlotInfo("MainHandSlot") or 16
+            local offHand = GetInventorySlotInfo and GetInventorySlotInfo("SecondaryHandSlot") or 17
+            if arg1 == mainHand or arg1 == offHand or arg1 == 18 then
+                if InCombatLockdown() then
+                    Module._pendingUpdate = true
+                else
+                    Module.UpdateButtonState(true)
                 end
             end
         elseif event == "PLAYER_DEAD" or event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then

@@ -1,5 +1,12 @@
 # Development tasks
 
+5 November consumable targets: complete native acceptance for CTD-01 through
+CTD-04 in [CONSUMABLE_TARGET_DETECTION.md](CONSUMABLE_TARGET_DETECTION.md),
+especially a real staff-only coating versus dagger/sword, off-hand targeting,
+English/non-English tooltip wording, combat and secure click. Desktop fixture
+passes 30 checks; full 134/789 pass. Do not infer universal item coverage from
+the parser or native performance from mock counts.
+
 4 November combined Classic bank: complete native Era and Anniversary
 acceptance for [BANK-C01 through BANK-C05](CLASSIC_COMBINED_BANK.md),
 including plain-click no-toggle bank bag slots, purchase state, Baganator

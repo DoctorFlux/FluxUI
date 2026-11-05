@@ -1,5 +1,14 @@
 # Work log
 
+5 November: verified main a6cc94d and closed Retail on-disk settings;
+created/verified an external all-ref Git bundle and copied account/character
+Flux settings outside AddOns. Fixed staff-restricted consumable targeting,
+effective button counts, equipment refresh and tooltip explanation while
+retaining restock's physical counts. Five fresh baseline/candidate pairs
+reproduce/reject the wrong dagger target; 30 focused checks and full 134/789
+desktop validation pass. No native interaction or profiler change.
+[Source hashes, raw pairs, and native checks](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November: preserved clean main 2dd6cfd in external
 Hidden-inventory-work-20261105T121000Z (1,462 files, verified history, 123 on-disk
 settings). Reproduced hidden-parent protection/paint work; corrected filtering,

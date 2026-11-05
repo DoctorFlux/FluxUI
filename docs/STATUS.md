@@ -1,5 +1,14 @@
 # Development status
 
+5 November consumable target detection: configured flask/elixir/Well Fed food
+and weapon enchants gain category/target tooltip text. Staff-restricted
+coatings now count as zero available with a dagger or sword, restoring count
+and target on a compatible staff/equipment change. Physical bag counts remain
+available for restock; combat deferral and existing presets persist. Five
+baseline/candidate desktop pairs and 30 focused checks pass; full 134 scripts/
+789 syntax pass. Native use, locale, pixels, taint and frame time remain pending.
+[Evidence](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November hidden inventory work: fixed effective-visibility filtering for
 Baganator protection/shield refresh and default-bag painting. Skin-tag discovery
 and one coalesced post-layout reveal refresh keep current slots protected; native

@@ -62,6 +62,14 @@ hover help available on clients without the deprecated `GetItemInfo` global.
 
 Eligibility checks ownership, cooldown, aura duration, Well Fed equivalence, weapon enchant applicability and supported families. When covered buffs exceed the refresh threshold, the display enters **wisp lock**. Weapon-enchant selection can prefer the weapon needing replenishment. Ground-placeable items can learn their aura association. Applicable Classic clients also handle regular/supercharged Chronoboon variants, world buffs and restock quantities.
 
+Configured items now show detected flask/elixir/Well Fed food/weapon-enchant
+category in the existing tooltips. A weapon enchant with an explicit tooltip
+weapon-type restriction is counted and targeted only when an equipped weapon
+matches its numeric subclass; equipment changes refresh the selection. The
+button's effective zero does not erase physical bag counts for restock. Unknown
+tooltip restrictions and native acceptance are tracked in
+[CONSUMABLE_TARGET_DETECTION.md](CONSUMABLE_TARGET_DETECTION.md).
+
 The helper prepares protected actions while allowed. Combat or unreliable inventory can defer a newly selected action; eligibility Lua does not allow arbitrary secure rewrites mid-fight. Respec restores the selected preset link, while [restock](20-vendor-restock-junk.md) consumes quantities from these presets.
 
 Preset quantities live in `presets[name].restockTargets`. Chronoboon code also retains an active `VendorAuto.restockItems` compatibility reader/writer and can recreate that old character branch after restock's startup cleanup. Treat this as the current mixed persistence path, not proof that all legacy restock data has disappeared; see [saved variables](32-saved-variables.md) and [findings](40-findings.md).

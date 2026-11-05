@@ -1,0 +1,86 @@
+{
+  "scope": "Fresh desktop Lua fixture processes. Baseline reproduces wrong dagger target; candidate checks staff, sword, unlisted coating, offhand, count, category, cache and equipment event. Wall times include process startup and are not addon CPU.",
+  "baselineCommit": "a6cc94d7d1ed584cbfea4cba0392c7efabdf7686",
+  "baselineSourceSha256": "1dfe7689915f4416e2463a651d1167c7c0060f44b8a7d539af745f178045419f",
+  "candidateSourceSha256": "b4d5100232a8e1e0f86d72145c44faa3e7ef2d9d5ed7ea76a2b1fa551c5586f4",
+  "candidateConfigSha256": "751ef9e986d3a4d363dac4e539054d27ca42a6c4f1251ab40626e34e959ee63e",
+  "candidateFixtureSha256": "3abefb0e1e87c5f3272f928ed92756ed9b515de24dae8d7f84787c5028a812e8",
+  "pairs": [
+    {
+      "pair": 1,
+      "baseline": {
+        "exit": 0,
+        "output": "Baseline weapon target reproduction: 2 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.03854
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Consumable weapon targets: 30 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.02123
+      }
+    },
+    {
+      "pair": 2,
+      "baseline": {
+        "exit": 0,
+        "output": "Baseline weapon target reproduction: 2 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.02024
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Consumable weapon targets: 30 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.01839
+      }
+    },
+    {
+      "pair": 3,
+      "baseline": {
+        "exit": 0,
+        "output": "Baseline weapon target reproduction: 2 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.0194
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Consumable weapon targets: 30 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.02016
+      }
+    },
+    {
+      "pair": 4,
+      "baseline": {
+        "exit": 0,
+        "output": "Baseline weapon target reproduction: 2 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.01968
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Consumable weapon targets: 30 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.01974
+      }
+    },
+    {
+      "pair": 5,
+      "baseline": {
+        "exit": 0,
+        "output": "Baseline weapon target reproduction: 2 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.02162
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Consumable weapon targets: 30 checks passed",
+        "stderr": "",
+        "harnessWallSeconds": 0.01954
+      }
+    }
+  ],
+  "native": "pending"
+}

@@ -1,5 +1,13 @@
 # Client and reference validation — 29 October 2026
 
+5 November consumable target detection: a generic 30-check loaded-module
+desktop fixture verifies staff-only mismatch/count zero, staff/off-hand
+selection, general oil, categories, cached metadata and equipment/combat
+refresh. Five baseline/candidate pairs reproduce the old dagger target.
+All native clients still need real item/tooltips, protected clicks, combat,
+locale, pixels, taint and matched performance checks.
+[Exact scope](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November hidden inventory: freshly read executables Era 1.15.9.70576,
 Anniversary 2.5.6.70577, MoP 5.5.4.70631, Retail 12.1.5.70783, Forever
 1.60.1.70790. Installed Baganator 840/Syndicator 289 references checked read-only.

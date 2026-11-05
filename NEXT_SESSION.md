@@ -1,5 +1,14 @@
 # Next session
 
+5 November consumable target work: read
+[contract/evidence](docs/CONSUMABLE_TARGET_DETECTION.md) before changing the
+noncombat consumables button. `lua tests/consumable_weapon_targets.lua` passes
+30 checks and the full desktop runner passes 134 scripts/789 syntax files.
+Native Retail/Forever/Classic staff-only item, general oil, flask/elixir/food,
+equipment-swap, combat, locale, secure-click, pixel, taint and matched frame
+time checks are pending. Keep the existing external bundle/settings checkpoint
+and prior hidden-inventory checkpoint; leave WoW in the background.
+
 5 November hidden inventory changes validated for publication on main; see
 [reproduction, source identities and native checklist](docs/HIDDEN_INVENTORY_WORK.md).
 Run `lua tests/visible_baganator_work.lua` (260 checks) and

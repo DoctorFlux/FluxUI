@@ -646,6 +646,15 @@ function Config.ShowIconTooltip(btn, itemID)
                 GameTooltip:AddLine("Place, then click the object to learn its aura", 0.7, 0.85, 1)
             end
         end
+
+        if Cons and Cons.GetConsumableDescription then
+            local category, targetType, nextTarget = Cons.GetConsumableDescription(itemID)
+            GameTooltip:AddLine("Detected: " .. category, 0.65, 0.8, 1)
+            if targetType then
+                GameTooltip:AddLine("Weapon type: " .. targetType, 0.65, 0.8, 1)
+                GameTooltip:AddLine("Next use: " .. nextTarget, 0.65, 0.8, 1)
+            end
+        end
         
         -- Count
         local count = 0
@@ -660,6 +669,12 @@ function Config.ShowIconTooltip(btn, itemID)
             GameTooltip:AddLine(string.format("%s: %d", isWeaponEnchant and "Charges" or "In bags", count), 0.5, 1, 0.5)
         else
             GameTooltip:AddLine((isWeaponEnchant and "Charges: 0" or "In bags: 0"), 1, 0.3, 0.3)
+        end
+        if isWeaponEnchant and count == 0 and Cons.GetPhysicalItemCount then
+            local carried = Cons.GetPhysicalItemCount(itemID)
+            if carried > 0 then
+                GameTooltip:AddLine(string.format("Carried: %d (no verified target)", carried), 0.7, 0.7, 0.7)
+            end
         end
 
         local target = 0

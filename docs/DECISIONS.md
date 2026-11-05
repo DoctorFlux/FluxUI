@@ -1,5 +1,13 @@
 # Decisions
 
+5 November consumable targets: keep the preset and secure-button owners.
+Read explicit weapon-type restrictions from the existing item tooltip service,
+compare numeric equipped subclasses, and make the button's effective count
+zero when no target is verified. Preserve physical counts for restock and defer
+protected rewrites in combat. Unknown tooltip wording keeps the existing melee
+rule and is labeled as undetected, so native item/locale acceptance stays open.
+[Contract and evidence](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November: filter effective visibility in the existing shared Baganator traversal
 and native overlay; retain all-button installation and provider ownership. Use
 public tagged skin roots, not assumed numeric frame names. Reveal refresh runs
