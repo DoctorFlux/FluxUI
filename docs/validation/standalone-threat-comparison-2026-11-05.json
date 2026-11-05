@@ -1,0 +1,236 @@
+{
+  "capturedUTC": "2026-11-05T20:50:53.815112+00:00",
+  "baselineCommit": "8006494fd5f10b54818471933467b9bb867c6543",
+  "checkpoint": "Mail-auction-publication-20261105T203228Z",
+  "sourceHashes": {
+    "Battlezonemap/FluxThreatMeter.lua": "e43f742010c6398998cf8390bda055563e92e7634496bbff98f045d3f87a3488",
+    "Core/API/Threat.lua": "b2b9bec1eaa111a88467d6e9ab889847adacfdadf6ebeaa5330fc3db68e52c82",
+    "tests/standalone_threat_meter.lua": "b095e82d1a9b04b9db854c0954a2c38533b9f349d0442abdbe137856b7c3fb7c",
+    "tests/threat_meter_sample.lua": "895c264e31a663612cd8cf97bae366d8bc34fc595812c5d556bd3f02319639d2"
+  },
+  "sourceHashesAfter": {
+    "Battlezonemap/FluxThreatMeter.lua": "e43f742010c6398998cf8390bda055563e92e7634496bbff98f045d3f87a3488",
+    "Core/API/Threat.lua": "b2b9bec1eaa111a88467d6e9ab889847adacfdadf6ebeaa5330fc3db68e52c82",
+    "tests/standalone_threat_meter.lua": "b095e82d1a9b04b9db854c0954a2c38533b9f349d0442abdbe137856b7c3fb7c",
+    "tests/threat_meter_sample.lua": "895c264e31a663612cd8cf97bae366d8bc34fc595812c5d556bd3f02319639d2"
+  },
+  "sourceDrift": false,
+  "baselineAdapterSHA256": "af4d5582af7b9b54281b63edac73ee06e3805e144269081b2c7cf4765fb26524",
+  "method": "Five alternating fresh-process adapter baseline/candidate pairs; five standalone candidate replays. Actual production modules, explicitly mocked native APIs/widgets. 500 settled adapter samples and full lifecycle/80-row roster fixtures. No native game/profiler/input.",
+  "standaloneBaseline": "Feature absent before this batch: no standalone pane existed. New pane measurements are resource/correctness bounds, not a performance comparison against an equivalent previous implementation.",
+  "configuration": {
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "hostPlatform": "Windows-10-10.0.26200-SP0",
+    "nativeHardware": "not captured",
+    "nativeClientBuild": "not observed; pinned Forever1.60.1.70790 source contract",
+    "nativeProfileSettingsAddonList": "not captured; untouched",
+    "nativeWarmupDurationCaptureProfiler": "not run; no profiler preferences changed"
+  },
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.05818819999694824,
+        "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.02176619999227114,
+        "stdout": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n",
+        "stderr": ""
+      },
+      "standaloneCandidate": {
+        "exit": 0,
+        "processSeconds": 2.5584565000026487,
+        "stdout": "standalone threat meter: 51 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.0181229000154417,
+        "stdout": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.021097199991345406,
+        "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+        "stderr": ""
+      },
+      "standaloneCandidate": {
+        "exit": 0,
+        "processSeconds": 2.5713547999912407,
+        "stdout": "standalone threat meter: 51 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.0238658000016585,
+        "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.021388799999840558,
+        "stdout": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n",
+        "stderr": ""
+      },
+      "standaloneCandidate": {
+        "exit": 0,
+        "processSeconds": 2.729308299982222,
+        "stdout": "standalone threat meter: 51 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.0318682000215631,
+        "stdout": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.02268910000566393,
+        "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+        "stderr": ""
+      },
+      "standaloneCandidate": {
+        "exit": 0,
+        "processSeconds": 2.4899825000029523,
+        "stdout": "standalone threat meter: 51 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 0,
+        "processSeconds": 0.023574499995447695,
+        "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "processSeconds": 0.02049789999728091,
+        "stdout": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n",
+        "stderr": ""
+      },
+      "standaloneCandidate": {
+        "exit": 0,
+        "processSeconds": 2.564930299995467,
+        "stdout": "standalone threat meter: 51 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "lost_stop",
+      "exit": 1,
+      "processSeconds": 0.06468889999086969,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: hide stops all owned work\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:187: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "fake_opaque_ranks",
+      "exit": 1,
+      "processSeconds": 0.07050229999003932,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: opaque cohort keeps roster order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:209: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "unthrottled_poll",
+      "exit": 1,
+      "processSeconds": 0.043650400009937584,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: combat polling waits 0.2 seconds\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "one_row_pinned",
+      "exit": 1,
+      "processSeconds": 0.06924380001146346,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: one-row viewport scrolls every fact without player pin replacing it\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:248: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "details_takeover_lost",
+      "exit": 1,
+      "processSeconds": 0.06700399998226203,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: Details takeover retires the standalone pane\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:200: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "hidden_paint",
+      "exit": 1,
+      "processSeconds": 0.1271063000021968,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: hidden full-roster resize creates no unused row pool\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:231: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "repeated_show_restarts",
+      "exit": 1,
+      "processSeconds": 0.07149430000572465,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: 500 repeated Show calls preserve event ownership and do not request more scans\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:176: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "format_boundary",
+      "exit": 1,
+      "processSeconds": 0.049567900015972555,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: existing FluxThreat abbreviation boundary 1000\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:162: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale_icon_coords",
+      "exit": 1,
+      "processSeconds": 0.053306399990106,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: recycled unknown-class icon resets its full texture coordinates\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:168: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "empty_last_page_slot",
+      "exit": 1,
+      "processSeconds": 0.07861830000183545,
+      "stdout": "",
+      "stderr": "lua: tests/standalone_threat_meter.lua:5: player in the last page keeps a full page without reserving another pin row\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/standalone_threat_meter.lua:5: in local 'check'\n\ttests/standalone_threat_meter.lua:241: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "duplicate_or_mixed_native_sample",
+      "exit": 1,
+      "processSeconds": 0.041058799979509786,
+      "stdout": "FAIL one native query for a Forever row\nFAIL one coherent native sample\nFAIL 500 settled rows make 500 native queries\nFAIL opaque row uses one native query\nthreat meter sample: 510 checks, 4 failures; Forever queries per500=1000\n",
+      "stderr": "lua: tests/threat_meter_sample.lua:58: coherent threat sample regression\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/threat_meter_sample.lua:58: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "interpretation": "Adapter queries per500 populated Forever rows fall1000 to500 and fields use one coherent sample. Standalone500 events coalesce one scan; 40-player plus40-pet facts retained, row pool never exceeds actual facts and resizes reuse it. Hide, ancestor hide, inactive tab, cleanup and Details takeover stop owned work. Opaque values retain roster order without false rank and pass to display APIs. No native CPU, latency, allocation bytes, FPS, taint or pixel parity measured."
+}

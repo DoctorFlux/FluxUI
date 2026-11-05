@@ -1,5 +1,38 @@
 # Decisions
 
+5 November standalone meter: reuse the current threat adapter and a small shared
+skin service. Recreate the accepted Flux Details look with Flux/Blizzard assets
+and the client's ARIALN font; exact reserved art/font identity is not claimed.
+Keep native combat-data initialization, duration formatting and menus native.
+The independent threat pane belongs to Flux Content, not the native meter root.
+Public threat can rank normally; opaque values remain display payloads in stable
+roster order without invented ranks or ordinary Lua comparisons.
+
+Retain native presets 1-6/default 1 and Details priority. Add opt-in threat presets
+and allow three native panes plus one threat pane, preserving old saved layouts.
+Hidden/Details handoff stops owned polling/events; one shared theme posthook is
+permanent but releases inactive owners. Native paint/reload restores native
+appearance after release; no native script-replacement or undo framework is added.
+
+The user's checkbox report and explicit automatic-enable request authorize the
+public damageMeterEnabled CVar to be enabled out of combat for this backend.
+Do not write private visibility/cache fields, load Blizzard_DamageMeter from Flux
+or manually dispatch native callbacks. Native visibility policy stays native;
+the earlier core-only enabled-policy result is historical.
+[Requirements and limits](METER_STANDALONE.md).
+The enabled Meter tab must own native visibility from startup before the first
+Embed; other Flux tabs hide native panes. A disabled Meter tab must leave native
+policy alone. Late native anchor restore needs coalesced geometry-only repair
+out of combat, with combat work deferred. Both boundaries pass desktop regressions; native reload/combat checks remain pending.
+
+5 November wand swing visuals: use the equipped ranged wand's readable damage
+school, not Shoot (5019), as the explicit visual mask for the existing cast
+school renderer. Keep the item lookup on equipment/data events and the renderer
+on its existing visible-only driver. Unknown, inaccessible and non-wand items
+retain the ordinary swing fill. The Classic ranged-slot correction intentionally
+changes a previously missed wand label/wind-up path; native cadence and pixels
+remain pending. [Evidence](SWING_WAND_CAST_THEME.md).
+
 5 November meter visibility ownership: leave `DamageMeter.visibility` to
 Blizzard Edit Mode. Flux must not force Always through a setter or direct field
 write; native combat updates read that field before comparing session duration.

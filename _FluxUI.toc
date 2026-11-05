@@ -395,6 +395,8 @@ Other\FluxArenaFramePosition.lua
 Minimap\FluxMinimapButtons.lua
 Minimap\FluxQuestie.lua
 
+Battlezonemap\FluxMeterSkin.lua
+Battlezonemap\FluxThreatMeter.lua
 Battlezonemap\FluxMeterLayout.lua
 Battlezonemap\FluxWindowFrame.lua
 Battlezonemap\FluxDetailsWoWSkinTint.lua

@@ -68,12 +68,14 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxBattlefieldMapProviders.lua](../Battlezonemap/FluxBattlefieldMapProviders.lua) | 0 | 0 | 3 | 0 | 5 |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua) | 0 | 0 | 3 | 5 | 2 |
-| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 2 | 5 | 6 |
+| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 4 | 6 | 8 |
 | [Battlezonemap/FluxDetails.lua](../Battlezonemap/FluxDetails.lua) | 0 | 1 | 14 | 4 | 4 |
 | [Battlezonemap/FluxDetailsForever.lua](../Battlezonemap/FluxDetailsForever.lua) | 0 | 0 | 3 | 2 | 0 |
 | [Battlezonemap/FluxDetailsWoWSkinTint.lua](../Battlezonemap/FluxDetailsWoWSkinTint.lua) | 0 | 0 | 0 | 1 | 2 |
 | [Battlezonemap/FluxMeterLayout.lua](../Battlezonemap/FluxMeterLayout.lua) | 2 | 0 | 2 | 1 | 0 |
+| [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxThreat.lua](../Battlezonemap/FluxThreat.lua) | 3 | 0 | 0 | 18 | 1 |
+| [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua) | 3 | 0 | 0 | 2 | 0 |
 | [Battlezonemap/FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua) | 6 | 0 | 2 | 4 | 0 |
 | [Binding/Boot.lua](../Binding/Boot.lua) | 0 | 0 | 0 | 3 | 0 |
 | [Binding/Core/Apply.lua](../Binding/Core/Apply.lua) | 0 | 0 | 5 | 5 | 0 |
@@ -314,7 +316,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [UnitFrames/FluxMP5Overlay.lua](../UnitFrames/FluxMP5Overlay.lua) | 4 | 0 | 1 | 8 | 3 |
 | [UnitFrames/FluxPortraitCombatFeedback.lua](../UnitFrames/FluxPortraitCombatFeedback.lua) | 4 | 0 | 0 | 0 | 0 |
 | [UnitFrames/FluxPowerCostOverlay.lua](../UnitFrames/FluxPowerCostOverlay.lua) | 1 | 0 | 2 | 3 | 0 |
-| [UnitFrames/FluxSwingTimer.lua](../UnitFrames/FluxSwingTimer.lua) | 1 | 0 | 2 | 18 | 1 |
+| [UnitFrames/FluxSwingTimer.lua](../UnitFrames/FluxSwingTimer.lua) | 1 | 0 | 2 | 19 | 1 |
 | [UnitFrames/FluxUnitFrames_Auras.lua](../UnitFrames/FluxUnitFrames_Auras.lua) | 0 | 1 | 10 | 11 | 0 |
 | [UnitFrames/FluxUnitFrames_BigDebuffs.lua](../UnitFrames/FluxUnitFrames_BigDebuffs.lua) | 0 | 0 | 1 | 0 | 1 |
 | [UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua](../UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua) | 5 | 0 | 6 | 10 | 1 |

@@ -1,5 +1,44 @@
 # Development status
 
+5 November standalone meter feature: the native backend now has a shared Flux
+skin and an optional Forever threat pane without Details. The approved look is
+recreated with existing Flux/Blizzard textures and ARIALN, not copied reserved
+Details art/font. Native rows, timer, menus and secret rendering remain native.
+Three native panes plus one owned threat pane are supported; presets 1-6/default 1
+and saved layouts remain, with presets 7-9 appended for threat layouts.
+[Requirements, evidence and native checks](METER_STANDALONE.md).
+
+Skin passes 47 checks and five matched pairs/six mutants. Standalone threat passes
+51 checks plus 510 shared-sample checks, five pairs/11 mutants. One coherent
+Forever row sample reduces native queries from 1,000 to 500 per 500 populated rows.
+The added pane retains up to 80 player/pet facts, pools visible rows, coalesces
+events and polls every 0.2s only during active visible combat; hidden/Details
+handoff stops its work. The new feature has a resource cost, not a claimed FPS gain.
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+normalized source hashes and file membership match before/after the run.
+[Final source manifest](validation/meter-standalone-2026-11-05.json).
+
+The user confirmed the empty Meter tab was resolved by enabling Blizzard's
+checkbox and requested automatic availability. METER-ENABLE-01 enables the public
+damageMeterEnabled option out of combat for the native backend. It leaves native
+Edit Mode visibility/cache fields and addon loading untouched. This intentional
+option change extends the earlier core-only policy record below. No game input,
+reload or profiler change ran; native appearance, combat/taint and performance
+remain pending. The earlier pending skin/threat notes retain their core-only scope.
+The user's 22:04 CET screenshot showed native Damage/Healing floating top-left
+on Map after reload before any Meter selection. Startup ownership now applies
+before first Embed: 64 checks pass versus 22 preDock failures, five pairs/four
+mutants. Geometry-only docking repair passes 60 checks versus 30 preDock failures,
+five pairs/11 mutants. Both use the actual T205512 source checkpoint as baseline.
+Native candidate reload/docking/taint acceptance remains pending.
+
+5 November Classic wand swing theme: Era, Anniversary and Forever now route
+equipped wand damage schools through the existing cast-bar school renderer.
+The ranged progress strip is a StatusBar and shares the cast trough; Classic
+wand detection reads the ranged slot. Focused 13,942 desktop checks pass;
+native visual/taint/performance acceptance is pending on all three clients.
+[Scope, pinned sources and checks](SWING_WAND_CAST_THEME.md).
+
 5 November native meter combat follow-up: the supplied secret-duration stack
 passes through Blizzard's visibility update. Flux forced the Edit Mode-owned
 `DamageMeter.visibility` field to Always; the native combat event reads that

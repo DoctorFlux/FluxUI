@@ -14,6 +14,7 @@ local MAX_COLS = 3
 local BLIZZARD_MAX_PANES = 3 -- Blizzard_DamageMeter MAX_DAMAGE_METER_SESSION_WINDOWS
 local DETAILS_BUILTIN_COUNT = 11
 local BLIZZARD_BUILTIN_COUNT = 6
+local BLIZZARD_THREAT_BUILTIN_COUNT = 9
 
 local METER_TOPROW_MIN = 0.25
 local METER_TOPROW_MAX = 0.75
@@ -81,6 +82,9 @@ local BLIZZARD_BUILTIN_LABELS = {
     [4] = "Damage, Dispels|Healing",
     [5] = "Damage | Healing, Absorbs",
     [6] = "DamageTaken | Damage, Healing",
+    [7] = "Threat|Damage, Healing",
+    [8] = "Threat|Damage, Dispels|Healing",
+    [9] = "Threat only (full)",
 }
 
 -- Compat: older callers read BUILTIN_LABELS directly (Details labels).
@@ -200,9 +204,17 @@ function FluxMeterLayout.HasMeterBackend()
     return b == "Details" or b == "Blizzard"
 end
 
+function FluxMeterLayout.HasStandaloneThreat()
+    return FluxThreatMeter and FluxThreatMeter.IsAvailable and FluxThreatMeter:IsAvailable() or false
+end
+
+function FluxMeterLayout.IsThreatSlot(slot)
+    return type(slot) == "table" and slot.kind == "plugin" and slot.plugin == FLUX_THREAT_PLUGIN
+end
+
 function FluxMeterLayout.GetMaxPanes()
     if FluxMeterLayout.IsBlizzardBackend() then
-        return BLIZZARD_MAX_PANES
+        return BLIZZARD_MAX_PANES + (FluxMeterLayout.HasStandaloneThreat() and 1 or 0)
     end
     return MAX_COLS * 2
 end
@@ -325,13 +337,33 @@ local function BlizzardBuiltinPresetToLayout(presetId)
             topColFracs = { 1 }, bottomColFracs = { 0.50, 0.50 }, topRowFrac = 0.40,
         },
     }
+    presets[7] = {
+        name = BLIZZARD_BUILTIN_LABELS[7],
+        topSlots = { { kind = "plugin", plugin = FLUX_THREAT_PLUGIN }, BlizzardSlot(T.DamageDone) },
+        bottomSlots = { BlizzardSlot(T.HealingDone) },
+        topColFracs = { 0.45, 0.55 }, bottomColFracs = { 1 }, topRowFrac = 0.60,
+    }
+    presets[8] = {
+        name = BLIZZARD_BUILTIN_LABELS[8],
+        topSlots = { { kind = "plugin", plugin = FLUX_THREAT_PLUGIN }, BlizzardSlot(T.DamageDone) },
+        bottomSlots = { BlizzardSlot(T.Dispels), BlizzardSlot(T.HealingDone) },
+        topColFracs = { 0.45, 0.55 }, bottomColFracs = { 0.45, 0.55 }, topRowFrac = 0.60,
+    }
+    presets[9] = {
+        name = BLIZZARD_BUILTIN_LABELS[9],
+        topSlots = { { kind = "plugin", plugin = FLUX_THREAT_PLUGIN } }, bottomSlots = {},
+        topColFracs = { 1 }, bottomColFracs = { 1 }, topRowFrac = 0.60,
+    }
     local p = presets[presetId] or presets[1]
     return p
 end
 
 function FluxMeterLayout.GetBuiltinLabels()
     if FluxMeterLayout.IsBlizzardBackend() then
-        return BLIZZARD_BUILTIN_LABELS
+        if FluxMeterLayout.HasStandaloneThreat() then return BLIZZARD_BUILTIN_LABELS end
+        local labels = {}
+        for i = 1, BLIZZARD_BUILTIN_COUNT do labels[i] = BLIZZARD_BUILTIN_LABELS[i] end
+        return labels
     end
     return DETAILS_BUILTIN_LABELS
 end
@@ -473,15 +505,21 @@ end
 
 local function ClampLayoutToMaxPanes(layout)
     if not layout or not FluxMeterLayout.IsBlizzardBackend() then return layout end
-    local maxPanes = BLIZZARD_MAX_PANES
-    local top = layout.topSlots or {}
-    local bot = layout.bottomSlots or {}
-    while #top + #bot > maxPanes and #bot > 0 do
-        table.remove(bot)
+    local native, threat = 0, 0
+    local function trim(slots)
+        local out = {}
+        for _, slot in ipairs(slots or {}) do
+            if FluxMeterLayout.IsThreatSlot(slot) then
+                -- Retain a saved threat slot even on a client without its provider.
+                if threat == 0 then out[#out + 1] = slot; threat = 1 end
+            elseif native < BLIZZARD_MAX_PANES then
+                out[#out + 1] = slot; native = native + 1
+            end
+        end
+        return out
     end
-    while #top + #bot > maxPanes and #top > 1 do
-        table.remove(top)
-    end
+    local top = trim(layout.topSlots)
+    local bot = trim(layout.bottomSlots)
     layout.topSlots = top
     layout.bottomSlots = bot
     layout.topColFracs = NormalizeColFracs(layout.topColFracs, #top)
@@ -491,7 +529,7 @@ end
 
 local function BuiltinPresetToLayout(presetId)
     if FluxMeterLayout.IsBlizzardBackend() then
-        presetId = math.max(1, math.min(BLIZZARD_BUILTIN_COUNT, tonumber(presetId) or 1))
+        presetId = math.max(1, math.min(BLIZZARD_THREAT_BUILTIN_COUNT, tonumber(presetId) or 1))
         local layout = CopyLayout(BlizzardBuiltinPresetToLayout(presetId))
         layout.name = BLIZZARD_BUILTIN_LABELS[presetId] or ("Preset " .. presetId)
         layout.id = "builtin:" .. presetId
@@ -625,7 +663,8 @@ local function LoadLibrary()
     activeLayoutId = sv[activeIdKey] or "builtin:1"
     if type(activeLayoutId) ~= "string" then activeLayoutId = "builtin:1" end
 
-    local builtinMax = (backend == "Blizzard") and BLIZZARD_BUILTIN_COUNT or DETAILS_BUILTIN_COUNT
+    -- Saved preset IDs remain readable when the optional threat provider is absent.
+    local builtinMax = (backend == "Blizzard") and BLIZZARD_THREAT_BUILTIN_COUNT or DETAILS_BUILTIN_COUNT
 
     if activeLayoutId:match("^user:") then
         local found = false
@@ -690,7 +729,7 @@ end
 
 function FluxMeterLayout.GetBuiltinCount()
     if FluxMeterLayout.IsBlizzardBackend() then
-        return BLIZZARD_BUILTIN_COUNT
+        return FluxMeterLayout.HasStandaloneThreat() and BLIZZARD_THREAT_BUILTIN_COUNT or BLIZZARD_BUILTIN_COUNT
     end
     return DETAILS_BUILTIN_COUNT
 end
@@ -775,15 +814,29 @@ function FluxMeterLayout.DeleteActive()
     return false
 end
 
+local function FillFourthThreatSlot(slots, previousCount)
+    if not FluxMeterLayout.IsBlizzardBackend() or not FluxMeterLayout.HasStandaloneThreat() then return end
+    local native, threat = 0, 0
+    for _, list in ipairs({ workingLayout.topSlots or {}, workingLayout.bottomSlots or {} }) do
+        for _, slot in ipairs(list) do
+            if FluxMeterLayout.IsThreatSlot(slot) then threat = threat + 1 else native = native + 1 end
+        end
+    end
+    if native > BLIZZARD_MAX_PANES and threat == 0 and #slots > previousCount then
+        slots[#slots] = { kind = "plugin", plugin = FLUX_THREAT_PLUGIN }
+    end
+end
+
 function FluxMeterLayout.SetTopColCount(n)
     if not workingLayout then return end
     n = math.max(1, math.min(MAX_COLS, n or 1))
     if FluxMeterLayout.IsBlizzardBackend() then
         local botN = #(workingLayout.bottomSlots or {})
-        local maxTop = math.max(1, BLIZZARD_MAX_PANES - botN)
+        local maxTop = math.max(1, FluxMeterLayout.GetMaxPanes() - botN)
         n = math.min(n, maxTop)
     end
     local slots = workingLayout.topSlots or {}
+    local previousCount = #slots
     local defaultSlot = FluxMeterLayout.IsBlizzardBackend()
         and BlizzardSlot(DefaultDamageMeterType())
         or { kind = "attr", attribute = 1, subAttribute = 1 }
@@ -792,6 +845,7 @@ function FluxMeterLayout.SetTopColCount(n)
     end
     while #slots > n do table.remove(slots) end
     workingLayout.topSlots = slots
+    FillFourthThreatSlot(slots, previousCount)
     workingLayout.topColFracs = EqualColFracs(n)
 end
 
@@ -800,10 +854,11 @@ function FluxMeterLayout.SetBottomColCount(n)
     n = math.max(0, math.min(MAX_COLS, n or 0))
     if FluxMeterLayout.IsBlizzardBackend() then
         local topN = #(workingLayout.topSlots or {})
-        local maxBot = math.max(0, BLIZZARD_MAX_PANES - topN)
+        local maxBot = math.max(0, FluxMeterLayout.GetMaxPanes() - topN)
         n = math.min(n, maxBot)
     end
     local slots = workingLayout.bottomSlots or {}
+    local previousCount = #slots
     if n == 0 then
         workingLayout.bottomSlots = {}
         workingLayout.bottomColFracs = { 1 }
@@ -817,6 +872,7 @@ function FluxMeterLayout.SetBottomColCount(n)
     end
     while #slots > n do table.remove(slots) end
     workingLayout.bottomSlots = slots
+    FillFourthThreatSlot(slots, previousCount)
     workingLayout.bottomColFracs = EqualColFracs(n)
 end
 
@@ -826,7 +882,7 @@ function FluxMeterLayout.CanSetTopColCount(n)
     if not FluxMeterLayout.IsBlizzardBackend() then return true end
     LoadLibrary()
     local botN = workingLayout and #(workingLayout.bottomSlots or {}) or 0
-    return n + botN <= BLIZZARD_MAX_PANES
+    return n + botN <= FluxMeterLayout.GetMaxPanes()
 end
 
 function FluxMeterLayout.CanSetBottomColCount(n)
@@ -835,7 +891,7 @@ function FluxMeterLayout.CanSetBottomColCount(n)
     if not FluxMeterLayout.IsBlizzardBackend() then return true end
     LoadLibrary()
     local topN = workingLayout and #(workingLayout.topSlots or {}) or 1
-    return n + topN <= BLIZZARD_MAX_PANES
+    return n + topN <= FluxMeterLayout.GetMaxPanes()
 end
 
 function FluxMeterLayout.SetSlot(row, index, slot)
@@ -843,11 +899,17 @@ function FluxMeterLayout.SetSlot(row, index, slot)
     local list = (row == "top") and workingLayout.topSlots or workingLayout.bottomSlots
     if not list or index < 1 or index > #list then return end
     local s = DeepCopySlot(slot)
+    if FluxMeterLayout.IsBlizzardBackend() and not FluxMeterLayout.IsThreatSlot(s)
+        and FluxMeterLayout.IsThreatSlot(list[index])
+        and #(workingLayout.topSlots or {}) + #(workingLayout.bottomSlots or {}) > BLIZZARD_MAX_PANES then
+        return false -- A fourth native pane is not supported by Blizzard.
+    end
     if s.kind == "plugin" and s.plugin then
         local function scrub(arr)
             for i = 1, #arr do
                 if arr[i].kind == "plugin" and arr[i].plugin == s.plugin then
-                    arr[i] = DeepCopySlot({ kind = "attr", attribute = 1, subAttribute = 1 })
+                    arr[i] = FluxMeterLayout.IsBlizzardBackend() and BlizzardSlot(DefaultDamageMeterType())
+                        or DeepCopySlot({ kind = "attr", attribute = 1, subAttribute = 1 })
                 end
             end
         end
@@ -855,6 +917,7 @@ function FluxMeterLayout.SetSlot(row, index, slot)
         scrub(workingLayout.bottomSlots or {})
     end
     list[index] = s
+    return true
 end
 
 function FluxMeterLayout.SetTopRowFrac(frac)
@@ -975,7 +1038,7 @@ local function BuildBlizzardCatalog()
     local healingName = DAMAGE_METER_CATEGORY_HEALING or "Healing"
     local actionsName = DAMAGE_METER_CATEGORY_ACTIONS or "Actions"
 
-    return {
+    local groups = {
         {
             label = damageName,
             icon = "Interface\\Icons\\Ability_DualWield",
@@ -995,6 +1058,14 @@ local function BuildBlizzardCatalog()
             items = itemsFor({ T.Interrupts, T.Dispels, T.Deaths }),
         },
     }
+    if FluxMeterLayout.HasStandaloneThreat() then
+        groups[#groups + 1] = {
+            label = "Plugins", icon = FLUX_THREAT_ICON,
+            items = { { label = "Threat", icon = FLUX_THREAT_ICON, coords = { 0, 1, 0, 1 },
+                slot = { kind = "plugin", plugin = FLUX_THREAT_PLUGIN } } },
+        }
+    end
+    return groups
 end
 
 function FluxMeterLayout.BuildCatalog()

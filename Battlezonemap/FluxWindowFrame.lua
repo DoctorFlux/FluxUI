@@ -1352,6 +1352,7 @@ local function RegisterMeterTab()
             elseif meterSystem == "BlizzardMeter" then
                 -- Priority 2: Use Blizzard's native damage meter when Details is absent
                 if FluxBlizzardMeter and FluxBlizzardMeter.Embed then
+                    if FluxBlizzardMeter.EnsureEnabled then FluxBlizzardMeter:EnsureEnabled() end
                     -- Check if meter is already embedded (from previous tab switch or startup)
                     if FluxBlizzardMeter:IsEmbedded() then
                         -- Already embedded - refresh layout then show

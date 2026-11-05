@@ -162,3 +162,10 @@ remaining forced native visibility field write matched to the supplied secret-
 duration warning. It restores the native visibility policy and adds coverage for
 the previously omitted field/timer path. The historical results above retain
 their exact scope; native combat/taint acceptance remains pending.
+
+
+The subsequent [standalone meter feature](METER_STANDALONE.md) recreates the Flux
+look with authorized Flux/Blizzard assets and adds an independent Forever threat
+pane. Its explicit automatic public-option enable extends the core-only enabled
+policy, while native private visibility/cache ownership and timer/rendering stay
+unchanged. New feature resources and native checks are recorded separately.

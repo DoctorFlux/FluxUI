@@ -67,6 +67,21 @@ before combat timer updates. Timer and row rendering stay native; reload after
 the fix and verify combat, source windows and pane controls in game.
 [Combat visibility evidence and limits](METER_COMBAT_VISIBILITY.md).
 
+The native backend now shares a Flux-themed skin made from existing Flux/Blizzard
+assets and the client ARIALN font. On Forever without Details it also offers one
+independent threat pane, including opt-in presets7-9; existing presets1-6/default1
+remain. A custom layout may contain up to three native panes plus that threat
+pane. Public threat can rank; opaque values stay in stable roster order and do
+not display a fabricated rank. The pane stops recurring work when hidden or
+superseded by Details. The public native meter option is enabled out of combat
+for this backend as requested; native visibility/cache and UI loading stay native.
+This recreates the approved look without reserved Details art/font; exact native
+pixels/combat/taint remain pending. [Standalone feature record](METER_STANDALONE.md).
+Native panes are now gated to Flux from startup before first Embed. Late native
+anchor/size restoration queues geometry-only repair out of combat; disabled
+Meter tabs and explicit cleanup release that ownership. Desktop checks pass;
+native reload, rendering and taint acceptance remains pending.
+
 ## Settings and diagnosis
 
 Layout, General and Battlezone builders provide placement/tab/map/meter controls; [options](26-options-map.md) records exact labels/scopes. Runtime tab arrays, active tab and embed state are distinct from persisted tab configuration. Meter layout storage is separate again.

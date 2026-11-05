@@ -6171,7 +6171,7 @@
           "_FluxUI.toc:396"
         ]
       },
-      "Battlezonemap/FluxMeterLayout.lua": {
+      "Battlezonemap/FluxMeterSkin.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6186,7 +6186,7 @@
           "_FluxUI.toc:398"
         ]
       },
-      "Battlezonemap/FluxWindowFrame.lua": {
+      "Battlezonemap/FluxThreatMeter.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6201,7 +6201,7 @@
           "_FluxUI.toc:399"
         ]
       },
-      "Battlezonemap/FluxDetailsWoWSkinTint.lua": {
+      "Battlezonemap/FluxMeterLayout.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6216,7 +6216,7 @@
           "_FluxUI.toc:400"
         ]
       },
-      "Battlezonemap/FluxDetailsForever.lua": {
+      "Battlezonemap/FluxWindowFrame.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6231,7 +6231,7 @@
           "_FluxUI.toc:401"
         ]
       },
-      "Battlezonemap/FluxDetails.lua": {
+      "Battlezonemap/FluxDetailsWoWSkinTint.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6246,7 +6246,7 @@
           "_FluxUI.toc:402"
         ]
       },
-      "Battlezonemap/FluxThreat.lua": {
+      "Battlezonemap/FluxDetailsForever.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6261,7 +6261,7 @@
           "_FluxUI.toc:403"
         ]
       },
-      "Battlezonemap/FluxBlizzardMeter.lua": {
+      "Battlezonemap/FluxDetails.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6276,7 +6276,7 @@
           "_FluxUI.toc:404"
         ]
       },
-      "Battlezonemap/FluxBattlefieldMap.lua": {
+      "Battlezonemap/FluxThreat.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6291,7 +6291,7 @@
           "_FluxUI.toc:405"
         ]
       },
-      "Battlezonemap/FluxBattlefieldMapProviders.lua": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6306,7 +6306,7 @@
           "_FluxUI.toc:406"
         ]
       },
-      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": {
+      "Battlezonemap/FluxBattlefieldMap.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6321,7 +6321,7 @@
           "_FluxUI.toc:407"
         ]
       },
-      "Battlezonemap/FluxBattlefieldMapPinRouter.lua": {
+      "Battlezonemap/FluxBattlefieldMapProviders.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6336,7 +6336,7 @@
           "_FluxUI.toc:408"
         ]
       },
-      "Battlezonemap/FluxBattlefieldMapPinTooltips.lua": {
+      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6351,7 +6351,22 @@
           "_FluxUI.toc:409"
         ]
       },
-      "Respec/FluxRespec_Compat.lua": {
+      "Battlezonemap/FluxBattlefieldMapPinRouter.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:410"
+        ]
+      },
+      "Battlezonemap/FluxBattlefieldMapPinTooltips.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6366,22 +6381,7 @@
           "_FluxUI.toc:411"
         ]
       },
-      "Respec/FluxRespec_Inv.lua": {
-        "clients": [
-          "camelot",
-          "cata",
-          "classic",
-          "mainline",
-          "mists",
-          "tbc",
-          "vanilla",
-          "wrath"
-        ],
-        "parents": [
-          "_FluxUI.toc:412"
-        ]
-      },
-      "Respec/FluxRespec_AtieshDualSpecFix.lua": {
+      "Respec/FluxRespec_Compat.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6396,7 +6396,7 @@
           "_FluxUI.toc:413"
         ]
       },
-      "Respec/FluxRespec_Core.lua": {
+      "Respec/FluxRespec_Inv.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6411,7 +6411,7 @@
           "_FluxUI.toc:414"
         ]
       },
-      "Respec/FluxRespec_Includes.lua": {
+      "Respec/FluxRespec_AtieshDualSpecFix.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6426,7 +6426,7 @@
           "_FluxUI.toc:415"
         ]
       },
-      "Respec/FluxRespec_EquipmentSets.lua": {
+      "Respec/FluxRespec_Core.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6441,7 +6441,7 @@
           "_FluxUI.toc:416"
         ]
       },
-      "Respec/FluxRespec_ActionBars.lua": {
+      "Respec/FluxRespec_Includes.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6456,7 +6456,7 @@
           "_FluxUI.toc:417"
         ]
       },
-      "Respec/FluxRespec_Equipment.lua": {
+      "Respec/FluxRespec_EquipmentSets.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6471,7 +6471,7 @@
           "_FluxUI.toc:418"
         ]
       },
-      "Respec/FluxRespec_GearPicker.lua": {
+      "Respec/FluxRespec_ActionBars.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6486,7 +6486,7 @@
           "_FluxUI.toc:419"
         ]
       },
-      "Respec/FluxRespec_TalentsRetail.lua": {
+      "Respec/FluxRespec_Equipment.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6501,7 +6501,7 @@
           "_FluxUI.toc:420"
         ]
       },
-      "Respec/FluxRespec_Talents.lua": {
+      "Respec/FluxRespec_GearPicker.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6516,7 +6516,7 @@
           "_FluxUI.toc:421"
         ]
       },
-      "Respec/FluxRespec_Runes.lua": {
+      "Respec/FluxRespec_TalentsRetail.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6531,7 +6531,7 @@
           "_FluxUI.toc:422"
         ]
       },
-      "Respec/FluxRespec_RunePicker.lua": {
+      "Respec/FluxRespec_Talents.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6546,7 +6546,7 @@
           "_FluxUI.toc:423"
         ]
       },
-      "Respec/FluxRespec_PresetBundle.lua": {
+      "Respec/FluxRespec_Runes.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6561,7 +6561,7 @@
           "_FluxUI.toc:424"
         ]
       },
-      "Respec/FluxRespec_RunePresets.lua": {
+      "Respec/FluxRespec_RunePicker.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6576,7 +6576,7 @@
           "_FluxUI.toc:425"
         ]
       },
-      "Respec/FluxRespec_EquipmentPresets.lua": {
+      "Respec/FluxRespec_PresetBundle.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6591,7 +6591,7 @@
           "_FluxUI.toc:426"
         ]
       },
-      "Respec/FluxRespec_GearSetIndex.lua": {
+      "Respec/FluxRespec_RunePresets.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6606,7 +6606,7 @@
           "_FluxUI.toc:427"
         ]
       },
-      "Respec/FluxRespec_GearSetLock.lua": {
+      "Respec/FluxRespec_EquipmentPresets.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6621,7 +6621,7 @@
           "_FluxUI.toc:428"
         ]
       },
-      "Respec/FluxRespec_GearSetTooltip.lua": {
+      "Respec/FluxRespec_GearSetIndex.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6636,7 +6636,7 @@
           "_FluxUI.toc:429"
         ]
       },
-      "Respec/FluxRespec_GearSetOverlay.lua": {
+      "Respec/FluxRespec_GearSetLock.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6651,7 +6651,7 @@
           "_FluxUI.toc:430"
         ]
       },
-      "Respec/FluxRespec_GearSetEquipGuard.lua": {
+      "Respec/FluxRespec_GearSetTooltip.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6666,7 +6666,7 @@
           "_FluxUI.toc:431"
         ]
       },
-      "Respec/FluxRespec_Consumables.lua": {
+      "Respec/FluxRespec_GearSetOverlay.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6681,7 +6681,7 @@
           "_FluxUI.toc:432"
         ]
       },
-      "Respec/FluxRespec_Apply.lua": {
+      "Respec/FluxRespec_GearSetEquipGuard.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6696,7 +6696,7 @@
           "_FluxUI.toc:433"
         ]
       },
-      "Respec/FluxRespec_UI_Shared.lua": {
+      "Respec/FluxRespec_Consumables.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6711,7 +6711,7 @@
           "_FluxUI.toc:434"
         ]
       },
-      "Respec/FluxRespec_UI_Rows.lua": {
+      "Respec/FluxRespec_Apply.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6726,7 +6726,7 @@
           "_FluxUI.toc:435"
         ]
       },
-      "Respec/FluxRespec_UI_Gear.lua": {
+      "Respec/FluxRespec_UI_Shared.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6741,7 +6741,7 @@
           "_FluxUI.toc:436"
         ]
       },
-      "Respec/FluxRespec_UI_Runes.lua": {
+      "Respec/FluxRespec_UI_Rows.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6756,7 +6756,7 @@
           "_FluxUI.toc:437"
         ]
       },
-      "Respec/FluxRespec_UI.lua": {
+      "Respec/FluxRespec_UI_Gear.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6771,7 +6771,7 @@
           "_FluxUI.toc:438"
         ]
       },
-      "Respec/FluxRespec_IconPicker.lua": {
+      "Respec/FluxRespec_UI_Runes.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6786,7 +6786,7 @@
           "_FluxUI.toc:439"
         ]
       },
-      "Respec/FluxRespec_Register.lua": {
+      "Respec/FluxRespec_UI.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6801,7 +6801,22 @@
           "_FluxUI.toc:440"
         ]
       },
-      "Other/FluxHUDTooltip.lua": {
+      "Respec/FluxRespec_IconPicker.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:441"
+        ]
+      },
+      "Respec/FluxRespec_Register.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6816,22 +6831,7 @@
           "_FluxUI.toc:442"
         ]
       },
-      "Other/FluxExtraAbilityHUD.lua": {
-        "clients": [
-          "camelot",
-          "cata",
-          "classic",
-          "mainline",
-          "mists",
-          "tbc",
-          "vanilla",
-          "wrath"
-        ],
-        "parents": [
-          "_FluxUI.toc:443"
-        ]
-      },
-      "Other/FluxTradeFoodWater.lua": {
+      "Other/FluxHUDTooltip.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6846,7 +6846,7 @@
           "_FluxUI.toc:444"
         ]
       },
-      "Other/FluxVehicleExitButton.lua": {
+      "Other/FluxExtraAbilityHUD.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6861,7 +6861,7 @@
           "_FluxUI.toc:445"
         ]
       },
-      "Other/FluxVehicleSeats.lua": {
+      "Other/FluxTradeFoodWater.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6876,7 +6876,22 @@
           "_FluxUI.toc:446"
         ]
       },
-      "CharacterInfo/Shared.lua": {
+      "Other/FluxVehicleExitButton.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:447"
+        ]
+      },
+      "Other/FluxVehicleSeats.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6891,22 +6906,7 @@
           "_FluxUI.toc:448"
         ]
       },
-      "CharacterInfo/Localization/Localization_en.lua": {
-        "clients": [
-          "camelot",
-          "cata",
-          "classic",
-          "mainline",
-          "mists",
-          "tbc",
-          "vanilla",
-          "wrath"
-        ],
-        "parents": [
-          "_FluxUI.toc:449"
-        ]
-      },
-      "CharacterInfo/Localization/Localization_de.lua": {
+      "CharacterInfo/Shared.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6921,7 +6921,7 @@
           "_FluxUI.toc:450"
         ]
       },
-      "CharacterInfo/Localization/Localization_es.lua": {
+      "CharacterInfo/Localization/Localization_en.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6936,7 +6936,7 @@
           "_FluxUI.toc:451"
         ]
       },
-      "CharacterInfo/Localization/Localization_fr.lua": {
+      "CharacterInfo/Localization/Localization_de.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6951,7 +6951,7 @@
           "_FluxUI.toc:452"
         ]
       },
-      "CharacterInfo/Localization/Localization_it.lua": {
+      "CharacterInfo/Localization/Localization_es.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6966,7 +6966,7 @@
           "_FluxUI.toc:453"
         ]
       },
-      "CharacterInfo/Localization/Localization_kr.lua": {
+      "CharacterInfo/Localization/Localization_fr.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6981,7 +6981,7 @@
           "_FluxUI.toc:454"
         ]
       },
-      "CharacterInfo/Localization/Localization_ru.lua": {
+      "CharacterInfo/Localization/Localization_it.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -6996,7 +6996,7 @@
           "_FluxUI.toc:455"
         ]
       },
-      "CharacterInfo/Localization/Localization_tw.lua": {
+      "CharacterInfo/Localization/Localization_kr.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7011,7 +7011,7 @@
           "_FluxUI.toc:456"
         ]
       },
-      "CharacterInfo/Localization/Localization_br.lua": {
+      "CharacterInfo/Localization/Localization_ru.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7026,7 +7026,7 @@
           "_FluxUI.toc:457"
         ]
       },
-      "CharacterInfo/Localization/Localization_cn.lua": {
+      "CharacterInfo/Localization/Localization_tw.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7041,7 +7041,7 @@
           "_FluxUI.toc:458"
         ]
       },
-      "CharacterInfo/StatsCritCalculator.lua": {
+      "CharacterInfo/Localization/Localization_br.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7056,7 +7056,7 @@
           "_FluxUI.toc:459"
         ]
       },
-      "CharacterInfo/StatsCustomExtensions.lua": {
+      "CharacterInfo/Localization/Localization_cn.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7071,7 +7071,7 @@
           "_FluxUI.toc:460"
         ]
       },
-      "CharacterInfo/StatsProgression.lua": {
+      "CharacterInfo/StatsCritCalculator.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7086,7 +7086,7 @@
           "_FluxUI.toc:461"
         ]
       },
-      "CharacterInfo/StatsEra.lua": {
+      "CharacterInfo/StatsCustomExtensions.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7101,7 +7101,7 @@
           "_FluxUI.toc:462"
         ]
       },
-      "CharacterInfo/GearScore.lua": {
+      "CharacterInfo/StatsProgression.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7116,7 +7116,7 @@
           "_FluxUI.toc:463"
         ]
       },
-      "CharacterInfo/ItemLevel.lua": {
+      "CharacterInfo/StatsEra.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7131,7 +7131,7 @@
           "_FluxUI.toc:464"
         ]
       },
-      "CharacterInfo/RetailPane.lua": {
+      "CharacterInfo/GearScore.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7146,7 +7146,7 @@
           "_FluxUI.toc:465"
         ]
       },
-      "CharacterInfo/TacoTip.lua": {
+      "CharacterInfo/ItemLevel.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7161,7 +7161,7 @@
           "_FluxUI.toc:466"
         ]
       },
-      "CharacterInfo/PaperDollVisibility.lua": {
+      "CharacterInfo/RetailPane.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7176,7 +7176,7 @@
           "_FluxUI.toc:467"
         ]
       },
-      "CharacterInfo/PaperDollSecondaryName.lua": {
+      "CharacterInfo/TacoTip.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7191,7 +7191,7 @@
           "_FluxUI.toc:468"
         ]
       },
-      "CharacterInfo/PaperDollQuality.lua": {
+      "CharacterInfo/PaperDollVisibility.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7206,7 +7206,7 @@
           "_FluxUI.toc:469"
         ]
       },
-      "CharacterInfo/PaperDollEquipFlyout.lua": {
+      "CharacterInfo/PaperDollSecondaryName.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7221,7 +7221,7 @@
           "_FluxUI.toc:470"
         ]
       },
-      "CharacterInfo/Init.lua": {
+      "CharacterInfo/PaperDollQuality.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7236,7 +7236,7 @@
           "_FluxUI.toc:471"
         ]
       },
-      "Other/FluxDurationBars.lua": {
+      "CharacterInfo/PaperDollEquipFlyout.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7251,7 +7251,7 @@
           "_FluxUI.toc:472"
         ]
       },
-      "NamePlates/Core.lua": {
+      "CharacterInfo/Init.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7266,7 +7266,7 @@
           "_FluxUI.toc:473"
         ]
       },
-      "NamePlates/CastBarSchools.lua": {
+      "Other/FluxDurationBars.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7281,18 +7281,22 @@
           "_FluxUI.toc:474"
         ]
       },
-      "NamePlates/ComboPoints.lua": {
+      "NamePlates/Core.lua": {
         "clients": [
           "camelot",
+          "cata",
           "classic",
+          "mainline",
+          "mists",
           "tbc",
-          "vanilla"
+          "vanilla",
+          "wrath"
         ],
         "parents": [
           "_FluxUI.toc:475"
         ]
       },
-      "NamePlates/Threat.lua": {
+      "NamePlates/CastBarSchools.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7307,22 +7311,18 @@
           "_FluxUI.toc:476"
         ]
       },
-      "NamePlates/Level.lua": {
+      "NamePlates/ComboPoints.lua": {
         "clients": [
           "camelot",
-          "cata",
           "classic",
-          "mainline",
-          "mists",
           "tbc",
-          "vanilla",
-          "wrath"
+          "vanilla"
         ],
         "parents": [
           "_FluxUI.toc:477"
         ]
       },
-      "NamePlates/Countdown.lua": {
+      "NamePlates/Threat.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7337,7 +7337,7 @@
           "_FluxUI.toc:478"
         ]
       },
-      "Other/FluxChatFrame.lua": {
+      "NamePlates/Level.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7352,7 +7352,7 @@
           "_FluxUI.toc:479"
         ]
       },
-      "Other/FluxChatCopyPaste.xml": {
+      "NamePlates/Countdown.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7367,7 +7367,7 @@
           "_FluxUI.toc:480"
         ]
       },
-      "Other/FluxChatColumnMicros.lua": {
+      "Other/FluxChatFrame.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7382,7 +7382,7 @@
           "_FluxUI.toc:481"
         ]
       },
-      "Other/FluxChatCopyPaste.lua": {
+      "Other/FluxChatCopyPaste.xml": {
         "clients": [
           "camelot",
           "cata",
@@ -7397,7 +7397,7 @@
           "_FluxUI.toc:482"
         ]
       },
-      "Other/FluxLootRollPosition.lua": {
+      "Other/FluxChatColumnMicros.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7412,7 +7412,7 @@
           "_FluxUI.toc:483"
         ]
       },
-      "Other/FluxLoot.lua": {
+      "Other/FluxChatCopyPaste.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7427,7 +7427,22 @@
           "_FluxUI.toc:484"
         ]
       },
-      "Salvage/Data/keys.lua": {
+      "Other/FluxLootRollPosition.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:485"
+        ]
+      },
+      "Other/FluxLoot.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7442,22 +7457,7 @@
           "_FluxUI.toc:486"
         ]
       },
-      "Salvage/Data/nondisenchantable.lua": {
-        "clients": [
-          "camelot",
-          "cata",
-          "classic",
-          "mainline",
-          "mists",
-          "tbc",
-          "vanilla",
-          "wrath"
-        ],
-        "parents": [
-          "_FluxUI.toc:487"
-        ]
-      },
-      "Salvage/Data/disenchantable.lua": {
+      "Salvage/Data/keys.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7472,7 +7472,7 @@
           "_FluxUI.toc:488"
         ]
       },
-      "Salvage/Data/millable.lua": {
+      "Salvage/Data/nondisenchantable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7487,7 +7487,7 @@
           "_FluxUI.toc:489"
         ]
       },
-      "Salvage/Data/prospectable.lua": {
+      "Salvage/Data/disenchantable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7502,7 +7502,7 @@
           "_FluxUI.toc:490"
         ]
       },
-      "Salvage/Data/crushable.lua": {
+      "Salvage/Data/millable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7517,7 +7517,7 @@
           "_FluxUI.toc:491"
         ]
       },
-      "Salvage/Data/scrappable.lua": {
+      "Salvage/Data/prospectable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7532,7 +7532,7 @@
           "_FluxUI.toc:492"
         ]
       },
-      "Salvage/Data/shatterable.lua": {
+      "Salvage/Data/crushable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7547,7 +7547,7 @@
           "_FluxUI.toc:493"
         ]
       },
-      "Salvage/Data/transmutable.lua": {
+      "Salvage/Data/scrappable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7562,7 +7562,7 @@
           "_FluxUI.toc:494"
         ]
       },
-      "Salvage/Data/openable.lua": {
+      "Salvage/Data/shatterable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7577,7 +7577,7 @@
           "_FluxUI.toc:495"
         ]
       },
-      "Salvage/FluxSalvage_Colors.lua": {
+      "Salvage/Data/transmutable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7592,7 +7592,7 @@
           "_FluxUI.toc:496"
         ]
       },
-      "Salvage/FluxSalvage_Classify.lua": {
+      "Salvage/Data/openable.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7607,7 +7607,7 @@
           "_FluxUI.toc:497"
         ]
       },
-      "Salvage/FluxSalvage_Settings.lua": {
+      "Salvage/FluxSalvage_Colors.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7622,7 +7622,7 @@
           "_FluxUI.toc:498"
         ]
       },
-      "Salvage/FluxSalvage_Overlay.lua": {
+      "Salvage/FluxSalvage_Classify.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7637,7 +7637,7 @@
           "_FluxUI.toc:499"
         ]
       },
-      "Salvage/FluxSalvage_Tooltip.lua": {
+      "Salvage/FluxSalvage_Settings.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7652,7 +7652,7 @@
           "_FluxUI.toc:500"
         ]
       },
-      "Salvage/FluxSalvage.lua": {
+      "Salvage/FluxSalvage_Overlay.lua": {
         "clients": [
           "camelot",
           "cata",
@@ -7667,6 +7667,36 @@
           "_FluxUI.toc:501"
         ]
       },
+      "Salvage/FluxSalvage_Tooltip.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:502"
+        ]
+      },
+      "Salvage/FluxSalvage.lua": {
+        "clients": [
+          "camelot",
+          "cata",
+          "classic",
+          "mainline",
+          "mists",
+          "tbc",
+          "vanilla",
+          "wrath"
+        ],
+        "parents": [
+          "_FluxUI.toc:503"
+        ]
+      },
       "libs/C_Everywhere/C_Everywhere.xml": {
         "clients": [
           "camelot",
@@ -7679,7 +7709,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:504"
+          "_FluxUI.toc:506"
         ]
       },
       "libs/C_Everywhere/C_Everywhere.lua": {
@@ -7724,7 +7754,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:505"
+          "_FluxUI.toc:507"
         ]
       },
       "libs/ItemSearch-1.3/ItemSearch-1.3.xml": {
@@ -7739,7 +7769,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:506"
+          "_FluxUI.toc:508"
         ]
       },
       "libs/ItemSearch-1.3/API.lua": {
@@ -7799,7 +7829,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:507"
+          "_FluxUI.toc:509"
         ]
       },
       "Inventory/Restock/FluxRestock_Inv.lua": {
@@ -7814,7 +7844,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:508"
+          "_FluxUI.toc:510"
         ]
       },
       "Inventory/FluxItemMover.lua": {
@@ -7829,7 +7859,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:509"
+          "_FluxUI.toc:511"
         ]
       },
       "Inventory/Restock/Core/FluxRestockSettings.lua": {
@@ -7844,7 +7874,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:510"
+          "_FluxUI.toc:512"
         ]
       },
       "Inventory/Restock/Core/FluxRestockSession.lua": {
@@ -7859,7 +7889,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:511"
+          "_FluxUI.toc:513"
         ]
       },
       "Inventory/Restock/Junk/FluxJunk.lua": {
@@ -7874,7 +7904,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:512"
+          "_FluxUI.toc:514"
         ]
       },
       "Inventory/Restock/Junk/FluxJunkOverlay.lua": {
@@ -7889,7 +7919,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:513"
+          "_FluxUI.toc:515"
         ]
       },
       "Inventory/Restock/Junk/FluxSellJunk.lua": {
@@ -7904,7 +7934,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:514"
+          "_FluxUI.toc:516"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Init.lua": {
@@ -7919,7 +7949,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:515"
+          "_FluxUI.toc:517"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Settings.lua": {
@@ -7934,7 +7964,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:516"
+          "_FluxUI.toc:518"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": {
@@ -7949,7 +7979,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:517"
+          "_FluxUI.toc:519"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Vendor.lua": {
@@ -7964,7 +7994,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:518"
+          "_FluxUI.toc:520"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua": {
@@ -7979,7 +8009,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:519"
+          "_FluxUI.toc:521"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_Inferior.lua": {
@@ -7994,7 +8024,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:520"
+          "_FluxUI.toc:522"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers_UI.lua": {
@@ -8009,7 +8039,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:521"
+          "_FluxUI.toc:523"
         ]
       },
       "Inventory/Restock/Core/Tiers/FluxRestockTiers.lua": {
@@ -8024,7 +8054,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:522"
+          "_FluxUI.toc:524"
         ]
       },
       "Inventory/Restock/Core/FluxRestockList.lua": {
@@ -8039,7 +8069,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:523"
+          "_FluxUI.toc:525"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorSession.lua": {
@@ -8054,7 +8084,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:524"
+          "_FluxUI.toc:526"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorBuy.lua": {
@@ -8069,7 +8099,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:525"
+          "_FluxUI.toc:527"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockDebug.lua": {
@@ -8084,7 +8114,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:526"
+          "_FluxUI.toc:528"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockRules.lua": {
@@ -8099,7 +8129,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:527"
+          "_FluxUI.toc:529"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockInventory.lua": {
@@ -8114,7 +8144,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:528"
+          "_FluxUI.toc:530"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockMoves.lua": {
@@ -8129,7 +8159,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:529"
+          "_FluxUI.toc:531"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockLedger.lua": {
@@ -8144,7 +8174,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:530"
+          "_FluxUI.toc:532"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockNeed.lua": {
@@ -8159,7 +8189,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:531"
+          "_FluxUI.toc:533"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockMovePlan.lua": {
@@ -8174,7 +8204,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:532"
+          "_FluxUI.toc:534"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockMoveContext.lua": {
@@ -8189,7 +8219,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:533"
+          "_FluxUI.toc:535"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockMoveExec.lua": {
@@ -8204,7 +8234,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:534"
+          "_FluxUI.toc:536"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestock.lua": {
@@ -8219,7 +8249,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:535"
+          "_FluxUI.toc:537"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": {
@@ -8234,7 +8264,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:536"
+          "_FluxUI.toc:538"
         ]
       },
       "Inventory/Restock/Vendor/FluxAlreadyKnownShared.lua": {
@@ -8249,7 +8279,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:537"
+          "_FluxUI.toc:539"
         ]
       },
       "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
@@ -8257,7 +8287,7 @@
           "mainline"
         ],
         "parents": [
-          "_FluxUI.toc:538"
+          "_FluxUI.toc:540"
         ]
       },
       "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
@@ -8270,7 +8300,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:539"
+          "_FluxUI.toc:541"
         ]
       },
       "Inventory/Restock/Junk/FluxVendorJunkPanel.lua": {
@@ -8285,7 +8315,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:540"
+          "_FluxUI.toc:542"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": {
@@ -8300,7 +8330,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:541"
+          "_FluxUI.toc:543"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorRepairUI.lua": {
@@ -8315,7 +8345,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:542"
+          "_FluxUI.toc:544"
         ]
       },
       "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": {
@@ -8330,7 +8360,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:543"
+          "_FluxUI.toc:545"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua": {
@@ -8345,7 +8375,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:544"
+          "_FluxUI.toc:546"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua": {
@@ -8360,7 +8390,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:545"
+          "_FluxUI.toc:547"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua": {
@@ -8375,7 +8405,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:546"
+          "_FluxUI.toc:548"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua": {
@@ -8390,7 +8420,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:547"
+          "_FluxUI.toc:549"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua": {
@@ -8405,7 +8435,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:548"
+          "_FluxUI.toc:550"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua": {
@@ -8420,7 +8450,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:549"
+          "_FluxUI.toc:551"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua": {
@@ -8435,7 +8465,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:550"
+          "_FluxUI.toc:552"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua": {
@@ -8450,7 +8480,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:551"
+          "_FluxUI.toc:553"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua": {
@@ -8465,7 +8495,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:552"
+          "_FluxUI.toc:554"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua": {
@@ -8480,7 +8510,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:553"
+          "_FluxUI.toc:555"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
@@ -8495,7 +8525,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:554"
+          "_FluxUI.toc:556"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
@@ -8510,7 +8540,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:555"
+          "_FluxUI.toc:557"
         ]
       },
       "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.xml": {
@@ -8525,7 +8555,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:556"
+          "_FluxUI.toc:558"
         ]
       },
       "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
@@ -8540,7 +8570,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:557"
+          "_FluxUI.toc:559"
         ]
       },
       "BaganatorCompat/FluxBaganator_ItemViews.lua": {
@@ -8555,7 +8585,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:559"
+          "_FluxUI.toc:561"
         ]
       },
       "BaganatorCompat/FluxBaganator_GearSetContext.lua": {
@@ -8570,7 +8600,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:560"
+          "_FluxUI.toc:562"
         ]
       },
       "BaganatorCompat/FluxBaganator_GearSetShield.lua": {
@@ -8585,7 +8615,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:561"
+          "_FluxUI.toc:563"
         ]
       },
       "BaganatorCompat/FluxBaganator_Protection.lua": {
@@ -8600,7 +8630,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:562"
+          "_FluxUI.toc:564"
         ]
       },
       "BaganatorCompat/FluxBaganator_Junk.lua": {
@@ -8615,7 +8645,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:563"
+          "_FluxUI.toc:565"
         ]
       },
       "BaganatorCompat/FluxBaganator_GearSets.lua": {
@@ -8630,7 +8660,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:564"
+          "_FluxUI.toc:566"
         ]
       },
       "BaganatorCompat/FluxBaganator_CategoryIcons.lua": {
@@ -8645,7 +8675,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:565"
+          "_FluxUI.toc:567"
         ]
       },
       "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua": {
@@ -8660,7 +8690,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:566"
+          "_FluxUI.toc:568"
         ]
       },
       "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua": {
@@ -8675,7 +8705,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:567"
+          "_FluxUI.toc:569"
         ]
       },
       "BaganatorCompat/FluxBaganator_CategoryVendorBlock.lua": {
@@ -8690,7 +8720,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:568"
+          "_FluxUI.toc:570"
         ]
       },
       "BaganatorCompat/FluxBaganator_BankRestock.lua": {
@@ -8705,7 +8735,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:569"
+          "_FluxUI.toc:571"
         ]
       },
       "BaganatorCompat/Loader.lua": {
@@ -8720,7 +8750,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:570"
+          "_FluxUI.toc:572"
         ]
       },
       "Layout/UnifiedBorder.lua": {
@@ -8735,7 +8765,7 @@
           "wrath"
         ],
         "parents": [
-          "_FluxUI.toc:572"
+          "_FluxUI.toc:574"
         ]
       }
     },
@@ -9159,6 +9189,8 @@
       "Other/FluxArenaFramePosition.lua",
       "Minimap/FluxMinimapButtons.lua",
       "Minimap/FluxQuestie.lua",
+      "Battlezonemap/FluxMeterSkin.lua",
+      "Battlezonemap/FluxThreatMeter.lua",
       "Battlezonemap/FluxMeterLayout.lua",
       "Battlezonemap/FluxWindowFrame.lua",
       "Battlezonemap/FluxDetailsWoWSkinTint.lua",
@@ -20447,7 +20479,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:569"
+        "_FluxUI.toc:571"
       ],
       "settings": [],
       "functions": [
@@ -20532,7 +20564,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:565"
+        "_FluxUI.toc:567"
       ],
       "settings": [],
       "functions": [
@@ -20576,7 +20608,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:568"
+        "_FluxUI.toc:570"
       ],
       "settings": [],
       "functions": [
@@ -20644,7 +20676,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:567"
+        "_FluxUI.toc:569"
       ],
       "settings": [],
       "functions": [
@@ -20680,7 +20712,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:566"
+        "_FluxUI.toc:568"
       ],
       "settings": [],
       "functions": [
@@ -20716,7 +20748,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:560"
+        "_FluxUI.toc:562"
       ],
       "settings": [],
       "functions": [
@@ -20760,7 +20792,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:564"
+        "_FluxUI.toc:566"
       ],
       "settings": [],
       "functions": [
@@ -20825,7 +20857,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:561"
+        "_FluxUI.toc:563"
       ],
       "settings": [],
       "functions": [
@@ -20882,7 +20914,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:559"
+        "_FluxUI.toc:561"
       ],
       "settings": [],
       "functions": [
@@ -20938,7 +20970,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:563"
+        "_FluxUI.toc:565"
       ],
       "settings": [],
       "functions": [
@@ -20974,7 +21006,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:562"
+        "_FluxUI.toc:564"
       ],
       "settings": [],
       "functions": [
@@ -21063,7 +21095,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:570"
+        "_FluxUI.toc:572"
       ],
       "settings": [],
       "functions": [
@@ -23639,7 +23671,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:405"
+        "_FluxUI.toc:407"
       ],
       "settings": [],
       "functions": [
@@ -23877,7 +23909,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:408"
+        "_FluxUI.toc:410"
       ],
       "settings": [],
       "functions": [
@@ -24006,7 +24038,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:409"
+        "_FluxUI.toc:411"
       ],
       "settings": [],
       "functions": [
@@ -24062,7 +24094,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:406"
+        "_FluxUI.toc:408"
       ],
       "settings": [],
       "functions": [
@@ -24187,7 +24219,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:407"
+        "_FluxUI.toc:409"
       ],
       "settings": [],
       "functions": [
@@ -24348,8 +24380,8 @@
       "path": "Battlezonemap/FluxBlizzardMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1272,
-      "sha256": "a5b6f556fac9af76f12b1572515b9268b680dce0d00cfc602fa6c2fcda46026c",
+      "lines": 1479,
+      "sha256": "a630525aa4fdd0cf8bc9bd05f969d6f68fd2fd0f8fcfb21626edb08074194d94",
       "clients": [
         "camelot",
         "cata",
@@ -24361,58 +24393,62 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:404"
+        "_FluxUI.toc:406"
       ],
       "settings": [],
       "functions": [
         {
           "name": "FluxBlizzardMeter:IsSupportedClient",
-          "line": 138
+          "line": 209
         },
         {
           "name": "FluxBlizzardMeter:IsAvailable",
-          "line": 145
+          "line": 216
+        },
+        {
+          "name": "FluxBlizzardMeter:EnsureEnabled",
+          "line": 240
         },
         {
           "name": "FluxBlizzardMeter:IsContentAvailable",
-          "line": 154
+          "line": 247
         },
         {
           "name": "FluxBlizzardMeter:IsEmbedded",
-          "line": 164
+          "line": 257
         },
         {
           "name": "FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat",
-          "line": 172
+          "line": 265
         },
         {
           "name": "FluxBlizzardMeter:Embed",
-          "line": 843
+          "line": 1014
         },
         {
           "name": "FluxBlizzardMeter:SyncGeometryFromLayout",
-          "line": 956
+          "line": 1116
         },
         {
           "name": "FluxBlizzardMeter:RefreshEmbeddedLayout",
-          "line": 979
+          "line": 1139
         },
         {
           "name": "FluxBlizzardMeter:Hide",
-          "line": 990
+          "line": 1150
         },
         {
           "name": "FluxBlizzardMeter:Show",
-          "line": 1009
+          "line": 1177
         },
         {
           "name": "FluxBlizzardMeter:Cleanup",
-          "line": 1038
+          "line": 1208
         }
       ],
       "events": [
         {
-          "line": 1097,
+          "line": 1286,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -24420,7 +24456,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 1098,
+          "line": 1287,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -24428,7 +24464,15 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 1162,
+          "line": 1288,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"EDIT_MODE_LAYOUTS_UPDATED\""
+          ],
+          "context": "()thenframe:"
+        },
+        {
+          "line": 1363,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -24436,7 +24480,7 @@
           "context": "(\"Frame\")startupFrame:"
         },
         {
-          "line": 1163,
+          "line": 1364,
           "method": "RegisterEvent",
           "arguments": [
             "\"VARIABLES_LOADED\""
@@ -24444,7 +24488,7 @@
           "context": "(\"ADDON_LOADED\")startupFrame:"
         },
         {
-          "line": 1164,
+          "line": 1365,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -24457,18 +24501,18 @@
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER1",
           "value": "/fluxblizzmeter",
-          "line": 1197
+          "line": 1404
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER2",
           "value": "/fbm",
-          "line": 1198
+          "line": 1405
         },
         {
           "kind": "handler",
           "name": "FLUXBLIZZMETER",
-          "line": 1199
+          "line": 1406
         }
       ],
       "widgets": [],
@@ -24477,7 +24521,7 @@
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            1174
+            1376
           ]
         }
       ]
@@ -24499,7 +24543,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:402"
+        "_FluxUI.toc:404"
       ],
       "settings": [],
       "functions": [
@@ -24674,7 +24718,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:401"
+        "_FluxUI.toc:403"
       ],
       "settings": [],
       "functions": [
@@ -24735,7 +24779,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:400"
+        "_FluxUI.toc:402"
       ],
       "settings": [],
       "functions": [
@@ -24775,8 +24819,262 @@
       "path": "Battlezonemap/FluxMeterLayout.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 2403,
-      "sha256": "8ea8f74027f4abdda95f40d1c590892e4fcf05268b1f75e2fb7e8054a67296d4",
+      "lines": 2474,
+      "sha256": "11e03a12e33b90a35b01909343e4db08621781357e9efd81505aa879930ef896",
+      "clients": [
+        "camelot",
+        "cata",
+        "classic",
+        "mainline",
+        "mists",
+        "tbc",
+        "vanilla",
+        "wrath"
+      ],
+      "parents": [
+        "_FluxUI.toc:400"
+      ],
+      "settings": [],
+      "functions": [
+        {
+          "name": "FluxMeterLayout.IsDetailsAddonLoaded",
+          "line": 156
+        },
+        {
+          "name": "FluxMeterLayout.HasBlizzardDamageMeterClient",
+          "line": 169
+        },
+        {
+          "name": "FluxMeterLayout.GetMeterBackend",
+          "line": 184
+        },
+        {
+          "name": "FluxMeterLayout.IsBlizzardBackend",
+          "line": 194
+        },
+        {
+          "name": "FluxMeterLayout.IsDetailsBackend",
+          "line": 198
+        },
+        {
+          "name": "FluxMeterLayout.HasMeterBackend",
+          "line": 202
+        },
+        {
+          "name": "FluxMeterLayout.HasStandaloneThreat",
+          "line": 207
+        },
+        {
+          "name": "FluxMeterLayout.IsThreatSlot",
+          "line": 211
+        },
+        {
+          "name": "FluxMeterLayout.GetMaxPanes",
+          "line": 215
+        },
+        {
+          "name": "FluxMeterLayout.GetBuiltinLabels",
+          "line": 361
+        },
+        {
+          "name": "FluxMeterLayout.NormalizeSlot",
+          "line": 703
+        },
+        {
+          "name": "FluxMeterLayout.NormalizeColFracs",
+          "line": 707
+        },
+        {
+          "name": "FluxMeterLayout.CopyLayout",
+          "line": 711
+        },
+        {
+          "name": "FluxMeterLayout.GetWorkingLayout",
+          "line": 715
+        },
+        {
+          "name": "FluxMeterLayout.GetActiveLayoutId",
+          "line": 720
+        },
+        {
+          "name": "FluxMeterLayout.GetUserLayouts",
+          "line": 725
+        },
+        {
+          "name": "FluxMeterLayout.GetBuiltinCount",
+          "line": 730
+        },
+        {
+          "name": "FluxMeterLayout.ApplyBuiltin",
+          "line": 737
+        },
+        {
+          "name": "FluxMeterLayout.LoadUser",
+          "line": 747
+        },
+        {
+          "name": "FluxMeterLayout.SaveWorkingAsNew",
+          "line": 759
+        },
+        {
+          "name": "FluxMeterLayout.SaveWorkingOverActive",
+          "line": 770
+        },
+        {
+          "name": "FluxMeterLayout.RenameActive",
+          "line": 788
+        },
+        {
+          "name": "FluxMeterLayout.DeleteActive",
+          "line": 803
+        },
+        {
+          "name": "FluxMeterLayout.SetTopColCount",
+          "line": 830
+        },
+        {
+          "name": "FluxMeterLayout.SetBottomColCount",
+          "line": 852
+        },
+        {
+          "name": "FluxMeterLayout.CanSetTopColCount",
+          "line": 879
+        },
+        {
+          "name": "FluxMeterLayout.CanSetBottomColCount",
+          "line": 888
+        },
+        {
+          "name": "FluxMeterLayout.SetSlot",
+          "line": 897
+        },
+        {
+          "name": "FluxMeterLayout.SetTopRowFrac",
+          "line": 923
+        },
+        {
+          "name": "FluxMeterLayout.SetColFracs",
+          "line": 928
+        },
+        {
+          "name": "FluxMeterLayout.SlotIcon",
+          "line": 961
+        },
+        {
+          "name": "FluxMeterLayout.BuildCatalog",
+          "line": 1071
+        },
+        {
+          "name": "FluxMeterLayout.SlotShortLabel",
+          "line": 1186
+        },
+        {
+          "name": "FluxMeterLayout.SlotColor",
+          "line": 1199
+        },
+        {
+          "name": "FluxMeterLayout.CancelPendingWork",
+          "line": 1270
+        },
+        {
+          "name": "FluxMeterLayout.ReembedQuiet",
+          "line": 1300
+        },
+        {
+          "name": "FluxMeterLayout.ScheduleReembed",
+          "line": 1304
+        },
+        {
+          "name": "FluxMeterLayout.IsEditorOpen",
+          "line": 1316
+        },
+        {
+          "name": "FluxMeterLayout.CloseEditor",
+          "line": 1320
+        },
+        {
+          "name": "b:SetActive",
+          "line": 1658
+        },
+        {
+          "name": "f:RefreshPicker",
+          "line": 1935
+        },
+        {
+          "name": "f:RebuildLibList",
+          "line": 2029
+        },
+        {
+          "name": "f:RefreshCanvas",
+          "line": 2112
+        },
+        {
+          "name": "f:Refresh",
+          "line": 2219
+        },
+        {
+          "name": "FluxMeterLayout.DetachFromHost",
+          "line": 2309
+        },
+        {
+          "name": "FluxMeterLayout.AttachToHost",
+          "line": 2321
+        },
+        {
+          "name": "FluxMeterLayout.FitEditorToHost",
+          "line": 2374
+        },
+        {
+          "name": "FluxMeterLayout.AttachToAceWidget",
+          "line": 2404
+        },
+        {
+          "name": "FluxMeterLayout.DetachFromAceWidget",
+          "line": 2427
+        },
+        {
+          "name": "FluxMeterLayout.IsEmbeddedInOptions",
+          "line": 2434
+        },
+        {
+          "name": "FluxMeterLayout.OpenEditor",
+          "line": 2438
+        },
+        {
+          "name": "FluxMeterLayout.Init",
+          "line": 2464
+        }
+      ],
+      "events": [
+        {
+          "line": 2469,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_LOGIN\""
+          ],
+          "context": "(\"Frame\")initFrame:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            550,
+            551,
+            553
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Battlezonemap/FluxMeterSkin.lua",
+      "classification": "active",
+      "chapter": "10-flux-window.md",
+      "lines": 208,
+      "sha256": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7",
       "clients": [
         "camelot",
         "cata",
@@ -24793,229 +25091,39 @@
       "settings": [],
       "functions": [
         {
-          "name": "FluxMeterLayout.IsDetailsAddonLoaded",
-          "line": 152
+          "name": "Skin:StyleFont",
+          "line": 36
         },
         {
-          "name": "FluxMeterLayout.HasBlizzardDamageMeterClient",
-          "line": 165
+          "name": "Skin:ApplyToEntry",
+          "line": 64
         },
         {
-          "name": "FluxMeterLayout.GetMeterBackend",
-          "line": 180
+          "name": "Skin:ApplyToWindow",
+          "line": 146
         },
         {
-          "name": "FluxMeterLayout.IsBlizzardBackend",
-          "line": 190
+          "name": "Skin:ApplyToOwnedPane",
+          "line": 160
         },
         {
-          "name": "FluxMeterLayout.IsDetailsBackend",
-          "line": 194
+          "name": "Skin:RefreshTheme",
+          "line": 191
         },
         {
-          "name": "FluxMeterLayout.HasMeterBackend",
-          "line": 198
+          "name": "Skin:ReleaseWindow",
+          "line": 196
         },
         {
-          "name": "FluxMeterLayout.GetMaxPanes",
-          "line": 203
-        },
-        {
-          "name": "FluxMeterLayout.GetBuiltinLabels",
-          "line": 332
-        },
-        {
-          "name": "FluxMeterLayout.NormalizeSlot",
-          "line": 664
-        },
-        {
-          "name": "FluxMeterLayout.NormalizeColFracs",
-          "line": 668
-        },
-        {
-          "name": "FluxMeterLayout.CopyLayout",
-          "line": 672
-        },
-        {
-          "name": "FluxMeterLayout.GetWorkingLayout",
-          "line": 676
-        },
-        {
-          "name": "FluxMeterLayout.GetActiveLayoutId",
-          "line": 681
-        },
-        {
-          "name": "FluxMeterLayout.GetUserLayouts",
-          "line": 686
-        },
-        {
-          "name": "FluxMeterLayout.GetBuiltinCount",
-          "line": 691
-        },
-        {
-          "name": "FluxMeterLayout.ApplyBuiltin",
-          "line": 698
-        },
-        {
-          "name": "FluxMeterLayout.LoadUser",
-          "line": 708
-        },
-        {
-          "name": "FluxMeterLayout.SaveWorkingAsNew",
-          "line": 720
-        },
-        {
-          "name": "FluxMeterLayout.SaveWorkingOverActive",
-          "line": 731
-        },
-        {
-          "name": "FluxMeterLayout.RenameActive",
-          "line": 749
-        },
-        {
-          "name": "FluxMeterLayout.DeleteActive",
-          "line": 764
-        },
-        {
-          "name": "FluxMeterLayout.SetTopColCount",
-          "line": 778
-        },
-        {
-          "name": "FluxMeterLayout.SetBottomColCount",
-          "line": 798
-        },
-        {
-          "name": "FluxMeterLayout.CanSetTopColCount",
-          "line": 823
-        },
-        {
-          "name": "FluxMeterLayout.CanSetBottomColCount",
-          "line": 832
-        },
-        {
-          "name": "FluxMeterLayout.SetSlot",
-          "line": 841
-        },
-        {
-          "name": "FluxMeterLayout.SetTopRowFrac",
-          "line": 860
-        },
-        {
-          "name": "FluxMeterLayout.SetColFracs",
-          "line": 865
-        },
-        {
-          "name": "FluxMeterLayout.SlotIcon",
-          "line": 898
-        },
-        {
-          "name": "FluxMeterLayout.BuildCatalog",
-          "line": 1000
-        },
-        {
-          "name": "FluxMeterLayout.SlotShortLabel",
-          "line": 1115
-        },
-        {
-          "name": "FluxMeterLayout.SlotColor",
-          "line": 1128
-        },
-        {
-          "name": "FluxMeterLayout.CancelPendingWork",
-          "line": 1199
-        },
-        {
-          "name": "FluxMeterLayout.ReembedQuiet",
-          "line": 1229
-        },
-        {
-          "name": "FluxMeterLayout.ScheduleReembed",
-          "line": 1233
-        },
-        {
-          "name": "FluxMeterLayout.IsEditorOpen",
-          "line": 1245
-        },
-        {
-          "name": "FluxMeterLayout.CloseEditor",
-          "line": 1249
-        },
-        {
-          "name": "b:SetActive",
-          "line": 1587
-        },
-        {
-          "name": "f:RefreshPicker",
-          "line": 1864
-        },
-        {
-          "name": "f:RebuildLibList",
-          "line": 1958
-        },
-        {
-          "name": "f:RefreshCanvas",
-          "line": 2041
-        },
-        {
-          "name": "f:Refresh",
-          "line": 2148
-        },
-        {
-          "name": "FluxMeterLayout.DetachFromHost",
-          "line": 2238
-        },
-        {
-          "name": "FluxMeterLayout.AttachToHost",
-          "line": 2250
-        },
-        {
-          "name": "FluxMeterLayout.FitEditorToHost",
-          "line": 2303
-        },
-        {
-          "name": "FluxMeterLayout.AttachToAceWidget",
-          "line": 2333
-        },
-        {
-          "name": "FluxMeterLayout.DetachFromAceWidget",
-          "line": 2356
-        },
-        {
-          "name": "FluxMeterLayout.IsEmbeddedInOptions",
-          "line": 2363
-        },
-        {
-          "name": "FluxMeterLayout.OpenEditor",
-          "line": 2367
-        },
-        {
-          "name": "FluxMeterLayout.Init",
-          "line": 2393
+          "name": "Skin:ReleaseAllNative",
+          "line": 206
         }
       ],
-      "events": [
-        {
-          "line": 2398,
-          "method": "RegisterEvent",
-          "arguments": [
-            "\"PLAYER_LOGIN\""
-          ],
-          "context": "(\"Frame\")initFrame:"
-        }
-      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],
-      "sv_sites": [
-        {
-          "name": "_FluxUI_CharSavedVars",
-          "lines": [
-            512,
-            513,
-            515
-          ]
-        }
-      ]
+      "sv_sites": []
     },
     {
       "path": "Battlezonemap/FluxThreat.lua",
@@ -25034,7 +25142,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:403"
+        "_FluxUI.toc:405"
       ],
       "settings": [],
       "functions": [
@@ -25264,11 +25372,11 @@
       "sv_sites": []
     },
     {
-      "path": "Battlezonemap/FluxWindowFrame.lua",
+      "path": "Battlezonemap/FluxThreatMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1781,
-      "sha256": "1795747f9beb829501d24f1f45c385d0fdc78467fe9d4eacb9d389c600f0e62e",
+      "lines": 335,
+      "sha256": "e43f742010c6398998cf8390bda055563e92e7634496bbff98f045d3f87a3488",
       "clients": [
         "camelot",
         "cata",
@@ -25281,6 +25389,80 @@
       ],
       "parents": [
         "_FluxUI.toc:399"
+      ],
+      "settings": [],
+      "functions": [
+        {
+          "name": "Meter:IsAvailable",
+          "line": 32
+        },
+        {
+          "name": "Meter:RefreshLayout",
+          "line": 291
+        },
+        {
+          "name": "Meter:Embed",
+          "line": 304
+        },
+        {
+          "name": "Meter:GetFrame",
+          "line": 316
+        },
+        {
+          "name": "Meter:Show",
+          "line": 318
+        },
+        {
+          "name": "Meter:Hide",
+          "line": 326
+        },
+        {
+          "name": "Meter:Cleanup",
+          "line": 331
+        }
+      ],
+      "events": [
+        {
+          "line": 261,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "})dopane:"
+        },
+        {
+          "line": 262,
+          "method": "RegisterUnitEvent",
+          "arguments": [
+            "\"UNIT_TARGET\"",
+            "\"target\""
+          ],
+          "context": "event)endpane:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "Battlezonemap/FluxWindowFrame.lua",
+      "classification": "active",
+      "chapter": "10-flux-window.md",
+      "lines": 1782,
+      "sha256": "221d4c52f0727d4e20d768b11c140270075ded0777725c3f27719d4b80d37d2b",
+      "clients": [
+        "camelot",
+        "cata",
+        "classic",
+        "mainline",
+        "mists",
+        "tbc",
+        "vanilla",
+        "wrath"
+      ],
+      "parents": [
+        "_FluxUI.toc:401"
       ],
       "settings": [],
       "functions": [
@@ -25426,12 +25608,12 @@
         },
         {
           "name": "FluxWindowFrame_RefreshTabAccent",
-          "line": 1758
+          "line": 1759
         }
       ],
       "events": [
         {
-          "line": 1651,
+          "line": 1652,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -25439,7 +25621,7 @@
           "context": "returnfalseendframe:"
         },
         {
-          "line": 1652,
+          "line": 1653,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -25447,7 +25629,7 @@
           "context": "(\"ADDON_LOADED\")frame:"
         },
         {
-          "line": 1653,
+          "line": 1654,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -25455,7 +25637,7 @@
           "context": "(\"PLAYER_LOGIN\")frame:"
         },
         {
-          "line": 1654,
+          "line": 1655,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -25485,7 +25667,7 @@
       "widgets": [],
       "loads": [
         {
-          "line": 1713,
+          "line": 1714,
           "method": "LoadAddOn",
           "arguments": [
             "\"Blizzard_BattlefieldMap\""
@@ -25493,7 +25675,7 @@
           "context": "thensuccess=C_AddOns."
         },
         {
-          "line": 1715,
+          "line": 1716,
           "method": "LoadAddOn",
           "arguments": [
             "\"Blizzard_BattlefieldMap\""
@@ -25521,8 +25703,8 @@
             189,
             961,
             962,
-            1436,
-            1437
+            1437,
+            1438
           ]
         }
       ]
@@ -29104,7 +29286,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:463"
+        "_FluxUI.toc:465"
       ],
       "settings": [],
       "functions": [
@@ -29140,7 +29322,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:471"
+        "_FluxUI.toc:473"
       ],
       "settings": [],
       "functions": [
@@ -29172,7 +29354,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:464"
+        "_FluxUI.toc:466"
       ],
       "settings": [],
       "functions": [
@@ -29245,7 +29427,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:457"
+        "_FluxUI.toc:459"
       ],
       "settings": [],
       "functions": [],
@@ -29272,7 +29454,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:458"
+        "_FluxUI.toc:460"
       ],
       "settings": [],
       "functions": [],
@@ -29299,7 +29481,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:450"
+        "_FluxUI.toc:452"
       ],
       "settings": [],
       "functions": [],
@@ -29326,7 +29508,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:449"
+        "_FluxUI.toc:451"
       ],
       "settings": [],
       "functions": [],
@@ -29353,7 +29535,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:451"
+        "_FluxUI.toc:453"
       ],
       "settings": [],
       "functions": [],
@@ -29380,7 +29562,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:452"
+        "_FluxUI.toc:454"
       ],
       "settings": [],
       "functions": [],
@@ -29407,7 +29589,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:453"
+        "_FluxUI.toc:455"
       ],
       "settings": [],
       "functions": [],
@@ -29434,7 +29616,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:454"
+        "_FluxUI.toc:456"
       ],
       "settings": [],
       "functions": [],
@@ -29461,7 +29643,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:455"
+        "_FluxUI.toc:457"
       ],
       "settings": [],
       "functions": [],
@@ -29488,7 +29670,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:456"
+        "_FluxUI.toc:458"
       ],
       "settings": [],
       "functions": [],
@@ -29515,7 +29697,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:470"
+        "_FluxUI.toc:472"
       ],
       "settings": [],
       "functions": [],
@@ -29542,7 +29724,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:469"
+        "_FluxUI.toc:471"
       ],
       "settings": [],
       "functions": [
@@ -29591,7 +29773,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:468"
+        "_FluxUI.toc:470"
       ],
       "settings": [],
       "functions": [
@@ -29640,7 +29822,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:467"
+        "_FluxUI.toc:469"
       ],
       "settings": [],
       "functions": [
@@ -29697,7 +29879,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:465"
+        "_FluxUI.toc:467"
       ],
       "settings": [],
       "functions": [
@@ -29764,7 +29946,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:448"
+        "_FluxUI.toc:450"
       ],
       "settings": [],
       "functions": [
@@ -29837,7 +30019,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:459"
+        "_FluxUI.toc:461"
       ],
       "settings": [],
       "functions": [
@@ -29914,7 +30096,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:460"
+        "_FluxUI.toc:462"
       ],
       "settings": [],
       "functions": [
@@ -29979,7 +30161,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:462"
+        "_FluxUI.toc:464"
       ],
       "settings": [],
       "functions": [
@@ -30456,7 +30638,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:461"
+        "_FluxUI.toc:463"
       ],
       "settings": [],
       "functions": [
@@ -31181,7 +31363,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:466"
+        "_FluxUI.toc:468"
       ],
       "settings": [],
       "functions": [
@@ -31439,7 +31621,7 @@
       "classification": "development harness",
       "chapter": "08-shared-services.md",
       "lines": 1584,
-      "sha256": "366610daadcce05e524b0e1159c39fc4c18e3038e6715b4bce06cc782ede2540",
+      "sha256": "a18b39de4652f67597a6b897752ace0b1e5acd0ac97d84ddf8ff0dbe783b4fd1",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -32656,8 +32838,8 @@
       "path": "Core/API/Threat.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 1012,
-      "sha256": "af4d5582af7b9b54281b63edac73ee06e3805e144269081b2c7cf4765fb26524",
+      "lines": 1011,
+      "sha256": "b2b9bec1eaa111a88467d6e9ab889847adacfdadf6ebeaa5330fc3db68e52c82",
       "clients": [
         "camelot",
         "cata",
@@ -32847,7 +33029,7 @@
         },
         {
           "name": "Threat.GetMeterRow",
-          "line": 979
+          "line": 978
         }
       ],
       "events": [],
@@ -50409,7 +50591,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:509"
+        "_FluxUI.toc:511"
       ],
       "settings": [],
       "functions": [
@@ -51390,7 +51572,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:535"
+        "_FluxUI.toc:537"
       ],
       "settings": [],
       "functions": [
@@ -51547,7 +51729,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:557"
+        "_FluxUI.toc:559"
       ],
       "settings": [],
       "functions": [
@@ -51606,7 +51788,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:526"
+        "_FluxUI.toc:528"
       ],
       "settings": [],
       "functions": [
@@ -51712,7 +51894,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:528"
+        "_FluxUI.toc:530"
       ],
       "settings": [],
       "functions": [
@@ -51772,7 +51954,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:530"
+        "_FluxUI.toc:532"
       ],
       "settings": [],
       "functions": [
@@ -51856,7 +52038,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:533"
+        "_FluxUI.toc:535"
       ],
       "settings": [],
       "functions": [
@@ -51960,7 +52142,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:534"
+        "_FluxUI.toc:536"
       ],
       "settings": [],
       "functions": [
@@ -52012,7 +52194,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:532"
+        "_FluxUI.toc:534"
       ],
       "settings": [],
       "functions": [
@@ -52044,7 +52226,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:529"
+        "_FluxUI.toc:531"
       ],
       "settings": [],
       "functions": [
@@ -52112,7 +52294,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:531"
+        "_FluxUI.toc:533"
       ],
       "settings": [],
       "functions": [
@@ -52152,7 +52334,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:527"
+        "_FluxUI.toc:529"
       ],
       "settings": [],
       "functions": [
@@ -52240,7 +52422,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:523"
+        "_FluxUI.toc:525"
       ],
       "settings": [],
       "functions": [
@@ -52492,7 +52674,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:511"
+        "_FluxUI.toc:513"
       ],
       "settings": [],
       "functions": [
@@ -52544,7 +52726,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:510"
+        "_FluxUI.toc:512"
       ],
       "settings": [],
       "functions": [
@@ -52604,7 +52786,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:522"
+        "_FluxUI.toc:524"
       ],
       "settings": [],
       "functions": [
@@ -52748,7 +52930,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:519"
+        "_FluxUI.toc:521"
       ],
       "settings": [],
       "functions": [
@@ -52792,7 +52974,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:520"
+        "_FluxUI.toc:522"
       ],
       "settings": [],
       "functions": [
@@ -52880,7 +53062,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:515"
+        "_FluxUI.toc:517"
       ],
       "settings": [],
       "functions": [
@@ -52996,7 +53178,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:517"
+        "_FluxUI.toc:519"
       ],
       "settings": [],
       "functions": [
@@ -53144,7 +53326,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:516"
+        "_FluxUI.toc:518"
       ],
       "settings": [],
       "functions": [
@@ -53208,7 +53390,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:521"
+        "_FluxUI.toc:523"
       ],
       "settings": [],
       "functions": [
@@ -53252,7 +53434,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:518"
+        "_FluxUI.toc:520"
       ],
       "settings": [],
       "functions": [
@@ -53340,7 +53522,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:508"
+        "_FluxUI.toc:510"
       ],
       "settings": [],
       "functions": [
@@ -53709,7 +53891,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:512"
+        "_FluxUI.toc:514"
       ],
       "settings": [],
       "functions": [
@@ -54154,7 +54336,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:513"
+        "_FluxUI.toc:515"
       ],
       "settings": [],
       "functions": [
@@ -54311,7 +54493,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:514"
+        "_FluxUI.toc:516"
       ],
       "settings": [],
       "functions": [
@@ -54423,7 +54605,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:540"
+        "_FluxUI.toc:542"
       ],
       "settings": [],
       "functions": [
@@ -54492,7 +54674,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:555"
+        "_FluxUI.toc:557"
       ],
       "settings": [],
       "functions": [
@@ -54663,7 +54845,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:556"
+        "_FluxUI.toc:558"
       ],
       "settings": [],
       "functions": [],
@@ -54690,7 +54872,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:554"
+        "_FluxUI.toc:556"
       ],
       "settings": [],
       "functions": [
@@ -54722,7 +54904,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:544"
+        "_FluxUI.toc:546"
       ],
       "settings": [],
       "functions": [],
@@ -54749,7 +54931,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:545"
+        "_FluxUI.toc:547"
       ],
       "settings": [],
       "functions": [],
@@ -54776,7 +54958,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:546"
+        "_FluxUI.toc:548"
       ],
       "settings": [],
       "functions": [],
@@ -54803,7 +54985,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:547"
+        "_FluxUI.toc:549"
       ],
       "settings": [],
       "functions": [],
@@ -54830,7 +55012,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:548"
+        "_FluxUI.toc:550"
       ],
       "settings": [],
       "functions": [],
@@ -54857,7 +55039,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:549"
+        "_FluxUI.toc:551"
       ],
       "settings": [],
       "functions": [],
@@ -54884,7 +55066,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:551"
+        "_FluxUI.toc:553"
       ],
       "settings": [],
       "functions": [],
@@ -54911,7 +55093,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:550"
+        "_FluxUI.toc:552"
       ],
       "settings": [],
       "functions": [],
@@ -54938,7 +55120,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:552"
+        "_FluxUI.toc:554"
       ],
       "settings": [],
       "functions": [],
@@ -54965,7 +55147,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:553"
+        "_FluxUI.toc:555"
       ],
       "settings": [],
       "functions": [],
@@ -54985,7 +55167,7 @@
         "mainline"
       ],
       "parents": [
-        "_FluxUI.toc:538"
+        "_FluxUI.toc:540"
       ],
       "settings": [],
       "functions": [
@@ -55058,7 +55240,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:539"
+        "_FluxUI.toc:541"
       ],
       "settings": [],
       "functions": [
@@ -55125,7 +55307,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:537"
+        "_FluxUI.toc:539"
       ],
       "settings": [],
       "functions": [
@@ -55203,7 +55385,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:543"
+        "_FluxUI.toc:545"
       ],
       "settings": [],
       "functions": [
@@ -55404,7 +55586,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:525"
+        "_FluxUI.toc:527"
       ],
       "settings": [],
       "functions": [
@@ -55529,7 +55711,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:536"
+        "_FluxUI.toc:538"
       ],
       "settings": [],
       "functions": [
@@ -55593,7 +55775,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:542"
+        "_FluxUI.toc:544"
       ],
       "settings": [],
       "functions": [
@@ -55653,7 +55835,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:541"
+        "_FluxUI.toc:543"
       ],
       "settings": [],
       "functions": [
@@ -55722,7 +55904,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:524"
+        "_FluxUI.toc:526"
       ],
       "settings": [],
       "functions": [],
@@ -56216,7 +56398,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:572"
+        "_FluxUI.toc:574"
       ],
       "settings": [],
       "functions": [
@@ -57626,7 +57808,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:504"
+        "_FluxUI.toc:506"
       ],
       "settings": [],
       "functions": [],
@@ -57723,7 +57905,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:505"
+        "_FluxUI.toc:507"
       ],
       "settings": [],
       "functions": [],
@@ -57836,7 +58018,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:506"
+        "_FluxUI.toc:508"
       ],
       "settings": [],
       "functions": [],
@@ -58465,7 +58647,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:507"
+        "_FluxUI.toc:509"
       ],
       "settings": [],
       "functions": [],
@@ -61860,7 +62042,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:474"
+        "_FluxUI.toc:476"
       ],
       "settings": [],
       "functions": [
@@ -61900,7 +62082,7 @@
         "vanilla"
       ],
       "parents": [
-        "_FluxUI.toc:475"
+        "_FluxUI.toc:477"
       ],
       "settings": [],
       "functions": [
@@ -61973,7 +62155,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:473"
+        "_FluxUI.toc:475"
       ],
       "settings": [],
       "functions": [
@@ -62167,7 +62349,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:478"
+        "_FluxUI.toc:480"
       ],
       "settings": [],
       "functions": [
@@ -62211,7 +62393,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:477"
+        "_FluxUI.toc:479"
       ],
       "settings": [],
       "functions": [
@@ -62255,7 +62437,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:476"
+        "_FluxUI.toc:478"
       ],
       "settings": [],
       "functions": [
@@ -64152,7 +64334,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:481"
+        "_FluxUI.toc:483"
       ],
       "settings": [],
       "functions": [
@@ -64337,7 +64519,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:482"
+        "_FluxUI.toc:484"
       ],
       "settings": [],
       "functions": [
@@ -64494,7 +64676,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:480"
+        "_FluxUI.toc:482"
       ],
       "settings": [],
       "functions": [],
@@ -64521,7 +64703,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:479"
+        "_FluxUI.toc:481"
       ],
       "settings": [],
       "functions": [
@@ -64638,7 +64820,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:472"
+        "_FluxUI.toc:474"
       ],
       "settings": [],
       "functions": [],
@@ -64762,7 +64944,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:443"
+        "_FluxUI.toc:445"
       ],
       "settings": [],
       "functions": [],
@@ -64798,7 +64980,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:442"
+        "_FluxUI.toc:444"
       ],
       "settings": [],
       "functions": [
@@ -64899,7 +65081,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:484"
+        "_FluxUI.toc:486"
       ],
       "settings": [],
       "functions": [
@@ -64960,7 +65142,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:483"
+        "_FluxUI.toc:485"
       ],
       "settings": [],
       "functions": [],
@@ -65150,7 +65332,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:444"
+        "_FluxUI.toc:446"
       ],
       "settings": [],
       "functions": [
@@ -65239,7 +65421,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:445"
+        "_FluxUI.toc:447"
       ],
       "settings": [],
       "functions": [
@@ -65380,7 +65562,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:446"
+        "_FluxUI.toc:448"
       ],
       "settings": [],
       "functions": [
@@ -66238,7 +66420,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:417"
+        "_FluxUI.toc:419"
       ],
       "settings": [],
       "functions": [
@@ -66311,7 +66493,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:433"
+        "_FluxUI.toc:435"
       ],
       "settings": [],
       "functions": [
@@ -66371,7 +66553,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:413"
+        "_FluxUI.toc:415"
       ],
       "settings": [],
       "functions": [
@@ -66481,7 +66663,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:411"
+        "_FluxUI.toc:413"
       ],
       "settings": [],
       "functions": [
@@ -66581,7 +66763,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:432"
+        "_FluxUI.toc:434"
       ],
       "settings": [],
       "functions": [
@@ -66621,7 +66803,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:414"
+        "_FluxUI.toc:416"
       ],
       "settings": [],
       "functions": [
@@ -66889,7 +67071,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:418"
+        "_FluxUI.toc:420"
       ],
       "settings": [],
       "functions": [
@@ -67090,7 +67272,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:426"
+        "_FluxUI.toc:428"
       ],
       "settings": [],
       "functions": [
@@ -67213,7 +67395,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:416"
+        "_FluxUI.toc:418"
       ],
       "settings": [],
       "functions": [
@@ -67370,7 +67552,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:419"
+        "_FluxUI.toc:421"
       ],
       "settings": [],
       "functions": [
@@ -67438,7 +67620,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:431"
+        "_FluxUI.toc:433"
       ],
       "settings": [],
       "functions": [
@@ -67483,7 +67665,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:427"
+        "_FluxUI.toc:429"
       ],
       "settings": [],
       "functions": [
@@ -67595,7 +67777,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:428"
+        "_FluxUI.toc:430"
       ],
       "settings": [],
       "functions": [
@@ -67772,7 +67954,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:430"
+        "_FluxUI.toc:432"
       ],
       "settings": [],
       "functions": [
@@ -67825,7 +68007,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:429"
+        "_FluxUI.toc:431"
       ],
       "settings": [],
       "functions": [
@@ -67874,7 +68056,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:439"
+        "_FluxUI.toc:441"
       ],
       "settings": [],
       "functions": [
@@ -67927,7 +68109,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:415"
+        "_FluxUI.toc:417"
       ],
       "settings": [],
       "functions": [
@@ -68114,7 +68296,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:412"
+        "_FluxUI.toc:414"
       ],
       "settings": [],
       "functions": [
@@ -68222,7 +68404,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:424"
+        "_FluxUI.toc:426"
       ],
       "settings": [],
       "functions": [
@@ -68334,7 +68516,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:440"
+        "_FluxUI.toc:442"
       ],
       "settings": [],
       "functions": [
@@ -68383,7 +68565,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:423"
+        "_FluxUI.toc:425"
       ],
       "settings": [],
       "functions": [
@@ -68451,7 +68633,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:425"
+        "_FluxUI.toc:427"
       ],
       "settings": [],
       "functions": [
@@ -68633,7 +68815,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:422"
+        "_FluxUI.toc:424"
       ],
       "settings": [],
       "functions": [
@@ -68738,7 +68920,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:421"
+        "_FluxUI.toc:423"
       ],
       "settings": [],
       "functions": [
@@ -68931,7 +69113,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:420"
+        "_FluxUI.toc:422"
       ],
       "settings": [],
       "functions": [
@@ -69020,7 +69202,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:438"
+        "_FluxUI.toc:440"
       ],
       "settings": [],
       "functions": [
@@ -69193,7 +69375,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:436"
+        "_FluxUI.toc:438"
       ],
       "settings": [],
       "functions": [
@@ -69229,7 +69411,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:435"
+        "_FluxUI.toc:437"
       ],
       "settings": [],
       "functions": [
@@ -69273,7 +69455,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:437"
+        "_FluxUI.toc:439"
       ],
       "settings": [],
       "functions": [
@@ -69309,7 +69491,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:434"
+        "_FluxUI.toc:436"
       ],
       "settings": [],
       "functions": [
@@ -69361,7 +69543,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:491"
+        "_FluxUI.toc:493"
       ],
       "settings": [],
       "functions": [],
@@ -69388,7 +69570,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:488"
+        "_FluxUI.toc:490"
       ],
       "settings": [],
       "functions": [],
@@ -69415,7 +69597,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:486"
+        "_FluxUI.toc:488"
       ],
       "settings": [],
       "functions": [],
@@ -69442,7 +69624,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:489"
+        "_FluxUI.toc:491"
       ],
       "settings": [],
       "functions": [],
@@ -69469,7 +69651,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:487"
+        "_FluxUI.toc:489"
       ],
       "settings": [],
       "functions": [],
@@ -69496,7 +69678,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:495"
+        "_FluxUI.toc:497"
       ],
       "settings": [],
       "functions": [],
@@ -69523,7 +69705,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:490"
+        "_FluxUI.toc:492"
       ],
       "settings": [],
       "functions": [],
@@ -69550,7 +69732,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:492"
+        "_FluxUI.toc:494"
       ],
       "settings": [],
       "functions": [],
@@ -69577,7 +69759,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:493"
+        "_FluxUI.toc:495"
       ],
       "settings": [],
       "functions": [],
@@ -69604,7 +69786,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:494"
+        "_FluxUI.toc:496"
       ],
       "settings": [],
       "functions": [],
@@ -69631,7 +69813,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:501"
+        "_FluxUI.toc:503"
       ],
       "settings": [],
       "functions": [],
@@ -69709,7 +69891,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:497"
+        "_FluxUI.toc:499"
       ],
       "settings": [],
       "functions": [
@@ -69829,7 +70011,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:496"
+        "_FluxUI.toc:498"
       ],
       "settings": [],
       "functions": [],
@@ -69856,7 +70038,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:499"
+        "_FluxUI.toc:501"
       ],
       "settings": [],
       "functions": [
@@ -69953,7 +70135,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:498"
+        "_FluxUI.toc:500"
       ],
       "settings": [],
       "functions": [
@@ -70021,7 +70203,7 @@
         "wrath"
       ],
       "parents": [
-        "_FluxUI.toc:500"
+        "_FluxUI.toc:502"
       ],
       "settings": [],
       "functions": [
@@ -72465,8 +72647,8 @@
       "path": "tests/castbar_school_themes.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 1219,
-      "sha256": "37ce39228be6cdb22072b4b0b5212e9780ca7cc6d1727113f60c85207d308892",
+      "lines": 1331,
+      "sha256": "84a4771e0f6999eb1e81b33fc8cfc7f019a19bdb3fa97acf9dd5e26a564c8043",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -72572,397 +72754,453 @@
           "line": 66
         },
         {
-          "name": "methods:SetClipsChildren",
+          "name": "methods:SetOwner",
           "line": 67
         },
         {
-          "name": "methods:SetTexture",
+          "name": "methods:SetClipsChildren",
           "line": 68
         },
         {
-          "name": "methods:SetDrawLayer",
-          "line": 73
+          "name": "methods:SetTexture",
+          "line": 69
         },
         {
-          "name": "methods:SetAtlas",
+          "name": "methods:SetDrawLayer",
           "line": 74
         },
         {
-          "name": "methods:SetTexCoord",
+          "name": "methods:SetAtlas",
           "line": 75
         },
         {
-          "name": "methods:SetBlendMode",
+          "name": "methods:SetTexCoord",
           "line": 76
         },
         {
-          "name": "methods:SetRotation",
+          "name": "methods:SetBlendMode",
           "line": 77
         },
         {
-          "name": "methods:SetVertexColor",
+          "name": "methods:SetRotation",
           "line": 78
         },
         {
-          "name": "methods:GetVertexColor",
+          "name": "methods:SetVertexColor",
           "line": 79
         },
         {
-          "name": "methods:SetDesaturated",
+          "name": "methods:GetVertexColor",
           "line": 80
         },
         {
-          "name": "methods:SetGradient",
+          "name": "methods:SetDesaturated",
           "line": 81
         },
         {
-          "name": "methods:SetGradientAlpha",
+          "name": "methods:SetGradient",
           "line": 82
         },
         {
-          "name": "methods:CreateTexture",
+          "name": "methods:SetGradientAlpha",
           "line": 83
         },
         {
-          "name": "methods:CreateFontString",
-          "line": 86
+          "name": "methods:CreateTexture",
+          "line": 84
         },
         {
-          "name": "methods:SetStatusBarTexture",
+          "name": "methods:CreateFontString",
           "line": 87
         },
         {
-          "name": "methods:GetStatusBarTexture",
-          "line": 91
+          "name": "methods:SetStatusBarTexture",
+          "line": 88
         },
         {
-          "name": "methods:SetStatusBarColor",
+          "name": "methods:GetStatusBarTexture",
           "line": 92
         },
         {
-          "name": "methods:SetMinMaxValues",
+          "name": "methods:SetStatusBarColor",
           "line": 93
         },
         {
-          "name": "methods:GetMinMaxValues",
+          "name": "methods:SetMinMaxValues",
           "line": 94
         },
         {
-          "name": "methods:SetValue",
+          "name": "methods:GetMinMaxValues",
           "line": 95
         },
         {
-          "name": "methods:GetValue",
+          "name": "methods:SetValue",
           "line": 96
         },
         {
-          "name": "methods:SetColorFill",
+          "name": "methods:GetValue",
           "line": 97
         },
         {
-          "name": "methods:RegisterEvent",
+          "name": "methods:SetColorFill",
           "line": 98
         },
         {
-          "name": "methods:RegisterUnitEvent",
-          "line": 106
+          "name": "methods:RegisterEvent",
+          "line": 99
         },
         {
-          "name": "methods:UnregisterEvent",
+          "name": "methods:RegisterUnitEvent",
           "line": 107
         },
         {
-          "name": "methods:UnregisterAllEvents",
-          "line": 114
+          "name": "methods:UnregisterEvent",
+          "line": 108
         },
         {
-          "name": "methods:SetFont",
+          "name": "methods:UnregisterAllEvents",
           "line": 115
         },
         {
-          "name": "methods:SetTextColor",
+          "name": "methods:SetFont",
           "line": 116
         },
         {
-          "name": "methods:SetWordWrap",
+          "name": "methods:SetTextColor",
           "line": 117
         },
         {
-          "name": "methods:SetMaxLines",
+          "name": "methods:SetWordWrap",
           "line": 118
         },
         {
-          "name": "methods:SetJustifyH",
+          "name": "methods:SetMaxLines",
           "line": 119
         },
         {
-          "name": "methods:SetFrameStrata",
+          "name": "methods:SetJustifyH",
           "line": 120
         },
         {
-          "name": "methods:SetText",
+          "name": "methods:SetFrameStrata",
           "line": 121
         },
         {
-          "name": "methods:SetFormattedText",
+          "name": "methods:SetText",
           "line": 122
         },
         {
-          "name": "methods:GetStringWidth",
+          "name": "methods:SetFormattedText",
           "line": 123
         },
         {
-          "name": "methods:CreateAnimationGroup",
+          "name": "methods:GetStringWidth",
           "line": 124
         },
         {
+          "name": "methods:CreateAnimationGroup",
+          "line": 125
+        },
+        {
           "name": "group:CreateAnimation",
-          "line": 127
+          "line": 128
         },
         {
           "name": "animation:SetOrder",
-          "line": 130
-        },
-        {
-          "name": "animation:SetSmoothing",
           "line": 131
         },
         {
-          "name": "animation:SetDuration",
+          "name": "animation:SetSmoothing",
           "line": 132
         },
         {
-          "name": "animation:SetStartDelay",
+          "name": "animation:SetDuration",
           "line": 133
         },
         {
-          "name": "animation:SetOffset",
+          "name": "animation:SetStartDelay",
           "line": 134
         },
         {
-          "name": "animation:SetFromAlpha",
+          "name": "animation:SetOffset",
           "line": 135
         },
         {
-          "name": "animation:SetToAlpha",
+          "name": "animation:SetFromAlpha",
           "line": 136
         },
         {
-          "name": "animation:SetScaleFrom",
+          "name": "animation:SetToAlpha",
           "line": 137
         },
         {
-          "name": "animation:SetScaleTo",
+          "name": "animation:SetScaleFrom",
           "line": 138
         },
         {
-          "name": "animation:SetRadians",
+          "name": "animation:SetScaleTo",
           "line": 139
         },
         {
-          "name": "animation:SetStartColor",
+          "name": "animation:SetRadians",
           "line": 140
         },
         {
-          "name": "animation:SetEndColor",
+          "name": "animation:SetStartColor",
           "line": 141
         },
         {
-          "name": "group:SetScript",
-          "line": 145
+          "name": "animation:SetEndColor",
+          "line": 142
         },
         {
-          "name": "group:SetToFinalAlpha",
+          "name": "group:SetScript",
           "line": 146
         },
         {
-          "name": "group:Stop",
+          "name": "group:SetToFinalAlpha",
           "line": 147
         },
         {
-          "name": "group:Play",
+          "name": "group:Stop",
           "line": 148
         },
         {
+          "name": "group:Play",
+          "line": 149
+        },
+        {
           "name": "endenv.CreateFrame",
-          "line": 158
+          "line": 159
         },
         {
           "name": "returnframeendenv.CreateColor",
-          "line": 161
-        },
-        {
-          "name": "endenv.GetTime",
           "line": 162
         },
         {
-          "name": "returnstate.clockendenv.GetLocale",
+          "name": "endenv.GetTime",
           "line": 163
         },
         {
-          "name": "env.UnitClass",
-          "line": 173
+          "name": "returnstate.clockendenv.GetLocale",
+          "line": 164
         },
         {
-          "name": "endenv.UnitIsPlayer",
+          "name": "env.UnitClass",
           "line": 174
         },
         {
-          "name": "returnfalseendenv.UnitGUID",
+          "name": "endenv.UnitIsPlayer",
           "line": 175
         },
         {
-          "name": "unitendenv.UnitExists",
+          "name": "returnfalseendenv.UnitGUID",
           "line": 176
         },
         {
-          "name": "env.C_Spell.GetSchoolString",
-          "line": 188
+          "name": "unitendenv.UnitExists",
+          "line": 177
         },
         {
-          "name": "endenv.C_Spell.IsSpellDataCached",
+          "name": "env.C_Spell.GetSchoolString",
           "line": 189
         },
         {
-          "name": "endenv.C_Spell.RequestLoadSpellData",
+          "name": "endenv.C_Spell.IsSpellDataCached",
           "line": 190
         },
         {
+          "name": "endenv.C_Spell.RequestLoadSpellData",
+          "line": 191
+        },
+        {
           "name": "state.FlushTimers",
-          "line": 194
+          "line": 195
         },
         {
           "name": "endendenv.UIFrameFadeRemoveFrame",
-          "line": 198
-        },
-        {
-          "name": "endenv.UIFrameFadeOut",
           "line": 199
         },
         {
-          "name": "endenv.hooksecurefunc",
+          "name": "endenv.UIFrameFadeOut",
           "line": 200
         },
         {
-          "name": "endenv.IsWoWLegacyClient",
+          "name": "endenv.hooksecurefunc",
           "line": 201
         },
         {
+          "name": "endenv.IsWoWLegacyClient",
+          "line": 202
+        },
+        {
           "name": "env.UnitCastingInfo",
-          "line": 203
+          "line": 204
         },
         {
           "name": "cast.idendendenv.UnitChannelInfo",
-          "line": 207
+          "line": 208
         },
         {
           "name": "endendenv.GetUnitEmpowerStageDuration",
-          "line": 211
-        },
-        {
-          "name": "endenv.GetUnitEmpowerHoldAtMaxTime",
           "line": 212
         },
         {
-          "name": "endenv.FluxUnitFrames_ShouldShowCastBar",
+          "name": "endenv.GetUnitEmpowerHoldAtMaxTime",
           "line": 213
         },
         {
-          "name": "returntrueendenv.FluxUnitFrames_ShouldShowCastTime",
+          "name": "endenv.FluxUnitFrames_ShouldShowCastBar",
           "line": 214
         },
         {
-          "name": "returntrueendenv.FluxUnitFrames_ShouldUseFlux",
+          "name": "returntrueendenv.FluxUnitFrames_ShouldShowCastTime",
           "line": 215
         },
         {
-          "name": "ns.API.IsSecretValue",
-          "line": 221
+          "name": "returntrueendenv.FluxUnitFrames_ShouldUseFlux",
+          "line": 216
         },
         {
-          "name": "endns.API.CanAccessValue",
+          "name": "ns.API.IsSecretValue",
           "line": 222
         },
         {
-          "name": "endns.API.SafeAccessibleString",
+          "name": "endns.API.CanAccessValue",
           "line": 223
         },
         {
+          "name": "endns.API.SafeAccessibleString",
+          "line": 224
+        },
+        {
           "name": "env.CombatLogGetCurrentEventInfo",
-          "line": 234
+          "line": 235
         },
         {
           "name": "state.SetDB",
-          "line": 248
-        },
-        {
-          "name": "state.GetDB",
           "line": 249
         },
         {
-          "name": "state.Tick",
+          "name": "state.GetDB",
           "line": 250
         },
         {
+          "name": "state.Tick",
+          "line": 251
+        },
+        {
           "name": "state.Cast",
-          "line": 259
+          "line": 260
         },
         {
           "name": "state.Event",
-          "line": 265
+          "line": 266
         },
         {
           "name": "state.NewBar",
-          "line": 268
+          "line": 269
         },
         {
           "name": "state.LiveParticles",
-          "line": 273
+          "line": 274
         },
         {
           "name": "state.VisibleDrivers",
-          "line": 280
+          "line": 281
         },
         {
           "name": "e.UnitClass",
-          "line": 330
+          "line": 331
         },
         {
           "name": "truee.UnitClass",
-          "line": 363
+          "line": 364
         },
         {
           "name": "e.UnitClass",
-          "line": 409
+          "line": 410
         },
         {
           "name": "fx.ResolveTheme",
-          "line": 483
-        },
-        {
-          "name": "endfx.Layout",
           "line": 484
         },
         {
-          "name": "endfx.Apply",
+          "name": "endfx.Layout",
           "line": 485
         },
         {
-          "name": "endfx.Update",
+          "name": "endfx.Apply",
           "line": 486
         },
         {
+          "name": "endfx.Update",
+          "line": 487
+        },
+        {
+          "name": "e.GetInventoryItemID",
+          "line": 709
+        },
+        {
+          "name": "endende.GetInventoryItemLink",
+          "line": 710
+        },
+        {
+          "name": "endende.GetItemInfo",
+          "line": 711
+        },
+        {
+          "name": "e.UnitAttackSpeed",
+          "line": 720
+        },
+        {
+          "name": "ende.UnitRangedDamage",
+          "line": 721
+        },
+        {
+          "name": "endns.API.GetSpellInfo",
+          "line": 722
+        },
+        {
+          "name": "endns.Border.SetClassColor",
+          "line": 723
+        },
+        {
+          "name": "e.CreateFramee.CreateFrame",
+          "line": 765
+        },
+        {
+          "name": "frame:SetOwner",
+          "line": 768
+        },
+        {
+          "name": "frame:SetInventoryItem",
+          "line": 769
+        },
+        {
+          "name": "frame:NumLines",
+          "line": 772
+        },
+        {
+          "name": "frame:SetInventoryItem",
+          "line": 778
+        },
+        {
+          "name": "frame:NumLines",
+          "line": 781
+        },
+        {
           "name": "localoptionsBuildere.FluxOptions.RegisterModuleOptions",
-          "line": 1013
+          "line": 1125
         },
         {
           "name": "plate.GetFrameLevelplate.GetFrameLevel",
-          "line": 1079
+          "line": 1191
         }
       ],
       "events": [
         {
-          "line": 98,
+          "line": 99,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -72970,7 +73208,7 @@
           "context": "}endfunctionmethods:"
         },
         {
-          "line": 106,
+          "line": 107,
           "method": "RegisterUnitEvent",
           "arguments": [
             "event",
@@ -78942,311 +79180,399 @@
       "sv_sites": []
     },
     {
+      "path": "tests/native_meter_docking.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 177,
+      "sha256": "ab38155aa1655c98e069358a8b9ce7c40c95225acbeb50ff1e3756409b47ba55",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "dm:SetPointBase",
+          "line": 34
+        },
+        {
+          "name": "dm:ClearAllPointsBase",
+          "line": 35
+        },
+        {
+          "name": "dm:SetScaleBase",
+          "line": 36
+        },
+        {
+          "name": "dm:GetScale",
+          "line": 37
+        },
+        {
+          "name": "dm:GetNumPoints",
+          "line": 38
+        },
+        {
+          "name": "dm:GetPoint",
+          "line": 39
+        },
+        {
+          "name": "dm:GetManagedFrameContainer",
+          "line": 40
+        },
+        {
+          "name": "dm:IsInDefaultPosition",
+          "line": 41
+        },
+        {
+          "name": "mixin:SetPointOverride",
+          "line": 55
+        },
+        {
+          "name": "mixin:ClearAllPointsOverride",
+          "line": 58
+        },
+        {
+          "name": "mixin:SetScaleOverride",
+          "line": 59
+        },
+        {
+          "name": "mixin:ApplySystemAnchor",
+          "line": 60
+        },
+        {
+          "name": "s.nativeRestore",
+          "line": 71
+        },
+        {
+          "name": "s.rawEngineRestore",
+          "line": 80
+        },
+        {
+          "name": "s.docked",
+          "line": 86
+        },
+        {
+          "name": "s.methodsIntact",
+          "line": 93
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            135
+          ]
+        }
+      ]
+    },
+    {
       "path": "tests/native_meter_ownership.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 444,
-      "sha256": "ae09885d46a9afe3d87dcebb72e30e755bc8ea8a7dcc12929109a8f3e023da16",
+      "lines": 459,
+      "sha256": "a5c543333640c4003d7ed3c0856e56a368221e594bfa686d2811fd0de04ff724",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "f:IsShown",
-          "line": 40
-        },
-        {
-          "name": "f:IsVisible",
-          "line": 41
-        },
-        {
-          "name": "f:Show",
-          "line": 42
-        },
-        {
-          "name": "f:Hide",
-          "line": 43
-        },
-        {
-          "name": "f:SetShown",
           "line": 44
         },
         {
-          "name": "f:SetParent",
+          "name": "f:IsVisible",
           "line": 45
         },
         {
-          "name": "f:GetParent",
+          "name": "f:Show",
           "line": 46
         },
         {
-          "name": "f:GetWidth",
-          "line": 47
-        },
-        {
-          "name": "f:GetHeight",
-          "line": 48
-        },
-        {
-          "name": "f:GetSize",
-          "line": 49
-        },
-        {
-          "name": "f:SetSize",
+          "name": "f:Hide",
           "line": 50
         },
         {
-          "name": "f:GetEffectiveScale",
-          "line": 51
-        },
-        {
-          "name": "f:SetScale",
-          "line": 52
-        },
-        {
-          "name": "f:ClearAllPoints",
-          "line": 53
-        },
-        {
-          "name": "f:SetPoint",
+          "name": "f:SetShown",
           "line": 54
         },
         {
-          "name": "f:GetFrameStrata",
+          "name": "f:SetParent",
           "line": 55
         },
         {
-          "name": "f:GetFrameLevel",
+          "name": "f:GetParent",
           "line": 56
         },
         {
-          "name": "f:HookScript",
+          "name": "f:GetWidth",
+          "line": 57
+        },
+        {
+          "name": "f:GetHeight",
           "line": 58
         },
         {
-          "name": "f:SetScript",
+          "name": "f:GetSize",
+          "line": 59
+        },
+        {
+          "name": "f:SetSize",
+          "line": 60
+        },
+        {
+          "name": "f:GetEffectiveScale",
+          "line": 61
+        },
+        {
+          "name": "f:SetScale",
           "line": 62
         },
         {
-          "name": "f:RegisterEvent",
+          "name": "f:ClearAllPoints",
           "line": 63
         },
         {
-          "name": "f:UnregisterEvent",
+          "name": "f:SetPoint",
           "line": 64
         },
         {
-          "name": "e.InCombatLockdown",
+          "name": "f:GetFrameStrata",
+          "line": 68
+        },
+        {
+          "name": "f:GetFrameLevel",
+          "line": 69
+        },
+        {
+          "name": "f:HookScript",
+          "line": 71
+        },
+        {
+          "name": "f:SetScript",
+          "line": 75
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 76
+        },
+        {
+          "name": "f:UnregisterEvent",
           "line": 77
         },
         {
+          "name": "e.InCombatLockdown",
+          "line": 90
+        },
+        {
           "name": "returns.combatende.UnitAffectingCombat",
-          "line": 78
+          "line": 91
         },
         {
           "name": "returns.combatende.wipe",
-          "line": 79
+          "line": 92
         },
         {
           "name": "e.CreateFrame",
-          "line": 81
+          "line": 94
         },
         {
           "name": "e.hooksecurefunc",
-          "line": 88
+          "line": 101
         },
         {
           "name": "dm:Show",
-          "line": 119
+          "line": 132
         },
         {
           "name": "dm:SetVisibility",
-          "line": 121
+          "line": 134
         },
         {
           "name": "dm:IsEditing",
-          "line": 125
+          "line": 138
         },
         {
           "name": "dm:IsPlayerInCombat",
-          "line": 126
+          "line": 139
         },
         {
           "name": "dm:IsPlayerInGroup",
-          "line": 127
+          "line": 140
         },
         {
           "name": "dm:ShouldBeShown",
-          "line": 128
+          "line": 141
         },
         {
           "name": "e.Enum.DamageMeterVisibility.InGroupthenreturns.inGroupendreturntrueendlocalupdateShown",
-          "line": 136
+          "line": 149
         },
         {
           "name": "dm:OnEvent",
-          "line": 142
+          "line": 155
         },
         {
           "name": "dm:UpdateShownState",
-          "line": 158
+          "line": 171
         },
         {
           "name": "dm:UpdateSessionTimerState",
-          "line": 161
-        },
-        {
-          "name": "dm:GetPrimarySessionWindow",
-          "line": 164
-        },
-        {
-          "name": "dm:GetSessionWindow",
-          "line": 165
-        },
-        {
-          "name": "dm:GetWindowDataList",
-          "line": 166
-        },
-        {
-          "name": "dm:GetMaxSessionWindowCount",
-          "line": 167
-        },
-        {
-          "name": "dm:GetCurrentSessionWindowCount",
-          "line": 168
-        },
-        {
-          "name": "dm:ForEachSessionWindow",
-          "line": 173
-        },
-        {
-          "name": "dm:SetSessionWindowDamageMeterType",
           "line": 174
         },
         {
-          "name": "dm:SetSessionWindowSessionID",
+          "name": "dm:GetPrimarySessionWindow",
           "line": 177
         },
         {
-          "name": "dm:CanHideSessionWindow",
+          "name": "dm:GetSessionWindow",
+          "line": 178
+        },
+        {
+          "name": "dm:GetWindowDataList",
+          "line": 179
+        },
+        {
+          "name": "dm:GetMaxSessionWindowCount",
+          "line": 180
+        },
+        {
+          "name": "dm:GetCurrentSessionWindowCount",
           "line": 181
         },
         {
-          "name": "dm:HideSessionWindow",
-          "line": 182
+          "name": "dm:ForEachSessionWindow",
+          "line": 186
         },
         {
-          "name": "dm:CanShowNewSecondarySessionWindow",
-          "line": 183
-        },
-        {
-          "name": "value.font:SetTextColor",
+          "name": "dm:SetSessionWindowDamageMeterType",
           "line": 187
         },
         {
-          "name": "value.font:SetText",
-          "line": 188
-        },
-        {
-          "name": "value:GetName",
-          "line": 189
-        },
-        {
-          "name": "value:GetNameText",
+          "name": "dm:SetSessionWindowSessionID",
           "line": 190
         },
         {
-          "name": "win:GetDamageMeterType",
+          "name": "dm:CanHideSessionWindow",
+          "line": 194
+        },
+        {
+          "name": "dm:HideSessionWindow",
+          "line": 195
+        },
+        {
+          "name": "dm:CanShowNewSecondarySessionWindow",
           "line": 196
         },
         {
-          "name": "win:GetSessionType",
-          "line": 197
-        },
-        {
-          "name": "win:GetSessionID",
-          "line": 198
-        },
-        {
-          "name": "win:ShouldUseClassColor",
-          "line": 199
-        },
-        {
-          "name": "win:SetUseClassColor",
+          "name": "value.font:SetTextColor",
           "line": 200
         },
         {
-          "name": "win:ShouldShowBarIcons",
+          "name": "value.font:SetText",
           "line": 201
         },
         {
-          "name": "win:SetShowBarIcons",
+          "name": "value:GetName",
           "line": 202
         },
         {
-          "name": "win:GetSessionTimerFontString",
-          "line": 207
+          "name": "value:GetNameText",
+          "line": 203
         },
         {
-          "name": "win:GetCombatSession",
-          "line": 208
-        },
-        {
-          "name": "win:IsPlayerInCombat",
+          "name": "win:GetDamageMeterType",
           "line": 209
         },
         {
-          "name": "win:SetOnUpdateReason",
+          "name": "win:GetSessionType",
           "line": 210
         },
         {
-          "name": "win:UpdateSessionTimerState",
+          "name": "win:GetSessionID",
           "line": 211
         },
         {
+          "name": "win:ShouldUseClassColor",
+          "line": 212
+        },
+        {
+          "name": "win:SetUseClassColor",
+          "line": 213
+        },
+        {
+          "name": "win:ShouldShowBarIcons",
+          "line": 214
+        },
+        {
+          "name": "win:SetShowBarIcons",
+          "line": 215
+        },
+        {
+          "name": "win:GetSessionTimerFontString",
+          "line": 220
+        },
+        {
+          "name": "win:GetCombatSession",
+          "line": 221
+        },
+        {
+          "name": "win:IsPlayerInCombat",
+          "line": 222
+        },
+        {
+          "name": "win:SetOnUpdateReason",
+          "line": 223
+        },
+        {
+          "name": "win:UpdateSessionTimerState",
+          "line": 224
+        },
+        {
           "name": "e.SecondsToClock",
-          "line": 217
+          "line": 230
         },
         {
           "name": "win:ForEachEntryFrame",
-          "line": 231
+          "line": 244
         },
         {
           "name": "win:InitEntry",
-          "line": 232
+          "line": 245
         },
         {
           "name": "win.sourceWindow:ForEachEntryFrame",
-          "line": 238
+          "line": 251
         },
         {
           "name": "win.sourceWindow:InitEntry",
-          "line": 239
+          "line": 252
         },
         {
           "name": "win:GetSourceWindow",
-          "line": 243
+          "line": 256
         },
         {
           "name": "dm:ShowNewSecondarySessionWindow",
-          "line": 246
+          "line": 259
         },
         {
           "name": "s.nativeMethodsIntact",
-          "line": 257
+          "line": 270
         },
         {
           "name": "s.event",
-          "line": 263
+          "line": 276
         },
         {
           "name": "s.drain",
-          "line": 268
+          "line": 281
         }
       ],
       "events": [
         {
-          "line": 63,
+          "line": 76,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -79258,6 +79584,191 @@
       "widgets": [],
       "loads": [],
       "sv_sites": []
+    },
+    {
+      "path": "tests/native_meter_skin.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 241,
+      "sha256": "9a459650ec1e61faa5e58a0c63c41eaca3cf508f397b7b68143bd38a5a513118",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.UnitClass",
+          "line": 15
+        },
+        {
+          "name": "env.issecretvalue",
+          "line": 17
+        },
+        {
+          "name": "trueendenv.CreateFrame",
+          "line": 18
+        },
+        {
+          "name": "endenv.hooksecurefunc",
+          "line": 24
+        },
+        {
+          "name": "h.font",
+          "line": 28
+        },
+        {
+          "name": "fs:SetFont",
+          "line": 30
+        },
+        {
+          "name": "fs:GetFont",
+          "line": 35
+        },
+        {
+          "name": "fs:SetShadowColor",
+          "line": 36
+        },
+        {
+          "name": "fs:SetShadowOffset",
+          "line": 37
+        },
+        {
+          "name": "fs:SetTextColor",
+          "line": 38
+        },
+        {
+          "name": "fs:SetPoint",
+          "line": 40
+        },
+        {
+          "name": "h.texture",
+          "line": 43
+        },
+        {
+          "name": "t:SetTexture",
+          "line": 46
+        },
+        {
+          "name": "t:SetPoint",
+          "line": 47
+        },
+        {
+          "name": "t:SetWidth",
+          "line": 48
+        },
+        {
+          "name": "t:SetHeight",
+          "line": 49
+        },
+        {
+          "name": "t:SetAllPoints",
+          "line": 50
+        },
+        {
+          "name": "t:SetVertexColor",
+          "line": 51
+        },
+        {
+          "name": "t:SetColorTexture",
+          "line": 54
+        },
+        {
+          "name": "t:SetAlpha",
+          "line": 55
+        },
+        {
+          "name": "t:Show",
+          "line": 56
+        },
+        {
+          "name": "t:Hide",
+          "line": 57
+        },
+        {
+          "name": "h.entry",
+          "line": 61
+        },
+        {
+          "name": "bar:SetStatusBarTexture",
+          "line": 64
+        },
+        {
+          "name": "h.window",
+          "line": 76
+        },
+        {
+          "name": "w:CreateTexture",
+          "line": 78
+        },
+        {
+          "name": "w.GetDamageMeterTypeName",
+          "line": 86
+        },
+        {
+          "name": "returnw.typeFontendw.GetSessionName",
+          "line": 87
+        },
+        {
+          "name": "returnw.sessionFontendw.GetSessionTimerFontString",
+          "line": 88
+        },
+        {
+          "name": "w.GetBackground",
+          "line": 92
+        },
+        {
+          "name": "owned.Title:SetText",
+          "line": 181
+        },
+        {
+          "name": "fs:SetText",
+          "line": 197
+        },
+        {
+          "name": "plain:CreateTexture",
+          "line": 202
+        },
+        {
+          "name": "plain.Title:SetText",
+          "line": 203
+        },
+        {
+          "name": "fallback.env.UnitClass",
+          "line": 234
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/native_meter_startup.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 131,
+      "sha256": "9b1abdf2432685fce542ddeeca560968e07d8dc66194255d988dbee952038c47",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.FluxWindowFrame:IsTabEnabled",
+          "line": 20
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            18
+          ]
+        }
+      ]
     },
     {
       "path": "tests/native_mouse_suppression.lua",
@@ -79413,6 +79924,81 @@
       "widgets": [],
       "loads": [],
       "sv_sites": []
+    },
+    {
+      "path": "tests/native_threat_layout.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 293,
+      "sha256": "8f577a8da23e699e4110f7f26d3c0bd85a99756405c7ef033c58c93a26cbecd0",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "skin:ApplyToWindow",
+          "line": 41
+        },
+        {
+          "name": "skin:ApplyToEntry",
+          "line": 44
+        },
+        {
+          "name": "skin:ReleaseAllNative",
+          "line": 48
+        },
+        {
+          "name": "owned:IsAvailable",
+          "line": 51
+        },
+        {
+          "name": "owned:GetFrame",
+          "line": 52
+        },
+        {
+          "name": "owned:Embed",
+          "line": 53
+        },
+        {
+          "name": "owned:Show",
+          "line": 60
+        },
+        {
+          "name": "owned:Hide",
+          "line": 65
+        },
+        {
+          "name": "owned:Cleanup",
+          "line": 66
+        },
+        {
+          "name": "owned:RefreshLayout",
+          "line": 67
+        },
+        {
+          "name": "env.C_AddOns.LoadAddOn",
+          "line": 214
+        },
+        {
+          "name": "cv:nativeUpdate",
+          "line": 215
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            39,
+            106,
+            108,
+            278
+          ]
+        }
+      ]
     },
     {
       "path": "tests/objective_tracker_scroll.lua",
@@ -81397,6 +81983,229 @@
       "sv_sites": []
     },
     {
+      "path": "tests/standalone_threat_meter.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 259,
+      "sha256": "b095e82d1a9b04b9db854c0954a2c38533b9f349d0442abdbe137856b7c3fb7c",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "r:SetTexture",
+          "line": 26
+        },
+        {
+          "name": "r:SetTexCoord",
+          "line": 27
+        },
+        {
+          "name": "r:SetText",
+          "line": 28
+        },
+        {
+          "name": "r:SetFormattedText",
+          "line": 29
+        },
+        {
+          "name": "r:SetWidth",
+          "line": 30
+        },
+        {
+          "name": "r:SetTextColor",
+          "line": 31
+        },
+        {
+          "name": "f:IsShown",
+          "line": 38
+        },
+        {
+          "name": "f:IsVisible",
+          "line": 39
+        },
+        {
+          "name": "f:Show",
+          "line": 51
+        },
+        {
+          "name": "f:Hide",
+          "line": 52
+        },
+        {
+          "name": "f:SetScript",
+          "line": 53
+        },
+        {
+          "name": "f:GetScript",
+          "line": 54
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 55
+        },
+        {
+          "name": "f:RegisterUnitEvent",
+          "line": 56
+        },
+        {
+          "name": "f:UnregisterAllEvents",
+          "line": 57
+        },
+        {
+          "name": "f:SetParent",
+          "line": 58
+        },
+        {
+          "name": "f:GetParent",
+          "line": 59
+        },
+        {
+          "name": "f:SetScale",
+          "line": 60
+        },
+        {
+          "name": "f:GetScale",
+          "line": 61
+        },
+        {
+          "name": "f:SetSize",
+          "line": 62
+        },
+        {
+          "name": "f:SetHeight",
+          "line": 63
+        },
+        {
+          "name": "f:GetHeight",
+          "line": 64
+        },
+        {
+          "name": "f:GetWidth",
+          "line": 70
+        },
+        {
+          "name": "f:SetPoint",
+          "line": 76
+        },
+        {
+          "name": "f:ClearAllPoints",
+          "line": 77
+        },
+        {
+          "name": "f:CreateTexture",
+          "line": 78
+        },
+        {
+          "name": "f:CreateFontString",
+          "line": 79
+        },
+        {
+          "name": "f:SetValue",
+          "line": 80
+        },
+        {
+          "name": "f:SetStatusBarColor",
+          "line": 81
+        },
+        {
+          "name": "f:SetAlpha",
+          "line": 82
+        },
+        {
+          "name": "f.EnableMouseWheel",
+          "line": 83
+        },
+        {
+          "name": "e.GetTime",
+          "line": 88
+        },
+        {
+          "name": "returns.nowende.wipe",
+          "line": 89
+        },
+        {
+          "name": "e.UnitExists",
+          "line": 91
+        },
+        {
+          "name": "orfalseende.UnitAffectingCombat",
+          "line": 92
+        },
+        {
+          "name": "returns.combatende.InCombatLockdown",
+          "line": 93
+        },
+        {
+          "name": "trueende.UnitIsUnit",
+          "line": 94
+        },
+        {
+          "name": "ende.UnitClass",
+          "line": 95
+        },
+        {
+          "name": "ende.GetUnitName",
+          "line": 96
+        },
+        {
+          "name": "orunitende.IsInRaid",
+          "line": 97
+        },
+        {
+          "name": "returns.raidende.IsInGroup",
+          "line": 98
+        },
+        {
+          "name": "ende.GetNumGroupMembers",
+          "line": 99
+        },
+        {
+          "name": "returns.groupende.GetNumSubgroupMembers",
+          "line": 100
+        },
+        {
+          "name": "s.tick",
+          "line": 121
+        },
+        {
+          "name": "s.event",
+          "line": 126
+        },
+        {
+          "name": "s.visible",
+          "line": 129
+        },
+        {
+          "name": "s.sample",
+          "line": 134
+        }
+      ],
+      "events": [
+        {
+          "line": 55,
+          "method": "RegisterEvent",
+          "arguments": [
+            "key"
+          ],
+          "context": "]endfunctionf:"
+        },
+        {
+          "line": 56,
+          "method": "RegisterUnitEvent",
+          "arguments": [
+            "key",
+            "unit"
+          ],
+          "context": "trueendfunctionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/startup_lifecycle.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -81768,6 +82577,27 @@
           "context": "}}functionf:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/threat_meter_sample.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 58,
+      "sha256": "895c264e31a663612cd8cf97bae366d8bc34fc595812c5d556bd3f02319639d2",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.UnitDetailedThreatSituation",
+          "line": 20
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],
@@ -83824,8 +84654,8 @@
       "path": "UnitFrames/FluxCastBarThemes.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 972,
-      "sha256": "0125d891ccc24901bfe17d1bd6b06de05cf6e804966a3cddbfaaa289e4f87eda",
+      "lines": 990,
+      "sha256": "5fc4cc4d91303958342a98876ac82c310a8d7539ba109cfd419a96678afe0dfe",
       "clients": [
         "camelot",
         "cata",
@@ -83851,48 +84681,52 @@
         },
         {
           "name": "FX.Layout",
-          "line": 435
+          "line": 441
         },
         {
           "name": "FX.Reset",
-          "line": 561
+          "line": 567
         },
         {
           "name": "FX.Update",
-          "line": 695
+          "line": 701
         },
         {
           "name": "FX.Apply",
-          "line": 770
+          "line": 776
         },
         {
           "name": "FX.Begin",
-          "line": 803
+          "line": 809
+        },
+        {
+          "name": "FX.BeginMask",
+          "line": 822
         },
         {
           "name": "FX.Finish",
-          "line": 814
+          "line": 832
         },
         {
           "name": "FX.Attach",
-          "line": 837
+          "line": 855
         },
         {
           "name": "FX.Refresh",
-          "line": 845
+          "line": 863
         },
         {
           "name": "FX.ObserveCast",
-          "line": 856
+          "line": 874
         },
         {
           "name": "FX.SyncEvents",
-          "line": 924
+          "line": 942
         }
       ],
       "events": [
         {
-          "line": 952,
+          "line": 970,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELLS_CHANGED\""
@@ -83900,7 +84734,7 @@
           "context": "endend)events:"
         },
         {
-          "line": 953,
+          "line": 971,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -84665,8 +85499,8 @@
       "path": "UnitFrames/FluxSwingTimer.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 2411,
-      "sha256": "81f7ddba75b0b1cc9496acbb4e6280b7fc8dc2fe2fcbc06033adabfe05fba035",
+      "lines": 2547,
+      "sha256": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
       "clients": [
         "camelot",
         "cata",
@@ -84684,28 +85518,28 @@
       "functions": [
         {
           "name": "ST.HideForCastBarClaim",
-          "line": 1118
+          "line": 1216
         },
         {
           "name": "ST.OnCastBarSlotReleased",
-          "line": 1123
+          "line": 1221
         },
         {
           "name": "FluxSwingTimer_IsCleuRegistered",
-          "line": 1730
+          "line": 1844
         },
         {
           "name": "ST.AttachToCastBar",
-          "line": 2277
+          "line": 2413
         },
         {
           "name": "ST.SetPlayerSwingTimerEnabled",
-          "line": 2381
+          "line": 2517
         }
       ],
       "events": [
         {
-          "line": 1717,
+          "line": 1831,
           "method": "RegisterEvent",
           "arguments": [
             "\"COMBAT_LOG_EVENT_UNFILTERED\""
@@ -84713,7 +85547,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2017,
+          "line": 2147,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -84721,7 +85555,7 @@
           "context": "ApplySwingTimerEventRegistration()swingTimerEventFrame:"
         },
         {
-          "line": 2018,
+          "line": 2148,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -84729,7 +85563,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")swingTimerEventFrame:"
         },
         {
-          "line": 2020,
+          "line": 2150,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTER_COMBAT\""
@@ -84737,7 +85571,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2023,
+          "line": 2153,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEAVE_COMBAT\""
@@ -84745,7 +85579,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2025,
+          "line": 2155,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_INVENTORY_CHANGED\""
@@ -84753,15 +85587,23 @@
           "context": ")end)swingTimerEventFrame:"
         },
         {
-          "line": 2026,
+          "line": 2156,
           "method": "RegisterEvent",
           "arguments": [
-            "\"START_AUTOREPEAT_SPELL\""
+            "\"GET_ITEM_INFO_RECEIVED\""
           ],
           "context": "(\"UNIT_INVENTORY_CHANGED\")swingTimerEventFrame:"
         },
         {
-          "line": 2027,
+          "line": 2157,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"START_AUTOREPEAT_SPELL\""
+          ],
+          "context": "(\"GET_ITEM_INFO_RECEIVED\")swingTimerEventFrame:"
+        },
+        {
+          "line": 2158,
           "method": "RegisterEvent",
           "arguments": [
             "\"STOP_AUTOREPEAT_SPELL\""
@@ -84769,7 +85611,7 @@
           "context": "(\"START_AUTOREPEAT_SPELL\")swingTimerEventFrame:"
         },
         {
-          "line": 2028,
+          "line": 2159,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\""
@@ -84777,7 +85619,7 @@
           "context": "(\"STOP_AUTOREPEAT_SPELL\")swingTimerEventFrame:"
         },
         {
-          "line": 2029,
+          "line": 2160,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -84785,7 +85627,7 @@
           "context": "(\"UNIT_SPELLCAST_SUCCEEDED\")swingTimerEventFrame:"
         },
         {
-          "line": 2031,
+          "line": 2162,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_ATTACK_SPEED\"",
@@ -84794,7 +85636,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2034,
+          "line": 2165,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_COMBAT\"",
@@ -84803,7 +85645,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2038,
+          "line": 2169,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_SWING\""
@@ -84811,7 +85653,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2041,
+          "line": 2172,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_SWING_RANGE_UPDATE\""
@@ -84819,7 +85661,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2044,
+          "line": 2175,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TARGET_CHANGED\""
@@ -84827,7 +85669,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2047,
+          "line": 2178,
           "method": "RegisterEvent",
           "arguments": [
             "\"WEAPON_SLOT_CHANGED\""
@@ -84835,7 +85677,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2050,
+          "line": 2181,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -84843,7 +85685,7 @@
           "context": "function()swingTimerEventFrame:"
         },
         {
-          "line": 2066,
+          "line": 2197,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_RESTRICTION_STATE_CHANGED\""

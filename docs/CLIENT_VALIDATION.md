@@ -1,5 +1,43 @@
 # Client and reference validation — 29 October 2026
 
+5 November standalone meter: Forever 1.60.1.70790 gains a Flux/Blizzard-asset
+native skin and an independent optional threat pane when Details is absent.
+Retail 12.1.5.70783 uses the native skin/enable path; standalone threat remains
+Forever-only. Era, Anniversary and progression retain Details/capability absence;
+generated API presence does not make their pinned native meter TOCs load.
+[Full requirements and native checklist](METER_STANDALONE.md).
+
+Skin 47 checks/five pairs/six mutants and threat 51 plus sample 510 checks/five
+pairs/11 mutants pass. Opaque values are display payloads without false ranks;
+80 player/pet facts, scrolling and hidden/Details cleanup are covered by mocks.
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+normalized source hashes and file membership match before/after the run.
+[Final source manifest](validation/meter-standalone-2026-11-05.json).
+
+The user-reported checkbox diagnosis supports automatic out-of-combat enable of
+the public damageMeterEnabled option; native visibility/cache and UI loading
+remain native. Current candidate operation is not observed in game. Reload and
+verify exact client/build/settings, disabled-startup and combat-deferred enable,
+all old/new/custom layouts, source windows, timers, scrolling, group/pet churn,
+native secret/taint, Edit Mode/gamepad and Details takeover. Match screenshots
+against the approved reference. No native input, profiling or pixel comparison
+ran; original Wrath and unavailable clients remain separate. A background-only
+21:56:22 CET capture showed the same Forever process with Map active, not native
+Meter docking. No loaded-code/build query or reload ran; this is partial visual
+context only, not native meter/docking/combat acceptance. Separately, the user's
+22:04 CET screenshot establishes floating native Damage/Healing on Map after
+reload before first Meter selection. Startup ownership and late-anchor repair
+need candidate native checks; that screenshot is not loaded-source proof.
+
+5 November wand school swing candidate: Era 1.15.9.70576, Anniversary
+2.5.6.70577 and Forever 1.60.1.70790 use pinned Gethe source and a shared
+cast-school renderer on equipped wands. The focused production-module fixture
+passes 13,942 checks; full desktop validation passes. No native reload,
+gameplay, pixel comparison, taint check or frame-time capture was run.
+Test Fire/Frost and unknown-school wands, weapon swaps, Shoot timing, option
+toggle, cast interruption/slot ownership and localization sequentially in the
+background. [Exact scope and source links](SWING_WAND_CAST_THEME.md).
+
 5 November damage meter combat follow-up: the user-supplied duration warning
 matches Forever1.60.1.70790 line929; Retail12.1.5.70783 has the same native
 comparison at line930. Flux no longer writes the native Edit Mode visibility

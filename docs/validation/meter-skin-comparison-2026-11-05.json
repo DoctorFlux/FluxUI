@@ -1,0 +1,185 @@
+{
+  "utc": "2026-11-05T20:46:06.082771+00:00",
+  "baseline": "Published8006494 has no shared skin module; unskinned control executes the same widget fixture with skin calls as no-ops.",
+  "candidateHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7",
+    "tests\\native_meter_skin.lua": "9a459650ec1e61faa5e58a0c63c41eaca3cf508f397b7b68143bd38a5a513118"
+  },
+  "afterHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "e14d1ad89caaac2e988f14b093210f8fbd5a7570e6596323ca1ab18a7551a5f7",
+    "tests\\native_meter_skin.lua": "9a459650ec1e61faa5e58a0c63c41eaca3cf508f397b7b68143bd38a5a513118"
+  },
+  "method": "Lua5.4.6 desktop explicit widgets; one warm-up then500 entry and window styling pairs per fresh process; five alternating controls. No game profiling/input. Durations include process startup and are not native latency.",
+  "scope": "New feature cost, not a claimed performance improvement. Native data/geometry/script calls trap. Counts exclude native API internals, cache/table bytes, full addon listeners and real rendering/taint.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "unskinned",
+        "candidate"
+      ],
+      "unskinned": {
+        "exit": 0,
+        "seconds": 0.05422960000578314,
+        "stdout": "fonts=0 textures=4 hooks=0 bars=0 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.020056800014572218,
+        "stdout": "fonts=6 textures=8 hooks=1 bars=501 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidateRegression": {
+        "exit": 0,
+        "seconds": 0.025755200011190027,
+        "stdout": "native meter skin: 47 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "unskinned"
+      ],
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.02181060001021251,
+        "stdout": "fonts=6 textures=8 hooks=1 bars=501 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "unskinned": {
+        "exit": 0,
+        "seconds": 0.01652269999613054,
+        "stdout": "fonts=0 textures=4 hooks=0 bars=0 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidateRegression": {
+        "exit": 0,
+        "seconds": 0.022651699982816353,
+        "stdout": "native meter skin: 47 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "unskinned",
+        "candidate"
+      ],
+      "unskinned": {
+        "exit": 0,
+        "seconds": 0.02317949998541735,
+        "stdout": "fonts=0 textures=4 hooks=0 bars=0 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.0263044000021182,
+        "stdout": "fonts=6 textures=8 hooks=1 bars=501 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidateRegression": {
+        "exit": 0,
+        "seconds": 0.027046200004406273,
+        "stdout": "native meter skin: 47 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "unskinned"
+      ],
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.027586699987296015,
+        "stdout": "fonts=6 textures=8 hooks=1 bars=501 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "unskinned": {
+        "exit": 0,
+        "seconds": 0.021050899988040328,
+        "stdout": "fonts=0 textures=4 hooks=0 bars=0 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidateRegression": {
+        "exit": 0,
+        "seconds": 0.02868820002186112,
+        "stdout": "native meter skin: 47 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "unskinned",
+        "candidate"
+      ],
+      "unskinned": {
+        "exit": 0,
+        "seconds": 0.023460099997464567,
+        "stdout": "fonts=0 textures=4 hooks=0 bars=0 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.04490500001702458,
+        "stdout": "fonts=6 textures=8 hooks=1 bars=501 addedFonts=0 addedTextures=0 addedHooks=0 frameCreates=0 nativeGeometry=native\n",
+        "stderr": ""
+      },
+      "candidateRegression": {
+        "exit": 0,
+        "seconds": 0.040716699993936345,
+        "stdout": "native meter skin: 47 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "blind_font_cache",
+      "exit": 1,
+      "seconds": 0.054880899988347664,
+      "stdout": "FAIL native row font reset is repaired on pooled entry reuse\nFAIL native window font reset is repaired on reapplication\nnative meter skin: 47 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "reads_native_data",
+      "exit": 1,
+      "seconds": 0.04905599998892285,
+      "stdout": "",
+      "stderr": "lua: ...22b\\meter-skin-comparison-20261105\\reads_native_data.lua:73: meter data/native ownership was accessed\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:8: in method 'GetStatusValue'\n\t...22b\\meter-skin-comparison-20261105\\reads_native_data.lua:73: in method 'ApplyToEntry'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:105: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "changes_native_geometry",
+      "exit": 1,
+      "seconds": 0.04777579999063164,
+      "stdout": "",
+      "stderr": "lua: ...ter-skin-comparison-20261105\\changes_native_geometry.lua:147: meter data/native ownership was accessed\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:8: in method 'SetSize'\n\t...ter-skin-comparison-20261105\\changes_native_geometry.lua:147: in method 'ApplyToWindow'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:129: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "retains_released_theme_owner",
+      "exit": 1,
+      "seconds": 0.046302400005515665,
+      "stdout": "FAIL released native window does no hidden accent work\nFAIL empty native registry makes permanent appearance hook idle\nFAIL released owned pane stops accent work\nnative meter skin: 47 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "adds_entry_hooks",
+      "exit": 1,
+      "seconds": 0.042663500003982335,
+      "stdout": "",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:25: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:25: in global 'hooksecurefunc'\n\t...e22b\\meter-skin-comparison-20261105\\adds_entry_hooks.lua:66: in method 'ApplyToEntry'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:105: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "overwrites_name_tint",
+      "exit": 1,
+      "seconds": 0.06412289998843335,
+      "stdout": "FAIL skin preserves integration's local-player name tint\nnative meter skin: 47 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:241: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

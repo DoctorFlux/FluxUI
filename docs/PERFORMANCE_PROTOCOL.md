@@ -1,5 +1,26 @@
 # Baseline protocol and currency evidence
 
+5 November standalone meter: account for the new skin/threat view as feature
+cost. Skin creates four rails per window and one shared appearance posthook;
+after warm-up, 500 repeated entry/window pairs add no fonts, textures or hooks
+and no frames. The owned threat view retains 80 roster/pet facts with a viewport
+row pool, coalesces 500 events into one scan and stops recurring work when hidden
+or superseded. Its 0.2s combat poll is active only while visible.
+
+The separate shared-adapter correction uses one coherent native threat sample,
+reducing 1,000 to 500 native queries per 500 populated Forever rows. Five alternating
+pairs repeat the counts; this is not a CPU/FPS or allocation-byte claim. Skin 47
+checks/six mutants and threat 51 plus sample 510 checks/11 mutants pass.
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+normalized source hashes and file membership match before/after the run.
+[Final source manifest](validation/meter-standalone-2026-11-05.json).
+[Skin work/resources](validation/meter-skin-comparison-2026-11-05.json),
+[threat work/resources](validation/standalone-threat-comparison-2026-11-05.json).
+Public option enable must be idempotent, combat-deferred and scoped away from
+Details/unsupported clients. Native hardware/settings, operation latency, memory,
+frame times, screenshots and taint acceptance are unmeasured; keep profiling
+optional and preserve preferences. [Feature scope](METER_STANDALONE.md).
+
 5 November native meter visibility: separate the reproduced native-policy
 write from native performance acceptance. Baseline `72704d1` forced Always into
 Blizzard's Edit Mode field; the combat visibility event reads it before session

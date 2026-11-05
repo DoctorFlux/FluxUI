@@ -16,16 +16,46 @@ local primarySessionWindow = nil
 local secondarySessionWindow = nil
 local pendingEmbed = nil
 local visibilityHooked = false
+local visibilityShowHooked = false
+local ownsNativeVisibility = nil -- nil until initial claim; false after explicit Cleanup.
+local InstallNativeVisibility
 local pendingStartup = false
+local pendingNativeEnable = false
+local pendingCleanup = false
 local startupTimer = nil
 local startupGeneration = 0
 local StartStartupEmbed
+local embeddedNativePaneCount = nil
+local embeddedThreatSelected = false
+local threatEmbeddedParent = nil
+local FLUX_THREAT_PLUGIN = "DETAILS_PLUGIN_FLUX_THREAT"
 
-local function ShowEmbeddedRoot(dmFrame)
-    local show = embeddedParentFrame and embeddedParentFrame:IsVisible()
+local function VisibilityHost()
+    local window = FluxWindowFrame
+    if not window or not window.GetActiveTab then return nil end
+    if window.IsTabEnabled and not window:IsTabEnabled("Meter") then return nil end
+    return embeddedParentFrame or (window.frame and window.frame.Content)
+end
+
+local function IsEmbeddedHostVisible()
+    local host = VisibilityHost()
     local activeTab = FluxWindowFrame and FluxWindowFrame.GetActiveTab
         and FluxWindowFrame:GetActiveTab()
-    if activeTab and activeTab ~= "Meter" then show = false end
+    return not pendingCleanup and host and host:IsVisible()
+        and (not activeTab or activeTab == "Meter") and FluxBlizzardMeter:IsAvailable()
+end
+
+local function SyncThreatVisibility()
+    if not FluxThreatMeter then return end
+    if isEmbedded and embeddedThreatSelected and IsEmbeddedHostVisible() then
+        FluxThreatMeter:Show()
+    else
+        FluxThreatMeter:Hide()
+    end
+end
+
+local function ShowEmbeddedRoot(dmFrame)
+    local show = embeddedNativePaneCount ~= 0 and IsEmbeddedHostVisible()
     -- Edit Mode owns visibility. Writing it here taints later native combat timers.
     if show and dmFrame.ShouldBeShown then show = dmFrame:ShouldBeShown() end
     if show then
@@ -33,6 +63,7 @@ local function ShowEmbeddedRoot(dmFrame)
     else
         dmFrame:Hide()
     end
+    SyncThreatVisibility()
 end
 
 local function CancelStartupEmbed()
@@ -43,9 +74,9 @@ local function CancelStartupEmbed()
 end
 
 -- Meter embed sizing:
--- 1) Lay out panes in an expanded canvas (20% larger W/H than Flux Content)
--- 2) Scale the whole DamageMeter 20% smaller (0.8)
--- Visual ≈ 0.96× Content — denser chrome; layout fracs stay correct.
+-- 1) Lay out panes in a canvas 40% larger than Flux Content.
+-- 2) Scale the DamageMeter root by 0.8; its visual bounds remain 1.12 x Content.
+-- Preserve this existing canvas while sharing its coordinates with owned panes.
 local METER_SCALE = 0.8
 local METER_SIZE_EXPAND = 1.40
 local METER_PADDING_LEFT = 0
@@ -82,6 +113,46 @@ end
 -- Layout-driven embed state
 local currentLayoutConfig = nil
 local embedPaneLayouts = {} -- [windowIndex] = { left, right, top, bot }
+local geometryHooks = {}
+local geometryApplying = false
+local geometryPending = false
+local geometryWakePending = false
+local geometryTimer = nil
+local geometryGeneration = 0
+local RepairEmbeddedGeometry
+
+local function CancelGeometryRepair()
+    geometryGeneration = geometryGeneration + 1
+    if geometryTimer and geometryTimer.Cancel then geometryTimer:Cancel() end
+    geometryTimer, geometryWakePending, geometryPending = nil, false, false
+end
+
+local function RequestGeometryRepair()
+    if geometryApplying or pendingCleanup or not isEmbedded or not embeddedParentFrame or not FluxBlizzardMeter:IsAvailable() then return end
+    geometryPending = true
+    if InCombatLockdown() or geometryWakePending then return end
+    geometryWakePending = true
+    local generation = geometryGeneration
+    local function Run()
+        if generation ~= geometryGeneration then return end
+        geometryTimer, geometryWakePending = nil, false
+        if InCombatLockdown() then return end
+        geometryPending = false
+        RepairEmbeddedGeometry()
+    end
+    if C_Timer.NewTimer then geometryTimer = C_Timer.NewTimer(0, Run)
+    else C_Timer.After(0, Run) end
+end
+
+local function WatchGeometry(frame, root)
+    if not frame or geometryHooks[frame] then return end
+    geometryHooks[frame] = true
+    local methods = root and { "SetPoint", "SetPointBase", "SetParent", "SetSize", "SetScale", "SetScaleBase" }
+        or { "SetPoint", "SetScale", "SetSize" }
+    for _, method in ipairs(methods) do
+        if type(frame[method]) == "function" then hooksecurefunc(frame, method, RequestGeometryRepair) end
+    end
+end
 
 -- Forever/Midnight: CanShowNewSecondarySessionWindow / ShowNewSecondarySessionWindow.
 -- Older PTR builds used CanShowNewSessionWindow / ShowNewSessionWindow.
@@ -147,6 +218,28 @@ function FluxBlizzardMeter:IsAvailable()
         return false
     end
     return self:IsSupportedClient()
+end
+
+local function EnsureNativeEnabled()
+    if not FluxBlizzardMeter:IsAvailable() then return end
+    local api = C_CVar
+    if not api or not api.GetCVar or not api.SetCVar then return end
+    local value = api.GetCVar("damageMeterEnabled")
+    if value == nil or value == "1" or value == 1 then return end
+    if api.GetCVarInfo then
+        local _, _, _, _, locked, secure, readOnly = api.GetCVarInfo("damageMeterEnabled")
+        if locked or secure or readOnly then return end
+    end
+    if InCombatLockdown() then pendingNativeEnable = true; return end
+    pendingNativeEnable = false
+    -- Match Blizzard's public settings checkbox. Its native CVAR_UPDATE refreshes
+    -- cached visibility; never call that pipeline ourselves.
+    api.SetCVar("damageMeterEnabled", "1")
+end
+
+function FluxBlizzardMeter:EnsureEnabled()
+    if InstallNativeVisibility then InstallNativeVisibility() end
+    EnsureNativeEnabled()
 end
 
 --- Current-zone content gate from Blizzard (diagnostic / empty-data hint).
@@ -221,6 +314,29 @@ local function GetDamageMeterFrame()
         damageMeterFrame = _G["DamageMeter"]
     end
     return damageMeterFrame
+end
+
+InstallNativeVisibility = function()
+    local dmFrame = GetDamageMeterFrame()
+    if not dmFrame or not FluxBlizzardMeter:IsSupportedClient() then return end
+    if ownsNativeVisibility == nil and VisibilityHost() then ownsNativeVisibility = true end
+    local function EnforceVisibility()
+        if ownsNativeVisibility ~= true or not VisibilityHost() then return end
+        if not isEmbedded or embeddedNativePaneCount == 0 or not IsEmbeddedHostVisible() then dmFrame:Hide() end
+        SyncThreatVisibility()
+    end
+    if not visibilityHooked and dmFrame.UpdateShownState then
+        visibilityHooked = true
+        hooksecurefunc(dmFrame, "UpdateShownState", EnforceVisibility)
+    end
+    if not visibilityShowHooked then
+        visibilityShowHooked = true
+        dmFrame:HookScript("OnShow", function()
+            EnforceVisibility()
+            if ownsNativeVisibility == true and dmFrame:IsShown() then RequestGeometryRepair() end
+        end)
+    end
+    EnforceVisibility()
 end
 
 --- Check if the damage meter is fully ready for embedding
@@ -427,6 +543,7 @@ local function SlotToDamageMeterType(slot)
     if type(slot) ~= "table" then
         return fallback
     end
+    if slot.kind == "plugin" then return nil end
     if slot.kind == "blizzard" and slot.damageMeterType ~= nil then
         return tonumber(slot.damageMeterType) or fallback
     end
@@ -511,12 +628,12 @@ end
 local function PositionSessionWindowGrid(sessionWindow, parentFrame, leftOff, rightOff, topOff, botOff)
     if not sessionWindow or not parentFrame then return end
     if InCombatLockdown() then return end
+    local previous = geometryApplying; geometryApplying = true
     sessionWindow:ClearAllPoints()
     sessionWindow:SetPoint("TOPLEFT", parentFrame, "TOPLEFT", leftOff, -topOff)
     sessionWindow:SetPoint("BOTTOMRIGHT", parentFrame, "BOTTOMRIGHT", rightOff, botOff)
-    if sessionWindow.SetScale then
-        sessionWindow:SetScale(1)
-    end
+    if sessionWindow.SetScale then sessionWindow:SetScale(1) end
+    geometryApplying = previous
 end
 
 --- Size/scale the DamageMeter root so panes look denser but still cover Flux Content.
@@ -537,36 +654,56 @@ local function ApplyRootScaleAndSize(parentFrame)
 
     local layoutW = pw * METER_SIZE_EXPAND
     local layoutH = ph * METER_SIZE_EXPAND
+    local previous = geometryApplying; geometryApplying = true
+    -- Blizzard supplies these aliases to the original widget methods. Avoid
+    -- its Edit Mode overrides writing snap/layout metadata from addon geometry.
+    local setPoint = type(dmFrame.SetPointBase) == "function" and dmFrame.SetPointBase or dmFrame.SetPoint
+    local clearPoints = type(dmFrame.ClearAllPointsBase) == "function" and dmFrame.ClearAllPointsBase or dmFrame.ClearAllPoints
+    local setScale = type(dmFrame.SetScaleBase) == "function" and dmFrame.SetScaleBase or dmFrame.SetScale
 
     if ForeverGamepadEmbed() then
         local hostScale = PlainScale(parentFrame)
         local holderScale = PlainScale(dmFrame:GetParent())
         if hostScale and holderScale then
-            dmFrame:SetScale((hostScale * METER_SCALE) / holderScale)
+            setScale(dmFrame, (hostScale * METER_SCALE) / holderScale)
         else
-            dmFrame:SetScale(METER_SCALE)
+            setScale(dmFrame, METER_SCALE)
         end
-        dmFrame:ClearAllPoints()
+        clearPoints(dmFrame)
         dmFrame:SetSize(layoutW, layoutH)
-        dmFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)
+        setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)
         if parentFrame.GetFrameStrata and dmFrame.SetFrameStrata then
             dmFrame:SetFrameStrata(parentFrame:GetFrameStrata())
         end
         if parentFrame.GetFrameLevel and dmFrame.SetFrameLevel then
             dmFrame:SetFrameLevel((parentFrame:GetFrameLevel() or 0) + 20)
         end
+        geometryApplying = previous
         return
     end
 
     dmFrame:SetParent(parentFrame)
-    dmFrame:SetScale(METER_SCALE)
-    dmFrame:ClearAllPoints()
+    setScale(dmFrame, METER_SCALE)
+    clearPoints(dmFrame)
     -- CENTER + explicit size: after scale, visual ≈ Content × (EXPAND×SCALE) and stays centered.
     dmFrame:SetSize(layoutW, layoutH)
-    dmFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)
+    setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)
+    geometryApplying = previous
+end
+
+RepairEmbeddedGeometry = function()
+    if not isEmbedded or not embeddedParentFrame or InCombatLockdown() or not FluxBlizzardMeter:IsAvailable() then return end
+    local dmFrame = GetDamageMeterFrame()
+    if not dmFrame then return end
+    ApplyRootScaleAndSize(embeddedParentFrame)
+    for index, pane in pairs(embedPaneLayouts) do
+        local window = dmFrame.GetSessionWindow and dmFrame:GetSessionWindow(index)
+        if window then PositionSessionWindowGrid(window, dmFrame, pane.left, pane.right, pane.top, pane.bot) end
+    end
 end
 
 local styledEntryWindows = {}
+local skinnedWindows = {}
 
 local function StyleEmbeddedEntryName(entry)
     if not entry or not entry.GetName then return end
@@ -580,15 +717,23 @@ local function StyleEmbeddedEntryName(entry)
     else
         name:SetTextColor(1, 1, 1)
     end
+    if FluxMeterSkin and FluxMeterSkin.ApplyToEntry then
+        FluxMeterSkin:ApplyToEntry(entry, METER_SCALE)
+    end
 end
 
 local function InstallEmbeddedEntryStyle(window)
-    if not window or styledEntryWindows[window] or not window.InitEntry then return end
+    if not window or not window.InitEntry then return end
+    if not skinnedWindows[window] and FluxMeterSkin and FluxMeterSkin.ApplyToWindow then
+        FluxMeterSkin:ApplyToWindow(window, METER_SCALE)
+        skinnedWindows[window] = true
+    end
+    if styledEntryWindows[window] then return end
     styledEntryWindows[window] = true
     -- Preserve Flux's local-player tint after Blizzard finishes native Init.
     -- Secure posthooks keep entry functions and secret rendering under Blizzard.
     hooksecurefunc(window, "InitEntry", function(_, entry)
-        if isEmbedded then StyleEmbeddedEntryName(entry) end
+        if isEmbedded and FluxBlizzardMeter:IsAvailable() then StyleEmbeddedEntryName(entry) end
     end)
     if window.ForEachEntryFrame then
         window:ForEachEntryFrame(StyleEmbeddedEntryName)
@@ -605,6 +750,7 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
 
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
+    WatchGeometry(sessionWindow)
 
     InstallEmbeddedEntryStyle(sessionWindow)
     if sessionWindow.GetSourceWindow then
@@ -649,38 +795,51 @@ end
 --- Apply layout grid to session windows inside parentFrame.
 local function LayoutMeterGrid(parentFrame, layoutConfig)
     if not parentFrame or not layoutConfig or not isEmbedded then return end
-    if InCombatLockdown() then return end
+    if InCombatLockdown() or not FluxBlizzardMeter:IsAvailable() then return end
 
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
 
+    CancelGeometryRepair()
+    local previous = geometryApplying; geometryApplying = true
     -- Expand + scale the root first so layout math uses the pre-scale canvas size.
     local hostParent = embeddedParentFrame or parentFrame
     ApplyRootScaleAndSize(hostParent)
     -- Lay out against dmFrame (expanded canvas), not Content.
     parentFrame = dmFrame
 
-    local topSlots = layoutConfig.topSlots or {}
-    local bottomSlots = layoutConfig.bottomSlots or {}
-    if #topSlots > 3 then topSlots = { topSlots[1], topSlots[2], topSlots[3] } end
-    if #bottomSlots > 3 then bottomSlots = { bottomSlots[1], bottomSlots[2], bottomSlots[3] } end
-
-    local totalSlots = #topSlots + #bottomSlots
-    if totalSlots < 1 then
+    local nativeCount, threatCount = 0, 0
+    local threatAvailable = FluxThreatMeter and FluxThreatMeter.IsAvailable and FluxThreatMeter:IsAvailable()
+    local function takeSlots(list)
+        local out = {}
+        for i = 1, math.min(3, #(list or {})) do
+            local slot = list[i]
+            if type(slot) == "table" and slot.kind == "plugin" then
+                if slot.plugin == FLUX_THREAT_PLUGIN and threatAvailable and threatCount == 0 then
+                    out[#out + 1] = slot; threatCount = 1
+                end
+            elseif nativeCount < BLIZZARD_MAX_PANES then
+                out[#out + 1] = slot; nativeCount = nativeCount + 1
+            end
+        end
+        return out
+    end
+    local topSlots = takeSlots(layoutConfig.topSlots)
+    local bottomSlots = takeSlots(layoutConfig.bottomSlots)
+    if #(layoutConfig.topSlots or {}) + #(layoutConfig.bottomSlots or {}) == 0 then
         topSlots = DefaultLayoutConfig().topSlots
-        bottomSlots = {}
-        totalSlots = 1
+        nativeCount = #topSlots
     end
-    if totalSlots > BLIZZARD_MAX_PANES then
-        -- Prefer keeping top row; drop bottom extras then top extras.
-        while #topSlots + #bottomSlots > BLIZZARD_MAX_PANES and #bottomSlots > 0 do
-            table.remove(bottomSlots)
+    embeddedNativePaneCount = nativeCount
+    embeddedThreatSelected = threatCount > 0
+    local threatFrame
+    if embeddedThreatSelected then
+        threatFrame = FluxThreatMeter:GetFrame()
+        if not threatFrame or threatEmbeddedParent ~= hostParent then
+            threatFrame = FluxThreatMeter:Embed(hostParent, METER_SCALE)
+            threatEmbeddedParent = threatFrame and hostParent or nil
         end
-        while #topSlots + #bottomSlots > BLIZZARD_MAX_PANES and #topSlots > 1 do
-            table.remove(topSlots)
-        end
-        totalSlots = #topSlots + #bottomSlots
-    end
+    elseif FluxThreatMeter then FluxThreatMeter:Hide() end
 
     local topRowFrac = tonumber(layoutConfig.topRowFrac) or 0.60
     if topRowFrac < 0.25 then topRowFrac = 0.25 end
@@ -708,8 +867,7 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
         botRowTopOff = topPad + topH + EMBED_ROW_GAP
     end
 
-    local windows = EnsureNSessionWindows(totalSlots)
-    if not windows or #windows < 1 then return end
+    local windows = nativeCount > 0 and EnsureNSessionWindows(nativeCount) or {}
 
     wipe(embedPaneLayouts)
     local outerLeft = 0
@@ -722,8 +880,9 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
         colFracs = NormalizeColFracs(colFracs, n)
         local cum = 0
         for i = 1, n do
-            local win = windows[idx]
-            if not win then break end
+            local slot = slots[i]
+            local isThreat = type(slot) == "table" and slot.kind == "plugin" and slot.plugin == FLUX_THREAT_PLUGIN
+            local win = isThreat and threatFrame or windows[idx]
             local leftOff = outerLeft + (frameW * cum)
             cum = cum + colFracs[i]
             local rightOff
@@ -733,18 +892,30 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
                 local splitX = outerLeft + (frameW * cum)
                 rightOff = -(frameW - splitX)
             end
-            ConfigureSessionWindowChrome(win, SlotToDamageMeterType(slots[i]))
-            PositionSessionWindowGrid(win, parentFrame, leftOff, rightOff, topOff, botOff)
-            embedPaneLayouts[idx] = {
-                left = leftOff, right = rightOff, top = topOff, bot = botOff,
-                damageMeterType = SlotToDamageMeterType(slots[i]),
-            }
-            idx = idx + 1
+            if win then
+                if isThreat then
+                    -- Owned pane remains a Content child; root-hidden native policy cannot hide it.
+                    win:ClearAllPoints()
+                    win:SetPoint("TOPLEFT", parentFrame, "TOPLEFT", leftOff, -topOff)
+                    win:SetPoint("BOTTOMRIGHT", parentFrame, "BOTTOMRIGHT", rightOff, botOff)
+                    if FluxThreatMeter.RefreshLayout then FluxThreatMeter:RefreshLayout() end
+                else
+                    ConfigureSessionWindowChrome(win, SlotToDamageMeterType(slot))
+                    PositionSessionWindowGrid(win, parentFrame, leftOff, rightOff, topOff, botOff)
+                    embedPaneLayouts[idx] = {
+                        left = leftOff, right = rightOff, top = topOff, bot = botOff,
+                        damageMeterType = SlotToDamageMeterType(slot),
+                    }
+                    idx = idx + 1
+                end
+            end
         end
     end
 
     PositionRow(topSlots, layoutConfig.topColFracs, topPad, topRowBotOff)
     PositionRow(bottomSlots, layoutConfig.bottomColFracs, botRowTopOff, 0)
+    ShowEmbeddedRoot(dmFrame)
+    geometryApplying = previous
 
     -- Do not call sessionWindow:Refresh from Flux — that taints Init/UpdateName.
     -- Blizzard refreshes on its own events (DAMAGE_METER_*).
@@ -841,6 +1012,8 @@ end
 -- @param layoutConfig optional layout table from FluxMeterLayout
 -- @return boolean - true if successfully embedded, false otherwise
 function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
+    ownsNativeVisibility = true
+    pendingCleanup = false -- A newer embed request owns the next out-of-combat transition.
     if not parentFrame then
         return false
     end
@@ -854,6 +1027,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     if not self:IsAvailable() then
         return false
     end
+    EnsureNativeEnabled()
 
     if not LoadDamageMeterAddon() then
         return false
@@ -882,24 +1056,10 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
             return
         end
 
-        -- Keep Blizzard's visibility methods native. Its own state events may
-        -- show the root again; the posthook only reapplies the Flux tab boundary.
-        if not visibilityHooked and dmFrame.UpdateShownState then
-            visibilityHooked = true
-            hooksecurefunc(dmFrame, "UpdateShownState", function()
-                if not isEmbedded or not embeddedParentFrame then return end
-                local hostVisible = embeddedParentFrame:IsVisible()
-                local activeTab = FluxWindowFrame and FluxWindowFrame.GetActiveTab
-                    and FluxWindowFrame:GetActiveTab()
-                if not hostVisible or (activeTab and activeTab ~= "Meter") then
-                    dmFrame:Hide()
-                end
-            end)
-        end
+        WatchGeometry(dmFrame, true)
+        InstallNativeVisibility()
 
-        -- Root is sized/scaled in LayoutMeterGrid via ApplyRootScaleAndSize.
-        ShowEmbeddedRoot(dmFrame)
-
+        -- Root visibility is reconciled after pane ownership/layout is known.
         if dmFrame.ForEachSessionWindow then
             dmFrame:ForEachSessionWindow(function(sessionWindow)
                 if sessionWindow then
@@ -988,14 +1148,22 @@ end
 
 --- Hide the embedded damage meter
 function FluxBlizzardMeter:Hide()
-    pendingEmbed = nil
-    CancelStartupEmbed()
-    -- Don't reset isEmbedded - keep the embedded state so Show() can work
-    -- Just hide the frame when switching away from Meter tab
-    if not embeddedParentFrame then
-        return
+    CancelGeometryRepair()
+    if FluxThreatMeter then FluxThreatMeter:Hide() end
+    if IsDetailsAddonLoaded() and FluxMeterSkin and FluxMeterSkin.ReleaseAllNative then
+        FluxMeterSkin:ReleaseAllNative()
+        wipe(skinnedWindows)
     end
-    
+    pendingEmbed = nil
+    pendingNativeEnable = false
+    CancelStartupEmbed()
+    -- Keep the embedded state so Show can resume, but also hide a native root
+    -- loaded before the first Meter selection when Flux owns that tab.
+    if embeddedParentFrame and not pendingCleanup and FluxWindowFrame and FluxWindowFrame.IsTabEnabled
+        and not FluxWindowFrame:IsTabEnabled("Meter") then self:Cleanup(); return end
+    if not embeddedParentFrame and (ownsNativeVisibility == false or not VisibilityHost()) then return end
+    InstallNativeVisibility()
+
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then
         return
@@ -1007,10 +1175,12 @@ end
 
 --- Show the embedded damage meter (if previously hidden)
 function FluxBlizzardMeter:Show()
+    if not self:IsAvailable() then self:Hide(); return end
     if not embeddedParentFrame then
         return
     end
-    
+    EnsureNativeEnabled()
+
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then
         return
@@ -1036,11 +1206,30 @@ end
 
 --- Clean up and reset the damage meter to normal state
 function FluxBlizzardMeter:Cleanup()
+    CancelGeometryRepair()
     pendingEmbed = nil
+    pendingNativeEnable = false
     CancelStartupEmbed()
+    if InCombatLockdown() then
+        pendingCleanup = true
+        self:Hide()
+        if FluxThreatMeter then FluxThreatMeter:Cleanup() end
+        threatEmbeddedParent = nil
+        if FluxMeterSkin and FluxMeterSkin.ReleaseAllNative then FluxMeterSkin:ReleaseAllNative() end
+        wipe(skinnedWindows)
+        return
+    end
+    pendingCleanup = false
+    ownsNativeVisibility = false
     isEmbedded = false
     embeddedParentFrame = nil
     currentLayoutConfig = nil
+    embeddedNativePaneCount = nil
+    embeddedThreatSelected = false
+    threatEmbeddedParent = nil
+    if FluxThreatMeter then FluxThreatMeter:Cleanup() end
+    if FluxMeterSkin and FluxMeterSkin.ReleaseAllNative then FluxMeterSkin:ReleaseAllNative() end
+    wipe(skinnedWindows)
     wipe(embedPaneLayouts)
     
     local dmFrame = GetDamageMeterFrame()
@@ -1052,11 +1241,11 @@ function FluxBlizzardMeter:Cleanup()
     if not ForeverGamepadEmbed() then
         dmFrame:SetParent(UIParent)
     end
-    if dmFrame.SetScale then
-        dmFrame:SetScale(1)
-    end
-    dmFrame:ClearAllPoints()
-    
+    local setScale = type(dmFrame.SetScaleBase) == "function" and dmFrame.SetScaleBase or dmFrame.SetScale
+    if setScale then setScale(dmFrame, 1) end
+    local clearPoints = type(dmFrame.ClearAllPointsBase) == "function" and dmFrame.ClearAllPointsBase or dmFrame.ClearAllPoints
+    clearPoints(dmFrame)
+
     -- Unlock every session window (Forever allows up to 3).
     local function RestoreWindowChrome(sessionWindow)
         if not sessionWindow then
@@ -1096,17 +1285,27 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_REGEN_DISABLED") -- Entering combat
 frame:RegisterEvent("PLAYER_REGEN_ENABLED")  -- Leaving combat
+if FluxBlizzardMeter:IsSupportedClient() then frame:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED") end
 
 frame:SetScript("OnEvent", function(self, event, addonName)
-    if event == "PLAYER_REGEN_DISABLED" then
+    if event == "EDIT_MODE_LAYOUTS_UPDATED" then
+        RequestGeometryRepair()
+    elseif event == "PLAYER_REGEN_DISABLED" then
         -- Entering combat - don't allow embedding changes
         -- This prevents taint issues
     elseif event == "PLAYER_REGEN_ENABLED" then
         if InCombatLockdown() then return end
+        if pendingCleanup then FluxBlizzardMeter:Cleanup() end
+        if pendingNativeEnable then
+            pendingNativeEnable = false
+            EnsureNativeEnabled()
+            if isEmbedded then FluxBlizzardMeter:Show() end
+        end
         local embed = pendingEmbed
         pendingEmbed = nil
         if embed then FluxBlizzardMeter:Embed(embed.parent, embed.layout) end
         if pendingStartup and StartStartupEmbed then StartStartupEmbed() end
+        if geometryPending then RequestGeometryRepair() end
 
     end
 end)
@@ -1128,6 +1327,8 @@ local function TryStartupEmbed(attempt, generation)
     attempt = attempt or 1
     local maxAttempts = 20 -- Try for up to 4 seconds (20 * 0.2s)
     
+    -- Enable the supported feature before checking its native UI readiness.
+    EnsureNativeEnabled()
     -- Use the meter only if Blizzard already loaded it.
     LoadDamageMeterAddon()
     
@@ -1164,6 +1365,7 @@ startupFrame:RegisterEvent("VARIABLES_LOADED")
 startupFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 startupFrame:SetScript("OnEvent", function(self, event, arg1)
+    InstallNativeVisibility()
     -- IsAvailable is false when Details is loaded or Blizzard_DamageMeter is absent.
     if not FluxBlizzardMeter:IsAvailable() then
         return
@@ -1180,6 +1382,8 @@ startupFrame:SetScript("OnEvent", function(self, event, arg1)
         -- Try to load addon early, even if tab wasn't active (might be needed later)
         -- Wait for VARIABLES_LOADED before trying to embed
         -- This ensures Blizzard_DamageMeter is fully initialized
+    elseif event == "ADDON_LOADED" and arg1 == "Blizzard_DamageMeter" then
+        if wasMeterActive then StartStartupEmbed() end
     elseif event == "VARIABLES_LOADED" then
         -- Variables loaded, try to embed now (if tab was active)
         if wasMeterActive then
@@ -1191,6 +1395,9 @@ startupFrame:SetScript("OnEvent", function(self, event, arg1)
             StartStartupEmbed()
         end
     end
+    -- Settle after native layout/position restoration in the same world-entry pass,
+    -- including engine updates that do not call the Lua widget-method fields.
+    if event == "PLAYER_ENTERING_WORLD" then RequestGeometryRepair() end
 end)
 
 -- Debug command for testing

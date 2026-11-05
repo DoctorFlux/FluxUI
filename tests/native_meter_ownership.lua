@@ -4,7 +4,8 @@
 local source = arg[1] or "Battlezonemap/FluxBlizzardMeter.lua"
 -- Optional arg2 is an external pinned source prefix, e.g. .../forever.
 -- Only the requested native methods are replayed; source is not bundled here.
-local nativePrefix = arg[2]
+local exportHarness = arg[2] == "--harness"
+local nativePrefix = not exportHarness and arg[2] or nil
 local nativeRoot, nativeSession
 local function read(path)
     local f = assert(io.open(path, "r")); local text = f:read("*a"); f:close(); return text
@@ -34,24 +35,36 @@ local function harness(gamepad, policy, hasVisibilitySetter)
         classCalls = 0, iconCalls = 0, entryWalks = 0, points = 0, hooks = {}, windows = {},
         visibility = policy or 0, policyWrites = 0, setterCalls = 0, rootShows = 0,
         timerDispatches = 0, timerWrites = 0, enabled = true, inGroup = false }
+    local function geometryAfter(object, method, ...)
+        for _, fn in ipairs(s.hooks[object] and s.hooks[object][method] or {}) do fn(object, ...) end
+    end
     local function frame(parent)
         local f = { parent = parent, shown = true, scripts = {}, events = {}, hooks = {},
             width = 300, height = 270, scale = 1, points = {} }
         function f:IsShown() return self.shown end
         function f:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
-        function f:Show() self.shown = true end
-        function f:Hide() self.shown = false end
+        function f:Show()
+            local changed = not self.shown; self.shown = true
+            if changed then for _, fn in ipairs(self.hooks.OnShow or {}) do fn(self) end end
+        end
+        function f:Hide()
+            local changed = self.shown; self.shown = false
+            if changed then for _, fn in ipairs(self.hooks.OnHide or {}) do fn(self) end end
+        end
         function f:SetShown(value) if value then self:Show() else self:Hide() end end
-        function f:SetParent(value) self.parent = value end
+        function f:SetParent(value) self.parent = value; geometryAfter(self, "SetParent", value) end
         function f:GetParent() return self.parent end
         function f:GetWidth() return self.width end
         function f:GetHeight() return self.height end
         function f:GetSize() return self.width, self.height end
-        function f:SetSize(w, h) self.width, self.height = w, h end
+        function f:SetSize(w, h) self.width, self.height = w, h; geometryAfter(self, "SetSize", w, h) end
         function f:GetEffectiveScale() return self.scale end
-        function f:SetScale(value) self.scale = value end
+        function f:SetScale(value) self.scale = value; geometryAfter(self, "SetScale", value) end
         function f:ClearAllPoints() self.points = {} end
-        function f:SetPoint(...) self.points[#self.points + 1] = {...}; s.points = s.points + 1 end
+        function f:SetPoint(...)
+            self.points[#self.points + 1] = {...}; s.points = s.points + 1
+            geometryAfter(self, "SetPoint", ...)
+        end
         function f:GetFrameStrata() return "MEDIUM" end
         function f:GetFrameLevel() return 10 end
         f.SetFrameStrata, f.SetFrameLevel, f.SetMovable, f.SetResizable = noop, noop, noop, noop
@@ -276,6 +289,8 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     assert(loadfile(source, "t", e))("_FluxUI", { Flux = e.Flux })
     return e, s
 end
+
+if exportHarness then return harness end
 
 local function fixture(label, gamepad, measure)
     local e, s = harness(gamepad)

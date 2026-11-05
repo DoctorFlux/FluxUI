@@ -952,11 +952,10 @@ function Threat.GetPlayerRank(targetUnit)
 end
 
 local function ForeverMeterRow(unit, targetUnit)
-	local detailed = Threat.GetDetailed(unit, targetUnit)
+	local display, status, isTankingRaw, detailed = Threat.GetForeverFrameDisplay(unit, targetUnit)
 	if not detailed or not HasThreatPayload(detailed) then
 		return nil
 	end
-	local display, status, isTankingRaw = Threat.GetForeverFrameDisplay(unit, targetUnit)
 	local tanking = SafeBool(isTankingRaw, false)
 	local secret = IsSecret(detailed.rawThreat)
 		or IsSecret(detailed.rawPercentage)

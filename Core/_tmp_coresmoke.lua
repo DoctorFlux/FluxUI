@@ -1218,13 +1218,13 @@ end
 has(blizzMeterSrc, "IsDetailsAddonLoaded()", "blizzard embed refuses Details")
 has(blizzMeterSrc, "if ForeverGamepadEmbed() then\n            return false", "Forever gamepad does not create damage meter panes")
 has(blizzMeterSrc, "if not ForeverGamepadEmbed() and dmFrame.SetSessionWindowLocked then", "Forever gamepad does not relock meter windows")
-has(blizzMeterSrc, 'dmFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)', "damage meter stays centered on the Flux window")
+has(blizzMeterSrc, 'setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)', "damage meter stays centered on the Flux window")
 do
 	local applyAt = blizzMeterSrc:find("local function ApplyRootScaleAndSize", 1, true)
 	local nextAt = applyAt and blizzMeterSrc:find("local function ConfigureSessionWindowChrome", applyAt, true)
 	local block = applyAt and nextAt and blizzMeterSrc:sub(applyAt, nextAt) or ""
 	local foreverAt = block:find("if ForeverGamepadEmbed() then", 1, true)
-	local pointAt = foreverAt and block:find('dmFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)', foreverAt, true)
+	local pointAt = foreverAt and block:find('setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)', foreverAt, true)
 	local retAt = pointAt and block:find("\n        return\n", pointAt, true)
 	local parentAt = block:find("dmFrame:SetParent(parentFrame)", 1, true)
 	if not foreverAt or not pointAt or not retAt or not parentAt or not (foreverAt < pointAt and pointAt < retAt and retAt < parentAt) then

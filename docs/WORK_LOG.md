@@ -1,5 +1,75 @@
 # Work log
 
+5 November standalone native meter: feature baseline
+`8006494fd5f10b54818471933467b9bb867c6543`. External checkpoint
+Mail-auction-publication-20261105T203228Z preserves 1,537 actual files, 122 on-disk
+settings and all-ref history; source SHA256
+`efe44322cd86f787161b91509af8f63cf4709fdfdeaef72e6f6f750c51b5a537`.
+New shared skin and Forever-only independent threat view reuse existing services
+and Flux/Blizzard assets. Existing native preset/default IDs remain; three opt-in
+threat presets and a maximum three-native-plus-one-owned grid are added.
+
+Final publication preparation: final runtime/manifest bytes match all five
+synced client folders (7/7 each). External Meter-native-
+settings-20261105T212227Z supplements recovery with 38 native meter/Edit Mode
+tables and layout caches; ZIP integrity passes, SHA256
+210a34953ed1a01433edd268ec9353d68a10b02d2fc17722e9dea516113b4c9a. Unsaved game
+memory excluded. Existing validated wand/cast-bar work is preserved separately
+as 92dfb49. These checks used no game input or settings mutation.
+
+Skin 47 checks/five alternating pairs/six mutants pass. Standalone threat 51 and
+coherent-sample 510 checks pass with five pairs/11 mutants. Shared sample queries
+fall 1,000 to 500 per 500 rows. New skin/pane allocation is reported as feature cost;
+500-event bursts coalesce one scan and 80 roster/pet facts remain intact.
+[Skin samples](validation/meter-skin-comparison-2026-11-05.json),
+[threat samples](validation/standalone-threat-comparison-2026-11-05.json).
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+normalized source hashes and file membership match before/after the run.
+[Final source manifest](validation/meter-standalone-2026-11-05.json).
+
+The user's empty-tab checkbox diagnosis led to METER-ENABLE-01: native-backend
+startup/tab/embed/Show may enable only the public damageMeterEnabled option out
+of combat; native events and natural addon readiness remain native. No private
+visibility/cache writes, native manual timer update or addon load was added.
+Concurrent wand/cast-bar code and continuity entries are preserved separately.
+Before the docking follow-up, external checkpoint
+Mail-auction-publication-20261105T205512Z preserved all 1,549 current dirty files,
+122 settings and all-ref history, source SHA256
+`c01241bfe2564ab2baabaecd4023dd06c4c17193fb211e86b3f45e1276a24b32`.
+METER-OWNERSHIP-01 now gates native panes before the first Embed;64 checks pass
+versus 22 failures in actual T205512 source, five pairs/four mutants. Docking
+repair uses native widget aliases, coalesced post-native geometry restoration
+and deferred combat cleanup;60 checks pass versus 30 T205512 failures, five
+pairs/11 mutants. The 500-burst test schedules one wake per plain/gamepad fixture;
+fixture frames stay 4, addon snap writes 76 to 0, native callbacks 4,064 to 4,072.
+This adds repair work, not a native performance gain; no extra type/session
+setters or entry walks occur. The 22:04 CET user screenshot establishes the
+pre-embed Map/floating failure, not the candidate's loaded identity.
+[Startup comparison](validation/meter-startup-comparison-2026-11-05.json),
+[docking comparison](validation/meter-reload-docking-comparison-2026-11-05.json).
+Earlier 68-check feature/enable pairs retain their preDock source identity;
+the final 816-file manifest covers the current runtime and all preserved user
+changes, including separately committed wand/cast-bar work 92dfb49. Source guard
+SHA256: 376815eacb8a9a89cb3cd8b306c482dab0601f73111cdc39dba5e61fcb947cec.
+No new native input, reload, profiling or screenshot comparison occurred; all
+combat/taint, art/font, frame-time and memory acceptance remains pending.
+[Full feature scope](METER_STANDALONE.md).
+One background-only capture at 21:56:22 CET verified the same Forever PID 39984
+and an in-world Map tab. Meter docking was not visible; loaded code/build was
+not queried. No focus/input/reload/profiler change occurred. This single view is
+not meter, combat, pixel or performance acceptance.
+
+5 November wand swing theme: started from main `72704d19` with an external
+dated source/history bundle and read-only confirmation of Era, Anniversary and
+Forever on-disk `Config.wtf`. Pinned Gethe commits `4192ac6`, `68e0a2e` and
+`eac30af`. The shared cast renderer accepts an explicit wand-school mask; the
+equipped ranged item supplies it from localized damage text, with cold-item
+retry and unchanged-item caching. The ranged strip is a StatusBar and its
+trough matches the player cast bar. Existing swing timing, cast priority and
+settings remain. Focused 13,942-check desktop fixture and full validation
+pass; native rendering, combat taint and matched performance remain pending.
+[Source and exact identities](SWING_WAND_CAST_THEME.md).
+
 5 November damage meter combat visibility: clean baseline
 `72704d19cec2190495acb51d0ab82659e945d71a`. External verified checkpoint
 Mail-auction-publication-20261105T202207Z preserves 1,534 actual files, 122

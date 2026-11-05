@@ -1,5 +1,49 @@
 # Next session
 
+Priority: native acceptance of the implemented standalone meter, startup
+ownership and docking repairs. Startup 64 checks and docking 60 checks pass,
+against 22 and 30 failures in the actual T205512 preDock source. Five pairs each
+and four/11 mutants pass. Check Map startup, first Meter selection, disabled
+Meter tab/native policy, late anchor restore and combat-deferred repair in game.
+Read
+[the requirement/evidence record](docs/METER_STANDALONE.md). Feature baseline
+`8006494fd5f10b54818471933467b9bb867c6543`; external checkpoint
+Mail-auction-publication-20261105T203228Z preserves 1,537 files / 122 settings and
+all-ref history, source SHA256
+`efe44322cd86f787161b91509af8f63cf4709fdfdeaef72e6f6f750c51b5a537`.
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+normalized source hashes and file membership match before/after the run.
+[Final source manifest](docs/validation/meter-standalone-2026-11-05.json).
+Focused commands: `lua tests/native_meter_skin.lua`,
+`lua tests/standalone_threat_meter.lua`, `lua tests/threat_meter_sample.lua`,
+`lua tests/native_threat_layout.lua`, `lua tests/native_meter_ownership.lua`.
+
+On Forever 70790 without Details, reload exact synced files, verify the public
+meter option enables automatically and inspect existing presets 1-6/default 1 plus
+new threat presets 7-9, custom four-pane layouts, save/reload and scrolling.
+Check 40-player/40-pet facts, last-page/player pinning, readable sorting versus
+opaque roster order, hostile target/targettarget changes and combat 0.2s updates.
+Hide/reveal host, change tabs, leave combat and load Details; owned recurring work
+must stop when hidden or superseded. Compare the accepted FluxDetails reference
+at matched scale/profile/resolution; this recreation uses ARIALN/Blizzard art.
+Native timer/rows, menus, source windows, Edit Mode and gamepad taint still need
+live checks. Repeat native skin/enable checks on Retail and preserve other clients'
+Details/absent-native behavior; standalone threat is Forever-only.
+Record disabled-option startup, late native readiness, combat-deferred enable and
+idempotent event handling without manually dispatching native callbacks.
+Keep WoW background and profiler/BugTabs history intact; no native performance,
+secret/taint or pixel-parity acceptance is inferred. Preserve the separate wand
+changes and their native checks below. Earlier pending skin/threat notes describe
+the core-only state before this implemented desktop-tested feature batch.
+
+Wand swing theme native follow-up: [record](docs/SWING_WAND_CAST_THEME.md).
+Era, Anniversary and Forever desktop models pass 13,942 focused checks; the
+full suite passes, but Fire/Frost wand pixels, cast-slot handoff, combat taint,
+localization and frame time are pending on real clients. Verify exact loaded
+source/build, keep WoW in the background and preserve existing settings and
+profiler preferences. Test each client sequentially because sessions displace
+one another. Keep the separate meter and threat work below in scope.
+
 Priority: accept the native meter combat visibility fix after a normal reload.
 Read [the ownership record](docs/METER_COMBAT_VISIBILITY.md). Baseline `72704d1`;
 external Mail-auction-publication-20261105T202207Z preserves 1,534 actual files,
