@@ -1,5 +1,41 @@
 # Micromenu, bag controls and addon buttons
 
+## Forever native profession button restored - 5 November 2026
+
+The user clarified that Blizzard's own trade-skill/profession button should stay.
+The prior exclusion of ProfessionMicroButton was broader than intended. It now
+uses the ordinary native eligibility, discovery, saved visibility and layout path;
+it is no longer forcibly excluded or parked on Forever. Existing discovery merge
+restores a row pruned by the previous build without resetting preferences.
+FluxTradeSkillMicro still exits before creating custom profession/flyout frames
+or registering events on Forever, and its trade-skill option controls remain
+omitted. Adventure Guide stays excluded. Other clients keep their existing behavior.
+The previous removal section below is historical; this clarification supersedes
+its references to hiding the native profession button.
+
+Baseline dfc2781af138105fbfc1388d354b101338ae5162. Verified external
+Forever-native-profession-20261105T103323Z preserves1,453 actual files, history and123
+on-disk settings outside AddOns; source ZIP SHA256
+`d2ade9bd109da2577758b9e67f2edbd6ba29e4c8535ab00dbf40a28437354fea`.
+[Raw pairs and exact runtime hash](validation/forever-native-profession-comparison-2026-11-05.json).
+[Full validation/source manifest](validation/forever-native-profession-2026-11-05.json).
+
+Five alternating fresh-process desktop pairs execute the real custom startup,
+options builder and native eligibility function with mocked frames/APIs:54 checks,
+baseline2 failures versus candidate0. They cover both Forever identity aliases
+and four other client labels, restored native profession eligibility, the retained
+Adventure Guide exclusion, disabled Forever custom service/options and preserved
+preferences/other clients. Startup custom frames remain16 across all models (zero
+per Forever model) in both variants. No new frame, event, timer, hook, scan or saved
+root. Warm-up0; wall samples include startup/assertions, not native latency.
+Full129 scripts/784 syntax files pass. No FPS or native secure/pixel pass is claimed.
+
+After sync and /reload, verify Blizzard's profession button appears according to
+saved menu visibility/order and opens its native panel. Confirm no custom profession
+icons/flyout/trade-skill settings or Adventure Guide button on Forever. Test late
+profession updates, menu layouts, combat/recovery, tooltips, gamepad and taint.
+Native acceptance is pending; no foreground/input/clipboard control was taken.
+
 ## Forever trade-skill micro removal - 5 November 2026
 
 The user requested no trade-skill micro menu on Forever. Both existing Forever

@@ -59754,8 +59754,8 @@
       "path": "MicroMenu/FluxMicroMenu.lua",
       "classification": "active",
       "chapter": "17-micromenu.md",
-      "lines": 3232,
-      "sha256": "e5d02b4e9bac75fc451d8b3e7b0c30c1db0dd617e98d849e4d6b52cd41d60bb9",
+      "lines": 3230,
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
       "clients": [
         "camelot",
         "cata",
@@ -59821,31 +59821,31 @@
         },
         {
           "name": "FluxMicroMenu:IsNativeRowAvailableOnClient",
-          "line": 1085
+          "line": 1084
         },
         {
           "name": "FluxMicroMenu:GetDefaultUnifiedRowIds",
-          "line": 1122
+          "line": 1121
         },
         {
           "name": "FluxMicroMenu:GetLayoutSpacing",
-          "line": 1186
+          "line": 1185
         },
         {
           "name": "FluxMicroMenu:GetButtonSizeScale",
-          "line": 1205
+          "line": 1204
         },
         {
           "name": "_G.FluxMicroMenu_GetBesideChatColumnRightX",
-          "line": 1451
+          "line": 1450
         },
         {
           "name": "FluxMicroMenu:RefreshLayout",
-          "line": 2618
+          "line": 2617
         },
         {
           "name": "FluxMicroMenu:Rebuild",
-          "line": 2985
+          "line": 2983
         }
       ],
       "events": [
@@ -59874,7 +59874,7 @@
           "context": "(\"PORTRAITS_UPDATED\")watch:"
         },
         {
-          "line": 3068,
+          "line": 3066,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -59882,7 +59882,7 @@
           "context": "WatchEditModeMicroMenuSanitize()FluxMicroMenu:"
         },
         {
-          "line": 3069,
+          "line": 3067,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59890,7 +59890,7 @@
           "context": "(\"PLAYER_LOGIN\")FluxMicroMenu:"
         },
         {
-          "line": 3070,
+          "line": 3068,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59898,7 +59898,7 @@
           "context": "(\"ADDON_LOADED\")FluxMicroMenu:"
         },
         {
-          "line": 3071,
+          "line": 3069,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -59906,7 +59906,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")FluxMicroMenu:"
         },
         {
-          "line": 3072,
+          "line": 3070,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -59914,7 +59914,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")FluxMicroMenu:"
         },
         {
-          "line": 3073,
+          "line": 3071,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TALENT_UPDATE\""
@@ -59922,7 +59922,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")FluxMicroMenu:"
         },
         {
-          "line": 3074,
+          "line": 3072,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIVE_TALENT_GROUP_CHANGED\""
@@ -59935,12 +59935,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXMICRO1",
           "value": "/fluxmicro",
-          "line": 3173
+          "line": 3171
         },
         {
           "kind": "handler",
           "name": "FLUXMICRO",
-          "line": 3174
+          "line": 3172
         }
       ],
       "widgets": [],

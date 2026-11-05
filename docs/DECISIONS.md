@@ -1,5 +1,14 @@
 # Decisions
 
+5 November clarification: Forever retains Blizzard's ProfessionMicroButton.
+Only FluxUI's custom trade-skill buttons, flyout and related options are disabled.
+Removed the native-button exclusion/parking added in the preceding batch; the
+normal discovery/configuration path restores it without a settings reset.
+Adventure Guide remains hidden. Five matched desktop pairs: baseline2 failures
+versus0 of54 checks; custom service startup frames remain unchanged (zero per
+Forever model). Full129 scripts/784 syntax pass; native bar click/pixel/taint
+acceptance remains pending after reload. [Evidence](17-micromenu.md#forever-native-profession-button-restored---5-november-2026).
+
 5 November Forever trade-skill micro removal: the module now exits before
 creating buttons/flyout frames or registering scans/events on Forever. The native
 ProfessionMicroButton is excluded and parked through the existing micro menu

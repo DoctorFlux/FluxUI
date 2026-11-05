@@ -542,13 +542,13 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [MicroMenu/FluxMicroMenu.lua:435](../../MicroMenu/FluxMicroMenu.lua#L435) | `RegisterEvent` | `"UNIT_PORTRAIT_UPDATE"` |
 | [MicroMenu/FluxMicroMenu.lua:436](../../MicroMenu/FluxMicroMenu.lua#L436) | `RegisterEvent` | `"PORTRAITS_UPDATED"` |
 | [MicroMenu/FluxMicroMenu.lua:437](../../MicroMenu/FluxMicroMenu.lua#L437) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3068](../../MicroMenu/FluxMicroMenu.lua#L3068) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [MicroMenu/FluxMicroMenu.lua:3069](../../MicroMenu/FluxMicroMenu.lua#L3069) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [MicroMenu/FluxMicroMenu.lua:3070](../../MicroMenu/FluxMicroMenu.lua#L3070) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [MicroMenu/FluxMicroMenu.lua:3071](../../MicroMenu/FluxMicroMenu.lua#L3071) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
-| [MicroMenu/FluxMicroMenu.lua:3072](../../MicroMenu/FluxMicroMenu.lua#L3072) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [MicroMenu/FluxMicroMenu.lua:3073](../../MicroMenu/FluxMicroMenu.lua#L3073) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
-| [MicroMenu/FluxMicroMenu.lua:3074](../../MicroMenu/FluxMicroMenu.lua#L3074) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
+| [MicroMenu/FluxMicroMenu.lua:3066](../../MicroMenu/FluxMicroMenu.lua#L3066) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [MicroMenu/FluxMicroMenu.lua:3067](../../MicroMenu/FluxMicroMenu.lua#L3067) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [MicroMenu/FluxMicroMenu.lua:3068](../../MicroMenu/FluxMicroMenu.lua#L3068) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [MicroMenu/FluxMicroMenu.lua:3069](../../MicroMenu/FluxMicroMenu.lua#L3069) | `RegisterEvent` | `"PLAYER_LEVEL_UP"` |
+| [MicroMenu/FluxMicroMenu.lua:3070](../../MicroMenu/FluxMicroMenu.lua#L3070) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [MicroMenu/FluxMicroMenu.lua:3071](../../MicroMenu/FluxMicroMenu.lua#L3071) | `RegisterEvent` | `"PLAYER_TALENT_UPDATE"` |
+| [MicroMenu/FluxMicroMenu.lua:3072](../../MicroMenu/FluxMicroMenu.lua#L3072) | `RegisterEvent` | `"ACTIVE_TALENT_GROUP_CHANGED"` |
 | [MicroMenu/FluxMicroMenuConfigUI.lua:451](../../MicroMenu/FluxMicroMenuConfigUI.lua#L451) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:751](../../MicroMenu/FluxMinimapToMicro.lua#L751) | `RegisterEvent` | `"PLAYER_STARTED_MOVING"` |
 | [MicroMenu/FluxMinimapToMicro.lua:1615](../../MicroMenu/FluxMinimapToMicro.lua#L1615) | `RegisterEvent` | `"PLAYER_LOGIN"` |
@@ -7827,13 +7827,13 @@ Owner: [17-micromenu.md](../17-micromenu.md).
 | `FluxMicroMenu:InvalidateDiscoverCache` | [L974](../../MicroMenu/FluxMicroMenu.lua#L974) |
 | `FluxMicroMenu:GetDiscoveredMicroButtonNames` | [L1026](../../MicroMenu/FluxMicroMenu.lua#L1026) |
 | `FluxMicroMenu:HasBlizzardGroupFinderMicroButton` | [L1050](../../MicroMenu/FluxMicroMenu.lua#L1050) |
-| `FluxMicroMenu:IsNativeRowAvailableOnClient` | [L1085](../../MicroMenu/FluxMicroMenu.lua#L1085) |
-| `FluxMicroMenu:GetDefaultUnifiedRowIds` | [L1122](../../MicroMenu/FluxMicroMenu.lua#L1122) |
-| `FluxMicroMenu:GetLayoutSpacing` | [L1186](../../MicroMenu/FluxMicroMenu.lua#L1186) |
-| `FluxMicroMenu:GetButtonSizeScale` | [L1205](../../MicroMenu/FluxMicroMenu.lua#L1205) |
-| `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1451](../../MicroMenu/FluxMicroMenu.lua#L1451) |
-| `FluxMicroMenu:RefreshLayout` | [L2618](../../MicroMenu/FluxMicroMenu.lua#L2618) |
-| `FluxMicroMenu:Rebuild` | [L2985](../../MicroMenu/FluxMicroMenu.lua#L2985) |
+| `FluxMicroMenu:IsNativeRowAvailableOnClient` | [L1084](../../MicroMenu/FluxMicroMenu.lua#L1084) |
+| `FluxMicroMenu:GetDefaultUnifiedRowIds` | [L1121](../../MicroMenu/FluxMicroMenu.lua#L1121) |
+| `FluxMicroMenu:GetLayoutSpacing` | [L1185](../../MicroMenu/FluxMicroMenu.lua#L1185) |
+| `FluxMicroMenu:GetButtonSizeScale` | [L1204](../../MicroMenu/FluxMicroMenu.lua#L1204) |
+| `_G.FluxMicroMenu_GetBesideChatColumnRightX` | [L1450](../../MicroMenu/FluxMicroMenu.lua#L1450) |
+| `FluxMicroMenu:RefreshLayout` | [L2617](../../MicroMenu/FluxMicroMenu.lua#L2617) |
+| `FluxMicroMenu:Rebuild` | [L2983](../../MicroMenu/FluxMicroMenu.lua#L2983) |
 
 ### MicroMenu/FluxMicroMenuConfig.lua
 
