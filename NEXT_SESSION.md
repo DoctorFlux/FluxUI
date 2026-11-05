@@ -1,5 +1,43 @@
 # Next session
 
+Priority: accept the native meter combat visibility fix after a normal reload.
+Read [the ownership record](docs/METER_COMBAT_VISIBILITY.md). Baseline `72704d1`;
+external Mail-auction-publication-20261105T202207Z preserves 1,534 actual files,
+122 on-disk settings and all-ref history, source SHA256
+`10f43e0b24068defd30e84f170beeb1ab50537a14f7b4acd70c70296959cb946`.
+Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
+Five alternating pairs per pinned Retail/Forever source (ten total) and six
+rejected mutants pass; native event/timer/text-update counts remain unchanged.
+Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](docs/validation/meter-combat-visibility-2026-11-05.json).
+Reproduce the focused fixture with `lua tests/native_meter_ownership.lua`.
+
+Reload after sync because prior in-memory native field taint survives disk edits.
+Keep WoW in the background while the user uses the PC; preserve profiler,
+settings and BugTabs history. Verify loaded identity/build before testing.
+With Details absent on Forever 70790 and Retail 70783, select Meter before combat
+and check live rows and the native timer through combat entry/exit, repeated
+encounters, group changes, source windows and current/overall/expired sessions.
+Check native Always, InCombat, InGroup and Hidden policies, enabled/content gates,
+host hide/show, alternate Flux tabs, reload, Edit Mode and gamepad/keyboard UI.
+Match scale/profile/resolution and compare screenshots; do not call native timer
+methods from addon diagnostics or use secrets in comparisons. Recheck layout
+presets/splits, selections, reset and Details takeover separately. The remaining
+native configuration and Show paths still require engine taint acceptance.
+Era/Anniversary/progression retain Details/capability behavior; do not assume
+their native UI loads merely because generated meter APIs exist. Keep original
+Wrath separate. No native combat, FPS, memory or pixel acceptance is inferred.
+
+Required next feature slice: METER-SKIN-01 reproduces the accepted FluxDetails
+skin/theme for Forever's Blizzard meter when Details is absent. METER-THREAT-01
+adds the standalone Flux threat pane without requiring Details. Both are pending
+read-only shared-service/asset/license/restriction audit, implementation and
+matched native verification; neither is delivered by the visibility fix. Preserve
+native meter ownership and the existing Details backend during that work.
+The user authorized recreating that look with existing Flux/Blizzard assets;
+reserved third-party artwork is not part of that authorization.
+
 Priority: load and accept the minimap mail lifecycle fix. Read
 [the lifecycle record](docs/MINIMAP_MAIL_LIFECYCLE.md) and
 [Retail tooltip readiness](docs/AUCTION_COLD_TOOLTIP.md). Baseline `c1a5f90`;

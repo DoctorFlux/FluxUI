@@ -24348,8 +24348,8 @@
       "path": "Battlezonemap/FluxBlizzardMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1265,
-      "sha256": "ace8215a0e96b7a79ebab01b854c8c5e656f024ed3e7112df04f1a83d62820b3",
+      "lines": 1272,
+      "sha256": "a5b6f556fac9af76f12b1572515b9268b680dce0d00cfc602fa6c2fcda46026c",
       "clients": [
         "camelot",
         "cata",
@@ -24367,52 +24367,52 @@
       "functions": [
         {
           "name": "FluxBlizzardMeter:IsSupportedClient",
-          "line": 124
+          "line": 138
         },
         {
           "name": "FluxBlizzardMeter:IsAvailable",
-          "line": 131
+          "line": 145
         },
         {
           "name": "FluxBlizzardMeter:IsContentAvailable",
-          "line": 140
+          "line": 154
         },
         {
           "name": "FluxBlizzardMeter:IsEmbedded",
-          "line": 150
+          "line": 164
         },
         {
           "name": "FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat",
-          "line": 158
+          "line": 172
         },
         {
           "name": "FluxBlizzardMeter:Embed",
-          "line": 829
+          "line": 843
         },
         {
           "name": "FluxBlizzardMeter:SyncGeometryFromLayout",
-          "line": 948
+          "line": 956
         },
         {
           "name": "FluxBlizzardMeter:RefreshEmbeddedLayout",
-          "line": 971
+          "line": 979
         },
         {
           "name": "FluxBlizzardMeter:Hide",
-          "line": 982
+          "line": 990
         },
         {
           "name": "FluxBlizzardMeter:Show",
-          "line": 1001
+          "line": 1009
         },
         {
           "name": "FluxBlizzardMeter:Cleanup",
-          "line": 1031
+          "line": 1038
         }
       ],
       "events": [
         {
-          "line": 1090,
+          "line": 1097,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -24420,7 +24420,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 1091,
+          "line": 1098,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -24428,7 +24428,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 1155,
+          "line": 1162,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -24436,7 +24436,7 @@
           "context": "(\"Frame\")startupFrame:"
         },
         {
-          "line": 1156,
+          "line": 1163,
           "method": "RegisterEvent",
           "arguments": [
             "\"VARIABLES_LOADED\""
@@ -24444,7 +24444,7 @@
           "context": "(\"ADDON_LOADED\")startupFrame:"
         },
         {
-          "line": 1157,
+          "line": 1164,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -24457,18 +24457,18 @@
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER1",
           "value": "/fluxblizzmeter",
-          "line": 1190
+          "line": 1197
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER2",
           "value": "/fbm",
-          "line": 1191
+          "line": 1198
         },
         {
           "kind": "handler",
           "name": "FLUXBLIZZMETER",
-          "line": 1192
+          "line": 1199
         }
       ],
       "widgets": [],
@@ -24477,7 +24477,7 @@
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            1167
+            1174
           ]
         }
       ]
@@ -78945,248 +78945,308 @@
       "path": "tests/native_meter_ownership.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 283,
-      "sha256": "65b327e271dc491046d7188cc98d732f2772836be1243f8e18a7498de08f6ac0",
+      "lines": 444,
+      "sha256": "ae09885d46a9afe3d87dcebb72e30e755bc8ea8a7dcc12929109a8f3e023da16",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "f:IsShown",
-          "line": 22
+          "line": 40
         },
         {
           "name": "f:IsVisible",
-          "line": 23
+          "line": 41
         },
         {
           "name": "f:Show",
-          "line": 24
+          "line": 42
         },
         {
           "name": "f:Hide",
-          "line": 25
-        },
-        {
-          "name": "f:SetParent",
-          "line": 26
-        },
-        {
-          "name": "f:GetParent",
-          "line": 27
-        },
-        {
-          "name": "f:GetWidth",
-          "line": 28
-        },
-        {
-          "name": "f:GetHeight",
-          "line": 29
-        },
-        {
-          "name": "f:GetSize",
-          "line": 30
-        },
-        {
-          "name": "f:SetSize",
-          "line": 31
-        },
-        {
-          "name": "f:GetEffectiveScale",
-          "line": 32
-        },
-        {
-          "name": "f:SetScale",
-          "line": 33
-        },
-        {
-          "name": "f:ClearAllPoints",
-          "line": 34
-        },
-        {
-          "name": "f:SetPoint",
-          "line": 35
-        },
-        {
-          "name": "f:GetFrameStrata",
-          "line": 36
-        },
-        {
-          "name": "f:GetFrameLevel",
-          "line": 37
-        },
-        {
-          "name": "f:HookScript",
-          "line": 39
-        },
-        {
-          "name": "f:SetScript",
           "line": 43
         },
         {
-          "name": "f:RegisterEvent",
+          "name": "f:SetShown",
           "line": 44
         },
         {
-          "name": "f:UnregisterEvent",
+          "name": "f:SetParent",
           "line": 45
         },
         {
-          "name": "e.InCombatLockdown",
-          "line": 57
+          "name": "f:GetParent",
+          "line": 46
         },
         {
-          "name": "returns.combatende.UnitAffectingCombat",
+          "name": "f:GetWidth",
+          "line": 47
+        },
+        {
+          "name": "f:GetHeight",
+          "line": 48
+        },
+        {
+          "name": "f:GetSize",
+          "line": 49
+        },
+        {
+          "name": "f:SetSize",
+          "line": 50
+        },
+        {
+          "name": "f:GetEffectiveScale",
+          "line": 51
+        },
+        {
+          "name": "f:SetScale",
+          "line": 52
+        },
+        {
+          "name": "f:ClearAllPoints",
+          "line": 53
+        },
+        {
+          "name": "f:SetPoint",
+          "line": 54
+        },
+        {
+          "name": "f:GetFrameStrata",
+          "line": 55
+        },
+        {
+          "name": "f:GetFrameLevel",
+          "line": 56
+        },
+        {
+          "name": "f:HookScript",
           "line": 58
         },
         {
+          "name": "f:SetScript",
+          "line": 62
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 63
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 64
+        },
+        {
+          "name": "e.InCombatLockdown",
+          "line": 77
+        },
+        {
+          "name": "returns.combatende.UnitAffectingCombat",
+          "line": 78
+        },
+        {
           "name": "returns.combatende.wipe",
-          "line": 59
+          "line": 79
         },
         {
           "name": "e.CreateFrame",
-          "line": 61
+          "line": 81
         },
         {
           "name": "e.hooksecurefunc",
-          "line": 68
+          "line": 88
         },
         {
-          "name": "dm:ShouldBeShown",
-          "line": 89
-        },
-        {
-          "name": "dm:UpdateShownState",
-          "line": 90
-        },
-        {
-          "name": "dm:GetPrimarySessionWindow",
-          "line": 94
-        },
-        {
-          "name": "dm:GetSessionWindow",
-          "line": 95
-        },
-        {
-          "name": "dm:GetWindowDataList",
-          "line": 96
-        },
-        {
-          "name": "dm:GetMaxSessionWindowCount",
-          "line": 97
-        },
-        {
-          "name": "dm:GetCurrentSessionWindowCount",
-          "line": 98
-        },
-        {
-          "name": "dm:ForEachSessionWindow",
-          "line": 103
-        },
-        {
-          "name": "dm:SetSessionWindowDamageMeterType",
-          "line": 104
-        },
-        {
-          "name": "dm:SetSessionWindowSessionID",
-          "line": 107
-        },
-        {
-          "name": "dm:CanHideSessionWindow",
-          "line": 111
-        },
-        {
-          "name": "dm:HideSessionWindow",
-          "line": 112
-        },
-        {
-          "name": "dm:CanShowNewSecondarySessionWindow",
-          "line": 113
-        },
-        {
-          "name": "value.font:SetTextColor",
-          "line": 117
-        },
-        {
-          "name": "value.font:SetText",
-          "line": 118
-        },
-        {
-          "name": "value:GetName",
+          "name": "dm:Show",
           "line": 119
         },
         {
-          "name": "value:GetNameText",
-          "line": 120
+          "name": "dm:SetVisibility",
+          "line": 121
         },
         {
-          "name": "win:GetDamageMeterType",
+          "name": "dm:IsEditing",
+          "line": 125
+        },
+        {
+          "name": "dm:IsPlayerInCombat",
           "line": 126
         },
         {
-          "name": "win:GetSessionType",
+          "name": "dm:IsPlayerInGroup",
           "line": 127
         },
         {
-          "name": "win:GetSessionID",
+          "name": "dm:ShouldBeShown",
           "line": 128
         },
         {
-          "name": "win:ShouldUseClassColor",
-          "line": 129
-        },
-        {
-          "name": "win:SetUseClassColor",
-          "line": 130
-        },
-        {
-          "name": "win:ShouldShowBarIcons",
-          "line": 131
-        },
-        {
-          "name": "win:SetShowBarIcons",
-          "line": 132
-        },
-        {
-          "name": "win:ForEachEntryFrame",
-          "line": 135
-        },
-        {
-          "name": "win:InitEntry",
+          "name": "e.Enum.DamageMeterVisibility.InGroupthenreturns.inGroupendreturntrueendlocalupdateShown",
           "line": 136
         },
         {
-          "name": "win.sourceWindow:ForEachEntryFrame",
+          "name": "dm:OnEvent",
           "line": 142
         },
         {
-          "name": "win.sourceWindow:InitEntry",
-          "line": 143
+          "name": "dm:UpdateShownState",
+          "line": 158
         },
         {
-          "name": "win:GetSourceWindow",
-          "line": 147
-        },
-        {
-          "name": "dm:ShowNewSecondarySessionWindow",
-          "line": 150
-        },
-        {
-          "name": "s.nativeMethodsIntact",
+          "name": "dm:UpdateSessionTimerState",
           "line": 161
         },
         {
-          "name": "s.event",
+          "name": "dm:GetPrimarySessionWindow",
+          "line": 164
+        },
+        {
+          "name": "dm:GetSessionWindow",
+          "line": 165
+        },
+        {
+          "name": "dm:GetWindowDataList",
+          "line": 166
+        },
+        {
+          "name": "dm:GetMaxSessionWindowCount",
           "line": 167
         },
         {
+          "name": "dm:GetCurrentSessionWindowCount",
+          "line": 168
+        },
+        {
+          "name": "dm:ForEachSessionWindow",
+          "line": 173
+        },
+        {
+          "name": "dm:SetSessionWindowDamageMeterType",
+          "line": 174
+        },
+        {
+          "name": "dm:SetSessionWindowSessionID",
+          "line": 177
+        },
+        {
+          "name": "dm:CanHideSessionWindow",
+          "line": 181
+        },
+        {
+          "name": "dm:HideSessionWindow",
+          "line": 182
+        },
+        {
+          "name": "dm:CanShowNewSecondarySessionWindow",
+          "line": 183
+        },
+        {
+          "name": "value.font:SetTextColor",
+          "line": 187
+        },
+        {
+          "name": "value.font:SetText",
+          "line": 188
+        },
+        {
+          "name": "value:GetName",
+          "line": 189
+        },
+        {
+          "name": "value:GetNameText",
+          "line": 190
+        },
+        {
+          "name": "win:GetDamageMeterType",
+          "line": 196
+        },
+        {
+          "name": "win:GetSessionType",
+          "line": 197
+        },
+        {
+          "name": "win:GetSessionID",
+          "line": 198
+        },
+        {
+          "name": "win:ShouldUseClassColor",
+          "line": 199
+        },
+        {
+          "name": "win:SetUseClassColor",
+          "line": 200
+        },
+        {
+          "name": "win:ShouldShowBarIcons",
+          "line": 201
+        },
+        {
+          "name": "win:SetShowBarIcons",
+          "line": 202
+        },
+        {
+          "name": "win:GetSessionTimerFontString",
+          "line": 207
+        },
+        {
+          "name": "win:GetCombatSession",
+          "line": 208
+        },
+        {
+          "name": "win:IsPlayerInCombat",
+          "line": 209
+        },
+        {
+          "name": "win:SetOnUpdateReason",
+          "line": 210
+        },
+        {
+          "name": "win:UpdateSessionTimerState",
+          "line": 211
+        },
+        {
+          "name": "e.SecondsToClock",
+          "line": 217
+        },
+        {
+          "name": "win:ForEachEntryFrame",
+          "line": 231
+        },
+        {
+          "name": "win:InitEntry",
+          "line": 232
+        },
+        {
+          "name": "win.sourceWindow:ForEachEntryFrame",
+          "line": 238
+        },
+        {
+          "name": "win.sourceWindow:InitEntry",
+          "line": 239
+        },
+        {
+          "name": "win:GetSourceWindow",
+          "line": 243
+        },
+        {
+          "name": "dm:ShowNewSecondarySessionWindow",
+          "line": 246
+        },
+        {
+          "name": "s.nativeMethodsIntact",
+          "line": 257
+        },
+        {
+          "name": "s.event",
+          "line": 263
+        },
+        {
           "name": "s.drain",
-          "line": 172
+          "line": 268
         }
       ],
       "events": [
         {
-          "line": 44,
+          "line": 63,
           "method": "RegisterEvent",
           "arguments": [
             "event"

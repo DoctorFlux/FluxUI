@@ -1,5 +1,29 @@
 # Client and reference validation — 29 October 2026
 
+5 November damage meter combat follow-up: the user-supplied duration warning
+matches Forever1.60.1.70790 line929; Retail12.1.5.70783 has the same native
+comparison at line930. Flux no longer writes the native Edit Mode visibility
+field. It honors the native policy while retaining the host/tab visibility
+boundary; timer and entry methods remain native.
+[Pinned source contracts, policy and native checklist](METER_COMBAT_VISIBILITY.md).
+
+Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
+Five alternating pairs per pinned Retail/Forever source (ten total) and six
+rejected mutants pass; native event/timer/text-update counts remain unchanged.
+Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](validation/meter-combat-visibility-2026-11-05.json).
+No current native input, reload, profiler or settings changes occurred. Reload
+before candidate acceptance and record exact build, loaded revision, addon list,
+profile, hardware, resolution and scale. Test combat timer/rows and every native
+visibility policy, group/content gates, host/tab changes, pane controls, source
+windows, Edit Mode and Details takeover. Native taint, pixels and frame times
+remain pending; other native setters are separate unverified provenance paths.
+Pinned progression 5.5.4.70631, Era 1.15.9.70576 and Anniversary 2.5.6.70577 meter
+TOCs select standard rather than their game types. Keep Details/capability
+fallback, not a promise of native meter availability. Original Wrath remains
+distinct and is not newly certified.
+
 5 November minimap/mail follow-up: Forever's pinned native XML places mail at
 `MinimapCluster.IndicatorFrame.MailFrame`, whereas the existing Flux lookup
 checked older native locations and omitted its own named fallback. The corrected

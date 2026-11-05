@@ -156,3 +156,9 @@ that ignored incomplete raid child capacity. It also records the approved Foreve
 reload, current loaded-provider state and reporter-only warning history. The
 original UNKNOWN header/taint writer remains unattributed; desktop readiness
 checks and a native solo setup read do not certify combat or roster transitions.
+
+The later [combat visibility follow-up](METER_COMBAT_VISIBILITY.md) removes the
+remaining forced native visibility field write matched to the supplied secret-
+duration warning. It restores the native visibility policy and adds coverage for
+the previously omitted field/timer path. The historical results above retain
+their exact scope; native combat/taint acceptance remains pending.

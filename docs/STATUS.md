@@ -1,5 +1,35 @@
 # Development status
 
+5 November native meter combat follow-up: the supplied secret-duration stack
+passes through Blizzard's visibility update. Flux forced the Edit Mode-owned
+`DamageMeter.visibility` field to Always; the native combat event reads that
+field before updating session timers. The correction removes that writer and
+uses the native visibility decision plus the Flux host/tab boundary when showing
+the embedded meter. Native Always/InCombat/Hidden/InGroup settings are retained.
+Duration formatting and entry rendering remain Blizzard-owned.
+[Failure, policy change and checks](METER_COMBAT_VISIBILITY.md).
+
+Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
+Five alternating pairs per pinned Retail/Forever source (ten total) and six
+rejected mutants pass; native event/timer/text-update counts remain unchanged.
+Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](validation/meter-combat-visibility-2026-11-05.json).
+A reload is required to discard already-tainted state. Current native combat,
+secret-value/taint, rendering and performance acceptance remain pending. No new
+game input, foreground control, profiler change or settings reset was used.
+Retail and Forever ship the inspected native meter; other clients retain the
+capability check and Details path. This does not certify a native meter on Era,
+Anniversary, progression or original Wrath.
+
+New requested work remains pending: METER-SKIN-01 must reproduce the existing
+FluxDetails skin/theme on Forever's native meter without Details; METER-THREAT-01
+must provide a standalone Flux threat pane alongside that backend. Audit shared
+skin/threat services, restrictions and assets before implementation. These
+requirements are separate from this visibility correction.
+The user authorized recreating that look with existing Flux/Blizzard assets;
+reserved third-party artwork is not part of that authorization.
+
 5 November minimap/mail follow-up: a provider-independent frame-retention defect
 is reproduced in `FluxMinimap:PositionIndicators()`. The native-frame lookup did
 not reuse its own named fallback. Five hundred layout calls created 500 fallback

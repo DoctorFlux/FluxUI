@@ -2,6 +2,22 @@
 -- emulate WoW's secure VM, secret values, rendering or native-client support.
 -- Optional argument: alternate FluxBlizzardMeter.lua source for baseline replay.
 local source = arg[1] or "Battlezonemap/FluxBlizzardMeter.lua"
+-- Optional arg2 is an external pinned source prefix, e.g. .../forever.
+-- Only the requested native methods are replayed; source is not bundled here.
+local nativePrefix = arg[2]
+local nativeRoot, nativeSession
+local function read(path)
+    local f = assert(io.open(path, "r")); local text = f:read("*a"); f:close(); return text
+end
+if nativePrefix then
+    nativeRoot = read(nativePrefix .. "-DamageMeter.lua")
+    nativeSession = read(nativePrefix .. "-DamageMeterSessionWindow.lua")
+end
+local function nativeMethod(text, mixin, name)
+    local start = assert(text:find("function " .. mixin .. ":" .. name .. "(", 1, true))
+    local finish = text:find("\nfunction ", start + 1, true) or (#text + 1)
+    return text:sub(start, finish - 1)
+end
 local checks, failures = 0, 0
 local totals = { typeCalls = 0, sessionCalls = 0, entryWalks = 0 }
 local gamepadPatchTimers = 0
@@ -11,11 +27,13 @@ local function check(value, message)
 end
 local noop = function() end
 
-local function harness(gamepad)
+local function harness(gamepad, policy, hasVisibilitySetter)
     local e = setmetatable({}, { __index = _G }); e._G = e
     local s = { available = true, details = false, combat = false, activeTab = "Meter",
         frames = {}, timers = {}, timerCreates = 0, typeCalls = 0, sessionCalls = 0,
-        classCalls = 0, iconCalls = 0, entryWalks = 0, points = 0, hooks = {}, windows = {} }
+        classCalls = 0, iconCalls = 0, entryWalks = 0, points = 0, hooks = {}, windows = {},
+        visibility = policy or 0, policyWrites = 0, setterCalls = 0, rootShows = 0,
+        timerDispatches = 0, timerWrites = 0, enabled = true, inGroup = false }
     local function frame(parent)
         local f = { parent = parent, shown = true, scripts = {}, events = {}, hooks = {},
             width = 300, height = 270, scale = 1, points = {} }
@@ -23,6 +41,7 @@ local function harness(gamepad)
         function f:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
         function f:Show() self.shown = true end
         function f:Hide() self.shown = false end
+        function f:SetShown(value) if value then self:Show() else self:Hide() end end
         function f:SetParent(value) self.parent = value end
         function f:GetParent() return self.parent end
         function f:GetWidth() return self.width end
@@ -52,7 +71,8 @@ local function harness(gamepad)
     e.FluxMeterLayout = { HasBlizzardDamageMeterClient = function() return s.available end,
         IsDetailsAddonLoaded = function() return s.details end }
     e.Flux = { Cap = { IsForeverGamepadUI = function() return gamepad end } }
-    e.Enum = { DamageMeterVisibility = { Always = 0 }, DamageMeterSessionType = { Overall = 0 },
+    e.Enum = { DamageMeterVisibility = { Always = 0, InCombat = 1, Hidden = 2, InGroup = 3 },
+        DamageMeterSessionType = { Overall = 0, Expired = 3 },
         DamageMeterType = { DamageDone = 0, HealingDone = 2, Dps = 1, Hps = 3 } }
     e.InCombatLockdown = function() return s.combat end
     e.UnitAffectingCombat = function() return s.combat end
@@ -86,10 +106,60 @@ local function harness(gamepad)
     end }
     e.DamageMeterSessionWindowMixin = { SetSessionDuration = function() end }
     local dm = frame(e.UIParent); e.DamageMeter = dm; s.dm = dm
-    function dm:ShouldBeShown() return true end
+    -- Keep the native policy in a proxy so every addon write is observable,
+    -- including the old fallback assignment. This is not a secure-VM emulator.
+    setmetatable(dm, {
+        __index = function(_, key) if key == "visibility" then return s.visibility end end,
+        __newindex = function(t, key, value)
+            if key == "visibility" then s.visibility = value; s.policyWrites = s.policyWrites + 1
+            else rawset(t, key, value) end
+        end,
+    })
+    local showFrame = dm.Show
+    function dm:Show() s.rootShows = s.rootShows + 1; showFrame(self) end
+    if hasVisibilitySetter then
+        function dm:SetVisibility(value)
+            s.setterCalls = s.setterCalls + 1; self.visibility = value
+        end
+    end
+    function dm:IsEditing() return false end
+    function dm:IsPlayerInCombat() return s.combat end
+    function dm:IsPlayerInGroup() return s.inGroup end
+    function dm:ShouldBeShown()
+        if not s.enabled or not s.available then return false end
+        local visibility = self.visibility
+        if visibility == e.Enum.DamageMeterVisibility.InCombat then return s.combat end
+        if visibility == e.Enum.DamageMeterVisibility.Hidden then return false end
+        if visibility == e.Enum.DamageMeterVisibility.InGroup then return s.inGroup end
+        return true
+    end
+    local updateShown = function(self)
+        self:SetShown(self:ShouldBeShown()); self:UpdateSessionTimerState()
+    end
+    local updateTimers = function(self)
+        self:ForEachSessionWindow(function(win) win:UpdateSessionTimerState() end)
+    end
+    function dm:OnEvent(event)
+        if event == "PLAYER_IN_COMBAT_CHANGED" or event == "GROUP_JOINED" or event == "GROUP_LEFT"
+            or event == "PLAYER_LEVEL_CHANGED" then self:UpdateShownState() end
+    end
+    if nativeRoot then
+        e.DamageMeterMixin = {}
+        e.CVarCallbackRegistry = { GetCVarValueBool = function() return s.enabled end }
+        e.C_DamageMeter = { IsDamageMeterAvailable = function() return s.available end }
+        local chunk = 'local DAMAGE_METER_ENABLED_CVAR = "damageMeterEnabled"\n'
+        for _, name in ipairs({"ShouldBeShown", "UpdateShownState", "UpdateSessionTimerState", "OnEvent"}) do
+            chunk = chunk .. nativeMethod(nativeRoot, "DamageMeterMixin", name) .. "\n"
+        end
+        assert(load(chunk, "@pinned native meter dispatch", "t", e))()
+        dm.ShouldBeShown, dm.OnEvent = e.DamageMeterMixin.ShouldBeShown, e.DamageMeterMixin.OnEvent
+        updateShown, updateTimers = e.DamageMeterMixin.UpdateShownState, e.DamageMeterMixin.UpdateSessionTimerState
+    end
     function dm:UpdateShownState()
-        if self:ShouldBeShown() then self:Show() else self:Hide() end
-        after(self, "UpdateShownState")
+        updateShown(self); after(self, "UpdateShownState")
+    end
+    function dm:UpdateSessionTimerState()
+        s.timerDispatches = s.timerDispatches + 1; updateTimers(self)
     end
     function dm:GetPrimarySessionWindow() return s.windows[1] end
     function dm:GetSessionWindow(index) return s.windows[index] end
@@ -131,6 +201,32 @@ local function harness(gamepad)
         function win:ShouldShowBarIcons() return self.showBarIcons end
         function win:SetShowBarIcons(value) s.iconCalls = s.iconCalls + 1; self.showBarIcons = value end
         win.SetSessionDuration = e.DamageMeterSessionWindowMixin.SetSessionDuration
+        win.timerFont = { SetText = function(_, text)
+            s.timerWrites = s.timerWrites + 1; win.timerText = text
+        end }
+        function win:GetSessionTimerFontString() return self.timerFont end
+        function win:GetCombatSession() return { durationSeconds = 65 } end
+        function win:IsPlayerInCombat() return s.combat end
+        function win:SetOnUpdateReason(_, value) self.timerOnUpdate = value end
+        function win:UpdateSessionTimerState()
+            self.timerOnUpdate = s.combat
+            self.timerFont:SetText(s.combat and "[01:05] " or "")
+        end
+        if nativeSession then
+            e.DamageMeterSessionWindowMixin = {}
+            e.SecondsToClock = function(seconds)
+                return string.format("%02d:%02d", math.floor(seconds / 60), seconds % 60)
+            end
+            local start = assert(nativeSession:find("local function ShouldDisplaySessionTimer(", 1, true))
+            local finish = assert(nativeSession:find("\nfunction DamageMeterSessionWindowMixin:IsPlayerInCombat(", start, true))
+            local chunk = nativeSession:sub(start, finish - 1)
+            for _, name in ipairs({"SetSessionDuration", "ShowSessionTimerFromCombatSession", "ShowSessionTimer",
+                "ClearSessionTimer", "UpdateSessionTimerState"}) do
+                chunk = chunk .. nativeMethod(nativeSession, "DamageMeterSessionWindowMixin", name) .. "\n"
+            end
+            assert(load(chunk, "@pinned native session timer", "t", e))()
+            for name, fn in pairs(e.DamageMeterSessionWindowMixin) do win[name] = fn end
+        end
         win.entry = entry(true)
         function win:ForEachEntryFrame(fn) s.entryWalks = s.entryWalks + 1; fn(self.entry) end
         function win:InitEntry(row, data)
@@ -271,6 +367,71 @@ local function fixture(label, gamepad, measure)
             and state.timerCreates == 0, label .. " " .. unavailable .. " path leaves native renderer inert")
     end
 end
+
+local visibilityTotals = { writes = 0, setters = 0, nativeEvents = 0, timerDispatches = 0,
+    redundantShows = 0, timerWrites = 0 }
+local function visibilityFixture(policy, setter)
+    local e, s = harness(false, policy, setter)
+    local meter = e.FluxBlizzardMeter
+    local layout = { topSlots = {{kind = "blizzard", damageMeterType = 0}}, bottomSlots = {} }
+    local label = "policy=" .. policy .. " setter=" .. tostring(setter)
+    check(meter:Embed(s.host, layout), label .. " embeds")
+    check(s.visibility == policy and s.policyWrites == 0 and s.setterCalls == 0,
+        label .. " addon leaves native visibility ownership untouched")
+    check(s.dm:IsShown() == (policy == 0), label .. " out-of-combat native policy retained")
+    local events, dispatches = 0, s.timerDispatches
+    local function event(name)
+        events = events + 1; s.dm:OnEvent(name)
+    end
+    s.combat = true; event("PLAYER_IN_COMBAT_CHANGED")
+    check(s.dm:IsShown() == (policy == 0 or policy == 1), label .. " native combat visibility")
+    check(s.windows[1].timerText == "[01:05] " and s.windows[1].timerOnUpdate,
+        label .. " native combat timer still renders and updates")
+    for _ = 1, 500 do event("PLAYER_IN_COMBAT_CHANGED") end
+    check(s.policyWrites == 0 and s.visibility == policy,
+        label .. " repeated native combat dispatch reads unmodified policy")
+    check(s.timerDispatches == dispatches + events, label .. " each native event retains one timer dispatch")
+    local frameCount, timerCount = #s.frames, s.timerCreates
+    local shows = s.rootShows
+    for _ = 1, 500 do meter:Show() end
+    local repeatedShows = s.rootShows - shows
+    check(s.rootShows == shows and s.timerDispatches == dispatches + events,
+        label .. " repeated addon Show neither re-shows root nor invokes native timer")
+    check(#s.frames == frameCount and s.timerCreates == timerCount,
+        label .. " repeated Show adds no frames or timers")
+    s.activeTab = "Map"; meter:Hide(); event("PLAYER_IN_COMBAT_CHANGED")
+    check(not s.dm:IsShown(), label .. " native combat event respects inactive Flux tab")
+    meter:Show(); check(not s.dm:IsShown(), label .. " explicit Show respects inactive Flux tab")
+    s.activeTab = "Meter"; s.host.shown = false; meter:Show()
+    check(not s.dm:IsShown(), label .. " explicit Show respects hidden Flux host")
+    s.host.shown = true; meter:Show()
+    check(s.dm:IsShown() == (policy == 0 or policy == 1), label .. " active combat tab can reopen under native policy")
+    s.combat = false; event("PLAYER_IN_COMBAT_CHANGED")
+    check(s.dm:IsShown() == (policy == 0), label .. " native combat exit restores configured policy")
+    check(s.windows[1].timerText == "" and not s.windows[1].timerOnUpdate,
+        label .. " native combat exit clears timer normally")
+    s.inGroup = true; event("GROUP_JOINED")
+    check(s.dm:IsShown() == (policy == 0 or policy == 3), label .. " native group policy remains available")
+    s.enabled = false; meter:Show()
+    check(not s.dm:IsShown(), label .. " native disabled setting remains effective")
+    s.enabled = true; s.available = false; meter:Show()
+    check(not s.dm:IsShown(), label .. " unavailable native content remains hidden")
+    check(s.nativeMethodsIntact(), label .. " visibility and timer functions remain unchanged")
+    visibilityTotals.writes = visibilityTotals.writes + s.policyWrites
+    visibilityTotals.setters = visibilityTotals.setters + s.setterCalls
+    visibilityTotals.nativeEvents = visibilityTotals.nativeEvents + events
+    visibilityTotals.timerDispatches = visibilityTotals.timerDispatches + s.timerDispatches
+    visibilityTotals.redundantShows = visibilityTotals.redundantShows + repeatedShows
+    visibilityTotals.timerWrites = visibilityTotals.timerWrites + s.timerWrites
+end
+for policy = 0, 3 do
+    visibilityFixture(policy, false)
+    visibilityFixture(policy, true)
+end
+print(string.format("meter visibility: policyWrites=%d setterCalls=%d nativeEvents=%d timerDispatches=%d repeatedAddonRootShows=%d timerWrites=%d pinnedNative=%s",
+    visibilityTotals.writes, visibilityTotals.setters, visibilityTotals.nativeEvents,
+    visibilityTotals.timerDispatches, visibilityTotals.redundantShows, visibilityTotals.timerWrites,
+    tostring(nativePrefix ~= nil)))
 
 for _, client in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     -- Capability fixtures exercise shared code; labels do not certify that a

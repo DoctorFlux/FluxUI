@@ -1,5 +1,25 @@
 # Baseline protocol and currency evidence
 
+5 November native meter visibility: separate the reproduced native-policy
+write from native performance acceptance. Baseline `72704d1` forced Always into
+Blizzard's Edit Mode field; the combat visibility event reads it before session
+timer comparisons. The candidate removes that writer and uses the native
+visibility decision without replacing timer or renderer methods.
+[Matched regressions, exact source identities and limits](METER_COMBAT_VISIBILITY.md).
+
+Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
+Five alternating pairs per pinned Retail/Forever source (ten total) and six
+rejected mutants pass; native event/timer/text-update counts remain unchanged.
+Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](validation/meter-combat-visibility-2026-11-05.json).
+The supplied stack establishes a native baseline failure, not candidate combat
+acceptance. No native CPU, allocation/memory, operation latency, frame-time or
+FPS samples were captured for this change; hardware/profile/addon settings were
+not captured as a matched run. Desktop provenance models cannot reproduce the
+engine secure VM. Keep profiling optional, preserve preferences, reload old
+state and complete native policy/combat/layout checks before claiming taint safety.
+
 5 November minimap mail ownership: measure repeated layouts separately from
 mail-event delivery. The production-function replay creates 500 fallback frames
 from 500 layouts and 1,024 from ten unchanged mail events before correction.

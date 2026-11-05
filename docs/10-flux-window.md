@@ -60,6 +60,13 @@ The editor applies built-ins, changes pane contents/column counts/fractions, sav
 
 [FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) discovers native session APIs and embeds supported session windows, accepting current secondary-window and older variants. Forever gamepad mode anchors it to the Flux window **without reparenting**, because reparenting taints native gamepad dropdown interaction. Both backend reset APIs require being out of combat.
 
+Native meter visibility remains owned by Blizzard Edit Mode: Always, InCombat,
+InGroup and Hidden settings are honored inside the Flux host/tab boundary.
+Embedding no longer forces Always into Blizzard's native field, which was read
+before combat timer updates. Timer and row rendering stay native; reload after
+the fix and verify combat, source windows and pane controls in game.
+[Combat visibility evidence and limits](METER_COMBAT_VISIBILITY.md).
+
 ## Settings and diagnosis
 
 Layout, General and Battlezone builders provide placement/tab/map/meter controls; [options](26-options-map.md) records exact labels/scopes. Runtime tab arrays, active tab and embed state are distinct from persisted tab configuration. Meter layout storage is separate again.

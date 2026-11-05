@@ -1,5 +1,16 @@
 # Decisions
 
+5 November meter visibility ownership: leave `DamageMeter.visibility` to
+Blizzard Edit Mode. Flux must not force Always through a setter or direct field
+write; native combat updates read that field before comparing session duration.
+Honor native visibility/enabled/content policy while retaining the Flux host/tab
+boundary, layout, menus, selections and Details priority. Restoring the player's
+native visibility choice intentionally replaces the old forced-Always behavior.
+Keep timer/rendering methods native and preserve opaque combat values; do not
+add a placeholder, global replacement, privilege shim or error suppression.
+Reload before acceptance; remaining native configuration/Show boundaries require
+real client checks. [Evidence and native steps](METER_COMBAT_VISIBILITY.md).
+
 5 November minimap mail ownership: reuse the existing named Flux fallback after
 the two existing native-frame choices. Do not adopt/reparent Forever's different
 32×24 native indicator or alter the accepted 20×15 fallback, anchors, tooltip,

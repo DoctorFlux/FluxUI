@@ -1,5 +1,31 @@
 # Work log
 
+5 November damage meter combat visibility: clean baseline
+`72704d19cec2190495acb51d0ab82659e945d71a`. External verified checkpoint
+Mail-auction-publication-20261105T202207Z preserves 1,534 actual files, 122
+available on-disk settings and all-ref history. Source ZIP SHA256:
+`10f43e0b24068defd30e84f170beeb1ab50537a14f7b4acd70c70296959cb946`.
+Archive integrity and history verification passed; unsaved game memory excluded.
+
+The user's 21:18:13 stack matches Forever's native secret-duration comparison at
+line929. Flux's forced visibility field is read by the native combat event before
+the timer traversal. The earlier mock omitted that initial field and traversal.
+The follow-up removes the native policy write, checks native visibility before
+showing, and retains the Flux host/tab boundary and native timer/entry methods.
+Native visibility settings now govern the embedded meter instead of forced Always.
+[Exact sources and regressions](METER_COMBAT_VISIBILITY.md).
+
+Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
+Five alternating pairs per pinned Retail/Forever source (ten total) and six
+rejected mutants pass; native event/timer/text-update counts remain unchanged.
+Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
+hashes and file membership match before/after the run.
+[Full report](validation/meter-combat-visibility-2026-11-05.json).
+No game input, foreground, profiling, settings or external addon changes were
+used. Native combat/taint, pixels and performance remain pending on Retail and
+Forever; other clients retain Details/capability absence. Prior native checks
+predate this candidate and cannot establish its acceptance.
+
 5 November minimap mail lifecycle and Retail tooltip readiness: baseline
 `c1a5f901467ff5015938442c74580d6d4781cbaa`. Verified external checkpoint
 Mail-auction-publication-20261105T194013Z preserves 1,529 actual files, 122

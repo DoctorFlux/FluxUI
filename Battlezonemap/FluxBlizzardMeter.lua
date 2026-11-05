@@ -21,6 +21,20 @@ local startupTimer = nil
 local startupGeneration = 0
 local StartStartupEmbed
 
+local function ShowEmbeddedRoot(dmFrame)
+    local show = embeddedParentFrame and embeddedParentFrame:IsVisible()
+    local activeTab = FluxWindowFrame and FluxWindowFrame.GetActiveTab
+        and FluxWindowFrame:GetActiveTab()
+    if activeTab and activeTab ~= "Meter" then show = false end
+    -- Edit Mode owns visibility. Writing it here taints later native combat timers.
+    if show and dmFrame.ShouldBeShown then show = dmFrame:ShouldBeShown() end
+    if show then
+        if not dmFrame:IsShown() then dmFrame:Show() end
+    else
+        dmFrame:Hide()
+    end
+end
+
 local function CancelStartupEmbed()
     startupGeneration = startupGeneration + 1
     if startupTimer and startupTimer.Cancel then startupTimer:Cancel() end
@@ -883,14 +897,8 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
             end)
         end
 
-        if dmFrame.SetVisibility then
-            dmFrame:SetVisibility(Enum.DamageMeterVisibility.Always)
-        elseif dmFrame.visibility ~= nil then
-            dmFrame.visibility = Enum.DamageMeterVisibility.Always
-        end
-
         -- Root is sized/scaled in LayoutMeterGrid via ApplyRootScaleAndSize.
-        dmFrame:Show()
+        ShowEmbeddedRoot(dmFrame)
 
         if dmFrame.ForEachSessionWindow then
             dmFrame:ForEachSessionWindow(function(sessionWindow)
@@ -927,7 +935,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
                     end
                     local dm = GetDamageMeterFrame()
                     if dm then
-                        dm:Show()
+                        ShowEmbeddedRoot(dm)
                         if currentLayoutConfig then
                             LayoutMeterGrid(embeddedParentFrame, currentLayoutConfig)
                         end
@@ -1019,8 +1027,7 @@ function FluxBlizzardMeter:Show()
         end
     end
     
-    -- Show the main frame
-    dmFrame:Show()
+    ShowEmbeddedRoot(dmFrame)
 end
 
 -- ---------------------------------------------------------------------------
