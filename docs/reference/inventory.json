@@ -50271,8 +50271,8 @@
       "path": "Inventory/FluxItemClass.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 665,
-      "sha256": "b649bff0d060495428e90220fbe517907a0023497f7d433381debfae17fe2f5c",
+      "lines": 672,
+      "sha256": "af63bcf811e764bdffc6d6eefd36eafa805b318720409796587bde823fe91556",
       "clients": [
         "camelot",
         "cata",
@@ -50375,7 +50375,7 @@
       ],
       "events": [
         {
-          "line": 651,
+          "line": 658,
           "method": "RegisterEvent",
           "arguments": [
             "\"ITEM_DATA_LOAD_RESULT\""
@@ -50383,7 +50383,7 @@
           "context": "(\"Frame\")f:"
         },
         {
-          "line": 652,
+          "line": 659,
           "method": "RegisterEvent",
           "arguments": [
             "\"GET_ITEM_INFO_RECEIVED\""
@@ -76484,6 +76484,59 @@
           ]
         }
       ]
+    },
+    {
+      "path": "tests/item_metadata_idempotence.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 75,
+      "sha256": "155f1bcf5b50232d3cfd092be1730d6d237690177b2d37607e6fa2d5b7eef406",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "ee.wipe",
+          "line": 10
+        },
+        {
+          "name": "nilendende.GetTime",
+          "line": 11
+        },
+        {
+          "name": "ende.CreateFrame",
+          "line": 12
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 13
+        },
+        {
+          "name": "f:SetScript",
+          "line": 13
+        },
+        {
+          "name": "t:Cancel",
+          "line": 26
+        },
+        {
+          "name": "IC.GetTooltipText",
+          "line": 55
+        },
+        {
+          "name": "e.FluxConsumableClassify.ParseFoodWaterRestore",
+          "line": 65
+        },
+        {
+          "name": "e.FluxConsumableClassify.ParseFoodWaterRestore",
+          "line": 69
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
     },
     {
       "path": "tests/late_inventory.lua",

@@ -55,7 +55,7 @@ local staticCache = {}   -- [itemID] = { classID, subClassID, equipLoc, icon }
 local infoCache = {}     -- [itemID] = full info record (only once loaded)
 local restoreCache = {}  -- [itemID] = restore record (ready=true) or false (retry)
 local restoreRetries = {}
-local pendingLoads = {} -- only requests made by this service
+local itemDataState = {} -- true: requested; false: completion already delivered
 local MAX_RESTORE_RETRIES = 4
 
 -- Per-frame tooltip scan budget (FluxBagLagProf is disabled in TOC; keep a
@@ -166,7 +166,7 @@ end
 function IC.RequestLoad(itemID)
     itemID = tonumber(itemID)
     if not itemID then return end
-    pendingLoads[itemID] = true
+    itemDataState[itemID] = true
     if C_Item and C_Item.RequestLoadItemDataByID then
         pcall(C_Item.RequestLoadItemDataByID, itemID)
     end
@@ -585,7 +585,7 @@ function IC.OnItemDataLoaded(itemID)
             infoCache[itemID] = rec
         end
     end
-    if infoCache[itemID] then pendingLoads[itemID] = nil end
+    if infoCache[itemID] then itemDataState[itemID] = false end
     local restore = restoreCache[itemID]
     if restore == nil or (restore and not restore.ready) then
         restoreRetries[itemID] = nil
@@ -638,7 +638,14 @@ _G.FluxItemClass = IC
 function IC.OnItemDataEvent(itemID, success)
     itemID = tonumber(itemID)
     if not itemID or success == false then return end
-    if not pendingLoads[itemID] and staticCache[itemID] == nil
+    -- Both native metadata events and FluxInv can deliver the same completion.
+    -- Do not invalidate stable selectors/junk widgets again for a resolved item.
+    local restore = restoreCache[itemID]
+    if itemDataState[itemID] == false and staticCache[itemID] ~= false
+        and restoreRetries[itemID] == nil and (not restore or restore.ready) then
+        return
+    end
+    if not itemDataState[itemID] and staticCache[itemID] == nil
         and infoCache[itemID] == nil and restoreCache[itemID] == nil
         and restoreRetries[itemID] == nil then
         return

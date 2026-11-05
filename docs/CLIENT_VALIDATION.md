@@ -1,5 +1,15 @@
 # Client and reference validation — 29 October 2026
 
+5 November mail/auction safeguard: user reports Forever lag with Baganator840
+and Syndicator289 on mailbox open/close, auction buying and sales; cannot run
+native captures and requested safeguards. Resolved owned item-data completions
+now notify consumers once, preserving explicit refreshes, incomplete metadata and
+parser retries. Five desktop pairs: stable duplicate burst4,000 junk callbacks,
+8,000 selector invalidations and2,000 Baganator timer creates/cancels become zero.
+140 checks pass, three mutants rejected; full130 scripts/785 syntax pass.
+Actual lag attribution/native improvement remains unverified.
+[Evidence and remaining checks](MAIL_AUCTION_GUARDS.md).
+
 5 November clarification: Forever retains Blizzard's ProfessionMicroButton.
 Only FluxUI's custom trade-skill buttons, flyout and related options are disabled.
 Removed the native-button exclusion/parking added in the preceding batch; the

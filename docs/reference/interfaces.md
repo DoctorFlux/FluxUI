@@ -435,8 +435,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:477](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L477) | `RegisterEvent` | `"UNIT_MAXHEALTH"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:478](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L478) | `RegisterEvent` | `"UNIT_MAXPOWER"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:628](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L628) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
-| [Inventory/FluxItemClass.lua:651](../../Inventory/FluxItemClass.lua#L651) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
-| [Inventory/FluxItemClass.lua:652](../../Inventory/FluxItemClass.lua#L652) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
+| [Inventory/FluxItemClass.lua:658](../../Inventory/FluxItemClass.lua#L658) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
+| [Inventory/FluxItemClass.lua:659](../../Inventory/FluxItemClass.lua#L659) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
 | [Inventory/Init.lua:242](../../Inventory/Init.lua#L242) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:516](../../Inventory/Restock/Bank/FluxBankRestock.lua#L516) | `RegisterEvent` | `"BAG_UPDATE"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:517](../../Inventory/Restock/Bank/FluxBankRestock.lua#L517) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
