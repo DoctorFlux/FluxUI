@@ -209,6 +209,14 @@ local function harness(gamepad, policy, hasVisibilitySetter)
         function win:GetDamageMeterType() return self.meterType end
         function win:GetSessionType() return self.sessionType end
         function win:GetSessionID() return self.sessionID end
+        win.background = { alpha = 0 }
+        function win.background:SetAlpha(alpha) self.alpha = alpha end
+        function win:GetBackground() return self.background end
+        function win:GetBackgroundAlpha() return self.backgroundAlpha or 1 end
+        function win:UpdateBackground()
+            self:GetBackground():SetAlpha(self:GetBackgroundAlpha())
+            after(self, "UpdateBackground")
+        end
         function win:ShouldUseClassColor() return self.useClassColor end
         function win:SetUseClassColor(value) s.classCalls = s.classCalls + 1; self.useClassColor = value end
         function win:ShouldShowBarIcons() return self.showBarIcons end
@@ -247,6 +255,8 @@ local function harness(gamepad, policy, hasVisibilitySetter)
             after(self, "InitEntry", row, data)
         end
         win.sourceWindow = frame(win)
+        win.sourceWindow.background = { alpha = 0 }
+        function win.sourceWindow:GetBackground() return self.background end
         win.sourceWindow.entry = entry(false)
         function win.sourceWindow:ForEachEntryFrame(fn) s.entryWalks = s.entryWalks + 1; fn(self.entry) end
         function win.sourceWindow:InitEntry(row, data)
@@ -447,6 +457,130 @@ print(string.format("meter visibility: policyWrites=%d setterCalls=%d nativeEven
     visibilityTotals.writes, visibilityTotals.setters, visibilityTotals.nativeEvents,
     visibilityTotals.timerDispatches, visibilityTotals.redundantShows, visibilityTotals.timerWrites,
     tostring(nativePrefix ~= nil)))
+
+-- Shared paint follows native configuration and later native alpha refreshes.
+local backgroundTotals = { updates = 0, skins = 0 }
+local function backgroundFixture(gamepad)
+    local e, s = harness(gamepad)
+    local meter, paints = e.FluxBlizzardMeter, 0
+    local released = 0
+    e.FluxMeterSkin = {
+        ApplyToEntry = noop,
+        ApplyToWindow = function(_, window, scale)
+            paints = paints + 1
+            s.skinScaleValid = s.skinScaleValid ~= false and scale == .8
+            window:GetBackground().alpha = 1
+            window:GetBackground().paint = "Flux"
+            local session = window.GetSessionID and window or window:GetParent()
+            window.configuredAtPaint = session.meterType ~= nil and session.sessionType == 0
+                and session.useClassColor == true and session.showBarIcons == true
+        end,
+        ReleaseAllNative = function() released = released + 1 end,
+    }
+    local layout = { topSlots = {{kind = "blizzard", damageMeterType = 0}},
+        bottomSlots = {{kind = "blizzard", damageMeterType = 2}} }
+    check(meter:Embed(s.host, layout), "background fixture embeds")
+    for _, win in ipairs(s.windows) do
+        check(win.configuredAtPaint and win.sourceWindow.configuredAtPaint,
+            "native session and existing source receive skin after native configuration")
+        check(#(s.hooks[win] and s.hooks[win].UpdateBackground or {}) == 1,
+            "one native background posthook is installed per session")
+        check(not (s.hooks[win.sourceWindow] and s.hooks[win.sourceWindow].UpdateBackground),
+            "source windows without UpdateBackground receive no invented method hook")
+    end
+    local frames, timers, types, sessions, walks = #s.frames, s.timerCreates, s.typeCalls, s.sessionCalls, s.entryWalks
+    local before = paints
+    for _ = 1, 500 do
+        for _, win in ipairs(s.windows) do win.backgroundAlpha = 0; win:UpdateBackground() end
+    end
+    check(paints == before + 1000 and s.windows[1]:GetBackground().alpha == 1 and s.windows[2]:GetBackground().alpha == 1,
+        "late native alpha refreshes regain shared presentation")
+    check(#s.frames == frames and s.timerCreates == timers and s.typeCalls == types
+        and s.sessionCalls == sessions and s.entryWalks == walks and s.policyWrites == 0,
+        "background posthooks add no frames timers entry scans or native content/policy writes")
+    check(s.skinScaleValid, "native shared skin retains accepted presentation scale")
+    check(s.nativeMethodsIntact(), "background styling retains native method identities")
+    s.details = true; before = paints; s.windows[1]:UpdateBackground()
+    check(paints == before and s.windows[1]:GetBackground().alpha == 0, "Details availability immediately stops native skin callbacks")
+    meter:Hide(); s.details = false; s.windows[1]:UpdateBackground()
+    check(paints == before and released == 1, "Details handoff retires active skin membership")
+    meter:Embed(s.host, layout); before = paints; s.windows[1]:UpdateBackground()
+    check(paints == before + 1 and #(s.hooks[s.windows[1]].UpdateBackground or {}) == 1,
+        "re-embed resumes one existing background hook")
+    meter:Cleanup(); before = paints; s.windows[1]:UpdateBackground()
+    check(paints == before and s.windows[1]:GetBackground().alpha == 0,
+        "cleanup stops permanent background hooks from repainting released windows")
+    meter:Embed(s.host, layout); before = paints; s.windows[1]:UpdateBackground()
+    check(paints == before + 1 and #(s.hooks[s.windows[1]].UpdateBackground or {}) == 1,
+        "cleanup and re-embed keep background hook registration bounded")
+    check(s.nativeMethodsIntact(), "background handoff never replaces a native method")
+    backgroundTotals.updates = backgroundTotals.updates + 1000
+    backgroundTotals.skins = backgroundTotals.skins + paints
+end
+backgroundFixture(false); backgroundFixture(true)
+print(string.format("native backgrounds: updates=%d skinCalls=%d", backgroundTotals.updates, backgroundTotals.skins))
+
+-- SwitchToTab runs the previous onHide before it changes GetActiveTab().
+local tabHideTotals = { cycles = 0, threatResurrections = 0, rootResurrections = 0 }
+local function tabHideFixture(gamepad, threatOnly, policy)
+    local e, s = harness(gamepad, policy)
+    local meter = e.FluxBlizzardMeter
+    local threat = e.CreateFrame("Frame"); threat:Hide()
+    e.FluxThreatMeter = {
+        IsAvailable = function() return not s.details end,
+        GetFrame = function() return threat end,
+        Embed = function(_, host, scale) threat:SetParent(host); threat:SetScale(scale); return threat end,
+        RefreshLayout = noop,
+        Show = function() if s.activeTab == "Meter" and s.host:IsVisible() then threat:Show() else threat:Hide() end end,
+        Hide = function() threat:Hide() end,
+        Cleanup = function() threat:Hide() end,
+    }
+    local slot = { kind = "plugin", plugin = "DETAILS_PLUGIN_FLUX_THREAT" }
+    local layout = { topSlots = threatOnly and {slot} or {{kind = "blizzard", damageMeterType = 0}},
+        bottomSlots = threatOnly and {} or {slot} }
+    local label = "tab hide gamepad=" .. tostring(gamepad) .. " threatOnly=" .. tostring(threatOnly) .. " policy=" .. policy
+    check(meter:Embed(s.host, layout) and threat:IsShown(), label .. " owned threat starts visible")
+    check(s.dm:IsShown() == (not threatOnly and policy == 0), label .. " native visibility remains independent")
+    -- Native-reproduced ordering: activeTab and Content are still Meter/visible.
+    meter:Hide()
+    check(not s.dm:IsShown() and not threat:IsShown(), label .. " onHide hides both panes before activeTab changes")
+    s.dm:UpdateShownState()
+    check(not s.dm:IsShown() and not threat:IsShown(), label .. " native refresh cannot undo explicit Hide during tab transition")
+    s.activeTab = "Map"; s.dm:UpdateShownState()
+    check(not s.dm:IsShown() and not threat:IsShown(), label .. " panes remain hidden after the tab changes")
+    s.activeTab = "Meter"; meter:Show()
+    check(threat:IsShown() and s.dm:IsShown() == (not threatOnly and policy == 0), label .. " explicit Show restores the selected panes")
+    local frames, timers, types, sessions = #s.frames, s.timerCreates, s.typeCalls, s.sessionCalls
+    for _ = 1, 500 do
+        meter:Hide(); s.dm:UpdateShownState()
+        if threat:IsShown() then tabHideTotals.threatResurrections = tabHideTotals.threatResurrections + 1 end
+        if s.dm:IsShown() then tabHideTotals.rootResurrections = tabHideTotals.rootResurrections + 1 end
+        s.activeTab = "Map"; s.dm:UpdateShownState()
+        s.activeTab = "Meter"; meter:Show()
+        tabHideTotals.cycles = tabHideTotals.cycles + 1
+    end
+    check(#s.frames == frames and s.timerCreates == timers and s.typeCalls == types and s.sessionCalls == sessions,
+        label .. " repeated tab transitions reuse frames without timers or content rebuilds")
+    check(#(s.hooks[s.dm] and s.hooks[s.dm].UpdateShownState or {}) == 1 and s.nativeMethodsIntact(),
+        label .. " transitions retain one posthook and all native functions")
+    meter:Hide(); meter:Embed(s.host, layout)
+    check(threat:IsShown() and s.dm:IsShown() == (not threatOnly and policy == 0), label .. " a new Embed resumes explicit display")
+    s.details = true; meter:Hide(); s.dm:UpdateShownState()
+    check(not threat:IsShown() and not s.dm:IsShown(), label .. " Details handoff leaves owned threat hidden")
+    meter:Cleanup(); s.details = false; s.dm:UpdateShownState()
+    check(not threat:IsShown() and s.dm:IsShown() == (policy == 0), label .. " cleanup releases native ownership without restoring owned threat")
+    meter:Embed(s.host, layout)
+    check(threat:IsShown(), label .. " re-embed after cleanup restores owned threat")
+end
+for _, gamepad in ipairs({false, true}) do
+    for _, threatOnly in ipairs({false, true}) do
+        for _, policy in ipairs({0, 2}) do tabHideFixture(gamepad, threatOnly, policy) end
+    end
+end
+check(tabHideTotals.threatResurrections == 0 and tabHideTotals.rootResurrections == 0,
+    "explicit Hide prevents all repeated pane resurrections before activeTab changes")
+print(string.format("meter tab transitions: cycles=%d threatResurrections=%d rootResurrections=%d",
+    tabHideTotals.cycles, tabHideTotals.threatResurrections, tabHideTotals.rootResurrections))
 
 for _, client in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     -- Capability fixtures exercise shared code; labels do not certify that a

@@ -9,7 +9,7 @@ local function forbidden() error("meter data/native ownership was accessed", 2) 
 
 local function boot(withTheme)
     local h = { fonts = 0, textures = 0, hooks = 0, bars = 0, colors = 0,
-        theme = { .2, .6, .8 }, callbacks = {}, frameCreates = 0 }
+        theme = { .2, .6, .8 }, callbacks = {}, frameCreates = 0, wrapSets = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
     env.STANDARD_TEXT_FONT = "Fonts\\FRIZQT__.TTF"
     env.UnitClass = function(unit) assert(unit == "player"); return "Mage", "MAGE" end
@@ -26,13 +26,17 @@ local function boot(withTheme)
         h.hooks = h.hooks + 1; h.callbacks[#h.callbacks + 1] = callback
     end
     function h.font()
-        local fs = { color = { .1, .9, .1, 1 }, text = "opaque native text", calls = 0 }
+        local fs = { color = { .1, .9, .1, 1 }, text = "Mario Super", calls = 0, wordWrap = true, nonSpaceWrap = true }
         function fs:SetFont(path, size, flags)
             h.fonts = h.fonts + 1; self.calls = self.calls + 1
             if self.rejectArial and path == "Fonts\\ARIALN.TTF" then return false end
             self.path, self.size, self.flags = path, size, flags; return true
         end
         function fs:GetFont() return self.path, self.size, self.flags end
+        function fs:CanWordWrap() return self.wordWrap end
+        function fs:CanNonSpaceWrap() return self.nonSpaceWrap end
+        function fs:SetWordWrap(value) self.wordWrap = value; h.wrapSets = h.wrapSets + 1 end
+        function fs:SetNonSpaceWrap(value) self.nonSpaceWrap = value; h.wrapSets = h.wrapSets + 1 end
         function fs:SetShadowColor(...) self.shadow = { ... } end
         function fs:SetShadowOffset(...) self.offset = { ... } end
         function fs:SetTextColor(...) self.color = { ... } end
@@ -86,10 +90,12 @@ local function boot(withTheme)
             w.GetDamageMeterTypeName = function() return w.typeFont end
             w.GetSessionName = function() return w.sessionFont end
             w.GetSessionTimerFontString = function() return w.timerFont end
-            w.MinimizeContainer = { NotActive = h.font() }
+            w.MinimizeContainer = { NotActive = h.font(), Background = h.texture() }
+            w.GetBackground = function() return w.MinimizeContainer.Background end
+        else
+            w.Background = h.texture()
+            w.GetBackground = function() return w.Background end
         end
-        w.Background = h.texture()
-        w.GetBackground = function() return w.Background end
         return w
     end
     assert(loadfile(source, "t", env))()
@@ -109,13 +115,21 @@ check(name.color[1] == .1 and name.color[2] == .9, "skin preserves integration's
 check(value.color[1] == 1 and value.color[2] == 1 and value.color[3] == 1, "value text is white")
 check(name.shadow[4] == 1 and name.offset[1] == 1 and name.offset[2] == -1, "font outline has the shared readable shadow")
 check(bar.texture == "Interface\\TargetingFrame\\UI-StatusBar", "bar uses Blizzard status-bar texture")
-check(background.fill[1] == .04 and background.fill[4] == .65 and edge.alpha == 0, "row background is flattened without changing its geometry")
+check(background.fill[1] == .619607 and background.fill[4] == .116164 and background.alpha == 1 and edge.alpha == 0,
+    "row background shares the existing FluxDetails fill without multiplying native alpha")
+check(not name.wordWrap and not name.nonSpaceWrap and name.text == "Mario Super",
+    "multiword names stay on one line without inspecting or changing native text")
 check(entry.Init == init and entry.UpdateName == update and entry.UpdateValue == updateValue
     and entry.UpdateStatusBar == updateBar, "entry methods remain native")
-local fontCalls, textures = h.fonts, h.textures
+local fontCalls, textures, wrapSets = h.fonts, h.textures, h.wrapSets
 for _ = 1, 500 do skin:ApplyToEntry(entry, .8) end
 check(h.fonts == fontCalls and h.textures == textures and h.frameCreates == 0 and h.hooks == 0,
     "500 entry repaints reuse fonts and add no resources or callbacks")
+check(h.wrapSets == wrapSets, "500 stable entry restyles issue no repeated wrap setters")
+name.wordWrap, name.nonSpaceWrap = true, true
+skin:ApplyToEntry(entry, .8)
+check(not name.wordWrap and not name.nonSpaceWrap and h.wrapSets == wrapSets + 2,
+    "pooled native name wrap resets are repaired without reading its contents")
 name:SetFont("Fonts\\FRIZQT__.TTF", 10, "")
 skin:ApplyToEntry(entry, .8)
 check(name.path == "Fonts\\ARIALN.TTF" and name.size == 17.5 and name.flags == "OUTLINE",
@@ -133,24 +147,32 @@ check(session.Header.path == "Interface\\TargetingFrame\\UI-StatusBar"
     and math.abs(session.Header.tint[1] - .08) < .00001, "native header uses Flux theme and Blizzard texture")
 check(session.typeFont.size == 15 and session.sessionFont.size == 15 and session.timerFont.size == 15,
     "native title/session/timer fonts compensate root scale")
+check(session.typeFont.path == "Fonts\\FRIZQT__.TTF" and session.sessionFont.path == session.typeFont.path,
+    "native titles use the same stock Friz Quadrata font as FluxDetails")
 check(session.typeFont.color[1] == 1 and session.typeFont.color[2] == .82 and session.timerFont.color[3] == 0,
     "native header and timer keep the shared gold title color")
-check(session.typeFont.text == "opaque native text" and session.timerFont.text == "opaque native text",
+check(session.typeFont.text == "Mario Super" and session.timerFont.text == "Mario Super",
     "native title and timer contents remain untouched")
+local panel = session.MinimizeContainer.Background
+check(panel.fill[1] == .0941 and panel.fill[2] == .0941 and panel.fill[3] == .0941 and panel.fill[4] == .70 and panel.alpha == 1,
+    "actual nested native background receives the common panel fill")
+panel:SetAlpha(.35)
+skin:ApplyToWindow(session, .8)
+check(panel.alpha == 1, "native background alpha reset is normalized on style reapplication")
 check(session.Refresh == refresh and session.geometry == "native" and session.type == "native"
     and session.session == "native", "native layout, configuration and refresh stay unchanged")
 local stableTextures, stableFonts, stableColors = h.textures, h.fonts, h.colors
 for _ = 1, 500 do skin:ApplyToWindow(session, .8) end
 check(h.textures == stableTextures and h.fonts == stableFonts and h.colors == stableColors and h.hooks == 1,
     "500 repeated native styles reuse chrome, fonts and theme colors")
-session.typeFont:SetFont("Fonts\\FRIZQT__.TTF", 10, "")
+session.typeFont:SetFont("Fonts\\ARIALN.TTF", 10, "")
 skin:ApplyToWindow(session, .8)
-check(session.typeFont.path == "Fonts\\ARIALN.TTF" and session.typeFont.size == 15,
+check(session.typeFont.path == "Fonts\\FRIZQT__.TTF" and session.typeFont.size == 15,
     "native window font reset is repaired on reapplication")
 
 local sourceWindow = h.window("source")
 skin:ApplyToWindow(sourceWindow, .8)
-check(#sourceWindow.children == 4 and sourceWindow.Background.fill[4] == .85,
+check(#sourceWindow.children == 4 and sourceWindow.Background.fill[4] == .70 and sourceWindow.Background.alpha == 1,
     "source-window shape skins without a fabricated header")
 check(sourceWindow.GetSessionTimerFontString == nil and sourceWindow.Refresh == forbidden,
     "source methods and missing native regions remain unchanged")
@@ -185,6 +207,9 @@ check(owned.Title.text == "Threat" and owned.Title.size == 15 and owned.HeaderTi
     "owned threat pane reuses its existing title")
 check(owned.Title.color[1] == 1 and owned.Title.color[2] == .82 and owned.Title.color[3] == 0,
     "owned title matches the shared gold header")
+check(owned.Title.path == session.typeFont.path and owned.Background.fill[1] == panel.fill[1]
+    and owned.Background.fill[4] == panel.fill[4] and owned.Background.alpha == panel.alpha,
+    "owned and native panes share the actual title font and panel fill")
 local ownedTextures = h.textures
 for _ = 1, 500 do skin:ApplyToOwnedPane(owned, "Threat", .8) end
 check(h.textures == ownedTextures and h.hooks == 1, "owned pane styling does not duplicate headers or hooks")
@@ -202,10 +227,10 @@ local plain = { Title = h.font(), textures = {} }
 function plain:CreateTexture() local tex = h.texture(); self.textures[#self.textures + 1] = tex; return tex end
 function plain.Title:SetText(text) self.text = text end
 skin:ApplyToOwnedPane(plain, "Threat", .8)
-check(#plain.textures == 6 and plain.textures[5].height == 25 and plain.textures[6].allPoints == plain,
+check(#plain.textures == 6 and plain.textures[5].height == 32 and plain.textures[6].allPoints == plain,
     "owned pane without header/background gets bounded shared chrome")
 skin:ApplyToOwnedPane(plain, "Threat", 1)
-check(#plain.textures == 6 and plain.textures[5].height == 20, "owned header follows scale without new textures")
+check(#plain.textures == 6 and plain.textures[5].height == 25.6, "owned header follows scale without new textures")
 skin:ReleaseWindow(plain)
 check(not plain.textures[5].shown and not plain.textures[6].shown, "release hides all addon-created pane chrome")
 skin:ApplyToOwnedPane(plain, "Threat", 1)

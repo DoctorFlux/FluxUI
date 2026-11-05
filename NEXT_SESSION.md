@@ -1,5 +1,42 @@
 # Next session
 
+Current theme candidate: Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Final theme manifest](docs/validation/meter-theme-consistency-2026-11-05.json). Run
+`lua tests/native_meter_skin.lua`, `lua tests/standalone_threat_meter.lua`,
+`lua tests/native_meter_ownership.lua` and `lua tests/native_threat_layout.lua`.
+Skin 54/threat 69/native-owner 463 checks and both five-pair comparisons pass.
+Keep the player's selected Meter/builtin 7 and scriptProfile 0; do not restore the
+older builtin 1. The post-style reload shows Friz 15/ArialN 17.5 and wrap false/false,
+with current BugTabs 0. Normal Map/Respec/Buttons handoff now passes with both views hidden; return to
+Meter shows both. Keep builtin 7/profile 0 and check the remaining combat cases. Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive.
+Verify actual hostile-combat rows, long names, native source windows, alpha
+refresh, pool reuse and Details cleanup; match screenshots before pixel claims.
+[Current evidence](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+
+Current final theme passes 159 scripts / 816 Lua syntax files with unchanged source
+identity: [theme manifest](docs/validation/meter-theme-consistency-2026-11-05.json).
+Focused skin 54/threat 69/native-owner 463 and matched comparisons pass.
+Final native OOC Map/Respec/Buttons handoff hides both views; returning to Meter
+shows both, with current BugTabs 0 and Details absent. Keep the player's selected
+Meter/builtin 7 and scriptProfile 0 rather than restoring the older builtin 1.
+[Native captures](docs/validation/native-meter-background-checks-2026-11-05.json).
+
+Remaining priority: capture a live owned-threat row with a multiword name during
+actual hostile combat, then combat exit/clear and native secret/taint checks.
+Only pre/post short-fight views were captured. Check source windows, native
+alpha resets, pool reuse, Details cleanup and other clients; match screenshots
+before claiming pixel parity, memory or FPS. Friz 15 titles/ArialN 17.5 native rows,
+false wrap flags and shared header/panel fill were observed out of combat.
+Run `lua tests/native_meter_skin.lua`, `lua tests/standalone_threat_meter.lua`,
+`lua tests/native_meter_ownership.lua` and `lua tests/native_threat_layout.lua`.
+[Current evidence](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+
+Earlier font/tab-stage tasks are superseded by the final shared-theme and OOC
+handoff checks above; their exact source reports remain in METER_STANDALONE and
+WORK_LOG. Remaining actual combat/secret checks and other-client scenarios are
+still open. Keep the unrelated wand/native follow-ups below.
+
 Priority: native acceptance of the implemented standalone meter, startup
 ownership and docking repairs. Startup 64 checks and docking 60 checks pass,
 against 22 and 30 failures in the actual T205512 preDock source. Five pairs each

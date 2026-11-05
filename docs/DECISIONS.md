@@ -1,5 +1,28 @@
 # Decisions
 
+5 November meter appearance: disable FontString wrapping directly without
+GetText or secret-text inspection. Use shared Friz 12 titles/ArialN 14 rows and
+consistent panel/row fills; normalize the texture's independent alpha so native
+refreshes cannot multiply it away. Match the owned header to native 32 logical
+at 0.8 scale (25.6 visual) and retain row geometry/pooling and native controls.
+Reapply after native configuration plus one session UpdateBackground posthook;
+source windows without that method get no fabricated hook. Released/Details
+owners remain inactive. Preserve the player's current builtin 7 choice.
+[Appearance scope](METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+
+5 November threat follow-up: establish a valid native presentation font before
+SetText/SetFormattedText; do not catch and suppress incomplete construction.
+Sort readable rows percentage-first with raw-value fallback, matching the
+existing threat view. Out of combat clear rows and stop the update driver; keep
+the wake events but perform no threat scans. Preserve opaque display/order and
+the existing in-combat cadence. Compare quiet work with a separately font-ready
+reference, since the published baseline aborts before that scenario can run.
+[Evidence](METER_STANDALONE.md#font-readiness-and-quiet-threat-follow-up).
+Latch explicit addon Hide before native enforcement because the old tab's onHide
+runs before activeTab changes. Native and owned views share the effective-host
+gate; only an explicit Embed/Show releases Hide. Keep this state addon-owned,
+without changing Blizzard visibility or suppressing native timer dispatch.
+
 5 November standalone meter: reuse the current threat adapter and a small shared
 skin service. Recreate the accepted Flux Details look with Flux/Blizzard assets
 and the client's ARIALN font; exact reserved art/font identity is not claimed.

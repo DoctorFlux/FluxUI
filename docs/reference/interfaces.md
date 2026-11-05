@@ -60,12 +60,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1205](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1205) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1206](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1206) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1207](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1207) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1286](../../Battlezonemap/FluxBlizzardMeter.lua#L1286) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1287](../../Battlezonemap/FluxBlizzardMeter.lua#L1287) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1288](../../Battlezonemap/FluxBlizzardMeter.lua#L1288) | `RegisterEvent` | `"EDIT_MODE_LAYOUTS_UPDATED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1363](../../Battlezonemap/FluxBlizzardMeter.lua#L1363) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1364](../../Battlezonemap/FluxBlizzardMeter.lua#L1364) | `RegisterEvent` | `"VARIABLES_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1365](../../Battlezonemap/FluxBlizzardMeter.lua#L1365) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1302](../../Battlezonemap/FluxBlizzardMeter.lua#L1302) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1303](../../Battlezonemap/FluxBlizzardMeter.lua#L1303) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1304](../../Battlezonemap/FluxBlizzardMeter.lua#L1304) | `RegisterEvent` | `"EDIT_MODE_LAYOUTS_UPDATED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1379](../../Battlezonemap/FluxBlizzardMeter.lua#L1379) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1380](../../Battlezonemap/FluxBlizzardMeter.lua#L1380) | `RegisterEvent` | `"VARIABLES_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1381](../../Battlezonemap/FluxBlizzardMeter.lua#L1381) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxDetails.lua:242](../../Battlezonemap/FluxDetails.lua#L242) | `RegisterEvent` | `"DETAILS_INSTANCE_OPEN", lightRefreshIfEmbedded` |
 | [Battlezonemap/FluxDetails.lua:243](../../Battlezonemap/FluxDetails.lua#L243) | `RegisterEvent` | `"DETAILS_PROFILE_APPLYED", function() -- Profiles reset instances_amount (default 5); Flux needs up to 6 panes. EnsureDetailsMaxWindows() lightRefreshIfEmbedded() end` |
 | [Battlezonemap/FluxDetails.lua:1811](../../Battlezonemap/FluxDetails.lua#L1811) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -92,8 +92,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Battlezonemap/FluxThreat.lua:988](../../Battlezonemap/FluxThreat.lua#L988) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
 | [Battlezonemap/FluxThreat.lua:989](../../Battlezonemap/FluxThreat.lua#L989) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
 | [Battlezonemap/FluxThreat.lua:990](../../Battlezonemap/FluxThreat.lua#L990) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Battlezonemap/FluxThreatMeter.lua:261](../../Battlezonemap/FluxThreatMeter.lua#L261) | `RegisterEvent` | `event` |
-| [Battlezonemap/FluxThreatMeter.lua:262](../../Battlezonemap/FluxThreatMeter.lua#L262) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
+| [Battlezonemap/FluxThreatMeter.lua:277](../../Battlezonemap/FluxThreatMeter.lua#L277) | `RegisterEvent` | `event` |
+| [Battlezonemap/FluxThreatMeter.lua:278](../../Battlezonemap/FluxThreatMeter.lua#L278) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
 | [Battlezonemap/FluxWindowFrame.lua:1652](../../Battlezonemap/FluxWindowFrame.lua#L1652) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Battlezonemap/FluxWindowFrame.lua:1653](../../Battlezonemap/FluxWindowFrame.lua#L1653) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Battlezonemap/FluxWindowFrame.lua:1654](../../Battlezonemap/FluxWindowFrame.lua#L1654) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -2241,18 +2241,18 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 
 | Declaration | Source |
 |---|---|
-| `FluxBlizzardMeter:IsSupportedClient` | [L209](../../Battlezonemap/FluxBlizzardMeter.lua#L209) |
-| `FluxBlizzardMeter:IsAvailable` | [L216](../../Battlezonemap/FluxBlizzardMeter.lua#L216) |
-| `FluxBlizzardMeter:EnsureEnabled` | [L240](../../Battlezonemap/FluxBlizzardMeter.lua#L240) |
-| `FluxBlizzardMeter:IsContentAvailable` | [L247](../../Battlezonemap/FluxBlizzardMeter.lua#L247) |
-| `FluxBlizzardMeter:IsEmbedded` | [L257](../../Battlezonemap/FluxBlizzardMeter.lua#L257) |
-| `FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat` | [L265](../../Battlezonemap/FluxBlizzardMeter.lua#L265) |
-| `FluxBlizzardMeter:Embed` | [L1014](../../Battlezonemap/FluxBlizzardMeter.lua#L1014) |
-| `FluxBlizzardMeter:SyncGeometryFromLayout` | [L1116](../../Battlezonemap/FluxBlizzardMeter.lua#L1116) |
-| `FluxBlizzardMeter:RefreshEmbeddedLayout` | [L1139](../../Battlezonemap/FluxBlizzardMeter.lua#L1139) |
-| `FluxBlizzardMeter:Hide` | [L1150](../../Battlezonemap/FluxBlizzardMeter.lua#L1150) |
-| `FluxBlizzardMeter:Show` | [L1177](../../Battlezonemap/FluxBlizzardMeter.lua#L1177) |
-| `FluxBlizzardMeter:Cleanup` | [L1208](../../Battlezonemap/FluxBlizzardMeter.lua#L1208) |
+| `FluxBlizzardMeter:IsSupportedClient` | [L210](../../Battlezonemap/FluxBlizzardMeter.lua#L210) |
+| `FluxBlizzardMeter:IsAvailable` | [L217](../../Battlezonemap/FluxBlizzardMeter.lua#L217) |
+| `FluxBlizzardMeter:EnsureEnabled` | [L241](../../Battlezonemap/FluxBlizzardMeter.lua#L241) |
+| `FluxBlizzardMeter:IsContentAvailable` | [L248](../../Battlezonemap/FluxBlizzardMeter.lua#L248) |
+| `FluxBlizzardMeter:IsEmbedded` | [L258](../../Battlezonemap/FluxBlizzardMeter.lua#L258) |
+| `FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat` | [L266](../../Battlezonemap/FluxBlizzardMeter.lua#L266) |
+| `FluxBlizzardMeter:Embed` | [L1026](../../Battlezonemap/FluxBlizzardMeter.lua#L1026) |
+| `FluxBlizzardMeter:SyncGeometryFromLayout` | [L1129](../../Battlezonemap/FluxBlizzardMeter.lua#L1129) |
+| `FluxBlizzardMeter:RefreshEmbeddedLayout` | [L1152](../../Battlezonemap/FluxBlizzardMeter.lua#L1152) |
+| `FluxBlizzardMeter:Hide` | [L1163](../../Battlezonemap/FluxBlizzardMeter.lua#L1163) |
+| `FluxBlizzardMeter:Show` | [L1192](../../Battlezonemap/FluxBlizzardMeter.lua#L1192) |
+| `FluxBlizzardMeter:Cleanup` | [L1224](../../Battlezonemap/FluxBlizzardMeter.lua#L1224) |
 
 ### Battlezonemap/FluxDetails.lua
 
@@ -2376,13 +2376,14 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 
 | Declaration | Source |
 |---|---|
-| `Skin:StyleFont` | [L36](../../Battlezonemap/FluxMeterSkin.lua#L36) |
-| `Skin:ApplyToEntry` | [L64](../../Battlezonemap/FluxMeterSkin.lua#L64) |
-| `Skin:ApplyToWindow` | [L146](../../Battlezonemap/FluxMeterSkin.lua#L146) |
-| `Skin:ApplyToOwnedPane` | [L160](../../Battlezonemap/FluxMeterSkin.lua#L160) |
-| `Skin:RefreshTheme` | [L191](../../Battlezonemap/FluxMeterSkin.lua#L191) |
-| `Skin:ReleaseWindow` | [L196](../../Battlezonemap/FluxMeterSkin.lua#L196) |
-| `Skin:ReleaseAllNative` | [L206](../../Battlezonemap/FluxMeterSkin.lua#L206) |
+| `Skin:StyleFont` | [L71](../../Battlezonemap/FluxMeterSkin.lua#L71) |
+| `Skin:StyleRowBackground` | [L81](../../Battlezonemap/FluxMeterSkin.lua#L81) |
+| `Skin:ApplyToEntry` | [L87](../../Battlezonemap/FluxMeterSkin.lua#L87) |
+| `Skin:ApplyToWindow` | [L174](../../Battlezonemap/FluxMeterSkin.lua#L174) |
+| `Skin:ApplyToOwnedPane` | [L188](../../Battlezonemap/FluxMeterSkin.lua#L188) |
+| `Skin:RefreshTheme` | [L219](../../Battlezonemap/FluxMeterSkin.lua#L219) |
+| `Skin:ReleaseWindow` | [L224](../../Battlezonemap/FluxMeterSkin.lua#L224) |
+| `Skin:ReleaseAllNative` | [L234](../../Battlezonemap/FluxMeterSkin.lua#L234) |
 
 ### Battlezonemap/FluxThreat.lua
 
@@ -2414,12 +2415,12 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 | Declaration | Source |
 |---|---|
 | `Meter:IsAvailable` | [L32](../../Battlezonemap/FluxThreatMeter.lua#L32) |
-| `Meter:RefreshLayout` | [L291](../../Battlezonemap/FluxThreatMeter.lua#L291) |
-| `Meter:Embed` | [L304](../../Battlezonemap/FluxThreatMeter.lua#L304) |
-| `Meter:GetFrame` | [L316](../../Battlezonemap/FluxThreatMeter.lua#L316) |
-| `Meter:Show` | [L318](../../Battlezonemap/FluxThreatMeter.lua#L318) |
-| `Meter:Hide` | [L326](../../Battlezonemap/FluxThreatMeter.lua#L326) |
-| `Meter:Cleanup` | [L331](../../Battlezonemap/FluxThreatMeter.lua#L331) |
+| `Meter:RefreshLayout` | [L312](../../Battlezonemap/FluxThreatMeter.lua#L312) |
+| `Meter:Embed` | [L325](../../Battlezonemap/FluxThreatMeter.lua#L325) |
+| `Meter:GetFrame` | [L337](../../Battlezonemap/FluxThreatMeter.lua#L337) |
+| `Meter:Show` | [L339](../../Battlezonemap/FluxThreatMeter.lua#L339) |
+| `Meter:Hide` | [L347](../../Battlezonemap/FluxThreatMeter.lua#L347) |
+| `Meter:Cleanup` | [L352](../../Battlezonemap/FluxThreatMeter.lua#L352) |
 
 ### Battlezonemap/FluxWindowFrame.lua
 

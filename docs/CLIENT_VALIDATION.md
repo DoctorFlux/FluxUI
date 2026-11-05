@@ -1,5 +1,41 @@
 # Client and reference validation — 29 October 2026
 
+5 November shared theme: source fixes one-line text and panel/header consistency
+without reading native text or replacing rendering. Skin 54/threat 69 checks,
+five style pairs/eight mutants and native-owner 463 checks/five pairs/five mutants
+pass. Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run. [Final manifest](validation/meter-theme-consistency-2026-11-05.json).
+Forever 70790/interface16001 post-style reload 22:06:45Z retains Meter/builtin 7,
+Details absent, scriptProfile 0/current BugTabs 0. Friz 15 title, ArialN 17.5 row and
+name/value CanWordWrap=false are observed; shared header/panel fill inspected.
+Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive. Other clients retain prior route/validation limits.
+[Exact stage scope](METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+
+Final Forever OOC handoff passes: Map/Respec/Buttons both views hidden, returning
+Meter both visible; currentBugTabs0, Details absent, builtin7/profile0 retained.
+[Exact background captures](validation/native-meter-background-checks-2026-11-05.json). Native name/value wrap flags are false and
+shared header/panel fills inspected. No actual owned-threat combat row was
+captured; do not certify that case, combat secrets/taint, native FPS or other clients.
+
+Earlier font/tab-stage evidence (its native pending notes are superseded by final OOC handoff above):
+
+5 November threat readiness: strict font-before-text replay reproduces the
+native first-title error; candidate 65 checks, five original pairs, five
+font-ready lifecycle pairs and nine mutants pass. Native Forever 1.60.1/70790/
+interface16001, Details absent and scriptProfile 0 are current observations.
+Map reload/session FXERR0 and layout 8 construction are partial checks only;
+native combat, opaque values, taint, screenshots and frame times remain pending.
+Full desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Full source manifest](validation/meter-threat-readiness-2026-11-05.json). Native acceptance for that earlier font/tab source was pending; final OOC handoff is recorded in the shared-theme stage above.
+[Exact scope and native follow-up](METER_STANDALONE.md#font-readiness-and-quiet-threat-follow-up).
+Other clients retain prior routes; no new native certification follows.
+The native font-candidate title/body is ready with ARIALN 15 OUTLINE, but normal
+Map/Respec/Buttons switches exposed an owned-threat overlay while native panes
+were hidden. The owner fix passes 429 checks/five pairs/four mutants versus 19
+baseline failures. That stage preceded final OOC handoff, which now passes;
+actual owned-threat combat and secret/taint acceptance stay inconclusive.
+
 5 November standalone meter: Forever 1.60.1.70790 gains a Flux/Blizzard-asset
 native skin and an independent optional threat pane when Details is absent.
 Retail 12.1.5.70783 uses the native skin/enable path; standalone threat remains

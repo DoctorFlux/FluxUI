@@ -6,7 +6,7 @@ FluxThreatMeter = Meter
 
 local pane, host, enabled, scale = nil, nil, false, 1
 local data, rows, offset, nextPoll, dirty = {}, {}, 0, 0, false
-local rowHeight, headerHeight = 21, 20
+local rowHeight, headerHeight = 21, 25.6 -- Native 32-unit header at the shared .8 meter scale.
 local ranked = true
 local workActive = false
 
@@ -88,7 +88,7 @@ local function Collect()
         data[#data + 1] = { unit = unit, name = UnitNameForRow(unit), class = class,
             threatVal = sample.threatVal, threatPct = sample.threatPct,
             isTanking = PlainBool(sample.isTanking), secret = sample.secret,
-            sort = value or percent or 0, order = #data + 1 }
+            sort = percent or value or 0, order = #data + 1 }
     end
     if IsInRaid() then
         for i = 1, GetNumGroupMembers() do add("raid" .. i); add("raidpet" .. i) end
@@ -133,13 +133,17 @@ local function NewRow(index)
     row:SetStatusBarTexture("Interface\\TARGETINGFRAME\\UI-StatusBar")
     row:SetMinMaxValues(0, 100)
     row.Background = row:CreateTexture(nil, "BACKGROUND")
-    row.Background:SetAllPoints(); row.Background:SetColorTexture(0, 0, 0, .25)
+    row.Background:SetAllPoints()
+    if FluxMeterSkin and FluxMeterSkin.StyleRowBackground then FluxMeterSkin:StyleRowBackground(row.Background)
+    else row.Background:SetColorTexture(.619607, .619607, .619607, .116164) end
     row.Icon = row:CreateTexture(nil, "ARTWORK")
     row.Icon:SetPoint("LEFT", row, "LEFT", 0, 0)
     row.Name = row:CreateFontString(nil, "OVERLAY")
     row.Name:SetJustifyH("LEFT")
+    row.Name:SetWordWrap(false); row.Name:SetNonSpaceWrap(false)
     row.Value = row:CreateFontString(nil, "OVERLAY")
     row.Value:SetJustifyH("RIGHT")
+    row.Value:SetWordWrap(false); row.Value:SetNonSpaceWrap(false)
     rows[index] = row
     return row
 end
@@ -226,7 +230,13 @@ local function Paint()
     for i = count + 1, #rows do rows[i]:Hide() end
 end
 
+local function ClearRows()
+    wipe(data); offset = 0
+    for i = 1, #rows do rows[i]:Hide() end
+end
+
 local function Refresh()
+    if not InCombat() then ClearRows(); return end
     Collect()
     for i = 1, #data do data[i].rank = i end
     Paint()
@@ -248,13 +258,19 @@ local function OnUpdate()
 end
 
 local function RequestRefresh()
-    if HostVisible() and pane:IsVisible() then dirty = true; pane:SetScript("OnUpdate", OnUpdate) end
+    if not HostVisible() or not pane:IsVisible() then return end
+    if not InCombat() then
+        if #data > 0 then ClearRows() end
+        return
+    end
+    dirty = true; pane:SetScript("OnUpdate", OnUpdate)
 end
 
 local function StartWork()
     if not HostVisible() or not pane:IsVisible() then StopWork(); return end
     if workActive then return end
     workActive = true
+    if not InCombat() then ClearRows() end
     StyleFont(pane.Title, 12 / scale)
     if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale) end
     for _, event in ipairs({ "PLAYER_TARGET_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED",
@@ -267,7 +283,8 @@ local function CreatePane()
     pane = CreateFrame("Frame", "FluxStandaloneThreatMeter", host)
     pane:SetSize(150, 150)
     pane.Title = pane:CreateFontString(nil, "OVERLAY")
-    pane.Title:SetPoint("TOPLEFT", pane, "TOPLEFT", 3, -2)
+    pane.Title:SetPoint("LEFT", pane, "TOPLEFT", 3 / scale, -headerHeight / (2 * scale))
+    StyleFont(pane.Title, 12 / scale)
     pane.Title:SetText("Threat")
     pane.Body = CreateFrame("Frame", nil, pane)
     pane.Body:SetClipsChildren(true)
@@ -282,6 +299,10 @@ local function CreatePane()
     pane:SetScript("OnHide", StopWork)
     pane:SetScript("OnSizeChanged", function() Paint() end)
     pane:SetScript("OnEvent", function(_, event, unit)
+        if event == "PLAYER_REGEN_ENABLED" then
+            ClearRows(); dirty = false; pane:SetScript("OnUpdate", nil)
+            return
+        end
         if event == "ADDON_LOADED" and not Meter:IsAvailable() then Meter:Hide(); return end
         if event == "UNIT_THREAT_LIST_UPDATE" and not IsSecret(unit) and unit ~= TargetUnit() then return end
         RequestRefresh()
@@ -290,7 +311,7 @@ end
 
 function Meter:RefreshLayout()
     if not pane then return end
-    pane.Title:ClearAllPoints(); pane.Title:SetPoint("TOPLEFT", pane, "TOPLEFT", 3 / scale, -2 / scale)
+    pane.Title:ClearAllPoints(); pane.Title:SetPoint("LEFT", pane, "TOPLEFT", 3 / scale, -headerHeight / (2 * scale))
     pane.Body:ClearAllPoints()
     pane.Body:SetPoint("TOPLEFT", pane, "TOPLEFT", 2 / scale, -headerHeight / scale)
     pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", -2 / scale, 2 / scale)

@@ -1,5 +1,46 @@
 # Development status
 
+5 November shared meter appearance: names/values remain on one line without
+reading their text. Native and owned panes now share Friz titles, ArialN rows,
+panel/row opacity, centered header and body inset. Skin is reapplied after native
+configuration and native session background refresh; inactive owners are skipped.
+Native data, controls, row height, pools and the 112% canvas remain unchanged.
+Skin 54/threat 69 checks, five style pairs/eight mutants and native-owner 463 checks,
+five pairs/five mutants pass. Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Theme source manifest](validation/meter-theme-consistency-2026-11-05.json). The earlier font/tab report retains its old scope.
+After native reload 22:06:45Z, Meter/builtin 7/profile 0 and current BugTabs 0 remain;
+Friz 15 titles, ArialN 17.5 rows and false name/value wrap are observed. The shared
+header/panel fill was visually inspected. Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive.
+[Appearance evidence](METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+
+Final background checks show Map/Respec/Buttons native=false/threat=false,
+then Meter=true/true; current BugTabs0, Details absent, builtin7/profile0 remain.
+[Native observations](validation/native-meter-background-checks-2026-11-05.json). Other clients' native and actual in-combat threat
+rendering/secret/taint/FPS checks remain pending.
+
+Earlier font/tab-stage evidence (its native pending notes are superseded by final OOC handoff above):
+
+5 November threat readiness: initialize title/row fonts before any text, avoiding
+the reproduced native FontString:SetText(): Font not set failure that aborted
+pane construction and layout finalization. Readable rows now order by percentage
+before raw threat, matching the existing Details threat view; opaque order is
+unchanged. Combat end clears rows and stops updates without scanning. Quiet
+startup, 500 events and 500 reveals make no out-of-combat queries.
+Focused 65 checks, five baseline/candidate pairs, five font-ready reference pairs
+and nine rejected mutants pass. [Evidence and scope](METER_STANDALONE.md#font-readiness-and-quiet-threat-follow-up).
+Full desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Full source manifest](validation/meter-threat-readiness-2026-11-05.json). Native acceptance for that earlier font/tab source was pending; final OOC handoff is recorded in the shared-theme stage above.
+Forever 70790 background checks have shown Map reload hidden with session FXERR0
+and layout 8 construction; combat/taint, matched pixels and performance remain
+pending. Full native results are not inferred from those partial observations.
+Normal switching then reproduced threat overlays on Map/Respec/Buttons. An
+addon-owned explicit hidden latch now gates both views before native callbacks;
+429 checks pass versus 19 failures, five pairs/four mutants. Modeled 4,000 threat
+and 1,000 root resurrections fall to 0. That stage had not yet captured native
+handoff; final OOC handoff now passes above, while actual combat stays inconclusive.
+
 5 November standalone meter feature: the native backend now has a shared Flux
 skin and an optional Forever threat pane without Details. The approved look is
 recreated with existing Flux/Blizzard textures and ARIALN, not copied reserved

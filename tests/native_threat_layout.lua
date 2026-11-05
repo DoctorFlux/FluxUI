@@ -37,8 +37,9 @@ local function boot(available, gamepad, saved)
     e.C_AddOns = { IsAddOnLoaded = function(name) return name == "Details" and s.details end,
         DoesAddOnExist = function(name) return name == "Blizzard_DamageMeter" and s.available end }
     e._FluxUI_CharSavedVars = saved or {}
-    local skin = { windows = {}, entries = 0, release = 0 }
+    local skin = { windows = {}, resources = 0, entries = 0, release = 0 }
     function skin:ApplyToWindow(win, scale)
+        if not self.windows[win] then self.resources = self.resources + 1 end
         self.windows[win] = (self.windows[win] or 0) + 1; self.scale = scale
     end
     function skin:ApplyToEntry(entry, scale)
@@ -130,11 +131,13 @@ check(s.nativeMethodsIntact() and s.policyWrites == 0, "integration preserves na
 check(skin.windows[s.windows[1]] == 1 and skin.windows[s.windows[1].sourceWindow] == 1
     and near(skin.scale, .8) and near(skin.entryScale, .8), "native window and entry skin runs at accepted scale")
 local frameCount, timerCount, hooks = #s.frames, s.timerCreates, #s.hooks[s.windows[1]].InitEntry
+local skinResources = skin.resources
 for _ = 1, 100 do meter:RefreshEmbeddedLayout() end
 check(#s.frames == frameCount and s.timerCreates == timerCount and #s.windows == 3,
     "repeated four-pane reconciliation adds no frames timers or native windows")
-check(skin.windows[s.windows[1]] == 1 and #s.hooks[s.windows[1]].InitEntry == hooks,
-    "skin ownership and entry hooks do not multiply on relayout")
+check(skin.windows[s.windows[1]] > 1 and skin.resources == skinResources
+    and #s.hooks[s.windows[1]].InitEntry == hooks,
+    "post-configuration paint reuses skin resources and permanent entry hooks on relayout")
 check(owned.embeds == 1, "geometry reuses the existing owned pane without re-embedding")
 s.windows[1]:InitEntry(s.windows[1].entry, { isLocalPlayer = true })
 check(skin.localTint, "entry skin follows existing green local-player paint")
@@ -157,8 +160,9 @@ meter:Cleanup()
 check(owned.cleanups > 0 and pane and not pane:IsShown() and skin.release > 0,
     "cleanup releases owned lifecycle and active native skin owners")
 meter:Embed(s.host, lib.ApplyBuiltin(8))
-check(#s.hooks[s.windows[1]].InitEntry == hooks and skin.windows[s.windows[1]] == 2,
-    "re-embed reactivates skin without another permanent entry hook")
+check(#s.hooks[s.windows[1]].InitEntry == hooks and skin.resources == skinResources
+    and skin.windows[s.windows[1]] > 1,
+    "re-embed reactivates existing skin resources without another permanent entry hook")
 s.details = true; e.Details = {}; s.dm:UpdateShownState(); meter:Hide()
 check(lib.GetMeterBackend() == "Details" and lib.GetBuiltinCount() == 11 and not s.dm:IsShown()
     and pane and not pane:IsShown(), "Details handoff stops native and owned presentation")

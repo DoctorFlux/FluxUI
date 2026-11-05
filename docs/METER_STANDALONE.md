@@ -177,3 +177,142 @@ latency and frame-time acceptance remain pending while WoW stays in the
 background. Required native checks include reload, all layouts, combat entry and
 exit, hidden-host reveal, opaque threat, scrolling, group/pet changes, target
 changes, native menus and Details takeover.
+
+
+## Font readiness and quiet threat follow-up
+
+The first owned title used SetText before a font existed. Native execution and
+the stricter desktop fixture reproduce FontString:SetText(): Font not set. The
+exception left a partially built pane and aborted subsequent layout cleanup.
+Initialize title and row fonts before any text, with shared-skin and font-fallback
+paths covered. Do not replace native text APIs or suppress the error.
+
+Readable threat now sorts by percentage first, with raw threat as fallback, as
+the existing Details threat view does. Opaque rows retain stable roster order.
+Combat exit clears rows, stops updates and avoids native queries; quiet startup,
+events and reveal remain scan-free. A later combat wake rebuilds current facts.
+
+Baseline `db42efb10efb0d39cf991dacc27db606000ad7b3`, runtime SHA256
+`e43f742010c6398998cf8390bda055563e92e7634496bbff98f045d3f87a3488`.
+Candidate runtime SHA256:
+`478d82e865a9b49ccf720e60b50b7aa66154c9eabd44c2f0ab41a4be268f7cc7`.
+External checkpoint Mail-auction-publication-20261105T213107Z preserves 1,554 actual
+files, 160 accessible settings and all-ref history, source SHA256
+`a6ffa0fee4832870a4ba2dd20c3f6afc1c2363e8f787be4ed78e5bc2558b8132`.
+Unsaved game memory remains excluded; archives/settings stay outside AddOns/Git.
+
+All 65 focused checks pass in five alternating baseline/candidate pairs; the
+original baseline aborts on first construction. Five additional font-ready
+reference/candidate lifecycle pairs isolate quiet-work reduction without treating
+that aborted baseline as equivalent work. Total lifecycle queries fall 1,004 to 2;
+500 quiet events and 500 reveals add no candidate queries. The reference has only
+font initialization repaired; its exact hash is in the report. Nine semantic
+mutants are rejected. [Raw pairs and identities](validation/threat-font-readiness-comparison-2026-11-05.json).
+
+Full desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Full source manifest](validation/meter-threat-readiness-2026-11-05.json). Native acceptance for that earlier font/tab source was pending; final OOC handoff is recorded in the shared-theme stage above.
+Forever 70790 partial background checks show Map reload/session FXERR0 and layout 8
+construction without Details, with scriptProfile 0. Combat, secret/taint safety,
+matched visual parity, frame time and memory acceptance remain pending. Other
+clients retain their previous routes and native validation limits.
+
+
+### Explicit tab hide ownership
+
+Native background checks reproduced native-hidden/threat-visible overlays on
+Map, Respec and Buttons through normal tab switches. The previous Meter onHide
+runs before activeTab changes, so a native callback could treat it as still
+active and resurrect the views. Explicit addon Hide is now latched before
+visibility enforcement; native and owned panes share that gate and only explicit
+Embed/Show releases it. No native policy field or shared skin code changes.
+The existing 1.40 canvas times 0.8 scale remains 112%; no resize is included.
+
+The actual font-candidate checkpoint Mail-auction-publication-20261105T215012Z
+preserves 1,555 current files, 160 settings and all-ref history; integrity passes.
+Source archive SHA256:
+`6616a4f3a12864b60b2a999923631943cc0b3c313459834b0abdd6eaa7d60f08`.
+Owner source SHA256: `07acfae4ed9090c8e6226e140062e254cfef9ec8ca6fca64033ee71228750a8a`.
+
+Five alternating pairs pass 429 candidate checks versus 19 baseline failures.
+Four mutants are rejected. Eight configurations with 500 transitions each produce
+4,000 owned and 1,000 native-root resurrections before correction and zero after.
+Mixed-Always repair wakes fall 1,000 to 0; frames/content setters/entry walks/native
+policy writes do not grow, and native timer dispatch counts are retained.
+[Exact raw transitions and source hashes](validation/native-meter-tab-hide-comparison-2026-11-05.json).
+
+Partial native observations so far: Forever 1.60.1/70790/interface16001, Details
+absent, scriptProfile 0, Map reload root hidden/current BugTabs0, and a full threat
+body/title with Fonts\ARIALN.TTF 15 OUTLINE after the font fix. Those observations
+preceded the final shared-theme handoff captures. Final OOC switching now passes
+as recorded below; actual owned-threat combat, secret/taint, matched pixels,
+memory and frame-time checks remain inconclusive or pending. The desktop
+counts and differing process wall times are not native performance results.
+
+
+## One-line names and shared meter appearance
+
+The user reported multiword names wrapping and different-looking panes. The
+shared style now disables word and nonspace wrapping directly without GetText or secret
+text inspection. It uses Friz 12 gold titles, ArialN 14 rows, panel gray .0941/
+alpha .70 and row gray .619607/alpha .116164, including independent texture-alpha
+normalization. The owned header matches native 32 logical at 0.8 scale (25.6 visual),
+with centered title/body inset. Native controls/data, row height/pool and the
+existing 112% canvas remain. No reserved art/font asset is copied.
+
+Native configuration can overwrite paint. Reapply shared style after configure
+and add one UpdateBackground posthook per native session where available; source
+windows lacking that method receive no hook. Inactive/cleanup/Details owners do
+no callback paint. Native rendering methods stay intact.
+
+Actual pre-style checkpoint Mail-auction-publication-20261105T215820Z preserves
+1,557 files, 160 settings and all-ref history, with verified ZIP/bundle integrity;
+source archive SHA256:
+`d07305d83bef4f45d4e50ff45a8ace8f0c977f81db57d336fa1a1dba37c779ec`.
+Skin/source raw candidate SHA256:
+`f8bbb7a0e690ca100c6f6bd3842fa30570191d7aba68edf73bed6db4f7f3f9da`,
+`798afff478257b71e276c0e70a87d5fdca5fc16f1ef91f5c6b0c32382cd997c1`.
+Native integration candidate:
+`cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca`.
+
+Skin 54 and threat 69 checks pass, five matched style pairs/eight mutants; the old
+skin fails 11 of 54 checks. A separate native-background stage passes 463 checks
+versus 14 failures, five pairs/five mutants. In each ordinary/gamepad fixture,
+configured paint is 4/4 panes versus 0/4; 1,000 native background resets restore 2/2
+sessions versus 0/2, with no frame/timer/content/policy growth. Native methods stay
+native and cleanup callbacks become inactive; 20 reembeds retain only two session
+background hooks. Repeated paints are corrected feature work, not native CPU/FPS.
+[Style pairs and setup](validation/meter-shared-style-comparison-2026-11-05.json),
+[native-background pairs](validation/native-meter-background-comparison-2026-11-05.json).
+
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run. [Exact theme source manifest](validation/meter-theme-consistency-2026-11-05.json).
+The earlier font/tab-stage 159/816 report retains its own exact source identity.
+The legacy 68-check layout test now measures distinct window resources and
+permanent entry hooks; repaint count is not an allocation proxy.
+
+Post-style Forever 70790/interface16001 reload 22:06:45.511Z retains Meter/builtin 7,
+Details absent, profile 0 and current BugTabs 0. Title Friz 15, native row ArialN 17.5
+and false native name/value wrap flags are observed; shared header/panel fill was
+visually inspected. Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive. Preserve builtin 7 rather than the older builtin 1.
+Matched pixel comparison, secret/taint, CPU, memory and frame-time acceptance
+remain pending across other scenarios and clients.
+
+
+### Final background native outcome
+
+The final three runtime hashes were loaded on Forever1.60.1/70790/interface16001
+at22:06:45.511UTC with Meter/builtin7, Details absent and scriptProfile0. Targeted
+validated-window commands kept PC foreground, mouse, keyboard and clipboard
+untouched. Map22:08:39.557, Respec22:08:58.688 and Buttons22:09:18.418 each show
+native=false/threat=false. ReturnMeter22:09:39.197 shows true/true; summary
+22:10:13.490 has currentBugTabs0 and the same Meter/builtin7/profile0 choice.
+[Consolidated native metadata](validation/native-meter-background-checks-2026-11-05.json).
+
+Friz15 title, ArialN17.5 native row and false native name/value wrap flags were
+observed; the shared header/panel fill was visually inspected. These OOC checks
+pass for the captured client/scenarios. A live owned-threat combat row was not
+captured during the short fight; only pre/post states exist. Actual combat text,
+secret/taint, matched pixel parity, native resource bytes/FPS and other-client
+native checks remain inconclusive or pending. Earlier pending OOC handoff notes
+refer to their earlier source stages, not this final candidate.

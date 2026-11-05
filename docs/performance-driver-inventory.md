@@ -68,14 +68,14 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxBattlefieldMapProviders.lua](../Battlezonemap/FluxBattlefieldMapProviders.lua) | 0 | 0 | 3 | 0 | 5 |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua) | 0 | 0 | 3 | 5 | 2 |
-| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 4 | 6 | 8 |
+| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 4 | 6 | 9 |
 | [Battlezonemap/FluxDetails.lua](../Battlezonemap/FluxDetails.lua) | 0 | 1 | 14 | 4 | 4 |
 | [Battlezonemap/FluxDetailsForever.lua](../Battlezonemap/FluxDetailsForever.lua) | 0 | 0 | 3 | 2 | 0 |
 | [Battlezonemap/FluxDetailsWoWSkinTint.lua](../Battlezonemap/FluxDetailsWoWSkinTint.lua) | 0 | 0 | 0 | 1 | 2 |
 | [Battlezonemap/FluxMeterLayout.lua](../Battlezonemap/FluxMeterLayout.lua) | 2 | 0 | 2 | 1 | 0 |
 | [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxThreat.lua](../Battlezonemap/FluxThreat.lua) | 3 | 0 | 0 | 18 | 1 |
-| [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua) | 3 | 0 | 0 | 2 | 0 |
+| [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua) | 4 | 0 | 0 | 2 | 0 |
 | [Battlezonemap/FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua) | 6 | 0 | 2 | 4 | 0 |
 | [Binding/Boot.lua](../Binding/Boot.lua) | 0 | 0 | 0 | 3 | 0 |
 | [Binding/Core/Apply.lua](../Binding/Core/Apply.lua) | 0 | 0 | 5 | 5 | 0 |

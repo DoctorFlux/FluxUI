@@ -1,5 +1,36 @@
 # Baseline protocol and currency evidence
 
+5 November shared theme work: five matched style pairs cover 54 skin/69 threat
+checks and eight mutants; five native-background pairs cover 463 owner checks
+and five mutants. Both ordinary/gamepad fixtures style 4/4 configured panes
+instead of 0/4 and restore 2/2 sessions after 1,000 native alpha resets. Painting
+is added/corrected work, not an FPS improvement. No frames, timers, content
+setters, entry walks or policy writes are added by that background replay.
+Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run. [Final theme manifest](validation/meter-theme-consistency-2026-11-05.json).
+Source hashes and raw host/setup/variation remain in the separate style and
+background reports. Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive. Native CPU/memory bytes/frame time remain unmeasured.
+
+Earlier font/tab-stage evidence (its native pending notes are superseded by final OOC handoff above):
+
+5 November threat quiet work: the published baseline aborts at its first title
+text. Its resource totals are incomplete and cannot support a speed comparison.
+Five additional matched pairs use a separately font-initialized reference to
+isolate quiet-state work: full lifecycle queries 1,004 to 2, with combat-start and
+burst queries retained;500 quiet events plus 500 reveals add 0 candidate queries.
+Frames/fonts/textures remain bounded; nine mutants and 65 focused checks pass.
+Full desktop validation passes 159 scripts / 816 Lua syntax files; all 816
+source hashes and membership are unchanged across the run.
+[Full source manifest](validation/meter-threat-readiness-2026-11-05.json). Native acceptance for that earlier font/tab source was pending; final OOC handoff is recorded in the shared-theme stage above.
+[Raw pairs and reference identity](validation/threat-font-readiness-comparison-2026-11-05.json).
+These are explicit-widget/native-query counts, not native CPU, memory bytes,
+operation latency or FPS. Native combat/performance acceptance remains pending.
+Separate normal-tab-order replay passes 429 checks versus 19 failures, five pairs/
+four mutants. An addon Hide latch reduces modeled 4,000 owned and 1,000 native-root
+resurrections to 0 across 4,000 transitions; no frame growth, content setters, entry
+walks or native policy writes are added and native timer dispatch is retained.
+[Handoff samples](validation/native-meter-tab-hide-comparison-2026-11-05.json).
+
 5 November standalone meter: account for the new skin/threat view as feature
 cost. Skin creates four rails per window and one shared appearance posthook;
 after warm-up, 500 repeated entry/window pairs add no fonts, textures or hooks

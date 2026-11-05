@@ -4,8 +4,10 @@ local Skin = FluxMeterSkin
 
 local BAR_TEXTURE = "Interface\\TargetingFrame\\UI-StatusBar"
 local FONT = "Fonts\\ARIALN.TTF"
+local TITLE_FONT = "Fonts\\FRIZQT__.TTF"
 local FALLBACK_FONT = STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF"
 local TITLE_COLOR = { r = 1, g = .82, b = 0 }
+local HEADER_HEIGHT = 25.6 -- Native 32-unit header at the embedded root's .8 scale.
 local fontStyles = setmetatable({}, { __mode = "k" })
 local chrome = setmetatable({}, { __mode = "k" })
 local nativeWindows = setmetatable({}, { __mode = "k" })
@@ -33,18 +35,29 @@ local function ThemeColor()
     return .6, .6, .6
 end
 
-function Skin:StyleFont(fontString, size)
+local function SingleLine(fontString)
+    -- These public widget flags do not inspect secret text or its dimensions.
+    if fontString.SetWordWrap and (not fontString.CanWordWrap or fontString:CanWordWrap()) then
+        fontString:SetWordWrap(false)
+    end
+    if fontString.SetNonSpaceWrap and (not fontString.CanNonSpaceWrap or fontString:CanNonSpaceWrap()) then
+        fontString:SetNonSpaceWrap(false)
+    end
+end
+
+local function ApplyFont(fontString, size, preferred)
     if not fontString or not fontString.SetFont then return end
+    SingleLine(fontString)
     size = PublicNumber(size) and size > 0 and size or 14
     local previous = fontStyles[fontString]
-    if previous and previous.size == size and fontString.GetFont then
+    if previous and previous.size == size and previous.preferred == preferred and fontString.GetFont then
         local file, currentSize, flags = fontString:GetFont()
         if not (issecretvalue and (issecretvalue(file) or issecretvalue(flags)))
             and PublicNumber(currentSize) and file == previous.file and currentSize == size and flags == "OUTLINE" then
             return
         end
     end
-    local file = FONT
+    local file = preferred
     if fontString:SetFont(file, size, "OUTLINE") == false then
         file = FALLBACK_FONT
         fontString:SetFont(file, size, "OUTLINE")
@@ -52,13 +65,23 @@ function Skin:StyleFont(fontString, size)
     if fontString.SetShadowColor then fontString:SetShadowColor(0, 0, 0, 1) end
     if fontString.SetShadowOffset then fontString:SetShadowOffset(1, -1) end
     if not previous then previous = {}; fontStyles[fontString] = previous end
-    previous.file, previous.size = file, size
+    previous.file, previous.size, previous.preferred = file, size, preferred
+end
+
+function Skin:StyleFont(fontString, size)
+    ApplyFont(fontString, size, FONT)
 end
 
 local function StyleTitle(fontString, size)
-    Skin:StyleFont(fontString, size)
+    ApplyFont(fontString, size, TITLE_FONT)
     local color = NORMAL_FONT_COLOR or TITLE_COLOR
     if fontString and fontString.SetTextColor then fontString:SetTextColor(color.r, color.g, color.b, 1) end
+end
+
+function Skin:StyleRowBackground(texture)
+    if not texture or not texture.SetColorTexture then return end
+    texture:SetColorTexture(.619607, .619607, .619607, .116164)
+    if texture.SetAlpha then texture:SetAlpha(1) end
 end
 
 function Skin:ApplyToEntry(entry, scale)
@@ -73,7 +96,7 @@ function Skin:ApplyToEntry(entry, scale)
     local bar = entry.GetStatusBar and entry:GetStatusBar()
     if bar and bar.SetStatusBarTexture then bar:SetStatusBarTexture(BAR_TEXTURE) end
     local background = entry.GetBackground and entry:GetBackground()
-    if background and background.SetColorTexture then background:SetColorTexture(.04, .04, .04, .65) end
+    self:StyleRowBackground(background)
     local edge = entry.GetBackgroundEdge and entry:GetBackgroundEdge()
     if edge and edge.SetAlpha then edge:SetAlpha(0) end
 end
@@ -133,7 +156,12 @@ local function TintChrome(frame, state)
     if state.ownedHeader then state.header:Show() end
     if state.background then state.background:Show() end
     local background = state.background or (frame.GetBackground and frame:GetBackground() or frame.Background)
-    if background and background.SetColorTexture then background:SetColorTexture(.035, .035, .035, .85) end
+    if background and background.SetColorTexture then
+        background:SetColorTexture(.0941, .0941, .0941, .70)
+        -- Native UpdateBackground changes this separate multiplier. Keep the
+        -- embedded paint consistent without changing its saved preference.
+        if background.SetAlpha then background:SetAlpha(1) end
+    end
 end
 
 local function EnsureThemeHook()
@@ -168,7 +196,7 @@ function Skin:ApplyToOwnedPane(frame, title, scale)
         state.ownedHeader = true
         state.r = nil
     end
-    if state.ownedHeader then state.header:SetHeight(20 / scale) end
+    if state.ownedHeader then state.header:SetHeight(HEADER_HEIGHT / scale) end
     if not state.background and not frame.GetBackground and not frame.Background and frame.CreateTexture then
         state.background = frame:CreateTexture(nil, "BACKGROUND", nil, -1)
         state.background:SetAllPoints(frame)
@@ -178,7 +206,7 @@ function Skin:ApplyToOwnedPane(frame, title, scale)
     local text = frame.Title or frame.HeaderTitle
     if not text and frame.CreateFontString then
         text = frame:CreateFontString(nil, "OVERLAY")
-        text:SetPoint("TOPLEFT", frame, "TOPLEFT", 6 / scale, -4 / scale)
+        text:SetPoint("LEFT", frame, "TOPLEFT", 6 / scale, -HEADER_HEIGHT / (2 * scale))
         frame.HeaderTitle = text
     end
     StyleTitle(text, 12 / scale)

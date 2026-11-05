@@ -11,6 +11,7 @@ FluxBlizzardMeter = {}
 -- State tracking
 local embeddedParentFrame = nil
 local isEmbedded = false
+local explicitlyHidden = false
 local damageMeterFrame = nil
 local primarySessionWindow = nil
 local secondarySessionWindow = nil
@@ -41,7 +42,7 @@ local function IsEmbeddedHostVisible()
     local host = VisibilityHost()
     local activeTab = FluxWindowFrame and FluxWindowFrame.GetActiveTab
         and FluxWindowFrame:GetActiveTab()
-    return not pendingCleanup and host and host:IsVisible()
+    return not explicitlyHidden and not pendingCleanup and host and host:IsVisible()
         and (not activeTab or activeTab == "Meter") and FluxBlizzardMeter:IsAvailable()
 end
 
@@ -705,6 +706,13 @@ end
 local styledEntryWindows = {}
 local skinnedWindows = {}
 
+local function ApplyEmbeddedWindowSkin(window)
+    if window and FluxMeterSkin and FluxMeterSkin.ApplyToWindow then
+        FluxMeterSkin:ApplyToWindow(window, METER_SCALE)
+        skinnedWindows[window] = true
+    end
+end
+
 local function StyleEmbeddedEntryName(entry)
     if not entry or not entry.GetName then return end
     local isLocalPlayer = entry.isLocalPlayer
@@ -724,10 +732,6 @@ end
 
 local function InstallEmbeddedEntryStyle(window)
     if not window or not window.InitEntry then return end
-    if not skinnedWindows[window] and FluxMeterSkin and FluxMeterSkin.ApplyToWindow then
-        FluxMeterSkin:ApplyToWindow(window, METER_SCALE)
-        skinnedWindows[window] = true
-    end
     if styledEntryWindows[window] then return end
     styledEntryWindows[window] = true
     -- Preserve Flux's local-player tint after Blizzard finishes native Init.
@@ -735,6 +739,13 @@ local function InstallEmbeddedEntryStyle(window)
     hooksecurefunc(window, "InitEntry", function(_, entry)
         if isEmbedded and FluxBlizzardMeter:IsAvailable() then StyleEmbeddedEntryName(entry) end
     end)
+    if type(window.UpdateBackground) == "function" then
+        hooksecurefunc(window, "UpdateBackground", function()
+            if isEmbedded and skinnedWindows[window] and FluxBlizzardMeter:IsAvailable() then
+                ApplyEmbeddedWindowSkin(window)
+            end
+        end)
+    end
     if window.ForEachEntryFrame then
         window:ForEachEntryFrame(StyleEmbeddedEntryName)
     end
@@ -753,9 +764,8 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     WatchGeometry(sessionWindow)
 
     InstallEmbeddedEntryStyle(sessionWindow)
-    if sessionWindow.GetSourceWindow then
-        InstallEmbeddedEntryStyle(sessionWindow:GetSourceWindow())
-    end
+    local sourceWindow = sessionWindow.GetSourceWindow and sessionWindow:GetSourceWindow()
+    InstallEmbeddedEntryStyle(sourceWindow)
 
     -- These native setters refresh entries. Geometry passes must leave content
     -- alone when its selected type/session and display flags already match.
@@ -789,6 +799,8 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     -- Do not replace SetupEntry / entry UpdateName|UpdateValue — that taints Blizzard's
     -- secret-safe Init path (sourceDisplayType comparisons in GetSourceTypeAtlasElement).
 
+    ApplyEmbeddedWindowSkin(sessionWindow)
+    ApplyEmbeddedWindowSkin(sourceWindow)
     sessionWindow:Show()
 end
 
@@ -1017,6 +1029,7 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
     if not parentFrame then
         return false
     end
+    explicitlyHidden = false
     if InCombatLockdown() then
         -- Keep only the latest requested structure; never poll until combat ends.
         pendingEmbed = { parent = parentFrame, layout = layoutConfig }
@@ -1148,6 +1161,8 @@ end
 
 --- Hide the embedded damage meter
 function FluxBlizzardMeter:Hide()
+    -- Tab onHide runs before GetActiveTab changes; native callbacks must honor it.
+    explicitlyHidden = true
     CancelGeometryRepair()
     if FluxThreatMeter then FluxThreatMeter:Hide() end
     if IsDetailsAddonLoaded() and FluxMeterSkin and FluxMeterSkin.ReleaseAllNative then
@@ -1179,6 +1194,7 @@ function FluxBlizzardMeter:Show()
     if not embeddedParentFrame then
         return
     end
+    explicitlyHidden = false
     EnsureNativeEnabled()
 
     local dmFrame = GetDamageMeterFrame()
