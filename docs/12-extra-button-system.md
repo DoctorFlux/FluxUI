@@ -98,3 +98,7 @@ Check use/conjure distinction, modifier favorites, empty/uncached items, charge 
 Syndicator bag updates now preserve every added/removed item across a batched
 notification, so better consumables and last-use depletion reach selection.
 [Regression and native checks](SYNDICATOR_CONSUMABLE_UPDATES.md).
+
+Utility pet assignments now display the selected Pet Journal icon and GUID
+tooltip, including modifiers and late journal metadata. The secure summon
+macro and saved assignments stay intact. [Regression/native checks](UTILITY_PET_FACES.md).

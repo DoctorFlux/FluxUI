@@ -883,3 +883,16 @@ live-count adapter; reuse the shared watcher and existing reset/combat paths.
 The previous upload authorization remains applicable to this follow-up.
 [Exact source, recovery and limitations](SYNDICATOR_CONSUMABLE_UPDATES.md).
 No settings reset, native interaction or excluded callback change.
+
+## 5 November 2026 - utility pet display ownership
+
+5 November utility pet faces: the user clarified a question-mark/wrong-icon
+symptom. The manager now owns the selected journal-pet icon and tooltip via
+existing override surfaces, with modifier changes, metadata completion and
+cleanup. Summon macros/GUID storage remain intact. 920 checks pass (old40
+failures), three mutants rejected; full125/780 passes. Native checks pending.
+
+Use the utility manager's resolved display entry and the existing icon/tooltip
+override contract. Preserve generic macro parsing, secure summon bodies and
+all saved assignments; metadata events reuse the existing refresh queue.
+[Recovery, exact sources and limitations](UTILITY_PET_FACES.md).

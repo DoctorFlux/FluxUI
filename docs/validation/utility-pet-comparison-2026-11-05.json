@@ -1,0 +1,97 @@
+{
+  "baselineCommit": "11fec297ad16e57b702f12b20d9ab51675733187",
+  "candidateSources": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "b596fb3fd8741fd512cfb2868a57ef78475ed669538cf717841fdbb51d31a28d",
+    "tests/utility_pet_faces.lua": "8826cbe6b304fbfc8933f9f6f6dc264c5a96376255a0b567bf8b5132b3f1b342"
+  },
+  "scope": "Production utility assignment/manager and EBS painter. Native journal, secure widget and macro action writes mocked; assertions reject combat writes. Five client flag models plus no-journal control. Native acceptance unavailable.",
+  "reference": "https://raw.githubusercontent.com/Gethe/wow-ui-source/aff0d8cd53bf4d9ef1c1dd2786b94461a276fb16/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua",
+  "scenario": "Base/modifier pet faces and GUID tooltip; no action rebuild in combat; cold metadata completion; saved snapshot restore; preferred modifier mirror; replacement cleanup; absent capability",
+  "profiler": "off; process wall includes harness/assertion cost; not native CPU/FPS",
+  "warmup": "none; fresh process",
+  "repetitions": "5 alternating matched process pairs",
+  "pairs": [
+    {
+      "baseline": {
+        "exit": 1,
+        "wallSeconds": 0.056819700010237284,
+        "output": "FAIL retail base pet icon\nFAIL retail pet tooltip uses selected GUID\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail cold metadata has a pet fallback\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever pet tooltip uses selected GUID\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever cold metadata has a pet fallback\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era pet tooltip uses selected GUID\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era cold metadata has a pet fallback\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary pet tooltip uses selected GUID\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary cold metadata has a pet fallback\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists pet tooltip uses selected GUID\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists cold metadata has a pet fallback\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 40 failures\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "wallSeconds": 0.04957409999042284,
+        "output": "Utility pet faces: 920 checks, 0 failures\n"
+      }
+    },
+    {
+      "candidate": {
+        "exit": 0,
+        "wallSeconds": 0.03818239999236539,
+        "output": "Utility pet faces: 920 checks, 0 failures\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "wallSeconds": 0.04621689999476075,
+        "output": "FAIL retail base pet icon\nFAIL retail pet tooltip uses selected GUID\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail cold metadata has a pet fallback\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever pet tooltip uses selected GUID\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever cold metadata has a pet fallback\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era pet tooltip uses selected GUID\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era cold metadata has a pet fallback\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary pet tooltip uses selected GUID\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary cold metadata has a pet fallback\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists pet tooltip uses selected GUID\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists cold metadata has a pet fallback\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 40 failures\n"
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "wallSeconds": 0.04333829999086447,
+        "output": "FAIL retail base pet icon\nFAIL retail pet tooltip uses selected GUID\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail cold metadata has a pet fallback\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever pet tooltip uses selected GUID\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever cold metadata has a pet fallback\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era pet tooltip uses selected GUID\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era cold metadata has a pet fallback\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary pet tooltip uses selected GUID\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary cold metadata has a pet fallback\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists pet tooltip uses selected GUID\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists cold metadata has a pet fallback\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 40 failures\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "wallSeconds": 0.04850810000789352,
+        "output": "Utility pet faces: 920 checks, 0 failures\n"
+      }
+    },
+    {
+      "candidate": {
+        "exit": 0,
+        "wallSeconds": 0.04135840000526514,
+        "output": "Utility pet faces: 920 checks, 0 failures\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "wallSeconds": 0.0459335000050487,
+        "output": "FAIL retail base pet icon\nFAIL retail pet tooltip uses selected GUID\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail cold metadata has a pet fallback\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever pet tooltip uses selected GUID\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever cold metadata has a pet fallback\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era pet tooltip uses selected GUID\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era cold metadata has a pet fallback\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary pet tooltip uses selected GUID\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary cold metadata has a pet fallback\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists pet tooltip uses selected GUID\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists cold metadata has a pet fallback\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 40 failures\n"
+      }
+    },
+    {
+      "baseline": {
+        "exit": 1,
+        "wallSeconds": 0.04015239998989273,
+        "output": "FAIL retail base pet icon\nFAIL retail pet tooltip uses selected GUID\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail cold metadata has a pet fallback\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever pet tooltip uses selected GUID\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever cold metadata has a pet fallback\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era pet tooltip uses selected GUID\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era cold metadata has a pet fallback\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary pet tooltip uses selected GUID\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary cold metadata has a pet fallback\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists pet tooltip uses selected GUID\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists cold metadata has a pet fallback\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 40 failures\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "wallSeconds": 0.046223299999837764,
+        "output": "Utility pet faces: 920 checks, 0 failures\n"
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "name": "wrong-icon",
+      "exit": 1,
+      "output": "FAIL retail base pet icon\nFAIL retail modifier changes pet face during combat\nFAIL retail modifier release restores pet\nFAIL retail journal metadata event restores actual pet icon\nFAIL retail snapshot reload preserves GUID and face\nFAIL retail modifier-only pet mirrors onto base\nFAIL forever base pet icon\nFAIL forever modifier changes pet face during combat\nFAIL forever modifier release restores pet\nFAIL forever journal metadata event restores actual pet icon\nFAIL forever snapshot reload preserves GUID and face\nFAIL forever modifier-only pet mirrors onto base\nFAIL era base pet icon\nFAIL era modifier changes pet face during combat\nFAIL era modifier release restores pet\nFAIL era journal metadata event restores actual pet icon\nFAIL era snapshot reload preserves GUID and face\nFAIL era modifier-only pet mirrors onto base\nFAIL anniversary base pet icon\nFAIL anniversary modifier changes pet face during combat\nFAIL anniversary modifier release restores pet\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL anniversary snapshot reload preserves GUID and face\nFAIL anniversary modifier-only pet mirrors onto base\nFAIL mists base pet icon\nFAIL mists modifier changes pet face during combat\nFAIL mists modifier release restores pet\nFAIL mists journal metadata event restores actual pet icon\nFAIL mists snapshot reload preserves GUID and face\nFAIL mists modifier-only pet mirrors onto base\nUtility pet faces: 920 checks, 30 failures\n"
+    },
+    {
+      "name": "no-cleanup",
+      "exit": 1,
+      "output": "FAIL retail replacing pet clears owned presentation\nFAIL forever replacing pet clears owned presentation\nFAIL era replacing pet clears owned presentation\nFAIL anniversary replacing pet clears owned presentation\nFAIL mists replacing pet clears owned presentation\nUtility pet faces: 920 checks, 5 failures\n"
+    },
+    {
+      "name": "no-metadata-event",
+      "exit": 1,
+      "output": "FAIL retail journal metadata event restores actual pet icon\nFAIL forever journal metadata event restores actual pet icon\nFAIL era journal metadata event restores actual pet icon\nFAIL anniversary journal metadata event restores actual pet icon\nFAIL mists journal metadata event restores actual pet icon\nUtility pet faces: 920 checks, 5 failures\n"
+    }
+  ],
+  "nativeStatus": "pending: real client builds/settings/hardware/addon list, native input/taint/pixels and CPU/allocation/frame-time/latency samples not captured",
+  "commands": {
+    "baseline": "lua tests/utility_pet_faces.lua <checkpoint>/manager-before.lua",
+    "candidate": "lua tests/utility_pet_faces.lua"
+  }
+}

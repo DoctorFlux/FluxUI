@@ -540,6 +540,34 @@ local function EntryIsChecked(entry)
     return false
 end
 
+local function UtilityPetTooltip(btn, tip)
+    if tip.SetCompanionPet then
+        tip:SetCompanionPet(btn._fluxUtilityPetGUID)
+    else
+        tip:SetText(btn._fluxUtilityPetName or "Battle Pet")
+    end
+end
+
+local function RefreshPetFace(btn, entry)
+    local previous = btn._fluxUtilityPetGUID
+    local guid = entry and entry.type == "battlepet" and entry.id
+    if guid and C_PetJournal and C_PetJournal.GetPetInfoByPetID then
+        local _, customName, _, _, _, _, _, speciesName, icon = C_PetJournal.GetPetInfoByPetID(guid)
+        -- The summon macro is already correct; its generic spell/item parser
+        -- cannot supply a journal pet's face. Utility slots own this override.
+        btn._fluxUtilityPetGUID = guid
+        btn._fluxUtilityPetName = customName or speciesName
+        btn.IconOverrideTexture = icon or "Interface/Icons/INV_Pet_Achievement_CaptureAPetFromEachFamily_Battle"
+        btn._fluxTooltipExtras = UtilityPetTooltip
+    elseif previous then
+        btn._fluxUtilityPetGUID, btn._fluxUtilityPetName = nil, nil
+        btn.IconOverrideTexture = nil
+        if btn._fluxTooltipExtras == UtilityPetTooltip then btn._fluxTooltipExtras = nil end
+    end
+    local Paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
+    if (guid or previous) and Paint and Paint.UpdateIcon then Paint.UpdateIcon(btn) end
+end
+
 local function RefreshChecked(btn, slotData)
     local w = btn and btn.Widget
     if not w then
@@ -547,6 +575,7 @@ local function RefreshChecked(btn, slotData)
     end
     local A = Assign()
     local entry = select(1, ResolveDisplayEntry(A, btn.slotIndex, slotData or btn.SlotData))
+    RefreshPetFace(btn, entry)
     local shouldBeChecked = EntryIsChecked(entry)
     -- Extra Paint golds StanceActiveVisual before macrotext faces. Mount / pet
     -- assignments stay type=macrotext, so stamp that visual here.
@@ -695,6 +724,7 @@ local function ShowEmptySlot(btn)
     if not btn then
         return
     end
+    RefreshPetFace(btn, nil)
     if btn.ClearAction then
         btn:ClearAction()
     end
@@ -1164,6 +1194,9 @@ watch:RegisterEvent("BAG_UPDATE_COOLDOWN")
 watch:RegisterEvent("CURRENT_SPELL_CAST_CHANGED")
 watch:RegisterEvent("ACTIONBAR_UPDATE_STATE")
 watch:RegisterEvent("COMPANION_UPDATE")
+if C_PetJournal and C_PetJournal.GetPetInfoByPetID then
+    watch:RegisterEvent("PET_JOURNAL_LIST_UPDATE")
+end
 watch:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")
 if watch.RegisterUnitEvent then
     watch:RegisterUnitEvent("UNIT_PET", "player")
@@ -1262,6 +1295,7 @@ watch:SetScript("OnEvent", function(_, event)
         return
     end
     if event == "CURRENT_SPELL_CAST_CHANGED"
+        or event == "PET_JOURNAL_LIST_UPDATE"
         or event == "ACTIONBAR_UPDATE_STATE"
         or event == "COMPANION_UPDATE"
         or event == "PLAYER_MOUNT_DISPLAY_CHANGED"

@@ -359,20 +359,21 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/NonCombatGrid/GridInit.lua:139](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L139) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/GridInit.lua:140](../../ExtraButtonSystem/NonCombatGrid/GridInit.lua#L140) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua:832](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua#L832) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1146](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1146) | `RegisterEvent` | `"CURSOR_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1147](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1147) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1148](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1148) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1149](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1149) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1151](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1151) | `RegisterEvent` | `"TRANSMOG_OUTFITS_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1152](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1152) | `RegisterEvent` | `"TRANSMOG_DISPLAYED_OUTFIT_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1156](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1156) | `RegisterEvent` | `"SPELL_UPDATE_CHARGES"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1161](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1161) | `RegisterEvent` | `"SPELLS_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1163](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1163) | `RegisterEvent` | `"BAG_UPDATE_COOLDOWN"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1164](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1164) | `RegisterEvent` | `"CURRENT_SPELL_CAST_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1165](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1165) | `RegisterEvent` | `"ACTIONBAR_UPDATE_STATE"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1166](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1166) | `RegisterEvent` | `"COMPANION_UPDATE"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1167](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1167) | `RegisterEvent` | `"PLAYER_MOUNT_DISPLAY_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1169](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1169) | `RegisterUnitEvent` | `"UNIT_PET", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1176](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1176) | `RegisterEvent` | `"CURSOR_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1177](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1177) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1178](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1178) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1179](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1179) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1181](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1181) | `RegisterEvent` | `"TRANSMOG_OUTFITS_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1182](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1182) | `RegisterEvent` | `"TRANSMOG_DISPLAYED_OUTFIT_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1186](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1186) | `RegisterEvent` | `"SPELL_UPDATE_CHARGES"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1191](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1191) | `RegisterEvent` | `"SPELLS_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1193](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1193) | `RegisterEvent` | `"BAG_UPDATE_COOLDOWN"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1194](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1194) | `RegisterEvent` | `"CURRENT_SPELL_CAST_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1195](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1195) | `RegisterEvent` | `"ACTIONBAR_UPDATE_STATE"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1196](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1196) | `RegisterEvent` | `"COMPANION_UPDATE"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1198](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1198) | `RegisterEvent` | `"PET_JOURNAL_LIST_UPDATE"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1200](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1200) | `RegisterEvent` | `"PLAYER_MOUNT_DISPLAY_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1202](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1202) | `RegisterUnitEvent` | `"UNIT_PET", "player"` |
 | [ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua:626](../../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua#L626) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [ExtraButtonSystem/Shared/HotkeyUtil.lua:415](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L415) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/Shared/HotkeyUtil.lua:416](../../ExtraButtonSystem/Shared/HotkeyUtil.lua#L416) | `RegisterEvent` | `"MODIFIER_STATE_CHANGED"` |
@@ -5760,16 +5761,16 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Manager.GetGrid` | [L31](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L31) |
 | `Manager.OnNonCombatGridReady` | [L43](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L43) |
 | `Manager.BuildMacroText` | [L159](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L159) |
-| `Manager.UpdateHotkeys` | [L720](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L720) |
-| `Manager.UpdateButton` | [L750](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L750) |
-| `btn.UpdateChecked` | [L914](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L914) |
-| `Manager.EnsureButtons` | [L920](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L920) |
-| `Manager.ShouldShowEmptySlots` | [L1007](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1007) |
-| `Manager.UpdateVisibility` | [L1018](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1018) |
-| `Manager._DoUpdateAllSlots` | [L1051](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1051) |
-| `Manager.UpdateAllSlots` | [L1105](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1105) |
-| `Manager.UpdateBindings` | [L1120](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1120) |
-| `ManagerA.OnSlotsChanged` | [L1393](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1393) |
+| `Manager.UpdateHotkeys` | [L750](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L750) |
+| `Manager.UpdateButton` | [L780](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L780) |
+| `btn.UpdateChecked` | [L944](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L944) |
+| `Manager.EnsureButtons` | [L950](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L950) |
+| `Manager.ShouldShowEmptySlots` | [L1037](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1037) |
+| `Manager.UpdateVisibility` | [L1048](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1048) |
+| `Manager._DoUpdateAllSlots` | [L1081](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1081) |
+| `Manager.UpdateAllSlots` | [L1135](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1135) |
+| `Manager.UpdateBindings` | [L1150](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1150) |
+| `ManagerA.OnSlotsChanged` | [L1427](../../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua#L1427) |
 
 ### ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua
 

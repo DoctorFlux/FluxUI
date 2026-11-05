@@ -170,7 +170,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/NonCombatGrid/Grid.lua](../ExtraButtonSystem/NonCombatGrid/Grid.lua) | 0 | 0 | 4 | 0 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/GridInit.lua](../ExtraButtonSystem/NonCombatGrid/GridInit.lua) | 0 | 0 | 0 | 2 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua) | 0 | 0 | 0 | 1 | 0 |
-| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua) | 3 | 0 | 10 | 14 | 0 |
+| [ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua) | 3 | 0 | 10 | 15 | 0 |
 | [ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua](../ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua) | 0 | 0 | 1 | 0 | 0 |
 | [ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua](../ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua) | 0 | 0 | 3 | 1 | 0 |
 | [ExtraButtonSystem/Shared/FluxMacroClickProxies.lua](../ExtraButtonSystem/Shared/FluxMacroClickProxies.lua) | 0 | 0 | 6 | 0 | 0 |

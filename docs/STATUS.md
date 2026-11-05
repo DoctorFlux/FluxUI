@@ -1,5 +1,12 @@
 # Development status
 
+5 November utility pet faces: the user clarified a question-mark/wrong-icon
+symptom. The manager now owns the selected journal-pet icon and tooltip via
+existing override surfaces, with modifier changes, metadata completion and
+cleanup. Summon macros/GUID storage remain intact. 920 checks pass (old40
+failures), three mutants rejected; full125/780 passes. Native checks pending.
+[Evidence and native steps](UTILITY_PET_FACES.md).
+
 5 November live-zero follow-up: exhausted food/water/potion/bandage buttons
 now reset from reliable live bags before Syndicator's delayed cache callback.
 The painter retains the verified count; loading holds and combat deferral
