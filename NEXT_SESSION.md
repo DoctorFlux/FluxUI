@@ -1,5 +1,14 @@
 # Next session
 
+5 November auction opening regression: the user's Retail stack showed Update
+running before the ScrollBox view exists. Both modern highlighting variants now
+check GetView before iterating; later initialized updates still paint normally.
+The real delegate contract reproduces20 baseline failures versus0 of156 candidate
+checks across five client/two provider labels. Five matched pairs retain600 active
+visits/200 classifications; no new timers/events. Full127/782 passes; native
+reopening and the original Buy spike remain pending.
+[Reproduction and evidence](docs/AUCTION_PURCHASE_REFRESH.md#view-initialization-regression).
+
 5 November auction metadata: global cache events no longer harvest all bag/bank
 names or populate classification records for unrelated auction items. Requested
 metadata, failed-load retry, static consumers, explicit completions and immediate

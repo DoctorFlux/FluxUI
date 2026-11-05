@@ -1,0 +1,90 @@
+{
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Auction-view-20261105T085001Z",
+    "head": "5d3a8a422c3382b7fced08ebd86281180ef6c028",
+    "sourceFiles": 1440,
+    "settingsFiles": 123,
+    "sourceSha256": "0f323cdf594fa6edff3ed40ed275bd062da4e082816b5be15c4459e40dbcdf54"
+  },
+  "baselineCommit": "5d3a8a422c3382b7fced08ebd86281180ef6c028",
+  "runtimeSha256": {
+    "FluxAlreadyKnown.lua": "1d7695767084e483497390a8fda0794c81ba8f1f0af8cbdffa4f1d1609339da3",
+    "FluxAlreadyKnownClassic.lua": "4affef74ac1cfbc8bfbcac7ba8ab115a03cf8eb12847adca2069935086dd477e"
+  },
+  "normalization": "CRLF to LF",
+  "scenario": "real AlreadyKnown variants; native ForEachFrame delegates through GetView; nil view on first Update and after release, then restored; existing tint/legacy/disabled/provider-label controls",
+  "profile": "5 alternating fresh-process pairs; no warmup; operation counts, not native CPU/FPS/latency",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.08340669999597594,
+      "exit": 1,
+      "raw": "FAIL retail/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL retail/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nauction active rows: 156 checks, 20 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.06117729999823496,
+      "exit": 0,
+      "raw": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.054175700002815574,
+      "exit": 1,
+      "raw": "FAIL retail/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL retail/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nauction active rows: 156 checks, 20 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.054429600000730716,
+      "exit": 0,
+      "raw": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.054248899992671795,
+      "exit": 1,
+      "raw": "FAIL retail/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL retail/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nauction active rows: 156 checks, 20 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.05484419999993406,
+      "exit": 0,
+      "raw": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.047721199996885844,
+      "exit": 1,
+      "raw": "FAIL retail/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL retail/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nauction active rows: 156 checks, 20 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.05751709999458399,
+      "exit": 0,
+      "raw": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.04764820000855252,
+      "exit": 1,
+      "raw": "FAIL retail/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL retail/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL forever/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL era/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL anniversary/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/builtin pre-view Update is safe\nFAIL released-view Update is safe\nFAIL mists/syndicator pre-view Update is safe\nFAIL released-view Update is safe\nauction active rows: 156 checks, 20 failures; burst visits=600, classifications=200\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.05012379999971017,
+      "exit": 0,
+      "raw": "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200\n"
+    }
+  ],
+  "native": "User-provided Retail stack reproduces nil GetView dereference; candidate in-game acceptance pending. No connected runtime or foreground input used."
+}

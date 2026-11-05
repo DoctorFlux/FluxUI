@@ -1,5 +1,29 @@
 # Auction purchase refresh investigation
 
+## View initialization regression
+
+The user's 09:48:14 Retail stack establishes a native failure in the active-row
+change: auction display-mode OnShow calls ScrollBox.Update before its view exists.
+Native ForEachFrame dereferences GetView without checking it. The old desktop mock
+iterated directly and missed that lifecycle contract. Both FluxUI variants now
+return before iteration while GetView is nil (or the callback has no receiver).
+Initialized updates retain the same painter and cadence; no pooled-child fallback,
+error-hiding pcall, new event or retry timer is used. Metadata filtering remains.
+
+The test now delegates through GetView like native FrameXML and covers pre-view,
+released-view and restored-view updates. Five matched baseline/candidate pairs:
+20 baseline failures versus0 of156 checks; initialized burst visits600 and
+classifications200 in both. The old guard-free source is the rejected control.
+[Exact hashes/raw pairs/recovery](validation/auction-view-comparison-2026-11-05.json).
+[Full127-test/782-Lua report](validation/auction-view-2026-11-05.json).
+Baseline5d3a8a4; recovery Auction-view-20261105T085001Z preserves1,440 actual files,
+verified history and123 on-disk settings outside AddOns; ZIP SHA256
+`0f323cdf594fa6edff3ed40ed275bd062da4e082816b5be15c4459e40dbcdf54`.
+Native failure is confirmed by the supplied stack; candidate native pass is pending.
+After reload: open/close/reopen AH, switch display modes, search/scroll, check known
+and unknown tints, buy and repeat with both providers on each client. Original Buy
+latency still needs matched native capture. No foreground or input was taken.
+
 Follow-up: [metadata fan-out reproduction and fix](AUCTION_METADATA_WORK.md)
 removes unnecessary shared callback work; native Buy acceptance remains pending.
 

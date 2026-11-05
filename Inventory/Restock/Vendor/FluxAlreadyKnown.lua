@@ -375,6 +375,8 @@ end
 
 	local function _hookAH(self)
 		if not AK.ShouldRun() then return end
+		-- OnShow can update before SetView, and a released view has no rows.
+		if not self or not self:GetView() then return end
 		-- ScrollTarget also owns released rows. Visit the active view without
 		-- allocating or traversing its retained frame pool on each update.
 		self:ForEachFrame(PaintAuctionRow)

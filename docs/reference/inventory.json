@@ -54979,8 +54979,8 @@
       "path": "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 823,
-      "sha256": "0dfc5f513627fc320f808aba6c9add35cdfd52ed7c5cf9a351f567cd46a4f537",
+      "lines": 825,
+      "sha256": "1d7695767084e483497390a8fda0794c81ba8f1f0af8cbdffa4f1d1609339da3",
       "clients": [
         "mainline"
       ],
@@ -54991,20 +54991,20 @@
       "functions": [
         {
           "name": "f:ADDON_LOADED",
-          "line": 488
+          "line": 490
         },
         {
           "name": "f:PLAYER_ENTERING_WORLD",
-          "line": 510
+          "line": 512
         },
         {
           "name": "SlashCmdList.ALREADYKNOWN",
-          "line": 790
+          "line": 792
         }
       ],
       "events": [
         {
-          "line": 481,
+          "line": 483,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -55012,7 +55012,7 @@
           "context": ")end)f:"
         },
         {
-          "line": 482,
+          "line": 484,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -55025,18 +55025,18 @@
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN1",
           "value": "/alreadyknown",
-          "line": 736
+          "line": 738
         },
         {
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN2",
           "value": "/ak",
-          "line": 737
+          "line": 739
         },
         {
           "kind": "handler",
           "name": "ALREADYKNOWN",
-          "line": 790
+          "line": 792
         }
       ],
       "widgets": [],
@@ -55047,8 +55047,8 @@
       "path": "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 854,
-      "sha256": "7b18b94cbe7f675396593056876d994e491c81b17ee72e726c9f13e52d4b317e",
+      "lines": 856,
+      "sha256": "4affef74ac1cfbc8bfbcac7ba8ab115a03cf8eb12847adca2069935086dd477e",
       "clients": [
         "cata",
         "classic",
@@ -55064,20 +55064,20 @@
       "functions": [
         {
           "name": "f:ADDON_LOADED",
-          "line": 568
+          "line": 570
         },
         {
           "name": "SlashCmdList.ALREADYKNOWN",
-          "line": 818
+          "line": 820
         },
         {
           "name": "_hookMerchantAK.RefreshAuctionHouse",
-          "line": 844
+          "line": 846
         }
       ],
       "events": [
         {
-          "line": 561,
+          "line": 563,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -55090,18 +55090,18 @@
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN1",
           "value": "/alreadyknown",
-          "line": 764
+          "line": 766
         },
         {
           "kind": "alias",
           "name": "SLASH_ALREADYKNOWN2",
           "value": "/ak",
-          "line": 765
+          "line": 767
         },
         {
           "kind": "handler",
           "name": "ALREADYKNOWN",
-          "line": 818
+          "line": 820
         }
       ],
       "widgets": [],
@@ -71184,8 +71184,8 @@
       "path": "tests/auction_active_rows.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 107,
-      "sha256": "061e8d3311a470d8341c936eed744b8a8f45691dfb62afe5ebc70369b4340519",
+      "lines": 123,
+      "sha256": "85a06d214725fc2fc067527a08a6f048bd3ca9e9c7dea1f028e700451eec35ad",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -71224,11 +71224,11 @@
         },
         {
           "name": "env.FauxScrollFrame_GetOffset",
-          "line": 96
+          "line": 112
         },
         {
           "name": "endenv.GetAuctionItemLink",
-          "line": 97
+          "line": 113
         }
       ],
       "events": [],

@@ -57,7 +57,10 @@ for _, family in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     local scroll = {ScrollTarget = {GetChildren = function()
         state.children = state.children + #children
         return table.unpack(children)
-    end}, ForEachFrame = function(_, fn)
+    end}, GetView = function() return state.view end, ForEachFrame = function(self, fn)
+        return self:GetView():ForEachFrame(fn)
+    end}
+    state.view = {ForEachFrame = function(_, fn)
         for _, button in ipairs(active) do state.active = state.active + 1; fn(button) end
     end}
     env.AuctionHouseFrame = {BrowseResultsFrame = {ItemList = {ScrollBox = scroll}}}
@@ -66,6 +69,12 @@ for _, family in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     local function refresh()
         if family == "retail" then AK.RefreshAuctionHouse(scroll) else AK.RefreshAuctionHouse() end
     end
+    local readyView = state.view
+    state.view = nil
+    local ok = pcall(refresh)
+    check(ok, family .. "/" .. provider .. " pre-view Update is safe")
+    check(state.active == 0 and state.reads == 0, "pre-view Update does no work")
+    state.view = readyView
     -- 20 matched list updates model the UI refresh burst, not native Buy timing.
     for i = 1, 20 do refresh() end
     check(state.children == 0, family .. "/" .. provider .. " does not enumerate pooled children")
@@ -88,6 +97,13 @@ for _, family in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     state.enabled = false
     refresh()
     check(before == state.children + state.active, "disabled integration stops work")
+    state.enabled = true
+    state.view = nil
+    check(pcall(refresh), "released-view Update is safe")
+    state.view = readyView
+    local visits = state.active
+    refresh()
+    check(state.active == visits + #active, "replacement view resumes normal painting")
     if family ~= "retail" then
         -- Era's loaded legacy UI has no modern ScrollBox. Keep that fixed-size
         -- branch usable when no AuctionHouseFrame or ForEachFrame exists.
