@@ -1,5 +1,12 @@
 # Next session
 
+Consumables config follow-up: on Retail and Forever, verify configured icons
+remain visible after adding an uncached item and reloading, including a
+staff-only enchant while a dagger/sword is equipped. Repeat preset switching,
+tooltip, secure click, error and layout checks across supported clients. The
+shared source desktop fix passes five paired fixtures and full 148/803 suite;
+native evidence is pending. See docs/CONSUMABLE_TARGET_DETECTION.md.
+
 Published runtime is `7a06b85f633d1945b7d6bf615636f486f3d7e627` (tree
 `4e31f10131923c3d002faffe8036e631d1537402`), verified on GitHub main.
 Publication-record updates are documentation only; the 800-file Lua manifest

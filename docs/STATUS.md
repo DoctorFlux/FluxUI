@@ -1,5 +1,12 @@
 # Development status
 
+5 November consumable editor follow-up: Retail and Forever saved item visibility
+is fixed in the shared config path. Valid dropped IDs persist before item names
+load; the saved grid renders before the live button update and the window is
+shown before refresh. Five paired desktop fixtures and full 148-script/803-Lua
+validation pass. Native client confirmation remains pending.
+See [evidence](CONSUMABLE_TARGET_DETECTION.md).
+
 Published runtime: `7a06b85f633d1945b7d6bf615636f486f3d7e627`, source tree
 `4e31f10131923c3d002faffe8036e631d1537402`. GitHub main read-back matched;
 all 800 normalized Lua files match the passing validation manifest. Subsequent

@@ -1,5 +1,12 @@
 # Work log
 
+5 November consumable config visibility: verified published main `437fda7`,
+external all-ref bundle, worktree copy and four Retail/Forever on-disk settings
+files before editing. Fixed deferred item save and button-first refresh in the
+shared config. Five baseline/candidate desktop pairs pass eight checks each;
+full validation passes 148 scripts and 803 Lua files. Native client checks
+pending. [Case and hashes](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November publication: ordinary push to main completed for runtime
 `7a06b85f633d1945b7d6bf615636f486f3d7e627`, tree
 `4e31f10131923c3d002faffe8036e631d1537402`; remote read-back matched and

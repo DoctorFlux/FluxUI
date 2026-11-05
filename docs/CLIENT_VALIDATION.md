@@ -1,5 +1,13 @@
 # Client and reference validation — 29 October 2026
 
+5 November consumable config visibility: shared editor path saves a valid
+dropped item ID before its name loads and renders saved entries before the live
+button update. Five baseline/candidate desktop pairs (eight checks each) and
+full 148-script/803-Lua validation pass. Retail and Forever native verification
+is pending, as are Era, Anniversary and progression client checks. Inspect
+reload persistence, zero-effective-count weapon enchant visibility, tooltips,
+secure click, and actual layout. See [case record](CONSUMABLE_TARGET_DETECTION.md).
+
 5 November mail/auction lifecycle candidate, baseline `e860ce6` already published:
 real auction modules pass 628 checks and real Settings/Select/OpenAll modules
 pass 880 checks. Five alternating pairs per fixture, eight rejected mutants and

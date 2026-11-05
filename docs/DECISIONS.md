@@ -1,5 +1,12 @@
 # Decisions
 
+5 November consumable editor: a verified item cursor ID is sufficient to save
+the preset entry while metadata loads. Render saved configuration independently
+of effective bag usability and before the live button update; display the
+window before that refresh. Keep weapon compatibility limited to button
+availability and preserve physical inventory/restock counts. No saved-data
+migration or client-specific branch is needed.
+
 5 November mail/auction lifecycle: keep Blizzard responsible for posting, sales,
 buying, cancellation and confirmation dialogs. Flux's built-in observer must
 check provider ownership before a native owned-list query and latch its attempt
