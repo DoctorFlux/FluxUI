@@ -31439,7 +31439,7 @@
       "classification": "development harness",
       "chapter": "08-shared-services.md",
       "lines": 1584,
-      "sha256": "7b7055cb5edf51d9a0f9964d25c66ce9992ef302c6f0969f28969b4ebf9dc943",
+      "sha256": "366610daadcce05e524b0e1159c39fc4c18e3038e6715b4bce06cc782ede2540",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -41937,8 +41937,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 6746,
-      "sha256": "b4d5100232a8e1e0f86d72145c44faa3e7ef2d9d5ed7ea76a2b1fa551c5586f4",
+      "lines": 6737,
+      "sha256": "2cf0e95e831374f6b0f12de4f8e09703ed8816ee8f3a1cd854d884ab8543c6d2",
       "clients": [
         "camelot",
         "cata",
@@ -41999,417 +41999,421 @@
           "line": 796
         },
         {
+          "name": "Module.GetRefreshTimerInfo",
+          "line": 803
+        },
+        {
           "name": "Module.SetRefreshThreshold",
-          "line": 802
+          "line": 826
         },
         {
           "name": "Module.SetItems",
-          "line": 809
+          "line": 833
         },
         {
           "name": "Module.AddItem",
-          "line": 819
+          "line": 843
         },
         {
           "name": "Module.RemoveItem",
-          "line": 844
+          "line": 868
         },
         {
           "name": "Module.RemoveItemAtIndex",
-          "line": 863
+          "line": 887
         },
         {
           "name": "Module.MoveItem",
-          "line": 878
+          "line": 902
         },
         {
           "name": "Module.AddItemAtIndex",
-          "line": 891
-        },
-        {
-          "name": "Module.SetActivePreset",
           "line": 915
         },
         {
+          "name": "Module.SetActivePreset",
+          "line": 939
+        },
+        {
           "name": "Module.CreatePreset",
-          "line": 926
+          "line": 950
         },
         {
           "name": "Module.DeletePreset",
-          "line": 942
+          "line": 966
         },
         {
           "name": "Module.GetPresetNames",
-          "line": 962
+          "line": 986
         },
         {
           "name": "Module.GetCanonicalChronoboonID",
-          "line": 1065
+          "line": 1089
         },
         {
           "name": "Module.GetChronoboonRestockTarget",
-          "line": 1070
+          "line": 1094
         },
         {
           "name": "Module.SetChronoboonRestockTarget",
-          "line": 1118
+          "line": 1142
         },
         {
           "name": "Module.GetPresetRestockTarget",
-          "line": 1158
+          "line": 1182
         },
         {
           "name": "Module.SetPresetRestockTarget",
-          "line": 1181
+          "line": 1205
         },
         {
           "name": "Module.GetRestockUIItemIDs",
-          "line": 1233
+          "line": 1257
         },
         {
           "name": "Module.IsRestockUIItem",
-          "line": 1261
+          "line": 1285
         },
         {
           "name": "Module.GetItemChargeCount",
-          "line": 1275
+          "line": 1299
         },
         {
           "name": "Module.GetPhysicalItemCount",
-          "line": 1453
+          "line": 1477
         },
         {
           "name": "Module.GetItemCount",
-          "line": 1479
+          "line": 1503
         },
         {
           "name": "Module.IsChronoboonName",
-          "line": 1724
+          "line": 1748
         },
         {
           "name": "Module.ClassifyChronoboon",
-          "line": 1729
+          "line": 1753
         },
         {
           "name": "Module.NoteChronoboonVariant",
-          "line": 1761
+          "line": 1785
         },
         {
           "name": "Module.GetRegularChronoboonVariantIDs",
-          "line": 1980
+          "line": 2004
         },
         {
           "name": "Module.CollectChronoboonIDs",
-          "line": 2000
+          "line": 2024
         },
         {
           "name": "Module.GetChronoboonBagCount",
-          "line": 2036
+          "line": 2060
         },
         {
           "name": "Module.GetChronoboonBankCount",
-          "line": 2043
+          "line": 2067
         },
         {
           "name": "Module.FindChronoboonBankSlotStacks",
-          "line": 2055
+          "line": 2079
         },
         {
           "name": "Module.ResolveMerchantRegularChronoboon",
-          "line": 2092
+          "line": 2116
         },
         {
           "name": "Module.ReadChronoboonRestockTargetCombined",
-          "line": 2118
+          "line": 2142
         },
         {
           "name": "Module.IsChronoboonItem",
-          "line": 2149
+          "line": 2173
         },
         {
           "name": "Module.IsSuperchargedChronoboonItem",
-          "line": 2162
+          "line": 2186
         },
         {
           "name": "Module.HasSuperchargedChronoboonBuff",
-          "line": 2174
+          "line": 2198
         },
         {
           "name": "Module.HasSuperchargedChronoboonInBags",
-          "line": 2237
-        },
-        {
-          "name": "Module.HasWorldBuff",
           "line": 2261
         },
         {
+          "name": "Module.HasWorldBuff",
+          "line": 2285
+        },
+        {
           "name": "Module.GetWorldBuffCount",
-          "line": 2267
+          "line": 2291
         },
         {
           "name": "Module.FindChronoboonItemIDs",
-          "line": 2328
+          "line": 2352
         },
         {
           "name": "Module.GetGroundAuraBinding",
-          "line": 2359
+          "line": 2383
         },
         {
           "name": "Module.SetGroundAuraBinding",
-          "line": 2373
+          "line": 2397
         },
         {
           "name": "Module.ClearGroundAuraBinding",
-          "line": 2387
+          "line": 2411
         },
         {
           "name": "Module.IsGroundAuraLearnerArmed",
-          "line": 2402
+          "line": 2426
         },
         {
           "name": "Module.IsGroundPlaceableItem",
-          "line": 2425
+          "line": 2449
         },
         {
           "name": "Module.FindBuffBySpellID",
-          "line": 2457
+          "line": 2481
         },
         {
           "name": "Module.TryProcessGroundAuraLearner",
-          "line": 2623
+          "line": 2647
         },
         {
           "name": "Module.OnGroundPlaceableCastSucceeded",
-          "line": 2678
+          "line": 2702
         },
         {
           "name": "Module.ItemGrantsWellFed",
-          "line": 2713
+          "line": 2737
         },
         {
           "name": "Module.FindWellFedBuff",
-          "line": 2754
+          "line": 2778
         },
         {
           "name": "Module.FindBuffForItem",
-          "line": 2836
+          "line": 2860
         },
         {
           "name": "Module.GetWeaponEnchantTargetRule",
-          "line": 3198
+          "line": 3222
         },
         {
           "name": "Module.GetConsumableDescription",
-          "line": 3233
+          "line": 3257
         },
         {
           "name": "Module.IsWeaponEnchantItem",
-          "line": 3264
+          "line": 3288
         },
         {
           "name": "Module.CanEnchantApplyToSlot",
-          "line": 3311
+          "line": 3335
         },
         {
           "name": "Module.GetWeaponEnchantSlot",
-          "line": 3381
+          "line": 3405
         },
         {
           "name": "Module.FindPreferredBagSlot",
-          "line": 3620
+          "line": 3644
         },
         {
           "name": "Module.GetWeaponEnchantSlotWithLowestCharges",
-          "line": 3665
+          "line": 3689
         },
         {
           "name": "Module.GetBagSlotWithLowestStack",
-          "line": 3669
+          "line": 3693
         },
         {
           "name": "Module.IsItemEligible",
-          "line": 3738
+          "line": 3762
         },
         {
           "name": "Module.GetFirstEligibleItem",
-          "line": 3825
+          "line": 3849
         },
         {
           "name": "Module.GetEligibleRegularChronoboonItemID",
-          "line": 3866
+          "line": 3890
         },
         {
           "name": "Module.GetChronoboonModifierOverrideChronoID",
-          "line": 3880
+          "line": 3904
         },
         {
           "name": "Module.RefreshConsumablesUsability",
-          "line": 3895
+          "line": 3919
         },
         {
           "name": "Module.RebindPreferredUseSlot",
-          "line": 4069
+          "line": 4093
         },
         {
           "name": "Module.ApplyConsumablesChronoboonModifierVisual",
-          "line": 4170
+          "line": 4194
         },
         {
           "name": "Module.ApplyChronoboonModifierLayer",
-          "line": 4219
+          "line": 4243
         },
         {
           "name": "Module.ClearChronoboonModifierLayer",
-          "line": 4254
+          "line": 4278
         },
         {
           "name": "Module.CheckWispLockState",
-          "line": 4274
+          "line": 4298
         },
         {
           "name": "Module.UseNextConsumable",
-          "line": 4351
+          "line": 4375
         },
         {
           "name": "Module.UpdateWispLockCooldown",
-          "line": 4560
+          "line": 4584
         },
         {
           "name": "Module.SetupRightClickConfig",
-          "line": 4639
+          "line": 4635
         },
         {
           "name": "falsebtn.UpdateTextCount",
-          "line": 4776
+          "line": 4772
         },
         {
           "name": "Module.RefreshAuraTimerOverlay",
-          "line": 4951
+          "line": 4942
         },
         {
           "name": "Module.UpdateBuffCooldown",
-          "line": 4965
+          "line": 4956
         },
         {
           "name": "Module.ApplyPendingChanges",
-          "line": 4974
+          "line": 4965
         },
         {
           "name": "Module.UpdateButtonState",
-          "line": 4997
+          "line": 4988
         },
         {
           "name": "Module.Register",
-          "line": 5307
+          "line": 5298
         },
         {
           "name": "Module.CreateButton",
-          "line": 5335
+          "line": 5326
         },
         {
           "name": "truebtn.UpdateUsable",
-          "line": 5360
+          "line": 5351
         },
         {
           "name": "btn.SetActionbtn.SetAction",
-          "line": 5382
+          "line": 5373
         },
         {
           "name": "btn.ClearActionbtn.ClearAction",
-          "line": 5394
+          "line": 5385
         },
         {
           "name": "btn.UpdateTexturebtn.UpdateTexture",
-          "line": 5405
+          "line": 5396
         },
         {
           "name": "btn.FullRefreshbtn.FullRefresh",
-          "line": 5457
+          "line": 5448
         },
         {
           "name": "btn.UpdateAppearancebtn.UpdateAppearance",
-          "line": 5513
+          "line": 5504
         },
         {
           "name": "btn.UpdateTextCountbtn.UpdateTextCount",
-          "line": 5565
+          "line": 5556
         },
         {
           "name": "btn.UpdateCooldownbtn.UpdateCooldown",
-          "line": 5581
+          "line": 5572
         },
         {
           "name": "Module.SetupClickHandling",
-          "line": 5620
+          "line": 5611
         },
         {
           "name": "Module.SetupTooltip",
-          "line": 5800
+          "line": 5791
         },
         {
           "name": "Module.ShowTooltip",
-          "line": 5861
+          "line": 5852
         },
         {
           "name": "Module.RefreshTooltip",
-          "line": 6070
+          "line": 6061
         },
         {
           "name": "Module.UpdateWeaponEnchantButton",
-          "line": 6082
+          "line": 6073
         },
         {
           "name": "Module.RunPostLoginConsumablesRefresh",
-          "line": 6116
+          "line": 6107
         },
         {
           "name": "Module.SeedConsumableAuraWatchSig",
-          "line": 6185
+          "line": 6176
         },
         {
           "name": "Module.RegisterEvents",
-          "line": 6191
+          "line": 6182
         },
         {
           "name": "Module._BuffWatchNeeded",
-          "line": 6256
+          "line": 6247
         },
         {
           "name": "Module._StopBuffCheckTicker",
-          "line": 6274
+          "line": 6265
         },
         {
           "name": "Module._StartBuffCheckTicker",
-          "line": 6281
+          "line": 6272
         },
         {
           "name": "Module._SyncBuffCheckTicker",
-          "line": 6288
+          "line": 6279
         },
         {
           "name": "Module.ForceUpdate",
-          "line": 6664
+          "line": 6655
         },
         {
           "name": "Module.GetButton",
-          "line": 6670
+          "line": 6661
         },
         {
           "name": "Module.UpdateKeybindings",
-          "line": 6684
+          "line": 6675
         },
         {
           "name": "Module.ClearKeybindings",
-          "line": 6713
+          "line": 6704
         },
         {
           "name": "FluxNCConsumables_OpenConfig",
-          "line": 6723
+          "line": 6714
         }
       ],
       "events": [
         {
-          "line": 1390,
+          "line": 1414,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -42417,7 +42421,7 @@
           "context": "(\"Frame\")consumablesProviderFrame:"
         },
         {
-          "line": 1391,
+          "line": 1415,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -42425,7 +42429,7 @@
           "context": "(\"PLAYER_LOGIN\")consumablesProviderFrame:"
         },
         {
-          "line": 6197,
+          "line": 6188,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -42433,7 +42437,7 @@
           "context": "_eventFrame=eventFrameeventFrame:"
         },
         {
-          "line": 6198,
+          "line": 6189,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -42441,7 +42445,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 6199,
+          "line": 6190,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -42450,7 +42454,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 6202,
+          "line": 6193,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\"",
@@ -42459,7 +42463,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 6205,
+          "line": 6196,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\""
@@ -42467,7 +42471,7 @@
           "context": "notoktheneventFrame:"
         },
         {
-          "line": 6208,
+          "line": 6199,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -42475,7 +42479,7 @@
           "context": ")endendeventFrame:"
         },
         {
-          "line": 6209,
+          "line": 6200,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -42483,7 +42487,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 6211,
+          "line": 6202,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_DEAD\""
@@ -42491,7 +42495,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 6212,
+          "line": 6203,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ALIVE\""
@@ -42499,7 +42503,7 @@
           "context": "(\"PLAYER_DEAD\")eventFrame:"
         },
         {
-          "line": 6213,
+          "line": 6204,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_UNGHOST\""
@@ -42507,7 +42511,7 @@
           "context": "(\"PLAYER_ALIVE\")eventFrame:"
         },
         {
-          "line": 6214,
+          "line": 6205,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELL_UPDATE_COOLDOWN\""
@@ -42515,7 +42519,7 @@
           "context": "(\"PLAYER_UNGHOST\")eventFrame:"
         },
         {
-          "line": 6215,
+          "line": 6206,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_EQUIPMENT_CHANGED\""
@@ -42528,12 +42532,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXCONSUMABLES1",
           "value": "/fluxconsumables",
-          "line": 6732
+          "line": 6723
         },
         {
           "kind": "handler",
           "name": "FLUXCONSUMABLES",
-          "line": 6733
+          "line": 6724
         }
       ],
       "widgets": [],
@@ -42573,10 +42577,10 @@
             495,
             496,
             497,
-            1865,
-            1866,
-            1924,
-            1925
+            1889,
+            1890,
+            1948,
+            1949
           ]
         }
       ]
@@ -42585,8 +42589,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 1215,
-      "sha256": "6a5620341e7794e454b64dc317a7680d03cdd336cdafc02d47e4d5fb8806ea98",
+      "lines": 1216,
+      "sha256": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
       "clients": [
         "camelot",
         "cata",
@@ -42652,56 +42656,56 @@
         },
         {
           "name": "Config.UpdateAllItemCounts",
-          "line": 794
+          "line": 795
         },
         {
           "name": "Config.HandleItemDrop",
-          "line": 805
+          "line": 806
         },
         {
           "name": "Config.AddItem",
-          "line": 815
+          "line": 816
         },
         {
           "name": "Config.PromptNewPreset",
-          "line": 849
+          "line": 850
         },
         {
           "name": "Config.ConfirmDeletePreset",
-          "line": 909
+          "line": 910
         },
         {
           "name": "Config.Show",
-          "line": 954
+          "line": 955
         },
         {
           "name": "Config.ShowChronoboonRestockFlyout",
-          "line": 1005
+          "line": 1006
         },
         {
           "name": "Config.Hide",
-          "line": 1049
+          "line": 1050
         },
         {
           "name": "Config.Toggle",
-          "line": 1075
+          "line": 1076
         },
         {
           "name": "Config.IsShown",
-          "line": 1087
+          "line": 1088
         },
         {
           "name": "Config.StartUpdateTicker",
-          "line": 1096
+          "line": 1097
         },
         {
           "name": "Config.StopUpdateTicker",
-          "line": 1126
+          "line": 1127
         }
       ],
       "events": [
         {
-          "line": 1104,
+          "line": 1105,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELL_UPDATE_COOLDOWN\""
@@ -42709,7 +42713,7 @@
           "context": "_updateTicker=tickerFrametickerFrame:"
         },
         {
-          "line": 1105,
+          "line": 1106,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIONBAR_SLOT_CHANGED\""
@@ -42717,7 +42721,7 @@
           "context": "(\"SPELL_UPDATE_COOLDOWN\")tickerFrame:"
         },
         {
-          "line": 1139,
+          "line": 1140,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -42725,7 +42729,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1140,
+          "line": 1141,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -45216,8 +45220,8 @@
       "path": "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 1380,
-      "sha256": "3aacc36ada1de09ee891067cb2cdb77fa82111d309026377fee337ccc5353301",
+      "lines": 1339,
+      "sha256": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
       "clients": [
         "camelot",
         "cata",
@@ -45339,27 +45343,27 @@
         },
         {
           "name": "GridUI.SetupCellChrome",
-          "line": 817
+          "line": 776
         },
         {
           "name": "GridUI.RefreshConsumableCell",
-          "line": 922
+          "line": 881
         },
         {
           "name": "GridUI.CreateConsumableCell",
-          "line": 961
+          "line": 920
         },
         {
           "name": "GridUI.RebuildConfigHost",
-          "line": 1278
+          "line": 1237
         },
         {
           "name": "GridUI.RefreshAllCells",
-          "line": 1354
+          "line": 1313
         },
         {
           "name": "GridUI.UpdateAllCooldowns",
-          "line": 1370
+          "line": 1329
         }
       ],
       "events": [],
@@ -56044,7 +56048,7 @@
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
       "lines": 719,
-      "sha256": "23a9beb9490c53c6cf0f6c8cf522783a35ae18ad33d2c6c820eedc225c2c6866",
+      "sha256": "f824f7fa2f1ab670f6024911851a25974a93ebc228bf78efa75ad7ad0b7433d3",
       "clients": [
         "camelot",
         "cata",
@@ -73778,6 +73782,87 @@
       "sv_sites": []
     },
     {
+      "path": "tests/consumable_refresh_timer.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 137,
+      "sha256": "2ecc3e511100e7e2471049018ee671b4b4b13c281220f2bd9c6ba7b85fe15c79",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "envenv.GetTime",
+          "line": 23
+        },
+        {
+          "name": "env.CreateFrame",
+          "line": 37
+        },
+        {
+          "name": "cons.IsChronoboonItem",
+          "line": 51
+        },
+        {
+          "name": "endcons.IsSuperchargedChronoboonItem",
+          "line": 52
+        },
+        {
+          "name": "returnfalseendcons.FindBuffForItem",
+          "line": 53
+        },
+        {
+          "name": "cell.cooldown:SetCooldown",
+          "line": 57
+        },
+        {
+          "name": "cell.cooldown:Show",
+          "line": 60
+        },
+        {
+          "name": "cell.cooldown:Hide",
+          "line": 61
+        },
+        {
+          "name": "cell.timerText:SetText",
+          "line": 62
+        },
+        {
+          "name": "cell.timerText:SetTextColor",
+          "line": 63
+        },
+        {
+          "name": "cell.timerText:Show",
+          "line": 64
+        },
+        {
+          "name": "cell.timerText:Hide",
+          "line": 65
+        },
+        {
+          "name": "cell.IsShown",
+          "line": 127
+        },
+        {
+          "name": "cons.SetRefreshThreshold",
+          "line": 129
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            32,
+            130
+          ]
+        }
+      ]
+    },
+    {
       "path": "tests/consumable_restock_clicks.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -80030,6 +80115,75 @@
           "context": "fnendfunctionf:"
         }
       ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/provider_snapshot_row_reuse.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 267,
+      "sha256": "f996be6d3ef7fcde6650cd4d4da219ec059f4811f89762796eca62777e4fb62a",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "inv.Builtin.Start",
+          "line": 32
+        },
+        {
+          "name": "trueende.GetTime",
+          "line": 33
+        },
+        {
+          "name": "returnh.nowende.wipe",
+          "line": 34
+        },
+        {
+          "name": "nilendende.pairs",
+          "line": 42
+        },
+        {
+          "name": "inv.Syndicatora.RebuildAll",
+          "line": 85
+        },
+        {
+          "name": "h:run",
+          "line": 87
+        },
+        {
+          "name": "h:frame",
+          "line": 91
+        },
+        {
+          "name": "h:settle",
+          "line": 98
+        },
+        {
+          "name": "h:callback",
+          "line": 106
+        },
+        {
+          "name": "h:direct",
+          "line": 110
+        },
+        {
+          "name": "h:reset",
+          "line": 113
+        },
+        {
+          "name": "h:resources",
+          "line": 114
+        },
+        {
+          "name": "h.onVisit",
+          "line": 193
+        }
+      ],
+      "events": [],
       "slash": [],
       "widgets": [],
       "loads": [],

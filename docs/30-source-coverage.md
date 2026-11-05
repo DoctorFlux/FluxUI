@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 185 |
+| inactive source | 187 |
 
 ## Addon sources
 
@@ -619,6 +619,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/combat_grid_conjured_usability.lua](../tests/combat_grid_conjured_usability.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/combat_queue_supersession.lua](../tests/combat_queue_supersession.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_config_visibility.lua](../tests/consumable_config_visibility.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/consumable_refresh_timer.lua](../tests/consumable_refresh_timer.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_restock_clicks.lua](../tests/consumable_restock_clicks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_weapon_targets.lua](../tests/consumable_weapon_targets.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/consumable_zero_reset.lua](../tests/consumable_zero_reset.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -684,6 +685,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/portrait_camera.lua](../tests/portrait_camera.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/portrait_transmog_combat.lua](../tests/portrait_transmog_combat.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/possession_layout.lua](../tests/possession_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/provider_snapshot_row_reuse.lua](../tests/provider_snapshot_row_reuse.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/queue_eye_lifecycle.lua](../tests/queue_eye_lifecycle.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/raid_header_precreation.lua](../tests/raid_header_precreation.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/raid_nameplate_defaults.lua](../tests/raid_nameplate_defaults.lua) | inactive source | — | [34-assets.md](34-assets.md) |

@@ -1,14 +1,35 @@
 # Development status
 
+Provider snapshot row reuse is desktop-validated. Only FluxUI's shared
+`FillFromList` changes: completed mail/auction maps reuse identical per-index
+records and swap together. Existing unchanged checks, provider facts, counts,
+callbacks and publication cadence remain. For 500 settled appends per region,
+normalized constructors fall 125,250→500 (operation 500: 500→1); source visits
+stay 250,500. Cancellation benefits depend on index stability. Full validation
+passes 151 scripts / 806 syntax files; the 806-file drift guard matched before
+and after validation. Focused 700 checks, five alternating pairs and five
+rejected mutants pass. Newer consumable work through `e2c6464` is preserved.
+[Scope, exact identities and limits](PROVIDER_SNAPSHOT_ROW_REUSE.md).
+
+The adapter's native acceptance is pending. The approved 19:15 Forever reload
+predates this code; later source Syndicator/profile0/all-three-loaded checks
+observed empty caches and no transactions. The incorrect logger probe confirmed
+at 19:18:25 was diagnostic, not a runtime regression. Installed Syndicator remains
+unmodified; its separate private patch proposal is under review outside Git and
+requires authorization before applying the read-only reference change. Full-list
+validation remains O(N) and staging trades temporary map storage for record reuse;
+no progressive-lag cure, FPS or native memory claim is made. Keep WoW background
+and preserve profiler/settings/error history.
+
 5 November Consumables timer: main button, wisp lock, and config cells now
 count down to buff refresh eligibility (`remaining − threshold`) and clear
 the buff timer at that point. Five paired desktop checks and full
 150-script/805-Lua validation pass; native client confirmation remains pending.
 [Rule and evidence](CONSUMABLE_REFRESH_TIMER.md).
 
-Current combined source verification passes 149 scripts / 804 Lua files, including
+Earlier combined source verification passes 149 scripts / 804 Lua files, including
 the newer consumable visibility and bank-charge fixes committed during this audit.
-Every current normalized Lua hash matches the
+Every normalized Lua hash for that recorded tree matches the
 [combined report](validation/restock-charge-bank-iterator-2026-11-05.json).
 The snapshot-only 147/802 report below retains its earlier exact scope.
 

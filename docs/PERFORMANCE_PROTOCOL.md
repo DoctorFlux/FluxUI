@@ -1,5 +1,33 @@
 # Baseline protocol and currency evidence
 
+5 November provider snapshot row reuse, baseline `7f47a566`: five alternating
+fresh-process pairs and five rejected mutants pass. For each separate mail and
+auction 500-append workload, normalized record constructors fall from 125,250
+to 500; the 500th operation constructs 500 to one rows. Source-row visits remain
+250,500 in both versions. Full equality/reconciliation still walks O(N) facts;
+this is not an O(1) append path. Every legitimate settled operation still publishes
+once at its original tier/cadence.
+
+The index-shifting 500-cancellation/returned-mail scenario constructs 250,000 to
+125,250 rows; the stable suffix-removal control constructs 250,000 to 500 and
+clears 250,000 to zero old map entries. Removing the first listing shifts later
+indices and legitimately limits reuse. No provider records are reordered to
+manufacture this result. Unchanged refreshes retain maps/generation and construct
+no normalized rows in either version.
+
+The real Adapter/Scheduler fixture passes 700 checks versus baseline 190 failures.
+Full validation passes 151 scripts / 806 Lua syntax files; all 806 source hashes
+and file membership are unchanged across the run. Newer consumable work is
+preserved. [Exact hashes, raw pairs and variation](validation/provider-snapshot-row-reuse-comparison-2026-11-05.json).
+Line-hook constructor counts and isolated visits/clears do not measure every
+instruction, table allocation, byte, native CPU or transaction latency. Changed
+generations add a temporary index map; count maps were already new. Full native
+listener fanout, provider timing, memory/leaks, FPS and freeze removal remain
+unmeasured. All native acceptance for this Adapter is pending; the earlier
+Forever startup/source check predates it. No new game input, profiling, settings
+mutation or external-addon modification was used. See
+[the scoped report](PROVIDER_SNAPSHOT_ROW_REUSE.md).
+
 5 November built-in snapshot preparation, baseline `437fda7`: ten alternating
 fresh-process pairs and eight rejected mutants pass. Auction maximum metered
 operations per update fall from 5,216 to 104, unchanged fingerprint visits from

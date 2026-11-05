@@ -344,26 +344,26 @@ local function FillFromList(slotArray, snap)
 	if not snap then
 		return
 	end
-	if not snap.byIndex then
-		snap.byIndex = {}
-	end
-	Wipe(snap.byIndex)
-	local counts = {}
+	local previous = snap.byIndex
+	local byIndex, counts = {}, {}
 	if type(slotArray) == "table" then
 		for index, rec in pairs(slotArray) do
 			local id = rec and NumericItemID(rec.itemID)
 			if id then
 				local n = tonumber(rec.itemCount or rec.count) or 1
-				snap.byIndex[index] = {
-					itemID = id,
-					count = n,
-					link = rec.itemLink or rec.link,
-				}
+				local link = rec.itemLink or rec.link
+				local old = previous and previous[index]
+				if old and old.itemID == id and old.count == n and old.link == link then
+					byIndex[index] = old
+				else
+					byIndex[index] = { itemID = id, count = n, link = link }
+				end
 				counts[id] = (counts[id] or 0) + n
 			end
 		end
 	end
-	snap.counts = counts
+	-- Publish completed maps together; matching rows remain immutable across generations.
+	snap.byIndex, snap.counts = byIndex, counts
 	snap.generation = (snap.generation or 0) + 1
 end
 

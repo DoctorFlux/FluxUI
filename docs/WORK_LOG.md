@@ -1,5 +1,31 @@
 # Work log
 
+5 November provider row reuse: baseline `7f47a566e573a132dcac4a0e67f8b590cee8d08a`,
+Adapter SHA256 `d242e0c07e789197335bde1d0deb27586c41b6fad24560add6846452408df561`.
+Verified checkpoint Mail-auction-publication-20261105T183839Z preserved 1,520
+actual files, 122 on-disk settings and all-ref history, including newer consumable
+work subsequently committed as `e2c6464`; source ZIP SHA256
+`b3a39827bbd2e50cc271fce7c5930ea80b1174e3215bc42105b380d36523f55f`.
+Only adapter `FillFromList` now reuses matching immutable rows in complete maps.
+Focused candidate passes 700 checks; baseline fails 190 of 700. Five alternating
+pairs and five rejected mutants pass. Per-region 500 appends construct
+125,250→500 rows; source visits remain 250,500. Index-shifting cancellation
+constructs 250,000→125,250, stable-suffix cancellation 250,000→500 and clears
+250,000→0. Full validation passes 151 scripts / 806 syntax files; the complete
+806-file source drift guard matched before/after. Independent review passed
+700/210/365 checks and 13 extra edge cases.
+[Raw pairs and source hashes](validation/provider-snapshot-row-reuse-comparison-2026-11-05.json),
+[full report](validation/provider-snapshot-row-reuse-2026-11-05.json),
+[tradeoffs and native steps](PROVIDER_SNAPSHOT_ROW_REUSE.md).
+
+No new native input or profiler change was used for this adapter slice. The
+approved Forever reload at 19:15 predates it; source Syndicator/profile0 and all
+three loaded addons were subsequently verified with empty caches, without a
+transaction test. The user-confirmed 19:18:25 logger error came from an incorrect
+diagnostic API probe. Native acceptance remains pending. The private Syndicator
+patch is still under review outside Git; installed external files are unmodified
+and applying that proposal requires authorization under the read-only rule.
+
 5 November Consumables timer: verified baseline `2c0e7b8`, external all-ref
 history checkpoint and on-disk settings before editing. The old button and
 config timer ran to full buff expiry after the item had become eligible at
@@ -9,7 +35,7 @@ full worktree validation passes 150 scripts/805 Lua files. Native checks
 pending. [Case record](CONSUMABLE_REFRESH_TIMER.md).
 
 Preserved newer main commits for consumable visibility and bank charge iteration
-through `2c0e7b8`. All current normalized Lua hashes/file membership match their
+through `2c0e7b8`. All then-current normalized Lua hashes/file membership match their
 combined passing 149-script/804-Lua report; the earlier 147/802 snapshot result
 is not relabelled. New external recovery Mail-auction-publication-20261105T183217Z
 preserves 1,519 actual files, 122 settings and history including all pending work,

@@ -40,6 +40,11 @@ leaked registrations. Do not truncate pending mail or drop features to cap cost.
 | ECON-07 | All client/provider combinations preserve ownership, settings and features; diagnostics remain optional. | Exact source pins and native contracts are in [native comparison](NATIVE_MAIL_AUCTION_REFERENCE.md). Client acceptance is pending as recorded below; original Wrath is distinct and unverified. |
 | ECON-08 | Consecutive Buy-to-mail and cancel-to-mail operations must not accumulate unnecessary work or registrations. | Progressive growth is user-reported; operation-count/resource curves are being investigated separately from the completed snapshot-budget fixes. Preserve every real pending item and test cleanup after collection. |
 
+The [provider row-reuse change](PROVIDER_SNAPSHOT_ROW_REUSE.md) removes repeated
+construction of identical normalized rows in FluxUI's external-provider path.
+It retains full field validation and therefore still scales with real mail data;
+it does not repair external callback ownership or establish native freeze removal.
+
 Permanent native hooks and shared event registrations remain installed where the
 current architecture requires them. Their callbacks must check provider/module
 ownership before doing owned work. Disabled mail modules stop future owned
@@ -81,7 +86,9 @@ Fresh approved checks at 19:14 CET confirmed Forever 1.60.1/build70790/interface
 was Syndicator. After byte-matching the candidate files in Forever, an approved
 reload ran at 19:15:51; the 19:17 check confirmed the source and inventory marker
 `20261105.1`, with scriptProfile0 before and after. Provider mail/auction caches
-were both empty at the 19:18 read. No auction or mail transaction was executed;
+reported zero rows at the 19:18 read (the probe treated absent arrays as empty).
+This does not establish the contents of the server mailbox. No auction or mail
+transaction was executed;
 the built-in changed paths and reported progressive freeze were not exercised.
 Previous foreground windows were restored when the check changed focus.
 

@@ -1,5 +1,29 @@
 # Next session
 
+Provider row-reuse slice: read
+[scope and exact identities](docs/PROVIDER_SNAPSHOT_ROW_REUSE.md). Preserve newer
+consumable work through `e2c6464`, and external recovery
+Mail-auction-publication-20261105T183839Z (1,520 files, 122 settings, all-ref history;
+source SHA256 `b3a39827bbd2e50cc271fce7c5930ea80b1174e3215bc42105b380d36523f55f`).
+Focused 700 checks, five alternating pairs and five mutants pass; full 151 scripts
+/ 806 syntax files pass with the whole-source drift guard unchanged. Reports:
+`docs/validation/provider-snapshot-row-reuse-comparison-2026-11-05.json` and
+`docs/validation/provider-snapshot-row-reuse-2026-11-05.json`.
+Reproduce with `lua tests/provider_snapshot_row_reuse.lua`.
+
+Native acceptance for the new adapter is entirely pending: the approved 19:15
+Forever reload and later source Syndicator/profile0/all-three-loaded checks
+precede this slice and observed empty caches, not transaction performance.
+The logger error confirmed at 19:18:25 came from the wrong diagnostic API probe;
+preserve it and do not classify it as a runtime regression. Verify loaded candidate
+identity before any later authorized Buy-to-mail, sale/cancel, collection and
+10/100/500-operation curves. Keep all real facts; source visits still grow with
+full-list validation and temporary maps remain. Do not claim progressive lag is
+fully fixed. Keep WoW in the background, settings and profile0 unchanged.
+The separate private Syndicator patch is under review outside Git; installed
+references remain unmodified. Applying it requires explicit authorization under
+the read-only reference rule. Guild-bank/void callbacks remain excluded.
+
 Consumables timer native follow-up: on Retail, Forever, Era, Anniversary,
 and supported progression, verify a buff shows `remaining − threshold` on
 the main button, wisp lock, and config cell, and the buff timer clears at
@@ -7,7 +31,7 @@ the threshold while normal item cooldowns still display. Check a live
 threshold change, reload, combat, secret aura, and pixels. Desktop 150/805
 passes; see docs/CONSUMABLE_REFRESH_TIMER.md.
 
-Current combined Lua source matches all 804 hashes in
+Earlier combined Lua source matched all 804 hashes in
 `docs/validation/restock-charge-bank-iterator-2026-11-05.json` (149 passes).
 Preserve the newer consumable commits through main `2c0e7b8`; they arrived during
 this audit. Recovery Mail-auction-publication-20261105T183217Z covers all 1,519

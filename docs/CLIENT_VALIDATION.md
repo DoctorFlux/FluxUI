@@ -1,5 +1,30 @@
 # Client and reference validation — 29 October 2026
 
+5 November provider snapshot row reuse, baseline `7f47a566`: the real Adapter/
+Scheduler fixture passes all 700 checks; its exact baseline fails 190 of 700.
+Five alternating pairs and five rejected mutants cover mail and owned-auction
+rows, sparse/count/link semantics, immutable prior generations, cadence, direct
+synchronous rebuilds, provider readiness and legacy/modern event routing. Full
+151 scripts / 806 Lua syntax files pass. The complete 806-file source membership
+and normalized hashes remain identical before/after validation, including the
+newer consumable changes through `e2c6464`.
+[Row-reuse scope and native checklist](PROVIDER_SNAPSHOT_ROW_REUSE.md),
+[matched evidence](validation/provider-snapshot-row-reuse-comparison-2026-11-05.json).
+
+Only private FillFromList changes: it prepares completed maps and reuses immutable
+rows at the same index when ID/count/link match. The unchanged early guard,
+synchronous Rebuild APIs, notifications and configured cadence remain. Full
+prefix validation still visits O(N) facts. Temporary index maps are a storage
+tradeoff, not proof of lower native CPU, memory bytes, FPS or freeze removal.
+All five client/provider/bag transaction, pixel, protection and leak checks remain
+pending for this new Adapter. The approved 19:15 Forever reload/source check with
+Syndicator/profile0 and empty caches predates this code and cannot accept it.
+The user-provided BugTabs1.4.9 report at 19:18:25 confirms the one-off diagnostic
+BugGrabber/nil probe failure, not a native FluxUI runtime regression. No new game
+input or settings/profiler change was used. The external provider is unchanged;
+its separate private patch is not installed and requires separate authorization
+after validation. Original/modern Wrath remain distinct and unverified.
+
 5 November Consumables refresh timer: shared button/wisp/config countdown
 uses public buff expiration minus refresh threshold. Five paired loaded-module
 fixtures pass baseline and candidate (14/24 checks); full 150-script/805-Lua

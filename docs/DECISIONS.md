@@ -1,5 +1,16 @@
 # Decisions
 
+5 November provider row reuse: change only FluxUI's shared `FillFromList`.
+Prepare complete maps, reuse an immutable previous per-index row only for exact
+ID/count/link equality, and swap maps before the existing generation publication.
+Keep provider facts, synchronous rebuilds, unchanged guards, callbacks and cadence;
+do not reorder facts to improve reuse. Full-list validation/reconciliation remains
+O(N); a temporary second index map replaces repeated normalized-record allocation
+and old-map clears. Treat native progressive slowdown as unresolved. Preserve
+newer consumable work and keep the external Syndicator patch proposal outside Git;
+installed reference files remain unchanged until explicit authorization.
+[Evidence and acceptance limits](PROVIDER_SNAPSHOT_ROW_REUSE.md).
+
 5 November Consumables countdown: use the active buff's public expiration
 minus the configured refresh threshold as the visual deadline for the button,
 wisp lock, and config cell. Keep actual item cooldowns separate, and omit an
