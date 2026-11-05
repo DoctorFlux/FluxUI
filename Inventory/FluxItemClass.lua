@@ -55,6 +55,7 @@ local staticCache = {}   -- [itemID] = { classID, subClassID, equipLoc, icon }
 local infoCache = {}     -- [itemID] = full info record (only once loaded)
 local restoreCache = {}  -- [itemID] = restore record (ready=true) or false (retry)
 local restoreRetries = {}
+local pendingLoads = {} -- only requests made by this service
 local MAX_RESTORE_RETRIES = 4
 
 -- Per-frame tooltip scan budget (FluxBagLagProf is disabled in TOC; keep a
@@ -165,6 +166,7 @@ end
 function IC.RequestLoad(itemID)
     itemID = tonumber(itemID)
     if not itemID then return end
+    pendingLoads[itemID] = true
     if C_Item and C_Item.RequestLoadItemDataByID then
         pcall(C_Item.RequestLoadItemDataByID, itemID)
     end
@@ -583,6 +585,7 @@ function IC.OnItemDataLoaded(itemID)
             infoCache[itemID] = rec
         end
     end
+    if infoCache[itemID] then pendingLoads[itemID] = nil end
     local restore = restoreCache[itemID]
     if restore == nil or (restore and not restore.ready) then
         restoreRetries[itemID] = nil
@@ -630,6 +633,19 @@ end
 
 _G.FluxItemClass = IC
 
+-- Item-data events are global: auction searches/purchases also fill the cache.
+-- Only reconcile records requested here; explicit callers retain the full API.
+function IC.OnItemDataEvent(itemID, success)
+    itemID = tonumber(itemID)
+    if not itemID or success == false then return end
+    if not pendingLoads[itemID] and staticCache[itemID] == nil
+        and infoCache[itemID] == nil and restoreCache[itemID] == nil
+        and restoreRetries[itemID] == nil then
+        return
+    end
+    IC.OnItemDataLoaded(itemID)
+end
+
 do
     local f = CreateFrame("Frame")
     f:RegisterEvent("ITEM_DATA_LOAD_RESULT")
@@ -642,7 +658,7 @@ do
         if event == "ITEM_DATA_LOAD_RESULT" and success == false then
             return
         end
-        IC.OnItemDataLoaded(itemID)
+        IC.OnItemDataEvent(itemID, success)
     end)
 end
 

@@ -1,5 +1,14 @@
 # Development status
 
+5 November auction metadata: global cache events no longer harvest all bag/bank
+names or populate classification records for unrelated auction items. Requested
+metadata, failed-load retry, static consumers, explicit completions and immediate
+name-only reagent/restock updates are preserved. Five matched desktop pairs:
+280,000 name reads and 2,000 container walks become zero for the unrelated burst;
+230 checks pass, three mutants rejected; full 127 scripts/782 syntax pass.
+The native Buy spike still needs attribution/acceptance across both providers.
+[Evidence and next captures](AUCTION_METADATA_WORK.md).
+
 5 November auction Buy investigation: active-row highlighting now uses the
 ScrollBox view rather than enumerating its retained child pool. Five matched
 production-module desktop replays: 200,600 versus 600 traversal visits, with

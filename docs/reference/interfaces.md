@@ -435,8 +435,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:477](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L477) | `RegisterEvent` | `"UNIT_MAXHEALTH"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:478](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L478) | `RegisterEvent` | `"UNIT_MAXPOWER"` |
 | [Inventory/FluxConsumableBest/FluxConsumableBest.lua:628](../../Inventory/FluxConsumableBest/FluxConsumableBest.lua#L628) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
-| [Inventory/FluxItemClass.lua:635](../../Inventory/FluxItemClass.lua#L635) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
-| [Inventory/FluxItemClass.lua:636](../../Inventory/FluxItemClass.lua#L636) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
+| [Inventory/FluxItemClass.lua:651](../../Inventory/FluxItemClass.lua#L651) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
+| [Inventory/FluxItemClass.lua:652](../../Inventory/FluxItemClass.lua#L652) | `RegisterEvent` | `"GET_ITEM_INFO_RECEIVED"` |
 | [Inventory/Init.lua:242](../../Inventory/Init.lua#L242) | `RegisterEvent` | `"ITEM_DATA_LOAD_RESULT"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:516](../../Inventory/Restock/Bank/FluxBankRestock.lua#L516) | `RegisterEvent` | `"BAG_UPDATE"` |
 | [Inventory/Restock/Bank/FluxBankRestock.lua:517](../../Inventory/Restock/Bank/FluxBankRestock.lua#L517) | `RegisterEvent` | `"BAG_UPDATE_DELAYED"` |
@@ -6408,26 +6408,27 @@ Owner: [21-inventory-foundation.md](../21-inventory-foundation.md).
 
 | Declaration | Source |
 |---|---|
-| `IC.GetStatic` | [L87](../../Inventory/FluxItemClass.lua#L87) |
-| `IC.RequestLoad` | [L165](../../Inventory/FluxItemClass.lua#L165) |
-| `IC.GetInfo` | [L178](../../Inventory/FluxItemClass.lua#L178) |
-| `IC.IsLoaded` | [L194](../../Inventory/FluxItemClass.lua#L194) |
-| `IC.GetName` | [L198](../../Inventory/FluxItemClass.lua#L198) |
-| `IC.GetLink` | [L203](../../Inventory/FluxItemClass.lua#L203) |
-| `IC.GetQuality` | [L223](../../Inventory/FluxItemClass.lua#L223) |
-| `IC.GetSellPrice` | [L228](../../Inventory/FluxItemClass.lua#L228) |
-| `IC.GetStackSize` | [L243](../../Inventory/FluxItemClass.lua#L243) |
-| `IC.GetIcon` | [L248](../../Inventory/FluxItemClass.lua#L248) |
-| `IC.GetClassID` | [L257](../../Inventory/FluxItemClass.lua#L257) |
-| `IC.GetSubClassID` | [L262](../../Inventory/FluxItemClass.lua#L262) |
-| `IC.GetEquipLoc` | [L267](../../Inventory/FluxItemClass.lua#L267) |
-| `IC.IsEquippable` | [L274](../../Inventory/FluxItemClass.lua#L274) |
-| `IC.GetTooltipText` | [L353](../../Inventory/FluxItemClass.lua#L353) |
-| `IC.GetRestore` | [L381](../../Inventory/FluxItemClass.lua#L381) |
-| `IC.InvalidateRestoreCache` | [L450](../../Inventory/FluxItemClass.lua#L450) |
-| `IC.ClassifyConsumable` | [L480](../../Inventory/FluxItemClass.lua#L480) |
-| `IC.InvalidateClassification` | [L563](../../Inventory/FluxItemClass.lua#L563) |
-| `IC.OnItemDataLoaded` | [L576](../../Inventory/FluxItemClass.lua#L576) |
+| `IC.GetStatic` | [L88](../../Inventory/FluxItemClass.lua#L88) |
+| `IC.RequestLoad` | [L166](../../Inventory/FluxItemClass.lua#L166) |
+| `IC.GetInfo` | [L180](../../Inventory/FluxItemClass.lua#L180) |
+| `IC.IsLoaded` | [L196](../../Inventory/FluxItemClass.lua#L196) |
+| `IC.GetName` | [L200](../../Inventory/FluxItemClass.lua#L200) |
+| `IC.GetLink` | [L205](../../Inventory/FluxItemClass.lua#L205) |
+| `IC.GetQuality` | [L225](../../Inventory/FluxItemClass.lua#L225) |
+| `IC.GetSellPrice` | [L230](../../Inventory/FluxItemClass.lua#L230) |
+| `IC.GetStackSize` | [L245](../../Inventory/FluxItemClass.lua#L245) |
+| `IC.GetIcon` | [L250](../../Inventory/FluxItemClass.lua#L250) |
+| `IC.GetClassID` | [L259](../../Inventory/FluxItemClass.lua#L259) |
+| `IC.GetSubClassID` | [L264](../../Inventory/FluxItemClass.lua#L264) |
+| `IC.GetEquipLoc` | [L269](../../Inventory/FluxItemClass.lua#L269) |
+| `IC.IsEquippable` | [L276](../../Inventory/FluxItemClass.lua#L276) |
+| `IC.GetTooltipText` | [L355](../../Inventory/FluxItemClass.lua#L355) |
+| `IC.GetRestore` | [L383](../../Inventory/FluxItemClass.lua#L383) |
+| `IC.InvalidateRestoreCache` | [L452](../../Inventory/FluxItemClass.lua#L452) |
+| `IC.ClassifyConsumable` | [L482](../../Inventory/FluxItemClass.lua#L482) |
+| `IC.InvalidateClassification` | [L565](../../Inventory/FluxItemClass.lua#L565) |
+| `IC.OnItemDataLoaded` | [L578](../../Inventory/FluxItemClass.lua#L578) |
+| `IC.OnItemDataEvent` | [L638](../../Inventory/FluxItemClass.lua#L638) |
 
 ### Inventory/FluxItemMover.lua
 

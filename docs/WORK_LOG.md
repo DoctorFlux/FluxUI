@@ -1,5 +1,24 @@
 # Work log
 
+## 2026-11-05 - auction metadata fan-out
+
+Verified clean main at6d4ceba and dated external source/history/settings
+checkpoint Auction-metadata-20261105T081044Z before runtime edits. Traced the
+shared global item-data handlers and reproduced unnecessary bag/bank name
+harvests, unsolicited session-cache growth and selector/junk invalidations.
+Narrowed event ownership while preserving explicit API, cold retries, static
+consumers and immediate reagent finalization. No external addon changed, game
+input taken or profiler preference modified. Native Buy latency remains pending.
+
+5 November auction metadata: global cache events no longer harvest all bag/bank
+names or populate classification records for unrelated auction items. Requested
+metadata, failed-load retry, static consumers, explicit completions and immediate
+name-only reagent/restock updates are preserved. Five matched desktop pairs:
+280,000 name reads and 2,000 container walks become zero for the unrelated burst;
+230 checks pass, three mutants rejected; full 127 scripts/782 syntax pass.
+The native Buy spike still needs attribution/acceptance across both providers.
+[Evidence and next captures](AUCTION_METADATA_WORK.md).
+
 ## 2026-11-05 - auction refresh traversal
 
 Verified external source/history/settings recovery at Auction-buy-20261105T075700Z

@@ -845,14 +845,15 @@ local function onEvent(_, event, arg1, arg2)
             end
             local IC = _G.FluxItemClass
             if IC and IC.OnItemDataLoaded then
-                pcall(IC.OnItemDataLoaded, itemID, success)
+                pcall(IC.OnItemDataEvent or IC.OnItemDataLoaded, itemID, success)
             end
             if Best and Best.Scan and Best.Scan.OnItemDataLoaded then
                 pcall(Best.Scan.OnItemDataLoaded, itemID, success)
             end
-            -- Classic: item cache fill may unlock spell-reagent name → ID.
-            if success ~= false and Inv.Spells and Inv.Spells.OnVisibleItemsChanged then
-                pcall(Inv.Spells.OnVisibleItemsChanged)
+            -- Resolve the arriving reagent only; unrelated AH metadata must not
+            -- walk every carried/banked item as if those containers changed.
+            if success ~= false and Inv.Spells and Inv.Spells.OnItemDataLoaded then
+                pcall(Inv.Spells.OnItemDataLoaded, itemID, success)
             end
         end
         -- Do not fan out bags/equip to every listener on global item-data spam.

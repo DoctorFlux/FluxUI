@@ -955,8 +955,8 @@ local function GetSpellBaseNameKey(spellID)
 end
 
 --- Fill missing reagent itemIDs from the live name cache / APIs.
-ResolvePendingReagentNames = function()
-    HarvestVisibleItemNames()
+ResolvePendingReagentNames = function(skipHarvest)
+    if not skipHarvest then HarvestVisibleItemNames() end
     local changed = false
     for spellID, reagents in pairs(reagentBySpell) do
         if type(reagents) == "table" then
@@ -986,8 +986,8 @@ end
 
 --- Keep only max-rank reagents per spell-name family in the public restock set.
 --- When runMigration is true, notify Restock to transfer qty / junk superseded reagents.
-FinalizeActiveReagents = function(runMigration)
-    ResolvePendingReagentNames()
+FinalizeActiveReagents = function(runMigration, skipHarvest)
+    ResolvePendingReagentNames(skipHarvest)
 
     wipe(activeReagentItemIDs)
     wipe(maxRankReagentSpell)
@@ -1087,6 +1087,19 @@ function Spells.OnVisibleItemsChanged()
         FinalizeActiveReagents(true)
         return true
     end
+    return changed
+end
+
+-- Global metadata completion is not a bag/bank change. A pending spell-tooltip
+-- name can be resolved from this one record, including Classic's name-only case.
+function Spells.OnItemDataLoaded(itemID, success)
+    itemID = tonumber(itemID)
+    if not itemID or success == false or not next(pendingReagentNames) then return false end
+    local name = GetItemNameForID(itemID)
+    if not name or not pendingReagentNames[name:lower()] then return false end
+    RememberItemName(itemID, name)
+    local changed = ResolvePendingReagentNames(true)
+    if changed and reagentsWarmDone then FinalizeActiveReagents(true, true) end
     return changed
 end
 

@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 162 |
+| inactive source | 163 |
 
 ## Addon sources
 
@@ -598,6 +598,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [StatusBars/FluxStatusBar.lua](../StatusBars/FluxStatusBar.lua) | active | camelot, cata, classic, mainline, mists, tbc, vanilla, wrath | [16-status-bars.md](16-status-bars.md) |
 | [tests/assisted_highlight_work.lua](../tests/assisted_highlight_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/auction_active_rows.lua](../tests/auction_active_rows.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/auction_metadata_work.lua](../tests/auction_metadata_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bag_free_slots.lua](../tests/bag_free_slots.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_contract_regression.lua](../tests/bars_contract_regression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/bars_edit_mode.lua](../tests/bars_edit_mode.lua) | inactive source | — | [34-assets.md](34-assets.md) |

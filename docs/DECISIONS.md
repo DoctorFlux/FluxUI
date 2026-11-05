@@ -1,5 +1,23 @@
 # Decisions
 
+## 5 November 2026 - metadata event ownership
+
+Global item-cache completion is not a container change. Keep the explicit
+classification completion API intact, filter only automatic events to owned
+records/requests, and resolve pending reagent names from the arriving record.
+Retain full visible-item harvesting for real bag/bank/merchant changes. No new
+API dependency or notification delay is needed. The desktop reproduction is a
+justified optimization, not acceptance of the reported native Buy spike.
+
+5 November auction metadata: global cache events no longer harvest all bag/bank
+names or populate classification records for unrelated auction items. Requested
+metadata, failed-load retry, static consumers, explicit completions and immediate
+name-only reagent/restock updates are preserved. Five matched desktop pairs:
+280,000 name reads and 2,000 container walks become zero for the unrelated burst;
+230 checks pass, three mutants rejected; full 127 scripts/782 syntax pass.
+The native Buy spike still needs attribution/acceptance across both providers.
+[Evidence and next captures](AUCTION_METADATA_WORK.md).
+
 ## 5 November 2026 - auction refresh pool ownership
 
 The user requested the immediate Buy spike on all clients, with and without

@@ -1,5 +1,8 @@
 # Auction purchase refresh investigation
 
+Follow-up: [metadata fan-out reproduction and fix](AUCTION_METADATA_WORK.md)
+removes unnecessary shared callback work; native Buy acceptance remains pending.
+
 The user reports a large spike immediately at Buy across clients, especially
 Retail/Forever, with Syndicator enabled. Both providers must work. This request
 opens the auction purchase path; guild-bank and void-storage callbacks remain
