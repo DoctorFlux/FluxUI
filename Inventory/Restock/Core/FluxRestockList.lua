@@ -1303,8 +1303,8 @@ local function ScanOwnedMaxCharges(itemID)
         consider(bag, slot, slotItemID)
     end)
     local bank = Bank()
-    if bank and bank.IsOpen() then
-        bank.ForEachSlot(function(bag, slot, info)
+    if bank and bank.IsOpen and bank.IsOpen() and bank.ForEachOpenStack then
+        bank.ForEachOpenStack({ bank = true, warband = true }, function(bag, slot, info)
             consider(bag, slot, info.itemID)
         end)
     end

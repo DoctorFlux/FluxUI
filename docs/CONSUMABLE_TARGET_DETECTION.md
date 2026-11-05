@@ -1,5 +1,9 @@
 # Configured consumable targets — 5 November 2026
 
+Native follow-up: the user supplied a charge-scan exception while opening the
+config with an open bank. The restock bank iterator mismatch and its correction
+are recorded in [RESTOCK_CHARGE_BANK_ITERATOR.md](RESTOCK_CHARGE_BANK_ITERATOR.md).
+
 ## Config visibility follow-up — 5 November 2026
 
 The Retail and Forever config report exposed two editor failure paths. A dropped
