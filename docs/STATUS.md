@@ -1,5 +1,11 @@
 # Development status
 
+5 November native Consumables config stack: opening with the bank available
+reached a nil `FluxRestock.Inv.Bank.ForEachSlot`. The shared restock charge
+scanner now uses `ForEachOpenStack`; five paired desktop regressions and full
+149-script/804-Lua validation pass. In-game confirmation across clients remains
+pending. [Root cause and evidence](RESTOCK_CHARGE_BANK_ITERATOR.md).
+
 5 November consumable editor follow-up: Retail and Forever saved item visibility
 is fixed in the shared config path. Valid dropped IDs persist before item names
 load; the saved grid renders before the live button update and the window is

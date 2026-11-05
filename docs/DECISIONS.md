@@ -1,5 +1,12 @@
 # Decisions
 
+5 November charge scanner: use the restock bank adapter's public
+`ForEachOpenStack(opts, callback)` when scanning charge maxima for an open
+bank. Include character bank and supported warband stacks. Keep the bag-only
+result if the optional iterator is unavailable during partial load. This
+corrects the user's native nil-call trace without changing saved data or
+button selection policy.
+
 5 November consumable editor: a verified item cursor ID is sufficient to save
 the preset entry while metadata loads. Render saved configuration independently
 of effective bag usability and before the live button update; display the

@@ -1,5 +1,12 @@
 # Next session
 
+Consumables config native follow-up: reopen with a charged item while the
+bank is open and closed on Retail and Forever, then on Era, Anniversary, and
+supported progression clients. Confirm the nil iterator error is gone,
+configured icons remain visible, charge maxima/counts are correct, and weapon
+target, secure click, combat, and layout behavior hold. Shared desktop fix
+passes 149/804; see docs/RESTOCK_CHARGE_BANK_ITERATOR.md.
+
 Consumables config follow-up: on Retail and Forever, verify configured icons
 remain visible after adding an uncached item and reloading, including a
 staff-only enchant while a dagger/sword is equipped. Repeat preset switching,

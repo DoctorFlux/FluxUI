@@ -1,5 +1,14 @@
 # Client and reference validation — 29 October 2026
 
+5 November user native trace: open-bank charge detection in the Consumables
+config called an absent restock-bank method and stopped grid construction.
+The shared adapter call now uses `ForEachOpenStack` with character/warband
+options. Five paired loaded-module baseline/candidate runs and full
+149-script/804-Lua desktop validation pass. Retail, Forever, Era,
+Anniversary, and progression in-game confirmation is pending; the supplied
+stack establishes the baseline failure, not candidate acceptance. See
+[charge scan evidence](RESTOCK_CHARGE_BANK_ITERATOR.md).
+
 5 November consumable config visibility: shared editor path saves a valid
 dropped item ID before its name loads and renders saved entries before the live
 button update. Five baseline/candidate desktop pairs (eight checks each) and

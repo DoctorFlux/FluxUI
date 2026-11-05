@@ -1,5 +1,14 @@
 # Work log
 
+5 November native stack follow-up: user trace at 19:19:57 identified
+`FluxRestockList.lua:1307` calling missing `FluxRestock.Inv.Bank.ForEachSlot`
+while the Consumables config grid queried charges. Verified baseline main
+`d71f2b9`, external all-ref history checkpoint and on-disk settings. Switched
+to the supported open-stack iterator with character/warband options. Five
+baseline/candidate loaded-module pairs pass; full worktree validation passes
+149 scripts/804 Lua files. Native fix confirmation pending.
+[Case record](RESTOCK_CHARGE_BANK_ITERATOR.md).
+
 5 November consumable config visibility: verified published main `437fda7`,
 external all-ref bundle, worktree copy and four Retail/Forever on-disk settings
 files before editing. Fixed deferred item save and button-first refresh in the
