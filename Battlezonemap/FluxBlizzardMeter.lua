@@ -15,6 +15,7 @@ local damageMeterFrame = nil
 local primarySessionWindow = nil
 local secondarySessionWindow = nil
 local pendingEmbed = nil
+local visibilityHooked = false
 local pendingStartup = false
 local startupTimer = nil
 local startupGeneration = 0
@@ -182,385 +183,8 @@ end
 -- ADDON LOADING & FRAME ACCESS
 -- ---------------------------------------------------------------------------
 
---- Secret-safe helpers. When Flux embeds DamageMeter, OnShow/event registration runs
---- tainted; Blizzard entry code then cannot compare secret fields. Mirror Blizzard logic
---- but gate compares with canaccessvalue (works untainted; skips when tainted+secret).
-local function FluxCanAccess(v)
-    if canaccessvalue then
-        return canaccessvalue(v) and true or false
-    end
-    if issecretvalue then
-        return not issecretvalue(v)
-    end
-    return true
-end
-
-local function FluxSecretSafeEquals(a, b)
-    if not FluxCanAccess(a) or not FluxCanAccess(b) then
-        return false
-    end
-    return a == b
-end
-
--- Standalone secret-safe implementations (bound onto mixin + each pooled entry instance).
--- Reference: wow-ui-source-forever Blizzard_DamageMeter/DamageMeterEntry.lua.
-
-local function SafeGetSourceTypeAtlasElement(self)
-    -- When class color is off, bars are colored by source type and don't need team icons.
-    if not self.isClassColorDesired then
-        return nil
-    end
-    local SourceDisplayType = Enum and Enum.DamageMeterSourceDisplayType
-    local enemyType = SourceDisplayType and SourceDisplayType.Enemy
-    if enemyType == nil or not FluxSecretSafeEquals(self.sourceDisplayType, enemyType) then
-        return nil
-    end
-    local faction = self.factionGroup
-    if FluxCanAccess(faction) and PLAYER_FACTION_GROUP then
-        if faction == PLAYER_FACTION_GROUP[0] then
-            return "HordeSymbol"
-        elseif faction == PLAYER_FACTION_GROUP[1] then
-            return "AllianceSymbol"
-        end
-    end
-    return nil
-end
-
-local function SafeUpdateName(self)
-    local nameFontString = self:GetName()
-    if not nameFontString then
-        return
-    end
-    local ok, text = pcall(function()
-        return self:GetNameText()
-    end)
-    if not ok then
-        return
-    end
-    if not FluxCanAccess(text) then
-        nameFontString:SetText(text)
-        self.nameText = nil
-    elseif text ~= self.nameText then
-        self.nameText = text
-        nameFontString:SetText(text or "")
-    end
-    -- isLocalPlayer is NeverSecret.
-    if self.isLocalPlayer == true then
-        local g = GREEN_FONT_COLOR
-        nameFontString:SetTextColor(g.r, g.g, g.b)
-    else
-        nameFontString:SetTextColor(1, 1, 1)
-    end
-end
-
--- Current Blizzard UpdateValue only sets the value fontstring; UpdateStatusBar is separate.
-local function SafeUpdateValue(self)
-    local valueFontString = self:GetValue()
-    if not valueFontString then
-        return
-    end
-    local ok, text = pcall(function()
-        return self:GetValueText()
-    end)
-    if ok and text ~= nil then
-        valueFontString:SetText(text)
-    else
-        valueFontString:SetText("")
-    end
-end
-
-local function SafeUpdateStatusBar(self)
-    local statusBar = self:GetStatusBar()
-    if not statusBar then
-        return
-    end
-    local maxValue, value
-    if self.GetMaxStatusValue then
-        local ok, v = pcall(self.GetMaxStatusValue, self)
-        if ok then
-            maxValue = v
-        end
-    end
-    if maxValue == nil then
-        maxValue = self.maxValue
-    end
-    if self.GetStatusValue then
-        local ok, v = pcall(self.GetStatusValue, self)
-        if ok then
-            value = v
-        end
-    end
-    if value == nil then
-        value = self.value
-    end
-    if not FluxCanAccess(maxValue) or not FluxCanAccess(value) then
-        statusBar:SetMinMaxValues(0, maxValue)
-        statusBar:SetValue(value)
-    else
-        statusBar:SetMinMaxValues(0, maxValue or 0)
-        statusBar:SetValue(value or 0)
-    end
-end
-
-local originalGetDesiredBarColor = nil
-
-local function SafeGetDesiredBarColor(self)
-    if self.isClassColorDesired then
-        if originalGetDesiredBarColor then
-            local ok, color = pcall(originalGetDesiredBarColor, self)
-            if ok then
-                return color
-            end
-        end
-        if self.GetDefaultStatusBarColor then
-            return self:GetDefaultStatusBarColor()
-        end
-        return nil
-    end
-    local SourceDisplayType = Enum and Enum.DamageMeterSourceDisplayType
-    local allyType = SourceDisplayType and SourceDisplayType.Ally
-    local enemyType = SourceDisplayType and SourceDisplayType.Enemy
-    if allyType and FluxSecretSafeEquals(self.sourceDisplayType, allyType) then
-        if self.GetAllyStatusBarColor then
-            return self:GetAllyStatusBarColor()
-        end
-    elseif enemyType and FluxSecretSafeEquals(self.sourceDisplayType, enemyType) then
-        if self.GetEnemyStatusBarColor then
-            return self:GetEnemyStatusBarColor()
-        end
-    end
-    if self.GetDefaultStatusBarColor then
-        return self:GetDefaultStatusBarColor()
-    end
-    if originalGetDesiredBarColor then
-        return originalGetDesiredBarColor(self)
-    end
-    return nil
-end
-
-local function ApplySecretSafeMethodsToEntry(frame)
-    if not frame then
-        return
-    end
-    -- Always rebind: pooled frames may still hold Blizzard originals from Mixin copy.
-    frame.GetSourceTypeAtlasElement = SafeGetSourceTypeAtlasElement
-    frame.UpdateName = SafeUpdateName
-    frame.UpdateValue = SafeUpdateValue
-    frame.UpdateStatusBar = SafeUpdateStatusBar
-    frame.GetDesiredBarColor = SafeGetDesiredBarColor
-    frame.__FluxSecretSafeEntry = true
-end
-
-local function InstallSecretSafeMethodsOnMixin()
-    if not DamageMeterEntryMixin then
-        return false
-    end
-    if not originalGetDesiredBarColor and DamageMeterEntryMixin.GetDesiredBarColor
-        and DamageMeterEntryMixin.GetDesiredBarColor ~= SafeGetDesiredBarColor then
-        originalGetDesiredBarColor = DamageMeterEntryMixin.GetDesiredBarColor
-    end
-    -- Always install, even if GetSourceTypeAtlasElement was previously nil on older builds.
-    DamageMeterEntryMixin.GetSourceTypeAtlasElement = SafeGetSourceTypeAtlasElement
-    DamageMeterEntryMixin.UpdateName = SafeUpdateName
-    DamageMeterEntryMixin.UpdateValue = SafeUpdateValue
-    DamageMeterEntryMixin.UpdateStatusBar = SafeUpdateStatusBar
-    DamageMeterEntryMixin.GetDesiredBarColor = SafeGetDesiredBarColor
-    return DamageMeterEntryMixin.GetSourceTypeAtlasElement == SafeGetSourceTypeAtlasElement
-end
-
-local function WrapEntryInitMethods()
-    if DamageMeterSourceEntryMixin and DamageMeterSourceEntryMixin.Init
-        and not DamageMeterSourceEntryMixin._FluxSecretSafeInitWrapped then
-        local originalInit = DamageMeterSourceEntryMixin.Init
-        DamageMeterSourceEntryMixin.Init = function(self, combatSource)
-            ApplySecretSafeMethodsToEntry(self)
-            return originalInit(self, combatSource)
-        end
-        DamageMeterSourceEntryMixin._FluxSecretSafeInitWrapped = true
-    end
-    if DamageMeterSpellEntryMixin and DamageMeterSpellEntryMixin.Init
-        and not DamageMeterSpellEntryMixin._FluxSecretSafeInitWrapped then
-        local originalSpellInit = DamageMeterSpellEntryMixin.Init
-        DamageMeterSpellEntryMixin.Init = function(self, combatSpell)
-            ApplySecretSafeMethodsToEntry(self)
-            return originalSpellInit(self, combatSpell)
-        end
-        DamageMeterSpellEntryMixin._FluxSecretSafeInitWrapped = true
-    end
-end
-
---- Patch already-pooled ScrollBox entry frames (Mixin copied Blizzard originals onto them).
-local function PatchPooledEntryFrames()
-    local dmFrame = _G["DamageMeter"]
-    if not dmFrame then
-        return
-    end
-    local function patchWindow(sessionWindow)
-        if not sessionWindow then
-            return
-        end
-        if sessionWindow.ForEachEntryFrame then
-            sessionWindow:ForEachEntryFrame(function(frame)
-                ApplySecretSafeMethodsToEntry(frame)
-            end)
-        elseif sessionWindow.EnumerateEntryFrames then
-            for _, frame in sessionWindow:EnumerateEntryFrames() do
-                ApplySecretSafeMethodsToEntry(frame)
-            end
-        end
-        local sourceWindow = sessionWindow.GetSourceWindow and sessionWindow:GetSourceWindow()
-        if sourceWindow and sourceWindow.ForEachEntryFrame then
-            sourceWindow:ForEachEntryFrame(function(frame)
-                ApplySecretSafeMethodsToEntry(frame)
-            end)
-        end
-    end
-    if dmFrame.ForEachSessionWindow then
-        dmFrame:ForEachSessionWindow(patchWindow)
-    elseif dmFrame.GetPrimarySessionWindow then
-        patchWindow(dmFrame:GetPrimarySessionWindow())
-        if dmFrame.GetMaxSessionWindowCount and dmFrame.GetSessionWindow then
-            for i = 2, dmFrame:GetMaxSessionWindowCount() do
-                patchWindow(dmFrame:GetSessionWindow(i))
-            end
-        end
-    end
-end
-
---- Keep Blizzard DamageMeter entry updates working while embedded (tainted).
-local function PatchDamageMeterEntryMethods()
-    if not DamageMeterEntryMixin then
-        return
-    end
-
-    if DamageMeterEntryMixin._FluxSecretSafePatched then
-        WrapEntryInitMethods()
-        PatchPooledEntryFrames()
-        return
-    end
-
-    -- Undo older Flux replacements if present from a prior load in-session.
-    if DamageMeterEntryMixin._FluxOriginalUpdateName then
-        DamageMeterEntryMixin.UpdateName = DamageMeterEntryMixin._FluxOriginalUpdateName
-        DamageMeterEntryMixin._FluxOriginalUpdateName = nil
-    end
-    if DamageMeterEntryMixin._FluxOriginalUpdateValue then
-        DamageMeterEntryMixin.UpdateValue = DamageMeterEntryMixin._FluxOriginalUpdateValue
-        DamageMeterEntryMixin._FluxOriginalUpdateValue = nil
-    end
-    DamageMeterEntryMixin._FluxPatched = nil
-    DamageMeterEntryMixin._FluxNameColorHooked = nil
-
-    local installed = InstallSecretSafeMethodsOnMixin()
-    WrapEntryInitMethods()
-
-    -- Only mark complete after GetSourceTypeAtlasElement is our safe impl (critical path).
-    if installed then
-        DamageMeterEntryMixin._FluxSecretSafePatched = true
-        PatchPooledEntryFrames()
-    else
-        DamageMeterEntryMixin._FluxSecretSafePatched = nil
-    end
-end
-
---- Session duration can be secret while tainted; use a Blizzard-compatible safe setter.
-local function PatchDamageMeterSessionWindowMethods()
-    if ForeverGamepadEmbed() then
-        return
-    end
-    if not DamageMeterSessionWindowMixin then
-        return
-    end
-    if DamageMeterSessionWindowMixin._FluxDurationHooked then
-        return
-    end
-
-    if DamageMeterSessionWindowMixin._FluxOriginalSetSessionDuration then
-        DamageMeterSessionWindowMixin.SetSessionDuration = DamageMeterSessionWindowMixin._FluxOriginalSetSessionDuration
-        DamageMeterSessionWindowMixin._FluxOriginalSetSessionDuration = nil
-    end
-    DamageMeterSessionWindowMixin._FluxPatched = nil
-
-    if not DamageMeterSessionWindowMixin.SetSessionDuration then
-        return
-    end
-
-    DamageMeterSessionWindowMixin.SetSessionDuration = function(self, durationSeconds)
-        local sessionTimer = self.GetSessionTimerFontString and self:GetSessionTimerFontString()
-        if not sessionTimer then
-            return
-        end
-        if type(durationSeconds) ~= "number" then
-            sessionTimer:SetText("")
-            return
-        end
-        if not FluxCanAccess(durationSeconds) then
-            sessionTimer:SetText("[--:--] ")
-            return
-        end
-        local success, timerText = pcall(function()
-            return ("[%s] "):format(SecondsToClock(durationSeconds))
-        end)
-        if success then
-            sessionTimer:SetText(timerText)
-        else
-            sessionTimer:SetText("[--:--] ")
-        end
-    end
-    DamageMeterSessionWindowMixin._FluxDurationHooked = true
-    DamageMeterSessionWindowMixin._FluxPatched = true
-end
-
--- Do not wrap DamageMeterMixin.SetupSessionWindow — that permanently taints window setup.
-local function PatchSessionWindowInstance(sessionWindow)
-    if ForeverGamepadEmbed() then
-        return
-    end
-    if not sessionWindow or sessionWindow.__FluxSetSessionDurationPatched then
-        return
-    end
-    if DamageMeterSessionWindowMixin and DamageMeterSessionWindowMixin.SetSessionDuration then
-        sessionWindow.SetSessionDuration = DamageMeterSessionWindowMixin.SetSessionDuration
-    end
-    sessionWindow.__FluxSetSessionDurationPatched = true
-end
-
-local function IsSecretSafeEntryPatchComplete()
-    if not DamageMeterEntryMixin or not DamageMeterEntryMixin._FluxSecretSafePatched then
-        return false
-    end
-    -- Init wraps must land once Source/Spell mixins exist (may load after EntryMixin).
-    if DamageMeterSourceEntryMixin and DamageMeterSourceEntryMixin.Init
-        and not DamageMeterSourceEntryMixin._FluxSecretSafeInitWrapped then
-        return false
-    end
-    if DamageMeterSpellEntryMixin and DamageMeterSpellEntryMixin.Init
-        and not DamageMeterSpellEntryMixin._FluxSecretSafeInitWrapped then
-        return false
-    end
-    return true
-end
-
--- Retry patching with a delay to catch late-loading cases
-local function RetryPatchDamageMeterEntryMethods(attempt)
-    attempt = attempt or 1
-    local maxAttempts = 10
-
-    -- Always invoke: when already flagged, still wraps Init + rebinds pooled frames.
-    PatchDamageMeterEntryMethods()
-
-    if DamageMeterSessionWindowMixin and not DamageMeterSessionWindowMixin._FluxDurationHooked then
-        PatchDamageMeterSessionWindowMethods()
-    end
-
-    if attempt < maxAttempts and (not IsSecretSafeEntryPatchComplete()
-        or not DamageMeterSessionWindowMixin or not DamageMeterSessionWindowMixin._FluxDurationHooked) then
-        C_Timer.After(0.1, function()
-            RetryPatchDamageMeterEntryMethods(attempt + 1)
-        end)
-    end
-end
-
+-- Blizzard owns entry initialization, rendering and duration formatting. Replacing
+-- those methods taints secure ScrollBox initialization before it reads meter data.
 --- Use the Blizzard Damage Meter only when Blizzard already loaded it.
 -- @return boolean - true if loaded successfully, false otherwise
 local function LoadDamageMeterAddon()
@@ -568,8 +192,6 @@ local function LoadDamageMeterAddon()
         return false
     end
     if _G["DamageMeter"] then
-        PatchDamageMeterEntryMethods()
-        PatchDamageMeterSessionWindowMethods()
         return true
     end
     -- Never LoadAddOn Blizzard_DamageMeter from Flux. DamageMeter inherits
@@ -670,7 +292,6 @@ local function EnsureNSessionWindows(count)
 
     local primary = dmFrame.GetPrimarySessionWindow and dmFrame:GetPrimarySessionWindow()
     if primary then
-        PatchSessionWindowInstance(primary)
         if not primary:IsShown() then
             primary:Show()
         end
@@ -701,7 +322,6 @@ local function EnsureNSessionWindows(count)
             if not win:IsShown() then
                 win:Show()
             end
-            PatchSessionWindowInstance(win)
             windows[i] = win
         end
     end
@@ -932,6 +552,38 @@ local function ApplyRootScaleAndSize(parentFrame)
     dmFrame:SetPoint("CENTER", parentFrame, "CENTER", 0, 0)
 end
 
+local styledEntryWindows = {}
+
+local function StyleEmbeddedEntryName(entry)
+    if not entry or not entry.GetName then return end
+    local isLocalPlayer = entry.isLocalPlayer
+    if issecretvalue and issecretvalue(isLocalPlayer) then return end
+    local name = entry:GetName()
+    if not name or not name.SetTextColor then return end
+    if isLocalPlayer == true then
+        local color = GREEN_FONT_COLOR
+        name:SetTextColor(color.r, color.g, color.b)
+    else
+        name:SetTextColor(1, 1, 1)
+    end
+end
+
+local function InstallEmbeddedEntryStyle(window)
+    if not window or styledEntryWindows[window] or not window.InitEntry then return end
+    styledEntryWindows[window] = true
+    -- Preserve Flux's local-player tint after Blizzard finishes native Init.
+    -- Secure posthooks keep entry functions and secret rendering under Blizzard.
+    hooksecurefunc(window, "InitEntry", function(_, entry)
+        if isEmbedded then StyleEmbeddedEntryName(entry) end
+    end)
+    if window.ForEachEntryFrame then
+        window:ForEachEntryFrame(StyleEmbeddedEntryName)
+    end
+    if window.GetLocalPlayerEntry then
+        StyleEmbeddedEntryName(window:GetLocalPlayerEntry())
+    end
+end
+
 --- Configure chrome/type for an embedded session window (position applied separately).
 local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     if not sessionWindow then return end
@@ -940,13 +592,28 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
 
-    if damageMeterType ~= nil then
-        dmFrame:SetSessionWindowDamageMeterType(sessionWindow, damageMeterType)
+    InstallEmbeddedEntryStyle(sessionWindow)
+    if sessionWindow.GetSourceWindow then
+        InstallEmbeddedEntryStyle(sessionWindow:GetSourceWindow())
     end
 
-    sessionWindow:SetUseClassColor(true)
-    sessionWindow:SetShowBarIcons(true)
-    dmFrame:SetSessionWindowSessionID(sessionWindow, Enum.DamageMeterSessionType.Overall, nil)
+    -- These native setters refresh entries. Geometry passes must leave content
+    -- alone when its selected type/session and display flags already match.
+    if damageMeterType ~= nil and (not sessionWindow.GetDamageMeterType
+        or sessionWindow:GetDamageMeterType() ~= damageMeterType) then
+        dmFrame:SetSessionWindowDamageMeterType(sessionWindow, damageMeterType)
+    end
+    if not sessionWindow.ShouldUseClassColor or not sessionWindow:ShouldUseClassColor() then
+        sessionWindow:SetUseClassColor(true)
+    end
+    if not sessionWindow.ShouldShowBarIcons or not sessionWindow:ShouldShowBarIcons() then
+        sessionWindow:SetShowBarIcons(true)
+    end
+    if not sessionWindow.GetSessionType or not sessionWindow.GetSessionID
+        or sessionWindow:GetSessionType() ~= Enum.DamageMeterSessionType.Overall
+        or sessionWindow:GetSessionID() ~= nil then
+        dmFrame:SetSessionWindowSessionID(sessionWindow, Enum.DamageMeterSessionType.Overall, nil)
+    end
 
     if sessionWindow.SetMovable then
         sessionWindow:SetMovable(false)
@@ -962,7 +629,6 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     -- Do not replace SetupEntry / entry UpdateName|UpdateValue — that taints Blizzard's
     -- secret-safe Init path (sourceDisplayType comparisons in GetSourceTypeAtlasElement).
 
-    PatchSessionWindowInstance(sessionWindow)
     sessionWindow:Show()
 end
 
@@ -1179,9 +845,6 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
         return false
     end
 
-    PatchDamageMeterEntryMethods()
-    PatchDamageMeterSessionWindowMethods()
-
     if not IsMeterReady() then
         return false
     end
@@ -1205,24 +868,19 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
             return
         end
 
-        if not dmFrame.__OriginalShouldBeShown then
-            dmFrame.__OriginalShouldBeShown = dmFrame.ShouldBeShown
-            dmFrame.ShouldBeShown = function(self)
-                if isEmbedded then
-                    return true
+        -- Keep Blizzard's visibility methods native. Its own state events may
+        -- show the root again; the posthook only reapplies the Flux tab boundary.
+        if not visibilityHooked and dmFrame.UpdateShownState then
+            visibilityHooked = true
+            hooksecurefunc(dmFrame, "UpdateShownState", function()
+                if not isEmbedded or not embeddedParentFrame then return end
+                local hostVisible = embeddedParentFrame:IsVisible()
+                local activeTab = FluxWindowFrame and FluxWindowFrame.GetActiveTab
+                    and FluxWindowFrame:GetActiveTab()
+                if not hostVisible or (activeTab and activeTab ~= "Meter") then
+                    dmFrame:Hide()
                 end
-                return self:__OriginalShouldBeShown()
-            end
-        end
-
-        if not dmFrame.__OriginalUpdateShownState then
-            dmFrame.__OriginalUpdateShownState = dmFrame.UpdateShownState
-            dmFrame.UpdateShownState = function(self)
-                if isEmbedded then
-                    return
-                end
-                return self:__OriginalUpdateShownState()
-            end
+            end)
         end
 
         if dmFrame.SetVisibility then
@@ -1237,7 +895,6 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
         if dmFrame.ForEachSessionWindow then
             dmFrame:ForEachSessionWindow(function(sessionWindow)
                 if sessionWindow then
-                    PatchSessionWindowInstance(sessionWindow)
                     ApplyEmbeddedNoMinimize(sessionWindow, dmFrame)
                 end
             end)
@@ -1246,17 +903,12 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
         -- Layout panes on the expanded canvas; root scale keeps visual over Content.
         LayoutMeterGrid(parentFrame, currentLayoutConfig or resolvedLayout)
 
-        -- Re-bind secret-safe methods on pooled entry frames after windows are shown.
-        PatchDamageMeterEntryMethods()
-        PatchPooledEntryFrames()
-
         -- Size-change: reflow grid. OnShow/OnHide keep the unparented meter with the window.
         if not parentFrame.__FluxBlizzardMeterSizeHooked then
             parentFrame.__FluxBlizzardMeterSizeHooked = true
             parentFrame:HookScript("OnSizeChanged", function()
                 if isEmbedded and embeddedParentFrame and not InCombatLockdown() and currentLayoutConfig then
                     LayoutMeterGrid(embeddedParentFrame, currentLayoutConfig)
-                    PatchPooledEntryFrames()
                 end
             end)
             if ForeverGamepadEmbed() then
@@ -1398,18 +1050,6 @@ function FluxBlizzardMeter:Cleanup()
     end
     dmFrame:ClearAllPoints()
     
-    -- Restore original ShouldBeShown if hooked
-    if dmFrame.__OriginalShouldBeShown then
-        dmFrame.ShouldBeShown = dmFrame.__OriginalShouldBeShown
-        dmFrame.__OriginalShouldBeShown = nil
-    end
-    
-    -- Restore original UpdateShownState if hooked
-    if dmFrame.__OriginalUpdateShownState then
-        dmFrame.UpdateShownState = dmFrame.__OriginalUpdateShownState
-        dmFrame.__OriginalUpdateShownState = nil
-    end
-    
     -- Unlock every session window (Forever allows up to 3).
     local function RestoreWindowChrome(sessionWindow)
         if not sessionWindow then
@@ -1449,7 +1089,6 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_REGEN_DISABLED") -- Entering combat
 frame:RegisterEvent("PLAYER_REGEN_ENABLED")  -- Leaving combat
-frame:RegisterEvent("ADDON_LOADED") -- For patching when DamageMeter loads
 
 frame:SetScript("OnEvent", function(self, event, addonName)
     if event == "PLAYER_REGEN_DISABLED" then
@@ -1461,12 +1100,7 @@ frame:SetScript("OnEvent", function(self, event, addonName)
         pendingEmbed = nil
         if embed then FluxBlizzardMeter:Embed(embed.parent, embed.layout) end
         if pendingStartup and StartStartupEmbed then StartStartupEmbed() end
-    elseif event == "ADDON_LOADED" and addonName == "Blizzard_DamageMeter" then
-        -- Patch entry methods when DamageMeter addon loads
-        PatchDamageMeterEntryMethods()
-        PatchDamageMeterSessionWindowMethods()
-        -- Also retry with delays to catch late-loading mixins
-        RetryPatchDamageMeterEntryMethods()
+
     end
 end)
 
@@ -1487,7 +1121,7 @@ local function TryStartupEmbed(attempt, generation)
     attempt = attempt or 1
     local maxAttempts = 20 -- Try for up to 4 seconds (20 * 0.2s)
     
-    -- Patch if Blizzard already loaded the meter (never LoadAddOn from Flux).
+    -- Use the meter only if Blizzard already loaded it.
     LoadDamageMeterAddon()
     
     -- Check if meter is ready (IsMeterReady also calls LoadDamageMeterAddon, but we call it explicitly first)

@@ -42,7 +42,7 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxbankdebug`, `/fbrdebug` | `on` / `1` / `true`, `off` / `0` / `false`, `toggle`, `dump`, `cats`, `quiet` / `normal` / `verbose`, `cat` / `category <name> on\|off`, `help`. | [handler](../Inventory/Restock/Bank/FluxBankRestockDebug.lua#L523) |
 | `/fluxmap` | `testload`, `scale <x> [y]`, `show`, `hide`, `refresh`, `cleanup`. Empty input does nothing. | [handler](../Battlezonemap/FluxBattlefieldMap.lua#L1379) |
 | `/fluxwm` | `on` / `1` / `true`, `off` / `0` / `false`, `toggle`: world-map feature mirroring. Otherwise status. | [handler](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1262) |
-| `/fluxblizzmeter`, `/fbm` | `available`, `api`, `embed`, `hide`, `show`, `cleanup`. Requires usable native meter APIs for the corresponding operation. | [handler](../Battlezonemap/FluxBlizzardMeter.lua#L1516) |
+| `/fluxblizzmeter`, `/fbm` | `available`, `api`, `embed`, `hide`, `show`, `cleanup`. Requires usable native meter APIs for the corresponding operation. | [handler](../Battlezonemap/FluxBlizzardMeter.lua#L1192) |
 | `/fluxpvp` | `debug`, `reposition`; otherwise usage for objective/capture-bar positioning. | [handler](../StatusBars/FluxPVPObjectiveMover.lua#L374) |
 | `/fluxstatus` | `refresh`: bars/layout refresh. `testdurability`: position/show test. `debug` is currently a no-op despite help text advertising it. | [handler](../StatusBars/FluxStatusBar.lua#L3041) |
 

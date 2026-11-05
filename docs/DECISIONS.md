@@ -1,5 +1,14 @@
 # Decisions
 
+5 November: leave Blizzard meter rendering/Init and duration/visibility methods
+native; preserve Flux tint with secure after-only hooks and actual selection
+changes through native owners. Do not add another secret-field patch, sanitizer
+or CVar toggle. Seed secure raid pools only after final capacity and effective
+visibility out of combat; reserve bounded upfront resources and restore owned
+shown states. The supplied UNKNOWN stack cannot identify a header or taint writer;
+record the independent reproduced capacity bug without claiming native attribution.
+[Evidence and acceptance limits](METER_RAID_NATIVE_OWNERSHIP.md).
+
 5 November consumable targets: keep the preset and secure-button owners.
 Read explicit weapon-type restrictions from the existing item tooltip service,
 compare numeric equipped subclasses, and make the button's effective count

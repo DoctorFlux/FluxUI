@@ -1,5 +1,13 @@
 # Compact raid and party frames
 
+5 November precreation correction: final group/MTMA attributes now precede pool
+seeding; effective parent visibility is required, owned shown states are restored
+and actual final child presence determines completion. The enabled raid reserves
+40 group plus 40 MTMA children up front; party needs five and disabled needs zero.
+This source-reproduced fix does not identify the header behind the supplied
+UNKNOWN CreateFrame blocks. Native attribution/secure acceptance stays pending.
+[Reproduction and bounded resource tradeoff](METER_RAID_NATIVE_OWNERSHIP.md).
+
 Flux owns compact party/raid cells and their layout. Classic can read familiar Blizzard raid settings; Retail and Forever use Flux's own raid options because native compact-frame writes remain guarded. Cells are **Flux-owned secure unit buttons**, not inherited Blizzard CompactUnitFrameTemplate cells. [FluxRaidFrame.xml](../RaidFrame/FluxRaidFrame.xml) loads compat, visuals, layout, unit paint, orchestration, preview and BigDebuffs support, then declares the cell template and event driver.
 
 ## Components and data flow

@@ -1,5 +1,13 @@
 # Flux Window, Battlezone map and meters
 
+5 November native meter correction: Blizzard retains its rendering/Init, duration
+and visibility methods. Flux applies green/white name tint only after native Init,
+keeps tab boundaries with a secure posthook and avoids unchanged type/session
+refreshes during geometry updates. Native formatting replaces the old unreadable
+duration placeholder. The supplied Forever warning is documented; post-reload
+native acceptance remains pending.
+[Regression and source evidence](METER_RAID_NATIVE_OWNERSHIP.md).
+
 The Flux Window is the bottom-right host for Map/Minimap, Meter, Respec and Buttons. It owns tab visibility, order and the shared content rectangle; each hosted system owns its contents. The main controller is global `FluxWindowFrame` in [FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua). The loaded map/meter adapters are part of this system, not independent windows.
 
 ## Host and tab lifecycle

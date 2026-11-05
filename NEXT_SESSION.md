@@ -1,5 +1,20 @@
 # Next session
 
+5 November meter/header error fix: read
+[exact failures, source pins and pending native steps](docs/METER_RAID_NATIVE_OWNERSHIP.md).
+`lua tests/native_meter_ownership.lua` passes 180 checks;
+`lua tests/raid_header_precreation.lua` passes 150. Full desktop validation passes
+136 scripts / 791 syntax files. Comparison/raw samples:
+`docs/validation/meter-raid-ownership-comparison-2026-11-05.json`.
+Native reload is required to discard old in-memory meter method replacements.
+Verify Forever first (source line535 matches log), then Retail meter tab/resize/
+selection/row colors/timer/gamepad and each client's secure party/raid/MTMA roster
+growth, disable and combat recovery. The two UNKNOWN blocks have no identified
+header or taint writer; do not claim the capacity fix proves their cause. Prebuilt
+raid children rise to the intended bounded 80 in the raid fixture (startup/native
+memory cost unmeasured). Preserve newer consumable work and keep WoW background;
+no renewed capture request or foreground control. Guild-bank/void remain excluded.
+
 5 November consumable target work: read
 [contract/evidence](docs/CONSUMABLE_TARGET_DETECTION.md) before changing the
 noncombat consumables button. `lua tests/consumable_weapon_targets.lua` passes

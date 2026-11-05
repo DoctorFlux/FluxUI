@@ -1,5 +1,14 @@
 # Client and reference validation — 29 October 2026
 
+5 November meter/header ownership: compared Forever 1.60.1.70790 and Retail
+12.1.5.70783 native meter paths; checked visible-header allocation gate on pinned
+Era 1.15.9.70576, Anniversary 2.5.6.70577 and MoP 5.5.4.70631 sources too. Shared
+capability/absence mocks pass 180 meter + 150 raid checks; full 136/791 pass.
+No secret VM, native rendering or secure CreateFrame acceptance is simulated.
+Native reload/taint/pixels and UNKNOWN header attribution remain pending;
+original/modern Wrath remain distinct and uncertified.
+[Exact commits and native checklist](METER_RAID_NATIVE_OWNERSHIP.md).
+
 5 November consumable target detection: a generic 30-check loaded-module
 desktop fixture verifies staff-only mismatch/count zero, staff/off-hand
 selection, general oil, categories, cached metadata and equipment/combat

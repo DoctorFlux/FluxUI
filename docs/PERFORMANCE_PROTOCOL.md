@@ -1,5 +1,14 @@
 # Baseline protocol and currency evidence
 
+5 November meter/header correction: five matched desktop pairs avoid 1,000
+unchanged type calls, 1,000 session calls and 1,000 pool walks per synthetic meter
+workload; separate gamepad patch timers 9 to zero. Raid pools move missing-child
+creation before combat: hidden-startup children 9 to 80; modeled denied attempts
+2 to zero. This increases upfront resources, with native CPU/memory cost unknown.
+330 focused checks, five mutants and full 136/791 pass; native warning/taint,
+frame time and original UNKNOWN attribution remain pending.
+[Raw samples and interpretation](METER_RAID_NATIVE_OWNERSHIP.md).
+
 5 November hidden inventory: five alternating desktop pairs reduce Baganator
 hidden classification/guard/shield work (400,800 to 800 callbacks per metric),
 while retaining linear skin-registry traversal. Default-bag hidden native Updates

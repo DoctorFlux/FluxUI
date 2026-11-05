@@ -60,12 +60,11 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1205](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1205) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1206](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1206) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1207](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1207) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1450](../../Battlezonemap/FluxBlizzardMeter.lua#L1450) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1451](../../Battlezonemap/FluxBlizzardMeter.lua#L1451) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1452](../../Battlezonemap/FluxBlizzardMeter.lua#L1452) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1521](../../Battlezonemap/FluxBlizzardMeter.lua#L1521) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1522](../../Battlezonemap/FluxBlizzardMeter.lua#L1522) | `RegisterEvent` | `"VARIABLES_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1523](../../Battlezonemap/FluxBlizzardMeter.lua#L1523) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1090](../../Battlezonemap/FluxBlizzardMeter.lua#L1090) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1091](../../Battlezonemap/FluxBlizzardMeter.lua#L1091) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1155](../../Battlezonemap/FluxBlizzardMeter.lua#L1155) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1156](../../Battlezonemap/FluxBlizzardMeter.lua#L1156) | `RegisterEvent` | `"VARIABLES_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1157](../../Battlezonemap/FluxBlizzardMeter.lua#L1157) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxDetails.lua:242](../../Battlezonemap/FluxDetails.lua#L242) | `RegisterEvent` | `"DETAILS_INSTANCE_OPEN", lightRefreshIfEmbedded` |
 | [Battlezonemap/FluxDetails.lua:243](../../Battlezonemap/FluxDetails.lua#L243) | `RegisterEvent` | `"DETAILS_PROFILE_APPLYED", function() -- Profiles reset instances_amount (default 5); Flux needs up to 6 panes. EnsureDetailsMaxWindows() lightRefreshIfEmbedded() end` |
 | [Battlezonemap/FluxDetails.lua:1811](../../Battlezonemap/FluxDetails.lua#L1811) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -287,21 +286,22 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [ExtraButtonSystem/ExtraButtons/UI.lua:760](../../ExtraButtonSystem/ExtraButtons/UI.lua#L760) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:1390](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1390) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:1391](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1391) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6049](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6049) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6050](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6050) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6051](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6051) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6054](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6054) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6057](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6057) | `RegisterEvent` | `"UNIT_SPELLCAST_SUCCEEDED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6060](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6060) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6061](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6061) | `RegisterEvent` | `"PLAYER_LOGIN"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6063](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6063) | `RegisterEvent` | `"PLAYER_DEAD"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6064](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6064) | `RegisterEvent` | `"PLAYER_ALIVE"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6065](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6065) | `RegisterEvent` | `"PLAYER_UNGHOST"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6066](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6066) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1094](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1094) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1095](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1095) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1129](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1129) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1130](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1130) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6197](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6197) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6198](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6198) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6199](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6199) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6202](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6202) | `RegisterUnitEvent` | `"UNIT_SPELLCAST_SUCCEEDED", "player"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6205](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6205) | `RegisterEvent` | `"UNIT_SPELLCAST_SUCCEEDED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6208](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6208) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6209](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6209) | `RegisterEvent` | `"PLAYER_LOGIN"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6211](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6211) | `RegisterEvent` | `"PLAYER_DEAD"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6212](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6212) | `RegisterEvent` | `"PLAYER_ALIVE"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6213](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6213) | `RegisterEvent` | `"PLAYER_UNGHOST"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6214](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6214) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua:6215](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6215) | `RegisterEvent` | `"PLAYER_EQUIPMENT_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1109](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1109) | `RegisterEvent` | `"SPELL_UPDATE_COOLDOWN"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1110](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1110) | `RegisterEvent` | `"ACTIONBAR_SLOT_CHANGED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1144](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1144) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua:1145](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1145) | `RegisterUnitEvent` | `"UNIT_AURA", "player"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:536](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L536) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:537](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L537) | `RegisterEvent` | `"UPDATE_BINDINGS"` |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua:538](../../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua#L538) | `RegisterEvent` | `"GROUP_ROSTER_UPDATE"` |
@@ -2237,22 +2237,17 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 
 | Declaration | Source |
 |---|---|
-| `FluxBlizzardMeter:IsSupportedClient` | [L123](../../Battlezonemap/FluxBlizzardMeter.lua#L123) |
-| `FluxBlizzardMeter:IsAvailable` | [L130](../../Battlezonemap/FluxBlizzardMeter.lua#L130) |
-| `FluxBlizzardMeter:IsContentAvailable` | [L139](../../Battlezonemap/FluxBlizzardMeter.lua#L139) |
-| `FluxBlizzardMeter:IsEmbedded` | [L149](../../Battlezonemap/FluxBlizzardMeter.lua#L149) |
-| `FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat` | [L157](../../Battlezonemap/FluxBlizzardMeter.lua#L157) |
-| `DamageMeterSourceEntryMixin.InitDamageMeterSourceEntryMixin.Init` | [L375](../../Battlezonemap/FluxBlizzardMeter.lua#L375) |
-| `DamageMeterSpellEntryMixin.InitDamageMeterSpellEntryMixin.Init` | [L384](../../Battlezonemap/FluxBlizzardMeter.lua#L384) |
-| `nilifnotDamageMeterSessionWindowMixin.SetSessionDurationthenreturnendDamageMeterSessionWindowMixin.SetSessionDuration` | [L488](../../Battlezonemap/FluxBlizzardMeter.lua#L488) |
-| `FluxBlizzardMeter:Embed` | [L1163](../../Battlezonemap/FluxBlizzardMeter.lua#L1163) |
-| `dmFrame.ShouldBeShowndmFrame.ShouldBeShown` | [L1210](../../Battlezonemap/FluxBlizzardMeter.lua#L1210) |
-| `dmFrame.UpdateShownStatedmFrame.UpdateShownState` | [L1220](../../Battlezonemap/FluxBlizzardMeter.lua#L1220) |
-| `FluxBlizzardMeter:SyncGeometryFromLayout` | [L1296](../../Battlezonemap/FluxBlizzardMeter.lua#L1296) |
-| `FluxBlizzardMeter:RefreshEmbeddedLayout` | [L1319](../../Battlezonemap/FluxBlizzardMeter.lua#L1319) |
-| `FluxBlizzardMeter:Hide` | [L1330](../../Battlezonemap/FluxBlizzardMeter.lua#L1330) |
-| `FluxBlizzardMeter:Show` | [L1349](../../Battlezonemap/FluxBlizzardMeter.lua#L1349) |
-| `FluxBlizzardMeter:Cleanup` | [L1379](../../Battlezonemap/FluxBlizzardMeter.lua#L1379) |
+| `FluxBlizzardMeter:IsSupportedClient` | [L124](../../Battlezonemap/FluxBlizzardMeter.lua#L124) |
+| `FluxBlizzardMeter:IsAvailable` | [L131](../../Battlezonemap/FluxBlizzardMeter.lua#L131) |
+| `FluxBlizzardMeter:IsContentAvailable` | [L140](../../Battlezonemap/FluxBlizzardMeter.lua#L140) |
+| `FluxBlizzardMeter:IsEmbedded` | [L150](../../Battlezonemap/FluxBlizzardMeter.lua#L150) |
+| `FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat` | [L158](../../Battlezonemap/FluxBlizzardMeter.lua#L158) |
+| `FluxBlizzardMeter:Embed` | [L829](../../Battlezonemap/FluxBlizzardMeter.lua#L829) |
+| `FluxBlizzardMeter:SyncGeometryFromLayout` | [L948](../../Battlezonemap/FluxBlizzardMeter.lua#L948) |
+| `FluxBlizzardMeter:RefreshEmbeddedLayout` | [L971](../../Battlezonemap/FluxBlizzardMeter.lua#L971) |
+| `FluxBlizzardMeter:Hide` | [L982](../../Battlezonemap/FluxBlizzardMeter.lua#L982) |
+| `FluxBlizzardMeter:Show` | [L1001](../../Battlezonemap/FluxBlizzardMeter.lua#L1001) |
+| `FluxBlizzardMeter:Cleanup` | [L1031](../../Battlezonemap/FluxBlizzardMeter.lua#L1031) |
 
 ### Battlezonemap/FluxDetails.lua
 
@@ -5256,86 +5251,89 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Module.GetRestockUIItemIDs` | [L1233](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1233) |
 | `Module.IsRestockUIItem` | [L1261](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1261) |
 | `Module.GetItemChargeCount` | [L1275](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1275) |
-| `Module.GetItemCount` | [L1453](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1453) |
-| `Module.IsChronoboonName` | [L1702](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1702) |
-| `Module.ClassifyChronoboon` | [L1707](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1707) |
-| `Module.NoteChronoboonVariant` | [L1739](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1739) |
-| `Module.GetRegularChronoboonVariantIDs` | [L1958](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1958) |
-| `Module.CollectChronoboonIDs` | [L1978](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1978) |
-| `Module.GetChronoboonBagCount` | [L2014](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2014) |
-| `Module.GetChronoboonBankCount` | [L2021](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2021) |
-| `Module.FindChronoboonBankSlotStacks` | [L2033](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2033) |
-| `Module.ResolveMerchantRegularChronoboon` | [L2070](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2070) |
-| `Module.ReadChronoboonRestockTargetCombined` | [L2096](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2096) |
-| `Module.IsChronoboonItem` | [L2127](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2127) |
-| `Module.IsSuperchargedChronoboonItem` | [L2140](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2140) |
-| `Module.HasSuperchargedChronoboonBuff` | [L2152](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2152) |
-| `Module.HasSuperchargedChronoboonInBags` | [L2215](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2215) |
-| `Module.HasWorldBuff` | [L2239](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2239) |
-| `Module.GetWorldBuffCount` | [L2245](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2245) |
-| `Module.FindChronoboonItemIDs` | [L2306](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2306) |
-| `Module.GetGroundAuraBinding` | [L2337](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2337) |
-| `Module.SetGroundAuraBinding` | [L2351](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2351) |
-| `Module.ClearGroundAuraBinding` | [L2365](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2365) |
-| `Module.IsGroundAuraLearnerArmed` | [L2380](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2380) |
-| `Module.IsGroundPlaceableItem` | [L2403](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2403) |
-| `Module.FindBuffBySpellID` | [L2435](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2435) |
-| `Module.TryProcessGroundAuraLearner` | [L2601](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2601) |
-| `Module.OnGroundPlaceableCastSucceeded` | [L2656](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2656) |
-| `Module.ItemGrantsWellFed` | [L2691](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2691) |
-| `Module.FindWellFedBuff` | [L2732](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2732) |
-| `Module.FindBuffForItem` | [L2814](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2814) |
-| `Module.IsWeaponEnchantItem` | [L3140](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3140) |
-| `Module.CanEnchantApplyToSlot` | [L3179](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3179) |
-| `Module.GetWeaponEnchantSlot` | [L3243](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3243) |
-| `Module.FindPreferredBagSlot` | [L3476](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3476) |
-| `Module.GetWeaponEnchantSlotWithLowestCharges` | [L3521](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3521) |
-| `Module.GetBagSlotWithLowestStack` | [L3525](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3525) |
-| `Module.IsItemEligible` | [L3594](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3594) |
-| `Module.GetFirstEligibleItem` | [L3681](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3681) |
-| `Module.GetEligibleRegularChronoboonItemID` | [L3722](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3722) |
-| `Module.GetChronoboonModifierOverrideChronoID` | [L3736](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3736) |
-| `Module.RefreshConsumablesUsability` | [L3751](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3751) |
-| `Module.RebindPreferredUseSlot` | [L3925](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3925) |
-| `Module.ApplyConsumablesChronoboonModifierVisual` | [L4027](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4027) |
-| `Module.ApplyChronoboonModifierLayer` | [L4076](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4076) |
-| `Module.ClearChronoboonModifierLayer` | [L4111](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4111) |
-| `Module.CheckWispLockState` | [L4131](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4131) |
-| `Module.UseNextConsumable` | [L4208](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4208) |
-| `Module.UpdateWispLockCooldown` | [L4417](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4417) |
-| `Module.SetupRightClickConfig` | [L4496](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4496) |
-| `falsebtn.UpdateTextCount` | [L4635](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4635) |
-| `Module.RefreshAuraTimerOverlay` | [L4810](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4810) |
-| `Module.UpdateBuffCooldown` | [L4824](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4824) |
-| `Module.ApplyPendingChanges` | [L4833](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4833) |
-| `Module.UpdateButtonState` | [L4856](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4856) |
-| `Module.Register` | [L5166](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5166) |
-| `Module.CreateButton` | [L5194](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5194) |
-| `truebtn.UpdateUsable` | [L5219](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5219) |
-| `btn.SetActionbtn.SetAction` | [L5241](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5241) |
-| `btn.ClearActionbtn.ClearAction` | [L5253](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5253) |
-| `btn.UpdateTexturebtn.UpdateTexture` | [L5264](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5264) |
-| `btn.FullRefreshbtn.FullRefresh` | [L5316](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5316) |
-| `btn.UpdateAppearancebtn.UpdateAppearance` | [L5372](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5372) |
-| `btn.UpdateTextCountbtn.UpdateTextCount` | [L5424](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5424) |
-| `btn.UpdateCooldownbtn.UpdateCooldown` | [L5440](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5440) |
-| `Module.SetupClickHandling` | [L5479](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5479) |
-| `Module.SetupTooltip` | [L5659](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5659) |
-| `Module.ShowTooltip` | [L5720](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5720) |
-| `Module.RefreshTooltip` | [L5922](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5922) |
-| `Module.UpdateWeaponEnchantButton` | [L5934](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5934) |
-| `Module.RunPostLoginConsumablesRefresh` | [L5968](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5968) |
-| `Module.SeedConsumableAuraWatchSig` | [L6037](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6037) |
-| `Module.RegisterEvents` | [L6043](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6043) |
-| `Module._BuffWatchNeeded` | [L6107](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6107) |
-| `Module._StopBuffCheckTicker` | [L6125](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6125) |
-| `Module._StartBuffCheckTicker` | [L6132](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6132) |
-| `Module._SyncBuffCheckTicker` | [L6139](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6139) |
-| `Module.ForceUpdate` | [L6504](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6504) |
-| `Module.GetButton` | [L6510](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6510) |
-| `Module.UpdateKeybindings` | [L6524](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6524) |
-| `Module.ClearKeybindings` | [L6553](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6553) |
-| `FluxNCConsumables_OpenConfig` | [L6563](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6563) |
+| `Module.GetPhysicalItemCount` | [L1453](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1453) |
+| `Module.GetItemCount` | [L1479](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1479) |
+| `Module.IsChronoboonName` | [L1724](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1724) |
+| `Module.ClassifyChronoboon` | [L1729](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1729) |
+| `Module.NoteChronoboonVariant` | [L1761](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1761) |
+| `Module.GetRegularChronoboonVariantIDs` | [L1980](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L1980) |
+| `Module.CollectChronoboonIDs` | [L2000](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2000) |
+| `Module.GetChronoboonBagCount` | [L2036](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2036) |
+| `Module.GetChronoboonBankCount` | [L2043](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2043) |
+| `Module.FindChronoboonBankSlotStacks` | [L2055](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2055) |
+| `Module.ResolveMerchantRegularChronoboon` | [L2092](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2092) |
+| `Module.ReadChronoboonRestockTargetCombined` | [L2118](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2118) |
+| `Module.IsChronoboonItem` | [L2149](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2149) |
+| `Module.IsSuperchargedChronoboonItem` | [L2162](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2162) |
+| `Module.HasSuperchargedChronoboonBuff` | [L2174](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2174) |
+| `Module.HasSuperchargedChronoboonInBags` | [L2237](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2237) |
+| `Module.HasWorldBuff` | [L2261](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2261) |
+| `Module.GetWorldBuffCount` | [L2267](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2267) |
+| `Module.FindChronoboonItemIDs` | [L2328](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2328) |
+| `Module.GetGroundAuraBinding` | [L2359](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2359) |
+| `Module.SetGroundAuraBinding` | [L2373](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2373) |
+| `Module.ClearGroundAuraBinding` | [L2387](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2387) |
+| `Module.IsGroundAuraLearnerArmed` | [L2402](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2402) |
+| `Module.IsGroundPlaceableItem` | [L2425](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2425) |
+| `Module.FindBuffBySpellID` | [L2457](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2457) |
+| `Module.TryProcessGroundAuraLearner` | [L2623](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2623) |
+| `Module.OnGroundPlaceableCastSucceeded` | [L2678](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2678) |
+| `Module.ItemGrantsWellFed` | [L2713](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2713) |
+| `Module.FindWellFedBuff` | [L2754](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2754) |
+| `Module.FindBuffForItem` | [L2836](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L2836) |
+| `Module.GetWeaponEnchantTargetRule` | [L3198](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3198) |
+| `Module.GetConsumableDescription` | [L3233](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3233) |
+| `Module.IsWeaponEnchantItem` | [L3264](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3264) |
+| `Module.CanEnchantApplyToSlot` | [L3311](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3311) |
+| `Module.GetWeaponEnchantSlot` | [L3381](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3381) |
+| `Module.FindPreferredBagSlot` | [L3620](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3620) |
+| `Module.GetWeaponEnchantSlotWithLowestCharges` | [L3665](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3665) |
+| `Module.GetBagSlotWithLowestStack` | [L3669](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3669) |
+| `Module.IsItemEligible` | [L3738](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3738) |
+| `Module.GetFirstEligibleItem` | [L3825](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3825) |
+| `Module.GetEligibleRegularChronoboonItemID` | [L3866](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3866) |
+| `Module.GetChronoboonModifierOverrideChronoID` | [L3880](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3880) |
+| `Module.RefreshConsumablesUsability` | [L3895](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L3895) |
+| `Module.RebindPreferredUseSlot` | [L4069](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4069) |
+| `Module.ApplyConsumablesChronoboonModifierVisual` | [L4170](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4170) |
+| `Module.ApplyChronoboonModifierLayer` | [L4219](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4219) |
+| `Module.ClearChronoboonModifierLayer` | [L4254](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4254) |
+| `Module.CheckWispLockState` | [L4274](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4274) |
+| `Module.UseNextConsumable` | [L4351](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4351) |
+| `Module.UpdateWispLockCooldown` | [L4560](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4560) |
+| `Module.SetupRightClickConfig` | [L4639](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4639) |
+| `falsebtn.UpdateTextCount` | [L4776](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4776) |
+| `Module.RefreshAuraTimerOverlay` | [L4951](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4951) |
+| `Module.UpdateBuffCooldown` | [L4965](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4965) |
+| `Module.ApplyPendingChanges` | [L4974](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4974) |
+| `Module.UpdateButtonState` | [L4997](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L4997) |
+| `Module.Register` | [L5307](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5307) |
+| `Module.CreateButton` | [L5335](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5335) |
+| `truebtn.UpdateUsable` | [L5360](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5360) |
+| `btn.SetActionbtn.SetAction` | [L5382](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5382) |
+| `btn.ClearActionbtn.ClearAction` | [L5394](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5394) |
+| `btn.UpdateTexturebtn.UpdateTexture` | [L5405](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5405) |
+| `btn.FullRefreshbtn.FullRefresh` | [L5457](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5457) |
+| `btn.UpdateAppearancebtn.UpdateAppearance` | [L5513](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5513) |
+| `btn.UpdateTextCountbtn.UpdateTextCount` | [L5565](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5565) |
+| `btn.UpdateCooldownbtn.UpdateCooldown` | [L5581](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5581) |
+| `Module.SetupClickHandling` | [L5620](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5620) |
+| `Module.SetupTooltip` | [L5800](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5800) |
+| `Module.ShowTooltip` | [L5861](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L5861) |
+| `Module.RefreshTooltip` | [L6070](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6070) |
+| `Module.UpdateWeaponEnchantButton` | [L6082](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6082) |
+| `Module.RunPostLoginConsumablesRefresh` | [L6116](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6116) |
+| `Module.SeedConsumableAuraWatchSig` | [L6185](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6185) |
+| `Module.RegisterEvents` | [L6191](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6191) |
+| `Module._BuffWatchNeeded` | [L6256](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6256) |
+| `Module._StopBuffCheckTicker` | [L6274](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6274) |
+| `Module._StartBuffCheckTicker` | [L6281](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6281) |
+| `Module._SyncBuffCheckTicker` | [L6288](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6288) |
+| `Module.ForceUpdate` | [L6664](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6664) |
+| `Module.GetButton` | [L6670](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6670) |
+| `Module.UpdateKeybindings` | [L6684](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6684) |
+| `Module.ClearKeybindings` | [L6713](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6713) |
+| `FluxNCConsumables_OpenConfig` | [L6723](../../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua#L6723) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua
 
@@ -5350,23 +5348,23 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `endhost.onDataChanged` | [L171](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L171) |
 | `Config.ShowChronoboonRestockEdit` | [L454](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L454) |
 | `Config.ShowIconTooltip` | [L525](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L525) |
-| `Config.RefreshUI` | [L687](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L687) |
-| `Config.UpdateIconCooldown` | [L716](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L716) |
-| `Config.UpdateAllCooldowns` | [L722](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L722) |
-| `Config.UpdateThresholdDisplay` | [L729](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L729) |
-| `Config.ApplyThresholdChange` | [L750](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L750) |
-| `Config.UpdateAllItemCounts` | [L778](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L778) |
-| `Config.HandleItemDrop` | [L789](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L789) |
-| `Config.AddItem` | [L799](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L799) |
-| `Config.PromptNewPreset` | [L839](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L839) |
-| `Config.ConfirmDeletePreset` | [L899](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L899) |
-| `Config.Show` | [L944](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L944) |
-| `Config.ShowChronoboonRestockFlyout` | [L995](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L995) |
-| `Config.Hide` | [L1039](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1039) |
-| `Config.Toggle` | [L1065](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1065) |
-| `Config.IsShown` | [L1077](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1077) |
-| `Config.StartUpdateTicker` | [L1086](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1086) |
-| `Config.StopUpdateTicker` | [L1116](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1116) |
+| `Config.RefreshUI` | [L702](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L702) |
+| `Config.UpdateIconCooldown` | [L731](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L731) |
+| `Config.UpdateAllCooldowns` | [L737](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L737) |
+| `Config.UpdateThresholdDisplay` | [L744](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L744) |
+| `Config.ApplyThresholdChange` | [L765](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L765) |
+| `Config.UpdateAllItemCounts` | [L793](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L793) |
+| `Config.HandleItemDrop` | [L804](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L804) |
+| `Config.AddItem` | [L814](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L814) |
+| `Config.PromptNewPreset` | [L854](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L854) |
+| `Config.ConfirmDeletePreset` | [L914](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L914) |
+| `Config.Show` | [L959](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L959) |
+| `Config.ShowChronoboonRestockFlyout` | [L1010](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1010) |
+| `Config.Hide` | [L1054](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1054) |
+| `Config.Toggle` | [L1080](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1080) |
+| `Config.IsShown` | [L1092](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1092) |
+| `Config.StartUpdateTicker` | [L1101](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1101) |
+| `Config.StopUpdateTicker` | [L1131](../../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua#L1131) |
 
 ### ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua
 
@@ -8457,18 +8455,18 @@ Owner: [15-raid-frames.md](../15-raid-frames.md).
 | `FluxRaidFrame_UpdatePosition` | [L219](../../RaidFrame/FluxRaidLayout.lua#L219) |
 | `FluxRaid_ComputeSyntheticGroup2ColumnLeftX` | [L237](../../RaidFrame/FluxRaidLayout.lua#L237) |
 | `FluxRaid_GetPlacement2FocusAnchorBottomRight` | [L265](../../RaidFrame/FluxRaidLayout.lua#L265) |
-| `FluxRaid_GetFirstGroupNthMemberBottomFromScreen` | [L579](../../RaidFrame/FluxRaidLayout.lua#L579) |
-| `FluxRaid_QueueConfigureAndRefresh` | [L654](../../RaidFrame/FluxRaidLayout.lua#L654) |
-| `FluxRaid_InstallManagerHooks` | [L757](../../RaidFrame/FluxRaidLayout.lua#L757) |
-| `FluxRaid_ScheduleBlizzardGridHideCheck` | [L773](../../RaidFrame/FluxRaidLayout.lua#L773) |
-| `FluxRaid_ApplyBlizzardCompactGridHidden` | [L786](../../RaidFrame/FluxRaidLayout.lua#L786) |
-| `FluxRaid_RestoreBlizzardRaidFrames` | [L807](../../RaidFrame/FluxRaidLayout.lua#L807) |
-| `FluxRaid_RunPendingCombatWork` | [L830](../../RaidFrame/FluxRaidLayout.lua#L830) |
-| `FluxRaid_OnRosterOrPartyChanged` | [L856](../../RaidFrame/FluxRaidLayout.lua#L856) |
-| `FluxRaid_InitLayoutFrames` | [L873](../../RaidFrame/FluxRaidLayout.lua#L873) |
-| `FluxRaid_InstallPetBattleDriver` | [L894](../../RaidFrame/FluxRaidLayout.lua#L894) |
-| `FluxRaid_DisableBlizzardNow` | [L933](../../RaidFrame/FluxRaidLayout.lua#L933) |
-| `FluxRaid_PositionContainer` | [L937](../../RaidFrame/FluxRaidLayout.lua#L937) |
+| `FluxRaid_GetFirstGroupNthMemberBottomFromScreen` | [L593](../../RaidFrame/FluxRaidLayout.lua#L593) |
+| `FluxRaid_QueueConfigureAndRefresh` | [L668](../../RaidFrame/FluxRaidLayout.lua#L668) |
+| `FluxRaid_InstallManagerHooks` | [L771](../../RaidFrame/FluxRaidLayout.lua#L771) |
+| `FluxRaid_ScheduleBlizzardGridHideCheck` | [L787](../../RaidFrame/FluxRaidLayout.lua#L787) |
+| `FluxRaid_ApplyBlizzardCompactGridHidden` | [L800](../../RaidFrame/FluxRaidLayout.lua#L800) |
+| `FluxRaid_RestoreBlizzardRaidFrames` | [L821](../../RaidFrame/FluxRaidLayout.lua#L821) |
+| `FluxRaid_RunPendingCombatWork` | [L844](../../RaidFrame/FluxRaidLayout.lua#L844) |
+| `FluxRaid_OnRosterOrPartyChanged` | [L870](../../RaidFrame/FluxRaidLayout.lua#L870) |
+| `FluxRaid_InitLayoutFrames` | [L887](../../RaidFrame/FluxRaidLayout.lua#L887) |
+| `FluxRaid_InstallPetBattleDriver` | [L908](../../RaidFrame/FluxRaidLayout.lua#L908) |
+| `FluxRaid_DisableBlizzardNow` | [L947](../../RaidFrame/FluxRaidLayout.lua#L947) |
+| `FluxRaid_PositionContainer` | [L951](../../RaidFrame/FluxRaidLayout.lua#L951) |
 
 ### RaidFrame/FluxRaidPreview.lua
 

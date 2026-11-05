@@ -1,5 +1,14 @@
 # Development status
 
+5 November supplied meter/header errors: removed native entry/Init/duration/
+visibility replacements responsible for re-entering addon code before Forever's
+secret icon comparison. Kept post-render green/white tint and native tab visibility;
+unchanged geometry no longer calls content setters. Corrected raid hidden-parent
+and MTMA final-capacity precreation. 330 focused checks, five rejected mutants,
+five matched pairs and full 136 scripts / 791 syntax pass. Meter native acceptance
+and attribution of the two UNKNOWN header blocks remain pending.
+[Failure, tradeoffs and client evidence](METER_RAID_NATIVE_OWNERSHIP.md).
+
 5 November consumable target detection: configured flask/elixir/Well Fed food
 and weapon enchants gain category/target tooltip text. Staff-restricted
 coatings now count as zero available with a dagger or sword, restoring count

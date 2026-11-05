@@ -1,5 +1,16 @@
 # Work log
 
+5 November: read all 17 supplied errors (15 Forever icon warnings, two UNKNOWN
+header blocks); preserved clean main aa253cc and all newer consumable work in
+Meter-header-errors-20261105T125630Z (1,471 files, verified Git history, 127 on-disk
+settings). Removed meter renderer interceptions and redundant geometry refreshes;
+retained tint/layout. Fixed raid precreation visibility/capacity. Five alternating
+pairs, 330 focused checks, five rejected mutants and full 136 scripts / 791 syntax
+pass. Documentation passes 824 sources / 13,746 links after correcting a stale
+command source line. No game input or settings/profiler change. Native warnings
+and UNKNOWN attribution need post-reload acceptance.
+[Source hashes, raw samples, tradeoffs and native steps](METER_RAID_NATIVE_OWNERSHIP.md).
+
 5 November: verified main a6cc94d and closed Retail on-disk settings;
 created/verified an external all-ref Git bundle and copied account/character
 Flux settings outside AddOns. Fixed staff-restricted consumable targeting,

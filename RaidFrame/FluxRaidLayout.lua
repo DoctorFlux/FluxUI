@@ -438,18 +438,30 @@ LayoutHeaders = function()
 end
 
 local function PrecreateHeaderChildren(header)
-    if not header or header._fluxPrecreated then return end
+    if not header then return end
     if InCombatLockdown() then return end
     local maxColumns = header:GetAttribute("maxColumns") or 1
     local unitsPerColumn = header:GetAttribute("unitsPerColumn") or 5
     local startingIndex = header:GetAttribute("startingIndex") or 1
     local maxUnits = maxColumns * unitsPerColumn
+    if header:GetAttribute("child" .. maxUnits) then
+        header._fluxPrecreated = true
+        return
+    end
+    local container = State.containerFrame
+    local containerWasShown = container and container:IsShown()
     local wasShown = header:IsShown()
+    -- Native attribute updates allocate only while effectively visible. The
+    -- owned container starts hidden; showing just its child cannot seed a pool.
+    if container and not containerWasShown then container:Show() end
     if not wasShown then header:Show() end
-    header:SetAttribute("startingIndex", -maxUnits + 1)
-    header:SetAttribute("startingIndex", startingIndex)
-    header._fluxPrecreated = true
+    if not header.IsVisible or header:IsVisible() then
+        header:SetAttribute("startingIndex", -maxUnits + 1)
+        header:SetAttribute("startingIndex", startingIndex)
+    end
+    header._fluxPrecreated = header:GetAttribute("child" .. maxUnits) ~= nil
     if not wasShown then header:Hide() end
+    if container and not containerWasShown then container:Hide() end
 end
 
 local function SetHeaderAttributes(header, groupFilter, showRaid, showParty, showPlayer)
@@ -478,7 +490,6 @@ local function SetHeaderAttributes(header, groupFilter, showRaid, showParty, sho
     if header ~= State.mtmaHeader then
         header:SetAttribute("roleFilter", nil)
     end
-    PrecreateHeaderChildren(header)
     header:Hide()
 end
 
@@ -492,6 +503,7 @@ ConfigureRaidMode = function()
     if inRaid then
         for i = 1, GROUP_COUNT do
             SetHeaderAttributes(State.raidHeaders[i], tostring(i), true, false, false)
+            PrecreateHeaderChildren(State.raidHeaders[i])
         end
         local mtmaHeader = State.mtmaHeader
         if mtmaHeader then
@@ -503,9 +515,11 @@ ConfigureRaidMode = function()
             mtmaHeader:SetAttribute("columnSpacing", GRP_SPACING)
             mtmaHeader:SetAttribute("xOffset", 0)
             mtmaHeader:SetAttribute("yOffset", -(MTMA_TARGET_HEIGHT + MTMA_TARGET_GAP + 1))
+            PrecreateHeaderChildren(mtmaHeader)
         end
     elseif inGroup then
         SetHeaderAttributes(State.raidHeaders[1], "1", false, true, true)
+        PrecreateHeaderChildren(State.raidHeaders[1])
         for i = 2, GROUP_COUNT do
             State.raidHeaders[i]:Hide()
         end

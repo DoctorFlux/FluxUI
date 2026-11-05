@@ -68,7 +68,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Battlezonemap/FluxBattlefieldMapPinTooltips.lua](../Battlezonemap/FluxBattlefieldMapPinTooltips.lua) | 0 | 0 | 0 | 0 | 1 |
 | [Battlezonemap/FluxBattlefieldMapProviders.lua](../Battlezonemap/FluxBattlefieldMapProviders.lua) | 0 | 0 | 3 | 0 | 5 |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua](../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua) | 0 | 0 | 3 | 5 | 2 |
-| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 3 | 6 | 4 |
+| [Battlezonemap/FluxBlizzardMeter.lua](../Battlezonemap/FluxBlizzardMeter.lua) | 0 | 0 | 2 | 5 | 6 |
 | [Battlezonemap/FluxDetails.lua](../Battlezonemap/FluxDetails.lua) | 0 | 1 | 14 | 4 | 4 |
 | [Battlezonemap/FluxDetailsForever.lua](../Battlezonemap/FluxDetailsForever.lua) | 0 | 0 | 3 | 2 | 0 |
 | [Battlezonemap/FluxDetailsWoWSkinTint.lua](../Battlezonemap/FluxDetailsWoWSkinTint.lua) | 0 | 0 | 0 | 1 | 2 |
@@ -158,7 +158,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/FlyoutEngine/Favorites.lua](../ExtraButtonSystem/FlyoutEngine/Favorites.lua) | 0 | 0 | 1 | 0 | 0 |
 | [ExtraButtonSystem/FlyoutEngine/Popup.lua](../ExtraButtonSystem/FlyoutEngine/Popup.lua) | 2 | 0 | 0 | 0 | 1 |
 | [ExtraButtonSystem/Init.lua](../ExtraButtonSystem/Init.lua) | 0 | 0 | 3 | 0 | 0 |
-| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua) | 5 | 1 | 17 | 13 | 1 |
+| [ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua) | 5 | 1 | 17 | 14 | 1 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua) | 5 | 0 | 6 | 4 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua) | 0 | 0 | 3 | 4 | 0 |
 | [ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua](../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua) | 3 | 1 | 13 | 11 | 1 |

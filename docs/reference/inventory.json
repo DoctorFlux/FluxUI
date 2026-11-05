@@ -24348,8 +24348,8 @@
       "path": "Battlezonemap/FluxBlizzardMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1631,
-      "sha256": "10b19b6edaf7b9d209b9ba342d241b5983c10938749d9acdd880a6167b3f24a0",
+      "lines": 1265,
+      "sha256": "ace8215a0e96b7a79ebab01b854c8c5e656f024ed3e7112df04f1a83d62820b3",
       "clients": [
         "camelot",
         "cata",
@@ -24367,72 +24367,52 @@
       "functions": [
         {
           "name": "FluxBlizzardMeter:IsSupportedClient",
-          "line": 123
+          "line": 124
         },
         {
           "name": "FluxBlizzardMeter:IsAvailable",
-          "line": 130
+          "line": 131
         },
         {
           "name": "FluxBlizzardMeter:IsContentAvailable",
-          "line": 139
+          "line": 140
         },
         {
           "name": "FluxBlizzardMeter:IsEmbedded",
-          "line": 149
+          "line": 150
         },
         {
           "name": "FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat",
-          "line": 157
-        },
-        {
-          "name": "DamageMeterSourceEntryMixin.InitDamageMeterSourceEntryMixin.Init",
-          "line": 375
-        },
-        {
-          "name": "DamageMeterSpellEntryMixin.InitDamageMeterSpellEntryMixin.Init",
-          "line": 384
-        },
-        {
-          "name": "nilifnotDamageMeterSessionWindowMixin.SetSessionDurationthenreturnendDamageMeterSessionWindowMixin.SetSessionDuration",
-          "line": 488
+          "line": 158
         },
         {
           "name": "FluxBlizzardMeter:Embed",
-          "line": 1163
-        },
-        {
-          "name": "dmFrame.ShouldBeShowndmFrame.ShouldBeShown",
-          "line": 1210
-        },
-        {
-          "name": "dmFrame.UpdateShownStatedmFrame.UpdateShownState",
-          "line": 1220
+          "line": 829
         },
         {
           "name": "FluxBlizzardMeter:SyncGeometryFromLayout",
-          "line": 1296
+          "line": 948
         },
         {
           "name": "FluxBlizzardMeter:RefreshEmbeddedLayout",
-          "line": 1319
+          "line": 971
         },
         {
           "name": "FluxBlizzardMeter:Hide",
-          "line": 1330
+          "line": 982
         },
         {
           "name": "FluxBlizzardMeter:Show",
-          "line": 1349
+          "line": 1001
         },
         {
           "name": "FluxBlizzardMeter:Cleanup",
-          "line": 1379
+          "line": 1031
         }
       ],
       "events": [
         {
-          "line": 1450,
+          "line": 1090,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -24440,7 +24420,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 1451,
+          "line": 1091,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -24448,15 +24428,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 1452,
-          "method": "RegisterEvent",
-          "arguments": [
-            "\"ADDON_LOADED\""
-          ],
-          "context": "(\"PLAYER_REGEN_ENABLED\")frame:"
-        },
-        {
-          "line": 1521,
+          "line": 1155,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -24464,7 +24436,7 @@
           "context": "(\"Frame\")startupFrame:"
         },
         {
-          "line": 1522,
+          "line": 1156,
           "method": "RegisterEvent",
           "arguments": [
             "\"VARIABLES_LOADED\""
@@ -24472,7 +24444,7 @@
           "context": "(\"ADDON_LOADED\")startupFrame:"
         },
         {
-          "line": 1523,
+          "line": 1157,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -24485,18 +24457,18 @@
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER1",
           "value": "/fluxblizzmeter",
-          "line": 1556
+          "line": 1190
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER2",
           "value": "/fbm",
-          "line": 1557
+          "line": 1191
         },
         {
           "kind": "handler",
           "name": "FLUXBLIZZMETER",
-          "line": 1558
+          "line": 1192
         }
       ],
       "widgets": [],
@@ -24505,7 +24477,7 @@
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            1533
+            1167
           ]
         }
       ]
@@ -41965,8 +41937,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 6586,
-      "sha256": "1dfe7689915f4416e2463a651d1167c7c0060f44b8a7d539af745f178045419f",
+      "lines": 6746,
+      "sha256": "b4d5100232a8e1e0f86d72145c44faa3e7ef2d9d5ed7ea76a2b1fa551c5586f4",
       "clients": [
         "camelot",
         "cata",
@@ -42103,324 +42075,336 @@
           "line": 1275
         },
         {
-          "name": "Module.GetItemCount",
+          "name": "Module.GetPhysicalItemCount",
           "line": 1453
         },
         {
+          "name": "Module.GetItemCount",
+          "line": 1479
+        },
+        {
           "name": "Module.IsChronoboonName",
-          "line": 1702
+          "line": 1724
         },
         {
           "name": "Module.ClassifyChronoboon",
-          "line": 1707
+          "line": 1729
         },
         {
           "name": "Module.NoteChronoboonVariant",
-          "line": 1739
+          "line": 1761
         },
         {
           "name": "Module.GetRegularChronoboonVariantIDs",
-          "line": 1958
+          "line": 1980
         },
         {
           "name": "Module.CollectChronoboonIDs",
-          "line": 1978
+          "line": 2000
         },
         {
           "name": "Module.GetChronoboonBagCount",
-          "line": 2014
+          "line": 2036
         },
         {
           "name": "Module.GetChronoboonBankCount",
-          "line": 2021
+          "line": 2043
         },
         {
           "name": "Module.FindChronoboonBankSlotStacks",
-          "line": 2033
+          "line": 2055
         },
         {
           "name": "Module.ResolveMerchantRegularChronoboon",
-          "line": 2070
+          "line": 2092
         },
         {
           "name": "Module.ReadChronoboonRestockTargetCombined",
-          "line": 2096
+          "line": 2118
         },
         {
           "name": "Module.IsChronoboonItem",
-          "line": 2127
+          "line": 2149
         },
         {
           "name": "Module.IsSuperchargedChronoboonItem",
-          "line": 2140
+          "line": 2162
         },
         {
           "name": "Module.HasSuperchargedChronoboonBuff",
-          "line": 2152
+          "line": 2174
         },
         {
           "name": "Module.HasSuperchargedChronoboonInBags",
-          "line": 2215
+          "line": 2237
         },
         {
           "name": "Module.HasWorldBuff",
-          "line": 2239
+          "line": 2261
         },
         {
           "name": "Module.GetWorldBuffCount",
-          "line": 2245
+          "line": 2267
         },
         {
           "name": "Module.FindChronoboonItemIDs",
-          "line": 2306
+          "line": 2328
         },
         {
           "name": "Module.GetGroundAuraBinding",
-          "line": 2337
+          "line": 2359
         },
         {
           "name": "Module.SetGroundAuraBinding",
-          "line": 2351
+          "line": 2373
         },
         {
           "name": "Module.ClearGroundAuraBinding",
-          "line": 2365
+          "line": 2387
         },
         {
           "name": "Module.IsGroundAuraLearnerArmed",
-          "line": 2380
+          "line": 2402
         },
         {
           "name": "Module.IsGroundPlaceableItem",
-          "line": 2403
+          "line": 2425
         },
         {
           "name": "Module.FindBuffBySpellID",
-          "line": 2435
+          "line": 2457
         },
         {
           "name": "Module.TryProcessGroundAuraLearner",
-          "line": 2601
+          "line": 2623
         },
         {
           "name": "Module.OnGroundPlaceableCastSucceeded",
-          "line": 2656
+          "line": 2678
         },
         {
           "name": "Module.ItemGrantsWellFed",
-          "line": 2691
+          "line": 2713
         },
         {
           "name": "Module.FindWellFedBuff",
-          "line": 2732
+          "line": 2754
         },
         {
           "name": "Module.FindBuffForItem",
-          "line": 2814
+          "line": 2836
+        },
+        {
+          "name": "Module.GetWeaponEnchantTargetRule",
+          "line": 3198
+        },
+        {
+          "name": "Module.GetConsumableDescription",
+          "line": 3233
         },
         {
           "name": "Module.IsWeaponEnchantItem",
-          "line": 3140
+          "line": 3264
         },
         {
           "name": "Module.CanEnchantApplyToSlot",
-          "line": 3179
+          "line": 3311
         },
         {
           "name": "Module.GetWeaponEnchantSlot",
-          "line": 3243
+          "line": 3381
         },
         {
           "name": "Module.FindPreferredBagSlot",
-          "line": 3476
+          "line": 3620
         },
         {
           "name": "Module.GetWeaponEnchantSlotWithLowestCharges",
-          "line": 3521
+          "line": 3665
         },
         {
           "name": "Module.GetBagSlotWithLowestStack",
-          "line": 3525
+          "line": 3669
         },
         {
           "name": "Module.IsItemEligible",
-          "line": 3594
+          "line": 3738
         },
         {
           "name": "Module.GetFirstEligibleItem",
-          "line": 3681
+          "line": 3825
         },
         {
           "name": "Module.GetEligibleRegularChronoboonItemID",
-          "line": 3722
+          "line": 3866
         },
         {
           "name": "Module.GetChronoboonModifierOverrideChronoID",
-          "line": 3736
+          "line": 3880
         },
         {
           "name": "Module.RefreshConsumablesUsability",
-          "line": 3751
+          "line": 3895
         },
         {
           "name": "Module.RebindPreferredUseSlot",
-          "line": 3925
+          "line": 4069
         },
         {
           "name": "Module.ApplyConsumablesChronoboonModifierVisual",
-          "line": 4027
+          "line": 4170
         },
         {
           "name": "Module.ApplyChronoboonModifierLayer",
-          "line": 4076
+          "line": 4219
         },
         {
           "name": "Module.ClearChronoboonModifierLayer",
-          "line": 4111
+          "line": 4254
         },
         {
           "name": "Module.CheckWispLockState",
-          "line": 4131
+          "line": 4274
         },
         {
           "name": "Module.UseNextConsumable",
-          "line": 4208
+          "line": 4351
         },
         {
           "name": "Module.UpdateWispLockCooldown",
-          "line": 4417
+          "line": 4560
         },
         {
           "name": "Module.SetupRightClickConfig",
-          "line": 4496
+          "line": 4639
         },
         {
           "name": "falsebtn.UpdateTextCount",
-          "line": 4635
+          "line": 4776
         },
         {
           "name": "Module.RefreshAuraTimerOverlay",
-          "line": 4810
+          "line": 4951
         },
         {
           "name": "Module.UpdateBuffCooldown",
-          "line": 4824
+          "line": 4965
         },
         {
           "name": "Module.ApplyPendingChanges",
-          "line": 4833
+          "line": 4974
         },
         {
           "name": "Module.UpdateButtonState",
-          "line": 4856
+          "line": 4997
         },
         {
           "name": "Module.Register",
-          "line": 5166
+          "line": 5307
         },
         {
           "name": "Module.CreateButton",
-          "line": 5194
+          "line": 5335
         },
         {
           "name": "truebtn.UpdateUsable",
-          "line": 5219
+          "line": 5360
         },
         {
           "name": "btn.SetActionbtn.SetAction",
-          "line": 5241
+          "line": 5382
         },
         {
           "name": "btn.ClearActionbtn.ClearAction",
-          "line": 5253
+          "line": 5394
         },
         {
           "name": "btn.UpdateTexturebtn.UpdateTexture",
-          "line": 5264
+          "line": 5405
         },
         {
           "name": "btn.FullRefreshbtn.FullRefresh",
-          "line": 5316
+          "line": 5457
         },
         {
           "name": "btn.UpdateAppearancebtn.UpdateAppearance",
-          "line": 5372
+          "line": 5513
         },
         {
           "name": "btn.UpdateTextCountbtn.UpdateTextCount",
-          "line": 5424
+          "line": 5565
         },
         {
           "name": "btn.UpdateCooldownbtn.UpdateCooldown",
-          "line": 5440
+          "line": 5581
         },
         {
           "name": "Module.SetupClickHandling",
-          "line": 5479
+          "line": 5620
         },
         {
           "name": "Module.SetupTooltip",
-          "line": 5659
+          "line": 5800
         },
         {
           "name": "Module.ShowTooltip",
-          "line": 5720
+          "line": 5861
         },
         {
           "name": "Module.RefreshTooltip",
-          "line": 5922
+          "line": 6070
         },
         {
           "name": "Module.UpdateWeaponEnchantButton",
-          "line": 5934
+          "line": 6082
         },
         {
           "name": "Module.RunPostLoginConsumablesRefresh",
-          "line": 5968
+          "line": 6116
         },
         {
           "name": "Module.SeedConsumableAuraWatchSig",
-          "line": 6037
+          "line": 6185
         },
         {
           "name": "Module.RegisterEvents",
-          "line": 6043
+          "line": 6191
         },
         {
           "name": "Module._BuffWatchNeeded",
-          "line": 6107
+          "line": 6256
         },
         {
           "name": "Module._StopBuffCheckTicker",
-          "line": 6125
+          "line": 6274
         },
         {
           "name": "Module._StartBuffCheckTicker",
-          "line": 6132
+          "line": 6281
         },
         {
           "name": "Module._SyncBuffCheckTicker",
-          "line": 6139
+          "line": 6288
         },
         {
           "name": "Module.ForceUpdate",
-          "line": 6504
+          "line": 6664
         },
         {
           "name": "Module.GetButton",
-          "line": 6510
+          "line": 6670
         },
         {
           "name": "Module.UpdateKeybindings",
-          "line": 6524
+          "line": 6684
         },
         {
           "name": "Module.ClearKeybindings",
-          "line": 6553
+          "line": 6713
         },
         {
           "name": "FluxNCConsumables_OpenConfig",
-          "line": 6563
+          "line": 6723
         }
       ],
       "events": [
@@ -42441,7 +42425,7 @@
           "context": "(\"PLAYER_LOGIN\")consumablesProviderFrame:"
         },
         {
-          "line": 6049,
+          "line": 6197,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -42449,7 +42433,7 @@
           "context": "_eventFrame=eventFrameeventFrame:"
         },
         {
-          "line": 6050,
+          "line": 6198,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -42457,7 +42441,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")eventFrame:"
         },
         {
-          "line": 6051,
+          "line": 6199,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -42466,7 +42450,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 6054,
+          "line": 6202,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\"",
@@ -42475,7 +42459,7 @@
           "context": "function()eventFrame:"
         },
         {
-          "line": 6057,
+          "line": 6205,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SUCCEEDED\""
@@ -42483,7 +42467,7 @@
           "context": "notoktheneventFrame:"
         },
         {
-          "line": 6060,
+          "line": 6208,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -42491,7 +42475,7 @@
           "context": ")endendeventFrame:"
         },
         {
-          "line": 6061,
+          "line": 6209,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -42499,7 +42483,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")eventFrame:"
         },
         {
-          "line": 6063,
+          "line": 6211,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_DEAD\""
@@ -42507,7 +42491,7 @@
           "context": "(\"PLAYER_LOGIN\")eventFrame:"
         },
         {
-          "line": 6064,
+          "line": 6212,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ALIVE\""
@@ -42515,7 +42499,7 @@
           "context": "(\"PLAYER_DEAD\")eventFrame:"
         },
         {
-          "line": 6065,
+          "line": 6213,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_UNGHOST\""
@@ -42523,12 +42507,20 @@
           "context": "(\"PLAYER_ALIVE\")eventFrame:"
         },
         {
-          "line": 6066,
+          "line": 6214,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELL_UPDATE_COOLDOWN\""
           ],
           "context": "(\"PLAYER_UNGHOST\")eventFrame:"
+        },
+        {
+          "line": 6215,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_EQUIPMENT_CHANGED\""
+          ],
+          "context": "(\"SPELL_UPDATE_COOLDOWN\")eventFrame:"
         }
       ],
       "slash": [
@@ -42536,12 +42528,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXCONSUMABLES1",
           "value": "/fluxconsumables",
-          "line": 6572
+          "line": 6732
         },
         {
           "kind": "handler",
           "name": "FLUXCONSUMABLES",
-          "line": 6573
+          "line": 6733
         }
       ],
       "widgets": [],
@@ -42581,10 +42573,10 @@
             495,
             496,
             497,
-            1843,
-            1844,
-            1902,
-            1903
+            1865,
+            1866,
+            1924,
+            1925
           ]
         }
       ]
@@ -42593,8 +42585,8 @@
       "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 1205,
-      "sha256": "44bf270d5925ee7c694ae17e0f090d3e8af118ee553d23c31cf4ce2a9d4f5364",
+      "lines": 1220,
+      "sha256": "751ef9e986d3a4d363dac4e539054d27ca42a6c4f1251ab40626e34e959ee63e",
       "clients": [
         "camelot",
         "cata",
@@ -42640,76 +42632,76 @@
         },
         {
           "name": "Config.RefreshUI",
-          "line": 687
+          "line": 702
         },
         {
           "name": "Config.UpdateIconCooldown",
-          "line": 716
+          "line": 731
         },
         {
           "name": "Config.UpdateAllCooldowns",
-          "line": 722
+          "line": 737
         },
         {
           "name": "Config.UpdateThresholdDisplay",
-          "line": 729
+          "line": 744
         },
         {
           "name": "Config.ApplyThresholdChange",
-          "line": 750
+          "line": 765
         },
         {
           "name": "Config.UpdateAllItemCounts",
-          "line": 778
+          "line": 793
         },
         {
           "name": "Config.HandleItemDrop",
-          "line": 789
+          "line": 804
         },
         {
           "name": "Config.AddItem",
-          "line": 799
+          "line": 814
         },
         {
           "name": "Config.PromptNewPreset",
-          "line": 839
+          "line": 854
         },
         {
           "name": "Config.ConfirmDeletePreset",
-          "line": 899
+          "line": 914
         },
         {
           "name": "Config.Show",
-          "line": 944
+          "line": 959
         },
         {
           "name": "Config.ShowChronoboonRestockFlyout",
-          "line": 995
+          "line": 1010
         },
         {
           "name": "Config.Hide",
-          "line": 1039
+          "line": 1054
         },
         {
           "name": "Config.Toggle",
-          "line": 1065
+          "line": 1080
         },
         {
           "name": "Config.IsShown",
-          "line": 1077
+          "line": 1092
         },
         {
           "name": "Config.StartUpdateTicker",
-          "line": 1086
+          "line": 1101
         },
         {
           "name": "Config.StopUpdateTicker",
-          "line": 1116
+          "line": 1131
         }
       ],
       "events": [
         {
-          "line": 1094,
+          "line": 1109,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELL_UPDATE_COOLDOWN\""
@@ -42717,7 +42709,7 @@
           "context": "_updateTicker=tickerFrametickerFrame:"
         },
         {
-          "line": 1095,
+          "line": 1110,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIONBAR_SLOT_CHANGED\""
@@ -42725,7 +42717,7 @@
           "context": "(\"SPELL_UPDATE_COOLDOWN\")tickerFrame:"
         },
         {
-          "line": 1129,
+          "line": 1144,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -42733,7 +42725,7 @@
           "context": "(\"Frame\")eventFrame:"
         },
         {
-          "line": 1130,
+          "line": 1145,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_AURA\"",
@@ -65719,8 +65711,8 @@
       "path": "RaidFrame/FluxRaidLayout.lua",
       "classification": "active",
       "chapter": "15-raid-frames.md",
-      "lines": 952,
-      "sha256": "e83d1c0c288d668f414f9af334f9ba10863d319da37e013ebc8208f8b00d1a34",
+      "lines": 966,
+      "sha256": "8294faa7c6d6e9d8a77cc458c1f5987c382bdecf26a7a7423a21a339e4dd0dbf",
       "clients": [
         "camelot",
         "cata",
@@ -65770,51 +65762,51 @@
         },
         {
           "name": "FluxRaid_GetFirstGroupNthMemberBottomFromScreen",
-          "line": 579
+          "line": 593
         },
         {
           "name": "FluxRaid_QueueConfigureAndRefresh",
-          "line": 654
+          "line": 668
         },
         {
           "name": "FluxRaid_InstallManagerHooks",
-          "line": 757
+          "line": 771
         },
         {
           "name": "FluxRaid_ScheduleBlizzardGridHideCheck",
-          "line": 773
+          "line": 787
         },
         {
           "name": "FluxRaid_ApplyBlizzardCompactGridHidden",
-          "line": 786
+          "line": 800
         },
         {
           "name": "FluxRaid_RestoreBlizzardRaidFrames",
-          "line": 807
+          "line": 821
         },
         {
           "name": "FluxRaid_RunPendingCombatWork",
-          "line": 830
+          "line": 844
         },
         {
           "name": "FluxRaid_OnRosterOrPartyChanged",
-          "line": 856
+          "line": 870
         },
         {
           "name": "FluxRaid_InitLayoutFrames",
-          "line": 873
+          "line": 887
         },
         {
           "name": "FluxRaid_InstallPetBattleDriver",
-          "line": 894
+          "line": 908
         },
         {
           "name": "FluxRaid_DisableBlizzardNow",
-          "line": 933
+          "line": 947
         },
         {
           "name": "FluxRaid_PositionContainer",
-          "line": 937
+          "line": 951
         }
       ],
       "events": [],
@@ -73580,6 +73572,84 @@
       ]
     },
     {
+      "path": "tests/consumable_weapon_targets.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 137,
+      "sha256": "3abefb0e1e87c5f3272f928ed92756ed9b515de24dae8d7f84787c5028a812e8",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.CreateFrame",
+          "line": 37
+        },
+        {
+          "name": "frame:RegisterEvent",
+          "line": 39
+        },
+        {
+          "name": "frame:RegisterUnitEvent",
+          "line": 40
+        },
+        {
+          "name": "frame:SetScript",
+          "line": 41
+        },
+        {
+          "name": "framereturnframeendenv.InCombatLockdown",
+          "line": 45
+        },
+        {
+          "name": "returninCombatendenv.GetTime",
+          "line": 46
+        },
+        {
+          "name": "endenv.GetInventorySlotInfo",
+          "line": 47
+        },
+        {
+          "name": "endenv.GetInventoryItemID",
+          "line": 50
+        },
+        {
+          "name": "endenv.GetWeaponEnchantInfo",
+          "line": 51
+        },
+        {
+          "name": "returnnilendenv.GetItemInfo",
+          "line": 52
+        },
+        {
+          "name": "cons.UpdateButtonState",
+          "line": 123
+        }
+      ],
+      "events": [
+        {
+          "line": 39,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "}}functionframe:"
+        },
+        {
+          "line": 40,
+          "method": "RegisterUnitEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "trueendfunctionframe:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/consumable_zero_reset.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -77560,6 +77630,264 @@
       "sv_sites": []
     },
     {
+      "path": "tests/native_meter_ownership.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 283,
+      "sha256": "65b327e271dc491046d7188cc98d732f2772836be1243f8e18a7498de08f6ac0",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "f:IsShown",
+          "line": 22
+        },
+        {
+          "name": "f:IsVisible",
+          "line": 23
+        },
+        {
+          "name": "f:Show",
+          "line": 24
+        },
+        {
+          "name": "f:Hide",
+          "line": 25
+        },
+        {
+          "name": "f:SetParent",
+          "line": 26
+        },
+        {
+          "name": "f:GetParent",
+          "line": 27
+        },
+        {
+          "name": "f:GetWidth",
+          "line": 28
+        },
+        {
+          "name": "f:GetHeight",
+          "line": 29
+        },
+        {
+          "name": "f:GetSize",
+          "line": 30
+        },
+        {
+          "name": "f:SetSize",
+          "line": 31
+        },
+        {
+          "name": "f:GetEffectiveScale",
+          "line": 32
+        },
+        {
+          "name": "f:SetScale",
+          "line": 33
+        },
+        {
+          "name": "f:ClearAllPoints",
+          "line": 34
+        },
+        {
+          "name": "f:SetPoint",
+          "line": 35
+        },
+        {
+          "name": "f:GetFrameStrata",
+          "line": 36
+        },
+        {
+          "name": "f:GetFrameLevel",
+          "line": 37
+        },
+        {
+          "name": "f:HookScript",
+          "line": 39
+        },
+        {
+          "name": "f:SetScript",
+          "line": 43
+        },
+        {
+          "name": "f:RegisterEvent",
+          "line": 44
+        },
+        {
+          "name": "f:UnregisterEvent",
+          "line": 45
+        },
+        {
+          "name": "e.InCombatLockdown",
+          "line": 57
+        },
+        {
+          "name": "returns.combatende.UnitAffectingCombat",
+          "line": 58
+        },
+        {
+          "name": "returns.combatende.wipe",
+          "line": 59
+        },
+        {
+          "name": "e.CreateFrame",
+          "line": 61
+        },
+        {
+          "name": "e.hooksecurefunc",
+          "line": 68
+        },
+        {
+          "name": "dm:ShouldBeShown",
+          "line": 89
+        },
+        {
+          "name": "dm:UpdateShownState",
+          "line": 90
+        },
+        {
+          "name": "dm:GetPrimarySessionWindow",
+          "line": 94
+        },
+        {
+          "name": "dm:GetSessionWindow",
+          "line": 95
+        },
+        {
+          "name": "dm:GetWindowDataList",
+          "line": 96
+        },
+        {
+          "name": "dm:GetMaxSessionWindowCount",
+          "line": 97
+        },
+        {
+          "name": "dm:GetCurrentSessionWindowCount",
+          "line": 98
+        },
+        {
+          "name": "dm:ForEachSessionWindow",
+          "line": 103
+        },
+        {
+          "name": "dm:SetSessionWindowDamageMeterType",
+          "line": 104
+        },
+        {
+          "name": "dm:SetSessionWindowSessionID",
+          "line": 107
+        },
+        {
+          "name": "dm:CanHideSessionWindow",
+          "line": 111
+        },
+        {
+          "name": "dm:HideSessionWindow",
+          "line": 112
+        },
+        {
+          "name": "dm:CanShowNewSecondarySessionWindow",
+          "line": 113
+        },
+        {
+          "name": "value.font:SetTextColor",
+          "line": 117
+        },
+        {
+          "name": "value.font:SetText",
+          "line": 118
+        },
+        {
+          "name": "value:GetName",
+          "line": 119
+        },
+        {
+          "name": "value:GetNameText",
+          "line": 120
+        },
+        {
+          "name": "win:GetDamageMeterType",
+          "line": 126
+        },
+        {
+          "name": "win:GetSessionType",
+          "line": 127
+        },
+        {
+          "name": "win:GetSessionID",
+          "line": 128
+        },
+        {
+          "name": "win:ShouldUseClassColor",
+          "line": 129
+        },
+        {
+          "name": "win:SetUseClassColor",
+          "line": 130
+        },
+        {
+          "name": "win:ShouldShowBarIcons",
+          "line": 131
+        },
+        {
+          "name": "win:SetShowBarIcons",
+          "line": 132
+        },
+        {
+          "name": "win:ForEachEntryFrame",
+          "line": 135
+        },
+        {
+          "name": "win:InitEntry",
+          "line": 136
+        },
+        {
+          "name": "win.sourceWindow:ForEachEntryFrame",
+          "line": 142
+        },
+        {
+          "name": "win.sourceWindow:InitEntry",
+          "line": 143
+        },
+        {
+          "name": "win:GetSourceWindow",
+          "line": 147
+        },
+        {
+          "name": "dm:ShowNewSecondarySessionWindow",
+          "line": 150
+        },
+        {
+          "name": "s.nativeMethodsIntact",
+          "line": 161
+        },
+        {
+          "name": "s.event",
+          "line": 167
+        },
+        {
+          "name": "s.drain",
+          "line": 172
+        }
+      ],
+      "events": [
+        {
+          "line": 44,
+          "method": "RegisterEvent",
+          "arguments": [
+            "event"
+          ],
+          "context": "fnendfunctionf:"
+        }
+      ],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/native_mouse_suppression.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -78684,6 +79012,135 @@
         {
           "name": "env.CreateFrame",
           "line": 31
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/raid_header_precreation.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 173,
+      "sha256": "3981d3c9541e6431971163fc839f8767005f0febef6e2879156b0d354230d8f2",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "e.InCombatLockdown",
+          "line": 19
+        },
+        {
+          "name": "returns.combatende.IsInRaid",
+          "line": 20
+        },
+        {
+          "name": "returns.raidende.IsInGroup",
+          "line": 21
+        },
+        {
+          "name": "returntrueende.UnitInRaid",
+          "line": 22
+        },
+        {
+          "name": "ornilende.UnitExists",
+          "line": 23
+        },
+        {
+          "name": "ende.GetRaidRosterInfo",
+          "line": 24
+        },
+        {
+          "name": "ende.FluxRaid_IsFluxRaidEnabled",
+          "line": 28
+        },
+        {
+          "name": "returns.enabledende.FluxRaid_DisplayMainTankAndAssistCVarEnabled",
+          "line": 29
+        },
+        {
+          "name": "methods:IsShown",
+          "line": 35
+        },
+        {
+          "name": "methods:IsVisible",
+          "line": 36
+        },
+        {
+          "name": "methods:GetParent",
+          "line": 37
+        },
+        {
+          "name": "methods:GetName",
+          "line": 38
+        },
+        {
+          "name": "methods:GetAttribute",
+          "line": 39
+        },
+        {
+          "name": "methods:SetAttribute",
+          "line": 65
+        },
+        {
+          "name": "methods:Show",
+          "line": 70
+        },
+        {
+          "name": "methods:Hide",
+          "line": 74
+        },
+        {
+          "name": "methods:SetID",
+          "line": 78
+        },
+        {
+          "name": "methods:GetID",
+          "line": 79
+        },
+        {
+          "name": "methods:GetWidth",
+          "line": 80
+        },
+        {
+          "name": "methods:GetHeight",
+          "line": 81
+        },
+        {
+          "name": "methods:GetTop",
+          "line": 82
+        },
+        {
+          "name": "methods:GetBottom",
+          "line": 83
+        },
+        {
+          "name": "methods:GetPoint",
+          "line": 84
+        },
+        {
+          "name": "methods:CreateFontString",
+          "line": 91
+        },
+        {
+          "name": "ende.CreateFrame",
+          "line": 92
+        },
+        {
+          "name": "s:configure",
+          "line": 105
+        },
+        {
+          "name": "s:flush",
+          "line": 106
+        },
+        {
+          "name": "s:growInCombat",
+          "line": 110
         }
       ],
       "events": [],
