@@ -1447,6 +1447,13 @@ function Inv.Start()
 		if bankFrameLatchHooked then
 			return
 		end
+		-- Native bank OnShow can purchase the free first tab. Keep its scripts
+		-- untouched on Forever; BANKFRAME/PIM events above own our open latch.
+		local client = Flux.Client
+		if client and (client.isCamelot or client.isForever) then
+			bankFrameLatchHooked = true
+			return
+		end
 		local bankFrame = rawget(_G, "BankFrame")
 		if not (bankFrame and bankFrame.HookScript) then
 			return

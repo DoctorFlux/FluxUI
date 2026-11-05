@@ -1,0 +1,97 @@
+{
+  "baselineCommit": "8574e06716274d6970a79d298ab57637d72b20fe",
+  "recovery": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\Forever-native-bank-20261105T100524Z",
+    "head": "8574e06716274d6970a79d298ab57637d72b20fe",
+    "sourceFiles": 1448,
+    "settingsFiles": 123,
+    "sourceSha256": "d886e59811e561a1fec56c3d2f003fbc5762a5b1c08d2abcd4117ba56c99145b"
+  },
+  "runtimeSha256": {
+    "WindowMover/Catalog.lua": "14c94b599aa08cdb075c16b284f24da2f153a77d6483e6f4b55a2b858614a5fb",
+    "Inventory/Init.lua": "a05221905f3a90d313209827873f3c990992d62017b5ada1067b35f270c90931",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "0943c80c651e671a6b6927b579a3d5ad3841fe6ef5c9acd5783b0ddd8a5711a8",
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": "4a91c379533726a7e81d517645a06c02ad85d05f24dc811ce723e3e09c919c71"
+  },
+  "hashNormalization": "CRLF to LF",
+  "scenario": "real mover catalog and junk module; real inventory latch and bank event block; real restock attach/open functions;2 Forever aliases +4 other client labels x2 provider labels;keyboard UI;native frames/APIs mocked",
+  "profile": "five alternating fresh-process pairs;zero warmup;no native profiler;wall time includes startup/assertions;not native latency",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "seconds": 0.04508939999504946,
+      "exit": 1,
+      "raw": "FAIL forever/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL forever/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nnative Forever bank: 168 checks, 36 failures\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "seconds": 0.0435594000009587,
+      "exit": 0,
+      "raw": "native Forever bank: 168 checks, 0 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "seconds": 0.04271770000923425,
+      "exit": 1,
+      "raw": "FAIL forever/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL forever/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nnative Forever bank: 168 checks, 36 failures\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "seconds": 0.041125100004137494,
+      "exit": 0,
+      "raw": "native Forever bank: 168 checks, 0 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "seconds": 0.04634709999663755,
+      "exit": 1,
+      "raw": "FAIL forever/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL forever/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nnative Forever bank: 168 checks, 36 failures\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "seconds": 0.04323729999305215,
+      "exit": 0,
+      "raw": "native Forever bank: 168 checks, 0 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "seconds": 0.04832960000203457,
+      "exit": 1,
+      "raw": "FAIL forever/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL forever/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nnative Forever bank: 168 checks, 36 failures\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "seconds": 0.04152429998794105,
+      "exit": 0,
+      "raw": "native Forever bank: 168 checks, 0 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "seconds": 0.040362500003539026,
+      "exit": 1,
+      "raw": "FAIL forever/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL forever/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/builtin mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nFAIL camelot/syndicator mover bank exclusion\nFAIL native bank script hooks excluded; other clients retained\nFAIL native bank item mixin hook excluded\nFAIL native bank page callbacks excluded\nFAIL bank paint open callback excluded\nFAIL inventory latch leaves native scripts untouched\nFAIL restock does not attach to native Forever bank\nFAIL no new child parent on native bank\nFAIL native bank restock attach timers stop\nnative Forever bank: 168 checks, 36 failures\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "seconds": 0.040224800002761185,
+      "exit": 0,
+      "raw": "native Forever bank: 168 checks, 0 failures\n"
+    }
+  ],
+  "native": "User stack confirms forbidden PurchaseBankTab from native OnShow first-slot path; exact original taint writer unknown; candidate native opening/free-first-slot/paid purchase and pixels/taint pending. No PurchaseBankTab/API replacement or auto-purchase invoked.",
+  "localNativeSource": {
+    "path": "..\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_UIPanels_Game\\Camelot\\BankFrame.lua",
+    "sha256": "9a90733340ca3f61dff4998b8c2fd3fffb854b5c2bf26df344583913e5f5c7d4",
+    "upstreamPin": "latest online file unavailable; local mirror only"
+  }
+}

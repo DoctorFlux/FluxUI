@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 164 |
+| inactive source | 165 |
 
 ## Addon sources
 
@@ -657,6 +657,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/mp5_mana_ticks.lua](../tests/mp5_mana_ticks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/nameplate_castbar_schools.lua](../tests/nameplate_castbar_schools.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/nameplate_countdown_work.lua](../tests/nameplate_countdown_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/native_forever_bank.lua](../tests/native_forever_bank.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_menu_input.lua](../tests/native_menu_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_mouse_suppression.lua](../tests/native_mouse_suppression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/objective_tracker_scroll.lua](../tests/objective_tracker_scroll.lua) | inactive source | — | [34-assets.md](34-assets.md) |

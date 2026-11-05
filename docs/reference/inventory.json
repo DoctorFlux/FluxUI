@@ -50700,8 +50700,8 @@
       "path": "Inventory/Init.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 1655,
-      "sha256": "b10466aa9fe216d5a450224374e677a05aaa57481ea3b9393f75945db0795246",
+      "lines": 1662,
+      "sha256": "a05221905f3a90d313209827873f3c990992d62017b5ada1067b35f270c90931",
       "clients": [
         "camelot",
         "cata",
@@ -50917,12 +50917,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXINV1",
           "value": "/fluxinv",
-          "line": 1583
+          "line": 1590
         },
         {
           "kind": "handler",
           "name": "FLUXINV",
-          "line": 1584
+          "line": 1591
         }
       ],
       "widgets": [],
@@ -51534,8 +51534,8 @@
       "path": "Inventory/Restock/Bank/FluxBankRestockButton.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 828,
-      "sha256": "cde484bee29bf59510d7bdb5db0f1387f2e3de7fe19c8ebedc0e97b13017ba12",
+      "lines": 832,
+      "sha256": "4a91c379533726a7e81d517645a06c02ad85d05f24dc811ce723e3e09c919c71",
       "clients": [
         "camelot",
         "cata",
@@ -51573,7 +51573,7 @@
         },
         {
           "name": "Button.AttachToBank",
-          "line": 739
+          "line": 741
         }
       ],
       "events": [],
@@ -54141,8 +54141,8 @@
       "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 1976,
-      "sha256": "320bb0f893ed271c8c70e76d516ce6407ba79dd980ef62461de1957a7a911fd7",
+      "lines": 1984,
+      "sha256": "0943c80c651e671a6b6927b579a3d5ad3841fe6ef5c9acd5783b0ddd8a5711a8",
       "clients": [
         "camelot",
         "cata",
@@ -54160,96 +54160,96 @@
       "functions": [
         {
           "name": "Overlay.ArePaintTargetsVisible",
-          "line": 600
+          "line": 607
         },
         {
           "name": "Overlay.ScheduleCharacterBagTransferPaint",
-          "line": 775
+          "line": 782
         },
         {
           "name": "Overlay.UpdateAll",
-          "line": 890
+          "line": 897
         },
         {
           "name": "Overlay.UpdateDirtyBags",
-          "line": 927
+          "line": 934
         },
         {
           "name": "Overlay.UpdateAllBank",
-          "line": 1255
+          "line": 1263
         },
         {
           "name": "Overlay.ScheduleMainBankGridRefresh",
-          "line": 1264
+          "line": 1272
         },
         {
           "name": "Overlay.ApplyBankInternalContext",
-          "line": 1290
+          "line": 1298
         },
         {
           "name": "Overlay.ApplyDispatchContext",
-          "line": 1313
+          "line": 1321
         },
         {
           "name": "Overlay.ScheduleBankTransferPaint",
-          "line": 1389
+          "line": 1397
         },
         {
           "name": "Overlay.ApplyBankOnlyContext",
-          "line": 1403
+          "line": 1411
         },
         {
           "name": "Overlay.MarkBankGridDirty",
-          "line": 1413
+          "line": 1421
         },
         {
           "name": "Overlay.RepaintInferiorVisuals",
-          "line": 1491
+          "line": 1499
         },
         {
           "name": "Overlay.ScheduleInferiorRepaintBurst",
-          "line": 1500
+          "line": 1508
         },
         {
           "name": "Overlay.CancelInferiorRepaintBurst",
-          "line": 1556
+          "line": 1564
         },
         {
           "name": "Overlay.OnLoginPulseEndSettled",
-          "line": 1561
+          "line": 1569
         },
         {
           "name": "Overlay.FlushDeferredPaint",
-          "line": 1609
+          "line": 1617
         },
         {
           "name": "Overlay.NotifyBankActivity",
-          "line": 1686
+          "line": 1694
         },
         {
           "name": "Overlay.EnsureHooks",
-          "line": 1705
+          "line": 1713
         },
         {
           "name": "Overlay.RegisterSlotDecorator",
-          "line": 1858
-        },
-        {
-          "name": "Overlay.InvalidateSlotDecorators",
           "line": 1866
         },
         {
+          "name": "Overlay.InvalidateSlotDecorators",
+          "line": 1874
+        },
+        {
           "name": "Overlay.RepaintSlotDecorators",
-          "line": 1879
+          "line": 1887
         },
         {
           "name": "Overlay.RefreshProtectionContext",
-          "line": 1894
+          "line": 1902
         }
       ],
       "events": [
         {
-          "line": 1849,
+          "line": 1857,
           "method": "RegisterEvent",
           "arguments": [
             "ev"
@@ -54257,7 +54257,7 @@
           "context": "function()slotFrame:"
         },
         {
-          "line": 1933,
+          "line": 1941,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -54265,7 +54265,7 @@
           "context": "(\"Frame\")deferHookFrame:"
         },
         {
-          "line": 1934,
+          "line": 1942,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE_DELAYED\""
@@ -54273,7 +54273,7 @@
           "context": "(\"PLAYER_LOGIN\")deferHookFrame:"
         },
         {
-          "line": 1935,
+          "line": 1943,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_SHOW\""
@@ -54281,7 +54281,7 @@
           "context": "(\"BAG_UPDATE_DELAYED\")deferHookFrame:"
         },
         {
-          "line": 1936,
+          "line": 1944,
           "method": "RegisterEvent",
           "arguments": [
             "\"MERCHANT_CLOSED\""
@@ -59754,8 +59754,8 @@
       "path": "MicroMenu/FluxMicroMenu.lua",
       "classification": "active",
       "chapter": "17-micromenu.md",
-      "lines": 3227,
-      "sha256": "729beba468b5f9863b9d1f88a3c40db01279f28b2e4e0e8aa8455e11cc373550",
+      "lines": 3230,
+      "sha256": "381ed6a313093defa4addd4ffa90ba7d0622c325a7b1ae24be7129c8fecc2d3a",
       "clients": [
         "camelot",
         "cata",
@@ -59821,31 +59821,31 @@
         },
         {
           "name": "FluxMicroMenu:IsNativeRowAvailableOnClient",
-          "line": 1081
+          "line": 1084
         },
         {
           "name": "FluxMicroMenu:GetDefaultUnifiedRowIds",
-          "line": 1118
+          "line": 1121
         },
         {
           "name": "FluxMicroMenu:GetLayoutSpacing",
-          "line": 1182
+          "line": 1185
         },
         {
           "name": "FluxMicroMenu:GetButtonSizeScale",
-          "line": 1201
+          "line": 1204
         },
         {
           "name": "_G.FluxMicroMenu_GetBesideChatColumnRightX",
-          "line": 1447
+          "line": 1450
         },
         {
           "name": "FluxMicroMenu:RefreshLayout",
-          "line": 2614
+          "line": 2617
         },
         {
           "name": "FluxMicroMenu:Rebuild",
-          "line": 2980
+          "line": 2983
         }
       ],
       "events": [
@@ -59874,7 +59874,7 @@
           "context": "(\"PORTRAITS_UPDATED\")watch:"
         },
         {
-          "line": 3063,
+          "line": 3066,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -59882,7 +59882,7 @@
           "context": "WatchEditModeMicroMenuSanitize()FluxMicroMenu:"
         },
         {
-          "line": 3064,
+          "line": 3067,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -59890,7 +59890,7 @@
           "context": "(\"PLAYER_LOGIN\")FluxMicroMenu:"
         },
         {
-          "line": 3065,
+          "line": 3068,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -59898,7 +59898,7 @@
           "context": "(\"ADDON_LOADED\")FluxMicroMenu:"
         },
         {
-          "line": 3066,
+          "line": 3069,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LEVEL_UP\""
@@ -59906,7 +59906,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")FluxMicroMenu:"
         },
         {
-          "line": 3067,
+          "line": 3070,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -59914,7 +59914,7 @@
           "context": "(\"PLAYER_LEVEL_UP\")FluxMicroMenu:"
         },
         {
-          "line": 3068,
+          "line": 3071,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_TALENT_UPDATE\""
@@ -59922,7 +59922,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")FluxMicroMenu:"
         },
         {
-          "line": 3069,
+          "line": 3072,
           "method": "RegisterEvent",
           "arguments": [
             "\"ACTIVE_TALENT_GROUP_CHANGED\""
@@ -59935,12 +59935,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXMICRO1",
           "value": "/fluxmicro",
-          "line": 3168
+          "line": 3171
         },
         {
           "kind": "handler",
           "name": "FLUXMICRO",
-          "line": 3169
+          "line": 3172
         }
       ],
       "widgets": [],
@@ -77360,6 +77360,75 @@
       "sv_sites": []
     },
     {
+      "path": "tests/native_forever_bank.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 80,
+      "sha256": "fa407af99a7cdc30a5dbcd9d3f3d8b79d916280f307f9ca75f544f02d15ee1c4",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "envenv.wipe",
+          "line": 12
+        },
+        {
+          "name": "nilendendenv.InCombatLockdown",
+          "line": 13
+        },
+        {
+          "name": "returnfalseendenv.GetTime",
+          "line": 14
+        },
+        {
+          "name": "endenv.CreateFrame",
+          "line": 28
+        },
+        {
+          "name": "env.hooksecurefunc",
+          "line": 33
+        },
+        {
+          "name": "env.StillHasBankAccess",
+          "line": 53
+        },
+        {
+          "name": "returnfalseendenv.IsBankerInteractionType",
+          "line": 54
+        },
+        {
+          "name": "env.UsesPlayerBagsInBank",
+          "line": 65
+        },
+        {
+          "name": "env.UsesPreDFBankButtonLayout",
+          "line": 65
+        },
+        {
+          "name": "returnfalseendenv.MatchRepairButtonSize",
+          "line": 66
+        },
+        {
+          "name": "env.UsesAlternativeBagUI",
+          "line": 66
+        },
+        {
+          "name": "env.BankFrame.GetFrameStrata",
+          "line": 69
+        },
+        {
+          "name": "env.BankFrame.GetFrameLevel",
+          "line": 69
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/native_menu_input.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -85076,8 +85145,8 @@
       "path": "WindowMover/Catalog.lua",
       "classification": "active",
       "chapter": "28-window-mover.md",
-      "lines": 315,
-      "sha256": "af6d718652772e0235bbe7499e5ee7d8539238041578285c129a5e2fd71110f0",
+      "lines": 320,
+      "sha256": "14c94b599aa08cdb075c16b284f24da2f153a77d6483e6f4b55a2b858614a5fb",
       "clients": [
         "camelot",
         "cata",
@@ -85099,11 +85168,11 @@
         },
         {
           "name": "WindowMover.ShouldSkip",
-          "line": 280
+          "line": 285
         },
         {
           "name": "WindowMover.Catalog",
-          "line": 313
+          "line": 318
         }
       ],
       "events": [],

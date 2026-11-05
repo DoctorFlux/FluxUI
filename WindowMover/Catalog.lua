@@ -264,6 +264,11 @@ function WindowMover.IsBlacklisted(name)
 	if not name then
 		return true
 	end
+	-- Forever opens its bank through a protected first-tab purchase path.
+	local client = Flux.Client
+	if name == "BankFrame" and client and (client.isCamelot or client.isForever) then
+		return true
+	end
 	-- The Flux prefix skips HUD frames. This bag window is a real panel.
 	if name == "FluxCombinedBags" then
 		return false

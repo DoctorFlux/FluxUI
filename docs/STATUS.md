@@ -1,5 +1,16 @@
 # Development status
 
+5 November Forever native bank and micro menu: at the user's request, Forever's
+Blizzard bank is excluded from window movement, bank-frame latch scripts, bank
+junk/item decoration and native restock-button attachment. Bank tracking remains
+on existing BANKFRAME/PIM events; carried-bag and optional Baganator features stay.
+The supplied PurchaseBankTab stack confirms a protected native first-tab path,
+not the original taint writer. Guide button EJMicroButton is excluded only from
+Forever's micro menu via the existing eligibility/parking paths. Focused checks:
+168 native-bank and34 guide checks pass; baseline36/8 failures. Full129 scripts/
+784 Lua syntax pass. Native bank opening/purchase/taint and guide pixels pending.
+[Bank evidence](FOREVER_NATIVE_BANK.md); [micro menu](17-micromenu.md).
+
 5 November Forever reputation click fix: the user confirmed the native
 ToggleCharacter("ReputationFrame") call opens Reputation out of combat after
 WoW's custom-script prompt. Both bars now call that API directly; the wrong

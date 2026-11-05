@@ -92,7 +92,13 @@ local function Bank()
     return inv and inv.Bank
 end
 
+local function NativeForeverBank()
+    local api = _G.FLUX_API
+    return api and (api.isCamelot or api.isForever) or false
+end
+
 local function BankIsOpen()
+    if NativeForeverBank() then return false end
     local bank = Bank()
     return bank and bank.IsOpen() or false
 end
@@ -505,6 +511,7 @@ local function UpdateModernBankButton(button, showIcons, showGlow)
 end
 
 local function GetModernBankItemButtonPool()
+    if NativeForeverBank() then return nil end
     local bankFrame = _G.BankFrame
     local panel = bankFrame and bankFrame.BankPanel
     return panel and panel.itemButtonPool
@@ -1233,6 +1240,7 @@ local function RegisterBagOpenPaint()
 end
 
 local function RegisterBankOpenPaint()
+    if NativeForeverBank() then return end
     if Overlay._bankOpenRegistered then
         return
     end
@@ -1743,7 +1751,7 @@ function Overlay.EnsureHooks()
     -- (Blizzard refreshes the whole pool per deposit; hooking paints every slot).
     -- Do not hook CamelotBankPanelItemButtonMixin.Refresh: it swaps empty/filled atlases.
     local modernBankMixin = _G.BankPanelItemButtonMixin
-    if modernBankMixin and modernBankMixin.Refresh then
+    if not NativeForeverBank() and modernBankMixin and modernBankMixin.Refresh then
         hooksecurefunc(modernBankMixin, "Refresh", function(self)
             if HasUnifiedBankUI() then
                 return
@@ -1762,7 +1770,7 @@ function Overlay.EnsureHooks()
 
     -- Camelot bags-in-bank pages rebuild the item pool; paint on the next frame
     -- because PageInfoChanged fires before GenerateAndPlaceOnePageOfItemButtons.
-    if EventRegistry and EventRegistry.RegisterCallback then
+    if not NativeForeverBank() and EventRegistry and EventRegistry.RegisterCallback then
         local pagePaintGen = 0
         local function ScheduleCamelotPagePaint()
             if not BankIsOpen() then
@@ -1819,7 +1827,7 @@ function Overlay.EnsureHooks()
     end
 
     local bankFrame = _G.BankFrame
-    if bankFrame and bankFrame.HookScript then
+    if not NativeForeverBank() and bankFrame and bankFrame.HookScript then
         if not HasUnifiedBankUI() then
             bankFrame:HookScript("OnShow", OnBankOpened)
         end

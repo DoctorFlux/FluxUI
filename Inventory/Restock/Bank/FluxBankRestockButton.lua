@@ -681,6 +681,8 @@ function Button.AttachToBaganatorBank(bankView)
 end
 
 local function AttachToBlizzardBank(anchor)
+    local api = _G.FLUX_API
+    if api and (api.isCamelot or api.isForever) then return false end
     if not anchor then
         return false
     end
@@ -781,6 +783,8 @@ end
 -- ---------------------------------------------------------------------------
 
 local function OnBankOpen()
+    local api = _G.FLUX_API
+    if api and (api.isCamelot or api.isForever) and not UsesAlternativeBagUI() then return end
     -- Backup: two delayed attaches. Extra BANKFRAME/PIM/OnShow hooks plus
     -- RefreshIfOpen on every attach re-scanned the bank and froze the client.
     local After = (FluxAPICompat and FluxAPICompat.After) or (C_Timer and C_Timer.After)

@@ -1,5 +1,30 @@
 # Micromenu, bag controls and addon buttons
 
+## Forever Adventure Guide exclusion - 5 November 2026
+
+The user explicitly requested no Adventure Guide micro button on Forever.
+The local menu eligibility function returns false for EJMicroButton under either
+existing Forever/Camelot identity flag, before consulting the shared capability.
+This excludes the native row from discovery/configuration/layout and reuses the
+existing optional-button parking/re-show hook. No placeholder layout slot is
+reserved. Native feature APIs, guide keybinds, other clients, other buttons and
+stored row preferences remain intact; no new setting or frame/timer is added.
+The existing one-time parking hook applies to this now-excluded button.
+
+[Focused gate/parking pairs](validation/forever-guide-comparison-2026-11-05.json):
+34 checks, baseline8 failures versus candidate0 in five matched pairs, including
+both Forever aliases, four other client labels, repeat parking, native re-show,
+combat mutation guard and unchanged shared capability. APIs/frames are mocked;
+no native pixel/taint/performance certification. Existing full menu validation
+passes; the complete bank+menu batch passes129 scripts/784 Lua syntax files.
+Recovery Forever-guide-20261105T100106Z preserves1,446 actual files/history and123
+on-disk settings outside AddOns; ZIP SHA256
+24a4540fe6db1afe04e63f17bc6ae11469e6928699ab23b20f5121d9ad972b75.
+After sync and /reload: check all three menu layouts, configured row order, late
+Blizzard button Show, combat/recovery and compact spacing on Forever; verify the
+guide remains as previously configured on Retail and other supported clients.
+Native screenshot/layout acceptance remains pending.
+
 ## Nil-center startup correction — 30 October 2026
 
 The user's native stack reaches `MicroMenuContainer:GetEdgeButton` from

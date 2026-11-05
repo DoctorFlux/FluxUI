@@ -21,8 +21,8 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [Core/Slash.lua:280](../../Core/Slash.lua#L280) | handler | `FLUXPERF` | `` |
 | [WindowMover/Init.lua:51](../../WindowMover/Init.lua#L51) | alias | `SLASH_FLUXWINDOWS1` | `/fluxwindows` |
 | [WindowMover/Init.lua:52](../../WindowMover/Init.lua#L52) | handler | `FLUXWINDOWS` | `` |
-| [Inventory/Init.lua:1583](../../Inventory/Init.lua#L1583) | alias | `SLASH_FLUXINV1` | `/fluxinv` |
-| [Inventory/Init.lua:1584](../../Inventory/Init.lua#L1584) | handler | `FLUXINV` | `` |
+| [Inventory/Init.lua:1590](../../Inventory/Init.lua#L1590) | alias | `SLASH_FLUXINV1` | `/fluxinv` |
+| [Inventory/Init.lua:1591](../../Inventory/Init.lua#L1591) | handler | `FLUXINV` | `` |
 | [ExtraButtonSystem/Init.lua:268](../../ExtraButtonSystem/Init.lua#L268) | alias | `SLASH_FLUXEBS1` | `/fluxebs` |
 | [ExtraButtonSystem/Init.lua:269](../../ExtraButtonSystem/Init.lua#L269) | handler | `FLUXEBS` | `` |
 | [ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua:337](../../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua#L337) | alias | `SLASH_FLUXTRINKETMENU1` | `/fluxtrinket` |
@@ -53,8 +53,8 @@ Generated companion to [commands](../31-commands-and-bindings.md) and [saved dat
 | [AddonOptions/FluxOptions.lua:1800](../../AddonOptions/FluxOptions.lua#L1800) | handler | `FLUXUI_OPTIONS` | `` |
 | [UnitFrames/FluxFlightPath.lua:543](../../UnitFrames/FluxFlightPath.lua#L543) | alias | `SLASH_FLUXFLIGHTPATH1` | `/fluxfp` |
 | [UnitFrames/FluxFlightPath.lua:544](../../UnitFrames/FluxFlightPath.lua#L544) | handler | `FLUXFLIGHTPATH` | `` |
-| [MicroMenu/FluxMicroMenu.lua:3168](../../MicroMenu/FluxMicroMenu.lua#L3168) | alias | `SLASH_FLUXMICRO1` | `/fluxmicro` |
-| [MicroMenu/FluxMicroMenu.lua:3169](../../MicroMenu/FluxMicroMenu.lua#L3169) | handler | `FLUXMICRO` | `` |
+| [MicroMenu/FluxMicroMenu.lua:3171](../../MicroMenu/FluxMicroMenu.lua#L3171) | alias | `SLASH_FLUXMICRO1` | `/fluxmicro` |
+| [MicroMenu/FluxMicroMenu.lua:3172](../../MicroMenu/FluxMicroMenu.lua#L3172) | handler | `FLUXMICRO` | `` |
 | [StatusBars/FluxStatusBar.lua:3045](../../StatusBars/FluxStatusBar.lua#L3045) | alias | `SLASH_FLUXSTATUS1` | `/fluxstatus` |
 | [StatusBars/FluxStatusBar.lua:3046](../../StatusBars/FluxStatusBar.lua#L3046) | handler | `FLUXSTATUS` | `` |
 | [StatusBars/FluxPVPObjectiveMover.lua:374](../../StatusBars/FluxPVPObjectiveMover.lua#L374) | alias | `SLASH_FLUXPVP1` | `/fluxpvp` |

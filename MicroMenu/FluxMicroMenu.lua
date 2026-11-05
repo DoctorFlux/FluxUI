@@ -1058,6 +1058,9 @@ function FluxMicroMenu:HasBlizzardGroupFinderMicroButton()
 end
 
 local function ClientHasMicroMenuFeature(rowId)
+    if rowId == "EJMicroButton" and FLUX_API and (FLUX_API.isCamelot or FLUX_API.isForever) then
+        return false
+    end
     if FLUX_API and FLUX_API.ClientHasMicroMenuFeature then
         return FLUX_API.ClientHasMicroMenuFeature(rowId)
     end
