@@ -1,0 +1,219 @@
+{
+  "scope": "Explicit widget/provenance model running production backend. Not native secure VM, taint certification, rendering, CPU, memory, latency or FPS benchmark. Baseline aborts after first unsafe writer; candidate completes full lifecycle, so process wall times are not comparable performance results.",
+  "baselineBackendSha256": "ea1bde66de994cc5e97296a562e30115b49d36571ba2322aa3a04c32e79fbc25",
+  "candidateAndTestSha256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "4ca339e31d5d9644b2dc821cf56f4142ce6226a08816cdf879260f06f7d49aaa",
+    "tests/native_meter_writer_provenance.lua": "b8fe217df199afd0e1bdf02e27da54be40831a47863cd7f46a8db90cbfaf3bb0",
+    "tests/native_meter_ownership.lua": "441546c83d597eb89f57433963bc9b50b2d6f35656875a39c7f31fcb5968d62b",
+    "tests/native_threat_layout.lua": "aaa2f7d80fc9b4ccf9a818c421129d5519e74958f81e75cbb7f23e31fa7fe4cc",
+    "tests/native_meter_grid_parity.lua": "5dae8fc6bd117c5a978fe08c7c8d558c7271a0f8bc66c4ac34785a794171a6a0",
+    "tests/native_meter_startup.lua": "9b1abdf2432685fce542ddeeca560968e07d8dc66194255d988dbee952038c47",
+    "tests/native_meter_docking.lua": "2ce6a5321809176f377c11239b332e9e7b7a40d69dca6e0399631aa4e41f75a6"
+  },
+  "sourceDriftGuard": true,
+  "unchangedDetailsSha256": "3d06c3afa334a3103f3d7f7c5efd712fc011cc2fb9c8f623d4b3c028fc25cd61",
+  "configuration": "Lua5.4.6 fresh process/fixture setup; five alternating matched pairs, no extra warmup. Production-module lifecycle and500layout bursts; instrumented private-field writes survive pcall and contaminate modeled later native events. No game commands, profiler or SavedVariables changes.",
+  "hardware": {
+    "cpu": "IntelCorei7-12700F12cores20logical",
+    "ramBytes": 34164105216,
+    "gpu": "NVIDIA RTX3060 driver32.0.16.2114",
+    "os": "Windows10.0.26200"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-native-writer-removal-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.021694600000046194,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04091449998668395,
+      "output": "native writer provenance: 26 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04436999998870306,
+      "output": "native writer provenance: 26 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-native-writer-removal-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.01882049997220747,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-native-writer-removal-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.020028600003570318,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.04009359999326989,
+      "output": "native writer provenance: 26 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.03827869999804534,
+      "output": "native writer provenance: 26 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-native-writer-removal-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.018265999999130145,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-native-writer-removal-20261106\\baseline\\Battlezonemap\\FluxBlizzardMeter.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.018045300006633624,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "command": [
+        "lua",
+        "tests/native_meter_writer_provenance.lua"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.03878820000682026,
+      "output": "native writer provenance: 26 checks, 0 failures; explicit model, native secure VM unverified\n"
+    }
+  ],
+  "variation": {
+    "baseline": {
+      "wallRange": [
+        0.018045300006633624,
+        0.021694600000046194
+      ],
+      "wallMedian": 0.01882049997220747
+    },
+    "candidate": {
+      "wallRange": [
+        0.03827869999804534,
+        0.04436999998870306
+      ],
+      "wallMedian": 0.04009359999326989
+    }
+  },
+  "focused": [
+    {
+      "script": "tests/native_meter_ownership.lua",
+      "exit": 0,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "script": "tests/native_threat_layout.lua",
+      "exit": 0,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "script": "tests/native_meter_grid_parity.lua",
+      "exit": 0,
+      "output": "native grid parity: 28992 checks, 0 failures; actual Details layouts=4920; native pixels/taint unverified\n"
+    },
+    {
+      "script": "tests/native_meter_startup.lua",
+      "exit": 0,
+      "output": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n"
+    },
+    {
+      "script": "tests/native_meter_docking.lua",
+      "exit": 0,
+      "output": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4048 pinnedNative=false\n"
+    }
+  ],
+  "mutants": [
+    {
+      "name": "native-type-setter",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "direct-private-field",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nnative writer provenance: 26 checks, 8 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "pcall-masked-class-setter",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL 500 layouts and reopening retain native settings without refreshing native data\nFAIL cleanup, handoff and deferred cleanup never restore private configuration\nnative writer provenance: 26 checks, 8 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-row-setter",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "native-auto-create",
+      "rejected": true,
+      "exit": 1,
+      "output": "FAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nFAIL initial docking invokes no native data/configuration writer: modeled native Refresh: secret specIconID comparison under _FluxUI\nFAIL native initialized settings and provider state have no addon-origin writes\nFAIL later native event is not contaminated by addon configuration\nnative writer provenance: 6 checks, 6 failures; explicit model, native secure VM unverified\nlua: tests/native_meter_writer_provenance.lua:117: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_writer_provenance.lua:117: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidatePass": true,
+  "baselineRejected": true,
+  "allMutantsRejected": true,
+  "preserved": "Native functions, controls, data/history, Current/Overall/historical choices and class/icon/row preferences. Existing initialized windows are matched by their native-selected type; no creation or repurposing.",
+  "limitation": "Requested missing types require original native UI configuration; public status+one configuration notice. Native row density remains native-owned. Existing C++ geometry/show/hide and skin text callbacks require fresh native reload/combat validation; clients currently closed. No fulfilled pixel/taint/row-density claim."
+}

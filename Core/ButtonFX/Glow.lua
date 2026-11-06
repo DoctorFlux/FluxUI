@@ -45,6 +45,9 @@ local function OverlayFrame(widget)
 	if not widget then
 		return nil
 	end
+	if widget._fluxForeverSaoGlow and widget.__LBGoverlay then
+		return widget.__LBGoverlay
+	end
 	if widget._fluxAssistedCombat then
 		local rot = widget.AssistedCombatRotationFrame
 		if rot then
@@ -57,7 +60,7 @@ local function OverlayFrame(widget)
 		return nil
 	end
 	return widget._fluxProcAlert or widget._ProcGlow or widget._fluxProcShine
-		or widget.overlay or widget.__LBGoverlay
+		or widget.__LBGoverlay or widget.overlay
 end
 
 local function OverlayShown(frame)
@@ -176,6 +179,18 @@ local function ProcGlowLib()
 		if ok then
 			return lib
 		end
+	end
+	return nil
+end
+
+local function ForeverSaoGlowLib()
+	if not (Flux.Client and Flux.Client.isForever and LibStub) then
+		return nil
+	end
+	local ok, lib = pcall(LibStub, "LibButtonGlow-1.0", true)
+	if ok and lib and type(lib.ShowOverlayGlow) == "function"
+		and type(lib.HideOverlayGlow) == "function" then
+		return lib
 	end
 	return nil
 end
@@ -404,8 +419,27 @@ function Glow.Set(widget, on, skipBirth)
 		return
 	end
 	if on then
-		if OverlayLooksPainted(widget) or OverlayShown(OverlayFrame(widget)) then
+		local saoGlow = ForeverSaoGlowLib()
+		if Glow.IsLive(widget) and (not saoGlow or widget._fluxForeverSaoGlow
+			or widget.__LBGoverlay or not widget._fluxProcAlert) then
 			return
+		end
+		if saoGlow and Glow.IsLive(widget) then
+			StopFlipbook(widget._fluxProcAlert)
+		end
+		-- Forever SAO paints its own buttons through LibButtonGlow. Use that
+		-- renderer for Flux surfaces too; its native alert template can exist
+		-- without producing the classic SAO ants on these art-only widgets.
+		if saoGlow then
+			Glow.InstallSAO(widget)
+			local ok = pcall(saoGlow.ShowOverlayGlow, widget)
+			if ok and widget.__LBGoverlay then
+				widget._fluxForeverSaoGlow = true
+				if skipBirth then
+					SnapClassicAnimIn(widget)
+				end
+				return
+			end
 		end
 		if widget._fluxAssistedCombat then
 			if ShowAssistedRotationAlert(widget, skipBirth and true or false) then
@@ -443,6 +477,15 @@ function Glow.Set(widget, on, skipBirth)
 		end
 		StartShine(widget)
 		return
+	end
+	if widget._fluxForeverSaoGlow then
+		widget._fluxForeverSaoGlow = nil
+		local saoGlow = ForeverSaoGlowLib()
+		if saoGlow then
+			if pcall(saoGlow.HideOverlayGlow, widget) then
+				return
+			end
+		end
 	end
 	local host = AssistantAlertHost(widget)
 	StopFlipbook(host and host.SpellActivationAlert)
@@ -486,6 +529,13 @@ function Glow.Transfer(from, to)
 	end
 	ClearOverlayRef(from, frame)
 	AssignOverlay(to, frame)
+	if from._fluxForeverSaoGlow and to.overlay == frame then
+		-- LibButtonGlow recycles its frame after fade-out; only its own
+		-- __LBGoverlay reference may follow that pool lifecycle.
+		to.overlay = nil
+	end
+	to._fluxForeverSaoGlow = from._fluxForeverSaoGlow
+	from._fluxForeverSaoGlow = nil
 	if frame.Show then
 		pcall(frame.Show, frame)
 	end

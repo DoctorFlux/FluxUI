@@ -115,36 +115,49 @@ local public = lib.GetWorkingLayout(); public.topSlots[1].plugin = "changed"
 check(isThreat(lib.GetWorkingLayout().topSlots[1]), "public layout copies do not alias saved threat facts")
 
 local lay = lib.ApplyBuiltin(8)
+s.dm:ShowNewSecondarySessionWindow()
+s.windows[2].meterType, s.windows[3].meterType = 6, 2 -- Native UI configuration.
+s.dm:SetSessionWindowSessionID(s.windows[1], e.Enum.DamageMeterSessionType.Current, nil)
+s.dm:SetSessionWindowSessionID(s.windows[2], nil, 42)
+local sessionWrites = s.sessionCalls
 check(meter:Embed(s.host, lay), "four-pane layout embeds")
 local pane = owned:GetFrame()
 check(pane and pane:GetParent() == s.host and near(pane.scale, .8), "owned pane is a scaled Content child")
 check(#s.windows == 3 and s.windows[1].meterType == 0 and s.windows[2].meterType == 6
     and s.windows[3].meterType == 2, "three native windows follow their own types without mapping threat to damage")
+check(s.windows[1].sessionType == e.Enum.DamageMeterSessionType.Current and s.windows[1].sessionID == nil
+    and s.windows[2].sessionType == nil and s.windows[2].sessionID == 42
+    and s.windows[3].sessionType == e.Enum.DamageMeterSessionType.Overall and s.windows[3].sessionID == nil
+    and s.sessionCalls == sessionWrites, "four-pane embed retains Current and historical choices plus the new native Overall default")
 local tp = pane and pane.points[1] or {}; local tb = pane and pane.points[2] or {}
-check(tp[1] == "TOPLEFT" and tp[2] == s.dm and tp[4] == 0 and tp[5] == 0,
-    "owned top-left shares the native canvas")
-check(tb[1] == "BOTTOMRIGHT" and tb[2] == s.dm and near(tb[4], -231) and near(tb[5], 152.4),
-    "owned top-right pane uses the selected fractional width and row height")
-check(near(s.windows[1].points[1][4], 189) and near(s.windows[3].points[1][4], 189),
+check(tp[1] == "TOPLEFT" and tp[2] == s.dm and near(tp[4], -1.25) and near(tp[5], -7.5),
+    "owned top-left converts the Details body inset and separate title into native coordinates")
+check(tb[1] == "BOTTOMRIGHT" and tb[2] == s.dm and near(tb[4], -207.5) and near(tb[5], 137),
+    "owned top-right pane uses the Details fractional width and body-row height")
+check(near(s.windows[1].points[1][4], 167.5) and near(s.windows[3].points[1][4], 167.5),
     "native panes start after the owned column at coherent scale")
 check(s.nativeMethodsIntact() and s.policyWrites == 0, "integration preserves native methods and visibility ownership")
-check(skin.windows[s.windows[1]] == 1 and skin.windows[s.windows[1].sourceWindow] == 1
+check(skin.windows[s.windows[1]] > 0 and skin.windows[s.windows[1].sourceWindow] > 0
     and near(skin.scale, .8) and near(skin.entryScale, .8), "native window and entry skin runs at accepted scale")
 local frameCount, timerCount, hooks = #s.frames, s.timerCreates, #s.hooks[s.windows[1]].InitEntry
 local skinResources = skin.resources
-for _ = 1, 100 do meter:RefreshEmbeddedLayout() end
+for _ = 1, 500 do meter:RefreshEmbeddedLayout() end
 check(#s.frames == frameCount and s.timerCreates == timerCount and #s.windows == 3,
     "repeated four-pane reconciliation adds no frames timers or native windows")
 check(skin.windows[s.windows[1]] > 1 and skin.resources == skinResources
     and #s.hooks[s.windows[1]].InitEntry == hooks,
     "post-configuration paint reuses skin resources and permanent entry hooks on relayout")
 check(owned.embeds == 1, "geometry reuses the existing owned pane without re-embedding")
+check(s.sessionCalls == sessionWrites and s.savedSessions[s.windows[1]].sessionType == e.Enum.DamageMeterSessionType.Current
+    and s.savedSessions[s.windows[2]].sessionID == 42, "500 four-pane layouts never overwrite saved native session choices")
 s.windows[1]:InitEntry(s.windows[1].entry, { isLocalPlayer = true })
 check(skin.localTint, "entry skin follows existing green local-player paint")
 
 lay = lib.ApplyBuiltin(9); meter:Embed(s.host, lay)
 check(not s.dm:IsShown() and pane and pane:IsVisible(), "threat-only layout hides native root but keeps the owned pane visible")
-check(pane and pane.points[2][4] == 0 and pane.points[2][5] == 0, "threat-only pane covers the entire existing canvas")
+check(pane and near(pane.points[1][4], -1.25) and near(pane.points[1][5], -7.5)
+    and near(pane.points[2][4], 1.25) and pane.points[2][5] == 0,
+    "threat-only pane retains the Details single-body bounds and title offset")
 s.dm:UpdateShownState()
 check(not s.dm:IsShown() and pane and pane:IsVisible(), "native visibility events cannot reveal unused native panes")
 s.combat = true; s.activeTab = "Map"; meter:Hide(); s.activeTab = "Meter"; meter:Show()
@@ -160,6 +173,8 @@ meter:Cleanup()
 check(owned.cleanups > 0 and pane and not pane:IsShown() and skin.release > 0,
     "cleanup releases owned lifecycle and active native skin owners")
 meter:Embed(s.host, lib.ApplyBuiltin(8))
+check(s.sessionCalls == sessionWrites and s.windows[1].sessionType == e.Enum.DamageMeterSessionType.Current
+    and s.windows[2].sessionID == 42, "threat-only layout and cleanup preserve native session choices on return")
 check(#s.hooks[s.windows[1]].InitEntry == hooks and skin.resources == skinResources
     and skin.windows[s.windows[1]] > 1,
     "re-embed reactivates existing skin resources without another permanent entry hook")
@@ -189,6 +204,7 @@ check(not ps.dm:IsShown() and ps.windows[1].meterType == 0, "unavailable threat-
 
 local ge, gs, gamepadOwned = boot(true, true)
 gs.host.scale = 1.25; gs.dm:ShowNewSecondarySessionWindow()
+gs.windows[2].meterType, gs.windows[3].meterType = 6, 2
 ge.FluxBlizzardMeter:Embed(gs.host, ge.FluxMeterLayout.ApplyBuiltin(8))
 check(gs.dm:GetParent() == ge.UIParent and gamepadOwned:GetFrame()
     and gamepadOwned:GetFrame():GetParent() == gs.host, "gamepad retains native parent while owned pane stays a Content child")

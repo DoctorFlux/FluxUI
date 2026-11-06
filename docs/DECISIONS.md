@@ -1,5 +1,48 @@
 # Decisions
 
+6 November native ownership correction: private native Lua setters are not an
+AddOn-safe configuration API merely because they are callable. Remove Flux writes
+to selected types/sessions, bar metrics, flags/locks/minimize and automatic native
+pane creation; use existing native-selected panes and explicit setup messages.
+Keep native controls available, preserve stored Flux layouts and report the
+configuration gap rather than assigning misleading pane types. Preserve chosen
+Current/Overall/history; never erase data or blindly migrate Overall to Current.
+The single-timer requirement is presentation only: topmost then leftmost native
+pane in physical screen coordinates, with stable fallback for unreadable
+geometry. Preserve native time formatting/policy; no secret-duration comparison,
+reset or secure-call shim. Header layout changes occur out of combat; combat
+election changes alpha only. Writer/timer focused checks and the current
+162-script/819-Lua full suite pass; fresh native acceptance remains pending.
+[Current scope](METER_STANDALONE.md#current-native-configuration-boundary).
+
+6 November Forever SAO glow: use SpellActivationOverlay's installed
+LibButtonGlow renderer for Flux-owned proc faces on Forever, including bar,
+Extra Button and badge surfaces. Keep membership from the private SAO hooks,
+Flux refresh ownership, `skipBirth`, and pooled LBG hide/transfer semantics.
+If LBG is unavailable, retain the existing template/LCG path. Do not change
+Era/Anniversary paint, SAO files or saved options. [Evidence](FOREVER_SAO_GLOW.md).
+
+6 November raid input: preserve Blizzard compact-frame parents, events and
+scripts while Flux raid frames own the grid. Do not compare or save secret mouse
+getter values, and do not infer split click/motion policy from a combined getter
+when split methods exist. For an originally readable saved state that later has
+a secret getter, pass the known setting directly to its native setter out of
+combat; keep the existing Edit Mode and combat deferrals. An initially opaque
+switch is left untouched because its original input policy cannot be restored.
+This intentionally leaves that specific native widget's input unsuppressed until
+a readable snapshot is available; native hit testing must be checked.
+[Failure and scope](49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+
+6 November appearance decision: replace the rejected flat approximation with
+optional references to the player's installed Details WoW Interface assets.
+Preserve the source atlas padding/density and body-relative nine-piece anchors;
+do not compress a transparent 128-unit region into a 32-unit header. Keep stock
+Friz titles and use the actual Accidental row font when it loads. Probe assets
+through native texture/font setters, not addon metadata or file IDs alone.
+Do not load Details/SharedMedia or redistribute assets. Missing references use
+the previous Flux/Blizzard fallback. Data, wrapping, host/tab ownership, controls
+and saved profiles remain. [Scope](METER_STANDALONE.md#installed-wow-interface-art-references).
+
 5 November meter appearance: disable FontString wrapping directly without
 GetText or secret-text inspection. Use shared Friz 12 titles/ArialN 14 rows and
 consistent panel/row fills; normalize the texture's independent alpha so native

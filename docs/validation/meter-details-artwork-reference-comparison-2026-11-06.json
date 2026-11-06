@@ -1,0 +1,368 @@
+{
+  "dateUtc": "2026-11-06T05:44:28.606756+00:00",
+  "baselineCommit": "a07c449b1783a7bc876943e5909c3573cfec267a",
+  "baselineRuntimeRawSHA256": "f8bbb7a0e690ca100c6f6bd3842fa30570191d7aba68edf73bed6db4f7f3f9da",
+  "candidateHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "056773f39a24373f5912196db71225a66b9ef06ad1c51274c79f5e961f7a246b",
+    "tests\\native_meter_skin.lua": "ef730cd76ad63662cdbe113b9fb66f98356d37e38843a3ecff233a797cbee509",
+    "tests\\standalone_threat_meter.lua": "7e4245e67f8c5295fa81ac0396a6a62bf6317823f4bf7241d381315e23bae66a"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "Production Skin loaded with strict native/widget presentation mocks.65 semantic checks plusinstalled/missing/alternate-extension replay. Freshprocess5AB/BApairs.500 matchedwindow+entry styleapplications afterstartup;release/reactivation. Mock SetTexture success selects optional paths; no filesystem/addon metadata inference orDetailsLua loads. Walltimeincludesdifferingrendercorrectnesswork;CPU/memorybytes/native latency/FPS/secretVM/taint/pixelparitynotcertified. Fulladdon/native checks parent-owned.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.020408799988217652,
+          "stdout": "FAIL native row font compensates root scale\nFAIL native row font reset is repaired on pooled entry reuse\nFAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: attempt to index a nil value (field 'tint')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.05564800000865944,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.02663029998075217,
+          "stdout": "native meter skin: 65 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.029087499977322295,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=14 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=514 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=17 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=517 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.02471610001521185,
+          "stdout": "native meter skin: 65 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.026443200011271983,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=14 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=514 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=17 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=517 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.017744599987054244,
+          "stdout": "FAIL native row font compensates root scale\nFAIL native row font reset is repaired on pooled entry reuse\nFAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: attempt to index a nil value (field 'tint')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.026543999993009493,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.0179984999995213,
+          "stdout": "FAIL native row font compensates root scale\nFAIL native row font reset is repaired on pooled entry reuse\nFAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: attempt to index a nil value (field 'tint')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02610149999964051,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.026521299994783476,
+          "stdout": "native meter skin: 65 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.0279859000002034,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=14 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=514 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=17 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=517 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.02539460000116378,
+          "stdout": "native meter skin: 65 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02892559999600053,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=14 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=514 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=17 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=517 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.01676610001595691,
+          "stdout": "FAIL native row font compensates root scale\nFAIL native row font reset is repaired on pooled entry reuse\nFAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: attempt to index a nil value (field 'tint')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.026553899981081486,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.016437499987659976,
+          "stdout": "FAIL native row font compensates root scale\nFAIL native row font reset is repaired on pooled entry reuse\nFAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: attempt to index a nil value (field 'tint')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:171: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.026357400027336553,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=installed stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=6 colorWrites=5 textureWrites=5 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.025109100010013208,
+          "stdout": "native meter skin: 65 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02952410001307726,
+          "stdout": "SKIN flavor=installed stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=14 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=514 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=installed stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=515 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.tga rowPath=Interface\\AddOns\\Details\\images\\bar_background.tga fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=missing stage=startup chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=500-styles chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=reactivate chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=missing stage=released chromeParts=4 textures=8 frameCreates=0 fontWrites=9 colorWrites=4 textureWrites=13 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\TargetingFrame\\UI-StatusBar rowPath=nil fontPath=Fonts\\ARIALN.TTF\nSKIN flavor=alternate-extension stage=startup chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=11 textureWrites=17 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=500-styles chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=511 textureWrites=517 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=reactivate chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\nSKIN flavor=alternate-extension stage=released chromeParts=9 textures=13 frameCreates=0 fontWrites=6 colorWrites=512 textureWrites=518 themeHooks=1 headerAlpha=0.37 chromePath=Interface\\AddOns\\Details\\images\\skins\\default_skin.blp rowPath=Interface\\AddOns\\Details\\images\\bar_background.blp fontPath=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "flat_chrome_instead_of_reference",
+      "sourceRawSHA256": "e2612bd963e35defec4808a457d1109b9720a1117cb5a2f99fd427823083eb4d",
+      "exitCode": 1,
+      "processSeconds": 0.03934650000883266,
+      "stdout": "FAIL native chrome creates nine reference pieces and one shared theme hook\nFAIL padded atlas regions preserve original density at root scale\nFAIL actual installed artwork receives the full accent while native header bounds stay intact\nFAIL source-window shape skins without a fabricated header\nFAIL a replaced native header is suppressed without changing native geometry\nFAIL session header and headerless source keep their own body baselines\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:218: attempt to index a nil value (field 'uv')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:218: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong_header_uv",
+      "sourceRawSHA256": "16debf8f0048baefaaa102624ceca1e5f47fe4bc1c2cef1985dcdec85e83153b",
+      "exitCode": 1,
+      "processSeconds": 0.04230330002610572,
+      "stdout": "FAIL all nine artwork roles retain verified UV coordinates and draw layers\nnative meter skin: 65 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "crushed_header_density",
+      "sourceRawSHA256": "41918ab60615134eb6576b6251fed138e240be9ec5a5da8c6dd7ca51a61fc7b8",
+      "exitCode": 1,
+      "processSeconds": 0.05322319999686442,
+      "stdout": "FAIL padded atlas regions preserve original density at root scale\nFAIL owned pane without native regions gets nine reference pieces and one backdrop\nFAIL padded atlas density follows scale without new textures\nnative meter skin: 65 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "darkened_chrome_tint",
+      "sourceRawSHA256": "cb95f946daf5b8b05c271735e21315c2147a8fa4f86cb9fb874d180d8fb1ce92",
+      "exitCode": 1,
+      "processSeconds": 0.044596899999305606,
+      "stdout": "FAIL actual installed artwork receives the full accent while native header bounds stay intact\nFAIL existing appearance service recolors session and source rails\nFAIL header follows a later accent\nFAIL a replaced native header is suppressed without changing native geometry\nFAIL released native window does no hidden accent work\nFAIL native re-embed reuses existing chrome\nFAIL owned pane shares live accent refresh\nFAIL missing theme service uses public player class color\nFAIL an unreadable class token never becomes a class-table key\nnative meter skin: 65 checks, 9 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "discard_header_alpha",
+      "sourceRawSHA256": "ac917686cbc921bd98e03ada676f915b30c348b441fd3d03d19853b182539bfe",
+      "exitCode": 1,
+      "processSeconds": 0.045971900020958856,
+      "stdout": "FAIL replaced native header restores its original alpha\nFAIL release preserves an opaque native header alpha through display-only pass-through\nnative meter skin: 65 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "flat_row_fill",
+      "sourceRawSHA256": "4d1a45bec181b78bcbf9d216bfde61e5458d5f093a414ae86ecbaf864dc7b38c",
+      "exitCode": 1,
+      "processSeconds": 0.04250889999093488,
+      "stdout": "FAIL row paint combines the actual DGround artwork with its original vertex overlay\nnative meter skin: 65 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:326: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxMeterSkin.lua": "056773f39a24373f5912196db71225a66b9ef06ad1c51274c79f5e961f7a246b",
+    "tests\\native_meter_skin.lua": "ef730cd76ad63662cdbe113b9fb66f98356d37e38843a3ecff233a797cbee509",
+    "tests\\standalone_threat_meter.lua": "7e4245e67f8c5295fa81ac0396a6a62bf6317823f4bf7241d381315e23bae66a"
+  },
+  "sourceUnchanged": true,
+  "baselineProcessSeconds": {
+    "raw": [
+      0.020408799988217652,
+      0.017744599987054244,
+      0.0179984999995213,
+      0.01676610001595691,
+      0.016437499987659976
+    ],
+    "median": 0.017744599987054244,
+    "min": 0.016437499987659976,
+    "max": 0.020408799988217652
+  },
+  "candidateProcessSeconds": {
+    "raw": [
+      0.02663029998075217,
+      0.02471610001521185,
+      0.026521299994783476,
+      0.02539460000116378,
+      0.025109100010013208
+    ],
+    "median": 0.02539460000116378,
+    "min": 0.02471610001521185,
+    "max": 0.02663029998075217
+  },
+  "result": "PASS:65checks in all5candidate runs;priorbaseline rejected by newactual-art requirements;five pairs;six rejectedmutants;boundedtextures/fonts/hooks",
+  "composedPairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.0747519000142347,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=2000 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Fonts\\ARIALN.TTF\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.03940509998938069,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=0 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.0334249000006821,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=0 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.037789199996041134,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=2000 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Fonts\\ARIALN.TTF\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.03597029999946244,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=2000 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Fonts\\ARIALN.TTF\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.037337199988542125,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=0 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.037320799980079755,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=0 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.03498940001009032,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=2000 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Fonts\\ARIALN.TTF\n",
+        "stderr": ""
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 0,
+        "processSeconds": 0.03610130000743084,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=2000 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Fonts\\ARIALN.TTF\n",
+        "stderr": ""
+      },
+      "candidate": {
+        "exitCode": 0,
+        "processSeconds": 0.03747389998170547,
+        "stdout": "COMPOSED cycles=500 additionalTitleFontWrites=0 frameGrowth=0 textureGrowth=0 titleFont=Fonts\\FRIZQT__.TTF rowFont=Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "composedScope": "Current shared Threat runtime held constant; only alternate Skin source varies.500 hide/show plusRefreshLayout calls, one mocked readable combat row. Title/font/region operation contracts only; not native perf."
+}

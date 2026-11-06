@@ -1,5 +1,48 @@
 # Client and reference validation — 29 October 2026
 
+6 November current Forever 70790 candidate is not natively accepted. Reported
+specIconID/durationSeconds failures under Flux taint require removal of direct
+native Lua configuration writers, not just a texture correction. The candidate
+removes those writers; native controls
+must select missing pane types/row options and Current/Overall/history; their
+state is not silently overwritten or reset. One native timer is implemented by
+physical screen geometry without reading durations. Writer 26/timer 113 focused
+checks pass (five pairs each, 5/9 mutants); final full validation passes
+162 scripts /819 Lua syntax files with all source hashes/membership unchanged.
+[Current manifest](validation/meter-timer-native-boundary-2026-11-06.json).
+These models do not certify the native secure VM.
+At 07:31 UTC no WoW process was running, so no controlled candidate reload, live
+timer/combat/taint or final pixel check is available. Older captures/passes are
+stage-specific. Other-client native behavior remains unverified.
+[Current capability limits](METER_STANDALONE.md#current-native-configuration-boundary).
+
+6 November Forever SAO glow candidate: installed SpellActivationOverlay 2.8.9,
+interface 16001, saved glow enabled. Source route and focused 25-check fixture
+pass for bar, Extra Button and badge faces; pre-edit source fails. Native
+proc/paging/clear/pixel/taint and frame-time acceptance is pending on Forever.
+Era and Anniversary routes are unchanged in source, with native regression
+checks pending. Its earlier SAO-stage run passed 160/162 scripts; the current
+combined validation passes all 162 scripts /819 syntax files after meter fixes.
+[Evidence](FOREVER_SAO_GLOW.md).
+
+6 November raid input: the user supplied a native secret-boolean failure at
+`Hide.lua:139` during `FluxRaidLayout` native-grid hiding. Desktop mouse and
+startup fixtures pass across five modeled client branches; this does not prove
+native secret handling or protected setter legality. Normal reload plus party,
+raid, Edit Mode, combat roster, input hit testing and enable/disable restoration
+are pending on Forever and Retail; the other installed clients remain pending.
+Preserve existing BugTabs roots and scriptProfile preference. [Raid record](49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+
+6 November current Forever installation includes Details #Details.20261104.15400.172
+(interface 16001); presence is separate from addon load state. The exact atlas/
+fill/font mapping is read-only evidence, not proof of file loading in the game.
+The new native backend references these installed files without loading Details
+or SharedMedia; absent assets use the existing fallback per client. Final
+candidate native inspection is pending. Fresh-process preflight captured only
+the previous flat presentation; it cannot accept this candidate.
+[Current scope](METER_STANDALONE.md#installed-wow-interface-art-references).
+Other-client native, combat/taint and whole-UI pixel claims remain unverified.
+
 5 November shared theme: source fixes one-line text and panel/header consistency
 without reading native text or replacing rendering. Skin 54/threat 69 checks,
 five style pairs/eight mutants and native-owner 463 checks/five pairs/five mutants
@@ -150,7 +193,7 @@ after validation. Original/modern Wrath remain distinct and unverified.
 
 5 November Consumables refresh timer: shared button/wisp/config countdown
 uses public buff expiration minus refresh threshold. Five paired loaded-module
-fixtures pass baseline and candidate (14/24 checks); full 150-script/805-Lua
+fixtures pass baseline and candidate (14/25 checks); full 150-script/805-Lua
 desktop validation passes. Retail, Forever, Era, Anniversary, and progression
 native confirmation remains pending, including visual and combat checks.
 [Timer evidence](CONSUMABLE_REFRESH_TIMER.md).

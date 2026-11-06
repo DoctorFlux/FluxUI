@@ -1,11 +1,16 @@
 # Native meter skin and standalone threat pane
 
 The requested behavior is Blizzard damage/healing meters with the familiar
-Flux Details appearance, plus a threat pane on Forever without installing or
-loading Details. This extends the separately validated
+Flux Details appearance and a standalone Forever threat pane. The current art
+request references optional installed Details files without loading its code;
+when files are absent, Flux/Blizzard fallback remains available. This extends the separately validated
 [native visibility correction](METER_COMBAT_VISIBILITY.md).
 
 ## Accepted design and requirements
+
+The 5 November flat recreation below is historical: the user rejected it on
+6 November in favor of METER-WOW-SKIN-01. Existing resource/identity results keep
+their exact earlier scope; no visual acceptance is transferred to the new art.
 
 The existing Flux Details embed is the visual reference. The user approved
 recreating it with FluxUI and Blizzard assets on 5 November 2026. Details'
@@ -316,3 +321,108 @@ captured during the short fight; only pre/post states exist. Actual combat text,
 secret/taint, matched pixel parity, native resource bytes/FPS and other-client
 native checks remain inconclusive or pending. Earlier pending OOC handoff notes
 refer to their earlier source stages, not this final candidate.
+
+
+## Installed WoW Interface art references
+
+METER-WOW-SKIN-01 follows the renewed 6 November request for the actual WoW
+Interface appearance. Installed Forever Details version #Details.20261104.15400.172
+is now present; the older missing-folder state is not current. Read-only source
+audit uses upstream pin `cec582cfbac0254e98c393e791478d787ba413a1` plus hashes of
+the actual installed files, not assumptions from an old package.
+
+Reference the nine visible atlas regions at the source density/body anchors,
+including the no-icon header and no-status footer; use Ground/DGround fills and
+Accidental Presidency row font. Stock Friz titles and UI-StatusBar fill remain.
+The 128-unit atlas rectangles contain transparency; shrinking the whole region
+into a 32-unit header would distort the artwork. Initial owned-art resolution
+must precede pooled entry paint; native and owned title font roles stay shared.
+
+No Details/SharedMedia addon code is loaded, no installed files are edited and
+no reserved art/font binaries are copied into FluxUI. The installed main license
+is All rights reserved. The bundled OFL names Oswald and does not establish an
+Accidental grant. These references are not an assertion of redistribution rights.
+Native texture/font setter success determines readiness, not metadata existence
+or a file ID. Missing paths keep the existing Flux/Blizzard fallback.
+
+Clean baseline `a07c449b1783a7bc876943e5909c3573cfec267a`; verified external
+Meter-texture-checkpoint-20261106T053635Z preserves 1,561 actual files, 175 settings
+and all-ref history, source SHA256
+`345f0c8fd943cc0780635ef64a470c0c31f7dddc9898ac382cde22560db527ee`.
+Final source hashes, matched tests and native inspection are pending. No exact
+whole-UI pixel claim follows from copying UV/anchor facts or referring to files.
+Native data/controls, font-before-text, one-line/opaque text, host/tab ownership,
+combat cadence, preset IDs and settings remain separate preserved contracts.
+
+
+## Current native configuration boundary
+
+The user's 07:45/07:55 specIconID and 07:57 durationSeconds warnings identify
+native execution tainted by Flux. Earlier art/geometry/session fixtures do not
+prove this fresh candidate safe. The candidate removes all direct native Lua
+configuration/data writers: type/session selection, bar height/spacing,
+class/icon flags, lock/minimize and automatic native pane creation. No verified
+public AddOn-safe replacement is established for Forever 1.60.1.70790. This is a
+capability limit, not permission to hide the warning, compare secret values,
+reset saved settings or use securecall to claim clean provenance.
+
+Dock already native-selected windows by their actual types. If a requested type
+or additional pane does not exist, preserve the saved Flux request and show an
+explicit instruction to create/select it using Blizzard controls. Use `/fbm cleanup`, create/select the requested windows through Blizzard
+controls, then `/fbm embed`; `/fbm status` reports remaining gaps. Do not label
+a Damage pane as Healing or silently auto-create/reconfigure it. Native row
+configuration and controls remain native; exact automatic row/type setup and
+whole-UI parity cannot be promised through an unverified private setter.
+
+Native Current gives a fresh per-fight view; the new-instance-reset checkbox
+has a different purpose. Preserve user-selected Current, Overall and historical
+views, including the factory default Overall. An earlier forced-Overall path
+was a bug; its removal does not justify blindly changing an existing Overall
+selection or deleting sessions. If needed the player selects Current once via
+the native controls.
+
+| ID | Required behavior | Current status |
+| --- | --- | --- |
+| METER-NATIVE-OWNERSHIP-01 | No AddOn-issued native data/configuration writes or automatic pane creation; preserve native controls and explicit missing-type setup | Implemented; 26 focused checks/five pairs/five mutants and current full suite pass; native acceptance pending |
+| METER-CURRENT-VIEW-01 | Preserve chosen Current/Overall/history without reset; native Current supplies per-fight view | Implemented; native controls remain authoritative; fresh native acceptance pending |
+| METER-TIMER-01 | One visible native timer in the topmost then leftmost mapped native pane; native formatting/data/policy untouched | Implemented; 113 focused checks/five pairs/nine mutants and current full suite pass; native acceptance pending |
+
+Timer election uses greatest top then least left in physical screen coordinates,
+with stable fallback for unreadable geometry. It never reads/compares/converts
+secret durations or supplies a replacement clock. Native text, formatting,
+eligibility and cadence remain native, including an originally zero alpha.
+Reserve up to 45 display units in headers out of combat; retain the left title
+and native menus, aligning the timer before the session menu. The dependent
+type menu gets its own Header anchor. Combat election changes alpha only.
+Cleanup restores original timer/menu anchors, widths and alphas out of combat;
+reactivation snapshots current native alpha. Three permanent guarded script
+posthooks per session (Show/Hide/Size) become inactive after release, with no
+new frames/events/timers/textures. Narrow headers can still clip text.
+
+[Writer comparison](validation/meter-native-writer-comparison-2026-11-06.json) records the
+26-check fixture, five alternating pairs/five rejected mutants and frozen backend
+SHA256 `4ca339e31d5d9644b2dc821cf56f4142ce6226a08816cdf879260f06f7d49aaa`.
+[Timer comparison](validation/meter-single-timer-comparison-2026-11-06.json) records the
+113-check fixture, five alternating pairs/nine rejected mutants and normalized
+Skin SHA256 `cb43ca5f7988f32d335090aadc4353421d78023806e7ce1430b17bafef93a650`.
+Ownership561/startup64/docking60/layout71 focused checks pass; the production
+Details geometry comparison covers 28,992 checks over 4,920 layouts. These are
+stated desktop scopes only. Final full validation passes 162 scripts /819 Lua
+syntax files, with all 819 source hashes/membership unchanged and corpus
+`5b008deec37a9e32ebf53442630c19012f9ce52a78ae0e7cc46e900552b2e377`.
+[Current full manifest](validation/meter-timer-native-boundary-2026-11-06.json). The first full run
+failed four stale Core meter assertions; the fixture contract was reconciled
+without restoring unsafe production calls. Native taint safety, exact pixels
+and native performance remain unverified.
+
+At 07:31 UTC process inspection found no WoW process. The prior Forever PID 37088
+had exited, so this is currently a closed-client limitation rather than an
+active foreground-guard issue. No client was launched/focused and no new native
+commands or controlled reload were issued. Fresh loaded-source identity,
+native combat/taint, exact dimensions/artwork and timer acceptance remain open.
+Concurrent raid/glow source and continuity changes must remain preserved.
+
+External Meter-timer-and-taint-checkpoint-20261106T072904Z includes 1,571 actual
+source files /177 settings and all-ref history; ZIP/bundle validation passes.
+Source archive SHA256:
+`7dc36164c7a5abdd83e66e472990ebd560897fbd39ccc7d0aac6dd76c81d4205`.

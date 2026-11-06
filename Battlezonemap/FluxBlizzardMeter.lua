@@ -30,6 +30,9 @@ local embeddedNativePaneCount = nil
 local embeddedThreatSelected = false
 local threatEmbeddedParent = nil
 local FLUX_THREAT_PLUGIN = "DETAILS_PLUGIN_FLUX_THREAT"
+local selectedNativeWindows = {}
+local missingNativeTypes = {}
+local lastConfigurationNotice = ""
 
 local function VisibilityHost()
     local window = FluxWindowFrame
@@ -55,6 +58,13 @@ local function SyncThreatVisibility()
     end
 end
 
+local function HideUnusedNativeWindows(dmFrame)
+    if not isEmbedded or not dmFrame or not dmFrame.ForEachSessionWindow then return end
+    dmFrame:ForEachSessionWindow(function(window)
+        if not selectedNativeWindows[window] and window:IsShown() then window:Hide() end
+    end)
+end
+
 local function ShowEmbeddedRoot(dmFrame)
     local show = embeddedNativePaneCount ~= 0 and IsEmbeddedHostVisible()
     -- Edit Mode owns visibility. Writing it here taints later native combat timers.
@@ -74,18 +84,16 @@ local function CancelStartupEmbed()
     pendingStartup = false
 end
 
--- Meter embed sizing:
--- 1) Lay out panes in a canvas 40% larger than Flux Content.
--- 2) Scale the DamageMeter root by 0.8; its visual bounds remain 1.12 x Content.
--- Preserve this existing canvas while sharing its coordinates with owned panes.
+-- The outer Flux window is the same geometry reference used by FluxDetails.
+-- Convert its body rectangles into the native root's .8-scale coordinates.
 local METER_SCALE = 0.8
-local METER_SIZE_EXPAND = 1.40
 local METER_PADDING_LEFT = 0
 local METER_PADDING_RIGHT = 0
 local METER_PADDING_TOP = 0
 local METER_PADDING_BOTTOM = 0
-local EMBED_ROW_GAP = 2
-local EMBED_TOP_PAD = 0
+local EMBED_ROW_GAP = 16
+local EMBED_TOP_PAD = 20
+local PANE_HEADER_HEIGHT = 14
 local BLIZZARD_MAX_PANES = 3
 
 -- Forever gamepad: do not SetParent the meter onto the Flux window. That taints
@@ -97,18 +105,30 @@ local function ForeverGamepadEmbed()
     return cap and cap.IsForeverGamepadUI and cap.IsForeverGamepadUI() == true
 end
 
+local function PlainNumber(value)
+    return not (issecretvalue and issecretvalue(value)) and type(value) == "number"
+end
+
 local function PlainScale(frame)
     if not frame or not frame.GetEffectiveScale then
         return nil
     end
     local ok, scale = pcall(frame.GetEffectiveScale, frame)
-    if not ok or type(scale) ~= "number" or scale <= 0 then
-        return nil
-    end
-    if issecretvalue and issecretvalue(scale) then
+    if not ok or not PlainNumber(scale) or scale <= 0 then
         return nil
     end
     return scale
+end
+
+local function EmbedReferenceSize(host)
+    local reference = host
+    local outer = FluxWindowFrame and FluxWindowFrame.frame
+    if outer and outer.Content == host and outer.GetWidth and outer.GetHeight then reference = outer end
+    local width = reference and reference.GetWidth and reference:GetWidth()
+    local height = reference and reference.GetHeight and reference:GetHeight()
+    if not PlainNumber(width) or width < 80 then width = (FluxWindowFrame and FluxWindowFrame.WINDOW_WIDTH) or 400 end
+    if not PlainNumber(height) or height < 80 then height = (FluxWindowFrame and FluxWindowFrame.WINDOW_HEIGHT) or 270 end
+    return reference, width, height
 end
 
 -- Layout-driven embed state
@@ -153,27 +173,6 @@ local function WatchGeometry(frame, root)
     for _, method in ipairs(methods) do
         if type(frame[method]) == "function" then hooksecurefunc(frame, method, RequestGeometryRepair) end
     end
-end
-
--- Forever/Midnight: CanShowNewSecondarySessionWindow / ShowNewSecondarySessionWindow.
--- Older PTR builds used CanShowNewSessionWindow / ShowNewSessionWindow.
-
-local function UsesSecondaryWindowAPI(dmFrame)
-    return dmFrame and dmFrame.CanShowNewSecondarySessionWindow and dmFrame.ShowNewSecondarySessionWindow
-end
-
-local function UsesLegacyWindowAPI(dmFrame)
-    return dmFrame and dmFrame.CanShowNewSessionWindow and dmFrame.ShowNewSessionWindow
-end
-
---- Check if the DamageMeter frame has multi-window API support.
--- @param dmFrame DamageMeter frame from GetDamageMeterFrame()
--- @return boolean - true if secondary window can be created
-local function HasMultiWindowSupport(dmFrame)
-    if not dmFrame or not dmFrame.GetCurrentSessionWindowCount or not dmFrame.GetSessionWindow then
-        return false
-    end
-    return UsesSecondaryWindowAPI(dmFrame) or UsesLegacyWindowAPI(dmFrame)
 end
 
 local function HasBlizzardDamageMeterClient()
@@ -324,6 +323,7 @@ InstallNativeVisibility = function()
     local function EnforceVisibility()
         if ownsNativeVisibility ~= true or not VisibilityHost() then return end
         if not isEmbedded or embeddedNativePaneCount == 0 or not IsEmbeddedHostVisible() then dmFrame:Hide() end
+        HideUnusedNativeWindows(dmFrame)
         SyncThreatVisibility()
     end
     if not visibilityHooked and dmFrame.UpdateShownState then
@@ -392,82 +392,13 @@ FluxBlizzardMeter.IsMeterReady = IsMeterReady
 local function EnsureNSessionWindows(count)
     local dmFrame = GetDamageMeterFrame()
     local windows = {}
-    if not dmFrame then
-        return windows
-    end
-
-    local maxCount = BLIZZARD_MAX_PANES
-    if dmFrame.GetMaxSessionWindowCount then
-        maxCount = dmFrame:GetMaxSessionWindowCount() or BLIZZARD_MAX_PANES
-    end
-    count = math.max(1, math.min(count or 1, maxCount))
-
-    local function tryShowNew()
-        -- Creating a pane from Flux runs its dropdown SetupMenu as _FluxUI.
-        if ForeverGamepadEmbed() then
-            return false
-        end
-        if UsesSecondaryWindowAPI(dmFrame) then
-            if dmFrame:CanShowNewSecondarySessionWindow() then
-                dmFrame:ShowNewSecondarySessionWindow()
-                return true
-            end
-        elseif UsesLegacyWindowAPI(dmFrame) then
-            if dmFrame:CanShowNewSessionWindow() then
-                dmFrame:ShowNewSessionWindow()
-                return true
-            end
-        end
-        return false
-    end
-
-    local primary = dmFrame.GetPrimarySessionWindow and dmFrame:GetPrimarySessionWindow()
-    if primary then
-        if not primary:IsShown() then
-            primary:Show()
-        end
-    end
-
-    local safety = 0
-    while true do
-        safety = safety + 1
-        if safety > 8 then break end
-        local shown = 0
-        if dmFrame.GetCurrentSessionWindowCount then
-            shown = dmFrame:GetCurrentSessionWindowCount() or 0
-        elseif dmFrame.ForEachSessionWindow then
-            dmFrame:ForEachSessionWindow(function(sw)
-                if sw and sw:IsShown() then shown = shown + 1 end
-            end)
-        end
-        if shown >= count then break end
-        if not tryShowNew() then break end
-    end
-
-    for i = 1, count do
+    if not dmFrame then return windows end
+    local maxCount = dmFrame.GetMaxSessionWindowCount and dmFrame:GetMaxSessionWindowCount() or BLIZZARD_MAX_PANES
+    for i = 1, maxCount do
         local win = dmFrame.GetSessionWindow and dmFrame:GetSessionWindow(i)
-        if not win and i == 1 then
-            win = primary
-        end
-        if win then
-            if not win:IsShown() then
-                win:Show()
-            end
-            windows[i] = win
-        end
+        if not win and i == 1 and dmFrame.GetPrimarySessionWindow then win = dmFrame:GetPrimarySessionWindow() end
+        if win then windows[#windows + 1] = win end
     end
-
-    if dmFrame.GetMaxSessionWindowCount and dmFrame.HideSessionWindow then
-        for i = count + 1, dmFrame:GetMaxSessionWindowCount() do
-            local extra = dmFrame:GetSessionWindow(i)
-            if extra and extra:IsShown() and dmFrame:CanHideSessionWindow(extra) then
-                dmFrame:HideSessionWindow(extra)
-            end
-        end
-    end
-
-    primarySessionWindow = windows[1]
-    secondarySessionWindow = windows[2]
     return windows
 end
 
@@ -483,61 +414,6 @@ end
 -- ---------------------------------------------------------------------------
 
 -- PTR adds a minimize control on session windows; hide it while embedded in Flux (layout is fixed).
-local function GetSessionWindowMinimizeButton(sessionWindow)
-    if not sessionWindow then
-        return nil
-    end
-    if sessionWindow.GetMinimizeButton then
-        return sessionWindow:GetMinimizeButton()
-    end
-    return sessionWindow.MinimizeButton
-end
-
-local function GetSessionWindowResizeButton(sessionWindow)
-    if not sessionWindow then
-        return nil
-    end
-    if sessionWindow.GetResizeButton then
-        return sessionWindow:GetResizeButton()
-    end
-    return sessionWindow.ResizeButton
-end
-
-local function ApplyEmbeddedNoMinimize(sessionWindow, dmFrame)
-    if not sessionWindow or not dmFrame then
-        return
-    end
-    if dmFrame.SetSessionWindowMinimized then
-        pcall(function()
-            dmFrame:SetSessionWindowMinimized(sessionWindow, false)
-        end)
-    elseif sessionWindow.SetMinimized then
-        pcall(function()
-            sessionWindow:SetMinimized(false)
-        end)
-    end
-    local minBtn = GetSessionWindowMinimizeButton(sessionWindow)
-    if minBtn and minBtn.Hide then
-        minBtn:Hide()
-    end
-    local resizeBtn = GetSessionWindowResizeButton(sessionWindow)
-    if resizeBtn and resizeBtn.Hide then
-        resizeBtn:Hide()
-    end
-end
-
-local function RestoreSessionWindowMinimizeButton(sessionWindow)
-    local minBtn = GetSessionWindowMinimizeButton(sessionWindow)
-    if minBtn and minBtn.Show then
-        minBtn:Show()
-    end
-    local resizeBtn = GetSessionWindowResizeButton(sessionWindow)
-    if resizeBtn and resizeBtn.Show then
-        resizeBtn:Show()
-    end
-end
-
---- Resolve a layout slot to Enum.DamageMeterType
 local function SlotToDamageMeterType(slot)
     local T = Enum and Enum.DamageMeterType
     local fallback = T and T.DamageDone or 0
@@ -637,24 +513,14 @@ local function PositionSessionWindowGrid(sessionWindow, parentFrame, leftOff, ri
     geometryApplying = previous
 end
 
---- Size/scale the DamageMeter root so panes look denser but still cover Flux Content.
--- Canvas = Content × METER_SIZE_EXPAND, then SetScale(METER_SCALE), centered on Content.
+--- Keep the scaled native canvas exactly over the outer Flux window.
 local function ApplyRootScaleAndSize(parentFrame)
     if not parentFrame or InCombatLockdown() then return end
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then return end
 
-    local pw = parentFrame:GetWidth() or 0
-    local ph = parentFrame:GetHeight() or 0
-    if pw < 40 then
-        pw = (_G.FluxWindowFrame and _G.FluxWindowFrame.WINDOW_WIDTH) or 300
-    end
-    if ph < 40 then
-        ph = (_G.FluxWindowFrame and _G.FluxWindowFrame.WINDOW_HEIGHT) or 270
-    end
-
-    local layoutW = pw * METER_SIZE_EXPAND
-    local layoutH = ph * METER_SIZE_EXPAND
+    local reference, pw, ph = EmbedReferenceSize(parentFrame)
+    local layoutW, layoutH = pw / METER_SCALE, ph / METER_SCALE
     local previous = geometryApplying; geometryApplying = true
     -- Blizzard supplies these aliases to the original widget methods. Avoid
     -- its Edit Mode overrides writing snap/layout metadata from addon geometry.
@@ -663,7 +529,7 @@ local function ApplyRootScaleAndSize(parentFrame)
     local setScale = type(dmFrame.SetScaleBase) == "function" and dmFrame.SetScaleBase or dmFrame.SetScale
 
     if ForeverGamepadEmbed() then
-        local hostScale = PlainScale(parentFrame)
+        local hostScale = PlainScale(reference)
         local holderScale = PlainScale(dmFrame:GetParent())
         if hostScale and holderScale then
             setScale(dmFrame, (hostScale * METER_SCALE) / holderScale)
@@ -672,7 +538,7 @@ local function ApplyRootScaleAndSize(parentFrame)
         end
         clearPoints(dmFrame)
         dmFrame:SetSize(layoutW, layoutH)
-        setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)
+        setPoint(dmFrame, "CENTER", reference, "CENTER", 0, 0)
         if parentFrame.GetFrameStrata and dmFrame.SetFrameStrata then
             dmFrame:SetFrameStrata(parentFrame:GetFrameStrata())
         end
@@ -686,9 +552,8 @@ local function ApplyRootScaleAndSize(parentFrame)
     dmFrame:SetParent(parentFrame)
     setScale(dmFrame, METER_SCALE)
     clearPoints(dmFrame)
-    -- CENTER + explicit size: after scale, visual ≈ Content × (EXPAND×SCALE) and stays centered.
     dmFrame:SetSize(layoutW, layoutH)
-    setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)
+    setPoint(dmFrame, "CENTER", reference, "CENTER", 0, 0)
     geometryApplying = previous
 end
 
@@ -698,9 +563,10 @@ RepairEmbeddedGeometry = function()
     if not dmFrame then return end
     ApplyRootScaleAndSize(embeddedParentFrame)
     for index, pane in pairs(embedPaneLayouts) do
-        local window = dmFrame.GetSessionWindow and dmFrame:GetSessionWindow(index)
+        local window = pane.window or (dmFrame.GetSessionWindow and dmFrame:GetSessionWindow(index))
         if window then PositionSessionWindowGrid(window, dmFrame, pane.left, pane.right, pane.top, pane.bot) end
     end
+    if FluxMeterSkin and FluxMeterSkin.SyncNativeTimer then FluxMeterSkin:SyncNativeTimer() end
 end
 
 local styledEntryWindows = {}
@@ -732,6 +598,8 @@ end
 
 local function InstallEmbeddedEntryStyle(window)
     if not window or not window.InitEntry then return end
+    -- Resolve installed artwork before the first pooled row uses it.
+    if not skinnedWindows[window] then ApplyEmbeddedWindowSkin(window) end
     if styledEntryWindows[window] then return end
     styledEntryWindows[window] = true
     -- Preserve Flux's local-player tint after Blizzard finishes native Init.
@@ -755,7 +623,7 @@ local function InstallEmbeddedEntryStyle(window)
 end
 
 --- Configure chrome/type for an embedded session window (position applied separately).
-local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
+local function ConfigureSessionWindowChrome(sessionWindow)
     if not sessionWindow then return end
     if InCombatLockdown() then return end
 
@@ -767,23 +635,8 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     local sourceWindow = sessionWindow.GetSourceWindow and sessionWindow:GetSourceWindow()
     InstallEmbeddedEntryStyle(sourceWindow)
 
-    -- These native setters refresh entries. Geometry passes must leave content
-    -- alone when its selected type/session and display flags already match.
-    if damageMeterType ~= nil and (not sessionWindow.GetDamageMeterType
-        or sessionWindow:GetDamageMeterType() ~= damageMeterType) then
-        dmFrame:SetSessionWindowDamageMeterType(sessionWindow, damageMeterType)
-    end
-    if not sessionWindow.ShouldUseClassColor or not sessionWindow:ShouldUseClassColor() then
-        sessionWindow:SetUseClassColor(true)
-    end
-    if not sessionWindow.ShouldShowBarIcons or not sessionWindow:ShouldShowBarIcons() then
-        sessionWindow:SetShowBarIcons(true)
-    end
-    if not sessionWindow.GetSessionType or not sessionWindow.GetSessionID
-        or sessionWindow:GetSessionType() ~= Enum.DamageMeterSessionType.Overall
-        or sessionWindow:GetSessionID() ~= nil then
-        dmFrame:SetSessionWindowSessionID(sessionWindow, Enum.DamageMeterSessionType.Overall, nil)
-    end
+    -- Native menus own type, session, row settings and display flags. Calling
+    -- their Lua setters from addon code can taint secret-data refreshes.
 
     if sessionWindow.SetMovable then
         sessionWindow:SetMovable(false)
@@ -791,10 +644,6 @@ local function ConfigureSessionWindowChrome(sessionWindow, damageMeterType)
     if sessionWindow.SetResizable then
         sessionWindow:SetResizable(false)
     end
-    if not ForeverGamepadEmbed() and dmFrame.SetSessionWindowLocked then
-        dmFrame:SetSessionWindowLocked(sessionWindow, true)
-    end
-    ApplyEmbeddedNoMinimize(sessionWindow, dmFrame)
 
     -- Do not replace SetupEntry / entry UpdateName|UpdateValue — that taints Blizzard's
     -- secret-safe Init path (sourceDisplayType comparisons in GetSourceTypeAtlasElement).
@@ -814,10 +663,9 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
 
     CancelGeometryRepair()
     local previous = geometryApplying; geometryApplying = true
-    -- Expand + scale the root first so layout math uses the pre-scale canvas size.
     local hostParent = embeddedParentFrame or parentFrame
+    local _, frameW, frameH = EmbedReferenceSize(hostParent)
     ApplyRootScaleAndSize(hostParent)
-    -- Lay out against dmFrame (expanded canvas), not Content.
     parentFrame = dmFrame
 
     local nativeCount, threatCount = 0, 0
@@ -842,7 +690,7 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
         topSlots = DefaultLayoutConfig().topSlots
         nativeCount = #topSlots
     end
-    embeddedNativePaneCount = nativeCount
+    embeddedNativePaneCount = 0
     embeddedThreatSelected = threatCount > 0
     local threatFrame
     if embeddedThreatSelected then
@@ -856,17 +704,6 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
     local topRowFrac = tonumber(layoutConfig.topRowFrac) or 0.60
     if topRowFrac < 0.25 then topRowFrac = 0.25 end
     if topRowFrac > 0.75 then topRowFrac = 0.75 end
-
-    local frameH = parentFrame:GetHeight() or 270
-    if frameH < 80 then
-        frameH = (_G.FluxWindowFrame and _G.FluxWindowFrame.WINDOW_HEIGHT) or 270
-        frameH = frameH * METER_SIZE_EXPAND
-    end
-    local frameW = parentFrame:GetWidth() or 300
-    if frameW < 40 then
-        frameW = (_G.FluxWindowFrame and _G.FluxWindowFrame.WINDOW_WIDTH) or 300
-        frameW = frameW * METER_SIZE_EXPAND
-    end
 
     local hasBottomRow = #bottomSlots > 0
     local topPad = EMBED_TOP_PAD
@@ -882,19 +719,36 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
     local windows = nativeCount > 0 and EnsureNSessionWindows(nativeCount) or {}
 
     wipe(embedPaneLayouts)
-    local outerLeft = 0
-    local outerRight = 0
+    wipe(selectedNativeWindows)
+    wipe(missingNativeTypes)
+    local outerLeft = -1
+    local outerRight = 1
     local idx = 1
 
-    local function PositionRow(slots, colFracs, topOff, botOff)
+    local function PositionRow(slots, colFracs, topOff, botOff, bottom)
         local n = #slots
         if n == 0 then return end
+        if n == 2 and (not colFracs or #colFracs ~= n) then
+            local left = layoutConfig.leftColFracTop or layoutConfig.leftColFracBottom or .45
+            left = (bottom and layoutConfig.leftColFracBottom or layoutConfig.leftColFracTop) or left
+            colFracs = { left, 1 - left }
+        end
         colFracs = NormalizeColFracs(colFracs, n)
         local cum = 0
         for i = 1, n do
             local slot = slots[i]
             local isThreat = type(slot) == "table" and slot.kind == "plugin" and slot.plugin == FLUX_THREAT_PLUGIN
-            local win = isThreat and threatFrame or windows[idx]
+            local win = isThreat and threatFrame or nil
+            local wantedType = not isThreat and SlotToDamageMeterType(slot) or nil
+            if not isThreat then
+                for _, candidate in ipairs(windows) do
+                    local currentType = candidate.GetDamageMeterType and candidate:GetDamageMeterType()
+                    if not selectedNativeWindows[candidate] and PlainNumber(currentType) and currentType == wantedType then
+                        win = candidate; selectedNativeWindows[candidate] = true; break
+                    end
+                end
+                if not win then missingNativeTypes[#missingNativeTypes + 1] = wantedType end
+            end
             local leftOff = outerLeft + (frameW * cum)
             cum = cum + colFracs[i]
             local rightOff
@@ -905,18 +759,22 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
                 rightOff = -(frameW - splitX)
             end
             if win then
+                -- Details places its body frame below a separate 14-pixel title.
+                -- Native/owned panes include that header; convert once to canvas units.
+                local canvasLeft, canvasRight = leftOff / METER_SCALE, rightOff / METER_SCALE
+                local canvasTop, canvasBottom = (topOff - PANE_HEADER_HEIGHT) / METER_SCALE, botOff / METER_SCALE
                 if isThreat then
                     -- Owned pane remains a Content child; root-hidden native policy cannot hide it.
                     win:ClearAllPoints()
-                    win:SetPoint("TOPLEFT", parentFrame, "TOPLEFT", leftOff, -topOff)
-                    win:SetPoint("BOTTOMRIGHT", parentFrame, "BOTTOMRIGHT", rightOff, botOff)
+                    win:SetPoint("TOPLEFT", parentFrame, "TOPLEFT", canvasLeft, -canvasTop)
+                    win:SetPoint("BOTTOMRIGHT", parentFrame, "BOTTOMRIGHT", canvasRight, canvasBottom)
                     if FluxThreatMeter.RefreshLayout then FluxThreatMeter:RefreshLayout() end
                 else
-                    ConfigureSessionWindowChrome(win, SlotToDamageMeterType(slot))
-                    PositionSessionWindowGrid(win, parentFrame, leftOff, rightOff, topOff, botOff)
+                    ConfigureSessionWindowChrome(win)
+                    PositionSessionWindowGrid(win, parentFrame, canvasLeft, canvasRight, canvasTop, canvasBottom)
                     embedPaneLayouts[idx] = {
-                        left = leftOff, right = rightOff, top = topOff, bot = botOff,
-                        damageMeterType = SlotToDamageMeterType(slot),
+                        left = canvasLeft, right = canvasRight, top = canvasTop, bot = canvasBottom,
+                        window = win,
                     }
                     idx = idx + 1
                 end
@@ -924,9 +782,17 @@ local function LayoutMeterGrid(parentFrame, layoutConfig)
         end
     end
 
-    PositionRow(topSlots, layoutConfig.topColFracs, topPad, topRowBotOff)
-    PositionRow(bottomSlots, layoutConfig.bottomColFracs, botRowTopOff, 0)
+    PositionRow(topSlots, layoutConfig.topColFracs, topPad, topRowBotOff, false)
+    PositionRow(bottomSlots, layoutConfig.bottomColFracs, botRowTopOff, 0, true)
+    embeddedNativePaneCount = idx - 1
+    HideUnusedNativeWindows(dmFrame)
+    local notice = table.concat(missingNativeTypes, ", ")
+    if notice ~= "" and notice ~= lastConfigurationNotice then
+        print("|cff00ffff[FluxUI]|r Configure the requested meter types in Blizzard's meter menu, then reopen Meter. /fbm status lists the missing views.")
+    end
+    lastConfigurationNotice = notice
     ShowEmbeddedRoot(dmFrame)
+    if FluxMeterSkin and FluxMeterSkin.SyncNativeTimer then FluxMeterSkin:SyncNativeTimer() end
     geometryApplying = previous
 
     -- Do not call sessionWindow:Refresh from Flux — that taints Init/UpdateName.
@@ -1072,15 +938,6 @@ function FluxBlizzardMeter:Embed(parentFrame, layoutConfig)
         WatchGeometry(dmFrame, true)
         InstallNativeVisibility()
 
-        -- Root visibility is reconciled after pane ownership/layout is known.
-        if dmFrame.ForEachSessionWindow then
-            dmFrame:ForEachSessionWindow(function(sessionWindow)
-                if sessionWindow then
-                    ApplyEmbeddedNoMinimize(sessionWindow, dmFrame)
-                end
-            end)
-        end
-
         -- Layout panes on the expanded canvas; root scale keeps visual over Content.
         LayoutMeterGrid(parentFrame, currentLayoutConfig or resolvedLayout)
 
@@ -1160,6 +1017,13 @@ function FluxBlizzardMeter:RefreshEmbeddedLayout()
 end
 
 --- Hide the embedded damage meter
+function FluxBlizzardMeter:GetLayoutStatus()
+    local missing = {}
+    for i, value in ipairs(missingNativeTypes) do missing[i] = value end
+    return { configurationRequired = #missing > 0, missingTypes = missing,
+        visibleNativePanes = embeddedNativePaneCount or 0, nativeSettingsOwnedByBlizzard = true }
+end
+
 function FluxBlizzardMeter:Hide()
     -- Tab onHide runs before GetActiveTab changes; native callbacks must honor it.
     explicitlyHidden = true
@@ -1247,6 +1111,9 @@ function FluxBlizzardMeter:Cleanup()
     if FluxMeterSkin and FluxMeterSkin.ReleaseAllNative then FluxMeterSkin:ReleaseAllNative() end
     wipe(skinnedWindows)
     wipe(embedPaneLayouts)
+    wipe(selectedNativeWindows)
+    wipe(missingNativeTypes)
+    lastConfigurationNotice = ""
     
     local dmFrame = GetDamageMeterFrame()
     if not dmFrame then
@@ -1267,16 +1134,12 @@ function FluxBlizzardMeter:Cleanup()
         if not sessionWindow then
             return
         end
-        if not ForeverGamepadEmbed() and dmFrame.SetSessionWindowLocked then
-            dmFrame:SetSessionWindowLocked(sessionWindow, false)
-        end
         if sessionWindow.SetMovable then
             sessionWindow:SetMovable(true)
         end
         if sessionWindow.SetResizable then
             sessionWindow:SetResizable(true)
         end
-        RestoreSessionWindowMinimizeButton(sessionWindow)
     end
 
     if dmFrame.ForEachSessionWindow then
@@ -1420,7 +1283,21 @@ end)
 SLASH_FLUXBLIZZMETER1 = "/fluxblizzmeter"
 SLASH_FLUXBLIZZMETER2 = "/fbm"
 SlashCmdList["FLUXBLIZZMETER"] = function(msg)
-    if msg == "available" then
+    if msg == "status" then
+        local status = FluxBlizzardMeter:GetLayoutStatus()
+        if status.configurationRequired then
+            local labels = {}
+            for _, meterType in ipairs(status.missingTypes) do
+                local slot = { kind = "blizzard", damageMeterType = meterType }
+                labels[#labels + 1] = FluxMeterLayout and FluxMeterLayout.SlotShortLabel
+                    and FluxMeterLayout.SlotShortLabel(slot) or tostring(meterType)
+            end
+            print("|cff00ffff[FluxUI]|r Configure these views using Blizzard's meter menu: " .. table.concat(labels, ", ") .. ". Then reopen Meter.")
+        else
+            print("|cff00ffff[FluxUI]|r Requested meter windows are available.")
+        end
+        print("  Row size, spacing, class colors, icons and combat-session choices use Blizzard's settings.")
+    elseif msg == "available" then
         local available = FluxBlizzardMeter:IsAvailable()
         print("|cff00ffff[FluxBlizzardMeter]|r Available: " .. tostring(available))
         print("  SupportedClient: " .. tostring(FluxBlizzardMeter:IsSupportedClient()))
@@ -1466,13 +1343,9 @@ SlashCmdList["FLUXBLIZZMETER"] = function(msg)
             print("|cff00ffff[FluxBlizzardMeter]|r api: DamageMeter frame not loaded")
         else
             local mode = "none"
-            if UsesSecondaryWindowAPI(dm) then
-                mode = "secondary (Forever/Midnight)"
-            elseif UsesLegacyWindowAPI(dm) then
-                mode = "legacy (ShowNewSessionWindow)"
-            end
+            if dm.GetSessionWindow then mode = "existing native windows" end
             print("|cff00ffff[FluxBlizzardMeter]|r api: " .. mode)
-            print("  HasMultiWindowSupport: " .. tostring(HasMultiWindowSupport(dm)))
+            print("  HasMultiWindowSupport: " .. tostring(dm.GetSessionWindow ~= nil))
             print("  SetupSessionWindow: (windowDataIndex, windowData)")
             print("  MaxSessionWindows: " .. tostring(dm.GetMaxSessionWindowCount and dm:GetMaxSessionWindowCount()))
             print("  CurrentSessionWindows: " .. tostring(dm.GetCurrentSessionWindowCount and dm:GetCurrentSessionWindowCount()))

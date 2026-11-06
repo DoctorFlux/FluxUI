@@ -1,5 +1,46 @@
 # Baseline protocol and currency evidence
 
+6 November native configuration boundary: earlier art/grid operation counts do
+not certify the changed code after native secret-value failures. Focused writer
+26/timer 113 checks pass in five alternating pairs each, rejecting 5/9 mutants.
+They trap native configuration/session creation calls, preserve chosen sessions
+and exercise missing-type setup plus timer arbitration without reading durations.
+Timer arbitration adds no frames/events/timers/textures and uses three permanent
+guarded script posthooks per session, inactive after release. Native callbacks
+and time text/policy remain native. Raw source identities/samples are in
+[writer evidence](validation/meter-native-writer-comparison-2026-11-06.json) and
+[timer evidence](validation/meter-single-timer-comparison-2026-11-06.json). These are
+functional/resource contracts, not native CPU/FPS results. Final full validation
+passes 162 scripts /819 Lua syntax files with unchanged source hashes/membership.
+[Current manifest](validation/meter-timer-native-boundary-2026-11-06.json). With no WoW
+process running at 07:31 UTC, native CPU/memory/frame-time, taint and final visual
+acceptance cannot be measured. Preserve concurrent raid/glow evidence and state.
+[Current scope](METER_STANDALONE.md#current-native-configuration-boundary).
+
+6 November Forever SAO glow changes only the renderer selected on activation
+and fade-out. It adds no event, ticker, OnUpdate or polling work. LibButtonGlow
+is already loaded by the installed SAO; Flux calls its existing pooled overlay
+show/hide API on a state transition. The desktop 25-check fixture is functional
+evidence, not an allocation, frame-time or FPS measurement. Compare real procs
+and repeated bar/Extra/badge transitions on a matched Forever client before
+making a performance claim. [Scope](FOREVER_SAO_GLOW.md).
+
+6 November raid mouse correction adds only getter access checks and no timer,
+frame, event or polling driver. When a previously readable value later reads as
+secret, its native setter may be called again during event-time reconciliation;
+an initially opaque switch is not written. Desktop count checks do not measure
+native CPU, input latency or FPS. Compare matched raid/party/Edit Mode scenarios
+and capture native profiler state before any performance claim.
+
+6 November asset-reference work must account for nine-piece chrome and bounded
+native file-readiness probes as feature cost. Compare repeated apply/resize/theme
+and pooled-entry cases with matched file availability; separate missing-file
+fallback. Metadata presence is not proof of a usable texture/font. Preserve the
+previous flat-stage timing/resource scope rather than relabelling it as this
+candidate. Final hashes/pairs are being recorded; native CPU, allocation bytes,
+frame time and pixel parity remain unmeasured.
+[Current art requirement](METER_STANDALONE.md#installed-wow-interface-art-references).
+
 5 November shared theme work: five matched style pairs cover 54 skin/69 threat
 checks and eight mutants; five native-background pairs cover 463 owner checks
 and five mutants. Both ordinary/gamepad fixtures style 4/4 configured panes

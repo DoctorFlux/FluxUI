@@ -1,0 +1,254 @@
+{
+  "dateUtc": "2026-11-06T06:27:04.906147+00:00",
+  "baselineRuntimeRawSHA256": "05003214b8cf144fe583f4e14dffcba3c11616f2adc72e8e4c1e19e371038c22",
+  "baselineNote": "Exact prior frozen05003214 restored from its one-line private mutation with SHA assertion, preserving raw bytes.",
+  "candidateHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "3e4441c3d61a07aba45e07a69e245292326402be146b9c9b436283f41b29011f",
+    "tests\\native_meter_skin.lua": "7c633fae4760036178fba9d38af4c7bf755b98c0f0a073e2f0d53dfa3d3f4582",
+    "tests\\standalone_threat_meter.lua": "d534e04b7b6736473a757312318435ecea89d4500bdc97619335866c39804650"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "Production Skin with verified nativeScrollBoxTOPLEFT Header.BOTTOMLEFT y=-2 contract and ordinary widget geometry mocks.83 semantic checks,500 matched skin applications,column-size callback,combat retirement then existingOOC cleanup. FiveAB/BAfreshprocesspairs. UIconfiguration getters guarded foropaque/nonfinite values. No text/stringwidth/gamedata query. These are semantic/operation/resource bounds, not native protected-frame/taint/FPS/pixel acceptance. Native/fulladdon acceptance remains parent-owned.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.023955000011483207,
+          "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: attempt to perform arithmetic on a nil value (local 'titleWidth')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.04568809998454526,
+          "stdout": "GEOMETRY stage=startup headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=500-styles headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=column-resize headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=combat-retirement headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.04434300001594238,
+          "stdout": "native meter skin: 83 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02627780000329949,
+          "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=column-resize headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=combat-retirement headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=2 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.040847300027962774,
+          "stdout": "native meter skin: 83 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02198379999026656,
+          "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=column-resize headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=combat-retirement headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=2 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.03395400001318194,
+          "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: attempt to perform arithmetic on a nil value (local 'titleWidth')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.023846700001740828,
+          "stdout": "GEOMETRY stage=startup headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=500-styles headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=column-resize headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=combat-retirement headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.02565570001024753,
+          "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: attempt to perform arithmetic on a nil value (local 'titleWidth')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02095150001696311,
+          "stdout": "GEOMETRY stage=startup headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=500-styles headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=column-resize headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=combat-retirement headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.03664479998406023,
+          "stdout": "native meter skin: 83 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.021649900008924305,
+          "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=column-resize headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=combat-retirement headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=2 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.036307499976828694,
+          "stdout": "native meter skin: 83 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.021503500000108033,
+          "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=column-resize headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=combat-retirement headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=2 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.02142249999451451,
+          "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: attempt to perform arithmetic on a nil value (local 'titleWidth')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.019378900004085153,
+          "stdout": "GEOMETRY stage=startup headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=500-styles headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=column-resize headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=combat-retirement headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.022996500018052757,
+          "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: attempt to perform arithmetic on a nil value (local 'titleWidth')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:291: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.01933919999282807,
+          "stdout": "GEOMETRY stage=startup headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=500-styles headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=column-resize headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=3.750000 titleY=0.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=combat-retirement headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=0 textures=15 fonts=4 frameCreates=0 sizeHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.03410369998891838,
+          "stdout": "native meter skin: 83 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.020520999998552725,
+          "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=column-resize headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=combat-retirement headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=188.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=deferred-native-restoration headerHeight=32.000000 nativeBodyInset=27.200000 titlePoint=LEFT titleX=0.000000 titleY=3.000000 titleWidth=160.000000 headerHeightWrites=2 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "old_header_inset",
+      "sourceRawSHA256": "de1a54444d3d6f5ac6528597b86a7b955d3f59b2208faabaca45df0dbf51de2c",
+      "exitCode": 1,
+      "processSeconds": 0.05567400000290945,
+      "stdout": "FAIL session header and headerless source keep their own body baselines\nFAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\nFAIL combat retirement defers native header and title geometry restoration\nnative meter skin: 83 checks, 4 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "wrong_native_scroll_offset",
+      "sourceRawSHA256": "a7cf1f997769c328a9e8139d701c45825dfb04b6fc9824fc48f8fbf5377745e7",
+      "exitCode": 1,
+      "processSeconds": 0.05596440000226721,
+      "stdout": "FAIL native minus-two ScrollBox offset places its first row at the shared fourteen-pixel body inset\nFAIL combat retirement defers native header and title geometry restoration\nnative meter skin: 83 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "centered_title",
+      "sourceRawSHA256": "fba2ca61620c99c9532367308814adb88e91f0f17ae075c378f0cd0d70f404fa",
+      "exitCode": 1,
+      "processSeconds": 0.05552799999713898,
+      "stdout": "FAIL title uses the Details body-top anchor and reserves the native menu width without vertical recentering\nFAIL combat retirement defers native header and title geometry restoration\nnative meter skin: 83 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "mutate_geometry_in_combat",
+      "sourceRawSHA256": "b202bfb78b42db8337a42d5ab0a94b80c5143d5ad6aef35471881542670d5d17",
+      "exitCode": 1,
+      "processSeconds": 0.055339899990940467,
+      "stdout": "FAIL combat retirement defers native header and title geometry restoration\nnative meter skin: 83 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no_resize_title_hook",
+      "sourceRawSHA256": "d64c9bcb006d273a681495d7b51c3f0179ab2b0af9ee66382e37f079727d31ff",
+      "exitCode": 1,
+      "processSeconds": 0.052966799994464964,
+      "stdout": "FAIL native size changes reconcile the current column title width through one presentation hook\nnative meter skin: 83 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no_retired_geometry_revisit",
+      "sourceRawSHA256": "f3170e6fbd1f29f290f86edd1328fc2313dfb62c5169492951027d95e27d8ab5",
+      "exitCode": 1,
+      "processSeconds": 0.05309309999574907,
+      "stdout": "FAIL existing out-of-combat cleanup restores geometry after active membership was retired\nnative meter skin: 83 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:443: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "redundant_header_writes",
+      "sourceRawSHA256": "7da10a6cdd521e3d43a5a191ef5205cbc16d94725f4a5293734f1b23f41067a5",
+      "exitCode": 1,
+      "processSeconds": 0.04695759998867288,
+      "stdout": "GEOMETRY stage=startup headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=1 textures=15 fonts=4 frameCreates=0 sizeHooks=1\nGEOMETRY stage=500-styles headerHeight=15.500000 nativeBodyInset=14.000000 titlePoint=BOTTOMLEFT titleX=6.250000 titleY=-16.250000 titleWidth=138.750000 headerHeightWrites=501 textures=15 fonts=4 frameCreates=0 sizeHooks=1\n",
+      "stderr": "lua: ...e340df7e22b\\meter-compact-geometry-20261106\\geometry.lua:181: redundant native header height writes\nstack traceback:\n\t[C]: in function 'assert'\n\t...e340df7e22b\\meter-compact-geometry-20261106\\geometry.lua:181: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxMeterSkin.lua": "3e4441c3d61a07aba45e07a69e245292326402be146b9c9b436283f41b29011f",
+    "tests\\native_meter_skin.lua": "7c633fae4760036178fba9d38af4c7bf755b98c0f0a073e2f0d53dfa3d3f4582",
+    "tests\\standalone_threat_meter.lua": "d534e04b7b6736473a757312318435ecea89d4500bdc97619335866c39804650"
+  },
+  "sourceUnchanged": true,
+  "result": "PASS:83checks in everycandidate;five matchedpairs;seven rejectedmutants;no resource growth or repeated header-height write"
+}

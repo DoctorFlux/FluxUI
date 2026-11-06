@@ -73,7 +73,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Battlezonemap/FluxDetailsForever.lua](../Battlezonemap/FluxDetailsForever.lua) | 0 | 0 | 3 | 2 | 0 |
 | [Battlezonemap/FluxDetailsWoWSkinTint.lua](../Battlezonemap/FluxDetailsWoWSkinTint.lua) | 0 | 0 | 0 | 1 | 2 |
 | [Battlezonemap/FluxMeterLayout.lua](../Battlezonemap/FluxMeterLayout.lua) | 2 | 0 | 2 | 1 | 0 |
-| [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 1 |
+| [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 8 |
 | [Battlezonemap/FluxThreat.lua](../Battlezonemap/FluxThreat.lua) | 3 | 0 | 0 | 18 | 1 |
 | [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua) | 4 | 0 | 0 | 2 | 0 |
 | [Battlezonemap/FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua) | 6 | 0 | 2 | 4 | 0 |

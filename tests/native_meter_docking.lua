@@ -86,7 +86,7 @@ local function boot(gamepad)
     function s.docked()
         local p = dm.points[1] or {}; local w = s.windows[2].points[1] or {}
         return dm:GetParent() == (gamepad and e.UIParent or s.host) and p[1] == "CENTER" and p[2] == s.host
-            and near(dm.width, s.host.width * 1.4) and near(dm.height, s.host.height * 1.4)
+            and near(dm.width, s.host.width / .8) and near(dm.height, s.host.height / .8)
             and near(dm.scale, gamepad and s.host.scale * .8 or .8)
             and #s.windows[2].points == 2 and w[1] == "TOPLEFT" and w[2] == dm and near(s.windows[2].scale, 1)
     end

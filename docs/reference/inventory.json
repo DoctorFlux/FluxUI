@@ -24380,8 +24380,8 @@
       "path": "Battlezonemap/FluxBlizzardMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 1495,
-      "sha256": "cdd1408c9d2cc2e3eb682bbcc24098c394622cac617c4979206b027fb71a5dca",
+      "lines": 1368,
+      "sha256": "ad0d3b1db751ce3b606dd37787ebe16eca3c9820410a5355b60ef799694d1df7",
       "clients": [
         "camelot",
         "cata",
@@ -24399,56 +24399,60 @@
       "functions": [
         {
           "name": "FluxBlizzardMeter:IsSupportedClient",
-          "line": 210
+          "line": 209
         },
         {
           "name": "FluxBlizzardMeter:IsAvailable",
-          "line": 217
+          "line": 216
         },
         {
           "name": "FluxBlizzardMeter:EnsureEnabled",
-          "line": 241
+          "line": 240
         },
         {
           "name": "FluxBlizzardMeter:IsContentAvailable",
-          "line": 248
+          "line": 247
         },
         {
           "name": "FluxBlizzardMeter:IsEmbedded",
-          "line": 258
+          "line": 257
         },
         {
           "name": "FluxBlizzardMeter:ResetAllSessionsIfOutOfCombat",
-          "line": 266
+          "line": 265
         },
         {
           "name": "FluxBlizzardMeter:Embed",
-          "line": 1026
+          "line": 892
         },
         {
           "name": "FluxBlizzardMeter:SyncGeometryFromLayout",
-          "line": 1129
+          "line": 986
         },
         {
           "name": "FluxBlizzardMeter:RefreshEmbeddedLayout",
-          "line": 1152
+          "line": 1009
+        },
+        {
+          "name": "FluxBlizzardMeter:GetLayoutStatus",
+          "line": 1020
         },
         {
           "name": "FluxBlizzardMeter:Hide",
-          "line": 1163
+          "line": 1027
         },
         {
           "name": "FluxBlizzardMeter:Show",
-          "line": 1192
+          "line": 1056
         },
         {
           "name": "FluxBlizzardMeter:Cleanup",
-          "line": 1224
+          "line": 1088
         }
       ],
       "events": [
         {
-          "line": 1302,
+          "line": 1165,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -24456,7 +24460,7 @@
           "context": "(\"Frame\")frame:"
         },
         {
-          "line": 1303,
+          "line": 1166,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -24464,7 +24468,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")frame:"
         },
         {
-          "line": 1304,
+          "line": 1167,
           "method": "RegisterEvent",
           "arguments": [
             "\"EDIT_MODE_LAYOUTS_UPDATED\""
@@ -24472,7 +24476,7 @@
           "context": "()thenframe:"
         },
         {
-          "line": 1379,
+          "line": 1242,
           "method": "RegisterEvent",
           "arguments": [
             "\"ADDON_LOADED\""
@@ -24480,7 +24484,7 @@
           "context": "(\"Frame\")startupFrame:"
         },
         {
-          "line": 1380,
+          "line": 1243,
           "method": "RegisterEvent",
           "arguments": [
             "\"VARIABLES_LOADED\""
@@ -24488,7 +24492,7 @@
           "context": "(\"ADDON_LOADED\")startupFrame:"
         },
         {
-          "line": 1381,
+          "line": 1244,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -24501,18 +24505,18 @@
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER1",
           "value": "/fluxblizzmeter",
-          "line": 1420
+          "line": 1283
         },
         {
           "kind": "alias",
           "name": "SLASH_FLUXBLIZZMETER2",
           "value": "/fbm",
-          "line": 1421
+          "line": 1284
         },
         {
           "kind": "handler",
           "name": "FLUXBLIZZMETER",
-          "line": 1422
+          "line": 1285
         }
       ],
       "widgets": [],
@@ -24521,7 +24525,7 @@
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            1392
+            1255
           ]
         }
       ]
@@ -25073,8 +25077,8 @@
       "path": "Battlezonemap/FluxMeterSkin.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 236,
-      "sha256": "f8bbb7a0e690ca100c6f6bd3842fa30570191d7aba68edf73bed6db4f7f3f9da",
+      "lines": 612,
+      "sha256": "cb43ca5f7988f32d335090aadc4353421d78023806e7ce1430b17bafef93a650",
       "clients": [
         "camelot",
         "cata",
@@ -25092,35 +25096,43 @@
       "functions": [
         {
           "name": "Skin:StyleFont",
-          "line": 71
+          "line": 97
+        },
+        {
+          "name": "Skin:StyleTitleFont",
+          "line": 107
         },
         {
           "name": "Skin:StyleRowBackground",
-          "line": 81
+          "line": 111
         },
         {
           "name": "Skin:ApplyToEntry",
-          "line": 87
+          "line": 122
+        },
+        {
+          "name": "Skin:SyncNativeTimer",
+          "line": 498
         },
         {
           "name": "Skin:ApplyToWindow",
-          "line": 174
+          "line": 537
         },
         {
           "name": "Skin:ApplyToOwnedPane",
-          "line": 188
+          "line": 556
         },
         {
           "name": "Skin:RefreshTheme",
-          "line": 219
+          "line": 579
         },
         {
           "name": "Skin:ReleaseWindow",
-          "line": 224
+          "line": 584
         },
         {
           "name": "Skin:ReleaseAllNative",
-          "line": 234
+          "line": 606
         }
       ],
       "events": [],
@@ -25379,8 +25391,8 @@
       "path": "Battlezonemap/FluxThreatMeter.lua",
       "classification": "active",
       "chapter": "10-flux-window.md",
-      "lines": 356,
-      "sha256": "68cdd3fddbd79dfbaef9ed872cb7a011d69b14cf4f3a92e2f568974cd3b087e3",
+      "lines": 364,
+      "sha256": "406c1380eb7950860ad24e3df0a29c809e3e0af1ca8df02a8d1fcd7f98231cbc",
       "clients": [
         "camelot",
         "cata",
@@ -25402,32 +25414,32 @@
         },
         {
           "name": "Meter:RefreshLayout",
-          "line": 312
+          "line": 320
         },
         {
           "name": "Meter:Embed",
-          "line": 325
+          "line": 333
         },
         {
           "name": "Meter:GetFrame",
-          "line": 337
+          "line": 345
         },
         {
           "name": "Meter:Show",
-          "line": 339
-        },
-        {
-          "name": "Meter:Hide",
           "line": 347
         },
         {
+          "name": "Meter:Hide",
+          "line": 355
+        },
+        {
           "name": "Meter:Cleanup",
-          "line": 352
+          "line": 360
         }
       ],
       "events": [
         {
-          "line": 277,
+          "line": 285,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -25435,7 +25447,7 @@
           "context": "})dopane:"
         },
         {
-          "line": 278,
+          "line": 286,
           "method": "RegisterUnitEvent",
           "arguments": [
             "\"UNIT_TARGET\"",
@@ -28950,8 +28962,8 @@
       "path": "Blizzard/Hide.lua",
       "classification": "active",
       "chapter": "07-runtime-architecture.md",
-      "lines": 278,
-      "sha256": "128652b87e2beeb2986492e445438abf6f6198ccd458918eb64a49e7f1cf0f92",
+      "lines": 289,
+      "sha256": "901e468da994df71b907ebe51b19916410d6c09622c48212045356723711185b",
       "clients": [
         "camelot",
         "cata",
@@ -28969,19 +28981,19 @@
       "functions": [
         {
           "name": "Blizz.SetMouseSuppressed",
-          "line": 175
+          "line": 186
         },
         {
           "name": "Blizz.Hide",
-          "line": 235
+          "line": 246
         },
         {
           "name": "Blizz.Unhide",
-          "line": 267
+          "line": 278
         },
         {
           "name": "Blizz.IsHidden",
-          "line": 276
+          "line": 287
         }
       ],
       "events": [
@@ -28994,7 +29006,7 @@
           "context": "]=truewaiter:"
         },
         {
-          "line": 194,
+          "line": 205,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -31624,8 +31636,8 @@
       "path": "Core/_tmp_coresmoke.lua",
       "classification": "development harness",
       "chapter": "08-shared-services.md",
-      "lines": 1584,
-      "sha256": "a18b39de4652f67597a6b897752ace0b1e5acd0ac97d84ddf8ff0dbe783b4fd1",
+      "lines": 1595,
+      "sha256": "23579e8f88fda08cdd0eb9d7430018fb8c41e448012cf7a111193718c76bd3bf",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -33334,8 +33346,8 @@
       "path": "Core/ButtonFX/Glow.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 1270,
-      "sha256": "6062c9b9310b2980eb2c0a98e6daef6fe8d2d2a4e2a49cc98c16ea4a01dbdb2c",
+      "lines": 1320,
+      "sha256": "02f770f7758b3879838ccd284b2c720daa460c34aec8fa3b4b28406afcb48a99",
       "clients": [
         "camelot",
         "cata",
@@ -33357,75 +33369,75 @@
         },
         {
           "name": "Glow.IsLive",
-          "line": 71
+          "line": 74
         },
         {
           "name": "Glow.Set",
-          "line": 402
+          "line": 417
         },
         {
           "name": "Glow.Transfer",
-          "line": 460
+          "line": 503
         },
         {
           "name": "Glow.ShouldSkipBirth",
-          "line": 510
+          "line": 560
         },
         {
           "name": "Glow.NoteShown",
-          "line": 517
+          "line": 567
         },
         {
           "name": "Glow.NoteHidden",
-          "line": 527
+          "line": 577
         },
         {
           "name": "Glow.FaceShowsSpell",
-          "line": 559
+          "line": 609
         },
         {
           "name": "Glow.SaoMembership",
-          "line": 689
+          "line": 739
         },
         {
           "name": "Glow.Want",
-          "line": 738
+          "line": 788
         },
         {
           "name": "Glow.AnyWanted",
-          "line": 752
+          "line": 802
         },
         {
           "name": "Glow.SilenceMixin",
-          "line": 760
+          "line": 810
         },
         {
           "name": "Glow.InstallSAO",
-          "line": 1187
+          "line": 1237
         },
         {
           "name": "trueframe.__sao.DoesIgnoreNative",
-          "line": 1194
+          "line": 1244
         },
         {
           "name": "returnfalseendframe.__sao.GetGlowID",
-          "line": 1197
+          "line": 1247
         },
         {
           "name": "endframe.__sao.EnableGlow",
-          "line": 1200
+          "line": 1250
         },
         {
           "name": "endframe.__sao.DisableGlow",
-          "line": 1208
+          "line": 1258
         },
         {
           "name": "Glow.NotifySAO",
-          "line": 1218
+          "line": 1268
         },
         {
           "name": "Glow.Start",
-          "line": 1225
+          "line": 1275
         }
       ],
       "events": [],
@@ -75754,6 +75766,31 @@
       "sv_sites": []
     },
     {
+      "path": "tests/forever_sao_glow.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 105,
+      "sha256": "ceb450f4039152ea9cccc92fd91c83a312e25745d13aa452c23f8c43afa533aa",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "overlay:IsShown",
+          "line": 12
+        },
+        {
+          "name": "_G.LibStub",
+          "line": 34
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/gold_currency_iteration.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -79188,7 +79225,7 @@
       "classification": "inactive source",
       "chapter": "34-assets.md",
       "lines": 177,
-      "sha256": "ab38155aa1655c98e069358a8b9ce7c40c95225acbeb50ff1e3756409b47ba55",
+      "sha256": "2ce6a5321809176f377c11239b332e9e7b7a40d69dca6e0399631aa4e41f75a6",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -79272,331 +79309,444 @@
       ]
     },
     {
+      "path": "tests/native_meter_grid_parity.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 174,
+      "sha256": "5dae8fc6bd117c5a978fe08c7c8d558c7271a0f8bc66c4ac34785a794171a6a0",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "frame:ClearAllPoints",
+          "line": 25
+        },
+        {
+          "name": "frame:SetPoint",
+          "line": 26
+        },
+        {
+          "name": "frame:SetScale",
+          "line": 27
+        },
+        {
+          "name": "frame:Hide",
+          "line": 28
+        },
+        {
+          "name": "env.EnsureNWindows",
+          "line": 32
+        },
+        {
+          "name": "returninstancesendenv.EnsureEmbeddedParentage",
+          "line": 33
+        },
+        {
+          "name": "endenv.WithEmbedAnchorWrite",
+          "line": 34
+        },
+        {
+          "name": "endenv.AssignSlot",
+          "line": 35
+        },
+        {
+          "name": "returnusedendenv.SetDetailsFrameLevels",
+          "line": 36
+        },
+        {
+          "name": "owned:IsAvailable",
+          "line": 66
+        },
+        {
+          "name": "owned:GetFrame",
+          "line": 67
+        },
+        {
+          "name": "owned:Embed",
+          "line": 68
+        },
+        {
+          "name": "owned:Show",
+          "line": 72
+        },
+        {
+          "name": "owned:Hide",
+          "line": 73
+        },
+        {
+          "name": "owned:Cleanup",
+          "line": 74
+        },
+        {
+          "name": "owned:RefreshLayout",
+          "line": 75
+        },
+        {
+          "name": "e.issecretvalue",
+          "line": 165
+        },
+        {
+          "name": "opaqueWindow:GetBarHeight",
+          "line": 167
+        },
+        {
+          "name": "opaqueWindow:GetBarSpacing",
+          "line": 168
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
       "path": "tests/native_meter_ownership.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 593,
-      "sha256": "15d2144b4335e26183678d49c11ca1ecfe4d786c3c721454c010740ef9bf8ab7",
+      "lines": 664,
+      "sha256": "0b6bb27e31f6a031597271ba5ee94484387f8243bd358dafe504339ef45c51dc",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "f:IsShown",
-          "line": 44
-        },
-        {
-          "name": "f:IsVisible",
           "line": 45
         },
         {
-          "name": "f:Show",
+          "name": "f:IsVisible",
           "line": 46
         },
         {
+          "name": "f:Show",
+          "line": 47
+        },
+        {
           "name": "f:Hide",
-          "line": 50
+          "line": 51
         },
         {
           "name": "f:SetShown",
-          "line": 54
-        },
-        {
-          "name": "f:SetParent",
           "line": 55
         },
         {
-          "name": "f:GetParent",
+          "name": "f:SetParent",
           "line": 56
         },
         {
-          "name": "f:GetWidth",
+          "name": "f:GetParent",
           "line": 57
         },
         {
-          "name": "f:GetHeight",
+          "name": "f:GetWidth",
           "line": 58
         },
         {
-          "name": "f:GetSize",
+          "name": "f:GetHeight",
           "line": 59
         },
         {
-          "name": "f:SetSize",
+          "name": "f:GetSize",
           "line": 60
         },
         {
-          "name": "f:GetEffectiveScale",
+          "name": "f:SetSize",
           "line": 61
         },
         {
-          "name": "f:SetScale",
+          "name": "f:GetEffectiveScale",
           "line": 62
         },
         {
-          "name": "f:ClearAllPoints",
+          "name": "f:SetScale",
           "line": 63
         },
         {
-          "name": "f:SetPoint",
+          "name": "f:ClearAllPoints",
           "line": 64
         },
         {
-          "name": "f:GetFrameStrata",
-          "line": 68
+          "name": "f:SetPoint",
+          "line": 65
         },
         {
-          "name": "f:GetFrameLevel",
+          "name": "f:GetFrameStrata",
           "line": 69
         },
         {
+          "name": "f:GetFrameLevel",
+          "line": 70
+        },
+        {
           "name": "f:HookScript",
-          "line": 71
+          "line": 72
         },
         {
           "name": "f:SetScript",
-          "line": 75
-        },
-        {
-          "name": "f:RegisterEvent",
           "line": 76
         },
         {
-          "name": "f:UnregisterEvent",
+          "name": "f:RegisterEvent",
           "line": 77
         },
         {
-          "name": "e.InCombatLockdown",
-          "line": 90
+          "name": "f:UnregisterEvent",
+          "line": 78
         },
         {
-          "name": "returns.combatende.UnitAffectingCombat",
+          "name": "e.InCombatLockdown",
           "line": 91
         },
         {
-          "name": "returns.combatende.wipe",
+          "name": "returns.combatende.UnitAffectingCombat",
           "line": 92
         },
         {
-          "name": "e.CreateFrame",
-          "line": 94
+          "name": "returns.combatende.wipe",
+          "line": 93
+        },
+        {
+          "name": "e.print",
+          "line": 95
+        },
+        {
+          "name": "ende.CreateFrame",
+          "line": 96
         },
         {
           "name": "e.hooksecurefunc",
-          "line": 101
+          "line": 103
         },
         {
           "name": "dm:Show",
-          "line": 132
-        },
-        {
-          "name": "dm:SetVisibility",
           "line": 134
         },
         {
+          "name": "dm:SetVisibility",
+          "line": 136
+        },
+        {
           "name": "dm:IsEditing",
-          "line": 138
-        },
-        {
-          "name": "dm:IsPlayerInCombat",
-          "line": 139
-        },
-        {
-          "name": "dm:IsPlayerInGroup",
           "line": 140
         },
         {
-          "name": "dm:ShouldBeShown",
+          "name": "dm:IsPlayerInCombat",
           "line": 141
         },
         {
+          "name": "dm:IsPlayerInGroup",
+          "line": 142
+        },
+        {
+          "name": "dm:ShouldBeShown",
+          "line": 143
+        },
+        {
           "name": "e.Enum.DamageMeterVisibility.InGroupthenreturns.inGroupendreturntrueendlocalupdateShown",
-          "line": 149
+          "line": 151
         },
         {
           "name": "dm:OnEvent",
-          "line": 155
+          "line": 157
         },
         {
           "name": "dm:UpdateShownState",
-          "line": 171
+          "line": 173
         },
         {
           "name": "dm:UpdateSessionTimerState",
-          "line": 174
+          "line": 176
         },
         {
           "name": "dm:GetPrimarySessionWindow",
-          "line": 177
-        },
-        {
-          "name": "dm:GetSessionWindow",
-          "line": 178
-        },
-        {
-          "name": "dm:GetWindowDataList",
           "line": 179
         },
         {
-          "name": "dm:GetMaxSessionWindowCount",
+          "name": "dm:GetSessionWindow",
           "line": 180
         },
         {
-          "name": "dm:GetCurrentSessionWindowCount",
+          "name": "dm:GetWindowDataList",
           "line": 181
         },
         {
+          "name": "dm:GetMaxSessionWindowCount",
+          "line": 182
+        },
+        {
+          "name": "dm:GetCurrentSessionWindowCount",
+          "line": 183
+        },
+        {
           "name": "dm:ForEachSessionWindow",
-          "line": 186
+          "line": 188
         },
         {
           "name": "dm:SetSessionWindowDamageMeterType",
-          "line": 187
+          "line": 189
         },
         {
           "name": "dm:SetSessionWindowSessionID",
-          "line": 190
+          "line": 192
         },
         {
           "name": "dm:CanHideSessionWindow",
-          "line": 194
+          "line": 198
         },
         {
           "name": "dm:HideSessionWindow",
-          "line": 195
+          "line": 199
         },
         {
           "name": "dm:CanShowNewSecondarySessionWindow",
-          "line": 196
-        },
-        {
-          "name": "value.font:SetTextColor",
           "line": 200
         },
         {
+          "name": "value.font:SetTextColor",
+          "line": 204
+        },
+        {
           "name": "value.font:SetText",
-          "line": 201
+          "line": 205
         },
         {
           "name": "value:GetName",
-          "line": 202
+          "line": 206
         },
         {
           "name": "value:GetNameText",
-          "line": 203
+          "line": 207
         },
         {
           "name": "win:GetDamageMeterType",
-          "line": 209
-        },
-        {
-          "name": "win:GetSessionType",
-          "line": 210
-        },
-        {
-          "name": "win:GetSessionID",
-          "line": 211
-        },
-        {
-          "name": "win.background:SetAlpha",
-          "line": 213
-        },
-        {
-          "name": "win:GetBackground",
-          "line": 214
-        },
-        {
-          "name": "win:GetBackgroundAlpha",
           "line": 215
         },
         {
-          "name": "win:UpdateBackground",
+          "name": "win:GetSessionType",
           "line": 216
         },
         {
-          "name": "win:ShouldUseClassColor",
+          "name": "win:GetSessionID",
+          "line": 217
+        },
+        {
+          "name": "win:GetBarHeight",
+          "line": 218
+        },
+        {
+          "name": "win:GetBarSpacing",
+          "line": 219
+        },
+        {
+          "name": "win:SetBarHeight",
           "line": 220
         },
         {
+          "name": "win:SetBarSpacing",
+          "line": 226
+        },
+        {
+          "name": "win.background:SetAlpha",
+          "line": 233
+        },
+        {
+          "name": "win:GetBackground",
+          "line": 234
+        },
+        {
+          "name": "win:GetBackgroundAlpha",
+          "line": 235
+        },
+        {
+          "name": "win:UpdateBackground",
+          "line": 236
+        },
+        {
+          "name": "win:ShouldUseClassColor",
+          "line": 240
+        },
+        {
           "name": "win:SetUseClassColor",
-          "line": 221
+          "line": 241
         },
         {
           "name": "win:ShouldShowBarIcons",
-          "line": 222
+          "line": 242
         },
         {
           "name": "win:SetShowBarIcons",
-          "line": 223
+          "line": 243
         },
         {
           "name": "win:GetSessionTimerFontString",
-          "line": 228
+          "line": 248
         },
         {
           "name": "win:GetCombatSession",
-          "line": 229
+          "line": 249
         },
         {
           "name": "win:IsPlayerInCombat",
-          "line": 230
+          "line": 250
         },
         {
           "name": "win:SetOnUpdateReason",
-          "line": 231
+          "line": 251
         },
         {
           "name": "win:UpdateSessionTimerState",
-          "line": 232
-        },
-        {
-          "name": "e.SecondsToClock",
-          "line": 238
-        },
-        {
-          "name": "win:ForEachEntryFrame",
           "line": 252
         },
         {
+          "name": "e.SecondsToClock",
+          "line": 258
+        },
+        {
+          "name": "win:ForEachEntryFrame",
+          "line": 272
+        },
+        {
           "name": "win:InitEntry",
-          "line": 253
+          "line": 273
         },
         {
           "name": "win.sourceWindow:GetBackground",
-          "line": 259
+          "line": 279
         },
         {
           "name": "win.sourceWindow:ForEachEntryFrame",
-          "line": 261
+          "line": 281
         },
         {
           "name": "win.sourceWindow:InitEntry",
-          "line": 262
+          "line": 282
         },
         {
           "name": "win:GetSourceWindow",
-          "line": 266
-        },
-        {
-          "name": "dm:ShowNewSecondarySessionWindow",
-          "line": 269
-        },
-        {
-          "name": "s.nativeMethodsIntact",
-          "line": 280
-        },
-        {
-          "name": "s.event",
           "line": 286
         },
         {
+          "name": "dm:ShowNewSecondarySessionWindow",
+          "line": 289
+        },
+        {
+          "name": "s.nativeMethodsIntact",
+          "line": 301
+        },
+        {
+          "name": "s.event",
+          "line": 307
+        },
+        {
           "name": "s.drain",
-          "line": 291
+          "line": 312
         }
       ],
       "events": [
         {
-          "line": 76,
+          "line": 77,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -79613,171 +79763,303 @@
       "path": "tests/native_meter_skin.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 266,
-      "sha256": "ec8912269a93e82208a559c429118031363782cfd49ed20a38fd580a581baa0e",
+      "lines": 560,
+      "sha256": "25197257562f4d2a6ceea790abc7c76b6ac253be21bc0d949ee1d5c9d1b991fc",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
-          "name": "env.UnitClass",
+          "name": "table.unpackenv.InCombatLockdown",
           "line": 15
         },
         {
-          "name": "env.issecretvalue",
+          "name": "env.UnitClass",
           "line": 17
         },
         {
+          "name": "env.issecretvalue",
+          "line": 19
+        },
+        {
           "name": "trueendenv.CreateFrame",
-          "line": 18
+          "line": 20
         },
         {
           "name": "endenv.hooksecurefunc",
-          "line": 24
-        },
-        {
-          "name": "h.font",
           "line": 28
         },
         {
-          "name": "fs:SetFont",
-          "line": 30
-        },
-        {
-          "name": "fs:GetFont",
-          "line": 35
-        },
-        {
-          "name": "fs:CanWordWrap",
-          "line": 36
-        },
-        {
-          "name": "fs:CanNonSpaceWrap",
-          "line": 37
-        },
-        {
-          "name": "fs:SetWordWrap",
+          "name": "h.font",
           "line": 38
         },
         {
-          "name": "fs:SetNonSpaceWrap",
-          "line": 39
-        },
-        {
-          "name": "fs:SetShadowColor",
+          "name": "fs:SetFont",
           "line": 40
         },
         {
-          "name": "fs:SetShadowOffset",
-          "line": 41
+          "name": "fs:GetFont",
+          "line": 46
         },
         {
-          "name": "fs:SetTextColor",
-          "line": 42
-        },
-        {
-          "name": "fs:SetPoint",
-          "line": 44
-        },
-        {
-          "name": "h.texture",
+          "name": "fs:CanWordWrap",
           "line": 47
         },
         {
-          "name": "t:SetTexture",
+          "name": "fs:CanNonSpaceWrap",
+          "line": 48
+        },
+        {
+          "name": "fs:SetWordWrap",
+          "line": 49
+        },
+        {
+          "name": "fs:SetNonSpaceWrap",
           "line": 50
         },
         {
-          "name": "t:SetPoint",
+          "name": "fs:SetShadowColor",
           "line": 51
         },
         {
-          "name": "t:SetWidth",
+          "name": "fs:SetShadowOffset",
           "line": 52
         },
         {
-          "name": "t:SetHeight",
+          "name": "fs:SetTextColor",
           "line": 53
         },
         {
-          "name": "t:SetAllPoints",
-          "line": 54
+          "name": "fs:GetAlpha",
+          "line": 56
         },
         {
-          "name": "t:SetVertexColor",
-          "line": 55
+          "name": "fs:GetWidth",
+          "line": 57
         },
         {
-          "name": "t:SetColorTexture",
+          "name": "fs:SetWidth",
           "line": 58
         },
         {
-          "name": "t:SetAlpha",
+          "name": "fs:SetAlpha",
           "line": 59
         },
         {
-          "name": "t:Show",
+          "name": "fs:ClearAllPoints",
           "line": 60
         },
         {
-          "name": "t:Hide",
+          "name": "fs:GetNumPoints",
           "line": 61
         },
         {
-          "name": "h.entry",
-          "line": 65
+          "name": "fs:GetPoint",
+          "line": 62
         },
         {
-          "name": "bar:SetStatusBarTexture",
-          "line": 68
+          "name": "fs:SetPoint",
+          "line": 64
         },
         {
-          "name": "h.window",
+          "name": "h.texture",
+          "line": 71
+        },
+        {
+          "name": "t:SetTexture",
+          "line": 74
+        },
+        {
+          "name": "t:ClearAllPoints",
           "line": 80
         },
         {
-          "name": "w:CreateTexture",
+          "name": "t:SetTexCoord",
+          "line": 81
+        },
+        {
+          "name": "t:SetDrawLayer",
           "line": 82
         },
         {
-          "name": "w.GetDamageMeterTypeName",
-          "line": 90
+          "name": "t:GetAlpha",
+          "line": 83
         },
         {
-          "name": "returnw.typeFontendw.GetSessionName",
-          "line": 91
+          "name": "t:SetPoint",
+          "line": 84
         },
         {
-          "name": "returnw.sessionFontendw.GetSessionTimerFontString",
-          "line": 92
+          "name": "t:SetWidth",
+          "line": 85
         },
         {
-          "name": "w.GetBackground",
+          "name": "t:SetHeight",
+          "line": 86
+        },
+        {
+          "name": "t:GetHeight",
+          "line": 87
+        },
+        {
+          "name": "t:SetAllPoints",
+          "line": 88
+        },
+        {
+          "name": "t:SetVertexColor",
+          "line": 89
+        },
+        {
+          "name": "t:SetColorTexture",
+          "line": 93
+        },
+        {
+          "name": "t:SetAlpha",
           "line": 94
         },
         {
-          "name": "w.GetBackground",
+          "name": "t:Show",
           "line": 97
         },
         {
+          "name": "t:Hide",
+          "line": 98
+        },
+        {
+          "name": "h.entry",
+          "line": 102
+        },
+        {
+          "name": "bar:SetStatusBarTexture",
+          "line": 105
+        },
+        {
+          "name": "h.window",
+          "line": 117
+        },
+        {
+          "name": "w:CreateTexture",
+          "line": 119
+        },
+        {
+          "name": "w:HookScript",
+          "line": 124
+        },
+        {
+          "name": "w:IsMouseOver",
+          "line": 125
+        },
+        {
+          "name": "w:GetLeft",
+          "line": 126
+        },
+        {
+          "name": "w:GetEffectiveScale",
+          "line": 127
+        },
+        {
+          "name": "w.GetDamageMeterTypeName",
+          "line": 132
+        },
+        {
+          "name": "returnw.typeFontendw.GetSessionName",
+          "line": 133
+        },
+        {
+          "name": "returnw.sessionFontendw.GetSessionTimerFontString",
+          "line": 134
+        },
+        {
+          "name": "w.MinimizeContainer:CreateTexture",
+          "line": 137
+        },
+        {
+          "name": "b:HookScript",
+          "line": 141
+        },
+        {
+          "name": "b:IsMenuOpen",
+          "line": 142
+        },
+        {
+          "name": "b:GetLeft",
+          "line": 143
+        },
+        {
+          "name": "b:GetEffectiveScale",
+          "line": 144
+        },
+        {
+          "name": "b:OnMenuOpened",
+          "line": 148
+        },
+        {
+          "name": "b:OnMenuClosed",
+          "line": 149
+        },
+        {
+          "name": "w.GetBackground",
+          "line": 159
+        },
+        {
+          "name": "w.GetBackground",
+          "line": 162
+        },
+        {
           "name": "owned.Title:SetText",
-          "line": 203
+          "line": 354
         },
         {
           "name": "fs:SetText",
-          "line": 222
+          "line": 375
         },
         {
           "name": "plain:CreateTexture",
-          "line": 227
+          "line": 380
         },
         {
           "name": "plain.Title:SetText",
-          "line": 228
+          "line": 381
         },
         {
           "name": "fallback.env.UnitClass",
-          "line": 259
+          "line": 412
+        },
+        {
+          "name": "w:GetTop",
+          "line": 464
+        },
+        {
+          "name": "w:GetEffectiveScale",
+          "line": 465
+        },
+        {
+          "name": "w:IsVisible",
+          "line": 466
+        },
+        {
+          "name": "timer:SetPoint",
+          "line": 471
+        },
+        {
+          "name": "timer:SetAlpha",
+          "line": 475
+        },
+        {
+          "name": "control:GetNumPoints",
+          "line": 477
+        },
+        {
+          "name": "control:GetPoint",
+          "line": 478
+        },
+        {
+          "name": "control:ClearAllPoints",
+          "line": 479
+        },
+        {
+          "name": "control:SetPoint",
+          "line": 480
         }
       ],
       "events": [],
@@ -79815,139 +80097,168 @@
       ]
     },
     {
-      "path": "tests/native_mouse_suppression.lua",
+      "path": "tests/native_meter_writer_provenance.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 300,
-      "sha256": "9543990ebf63eeac932e46bbdc9a89f544408c20d9e2455fea6c9a00b86f2fc7",
+      "lines": 117,
+      "sha256": "b8fe217df199afd0e1bdf02e27da54be40831a47863cd7f46a8db90cbfaf3bb0",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
+          "name": "e.C_DamageMeter.ResetAllCombatSessions",
+          "line": 59
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/native_mouse_suppression.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 334,
+      "sha256": "df78bd69fe2aab87e7572eb1a0c69867c470e30da88b4f57c0bf2c05355f0aa3",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.issecretvalue",
+          "line": 25
+        },
+        {
+          "name": "secretendenv.type",
+          "line": 26
+        },
+        {
           "name": "methods:GetName",
-          "line": 41
-        },
-        {
-          "name": "methods:IsProtected",
-          "line": 42
-        },
-        {
-          "name": "methods:GetParent",
-          "line": 43
-        },
-        {
-          "name": "methods:SetParent",
           "line": 44
         },
         {
-          "name": "methods:GetChildren",
+          "name": "methods:IsProtected",
           "line": 45
         },
         {
-          "name": "methods:SetAllPoints",
+          "name": "methods:GetParent",
           "line": 46
         },
         {
-          "name": "methods:IsShown",
+          "name": "methods:SetParent",
           "line": 47
         },
         {
-          "name": "methods:Hide",
+          "name": "methods:GetChildren",
           "line": 48
         },
         {
-          "name": "methods:Show",
+          "name": "methods:SetAllPoints",
           "line": 49
         },
         {
-          "name": "methods:SetAlpha",
+          "name": "methods:IsShown",
           "line": 50
         },
         {
-          "name": "methods:GetAlpha",
+          "name": "methods:Hide",
           "line": 51
         },
         {
-          "name": "methods:IsMouseClickEnabled",
+          "name": "methods:Show",
           "line": 52
         },
         {
-          "name": "methods:IsMouseMotionEnabled",
+          "name": "methods:SetAlpha",
           "line": 53
         },
         {
-          "name": "methods:IsMouseWheelEnabled",
+          "name": "methods:GetAlpha",
           "line": 54
         },
         {
-          "name": "methods:IsMouseEnabled",
+          "name": "methods:IsMouseClickEnabled",
           "line": 55
         },
         {
-          "name": "methods:SetMouseClickEnabled",
+          "name": "methods:IsMouseMotionEnabled",
           "line": 56
         },
         {
+          "name": "methods:IsMouseWheelEnabled",
+          "line": 62
+        },
+        {
+          "name": "methods:IsMouseEnabled",
+          "line": 63
+        },
+        {
+          "name": "methods:SetMouseClickEnabled",
+          "line": 64
+        },
+        {
           "name": "methods:SetMouseMotionEnabled",
-          "line": 57
-        },
-        {
-          "name": "methods:EnableMouseWheel",
-          "line": 58
-        },
-        {
-          "name": "methods:EnableMouse",
-          "line": 59
-        },
-        {
-          "name": "methods:SetScript",
-          "line": 60
-        },
-        {
-          "name": "methods:HookScript",
           "line": 65
         },
         {
-          "name": "methods:RegisterEvent",
+          "name": "methods:EnableMouseWheel",
           "line": 66
         },
         {
-          "name": "methods:RegisterUnitEvent",
+          "name": "methods:EnableMouse",
           "line": 67
         },
         {
-          "name": "methods:UnregisterEvent",
+          "name": "methods:SetScript",
           "line": 68
         },
         {
-          "name": "methods:UnregisterAllEvents",
-          "line": 72
+          "name": "methods:HookScript",
+          "line": 73
         },
         {
-          "name": "methods:IsEventRegistered",
+          "name": "methods:RegisterEvent",
+          "line": 74
+        },
+        {
+          "name": "methods:RegisterUnitEvent",
+          "line": 75
+        },
+        {
+          "name": "methods:UnregisterEvent",
           "line": 76
         },
         {
-          "name": "endreturnfalseendenv.InCombatLockdown",
+          "name": "methods:UnregisterAllEvents",
           "line": 80
         },
         {
+          "name": "methods:IsEventRegistered",
+          "line": 84
+        },
+        {
+          "name": "endreturnfalseendenv.InCombatLockdown",
+          "line": 88
+        },
+        {
           "name": "returns.combatendenv.CreateFrame",
-          "line": 81
+          "line": 89
         },
         {
           "name": "env.FluxUnitFrames_ShouldUseFlux",
-          "line": 83
+          "line": 91
         },
         {
           "name": "env.SuppressOwnedEditModeChrome",
-          "line": 225
+          "line": 256
         }
       ],
       "events": [
         {
-          "line": 66,
+          "line": 74,
           "method": "RegisterEvent",
           "arguments": [
             "event"
@@ -79955,7 +80266,7 @@
           "context": "1endfunctionmethods:"
         },
         {
-          "line": 67,
+          "line": 75,
           "method": "RegisterUnitEvent",
           "arguments": [
             "event",
@@ -79973,8 +80284,8 @@
       "path": "tests/native_threat_layout.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 297,
-      "sha256": "d0391dccd95998b5b937832b81c0f19af5f75fc327aa8384183a12745be9a0a3",
+      "lines": 313,
+      "sha256": "aaa2f7d80fc9b4ccf9a818c421129d5519e74958f81e75cbb7f23e31fa7fe4cc",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -80021,11 +80332,11 @@
         },
         {
           "name": "env.C_AddOns.LoadAddOn",
-          "line": 218
+          "line": 234
         },
         {
           "name": "cv:nativeUpdate",
-          "line": 219
+          "line": 235
         }
       ],
       "events": [],
@@ -80039,7 +80350,7 @@
             39,
             107,
             109,
-            282
+            298
           ]
         }
       ]
@@ -82030,8 +82341,8 @@
       "path": "tests/standalone_threat_meter.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 347,
-      "sha256": "c7faea0b22e56f589caa0fa0615e041505a783d7f5cc46da8e6b1736ca530fdd",
+      "lines": 390,
+      "sha256": "417648644d191e2c51c21852113fab4d553d7b1760f15981d767bf1dd3ddd29c",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -82283,6 +82594,14 @@
         {
           "name": "s.sample",
           "line": 163
+        },
+        {
+          "name": "expected:ClearAllPoints",
+          "line": 376
+        },
+        {
+          "name": "expected:SetPoint",
+          "line": 377
         }
       ],
       "events": [

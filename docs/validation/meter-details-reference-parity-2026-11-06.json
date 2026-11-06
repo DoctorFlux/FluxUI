@@ -1,0 +1,262 @@
+{
+  "dateUtc": "2026-11-06T06:06:03.334075+00:00",
+  "baselineCommit": "a07c449b1783a7bc876943e5909c3573cfec267a",
+  "baselineRuntimeRawSHA256": "056773f39a24373f5912196db71225a66b9ef06ad1c51274c79f5e961f7a246b",
+  "candidateHashes": {
+    "Battlezonemap\\FluxMeterSkin.lua": "05003214b8cf144fe583f4e14dffcba3c11616f2adc72e8e4c1e19e371038c22",
+    "tests\\native_meter_skin.lua": "25f5c185cd0751436dd6b0d9eb6a0cddf419d6cf3e4beb24de498ed4bffa973b",
+    "tests\\standalone_threat_meter.lua": "3a6b8f7d0e375842d0226f760225380da357d5720665153aaf398e04aed891eb"
+  },
+  "host": "Windows-10-10.0.26200-SP0",
+  "method": "Production Skin with realistic shared texture-alpha mock contract (SetVertexColor alpha andSetAlpha alias).77semanticchecks and500paint/hover+20release/reactivation replay. FiveAB/BAfreshprocesspairs;startupincluded. Background.91 isanalyticconsolidationoftwoidenticalGround.70layersfromDetailsuserprofile/source. Actualnativevisual/alpha/controlacceptanceparent-owned. NoFPS/CPU/memory/secretVM/taint/pixelparity claim. Baseline missingnewlifetimebehavior reportsfailures/abort ratherthan76completedchecks.",
+  "pairs": [
+    {
+      "repetition": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.028844599990407005,
+          "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nFAIL native chrome shares the actual background paint owner while source geometry stays native\nFAIL main title moves to the left header inset while retaining the native right constraint\nFAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.04416799999307841,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=hovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=open-menu parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=20-reactivations parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=released parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.03550040000118315,
+          "stdout": "native meter skin: 77 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02403440000489354,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=hovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=open-menu parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=20-reactivations parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=released parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.031011699989903718,
+          "stdout": "native meter skin: 77 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.022318100003758445,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=hovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=open-menu parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=20-reactivations parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=released parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.020278100011637434,
+          "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nFAIL native chrome shares the actual background paint owner while source geometry stays native\nFAIL main title moves to the left header inset while retaining the native right constraint\nFAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.018968699994729832,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=hovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=open-menu parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=20-reactivations parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=released parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.021647199988365173,
+          "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nFAIL native chrome shares the actual background paint owner while source geometry stays native\nFAIL main title moves to the left header inset while retaining the native right constraint\nFAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.020619999995687976,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=hovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=open-menu parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=20-reactivations parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=released parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.030243300017900765,
+          "stdout": "native meter skin: 77 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.019775399996433407,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=hovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=open-menu parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=20-reactivations parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=released parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.0310602999816183,
+          "stdout": "native meter skin: 77 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02220459998352453,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=hovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=open-menu parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=20-reactivations parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=released parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\n",
+          "stderr": ""
+        }
+      },
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.02005040002404712,
+          "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nFAIL native chrome shares the actual background paint owner while source geometry stays native\nFAIL main title moves to the left header inset while retaining the native right constraint\nFAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.019655999989481643,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=hovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=open-menu parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=20-reactivations parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=released parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\n",
+          "stderr": ""
+        }
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "regression": {
+          "exitCode": 1,
+          "processSeconds": 0.019139699987135828,
+          "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nFAIL native chrome shares the actual background paint owner while source geometry stays native\nFAIL main title moves to the left header inset while retaining the native right constraint\nFAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+          "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.019389199995202944,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=hovered parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=open-menu parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=20-reactivations parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\nPARITY stage=released parts=9 correctPaintOwner=false panelAlpha=1.000000000 rowAlpha=1.000000000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=0 menuOpenHooks=0\n",
+          "stderr": ""
+        }
+      },
+      "candidate": {
+        "regression": {
+          "exitCode": 0,
+          "processSeconds": 0.029448999994201586,
+          "stdout": "native meter skin: 77 checks, 0 failures; no native secrets/rendering/taint emulated\n",
+          "stderr": ""
+        },
+        "resources": {
+          "exitCode": 0,
+          "processSeconds": 0.02143120000255294,
+          "stdout": "PARITY stage=unhovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=hovered parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=open-menu parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.920000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=500-paints-hover-cycles parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=20-reactivations parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=0.000000000 gearAlpha=0.000000000 titleLeftOffset=3.750000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\nPARITY stage=released parts=9 correctPaintOwner=true panelAlpha=0.910000000 rowAlpha=0.116164000 typeArrowAlpha=1.000000000 gearAlpha=1.000000000 titleLeftOffset=0.000000 textures=17 fonts=6 themeHooks=1 windowEnterHooks=1 menuOpenHooks=1\n",
+          "stderr": ""
+        }
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "parent_frame_paint_owner",
+      "sourceRawSHA256": "bcdc5cb26a6d91c80c9657236f7dd47293c8d923a842a91d80b60f53a9fa09f3",
+      "exitCode": 1,
+      "processSeconds": 0.047930599976098165,
+      "stdout": "FAIL native chrome shares the actual background paint owner while source geometry stays native\nnative meter skin: 77 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "opaque_panel",
+      "sourceRawSHA256": "3d618978bff97a80195f272072b8f2c761c7e29230f7900165bd62328866a7d7",
+      "exitCode": 1,
+      "processSeconds": 0.04798599999048747,
+      "stdout": "FAIL actual nested native background receives the common panel fill\nFAIL native background alpha reset is normalized on style reapplication\nFAIL source-window shape skins without a fabricated header\nnative meter skin: 77 checks, 3 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "opaque_row",
+      "sourceRawSHA256": "c95920878c8fc9740be3feece01c3ac1ec2f2e6b99bb3d6775d8a6e7d63a48d7",
+      "exitCode": 1,
+      "processSeconds": 0.04794129999936558,
+      "stdout": "FAIL row background shares the existing FluxDetails fill without multiplying native alpha\nFAIL row paint combines the actual DGround artwork with its original vertex overlay\nnative meter skin: 77 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no_hover_menu",
+      "sourceRawSHA256": "62aa2da342746cb3fa486653a5c8189f16a594c7183ae578ddf0816b750395d0",
+      "exitCode": 1,
+      "processSeconds": 0.03447670000605285,
+      "stdout": "FAIL unhovered menu regions hide while main title text stays visible\nFAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nFAIL closing the native menu restores the unhovered appearance\nFAIL font repaint does not unhide the native session menu label\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: attempt to get length of a nil value (field 'OnEnter')\nstack traceback:\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:299: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "hide_entire_type_button",
+      "sourceRawSHA256": "9683096ebc902e2d1b3b0a3948be26c6253e57ac88b21149a4f0d618164bd190",
+      "exitCode": 1,
+      "processSeconds": 0.0342691000259947,
+      "stdout": "",
+      "stderr": "lua: ...rence-parity-20261106\\mutant-hide_entire_type_button.lua:296: meter data/native ownership was accessed\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:8: in method 'SetAlpha'\n\t...rence-parity-20261106\\mutant-hide_entire_type_button.lua:296: in upvalue 'SetMenuVisible'\n\t...rence-parity-20261106\\mutant-hide_entire_type_button.lua:318: in field 'syncMenu'\n\t...rence-parity-20261106\\mutant-hide_entire_type_button.lua:350: in upvalue 'InstallMenuHover'\n\t...rence-parity-20261106\\mutant-hide_entire_type_button.lua:377: in method 'ApplyToWindow'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:202: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "reveal_left_attribute_arrow",
+      "sourceRawSHA256": "d25eea5ec9476bf8791f1b924dc3972223660e8fbd97a0242695cf05df80569b",
+      "exitCode": 1,
+      "processSeconds": 0.046269899990875274,
+      "stdout": "FAIL hover reveals right menus while the left attribute icon stays suppressed and title stays visible\nFAIL an open native dropdown keeps menus visible after the pointer leaves\nnative meter skin: 77 checks, 2 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no_title_alignment",
+      "sourceRawSHA256": "60fd31524e599e34b1c2b448e029a644a78414ad2c796378520cc3aeb817cc1a",
+      "exitCode": 1,
+      "processSeconds": 0.04778200000873767,
+      "stdout": "FAIL main title moves to the left header inset while retaining the native right constraint\nnative meter skin: 77 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lose_menu_alpha_on_release",
+      "sourceRawSHA256": "22f9bfddb3fb823d02a917d42df43a0a0f87330a78236e51ca59e50cb85f8ef1",
+      "exitCode": 1,
+      "processSeconds": 0.045599900011438876,
+      "stdout": "FAIL release restores original title anchors and native menu-region alpha\nnative meter skin: 77 checks, 1 failures; no native secrets/rendering/taint emulated\n",
+      "stderr": "lua: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\native_meter_skin.lua:408: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "candidateHashesAfter": {
+    "Battlezonemap\\FluxMeterSkin.lua": "05003214b8cf144fe583f4e14dffcba3c11616f2adc72e8e4c1e19e371038c22",
+    "tests\\native_meter_skin.lua": "25f5c185cd0751436dd6b0d9eb6a0cddf419d6cf3e4beb24de498ed4bffa973b",
+    "tests\\standalone_threat_meter.lua": "3a6b8f7d0e375842d0226f760225380da357d5720665153aaf398e04aed891eb"
+  },
+  "sourceUnchanged": true,
+  "result": "PASS:77checks in everycandidate;five matchedpairs;eight rejectedmutants;constanttextures/fonts/hooksafter500paints+20reactivations"
+}

@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 195 |
+| inactive source | 198 |
 
 ## Addon sources
 
@@ -643,6 +643,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/flux_mail_quick_attach.lua](../tests/flux_mail_quick_attach.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_select.lua](../tests/flux_mail_select.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_settings.lua](../tests/flux_mail_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/forever_sao_glow.lua](../tests/forever_sao_glow.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/gold_currency_iteration.lua](../tests/gold_currency_iteration.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_child_startup.lua](../tests/grid_child_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_hotkey_refresh.lua](../tests/grid_hotkey_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -679,9 +680,11 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/native_forever_bank.lua](../tests/native_forever_bank.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_menu_input.lua](../tests/native_menu_input.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_meter_docking.lua](../tests/native_meter_docking.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/native_meter_grid_parity.lua](../tests/native_meter_grid_parity.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_meter_ownership.lua](../tests/native_meter_ownership.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_meter_skin.lua](../tests/native_meter_skin.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_meter_startup.lua](../tests/native_meter_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/native_meter_writer_provenance.lua](../tests/native_meter_writer_provenance.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_mouse_suppression.lua](../tests/native_mouse_suppression.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/native_threat_layout.lua](../tests/native_threat_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/objective_tracker_scroll.lua](../tests/objective_tracker_scroll.lua) | inactive source | — | [34-assets.md](34-assets.md) |

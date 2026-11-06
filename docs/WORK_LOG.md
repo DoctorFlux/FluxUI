@@ -1,5 +1,85 @@
 # Work log
 
+6 November native secret failures at 07:45/07:55 (specIconID) and 07:57
+(durationSeconds) invalidate a blanket taint-safe claim for prior art/grid stages.
+The current candidate keeps visual docking/native controls without
+direct Lua data/configuration writers. Missing native pane types require explicit
+native-control setup; selected sessions remain native, with no reset/data deletion.
+Implemented one topmost/leftmost native timer using physical screen geometry,
+original native time text/policy, out-of-combat header layout and combat alpha
+election. Writer 26/timer 113 focused checks pass in five alternating pairs each;
+5/9 mutants are rejected. Frozen source identities and raw samples are recorded
+in [writer evidence](validation/meter-native-writer-comparison-2026-11-06.json) and
+[timer evidence](validation/meter-single-timer-comparison-2026-11-06.json).
+Final full validation passes 162 scripts /819 Lua syntax files with zero failures;
+all 819 source hashes/membership remain unchanged (corpus
+`5b008deec37a9e32ebf53442630c19012f9ce52a78ae0e7cc46e900552b2e377`).
+[Current manifest](validation/meter-timer-native-boundary-2026-11-06.json). The first full run
+failed four stale Core meter assertions; only the fixture contract was updated,
+without restoring unsafe production setters. Older reports retain their scopes.
+External Meter-timer-and-taint-checkpoint-20261106T072904Z preserves 1,571 actual
+source files /177 settings/all-ref history, including concurrent raid/glow work;
+ZIP/bundle PASS, source SHA256
+`7dc36164c7a5abdd83e66e472990ebd560897fbd39ccc7d0aac6dd76c81d4205`.
+At 07:31 UTC no WoW process remained; no controlled fresh reload or new live
+candidate/taint/visual check ran. Native commands were not issued this turn.
+[Boundary record](METER_STANDALONE.md#current-native-configuration-boundary).
+
+6 November FOREVER-SAO-GLOW-01: verified main `a07c449`, the external
+`FluxUI-forever-sao-20261106` source/history checkpoint, installed SAO 2.8.9
+source hashes and read-only `glow.enabled=true` setting. Edited only the shared
+Glow renderer and a focused fixture; preserved unrelated meter/raid work.
+Saved pre-edit source fails the bar-render check; candidate passes 25 checks,
+and Bars smoke passes 17,454 refresh checks. Full desktop validation: 819/819
+Lua syntax, 160/162 scripts; the failures are in-progress meter Core smoke
+and native skin assertions (neither script loads Glow.lua).
+No native reload, gameplay, input, profiler or settings change. Native visual,
+taint and performance acceptance pending. [Record](FOREVER_SAO_GLOW.md).
+
+6 November raid secret mouse follow-up: user stack at 07:08:57 identifies
+`Blizzard/Hide.lua:139`, reached from `FluxRaidLayout.lua:778` while hiding the
+native grid. Baseline main `a07c449b1783a7bc876943e5909c3573cfec267a` is
+present locally; the dated external Meter-texture-checkpoint-20261106T053635Z
+and its verified source/history/settings identity remain recorded below.
+On-disk Retail WTF Config.wtf and Flux-named settings were found read-only; no
+settings were reset or copied into AddOns. Existing unrelated meter work is
+preserved. [Forever 70790 source](https://github.com/Gethe/wow-ui-source/commit/eac30af597e5aaa43a60f6675ef5fdcea100375f)
+and [Retail 70783 source](https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f)
+were checked on 6 November; the pinned Forever FrameScript documentation declares
+`issecretvalue`, while SimpleScriptRegionAPI declares the mouse getters as bool.
+The supplied native stack proves this particular getter can be secret in tainted
+execution; declarations alone do not certify addon access or setter behavior.
+The focused mouse fixture passes 2,545 checks across five modeled branches and
+rejects 14 mutants; raid startup passes 2,073 assertions. Native secure VM,
+hit testing, raid/party/combat/Edit Mode, visual and frame-time acceptance remain
+pending. [Implementation and checks](49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+Full desktop validation passes 159 scripts / 816 Lua syntax files with zero
+failures; [current source manifest](validation/raid-secret-mouse-2026-11-06.json).
+Normalized candidate `Blizzard/Hide.lua` SHA256 is
+`901e468da994df71b907ebe51b19916410d6c09622c48212045356723711185b`.
+The generated source indexes were refreshed and the read-only documentation
+validator passes 849 sources / 14,101 local links. No WoW process was running;
+native checks were not attempted.
+During documentation refresh, the current uncommitted meter artwork candidate
+exposed two stale standalone-threat test anchors (old 32-unit header geometry).
+Only those assertions were reconciled to its existing 14-unit header; focused
+threat now passes 70 checks. The historical 69-check meter reports below retain
+their original source scope. No meter runtime behavior was changed in this batch.
+
+6 November installed-art follow-up: clean main baseline
+`a07c449b1783a7bc876943e5909c3573cfec267a`. Verified external checkpoint
+Meter-texture-checkpoint-20261106T053635Z preserves 1,561 actual files, 175 settings
+including Details and all-ref history; source SHA256
+`345f0c8fd943cc0780635ef64a470c0c31f7dddc9898ac382cde22560db527ee`.
+A helper initially targeted AddOns; its three verified archives were moved
+outside before runtime edits, and mirrored copies were verified absent from all
+five clients. No backup/private settings are included in Git.
+Read-only inspection confirms Forever Details #Details.20261104.15400.172 and
+the source nine-piece atlas/Ground/DGround/Accidental mapping. Code references
+installed paths without running providers or copying files; fallback remains.
+Final hashes, paired results and candidate native inspection are being recorded.
+[Requirement](METER_STANDALONE.md#installed-wow-interface-art-references).
+
 5 November one-line/shared appearance follow-up uses actual pre-style checkpoint
 Mail-auction-publication-20261105T215820Z: 1,557 files /160 settings/all-ref history,
 ZIP/bundle PASS; source SHA256

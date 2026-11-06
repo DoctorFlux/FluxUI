@@ -21,6 +21,9 @@ local function exercise(branch, source)
     local sources = type(source) == "table" and source or { hide = source }
     local env = setmetatable({}, { __index = _G }); env._G = env
     local s = { combat = false, ready = false, wanted = true, writes = 0, hooks = 0, frames = {}, timers = {}, deferred = {} }
+    local secret = {}
+    env.issecretvalue = function(value) return value == secret end
+    env.type = function(value) return value == secret and "boolean" or type(value) end
     local methods = {}
     local function frame(name, owned, editMode, split, click, motion, wheel)
         local f = { name = name, owned = owned, editMode = editMode, children = {}, scripts = {}, events = {},
@@ -49,10 +52,15 @@ local function exercise(branch, source)
     function methods:Show() write(); self.shown = true end
     function methods:SetAlpha(value) write(); self.alpha = value end
     function methods:GetAlpha() return self.alpha end
-    function methods:IsMouseClickEnabled() return self.click end
-    function methods:IsMouseMotionEnabled() return self.motion end
+    function methods:IsMouseClickEnabled() return self.secretClick and secret or self.click end
+    function methods:IsMouseMotionEnabled()
+        self.motionReads = (self.motionReads or 0) + 1
+        if self.secretMotion then return secret end
+        if self.secretMotionAfterFirst and self.motionReads > 1 then return secret end
+        return self.motion
+    end
     function methods:IsMouseWheelEnabled() return self.wheel end
-    function methods:IsMouseEnabled() return self.click or self.motion end
+    function methods:IsMouseEnabled() return self.secretCombined and secret or self.click or self.motion end
     function methods:SetMouseClickEnabled(v) write(); self.click = v end
     function methods:SetMouseMotionEnabled(v) write(); self.motion = v end
     function methods:EnableMouseWheel(v) write(); self.wheel = v end
@@ -199,6 +207,29 @@ local function exercise(branch, source)
     end
     check(root.click and late.click, "latest combat request reconciles once")
     writes = s.writes; blizz.SetMouseSuppressed(root, false); check(s.writes == writes, "restoration is idempotent")
+    local opaque = frame("opaqueChild", false, false, true, true, true)
+    opaque.secretClick = true
+    blizz.SetMouseSuppressed(opaque, true)
+    check(opaque.click and not opaque.motion, "secret initial click state is not guessed or mutated")
+    blizz.SetMouseSuppressed(opaque, false)
+    check(opaque.click and opaque.motion, "readable sibling state restores without a secret snapshot")
+    local allOpaque = frame("allOpaqueChild", false, false, true, true, false)
+    allOpaque.secretClick, allOpaque.secretMotion = true, true
+    writes = s.writes
+    blizz.SetMouseSuppressed(allOpaque, true); blizz.SetMouseSuppressed(allOpaque, false)
+    check(s.writes == writes and allOpaque.click and not allOpaque.motion,
+        "secret split switches never fall back to a combined state that loses policy")
+    local legacyOpaque = frame("opaqueLegacy", false, false, false, true, true)
+    legacyOpaque.secretCombined = true
+    writes = s.writes
+    blizz.SetMouseSuppressed(legacyOpaque, true); blizz.SetMouseSuppressed(legacyOpaque, false)
+    check(s.writes == writes and legacyOpaque.click, "secret legacy switch is not guessed")
+    local changed = frame("changedChild", false, false, true, true, true)
+    changed.secretMotionAfterFirst = true
+    blizz.SetMouseSuppressed(changed, true)
+    check(not changed.motion, "saved readable state can be suppressed after getter turns secret")
+    blizz.SetMouseSuppressed(changed, false)
+    check(changed.motion, "saved readable state restores without comparing a secret getter")
     -- Execute the actual status-HUD readiness/combat gate and native topology.
     local modern = branch == "live" or branch == "forever" or branch == "classic"
     local manager = frame("StatusTrackingBarManager", false, modern, true, true, true)
@@ -285,6 +316,9 @@ local unguardedMouse = hideSource:sub(1, mouseStart - 1)
 local mutants = {
     hideSource:gsub('SetMouseValue%(widget, getter, setting%[1%], false%)', 'SetMouseValue(widget, getter, setting[1], true)', 1),
     hideSource:gsub('SetMouseValue%(frame, getter, setting%[1%], setting%[2%]%)', 'SetMouseValue(frame, getter, setting[1], false)', 1),
+    hideSource:gsub('%(not issecretvalue or not issecretvalue%(value%)%) and ', '', 2),
+    hideSource:gsub('type%(frame.IsMouseClickEnabled%) ~= "function" and type%(frame.IsMouseMotionEnabled%) ~= "function"',
+        'not saved.IsMouseClickEnabled and not saved.IsMouseMotionEnabled', 1),
     hideSource:gsub('if InCombat%(%) then', 'if false then', 1),
     hideSource:gsub('if keepParent%[frame%] then', 'if false then', 1),
     hideSource:gsub(' and not keepParent%[frame%] then', ' then', 1),

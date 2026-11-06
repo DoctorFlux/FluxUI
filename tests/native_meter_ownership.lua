@@ -33,7 +33,8 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     local s = { available = true, details = false, combat = false, activeTab = "Meter",
         frames = {}, timers = {}, timerCreates = 0, typeCalls = 0, sessionCalls = 0,
         classCalls = 0, iconCalls = 0, entryWalks = 0, points = 0, hooks = {}, windows = {},
-        visibility = policy or 0, policyWrites = 0, setterCalls = 0, rootShows = 0,
+        barHeightCalls = 0, barSpacingCalls = 0, rowRefreshes = 0, messages = {},
+        visibility = policy or 0, policyWrites = 0, setterCalls = 0, rootShows = 0, savedSessions = {},
         timerDispatches = 0, timerWrites = 0, enabled = true, inGroup = false }
     local function geometryAfter(object, method, ...)
         for _, fn in ipairs(s.hooks[object] and s.hooks[object][method] or {}) do fn(object, ...) end
@@ -85,12 +86,13 @@ local function harness(gamepad, policy, hasVisibilitySetter)
         IsDetailsAddonLoaded = function() return s.details end }
     e.Flux = { Cap = { IsForeverGamepadUI = function() return gamepad end } }
     e.Enum = { DamageMeterVisibility = { Always = 0, InCombat = 1, Hidden = 2, InGroup = 3 },
-        DamageMeterSessionType = { Overall = 0, Expired = 3 },
+        DamageMeterSessionType = { Overall = 0, Current = 1, Expired = 3 },
         DamageMeterType = { DamageDone = 0, HealingDone = 2, Dps = 1, Hps = 3 } }
     e.InCombatLockdown = function() return s.combat end
     e.UnitAffectingCombat = function() return s.combat end
     e.wipe = function(t) for key in pairs(t) do t[key] = nil end end
     e.SlashCmdList = {}
+    e.print = function(...) s.messages[#s.messages + 1] = { ... } end
     e.CreateFrame = function()
         local f = frame(); s.frames[#s.frames + 1] = f; return f
     end
@@ -189,6 +191,8 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     end
     function dm:SetSessionWindowSessionID(win, value, id)
         s.sessionCalls = s.sessionCalls + 1; win.sessionType, win.sessionID = value, id
+        -- Native SetSessionWindowSessionID persists this choice before SetSession.
+        s.savedSessions[win] = { sessionType = value, sessionID = id }
     end
     dm.SetSessionWindowLocked, dm.SetSessionWindowMinimized = noop, noop
     function dm:CanHideSessionWindow(win) return win ~= s.windows[1] end
@@ -205,10 +209,26 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     end
     local function window()
         local win = frame(dm)
-        win.meterType, win.sessionType, win.sessionID = 0, 1, 99
+        -- Native new window data inherits Overall/nil unless a saved choice exists.
+        win.meterType, win.sessionType, win.sessionID = 0, e.Enum.DamageMeterSessionType.Overall, nil
+        s.savedSessions[win] = { sessionType = win.sessionType }
         function win:GetDamageMeterType() return self.meterType end
         function win:GetSessionType() return self.sessionType end
         function win:GetSessionID() return self.sessionID end
+        function win:GetBarHeight() return self.barHeight or 25 end
+        function win:GetBarSpacing() return self.barSpacing or 4 end
+        function win:SetBarHeight(height)
+            assert(not s.combat, "bar height changes stay out of combat")
+            s.barHeightCalls = s.barHeightCalls + 1; s.rowRefreshes = s.rowRefreshes + 1
+            self.barHeight = height
+            if self.sourceWindow then self.sourceWindow.barHeight = height end
+        end
+        function win:SetBarSpacing(spacing)
+            assert(not s.combat, "bar spacing changes stay out of combat")
+            s.barSpacingCalls = s.barSpacingCalls + 1; s.rowRefreshes = s.rowRefreshes + 1
+            self.barSpacing = spacing
+            if self.sourceWindow then self.sourceWindow.barSpacing = spacing end
+        end
         win.background = { alpha = 0 }
         function win.background:SetAlpha(alpha) self.alpha = alpha end
         function win:GetBackground() return self.background end
@@ -268,6 +288,7 @@ local function harness(gamepad, policy, hasVisibilitySetter)
     end
     function dm:ShowNewSecondarySessionWindow() s.windows[#s.windows + 1] = window() end
     s.windows[1], s.windows[2] = window(), window()
+    s.windows[2].meterType = 2 -- A user-configured native Healing window.
     s.originals = {}
     for _, object in ipairs({e.DamageMeterEntryMixin, e.DamageMeterSourceEntryMixin,
             e.DamageMeterSpellEntryMixin, e.DamageMeterSessionWindowMixin, dm,
@@ -343,16 +364,19 @@ local function fixture(label, gamepad, measure)
         label .. " geometry and accepted scales still update")
     if measure then for key in pairs(totals) do totals[key] = totals[key] + s[key] end end
     layout.topSlots[1].damageMeterType = 1
+    s.windows[1].meterType = 1 -- Native menu choice, not an addon writer.
     local beforeType = s.typeCalls
     meter:SyncGeometryFromLayout(layout)
-    check(s.windows[1].meterType == 1 and s.typeCalls == beforeType + 1,
-        label .. " changed layout applies one native type change")
+    check(s.windows[1].meterType == 1 and s.typeCalls == beforeType,
+        label .. " changed layout uses the native-selected type without writing it")
     s.windows[1].meterType, s.windows[1].sessionType, s.windows[1].sessionID = 3, 2, 72
     beforeType = s.typeCalls; local beforeSession = s.sessionCalls
     meter:RefreshEmbeddedLayout()
-    check(s.windows[1].meterType == 1 and s.windows[1].sessionType == 0
-        and s.windows[1].sessionID == nil and s.typeCalls == beforeType + 1
-        and s.sessionCalls == beforeSession + 1, label .. " native menu changes reconcile with Flux layout")
+    check(s.windows[1].meterType == 3 and s.windows[1].sessionType == 2
+        and s.windows[1].sessionID == 72 and s.typeCalls == beforeType
+        and s.sessionCalls == beforeSession and meter:GetLayoutStatus().configurationRequired,
+        label .. " missing requested type preserves native choices and reports configuration")
+    s.windows[1].meterType = 1
     s.activeTab = "Map"; meter:Hide(); s.dm:UpdateShownState()
     check(not s.dm:IsShown(), label .. " native visibility event keeps inactive Meter tab hidden")
     s.host.shown = false; s.activeTab = "Meter"; s.dm:UpdateShownState()
@@ -390,6 +414,46 @@ local function fixture(label, gamepad, measure)
         state.event("ADDON_LOADED", "Blizzard_DamageMeter"); state.drain()
         check(state.nativeMethodsIntact() and state.typeCalls == 0 and state.sessionCalls == 0
             and state.timerCreates == 0, label .. " " .. unavailable .. " path leaves native renderer inert")
+    end
+end
+
+for _, gamepad in ipairs({ false, true }) do
+    for _, choice in ipairs({ "current", "historical", "overall" }) do
+        local e, s = harness(gamepad)
+        local meter, win = e.FluxBlizzardMeter, s.windows[1]
+        local selectedType = choice == "current" and e.Enum.DamageMeterSessionType.Current
+            or choice == "overall" and e.Enum.DamageMeterSessionType.Overall or nil
+        local selectedID = choice == "historical" and 42 or nil
+        s.dm:SetSessionWindowSessionID(win, selectedType, selectedID)
+        s.sessionCalls = 0
+        local label = (gamepad and "gamepad " or "ordinary ") .. choice
+        local function retained(stage)
+            local saved = s.savedSessions[win]
+            check(win.sessionType == selectedType and win.sessionID == selectedID
+                and saved.sessionType == selectedType and saved.sessionID == selectedID,
+                label .. " retains native and saved session through " .. stage)
+            check(s.sessionCalls == 0, label .. " makes no session-setting writes through " .. stage)
+        end
+        local layout = { topSlots = {{ kind = "blizzard", damageMeterType = 0 }},
+            bottomSlots = {{ kind = "blizzard", damageMeterType = 2 }} }
+        check(meter:Embed(s.host, layout), label .. " embeds with its existing selection")
+        retained("embed")
+        for _ = 1, 500 do meter:RefreshEmbeddedLayout() end
+        retained("500 relayouts")
+        s.activeTab = "Map"; meter:Hide(); s.activeTab = "Meter"; meter:Show(); s.drain()
+        retained("tab hide and reveal")
+        layout.topSlots[1].damageMeterType = 1
+        win.meterType = 1
+        meter:SyncGeometryFromLayout(layout)
+        check(win.meterType == 1, label .. " still follows an explicit display-type layout change")
+        retained("display-type change")
+        s.combat = true; check(not meter:Embed(s.host, layout), label .. " defers combat layout")
+        s.combat = false; s.event("PLAYER_REGEN_ENABLED"); s.drain()
+        retained("combat-deferred layout")
+        meter:Cleanup(); meter:Embed(s.host, layout); s.drain()
+        retained("cleanup and re-embed")
+        check(s.windows[2].sessionType == e.Enum.DamageMeterSessionType.Overall and s.windows[2].sessionID == nil,
+            label .. " preserves the native Overall default of another pane")
     end
 end
 
@@ -464,25 +528,32 @@ local function backgroundFixture(gamepad)
     local e, s = harness(gamepad)
     local meter, paints = e.FluxBlizzardMeter, 0
     local released = 0
+    local assetsReady, entriesBeforeAssets, entryPaints = false, 0, 0
     e.FluxMeterSkin = {
-        ApplyToEntry = noop,
+        ApplyToEntry = function()
+            entryPaints = entryPaints + 1
+            if not assetsReady then entriesBeforeAssets = entriesBeforeAssets + 1 end
+        end,
         ApplyToWindow = function(_, window, scale)
+            assetsReady = true
             paints = paints + 1
             s.skinScaleValid = s.skinScaleValid ~= false and scale == .8
             window:GetBackground().alpha = 1
             window:GetBackground().paint = "Flux"
             local session = window.GetSessionID and window or window:GetParent()
             window.configuredAtPaint = session.meterType ~= nil and session.sessionType == 0
-                and session.useClassColor == true and session.showBarIcons == true
+                and session.useClassColor == nil and session.showBarIcons == nil
         end,
         ReleaseAllNative = function() released = released + 1 end,
     }
     local layout = { topSlots = {{kind = "blizzard", damageMeterType = 0}},
         bottomSlots = {{kind = "blizzard", damageMeterType = 2}} }
     check(meter:Embed(s.host, layout), "background fixture embeds")
+    check(entryPaints > 0 and entriesBeforeAssets == 0,
+        "owned window establishes asset availability before existing pooled entries are styled")
     for _, win in ipairs(s.windows) do
         check(win.configuredAtPaint and win.sourceWindow.configuredAtPaint,
-            "native session and existing source receive skin after native configuration")
+            "native session and source receive paint without rewriting native display flags")
         check(#(s.hooks[win] and s.hooks[win].UpdateBackground or {}) == 1,
             "one native background posthook is installed per session")
         check(not (s.hooks[win.sourceWindow] and s.hooks[win.sourceWindow].UpdateBackground),

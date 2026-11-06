@@ -1,5 +1,33 @@
 # Transparent native mouse blockers — 23 October 2026
 
+## Raid secret mouse follow-up
+
+On 6 November the user reported `Blizzard/Hide.lua:139: attempt to compare local
+'current' (a secret boolean value, while execution tainted by '_FluxUI')` from
+`FluxRaidLayout.lua:778`. `pcall` protected the getter call but returned the
+opaque boolean successfully; the subsequent Lua comparison failed. The helper
+also tried to snapshot getter results by ordinary type, which could retain an
+opaque state that cannot safely be compared or restored.
+
+The helper now rejects secret getter results before saving them. If a readable
+state was saved and a later getter is secret, it passes the known saved or
+suppressed boolean straight to the native setter after the existing combat/Edit
+Mode gates. It does not infer split click/motion values from a combined getter
+when split methods are present. Initially opaque switches remain untouched, so
+their native hit testing needs live review. Parent, alpha, event, script,
+overlapping-owner and restoration paths are otherwise preserved.
+
+The supplied stack is native evidence for the error, not evidence that all raid
+frames or taint paths are fixed. `tests/native_mouse_suppression.lua` now models
+initially opaque split/legacy switches and a getter becoming opaque after a
+readable snapshot. It passes 2,545 checks across five branches and rejects 14
+mutants; `tests/raid_startup.lua` passes 2,073 assertions. The desktop sentinel
+does not emulate the native secret VM. Full validation passes 159 scripts / 816
+Lua syntax files with no failures; the current source hashes are in
+[the validation record](validation/raid-secret-mouse-2026-11-06.json). Reload and check party/raid visibility,
+click/hover/wheel interaction, Edit Mode close, combat roster changes, and
+Flux/Blizzard enable/disable restoration on real clients.
+
 The user reported transparent Blizzard player/status frames blocking the mouse on Forever, also visible in Frame Stack. Their alpha-zero suppression left input enabled: the player root is a secure unit button, while native XP/reputation status containers include independently mouse-enabled children.
 
 [Hide.lua](../Blizzard/Hide.lua) now provides `Flux.Blizz.SetMouseSuppressed(frame, suppressed, skipChild)`. It snapshots click, motion and wheel settings outside native frames and disables those inputs throughout the selected subtree. Capability detection supports separate click/motion switches and the legacy combined switch without guessing original values. Restoring a subtree restores its exact saved input policy. Overlapping owners cannot restore each other's still-suppressed children. Reconciliation includes newly created children and restores input to children moved to another owner.

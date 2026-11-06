@@ -1,0 +1,77 @@
+{
+  "utc": "2026-11-06T07:50:11.039935+00:00",
+  "mode": "Read-only on-disk source comparison; no in-game commands, client launch or foreground changes",
+  "nativeStatus": "NOT RUN; client process unavailable at final checks. Disk equality does not prove loaded identity, native taint, pixels or performance.",
+  "clients": {
+    "_retail_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxMeterSkin.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      }
+    },
+    "_forever_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxMeterSkin.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      }
+    },
+    "_classic_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxMeterSkin.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      }
+    },
+    "_anniversary_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxMeterSkin.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      }
+    },
+    "_classic_era_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxMeterSkin.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "exists": true,
+        "matchesRetailSource": true
+      }
+    }
+  }
+}

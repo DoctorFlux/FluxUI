@@ -136,7 +136,14 @@ local mouseMethods = {
 
 local function SetMouseValue(frame, getter, setter, value)
 	local ok, current = pcall(frame[getter], frame)
-	if ok and current ~= value then pcall(frame[setter], frame, value) end
+	if not ok then return end
+	-- A previously readable switch can become secret before restoration. Its
+	-- saved value is still known; set it without comparing the current value.
+	if issecretvalue and issecretvalue(current) then
+		pcall(frame[setter], frame, value)
+	elseif current ~= value then
+		pcall(frame[setter], frame, value)
+	end
 end
 
 local function SaveMouse(frame)
@@ -145,15 +152,19 @@ local function SaveMouse(frame)
 		local getter, setter = methods[1], methods[2]
 		if type(frame[getter]) == "function" and type(frame[setter]) == "function" then
 			local ok, value = pcall(frame[getter], frame)
-			if ok and type(value) == "boolean" then saved[getter] = { setter, value } end
+			if ok and (not issecretvalue or not issecretvalue(value)) and type(value) == "boolean" then
+				saved[getter] = { setter, value }
+			end
 		end
 	end
 	-- Older frames expose only the combined mouse switch. Never guess its
 	-- original value: restoring native controls must preserve their input policy.
-	if not saved.IsMouseClickEnabled and not saved.IsMouseMotionEnabled
+	if type(frame.IsMouseClickEnabled) ~= "function" and type(frame.IsMouseMotionEnabled) ~= "function"
 		and type(frame.IsMouseEnabled) == "function" and type(frame.EnableMouse) == "function" then
 		local ok, value = pcall(frame.IsMouseEnabled, frame)
-		if ok and type(value) == "boolean" then saved.IsMouseEnabled = { "EnableMouse", value } end
+		if ok and (not issecretvalue or not issecretvalue(value)) and type(value) == "boolean" then
+			saved.IsMouseEnabled = { "EnableMouse", value }
+		end
 	end
 	return saved
 end

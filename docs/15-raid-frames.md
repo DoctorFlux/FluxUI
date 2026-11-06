@@ -1,5 +1,12 @@
 # Compact raid and party frames
 
+6 November input follow-up: Blizzard's in-place party/raid grid suppression can
+read secret mouse booleans in tainted execution. The shared helper now avoids
+saving/comparing opaque values and preserves exact readable input snapshots;
+initially opaque native switches remain untouched. Native raid/party hit testing,
+secure behavior and Edit Mode/combat transitions require live validation.
+[Details](49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+
 5 November precreation correction: final group/MTMA attributes now precede pool
 seeding; effective parent visibility is required, owned shown states are restored
 and actual final child presence determines completion. The enabled raid reserves

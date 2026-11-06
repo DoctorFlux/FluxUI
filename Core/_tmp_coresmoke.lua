@@ -1216,15 +1216,26 @@ if blizzMeterSrc:find("FLUX_API.isMidnight == true", 1, true)
 	failures[#failures + 1] = "FluxBlizzardMeter must not use version flags for support"
 end
 has(blizzMeterSrc, "IsDetailsAddonLoaded()", "blizzard embed refuses Details")
-has(blizzMeterSrc, "if ForeverGamepadEmbed() then\n            return false", "Forever gamepad does not create damage meter panes")
-has(blizzMeterSrc, "if not ForeverGamepadEmbed() and dmFrame.SetSessionWindowLocked then", "Forever gamepad does not relock meter windows")
-has(blizzMeterSrc, 'setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)', "damage meter stays centered on the Flux window")
+-- Blizzard owns configuration and data refreshes on every supported client.
+-- The provenance fixture additionally models persistent taint and masked calls.
+for _, writer in ipairs({
+	"SetSessionWindowDamageMeterType", "SetSessionWindowSessionID",
+	"SetSessionWindowLocked", "SetUseClassColor", "SetShowBarIcons",
+	"SetBarHeight", "SetBarSpacing", "SetWindowMinimized", "SetMinimized",
+	"ShowNewSecondarySessionWindow", "ShowNewSessionWindow", "HideSessionWindow",
+}) do
+	if blizzMeterSrc:find(writer, 1, true) then
+		failures[#failures + 1] = "damage meter must not invoke native configuration writer " .. writer
+	end
+end
+has(blizzMeterSrc, "local reference, pw, ph = EmbedReferenceSize(parentFrame)", "damage meter uses the Flux window geometry reference")
+has(blizzMeterSrc, 'setPoint(dmFrame, "CENTER", reference, "CENTER", 0, 0)', "damage meter stays centered on the Flux window")
 do
 	local applyAt = blizzMeterSrc:find("local function ApplyRootScaleAndSize", 1, true)
-	local nextAt = applyAt and blizzMeterSrc:find("local function ConfigureSessionWindowChrome", applyAt, true)
+	local nextAt = applyAt and blizzMeterSrc:find("RepairEmbeddedGeometry = function()", applyAt, true)
 	local block = applyAt and nextAt and blizzMeterSrc:sub(applyAt, nextAt) or ""
 	local foreverAt = block:find("if ForeverGamepadEmbed() then", 1, true)
-	local pointAt = foreverAt and block:find('setPoint(dmFrame, "CENTER", parentFrame, "CENTER", 0, 0)', foreverAt, true)
+	local pointAt = foreverAt and block:find('setPoint(dmFrame, "CENTER", reference, "CENTER", 0, 0)', foreverAt, true)
 	local retAt = pointAt and block:find("\n        return\n", pointAt, true)
 	local parentAt = block:find("dmFrame:SetParent(parentFrame)", 1, true)
 	if not foreverAt or not pointAt or not retAt or not parentAt or not (foreverAt < pointAt and pointAt < retAt and retAt < parentAt) then

@@ -1,5 +1,57 @@
 # Development status
 
+6 November current native-meter blocker: the reported 07:45/07:55 specIconID
+and 07:57 durationSeconds failures carried Flux taint. The candidate removes
+direct native Lua configuration/data writers, including type/session setters,
+row sizing/flags/locks/minimize and automatic pane creation. Native controls must
+own those choices; layouts map existing native-selected panes and explicitly
+report missing types instead of silently retyping them. No verified safe public
+configuration route is established for Forever 70790.
+Chosen Current/Overall/historical sessions must persist; fresh per-fight display
+uses native Current, not a reset API or the new-instance-reset checkbox. One
+native timer is presented by greatest top then least left in physical screen
+coordinates; native time text/policy remains unchanged. Writer 26 and timer 113
+focused checks pass, with five alternating pairs each and 5/9 rejected mutants.
+Final full validation passes 162 scripts /819 Lua syntax files, with all 819
+source hashes/membership unchanged. [Current manifest](validation/meter-timer-native-boundary-2026-11-06.json).
+Fresh native acceptance remains pending.
+[Writer evidence](validation/meter-native-writer-comparison-2026-11-06.json), [timer evidence](validation/meter-single-timer-comparison-2026-11-06.json).
+At 07:31 UTC the process check found no WoW clients; the prior Forever process had
+exited. Native reload/identity/combat/visual checks are unavailable until a client
+is running. No launch, focus or native command was issued.
+[Current boundaries and requirements](METER_STANDALONE.md#current-native-configuration-boundary).
+
+6 November Forever SAO glow: FOREVER-SAO-GLOW-01 routes Flux bar, Extra Button
+and badge proc paint through the installed SpellActivationOverlay 2.8.9
+LibButtonGlow renderer on Forever. Private SAO membership, transfer and
+hide ownership stay in the existing feedback service; Era/Anniversary routes
+are unchanged. Focused 25 checks pass; saved baseline fails the bar-render
+assertion. Its earlier SAO-stage run passed 160/162 scripts; the current combined
+validation passes all 162 scripts /819 syntax files after meter corrections.
+Native proc visuals, paging, macro clearance, taint and frame time
+remain pending. [Source and checks](FOREVER_SAO_GLOW.md).
+
+6 November raid-frame input follow-up: the reported `Blizzard/Hide.lua:139`
+secret-boolean comparison occurs while the in-place Blizzard party/raid grid is
+suppressed. Mouse getters are now checked with `issecretvalue` before snapshotting;
+restoration sets a previously saved readable state without comparing a later
+secret getter. Split click/motion methods no longer fall through to the combined
+switch when both values are opaque. Focused mouse and raid startup desktop checks
+pass; full validation passes 159 scripts / 816 Lua syntax files. Native reload,
+raid/party handoff, Edit Mode, combat taint and input hit
+testing remain pending. [Scope](49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+
+6 November actual WoW Interface art: the user rejected the flat recreation.
+METER-WOW-SKIN-01 now references the installed Details nine-piece atlas, Ground/
+DGround fills and Accidental Presidency row font without loading Details or
+SharedMedia and without copying their files. Missing files keep the existing
+Flux/Blizzard fallback. Current Forever Details is #Details.20261104.15400.172;
+the earlier missing-installation observation is historical.
+Asset mappings/availability, initial owned-art setup and title roles are under
+final validation; current native candidate inspection is pending. Referencing
+the original files does not establish whole-UI pixel parity.
+[Current requirement and evidence](METER_STANDALONE.md#installed-wow-interface-art-references).
+
 5 November shared meter appearance: names/values remain on one line without
 reading their text. Native and owned panes now share Friz titles, ArialN rows,
 panel/row opacity, centered header and body inset. Skin is reapplied after native

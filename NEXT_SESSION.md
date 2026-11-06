@@ -1,77 +1,51 @@
 # Next session
 
-Current theme candidate: Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
-source hashes and membership are unchanged across the run.
-[Final theme manifest](docs/validation/meter-theme-consistency-2026-11-05.json). Run
-`lua tests/native_meter_skin.lua`, `lua tests/standalone_threat_meter.lua`,
-`lua tests/native_meter_ownership.lua` and `lua tests/native_threat_layout.lua`.
-Skin 54/threat 69/native-owner 463 checks and both five-pair comparisons pass.
-Keep the player's selected Meter/builtin 7 and scriptProfile 0; do not restore the
-older builtin 1. The post-style reload shows Friz 15/ArialN 17.5 and wrap false/false,
-with current BugTabs 0. Normal Map/Respec/Buttons handoff now passes with both views hidden; return to
-Meter shows both. Keep builtin 7/profile 0 and check the remaining combat cases. Final OOC native tab handoff passes; actual owned-threat combat rows were not captured, so combat secret/taint and performance remain inconclusive.
-Verify actual hostile-combat rows, long names, native source windows, alpha
-refresh, pool reuse and Details cleanup; match screenshots before pixel claims.
-[Current evidence](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+Current meter priority: verify a freshly loaded candidate when a client is
+running. Final full validation passes 162 scripts /819 Lua syntax files with
+unchanged source hashes/membership. [Manifest](docs/validation/meter-timer-native-boundary-2026-11-06.json).
+Writer 26/timer 113 focused checks pass
+(five alternating pairs each; 5/9 mutants rejected). Native warnings
+reported 07:45/07:55/07:57 remain unaccepted. No WoW process was present at 07:31 UTC;
+do not launch/focus it automatically or describe the old foreground guard as the
+current blocker. Preserve latest Details/session/preset/settings state.
 
-Current final theme passes 159 scripts / 816 Lua syntax files with unchanged source
-identity: [theme manifest](docs/validation/meter-theme-consistency-2026-11-05.json).
-Focused skin 54/threat 69/native-owner 463 and matched comparisons pass.
-Final native OOC Map/Respec/Buttons handoff hides both views; returning to Meter
-shows both, with current BugTabs 0 and Details absent. Keep the player's selected
-Meter/builtin 7 and scriptProfile 0 rather than restoring the older builtin 1.
-[Native captures](docs/validation/native-meter-background-checks-2026-11-05.json).
+Use native controls for selected types, extra panes, row settings and Current
+per-fight view; keep Overall/history if chosen. Do not reset data, force session
+selection, call private native setters or mask secret-value failures. Missing
+requested types need an explicit setup message. Verify METER-TIMER-01 presents
+one native timer by greatest top/least left in physical screen coordinates,
+keeps native time policy/text and menus, restores native presentation on release,
+and changes only alpha during combat election. No duration reads/reset.
+Check genuine combat for the reported specIconID/durationSeconds failures,
+native controls, missing-type setup, actual artwork/dimensions and timer clipping.
+Desktop passes do not certify fresh native taint safety or pixel parity.
+For missing pane types, use `/fbm cleanup`, create/select the requested windows
+through Blizzard controls, then `/fbm embed`; inspect `/fbm status` for gaps.
+Do not restore automatic native writers to make a saved layout appear complete.
 
-Remaining priority: capture a live owned-threat row with a multiword name during
-actual hostile combat, then combat exit/clear and native secret/taint checks.
-Only pre/post short-fight views were captured. Check source windows, native
-alpha resets, pool reuse, Details cleanup and other clients; match screenshots
-before claiming pixel parity, memory or FPS. Friz 15 titles/ArialN 17.5 native rows,
-false wrap flags and shared header/panel fill were observed out of combat.
-Run `lua tests/native_meter_skin.lua`, `lua tests/standalone_threat_meter.lua`,
-`lua tests/native_meter_ownership.lua` and `lua tests/native_threat_layout.lua`.
-[Current evidence](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance).
+Read [current boundaries](docs/METER_STANDALONE.md#current-native-configuration-boundary).
+Keep concurrent raid/glow code and the unrelated priorities below. Earlier
+meter artifacts are historical stages, not acceptance of the changed candidate.
 
-Earlier font/tab-stage tasks are superseded by the final shared-theme and OOC
-handoff checks above; their exact source reports remain in METER_STANDALONE and
-WORK_LOG. Remaining actual combat/secret checks and other-client scenarios are
-still open. Keep the unrelated wand/native follow-ups below.
+Historical meter links: [METER_STANDALONE.md#installed-wow-interface-art-references](docs/METER_STANDALONE.md#installed-wow-interface-art-references), [meter-theme-consistency-2026-11-05.json](docs/validation/meter-theme-consistency-2026-11-05.json), [METER_STANDALONE.md#one-line-names-and-shared-meter-appearance](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance), [native-meter-background-checks-2026-11-05.json](docs/validation/native-meter-background-checks-2026-11-05.json), [METER_STANDALONE.md](docs/METER_STANDALONE.md), [meter-standalone-2026-11-05.json](docs/validation/meter-standalone-2026-11-05.json), [METER_COMBAT_VISIBILITY.md](docs/METER_COMBAT_VISIBILITY.md), [meter-combat-visibility-2026-11-05.json](docs/validation/meter-combat-visibility-2026-11-05.json).
 
-Priority: native acceptance of the implemented standalone meter, startup
-ownership and docking repairs. Startup 64 checks and docking 60 checks pass,
-against 22 and 30 failures in the actual T205512 preDock source. Five pairs each
-and four/11 mutants pass. Check Map startup, first Meter selection, disabled
-Meter tab/native policy, late anchor restore and combat-deferred repair in game.
-Read
-[the requirement/evidence record](docs/METER_STANDALONE.md). Feature baseline
-`8006494fd5f10b54818471933467b9bb867c6543`; external checkpoint
-Mail-auction-publication-20261105T203228Z preserves 1,537 files / 122 settings and
-all-ref history, source SHA256
-`efe44322cd86f787161b91509af8f63cf4709fdfdeaef72e6f6f750c51b5a537`.
-Final desktop validation passes 159 scripts / 816 Lua syntax files; all 816
-normalized source hashes and file membership match before/after the run.
-[Final source manifest](docs/validation/meter-standalone-2026-11-05.json).
-Focused commands: `lua tests/native_meter_skin.lua`,
-`lua tests/standalone_threat_meter.lua`, `lua tests/threat_meter_sample.lua`,
-`lua tests/native_threat_layout.lua`, `lua tests/native_meter_ownership.lua`.
+Forever SAO priority: after a normal background reload, trigger real
+SpellActivationOverlay 2.8.9 procs on the action bar, Extra Button and badge;
+check LibButtonGlow art, hide, SHIFT/CTRL paging, macro/icon changes, taint and
+frame time. Then verify Era/Anniversary glow regression separately. Source fix
+and focused desktop checks are recorded in [FOREVER_SAO_GLOW](docs/FOREVER_SAO_GLOW.md).
+The current combined full suite passes 162/162 scripts and 819/819 Lua syntax
+files; the earlier SAO-stage meter assertion failures are resolved.
+Preserve current WoW settings, profiler and diagnostic roots.
 
-On Forever 70790 without Details, reload exact synced files, verify the public
-meter option enables automatically and inspect existing presets 1-6/default 1 plus
-new threat presets 7-9, custom four-pane layouts, save/reload and scrolling.
-Check 40-player/40-pet facts, last-page/player pinning, readable sorting versus
-opaque roster order, hostile target/targettarget changes and combat 0.2s updates.
-Hide/reveal host, change tabs, leave combat and load Details; owned recurring work
-must stop when hidden or superseded. Compare the accepted FluxDetails reference
-at matched scale/profile/resolution; this recreation uses ARIALN/Blizzard art.
-Native timer/rows, menus, source windows, Edit Mode and gamepad taint still need
-live checks. Repeat native skin/enable checks on Retail and preserve other clients'
-Details/absent-native behavior; standalone threat is Forever-only.
-Record disabled-option startup, late native readiness, combat-deferred enable and
-idempotent event handling without manually dispatching native callbacks.
-Keep WoW background and profiler/BugTabs history intact; no native performance,
-secret/taint or pixel-parity acceptance is inferred. Preserve the separate wand
-changes and their native checks below. Earlier pending skin/threat notes describe
-the core-only state before this implemented desktop-tested feature batch.
+Raid-frame priority: after a normal reload, reproduce party/raid and Edit Mode
+hide/restore with Flux raid frames enabled and disabled. Check BugTabs for the
+07:08:57 secret mouse comparison and any new taint, then verify native/Flux
+click, hover and wheel hit testing, combat roster changes and group ordering.
+The 6 November `Hide.lua` fix is desktop-validated only; initially secret native
+switches are left untouched to preserve their unknown policy. See
+[the raid input record](docs/49-native-mouse-suppression.md#raid-secret-mouse-follow-up).
+Keep WoW background, profiler preferences and diagnostic roots intact.
 
 Wand swing theme native follow-up: [record](docs/SWING_WAND_CAST_THEME.md).
 Era, Anniversary and Forever desktop models pass 13,942 focused checks; the
@@ -80,44 +54,6 @@ localization and frame time are pending on real clients. Verify exact loaded
 source/build, keep WoW in the background and preserve existing settings and
 profiler preferences. Test each client sequentially because sessions displace
 one another. Keep the separate meter and threat work below in scope.
-
-Priority: accept the native meter combat visibility fix after a normal reload.
-Read [the ownership record](docs/METER_COMBAT_VISIBILITY.md). Baseline `72704d1`;
-external Mail-auction-publication-20261105T202207Z preserves 1,534 actual files,
-122 on-disk settings and all-ref history, source SHA256
-`10f43e0b24068defd30e84f170beeb1ab50537a14f7b4acd70c70296959cb946`.
-Focused native-function replay passes 332 checks versus 80 baseline failures / 332.
-Five alternating pairs per pinned Retail/Forever source (ten total) and six
-rejected mutants pass; native event/timer/text-update counts remain unchanged.
-Full desktop validation passes 153 scripts / 808 Lua syntax files; all 808 source
-hashes and file membership match before/after the run.
-[Full report](docs/validation/meter-combat-visibility-2026-11-05.json).
-Reproduce the focused fixture with `lua tests/native_meter_ownership.lua`.
-
-Reload after sync because prior in-memory native field taint survives disk edits.
-Keep WoW in the background while the user uses the PC; preserve profiler,
-settings and BugTabs history. Verify loaded identity/build before testing.
-With Details absent on Forever 70790 and Retail 70783, select Meter before combat
-and check live rows and the native timer through combat entry/exit, repeated
-encounters, group changes, source windows and current/overall/expired sessions.
-Check native Always, InCombat, InGroup and Hidden policies, enabled/content gates,
-host hide/show, alternate Flux tabs, reload, Edit Mode and gamepad/keyboard UI.
-Match scale/profile/resolution and compare screenshots; do not call native timer
-methods from addon diagnostics or use secrets in comparisons. Recheck layout
-presets/splits, selections, reset and Details takeover separately. The remaining
-native configuration and Show paths still require engine taint acceptance.
-Era/Anniversary/progression retain Details/capability behavior; do not assume
-their native UI loads merely because generated meter APIs exist. Keep original
-Wrath separate. No native combat, FPS, memory or pixel acceptance is inferred.
-
-Required next feature slice: METER-SKIN-01 reproduces the accepted FluxDetails
-skin/theme for Forever's Blizzard meter when Details is absent. METER-THREAT-01
-adds the standalone Flux threat pane without requiring Details. Both are pending
-read-only shared-service/asset/license/restriction audit, implementation and
-matched native verification; neither is delivered by the visibility fix. Preserve
-native meter ownership and the existing Details backend during that work.
-The user authorized recreating that look with existing Flux/Blizzard assets;
-reserved third-party artwork is not part of that authorization.
 
 Priority: load and accept the minimap mail lifecycle fix. Read
 [the lifecycle record](docs/MINIMAP_MAIL_LIFECYCLE.md) and

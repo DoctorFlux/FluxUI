@@ -32,8 +32,8 @@ local function boot(client, withSkin)
         r.GetText, r.GetStringWidth, r.GetStringHeight = function() error("text inspection is not presentation") end,
             function() error("text measurement is not presentation") end, function() error("text measurement is not presentation") end
         function r:SetFont(path, size, flags)
-            s.fontSets = s.fontSets + 1
-            if s.rejectArial and path == "Fonts\\ARIALN.TTF" then return false end
+            s.fontSets = s.fontSets + 1; self.fontSets = (self.fontSets or 0) + 1
+            if s.rejectArial and (path == "Fonts\\ARIALN.TTF" or path:find("Accidental", 1, true)) then return false end
             assert(type(path) == "string" and type(size) == "number" and size > 0, "valid font required")
             self.font = { path, size, flags }; return true
         end
@@ -45,11 +45,11 @@ local function boot(client, withSkin)
             end
         end
         function r:SetHeight(value) self.height = value end
-        function r:SetVertexColor(...) self.vertex = { ... } end
-        function r:SetAlpha(value) self.alpha = value end
+        function r:SetVertexColor(...) self.vertex = { ... }; if select("#", ...) == 4 then self.alpha = self.vertex[4] end end
+        function r:SetAlpha(value) self.alpha = value; if self.vertex then self.vertex[4] = value end end
         function r:Show() self.shown = true end
         function r:Hide() self.shown = false end
-        function r:SetTexture(value) self.texture = value end
+        function r:SetTexture(value) self.texture = value; return true end
         function r:SetTexCoord(...) self.coords = { ... } end
         function r:SetText(value) requireFont(self, "SetText"); assert(value ~= opaque, "opaque text must use native display formatting"); self.text = value end
         function r:SetFormattedText(...) requireFont(self, "SetFormattedText"); nativeString(self, ...) end
@@ -178,8 +178,9 @@ local pane = s.meter:Embed(s.host, .8)
 check(pane and pane:GetParent() == s.host and pane:GetScale() == .8, "owned pane uses host and explicit presentation scale")
 check(pane.Title.font and pane.Title.font[2] == 12 / .8 and pane.Title.text == "Threat" and s.fontErrors == 0,
     "first title text has its presentation font before native SetText")
-check(pane.Title.point[1] == "LEFT" and pane.Title.point[5] == -16 and pane.Body.anchors.TOPLEFT[5] == -32,
-    "owned title centers in the native-height header and body starts below it")
+check(pane.Title.point[1] == "BOTTOMLEFT" and pane.Title.point[5] == -13 / .8
+    and pane.Body.anchors.TOPLEFT[5] == -14 / .8,
+    "owned title and body follow the current compact header anchors")
 check(s.queries == 0, "embed defers native scans")
 for _ = 1, 500 do s.event("UNIT_THREAT_LIST_UPDATE", "target") end
 s.tick(0)
@@ -321,8 +322,14 @@ local preferredPane = preferred.meter:Embed(preferred.host); preferred.tick(0)
 check(preferredPane.Title.font and preferred.queries == 0 and #preferred.visible() == 0
     and preferredPane:GetScript("OnUpdate") == nil, "quiet real-skin startup initializes only the pane header")
 preferred.combat = true; preferred.event("PLAYER_REGEN_DISABLED"); preferred.tick(0)
-check(preferredPane.Title.font[1] == "Fonts\\FRIZQT__.TTF" and preferred.visible()[1].Name.font[1] == "Fonts\\ARIALN.TTF"
-    and preferred.fontErrors == 0, "real skin matches FluxDetails stock title font and approved row font substitute")
+check(preferredPane.Title.font[1] == "Fonts\\FRIZQT__.TTF" and preferred.visible()[1].Name.font[1] == "Interface\\AddOns\\Details\\fonts\\Accidental Presidency.ttf"
+    and preferred.fontErrors == 0, "real skin matches FluxDetails stock title font and installed Details row font")
+local titleFontSets = preferredPane.Title.fontSets
+for _ = 1, 500 do
+    preferred.meter:Hide(); preferred.meter:Show(); preferred.meter:RefreshLayout(); preferred.tick(0)
+end
+check(preferredPane.Title.fontSets == titleFontSets,
+    "500 real-skin reveals and layouts do not swap title and row fonts")
 local styled = boot("forever", true); styled.rejectArial, styled.combat = true, true
 styled.sample("player", 100, 10)
 local sp = styled.meter:Embed(styled.host, .8); styled.tick(0)
@@ -335,7 +342,7 @@ styled.meter:Embed(styled.host, 1); styled.tick(0)
 styledRow = styled.visible()[1]
 check(sp.Title.font[2] == 12 and styledRow.Name.font[2] == 14 and styledRow.Value.font[2] == 14,
     "re-embed changes title and row fonts with the presentation scale")
-check(sp.Title.point[5] == -12.8 and sp.Body.anchors.TOPLEFT[5] == -25.6,
+check(sp.Title.point[5] == -13 and sp.Body.anchors.TOPLEFT[5] == -14,
     "header and body retain the same visible separation after a scale change")
 local styledFrames = #styled.frames
 for _ = 1, 500 do styled.meter:Hide(); styled.meter:Show(); styled.tick(0) end
@@ -344,4 +351,40 @@ styled.sample("player", opaque, opaque); styled.names.player = opaque
 styled.event("PLAYER_TARGET_CHANGED"); styled.tick(0); styledRow = styled.visible()[1]
 check(styledRow.Value.args[1] == opaque and styledRow.Name.args[2] == opaque and styled.fontErrors == 0,
     "composed initialized fonts preserve opaque native text formatting")
+-- Compare row geometry with the actual existing Details plugin, without
+-- loading Details or its data/paint path into this desktop fixture.
+local pluginFile = assert(io.open("Battlezonemap/FluxThreat.lua", "r"))
+local pluginSource = pluginFile:read("*a"); pluginFile:close()
+local rowStart = assert(pluginSource:find("function Threat:RefreshRow(row)", 1, true))
+local rowEnd = assert(pluginSource:find("\n    function Threat:RefreshRows()", rowStart, true))
+local reference = {
+    ThreatFrame = {},
+    SharedMedia = { Fetch = function() return "reference-font" end },
+    applyTexturesFromRowInfo = function() end,
+}
+reference.Threat = { GetPluginInstance = function()
+    return { baseframe = { GetWidth = function() return 150 end },
+        row_info = { height = 21, font_size = 14, font_face = "reference-font", textL_outline = true } }
+end }
+assert(load(pluginSource:sub(rowStart, rowEnd - 1), "@Details threat row geometry", "t", reference))()
+local geometry = boot("forever", true); geometry.combat, geometry.group = true, 2
+geometry.sample("player", 100, 100); geometry.sample("party1", 50, 50)
+local geometryPane = geometry.meter:Embed(geometry.host, .8); geometry.tick(0)
+local geometryRows = geometry.visible()
+for i = 1, 2 do
+    local expected = { rowId = i, points = {} }
+    function expected:ClearAllPoints() self.points = {} end
+    function expected:SetPoint(point, _, _, x, y) self.points[point] = {x, y} end
+    reference.Threat:RefreshRow(expected)
+    local actual = geometryRows[i]
+    check(actual.height * .8 == expected.height
+        and actual.anchors.TOPLEFT[4] * .8 == expected.points.topleft[1]
+        and actual.anchors.TOPLEFT[5] * .8 == expected.points.topleft[2]
+        and actual.anchors.TOPRIGHT[4] * .8 == expected.points.topright[1],
+        "standalone row matches the existing Details plugin height, pitch and side insets " .. i)
+end
+check(geometryPane.Body.anchors.TOPLEFT[4] == 0
+    and geometryPane.Body.anchors.BOTTOMRIGHT[4] == 0
+    and geometryPane.Body.anchors.BOTTOMRIGHT[5] == 0,
+    "standalone viewport uses the complete reference body area")
 print(string.format("standalone threat meter: %d checks passed; 500-event scans=1; raid facts=80; retained rows=%d", checks, allocation - 3))

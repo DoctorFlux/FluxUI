@@ -6,7 +6,7 @@ FluxThreatMeter = Meter
 
 local pane, host, enabled, scale = nil, nil, false, 1
 local data, rows, offset, nextPoll, dirty = {}, {}, 0, 0, false
-local rowHeight, headerHeight = 21, 25.6 -- Native 32-unit header at the shared .8 meter scale.
+local rowHeight, rowGap, headerHeight = 21, 1, 14
 local ranked = true
 local workActive = false
 
@@ -128,6 +128,14 @@ local function StyleFont(fs, size)
     end
 end
 
+local function StyleTitleFont(fs, size)
+    if FluxMeterSkin and FluxMeterSkin.StyleTitleFont then
+        FluxMeterSkin:StyleTitleFont(fs, size)
+    else
+        StyleFont(fs, size)
+    end
+end
+
 local function NewRow(index)
     local row = CreateFrame("StatusBar", nil, pane.Body)
     row:SetStatusBarTexture("Interface\\TARGETINGFRAME\\UI-StatusBar")
@@ -149,7 +157,7 @@ local function NewRow(index)
 end
 
 local function VisibleRows()
-    return math.max(0, math.floor((pane.Body:GetHeight() or 0) / (rowHeight / scale)))
+    return math.max(0, math.floor((pane.Body:GetHeight() or 0) / ((rowHeight + rowGap) / scale)))
 end
 
 local function PlayerRow()
@@ -167,8 +175,8 @@ local function PaintRow(row, sample, index, pinned)
     row.unit = sample.unit
     if row.presentationScale ~= scale then
         row:ClearAllPoints()
-        row:SetPoint("TOPLEFT", pane.Body, "TOPLEFT", 0, -((index - 1) * rowHeight / scale))
-        row:SetPoint("TOPRIGHT", pane.Body, "TOPRIGHT", 0, -((index - 1) * rowHeight / scale))
+        row:SetPoint("TOPLEFT", pane.Body, "TOPLEFT", 1 / scale, -((index - 1) * (rowHeight + rowGap) / scale))
+        row:SetPoint("TOPRIGHT", pane.Body, "TOPRIGHT", -1 / scale, -((index - 1) * (rowHeight + rowGap) / scale))
         row:SetHeight(rowHeight / scale)
         row.Icon:SetSize(14 / scale, 14 / scale)
         row.Value:ClearAllPoints(); row.Value:SetPoint("RIGHT", row, "RIGHT", -2 / scale, 0)
@@ -271,7 +279,7 @@ local function StartWork()
     if workActive then return end
     workActive = true
     if not InCombat() then ClearRows() end
-    StyleFont(pane.Title, 12 / scale)
+    StyleTitleFont(pane.Title, 12 / scale)
     if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale) end
     for _, event in ipairs({ "PLAYER_TARGET_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED",
         "GROUP_ROSTER_UPDATE", "UNIT_THREAT_LIST_UPDATE", "ADDON_LOADED" }) do pane:RegisterEvent(event) end
@@ -283,13 +291,13 @@ local function CreatePane()
     pane = CreateFrame("Frame", "FluxStandaloneThreatMeter", host)
     pane:SetSize(150, 150)
     pane.Title = pane:CreateFontString(nil, "OVERLAY")
-    pane.Title:SetPoint("LEFT", pane, "TOPLEFT", 3 / scale, -headerHeight / (2 * scale))
-    StyleFont(pane.Title, 12 / scale)
+    pane.Title:SetPoint("BOTTOMLEFT", pane, "TOPLEFT", 5 / scale, -(headerHeight - 1) / scale)
+    StyleTitleFont(pane.Title, 12 / scale)
     pane.Title:SetText("Threat")
     pane.Body = CreateFrame("Frame", nil, pane)
     pane.Body:SetClipsChildren(true)
-    pane.Body:SetPoint("TOPLEFT", pane, "TOPLEFT", 2, -headerHeight)
-    pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", -2, 2)
+    pane.Body:SetPoint("TOPLEFT", pane, "TOPLEFT", 0, -headerHeight)
+    pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", 0, 0)
     pane:EnableMouseWheel(true)
     pane:SetScript("OnMouseWheel", function(_, delta)
         local capacity = VisibleRows()
@@ -311,12 +319,12 @@ end
 
 function Meter:RefreshLayout()
     if not pane then return end
-    pane.Title:ClearAllPoints(); pane.Title:SetPoint("LEFT", pane, "TOPLEFT", 3 / scale, -headerHeight / (2 * scale))
+    pane.Title:ClearAllPoints(); pane.Title:SetPoint("BOTTOMLEFT", pane, "TOPLEFT", 5 / scale, -(headerHeight - 1) / scale)
     pane.Body:ClearAllPoints()
-    pane.Body:SetPoint("TOPLEFT", pane, "TOPLEFT", 2 / scale, -headerHeight / scale)
-    pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", -2 / scale, 2 / scale)
+    pane.Body:SetPoint("TOPLEFT", pane, "TOPLEFT", 0, -headerHeight / scale)
+    pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", 0, 0)
     if HostVisible() and pane:IsVisible() then
-        StyleFont(pane.Title, 12 / scale)
+        StyleTitleFont(pane.Title, 12 / scale)
         if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale) end
     end
     Paint()
