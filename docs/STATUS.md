@@ -1,5 +1,12 @@
 # Development status
 
+6 November consumable aura advance: Well Fed food and weapon enchants now move
+to the next eligible configured item on the player aura event outside combat.
+Unchanged auras keep the coalesced path; protected changes wait for combat exit.
+Five paired modern/legacy desktop runs pass 22 candidate checks each, and 845
+Lua files pass syntax. Native latency and secure-input checks remain pending.
+[Case](CONSUMABLE_REFRESH_TIMER.md#immediate-advance-after-aura-gain--6-november-2026).
+
 6 November consumables: Well Fed food lookup now retries a readable player
 aura index when the shared aura wrapper declines it, learns alternate spell
 IDs, and sends the full aura to the existing refresh-threshold timer. Focused

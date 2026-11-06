@@ -20,6 +20,10 @@ refresh-timer and weapon-target fixtures pass 35 and 30 checks; all 845 Lua
 files pass syntax checking. These are desktop results, not native latency,
 secure-input, taint, pixel, or FPS measurements.
 [Raw paired runs](validation/consumable-aura-advance-comparison-2026-11-06.json).
+The documentation checker currently reports six stale generated inventory and
+view entries for the changed source/test and related generated pages; it made
+no edits. Generated references will need a coordinated refresh with the
+concurrent raid work before that check can pass.
 
 The prechange all-ref history bundle
 `FluxUI-consumable-aura-advance-prechange-20261106.bundle` was verified outside

@@ -1,5 +1,12 @@
 # Client and reference validation — 29 October 2026
 
+6 November consumable aura advance: modern/legacy loaded-module pairs confirm
+immediate next-item selection after Well Fed aura gain (22 candidate checks
+each, five repeated pairs). Ordinary `UNIT_AURA` registration is retained as
+the legacy fallback; combat changes queue until exit. Native Retail, Forever,
+Era, Anniversary and progression acceptance remains pending.
+[Evidence](CONSUMABLE_REFRESH_TIMER.md#immediate-advance-after-aura-gain--6-november-2026).
+
 6 November Well Fed refresh candidate: a loaded-module fixture covers alternate
 food aura discovery, learned spell ID reuse, and the 25 minute countdown at a
 5 minute refresh threshold (35 checks). Weapon target regression passes 30.

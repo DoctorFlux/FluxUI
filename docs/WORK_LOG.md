@@ -1,5 +1,12 @@
 # Work log
 
+6 November consumable aura advance: verified external all-ref bundle at
+`ef813e0`; read-only Retail/Forever settings inspection. Five baseline/candidate
+loaded-module pairs reproduce the 200 ms wait and pass immediate advance on
+modern/legacy aura APIs (11/22 checks each). Existing refresh/weapon fixtures
+pass 35/30; all 845 Lua files pass syntax. Native results remain pending.
+[Details](CONSUMABLE_REFRESH_TIMER.md#immediate-advance-after-aura-gain--6-november-2026).
+
 6 November Well Fed refresh follow-up: prechange main `582d868` and a verified
 external all-ref bundle preserved; installed settings were inspected read-only.
 The previous source failed a loaded-module alternate Well Fed aura fixture.

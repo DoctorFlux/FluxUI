@@ -1,5 +1,10 @@
 # Decisions
 
+6 November consumable aura advance: force an immediate selection update only
+when a player aura changes the preferred displayed item. Retain coalescing for
+unchanged selection and defer protected writes in combat. Fall back to ordinary
+`UNIT_AURA` registration when unit-scoped registration fails on older clients.
+
 6 November Well Fed follow-up: preserve the existing buff-equivalence and
 refresh-threshold rule. Use a direct helpful-aura index lookup only when the
 shared wrapper declines a readable aura, and reuse a discovered public spell

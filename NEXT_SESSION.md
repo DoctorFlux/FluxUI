@@ -1,5 +1,12 @@
 # Next session
 
+Consumable aura advance native check pending: on Retail, Forever and other
+available clients, consume configured Well Fed food with another item after it
+and confirm the button changes on aura gain. Repeat for a weapon enchant,
+combat exit, and reload. Capture build, aura/item IDs, errors, secure click,
+and actual latency before native acceptance.
+[Case](docs/CONSUMABLE_REFRESH_TIMER.md#immediate-advance-after-aura-gain--6-november-2026).
+
 Consumable Well Fed native check pending: on Retail, Forever and other
 available clients, test real configured food above/at/below its refresh
 threshold in the button and config, then reload and check combat behavior.
