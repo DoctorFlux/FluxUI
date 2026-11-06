@@ -1,5 +1,11 @@
 # Decisions
 
+6 November Well Fed follow-up: preserve the existing buff-equivalence and
+refresh-threshold rule. Use a direct helpful-aura index lookup only when the
+shared wrapper declines a readable aura, and reuse a discovered public spell
+ID. Keep secret aura durations unnumbered; do not invent an expiry. Native
+validation remains required for each installed client.
+
 6 November explicit user decision: preserve every native feature and leave
 automatic Current blocked. Freeze the Current implementation; do not add a
 custom renderer, private/native writer, reset, automatic setting or manual-setup

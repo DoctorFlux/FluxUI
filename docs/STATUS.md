@@ -1,5 +1,12 @@
 # Development status
 
+6 November consumables: Well Fed food lookup now retries a readable player
+aura index when the shared aura wrapper declines it, learns alternate spell
+IDs, and sends the full aura to the existing refresh-threshold timer. Focused
+desktop checks pass (35 timer, 30 weapon target); native Retail, Forever and
+other installed client acceptance remains pending. See
+[refresh timer](CONSUMABLE_REFRESH_TIMER.md#well-fed-follow-up--6-november-2026).
+
 6 November Forever proc glow: the user reloaded and rejected the prepared
 Classic LBG candidate; Arcane Missiles still glowed only after combat. The
 current candidate uses Retail LibCustomGlow ProcGlow art pre-anchored OOC and

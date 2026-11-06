@@ -1,5 +1,13 @@
 # Work log
 
+6 November Well Fed refresh follow-up: prechange main `582d868` and a verified
+external all-ref bundle preserved; installed settings were inspected read-only.
+The previous source failed a loaded-module alternate Well Fed aura fixture.
+The candidate finds it, reuses its public ID, and shows the shared 25 minute
+timer in the button/config until the 5 minute threshold. Focused timer and
+weapon-target fixtures pass 35/30 checks; native client results are pending.
+[Details](CONSUMABLE_REFRESH_TIMER.md#well-fed-follow-up--6-november-2026).
+
 6 November runtime inventory and scope decision: main was clean at
 `0f2e3fdaddb2105eea6afdd1058b96e85308180a`. External
 Meter-runtime-inventory-20261106T113256Z preserves 1,596 actual sources,

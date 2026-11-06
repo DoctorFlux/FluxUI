@@ -1,5 +1,12 @@
 # Next session
 
+Consumable Well Fed native check pending: on Retail, Forever and other
+available clients, test real configured food above/at/below its refresh
+threshold in the button and config, then reload and check combat behavior.
+Capture food/aura IDs, client build and errors. Desktop fixture passes 35
+timer checks and 30 weapon-target checks; these do not prove native parity.
+[Case](docs/CONSUMABLE_REFRESH_TIMER.md#well-fed-follow-up--6-november-2026).
+
 Forever glow priority: the latest candidate directly paints action bars and
 Extra Buttons on SAO's screen/button callbacks in combat and uses pre-acquired
 Retail proc art when available. The user has been asked to `/reload` and test
