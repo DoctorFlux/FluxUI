@@ -3370,16 +3370,22 @@ function Paint.UpdateGlow(btn)
 	elseif t == "pet" or t == "shapeshift" then
 		spellId = btn.SpellId
 	end
+	if issecretvalue and issecretvalue(spellId) then
+		spellId = nil
+	end
 	local shownTex = btn.Texture
+	if issecretvalue and issecretvalue(shownTex) then
+		shownTex = nil
+	end
 	local icon = btn.WIcon or (widget and (widget.icon or widget.Icon))
 	if icon and icon.GetTexture then
 		local ok, tex = pcall(icon.GetTexture, icon)
-		if ok and tex then
+		if ok and (not issecretvalue or not issecretvalue(tex)) and tex then
 			shownTex = tex
 		end
 	end
 	local want = G.Want(spellId) and true or false
-	if want and shownTex and G.FaceShowsSpell and not G.FaceShowsSpell(shownTex, spellId) then
+	if want and shownTex and G.FaceShowsSpell and G.FaceShowsSpell(shownTex, spellId) == false then
 		want = false
 	end
 	-- Nil spell id: keep only while the icon is still the last overlayed spell.

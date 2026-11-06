@@ -25,12 +25,20 @@ ButtonFX.Glow = Glow
 local overlayed = {}
 local listeners = {}
 local started = false
+local diagnostics = { notify = 0, screenShow = 0, screenHide = 0,
+	modernReady = 0, modernShow = 0, modernShowFailed = 0,
+	modernHide = 0, classicShow = 0, auraEvents = 0,
+	frameSeen = 0, auraTransitions = 0,
+	nativeScreenShow = 0, nativeScreenHide = 0, nativeScreenID = 0,
+	containerHooks = 0, containerShows = 0, containerHides = 0,
+	registrySeen = 0, registrySlots = 0, registryMatches = 0 }
 
-local function Notify()
+local function Notify(reason)
+	diagnostics.notify = diagnostics.notify + 1
 	for i = 1, #listeners do
 		local fn = listeners[i]
 		if fn then
-			pcall(fn)
+			pcall(fn, reason)
 		end
 	end
 end
@@ -45,7 +53,10 @@ local function OverlayFrame(widget)
 	if not widget then
 		return nil
 	end
-	if widget._fluxForeverSaoGlow and widget.__LBGoverlay then
+	if widget._fluxModernGlowPrepared and widget._ProcGlow then
+		return widget._ProcGlow
+	end
+	if (widget._fluxForeverSaoGlow or widget._fluxSaoPrepared) and widget.__LBGoverlay then
 		return widget.__LBGoverlay
 	end
 	if widget._fluxAssistedCombat then
@@ -72,6 +83,9 @@ local function OverlayShown(frame)
 end
 
 function Glow.IsLive(widget)
+	if widget and widget._fluxModernGlowPrepared then
+		return widget._fluxModernGlowActive and OverlayShown(widget._ProcGlow) or false
+	end
 	local frame = OverlayFrame(widget)
 	if not OverlayShown(frame) then
 		return false
@@ -181,6 +195,44 @@ local function ProcGlowLib()
 		end
 	end
 	return nil
+end
+
+-- Retail's proc flipbook must be acquired and anchored before combat on
+-- Forever secure buttons. Keep the frame attached through later hide calls.
+local function PrepareForeverModernGlow(widget)
+	if not (Flux.Client and Flux.Client.isForever) or (InCombatLockdown and InCombatLockdown()) then
+		return nil
+	end
+	if widget._fluxModernGlowPrepared then
+		return widget._ProcGlow
+	end
+	if not AtlasExists("UI-HUD-ActionBar-Proc-Loop-Flipbook")
+		or not AtlasExists("UI-HUD-ActionBar-Proc-Start-Flipbook") then
+		return nil
+	end
+	local lib = ProcGlowLib()
+	if not (lib and lib.ProcGlow_Start) then
+		return nil
+	end
+	local ok = pcall(lib.ProcGlow_Start, widget, { startAnim = false })
+	local frame = ok and widget._ProcGlow
+	if not (frame and frame.Show and frame.SetAlpha and frame.GetScript
+		and frame.ProcLoopAnim) then
+		return nil
+	end
+	-- Keep this child shown while its secure parent is in combat. Show/Hide on
+	-- a protected descendant can be blocked even when creation was OOC.
+	if frame.ProcStartAnim and frame.ProcStartAnim.Stop then
+		pcall(frame.ProcStartAnim.Stop, frame.ProcStartAnim)
+	end
+	if frame.ProcLoopAnim.Stop then
+		pcall(frame.ProcLoopAnim.Stop, frame.ProcLoopAnim)
+	end
+	pcall(frame.SetAlpha, frame, 0)
+	widget._fluxModernGlowPrepared = true
+	widget._fluxModernGlowActive = false
+	diagnostics.modernReady = diagnostics.modernReady + 1
+	return frame
 end
 
 local function ForeverSaoGlowLib()
@@ -419,6 +471,22 @@ function Glow.Set(widget, on, skipBirth)
 		return
 	end
 	if on then
+		local modern = widget._fluxModernGlowPrepared and widget._ProcGlow
+		if modern then
+			if not widget._fluxModernGlowActive then
+				modern.startAnim = not skipBirth
+				local okAlpha = pcall(modern.SetAlpha, modern, 1)
+				local okScript, onShow = pcall(modern.GetScript, modern, "OnShow")
+				local okAnim = okScript and type(onShow) == "function"
+					and pcall(onShow, modern)
+				widget._fluxModernGlowActive = okAlpha and okAnim and true or false
+				diagnostics.modernShow = diagnostics.modernShow + 1
+				if not widget._fluxModernGlowActive then
+					diagnostics.modernShowFailed = diagnostics.modernShowFailed + 1
+				end
+			end
+			return
+		end
 		local saoGlow = ForeverSaoGlowLib()
 		if Glow.IsLive(widget) and (not saoGlow or widget._fluxForeverSaoGlow
 			or widget.__LBGoverlay or not widget._fluxProcAlert) then
@@ -431,7 +499,21 @@ function Glow.Set(widget, on, skipBirth)
 		-- renderer for Flux surfaces too; its native alert template can exist
 		-- without producing the classic SAO ants on these art-only widgets.
 		if saoGlow then
+			diagnostics.classicShow = diagnostics.classicShow + 1
 			Glow.InstallSAO(widget)
+			local prepared = widget._fluxSaoPrepared and widget.__LBGoverlay
+			if prepared and prepared.animIn and prepared.animIn.Play then
+				if prepared.animOut and prepared.animOut.Stop then
+					pcall(prepared.animOut.Stop, prepared.animOut)
+				end
+				if pcall(prepared.animIn.Play, prepared.animIn) then
+					widget._fluxForeverSaoGlow = true
+					if skipBirth then
+						SnapClassicAnimIn(widget)
+					end
+					return
+				end
+			end
 			local ok = pcall(saoGlow.ShowOverlayGlow, widget)
 			if ok and widget.__LBGoverlay then
 				widget._fluxForeverSaoGlow = true
@@ -478,8 +560,30 @@ function Glow.Set(widget, on, skipBirth)
 		StartShine(widget)
 		return
 	end
+	local modern = widget._fluxModernGlowPrepared and widget._ProcGlow
+	if modern then
+		widget._fluxModernGlowActive = false
+		pcall(modern.SetAlpha, modern, 0)
+		if modern.ProcStartAnim and modern.ProcStartAnim.Stop then
+			pcall(modern.ProcStartAnim.Stop, modern.ProcStartAnim)
+		end
+		if modern.ProcLoopAnim and modern.ProcLoopAnim.Stop then
+			pcall(modern.ProcLoopAnim.Stop, modern.ProcLoopAnim)
+		end
+		diagnostics.modernHide = diagnostics.modernHide + 1
+		return
+	end
 	if widget._fluxForeverSaoGlow then
 		widget._fluxForeverSaoGlow = nil
+		local prepared = widget._fluxSaoPrepared and widget.__LBGoverlay
+		if prepared and prepared.animOut and prepared.animOut.Play then
+			if prepared.animIn and prepared.animIn.Stop then
+				pcall(prepared.animIn.Stop, prepared.animIn)
+			end
+			if pcall(prepared.animOut.Play, prepared.animOut) then
+				return
+			end
+		end
 		local saoGlow = ForeverSaoGlowLib()
 		if saoGlow then
 			if pcall(saoGlow.HideOverlayGlow, widget) then
@@ -502,6 +606,11 @@ end
 
 function Glow.Transfer(from, to)
 	if not from or not to or from == to then
+		return false
+	end
+	-- A prepared Forever LBG frame is anchored to its secure button while
+	-- out of combat. Each destination has its own frame; never reparent it.
+	if from._fluxSaoPrepared or from._fluxModernGlowPrepared then
 		return false
 	end
 	local frame = OverlayFrame(from)
@@ -591,13 +700,13 @@ local function SpellTex(spellId)
 	end
 	if Flux.Spell and Flux.Spell.GetTexture then
 		local ok, tex = pcall(Flux.Spell.GetTexture, spellId)
-		if ok and tex then
+		if ok and (not issecretvalue or not issecretvalue(tex)) and tex then
 			return tex
 		end
 	end
 	if GetSpellTexture then
 		local ok, tex = pcall(GetSpellTexture, spellId)
-		if ok then
+		if ok and (not issecretvalue or not issecretvalue(tex)) then
 			return tex
 		end
 	end
@@ -607,11 +716,17 @@ end
 --- True when the shown icon is still that spell. A different (or empty) face
 --- is a real macro/target leave — do not keep the proc glow on it.
 function Glow.FaceShowsSpell(texture, spellId)
+	if issecretvalue and issecretvalue(texture) then
+		return nil
+	end
 	if not texture or not spellId then
 		return false
 	end
 	local spellTex = SpellTex(spellId)
-	return spellTex ~= nil and texture == spellTex
+	if spellTex == nil then
+		return nil
+	end
+	return texture == spellTex
 end
 
 local function OverrideSpell(spellId)
@@ -655,13 +770,15 @@ local function SpellName(spellId)
 	end
 	if Flux.Spell and Flux.Spell.GetName then
 		local ok, name = pcall(Flux.Spell.GetName, spellId)
-		if ok and type(name) == "string" and name ~= "" then
+		if ok and (not issecretvalue or not issecretvalue(name))
+			and type(name) == "string" and name ~= "" then
 			return name
 		end
 	end
 	if GetSpellInfo then
 		local ok, name = pcall(GetSpellInfo, spellId)
-		if ok and type(name) == "string" and name ~= "" then
+		if ok and (not issecretvalue or not issecretvalue(name))
+			and type(name) == "string" and name ~= "" then
 			return name
 		end
 	end
@@ -758,7 +875,97 @@ local function NativeOverlayed(spellId)
 	if not ok then
 		return nil
 	end
+	-- Forever can return an opaque secret during restricted aura updates.
+	-- A secret cannot be used as a Lua condition outside the protected call.
+	if issecretvalue and issecretvalue(v) then
+		return nil
+	end
 	return v and true or false
+end
+
+-- SAO 2.8.9 registers a Forever Missile Barrage screen overlay (400589),
+-- but omits the Arcane Missiles button that its SoD/Wrath definitions glow.
+-- Keep this source-backed gap alongside the generic native and SAO paths.
+local foreverAuraButtons = { [5143] = 400589 }
+local foreverButtonAuras = {}
+for _, auraID in pairs(foreverAuraButtons) do
+	foreverButtonAuras[auraID] = true
+end
+local foreverAuraForSpell = {}
+local foreverAuraWasActive
+local foreverSaoOverlays = {}
+
+local function ForeverAuraButton(spellId)
+	if not (Flux.Client and Flux.Client.isForever) then
+		return false
+	end
+	if not (_G.SpellActivationOverlayAddonFrame or _G.SpellActivationOverlayLABBinder) then
+		return false
+	end
+	local settings = _G.SpellActivationOverlayDB
+	if settings and settings.glow and settings.glow.enabled == false then
+		return false
+	end
+	local auraID = foreverAuraForSpell[spellId]
+	if auraID == nil then
+		auraID = foreverAuraButtons[spellId] or false
+		if auraID then
+			foreverAuraForSpell[spellId] = auraID
+		else
+			local name = SpellName(spellId)
+			local baseName = SpellName(5143)
+			if name and baseName then
+				if name == baseName then
+					auraID = foreverAuraButtons[5143]
+				end
+				foreverAuraForSpell[spellId] = auraID
+			end
+		end
+	end
+	local getAura = C_UnitAuras and C_UnitAuras.GetPlayerAuraBySpellID
+	if not auraID then
+		return false
+	end
+	-- The overlay frame itself is global even when SAO's Lua namespace is
+	-- private and its show methods cannot be hooked on this client.
+	local frame = (capturedSao and capturedSao.Frame)
+		or _G.SpellActivationOverlayAddonFrame
+	local inUse = frame and frame.overlaysInUse
+	if type(inUse) == "table" then
+		diagnostics.frameSeen = diagnostics.frameSeen + 1
+		local list = inUse[auraID]
+		if type(list) == "table" then
+			local ok, shown = pcall(function()
+				for i = 1, #(list or {}) do
+					local overlay = list[i]
+					if overlay and overlay:IsShown()
+						and not (overlay.animOut and overlay.animOut:IsPlaying()) then
+						return true
+					end
+				end
+				return false
+			end)
+			if ok then
+				return shown
+			end
+		end
+	end
+	-- SAO already resolved the proc when it showed its screen overlay. This
+	-- remains readable in combat even if querying AuraData becomes restricted.
+	if foreverSaoOverlays[auraID] ~= nil then
+		return foreverSaoOverlays[auraID]
+	end
+	if type(getAura) ~= "function" then
+		return false
+	end
+	local ok, active = pcall(function()
+		local aura = getAura(auraID)
+		if issecretvalue and issecretvalue(aura) then
+			return false
+		end
+		return aura ~= nil
+	end)
+	return ok and active == true
 end
 
 -- SHOW/HIDE is global, but HIDE is often missing on classic once SAO owns the
@@ -775,6 +982,9 @@ local function OverlayedRaw(spellId)
 	if Glow.SaoMembership(spellId) then
 		return true
 	end
+	if ForeverAuraButton(spellId) then
+		return true
+	end
 	if native == false then
 		-- ISO can lag a frame behind GLOW_SHOW; do not wipe a live SHOW id.
 		return overlayed[spellId] and true or IdInSet(overlayed, spellId)
@@ -786,6 +996,9 @@ local function OverlayedRaw(spellId)
 end
 
 function Glow.Want(spellId)
+	if issecretvalue and issecretvalue(spellId) then
+		return false
+	end
 	if type(spellId) ~= "number" then
 		return false
 	end
@@ -937,21 +1150,201 @@ end
 
 local function HookAfter(tbl, key, hook)
 	if type(tbl) ~= "table" or type(key) ~= "string" or type(hook) ~= "function" then
-		return
+		return false
 	end
 	if type(tbl[key]) ~= "function" then
-		return
+		return false
 	end
 	-- WoW: original stays secure; hook runs after. Plain Lua smoke: orig then hook.
 	if hooksecurefunc then
-		pcall(hooksecurefunc, tbl, key, hook)
-		return
+		return pcall(hooksecurefunc, tbl, key, hook)
 	end
 	local orig = tbl[key]
 	tbl[key] = function(...)
 		orig(...)
 		hook(...)
 	end
+	return true
+end
+
+local saoShowHooked, saoHideHooked = false, false
+local saoLowShowHooked, saoTerminateHooked = false, false
+
+local function SetForeverSaoOverlay(spellID, shown)
+	if (issecretvalue and issecretvalue(spellID)) or type(spellID) ~= "number" then
+		return
+	end
+	if spellID == 5143 or (spellID ~= 400589 and SpellName(spellID)
+		and SpellName(spellID) == SpellName(5143)) then
+		spellID = foreverAuraButtons[5143]
+	end
+	if not foreverButtonAuras[spellID] or foreverSaoOverlays[spellID] == shown then
+		return
+	end
+	foreverSaoOverlays[spellID] = shown
+	foreverAuraWasActive = shown
+	if shown then
+		diagnostics.screenShow = diagnostics.screenShow + 1
+	else
+		diagnostics.screenHide = diagnostics.screenHide + 1
+	end
+	Notify("sao.overlay")
+end
+
+function Glow.Diagnostics()
+	return "SAO screen=" .. diagnostics.screenShow .. "/" .. diagnostics.screenHide
+		.. " notify=" .. diagnostics.notify
+		.. " modern=" .. diagnostics.modernReady .. "/" .. diagnostics.modernShow
+		.. "/" .. diagnostics.modernHide .. " failed=" .. diagnostics.modernShowFailed
+		.. " classic=" .. diagnostics.classicShow
+		.. " aura=" .. diagnostics.auraEvents .. "/" .. diagnostics.auraTransitions
+		.. " frame=" .. diagnostics.frameSeen
+		.. " native=" .. diagnostics.nativeScreenShow .. "/"
+		.. diagnostics.nativeScreenHide .. "/" .. diagnostics.nativeScreenID
+		.. " container=" .. diagnostics.containerHooks .. "/"
+		.. diagnostics.containerShows .. "/" .. diagnostics.containerHides
+		.. " registry=" .. diagnostics.registrySeen .. "/"
+		.. diagnostics.registrySlots .. "/" .. diagnostics.registryMatches
+end
+
+function Glow.DiagnosticsWanted()
+	local ok, wanted = pcall(Glow.Want, 5143)
+	if not ok then
+		return "want5143=error"
+	end
+	return wanted and "want5143=1" or "want5143=0"
+end
+
+function Glow.DiagnosticsBars()
+	local effects = Flux.Bars and Flux.Bars.Effects
+	if not (effects and effects.GlowDiagnostics) then
+		return "bars=unavailable"
+	end
+	local ok, result = pcall(effects.GlowDiagnostics)
+	return ok and result or "bars=error"
+end
+
+local function HookSaoLowLevelOverlays()
+	if not (Flux.Client and Flux.Client.isForever) then
+		return
+	end
+	-- These global functions are looked up by SAO's cached ShowAllOverlays
+	-- and overlay animation scripts. They still work if its private table is
+	-- unavailable to Flux during combat.
+	if not saoLowShowHooked then
+		saoLowShowHooked = HookAfter(_G, "SpellActivationOverlay_ShowOverlay", function(_, spellID)
+			SetForeverSaoOverlay(spellID, true)
+		end)
+	end
+	if not saoTerminateHooked then
+		saoTerminateHooked = HookAfter(_G, "SpellActivationOverlayTexture_TerminateOverlay", function(overlay)
+			SetForeverSaoOverlay(overlay and overlay.spellID, false)
+		end)
+	end
+end
+
+local function HookSaoScreenOverlays(sao)
+	if not (Flux.Client and Flux.Client.isForever) then
+		return
+	end
+	if type(sao) ~= "table" then
+		return
+	end
+	-- SAO caches these functions on its private table during load. Hook that
+	-- table, because hooking their global names misses self.ShowAllOverlays.
+	-- Hooks run after SAO; its functions still own the screen art.
+	if not saoShowHooked then
+		saoShowHooked = HookAfter(sao, "ShowAllOverlays", function(_, spellID)
+			SetForeverSaoOverlay(spellID, true)
+		end)
+	end
+	if not saoHideHooked then
+		saoHideHooked = HookAfter(sao, "HideOverlays", function(_, spellID)
+			SetForeverSaoOverlay(spellID, false)
+		end)
+	end
+end
+
+local hookedAuraButtons = setmetatable({}, { __mode = "k" })
+local auraButtonShown = setmetatable({}, { __mode = "k" })
+local mappedAuraButtons = {}
+local saoAuraHooked = false
+
+local function HookSaoAuraContainer(sao)
+	if not (Flux.Client and Flux.Client.isForever)
+		or (InCombatLockdown and InCombatLockdown()) then
+		return false
+	end
+	local function hookButton(button)
+		if not (button and button.HookScript) or hookedAuraButtons[button] then
+			return
+		end
+		local okShow = pcall(button.HookScript, button, "OnShow", function()
+			auraButtonShown[button] = true
+			diagnostics.containerShows = diagnostics.containerShows + 1
+			SetForeverSaoOverlay(400589, true)
+		end)
+		local okHide = pcall(button.HookScript, button, "OnHide", function()
+			auraButtonShown[button] = nil
+			diagnostics.containerHides = diagnostics.containerHides + 1
+			local anyShown = false
+			for i = 1, #mappedAuraButtons do
+				if auraButtonShown[mappedAuraButtons[i]] then
+					anyShown = true
+					break
+				end
+			end
+			SetForeverSaoOverlay(400589, anyShown)
+		end)
+		if not (okShow and okHide) then
+			return
+		end
+		hookedAuraButtons[button] = true
+		mappedAuraButtons[#mappedAuraButtons + 1] = button
+		saoAuraHooked = true
+		diagnostics.containerHooks = diagnostics.containerHooks + 1
+		if button.IsShown then
+			local ok, shown = pcall(button.IsShown, button)
+			if ok and (not issecretvalue or not issecretvalue(shown)) and shown then
+				auraButtonShown[button] = true
+				SetForeverSaoOverlay(400589, true)
+			end
+		end
+	end
+	-- Blizzard's public AuraContainer slot registry remains available even
+	-- when SAO's local namespace cannot be captured on Forever.
+	local global = _G.SpellActivationOverlayAuraContainer
+	diagnostics.registrySeen = global and 1 or 0
+	local manager = global and global.auraSlotManager
+	local slots = manager and manager.auraSlots
+	if type(slots) == "table" then
+		diagnostics.registrySlots = #slots
+		diagnostics.registryMatches = 0
+		for i = 1, #slots do
+			local slot = slots[i]
+			local okFilters, filters = pcall(slot.GetCandidateFilters, slot)
+			local includes = okFilters and filters and filters.includeSpellIDs
+			if type(includes) == "table" and includes[400589] then
+				diagnostics.registryMatches = diagnostics.registryMatches + 1
+				local okFrame, button = pcall(slot.GetAuraFrame, slot)
+				if okFrame then
+					hookButton(button)
+				end
+			end
+		end
+	end
+	local container = sao and sao.AuraContainer
+	local items = container and container.items
+	if type(items) == "table" then
+		for _, item in pairs(items) do
+			if item.spellID == 400589 and type(item.auraButtons) == "table" then
+				for _, button in pairs(item.auraButtons) do
+					hookButton(button)
+				end
+			end
+		end
+	end
+	return saoAuraHooked
 end
 
 local function BindSAO(SAO)
@@ -959,20 +1352,22 @@ local function BindSAO(SAO)
 		return
 	end
 	capturedSao = SAO
+	HookSaoScreenOverlays(SAO)
+	HookSaoAuraContainer(SAO)
 	if SAO._fluxGlowHooked then
 		return
 	end
 	SAO._fluxGlowHooked = true
 	HookAfter(SAO, "AddGlow", function()
-		Notify()
+		Notify("sao.glow")
 	end)
 	HookAfter(SAO, "AddGlowNumber", function(_, triggerID, glowID)
 		MarkGlow(glowID, triggerID)
-		Notify()
+		Notify("sao.glow")
 	end)
 	HookAfter(SAO, "RemoveGlow", function(self, triggerID, glowIDs)
 		UnmarkTrigger(self, triggerID, glowIDs)
-		Notify()
+		Notify("sao.glow")
 	end)
 	Notify()
 end
@@ -1175,6 +1570,9 @@ local function HookLBG()
 		end
 	end
 	HookAfter(lib, "ShowOverlayGlow", function(frame)
+		if frame and frame._fluxSaoPreparing then
+			return
+		end
 		if frame and frame.__sao and frame.__sao._fluxEffectGlow then
 			Notify()
 			return
@@ -1211,14 +1609,17 @@ local function HookLBG()
 end
 
 local function TryBind()
+	HookSaoLowLevelOverlays()
 	CaptureSao()
 	local sao = SaoAddon()
 	if sao then
 		BindSAO(sao)
 	end
+	HookSaoAuraContainer(sao)
 	WrapSaoOnEvent()
 	HookLBG()
-	return capturedSao ~= nil
+	return capturedSao ~= nil and (not (Flux.Client and Flux.Client.isForever)
+		or saoAuraHooked)
 end
 
 local function PulseBind()
@@ -1232,6 +1633,55 @@ local function PulseBind()
 end
 
 local saoEnableDepth = 0
+
+local function PrepareForeverSaoGlow(frame)
+	if not (Flux.Client and Flux.Client.isForever) or InLockdown() then
+		return
+	end
+	if frame._fluxSaoPrepared then
+		local overlay = frame.__LBGoverlay
+		if overlay and frame.GetSize then
+			local ok, w, h = pcall(frame.GetSize, frame)
+			if ok and (w ~= frame._fluxSaoWidth or h ~= frame._fluxSaoHeight) then
+				AnchorOverlay(overlay, frame)
+				frame._fluxSaoWidth, frame._fluxSaoHeight = w, h
+			end
+		end
+		return
+	end
+	local lib = ForeverSaoGlowLib()
+	if not lib or not frame.GetSize then
+		return
+	end
+	-- The secure button and its glow must be parented and anchored before
+	-- combat. Keep this LBG-created frame attached through later fade-outs.
+	frame._fluxSaoPreparing = true
+	local ok = pcall(lib.ShowOverlayGlow, frame)
+	frame._fluxSaoPreparing = nil
+	local overlay = ok and frame.__LBGoverlay
+	if not (overlay and overlay.animIn and overlay.animOut
+		and overlay.animOut.SetScript and overlay.Hide) then
+		return
+	end
+	if overlay.animIn.Stop then
+		pcall(overlay.animIn.Stop, overlay.animIn)
+	end
+	if overlay.animOut.Stop then
+		pcall(overlay.animOut.Stop, overlay.animOut)
+	end
+	local ready = pcall(overlay.animOut.SetScript, overlay.animOut, "OnFinished", function()
+		pcall(overlay.Hide, overlay)
+	end)
+	if not ready then
+		return
+	end
+	pcall(overlay.Hide, overlay)
+	frame._fluxSaoPrepared = true
+	local okSize, w, h = pcall(frame.GetSize, frame)
+	if okSize then
+		frame._fluxSaoWidth, frame._fluxSaoHeight = w, h
+	end
+end
 
 --- SAO __sao: membership + owner settle only. Flux owns glow paint.
 function Glow.InstallSAO(frame)
@@ -1263,6 +1713,9 @@ function Glow.InstallSAO(frame)
 		Notify()
 		saoEnableDepth = saoEnableDepth - 1
 	end
+	if not PrepareForeverModernGlow(frame) then
+		PrepareForeverSaoGlow(frame)
+	end
 end
 
 function Glow.NotifySAO(frame)
@@ -1280,17 +1733,68 @@ function Glow.Start()
 	TryBind()
 	local Ev = Flux.Events
 	if Ev and Ev.Register then
+		if Flux.Client and Flux.Client.isForever then
+			Ev.Register("SPELL_ACTIVATION_OVERLAY_SHOW", function(_, spellID)
+				if (not issecretvalue or not issecretvalue(spellID)) and type(spellID) == "number" then
+					diagnostics.nativeScreenShow = diagnostics.nativeScreenShow + 1
+					diagnostics.nativeScreenID = spellID
+					SetForeverSaoOverlay(spellID, true)
+				end
+			end)
+			Ev.Register("SPELL_ACTIVATION_OVERLAY_HIDE", function(_, spellID)
+				diagnostics.nativeScreenHide = diagnostics.nativeScreenHide + 1
+				if issecretvalue and issecretvalue(spellID) then
+					return
+				end
+				if spellID == nil then
+					SetForeverSaoOverlay(400589, false)
+				else
+					SetForeverSaoOverlay(spellID, false)
+				end
+			end)
+			local auraProbeQueued = false
+			local function sampleAuraOverlay()
+				local active = ForeverAuraButton(5143)
+				if active ~= foreverAuraWasActive then
+					foreverAuraWasActive = active
+					diagnostics.auraTransitions = diagnostics.auraTransitions + 1
+					Notify("sao.overlay")
+				end
+			end
+			local function auraChanged(_, unit)
+				if unit == "player" then
+					diagnostics.auraEvents = diagnostics.auraEvents + 1
+					sampleAuraOverlay()
+					-- SAO and Flux receive UNIT_AURA in client registration order.
+					-- Check again next frame after SAO has committed screen art.
+					if not auraProbeQueued and Flux.Timer and Flux.Timer.After then
+						auraProbeQueued = true
+						Flux.Timer.After(0, function()
+							auraProbeQueued = false
+							sampleAuraOverlay()
+						end)
+					end
+				end
+			end
+			if Ev.RegisterUnit then
+				if not Ev.RegisterUnit("UNIT_AURA", "player", auraChanged) then
+					Ev.Register("UNIT_AURA", auraChanged)
+				end
+			else
+				Ev.Register("UNIT_AURA", auraChanged)
+			end
+		end
 		Ev.Register("SPELL_ACTIVATION_OVERLAY_GLOW_SHOW", function(_, spellId)
-			if spellId then
+			if type(spellId) == "number" and (not issecretvalue or not issecretvalue(spellId)) then
 				overlayed[spellId] = true
 			end
-			Notify()
+			Notify("native.glow")
 		end)
 		Ev.Register("SPELL_ACTIVATION_OVERLAY_GLOW_HIDE", function(_, spellId)
-			if spellId then
+			if type(spellId) == "number" and (not issecretvalue or not issecretvalue(spellId)) then
 				overlayed[spellId] = nil
 			end
-			Notify()
+			Notify("native.glow")
 		end)
 		Ev.Register("ADDON_LOADED", function(_, name)
 			if name == "SpellActivationOverlay" then
@@ -1309,7 +1813,7 @@ function Glow.Start()
 			Notify()
 		end)
 	end
-	if not capturedSao then
+	if not capturedSao or (Flux.Client and Flux.Client.isForever and not saoAuraHooked) then
 		local Timer = Flux.Timer
 		if Timer and Timer.NewTicker then
 			bindTicker = Timer.NewTicker(0.25, PulseBind, 40)

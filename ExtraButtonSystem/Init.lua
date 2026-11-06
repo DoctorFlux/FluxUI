@@ -217,6 +217,21 @@ function EBS.Start()
 	end
 	EBS.started = true
 	HookScheduler()
+	local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+	if G and G.OnChange then
+		G.OnChange(function(reason)
+			if Flux.Client and Flux.Client.isForever
+				and (reason == "sao.overlay" or reason == "sao.glow" or reason == "native.glow")
+				and InCombatLockdown and InCombatLockdown()
+				and EBS.Paint and EBS.Paint.FlushEval then
+				EBS.Paint.FlushEval({ ["ebs.glow"] = true })
+			elseif Flux.Scheduler and Flux.Scheduler.Request then
+				Flux.Scheduler.Request("eval", "ebs.glow")
+			elseif EBS.Paint and EBS.Paint.FlushEval then
+				EBS.Paint.FlushEval({ ["ebs.glow"] = true })
+			end
+		end)
+	end
 	if EBS.Watch and EBS.Watch.Start then
 		EBS.Watch.Start()
 	end

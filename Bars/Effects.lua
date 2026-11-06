@@ -12,6 +12,12 @@ Bars.Effects = Effects
 local started = false
 local dirtyCols = {}
 local flushQueued = false
+local glowDiagnostics = { immediate = 0, synced = 0, wanted = 0, shown = 0 }
+
+function Effects.GlowDiagnostics()
+	return "bars=" .. glowDiagnostics.immediate .. "/" .. glowDiagnostics.synced
+		.. "/" .. glowDiagnostics.wanted .. "/" .. glowDiagnostics.shown
+end
 
 local function SpellForSlot(slot)
 	local FX = Flux.ButtonFX
@@ -68,7 +74,7 @@ local function SlotTexture(slot)
 		return nil
 	end
 	local ok, tex = pcall(GetActionTexture, slot)
-	if ok then
+	if ok and (not issecretvalue or not issecretvalue(tex)) then
 		return tex
 	end
 	return nil
@@ -78,7 +84,7 @@ local function HostIconTex(host)
 	local icon = host and host.WIcon
 	if icon and icon.GetTexture then
 		local ok, tex = pcall(icon.GetTexture, icon)
-		if ok and tex then
+		if ok and (not issecretvalue or not issecretvalue(tex)) and tex then
 			return tex
 		end
 	end
@@ -86,7 +92,7 @@ local function HostIconTex(host)
 	local btn = widget and widget.FluxButton
 	if btn and btn.WIcon and btn.WIcon.GetTexture then
 		local ok, tex = pcall(btn.WIcon.GetTexture, btn.WIcon)
-		if ok and tex then
+		if ok and (not issecretvalue or not issecretvalue(tex)) and tex then
 			return tex
 		end
 	end
@@ -117,10 +123,13 @@ local function HostWants(G, host)
 		return false, nil
 	end
 	local sid = HostSpellId(host)
+	if issecretvalue and issecretvalue(sid) then
+		sid = nil
+	end
 	local tex = HostIconTex(host)
 	if sid and G.Want(sid) then
 		-- Id can lag a frame behind the icon on macro/target flips.
-		if tex and G.FaceShowsSpell and not G.FaceShowsSpell(tex, sid) then
+		if tex and G.FaceShowsSpell and G.FaceShowsSpell(tex, sid) == false then
 			return false, sid
 		end
 		return true, sid
@@ -149,16 +158,19 @@ local function BadgeWants(G, face)
 	elseif btn then
 		sid = btn.SpellId
 	end
+	if issecretvalue and issecretvalue(sid) then
+		sid = nil
+	end
 	local tex
 	local icon = btn and btn.WIcon
 	if icon and icon.GetTexture then
 		local ok, t = pcall(icon.GetTexture, icon)
-		if ok then
+		if ok and (not issecretvalue or not issecretvalue(t)) then
 			tex = t
 		end
 	end
 	if sid and G.Want(sid) then
-		if tex and G.FaceShowsSpell and not G.FaceShowsSpell(tex, sid) then
+		if tex and G.FaceShowsSpell and G.FaceShowsSpell(tex, sid) == false then
 			return false, sid
 		end
 		return true, sid
@@ -349,6 +361,7 @@ function Effects.SyncColumn(column)
 	if not column then
 		return
 	end
+	glowDiagnostics.synced = glowDiagnostics.synced + 1
 	local G = Glow()
 	local faces = ColumnFaces(column)
 	if G then
@@ -363,6 +376,7 @@ function Effects.SyncColumn(column)
 			end
 			local want, sid = FaceWants(G, face)
 			if want then
+				glowDiagnostics.wanted = glowDiagnostics.wanted + 1
 				local parked = w._fluxParked
 				if not wantFace then
 					wantFace = face
@@ -417,6 +431,7 @@ function Effects.SyncColumn(column)
 							skip = G.ShouldSkipBirth(widget, sid)
 						end
 						G.Set(widget, true, skip)
+						glowDiagnostics.shown = glowDiagnostics.shown + 1
 						MarkGlowShown(G, face, sid)
 					end
 					if sid then
@@ -541,6 +556,14 @@ function Effects.Refresh(host)
 	QueueFlush()
 end
 
+local function RefreshOverlayNow()
+	for i = 1, Bars.NUM_COLUMNS do
+		dirtyCols[i] = true
+	end
+	glowDiagnostics.immediate = glowDiagnostics.immediate + 1
+	FlushDirty()
+end
+
 function Effects.RefreshAll()
 	for i = 1, Bars.NUM_COLUMNS do
 		dirtyCols[i] = true
@@ -558,7 +581,17 @@ function Effects.Start()
 		G.Start()
 	end
 	if G and G.OnChange then
-		G.OnChange(Effects.RefreshAll)
+		G.OnChange(function(reason)
+			-- SAO has already shown or begun hiding its screen overlay. Match
+			-- its buttons in this same combat callback; other edges stay batched.
+			if Flux.Client and Flux.Client.isForever
+				and (reason == "sao.overlay" or reason == "sao.glow" or reason == "native.glow")
+				and InCombatLockdown and InCombatLockdown() then
+				RefreshOverlayNow()
+			else
+				Effects.RefreshAll()
+			end
+		end)
 	end
 	local F = Flux.ButtonFX and Flux.ButtonFX.Flash
 	if F then
