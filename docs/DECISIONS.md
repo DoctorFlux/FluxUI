@@ -1,5 +1,13 @@
 # Decisions
 
+6 November consumable follow-up: retain public helpful aura additions by
+instance ID so an aura event can change the selected item even when a wrapper
+declines the readable index scan. Remove observations on explicit removal or
+expiry. Use weapon enchant and player inventory events for temporary enchants;
+read the modern paper-doll API when the legacy global is absent. Force a
+protected action rewrite only for a selection change and only outside combat.
+Native acceptance remains pending. [Case](CONSUMABLE_REFRESH_TIMER.md#aura-and-weapon-enchant-follow-up--6-november-2026).
+
 6 November consumable aura advance: force an immediate selection update only
 when a player aura changes the preferred displayed item. Retain coalescing for
 unchanged selection and defer protected writes in combat. Fall back to ordinary

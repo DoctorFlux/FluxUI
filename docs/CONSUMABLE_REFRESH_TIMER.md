@@ -1,5 +1,52 @@
 # Consumable refresh timer — 5 November 2026
 
+## Aura and weapon enchant follow-up — 6 November 2026
+
+The user reported that every configured item still stayed on the button after
+its buff appeared. `UNIT_AURA` now retains readable helpful aura additions by
+instance ID. Food matches Well Fed; regular consumables match the item spell
+ID or name. The item lookup also retries the direct client aura index API when
+the shared wrapper declines a readable aura. Explicit aura removals and expiry
+clear observed buffs; a full update without individual deltas retains a recent
+observation. Selection changes update the button action in the same aura event
+when outside combat, including when the final item becomes buffed and the
+button enters its all-buffed state. Protected action changes queue during combat.
+
+Temporary weapon enchants use `WEAPON_ENCHANT_CHANGED`, with the player inventory
+event as an additional route. The existing enchant lookup can now read
+`C_PaperDollInfo.GetTemporaryEnchantmentInfo` when the deprecated global
+`GetWeaponEnchantInfo` is unavailable. Existing weapon target and refresh
+threshold rules remain in force. No new timer or recurring ticker was added.
+
+The baseline is main `48ea994e37ec527e5b1d7808d3357767067b3ddd`;
+`Consumables.lua` SHA256 is
+`17e1cc41cb5ee6905336e107166729b7c7cca16d6b0b353100dcf11890f07b67`
+before and `7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1`
+after. The verified external history bundle is
+`FluxUI-consumable-aura-next-prechange-20261106.bundle` outside AddOns. Five
+paired loaded-module runs reproduce the baseline with 46 checks and pass the
+candidate with 66 checks. The candidate fixture checks the real button action
+and secure item attribute for flask and weapon events; the baseline does not
+advance on those routes. The timer and weapon-target fixtures pass 35 and 30
+checks. [Raw pairs](validation/consumable-aura-next-followup-comparison-2026-11-06.json).
+
+The full desktop runner passed 185 scripts and 847 Lua syntax files, with zero
+failures. Its [manifest](validation/consumable-aura-next-followup-full-2026-11-06.json)
+includes concurrent unrelated raid and performance work in the working tree.
+The read-only documentation checker reported 23 stale generated inventory,
+verification and view entries, including this changed source/test and
+concurrent source edits. Generated references were left for a coordinated
+refresh; the checker made no edits.
+
+Retail and Forever settings were inspected read-only; no settings, diagnostic
+roots or profiler preferences were changed. Native acceptance remains pending
+for Retail, Forever, Era, Anniversary and progression clients. For each client,
+use a configured food, flask/elixir and weapon enchant with a later eligible
+item; confirm the visible icon and secure action change when the buff/enchant
+appears. Also check the final-item all-buffed state, combat exit, reload,
+threshold boundary, and any errors. Record client build, item and aura IDs,
+addon list, and measured latency before claiming native parity or performance.
+
 ## Immediate advance after aura gain — 6 November 2026
 
 The button now advances to the next eligible configured item on the player

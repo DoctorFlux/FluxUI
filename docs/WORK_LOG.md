@@ -1,5 +1,15 @@
 # Work log
 
+6 November consumable follow-up: verified external all-ref checkpoint at
+`48ea994`; inspected Retail/Forever settings read-only. Added public aura-delta
+tracking, direct readable flask scan, weapon-enchant events and modern API
+fallback. Five paired loaded-module runs: 46 baseline / 66 candidate checks;
+candidate binds the next secure item action for flask and weapon cases. Timer
+35 and weapon-target 30 checks pass. Full desktop runner passes 185 scripts /
+847 Lua files. Read-only docs checker reports 23 stale generated entries in
+this and concurrent raid/performance work; native acceptance is pending.
+[Case](CONSUMABLE_REFRESH_TIMER.md#aura-and-weapon-enchant-follow-up--6-november-2026).
+
 6 November consumable aura advance: verified external all-ref bundle at
 `ef813e0`; read-only Retail/Forever settings inspection. Five baseline/candidate
 loaded-module pairs reproduce the 200 ms wait and pass immediate advance on

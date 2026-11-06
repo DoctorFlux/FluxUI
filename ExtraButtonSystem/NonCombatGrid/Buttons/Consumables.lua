@@ -99,6 +99,7 @@ local function PlayerHelpfulAura(index)
 end
 
 local heldBuffByKey = {}
+local observedHelpfulAuras = {}
 
 local function PackAuraBuff(data, fallbackSpellID)
     if not data then
@@ -2365,6 +2366,96 @@ end
 local WELL_FED_SPELL_IDS = { 1232324, 451920 }
 local learnedWellFedSpellID
 
+local function PublicAuraName(value)
+    if type(value) ~= "string" then return nil end
+    local S = _G.Flux and _G.Flux.Secrets
+    if S and S.SafeAccessibleString then
+        return S.SafeAccessibleString(value)
+    end
+    if issecretvalue and issecretvalue(value) then return nil end
+    return value
+end
+
+local function ObservedAuraIsCurrent(buff)
+    local expiration = buff and PublicAuraNumber(buff.expirationTime)
+    return expiration and expiration > GetTime()
+end
+
+local function TrackHelpfulAuraDelta(updateInfo)
+    local S = _G.Flux and _G.Flux.Secrets
+    if type(updateInfo) ~= "table"
+        or (S and S.AuraUpdateInfoHasSecrets and S.AuraUpdateInfoHasSecrets(updateInfo)) then
+        return
+    end
+    -- A full update may omit per-aura deltas. Keep public observations until
+    -- an explicit removal or expiry rather than losing a just-applied buff.
+    for _, instanceID in ipairs(updateInfo.removedAuraInstanceIDs or {}) do
+        instanceID = PublicAuraNumber(instanceID)
+        if instanceID then observedHelpfulAuras[instanceID] = nil end
+    end
+    for _, aura in ipairs(updateInfo.addedAuras or {}) do
+        if type(aura) == "table" and not (S and S.IsSecretTable and S.IsSecretTable(aura)) then
+            local helpful, harmful = aura.isHelpful, aura.isHarmful
+            local secretFlags = S and S.IsSecretValue
+                and (S.IsSecretValue(helpful) or S.IsSecretValue(harmful))
+            if not secretFlags and helpful ~= false and harmful ~= true then
+                local buff = PackAuraBuff(aura)
+                local instanceID = buff and PublicAuraNumber(buff.auraInstanceID)
+                if instanceID and ObservedAuraIsCurrent(buff)
+                    and (PublicAuraNumber(buff.spellID) or PublicAuraName(buff.name)) then
+                    observedHelpfulAuras[instanceID] = buff
+                end
+            end
+        end
+    end
+    local getByInstance = C_UnitAuras and C_UnitAuras.GetAuraDataByAuraInstanceID
+    if getByInstance then
+        for _, instanceID in ipairs(updateInfo.updatedAuraInstanceIDs or {}) do
+            instanceID = PublicAuraNumber(instanceID)
+            if instanceID and observedHelpfulAuras[instanceID] then
+                local ok, aura = pcall(getByInstance, "player", instanceID)
+                local buff = ok and PackAuraBuff(aura) or nil
+                if buff and ObservedAuraIsCurrent(buff) then
+                    observedHelpfulAuras[instanceID] = buff
+                end
+            end
+        end
+    end
+end
+
+local function FindObservedAura(spellID, spellName)
+    local lowerName = type(spellName) == "string" and spellName:lower() or nil
+    for instanceID, buff in pairs(observedHelpfulAuras) do
+        if not ObservedAuraIsCurrent(buff) then
+            observedHelpfulAuras[instanceID] = nil
+        else
+            local auraSpellID = PublicAuraNumber(buff.spellID)
+            local auraName = PublicAuraName(buff.name)
+            if (spellID and auraSpellID and auraSpellID == spellID)
+                or (lowerName and auraName and auraName:lower() == lowerName) then
+                return buff
+            end
+        end
+    end
+end
+
+local function FindObservedWellFedAura()
+    for instanceID, buff in pairs(observedHelpfulAuras) do
+        if not ObservedAuraIsCurrent(buff) then
+            observedHelpfulAuras[instanceID] = nil
+        else
+            local spellID = PublicAuraNumber(buff.spellID)
+            local name = PublicAuraName(buff.name)
+            if (spellID and (spellID == learnedWellFedSpellID
+                or spellID == WELL_FED_SPELL_IDS[1] or spellID == WELL_FED_SPELL_IDS[2]))
+                or (name and (name:lower():find("well fed", 1, true)
+                    or name == _G.WELL_FED)) then
+                return buff
+            end
+        end
+    end
+end
+
 -- ============================================================================
 -- GROUND-PLACED ITEM AURA BINDINGS (feasts, cauldrons, etc.)
 -- ============================================================================
@@ -2792,6 +2883,12 @@ function Module.FindWellFedBuff()
         end
     end
 
+    local observed = not AurasRestricted() and FindObservedWellFedAura()
+    if observed then
+        learnedWellFedSpellID = PublicAuraNumber(observed.spellID) or learnedWellFedSpellID
+        return MergeHeldBuff("wellfed", observed)
+    end
+
     if AurasRestricted() then
         return MergeHeldBuff("wellfed", nil)
     end
@@ -2869,6 +2966,23 @@ function Module.FindWellFedBuff()
     return MergeHeldBuff("wellfed", nil)
 end
 
+local function ReadWeaponEnchantInfo()
+    if GetWeaponEnchantInfo then
+        return GetWeaponEnchantInfo()
+    end
+    local getTemporary = C_PaperDollInfo and C_PaperDollInfo.GetTemporaryEnchantmentInfo
+    if not getTemporary then return nil end
+    local function readSlot(slot)
+        local ok, info = pcall(getTemporary, slot)
+        if not ok or not info then return false, nil, nil, nil end
+        return true, info.remainingTimeMs, info.chargesRemaining, info.enchantID
+    end
+    local main, mainTime, mainCharges, mainID = readSlot(16)
+    local off, offTime, offCharges, offID = readSlot(17)
+    return main, mainTime, mainCharges, mainID,
+        off, offTime, offCharges, offID
+end
+
 -- Find buff by item spell effect
 -- Returns: auraData = {name, icon, count, duration, maxDuration, expirationTime, spellID} or nil
 function Module.FindBuffForItem(itemID)
@@ -2881,9 +2995,9 @@ function Module.FindBuffForItem(itemID)
     
     -- Check if this is a weapon enchant item - if so, check weapon enchant info
     if Module.IsWeaponEnchantItem(itemID) then
-        if GetWeaponEnchantInfo then
+        if GetWeaponEnchantInfo or (C_PaperDollInfo and C_PaperDollInfo.GetTemporaryEnchantmentInfo) then
             local hasMainHand, expirationMainHand, chargesMainHand, enchantIdMainHand, 
-                  hasOffHand, expirationOffHand, chargesOffHand, enchantIdOffHand = GetWeaponEnchantInfo()
+                  hasOffHand, expirationOffHand, chargesOffHand, enchantIdOffHand = ReadWeaponEnchantInfo()
             
             -- Get item spell ID to match against enchant
             local itemSpellName, itemSpellID
@@ -3045,6 +3159,11 @@ function Module.FindBuffForItem(itemID)
         end
     end
 
+    local observed = not AurasRestricted() and FindObservedAura(itemSpellID, itemSpellName)
+    if observed then
+        return MergeHeldBuff(heldKey, observed)
+    end
+
     local auraCache = Module._tooltipAuraCache
     if auraCache and not auraCache.restricted and not AurasRestricted() then
         if itemSpellID and auraCache.bySpellID[itemSpellID] then
@@ -3070,6 +3189,12 @@ function Module.FindBuffForItem(itemID)
         -- Modern API
         if C_UnitAuras and C_UnitAuras.GetAuraDataByIndex then
             local aura = PlayerHelpfulAura(index)
+            if not aura then
+                -- The shared wrapper can decline a readable player aura.
+                -- Match it here before treating this consumable as unbuffed.
+                local ok, result = pcall(C_UnitAuras.GetAuraDataByIndex, "player", index, "HELPFUL")
+                if ok then aura = result end
+            end
             if not aura then break end
             name = aura.name
             icon = aura.icon
@@ -3446,9 +3571,9 @@ function Module.GetWeaponEnchantSlot(itemID)
     local offHandHasEnchant = false
     local offHandExpiration = 0
     local offHandEnchantId = nil
-    if GetWeaponEnchantInfo then
+    if GetWeaponEnchantInfo or (C_PaperDollInfo and C_PaperDollInfo.GetTemporaryEnchantmentInfo) then
         local hasMainHand, expirationMainHand, chargesMainHand, enchantIdMainHand, 
-              hasOffHand, expirationOffHand, chargesOffHand, enchantIdOffHand = GetWeaponEnchantInfo()
+              hasOffHand, expirationOffHand, chargesOffHand, enchantIdOffHand = ReadWeaponEnchantInfo()
         -- GetWeaponEnchantInfo can return boolean or number depending on WoW version
         -- Handle both cases
         if type(hasMainHand) == "boolean" then
@@ -6224,6 +6349,13 @@ function Module.RegisterEvents()
     eventFrame:RegisterEvent("PLAYER_UNGHOST")
     eventFrame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
     eventFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+    pcall(function() eventFrame:RegisterEvent("WEAPON_ENCHANT_CHANGED") end)
+    local inventoryUnitEventOK = pcall(function()
+        eventFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+    end)
+    if not inventoryUnitEventOK then
+        eventFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+    end
 
     local function runBuffDurationCheck()
         if not Module._button then
@@ -6376,6 +6508,7 @@ function Module.RegisterEvents()
                 if S and S.AuraUpdateInfoIsNoop and S.AuraUpdateInfoIsNoop(updateInfo) then
                     return
                 end
+                TrackHelpfulAuraDelta(updateInfo)
                 if Module._groundAuraLearner and Module.TryProcessGroundAuraLearner then
                     Module.TryProcessGroundAuraLearner()
                 end
@@ -6476,7 +6609,7 @@ function Module.RegisterEvents()
                     local shownItemID = btn and (btn.ConsumablesItemID or btn.ConsumablesCurrentItem)
                     if Module._registered and not Module._isWispLocked
                         and not Module._isPlaceholder and btn and not btn.IsConsumablesPlaceholder
-                        and nextItemID and shownItemID and nextItemID ~= shownItemID then
+                        and shownItemID and nextItemID ~= shownItemID then
                         -- The preferred consumable changed with this aura.
                         -- Advance on this event instead of waiting for the
                         -- coalesced, debounced aura refresh.
@@ -6511,6 +6644,20 @@ function Module.RegisterEvents()
                     end
                 end
             end
+        elseif event == "WEAPON_ENCHANT_CHANGED"
+            or (event == "UNIT_INVENTORY_CHANGED" and arg1 == "player") then
+            local btn = Module._button
+            local shownItemID = btn and (btn.ConsumablesItemID or btn.ConsumablesCurrentItem)
+            if Module._registered and shownItemID and Module.IsWeaponEnchantItem(shownItemID) then
+                local nextItemID = select(1, Module.GetFirstEligibleItem())
+                if nextItemID ~= shownItemID then
+                    if InCombatLockdown() then
+                        Module._pendingUpdate = true
+                    else
+                        Module.UpdateButtonState(true)
+                    end
+                end
+            end
         elseif event == "PLAYER_EQUIPMENT_CHANGED" then
             if not Module._registered or not Module._button then return end
             local mainHand = GetInventorySlotInfo and GetInventorySlotInfo("MainHandSlot") or 16
@@ -6524,6 +6671,11 @@ function Module.RegisterEvents()
             end
         elseif event == "PLAYER_DEAD" or event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
             -- Instant update on death/resurrection (auras are cleared on death)
+            if event == "PLAYER_DEAD" then
+                for instanceID in pairs(observedHelpfulAuras) do
+                    observedHelpfulAuras[instanceID] = nil
+                end
+            end
             if InCombatLockdown() then
                 Module._pendingUpdate = true
             else

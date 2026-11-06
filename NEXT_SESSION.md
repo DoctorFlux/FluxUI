@@ -1,5 +1,13 @@
 # Next session
 
+Consumable aura follow-up native acceptance pending: after `/reload`, on Retail
+and Forever first, consume configured Well Fed food, a flask/elixir, and a
+weapon enchant with a later eligible item. Confirm icon and secure click change
+on the buff/enchant event, then final-item all-buffed state, combat exit and
+refresh threshold. Capture client build, item/aura IDs, any Lua errors and
+actual latency. Repeat on other supported clients before parity claims.
+[Case](docs/CONSUMABLE_REFRESH_TIMER.md#aura-and-weapon-enchant-follow-up--6-november-2026).
+
 Consumable aura advance native check pending: on Retail, Forever and other
 available clients, consume configured Well Fed food with another item after it
 and confirm the button changes on aura gain. Repeat for a weapon enchant,

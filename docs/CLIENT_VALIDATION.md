@@ -1,5 +1,14 @@
 # Client and reference validation — 29 October 2026
 
+6 November consumable follow-up: five matched loaded-module baseline/candidate
+runs pass 46/66 checks for Well Fed, flask aura, weapon enchant, event route,
+actual item action and secure item attribute. Refresh-timer and weapon-target
+fixtures pass 35/30; full desktop runner passes 185 scripts and 847 Lua files.
+The native client/window could not be verified from this
+sandbox, so Retail, Forever, Era, Anniversary and progression latency, secure
+input, taint and visuals remain pending. Settings and profiler preferences were
+left untouched. [Evidence](CONSUMABLE_REFRESH_TIMER.md#aura-and-weapon-enchant-follow-up--6-november-2026).
+
 6 November consumable aura advance: modern/legacy loaded-module pairs confirm
 immediate next-item selection after Well Fed aura gain (22 candidate checks
 each, five repeated pairs). Ordinary `UNIT_AURA` registration is retained as

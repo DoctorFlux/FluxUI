@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-06",
+  "baselineCommit": "48ea994e37ec527e5b1d7808d3357767067b3ddd",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\05\\01a1abaa-ae01-75c3-bb94-d6662d0a7a1f\\FluxUI-consumable-aura-next-prechange-20261106.bundle",
+  "source": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+  "baselineSha256": "17e1cc41cb5ee6905336e107166729b7c7cca16d6b0b353100dcf11890f07b67",
+  "candidateSha256": "7dcc07e54cd27ba1f93559c79e3c173b0eee83872a6691dbe2ead1da8334d7a1",
+  "fixtureSha256": "fb3366dfeed3852875751a78aad8f5fdb7e7d06297047374bd3805efeebaecba",
+  "fixture": "tests/consumable_aura_advance.lua",
+  "pairs": [
+    {
+      "run": 1,
+      "baseline": "Consumable aura advance: 46 checks passed",
+      "candidate": "Consumable aura advance: 66 checks passed"
+    },
+    {
+      "run": 2,
+      "baseline": "Consumable aura advance: 46 checks passed",
+      "candidate": "Consumable aura advance: 66 checks passed"
+    },
+    {
+      "run": 3,
+      "baseline": "Consumable aura advance: 46 checks passed",
+      "candidate": "Consumable aura advance: 66 checks passed"
+    },
+    {
+      "run": 4,
+      "baseline": "Consumable aura advance: 46 checks passed",
+      "candidate": "Consumable aura advance: 66 checks passed"
+    },
+    {
+      "run": 5,
+      "baseline": "Consumable aura advance: 46 checks passed",
+      "candidate": "Consumable aura advance: 66 checks passed"
+    }
+  ],
+  "scope": "Loaded-module event/action mocks; direct aura delta, readable scan fallback, legacy aura, weapon enchant API fallback, event registration, secure item attribute, combat deferral. Native clients and frame-time not measured."
+}

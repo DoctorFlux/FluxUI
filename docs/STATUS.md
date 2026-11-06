@@ -1,5 +1,14 @@
 # Development status
 
+6 November consumable follow-up: event-provided public helpful auras now drive
+immediate next-item selection for Well Fed food and regular consumables; direct
+readable aura scans and modern weapon-enchant info cover client API gaps.
+Weapon enchant and player inventory events redraw the bound action outside
+combat. Five paired desktop runs pass 46 baseline / 66 candidate checks,
+including real button item attributes; full desktop validation passes 185
+scripts and 847 Lua syntax files. Native Retail/Forever and other clients
+remain pending. [Case](CONSUMABLE_REFRESH_TIMER.md#aura-and-weapon-enchant-follow-up--6-november-2026).
+
 6 November consumable aura advance: Well Fed food and weapon enchants now move
 to the next eligible configured item on the player aura event outside combat.
 Unchanged auras keep the coalesced path; protected changes wait for combat exit.
