@@ -6180,11 +6180,12 @@ local function ConsumableAuraWatchSig(reuseCache)
     local super = cache and cache.hasSuperChrono and 1 or 0
     local world = cache and cache.worldBuffCount or 0
     local wisp = Module._isWispLocked and 1 or 0
-    return tostring(itemID or "")
+    local signature = tostring(itemID or "")
         .. ":" .. tostring(exp)
         .. ":" .. tostring(super)
         .. ":" .. tostring(world)
         .. ":" .. tostring(wisp)
+    return signature, itemID
 end
 
 function Module.SeedConsumableAuraWatchSig()
@@ -6201,7 +6202,12 @@ function Module.RegisterEvents()
     
     eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
     eventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
-    pcall(function() eventFrame:RegisterUnitEvent("UNIT_AURA", "player") end)
+    local auraUnitEventOK = pcall(function()
+        eventFrame:RegisterUnitEvent("UNIT_AURA", "player")
+    end)
+    if not auraUnitEventOK then
+        eventFrame:RegisterEvent("UNIT_AURA")
+    end
     do
         local ok = pcall(function()
             eventFrame:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
@@ -6465,7 +6471,23 @@ function Module.RegisterEvents()
                 
                 -- Skip SetAttribute UpdateButtonState when consumable-relevant auras unchanged.
                 if not wispNeedsForce then
-                    local sig = ConsumableAuraWatchSig(true)
+                    local sig, nextItemID = ConsumableAuraWatchSig(true)
+                    local btn = Module._button
+                    local shownItemID = btn and (btn.ConsumablesItemID or btn.ConsumablesCurrentItem)
+                    if Module._registered and not Module._isWispLocked
+                        and not Module._isPlaceholder and btn and not btn.IsConsumablesPlaceholder
+                        and nextItemID and shownItemID and nextItemID ~= shownItemID then
+                        -- The preferred consumable changed with this aura.
+                        -- Advance on this event instead of waiting for the
+                        -- coalesced, debounced aura refresh.
+                        Module._lastConsumableAuraSig = sig
+                        if InCombatLockdown() then
+                            Module._pendingUpdate = true
+                        else
+                            Module.UpdateButtonState(true)
+                        end
+                        return
+                    end
                     if Module._lastConsumableAuraSig ~= nil
                         and sig == Module._lastConsumableAuraSig
                         and not superchargedFlipped then

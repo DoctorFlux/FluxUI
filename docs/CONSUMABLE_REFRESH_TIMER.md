@@ -1,5 +1,37 @@
 # Consumable refresh timer — 5 November 2026
 
+## Immediate advance after aura gain — 6 November 2026
+
+The button now advances to the next eligible configured item on the player
+`UNIT_AURA` event when the preferred item changes, including after Well Fed
+food or a temporary weapon enchant is applied. This selection change bypasses
+the former 200 ms coalescing wait and update debounce. Unchanged aura events
+still avoid an action rewrite. During combat the protected item change remains
+queued until combat ends. If unit-scoped aura event registration is unavailable,
+the button registers the ordinary `UNIT_AURA` event so older clients still
+receive player aura changes.
+
+Baseline main `ef813e0738fa69927bc4694123aea59c8dc2add6` waited for the
+coalesced update and did not register a fallback in the legacy fixture. Five
+paired loaded-module runs reproduce that baseline (11 checks each) and pass
+the candidate (22 checks each) for modern and legacy aura APIs, immediate next
+selection, unchanged aura events, combat deferral, and combat exit. The prior
+refresh-timer and weapon-target fixtures pass 35 and 30 checks; all 845 Lua
+files pass syntax checking. These are desktop results, not native latency,
+secure-input, taint, pixel, or FPS measurements.
+[Raw paired runs](validation/consumable-aura-advance-comparison-2026-11-06.json).
+
+The prechange all-ref history bundle
+`FluxUI-consumable-aura-advance-prechange-20261106.bundle` was verified outside
+AddOns. `Consumables.lua` SHA256 changed from
+`b0cf2c2ea787fc897e97470566ef29cc9b80f995b4dae0bf7ae88340cf37fd40`
+to `3a4d889bde12f1675d3b43581bcb8d9a05bccbfe45a1519081f77078e22f9871`.
+Installed Retail and Forever settings were inspected for presence read-only;
+no settings or profiler preferences were changed. Native acceptance is pending
+on Retail, Forever, Era, Anniversary, and Classic progression: consume food
+with another configured item following it, observe the button at aura gain,
+repeat with a weapon enchant, then check combat deferral and reload.
+
 ## Well Fed follow-up — 6 November 2026
 
 Configured Well Fed food could show no refresh timer when the active food aura

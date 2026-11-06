@@ -1,0 +1,113 @@
+{
+  "case": "Consumable aura advance on Well Fed gain",
+  "date": "2026-11-06",
+  "scope": "Desktop loaded-module event and selection checks; native client secure behavior and FPS not measured",
+  "baselineCommit": "ef813e0738fa69927bc4694123aea59c8dc2add6",
+  "baselineSourceSHA256": "b0cf2c2ea787fc897e97470566ef29cc9b80f995b4dae0bf7ae88340cf37fd40",
+  "candidateSourceSHA256": "3a4d889bde12f1675d3b43581bcb8d9a05bccbfe45a1519081f77078e22f9871",
+  "fixtureSHA256": "4e81e942cc7b8cc1c54359c8b7affb21a5441d8ee56099c695219cac2f5222b5",
+  "pairs": [
+    {
+      "pair": 1,
+      "runs": [
+        {
+          "kind": "baseline",
+          "exit": 0,
+          "wallSeconds": 0.045042,
+          "stdout": "Consumable aura advance: 11 checks passed",
+          "stderr": ""
+        },
+        {
+          "kind": "candidate",
+          "exit": 0,
+          "wallSeconds": 0.025874,
+          "stdout": "Consumable aura advance: 22 checks passed",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "pair": 2,
+      "runs": [
+        {
+          "kind": "baseline",
+          "exit": 0,
+          "wallSeconds": 0.023339,
+          "stdout": "Consumable aura advance: 11 checks passed",
+          "stderr": ""
+        },
+        {
+          "kind": "candidate",
+          "exit": 0,
+          "wallSeconds": 0.025105,
+          "stdout": "Consumable aura advance: 22 checks passed",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "pair": 3,
+      "runs": [
+        {
+          "kind": "baseline",
+          "exit": 0,
+          "wallSeconds": 0.022707,
+          "stdout": "Consumable aura advance: 11 checks passed",
+          "stderr": ""
+        },
+        {
+          "kind": "candidate",
+          "exit": 0,
+          "wallSeconds": 0.022974,
+          "stdout": "Consumable aura advance: 22 checks passed",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "pair": 4,
+      "runs": [
+        {
+          "kind": "baseline",
+          "exit": 0,
+          "wallSeconds": 0.035523,
+          "stdout": "Consumable aura advance: 11 checks passed",
+          "stderr": ""
+        },
+        {
+          "kind": "candidate",
+          "exit": 0,
+          "wallSeconds": 0.02319,
+          "stdout": "Consumable aura advance: 22 checks passed",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "pair": 5,
+      "runs": [
+        {
+          "kind": "baseline",
+          "exit": 0,
+          "wallSeconds": 0.022588,
+          "stdout": "Consumable aura advance: 11 checks passed",
+          "stderr": ""
+        },
+        {
+          "kind": "candidate",
+          "exit": 0,
+          "wallSeconds": 0.023061,
+          "stdout": "Consumable aura advance: 22 checks passed",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "nativeResults": {
+    "Retail": "pending",
+    "Forever": "pending",
+    "Era": "pending",
+    "Anniversary": "pending",
+    "Classic progression": "pending"
+  }
+}
