@@ -1,5 +1,42 @@
 # Consumable refresh timer — 5 November 2026
 
+## Well Fed follow-up — 6 November 2026
+
+Configured Well Fed food could show no refresh timer when the active food aura
+used a spell ID outside the two hard-coded IDs. The fallback index scan also
+stopped when the shared aura wrapper declined a readable player aura. The food
+lookup now tries the client index API when that wrapper returns no aura, scans
+for Well Fed, retains the complete aura duration/expiration/time modifier, and
+reuses a discovered public spell ID on later checks. It also recognizes the
+client's localized `WELL_FED` name when that string is available. The existing
+refresh deadline (`expiration − threshold × time modifier`) is used without a
+separate food timer. Restricted/secret aura values still cannot produce a
+numeric countdown.
+
+The focused loaded-module fixture first fails on main
+`582d868e23c2513ef63251dd0b294df073cfd5c5` because configured food
+cannot find an alternate Well Fed aura. With the fix it passes 35 checks:
+alternate aura detection, learned ID reuse, a 25 minute food timer for a 30
+minute buff with a 5 minute threshold, config/button countdowns, and clearing
+the config countdown at the threshold. The weapon-target fixture passes 30
+checks, and all 844 Lua files pass syntax checking. The documentation checker
+still reports stale generated inventory for this change and concurrent raid
+work, plus an unrelated missing raid validation link; no generated references
+were rewritten during this isolated fix. The verified external history bundle
+`FluxUI-well-fed-timer-prechange-20261106.bundle` preserves the prechange
+main refs. `Consumables.lua` SHA256 changed from
+`2cf0e95e831374f6b0f12de4f8e09703ed8816ee8f3a1cd854d884ab8543c6d2`
+to `b0cf2c2ea787fc897e97470566ef29cc9b80f995b4dae0bf7ae88340cf37fd40`;
+the focused fixture changed from
+`2ecc3e511100e7e2471049018ee671b4b4b13c281220f2bd9c6ba7b85fe15c79`
+to `c47cf1b9cc29c5722a7e2ca9810cbecfb7356d8683e352aacb05febc1afbc540`.
+Retail, Forever, Era, Anniversary, and progression settings were
+inspected for presence read-only; none were reset or copied. Native client
+acceptance is pending. On each client, equip real Well Fed food, verify the
+active buff above/at/below the threshold in the config and button, then repeat
+after a reload, in combat, and with another food spell ID. Record the exact
+food/aura IDs, build, and any errors before claiming native parity.
+
 ## Rule
 
 The Consumables button and its config cells now show time until an active

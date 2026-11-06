@@ -46,11 +46,55 @@ assert(load(consumablesSource, "Consumables.lua", "t", env))("_FluxUI", {})
 assert(load(gridSource, "FluxConsumablesGridUI.lua", "t", env))()
 assert(load(configSource, "ConsumablesConfig.lua", "t", env))()
 local cons, grid = env.FluxNCConsumables, env.FluxConsumablesGridUI
+-- A newer/alternate Well Fed spell must still feed the configured food timer.
+-- Model a client where the shared aura wrapper declines a readable index scan.
+env.Flux.Aura = {
+    GetPlayerAuraBySpellID = function() return nil end,
+    GetDataByIndex = function() return nil end,
+}
+env.C_UnitAuras = { GetAuraDataByIndex = function(_, index, filter)
+    eq(filter, "HELPFUL", "player helpful aura filter")
+    if index == 1 then
+        return { name = "Unrelated Buff", spellId = 88, expirationTime = 2000 }
+    end
+    if index == 2 then
+        return { name = "Well Fed", spellId = 777777, icon = 123,
+            duration = 1800, expirationTime = 1900, timeMod = 1,
+            auraInstanceID = 50 }
+    end
+end }
+cons.IsWeaponEnchantItem = function() return false end
+cons.IsChronoboonItem = function(id) return id == 99 end
+cons.ItemGrantsWellFed = function(id) return id == 777 end
+local mealBuff = cons.FindBuffForItem(777)
+if baseline then
+    eq(mealBuff, nil, "old Well Fed lookup misses readable alternate aura")
+else
+    eq(mealBuff and mealBuff.spellID, 777777, "configured meal finds alternate Well Fed aura")
+    eq(cons.GetRefreshTimerInfo(mealBuff).remaining, 1500,
+        "Well Fed timer ends at refresh threshold")
+    local lookedUpSpellID
+    env.Flux.Aura.GetPlayerAuraBySpellID = function(spellID)
+        lookedUpSpellID = spellID
+        if spellID == 777777 then
+            return { name = "Well Fed", spellId = spellID,
+                duration = 1800, expirationTime = 1900 }
+        end
+    end
+    eq(cons.FindWellFedBuff().spellID, 777777, "learned aura remains findable by spell ID")
+    eq(lookedUpSpellID, 777777, "alternate aura ID is reused before another scan")
+    env.Flux.Secrets.AurasRestricted = function() return true end
+    eq(cons.FindWellFedBuff().spellID, 777777,
+        "learned public Well Fed aura remains findable with restricted index scans")
+    env.Flux.Secrets.AurasRestricted = nil
+    now = 1600
+    eq(cons.GetRefreshTimerInfo(cons.FindBuffForItem(777)), nil,
+        "Well Fed timer clears at threshold")
+    now = 100
+end
 local buff = { expirationTime = 1900, duration = 1800, maxDuration = 1800,
     durationObject = {}, timeMod = 1 }
-cons.IsChronoboonItem = function(id) return id == 99 end
 cons.IsSuperchargedChronoboonItem = function() return false end
-cons.FindBuffForItem = function(id) return id == 123 and buff or nil end
 
 local function makeCell()
     local cell = { cooldown = { shown = false }, timerText = { shown = false } }
@@ -67,6 +111,20 @@ local function makeCell()
 end
 
 local cell = makeCell()
+if not baseline then
+    local foodCell = makeCell()
+    grid.UpdateCellCooldown(foodCell, 777)
+    eq(foodCell.timerText.text, "25m", "configured Well Fed food shows refresh countdown")
+    local foodButton = {}
+    cons.UpdateBuffCooldown(foodButton, mealBuff)
+    eq(foodButton.StanceBuffExpirationTime, 1600,
+        "Well Fed button countdown ends at refresh point")
+    now = 1600
+    grid.UpdateCellCooldown(foodCell, 777)
+    eq(foodCell.timerText.shown, false, "Well Fed config countdown clears at threshold")
+    now = 100
+end
+cons.FindBuffForItem = function(id) return id == 123 and buff or nil end
 grid.UpdateCellCooldown(cell, 123)
 eq(cell.cooldown.shown, true, "active buff swipe visible")
 eq(cell.cooldown.start, 100, "buff swipe starts at application")

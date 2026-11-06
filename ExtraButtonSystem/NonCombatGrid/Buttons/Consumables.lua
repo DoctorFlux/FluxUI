@@ -2363,6 +2363,7 @@ end
 
 -- Well Fed spell IDs (Retail: 1232324, alternate: 451920)
 local WELL_FED_SPELL_IDS = { 1232324, 451920 }
+local learnedWellFedSpellID
 
 -- ============================================================================
 -- GROUND-PLACED ITEM AURA BINDINGS (feasts, cauldrons, etc.)
@@ -2773,9 +2774,14 @@ function Module.ItemGrantsWellFed(itemID)
     return false
 end
 
--- Find Well Fed buff on player (locale-independent via spell ID)
+-- Find Well Fed buff on player. Known spell IDs work while index scans are restricted;
+-- the scan also covers food buffs whose spell IDs change between clients/seasons.
 -- Returns: {name, icon, count, duration, maxDuration, expirationTime, spellID} or nil
 function Module.FindWellFedBuff()
+    if learnedWellFedSpellID then
+        local learned = AuraDataFromSpellID(learnedWellFedSpellID)
+        if learned then return MergeHeldBuff("wellfed", learned) end
+    end
     for _, wellFedId in ipairs(WELL_FED_SPELL_IDS) do
         local hit = AuraDataFromSpellID(wellFedId)
         if hit then
@@ -2793,16 +2799,20 @@ function Module.FindWellFedBuff()
     local index = 1
     while true do
         local name, icon, count, debuffType, duration, expirationTime, source, isStealable, nameplateShowPersonal, spellID
+        local auraData
         
         if C_UnitAuras and C_UnitAuras.GetAuraDataByIndex then
-            local aura = PlayerHelpfulAura(index)
-            if not aura then break end
-            name = aura.name
-            icon = aura.icon
-            count = aura.applications or 0
-            duration = aura.duration or 0
-            expirationTime = aura.expirationTime or 0
-            spellID = aura.spellId
+            auraData = PlayerHelpfulAura(index)
+            if not auraData then
+                -- The shared wrapper can decline an index scan even when the
+                -- player's helpful auras are currently readable. Try the
+                -- client API here; it may still decline restricted auras.
+                local ok, result = pcall(C_UnitAuras.GetAuraDataByIndex, "player", index, "HELPFUL")
+                if ok then auraData = result end
+            end
+            if not auraData then break end
+            name = auraData.name
+            spellID = auraData.spellId
         elseif UnitAura then
             name, icon, count, debuffType, duration, expirationTime, source, isStealable, nameplateShowPersonal, spellID = UnitAura("player", index, "HELPFUL")
             if not name then break end
@@ -2821,6 +2831,12 @@ function Module.FindWellFedBuff()
             end
         end
         if not isWellFed and name then
+            local localizedWellFed = _G.WELL_FED
+            local secretName = issecretvalue and issecretvalue(name)
+            if not secretName and type(localizedWellFed) == "string"
+                and name == localizedWellFed then
+                isWellFed = true
+            end
             local nameLower = nil
             local isSecretValue = issecretvalue or function() return false end
             if FLUX_API and FLUX_API.isV12 and isSecretValue(name) then
@@ -2834,15 +2850,13 @@ function Module.FindWellFedBuff()
             end
         end
         if isWellFed then
-            local packed = PackAuraBuff({
-                name = name,
-                icon = icon,
-                applications = count,
-                duration = duration,
-                expirationTime = expirationTime,
+            local packed = PackAuraBuff(auraData or {
+                name = name, icon = icon, applications = count,
+                duration = duration, expirationTime = expirationTime,
                 spellId = spellID,
             }, spellID)
             if packed then
+                learnedWellFedSpellID = PublicAuraNumber(packed.spellID) or learnedWellFedSpellID
                 if (not packed.maxDuration or packed.maxDuration <= 0) and spellID then
                     packed.maxDuration = GetSpellMaxDuration(spellID)
                 end
