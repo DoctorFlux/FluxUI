@@ -357,11 +357,28 @@ combat cadence, preset IDs and settings remain separate preserved contracts.
 
 ## Automatic Current requirement and supported API gap
 
-The user requires automatic per-combat Current for every existing and future
-meter, with no taint or feature loss. Manual native selection is not completion.
-METER-DEFAULT-CURRENT-01 remains OPEN, blocked by the supported API gap found in
-the fresh Forever 1.60.1.70790 and Retail 12.1.5.70783 source audit. No runtime
-change, new experiment or automatic-default success is claimed.
+The user explicitly chose to preserve every native feature and leave automatic
+Current blocked. METER-DEFAULT-CURRENT-01 remains OPEN against the supported API
+gap in audited Forever 1.60.1.70790 and Retail 12.1.5.70783. Its implementation is
+frozen: no custom renderer, native/private writer, reset, automatic setting or
+manual-setup completion claim. Reopen only with new user direction and supported
+evidence. No runtime change or new native experiment in this batch.
+
+The user's live `FXDM` inventory returned the eight documented methods. Corrected
+`FXCV` output confirmed only enable/show-UI and reset-on-instance-entry, ending
+with `FXCV DONE`. This corroborates the source API/CVar gap; it does not prove
+loaded-source identity or taint cleanup. The initial helper macro concatenated
+nil help and caused its own 12:27:14 RunScript error. The nil-safe correction
+passed scratch checks for nil help/nil command and the user's retest. Keep it
+separate from user-reported native durationSeconds:929 at 11:45:22 and
+specIconID:535 at 11:45:26. Inventory after the reload request is not explicit
+clean-error/combat acceptance. No native cleanup pass is claimed.
+
+A 30-second read-only background attempt at 11:25:15 UTC was refused before any
+posted message or typed character. Preserve background guards and preferences;
+no runtime, settings, profiling or hardware changes. Main baseline was
+`0f2e3fdaddb2105eea6afdd1058b96e85308180a`; the dated external runtime-inventory
+checkpoint preserves 1,596 sources, 177 settings and all-ref history.
 
 The [Forever native owner](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua#L82)
 starts on Overall and its factory inherits that selection. Persisted session

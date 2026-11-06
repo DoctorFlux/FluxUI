@@ -64,28 +64,27 @@ badge; check show/hide, art, paging, icon changes, taint and frame time. Then
 check Era/Anniversary separately. Keep settings and diagnostic roots intact.
 [Evidence](docs/FOREVER_SAO_GLOW.md).
 
-Current meter priority: automatic Current for every existing and future pane
-is required; manual native selection does not complete METER-DEFAULT-CURRENT-01.
-It remains OPEN, blocked by the supported API gap in the audited Forever 70790 /
-Retail 70783 sources. No public session/default setter, Edit Mode field, CVar or
-XML default was found. Do not restore the native setter, add another wrapper or
-restart the removed experiment. Both legacy test commands stay read-only
-UNSUPPORTED. Preserve settings, sessions/history and all native features.
+Current meter scope is accepted: preserve every native feature and leave
+automatic Current blocked. METER-DEFAULT-CURRENT-01 remains OPEN; freeze its
+implementation. Do not add a custom renderer, native/private writer, reset,
+automatic setting or manual-setup completion. Reopen only with new user direction
+and supported evidence. Keep native controls, sessions/history and current UI.
+[Decision and limits](docs/METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
 
-An owned renderer is not a feature-preserving replacement while native combat
-source GUID/query restrictions prevent a promise of drilldown parity. Do not
-silently substitute reduced functionality. Continue only with new supported API
-evidence or an explicitly agreed design that preserves the required features.
-[Audit](docs/validation/meter-automatic-current-capability-2026-11-06.json), [source paths and limits](docs/METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
+Successful user inventory returned all eight documented DamageMeter methods
+and only enable/show-UI plus new-instance-reset CVars (`FXCV DONE`). The original
+nil-help concatenation diagnostic was corrected and retested successfully; its
+12:27:14 RunScript error is separate from native 11:45:22/11:45:26 taint errors.
+Do not rerun the broken macro or infer clean native state from the inventory.
+No explicit loaded-source fingerprint or clean-error/combat acceptance followed
+the reload request. Native cleanup remains pending. The 30-second background
+attempt at 11:25:15 UTC was refused before any posted message/typed character.
+Keep background guards and preferences; do not take foreground control.
 
-Native cleanup remains pending: passive captures at 11:02:01 and 11:06:07 UTC
-showed the same Forever PID 37088/window 341447356, but the game was foreground.
-The guarded reload was refused before input; no command completed this turn.
-When background guards permit, reload the safe source and verify loaded identity,
-BugTabs, ordinary icon/timer refresh and combat without changing preferences.
-Do not infer cleanup, two-fight behavior, pixel parity or FPS from disk identity
-or the prior 166-script / 823-file desktop pass. Keep the independent header/
-Threat checks and concurrent glow priorities below; no runtime changes this audit.
+Independent header/Threat, native combat/secret/taint, pixel and performance
+checks remain pending at their recorded scopes. No runtime change in this batch;
+preserve concurrent glow work and diagnostic roots. Earlier desktop passes are
+source-specific evidence, not a native cleanup or automatic-Current success.
 
 Historical meter links: [METER_STANDALONE.md#installed-wow-interface-art-references](docs/METER_STANDALONE.md#installed-wow-interface-art-references), [meter-theme-consistency-2026-11-05.json](docs/validation/meter-theme-consistency-2026-11-05.json), [METER_STANDALONE.md#one-line-names-and-shared-meter-appearance](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance), [native-meter-background-checks-2026-11-05.json](docs/validation/native-meter-background-checks-2026-11-05.json), [METER_STANDALONE.md](docs/METER_STANDALONE.md), [meter-standalone-2026-11-05.json](docs/validation/meter-standalone-2026-11-05.json), [METER_COMBAT_VISIBILITY.md](docs/METER_COMBAT_VISIBILITY.md), [meter-combat-visibility-2026-11-05.json](docs/validation/meter-combat-visibility-2026-11-05.json).
 

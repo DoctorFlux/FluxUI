@@ -1,5 +1,25 @@
 # Work log
 
+6 November runtime inventory and scope decision: main was clean at
+`0f2e3fdaddb2105eea6afdd1058b96e85308180a`. External
+Meter-runtime-inventory-20261106T113256Z preserves 1,596 actual sources,
+177 settings files and all-ref history; ZIP/bundle checks pass. Source archive
+SHA256: `3eebba4234ea4d02b899dde9d3e4e479319e05bd34845a57d26165d633ff01f5`.
+User live `FXDM` returned the eight documented methods; corrected `FXCV` showed
+only enable/show-UI and new-instance reset, then `FXCV DONE`. The original helper
+macro concatenated nil help and caused its own 12:27:14 RunScript error. It was
+acknowledged and corrected; scratch checks cover nil help/nil command and the
+user's corrected query succeeded. No addon runtime edit or setting change.
+Separate user reports at 11:45:22 (durationSeconds:929) and 11:45:26
+(specIconID:535) remain native taint evidence. Inventory after a reload request
+is not an explicit loaded fingerprint or error-clean acceptance. The 30-second
+background read-only attempt at 11:25:15 UTC was refused before the first posted
+message and zero characters were typed. Native cleanup/combat checks remain pending.
+The user explicitly chose every native feature preserved and automatic Current
+left blocked. Its implementation is frozen; no substitute/manual setup completion,
+writer/reset or new experiment. Concurrent glow state preserved.
+[Scope](METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap), [source audit](validation/meter-automatic-current-capability-2026-11-06.json).
+
 6 November supported-route audit: main was clean at
 `d4a45fbdc63229074af97853d7ec871cbb857162`. External
 Meter-supported-current-audit-20261106T110157Z preserves 1,595 actual sources,

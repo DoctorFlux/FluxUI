@@ -1,7 +1,7 @@
 {
   "captured_at_utc": "2026-11-06T11:10:26.091633+00:00",
   "requirement": "METER-DEFAULT-CURRENT-01: automatically default every existing and future native meter to Current per fight; no manual setup, taint, history loss or feature loss.",
-  "result": "OPEN: no supported implementation found on the inspected builds; no runtime change or completion claim.",
+  "result": "BLOCKED: user explicitly chose to preserve every native feature and leave automatic Current blocked. No runtime change or automatic-default fix.",
   "baseline_commit": "d4a45fbdc63229074af97853d7ec871cbb857162",
   "candidate": "Documentation and capability evidence only; all 823 Lua files remain identical to the validated baseline manifest.",
   "checkpoint": {
@@ -168,7 +168,26 @@
       "refused_message": 256,
       "outcome": "Background guard refused before the first posted message; no reload, setting changes or other input."
     },
-    "acceptance": "NOT RUN: no supported runtime candidate; native memory cleanup, Current defaults, two-fight behavior and combat taint remain unaccepted."
+    "acceptance": "NOT RUN: no supported runtime candidate; native memory cleanup, Current defaults, two-fight behavior and combat taint remain unaccepted.",
+    "additional_readonly_attempt": {
+      "utc": "2026-11-06T11:25:15.9003892Z",
+      "wait_limit_seconds": 30,
+      "completed_commands": [],
+      "current_character": 0,
+      "refused_message": 256,
+      "reason": "Forever remained foreground; strict background guard refused before any input."
+    },
+    "later_pasted_native_errors": {
+      "times": [
+        "11:45:22",
+        "11:45:26"
+      ],
+      "failures": [
+        "durationSeconds comparison at DamageMeterSessionWindow.lua:929",
+        "specIconID comparison at DamageMeterEntry.lua:535"
+      ],
+      "scope": "Separate from the12:27 diagnostic error; fresh safe-source post-reload behavior not established. Do not assume cleared taint."
+    }
   },
   "validation": {
     "source_identity": "All823 normalized Lua identities still match the existing manifest",
@@ -176,7 +195,7 @@
       "scripts": 166,
       "syntax_files": 823,
       "failures": 0,
-      "scope": "Previous exact-source desktop run retained, not a new native/default acceptance run."
+      "scope": "Previous exact-source166-script/823-syntax run retained; new read-only inventory was user-tested, not an automatic-default or combat acceptance run."
     },
     "desktop_manifest": "docs/validation/meter-rejected-current-removal-2026-11-06.json"
   },
@@ -184,5 +203,61 @@
     "status": "NOT RUN / no runtime candidate",
     "reason": "No code, polling, layout, events or native settings changed; profiling preferences untouched. No native CPU, memory or FPS improvement claimed."
   },
-  "next_supported_step": "Requires a verified addon-callable native selection/default API or a client-owned change. Re-audit changed client declarations before implementing; keep this requirement open."
+  "next_supported_step": "Keep native features and history intact. Reopen automatic Current only with a newly verified supported native configuration API; no further same-path setter experiments.",
+  "latest_decision": {
+    "date": "2026-11-06",
+    "user_choice": "Preserve every native feature; leave automatic Current blocked",
+    "status": "BLOCKED by supported-configuration gap; user chose feature preservation.",
+    "effect": "No replacement renderer, native settings writes, reset or automatic Current implementation. Manual selection is not completion."
+  },
+  "runtime_inventory_user_report": {
+    "client_context": "Requested from the ongoing Forever70790 session; supplied as user-pasted output, not agent-executed.",
+    "meter_functions": [
+      "ResetAllCombatSessions",
+      "GetCombatSessionFromType",
+      "GetAvailableCombatSessions",
+      "GetCombatSessionFromID",
+      "GetSessionDurationSeconds",
+      "GetCombatSessionSourceFromID",
+      "IsDamageMeterAvailable",
+      "GetCombatSessionSourceFromType"
+    ],
+    "meter_named_console_entries": [
+      {
+        "command": "damageMeterEnabled",
+        "help": "If true, show the damage meter UI."
+      },
+      {
+        "command": "damageMeterResetOnNewInstance",
+        "help": "If true, reset the damage meter any time the player enters a new instance."
+      }
+    ],
+    "completion_marker": "FXCV DONE",
+    "filter_scope": "Nil-safe read-only inventory filtered command names for damagemeter. It does not prove an unrelated undocumented console command cannot exist.",
+    "result": "Actual exported methods match the eight source-declared methods; listed meter settings provide no Current/default selector.",
+    "cleanup_scope": "Output followed a request to reload first, but no explicit loaded-source identity, reload confirmation or post-cleanup native taint acceptance was supplied."
+  },
+  "diagnostic_correction": {
+    "original_failure": "The first read-only macro concatenated command help without a nil guard; client returned nil help and raised a RunScript concatenation error at12:27:14.",
+    "responsibility": "Assistant diagnostic mistake, acknowledged and corrected; distinct from native meter secret-value errors.",
+    "corrected_command": "/run for _,v in ipairs(ConsoleGetAllCommands())do local n=v.command or \"\";if n:lower():find(\"damagemeter\",1,true)then print(\"FXCV\",n,v.help or \"\")end end print(\"FXCV DONE\")",
+    "desktop_check": "PASS: nil help, nil command, unrelated entries and completion marker; no native VM claim.",
+    "native_result": "User supplied the two entries and completion marker from the corrected command."
+  },
+  "updated_at_utc": "2026-11-06T11:35:22.738018+00:00",
+  "runtime_inventory_checkpoint": {
+    "utc": "20261106T113256Z",
+    "baseline": "0f2e3fdaddb2105eea6afdd1058b96e85308180a",
+    "status": "",
+    "sourceFiles": 1596,
+    "settingsFiles": 177,
+    "sha256": {
+      "source.zip": "3eebba4234ea4d02b899dde9d3e4e479319e05bd34845a57d26165d633ff01f5",
+      "settings.zip": "8669e1cc2f57a60fd5104d973f9996855a6357e3d7a538df3fba67cbd81330bf",
+      "history.bundle": "72277e9407b97fdceec4f506406bdaebac8cd2a7e7a1a56e0581a166ea9891cf"
+    },
+    "zipIntegrity": "PASS",
+    "bundleVerification": "PASS",
+    "gameMemory": "Unsaved game memory excluded; no game input, settings mutation or foreground control"
+  }
 }

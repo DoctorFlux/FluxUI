@@ -1,5 +1,15 @@
 # Decisions
 
+6 November explicit user decision: preserve every native feature and leave
+automatic Current blocked. Freeze the Current implementation; do not add a
+custom renderer, private/native writer, reset, automatic setting or manual-setup
+completion claim. METER-DEFAULT-CURRENT-01 stays OPEN against the supported API
+gap. Reopening implementation requires new user direction and supported evidence.
+The successful runtime API/CVar inventory corroborates the source audit but does
+not prove a loaded-source fingerprint, taint cleanup or combat acceptance. Keep
+the assistant's corrected nil-help diagnostic error separate from native errors.
+[Current scope](METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
+
 6 November automatic Current scope: manual selection is not accepted as delivery.
 Keep METER-DEFAULT-CURRENT-01 OPEN for all existing and future panes. Rechecked
 source pins expose no supported automatic session/default route; do not restore

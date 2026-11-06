@@ -50,6 +50,21 @@ taint and frame-time acceptance remain pending after reload. The combined
 desktop suite passes 164 scripts and 821 Lua syntax files.
 [Details](FOREVER_SAO_GLOW.md).
 
+6 November accepted scope: the user chose to preserve every native feature
+and leave automatic Current blocked. METER-DEFAULT-CURRENT-01 remains OPEN;
+its implementation is frozen. No custom renderer, native writer, reset or
+manual setup is being presented as completion.
+Live `FXDM` inventory reported the eight documented methods. Corrected `FXCV`
+output confirmed enable/show-UI and reset-on-instance-entry CVars, ending with
+`FXCV DONE`; neither supplies a Current default. The first inventory macro had
+an assistant diagnostic bug: concatenating nil help caused the 12:27:14 RunScript
+error. The nil-safe correction passed scratch checks and the user's retest.
+This is separate from the reported 11:45:22 duration and 11:45:26 icon taint errors.
+No loaded fingerprint or clean-error acceptance was supplied after the reload
+request, so native cleanup remains unverified. A 30-second background attempt at
+11:25:15 UTC was refused before any message or character. No runtime change.
+[Accepted scope and evidence](METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
+
 6 November automatic Current requirement: METER-DEFAULT-CURRENT-01 remains
 OPEN, blocked by the supported API gap on the audited Forever 70790 and Retail
 70783 sources. The user requires automatic Current for every existing and future

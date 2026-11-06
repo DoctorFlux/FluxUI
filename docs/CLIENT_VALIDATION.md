@@ -1,5 +1,7 @@
 # Client and reference validation — 29 October 2026
 
+6 November user decision: preserve every native feature and leave automatic Current blocked. User-supplied runtime inventory matches the eight documented meter functions and lists the enable/reset-on-new-instance CVars. The first inventory macro failed on missing help text; the corrected nil-safe macro completed. These metadata reads do not establish native combat safety or cleared taint. No runtime files changed. [Evidence](validation/meter-automatic-current-capability-2026-11-06.json).
+
 6 November automatic Current requirement: manual session selection is not an accepted solution. The renewed pinned-source audit found no supported selection/default API on Forever 70790 or Retail 70783. The private setter remains rejected, and a replacement renderer has unresolved combat drilldown parity. No runtime files changed. Captures verified Forever; after the user confirmed background readiness, the Windows background guard still refused reload before any input. Reload cleanup, two-fight behavior and automatic defaults have no new native acceptance. [Capability evidence](validation/meter-automatic-current-capability-2026-11-06.json).
 
 6 November actual Forever70790 native result: FAIL. Current selection became
