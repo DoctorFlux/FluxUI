@@ -355,6 +355,45 @@ Native data/controls, font-before-text, one-line/opaque text, host/tab ownership
 combat cadence, preset IDs and settings remain separate preserved contracts.
 
 
+## Automatic Current requirement and supported API gap
+
+The user requires automatic per-combat Current for every existing and future
+meter, with no taint or feature loss. Manual native selection is not completion.
+METER-DEFAULT-CURRENT-01 remains OPEN, blocked by the supported API gap found in
+the fresh Forever 1.60.1.70790 and Retail 12.1.5.70783 source audit. No runtime
+change, new experiment or automatic-default success is claimed.
+
+The [Forever native owner](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua#L82)
+starts on Overall and its factory inherits that selection. Persisted session
+configuration is private, and the native menu reaches the private setter that
+failed in the actual client. The [public DamageMeter API](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/DamageMeterDocumentation.lua)
+has eight methods: seven queries and destructive ResetAllCombatSessions, with
+no session/default setter. The [Edit Mode fields](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/EditModeManagerConstantsDocumentation.lua#L413)
+contain no session choice. [Advanced Options](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_SettingsDefinitions_Frame/AdvancedOptions.lua#L403)
+offer enable and new-instance reset, not Current; XML has no default route.
+The [Retail native owner](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_DamageMeter/DamageMeter.lua)
+and corresponding API/settings paths were audited at its separate pinned commit.
+[Full capability/source evidence](validation/meter-automatic-current-capability-2026-11-06.json).
+
+An owned Current renderer cannot currently promise native combat drilldown.
+Source GUIDs are conditionally secret and source queries require untainted
+arguments; the [native source window](https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSourceWindow.lua#L155)
+passes the GUID, stores it and later compares it. Do not silently replace native
+controls/source details with reduced functionality. A different design requires
+explicit agreement and evidence that the required features remain available.
+
+The removed native experiment remains rejected. Both legacy test commands are
+read-only UNSUPPORTED; no further native writes or wrapper attempts. Preserve
+history, settings and all existing native features. The prior safe 166-script /
+823-file desktop report proves its stated source scope only.
+
+Passive captures at 11:02:01 and 11:06:07 UTC verified the same Forever PID 37088 /
+window 341447356 and host executable 70790. The game remained foreground; the
+guarded reload was refused before any input. No command completed this turn.
+Loaded-source identity, retained-state cleanup, ordinary combat/two-fight,
+secret/taint, pixels and performance acceptance remain pending. No settings,
+profiling or hardware changes were made. Keep WoW in the background.
+
 ## Threat timer and current-view diagnosis
 
 The baseline status showed DamageDone:Overall/HealingDone:Overall, overriding
@@ -369,8 +408,9 @@ The entire operative test/preflight/securecallmethod block is removed. Both
 `/fbm currenttest` and `/fbm currentteststatus` now return read-only UNSUPPORTED;
 no native operation, no further native experiments. Automatic per-combat Current
 for every existing/future meter (METER-DEFAULT-CURRENT-01) remains OPEN/unsupported.
-Use the native session selector immediately left of the cog in each header, out of combat, then Current, not
-Advanced AutoReset (new-instance reset). Do not reset sessions/history/settings.
+Manual native selection is available but does not meet the automatic requirement.
+Advanced AutoReset is new-instance reset, not a Current default. Do not reset
+sessions/history/settings.
 
 Safe normalized backend SHA256:
 `c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788`.

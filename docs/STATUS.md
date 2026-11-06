@@ -50,6 +50,19 @@ taint and frame-time acceptance remain pending after reload. The combined
 desktop suite passes 164 scripts and 821 Lua syntax files.
 [Details](FOREVER_SAO_GLOW.md).
 
+6 November automatic Current requirement: METER-DEFAULT-CURRENT-01 remains
+OPEN, blocked by the supported API gap on the audited Forever 70790 and Retail
+70783 sources. The user requires automatic Current for every existing and future
+pane; manual selection does not complete the request. Fresh source review found
+no public session/default setter, Edit Mode setting, CVar or XML default. The
+previous private native route failed in the real VM and remains removed.
+An owned renderer cannot currently promise native combat source drilldown without
+feature loss; do not silently substitute it. No runtime change or new experiment.
+Passive captures at 11:02:01 and 11:06:07 UTC verified the same Forever window;
+the game remained foreground and the guarded reload was refused before any input.
+Native cleanup, loaded identity, combat and two-fight checks remain pending.
+[Source audit](validation/meter-automatic-current-capability-2026-11-06.json), [requirement and limits](METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
+
 6 November native Current experiment FAILED in the real client. Pane/owner/
 saved selection became1/1/1, but changed-field metadata went true to false,
 pane/owner provenance became _FluxUI and BugTabs reported2/2. Delayed ordinary
@@ -63,9 +76,9 @@ passes with unchanged source hashes/membership ([manifest](validation/meter-reje
 Earlier experimental results remain historical/rejected. Capture-only at 10:36:31Z
 showed Meter; the subsequent reload guard refused before any input, so memory
 cleanup/native acceptance is still pending.
-Default Current for existing/future meters remains OPEN/unsupported. Use the
-native session selector immediately left of the cog in each header, out of combat, then Current; Advanced
-AutoReset is new-instance reset. Preserve history/settings and concurrent glow.
+Default Current for existing/future meters remains OPEN/unsupported. Manual
+native choice is available but does not satisfy the automatic requirement.
+Preserve history/settings and concurrent glow.
 [Failure evidence](validation/meter-current-live-checks-2026-11-06.json), [scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
 
 6 November Forever SAO follow-up: the user confirmed the earlier renderer fix

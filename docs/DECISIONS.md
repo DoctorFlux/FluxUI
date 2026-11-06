@@ -1,5 +1,16 @@
 # Decisions
 
+6 November automatic Current scope: manual selection is not accepted as delivery.
+Keep METER-DEFAULT-CURRENT-01 OPEN for all existing and future panes. Rechecked
+source pins expose no supported automatic session/default route; do not restore
+the native setter that already tainted fields or try another call wrapper.
+A replacement renderer is not an equivalent solution while source GUID secrecy
+and query restrictions prevent a promise of native combat drilldown. Do not
+remove those features or substitute a reduced renderer without user agreement.
+Preserve native data/history, current appearance and controls. No runtime change
+or new native experiment was justified by this read-only audit.
+[Evidence](validation/meter-automatic-current-capability-2026-11-06.json), [scope](METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
+
 6 November native VM rejection supersedes the bounded-call experiment. Its
 selection changed1/1/1 while native fields acquired Flux provenance, then ordinary
 native icon/timer refreshes failed on secrets. Remove the entire operative native

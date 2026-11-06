@@ -1,5 +1,23 @@
 # Work log
 
+6 November supported-route audit: main was clean at
+`d4a45fbdc63229074af97853d7ec871cbb857162`. External
+Meter-supported-current-audit-20261106T110157Z preserves 1,595 actual sources,
+177 settings files and all-ref history; ZIP and bundle checks pass. Source archive
+SHA256: `c6f2d2a58c8c226c42e7e16f3e486e714a612d406edd47a76953cf50ba860e50`.
+Fresh Forever 70790 and Retail 70783 source at the pinned commits matched the
+prior audit. Native owner/factory defaults are Overall; public DamageMeter APIs,
+Edit Mode fields, Advanced Options and XML supply no Current default/setter.
+The native session menu calls the already rejected private setter. An owned
+Current renderer cannot promise combat source drilldown with the audited GUID/
+query restrictions. Automatic Current for every existing/future pane remains
+OPEN; manual selection is not completion. No runtime edit or new experiment.
+Passive captures at 11:02:01 and 11:06:07 UTC found Forever PID 37088/window
+341447356 and host executable 70790, with game foreground. The guarded reload
+wait expired before any input or completed command. Loaded identity, cleanup and
+combat/two-fight acceptance remain pending. No settings, profiler or hardware
+changes. Concurrent glow state preserved. [Audit](validation/meter-automatic-current-capability-2026-11-06.json).
+
 6 November real-client Current experiment rejected: user output showed pane/
 owner/saved1/1/1, changed-field metadata true to false and pane/owner _FluxUI.
 BugTabs reported2/2; delayed ordinary native specIconID:535/durationSeconds:929

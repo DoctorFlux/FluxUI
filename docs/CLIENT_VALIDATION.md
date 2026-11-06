@@ -1,5 +1,7 @@
 # Client and reference validation — 29 October 2026
 
+6 November automatic Current requirement: manual session selection is not an accepted solution. The renewed pinned-source audit found no supported selection/default API on Forever 70790 or Retail 70783. The private setter remains rejected, and a replacement renderer has unresolved combat drilldown parity. No runtime files changed. Captures verified Forever; after the user confirmed background readiness, the Windows background guard still refused reload before any input. Reload cleanup, two-fight behavior and automatic defaults have no new native acceptance. [Capability evidence](validation/meter-automatic-current-capability-2026-11-06.json).
+
 6 November actual Forever70790 native result: FAIL. Current selection became
 pane/owner/saved1/1/1, with changed-field metadata true to false and _FluxUI
 provenance; BugTabs2/2 plus delayed11:20 ordinary specIconID:535/durationSeconds:929

@@ -64,30 +64,28 @@ badge; check show/hide, art, paging, icon changes, taint and frame time. Then
 check Era/Anniversary separately. Keep settings and diagnostic roots intact.
 [Evidence](docs/FOREVER_SAO_GLOW.md).
 
-Current meter priority: reload the safe synchronized backend to clear retained
-native taint, then verify loaded source and BugTabs/ordinary native icon+timer
-refresh/combat. The real Current experiment FAILED: pane/owner/saved1/1/1 acquired
-Flux provenance; delayed11:20 secret errors followed. No operative test path
-remains. `/fbm currenttest` and `/fbm currentteststatus` are read-only UNSUPPORTED;
-do not retry native setters through wrappers or perform further experiments.
+Current meter priority: automatic Current for every existing and future pane
+is required; manual native selection does not complete METER-DEFAULT-CURRENT-01.
+It remains OPEN, blocked by the supported API gap in the audited Forever 70790 /
+Retail 70783 sources. No public session/default setter, Edit Mode field, CVar or
+XML default was found. Do not restore the native setter, add another wrapper or
+restart the removed experiment. Both legacy test commands stay read-only
+UNSUPPORTED. Preserve settings, sessions/history and all native features.
 
-Automatic default Current for every existing/future meter is OPEN/unsupported.
-Out of combat use the native session selector immediately left of the cog in each header, then Current;
-Advanced AutoReset means new-instance reset. Preserve sessions/history/settings,
-then validate two fights and a reload through native controls. 126 no-operation/
-provenance, 561 ownership and Core checks pass; safe full166/823 passes unchanged
-source hashes/membership ([manifest](docs/validation/meter-rejected-current-removal-2026-11-06.json)). Capture-only
-10:36:31Z showed the native window/Meter, then reload was refused before any
-input. Memory cleanup/ordinary native combat acceptance is still pending.
+An owned renderer is not a feature-preserving replacement while native combat
+source GUID/query restrictions prevent a promise of drilldown parity. Do not
+silently substitute reduced functionality. Continue only with new supported API
+evidence or an explicitly agreed design that preserves the required features.
+[Audit](docs/validation/meter-automatic-current-capability-2026-11-06.json), [source paths and limits](docs/METER_STANDALONE.md#automatic-current-requirement-and-supported-api-gap).
 
-Keep independent header checks pending natively: timer after unchanged title,
-one native/Threat top-left winner,14display controls/art, hidden Minimize and
-cleanup/combat restoration. Earlier172/87 and166/823 reports retain their exact
-header/experimental source scopes; they do not certify native taint or pixels.
-Safe backend disk SHA256 `c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788`
-was verified byte-equal across all five clients; a disk match is not a loaded
-native cleanup pass. Keep WoW background and preserve concurrent glow work.
-[Failure/safe removal](docs/validation/meter-current-live-checks-2026-11-06.json), [scope](docs/METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
+Native cleanup remains pending: passive captures at 11:02:01 and 11:06:07 UTC
+showed the same Forever PID 37088/window 341447356, but the game was foreground.
+The guarded reload was refused before input; no command completed this turn.
+When background guards permit, reload the safe source and verify loaded identity,
+BugTabs, ordinary icon/timer refresh and combat without changing preferences.
+Do not infer cleanup, two-fight behavior, pixel parity or FPS from disk identity
+or the prior 166-script / 823-file desktop pass. Keep the independent header/
+Threat checks and concurrent glow priorities below; no runtime changes this audit.
 
 Historical meter links: [METER_STANDALONE.md#installed-wow-interface-art-references](docs/METER_STANDALONE.md#installed-wow-interface-art-references), [meter-theme-consistency-2026-11-05.json](docs/validation/meter-theme-consistency-2026-11-05.json), [METER_STANDALONE.md#one-line-names-and-shared-meter-appearance](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance), [native-meter-background-checks-2026-11-05.json](docs/validation/native-meter-background-checks-2026-11-05.json), [METER_STANDALONE.md](docs/METER_STANDALONE.md), [meter-standalone-2026-11-05.json](docs/validation/meter-standalone-2026-11-05.json), [METER_COMBAT_VISIBILITY.md](docs/METER_COMBAT_VISIBILITY.md), [meter-combat-visibility-2026-11-05.json](docs/validation/meter-combat-visibility-2026-11-05.json).
 
