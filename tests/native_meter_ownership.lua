@@ -86,7 +86,7 @@ local function harness(gamepad, policy, hasVisibilitySetter)
         IsDetailsAddonLoaded = function() return s.details end }
     e.Flux = { Cap = { IsForeverGamepadUI = function() return gamepad end } }
     e.Enum = { DamageMeterVisibility = { Always = 0, InCombat = 1, Hidden = 2, InGroup = 3 },
-        DamageMeterSessionType = { Overall = 0, Current = 1, Expired = 3 },
+        DamageMeterSessionType = { Overall = 0, Current = 1, Expired = 2 },
         DamageMeterType = { DamageDone = 0, HealingDone = 2, Dps = 1, Hps = 3 } }
     e.InCombatLockdown = function() return s.combat end
     e.UnitAffectingCombat = function() return s.combat end

@@ -1,5 +1,102 @@
 # Decisions
 
+6 November native VM rejection supersedes the bounded-call experiment. Its
+selection changed1/1/1 while native fields acquired Flux provenance, then ordinary
+native icon/timer refreshes failed on secrets. Remove the entire operative native
+call/preflight path; both legacy test commands now report UNSUPPORTED without an
+operation. Do not retry through another wrapper/barrier. Public API presence,
+clean original function metadata and desktop guards did not prevent data taint.
+Automatic Current remains unsupported/OPEN; native UI owns the session choice.
+Reload cleanup is required, without resetting sessions/history or treating synced
+disk files as a native taint pass. Safe full166/823/unchanged sources passes;
+the reload was refused before input, so loaded cleanup remains pending.
+[Evidence](validation/meter-current-live-checks-2026-11-06.json), [safe manifest](validation/meter-rejected-current-removal-2026-11-06.json).
+
+6 November native meter correction: the explicit pasted status says Overall
+for Damage and Healing; it overrides the earlier ambiguous Current reply.
+METER-DEFAULT-CURRENT-01 remains OPEN for every existing/future native meter.
+Ordinary rendering/layout must keep native data/configuration ownership. The
+optional user-invoked `/fbm currenttest` is a separate bounded permission
+experiment using the original native method/public call boundary after build,
+combat, function-owner and field checks, then re-reading configuration/provenance
+and BugTabs. No automatic default, callback privilege claim or reset is inferred
+from the API's presence, scratch metadata or desktop tests. Native output pending.
+Keep title anchors/baselines unchanged, put the timer after the public heading,
+pack14-unit header controls/art and hide Minimize while embedded; restore the
+original presentation on release. [Scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
+
+6 November Forever glow revision: use the current Retail proc flipbook on
+Forever when its atlases are available, following the user's updated visual
+preference. Pre-acquire on secure buttons OOC. For Forever only, SAO and native
+proc callbacks paint immediately in combat; ordinary refresh and other clients
+retain their existing batching. Keep the Classic LBG path as a capability
+fallback. Native acceptance remains pending; see [evidence](FOREVER_SAO_GLOW.md).
+
+The first live readout showed no SAO screen-hook calls despite a visible
+overlay. Use SAO's global `SpellActivationOverlayAddonFrame.overlaysInUse`
+for the source-backed Missile Barrage association on player UNIT_AURA and a
+coalesced next-frame check. Keep the modern glow frame shown but transparent
+between procs, since combat `Show()` on its secure-button child may be blocked.
+This candidate still requires native verification.
+
+The live SAO frame list was empty during the visible proc. Follow Forever's
+source-declared native `SPELL_ACTIVATION_OVERLAY_SHOW`/`HIDE` events for the
+missing Missile Barrage button association, with 400589/Arcane Missiles rank
+mapping. Keep an active event marker when SAO has no overlay-list entry;
+otherwise the empty list incorrectly forces `Want` false. Live event payload
+and button rendering remain pending.
+
+Installed SAO uses secure AuraContainer slots for Forever secret overlays.
+The first private-table hook attached zero buttons in the live client. Read
+the registered static 400589 `includeSpellIDs` filters and AuraButton frames
+from the global Blizzard AuraContainer slot registry instead. Hook their
+OnShow/OnHide edges OOC; do not inspect secret aura values or replace native
+slot logic. Native acceptance remains pending.
+
+6 November Forever combat button glow: use SAO's resolved screen overlay
+show/hide as the combat-readable trigger for its Forever Missile Barrage effect,
+which omits a button assignment. Keep the general SAO AddGlow/native glow
+routes for all other supported buttons. Treat unreadable combat icon values as
+unknown for a known spell ID, while requiring a readable match to retain a
+nil-ID face. Keep LibButtonGlow artwork/animation, which matches installed Era
+SAO, and do not modify SAO or saved settings. The first global-name hook missed
+SAO's cached private-table calls; hook the table methods instead. Subscribe
+standalone Extra Buttons to shared glow changes on their existing eval lane.
+The global-hook candidate failed the user's combat retest; the corrected
+private-table candidate also failed and left a stale glow. Add global low-level
+SAO screen show/terminate hooks, which cached ShowAllOverlays looks up at call
+time and which do not need the private table. Use SAO's live overlay/fade state
+when captured to override stale markers. This candidate's native combat and
+clear acceptance failed again for combat glow. Prepare and retain one LBG frame
+per Forever secure Flux button out of combat, then play/stop that same Classic
+animation in combat without child creation, parenting or anchoring. Keep
+prepared frames on their own button through paging and skip the birth animation
+on the destination. Native combat, clearing and startup-memory acceptance are
+pending for this candidate.
+[Evidence](FOREVER_SAO_GLOW.md#combat-button-glow-correction).
+
+6 November timer/session correction: include Threat in the same physical
+top/left election as native panes. Forward native formatted timer arguments
+opaquely into one owned FontString; no text/duration inspection. Threat-only
+time is observed current combat from its existing poll, with unknown-start and
+history limits. Report actual Current/Overall/history/unavailable; native UI
+owns the choice and no private setter/reset is restored. The user confirmed
+both meters now use Current; agent enum/two-fight/reload checks remain pending.
+The timer must sit immediately right of its title without moving the title;
+measure only public heading width out of combat, never actor/native value text.
+A sandbox-empty process list does not prove a desktop
+client exited; verify host process/window separately. Do not retry native clicks
+from stale view coordinates after the layout changes.
+[Scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
+
+6 November Forever SAO follow-up: user testing rejected the renderer-only fix.
+SAO 2.8.9's Forever Missile Barrage effect has no button assignment although
+its SoD/Wrath definitions glow Arcane Missiles. Add a narrow 400589 aura to
+Arcane Missiles bridge, including ranks; keep generic SAO AddGlow and native
+glow events for the rest. Refresh only on changed player aura state and guard
+secret native values/IDs. Preserve SAO settings and source files. Native
+verification remains pending. [Evidence](FOREVER_SAO_GLOW.md).
+
 6 November native ownership correction: private native Lua setters are not an
 AddOn-safe configuration API merely because they are callable. Remove Flux writes
 to selected types/sessions, bar metrics, flags/locks/minimize and automatic native

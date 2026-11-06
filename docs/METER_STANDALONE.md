@@ -355,6 +355,92 @@ Native data/controls, font-before-text, one-line/opaque text, host/tab ownership
 combat cadence, preset IDs and settings remain separate preserved contracts.
 
 
+## Threat timer and current-view diagnosis
+
+The baseline status showed DamageDone:Overall/HealingDone:Overall, overriding
+an earlier ambiguous Current reply. The later explicit native experiment changed
+pane/owner/saved selection to1/1/1 but FAILED safety: changed-field metadata went
+true to false, pane/owner provenance became _FluxUI and BugTabs reported2/2.
+Delayed ordinary native specIconID:535 and durationSeconds:929 failures at11:20
+reject that call route. Desktop original-function/field guards and the public
+call boundary did not preserve native data provenance.
+
+The entire operative test/preflight/securecallmethod block is removed. Both
+`/fbm currenttest` and `/fbm currentteststatus` now return read-only UNSUPPORTED;
+no native operation, no further native experiments. Automatic per-combat Current
+for every existing/future meter (METER-DEFAULT-CURRENT-01) remains OPEN/unsupported.
+Use the native session selector immediately left of the cog in each header, out of combat, then Current, not
+Advanced AutoReset (new-instance reset). Do not reset sessions/history/settings.
+
+Safe normalized backend SHA256:
+`c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788`.
+It is byte-equal in all five client copies. Reload is required to clear retained
+tainted native objects before fresh loaded-source, ordinary refresh/combat and
+BugTabs acceptance; disk sync alone is not a native taint pass. 126 no-operation/
+provenance, 561 ownership and Core checks pass. Safe full 166 scripts / 823 syntax checks
+passes with unchanged source hashes/membership, corpus
+`826008fbce898c35a480e1f3752b1bb86e0eb59e71ecfad0d4c8247d369a8039`.
+[Safe manifest](validation/meter-rejected-current-removal-2026-11-06.json). Capture-only at 10:36:31Z showed
+Forever PID37088/window/Meter; the later reload guard refused before any input.
+No cleaned-memory/native acceptance is claimed.
+[Decisive native failure/removal](validation/meter-current-live-checks-2026-11-06.json). The prior
+[166/823 experimental manifest](validation/meter-current-selection-probe-2026-11-06.json) is
+historical/rejected for the configuration route. Ordinary rendering remains
+native-data-owned with no restored private setter/default policy.
+
+Elect one timer across displayed native AND owned Threat panes by physical top,
+then left. Winning Threat receives eligible native formatted SetText arguments
+opaquely in one owned FontString; no GetText/duration inspection. Historical OOC
+text waits for the next donor update. Threat-only observed current-combat time
+uses the existing0.2-second active poll; unknown hidden starts begin at first
+visible observation. Stop/clear on combat end/hide/Details. No frame/event/ticker
+is added; the owned FontString is feature cost. Native timer policy stays native.
+
+Timer anchors immediately right of its title with a small gap and remaining
+menu-bounded width. Keep title left anchor/baseline; Threat left justification
+corrects the centered glyphs without moving its anchor. Measure only public
+heading width out of combat, never actor/value/timer text; unreadable metrics
+fall back to the bounded box. Native header controls and their artwork fit the
+14-display-unit panel (12-unit height). Hidden Close consumes no gap. Embedded
+Minimize is hidden/excluded, including its hit area, and original native state
+restores out of combat. Original handlers/parents/native configuration remain
+unchanged. Source panes/body resize stay native. Existing regeneration repair is
+dirty-only;500 stable paints add no geometry writes/duplicate hooks or resources.
+Finite/narrow headers can still clip; no native pixel acceptance is claimed.
+
+[Header pairs](validation/meter-header-controls-comparison-2026-11-06.json):172skin/87threat checks,
+five alternating checkpoint/candidate pairs/ten rejected mutants.
+[Earlier heading pairs](validation/meter-heading-timer-comparison-2026-11-06.json):144/87,
+five pairs/eight mutants, historical source stage. Historical operative-probe
+checks127 and ownership561 passed before native rejection. [Rejected experiment manifest](validation/meter-current-selection-probe-2026-11-06.json):
+166 scripts /823 syntax files, all source hashes/membership unchanged, corpus
+`d53d2e5e0c0390aa18ba620a9ab30e713b221b6b952db16060a2feca9eb085ba`.
+Historical rejected source SHA256s: native backend
+`0531e50faae488c945dabb44b6062638791f72b0c90d508c8ee422a811a29b6e`;
+skin `cbddd5bee3d13e67b3bd761136d24ace9d9cf21c62defea1a28107d6f6dc3960`;
+threat `c69df568538d4101cac2fded1d7cd9b5fd83e0e28cef4eb1953ae2c1ff75d235`.
+Desktop contracts do not certify native call permission, secret/taint/rendering,
+clock parity or FPS. The native probe output now proves FAIL; safe cleanup,
+genuine two-fight/reload, header/combat and other-client checks remain pending.
+
+Historical native evidence:08:05:58UTC read-only checks found Overall0 for both
+panes, Details false/Meter/BugTabs0. Three root UI attempts were refused before
+dispatch; a later attempt posted three targeted messages at stale coordinates
+after a stock-view change, then loading appeared. It selected no verified Current
+option; input stopped and the view-change cause is unknown. Passive08:31 capture
+showed the new-instance-reset checkbox, not two fights;09:57 showed town/Map/bags
+without probe output. No extra UI input or agent-initiated reload. Preserve the
+[raw stage evidence](validation/meter-current-live-checks-2026-11-06.json).
+Sandbox process omission did not prove an exit; the same Forever PID37088/window
+was host-verified live. Do not restore settings from older captures.
+
+Recovery includes the actual T084055 checkpoint (1,586 sources /177 settings /
+all-ref history) and the earlier verified T080249 checkpoint (1,579 sources /
+177 settings; source SHA256
+`403e098a8f63b1a6875e6eff2dc0ff9e5727c6bd8d97a89f497e4ae1fbcee8fd`).
+Concurrent glow records/source are preserved; the captured full manifest lists
+exact included source identities.
+
 ## Current native configuration boundary
 
 The user's 07:45/07:55 specIconID and 07:57 durationSeconds warnings identify
@@ -415,10 +501,10 @@ failed four stale Core meter assertions; the fixture contract was reconciled
 without restoring unsafe production calls. Native taint safety, exact pixels
 and native performance remain unverified.
 
-At 07:31 UTC process inspection found no WoW process. The prior Forever PID 37088
-had exited, so this is currently a closed-client limitation rather than an
-active foreground-guard issue. No client was launched/focused and no new native
-commands or controlled reload were issued. Fresh loaded-source identity,
+The 07:31 UTC sandbox-empty process result was incorrectly read as an exit.
+Host inspection later verified the same Forever PID37088/window live. No
+automatic launch/focus was issued; historical captures remain stage-specific.
+Fresh loaded-source identity,
 native combat/taint, exact dimensions/artwork and timer acceptance remain open.
 Concurrent raid/glow source and continuity changes must remain preserved.
 

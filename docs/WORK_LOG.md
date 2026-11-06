@@ -1,5 +1,165 @@
 # Work log
 
+6 November real-client Current experiment rejected: user output showed pane/
+owner/saved1/1/1, changed-field metadata true to false and pane/owner _FluxUI.
+BugTabs reported2/2; delayed ordinary native specIconID:535/durationSeconds:929
+errors at11:20 prove the route taints native state despite desktop guard passes.
+Removed operative test/preflight/securecallmethod block. Both preserved slash
+commands are now read-only UNSUPPORTED; no further native experiments. Safe
+backend normalized SHA256 `c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788`
+is byte-equal in all five client copies. 126 no-operation/provenance, 561 ownership
+and Core focused checks pass. Safe full 166 scripts / 823 syntax checks passes, unchanged
+source hashes/membership, corpus `826008fbce898c35a480e1f3752b1bb86e0eb59e71ecfad0d4c8247d369a8039`.
+[Safe manifest](validation/meter-rejected-current-removal-2026-11-06.json). Capture-only at 10:36:31Z verified
+Forever PID37088/window/Meter visible; a later reload guard refused before any
+input because the game was foreground. No agent reload or memory cleanup pass.
+Earlier166/823 experiment remains historical/rejected evidence. Reload must
+clear retained native objects before fresh acceptance; no settings/history reset.
+Use native OOC session selector immediately left of the cog in each header, then Current, not Advanced AutoReset.
+Default Current every existing/future meter remains OPEN/unsupported. Preserve
+concurrent glow work. [Decisive native record](validation/meter-current-live-checks-2026-11-06.json).
+
+6 November final header and Current probe: header172/threat87 checks pass five
+alternating pairs/ten rejected mutants. The earlier heading144/87 five-pair/
+eight-mutant report is retained as its own source stage. Full166scripts/823syntax
+passes with unchanged source hashes/membership, corpus
+`d53d2e5e0c0390aa18ba620a9ab30e713b221b6b952db16060a2feca9eb085ba`.
+Title left anchors/baselines are retained; timer uses public heading width and
+remaining menu-bounded space. Header controls/art fit14 display units; embedded
+Minimize is hidden/excluded and original native geometry/visibility restores.
+The user's later explicit status paste still shows Damage+Healing Overall,
+superseding the earlier Current reply. Default Current for all existing/future
+meters remains OPEN. Implemented only a separately user-invoked, build/OOC/
+provenance-guarded one-view native Current experiment plus read-only status.
+127 probe/provenance and 561 ownership checks pass; requested native output is
+pending, no automatic default/history reset. Scratch ForceTaint_Strong metadata
+is not proof of ordinary addon call permission and changed no native config.
+Passive08:31 capture showed Advanced Options/new-instance reset, not two-fight
+acceptance; later09:57 capture showed town/Map/bags without probe output. No
+extra UI input or agent-initiated reload. Prior misclick and process-visibility
+correction remain preserved. External T084055 checkpoint preserves1,586 sources /
+177 settings/all-ref history. Concurrent glow work is included in the captured
+full source manifest and remains preserved. [Manifest](validation/meter-current-selection-probe-2026-11-06.json),
+[header pairs](validation/meter-header-controls-comparison-2026-11-06.json).
+
+6 November Forever SAO follow-up: the user tested the prepared Classic LBG
+candidate and still saw button glow only after combat. They requested the
+button glow to start with the screen overlay and use modern Retail art. Added
+Forever-only immediate combat paint for mapped screen, generic SAO button and
+native glow events; pre-acquired Retail LCG ProcGlow frame OOC; retained
+Classic fallback. Added a compact diagnostic readout and focused tests.
+Desktop checks passed; native result, taint and performance are pending.
+
+The user's next in-combat diagnostic reported `screen=0/0`, `modern=158/0/0`
+and no button glow. The first diagnostic command had failed inside its readout;
+the simplified readout worked after reload. The screen hook is therefore not
+the live signal on this client. Added the global SAO overlay-frame state as a
+combat-readable source, one coalesced next-frame aura check and registration
+fallback; changed the modern frame to stay shown at zero alpha between procs.
+Focused checks pass; a new live test is pending.
+
+The global-frame/alpha candidate also failed in the user's next combat test.
+Readout: `screen=0/0 notify=330 modern=158/0/0 failed=0 classic=0 aura=7/1
+frame=334`. Aura event dispatch and frame access are present; no button show
+was attempted. Requested the live SAO overlay keys, `Want(5143)` and bar
+matching counters during the proc before changing the association again.
+
+Live check returned `want5143=0`, no SAO `overlaysInUse` keys. Inspected the
+installed SAO native event handlers and Forever source-pinned event payloads.
+Connected native screen show/hide to the mapped Arcane Missiles button and
+fixed an empty-list state override. Focused fixture covers native 400589,
+base/ranked spell IDs and hide; 20 signal checks pass. Native retest pending.
+
+Native-event retest failed: `screen=0/1`, `native=0/15/0`, `aura=1/0`,
+`modern=158/0/0`, `want5143=0`, `bars=0/342/0/0`. Installed SAO's Forever
+secret overlays use Blizzard AuraContainer, bypassing earlier show paths.
+First private-table AuraButton hook candidate also failed live with
+`container=0/0/0`. Inspected Forever Blizzard slot registry; the latest code
+finds the mapped 400589 AuraButtons through the global AuraContainer even
+when SAO's private table cannot be captured. Twelve focused tests pass;
+native acceptance pending.
+
+6 November heading follow-up: the user confirmed both native meters now use
+Current through Blizzard UI, then specified the timer immediately right of each
+window title with titles unmoved. Current setup is user-confirmed; no agent enum,
+two-fight or reload acceptance is claimed. No global/history reset was performed.
+The08:26 live Threat view showed centered heading/clipped timer, motivating a
+placement correction using public heading width out of combat and unchanged
+title left anchor/baseline. Revised source/tests are still being finalized.
+Earlier134skin/85threat/full162/819 results retain their pre-heading scope.
+Concurrent glow work and latest user choices remain preserved.
+
+6 November Forever combat glow follow-up: user specified action bar button
+glows in combat and confirmed SAO's Missile Barrage screen overlay appears.
+Verified installed SAO 2.8.9's show/hide functions, Era/Forever LBG artwork and
+18 matching animation setup calls, and the current Forever process/window
+(PID 37088, `F:\World of Warcraft\_forever_\Wow.exe`). Before edits, placed
+Glow.lua, test, private settings and verified main-history bundle in a dated
+external checkpoint. Hooked SAO screen activation after the original for the
+missing Forever Arcane Missiles association; secret or unreadable combat icon
+data no longer rejects a known spell face. General SAO/native triggers and
+Classic-style LBG paint remain. The user reloaded and retested that first
+candidate: no button glow in combat, then glow after combat if the proc
+remained. SAO calls cached methods on its private table, so the global-name
+hook missed them; the corrected candidate hooks those methods. Standalone
+EBS buttons also lacked a glow-change subscription, now routed through the
+existing `ebs.glow` eval lane. The user retested that private-table candidate:
+still no combat glow, followed by a glow that remained after the proc ended.
+Added lower-level global `ShowOverlay`/`TerminateOverlay` post-hooks, which do
+not require private SAO capture, and live SAO overlay/fade checks to prevent a
+stale marker. The user's next live retest still had no combat glow. Flux's
+secure Hosts code forbids first combat child/anchor creation; LBG did exactly
+that on first proc. Prepared and retained each LBG frame during OOC button
+installation, so combat activation and removal play existing Classic animations
+without LBG CreateFrame/SetParent/SetPoint. Prepared frames stay with their
+button across paging, with skip-birth on the destination. Focused glow 53,
+low-level combat signal 5 and EBS refresh 8
+checks pass;
+full desktop manifest
+at [combat evidence](validation/forever-sao-combat-glow-2026-11-06.json).
+The current run passes 164 scripts and 821 Lua syntax files; the saved HEAD
+EBS.Init fails the new missing-listener assertion.
+No window focus, input, reload or settings changes were made by Codex. The
+user's first three native retests failed; the prepared-renderer candidate
+combat/clear/visual/taint/FPS and
+Era/Anniversary acceptance are pending.
+
+6 November Threat timer/current-view follow-up: published main b6cb2c7 was
+clean; external Meter-threat-timer-current-view-checkpoint-20261106T080249Z
+preserves 1,579 actual sources /177 settings/all-ref history, archives/bundle PASS,
+source SHA256 `403e098a8f63b1a6875e6eff2dc0ff9e5727c6bd8d97a89f497e4ae1fbcee8fd`.
+Skin134/threat85 pass five alternating pairs/eight mutants; diagnostics42/
+ownership561 pass five pairs/seven mutants. Full current suite passes 162 scripts /
+819 syntax files with unchanged source hashes/membership, corpus
+`d9a7742aeb101cc26b97d45274365f05831f2a599796628a8d396077499b000d`.
+At08:05:58UTC two guarded read-only native commands found Forever70790, native
+Damage+Healing Overall0, Details false, Meter active and BugTabs0. Reset-on-new-
+instance1 is distinct from per-fight Current1. Three root click attempts were
+refused before dispatch. One later attempt posted three targeted window messages
+without activation/system input; it used stale menu coordinates despite a changed
+stock layout. Later capture showed loading; no Current selection/setting was
+verified. Input stopped; view-change cause is unknown. No automatic session
+setter, reset, profiler preference change or foreground takeover was performed.
+Correction: sandbox process isolation hid the live desktop client; the same
+PID37088/window remained live. The earlier closed-client inference was wrong.
+Raw historical reports/concurrent glow work remain preserved.
+[Full manifest](validation/meter-threat-timer-current-view-2026-11-06.json), [native evidence](validation/meter-current-live-checks-2026-11-06.json).
+
+6 November Forever SAO follow-up: user reported no Forever button glow after
+the LibButtonGlow renderer change, with Missile Barrage as a reproducible proc
+and all SAO-supported spells/procs in scope. Read installed SAO 2.8.9 Mage
+definition and saved glow setting (`enabled=true`), plus Forever native glow and
+aura API source. Dated external checkpoint holds pre-edit Glow.lua, private
+settings and verified main bundle; no client process was running and no game
+input or settings changed. Added a source-backed Missile Barrage aura to Arcane
+Missiles rank-aware bridge, guarded secret native API/event values, and changed
+player-aura refresh to fire only when that proc changes. Generic SAO/native
+membership and bar/Extra/badge renderer remain shared. Focused 41 checks pass;
+pre-edit Glow.lua fails the Missile Barrage assertion; full desktop suite passes
+162 scripts and 819 Lua syntax files. Native proc, art, taint, frame-time and
+Era/Anniversary regression remain pending. [Evidence](FOREVER_SAO_GLOW.md),
+[manifest](validation/forever-sao-glow-followup-2026-11-06.json).
+
 6 November native secret failures at 07:45/07:55 (specIconID) and 07:57
 (durationSeconds) invalidate a blanket taint-safe claim for prior art/grid stages.
 The current candidate keeps visual docking/native controls without

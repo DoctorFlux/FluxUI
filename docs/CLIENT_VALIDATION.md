@@ -1,5 +1,106 @@
 # Client and reference validation — 29 October 2026
 
+6 November actual Forever70790 native result: FAIL. Current selection became
+pane/owner/saved1/1/1, with changed-field metadata true to false and _FluxUI
+provenance; BugTabs2/2 plus delayed11:20 ordinary specIconID:535/durationSeconds:929
+errors reject the experiment. Operative call removed; both test commands now
+read-only UNSUPPORTED. Safe disk backend matches all five clients, but reload
+cleanup and fresh loaded-source/ordinary combat/native secret checks remain
+pending.126 no-operation/provenance and561 ownership/Core focused checks pass;
+safe full166/823 passes unchanged sources ([manifest](validation/meter-rejected-current-removal-2026-11-06.json)).
+Capture-only10:36:31Z confirmed the live native window/Meter; subsequent reload
+was refused before input. No cleaned-memory/native acceptance is claimed.
+Prior166/823 experimental source remains historical/rejected evidence. Automatic Current OPEN/unsupported; native UI session selector→Current
+is distinct from Advanced AutoReset. No history/settings reset.
+[Native failure](validation/meter-current-live-checks-2026-11-06.json), [scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
+
+6 November current native meter status: the explicit pasted DamageDone:Overall /
+HealingDone:Overall overrides the earlier ambiguous Current reply. Automatic
+Current for every existing/future meter is OPEN; two-fight/reload behavior remains
+unverified. The optional guarded Forever70790 `/fbm currenttest` native output
+is required/pending; desktop127-probe/561-ownership checks do not prove client
+call permission or secret safety. Header172/threat87 and full166/823 pass stated
+desktop scopes with unchanged sources. Native header/Minimize/timer geometry,
+combat/taint/pixels/FPS and other clients remain pending. Passive captures did
+not show the requested output or two fights. Preserve latest settings/history,
+BugTabs, background-only rules and concurrent glow. [Scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis),
+[full manifest](validation/meter-current-selection-probe-2026-11-06.json).
+
+6 November Forever proc candidate: user confirmed the prewarmed Classic LBG
+frame still only glowed after combat. The revised Retail ProcGlow frame and
+same-callback SAO/native button paint pass desktop checks only. A fresh
+`/reload` and live Missile Barrage show/clear retest is pending. Era and
+Anniversary native regression, atlas/pixel match, taint and frame time remain
+pending; no desktop result is treated as in-client acceptance. See
+[Forever SAO glow](FOREVER_SAO_GLOW.md).
+
+Native readout from the direct-callback candidate: SAO screen hooks 0/0,
+prepared Retail frames 158, show calls 0. The global-frame aura sampling and
+alpha-only reveal candidate has not yet been tested in client.
+
+Subsequent native retest also failed for the global-frame/alpha candidate:
+combat readout had aura events 7, frame reads 334, Retail frames 158, shows 0.
+The next requested read-only client check is SAO's active overlay IDs and
+Flux's spell/button match during the visible proc.
+
+That check returned `want5143=0` with no SAO overlay-list keys. The native
+screen show/hide event candidate is installed on disk but has not yet received
+an in-client acceptance test. If it fails, record `native` event counts and
+ID from the readout during the proc.
+
+Native-event retest and private-table AuraContainer hook both failed:
+native show0/hide15, then AuraButton hooks0. The global Blizzard slot-registry
+candidate is installed and requires a fresh in-client combat show/clear test.
+
+6 November Forever combat button glow candidate: the user confirmed SAO's
+Missile Barrage screen overlay appears in combat, while action bar button glow
+does not. The user's first reload/retest still had no combat button glow,
+with glow appearing after combat while the proc remained. SAO cached its
+screen functions on a private table; the global-name hook missed those calls.
+The corrected candidate hooks the table methods and subscribes standalone
+Extra Buttons to glow changes on the existing eval lane. Flux accepts unknown
+icon texture for a known spell ID. The
+Classic Era SAO LibButtonGlow artwork and animation declarations match the
+Forever paint route. The user retested the private-table candidate and still
+saw glow only after combat, with stale glow after proc end. The newest
+candidate adds global low-level SAO show/termination hooks and checks live
+overlay/fade state. The user retested that signal candidate and still saw no
+combat glow. Flux now prepares and retains each Classic LBG frame on its secure
+button OOC, then plays existing animations without first-combat parenting.
+Focused glow 53, low-level signal 5 and EBS refresh 8-check
+desktop fixtures
+pass; the full
+[combat manifest](validation/forever-sao-combat-glow-2026-11-06.json) passes
+164 scripts and 821 Lua syntax files. Elevated read-only host inspection found Forever PID
+37088 and the exact WoW window; Codex sent no input or reload. The user's
+first three live tests rejected the earlier candidates; the prepared-renderer disk code
+still needs native combat verification. Pixels, taint,
+frame time and Era/Anniversary regression remain pending.
+
+6 November current Forever70790 evidence: host inspection confirms the same
+PID37088/window remained live; sandbox-empty enumeration did not prove an exit.
+At08:05:58UTC read-only native checks found Damage+Healing Overall0, Details false,
+Meter active and BugTabs0. New-instance-reset1 does not select per-fight Current1.
+Three initial native UI attempts were refused before dispatch; one final attempt
+posted three targeted messages without activation/system input, but used stale
+coordinates after a stock-layout change. Later loading capture did not confirm
+Current or any setting change. The user later confirmed both native meters
+now use Current. Setup is user-confirmed; agent enum/two-fight/reload checks
+remain pending. The08:26 view showed centered Threat title/clipped timer;
+revise the timer immediately after unchanged titles before final acceptance.
+Earlier full162/819/unchanged sources is pre-heading stage evidence.
+Native combat/secret/taint/pixels/FPS and other clients remain pending.
+[Current scope](METER_STANDALONE.md#threat-timer-and-current-view-diagnosis), [native evidence](validation/meter-current-live-checks-2026-11-06.json).
+
+6 November Forever SAO follow-up: user testing confirmed no button glow after
+the earlier renderer correction. Installed SAO 2.8.9 Forever Missile Barrage
+defines aura 400589's screen overlay but omits an Arcane Missiles button; Flux
+now reads that aura for the base spell and its ranks, while generic SAO and
+native glow paths cover other supported spells/procs. Secret native values and
+event IDs are guarded. Focused 41 checks and the follow-up 162-script/819-file
+desktop suite pass; native proc/visual/taint/frame-time and Era/Anniversary
+regression checks are pending. [Source and scope](FOREVER_SAO_GLOW.md).
+
 6 November current Forever 70790 candidate is not natively accepted. Reported
 specIconID/durationSeconds failures under Flux taint require removal of direct
 native Lua configuration writers, not just a texture correction. The candidate
@@ -11,8 +112,8 @@ checks pass (five pairs each, 5/9 mutants); final full validation passes
 162 scripts /819 Lua syntax files with all source hashes/membership unchanged.
 [Current manifest](validation/meter-timer-native-boundary-2026-11-06.json).
 These models do not certify the native secure VM.
-At 07:31 UTC no WoW process was running, so no controlled candidate reload, live
-timer/combat/taint or final pixel check is available. Older captures/passes are
+The 07:31 UTC sandbox-empty process result did not prove an exit; the same
+Forever process/window was later verified live. Older captures/passes are
 stage-specific. Other-client native behavior remains unverified.
 [Current capability limits](METER_STANDALONE.md#current-native-configuration-boundary).
 

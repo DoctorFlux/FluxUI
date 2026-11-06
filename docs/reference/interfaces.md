@@ -60,12 +60,12 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1205](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1205) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1206](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1206) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxBattlefieldMapWorldFeatures.lua:1207](../../Battlezonemap/FluxBattlefieldMapWorldFeatures.lua#L1207) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1165](../../Battlezonemap/FluxBlizzardMeter.lua#L1165) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1166](../../Battlezonemap/FluxBlizzardMeter.lua#L1166) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1167](../../Battlezonemap/FluxBlizzardMeter.lua#L1167) | `RegisterEvent` | `"EDIT_MODE_LAYOUTS_UPDATED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1242](../../Battlezonemap/FluxBlizzardMeter.lua#L1242) | `RegisterEvent` | `"ADDON_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1243](../../Battlezonemap/FluxBlizzardMeter.lua#L1243) | `RegisterEvent` | `"VARIABLES_LOADED"` |
-| [Battlezonemap/FluxBlizzardMeter.lua:1244](../../Battlezonemap/FluxBlizzardMeter.lua#L1244) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1250](../../Battlezonemap/FluxBlizzardMeter.lua#L1250) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1251](../../Battlezonemap/FluxBlizzardMeter.lua#L1251) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1252](../../Battlezonemap/FluxBlizzardMeter.lua#L1252) | `RegisterEvent` | `"EDIT_MODE_LAYOUTS_UPDATED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1328](../../Battlezonemap/FluxBlizzardMeter.lua#L1328) | `RegisterEvent` | `"ADDON_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1329](../../Battlezonemap/FluxBlizzardMeter.lua#L1329) | `RegisterEvent` | `"VARIABLES_LOADED"` |
+| [Battlezonemap/FluxBlizzardMeter.lua:1330](../../Battlezonemap/FluxBlizzardMeter.lua#L1330) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
 | [Battlezonemap/FluxDetails.lua:242](../../Battlezonemap/FluxDetails.lua#L242) | `RegisterEvent` | `"DETAILS_INSTANCE_OPEN", lightRefreshIfEmbedded` |
 | [Battlezonemap/FluxDetails.lua:243](../../Battlezonemap/FluxDetails.lua#L243) | `RegisterEvent` | `"DETAILS_PROFILE_APPLYED", function() -- Profiles reset instances_amount (default 5); Flux needs up to 6 panes. EnsureDetailsMaxWindows() lightRefreshIfEmbedded() end` |
 | [Battlezonemap/FluxDetails.lua:1811](../../Battlezonemap/FluxDetails.lua#L1811) | `RegisterEvent` | `"ADDON_LOADED"` |
@@ -92,8 +92,8 @@ Literal and dynamic event expressions are preserved. Shared-bus subscription met
 | [Battlezonemap/FluxThreat.lua:988](../../Battlezonemap/FluxThreat.lua#L988) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
 | [Battlezonemap/FluxThreat.lua:989](../../Battlezonemap/FluxThreat.lua#L989) | `RegisterEvent` | `"PLAYER_REGEN_DISABLED"` |
 | [Battlezonemap/FluxThreat.lua:990](../../Battlezonemap/FluxThreat.lua#L990) | `RegisterEvent` | `"PLAYER_REGEN_ENABLED"` |
-| [Battlezonemap/FluxThreatMeter.lua:285](../../Battlezonemap/FluxThreatMeter.lua#L285) | `RegisterEvent` | `event` |
-| [Battlezonemap/FluxThreatMeter.lua:286](../../Battlezonemap/FluxThreatMeter.lua#L286) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
+| [Battlezonemap/FluxThreatMeter.lua:304](../../Battlezonemap/FluxThreatMeter.lua#L304) | `RegisterEvent` | `event` |
+| [Battlezonemap/FluxThreatMeter.lua:305](../../Battlezonemap/FluxThreatMeter.lua#L305) | `RegisterUnitEvent` | `"UNIT_TARGET", "target"` |
 | [Battlezonemap/FluxWindowFrame.lua:1652](../../Battlezonemap/FluxWindowFrame.lua#L1652) | `RegisterEvent` | `"ADDON_LOADED"` |
 | [Battlezonemap/FluxWindowFrame.lua:1653](../../Battlezonemap/FluxWindowFrame.lua#L1653) | `RegisterEvent` | `"PLAYER_LOGIN"` |
 | [Battlezonemap/FluxWindowFrame.lua:1654](../../Battlezonemap/FluxWindowFrame.lua#L1654) | `RegisterEvent` | `"PLAYER_ENTERING_WORLD"` |
@@ -1641,11 +1641,12 @@ Owner: [11-action-bars.md](../11-action-bars.md).
 
 | Declaration | Source |
 |---|---|
-| `Effects.SetGlow` | [L245](../../Bars/Effects.lua#L245) |
-| `Effects.SyncColumn` | [L347](../../Bars/Effects.lua#L347) |
-| `Effects.Refresh` | [L532](../../Bars/Effects.lua#L532) |
-| `Effects.RefreshAll` | [L544](../../Bars/Effects.lua#L544) |
-| `Effects.Start` | [L551](../../Bars/Effects.lua#L551) |
+| `Effects.GlowDiagnostics` | [L17](../../Bars/Effects.lua#L17) |
+| `Effects.SetGlow` | [L257](../../Bars/Effects.lua#L257) |
+| `Effects.SyncColumn` | [L359](../../Bars/Effects.lua#L359) |
+| `Effects.Refresh` | [L547](../../Bars/Effects.lua#L547) |
+| `Effects.RefreshAll` | [L567](../../Bars/Effects.lua#L567) |
+| `Effects.Start` | [L574](../../Bars/Effects.lua#L574) |
 
 ### Bars/Flyout.lua
 
@@ -2251,9 +2252,12 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 | `FluxBlizzardMeter:SyncGeometryFromLayout` | [L986](../../Battlezonemap/FluxBlizzardMeter.lua#L986) |
 | `FluxBlizzardMeter:RefreshEmbeddedLayout` | [L1009](../../Battlezonemap/FluxBlizzardMeter.lua#L1009) |
 | `FluxBlizzardMeter:GetLayoutStatus` | [L1020](../../Battlezonemap/FluxBlizzardMeter.lua#L1020) |
-| `FluxBlizzardMeter:Hide` | [L1027](../../Battlezonemap/FluxBlizzardMeter.lua#L1027) |
-| `FluxBlizzardMeter:Show` | [L1056](../../Battlezonemap/FluxBlizzardMeter.lua#L1056) |
-| `FluxBlizzardMeter:Cleanup` | [L1088](../../Battlezonemap/FluxBlizzardMeter.lua#L1088) |
+| `FluxBlizzardMeter:GetCallBoundaryStatus` | [L1050](../../Battlezonemap/FluxBlizzardMeter.lua#L1050) |
+| `FluxBlizzardMeter:TestCurrentSelection` | [L1098](../../Battlezonemap/FluxBlizzardMeter.lua#L1098) |
+| `FluxBlizzardMeter:GetCurrentSelectionTestStatus` | [L1102](../../Battlezonemap/FluxBlizzardMeter.lua#L1102) |
+| `FluxBlizzardMeter:Hide` | [L1112](../../Battlezonemap/FluxBlizzardMeter.lua#L1112) |
+| `FluxBlizzardMeter:Show` | [L1141](../../Battlezonemap/FluxBlizzardMeter.lua#L1141) |
+| `FluxBlizzardMeter:Cleanup` | [L1173](../../Battlezonemap/FluxBlizzardMeter.lua#L1173) |
 
 ### Battlezonemap/FluxDetails.lua
 
@@ -2377,16 +2381,19 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 
 | Declaration | Source |
 |---|---|
-| `Skin:StyleFont` | [L97](../../Battlezonemap/FluxMeterSkin.lua#L97) |
-| `Skin:StyleTitleFont` | [L107](../../Battlezonemap/FluxMeterSkin.lua#L107) |
-| `Skin:StyleRowBackground` | [L111](../../Battlezonemap/FluxMeterSkin.lua#L111) |
-| `Skin:ApplyToEntry` | [L122](../../Battlezonemap/FluxMeterSkin.lua#L122) |
-| `Skin:SyncNativeTimer` | [L498](../../Battlezonemap/FluxMeterSkin.lua#L498) |
-| `Skin:ApplyToWindow` | [L537](../../Battlezonemap/FluxMeterSkin.lua#L537) |
-| `Skin:ApplyToOwnedPane` | [L556](../../Battlezonemap/FluxMeterSkin.lua#L556) |
-| `Skin:RefreshTheme` | [L579](../../Battlezonemap/FluxMeterSkin.lua#L579) |
-| `Skin:ReleaseWindow` | [L584](../../Battlezonemap/FluxMeterSkin.lua#L584) |
-| `Skin:ReleaseAllNative` | [L606](../../Battlezonemap/FluxMeterSkin.lua#L606) |
+| `Skin:StyleFont` | [L98](../../Battlezonemap/FluxMeterSkin.lua#L98) |
+| `Skin:StyleTitleFont` | [L108](../../Battlezonemap/FluxMeterSkin.lua#L108) |
+| `Skin:StyleRowBackground` | [L112](../../Battlezonemap/FluxMeterSkin.lua#L112) |
+| `Skin:ApplyToEntry` | [L123](../../Battlezonemap/FluxMeterSkin.lua#L123) |
+| `ifnotstate.repairHeaderControlsthenstate.repairHeaderControls` | [L446](../../Battlezonemap/FluxMeterSkin.lua#L446) |
+| `Skin:RefreshHeaderControls` | [L508](../../Battlezonemap/FluxMeterSkin.lua#L508) |
+| `Skin:SyncNativeTimer` | [L696](../../Battlezonemap/FluxMeterSkin.lua#L696) |
+| `Skin:SetOwnedTimerText` | [L744](../../Battlezonemap/FluxMeterSkin.lua#L744) |
+| `Skin:ApplyToWindow` | [L786](../../Battlezonemap/FluxMeterSkin.lua#L786) |
+| `Skin:ApplyToOwnedPane` | [L810](../../Battlezonemap/FluxMeterSkin.lua#L810) |
+| `Skin:RefreshTheme` | [L871](../../Battlezonemap/FluxMeterSkin.lua#L871) |
+| `Skin:ReleaseWindow` | [L876](../../Battlezonemap/FluxMeterSkin.lua#L876) |
+| `Skin:ReleaseAllNative` | [L904](../../Battlezonemap/FluxMeterSkin.lua#L904) |
 
 ### Battlezonemap/FluxThreat.lua
 
@@ -2417,13 +2424,13 @@ Owner: [10-flux-window.md](../10-flux-window.md).
 
 | Declaration | Source |
 |---|---|
-| `Meter:IsAvailable` | [L32](../../Battlezonemap/FluxThreatMeter.lua#L32) |
-| `Meter:RefreshLayout` | [L320](../../Battlezonemap/FluxThreatMeter.lua#L320) |
-| `Meter:Embed` | [L333](../../Battlezonemap/FluxThreatMeter.lua#L333) |
-| `Meter:GetFrame` | [L345](../../Battlezonemap/FluxThreatMeter.lua#L345) |
-| `Meter:Show` | [L347](../../Battlezonemap/FluxThreatMeter.lua#L347) |
-| `Meter:Hide` | [L355](../../Battlezonemap/FluxThreatMeter.lua#L355) |
-| `Meter:Cleanup` | [L360](../../Battlezonemap/FluxThreatMeter.lua#L360) |
+| `Meter:IsAvailable` | [L49](../../Battlezonemap/FluxThreatMeter.lua#L49) |
+| `Meter:RefreshLayout` | [L342](../../Battlezonemap/FluxThreatMeter.lua#L342) |
+| `Meter:Embed` | [L355](../../Battlezonemap/FluxThreatMeter.lua#L355) |
+| `Meter:GetFrame` | [L367](../../Battlezonemap/FluxThreatMeter.lua#L367) |
+| `Meter:Show` | [L369](../../Battlezonemap/FluxThreatMeter.lua#L369) |
+| `Meter:Hide` | [L377](../../Battlezonemap/FluxThreatMeter.lua#L377) |
+| `Meter:Cleanup` | [L382](../../Battlezonemap/FluxThreatMeter.lua#L382) |
 
 ### Battlezonemap/FluxWindowFrame.lua
 
@@ -3858,25 +3865,28 @@ Owner: [08-shared-services.md](../08-shared-services.md).
 
 | Declaration | Source |
 |---|---|
-| `Glow.OnChange` | [L38](../../Core/ButtonFX/Glow.lua#L38) |
-| `Glow.IsLive` | [L74](../../Core/ButtonFX/Glow.lua#L74) |
-| `Glow.Set` | [L417](../../Core/ButtonFX/Glow.lua#L417) |
-| `Glow.Transfer` | [L503](../../Core/ButtonFX/Glow.lua#L503) |
-| `Glow.ShouldSkipBirth` | [L560](../../Core/ButtonFX/Glow.lua#L560) |
-| `Glow.NoteShown` | [L567](../../Core/ButtonFX/Glow.lua#L567) |
-| `Glow.NoteHidden` | [L577](../../Core/ButtonFX/Glow.lua#L577) |
-| `Glow.FaceShowsSpell` | [L609](../../Core/ButtonFX/Glow.lua#L609) |
-| `Glow.SaoMembership` | [L739](../../Core/ButtonFX/Glow.lua#L739) |
-| `Glow.Want` | [L788](../../Core/ButtonFX/Glow.lua#L788) |
-| `Glow.AnyWanted` | [L802](../../Core/ButtonFX/Glow.lua#L802) |
-| `Glow.SilenceMixin` | [L810](../../Core/ButtonFX/Glow.lua#L810) |
-| `Glow.InstallSAO` | [L1237](../../Core/ButtonFX/Glow.lua#L1237) |
-| `trueframe.__sao.DoesIgnoreNative` | [L1244](../../Core/ButtonFX/Glow.lua#L1244) |
-| `returnfalseendframe.__sao.GetGlowID` | [L1247](../../Core/ButtonFX/Glow.lua#L1247) |
-| `endframe.__sao.EnableGlow` | [L1250](../../Core/ButtonFX/Glow.lua#L1250) |
-| `endframe.__sao.DisableGlow` | [L1258](../../Core/ButtonFX/Glow.lua#L1258) |
-| `Glow.NotifySAO` | [L1268](../../Core/ButtonFX/Glow.lua#L1268) |
-| `Glow.Start` | [L1275](../../Core/ButtonFX/Glow.lua#L1275) |
+| `Glow.OnChange` | [L46](../../Core/ButtonFX/Glow.lua#L46) |
+| `Glow.IsLive` | [L85](../../Core/ButtonFX/Glow.lua#L85) |
+| `Glow.Set` | [L469](../../Core/ButtonFX/Glow.lua#L469) |
+| `Glow.Transfer` | [L607](../../Core/ButtonFX/Glow.lua#L607) |
+| `Glow.ShouldSkipBirth` | [L669](../../Core/ButtonFX/Glow.lua#L669) |
+| `Glow.NoteShown` | [L676](../../Core/ButtonFX/Glow.lua#L676) |
+| `Glow.NoteHidden` | [L686](../../Core/ButtonFX/Glow.lua#L686) |
+| `Glow.FaceShowsSpell` | [L718](../../Core/ButtonFX/Glow.lua#L718) |
+| `Glow.SaoMembership` | [L856](../../Core/ButtonFX/Glow.lua#L856) |
+| `Glow.Want` | [L998](../../Core/ButtonFX/Glow.lua#L998) |
+| `Glow.AnyWanted` | [L1015](../../Core/ButtonFX/Glow.lua#L1015) |
+| `Glow.SilenceMixin` | [L1023](../../Core/ButtonFX/Glow.lua#L1023) |
+| `Glow.Diagnostics` | [L1194](../../Core/ButtonFX/Glow.lua#L1194) |
+| `Glow.DiagnosticsWanted` | [L1210](../../Core/ButtonFX/Glow.lua#L1210) |
+| `Glow.DiagnosticsBars` | [L1218](../../Core/ButtonFX/Glow.lua#L1218) |
+| `Glow.InstallSAO` | [L1687](../../Core/ButtonFX/Glow.lua#L1687) |
+| `trueframe.__sao.DoesIgnoreNative` | [L1694](../../Core/ButtonFX/Glow.lua#L1694) |
+| `returnfalseendframe.__sao.GetGlowID` | [L1697](../../Core/ButtonFX/Glow.lua#L1697) |
+| `endframe.__sao.EnableGlow` | [L1700](../../Core/ButtonFX/Glow.lua#L1700) |
+| `endframe.__sao.DisableGlow` | [L1708](../../Core/ButtonFX/Glow.lua#L1708) |
+| `Glow.NotifySAO` | [L1721](../../Core/ButtonFX/Glow.lua#L1721) |
+| `Glow.Start` | [L1728](../../Core/ButtonFX/Glow.lua#L1728) |
 
 ### Core/ButtonFX/Overlay.lua
 
@@ -4939,16 +4949,16 @@ Owner: [12-extra-button-system.md](../12-extra-button-system.md).
 | `Paint.RequestChecked` | [L3302](../../ExtraButtonSystem/Engine/Paint.lua#L3302) |
 | `Paint.RequestCheckedSettle` | [L3318](../../ExtraButtonSystem/Engine/Paint.lua#L3318) |
 | `Paint.UpdateGlow` | [L3331](../../ExtraButtonSystem/Engine/Paint.lua#L3331) |
-| `Paint.UpdateEquipped` | [L3455](../../ExtraButtonSystem/Engine/Paint.lua#L3455) |
-| `Paint.UpdateRange` | [L3568](../../ExtraButtonSystem/Engine/Paint.lua#L3568) |
-| `Paint.Update` | [L3587](../../ExtraButtonSystem/Engine/Paint.lua#L3587) |
-| `Paint.UpdateLiveFace` | [L3607](../../ExtraButtonSystem/Engine/Paint.lua#L3607) |
-| `Paint.FlushEval` | [L3618](../../ExtraButtonSystem/Engine/Paint.lua#L3618) |
-| `Paint.FlushCounts` | [L3724](../../ExtraButtonSystem/Engine/Paint.lua#L3724) |
-| `FluxButton:UpdateEmptyBackground` | [L3776](../../ExtraButtonSystem/Engine/Paint.lua#L3776) |
-| `FluxButton:UpdateUsable` | [L3780](../../ExtraButtonSystem/Engine/Paint.lua#L3780) |
-| `FluxButton:UpdateCooldown` | [L3784](../../ExtraButtonSystem/Engine/Paint.lua#L3784) |
-| `FluxButton:UpdateEquipped` | [L3788](../../ExtraButtonSystem/Engine/Paint.lua#L3788) |
+| `Paint.UpdateEquipped` | [L3461](../../ExtraButtonSystem/Engine/Paint.lua#L3461) |
+| `Paint.UpdateRange` | [L3574](../../ExtraButtonSystem/Engine/Paint.lua#L3574) |
+| `Paint.Update` | [L3593](../../ExtraButtonSystem/Engine/Paint.lua#L3593) |
+| `Paint.UpdateLiveFace` | [L3613](../../ExtraButtonSystem/Engine/Paint.lua#L3613) |
+| `Paint.FlushEval` | [L3624](../../ExtraButtonSystem/Engine/Paint.lua#L3624) |
+| `Paint.FlushCounts` | [L3730](../../ExtraButtonSystem/Engine/Paint.lua#L3730) |
+| `FluxButton:UpdateEmptyBackground` | [L3782](../../ExtraButtonSystem/Engine/Paint.lua#L3782) |
+| `FluxButton:UpdateUsable` | [L3786](../../ExtraButtonSystem/Engine/Paint.lua#L3786) |
+| `FluxButton:UpdateCooldown` | [L3790](../../ExtraButtonSystem/Engine/Paint.lua#L3790) |
+| `FluxButton:UpdateEquipped` | [L3794](../../ExtraButtonSystem/Engine/Paint.lua#L3794) |
 
 ### ExtraButtonSystem/Engine/Range.lua
 

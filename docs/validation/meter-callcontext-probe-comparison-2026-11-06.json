@@ -1,0 +1,160 @@
+{
+  "utc": "2026-11-06T09:02:50.956890+00:00",
+  "baselineCommit": "b6cb2c7bdff70e88b3bdca4bc2de7d753352eac9",
+  "baselineTree": "Actual uncommitted source at Meter-header-controls-checkpoint-20261106T084055Z, before optional callcontext diagnostic",
+  "baselineSHA256": "48b18bcfada6b9c96208fc4afa0922152633a7d69de84682e59802b2699d2eb6",
+  "sourceIdentities": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "49f422a1685ded87dd56bc96e7c0129e45b317cfd0c5dc996add8472705ea7e3",
+    "tests/native_meter_writer_provenance.lua": "da6088a25584c95be8f16032b65c7288e1e1fb0f9bf54111baed523da5d37dcc",
+    "tests/native_meter_ownership.lua": "8d33fb9163d3ad528074a27963501d961004a0b89721b985300d126a0e6d4af3",
+    "Core/_tmp_coresmoke.lua": "894d09920d60c1af7454576450f3a9a844cfcb15463ebd5d88f8a5e2955b12d7"
+  },
+  "scope": "Desktop diagnostic wiring and existing provenance model ONLY. Tests deliberately supply BOTH possible VM metadata outcomes; they establish NO actual securecallfunction execution-taint semantics or native permissions.",
+  "scenario": "Explicit /fbm callcontext only; separate builtin C rawset and trusted Blizzard-Lua SetValue controls on new local addon-owned tables; native method/configuration metadata read-only; API absence and trust gates; existing regen header handoff.",
+  "configuration": "Lua5.4.6 fresh fixture/process per run, five alternating pairs; no extra warmup; elapsed times include process startup and are not comparable native CPU/FPS results.",
+  "resources": "On-demand scratch tables and two local SecureValue wrappers only, GC-eligible on return; no frames/events/hooks/timers/settings/profile/nativeUI writes. Existing combat-exit event invokes the optional active-skin header reconciliation.",
+  "nativeStatus": "Pending actual /fbm callcontext user/authorized background capture. Scratch success alone must not certify native meter selection or justify private setter writes.",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.06682410000939853,
+        "stdout": "FAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 46 checks, 4 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04704259999562055,
+        "stdout": "native writer provenance: 70 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04064050002489239,
+        "stdout": "native writer provenance: 70 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04228369999327697,
+        "stdout": "FAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 46 checks, 4 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04543440000270493,
+        "stdout": "FAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 46 checks, 4 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.043708000011974946,
+        "stdout": "native writer provenance: 70 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.04379009999684058,
+        "stdout": "native writer provenance: 70 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      },
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04267609998350963,
+        "stdout": "FAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 46 checks, 4 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exitCode": 1,
+        "wallSeconds": 0.04191339999670163,
+        "stdout": "FAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL scratch boundary diagnostic is available on demand\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 46 checks, 4 failures; explicit model, native secure VM unverified\n",
+        "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exitCode": 0,
+        "wallSeconds": 0.044305200019152835,
+        "stdout": "native writer provenance: 70 checks, 0 failures; explicit model, native secure VM unverified\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "assume-C-boundary-clean",
+      "exitCode": 1,
+      "wallSeconds": 0.0657921000092756,
+      "stdout": "FAIL C scratch diagnostic reports supplied VM metadata without assuming barrier behavior\nFAIL C scratch diagnostic reports supplied VM metadata without assuming barrier behavior\nnative writer provenance: 70 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "assume-C-boundary-tainted",
+      "exitCode": 1,
+      "wallSeconds": 0.055882599990582094,
+      "stdout": "FAIL C scratch diagnostic reports supplied VM metadata without assuming barrier behavior\nFAIL C scratch diagnostic reports supplied VM metadata without assuming barrier behavior\nnative writer provenance: 70 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "assume-Lua-boundary-clean",
+      "exitCode": 1,
+      "wallSeconds": 0.05726290002348833,
+      "stdout": "FAIL optional Blizzard-Lua control reports its own metadata independently from the C control\nFAIL optional Blizzard-Lua control reports its own metadata independently from the C control\nnative writer provenance: 70 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "use-native-table-as-scratch",
+      "exitCode": 1,
+      "wallSeconds": 0.03563900000881404,
+      "stdout": "",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:81: native state must not be written\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:81: in function <...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:80>\n\t(...tail calls...)\n\t...llcontext-probe-20261106\\use-native-table-as-scratch.lua:1063: in method 'GetCallBoundaryStatus'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:106: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "remove-native-function-trust-gate",
+      "exitCode": 1,
+      "wallSeconds": 0.04027460000361316,
+      "stdout": "",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:124: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:124: in global 'issecurevariable'\n\t...ext-probe-20261106\\remove-native-function-trust-gate.lua:1056: in local 'metadata'\n\t...ext-probe-20261106\\remove-native-function-trust-gate.lua:1064: in method 'GetCallBoundaryStatus'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:126: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "remove-regeneration-header-handoff",
+      "exitCode": 1,
+      "wallSeconds": 0.06003570000757463,
+      "stdout": "FAIL existing combat-exit dispatch reconciles header geometry without a new driver\nFAIL existing combat-exit dispatch reconciles header geometry without a new driver\nnative writer provenance: 70 checks, 2 failures; explicit model, native secure VM unverified\n",
+      "stderr": "lua: ...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: native data ownership regressions\nstack traceback:\n\t[C]: in function 'assert'\n\t...\\AddOns\\_FluxUI\\tests\\native_meter_writer_provenance.lua:229: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sourceDriftGuard": true,
+  "result": "PASS"
+}

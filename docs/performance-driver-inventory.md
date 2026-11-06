@@ -73,7 +73,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Battlezonemap/FluxDetailsForever.lua](../Battlezonemap/FluxDetailsForever.lua) | 0 | 0 | 3 | 2 | 0 |
 | [Battlezonemap/FluxDetailsWoWSkinTint.lua](../Battlezonemap/FluxDetailsWoWSkinTint.lua) | 0 | 0 | 0 | 1 | 2 |
 | [Battlezonemap/FluxMeterLayout.lua](../Battlezonemap/FluxMeterLayout.lua) | 2 | 0 | 2 | 1 | 0 |
-| [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 8 |
+| [Battlezonemap/FluxMeterSkin.lua](../Battlezonemap/FluxMeterSkin.lua) | 0 | 0 | 0 | 0 | 14 |
 | [Battlezonemap/FluxThreat.lua](../Battlezonemap/FluxThreat.lua) | 3 | 0 | 0 | 18 | 1 |
 | [Battlezonemap/FluxThreatMeter.lua](../Battlezonemap/FluxThreatMeter.lua) | 4 | 0 | 0 | 2 | 0 |
 | [Battlezonemap/FluxWindowFrame.lua](../Battlezonemap/FluxWindowFrame.lua) | 6 | 0 | 2 | 4 | 0 |
@@ -116,7 +116,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [Core/API/Container.lua](../Core/API/Container.lua) | 0 | 0 | 1 | 1 | 0 |
 | [Core/ButtonFX/Cast.lua](../Core/ButtonFX/Cast.lua) | 2 | 0 | 4 | 0 | 0 |
 | [Core/ButtonFX/Flash.lua](../Core/ButtonFX/Flash.lua) | 2 | 0 | 0 | 0 | 0 |
-| [Core/ButtonFX/Glow.lua](../Core/ButtonFX/Glow.lua) | 0 | 1 | 0 | 0 | 0 |
+| [Core/ButtonFX/Glow.lua](../Core/ButtonFX/Glow.lua) | 0 | 1 | 1 | 0 | 0 |
 | [Core/ButtonFX/Overlay.lua](../Core/ButtonFX/Overlay.lua) | 3 | 0 | 1 | 2 | 1 |
 | [Core/Capabilities.lua](../Core/Capabilities.lua) | 0 | 0 | 0 | 4 | 0 |
 | [Core/Client_Camelot.lua](../Core/Client_Camelot.lua) | 0 | 0 | 0 | 1 | 0 |

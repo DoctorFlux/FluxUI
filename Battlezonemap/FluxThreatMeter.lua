@@ -9,6 +9,23 @@ local data, rows, offset, nextPoll, dirty = {}, {}, 0, 0, false
 local rowHeight, rowGap, headerHeight = 21, 1, 14
 local ranked = true
 local workActive = false
+local fightStartedAt, clockSecond
+
+local function ClearClock()
+    fightStartedAt, clockSecond = nil, nil
+    if pane and FluxMeterSkin and FluxMeterSkin.SetOwnedTimerText then FluxMeterSkin:SetOwnedTimerText(pane, "") end
+end
+
+local function PaintClock(now)
+    if not (FluxMeterSkin and FluxMeterSkin.SetOwnedTimerText) then return end
+    -- Threat-only layouts have no visible native clock. This fallback measures
+    -- the observed player-combat interval, not a native historical session.
+    if not fightStartedAt then fightStartedAt = now end
+    local seconds = math.max(0, math.floor(now - fightStartedAt))
+    if clockSecond == seconds then return end
+    clockSecond = seconds
+    FluxMeterSkin:SetOwnedTimerText(pane, string.format("[%d:%02d] ", math.floor(seconds / 60), seconds % 60))
+end
 
 local function Shared() return Flux and Flux.Threat end
 local function IsSecret(value)
@@ -254,6 +271,7 @@ local function StopWork()
     if not pane then return end
     pane:UnregisterAllEvents(); pane:SetScript("OnUpdate", nil)
     dirty, workActive = false, false
+    ClearClock()
 end
 
 local function OnUpdate()
@@ -261,6 +279,7 @@ local function OnUpdate()
     local now = GetTime()
     if dirty or (InCombat() and now >= nextPoll) then
         dirty = false; nextPoll = now + .2; Refresh()
+        if InCombat() then PaintClock(now) end
     end
     if not InCombat() then pane:SetScript("OnUpdate", nil) end
 end
@@ -280,7 +299,7 @@ local function StartWork()
     workActive = true
     if not InCombat() then ClearRows() end
     StyleTitleFont(pane.Title, 12 / scale)
-    if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale) end
+    if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale, true) end
     for _, event in ipairs({ "PLAYER_TARGET_CHANGED", "PLAYER_REGEN_DISABLED", "PLAYER_REGEN_ENABLED",
         "GROUP_ROSTER_UPDATE", "UNIT_THREAT_LIST_UPDATE", "ADDON_LOADED" }) do pane:RegisterEvent(event) end
     pane:RegisterUnitEvent("UNIT_TARGET", "target")
@@ -293,6 +312,7 @@ local function CreatePane()
     pane.Title = pane:CreateFontString(nil, "OVERLAY")
     pane.Title:SetPoint("BOTTOMLEFT", pane, "TOPLEFT", 5 / scale, -(headerHeight - 1) / scale)
     StyleTitleFont(pane.Title, 12 / scale)
+    pane.Title:SetJustifyH("LEFT")
     pane.Title:SetText("Threat")
     pane.Body = CreateFrame("Frame", nil, pane)
     pane.Body:SetClipsChildren(true)
@@ -309,8 +329,10 @@ local function CreatePane()
     pane:SetScript("OnEvent", function(_, event, unit)
         if event == "PLAYER_REGEN_ENABLED" then
             ClearRows(); dirty = false; pane:SetScript("OnUpdate", nil)
+            ClearClock()
             return
         end
+        if event == "PLAYER_REGEN_DISABLED" and not fightStartedAt then fightStartedAt = GetTime() end
         if event == "ADDON_LOADED" and not Meter:IsAvailable() then Meter:Hide(); return end
         if event == "UNIT_THREAT_LIST_UPDATE" and not IsSecret(unit) and unit ~= TargetUnit() then return end
         RequestRefresh()
@@ -325,7 +347,7 @@ function Meter:RefreshLayout()
     pane.Body:SetPoint("BOTTOMRIGHT", pane, "BOTTOMRIGHT", 0, 0)
     if HostVisible() and pane:IsVisible() then
         StyleTitleFont(pane.Title, 12 / scale)
-        if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale) end
+        if FluxMeterSkin and FluxMeterSkin.ApplyToOwnedPane then FluxMeterSkin:ApplyToOwnedPane(pane, "Threat", scale, true) end
     end
     Paint()
 end

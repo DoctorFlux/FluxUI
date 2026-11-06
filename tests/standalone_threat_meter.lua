@@ -2,6 +2,7 @@
 -- No Details objects exist in these fixtures. This is not a secure-VM/render test.
 local checks = 0
 local source = arg[1] or "Battlezonemap/FluxThreatMeter.lua"
+local skinSource = arg[2] or "Battlezonemap/FluxMeterSkin.lua"
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
 local opaque = setmetatable({}, { __add = function() error("opaque arithmetic") end,
     __sub = function() error("opaque arithmetic") end, __lt = function() error("opaque comparison") end,
@@ -23,14 +24,20 @@ local function boot(client, withSkin)
         local function noop() end
         r.ClearAllPoints, r.SetAllPoints, r.SetSize = noop, noop, noop
         function r:SetPoint(...) self.point = { ... } end
-        r.SetJustifyH, r.SetShadowColor, r.SetShadowOffset = noop, noop, noop
+        function r:SetJustifyH(value) self.justifyH = value end
+        function r:GetJustifyH() return self.justifyH or "CENTER" end
+        r.SetShadowColor, r.SetShadowOffset = noop, noop
         function r:SetColorTexture(...) self.fill = { ... } end
         function r:CanWordWrap() return self.wordWrap end
         function r:CanNonSpaceWrap() return self.nonSpaceWrap end
         function r:SetWordWrap(value) self.wordWrap = value end
         function r:SetNonSpaceWrap(value) self.nonSpaceWrap = value end
-        r.GetText, r.GetStringWidth, r.GetStringHeight = function() error("text inspection is not presentation") end,
-            function() error("text measurement is not presentation") end, function() error("text measurement is not presentation") end
+        r.GetText, r.GetStringHeight = function() error("text inspection is not presentation") end,
+            function() error("text measurement is not presentation") end
+        function r:GetStringWidth()
+            assert(self.publicHeading, "actor/timer text measurement is forbidden")
+            return 42 * self.font[2] / 12
+        end
         function r:SetFont(path, size, flags)
             s.fontSets = s.fontSets + 1; self.fontSets = (self.fontSets or 0) + 1
             if s.rejectArial and (path == "Fonts\\ARIALN.TTF" or path:find("Accidental", 1, true)) then return false end
@@ -51,7 +58,10 @@ local function boot(client, withSkin)
         function r:Hide() self.shown = false end
         function r:SetTexture(value) self.texture = value; return true end
         function r:SetTexCoord(...) self.coords = { ... } end
-        function r:SetText(value) requireFont(self, "SetText"); assert(value ~= opaque, "opaque text must use native display formatting"); self.text = value end
+        function r:SetText(value)
+            requireFont(self, "SetText"); assert(value ~= opaque, "opaque text must use native display formatting")
+            self.text = value; self.textWrites = (self.textWrites or 0) + 1
+        end
         function r:SetFormattedText(...) requireFont(self, "SetFormattedText"); nativeString(self, ...) end
         function r:SetWidth(value) self.width = value end
         function r:SetTextColor(...) self.color = { ... } end
@@ -59,7 +69,7 @@ local function boot(client, withSkin)
     end
     local function frame(kind, name, parent)
         local f = { kind = kind, name = name, parent = parent, shown = true, scripts = {}, events = {},
-            width = 150, height = 150, scale = 1, anchors = {} }
+            width = 150, height = 150, scale = 1, anchors = {}, hooks = {} }
         s.frames[#s.frames + 1] = f
         function f:IsShown() return self.shown end
         function f:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
@@ -71,6 +81,7 @@ local function boot(client, withSkin)
                 if old[w] ~= current then
                     local fn = w.scripts[current and "OnShow" or "OnHide"]
                     if fn then fn(w) end
+                    for _,hook in ipairs(w.hooks[current and "OnShow" or "OnHide"] or {}) do hook(w) end
                 end
             end
         end
@@ -78,6 +89,7 @@ local function boot(client, withSkin)
         function f:Hide() visibility(false) end
         function f:SetScript(key, value) self.scripts[key] = value end
         function f:GetScript(key) return self.scripts[key] end
+        function f:HookScript(key, fn) self.hooks[key] = self.hooks[key] or {}; table.insert(self.hooks[key],fn) end
         function f:RegisterEvent(key) s.registrationCalls = s.registrationCalls + 1; self.events[key] = true end
         function f:RegisterUnitEvent(key, unit) s.registrationCalls = s.registrationCalls + 1; self.events[key] = unit end
         function f:UnregisterAllEvents() self.events = {} end
@@ -85,7 +97,11 @@ local function boot(client, withSkin)
         function f:GetParent() return self.parent end
         function f:SetScale(value) self.scale = value end
         function f:GetScale() return self.scale end
-        function f:SetSize(w, h) self.width, self.height = w, h; if self.scripts.OnSizeChanged then self.scripts.OnSizeChanged(self) end end
+        function f:SetSize(w, h)
+            self.width, self.height = w, h
+            if self.scripts.OnSizeChanged then self.scripts.OnSizeChanged(self) end
+            for _,hook in ipairs(self.hooks.OnSizeChanged or {}) do hook(self) end
+        end
         function f:SetHeight(h) self.height = h end
         function f:GetHeight()
             if self.anchors.TOPLEFT and self.anchors.BOTTOMRIGHT then
@@ -102,7 +118,12 @@ local function boot(client, withSkin)
         function f:SetPoint(...) local args = { ... }; self.anchors[args[1]] = args end
         function f:ClearAllPoints() self.anchors = {} end
         function f:CreateTexture() s.textures = s.textures + 1; return region() end
-        function f:CreateFontString() s.fonts = s.fonts + 1; return region() end
+        function f:CreateFontString()
+            s.fonts = s.fonts + 1; local fs = region()
+            self.fontStrings = self.fontStrings or {}; self.fontStrings[#self.fontStrings + 1] = fs
+            if self.name == "FluxStandaloneThreatMeter" and #self.fontStrings == 1 then fs.publicHeading = true end
+            return fs
+        end
         function f:SetValue(value) self.value = value end
         function f:SetStatusBarColor(...) self.color = { ... } end
         function f:SetAlpha(value) self.alpha = value end
@@ -143,7 +164,7 @@ local function boot(client, withSkin)
         SetBarValue = function(bar, value) s.draws = s.draws + 1; bar:SetValue(value) end,
         SetPercentText = function(fs, value) fs:SetFormattedText("%.0f%%", value) end,
     }
-    if withSkin then assert(loadfile("Battlezonemap/FluxMeterSkin.lua", "t", e))() end
+    if withSkin then assert(loadfile(skinSource, "t", e))() end
     assert(loadfile(source, "t", e))("_FluxUI", ns)
     s.meter, s.env = e.FluxThreatMeter, e
     s.host = frame("Frame")
@@ -387,4 +408,42 @@ check(geometryPane.Body.anchors.TOPLEFT[4] == 0
     and geometryPane.Body.anchors.BOTTOMRIGHT[4] == 0
     and geometryPane.Body.anchors.BOTTOMRIGHT[5] == 0,
     "standalone viewport uses the complete reference body area")
+
+local elapsed = boot("forever",true); elapsed.sample("player",100,100)
+local ep = elapsed.meter:Embed(elapsed.host,1)
+local clock = ep.fontStrings and ep.fontStrings[2]
+check(clock and clock.font and clock.text == "" and elapsed.queries == 0,
+    "Threat-only clock is font-ready and quiet before combat")
+check(ep.Title:GetJustifyH() == "LEFT" and ep.Title.point[4] == 5 and ep.Title.point[5] == -13
+    and ep.Title.width == 42, "Threat's public heading is measured without moving or centering its visible name")
+check(clock.point[1] == "BOTTOMLEFT" and clock.point[2] == ep.Title and clock.point[3] == "BOTTOMRIGHT"
+    and clock.point[4] == 5 and clock.point[5] == 0 and clock.justifyH == "LEFT" and clock.width == 93,
+    "Threat clock follows the heading immediately and receives the remaining width for full native time text")
+elapsed.now, elapsed.combat = 10, true; elapsed.event("PLAYER_REGEN_DISABLED"); elapsed.tick(0)
+check(clock.text == "[0:00] " and elapsed.queries == 1, "observed combat starts the fallback without a second threat scan")
+local clockWrites, clockQueries = clock.textWrites, elapsed.queries
+for _=1,500 do elapsed.tick(.001) end
+check(clock.textWrites == clockWrites and elapsed.queries <= clockQueries + 3,
+    "sub-second clock updates neither repaint unchanged seconds nor add threat scans")
+elapsed.tick(.75)
+check(clock.text == "[0:01] ", "fallback displays elapsed player-combat seconds through the existing driver")
+elapsed.event("PLAYER_TARGET_CHANGED"); elapsed.tick(0)
+check(clock.text == "[0:01] ", "changing targets does not restart the current fight clock")
+clockQueries = elapsed.queries; elapsed.combat = false; elapsed.event("PLAYER_REGEN_ENABLED")
+check(clock.text == "" and ep:GetScript("OnUpdate") == nil and elapsed.queries == clockQueries,
+    "combat exit clears the clock and stops updates without scanning")
+elapsed.tick(20)
+check(clock.text == "" and elapsed.queries == clockQueries, "out-of-combat time does not leave a hidden clock running")
+elapsed.combat = true; elapsed.event("PLAYER_REGEN_DISABLED"); elapsed.tick(0)
+check(clock.text == "[0:00] ", "a later fight starts at zero rather than retaining the previous elapsed time")
+elapsed.tick(2.1)
+check(clock.text == "[0:02] ", "second-fight elapsed time belongs to its own observed interval")
+elapsed.meter:Hide(); clockQueries = elapsed.queries; elapsed.tick(20)
+check(clock.text == "" and next(ep.events) == nil and ep:GetScript("OnUpdate") == nil and elapsed.queries == clockQueries,
+    "hidden Threat stops clock/events/data work and clears its observed-interval fallback")
+elapsed.meter:Show(); elapsed.tick(0)
+check(clock.text == "[0:00] ", "revealing during combat starts a new observed interval rather than inventing its unseen start")
+elapsed.meter:Cleanup(); clockQueries = elapsed.queries; elapsed.tick(20)
+check(clock.text == "" and clock.alpha == 0 and elapsed.queries == clockQueries,
+    "cleanup retires the owned timer with no subsequent scans")
 print(string.format("standalone threat meter: %d checks passed; 500-event scans=1; raid facts=80; retained rows=%d", checks, allocation - 3))

@@ -1,31 +1,93 @@
 # Next session
 
-Current meter priority: verify a freshly loaded candidate when a client is
-running. Final full validation passes 162 scripts /819 Lua syntax files with
-unchanged source hashes/membership. [Manifest](docs/validation/meter-timer-native-boundary-2026-11-06.json).
-Writer 26/timer 113 focused checks pass
-(five alternating pairs each; 5/9 mutants rejected). Native warnings
-reported 07:45/07:55/07:57 remain unaccepted. No WoW process was present at 07:31 UTC;
-do not launch/focus it automatically or describe the old foreground guard as the
-current blocker. Preserve latest Details/session/preset/settings state.
+Forever glow priority: the latest candidate directly paints action bars and
+Extra Buttons on SAO's screen/button callbacks in combat and uses pre-acquired
+Retail proc art when available. The user has been asked to `/reload` and test
+Missile Barrage combat show and proc clear. If it fails, request the single
+in-combat `/run print(FluxEffectGlow.Diagnostics())` line; its counters separate
+missing SAO signal, bar match, and modern frame draw. Earlier Classic candidate
+failed live after reload. See [full record](docs/FOREVER_SAO_GLOW.md).
 
-Use native controls for selected types, extra panes, row settings and Current
-per-fight view; keep Overall/history if chosen. Do not reset data, force session
-selection, call private native setters or mask secret-value failures. Missing
-requested types need an explicit setup message. Verify METER-TIMER-01 presents
-one native timer by greatest top/least left in physical screen coordinates,
-keeps native time policy/text and menus, restores native presentation on release,
-and changes only alpha during combat election. No duration reads/reset.
-Check genuine combat for the reported specIconID/durationSeconds failures,
-native controls, missing-type setup, actual artwork/dimensions and timer clipping.
-Desktop passes do not certify fresh native taint safety or pixel parity.
-For missing pane types, use `/fbm cleanup`, create/select the requested windows
-through Blizzard controls, then `/fbm embed`; inspect `/fbm status` for gaps.
-Do not restore automatic native writers to make a saved layout appear complete.
+Latest signal evidence: `screen=0/0 notify=128 modern=158/0/0 failed=0
+classic=0` during visible Missile Barrage. The new candidate samples SAO's
+global screen-frame list on UNIT_AURA and next frame, and reveals the retained
+Retail glow by alpha/animation without combat Show. If live test fails, get
+the new diagnostic line including `aura` and `frame` counters.
 
-Read [current boundaries](docs/METER_STANDALONE.md#current-native-configuration-boundary).
-Keep concurrent raid/glow code and the unrelated priorities below. Earlier
-meter artifacts are historical stages, not acceptance of the changed candidate.
+The user did retest: still post-combat-only; `aura=7/1 frame=334` but
+`modernShow=0`. Await live `/run` read of SAO overlay keys, Want(5143), and
+Bars.Effects counters before further code changes.
+
+The read returned `want5143=0` and an empty SAO overlay list. The latest
+candidate observes Forever native screen overlay show/hide events (which the
+installed SAO addon also registers) and fixes an empty SAO-list override.
+Await fresh `/reload` Missile Barrage show/clear and diagnostics including
+`native=` event counts/last ID if it still fails.
+
+Native-event retest and private SAO AuraContainer lookup both failed;
+`container=0/0/0`. Latest candidate finds the static 400589 filter through
+Blizzard's global AuraContainer slot registry and hooks mapped AuraButtons
+OOC. Await reload/combat acceptance; if dark, read `container=` hook/show/hide
+counts and `modern=` show count.
+
+Forever action bar button glow: the user confirmed SAO's Missile Barrage
+screen overlay appears in combat while Flux buttons remain dark. The new
+candidate follows SAO's private-table screen show/hide for that missing button association,
+accepts unreadable combat icon state for a known spell ID, and retains the
+Classic Era LibButtonGlow art and generic SAO/native paths. The user retested
+the prior global-hook candidate and saw glow only after combat; SAO's cached
+private-table method missed that hook, and standalone EBS lacked a glow-change
+subscription. The corrected candidate has focused glow 46 and EBS refresh 8
+checks passing. The user retested it and still saw glow only after combat;
+the glow then stayed after the proc. The newest candidate adds global low-level
+SAO screen show/termination hooks independent of private capture and checks
+SAO's live overlay/fade state. Focused glow 48, low-level signal 5 and EBS
+refresh 8 checks pass. The user retested that candidate and combat glow was
+still absent. Flux now prepares and retains the Classic LBG frame OOC on each
+secure button, then plays existing animations in combat; focused glow 53 checks
+pass. Combined desktop suite 164 scripts/821 Lua syntax.
+After a normal background reload, verify Missile Barrage plus a
+second SAO-supported proc on action bars, Extra Buttons and badges in combat;
+check show/hide, matching art, paging, secure input, taint and frame time. Keep
+WoW in the background and preserve profiler/settings/diagnostic roots. See
+[combat record](docs/FOREVER_SAO_GLOW.md#combat-button-glow-correction).
+
+Forever glow follow-up: the user confirmed the earlier renderer-only fix did
+not show a glow. The installed SAO Forever Missile Barrage effect omits the
+Arcane Missiles button association; Flux now checks aura 400589 for that spell
+and its ranks, with changed-state `UNIT_AURA` refresh and secret native guards.
+Generic SAO/native support still covers other registered button glows. Focused
+41-check fixture and 162-script/819-file desktop suite pass, but native behavior
+is unverified. With Forever running in the background, reload once and trigger
+Missile Barrage plus another SAO-supported button proc on bar, Extra Button and
+badge; check show/hide, art, paging, icon changes, taint and frame time. Then
+check Era/Anniversary separately. Keep settings and diagnostic roots intact.
+[Evidence](docs/FOREVER_SAO_GLOW.md).
+
+Current meter priority: reload the safe synchronized backend to clear retained
+native taint, then verify loaded source and BugTabs/ordinary native icon+timer
+refresh/combat. The real Current experiment FAILED: pane/owner/saved1/1/1 acquired
+Flux provenance; delayed11:20 secret errors followed. No operative test path
+remains. `/fbm currenttest` and `/fbm currentteststatus` are read-only UNSUPPORTED;
+do not retry native setters through wrappers or perform further experiments.
+
+Automatic default Current for every existing/future meter is OPEN/unsupported.
+Out of combat use the native session selector immediately left of the cog in each header, then Current;
+Advanced AutoReset means new-instance reset. Preserve sessions/history/settings,
+then validate two fights and a reload through native controls. 126 no-operation/
+provenance, 561 ownership and Core checks pass; safe full166/823 passes unchanged
+source hashes/membership ([manifest](docs/validation/meter-rejected-current-removal-2026-11-06.json)). Capture-only
+10:36:31Z showed the native window/Meter, then reload was refused before any
+input. Memory cleanup/ordinary native combat acceptance is still pending.
+
+Keep independent header checks pending natively: timer after unchanged title,
+one native/Threat top-left winner,14display controls/art, hidden Minimize and
+cleanup/combat restoration. Earlier172/87 and166/823 reports retain their exact
+header/experimental source scopes; they do not certify native taint or pixels.
+Safe backend disk SHA256 `c093068e4e1409f87684e2911ad8cf30874feba89222c8d591bb9ba184e74788`
+was verified byte-equal across all five clients; a disk match is not a loaded
+native cleanup pass. Keep WoW background and preserve concurrent glow work.
+[Failure/safe removal](docs/validation/meter-current-live-checks-2026-11-06.json), [scope](docs/METER_STANDALONE.md#threat-timer-and-current-view-diagnosis).
 
 Historical meter links: [METER_STANDALONE.md#installed-wow-interface-art-references](docs/METER_STANDALONE.md#installed-wow-interface-art-references), [meter-theme-consistency-2026-11-05.json](docs/validation/meter-theme-consistency-2026-11-05.json), [METER_STANDALONE.md#one-line-names-and-shared-meter-appearance](docs/METER_STANDALONE.md#one-line-names-and-shared-meter-appearance), [native-meter-background-checks-2026-11-05.json](docs/validation/native-meter-background-checks-2026-11-05.json), [METER_STANDALONE.md](docs/METER_STANDALONE.md), [meter-standalone-2026-11-05.json](docs/validation/meter-standalone-2026-11-05.json), [METER_COMBAT_VISIBILITY.md](docs/METER_COMBAT_VISIBILITY.md), [meter-combat-visibility-2026-11-05.json](docs/validation/meter-combat-visibility-2026-11-05.json).
 

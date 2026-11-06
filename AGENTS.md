@@ -21,6 +21,8 @@ Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
 - Normal warning dismissal, Reconnect and named-character selection are authorized
   for these tests. Verify the client/window first and test sequentially when sessions
   displace each other. Preserve prior diagnostic roots as well as profiler preferences.
+- Sandboxed process enumeration may hide desktop clients. Verify host process and
+  exact window before concluding WoW exited or reporting a closed-client blocker.
 - Desktop tests establish their stated scope only. Record native checks as pending
   when unavailable; never infer FPS, taint safety or pixel parity from mock counts.
 - Update the existing continuity records and parity/client/performance ledgers.

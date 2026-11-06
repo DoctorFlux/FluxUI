@@ -1224,9 +1224,12 @@ for _, writer in ipairs({
 	"SetBarHeight", "SetBarSpacing", "SetWindowMinimized", "SetMinimized",
 	"ShowNewSecondarySessionWindow", "ShowNewSessionWindow", "HideSessionWindow",
 }) do
-	if blizzMeterSrc:find(writer, 1, true) then
+	if blizzMeterSrc:find(":" .. writer .. "%s*%(") or blizzMeterSrc:find("%." .. writer .. "%s*%(") then
 		failures[#failures + 1] = "damage meter must not invoke native configuration writer " .. writer
 	end
+end
+if blizzMeterSrc:find("securecallmethod%s*%(") then
+	failures[#failures + 1] = "the natively rejected meter configuration barrier must remain removed"
 end
 has(blizzMeterSrc, "local reference, pw, ph = EmbedReferenceSize(parentFrame)", "damage meter uses the Flux window geometry reference")
 has(blizzMeterSrc, 'setPoint(dmFrame, "CENTER", reference, "CENTER", 0, 0)', "damage meter stays centered on the Flux window")

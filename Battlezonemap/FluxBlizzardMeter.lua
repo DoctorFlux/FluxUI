@@ -1016,14 +1016,99 @@ function FluxBlizzardMeter:RefreshEmbeddedLayout()
     LayoutMeterGrid(embeddedParentFrame, currentLayoutConfig)
 end
 
---- Hide the embedded damage meter
+--- Report mapped native configuration without changing it or reading combat data.
 function FluxBlizzardMeter:GetLayoutStatus()
     local missing = {}
     for i, value in ipairs(missingNativeTypes) do missing[i] = value end
+    local sessions, nonCurrent, unavailable = {}, 0, 0
+    local T = Enum and Enum.DamageMeterSessionType
+    for i, pane in ipairs(embedPaneLayouts) do
+        local window = pane.window
+        local selection = "Unavailable"
+        local sessionType = window.GetSessionType and window:GetSessionType()
+        if T and PlainNumber(sessionType) then
+            if sessionType == T.Current then selection = "Current"
+            elseif sessionType == T.Overall then selection = "Overall"
+            elseif sessionType == T.Expired then selection = "Historical" end
+        elseif not (issecretvalue and issecretvalue(sessionType)) and sessionType == nil and window.GetSessionID then
+            local sessionID = window:GetSessionID()
+            if PlainNumber(sessionID) then selection = "Historical" end
+        end
+        if selection == "Unavailable" then unavailable = unavailable + 1
+        elseif selection ~= "Current" then nonCurrent = nonCurrent + 1 end
+        local meterType = window.GetDamageMeterType and window:GetDamageMeterType()
+        sessions[i] = { pane = i, selection = selection,
+            damageMeterType = PlainNumber(meterType) and meterType or nil }
+    end
     return { configurationRequired = #missing > 0, missingTypes = missing,
-        visibleNativePanes = embeddedNativePaneCount or 0, nativeSettingsOwnedByBlizzard = true }
+        visibleNativePanes = embeddedNativePaneCount or 0, nativeSettingsOwnedByBlizzard = true,
+        sessionChoices = sessions, perFightSetupRequired = nonCurrent > 0,
+        unavailableSessionChoices = unavailable }
 end
 
+--- Optional VM diagnostic. Only local scratch fields are written; no native UI.
+function FluxBlizzardMeter:GetCallBoundaryStatus()
+    if type(securecallfunction) ~= "function" or type(issecurevariable) ~= "function" or type(rawset) ~= "function" then
+        return { available = false }
+    end
+    local function metadata(object, key)
+        local value
+        if key then value = issecurevariable(object, key) else value = issecurevariable(object) end
+        if not (issecretvalue and issecretvalue(value)) and type(value) == "boolean" then return value end
+    end
+    local result = { available = false, rawsetSecure = metadata("rawset"), boundaryFunctionSecure = metadata("securecallfunction") }
+    if result.rawsetSecure ~= true or result.boundaryFunctionSecure ~= true then return result end
+    local scratch = {}
+    scratch.direct = 1
+    securecallfunction(rawset, scratch, "viaBoundary", 1)
+    result.directSecure, result.boundarySecure = metadata(scratch, "direct"), metadata(scratch, "viaBoundary")
+    result.boundaryWritten = rawget(scratch, "viaBoundary") == 1
+    result.available = result.directSecure ~= nil and result.boundarySecure ~= nil
+    if SecureTypes and type(SecureTypes.CreateSecureValue) == "function"
+        and metadata(SecureTypes, "CreateSecureValue") == true then
+        local direct, boundary = SecureTypes.CreateSecureValue(0), SecureTypes.CreateSecureValue(0)
+        local methods = getmetatable(direct)
+        local setter = type(methods) == "table" and rawget(methods, "SetValue")
+        if type(methods) == "table" then result.luaFunctionSecure = metadata(methods, "SetValue") end
+        if type(setter) == "function" and result.luaFunctionSecure == true then
+            setter(direct, 1)
+            securecallfunction(setter, boundary, 1)
+            result.luaDirectSecure, result.luaBoundarySecure = metadata(direct, "value"), metadata(boundary, "value")
+            result.luaBoundaryWritten = rawget(boundary, "value") == 1
+        end
+    end
+    -- Configuration metadata is observed only; this is not permission to change it.
+    if damageMeterFrame then result.nativeMethodSecure = metadata(damageMeterFrame, "SetSessionWindowSessionID") end
+    result.nativePanes = {}
+    for i, pane in ipairs(embedPaneLayouts) do
+        result.nativePanes[i] = { pane = i, sessionSecure = metadata(pane.window, "sessionType"),
+            typeSecure = metadata(pane.window, "damageMeterType") }
+    end
+    return result
+end
+
+-- Native testing on Forever 70790 showed that the original session setter
+-- still taints pane/owner fields through securecallmethod. Keep the diagnostic
+-- command read-only; never retry that operation or reset data to conceal it.
+local function UnsupportedCurrentSelection()
+    return { status = "UNSUPPORTED", attempted = false,
+        reason = "programmatic selection failed taint checks on Forever 70790; use Blizzard's session menu" }
+end
+
+function FluxBlizzardMeter:TestCurrentSelection()
+    return UnsupportedCurrentSelection()
+end
+
+function FluxBlizzardMeter:GetCurrentSelectionTestStatus()
+    return UnsupportedCurrentSelection()
+end
+
+local function PrintCurrentSelectionTest(result)
+    print("|cff00ffff[FluxUI]|r Current selection: " .. result.status .. "; " .. result.reason)
+    print("  No native operation attempted; the failed test path has been removed.")
+end
+
+--- Hide the embedded damage meter.
 function FluxBlizzardMeter:Hide()
     -- Tab onHide runs before GetActiveTab changes; native callbacks must honor it.
     explicitlyHidden = true
@@ -1185,6 +1270,7 @@ frame:SetScript("OnEvent", function(self, event, addonName)
         if embed then FluxBlizzardMeter:Embed(embed.parent, embed.layout) end
         if pendingStartup and StartStartupEmbed then StartStartupEmbed() end
         if geometryPending then RequestGeometryRepair() end
+        if FluxMeterSkin and FluxMeterSkin.RefreshHeaderControls then FluxMeterSkin:RefreshHeaderControls() end
 
     end
 end)
@@ -1296,7 +1382,46 @@ SlashCmdList["FLUXBLIZZMETER"] = function(msg)
         else
             print("|cff00ffff[FluxUI]|r Requested meter windows are available.")
         end
+        for _, choice in ipairs(status.sessionChoices) do
+            local label = "Native pane " .. choice.pane
+            if choice.damageMeterType ~= nil then
+                local slot = { kind = "blizzard", damageMeterType = choice.damageMeterType }
+                label = FluxMeterLayout and FluxMeterLayout.SlotShortLabel
+                    and FluxMeterLayout.SlotShortLabel(slot) or label
+            end
+            print("  " .. label .. ": " .. choice.selection)
+        end
+        if status.perFightSetupRequired then
+            -- Native Current rolls over each fight without erasing Overall/history.
+            -- Its own menu must select it; addon-issued Lua setters taint refreshes.
+            print("  For a fresh display each fight, hover each meter header and select Current in Blizzard's session menu. Automatic Reset applies to new instances.")
+        end
         print("  Row size, spacing, class colors, icons and combat-session choices use Blizzard's settings.")
+    elseif msg == "currenttest" then
+        PrintCurrentSelectionTest(FluxBlizzardMeter:TestCurrentSelection())
+    elseif msg == "currentteststatus" then
+        PrintCurrentSelectionTest(FluxBlizzardMeter:GetCurrentSelectionTestStatus())
+    elseif msg == "callcontext" then
+        local boundary = FluxBlizzardMeter:GetCallBoundaryStatus()
+        if boundary.available then
+            print("  Scratch taint probe: rawset secure=" .. tostring(boundary.rawsetSecure)
+                .. "; direct secure=" .. tostring(boundary.directSecure)
+                .. "; boundary secure=" .. tostring(boundary.boundarySecure)
+                .. "; boundary wrote=" .. tostring(boundary.boundaryWritten) .. ".")
+            if boundary.luaFunctionSecure == true then
+                print("  Blizzard Lua scratch control: direct secure=" .. tostring(boundary.luaDirectSecure)
+                    .. "; boundary secure=" .. tostring(boundary.luaBoundarySecure)
+                    .. "; boundary wrote=" .. tostring(boundary.luaBoundaryWritten) .. ".")
+            else print("  Blizzard Lua scratch control unavailable.") end
+            print("  Native session setter metadata: " .. tostring(boundary.nativeMethodSecure))
+            for _, pane in ipairs(boundary.nativePanes) do
+                print("  Native pane " .. pane.pane .. " metadata: session secure=" .. tostring(pane.sessionSecure)
+                    .. "; type secure=" .. tostring(pane.typeSecure) .. ".")
+            end
+            print("  This checks local scratch fields only; it does not certify native meter configuration.")
+        else
+            print("  Scratch taint probe unavailable; native meter configuration is unchanged.")
+        end
     elseif msg == "available" then
         local available = FluxBlizzardMeter:IsAvailable()
         print("|cff00ffff[FluxBlizzardMeter]|r Available: " .. tostring(available))
@@ -1358,6 +1483,9 @@ SlashCmdList["FLUXBLIZZMETER"] = function(msg)
     else
         print("|cff00ffff[FluxBlizzardMeter]|r Commands:")
         print("  /fbm available - Check if damage meter is available")
+        print("  /fbm callcontext - Inspect scratch-call and native configuration metadata without changing meter settings")
+        print("  /fbm currenttest - Report native Current-selection support without changing settings")
+        print("  /fbm currentteststatus - Report native Current-selection support without changing settings")
         print("  /fbm api - Show which Blizzard multi-window API is in use")
         print("  /fbm embed - Embed into FluxWindowFrame")
         print("  /fbm hide - Hide the meter")

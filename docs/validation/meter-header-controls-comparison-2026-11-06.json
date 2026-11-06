@@ -1,0 +1,273 @@
+{
+  "utc": "2026-11-06T09:17:42.615873+00:00",
+  "baselineCommit": "b6cb2c7 plus verified uncommitted heading/Threat-timer candidate in Meter-header-controls-checkpoint-20261106T084055Z",
+  "baselineArchiveSHA256": "7e743a051c3e911db19d46b28ad0b5cc411cb3ce6a6d3fe217ddb4b99337fdef",
+  "candidateSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "cbddd5bee3d13e67b3bd761136d24ace9d9cf21c62defea1a28107d6f6dc3960",
+    "Battlezonemap/FluxThreatMeter.lua": "c69df568538d4101cac2fded1d7cd9b5fd83e0e28cef4eb1953ae2c1ff75d235",
+    "tests/native_meter_skin.lua": "68f6b5286c5ac315cbbd5402df8aade96a72ba637bf1d8eeafbe0ce70fc918c1",
+    "tests/standalone_threat_meter.lua": "befb9381688bbdfa9de08beb40ae8c6961dab3a58a84c4f297c46b1fd74b801d"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxMeterSkin.lua": "5450fab43b64e69046396f5766edf10d84838eac78193fb19b68e2a601d321d0",
+    "Battlezonemap/FluxThreatMeter.lua": "c69df568538d4101cac2fded1d7cd9b5fd83e0e28cef4eb1953ae2c1ff75d235",
+    "tests/native_meter_skin.lua": "af55350fd9ccc7de0b6d23b24bd1f27396212d03f70ab1631d4b186bcbc19a61",
+    "tests/standalone_threat_meter.lua": "befb9381688bbdfa9de08beb40ae8c6961dab3a58a84c4f297c46b1fd74b801d"
+  },
+  "sourceDriftGuard": true,
+  "scope": "Desktop widget/visibility/geometry/lifecycle regression only; not native secure VM, rendering, hit testing, real secret/taint safety or native CPU/latency/memory/FPS acceptance. Failed baseline behavior and process startup prevent a meaningful performance comparison.",
+  "scenario": "Existing right native controls fit a fourteen-display-unit header with twelve-unit height; native child art and left type hitbox are contained; hidden Close uses no gap; Minimize is absent without native minimization-setting writes; native resize/source popup controls stay unchanged; original geometry/visibility restore once out of combat.",
+  "configuration": "Lua5.4.6 fresh fixture process per run, five alternating baseline/candidate pairs, no extra warmup. Fixture includes500 stable repaint calls, native atlas/width/reveal resets, protected combat deferral and original hidden/shown visibility restoration.",
+  "resources": "No new frames, textures, timers, or events for controls. Permanent guarded posthooks on existing art SetAtlas, SessionDropdown SetWidth, native control visibility scripts and Minimize Show; inactive after release. Existing backend combat-end event invokes pending-only RefreshHeaderControls.",
+  "nativeStatus": "Pending fresh native reload/capture, menu/input behavior, art clipping and combat taint checks. Child performed no native input, profiler or settings operations.",
+  "pairs": [
+    {
+      "pair": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\baseline\\FluxMeterSkin.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.10068589998991229,
+        "output": "FAIL header deferral reuses an explicit existing-service entry point\nFAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nFAIL out-of-combat cleanup restores original native button sizes\nnative meter skin: 172 checks, 18 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.10569980001309887,
+        "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      }
+    },
+    {
+      "pair": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.10074039999744855,
+        "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      },
+      "baseline": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\baseline\\FluxMeterSkin.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.0768159999861382,
+        "output": "FAIL header deferral reuses an explicit existing-service entry point\nFAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nFAIL out-of-combat cleanup restores original native button sizes\nnative meter skin: 172 checks, 18 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\baseline\\FluxMeterSkin.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.07595160001073964,
+        "output": "FAIL header deferral reuses an explicit existing-service entry point\nFAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nFAIL out-of-combat cleanup restores original native button sizes\nnative meter skin: 172 checks, 18 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.10852710000472143,
+        "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      }
+    },
+    {
+      "pair": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.10406030001468025,
+        "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      },
+      "baseline": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\baseline\\FluxMeterSkin.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.07957900001201779,
+        "output": "FAIL header deferral reuses an explicit existing-service entry point\nFAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nFAIL out-of-combat cleanup restores original native button sizes\nnative meter skin: 172 checks, 18 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "pair": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\baseline\\FluxMeterSkin.lua"
+        ],
+        "exit": 1,
+        "wallSeconds": 0.0757910999818705,
+        "output": "FAIL header deferral reuses an explicit existing-service entry point\nFAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nFAIL out-of-combat cleanup restores original native button sizes\nnative meter skin: 172 checks, 18 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "command": [
+          "lua",
+          "tests/native_meter_skin.lua",
+          "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Battlezonemap\\FluxMeterSkin.lua"
+        ],
+        "exit": 0,
+        "wallSeconds": 0.10697049999726005,
+        "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+      }
+    }
+  ],
+  "mutants": [
+    {
+      "name": "leave-minimize-visible",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-leave-minimize-visible.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11727149999933317,
+      "output": "FAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nFAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nFAIL the existing combat-end service repairs pending art and protected visibility\nFAIL combat retirement defers restoring original Minimize visibility\nnative meter skin: 172 checks, 5 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lose-native-reshow-guard",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-lose-native-reshow-guard.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11570890000439249,
+      "output": "FAIL native attempts to re-show Minimize are hidden without changing its minimization setting\nFAIL an unprotected Minimize widget stays hidden when native code shows it in combat\nnative meter skin: 172 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "restore-hidden-minimize-as-shown",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-restore-hidden-minimize-as-shown.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11746169999241829,
+      "output": "FAIL cleanup preserves an originally hidden Minimize button\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "oversize-header-buttons",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-oversize-header-buttons.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11414010002044961,
+      "output": "FAIL native header control fits within fourteen display pixels: SettingsDropdown\nFAIL native header control fits within fourteen display pixels: SessionDropdown\nFAIL native header control fits within fourteen display pixels: DamageMeterTypeDropdown\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native atlas artwork remains inside the compact header\nFAIL native hover atlas sizing cannot extend the fitted icon outside the header\nFAIL native session width resets are repaired through a guarded widget posthook\nFAIL a newly shown native Close button is packed without overlap\nFAIL the existing combat-end service repairs pending art and protected visibility\nnative meter skin: 172 checks, 12 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "leave-dropdown-background-padding",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-leave-dropdown-background-padding.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11732729998766445,
+      "output": "FAIL native atlas artwork remains inside the compact header\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "leave-dropdown-arrow-below-header",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-leave-dropdown-arrow-below-header.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.12081490000127815,
+      "output": "FAIL native atlas artwork remains inside the compact header\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "keep-hidden-close-gap",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-keep-hidden-close-gap.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11440459999721497,
+      "output": "FAIL Minimize is absent and hidden Close consumes no gap beside the rightmost control\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lose-session-width-repair",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-lose-session-width-repair.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.1160000000090804,
+      "output": "FAIL native session width resets are repaired through a guarded widget posthook\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "reject-zero-anchor-art",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-reject-zero-anchor-art.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.11638970000785775,
+      "output": "FAIL native atlas artwork remains inside the compact header\nnative meter skin: 172 checks, 1 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lose-original-control-sizes",
+      "command": [
+        "lua",
+        "tests/native_meter_skin.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\10\\29\\01a186ea-e332-79a1-9cdc-8e340df7e22b\\meter-header-controls-20261106\\mutant-lose-original-control-sizes.lua"
+      ],
+      "exit": 1,
+      "wallSeconds": 0.1219312000030186,
+      "output": "FAIL out-of-combat cleanup restores original native button sizes\nFAIL cleanup restores zero-point atlas regions and original padded/arrow anchors\nnative meter skin: 172 checks, 2 failures; no native secrets/rendering/taint emulated\nlua: tests/native_meter_skin.lua:859: native meter skin regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_skin.lua:859: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "result": "PASS"
+}

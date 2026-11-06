@@ -20,6 +20,7 @@ local ownedPanes = setmetatable({}, { __mode = "k" })
 local panelPainted = setmetatable({}, { __mode = "k" })
 local themeHooked = false
 local timerOrder = 0
+local timerWinner, timerDonor
 local TIMER_RESERVE = 45 -- Display units; leave native timer text and updates alone.
 local DETAILS_ATLAS = "Interface\\AddOns\\Details\\images\\skins\\default_skin"
 local PANEL_TEXTURE = "Interface\\AddOns\\Details\\images\\background"
@@ -308,6 +309,7 @@ local function RestoreTimerLayout(state)
     if InCombat() then return false end
     state.timerFont:ClearAllPoints()
     state.timerFont:SetWidth(state.timerWidth)
+    if state.timerJustify then state.timerFont:SetJustifyH(state.timerJustify) end
     for _, point in ipairs(state.timerPoints) do
         state.timerFont:SetPoint(point[1], point[2], point[3], point[4], point[5])
     end
@@ -319,15 +321,26 @@ local function RestoreTimerLayout(state)
     end
     state.timerPoints, state.timerWidth = nil, nil
     state.timerControl, state.timerControlPoints = nil, nil
+    state.timerJustify = nil
     state.timerLayoutWidth, state.timerLayoutScale, state.timerLayoutHeader = nil, nil, nil
     state.timerBoxWidth = nil
     return true
 end
 
-local function PublicPoints(region)
+local function HeadingTimerWidths(text, available, scale)
+    local maximum = available - math.min(TIMER_RESERVE / scale, available * .8)
+    -- Only public window headings are measured, never actor names or timer text.
+    local heading = text and text.GetStringWidth and text:GetStringWidth()
+    local width = FiniteNumber(heading) and heading > 0 and math.min(heading, maximum) or maximum
+    local remaining = available - width
+    local gap = math.min(5 / scale, remaining * .25)
+    return width, gap, remaining - gap
+end
+
+local function PublicPoints(region, emptyAllowed)
     if not (region and region.GetNumPoints and region.GetPoint and region.ClearAllPoints and region.SetPoint) then return end
     local count = region:GetNumPoints()
-    if not FiniteNumber(count) or count < 1 or count > 8 then return end
+    if not FiniteNumber(count) or count < (emptyAllowed and 0 or 1) or count > 8 then return end
     local points = {}
     for i = 1, count do
         local point = {region:GetPoint(i)}
@@ -339,7 +352,187 @@ local function PublicPoints(region)
     return points
 end
 
-local function AlignTitle(frame, state, scale)
+local AlignTitle, FitHeaderControls
+local HEADER_BUTTONS = {"CloseButton", "SettingsDropdown", "SessionDropdown"}
+
+local function SaveHeaderGeometry(state, object)
+    if not (object and object.GetWidth and object.GetHeight and object.SetSize) then return end
+    state.headerGeometry = state.headerGeometry or {}
+    local saved = state.headerGeometry[object]
+    if saved then return saved end
+    local width, height, points = object:GetWidth(), object:GetHeight(), PublicPoints(object, true)
+    if not points or not FiniteNumber(width) or not FiniteNumber(height) or width < 0 or height < 0 then return end
+    saved = {object = object, width = width, height = height, points = points}
+    state.headerGeometry[object] = saved
+    return saved
+end
+
+local function HeaderPointMatches(object, index, point, relative, relativePoint, x, y)
+    local p, r, rp, px, py = object:GetPoint(index)
+    if issecretvalue and (issecretvalue(p) or issecretvalue(r) or issecretvalue(rp)
+        or issecretvalue(px) or issecretvalue(py)) then return false end
+    return p == point and r == relative and rp == relativePoint and px == x and py == y
+end
+
+local function SaveHeaderControls(frame, state)
+    if not frame.Header or InCombat() then return end
+    local function save(button)
+        if not SaveHeaderGeometry(state,button) then return end
+        for _, field in ipairs({"Background","Icon","Arrow","Text","SessionName"}) do
+            SaveHeaderGeometry(state,button[field])
+        end
+        for _, method in ipairs({"GetNormalTexture","GetPushedTexture","GetHighlightTexture"}) do
+            if button[method] then SaveHeaderGeometry(state,button[method](button)) end
+        end
+    end
+    for _, name in ipairs(HEADER_BUTTONS) do save(frame[name]) end
+    save(frame.DamageMeterTypeDropdown)
+    SaveHeaderGeometry(state,frame.MinimizeButton)
+end
+
+local function HideMinimize(frame, state)
+    local button = frame.Header and frame.MinimizeButton
+    if not (button and button.IsShown and button.Hide) then return end
+    SaveHeaderGeometry(state,button)
+    local shown = button:IsShown()
+    if (issecretvalue and issecretvalue(shown)) or type(shown) ~= "boolean" then return end
+    if not state.minimizeVisibilitySaved then
+        state.minimizeButton, state.minimizeShown, state.minimizeVisibilitySaved = button,shown,true
+    end
+    if not state.minimizeShowHooked and button.Show then
+        state.minimizeShowHooked = true
+        hooksecurefunc(button,"Show",function() if nativeWindows[frame] then HideMinimize(frame,state) end end)
+    end
+    if shown then
+        if InCombat() then
+            local protected = not button.IsProtected or button:IsProtected()
+            if not button.IsProtected or (issecretvalue and issecretvalue(protected)) or type(protected) ~= "boolean" or protected then
+                state.headerControlsPending = true; return
+            end
+        end
+        button:Hide()
+    end
+end
+
+local function FitHeaderObject(state, object, relative, width, height, point, relativePoint, x, y, insetX, insetY)
+    local saved = SaveHeaderGeometry(state, object)
+    if not saved then return false end
+    local currentWidth, currentHeight, count = object:GetWidth(), object:GetHeight(), object:GetNumPoints()
+    local correct = FiniteNumber(currentWidth) and FiniteNumber(currentHeight) and FiniteNumber(count)
+        and currentWidth == width and currentHeight == height
+    if insetX then
+        correct = correct and count == 2
+            and HeaderPointMatches(object,1,"TOPLEFT",relative,"TOPLEFT",insetX,-insetY)
+            and HeaderPointMatches(object,2,"BOTTOMRIGHT",relative,"BOTTOMRIGHT",-insetX,insetY)
+    else
+        correct = correct and count == 1 and HeaderPointMatches(object,1,point,relative,relativePoint,x,y)
+    end
+    if not correct then
+        object:ClearAllPoints(); object:SetSize(width,height)
+        if insetX then
+            object:SetPoint("TOPLEFT",relative,"TOPLEFT",insetX,-insetY)
+            object:SetPoint("BOTTOMRIGHT",relative,"BOTTOMRIGHT",-insetX,insetY)
+        else object:SetPoint(point,relative,relativePoint,x,y) end
+    end
+    return true
+end
+
+FitHeaderControls = function(frame, state, scale)
+    if not frame.Header or state.headerControlsApplying then return end
+    if InCombat() then state.headerControlsPending = true; return end
+    state.headerControlsApplying = true
+    HideMinimize(frame,state)
+    if not state.repairHeaderControls then
+        state.repairHeaderControls = function()
+            if not nativeWindows[frame] or state.headerControlsApplying then return end
+            if InCombat() then state.headerControlsPending = true; return end
+            FitHeaderControls(frame,state,state.scale)
+            AlignTitle(frame,state,state.scale)
+        end
+    end
+    state.headerAtlasHooks, state.headerButtonHooks = state.headerAtlasHooks or {}, state.headerButtonHooks or {}
+    local u, right = 1 / scale, 2 / scale
+    local height = 12 * u
+    local function art(object, button, width, small)
+        if not object then return end
+        local insetX, insetY = 0, 0
+        local w, h = width, height
+        if small then
+            w, h = math.min(width,8*u), math.min(height,8*u)
+            insetX, insetY = (width-w)/2, (height-h)/2
+        end
+        if FitHeaderObject(state,object,button,w,h,nil,nil,nil,nil,insetX,insetY)
+            and object.SetAtlas and not state.headerAtlasHooks[object] then
+            state.headerAtlasHooks[object] = true
+            hooksecurefunc(object,"SetAtlas",state.repairHeaderControls)
+        end
+    end
+    for _, name in ipairs(HEADER_BUTTONS) do
+        local button = frame[name]
+        local saved = SaveHeaderGeometry(state,button)
+        if saved then
+            local shown = not button.IsShown or PlainTrue(button:IsShown())
+            local width = name == "SessionDropdown" and math.max(height,saved.width) or height
+            FitHeaderObject(state,button,frame,width,height,"TOPRIGHT","TOPRIGHT",-right,-u)
+            if shown then right = right + width + u end
+            art(button.Background,button,width)
+            art(button.Icon,button,width)
+            art(button.Arrow,button,width,true)
+            art(button.Text,button,width)
+            art(button.SessionName,button,width)
+            for _, method in ipairs({"GetNormalTexture","GetPushedTexture","GetHighlightTexture"}) do
+                if button[method] then art(button[method](button),button,width) end
+            end
+            if button.HookScript and not state.headerButtonHooks[button] then
+                state.headerButtonHooks[button] = true
+                button:HookScript("OnShow",state.repairHeaderControls)
+                button:HookScript("OnHide",state.repairHeaderControls)
+                if name == "SessionDropdown" and button.SetWidth then
+                    hooksecurefunc(button,"SetWidth",state.repairHeaderControls)
+                end
+            end
+        end
+    end
+    local kind = frame.DamageMeterTypeDropdown
+    state.headerControlsFitted = FitHeaderObject(state,kind,frame,height,height,"TOPLEFT","TOPLEFT",2*u,-u)
+    if state.headerControlsFitted then
+        art(kind.Arrow,kind,height,true)
+        for _, method in ipairs({"GetNormalTexture","GetPushedTexture","GetHighlightTexture"}) do
+            if kind[method] then art(kind[method](kind),kind,height) end
+        end
+    end
+    state.headerControlsApplying = false
+    state.headerControlsPending = false
+end
+
+function Skin:RefreshHeaderControls()
+    if InCombat() then return end
+    for frame in pairs(nativeWindows) do
+        local state = chrome[frame]
+        if state.headerControlsPending then
+            FitHeaderControls(frame,state,state.scale)
+            AlignTitle(frame,state,state.scale)
+        end
+    end
+end
+
+local function RestoreHeaderControls(state)
+    if InCombat() then return end
+    state.headerControlsApplying = true
+    for object, saved in pairs(state.headerGeometry or {}) do
+        object:ClearAllPoints(); object:SetSize(saved.width,saved.height)
+        for _, p in ipairs(saved.points) do object:SetPoint(p[1],p[2],p[3],p[4],p[5]) end
+    end
+    if state.minimizeVisibilitySaved then
+        if state.minimizeShown then state.minimizeButton:Show() else state.minimizeButton:Hide() end
+        state.minimizeButton,state.minimizeShown,state.minimizeVisibilitySaved = nil,nil,nil
+    end
+    state.headerGeometry, state.headerControlsFitted = nil, nil
+    state.headerControlsPending = false
+    state.headerControlsApplying = false
+end
+
+AlignTitle = function(frame, state, scale)
     if InCombat() then return end
     local text = frame.GetDamageMeterTypeName and frame:GetDamageMeterTypeName()
     if not (text and frame.Header and text.GetNumPoints and text.GetPoint and text.GetWidth
@@ -388,24 +581,29 @@ local function AlignTitle(frame, state, scale)
             if saved and controlPoints and FiniteNumber(timerWidth) then
                 state.timerPoints, state.timerWidth = saved, timerWidth
                 state.timerControl, state.timerControlPoints = frame.DamageMeterTypeDropdown, controlPoints
+                if timer.GetJustifyH and timer.SetJustifyH then
+                    local justify = timer:GetJustifyH()
+                    if not (issecretvalue and issecretvalue(justify)) and type(justify) == "string" then state.timerJustify = justify end
+                end
             end
         end
         if state.timerPoints then
-            local reserve = math.min(TIMER_RESERVE / scale, width * .8)
-            width = width - reserve
-            local gap = math.min(5 / scale, reserve * .25)
-            local boxWidth = reserve - gap
+            local gap, boxWidth
+            width, gap, boxWidth = HeadingTimerWidths(text, width, scale)
             if state.timerLayoutWidth ~= width or state.timerLayoutScale ~= scale
                 or state.timerLayoutHeader ~= frame.Header or state.timerBoxWidth ~= boxWidth then
                 state.timerLayoutWidth, state.timerLayoutScale, state.timerLayoutHeader = width, scale, frame.Header
                 state.timerBoxWidth = boxWidth
                 -- A fixed box on every header keeps combat-time election paint-only.
                 -- Native type-dropdown hit geometry must not follow the moved timer.
-                state.timerControl:ClearAllPoints()
-                state.timerControl:SetPoint("TOPLEFT", frame.Header, "TOPLEFT", 1, -3)
+                if not state.headerControlsFitted then
+                    state.timerControl:ClearAllPoints()
+                    state.timerControl:SetPoint("TOPLEFT", frame.Header, "TOPLEFT", 1, -3)
+                end
                 timer:ClearAllPoints()
                 timer:SetWidth(boxWidth)
-                timer:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", width + 5 / scale + gap, -(HEADER_HEIGHT - 1) / scale)
+                if state.timerJustify then timer:SetJustifyH("LEFT") end
+                timer:SetPoint("BOTTOMLEFT", text, "BOTTOMRIGHT", gap, 0)
             end
         end
     end
@@ -496,10 +694,9 @@ local function EnsureThemeHook()
 end
 
 function Skin:SyncNativeTimer()
-    local winner, winnerTop, winnerLeft
-    for window in pairs(nativeWindows) do
-        local state = chrome[window]
-        if state.timerTracked and window.IsVisible and PlainTrue(window:IsVisible()) then
+    local winner, winnerTop, winnerLeft, donor, donorTop, donorLeft
+    local function consider(window, state, native)
+        if window.IsVisible and PlainTrue(window:IsVisible()) then
             local top = window.GetTop and window:GetTop()
             local left = window.GetLeft and window:GetLeft()
             local scale = window.GetEffectiveScale and window:GetEffectiveScale()
@@ -509,11 +706,56 @@ function Skin:SyncNativeTimer()
                 or (left == winnerLeft and state.timerOrder < chrome[winner].timerOrder))) then
                 winner, winnerTop, winnerLeft = window, top, left
             end
+            if native and (not donor or top > donorTop or (top == donorTop and (left < donorLeft
+                or (left == donorLeft and state.timerOrder < chrome[donor].timerOrder)))) then
+                donor, donorTop, donorLeft = window, top, left
+            end
         end
     end
     for window in pairs(nativeWindows) do
         local state = chrome[window]
+        if state.timerTracked then consider(window, state, true) end
+    end
+    for window in pairs(ownedPanes) do
+        local state = chrome[window]
+        if state.ownedTimer then consider(window, state, false) end
+    end
+    timerWinner, timerDonor = winner, donor
+    for window in pairs(nativeWindows) do
+        local state = chrome[window]
         if state.timerTracked then state.timerFont:SetAlpha(window == winner and state.timerAlpha or 0) end
+    end
+    for window in pairs(ownedPanes) do
+        local state = chrome[window]
+        if state.ownedTimer then
+            state.ownedTimerFont:SetAlpha(window == winner and (donor and chrome[donor].timerAlpha or 1) or 0)
+            if window == winner then
+                local source = donor and chrome[donor]
+                if source and source.hasTimerText then
+                    state.ownedTimerFont:SetText(source.timerText)
+                elseif not source and state.hasFallbackText then
+                    state.ownedTimerFont:SetText(state.fallbackText)
+                else state.ownedTimerFont:SetText("") end
+            end
+        end
+    end
+end
+
+function Skin:SetOwnedTimerText(frame, text)
+    local state = chrome[frame]
+    if not state or not state.ownedTimer then return end
+    state.fallbackText, state.hasFallbackText = text, true
+    if timerWinner == frame and not timerDonor then state.ownedTimerFont:SetText(text) end
+end
+
+local function HookTimerVisibility(window, state)
+    if window.HookScript and not state.timerHooked then
+        state.timerHooked = true
+        for _, event in ipairs({"OnShow", "OnHide", "OnSizeChanged"}) do
+            window:HookScript(event, function()
+                if nativeWindows[window] or ownedPanes[window] then Skin:SyncNativeTimer() end
+            end)
+        end
     end
 end
 
@@ -526,11 +768,18 @@ local function TrackTimer(window, state)
     timerOrder = timerOrder + 1
     state.timerFont, state.timerAlpha, state.timerOrder = timer, alpha, timerOrder
     state.timerTracked = true
-    if window.HookScript and not state.timerHooked then
-        state.timerHooked = true
-        for _, event in ipairs({"OnShow", "OnHide", "OnSizeChanged"}) do
-            window:HookScript(event, function() if nativeWindows[window] then Skin:SyncNativeTimer() end end)
-        end
+    HookTimerVisibility(window, state)
+    if not state.timerTextHooked and hooksecurefunc and timer.SetText then
+        state.timerTextHooked = true
+        hooksecurefunc(timer, "SetText", function(_, text)
+            if not nativeWindows[window] or not state.timerTracked then return end
+            -- Forward native formatted text only to an allowed opaque display sink.
+            state.timerText, state.hasTimerText = text, true
+            if timerDonor == window and timerWinner and ownedPanes[timerWinner] then
+                local target = chrome[timerWinner]
+                if target.ownedTimer then target.ownedTimerFont:SetText(text) end
+            end
+        end)
     end
 end
 
@@ -541,9 +790,14 @@ function Skin:ApplyToWindow(window, scale)
     state.nativeWindow = true
     nativeWindows[window] = true
     TrackTimer(window, state)
+    HideMinimize(window,state)
     TintChrome(window, state)
+    local heading = window.GetDamageMeterTypeName and window:GetDamageMeterTypeName()
+    StyleTitle(heading, 12 / scale)
+    SaveHeaderControls(window,state)
+    if state.titleFont ~= heading then AlignTitle(window, state, scale) end
+    FitHeaderControls(window,state,scale)
     AlignTitle(window, state, scale)
-    StyleTitle(window.GetDamageMeterTypeName and window:GetDamageMeterTypeName(), 12 / scale)
     StyleTitle(window.GetSessionName and window:GetSessionName(), 12 / scale)
     StyleTitle(window.GetSessionTimerFontString and window:GetSessionTimerFontString(), 12 / scale)
     local container = window.MinimizeContainer
@@ -553,7 +807,7 @@ function Skin:ApplyToWindow(window, scale)
     self:SyncNativeTimer()
 end
 
-function Skin:ApplyToOwnedPane(frame, title, scale)
+function Skin:ApplyToOwnedPane(frame, title, scale, timerEnabled)
     if not frame then return end
     scale = Scale(scale)
     local state = EnsureChrome(frame, scale, true)
@@ -570,10 +824,48 @@ function Skin:ApplyToOwnedPane(frame, title, scale)
         frame.HeaderTitle = text
     end
     StyleTitle(text, 12 / scale)
+    if text and text.SetJustifyH then text:SetJustifyH("LEFT") end
     if text then
         if title and state.title ~= title and text.SetText then text:SetText(title); state.title = title end
     end
+    state.ownedTimer = timerEnabled == true
+    if state.ownedTimer then
+        if not state.ownedTimerFont and frame.CreateFontString then
+            state.ownedTimerFont = frame:CreateFontString(nil, "OVERLAY")
+            StyleTitle(state.ownedTimerFont, 12 / scale)
+            state.ownedTimerFont:SetText("")
+            timerOrder = timerOrder + 1; state.timerOrder = timerOrder
+        end
+        if state.ownedTimerFont then
+            StyleTitle(state.ownedTimerFont, 12 / scale)
+            if not InCombat() and frame.GetWidth then
+                local width = frame:GetWidth()
+                if FiniteNumber(width) and width > 10 / scale then
+                    local available = width - 10 / scale
+                    local heading, gap, boxWidth = HeadingTimerWidths(text, available, scale)
+                    if state.ownedTimerWidth ~= width or state.ownedTimerScale ~= scale or state.ownedHeadingWidth ~= heading then
+                        state.ownedTimerWidth, state.ownedTimerScale, state.ownedHeadingWidth = width, scale, heading
+                        state.ownedTimerFont:ClearAllPoints()
+                        state.ownedTimerFont:SetWidth(boxWidth)
+                        if state.ownedTimerFont.SetJustifyH then state.ownedTimerFont:SetJustifyH("LEFT") end
+                        state.ownedTimerFont:SetPoint("BOTTOMLEFT", text, "BOTTOMRIGHT", gap, 0)
+                        if not state.ownedTitleFont and text and text.GetWidth then
+                            local originalWidth = text:GetWidth()
+                            if FiniteNumber(originalWidth) then state.ownedTitleFont, state.ownedTitleWidth = text, originalWidth end
+                        end
+                        if text and text.SetWidth then text:SetWidth(heading) end
+                    end
+                end
+            end
+            HookTimerVisibility(frame, state)
+        else state.ownedTimer = false end
+    elseif state.ownedTimerFont then
+        state.ownedTimerFont:SetAlpha(0)
+        if state.ownedTitleFont then state.ownedTitleFont:SetWidth(state.ownedTitleWidth) end
+        state.ownedTimerWidth, state.ownedTimerScale = nil, nil
+    end
     EnsureThemeHook()
+    self:SyncNativeTimer()
 end
 
 function Skin:RefreshTheme()
@@ -590,10 +882,16 @@ function Skin:ReleaseWindow(window)
         RestoreHeader(state)
         RestoreTitle(state)
         RestoreTimerLayout(state)
+        RestoreHeaderControls(state)
         if state.timerTracked then
             state.timerFont:SetAlpha(state.timerAlpha)
             state.timerTracked = false
         end
+        state.timerText, state.hasTimerText = nil, false
+        state.ownedTimer, state.hasFallbackText, state.fallbackText = false, false, nil
+        if state.ownedTimerFont then state.ownedTimerFont:SetAlpha(0); state.ownedTimerFont:SetText("") end
+        if state.ownedTitleFont then state.ownedTitleFont:SetWidth(state.ownedTitleWidth) end
+        state.ownedTimerWidth, state.ownedTimerScale = nil, nil
         RestoreMenu(state)
     end
     if state and state.background then state.background:Hide() end

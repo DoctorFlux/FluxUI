@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 198 |
+| inactive source | 202 |
 
 ## Addon sources
 
@@ -632,6 +632,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/defaults_first_login.lua](../tests/defaults_first_login.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/deferred_inventory_handoff.lua](../tests/deferred_inventory_handoff.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/durability_vehicle_layout.lua](../tests/durability_vehicle_layout.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/ebs_proc_refresh.lua](../tests/ebs_proc_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_recovery.lua](../tests/edit_mode_recovery.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/edit_mode_settings.lua](../tests/edit_mode_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -643,7 +644,10 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/flux_mail_quick_attach.lua](../tests/flux_mail_quick_attach.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_select.lua](../tests/flux_mail_select.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_settings.lua](../tests/flux_mail_settings.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/forever_sao_auracontainer.lua](../tests/forever_sao_auracontainer.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/forever_sao_combat_signal.lua](../tests/forever_sao_combat_signal.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/forever_sao_glow.lua](../tests/forever_sao_glow.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/forever_sao_immediate_bars.lua](../tests/forever_sao_immediate_bars.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/gold_currency_iteration.lua](../tests/gold_currency_iteration.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_child_startup.lua](../tests/grid_child_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/grid_hotkey_refresh.lua](../tests/grid_hotkey_refresh.lua) | inactive source | — | [34-assets.md](34-assets.md) |

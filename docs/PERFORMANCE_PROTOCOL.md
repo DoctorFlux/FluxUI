@@ -1,5 +1,46 @@
 # Baseline protocol and currency evidence
 
+6 November native failure is decisive, not a benchmark: the guarded Current
+experiment changed native provenance and later ordinary secret comparisons
+failed. The entire operative call/preflight path is removed.126 no-operation/
+provenance and561 ownership/Core checks pass; safe full166/823/unchanged sources
+passes ([manifest](validation/meter-rejected-current-removal-2026-11-06.json)). Reload guard refusal before input
+leaves native cleanup/measurements unaccepted.
+Keep the former166/823 and paired header samples with their original source scope;
+they do not accept the rejected native configuration route. Five-client disk
+identity does not clear in-memory taint. Reload and verify native ordinary
+refresh/combat after cleanup; do not infer CPU/FPS, pixels or native safety from
+read-only UNSUPPORTED command tests. [Evidence](validation/meter-current-live-checks-2026-11-06.json).
+
+6 November final header/probe scope: header172/threat87 pass five alternating
+pairs/ten mutants; full166/823 passes unchanged source hashes/membership. Header
+packing reuses existing controls/art;500 stable paints add no geometry writes
+or duplicate hooks, and no frame/event/timer/art resource is added. Compare
+native resize, header show/width repairs, combat deferral and cleanup separately;
+desktop counts do not measure native CPU/allocations/FPS or certify pixels.
+The explicit Overall status keeps default-Current OPEN. The separately invoked
+native experiment is a permission/provenance check, not a performance run;
+its native output is pending. Scratch metadata/public API presence cannot accept
+the ordinary addon-to-native call or a production default policy.
+[Header samples](validation/meter-header-controls-comparison-2026-11-06.json), [full manifest](validation/meter-current-selection-probe-2026-11-06.json).
+
+6 November Threat timer: matched runs cover mixed native/Threat and Threat-only
+layouts. One owned FontString receives native formatted SetText arguments
+opaquely. Threat-only elapsed uses the existing 0.2-second active poll; no extra
+frame/event/ticker or hidden/out-of-combat scan is added. Count the FontString as
+feature cost; posthooks remain permanent/guarded. Skin134/threat85 and session
+diagnostics42/ownership561 pass repeated fixtures; combined full162/819 passes
+with unchanged source hashes/membership. These contracts and the live Overall0
+diagnosis do not measure native CPU/FPS or certify secure-VM/pixel behavior.
+Host inspection corrected the sandbox-only closed-client inference. The user
+confirmed Current on both meters; agent enum/two-fight/reload checks are pending.
+New timer placement measures public heading width only out of combat, never
+actor/value text. Keep titles fixed; put the timer after a small gap with the
+remaining width. Revised results are pending;134/85/full162/819 above remain
+pre-heading stage evidence.
+[Timer samples](validation/meter-threat-timer-bridge-comparison-2026-11-06.json), [diagnostics](validation/meter-current-diagnostics-comparison-2026-11-06.json),
+[full manifest](validation/meter-threat-timer-current-view-2026-11-06.json).
+
 6 November native configuration boundary: earlier art/grid operation counts do
 not certify the changed code after native secret-value failures. Focused writer
 26/timer 113 checks pass in five alternating pairs each, rejecting 5/9 mutants.
@@ -12,9 +53,10 @@ and time text/policy remain native. Raw source identities/samples are in
 [timer evidence](validation/meter-single-timer-comparison-2026-11-06.json). These are
 functional/resource contracts, not native CPU/FPS results. Final full validation
 passes 162 scripts /819 Lua syntax files with unchanged source hashes/membership.
-[Current manifest](validation/meter-timer-native-boundary-2026-11-06.json). With no WoW
-process running at 07:31 UTC, native CPU/memory/frame-time, taint and final visual
-acceptance cannot be measured. Preserve concurrent raid/glow evidence and state.
+[Earlier manifest](validation/meter-timer-native-boundary-2026-11-06.json). The
+07:31 UTC sandbox process result did not establish a closed client. Native CPU/
+memory/frame-time, combat/taint and final visuals remain unmeasured. Preserve
+concurrent raid/glow evidence/state.
 [Current scope](METER_STANDALONE.md#current-native-configuration-boundary).
 
 6 November Forever SAO glow changes only the renderer selected on activation

@@ -56,11 +56,13 @@ local function boot(withTheme)
         function fs:GetAlpha() return self.alpha or 1 end
         function fs:GetWidth() return self.width or 160 end
         function fs:SetWidth(width) self.width = width end
+        function fs:SetJustifyH(value) self.justifyH = value end
+        function fs:GetJustifyH() return self.justifyH or "CENTER" end
         function fs:SetAlpha(alpha) self.alpha = alpha end
         function fs:ClearAllPoints() self.points = {} end
         function fs:GetNumPoints() return #(self.points or {}) end
         function fs:GetPoint(i) return table.unpack(self.points[i]) end
-        fs.GetText, fs.GetFormattedText, fs.SetText = forbidden, forbidden, forbidden
+        fs.GetText, fs.GetFormattedText, fs.GetStringWidth, fs.SetText = forbidden, forbidden, forbidden, forbidden
         function fs:SetPoint(...)
             self.point = { ... }; self.points = self.points or {}
             for i,p in ipairs(self.points) do if p[1] == self.point[1] then self.points[i] = self.point; return end end
@@ -132,6 +134,8 @@ local function boot(withTheme)
             w.GetDamageMeterTypeName = function() return w.typeFont end
             w.GetSessionName = function() return w.sessionFont end
             w.GetSessionTimerFontString = function() return w.timerFont end
+            w.typeFont:SetJustifyH("LEFT")
+            function w.typeFont:GetStringWidth() return self.headingWidth end
             w.MinimizeContainer = { NotActive = h.font(), Background = h.texture() }
             w.MinimizeContainer.Background:SetDrawLayer("BACKGROUND",0)
             function w.MinimizeContainer:CreateTexture() local t = h.texture(); t.owner = self; w.children[#w.children + 1] = t; return t end
@@ -490,8 +494,9 @@ check(a.timerFont:GetAlpha() == 0 and b.timerFont:GetAlpha() == .64 and c.timerF
     "highest screen-space top wins before screen-space left, preserving the winner's original alpha")
 check(a.typeFont.points[1][4] == 6.25 and a.typeFont.width > 0 and a.timerFont.width == 50,
     "fixed timer reservation preserves left title position and positive title space")
-check(b.timerFont.points[1][1] == "BOTTOMLEFT" and b.timerFont.points[1][5] == -16.25,
-    "timer and title share the compact header baseline without inspecting text metrics")
+check(b.timerFont.points[1][1] == "BOTTOMLEFT" and b.timerFont.points[1][2] == b.typeFont
+    and b.timerFont.points[1][3] == "BOTTOMRIGHT" and b.timerFont.points[1][5] == 0,
+    "timer follows the heading's right edge on its unchanged compact baseline")
 check(b.DamageMeterTypeDropdown.points[1][2] == b.Header
     and b.DamageMeterTypeDropdown.OnMenuOpened == originalMenu,
     "moving the timer does not drag its dependent native type-menu hitbox or replace its handler")
@@ -544,7 +549,7 @@ check(narrow.typeFont.width > 0 and type(narrow.timerFont.width) == "number" and
     "narrow panes keep positive title and timer bounds inside the native menu reserve")
 local tiny = timerPane(1000,238.25,.8,.4); clock.skin:ApplyToWindow(tiny,.8)
 check(tiny.typeFont.width > 0 and type(tiny.timerFont.width) == "number" and tiny.timerFont.width > 0
-    and tiny.timerFont.points[1][4] + tiny.timerFont.width <= 6.75 + 1e-9,
+    and 6.25 + tiny.typeFont.width + tiny.timerFont.points[1][4] + tiny.timerFont.width <= 6.75 + 1e-9,
     "sub-pixel available header space clamps the timer gap and box together")
 clock.skin:ReleaseWindow(narrow); narrow.timerFont:SetAlpha(.23); clock.skin:ApplyToWindow(narrow,.8)
 clock.skin:ReleaseWindow(narrow)
@@ -556,5 +561,299 @@ local opaqueTimer = timerPane(1000,100,.8,secretAlpha); clock.skin:ApplyToWindow
 check(opaqueTimer.timerFont:GetAlpha() == secretAlpha, "opaque native timer alpha is neither compared nor overwritten")
 check(a.timerFont.text == "Mario Super" and b.timerFont.text == "Mario Super",
     "election and cleanup never rewrite native timer content or session policy")
+
+local mirror = boot(true)
+local function positioned(kind, top, left, scale)
+    local w = mirror.window(kind)
+    w.top, w.left, w.scale, w.visible = top, left, scale, true
+    function w:GetTop() return self.top end
+    function w:GetEffectiveScale() return self.scale end
+    function w:IsVisible() return self.visible end
+    function w:GetWidth() return 200 end
+    return w
+end
+local first, second = positioned("session",500,100,1), positioned("session",500,300,1)
+first.timerFont:SetAlpha(.37); second.timerFont:SetAlpha(.64)
+local originalNativeTextSetter = first.timerFont.SetText
+mirror.skin:ApplyToWindow(first,1); mirror.skin:ApplyToWindow(second,1)
+local threat = positioned("owned",500,0,1); threat.Title = mirror.font()
+function threat.Title:SetText(value) self.text = value end
+function threat.Title:GetStringWidth() return self.headingWidth end
+function threat:CreateFontString()
+    local fs = mirror.font(); self.clock = fs
+    function fs:SetText(value) self.text = value; self.textWrites = (self.textWrites or 0) + 1 end
+    return fs
+end
+local function emit(window, payload)
+    local hooks = mirror.nativeHooks and mirror.nativeHooks[window.timerFont]
+    for _,fn in ipairs(hooks and hooks.SetText or {}) do fn(window.timerFont,payload) end
+end
+local function sync() if mirror.skin.SyncNativeTimer then mirror.skin:SyncNativeTimer() end end
+mirror.skin:ApplyToOwnedPane(threat,"Threat",1,true)
+check(threat.clock and threat.clock.path == "Fonts\\FRIZQT__.TTF" and threat.clock.size == 12,
+    "explicitly enabled Threat clock initializes its header font before text")
+if threat.clock then
+    check(threat.clock:GetAlpha() == .37 and first.timerFont:GetAlpha() == 0 and second.timerFont:GetAlpha() == 0,
+        "Threat takes the single timer when it is leftmost on the highest row")
+    emit(first,"[0:12] ")
+    check(threat.clock.text == "[0:12] ", "native formatted timer text is forwarded to Threat")
+    emit(second,"[9:99] ")
+    check(threat.clock.text == "[0:12] ", "a lower-priority native donor cannot replace the selected clock")
+    local opaqueText = setmetatable({opaque=true},{__tostring=forbidden,__concat=forbidden,__lt=forbidden,__le=forbidden})
+    emit(first,opaqueText)
+    check(threat.clock.text == opaqueText, "opaque native text reaches only the owned display sink without inspection")
+    threat.top = 400; sync()
+    check(first.timerFont:GetAlpha() == .37 and threat.clock:GetAlpha() == 0,
+        "a lower Threat pane yields the timer to the highest native pane")
+    threat.top, threat.left = 600, 500; sync()
+    check(threat.clock:GetAlpha() == .37 and first.timerFont:GetAlpha() == 0,
+        "Threat above native panes wins even when positioned farther right")
+    first.top = 600; sync()
+    check(first.timerFont:GetAlpha() == .37 and threat.clock:GetAlpha() == 0,
+        "native pane left of Threat wins when their physical tops match")
+    threat.top, threat.left, threat.scale = 1200, 0, .5; sync()
+    check(threat.clock:GetAlpha() == .37 and threat.clock.text == opaqueText,
+        "Threat priority accounts for physical scale and reuses an opaque cached native payload")
+    if mirror.skin.SetOwnedTimerText then mirror.skin:SetOwnedTimerText(threat,"[0:03] ") end
+    check(threat.clock.text == opaqueText, "ordinary fallback never overwrites a visible native donor")
+    first.visible, second.visible = false, false; sync()
+    check(threat.clock.text == "[0:03] ", "Threat-only presentation uses its separately supplied ordinary-combat clock")
+    first.visible = true; emit(first,"[0:15] "); sync()
+    check(threat.clock.text == "[0:15] ", "restoring a native donor immediately replaces the fallback")
+    local titlePoints = threat.clock:GetNumPoints(); mirror.combat = true
+    threat.visible = false; sync()
+    check(first.timerFont:GetAlpha() == .37 and threat.clock:GetAlpha() == 0
+        and threat.clock:GetNumPoints() == titlePoints, "combat hide election changes alpha without moving either timer")
+    threat.visible = true; sync(); mirror.combat = false
+    local nativeHooks, ownedClock = #mirror.nativeHooks[first.timerFont].SetText, threat.clock
+    for _=1,500 do mirror.skin:ApplyToOwnedPane(threat,"Threat",1,true); mirror.skin:ApplyToWindow(first,1) end
+    check(threat.clock == ownedClock and #mirror.nativeHooks[first.timerFont].SetText == nativeHooks and #threat.scriptHooks.OnShow == 1,
+        "500 reapplications reuse the owned clock and permanent native/visibility hooks")
+    mirror.skin:ReleaseWindow(threat)
+    local releasedTextWrites = threat.clock.textWrites; emit(first,"[0:16] ")
+    check(threat.clock:GetAlpha() == 0 and threat.clock.textWrites == releasedTextWrites,
+        "released Threat receives no native timer writes")
+    mirror.skin:ReleaseAllNative(); local count = threat.clock.textWrites; emit(first,opaqueText)
+    check(first.timerFont:GetAlpha() == .37 and second.timerFont:GetAlpha() == .64 and threat.clock.textWrites == count,
+        "Details cleanup restores native alphas and retires native text forwarding")
+    check(first.timerFont.SetText == originalNativeTextSetter, "native text setter identity remains unchanged")
+    mirror.skin:ApplyToWindow(first,1); mirror.skin:ApplyToOwnedPane(threat,"Threat",1,true)
+    check(threat.clock.text == "", "retired native hooks cannot seed a later embedding with stale cached text")
+    mirror.skin:ReleaseWindow(first); first.timerFont:SetAlpha(0); mirror.skin:ApplyToWindow(first,1); sync()
+    check(threat.clock:GetAlpha() == 0, "a zero-alpha native donor does not become visible through Threat's mirror")
+    mirror.skin:ReleaseWindow(first); first.timerFont:SetAlpha(.37); mirror.skin:ApplyToWindow(first,1); sync()
+    local other = positioned("owned",2000,0,1); other.Title = mirror.font()
+    function other.Title:SetText(value) self.text = value end
+    mirror.skin:ApplyToOwnedPane(other,"Other",1)
+    check(threat.clock:GetAlpha() == .37, "unregistered owned panes do not compete with the explicit Threat timer")
+    mirror.skin:ReleaseWindow(threat)
+    check(threat.Title:GetWidth() == 160, "owned timer cleanup restores the title's original width")
+else check(false,"Threat clock creation is required") end
+
+local heading = boot(true); local nativeHeading = heading.window("session")
+nativeHeading.timerFont:SetPoint("TOPLEFT",nativeHeading.Header,"TOPLEFT",1,-9)
+local headingControl = nativeHeading.DamageMeterTypeDropdown
+headingControl.points = {{"TOPLEFT",nativeHeading.timerFont,"TOPRIGHT",0,6}}
+function headingControl:GetNumPoints() return #self.points end
+function headingControl:GetPoint(index) return table.unpack(self.points[index]) end
+function headingControl:ClearAllPoints() self.points = {} end
+function headingControl:SetPoint(...) self.points[#self.points + 1] = {...} end
+nativeHeading.typeFont.headingWidth = 40
+nativeHeading.typeFont:SetFont("old-native-font",9,"")
+function nativeHeading.typeFont:GetStringWidth()
+    assert(self.path == "Fonts\\FRIZQT__.TTF" and self.size == 15, "heading measured before presentation font")
+    return self.headingWidth
+end
+heading.skin:ApplyToWindow(nativeHeading,.8)
+check(nativeHeading.typeFont.width == 40 and nativeHeading.typeFont.points[1][4] == 6.25
+    and nativeHeading.typeFont.points[1][5] == -16.25 and nativeHeading.typeFont:GetJustifyH() == "LEFT",
+    "native heading keeps its original left display position and baseline while using its public intrinsic width")
+check(nativeHeading.timerFont.point[1] == "BOTTOMLEFT" and nativeHeading.timerFont.point[2] == nativeHeading.typeFont
+    and nativeHeading.timerFont.point[3] == "BOTTOMRIGHT" and nativeHeading.timerFont.point[4] == 6.25
+    and nativeHeading.timerFont.point[5] == 0 and nativeHeading.timerFont:GetJustifyH() == "LEFT",
+    "native timer starts immediately after the heading rather than at the pane's far edge")
+check(nativeHeading.timerFont.width == 92.5 and nativeHeading.timerFont.width * .8 > 40,
+    "native timer uses all remaining header space rather than the old forty-pixel box")
+nativeHeading.typeFont.headingWidth = 1000; heading.skin:ApplyToWindow(nativeHeading,.8)
+check(nativeHeading.typeFont.width == 82.5 and nativeHeading.timerFont.width == 50
+    and nativeHeading.typeFont.points[1][4] == 6.25, "long localized headings clip within available space without moving their left edge")
+nativeHeading.typeFont.headingWidth = secretAlpha; heading.skin:ApplyToWindow(nativeHeading,.8)
+check(nativeHeading.typeFont.width == 82.5 and nativeHeading.timerFont.point[2] == nativeHeading.typeFont,
+    "an opaque heading metric is never compared and falls back to the existing bounded heading box")
+nativeHeading.typeFont.GetStringWidth = nil; heading.skin:ApplyToWindow(nativeHeading,.8)
+check(nativeHeading.typeFont.width == 82.5, "an unavailable heading metric preserves the bounded box fallback")
+nativeHeading.SessionDropdown.left = 150; heading.skin:ApplyToWindow(nativeHeading,.8)
+check(nativeHeading.typeFont.width > 0 and nativeHeading.timerFont.width > 0
+    and 6.25 + nativeHeading.typeFont.width + nativeHeading.timerFont.point[4] + nativeHeading.timerFont.width <= 45 + 1e-9,
+    "narrow native headers keep title and adjacent timer within the menu boundary")
+heading.skin:ReleaseWindow(nativeHeading)
+check(nativeHeading.timerFont:GetJustifyH() == "CENTER" and nativeHeading.typeFont:GetWidth() == 160,
+    "native cleanup restores original timer justification and heading width")
+check(threat.Title:GetJustifyH() == "LEFT", "owned Threat heading is left-justified instead of centered within its widened box")
+local drawnLeft = 5 + (threat.Title:GetJustifyH() == "LEFT" and 0 or (threat.Title:GetWidth() - 42) / 2)
+check(drawnLeft == 5, "Threat's visible name starts at the original five-pixel left offset")
+
+local packed = boot(true); packed.geometryWrites = 0
+local panel = packed.window("session")
+function panel:GetWidth() return 300 end
+function panel:GetTop() return 600 end
+local function geometry(object,width,height,points,atlas)
+    object.gwidth, object.gheight, object.points = width,height,points or {}
+    function object:GetWidth()
+        if #self.points == 2 then local a,b=self.points[1],self.points[2]; return a[2]:GetWidth()-a[4]+b[4] end
+        return self.gwidth
+    end
+    function object:GetHeight()
+        if #self.points == 2 then local a,b=self.points[1],self.points[2]; return a[2]:GetHeight()+a[5]-b[5] end
+        return self.gheight
+    end
+    local function offsets(o,p)
+        local x=p:find("LEFT",1,true) and 0 or p:find("RIGHT",1,true) and o:GetWidth() or o:GetWidth()/2
+        local y=p:find("TOP",1,true) and 0 or p:find("BOTTOM",1,true) and -o:GetHeight() or -o:GetHeight()/2
+        return x,y
+    end
+    function object:GetLeft()
+        local a=self.points[1]; if not a then return 0 end
+        local px=offsets(a[2],a[3]); local sx=offsets(self,a[1]); return a[2]:GetLeft()+px+a[4]-sx
+    end
+    function object:GetTop()
+        local a=self.points[1]; if not a then return 0 end
+        local _,py=offsets(a[2],a[3]); local _,sy=offsets(self,a[1]); return a[2]:GetTop()+py+a[5]-sy
+    end
+    function object:GetNumPoints() return #self.points end
+    function object:GetPoint(i) return table.unpack(self.points[i]) end
+    function object:ClearAllPoints() assert(not packed.combat); packed.geometryWrites=packed.geometryWrites+1; self.points={} end
+    function object:SetPoint(...) assert(not packed.combat); packed.geometryWrites=packed.geometryWrites+1; self.points[#self.points+1]={...} end
+    function object:SetSize(w,h) assert(not packed.combat); packed.geometryWrites=packed.geometryWrites+1; self.gwidth,self.gheight=w,h end
+    function object:SetWidth(w)
+        assert(not packed.combat); packed.geometryWrites=packed.geometryWrites+1; self.gwidth=w
+        for _,fn in ipairs(packed.nativeHooks and packed.nativeHooks[self] and packed.nativeHooks[self].SetWidth or {}) do fn(self,w) end
+    end
+    function object:SetHeight(h) assert(not packed.combat); packed.geometryWrites=packed.geometryWrites+1; self.gheight=h end
+    object.SetParent=forbidden
+    if atlas then
+        function object:SetAtlas(value)
+            self.gwidth,self.gheight=90,90
+            for _,fn in ipairs(packed.nativeHooks and packed.nativeHooks[self] and packed.nativeHooks[self].SetAtlas or {}) do fn(self,value,true) end
+        end
+    end
+    return object
+end
+geometry(panel.Header,300,32,{{"TOPLEFT",panel,"TOPLEFT",0,0}})
+local function button(object,width,height,point,relative,rpoint,x,y)
+    object=geometry(object or {},width,height,{{point,relative,rpoint,x,y}})
+    object.shown=true; object.scriptHooks=object.scriptHooks or {}
+    function object:IsShown() return self.shown end
+    if not object.HookScript then function object:HookScript(event,fn) self.scriptHooks[event]=self.scriptHooks[event] or {}; table.insert(self.scriptHooks[event],fn) end end
+    object.OnClick=function() end
+    function object:IsProtected() return self.protected == true end
+    function object:Hide()
+        self.shown=false
+        for _,fn in ipairs(self.scriptHooks.OnHide or {}) do fn(self) end
+    end
+    function object:Show()
+        self.shown=true
+        for _,fn in ipairs(self.scriptHooks.OnShow or {}) do fn(self) end
+        for _,fn in ipairs(packed.nativeHooks and packed.nativeHooks[self] and packed.nativeHooks[self].Show or {}) do fn(self) end
+    end
+    return object
+end
+panel.CloseButton=button(nil,32,32,"TOPRIGHT",panel.Header,"TOPRIGHT",-1,-1); panel.CloseButton.shown=false
+panel.MinimizeButton=button(nil,18,19,"TOPRIGHT",panel.Header,"TOPRIGHT",-3,-5)
+button(panel.SettingsDropdown,27,27,"RIGHT",panel.MinimizeButton,"LEFT",-2,-2)
+button(panel.SessionDropdown,18,18,"RIGHT",panel.SettingsDropdown,"LEFT",-2,3)
+panel.timerFont:SetPoint("TOPLEFT",panel.Header,"TOPLEFT",1,-9)
+button(panel.DamageMeterTypeDropdown,25,25,"TOPLEFT",panel.timerFont,"TOPRIGHT",0,6)
+local function artwork(texture,parent,width,height,points)
+    return geometry(texture or packed.texture(),width,height,points,true)
+end
+artwork(panel.SettingsDropdown.Icon,panel.SettingsDropdown,27,27,{{"TOPLEFT",panel.SettingsDropdown,"TOPLEFT",0,0},{"BOTTOMRIGHT",panel.SettingsDropdown,"BOTTOMRIGHT",0,0}})
+artwork(panel.SessionDropdown.Background,panel.SessionDropdown,32,32,{{"TOPLEFT",panel.SessionDropdown,"TOPLEFT",-7,7},{"BOTTOMRIGHT",panel.SessionDropdown,"BOTTOMRIGHT",7,-7}})
+artwork(panel.SessionDropdown.Arrow,panel.SessionDropdown,12,12,{{"BOTTOM",panel.SessionDropdown,"BOTTOM",0,-5}})
+geometry(panel.SessionDropdown.SessionName,18,18,{{"TOPLEFT",panel.SessionDropdown,"TOPLEFT",0,0},{"BOTTOMRIGHT",panel.SessionDropdown,"BOTTOMRIGHT",0,0}})
+geometry(panel.SessionDropdown.Text,20,20,{{"LEFT",panel.SessionDropdown,"LEFT",13,0},{"RIGHT",panel.SessionDropdown,"RIGHT",-13,0}})
+artwork(panel.DamageMeterTypeDropdown.Arrow,panel.DamageMeterTypeDropdown,25,25,{{"CENTER",panel.DamageMeterTypeDropdown,"CENTER",0,-2}})
+local normal=artwork(nil,panel.MinimizeButton,18,19,{})
+local pushed=artwork(nil,panel.MinimizeButton,18,19,{})
+local highlight=artwork(nil,panel.MinimizeButton,18,19,{})
+function panel.MinimizeButton:GetNormalTexture() return normal end
+function panel.MinimizeButton:GetPushedTexture() return pushed end
+function panel.MinimizeButton:GetHighlightTexture() return highlight end
+local closeNormal=artwork(nil,panel.CloseButton,32,32,{})
+function panel.CloseButton:GetNormalTexture() return closeNormal end
+panel.SetMinimized,panel.SetSessionWindowMinimized=forbidden,forbidden
+panel.ResizeButton=geometry({},20,20,{{"BOTTOMRIGHT",panel,"BOTTOMRIGHT",0,0}})
+local oldClick,oldMenu,oldNormalCount=panel.MinimizeButton.OnClick,panel.SettingsDropdown.OnMenuOpened,normal:GetNumPoints()
+panel.typeFont.headingWidth=50
+packed.skin:ApplyToWindow(panel,.8)
+local function refreshPacked()
+    if packed.skin.RefreshHeaderControls then packed.skin:RefreshHeaderControls() end
+end
+local function atlasHookCount(object)
+    return #(packed.nativeHooks and packed.nativeHooks[object] and packed.nativeHooks[object].SetAtlas or {})
+end
+check(type(packed.skin.RefreshHeaderControls)=="function","header deferral reuses an explicit existing-service entry point")
+local function inside(object)
+    local left=(object:GetLeft()-panel:GetLeft())*.8
+    local right=left+object:GetWidth()*.8
+    local top=(panel:GetTop()-object:GetTop())*.8
+    return left>=-1e-8 and right<=240+1e-8 and top>=-1e-8 and top+object:GetHeight()*.8<=14+1e-8
+end
+for _,name in ipairs({"SettingsDropdown","SessionDropdown","DamageMeterTypeDropdown"}) do
+    check(inside(panel[name]) and panel[name]:GetHeight()*.8==12,"native header control fits within fourteen display pixels: "..name)
+end
+for _,object in ipairs({closeNormal,panel.SettingsDropdown.Icon,panel.SessionDropdown.Background,panel.SessionDropdown.Arrow,panel.DamageMeterTypeDropdown.Arrow}) do
+    check(inside(object),"native atlas artwork remains inside the compact header")
+end
+check(not panel.MinimizeButton:IsShown() and panel.SettingsDropdown:GetLeft()+panel.SettingsDropdown:GetWidth()==panel:GetLeft()+panel:GetWidth()-2/.8,
+    "Minimize is absent and hidden Close consumes no gap beside the rightmost control")
+panel.MinimizeButton:Show()
+check(not panel.MinimizeButton:IsShown(),"native attempts to re-show Minimize are hidden without changing its minimization setting")
+check(panel.typeFont.point[4]==6.25 and panel.typeFont.point[5]==-16.25 and panel.timerFont.point[2]==panel.typeFont,
+    "packing native controls preserves the heading position and adjacent timer")
+check(panel.MinimizeButton.OnClick==oldClick and panel.SettingsDropdown.OnMenuOpened==oldMenu,
+    "header packing preserves original native click and menu functions")
+local writes=packed.geometryWrites;local atlasHooks=atlasHookCount(panel.SettingsDropdown.Icon)
+for _=1,500 do packed.skin:ApplyToWindow(panel,.8) end
+check(packed.geometryWrites==writes and atlasHookCount(panel.SettingsDropdown.Icon)==atlasHooks,
+    "500 stable header paints issue no geometry setters or duplicate atlas hooks")
+panel.SettingsDropdown.Icon:SetAtlas("native-hover")
+check(inside(panel.SettingsDropdown.Icon),"native hover atlas sizing cannot extend the fitted icon outside the header")
+panel.SessionDropdown:SetWidth(80)
+check(panel.SessionDropdown:GetWidth()==18 and inside(panel.SessionDropdown),"native session width resets are repaired through a guarded widget posthook")
+panel.CloseButton.shown=true; for _,fn in ipairs(panel.CloseButton.scriptHooks.OnShow or {}) do fn(panel.CloseButton) end
+check(inside(panel.CloseButton) and panel.SettingsDropdown:GetLeft()+panel.SettingsDropdown:GetWidth()<=panel.CloseButton:GetLeft()-1/.8+1e-8,
+    "a newly shown native Close button is packed without overlap")
+packed.combat=true; writes=packed.geometryWrites; panel.SettingsDropdown.Icon:SetAtlas("combat-hover"); packed.skin:ApplyToWindow(panel,.8)
+check(packed.geometryWrites==writes,"combat native art changes defer all header geometry setters")
+panel.MinimizeButton:Show()
+check(not panel.MinimizeButton:IsShown(),"an unprotected Minimize widget stays hidden when native code shows it in combat")
+panel.MinimizeButton.protected=true;panel.MinimizeButton:Show()
+check(panel.MinimizeButton:IsShown(),"protected combat visibility changes defer instead of attempting a forbidden hide")
+packed.combat=false; refreshPacked()
+check(inside(panel.SettingsDropdown.Icon) and not panel.MinimizeButton:IsShown(),"the existing combat-end service repairs pending art and protected visibility")
+packed.combat=true;packed.skin:ReleaseAllNative()
+check(not panel.MinimizeButton:IsShown(),"combat retirement defers restoring original Minimize visibility")
+packed.combat=false;packed.skin:ReleaseAllNative()
+check(panel.MinimizeButton:IsShown() and panel.MinimizeButton:GetWidth()==18 and panel.MinimizeButton:GetHeight()==19 and panel.SettingsDropdown:GetWidth()==27
+    and panel.SessionDropdown:GetWidth()==18 and panel.DamageMeterTypeDropdown:GetWidth()==25,
+    "out-of-combat cleanup restores original native button sizes")
+panel.MinimizeButton:Hide();packed.skin:ApplyToWindow(panel,.8);packed.skin:ReleaseWindow(panel)
+check(not panel.MinimizeButton:IsShown(),"cleanup preserves an originally hidden Minimize button")
+check(normal:GetNumPoints()==oldNormalCount and normal:GetWidth()==18 and normal:GetHeight()==19
+    and closeNormal:GetNumPoints()==0 and closeNormal:GetWidth()==32 and closeNormal:GetHeight()==32
+    and panel.SessionDropdown.Background.points[1][4]==-7 and panel.SessionDropdown.Background.points[1][5]==7
+    and panel.SessionDropdown.Arrow.points[1][5]==-5,
+    "cleanup restores zero-point atlas regions and original padded/arrow anchors")
+local retiredWrites=packed.geometryWrites; panel.SettingsDropdown.Icon:SetAtlas("retired-hover");refreshPacked()
+check(packed.geometryWrites==retiredWrites,"retired atlas callbacks and header refresh perform no hidden geometry work")
+check(panel.ResizeButton:GetWidth()==20 and panel.ResizeButton.points[1][1]=="BOTTOMRIGHT",
+    "native body resize handle remains unchanged")
+local sourcePanel=packed.window("source")
+sourcePanel.CloseButton=button(nil,32,32,"TOPRIGHT",sourcePanel,"TOPRIGHT",-8,-8)
+sourcePanel.MinimizeButton=button(nil,18,19,"TOPRIGHT",sourcePanel,"TOPRIGHT",-3,-5)
+packed.skin:ApplyToWindow(sourcePanel,.8)
+check(sourcePanel.CloseButton:GetWidth()==32 and sourcePanel.CloseButton.points[1][4]==-8
+    and sourcePanel.MinimizeButton:IsShown(),"source drilldowns without a native Header retain their original controls")
 print(string.format("native meter skin: %d checks, %d failures; no native secrets/rendering/taint emulated", checks, failures))
 assert(failures == 0, "native meter skin regressions")
