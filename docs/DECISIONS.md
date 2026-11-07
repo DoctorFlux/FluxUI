@@ -1,5 +1,18 @@
 # Decisions
 
+7 November author correction: user explicitly approved the prepared one-time
+exception to the no-force-push rule. Main was updated with an exact expected-head
+lease from d3db4c5 to e0bcdc2. One old author/committer identity was corrected;
+30 commit IDs changed, with every tree, message and timestamp preserved. The
+published-history recovery bundle remains verified outside AddOns. GitHub's
+author query returns zero old-identity commits; its contributor list was still
+cached at capture. Check after the documented refresh period (about24hours),
+then contact GitHub Support if it remains incorrect. Future publications keep
+DoctorFlux author/committer metadata and the standing no-force-push rule.
+Runtime files remain at the passing232-script/896-Lua identities; no native
+input, settings or profiler change occurred.
+[Correction evidence](validation/attribution-correction-2026-11-07.json).
+
 7 November native minimap indicators (MINIMAP-NATIVE-20261107): user chose direct
 implementation and UIForever testing. Reuse Forever's native 32x24 cluster mail
 frame/art before the retained fallback; retire late-superseded fallback listeners.
