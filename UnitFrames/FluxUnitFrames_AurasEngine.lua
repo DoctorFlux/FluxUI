@@ -13,7 +13,6 @@ local AURA_BORDER_INSET_Y_BOTTOM = 10
 
 local loaded
 local loadFailed
-local durationFormatter
 
 local function EnsureLoaded()
 	if loaded then
@@ -95,29 +94,32 @@ local function StealableFilter()
 	return e and e.Stealable
 end
 
-local function GetDurationFormatter()
-	if durationFormatter ~= nil then
-		return durationFormatter
-	end
-	durationFormatter = false
-	if not (C_StringUtil and C_StringUtil.CreateNumericRuleFormatter and Enum and Enum.NumericRuleFormatRounding) then
-		return nil
-	end
-	local Up = Enum.NumericRuleFormatRounding.Up
-	local Down = Enum.NumericRuleFormatRounding.Down
-	local formatter = C_StringUtil.CreateNumericRuleFormatter()
-	local ok = pcall(formatter.SetBreakpoints, formatter, {
-		{ threshold = 0, format = "%d", step = 1, rounding = Up },
-		{ threshold = 60, format = "%dm", step = 1, rounding = Up, components = { { div = 60 } } },
-		{ threshold = 61, format = "%dm", step = 1, rounding = Down, components = { { div = 60 } } },
-		{ threshold = 3600, format = "%dh", step = 1, rounding = Down, components = { { div = 3600 } } },
-		{ threshold = 86400, format = "%dd", step = 1, rounding = Down, components = { { div = 86400 } } },
-	})
-	if ok then
-		durationFormatter = formatter
-		return formatter
-	end
-	return nil
+-- Each owned container keeps one formatter so existing native duration bindings
+-- inherit option changes without reading aura durations or touching native buttons.
+local function GetDurationFormatter(container)
+    local formatter = container._fluxDurationFormatter
+    local underMinute = container._fluxAuraTimersUnderMinute == true
+    if formatter and container._fluxDurationUnderMinute == underMinute then return formatter end
+    if InCombatLockdown and InCombatLockdown() then return formatter end
+    if not (C_StringUtil and C_StringUtil.CreateNumericRuleFormatter and Enum and Enum.NumericRuleFormatRounding) then
+        return nil
+    end
+    local Up = Enum.NumericRuleFormatRounding.Up
+    local Down = Enum.NumericRuleFormatRounding.Down
+    formatter = formatter or C_StringUtil.CreateNumericRuleFormatter()
+    local ok = pcall(formatter.SetBreakpoints, formatter, {
+        { threshold = 0, format = "%d", step = 1, rounding = Up },
+        { threshold = 60, format = underMinute and "" or "%dm", step = 1, rounding = Up, components = { { div = 60 } } },
+        { threshold = 61, format = underMinute and "" or "%dm", step = 1, rounding = Down, components = { { div = 60 } } },
+        { threshold = 3600, format = underMinute and "" or "%dh", step = 1, rounding = Down, components = { { div = 3600 } } },
+        { threshold = 86400, format = underMinute and "" or "%dd", step = 1, rounding = Down, components = { { div = 86400 } } },
+    })
+    if ok then
+        container._fluxDurationFormatter = formatter
+        container._fluxDurationUnderMinute = underMinute
+        return formatter
+    end
+    return container._fluxDurationFormatter
 end
 
 local function XSqueeze()
@@ -197,7 +199,7 @@ local function InitializeEngineButton(button, container, width, height)
 	pcall(button.SetDurationCooldown, button, cooldown)
 	pcall(button.SetApplicationCount, button, count, {})
 
-	local formatter = GetDurationFormatter()
+	local formatter = GetDurationFormatter(container)
 	local durationOpts = formatter and { textFormatter = formatter } or {}
 	if not pcall(button.SetDurationText, button, duration, durationOpts) then
 		pcall(button.SetDurationText, button, duration, {})
@@ -410,6 +412,7 @@ function UF.SyncEngineAuras(container, frame)
 	if not container or not container._fluxEngine then
 		return
 	end
+	GetDurationFormatter(container)
 	local engine = container._fluxEngine
 	local unit = (frame and frame.unit) or container.unit
 	if unit and engine.SetUnit then
@@ -478,6 +481,7 @@ function UF.AttachEngineAuras(container, frame)
 
 	local unit = (frame and frame.unit) or container.unit
 	container.unit = unit
+	GetDurationFormatter(container)
 	local isDebuff = container.containerType == "Debuff"
 	local maxAuras = container.maxAuras or (isDebuff and 16 or 32)
 	local sort = isDebuff and SortMethod("UnitFrameDebuff") or SortMethod("Default")

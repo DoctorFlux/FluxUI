@@ -21,6 +21,7 @@ end
 
 local function IsPrivateAuraContainer(frame)
     if not frame then return false end
+    if frame._fluxAuraNative or frame._fluxAuraContainers then return true end
     if frame._fluxPrivateAuraMixed or frame._fluxPrivateAuraHost then return true end
     if frame.IsContainer then
         local ok, isC = pcall(frame.IsContainer, frame)

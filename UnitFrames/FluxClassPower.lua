@@ -1,5 +1,11 @@
 -- UnitFrames/FluxClassPower.lua
 local addonName, ns = ...
+
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterStateDriver = (useFluxDrivers and FluxDrivers.RegisterStateDriver) or RegisterStateDriver
+local UnregisterStateDriver = (useFluxDrivers and FluxDrivers.UnregisterStateDriver) or UnregisterStateDriver
 local UF = ns.UnitFrames
 
 ns.ClassPower = {}

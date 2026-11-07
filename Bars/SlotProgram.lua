@@ -25,6 +25,10 @@ local function NoteIndex()
 	if PF and PF.InvalidateIndex then
 		PF.InvalidateIndex()
 	end
+	local Effects = Bars.Effects
+	if Effects and Effects.InvalidateSecureAuraCandidates then
+		Effects.InvalidateSecureAuraCandidates()
+	end
 end
 
 local ATTR = "flux-p-"

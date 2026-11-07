@@ -1,0 +1,24 @@
+--- a/UnitFrames/FluxCastBar.lua
++++ b/UnitFrames/FluxCastBar.lua
+@@ -1288,7 +1288,7 @@
+         self:Show()
+     end
+     local fadeDur = self.interrupted and FLUX_CASTBAR_FADE_INTERRUPT or FLUX_CASTBAR_FADE_DURATION
+-    UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)
++    UIFrameFadeOut(self, fadeDur, 1, 0)
+     self.fadeTimer = C_Timer.NewTimer(fadeDur, function()
+         if self.fadeOut and not self.casting and not self.channeling and not self.customTimer then
+             FinishCastBarFade(self)
+--- a/UnitFrames/FluxSwingTimer.lua
++++ b/UnitFrames/FluxSwingTimer.lua
+@@ -913,10 +913,6 @@
+     if castBar.preInterrupt then return true end
+     if castBar.holdTime and castBar.holdTime > 0 then return true end
+     if castBar.fadeOut then return true end
+-    -- Only block when the cast bar is actually on-screen.
+-    if not castBar:IsShown() or castBar:GetAlpha() <= 0.01 then
+-        return false
+-    end
+     return false
+ end
+ 

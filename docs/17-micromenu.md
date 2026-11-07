@@ -1,5 +1,9 @@
 # Micromenu, bag controls and addon buttons
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: The character-button watcher is parented to the owned button so hidden controls stop receiving OnUpdate. Visible per-frame native-state observation remains to preserve native press/release/keybind/close behavior without unsafe hooks. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 ## Forever native profession button restored - 5 November 2026
 
 The user clarified that Blizzard's own trade-skill/profession button should stay.

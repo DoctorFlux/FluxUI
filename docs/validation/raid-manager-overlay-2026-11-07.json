@@ -1,0 +1,291 @@
+{
+  "changeID": "RAID-MANAGER-OVERLAY-20261107",
+  "requirements": [
+    "REQ-RF-39",
+    "REQ-RF-40"
+  ],
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T064041Z",
+    "utc": "20261107T064041Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "status": "M AddonOptions/FluxOptionsDefaults.lua\n M AddonOptions/FluxOptionsRaidFrame.lua\n M AddonOptions/FluxOptionsRender.lua\n M Bars/BadgeHost.lua\n M Bars/Effects.lua\n M Bars/ProgramFace.lua\n M Bars/SlotProgram.lua\n M Bars/Stance/Extras.lua\n M Bars/_tmp_barsmoke.lua\n M Battlezonemap/FluxBattlefieldMapProviders.lua\n M Binding/Input/FluxMouseoverKeybind.lua\n M Blizzard/Hide.lua\n M Core/API/Action.lua\n M Core/API/Name.lua\n M Core/API/Spell.lua\n M Core/ButtonFX/Glow.lua\n M Core/Engine/Events.lua\n M Core/Engine/Scheduler.lua\n M Core/Engine/Ticker.lua\n M ExtraButtonSystem/Engine/Badge.lua\n M ExtraButtonSystem/Engine/Paint.lua\n M ExtraButtonSystem/FlyoutEngine/Popup.lua\n M ExtraButtonSystem/Layout.lua\n M ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua\n M Inventory/SpellReagents.lua\n M NEXT_SESSION.md\n M Other/FluxPerfCapture.lua\n M Other/FluxPerfDebug.lua\n M RaidFrame/FluxRaidCompat.lua\n M RaidFrame/FluxRaidFrame.lua\n M RaidFrame/FluxRaidFrame.xml\n M RaidFrame/FluxRaidFrame_BigDebuffs.lua\n M RaidFrame/FluxRaidLayout.lua\n M RaidFrame/FluxRaidPreview.lua\n M RaidFrame/FluxRaidUnit.lua\n M RaidFrame/FluxRaidVisuals.lua\n M RaidFrame/_tmp_raidaurassmoke.lua\n M UnitFrames/FluxHealthLossOverlay.lua\n M UnitFrames/FluxPowerCostOverlay.lua\n M UnitFrames/FluxUnitFrames_Shared.lua\n M _FluxUI.toc\n M docs/12-extra-button-system.md\n M docs/15-raid-frames.md\n M docs/30-source-coverage.md\n M docs/90-reference-inspirations.md\n M docs/CLIENT_MATRIX.csv\n M docs/CLIENT_VALIDATION.md\n M docs/DECISIONS.md\n M docs/FEATURE_PARITY.csv\n M docs/FOREVER_SAO_GLOW.md\n M docs/PERFORMANCE_AUDIT.csv\n M docs/PERFORMANCE_PROTOCOL.md\n M docs/PERFORMANCE_RESULTS.csv\n M docs/REFERENCE_MANIFEST.csv\n M docs/STATUS.md\n M docs/WORK_LOG.md\n M docs/performance-driver-inventory.md\n M docs/reference/declarations.md\n M docs/reference/defaults.md\n M docs/reference/interfaces.md\n M docs/reference/inventory.json\n M docs/reference/settings-details.md\n M docs/reference/verification.json\n M tests/forever_sao_glow.lua\n M tests/raid_header_precreation.lua\n M tests/unit_power_visibility.lua\n?? RaidFrame/FluxRaidAuras.lua\n?? RaidFrame/FluxRaidHealerExtras.lua\n?? RaidFrame/FluxRaidHoTs.lua\n?? RaidFrame/FluxRaidPrediction.lua\n?? RaidFrame/FluxRaidSecure.lua\n?? docs/MAP_PROVIDER_LIFECYCLE.md\n?? docs/RAID_HEALKIT_REWORK.md\n?? docs/RANDOM_SPIKES.md\n?? docs/TACOTIP_BACKDROP.md\n?? docs/TELEPORT_REAGENT_RESTOCK.md\n?? docs/UNIT_STATE_SECRETS.md\n?? docs/validation/ebs-glow-startup-comparison-2026-11-06.json\n?? docs/validation/ebs-glow-startup-native-2026-11-06.json\n?? docs/validation/ebs-glow-startup-saved-evidence-2026-11-06.json\n?? docs/validation/ebs-layout-coalescing-comparison-2026-11-06.json\n?? docs/validation/forever-random-spikes-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-120s-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-bugtabs-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-restoration-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-armed-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-errors-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-watch-2026-11-06.json\n?? docs/validation/forever-random-spikes-watch-2026-11-06.json\n?? docs/validation/forever-sao-badge-row-swap-2026-11-06.json\n?? docs/validation/forever-sao-face-paging-2026-11-06.json\n?? docs/validation/forever-secure-proc-glow-2026-11-06.json\n?? docs/validation/map-provider-client-copy-2026-11-06.json\n?? docs/validation/map-provider-combat-comparison-2026-11-06.json\n?? docs/validation/map-provider-detach-comparison-2026-11-06.json\n?? docs/validation/map-provider-lifecycle-2026-11-06.json\n?? docs/validation/map-provider-native-after-2026-11-06.json\n?? docs/validation/map-provider-native-baseline-2026-11-06.json\n?? docs/validation/raid-aura-clock-fix-2026-11-06.json\n?? docs/validation/raid-aura-duration-2026-11-06.json\n?? docs/validation/raid-aura-independent-scale-2026-11-07.json\n?? docs/validation/raid-aura-limits-2026-11-07.json\n?? docs/validation/raid-aura-slider-live-2026-11-07.json\n?? docs/validation/raid-aura-text-scale-2026-11-06.json\n?? docs/validation/raid-aura-width-font-2026-11-07.json\n?? docs/validation/raid-blizzard-aura-followup-2026-11-06.json\n?? docs/validation/raid-blizzard-default-sizing-2026-11-07.json\n?? docs/validation/raid-healkit-rework-2026-11-06.json\n?? docs/validation/raid-live-width-guarded-2026-11-07.json\n?? docs/validation/raid-preview-parity-2026-11-07.json\n?? docs/validation/raid-timer-policy-2026-11-07.json\n?? docs/validation/random-spike-aura-sync-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-v2-2026-11-06.json\n?? docs/validation/random-spike-pause-2026-11-06.json\n?? docs/validation/random-spike-startup-check-2026-11-06.json\n?? docs/validation/spike-observer-comparison-2026-11-06.json\n?? docs/validation/spike-watch-comparison-2026-11-06.json\n?? docs/validation/spike-watch-v2-comparison-2026-11-06.json\n?? docs/validation/stance-aura-sync-comparison-2026-11-06.json\n?? docs/validation/stance-aura-text-cache-comparison-2026-11-06.json\n?? docs/validation/tacotip-backdrop-audit-2026-11-06.json\n?? docs/validation/teleport-reagent-client-copy-2026-11-07.json\n?? docs/validation/teleport-reagent-comparison-2026-11-07.json\n?? docs/validation/teleport-reagent-safety-2026-11-07.json\n?? docs/validation/unit-state-followup-client-copy-2026-11-06.json\n?? docs/validation/unit-state-followup-comparison-2026-11-06.json\n?? docs/validation/unit-state-followup-safety-2026-11-06.json\n?? docs/validation/unit-state-native-followup-2026-11-06.json\n?? docs/validation/unit-state-secret-client-copy-2026-11-06.json\n?? docs/validation/unit-state-secret-comparison-2026-11-06.json\n?? docs/validation/unit-state-secret-native-2026-11-06.json\n?? docs/validation/unit-state-secret-safety-2026-11-06.json\n?? tests/badge_cooldown_secrets.lua\n?? tests/ebs_glow_startup.lua\n?? tests/ebs_layout_coalescing.lua\n?? tests/forever_badge_combat_row_swap.lua\n?? tests/forever_sao_badge_preparation.lua\n?? tests/forever_sao_face_paging.lua\n?? tests/map_provider_combat.lua\n?? tests/map_provider_detach.lua\n?? tests/options_dynamic_range.lua\n?? tests/perf_callback_observer.lua\n?? tests/perf_spike_watch.lua\n?? tests/player_name_secret.lua\n?? tests/power_snapshot_cleanup.lua\n?? tests/program_face_secret_names.lua\n?? tests/raid_aura_layout.lua\n?? tests/raid_aura_live_options.lua\n?? tests/raid_aura_native_filters.lua\n?? tests/raid_aura_options.lua\n?? tests/raid_big_debuff_boundary.lua\n?? tests/raid_binding_cast.lua\n?? tests/raid_blizzard_default_sizes.lua\n?? tests/raid_connected_grid.lua\n?? tests/raid_healer_auras.lua\n?? tests/raid_healer_extras.lua\n?? tests/raid_healer_hots.lua\n?? tests/raid_healer_prediction.lua\n?? tests/raid_healer_runtime.lua\n?? tests/raid_healer_secure.lua\n?? tests/raid_healer_visuals.lua\n?? tests/raid_hidden_buff_event.lua\n?? tests/raid_manager_ghost.lua\n?? tests/raid_native_member_order.lua\n?? tests/raid_native_sizing_layout.lua\n?? tests/spell_reagent_presets.lua\n?? tests/stance_aura_sync.lua\n?? tests/stance_aura_text_cache.lua\n?? tests/teleport_restock.lua\n?? tests/unit_identity_feedback.lua\n?? tests/unit_overlay_secret_identity.lua",
+    "sourceFiles": 1708,
+    "settingsFiles": 158,
+    "zipHashVerification": "PASS",
+    "bundleVerification": "PASS",
+    "sha256": {
+      "source.zip": "516b42848a35f049fbb325f63f3a27e4a2a1cdd07131896d88459a7d25b9fb0f",
+      "settings.zip": "c7c5cc7901fd2c5b86529f573412708533dd4cbe79e186226e60aa3161453a46",
+      "history.bundle": "500b0554df47f7d20b99d92a2c54eb9c1bf10521e0f9d493466dbb248d7c4de4"
+    },
+    "scope": "On-disk settings only; game memory/closed-client state not asserted. No settings writes, profiling changes, or game input."
+  },
+  "baseline": {
+    "RaidFrame/FluxRaidVisuals.lua": "7bde491cf559702d1455633cf2c409b05a51014dbb694a1835e8f9512fed1e9e",
+    "RaidFrame/FluxRaidLayout.lua": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "444aacb83d21a03c2c3ee3e7d07860811024a0f792681ef34836339958da38e7"
+  },
+  "candidate": {
+    "RaidFrame/FluxRaidVisuals.lua": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05",
+    "RaidFrame/FluxRaidLayout.lua": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "760a052f0bd21672267ba3e73b276b3bb820d1c45a69a2aefafdc15aeb55ae19"
+  },
+  "behavior": "Manager slider1.00 now means70percent native scale, preserving stored slider values and existing X/Y/collapse behavior. Hidden native selection/ready-check overlays inherit hidden ancestor alpha as well as retaining direct alpha suppression. Late native setup/selection updates are securely post-hooked; anonymous pooled children recognized by native parent identity. Display-only suppression handles late combat highlights; geometry remains deferred.",
+  "sourceEvidence": {
+    "pins": {
+      "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    },
+    "SimpleRegionAPI_MainlineBlob": "ca66eb6c9e70d9e30c8f92139c184442c368d136",
+    "SimpleRegionAPI_ClassicBlob": "b936682a752963f3c52c07f423df04012c52d41d",
+    "verification": "Fresh five-branch commit resolutions and pinned SimpleRegionAPI fetches: SetAlpha and SetIgnoreParentAlpha are unprotected; ignore argument is publicfalse. Pinned native CUF XML marks selection and ready-check layers ignoreParentAlpha; actual native selection/manager/ready handlers replayed in tests."
+  },
+  "restoration": "Weak snapshots of original parent-alpha flags and readable alpha values restored on disable; newer external changes retained. Opaque alpha is never compared or guessed. Native frame events/scripts/parent/visibility and raid profiles remain Blizzard-owned. No native aura descendant queries.",
+  "desktop": {
+    "pass": 206,
+    "fail": 0,
+    "syntaxFiles": 868,
+    "drift": {
+      "beforeCount": 868,
+      "afterCount": 868,
+      "unchanged": true,
+      "corpusSHA256": "152d1d9e21c3ed6b0fcf27cc42fe8dd8c68b877735a9c2c141c458dfb56b66c3"
+    }
+  },
+  "pairs": [
+    {
+      "case": "manager",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_blizzard_default_sizes.lua:9: live: manager slider1.00 uses the requested30percent smaller baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests/raid_blizzard_default_sizes.lua:129: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      }
+    },
+    {
+      "case": "manager",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_blizzard_default_sizes.lua:9: live: manager slider1.00 uses the requested30percent smaller baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests/raid_blizzard_default_sizes.lua:129: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "manager",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_blizzard_default_sizes.lua:9: live: manager slider1.00 uses the requested30percent smaller baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests/raid_blizzard_default_sizes.lua:129: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      }
+    },
+    {
+      "case": "manager",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_blizzard_default_sizes.lua:9: live: manager slider1.00 uses the requested30percent smaller baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests/raid_blizzard_default_sizes.lua:129: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "manager",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_blizzard_default_sizes.lua:9: live: manager slider1.00 uses the requested30percent smaller baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests/raid_blizzard_default_sizes.lua:129: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      }
+    },
+    {
+      "case": "highlights",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: opaque-alpha overlays still inherit hidden native grid opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: in upvalue 'check'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:201: in local 'exercise'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:294: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+      }
+    },
+    {
+      "case": "highlights",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: opaque-alpha overlays still inherit hidden native grid opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: in upvalue 'check'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:201: in local 'exercise'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:294: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "highlights",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: opaque-alpha overlays still inherit hidden native grid opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: in upvalue 'check'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:201: in local 'exercise'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:294: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+      }
+    },
+    {
+      "case": "highlights",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: opaque-alpha overlays still inherit hidden native grid opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: in upvalue 'check'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:201: in local 'exercise'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:294: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "highlights",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: opaque-alpha overlays still inherit hidden native grid opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:8: in upvalue 'check'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:201: in local 'exercise'\n\t...6882e0e03\\raid-manager-overlay-20261107\\ghost-replay.lua:294: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+      }
+    }
+  ],
+  "copies": [
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05"
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9"
+    },
+    {
+      "client": "_forever_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "sha256": "760a052f0bd21672267ba3e73b276b3bb820d1c45a69a2aefafdc15aeb55ae19"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "sha256": "760a052f0bd21672267ba3e73b276b3bb820d1c45a69a2aefafdc15aeb55ae19"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "sha256": "760a052f0bd21672267ba3e73b276b3bb820d1c45a69a2aefafdc15aeb55ae19"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidLayout.lua",
+      "sha256": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9"
+    },
+    {
+      "client": "_classic_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "sha256": "760a052f0bd21672267ba3e73b276b3bb820d1c45a69a2aefafdc15aeb55ae19"
+    }
+  ],
+  "native": {
+    "answer": "Both fixed",
+    "scenario": "User manually reloaded, kept manager slider1.00 and checked target/mouseover ghosts at the old native grid location.",
+    "scope": "Selected test client visual/function acceptance only; no independent build/window resample, exhaustive combat/taint or other-client native/FPS claim."
+  },
+  "resources": "Two bounded secure post-hooks on existing native setup/selection updates; weak per-overlay flag snapshots. No new frame/pool/ticker/event or polling loop. Existing coalesced hide queue retained for structural reconciliation. Native performance unmeasured.",
+  "finalWorkspaceValidation": {
+    "pass": 207,
+    "fail": 0,
+    "syntaxFiles": 869,
+    "sourceDrift": {
+      "beforeCount": 869,
+      "afterCount": 869,
+      "unchanged": true,
+      "corpusSHA256": "103e6f3ba4a0bde5a0ff4eaa564c6e8137a0e58d4cffc75d6de59e9b3d2b722a"
+    },
+    "reason": "Unrelated UnitFrames changes landed during first documentation validation; one fresh whole-workspace run passed. Raid runtime hashes remain unchanged."
+  },
+  "latestFollowupEvidence": "raid-mt-opacity-2026-11-07.json"
+}

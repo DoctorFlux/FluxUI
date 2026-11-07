@@ -253,4 +253,110 @@ check(modernStarts == 1 and calls.show == oldClassicShows,
 	"combat uses the prepared Retail frame without reanchoring or Classic art")
 check(not glow.Transfer(modernWidget, {}), "prepared Retail frame stays on its secure button")
 check(type(glow.Diagnostics()) == "string", "combat diagnostic reads plain counters")
+
+-- The Forever secret-aura bridge must let AuraContainer own both animation
+-- edges. Flux cannot inspect the secret aura or call Show in combat.
+inCombat = false
+_G.C_Secrets = { GetSpellAuraSecrecy = function() return 1 end }
+_G.C_AddOns = { IsAddOnLoaded = function() return true end }
+local secureButton
+_G.CreateFrame = function(kind, _, parent)
+	if kind == "AuraContainer" then
+		local box = { parent = parent }
+		function box:SetAllPoints() end
+		function box:EnableMouse() end
+		function box:SetEditModePreviewEnabled() end
+		function box:AddAuraSlot(key, filter, options)
+			check(key == "missileBarrage" and filter == "HELPFUL"
+				and options.candidateFilters.includeSpellIDs[400589],
+				"secure slot filters the SAO Missile Barrage aura")
+			secureButton = {
+				SetAllPoints = function() end,
+				EnableMouse = function() end,
+				AddAuraShownAnimation = function(self, animation) self.animation = animation end,
+			}
+			options.initializeFrame(secureButton)
+		end
+		function box:SetUnit(unit)
+			if inCombat then error("protected unit change in combat") end
+			self.unit = unit
+		end
+		function box:SetEnabled(enabled) self.enabled = enabled end
+		function box:SetShown(shown)
+			if inCombat then error("protected show in combat") end
+			self.shown = shown
+		end
+		function box:SetAlpha(alpha) self.alpha = alpha end
+		function box:Hide() self.shown = false end
+		return box
+	end
+	local alert = {
+		ProcLoop = {
+			Play = function(self) self.playing = true end,
+			Stop = function(self) self.playing = false end,
+		},
+		SetSize = function() end, SetPoint = function() end,
+		Show = function(self) self.shown = true end,
+	}
+	return alert
+end
+local missileWidget = { FluxButton = { SpellId = 5143 }, GetSize = function() return 36, 36 end }
+glow.InstallSAO(missileWidget)
+check(missileWidget._fluxSecureMissileGlow and secureButton.animation
+	and missileWidget._fluxSecureMissileGlow.unit == "player"
+	and missileWidget._fluxSecureMissileGlow.alpha == 1,
+	"matching button gets an active secure aura slot before combat")
+barrageAura = { spellId = 400589 }
+check(not glow.Want(5143), "old readable fallback cannot paint a second stale glow")
+inCombat = true
+secureButton.animation:Play()
+check(secureButton.animation.playing, "secure aura assignment starts Retail proc loop in combat")
+secureButton.animation:Stop()
+check(not secureButton.animation.playing, "secure aura removal stops Retail proc loop in combat")
+inCombat = false
+missileWidget.FluxButton.SpellId = 1337
+glow.InstallSAO(missileWidget)
+check(missileWidget._fluxSecureMissileGlow.unit == "player"
+	and missileWidget._fluxSecureMissileGlow.alpha == 0,
+	"out of combat action change masks the prepared aura slot")
+missileWidget.FluxButton.SpellId = 5143
+glow.InstallSAO(missileWidget)
+check(missileWidget._fluxSecureMissileGlow.unit == "player"
+	and missileWidget._fluxSecureMissileGlow.alpha == 1,
+	"returning to Arcane Missiles restores its secure slot")
+SpellActivationOverlayDB.glow.enabled = false
+glow.InstallSAO(missileWidget)
+check(missileWidget._fluxSecureMissileGlow.unit == "none"
+	and missileWidget._fluxSecureMissileGlow.alpha == 0,
+	"disabling SAO glow disables the prepared secure slot")
+SpellActivationOverlayDB.glow.enabled = true
+glow.InstallSAO(missileWidget)
+check(missileWidget._fluxSecureMissileGlow.unit == "player"
+	and missileWidget._fluxSecureMissileGlow.alpha == 1,
+	"reenabling SAO glow restores the prepared secure slot")
+check(glow.MayShowSecureAuraText("/cast [mod:shift] Arcane Missiles; Frostbolt"),
+	"inactive modifier branch is recognized before combat")
+local miniWidget = { FluxButton = { SpellId = 1337 }, GetSize = function() return 36, 36 end }
+glow.EnsureSecureAura(miniWidget, true)
+check(miniWidget._fluxSecureMissileGlow and miniWidget._fluxSecureMissileGlow.alpha == 0,
+	"mini destination is prewarmed while it shows another spell")
+local badgeWidget = { FluxButton = { SpellId = 1337 }, GetSize = function() return 36, 36 end }
+glow.EnsureSecureAura(badgeWidget, true)
+check(badgeWidget._fluxSecureMissileGlow and badgeWidget._fluxSecureMissileGlow.alpha == 0,
+	"hidden badge destination is prewarmed before combat")
+inCombat = true
+glow.SyncSecureAura(missileWidget, 1337, true)
+glow.SyncSecureAura(miniWidget, 5143, true)
+check(missileWidget._fluxSecureMissileGlow.alpha == 0
+	and miniWidget._fluxSecureMissileGlow.alpha == 1,
+	"combat modifier swap moves visible Retail glow to the mini face")
+glow.SyncSecureAura(miniWidget, 1337, true)
+glow.SyncSecureAura(badgeWidget, 5143, true)
+check(miniWidget._fluxSecureMissileGlow.alpha == 0
+	and badgeWidget._fluxSecureMissileGlow.alpha == 1,
+	"combat reverse badge swap moves visible glow to the badge")
+glow.SyncSecureAura(badgeWidget, 5143, false)
+check(badgeWidget._fluxSecureMissileGlow.alpha == 0,
+	"hidden badge cannot retain the proc glow")
+inCombat = false
 print("Forever SAO glow: " .. checks .. " checks passed")

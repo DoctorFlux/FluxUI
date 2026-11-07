@@ -1,0 +1,25 @@
+--- checkpoint/Bars/Blizzard.lua
++++ applied/Bars/Blizzard.lua
+@@ -1027,9 +1027,19 @@
+ 		return
+ 	end
+ 	local function Dim(frame)
+-		if type(frame) == "table" and frame.GetAlpha and frame.SetAlpha and frame:GetAlpha() > 0 then
+-			frame:SetAlpha(0)
+-		end
++		if type(frame) ~= "table" or not frame.SetAlpha then return end
++		if frame.IsForbidden and frame:IsForbidden() then return end
++		if frame.GetAlpha then
++			local ok, alpha = pcall(frame.GetAlpha, frame)
++			local S = Flux.Secrets
++			local secret = (S and S.IsSecretValue) or issecretvalue
++			local access = (S and S.CanAccessValue) or canaccessvalue
++			if ok and not (secret and secret(alpha)) and (not access or access(alpha))
++				and type(alpha) == "number" and alpha <= 0 then return end
++		end
++		-- Selected native chrome is owned suppression intent. An unreadable
++		-- value cannot veto that intent; public zero still avoids repeat writes.
++		frame:SetAlpha(0)
+ 	end
+ 	for i = 1, Bars.NUM_NATIVE do
+ 		Dim(Blizzard.GetActionButton(i))

@@ -1,5 +1,10 @@
 local addonName, ns = ...
 
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterStateDriver = (useFluxDrivers and FluxDrivers.RegisterStateDriver) or RegisterStateDriver
+
 -- Reverse-column dock, header attributes, combat queue, Blizzard mute/restore.
 -- Positions and group order match the previous Flux raid layout.
 
@@ -8,16 +13,13 @@ local State = FluxRaidState
 local min, max, floor = math.min, math.max, math.floor
 
 local GROUP_COUNT = Compat.GROUP_COUNT or 8
-local GRP_SPACING = Compat.GRP_SPACING or 2
+local GRP_SPACING = Compat.GRP_SPACING or 0
 local UNITS_PER_COLUMN = Compat.UNITS_PER_COLUMN or 5
 local GROUP_LABEL_EXTRA = Compat.GROUP_LABEL_EXTRA or 14
 local HEADER_PREFIX = "FluxRaidGrp"
-local FLUX_RAID_MANAGER_SCALE_4PLUS_MT_MULT = 0.9
 local FLUX_RAID_STACK_LEFT_OFFSET = 0
 local FLUX_FOCUS_PLACEMENT2_ABOVE_RAID_GAP = 4
 local FLUX_FOCUS_PLACEMENT2_EXTRA_UP = 28
-local MTMA_TARGET_HEIGHT = Compat.MTMA_TARGET_HEIGHT or 18
-local MTMA_TARGET_GAP = Compat.MTMA_TARGET_GAP or 2
 local MTMA_UNITS_PER_COLUMN = Compat.MTMA_UNITS_PER_COLUMN or 4
 local MTMA_MAX_COLUMNS = Compat.MTMA_MAX_COLUMNS or 10
 local MTMA_EXTRA_Y_FOR_FOUR_PLUS = Compat.MTMA_EXTRA_Y_FOR_FOUR_PLUS or 60
@@ -31,15 +33,39 @@ local fluxRaidManagerHooksInstalled = false
 local fluxRaidPartyHideHooked = false
 local configureAndRefreshQueued = false
 local refreshScheduled = false
+local managerOriginal = setmetatable({}, {__mode="k"})
+local managerRevealHooked = setmetatable({}, {__mode="k"})
+
+local function Secret(value)
+    return Compat.IsSecret and Compat.IsSecret(value)
+end
+
+local function ReadNumber(frame,method)
+    if not frame or type(frame[method])~="function" then return nil end
+    local value=frame[method](frame)
+    if not Secret(value) and type(value)=="number" then return value end
+end
+
+local function PhysicalTop(frame)
+    local top=ReadNumber(frame,"GetTop")
+    local scale=ReadNumber(frame,"GetEffectiveScale") or 1
+    return top and top*scale
+end
 
 local function ColumnHeight()
     local fh = FluxRaidVisuals.FRAME_HEIGHT
-    local step = -1
+    local step = -(FluxRaidVisuals.CELL_JOIN_OVERLAP or Compat.HEADER_UNIT_YOFFSET or 4)
     return (UNITS_PER_COLUMN - 1) * (fh + step) + fh
 end
 
+local function TargetHeight() return FluxRaidVisuals.MINI_FRAME_HEIGHT or Compat.MTMA_TARGET_HEIGHT or 18 end
+local function TargetGap()
+    if FluxRaidVisuals.CELL_JOIN_OVERLAP then return -FluxRaidVisuals.CELL_JOIN_OVERLAP end
+    return Compat.MTMA_TARGET_GAP or -4
+end
+
 local function MTMAChildStep()
-    return FluxRaidVisuals.FRAME_HEIGHT + MTMA_TARGET_GAP + MTMA_TARGET_HEIGHT
+    return FluxRaidVisuals.FRAME_HEIGHT + 2 * TargetGap() + TargetHeight()
 end
 
 function FluxRaid_GetColumnHeight()
@@ -146,6 +172,7 @@ local ConfigureRaidMode
 local RefreshGroupVisibility
 local ConfigureAndRefresh
 local DisableBlizzardRaidFrames
+local RetainNativeFallback
 
 local function PetBattleBlocksReadiness()
     local driver = State.petBattleDriver
@@ -167,19 +194,48 @@ PositionBlizzardRaidManager = function()
         FluxAfterEditMode(PositionBlizzardRaidManager)
         return
     end
-    local baseScale = (FluxRaidVisuals and FluxRaidVisuals.BLIZZARD_RAID_MANAGER_SCALE) or 0.9
-    local scale = baseScale
-    if FluxRaid_GetMTMARosterCount() >= 4 then
-        scale = baseScale * FLUX_RAID_MANAGER_SCALE_4PLUS_MT_MULT
+    local top
+    local function include(header)
+        if not header or not header.GetAttribute then return end
+        if header.IsShown then
+            local shown=header:IsShown()
+            if Secret(shown) or not shown then return end
+        end
+        local child=header:GetAttribute("child1")
+        if not child then return end
+        local unit
+        if child.GetAttribute then unit=child:GetAttribute("unit") else unit=child.unit end
+        if Secret(unit) or type(unit)~="string" or unit=="" then return end
+        local y=PhysicalTop(child)
+        if y then top=top and max(top,y) or y end
     end
-    pcall(function() mgr:SetScale(scale) end)
-    local fa = FLUX_API
-    local classicFamily = fa and (fa.isAnyClassic or fa.isClassicEra or fa.isTBC or fa.isWrath or fa.isCata)
-    local xExpanded = classicFamily and -7 or 0
-    local xCollapsed = classicFamily and -182 or -200
-    local xOff = mgr.collapsed and xCollapsed or xExpanded
+    for i=1,GROUP_COUNT do include(State.raidHeaders[i]) end
+    include(State.mtmaHeader)
+    -- Solo startup still prepares the future secure group grid. Position its
+    -- manager now: a native reveal after a combat join cannot move it then.
+    if not top then top=PhysicalTop(State.containerFrame) end
+    if not top then return end
+    if not managerOriginal[mgr] then
+        managerOriginal[mgr]={scale=ReadNumber(mgr,"GetScale")}
+    end
+    local scale = (FluxRaidVisuals and FluxRaidVisuals.BLIZZARD_RAID_MANAGER_SCALE) or 0.7
+    mgr:SetScale(scale)
+    local collapsed=mgr.collapsed
+    if Secret(collapsed) then return end
+    local effective=ReadNumber(mgr,"GetEffectiveScale") or scale
+    if effective<=0 then return end
+    local db=FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+    local clearance=((not db or db.showGroupLabels~=false) and GROUP_LABEL_EXTRA or 0)+6
+    local uiScale=ReadNumber(UIParent,"GetEffectiveScale") or 1
+    -- Retain old native X and one full-panel bottom reference for every
+    -- collapsed/expanded/hidden state. Toggle-face height must not shift Y.
+    local fa=FLUX_API
+    local classic=fa and (fa.isAnyClassic or fa.isClassicEra or fa.isTBC or fa.isWrath or fa.isCata)
+    local x=collapsed and (classic and -182 or -200) or (classic and -7 or 0)
     mgr:ClearAllPoints()
-    mgr:SetPoint("TOPLEFT", UIParent, "TOPLEFT", xOff, -140)
+    mgr:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",
+        x,
+        (top+clearance*uiScale)/effective)
 end
 
 local function ScheduleBlizzardRaidManagerReposition()
@@ -330,7 +386,7 @@ local function UpdateGroupColumnLabels()
     local enabled = RaidGroupLabelsEnabled()
     local mtmaHeader = State.mtmaHeader
     if mtmaHeader and mtmaHeader._fluxGroupLabel then
-        if enabled and mtmaHeader:IsShown() then
+        if enabled then
             mtmaHeader._fluxGroupLabel:Show()
         else
             mtmaHeader._fluxGroupLabel:Hide()
@@ -438,9 +494,19 @@ LayoutHeaders = function()
         end
     end
     containerFrame:SetWidth(layout.totalSlots * colStep)
+    if State.secureRosterPrepared and FluxRaidSecure then
+        local ready=FluxRaidSecure.RefreshRosterLayout(containerFrame,State.raidHeaders,
+            FluxRaid_DisplayMainTankAndAssistCVarEnabled() and State.mtmaHeader or nil,
+            {colStep=colStep,columnHeight=ColumnHeight(),mtChildStep=MTMAChildStep(),mtExtraY=MTMA_EXTRA_Y_FOR_FOUR_PLUS})
+        if not ready then
+            State.secureRosterError="Secure roster layout is unavailable"
+            return false
+        end
+    end
     if mtShown and mtmaHeader then
         C_Timer.After(0, ApplyMTMAChatOverlapLift)
     end
+    return true
 end
 
 local function PrecreateHeaderChildren(header)
@@ -486,8 +552,10 @@ local function SetHeaderAttributes(header, groupFilter, showRaid, showParty, sho
     header:SetAttribute("showSolo", false)
     header:SetAttribute("point", "TOP")
     header:SetAttribute("xOffset", 0)
-    header:SetAttribute("yOffset", Compat.HEADER_UNIT_YOFFSET or -1)
-    header:SetAttribute("sortMethod", "NAME")
+    header:SetAttribute("yOffset", FluxRaidVisuals.CELL_JOIN_OVERLAP or Compat.HEADER_UNIT_YOFFSET or 4)
+    -- Native discrete raid groups preserve roster index; party order starts
+    -- with player followed by party1..4. Names must not reorder group rows.
+    header:SetAttribute("sortMethod", "INDEX")
     header:SetAttribute("sortDir", "ASC")
     header:SetAttribute("unitsPerColumn", UNITS_PER_COLUMN)
     header:SetAttribute("maxColumns", 1)
@@ -508,6 +576,46 @@ ConfigureRaidMode = function()
     local inRaid = IsInRaid()
     local inGroup = IsInGroup()
     local ready = true
+    if FluxRaidSecure and FluxRaidSecure.ConfigureHeader then
+        -- Prepare every future mode and all native child capacity while OOC.
+        -- Leaving the container alive lets secure drivers reveal a roster when
+        -- the player joins a group during combat, including from solo startup.
+        for i=1,GROUP_COUNT do
+            local header=State.raidHeaders[i]
+            SetHeaderAttributes(header,tostring(i),true,i==1,true)
+            ready=PrecreateHeaderChildren(header) and ready
+        end
+        local mt=State.mtmaHeader
+        if mt then
+            SetHeaderAttributes(mt,"MAINTANK,MAINASSIST",true,false,true)
+            mt:SetAttribute("roleFilter","MAINTANK,MAINASSIST")
+            mt:SetAttribute("unitsPerColumn",MTMA_UNITS_PER_COLUMN)
+            mt:SetAttribute("maxColumns",MTMA_MAX_COLUMNS)
+            mt:SetAttribute("columnAnchorPoint","LEFT")
+            mt:SetAttribute("columnSpacing",GRP_SPACING)
+            mt:SetAttribute("xOffset",0)
+            mt:SetAttribute("yOffset",-(TargetHeight()+2*TargetGap()))
+            ready=PrecreateHeaderChildren(mt) and ready
+        else ready=false end
+        if not ready then State.secureRosterPrepared=false; return false end
+        for i=1,GROUP_COUNT do
+            local header=State.raidHeaders[i]
+            ready=FluxRaidSecure.ConfigureHeader(header,i,false) and ready
+            for childIndex=1,UNITS_PER_COLUMN do
+                local child=header:GetAttribute("child"..childIndex)
+                ready=FluxRaidSecure.AttachHeaderChild(child) and ready
+            end
+        end
+        for childIndex=1,MTMA_UNITS_PER_COLUMN*MTMA_MAX_COLUMNS do
+            local child=mt:GetAttribute("child"..childIndex)
+            ready=FluxRaidSecure.AttachHeaderChild(child) and ready
+        end
+        if FluxRaid_DisplayMainTankAndAssistCVarEnabled() then
+            ready=FluxRaidSecure.ConfigureHeader(mt,9,true) and ready
+        else FluxRaidSecure.DisableHeader(mt) end
+        State.secureRosterPrepared=ready
+        return ready
+    end
     if inRaid then
         for i = 1, GROUP_COUNT do
             SetHeaderAttributes(State.raidHeaders[i], tostring(i), true, false, false)
@@ -522,7 +630,7 @@ ConfigureRaidMode = function()
             mtmaHeader:SetAttribute("columnAnchorPoint", "LEFT")
             mtmaHeader:SetAttribute("columnSpacing", GRP_SPACING)
             mtmaHeader:SetAttribute("xOffset", 0)
-            mtmaHeader:SetAttribute("yOffset", -(MTMA_TARGET_HEIGHT + MTMA_TARGET_GAP + 1))
+            mtmaHeader:SetAttribute("yOffset", -(TargetHeight() + 2 * TargetGap()))
             ready = PrecreateHeaderChildren(mtmaHeader) and ready
         else
             ready = false
@@ -551,6 +659,16 @@ RefreshGroupVisibility = function()
     local containerFrame = State.containerFrame
     local inRaid = IsInRaid()
     local inGroup = IsInGroup()
+    if State.secureRosterPrepared then
+        containerFrame:Show()
+        EnsureGroupColumnLabels()
+        if LayoutHeaders()==false then return false end
+        UpdateGroupColumnLabels()
+        if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
+        if FluxRaid_RefreshMTMATargetAttachments then FluxRaid_RefreshMTMATargetAttachments() end
+        if FluxRaidHealerExtras then FluxRaidHealerExtras.RefreshLayout() end
+        return
+    end
     if not inRaid and not inGroup then
         if containerFrame then containerFrame:Hide() end
         return
@@ -599,6 +717,7 @@ RefreshGroupVisibility = function()
     UpdateGroupColumnLabels()
     if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
     if FluxRaid_RefreshMTMATargetAttachments then FluxRaid_RefreshMTMATargetAttachments() end
+    if FluxRaidHealerExtras then FluxRaidHealerExtras.RefreshLayout() end
 end
 
 function FluxRaid_GetFirstGroupNthMemberBottomFromScreen(n)
@@ -624,6 +743,19 @@ function FluxRaid_GetFirstGroupNthMemberBottomFromScreen(n)
     return bot
 end
 
+RetainNativeFallback = function()
+    State.secureConfigured=false
+    State.secureRosterPrepared=false
+    for _,header in pairs(State.raidHeaders) do
+        if FluxRaidSecure then FluxRaidSecure.DisableHeader(header) else header:Hide() end
+    end
+    if State.mtmaHeader then
+        if FluxRaidSecure then FluxRaidSecure.DisableHeader(State.mtmaHeader) else State.mtmaHeader:Hide() end
+    end
+    if FluxRaid_RestoreBlizzardRaidFrames then FluxRaid_RestoreBlizzardRaidFrames() end
+    Queue(ConfigureAndRefresh)
+end
+
 ConfigureAndRefresh = function()
     if InCombatLockdown() then
         Queue(ConfigureAndRefresh)
@@ -642,10 +774,16 @@ ConfigureAndRefresh = function()
     configureAndRefreshQueued = true
     pendingCombatWork[ConfigureAndRefresh] = nil
     local ok, err = pcall(function()
+        if ns.PartyFrames then ns.PartyFrames.ApplyOptions() end
         if not ConfigureRaidMode() then
             -- A hidden ancestor can prevent native pool allocation. Keep those
             -- headers hidden through a combat reveal and retain Blizzard's UI.
             State.secureConfigured = false
+            if FluxRaidSecure then
+                for _,header in pairs(State.raidHeaders) do FluxRaidSecure.DisableHeader(header) end
+                if State.mtmaHeader then FluxRaidSecure.DisableHeader(State.mtmaHeader) end
+                State.secureRosterPrepared=false
+            end
             for i = 1, GROUP_COUNT do
                 if State.raidHeaders[i] then State.raidHeaders[i]:Hide() end
             end
@@ -656,7 +794,7 @@ ConfigureAndRefresh = function()
             if State.containerFrame then State.containerFrame:Show() end
             return
         end
-        RefreshGroupVisibility()
+        if RefreshGroupVisibility()==false then RetainNativeFallback(); return end
         PositionContainer()
         if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
         if FluxRaid_ForEachHeaderChild then
@@ -687,7 +825,7 @@ ConfigureAndRefresh = function()
             if InCombatLockdown() then Queue(ConfigureAndRefresh); return end
             if not FluxRaid_IsFluxRaidEnabled() then return end
             if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
-            LayoutHeaders()
+            if LayoutHeaders()==false then RetainNativeFallback(); return end
             PositionContainer()
         end)
     end)
@@ -724,9 +862,9 @@ function FluxRaid_QueueConfigureAndRefresh()
     ScheduleConfigureAndRefresh()
 end
 
--- Blizzard hide / restore. The Blizzard grid is reparented under Flux's hidden
--- frame (Flux.Blizz.Hide) with its events left registered, so restoring is only
--- a reparent. Never assign TryUpdate / RefreshMembers, never SetScript, never
+-- Hide native grids in place and retain native events/visibility. Selection
+-- textures ignore parent alpha, so suppress their own alpha separately. Never
+-- assign TryUpdate / RefreshMembers, never SetScript, never
 -- write frame.unit, never call CompactUnitFrame_*, and never edit raid profiles.
 
 local BLIZZARD_GRID_FRAME_NAMES = {
@@ -737,6 +875,11 @@ local BLIZZARD_GRID_FRAME_NAMES = {
 
 local function IsBlizzardPartyRaidChrome(frame)
     if not frame then return false end
+    if frame._fluxRaidUnit then return false end
+    if frame.GetParent then
+        local parent=frame:GetParent()
+        if parent and (parent==_G.CompactRaidFrameContainer or parent==_G.CompactPartyFrame) then return true end
+    end
     local partyFrame = _G.PartyFrame
     if partyFrame and partyFrame.PartyMemberFramePool and partyFrame.PartyMemberFramePool.EnumerateActive then
         local ok, inPool = pcall(function()
@@ -749,6 +892,7 @@ local function IsBlizzardPartyRaidChrome(frame)
     end
     if not frame.GetName then return false end
     local name = frame:GetName()
+    if Secret(name) then return false end
     if name == "PartyFrame" or name == "CompactPartyFrame" then return true end
     if name and (name:match("^PartyMemberFrame") or name:match("^CompactPartyFrame") or name:match("^CompactRaidFrame") or name:match("^CompactRaidGroup")) then
         return true
@@ -761,8 +905,95 @@ local function GetBlizz()
     return Flux and Flux.Blizz
 end
 
+local nativeOverlayAlphas=setmetatable({}, {__mode="k"})
+local nativeOverlayParentAlphas=setmetatable({}, {__mode="k"})
+local nativeOverlayHooks={}
+
+local function SkipNativeAuraMouseChild(child)
+    if child.IsForbidden then
+        local forbidden=child:IsForbidden()
+        if Secret(forbidden) or forbidden then return true end
+    end
+    if child.GetObjectType then
+        local kind=child:GetObjectType()
+        return Secret(kind) or kind=="AuraContainer" or kind=="AuraButton"
+    end
+    return false
+end
+
+local function SuppressNativeOverlay(region)
+    if not region or not region.GetAlpha or not region.SetAlpha then return end
+    -- These flags are static presentation metadata. Restore them on disable;
+    -- inheriting the hidden grid's alpha also handles opaque native alpha.
+    if region.IsIgnoringParentAlpha and region.SetIgnoreParentAlpha then
+        if nativeOverlayParentAlphas[region]==nil then
+            local ignore=region:IsIgnoringParentAlpha()
+            if not Secret(ignore) and type(ignore)=="boolean" then nativeOverlayParentAlphas[region]=ignore end
+        end
+        if nativeOverlayParentAlphas[region]~=nil then region:SetIgnoreParentAlpha(false) end
+    end
+    if nativeOverlayAlphas[region]==nil then
+        local alpha=region:GetAlpha()
+        if Secret(alpha) or type(alpha)~="number" then return end
+        nativeOverlayAlphas[region]=alpha
+    end
+    -- Native selection and ready-check handlers only Show/Hide these objects;
+    -- alpha zero survives their updates without replacing native handlers.
+    region:SetAlpha(0)
+end
+
+local function SuppressNativeSelection(frame)
+    if not frame or frame._fluxRaidUnit then return end
+    if frame.IsForbidden then
+        local forbidden=frame:IsForbidden()
+        if Secret(forbidden) or forbidden then return end
+    end
+    -- Exact native XML aliases marked ignoreParentAlpha. The ready-check
+    -- texture ignores its frame alpha too, so both exposed objects are needed.
+    -- Never enumerate regions or inspect restricted native aura descendants.
+    SuppressNativeOverlay(frame.selectionHighlight)
+    local ready=frame.readyCheckIcon
+    SuppressNativeOverlay(ready)
+    SuppressNativeOverlay(ready and ready.Icon)
+end
+
+local function SuppressNativeSelections()
+    local container=_G.CompactRaidFrameContainer
+    if container and type(container.ApplyToFrames)=="function" then
+        container:ApplyToFrames("all",SuppressNativeSelection)
+    end
+    local party=_G.CompactPartyFrame
+    for _,key in ipairs({"memberUnitFrames","petUnitFrames"}) do
+        for _,frame in ipairs(party and party[key] or {}) do SuppressNativeSelection(frame) end
+    end
+    for i=1,40 do
+        SuppressNativeSelection(_G["CompactRaidFrame"..i])
+        if i<=5 then
+            SuppressNativeSelection(_G["CompactPartyFrameMember"..i])
+            SuppressNativeSelection(_G["CompactPartyFramePet"..i])
+        end
+    end
+    for group=1,8 do for member=1,5 do
+        SuppressNativeSelection(_G["CompactRaidGroup"..group.."Member"..member])
+    end end
+end
+
+local function RestoreNativeSelections()
+    for region,alpha in pairs(nativeOverlayAlphas) do
+        local current=region:GetAlpha()
+        if Secret(current) or current==0 then region:SetAlpha(alpha) end
+        nativeOverlayAlphas[region]=nil
+    end
+    for region,ignore in pairs(nativeOverlayParentAlphas) do
+        local current=region:IsIgnoringParentAlpha()
+        if not Secret(current) and current==false then region:SetIgnoreParentAlpha(ignore) end
+        nativeOverlayParentAlphas[region]=nil
+    end
+end
+
 local function HideBlizzardGrid()
     if not State.secureConfigured then return end
+    if InCombatLockdown() then Queue(HideBlizzardGrid);return end
     -- Edit Mode's party / raid refresh shows these frames inside its pass.
     if FluxEditModeBusy and FluxEditModeBusy() then
         FluxAfterEditMode(HideBlizzardGrid)
@@ -772,12 +1003,18 @@ local function HideBlizzardGrid()
     if not Blizz then return end
     for i = 1, #BLIZZARD_GRID_FRAME_NAMES do
         local frame = _G[BLIZZARD_GRID_FRAME_NAMES[i]]
-        if frame and not (frame.IsForbidden and frame:IsForbidden()) then
+        local unavailable
+        if frame and frame.IsForbidden then
+            local forbidden=frame:IsForbidden()
+            unavailable=Secret(forbidden) or forbidden
+        end
+        if frame and not unavailable then
             -- Edit Mode resets the same native party frames on save/close.
             -- Insecure hidden-parent visibility must not enter their setup pass.
-            Blizz.Hide(frame, { keepEvents = true, keepParent = true })
+            Blizz.Hide(frame, { keepEvents = true, keepParent = true, skipMouseChild=SkipNativeAuraMouseChild })
         end
     end
+    SuppressNativeSelections()
 end
 
 local function ShowBlizzardGrid()
@@ -789,10 +1026,25 @@ local function ShowBlizzardGrid()
             Blizz.Unhide(frame)
         end
     end
+    RestoreNativeSelections()
 end
 
 -- CompactPartyFrame is created on demand; hide it again once Blizzard builds or shows it.
 local function InstallBlizzardPartyHideHooks()
+    for _,name in ipairs({"CompactUnitFrame_SetUpFrame","CompactUnitFrame_UpdateSelectionHighlight"}) do
+        if hooksecurefunc and _G[name] and not nativeOverlayHooks[name] then
+            nativeOverlayHooks[name]=true
+            hooksecurefunc(name,function(frame)
+                if not FluxRaid_IsFluxRaidEnabled() or not State.secureConfigured then return end
+                if not IsBlizzardPartyRaidChrome(frame) then return end
+                -- Alpha and parent-alpha inheritance are unprotected display
+                -- methods. Late combat-created cells must not flash a ghost.
+                if FluxEditModeBusy and FluxEditModeBusy() then
+                    FluxRaid_ScheduleBlizzardGridHideCheck()
+                else SuppressNativeSelection(frame) end
+            end)
+        end
+    end
     if fluxRaidPartyHideHooked or not hooksecurefunc then return end
     fluxRaidPartyHideHooked = true
     if _G.CompactPartyFrame_Generate then
@@ -808,6 +1060,12 @@ local function InstallBlizzardPartyHideHooks()
 end
 
 function FluxRaid_InstallManagerHooks()
+    if InCombatLockdown() then Queue(FluxRaid_InstallManagerHooks);return end
+    local manager=_G.CompactRaidFrameManager
+    if manager and manager.HookScript and not managerRevealHooked[manager] then
+        managerRevealHooked[manager]=true
+        manager:HookScript("OnShow",ScheduleBlizzardRaidManagerReposition)
+    end
     if fluxRaidManagerHooksInstalled then
         InstallBlizzardPartyHideHooks()
         return
@@ -843,15 +1101,22 @@ end
 local function ResetCompactRaidFrameManagerToBlizzardLayout()
     if not (Compat.HasCompactRaidFrameManager and Compat.HasCompactRaidFrameManager()) then return end
     local mgr = _G.CompactRaidFrameManager
-    if not mgr or (mgr.IsForbidden and mgr:IsForbidden()) then return end
-    pcall(function() mgr:SetScale(1) end)
+    if not mgr then return end
+    if mgr.IsForbidden then
+        local forbidden=mgr:IsForbidden()
+        if Secret(forbidden) or forbidden then return end
+    end
+    local saved=managerOriginal[mgr]
+    if saved and saved.scale then mgr:SetScale(saved.scale) end
     pcall(function()
+        if Secret(mgr.collapsed) then return end
         if mgr.collapsed and CompactRaidFrameManager_Collapse then
-            CompactRaidFrameManager_Collapse()
+            CompactRaidFrameManager_Collapse(mgr)
         elseif CompactRaidFrameManager_Expand then
-            CompactRaidFrameManager_Expand()
+            CompactRaidFrameManager_Expand(mgr)
         end
     end)
+    managerOriginal[mgr]=nil
     if CompactRaidFrameManager_UpdateContainerBounds then
         pcall(CompactRaidFrameManager_UpdateContainerBounds)
     end
@@ -907,6 +1172,9 @@ function FluxRaid_RunPendingCombatWork()
 end
 
 function FluxRaid_OnRosterOrPartyChanged()
+    -- FontString changes are permitted during combat. Header membership,
+    -- geometry and visibility are handled entirely by the prepared secure path.
+    UpdateGroupColumnLabels()
     if State.rosterDirty then return end
     State.rosterDirty = true
     C_Timer.After(0, function()

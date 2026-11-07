@@ -2,6 +2,8 @@
 local addonName, ns = ...
 ns.UnitFrames = ns.UnitFrames or {}
 local UF = ns.UnitFrames
+local Restricted = ns.Flux and ns.Flux.Restricted
+local RegisterUnitWatch = (Restricted and not Restricted.Works() and Restricted.RegisterUnitWatch) or RegisterUnitWatch
 
 -- Preserve the existing samples, but wake at their deadlines instead of every
 -- rendered frame. A shared OnUpdate remains available for timer-less clients.
@@ -801,10 +803,100 @@ local function AtlasExists(name)
 end
 
 local function ValueIsSecret(value)
-    if value == nil then return false end
     if API.IsSecretValue and API.IsSecretValue(value) then return true end
+    if value == nil then return false end
     if API.CanAccessValue and not API.CanAccessValue(value) then return true end
     return false
+end
+
+local function PublicGeometryNumber(value)
+    if ValueIsSecret(value) or type(value) ~= "number" or value ~= value
+        or value == math.huge or value == -math.huge then return nil end
+    return value
+end
+
+-- The addon owns these dimensions. Capture the public arguments at its size
+-- writers; never infer permission by reading secret-dependent child rectangles.
+function UF.RecordFrameDimensions(frame, width, height)
+    if not frame then return end
+    width, height = PublicGeometryNumber(width), PublicGeometryNumber(height)
+    if width ~= nil then frame._fluxLayoutWidth = width end
+    if height ~= nil then frame._fluxLayoutHeight = height end
+    if frame.Health then
+        frame.Health._fluxPublicWidth, frame.Health._fluxPublicHeight = nil, nil
+    end
+end
+
+function UF.GetFramePublicDimensions(frame)
+    if not frame then return nil, nil end
+    local w, h = frame._fluxLayoutWidth, frame._fluxLayoutHeight
+    if w == nil and frame.GetWidth then w = PublicGeometryNumber(frame:GetWidth()) end
+    if h == nil and frame.GetHeight then h = PublicGeometryNumber(frame:GetHeight()) end
+    if w ~= nil then frame._fluxLayoutWidth = w end
+    if h ~= nil then frame._fluxLayoutHeight = h end
+    return w, h
+end
+
+function UF.GetFramePublicLevel(frame)
+    if not frame then return nil end
+    local level = frame._fluxPublicFrameLevel
+    if level == nil and frame.GetFrameLevel then level = PublicGeometryNumber(frame:GetFrameLevel()) end
+    return level
+end
+
+function UF.SetFramePublicLevel(frame, level)
+    level = PublicGeometryNumber(level)
+    if not frame or level == nil then return false end
+    frame:SetFrameLevel(level)
+    frame._fluxPublicFrameLevel = level
+    return true
+end
+
+local RefreshPublicPredictionCanvases
+
+local function PlannedHealthHeight(frame, height)
+    if height == nil then return nil end
+    if frame._fluxHealthBarOnly then return math.max(height - 4, 10) end
+    local inner = math.max(height - 8, 10)
+    local additional = frame.isAdditionalPowerShown
+    local main = frame._fluxHasMainPower ~= false or additional
+    if not main or (UF.UsesHudUnitBars() and not additional) then return inner end
+    local hp = additional and .5 or (FluxUnitFrames_GetHealthPartitionPct and FluxUnitFrames_GetHealthPartitionPct(frame.unit or "player") or .6)
+    local resource = inner * (additional and .3 or (1 - hp)) - 1
+    local health = inner * hp - 1
+    if frame._fluxPartyMember then health = health + resource * (1 - (frame._fluxPartyPowerHeightScale or .8)) end
+    return health
+end
+
+function UF.SyncPublicHealthGeometry(frame, exactHeight)
+    local health = frame and frame.Health
+    if not health then return nil, nil end
+    local width, height = UF.GetFramePublicDimensions(frame)
+    local left = PublicGeometryNumber(frame.barAreaLeft or 2)
+    local right = PublicGeometryNumber(frame.barAreaRight or -2)
+    local h = PublicGeometryNumber(exactHeight) or PlannedHealthHeight(frame, height)
+    if width ~= nil and left ~= nil and right ~= nil then health._fluxPublicWidth = math.max(0, width + right - left) end
+    if h ~= nil then health._fluxPublicHeight = math.max(0, h) end
+    health._fluxPredictionOwner = frame
+    -- Layout-only option changes also resize active stripes. Their native clip
+    -- follows the fill immediately; the public canvas/UV must follow now too.
+    if RefreshPublicPredictionCanvases and health._fluxPublicWidth ~= nil and health._fluxPublicHeight ~= nil then
+        RefreshPublicPredictionCanvases(frame)
+    end
+    return health._fluxPublicWidth, health._fluxPublicHeight
+end
+
+local function PredictionGeometry(health)
+    if not health then return nil, nil end
+    local w, h = health._fluxPublicWidth, health._fluxPublicHeight
+    if (w == nil or h == nil) and health._fluxPredictionOwner then
+        w, h = UF.SyncPublicHealthGeometry(health._fluxPredictionOwner)
+    end
+    -- Compatibility for externally constructed public test/integration bars.
+    -- Inaccessible values never enter arithmetic or a native geometry setter.
+    if w == nil and health.GetWidth then w = PublicGeometryNumber(health:GetWidth()) end
+    if h == nil and health.GetHeight then h = PublicGeometryNumber(health:GetHeight()) end
+    return w, h
 end
 
 local function PlayerDeadOrGhost(unit)
@@ -1242,8 +1334,9 @@ function UF.ApplyResourceBarStyle(bar, unit, powerToken, powerType, altR, altG, 
     local info = ResolvePowerInfo(powerToken, powerType)
     bar._fluxPowerInfo = info
     local hud = UF.UsesHudUnitBars()
-    local dead = PlayerDeadOrGhost(unit)
-    local disconnected = unit and not UnitIsConnected(unit)
+    local dead = bar._fluxPartyMuted or PlayerDeadOrGhost(unit)
+    local connection = unit and UnitIsConnected(unit)
+    local disconnected = not ValueIsSecret(connection) and connection == false
     if hud then
         EnsureResourceSpark(bar)
     end
@@ -1333,8 +1426,13 @@ end
 
 function UF.RefreshResourceConnection(bar, unit)
     if not bar or not unit then return end
-    local dead = PlayerDeadOrGhost(unit)
-    local disconnected = not UnitIsConnected(unit)
+    if bar._fluxPartyBar then
+        DesaturateBarTexture(bar, bar._fluxPartyMuted and true or false)
+        if bar._fluxPartyMuted then bar:SetStatusBarColor(.5, .5, .5); return end
+    end
+    local dead = bar._fluxPartyMuted or PlayerDeadOrGhost(unit)
+    local connected = UnitIsConnected(unit)
+    local disconnected = not ValueIsSecret(connected) and connected == false
     if disconnected then
         bar:SetStatusBarColor(0.5, 0.5, 0.5)
         return
@@ -1824,6 +1922,8 @@ local function IsFluxUnitFrame(unit)
     if not unit then return false end
     return unit == "player" or unit == "target" or unit == "targettarget"
         or unit == "focus" or unit == "focustarget" or unit == "pet"
+        or (type(unit) == "string" and (unit:match("^party[1-4]$") ~= nil
+            or unit:match("^partypet[1-4]$") ~= nil))
 end
 
 local function SafeGetNumber(value)
@@ -2021,6 +2121,9 @@ local function CreateSeparator(parent)
     sep:SetVertexColor(1, 1, 1, 1)
     return sep
 end
+
+-- Share the exact player/target separator artwork with normal party frames.
+UF.CreateBarSeparator = CreateSeparator
 
 -- ---------------------------------------------------------------------------
 -- Animated Health Loss Mixin (Ported from Retail UnitFrame.lua)
@@ -2280,37 +2383,67 @@ end
 -- (SetAllPoints on the frame covers the full widget while the fill is partial).
 local function AnchorOverlayToStatusBarFill(bar, overlay)
     if not bar or not overlay then return end
-    local fill = bar.GetStatusBarTexture and bar:GetStatusBarTexture()
-    if not fill then return end
+    local fill = (bar.GetStatusBarTexture and bar:GetStatusBarTexture()) or bar
+    local clip = overlay._fluxTileClip
+    if not clip then
+        clip = CreateFrame("Frame", nil, bar)
+        overlay._fluxTileClip, overlay._fluxTileHost = clip, bar
+    end
+    if not clip._fluxTileConfigured then
+        clip:SetClipsChildren(true)
+        clip:EnableMouse(false)
+        local owner = bar._fluxPredictionHealth and bar._fluxPredictionHealth._fluxPredictionOwner
+        local ownerLevel = UF.GetFramePublicLevel(owner)
+        -- Every prediction bar is created at owner+3. Derive that public
+        -- level again on an incomplete-construction retry after reparenting;
+        -- a child cache may predate the native parent's level adjustment.
+        local level = ownerLevel and (ownerLevel + 3) or bar._fluxPublicFrameLevel
+            or (bar.GetFrameLevel and PublicGeometryNumber(bar:GetFrameLevel()))
+        if level and clip.SetFrameLevel then clip:SetFrameLevel(level) end
+        clip._fluxTileConfigured = true
+    end
+    if not overlay._fluxCanvasAnchored then
+        overlay:SetParent(clip)
+        if overlay._fluxTileLayer and overlay.SetDrawLayer then
+            overlay:SetDrawLayer(overlay._fluxTileLayer, overlay._fluxTileSublevel)
+        end
+        overlay:ClearAllPoints()
+        overlay:SetPoint("TOPLEFT", clip, "TOPLEFT", 0, 0)
+        overlay._fluxCanvasAnchored = true
+    end
     -- These Flux-owned overlays have one anchor writer. Anchoring to the fill
     -- already tracks its live size; health changes need no anchor rebuild.
     if overlay._fluxAbsorbFillAnchor == fill then return end
     overlay._fluxAbsorbFillAnchor = nil
-    overlay:ClearAllPoints()
-    overlay:SetPoint("TOPLEFT", fill, "TOPLEFT", 0, 0)
-    overlay:SetPoint("BOTTOMRIGHT", fill, "BOTTOMRIGHT", 0, 0)
+    clip:ClearAllPoints()
+    clip:SetPoint("TOPLEFT", fill, "TOPLEFT", 0, 0)
+    clip:SetPoint("BOTTOMRIGHT", fill, "BOTTOMRIGHT", 0, 0)
     overlay._fluxAbsorbFillAnchor = fill
 end
 
 local function RefreshTiledOverlayTexCoords(overlay, tileSize)
     if not overlay or not overlay:IsShown() then return end
     if not tileSize or tileSize <= 0 then return end
-    -- Use overlay's own dimensions (matches fill after AnchorOverlayToStatusBarFill).
-    pcall(function()
-        local w = overlay:GetWidth()
-        local h = overlay:GetHeight()
-        local readable = type(w) == "number" and not ValueIsSecret(w)
-            and type(h) == "number" and not ValueIsSecret(h)
-        if readable and overlay._fluxTileWidth == w and overlay._fluxTileHeight == h
-            and overlay._fluxTileSize == tileSize then return end
-        -- Never cache or compare secret-derived dimensions. Native SetTexCoord
-        -- still receives their live result at the original update cadence.
-        overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = nil, nil, nil
-        overlay:SetTexCoord(0, w / tileSize, 0, h / tileSize)
-        if readable then
-            overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = w, h, tileSize
-        end
-    end)
+    local host = overlay._fluxTileHost
+    local health = host and host._fluxPredictionHealth
+    local w, h = PredictionGeometry(health)
+    if w == nil or h == nil then return end
+    if overlay._fluxTileWidth == w and overlay._fluxTileHeight == h
+        and overlay._fluxTileSize == tileSize then return end
+    -- A public full-bar canvas is cropped by the native fill rectangle. Its
+    -- visible UV at pixel x is x/tileSize, exactly as before, without reading
+    -- secret fill dimensions or coupling health and prediction snapshots.
+    overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = nil, nil, nil
+    if not pcall(overlay.SetSize, overlay, w, h) then return end
+    if not pcall(overlay.SetTexCoord, overlay, 0, w / tileSize, 0, h / tileSize) then return end
+    overlay._fluxTileWidth, overlay._fluxTileHeight, overlay._fluxTileSize = w, h, tileSize
+end
+
+RefreshPublicPredictionCanvases = function(frame)
+    local forward, overflow, antiheal = frame.totalAbsorbBar, frame.absorbOverflow, frame.healAbsorbBar
+    if forward then RefreshTiledOverlayTexCoords(forward.shieldOverlay, SHIELD_OVERLAY_TILE) end
+    if overflow then RefreshTiledOverlayTexCoords(overflow.shieldOverlay, SHIELD_OVERLAY_TILE) end
+    if antiheal then RefreshTiledOverlayTexCoords(antiheal.absorbOverlay, ABSORB_OVERLAY_TILE) end
 end
 
 local function RefreshAbsorbShieldOverlay(bar, tileSize)
@@ -2321,9 +2454,8 @@ end
 
 local function FrameHasPositiveTotalAbsorbs(unit)
     local okA, a = pcall(UnitGetTotalAbsorbs, unit)
-    if not okA or not a then return false end
-    local okP, positive = pcall(function() return a > 0 end)
-    return okP and positive
+    if not okA or ValueIsSecret(a) or type(a) ~= "number" then return false end
+    return a > 0
 end
 
 -- Heal absorb: Blizzard edge shadows + tiled absorb overlay (CompactUnitFrame pattern)
@@ -2345,9 +2477,8 @@ local function UpdateHealAbsorbDecorations(bar, unit, allIncomingHeal, damageAbs
     end
 
     local showLeft = true
-    if allIncomingHeal ~= nil then
-        local ok, res = pcall(function() return allIncomingHeal <= 0 end)
-        if ok then showLeft = res end
+    if not ValueIsSecret(allIncomingHeal) and type(allIncomingHeal) == "number" then
+        showLeft = allIncomingHeal <= 0
     end
     if bar.healAbsorbLeftShadow then
         bar.healAbsorbLeftShadow:SetShown(showLeft)
@@ -2377,11 +2508,8 @@ end
 local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)
     -- 12.0 Safety: amount might be a secret value; comparisons on secrets error.
     local shouldHide = false
-    if not amount then
-        shouldHide = true
-    else
-        local ok, res = pcall(function() return amount <= 0 end)
-        if ok then shouldHide = res end
+    if not ValueIsSecret(amount) then
+        shouldHide = not amount or (type(amount) == "number" and amount <= 0)
     end
     if shouldHide then
         self:Hide()
@@ -2393,7 +2521,8 @@ local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)
     end
 
     local parent = self:GetParent() -- The Health Bar
-    local totalWidth = parent:GetWidth()
+    local totalWidth, totalHeight = PredictionGeometry(parent)
+    if totalWidth == nil or totalHeight == nil then return nil end
     local _, maxHealth = parent:GetMinMaxValues()
 
     local maxIsSecret = API.IsSecretValue(maxHealth)
@@ -2411,11 +2540,12 @@ local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)
     end
 
     local barOffsetX = 0
+    if ValueIsSecret(offsetXPercent) then return nil end
     if offsetXPercent then
         barOffsetX = totalWidth * offsetXPercent
     end
 
-    self:SetHeight(parent:GetHeight())
+    self:SetHeight(totalHeight)
     local readableOffset = type(barOffsetX) == "number" and not ValueIsSecret(barOffsetX)
     if not readableOffset or self._fluxPredictionAnchor ~= previousTexture or self._fluxPredictionOffset ~= barOffsetX then
         self._fluxPredictionAnchor, self._fluxPredictionOffset = nil, nil
@@ -2496,10 +2626,8 @@ function UF.UpdateHealPrediction(frame)
 
     if API.isMidnight then
         -- ---------------------------------------------------------------
-        -- 12.0+ Path: All numeric values may be secret.
-        -- Arithmetic on secrets produces secrets (safe); only comparisons
-        -- (>, <, ==) error.  Wrap comparisons in pcall; pass secrets
-        -- directly to widget APIs (SetValue, SetMinMaxValues, SetPoint).
+        -- Native amounts may be opaque. Public layout dimensions belong to
+        -- the addon ledger; opaque health/absorb values stay on StatusBar sinks.
         -- ---------------------------------------------------------------
         if not frame.Health.healCalc then
             frame.Health.healCalc = API.CreateUnitHealPredictionCalculator()
@@ -2523,9 +2651,8 @@ function UF.UpdateHealPrediction(frame)
 
         if frame.overHealAbsorbGlow then
             local showGlow = false
-            if overHealAbsorb ~= nil then
-                local ok, val = pcall(function() return overHealAbsorb == true end)
-                if ok then showGlow = val end
+            if not ValueIsSecret(overHealAbsorb) then
+                showGlow = overHealAbsorb == true
             end
             frame.overHealAbsorbGlow:SetShown(showGlow)
         end
@@ -2548,9 +2675,9 @@ function UF.UpdateHealPrediction(frame)
             local healCalc = frame.Health.healCalc
             local dead = UnitIsDeadOrGhost(frame.unit)
             local healthBar = frame.Health
-            local barWidth = healthBar:GetWidth()
+            local barWidth = PredictionGeometry(healthBar)
 
-            if not dead and barWidth > 0 then
+            if not dead and barWidth and barWidth > 0 then
                 local healthTex = healthBar:GetStatusBarTexture()
                 local _, maxHP = healthBar:GetMinMaxValues()
 
@@ -2593,13 +2720,13 @@ function UF.UpdateHealPrediction(frame)
         if frame.overAbsorbGlow then
             local showGlow = false
             local okAbs, absAmt = pcall(UnitGetTotalAbsorbs, frame.unit)
-            if okAbs and absAmt then
-                local ok, val = pcall(function()
-                    local _, maxHP = frame.Health:GetMinMaxValues()
-                    local curHP = frame.Health:GetValue()
-                    return absAmt > 0 and (curHP + absAmt >= maxHP)
-                end)
-                if ok then showGlow = val end
+            if okAbs and not ValueIsSecret(absAmt) and type(absAmt) == "number" then
+                local _, maxHP = frame.Health:GetMinMaxValues()
+                local curHP = frame.Health:GetValue()
+                if not ValueIsSecret(maxHP) and not ValueIsSecret(curHP)
+                    and type(maxHP) == "number" and type(curHP) == "number" then
+                    showGlow = absAmt > 0 and curHP + absAmt >= maxHP
+                end
             end
             frame.overAbsorbGlow:SetShown(showGlow)
         end
@@ -2692,8 +2819,8 @@ function UF.UpdateHealPrediction(frame)
     -- Total absorb (pixel-positioned Frame+Texture overlay)
     if frame.totalAbsorbBar then
         if totalAbsorb > 0 and not UnitIsDeadOrGhost(frame.unit) then
-            local barWidth = frame.Health:GetWidth()
-            if barWidth > 0 and maxHealth > 0 then
+            local barWidth = PredictionGeometry(frame.Health)
+            if barWidth and barWidth > 0 and maxHealth > 0 then
                 local absorbFrac = totalAbsorb / maxHealth
                 local healthFrac = health / maxHealth
                 local rightFrac = math.min(healthFrac + absorbFrac, 1.0)
@@ -2715,26 +2842,29 @@ end
 
 -- AFK: safe boolean + display rules (Midnight may restrict UnitIsAFK comparisons)
 function UF.UnitIsAFKDisplay(unit)
-    if not unit or not UnitExists(unit) then return false end
-    if not UnitIsPlayer(unit) then return false end
-    if not UnitIsConnected(unit) then return false end
-    local v = UnitIsAFK(unit)
-    if v == nil then return false end
-    if not API.CanAccessValue(v) then return false end
-    return v and true or false
+    if not unit then return false end
+    local exists, player, connected = UnitExists(unit), UnitIsPlayer(unit), UnitIsConnected(unit)
+    if IsSecretValue(exists) or IsSecretValue(player) or IsSecretValue(connected) then return false end
+    if not exists or not player or not connected then return false end
+    local value = UnitIsAFK(unit)
+    if IsSecretValue(value) then return false end
+    return value and true or false
 end
 
 function UF.ShouldShowAFKHealthOverlay(unit)
     if not UF.UnitIsAFKDisplay(unit) then return false end
-    if UnitIsDeadOrGhost(unit) then return false end
-    return true
+    local dead = UnitIsDeadOrGhost(unit)
+    if IsSecretValue(dead) then return false end
+    return not dead
 end
 
--- DEAD / Ghost status tag (numeric X/max still shown separately in UF.UpdateHealth).
 function UF.GetHealthDeadGhostStatusText(unit)
-    if not unit or not UnitExists(unit) then return nil end
-    if UnitIsDead(unit) then return DEAD end
-    if UnitIsGhost(unit) then return "Ghost" end
+    if not unit then return nil end
+    local exists = UnitExists(unit)
+    if IsSecretValue(exists) or not exists then return nil end
+    local dead, ghost = UnitIsDead(unit), UnitIsGhost(unit)
+    if not IsSecretValue(dead) and dead then return DEAD end
+    if not IsSecretValue(ghost) and ghost then return GHOST or "Ghost" end
     return nil
 end
 
@@ -2779,8 +2909,15 @@ function UF.UpdateHealth(self, unit)
     local percent = API.GetHealthPercent100(unit)
     
     -- Health text mode: player/target default to current/max + percent. Other frames default to percent.
-    local showAFK = UF.ShouldShowAFKHealthOverlay(unit)
-    local deadGhostText = UF.GetHealthDeadGhostStatusText(unit)
+    local showAFK, deadGhostText
+    if (self._fluxPartyMember or self._fluxPartyPet) and ns.PartyFrames then
+        deadGhostText = ns.PartyFrames.GetStatusText(unit)
+        self._fluxPartyMuted = deadGhostText ~= nil
+        if self.Power then self.Power._fluxPartyMuted = self._fluxPartyMuted end
+    else
+        showAFK = UF.ShouldShowAFKHealthOverlay(unit)
+        deadGhostText = UF.GetHealthDeadGhostStatusText(unit)
+    end
     local healthTextMode = "both"
     if FluxUnitFrames_GetHealthTextMode then
         healthTextMode = FluxUnitFrames_GetHealthTextMode(unit)
@@ -2796,7 +2933,7 @@ function UF.UpdateHealth(self, unit)
         fs:Hide()
     end
 
-    local healthTextAnchor = self.Health._fluxTextAnchor or self.Health
+    local healthTextAnchor = self._fluxPartyHealthTextAnchor or self.Health._fluxTextAnchor or self.Health
     if healthTextMode == "none" then
         HideHealthText(self.Health.Value)
         HideHealthText(self.Health.Percent)
@@ -2838,7 +2975,13 @@ function UF.UpdateHealth(self, unit)
 
         local percentOnly = IsPercentScaledHealthMax(maxHealth) and healthTextMode ~= "values"
 
-        if unit == "player" or unit == "target" then
+        if self._fluxPartyHealthTextAnchor then
+            if showValues then PlaceBarText(self.Health.Value, "party:hv", "RIGHT", healthTextAnchor, "RIGHT", -5, 0) end
+            if showPercentText then
+                PlaceBarText(self.Health.Percent, "party:hp:" .. tostring(percentOnly), percentOnly and "CENTER" or "LEFT", healthTextAnchor,
+                    percentOnly and "CENTER" or "LEFT", percentOnly and 0 or 5, 0)
+            end
+        elseif unit == "player" or unit == "target" then
             local nested = (unit == "player" and PlayerUnitUsesFluxPetLayout())
                 or (unit == "target" and TargetUnitUsesSideBySideTotTextLayout(unit))
             -- Without a resource, both HP labels sit at the vertical middle of
@@ -2889,14 +3032,20 @@ function UF.UpdateHealth(self, unit)
         end
     end
 
+    if (self._fluxPartyMember or self._fluxPartyPet) and ns.PartyFrames then ns.PartyFrames.PaintStatus(self, deadGhostText) end
     UF.UpdateHealthColor(self, unit)
 end
 
 function UF.CreateHealthBar(frame)
+    local frameLevel = frame._fluxPublicFrameLevel
+        or (frame.GetFrameLevel and PublicGeometryNumber(frame:GetFrameLevel()))
+    assert(frameLevel, "FluxUI health frame requires its public construction level")
     local health = CreateFrame("StatusBar", nil, frame)
+    health._fluxPredictionOwner = frame
     health:SetStatusBarTexture(TEXTURE_BAR)
     health:GetStatusBarTexture():SetHorizTile(false)
-    health:SetFrameLevel(frame:GetFrameLevel() + 2)
+    health._fluxPublicFrameLevel = frameLevel + 2
+    health:SetFrameLevel(health._fluxPublicFrameLevel)
     if UF.UsesHudUnitBars() then
         local textAnchor = CreateFrame("Frame", nil, health)
         textAnchor:SetPoint("TOPLEFT", health, "TOPLEFT")
@@ -2914,7 +3063,7 @@ function UF.CreateHealthBar(frame)
     if UF.UsesHudUnitBars() then
         -- Trough sits behind the loss bar, which sits behind the health fill.
         local trough = CreateFrame("Frame", nil, frame)
-        trough:SetFrameLevel(frame:GetFrameLevel())
+        trough:SetFrameLevel(frameLevel)
         trough:SetAllPoints(health)
         local bg = trough:CreateTexture(nil, "BACKGROUND")
         bg:SetAllPoints()
@@ -2925,7 +3074,7 @@ function UF.CreateHealthBar(frame)
 
         local animatedLoss = CreateFrame("StatusBar", nil, frame)
         animatedLoss:SetStatusBarTexture(TEXTURE_BAR)
-        animatedLoss:SetFrameLevel(math.max(trough:GetFrameLevel() + 1, frame:GetFrameLevel() + 1))
+        animatedLoss:SetFrameLevel(frameLevel + 1)
         animatedLoss:SetAllPoints(health)
         Mixin(animatedLoss, ns.AnimatedHealthLossMixin)
         animatedLoss:OnLoad()
@@ -2945,17 +3094,21 @@ function UF.CreateHealthBar(frame)
     
     -- Heal Prediction Bars
     local myHealPrediction = CreateFrame("StatusBar", nil, health)
+    myHealPrediction._fluxPredictionHealth = health
     myHealPrediction:SetStatusBarTexture(TEXTURE_BAR)
     myHealPrediction:SetStatusBarColor(0.0, 0.82, 1.0, 0.7)
-    myHealPrediction:SetFrameLevel(health:GetFrameLevel() + 1)
+    myHealPrediction._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+    myHealPrediction:SetFrameLevel(myHealPrediction._fluxPublicFrameLevel)
     myHealPrediction:Hide()
     myHealPrediction.UpdateFillPosition = UpdateFillPosition
     frame.myHealPredictionBar = myHealPrediction
 
     local otherHealPrediction = CreateFrame("StatusBar", nil, health)
+    otherHealPrediction._fluxPredictionHealth = health
     otherHealPrediction:SetStatusBarTexture(TEXTURE_BAR)
     otherHealPrediction:SetStatusBarColor(0.0, 0.63, 0.55, 0.7)
-    otherHealPrediction:SetFrameLevel(health:GetFrameLevel() + 1)
+    otherHealPrediction._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+    otherHealPrediction:SetFrameLevel(otherHealPrediction._fluxPublicFrameLevel)
     otherHealPrediction:Hide()
     otherHealPrediction.UpdateFillPosition = UpdateFillPosition
     frame.otherHealPredictionBar = otherHealPrediction
@@ -2970,11 +3123,14 @@ function UF.CreateHealthBar(frame)
         local healthTex = health:GetStatusBarTexture()
 
         local totalAbsorbBar = CreateFrame("StatusBar", nil, health)
+        totalAbsorbBar._fluxPredictionHealth = health
         totalAbsorbBar:SetStatusBarTexture(TEXTURE_BG)
         ApplyBlizzardShieldFillToStatusBar(totalAbsorbBar)
-        totalAbsorbBar:SetFrameLevel(health:GetFrameLevel() + 1)
+        totalAbsorbBar._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+        totalAbsorbBar:SetFrameLevel(totalAbsorbBar._fluxPublicFrameLevel)
         totalAbsorbBar:Hide()
         local tabShieldOv = totalAbsorbBar:CreateTexture(nil, "ARTWORK", nil, 1)
+        tabShieldOv._fluxTileLayer, tabShieldOv._fluxTileSublevel = "ARTWORK", 1
         if SetupTextureWithWrap(tabShieldOv, ATLAS_RAID_SHIELD_OVERLAY) then
             tabShieldOv:Show()
         else
@@ -2988,18 +3144,21 @@ function UF.CreateHealthBar(frame)
         absorbClipFrame:SetClipsChildren(true)
         absorbClipFrame:SetPoint("TOPLEFT", healthTex, "TOPLEFT", 0, 0)
         absorbClipFrame:SetPoint("BOTTOMRIGHT", healthTex, "BOTTOMRIGHT", 0, 0)
-        absorbClipFrame:SetFrameLevel(health:GetFrameLevel() + 1)
+        absorbClipFrame:SetFrameLevel(health._fluxPublicFrameLevel + 1)
         frame.absorbClipFrame = absorbClipFrame
 
         local absorbOverflow = CreateFrame("StatusBar", nil, absorbClipFrame)
+        absorbOverflow._fluxPredictionHealth = health
         absorbOverflow:SetStatusBarTexture(TEXTURE_BG)
         ApplyBlizzardShieldFillToStatusBar(absorbOverflow)
-        absorbOverflow:SetFrameLevel(health:GetFrameLevel() + 1)
+        absorbOverflow._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+        absorbOverflow:SetFrameLevel(absorbOverflow._fluxPublicFrameLevel)
         absorbOverflow:SetReverseFill(true)
         absorbOverflow:SetPoint("TOPLEFT", health, "TOPLEFT", 0, 0)
         absorbOverflow:SetPoint("BOTTOMRIGHT", health, "BOTTOMRIGHT", 0, 0)
         absorbOverflow:Hide()
         local ovfShieldOv = absorbOverflow:CreateTexture(nil, "ARTWORK", nil, 1)
+        ovfShieldOv._fluxTileLayer, ovfShieldOv._fluxTileSublevel = "ARTWORK", 1
         if SetupTextureWithWrap(ovfShieldOv, ATLAS_RAID_SHIELD_OVERLAY) then
             ovfShieldOv:Show()
         else
@@ -3012,7 +3171,9 @@ function UF.CreateHealthBar(frame)
         -- Pre-12.0: Frame+Texture positioned via pixel offsets so absorb
         -- starts at the health fill boundary and extends rightward.
         local totalAbsorbBar = CreateFrame("Frame", nil, health)
-        totalAbsorbBar:SetFrameLevel(health:GetFrameLevel() + 1)
+        totalAbsorbBar._fluxPredictionHealth = health
+        totalAbsorbBar._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+        totalAbsorbBar:SetFrameLevel(totalAbsorbBar._fluxPublicFrameLevel)
         totalAbsorbBar:Hide()
         local absorbTex = totalAbsorbBar:CreateTexture(nil, "ARTWORK")
         absorbTex:SetAllPoints()
@@ -3023,6 +3184,7 @@ function UF.CreateHealthBar(frame)
             absorbTex:SetVertexColor(1, 1, 1, 0.7)
         end
         local legShieldOv = totalAbsorbBar:CreateTexture(nil, "ARTWORK", nil, 1)
+        legShieldOv._fluxTileLayer, legShieldOv._fluxTileSublevel = "ARTWORK", 1
         legShieldOv:SetAllPoints()
         if SetupTextureWithWrap(legShieldOv, ATLAS_RAID_SHIELD_OVERLAY) then
             legShieldOv:Show()
@@ -3030,17 +3192,21 @@ function UF.CreateHealthBar(frame)
             legShieldOv:Hide()
         end
         totalAbsorbBar.shieldOverlay = legShieldOv
+        AnchorOverlayToStatusBarFill(totalAbsorbBar, legShieldOv)
         frame.totalAbsorbBar = totalAbsorbBar
     end
 
     -- Heal Absorb Bar (anti-heal effects like Necrotic, eats into current health)
     local healAbsorbBar = CreateFrame("StatusBar", nil, health)
+    healAbsorbBar._fluxPredictionHealth = health
     healAbsorbBar:SetStatusBarTexture(TEXTURE_BAR)
     ApplyBlizzardHealAbsorbFillToStatusBar(healAbsorbBar)
-    healAbsorbBar:SetFrameLevel(health:GetFrameLevel() + 1)
+    healAbsorbBar._fluxPublicFrameLevel = health._fluxPublicFrameLevel + 1
+    healAbsorbBar:SetFrameLevel(healAbsorbBar._fluxPublicFrameLevel)
     healAbsorbBar:Hide()
     healAbsorbBar.UpdateFillPosition = UpdateFillPosition
     local healAbsOverlay = healAbsorbBar:CreateTexture(nil, "ARTWORK", nil, 2)
+    healAbsOverlay._fluxTileLayer, healAbsOverlay._fluxTileSublevel = "ARTWORK", 2
     healAbsorbBar.healAbsorbOverlayActive = SetupTextureWithWrap(healAbsOverlay, ATLAS_RAID_ABSORB_OVERLAY)
     if healAbsorbBar.healAbsorbOverlayActive then
         healAbsOverlay:SetAlpha(0.2)
@@ -3063,7 +3229,7 @@ function UF.CreateHealthBar(frame)
     -- Glow Frame (child of FRAME, not health, so glows aren't clipped by SetClipsChildren)
     local glowFrame = CreateFrame("Frame", nil, frame)
     glowFrame:SetAllPoints(health)
-    glowFrame:SetFrameLevel(health:GetFrameLevel() + 2)
+    glowFrame:SetFrameLevel(health._fluxPublicFrameLevel + 2)
 
     -- Over Absorb Glow (right edge of health bar, shown when shield exceeds bar space)
     local overAbsorbGlow = glowFrame:CreateTexture(nil, "OVERLAY")
@@ -3117,7 +3283,7 @@ function UF.CreateHealthBar(frame)
     -- Text Overlay Frame (Parent to FRAME not Health, so it isn't clipped by Health's SetClipsChildren)
     local textOverlay = CreateFrame("Frame", nil, frame)
     textOverlay:SetAllPoints(health)
-    textOverlay:SetFrameLevel(frame:GetFrameLevel() + 30) -- Text is High priority
+    textOverlay:SetFrameLevel(frameLevel + 30) -- Text is High priority
     health.TextOverlay = textOverlay
     
     -- IMPORTANT: Clip children so Absorb/Spark never bleed outside the frame
@@ -3131,6 +3297,13 @@ function UF.CreateHealthBar(frame)
     healthStatusLabel:SetParent(textOverlay)
     
     frame.Health = health
+    health._fluxPredictionOwner = frame
+    local initialWidth, initialHeight = UF.SyncPublicHealthGeometry(frame)
+    if initialWidth ~= nil and initialHeight ~= nil then
+        -- Prepare actual public geometry during construction, before the first
+        -- unit event can paint prediction layers. Partition later owns anchors.
+        health:SetSize(initialWidth, initialHeight)
+    end
     return health
 end
 
@@ -3141,12 +3314,24 @@ function UF.UpdateHealthColor(self, unit)
     if not self.Health then return end
 
     ApplyHealthBarArt(self.Health)
-    local muted = (not UnitIsConnected(unit)) or UF.UnitIsAFKDisplay(unit)
+    local connected = UnitIsConnected(unit)
+    local muted = self._fluxPartyMuted or (not ValueIsSecret(connected) and connected == false) or UF.UnitIsAFKDisplay(unit)
     if muted then
         SetStatusBarFillGray(self.Health, true)
         return
     end
     SetStatusBarFillGray(self.Health, false)
+    local r, g, b
+    if FluxUnitFrames_GetTargetClassHealthColor then r, g, b = FluxUnitFrames_GetTargetClassHealthColor(unit) end
+    if r then
+        if not self.Health._fluxTargetClassTint then self.Health:SetStatusBarTexture(TEXTURE_BAR); self.Health._fluxTargetClassTint = true end
+        self.Health:SetStatusBarColor(r, g, b)
+        return
+    elseif self.Health._fluxTargetClassTint then
+        self.Health._fluxTargetClassTint = nil
+        self.Health._fluxHudHealth = nil
+        ApplyHealthBarArt(self.Health)
+    end
     if self.Health._fluxHudHealth then
         self.Health:SetStatusBarColor(1, 1, 1)
     else
@@ -3234,9 +3419,6 @@ function UF.UpdatePower(self, unit)
     end
 
     local displayPower = UF.PowerValueForDisplay(self.Power, power)
-    if ns.PowerCostOverlay and ns.PowerCostOverlay.BeforePowerApplied then
-        ns.PowerCostOverlay.BeforePowerApplied(self.Power)
-    end
     self.Power._fluxFromPowerEvent = self._fluxPowerSpentEvent and true or false
     StatusBarSetMinMaxAndValueImmediate(self.Power, 0, maxPower, displayPower)
     
@@ -3285,7 +3467,15 @@ function UF.UpdatePower(self, unit)
         end
 
         -- Player+pet and target+ToT share the corner layout. Re-anchor only when it changes.
-        if unit == "player" or unit == "target" then
+        if self._fluxPartyPowerTextAnchor then
+            -- The single-label party modes stay centered after every power tick.
+            local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
+            local mode = db.partyPowerText or "percent"
+            PlaceBarText(self.Power.Value, "party:pv:" .. mode, mode == "values" and "CENTER" or "RIGHT",
+                self._fluxPartyPowerTextAnchor, mode == "values" and "CENTER" or "RIGHT", mode == "values" and 0 or -5, 0)
+            PlaceBarText(self.Power.Percent, "party:pp:" .. mode, mode == "percent" and "CENTER" or "LEFT",
+                self._fluxPartyPowerTextAnchor, mode == "percent" and "CENTER" or "LEFT", mode == "percent" and 0 or 5, 0)
+        elseif unit == "player" or unit == "target" then
             local nested = (unit == "player" and PlayerUnitUsesFluxPetLayout())
                 or (unit == "target" and TargetUnitUsesSideBySideTotTextLayout(unit))
             local layout = nested and "nest" or "solo"
@@ -3311,6 +3501,7 @@ function UF.UpdatePower(self, unit)
     -- or the class-resource atlas variant changes.
     local classResource = self.isAdditionalPowerShown and true or false
     local styleKey = tostring(powerToken) .. ":" .. tostring(powerType) .. (classResource and ":cr" or "")
+        .. (self._fluxPartyMember and (self._fluxPartyMuted and ":muted" or ":active") or "")
     if self.lastPowerStyle ~= styleKey then
         self.lastPowerStyle = styleKey
         self.lastPowerType = powerType
@@ -3584,7 +3775,7 @@ end
 -- oUF order: camera helpers, then SetUnit (ClearModel is the caller's job).
 local function SetPortraitUnit(portrait, unit)
     if not portrait or not unit then
-        return
+        return false
     end
     BindPortraitUnit(portrait, unit)
     if portrait.SetDoBlend then
@@ -3598,9 +3789,10 @@ local function SetPortraitUnit(portrait, unit)
         portrait:SetUnit(unit, false)
     end)
     if not ok then
-        pcall(portrait.SetUnit, portrait, unit)
+        ok = pcall(portrait.SetUnit, portrait, unit)
     end
     ApplyPortraitCamera(portrait)
+    return ok
 end
 
 function UF.CreatePortrait(frame)
@@ -3614,7 +3806,9 @@ function UF.CreatePortrait(frame)
     portraitFrame:SetFrameLevel(frame:GetFrameLevel() + 1)
 
     -- Set initial size (will be updated in UpdateFramePartition)
-    local portraitSize = frame:GetHeight() -- Same as frame height (110px)
+    local _, portraitSize = UF.GetFramePublicDimensions(frame)
+    if portraitSize == nil then return end
+    UF.RecordFrameDimensions(portraitFrame, portraitSize, portraitSize)
     portraitFrame:SetSize(portraitSize, portraitSize)
 
     -- Disable mouse on portrait frame - outer border handles all interaction
@@ -3683,6 +3877,10 @@ function UF.CreatePortrait(frame)
 
     -- Create the Model for 3D portrait (use PlayerModel for unit portraits)
     local model = CreateFrame("PlayerModel", nil, portraitFrame)
+    model._fluxPortraitOwner = frame
+    if model.SetIgnoreParentAlpha then model:SetIgnoreParentAlpha(false) end
+    if model.SetModelAlpha then model:SetModelAlpha(1) end
+    if portraitFrame.SetIgnoreParentAlpha then portraitFrame:SetIgnoreParentAlpha(false) end
     model._fluxSharedPortraitCamera = true
     model:EnableMouse(false)
     model:ClearAllPoints()
@@ -3702,9 +3900,8 @@ function UF.CreatePortrait(frame)
     BindPortraitUnit(model, unit)
 
     -- Set up the model with shared face framing and capability-based fallback.
-    local success = pcall(function()
-        SetPortraitUnit(model, unit)
-    end)
+    local success, assigned = pcall(SetPortraitUnit, model, unit)
+    success = success and assigned ~= false
 
     if not success then
         -- Fallback 1: SetUnit only, then re-apply camera
@@ -3715,28 +3912,9 @@ function UF.CreatePortrait(frame)
     end
 
     if not success then
-        -- Fallback 2: Use race/gender specific model (only for player unit)
-        local _, race = UnitRace(unit)
-        local gender = UnitSex(unit) -- 2 = male, 3 = female
-
-        if race and gender then
-            local raceName = race:lower():gsub("%s+", "") -- Remove spaces
-            local genderName = (gender == 3) and "female" or "male"
-
-            local modelPath = string.format("Character\\%s\\%s\\%s%s.m2",
-                raceName, genderName, raceName, genderName:sub(1,1):upper())
-
-            success = pcall(function()
-                model:SetModel(modelPath)
-            end)
-        end
-    end
-
-    if not success then
-        -- Fallback 3: Generic human model
-        pcall(function()
-            model:SetModel("Character\\Human\\Male\\HumanMale.m2")
-        end)
+        -- The 2D engine portrait below owns unavailable model presentation.
+        model._fluxBlizzardFallback = true
+        model:Hide()
     end
 
     -- Store GUID for ShadowedUnitFrames-style GUID checking
@@ -3752,7 +3930,10 @@ function UF.CreatePortrait(frame)
         if event == "UNIT_PORTRAIT_UPDATE" and (unitParam == unit or unitParam == "player") then -- Allow player to trigger update for safety
              -- GUID-based checking
              local currentGUID = UnitGUID(unit)
-            if self.guid ~= currentGUID then
+            if IsSecretValue(currentGUID) then
+                UF.UpdatePortrait(frame, unit)
+                self.guid = nil
+            elseif self.guid ~= currentGUID then
                 UF.UpdatePortrait(frame, unit)
                 self.guid = currentGUID
             end
@@ -3764,17 +3945,30 @@ function UF.CreatePortrait(frame)
     -- Re-apply face framing when the model is shown (alt-Z / reload / strata changes).
     -- Skip when the unit is missing/out of range — question-mark fallback owns that camera.
     model:SetScript("OnShow", function(self)
-        local u = frame.unit
+        local u = self._fluxPortraitUnit or frame.unit
         BindPortraitUnit(self, u)
-        if u and UnitExists(u) and UnitIsVisible(u) and UnitIsConnected(u) then
-            ApplyPortraitCamera(self)
-            SchedulePortraitCameraRefresh(self)
+        if u then
+            local exists, visible, connected = UnitExists(u), UnitIsVisible(u), UnitIsConnected(u)
+            if not IsSecretValue(exists) and not IsSecretValue(visible) and not IsSecretValue(connected)
+                and exists and visible and connected then
+                ApplyPortraitCamera(self)
+                SchedulePortraitCameraRefresh(self)
+            end
         end
     end)
 
     -- SetCamera(0) / portrait zoom do nothing until the .m2 is actually loaded.
     pcall(function()
         model:SetScript("OnModelLoaded", function(self)
+            if self._fluxBlizzardFallback and self._fluxPortraitOwner and self.GetModelFileID then
+                local id = self:GetModelFileID()
+                if not IsSecretValue(id) and type(id) == "number" and id > 0
+                    and (not FluxUnitFrames_ShouldUse3DPortrait or FluxUnitFrames_ShouldUse3DPortrait()) then
+                    self._fluxBlizzardFallback = nil
+                    if self._fluxPortraitOwner.Portrait2D then self._fluxPortraitOwner.Portrait2D:Hide() end
+                    self:Show()
+                end
+            end
             -- SetUnit can finish loading after an empty watched frame hid it.
             -- The next missing-unit check must clear that late hidden model.
             self._fluxEmptyCleared = nil
@@ -3797,6 +3991,7 @@ function UF.CreatePortrait(frame)
     -- Flat portrait (2D) — same geometry as the PlayerModel; toggled in Unit frames → General → Features.
     -- Classic: CreateTexture(name, layer, subLevel) is not supported; the 3rd arg is a template name ("7" errors).
     local tex2d = portraitFrame:CreateTexture(nil, "ARTWORK")
+    if tex2d.SetIgnoreParentAlpha then tex2d:SetIgnoreParentAlpha(false) end
     if tex2d.SetDrawLayer then
         pcall(tex2d.SetDrawLayer, tex2d, "ARTWORK", 7)
     end
@@ -3896,41 +4091,39 @@ end
 -- ---------------------------------------------------------------------------
 -- Portrait Updates
 -- ---------------------------------------------------------------------------
-local function ShowPortraitQuestionMark(portrait)
+local function ShowBlizzardPortraitFallback(portrait, owner, unit)
     if not portrait then return end
-    portrait._fluxQuestionMark = true
-    pcall(function()
-        portrait:ClearModel()
-        if portrait.SetKeepModelOnHide then
-            portrait:SetKeepModelOnHide(true)
-        end
-        if portrait.SetModelScale then portrait:SetModelScale(4.0) end
-        if portrait.SetPosition then portrait:SetPosition(0, 0, -0.5) end
-        portrait:SetModel("Interface\\Buttons\\TalkToMeQuestionMark.m2")
-        portrait:Show()
-    end)
+    portrait._fluxQuestionMark = nil
+    portrait._fluxBlizzardFallback = true
+    portrait:Hide()
+    -- Native UnitFramePortrait_Update delegates unavailable/cached portraits
+    -- to SetPortraitTexture. Do not invent a separate 3D question-mark model.
+    if owner and owner.Portrait2D then
+        SetPortraitTexture(owner.Portrait2D, unit or owner.unit)
+        owner.Portrait2D:Show()
+    end
 end
 
 local function PortraitUnitExists(unit)
     if not unit then
         return false
     end
-    local exists = false
-    pcall(function()
-        exists = UnitExists(unit) and true or false
-    end)
-    return exists
+    local exists = UnitExists(unit)
+    if IsSecretValue(exists) then return true end
+    return exists and true or false
 end
 
 local function PortraitFrameIsVisuallyShown(self)
     if not self then
         return false
     end
-    if self.IsShown and not self:IsShown() then
-        return false
+    if self.IsShown then
+        local shown = self:IsShown()
+        if not IsSecretValue(shown) and not shown then return false end
     end
-    if self.GetAlpha and (self:GetAlpha() or 1) <= 0.01 then
-        return false
+    if self.GetAlpha then
+        local alpha = self:GetAlpha()
+        if not IsSecretValue(alpha) and type(alpha) == "number" and alpha <= 0.01 then return false end
     end
     if UF.ShouldShowWatchedUnitFrame then
         local u = self.unit
@@ -3947,28 +4140,16 @@ local function PortraitShouldShowOutOfRangeMark(self, unit)
     if not PortraitFrameIsVisuallyShown(self) or not PortraitUnitExists(unit) then
         return false
     end
-    local visible = true
-    pcall(function()
-        if UnitIsVisible then
-            visible = UnitIsVisible(unit) and true or false
-        end
-    end)
-    if not visible then
+    local visible = UnitIsVisible and UnitIsVisible(unit)
+    if not IsSecretValue(visible) and not visible then
         return true
     end
-    local isPlayer = false
-    pcall(function()
-        isPlayer = UnitIsPlayer(unit) and true or false
-    end)
-    if not isPlayer then
+    local isPlayer = UnitIsPlayer(unit)
+    if IsSecretValue(isPlayer) or not isPlayer then
         return false
     end
-    local connected = true
-    pcall(function()
-        if UnitIsConnected then
-            connected = UnitIsConnected(unit) and true or false
-        end
-    end)
+    local connected = UnitIsConnected and UnitIsConnected(unit)
+    if IsSecretValue(connected) then return false end
     return not connected
 end
 
@@ -3980,7 +4161,7 @@ function UF.UpdatePortrait(self, unit)
 
     -- ALWAYS use self.unit, never a passed unit parameter that might be wrong
     -- This prevents cross-contamination between portrait frames
-    unit = self.unit
+    unit = self._fluxPartyPreview and "player" or self.unit
 
     if not PortraitUnitExists(unit) or not PortraitFrameIsVisuallyShown(self) then
         HideEmptyUnitPortrait(self)
@@ -3992,6 +4173,7 @@ function UF.UpdatePortrait(self, unit)
     local use3D = (not FluxUnitFrames_ShouldUse3DPortrait) or FluxUnitFrames_ShouldUse3DPortrait()
 
     if not use3D then
+        self.Portrait._fluxBlizzardFallback = nil
         self.Portrait._fluxQuestionMark = nil
         pcall(function()
             if self.Portrait.SetKeepModelOnHide then
@@ -4015,22 +4197,9 @@ function UF.UpdatePortrait(self, unit)
         self.Portrait2D:Hide()
     end
 
-    -- Special case for pets: Always show 3D model, never question mark
-    if unit == "pet" then
-        self.Portrait._fluxQuestionMark = nil
-        pcall(function()
-            self.Portrait:ClearModel()
-            SetPortraitUnit(self.Portrait, unit)
-        end)
-        ApplyPortraitCamera(self.Portrait)
-        SchedulePortraitCameraRefresh(self.Portrait)
-        self.Portrait:Show()
-        return
-    end
-
-    -- Use 3D portrait, but the unit is not in range so swap to question mark
+    -- Unavailable 3D units use the engine's cached/fallback portrait texture.
     if PortraitShouldShowOutOfRangeMark(self, unit) then
-        ShowPortraitQuestionMark(self.Portrait)
+        ShowBlizzardPortraitFallback(self.Portrait, self, unit)
         return
     end
 
@@ -4038,12 +4207,24 @@ function UF.UpdatePortrait(self, unit)
     -- Live DF: portrait zoom before SetUnit. Forever: engine zoom, no RefreshCamera.
     self.Portrait._fluxQuestionMark = nil
     BindPortraitUnit(self.Portrait, unit)
-    pcall(function()
+    local applied, assigned = pcall(function()
         self.Portrait:ClearModel()
-        SetPortraitUnit(self.Portrait, unit)
+        return SetPortraitUnit(self.Portrait, unit)
     end)
+    if not applied or assigned == false then
+        ShowBlizzardPortraitFallback(self.Portrait, self, unit)
+        return
+    end
     ApplyPortraitCamera(self.Portrait)
     SchedulePortraitCameraRefresh(self.Portrait)
+    if self.Portrait.GetModelFileID then
+        local id = self.Portrait:GetModelFileID()
+        if not IsSecretValue(id) and (id == nil or id == 0) then
+            ShowBlizzardPortraitFallback(self.Portrait, self, unit)
+            return
+        end
+    end
+    self.Portrait._fluxBlizzardFallback = nil
     self.Portrait:Show()
 end
 
@@ -4052,9 +4233,11 @@ end
 function UF.SyncPortraitModelGeometry(self)
     if not self or not self.Portrait or not self.PortraitFrame then return end
     local pf = self.PortraitFrame
-    local portraitSize = pf.GetWidth and pf:GetWidth()
+    local portraitSize = pf._fluxLayoutWidth
+        or (pf.GetWidth and PublicGeometryNumber(pf:GetWidth()))
     if not portraitSize or portraitSize <= 0 then
-        portraitSize = self.GetHeight and self:GetHeight()
+        local ignoredWidth
+        ignoredWidth, portraitSize = UF.GetFramePublicDimensions(self)
     end
     if not portraitSize or portraitSize <= 0 then return end
     local contentSize = portraitSize - 4
@@ -4098,49 +4281,78 @@ local inspectPendingGUID = nil
 
 -- Helper: compute primary spec icon from talent tab points (Blizzard formula)
 local function GetSpecIconFromTalentTabs(inspect)
-    if not GetTalentTabInfo then return nil end
-    local maxPoints = 0
-    local bestTab = nil
-    local totalPoints = 0
-    local tabPoints = { 0, 0, 0 }
-    local talentGroup = 1
-    if GetActiveTalentGroup then
-        local ok, grp = pcall(GetActiveTalentGroup, inspect or false, false)
-        if ok and grp then talentGroup = grp end
-    end
-    for tab = 1, 3 do
-        local pts
-        if inspect then
-            pts = select(5, GetTalentTabInfo(tab, true, false, talentGroup))
+    local client = ns.Flux and ns.Flux.Client
+    local classicTreeAPI = client and (client.isEra or client.isAnniversary)
+        and C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo
+    if not GetTalentTabInfo and not classicTreeAPI then return nil end
+    local bestIcon, maxPoints = nil, 0
+    local getGroup = GetActiveTalentGroup or (C_SpecializationInfo and C_SpecializationInfo.GetActiveSpecGroup)
+    local group = getGroup and getGroup(inspect or false, false) or 1
+    local count = GetNumTalentTabs and GetNumTalentTabs(inspect or false, false) or 3
+    for tab = 1, count do
+        local first, second, third, fourth, fifth, _, seventh
+        if classicTreeAPI then
+            first, second, third, fourth, fifth, _, seventh = classicTreeAPI(tab, inspect or false, false, nil, nil, group)
         else
-            pts = select(5, GetTalentTabInfo(tab))
+            first, second, third, fourth, fifth = GetTalentTabInfo(tab, inspect or false, false, group)
         end
-        local numPoints = 0
-        if pts ~= nil then
-            if type(pts) == "string" then numPoints = tonumber(pts) or 0
-            elseif type(pts) == "number" then numPoints = pts end
-        end
-        tabPoints[tab] = numPoints
-        totalPoints = totalPoints + numPoints
-        if numPoints > maxPoints then
-            maxPoints = numPoints
-            bestTab = tab
-        end
-    end
-    if totalPoints <= 0 or not bestTab then return nil end
-    local lowPoints = math.min(tabPoints[1], tabPoints[2], tabPoints[3])
-    local highPoints = maxPoints
-    local sorted = { tabPoints[1], tabPoints[2], tabPoints[3] }
-    table.sort(sorted)
-    local midPoints = sorted[2]
-    if (3 * (midPoints - lowPoints)) < (2 * (highPoints - lowPoints)) then
-        if inspect then
-            return select(4, GetTalentTabInfo(bestTab, true, false, talentGroup))
+        -- Classic name/icon/points/background versus ID/name/description/icon/points.
+        local icon, points
+        if classicTreeAPI then
+            icon, points = fourth, seventh
+        elseif type(first) == "string" then
+            icon, points = second, third
         else
-            return select(4, GetTalentTabInfo(bestTab))
+            icon, points = fourth, fifth
+        end
+        points = API.SafeGetNumber(points, 0)
+        if points > maxPoints then
+            maxPoints, bestIcon = points, icon
         end
     end
-    return nil
+    -- Ties keep the first tree. A hybrid build still has a most-invested tree.
+    return bestIcon
+end
+
+-- Forever has one class specialization. Its actual talent trees are trait
+-- groups: use the same group icons/currency spent as the native tree headers.
+local function GetForeverTalentGroupIcon()
+    local spec, traits = C_SpecializationInfo, C_Traits
+    if not spec or not traits or not spec.GetActiveSpecGroup or not spec.GetCombatConfigIDForSpecGroup
+        or not traits.GetConfigInfo or not traits.GetGroupDisplayInfoByTreeID or not traits.GetGroupCurrencyInfo then
+        return nil
+    end
+    local group = API.SafeGetNumber(spec.GetActiveSpecGroup(), 0)
+    if group <= 0 then return nil end
+    local configID = API.SafeGetNumber(spec.GetCombatConfigIDForSpecGroup(group), 0)
+    if configID <= 0 then return nil end
+    local config = traits.GetConfigInfo(configID)
+    if not config or not config.treeIDs then return nil end
+    local bestIcon, maxSpent = nil, 0
+    for _, treeID in ipairs(config.treeIDs) do
+        local displays = traits.GetGroupDisplayInfoByTreeID(treeID) or {}
+        local groupIDs = {}
+        for _, display in ipairs(displays) do
+            groupIDs[#groupIDs + 1] = display.groupID
+        end
+        if #groupIDs > 0 then
+            local currencies = traits.GetGroupCurrencyInfo(configID, groupIDs) or {}
+            for _, display in ipairs(displays) do
+                for _, currencyGroup in ipairs(currencies) do
+                    if currencyGroup.traitNodeGroupID == display.groupID then
+                        local currency = currencyGroup.currencyInfos and currencyGroup.currencyInfos[1]
+                        local spent = currency and API.SafeGetNumber(currency.spent, 0) or 0
+                        local icon = API.SafeGetNumber(display.icon, 0)
+                        if spent > maxSpent and icon > 0 then
+                            maxSpent, bestIcon = spent, icon
+                        end
+                        break
+                    end
+                end
+            end
+        end
+    end
+    return bestIcon
 end
 
 local function CanInspectUnitForSpec(unit)
@@ -4202,6 +4414,8 @@ inspectFrame:SetScript("OnEvent", function(_, event, arg1)
     end
 end)
 
+local GetSpecIcon
+
 --- Lightweight spec-icon refresh for Respec build-match override (avoids full UpdateOuterBorder).
 function UF.UpdatePlayerSpecIconOnly(self)
     if not IsFluxUnitFrame(self.unit) or self.unit ~= "player" then
@@ -4234,7 +4448,7 @@ function UF.UpdatePlayerSpecIconOnly(self)
     local specIconPath = GetSpecIcon(self.unit)
     if specIconPath then
         self.specIcon:SetTexture(specIconPath)
-        if not self.specIcon:GetTexture() and specIconPath then
+        if not self.specIcon:GetTexture() and type(specIconPath) == "string" then
             local altPath = specIconPath:gsub("Interface\\Icons\\", "")
             if altPath ~= specIconPath then
                 self.specIcon:SetTexture("Interface\\Icons\\" .. altPath)
@@ -4271,7 +4485,7 @@ function _G.FluxUnitFrames_RefreshPlayerSpecIcon()
     end
 end
 
-local function GetSpecIcon(unit)
+GetSpecIcon = function(unit)
     if not UnitIsPlayer(unit) then return nil end
 
     -- Player unit
@@ -4282,13 +4496,23 @@ local function GetSpecIcon(unit)
                 return o
             end
         end
-        if GetSpecialization then
-            local specID = GetSpecialization()
+        local client = ns.Flux and ns.Flux.Client
+        if client and client.isForever then
+            return GetForeverTalentGroupIcon()
+        end
+        if client and (client.isEra or client.isAnniversary) then
+            local treeIcon = GetSpecIconFromTalentTabs(false)
+            if treeIcon then return treeIcon end
+        end
+        local specialization = GetSpecialization or (C_SpecializationInfo and C_SpecializationInfo.GetSpecialization)
+        local specializationInfo = GetSpecializationInfo or (C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo)
+        if specialization and specializationInfo then
+            local specID = specialization()
             if specID then
-                return select(4, GetSpecializationInfo(specID))
+                return select(4, specializationInfo(specID))
             end
         end
-        if FLUX_API and FLUX_API.hasTalentTreeSpec then
+        if GetTalentTabInfo or (client and (client.isEra or client.isAnniversary or client.isForever)) then
             return GetSpecIconFromTalentTabs(false)
         end
         return nil
@@ -4659,10 +4883,25 @@ end
 -- ---------------------------------------------------------------------------
 -- Outer Border Frame (even more outer, with background backdrop)
 -- ---------------------------------------------------------------------------
+-- Atlas availability follows the loaded client, not its project ID. Never use
+-- atlas dimensions here: our name-strip layout owns every indicator's bounds.
+function UF.SetIndicatorArt(texture, atlas, fallback)
+    local getInfo = C_Texture and C_Texture.GetAtlasInfo or GetAtlasInfo
+    texture:SetTexCoord(0, 1, 0, 1)
+    if atlas and texture.SetAtlas and getInfo and getInfo(atlas) then
+        texture:SetAtlas(atlas, false)
+        return true
+    end
+    texture:SetTexture(fallback)
+    return false
+end
+
 function UF.CreateOuterBorder(frame)
     -- Create the most outer border frame with background backdrop (needs to be SecureUnitButton for click handling)
-    local outerBorderFrame = CreateFrame("Button", "FluxUnitFrameOuter_"..frame.unit, frame, "SecureUnitButtonTemplate")
-    SecureUnitButton_OnLoad(outerBorderFrame, frame.unit)
+    local preview = frame._fluxPartyPreview
+    local outerBorderFrame = CreateFrame("Button", preview and (frame:GetName() .. "_Outer") or ("FluxUnitFrameOuter_"..frame.unit), frame,
+        not preview and "SecureUnitButtonTemplate" or nil)
+    if not preview then SecureUnitButton_OnLoad(outerBorderFrame, frame.unit) end
     outerBorderFrame:SetFrameLevel(frame:GetFrameLevel() + 5) -- Even higher level to ensure it's always on top
     frame.outerBorderFrame = outerBorderFrame
 
@@ -4742,6 +4981,24 @@ function UF.CreateOuterBorder(frame)
     frame.combatIcon = combatIcon
     frame.combatIconFrame = combatIconFrame
 
+    -- One engine-driven flipbook, only on player. No Lua polling driver.
+    if frame.unit == "player" then
+        local restIcon = combatIconFrame:CreateTexture(nil, "OVERLAY")
+        if UF.SetIndicatorArt(restIcon, "UI-HUD-UnitFrame-Player-Rest-Flipbook", nil) then
+            local animation = restIcon:CreateAnimationGroup()
+            animation:SetLooping("REPEAT")
+            local flipbook = animation:CreateAnimation("FlipBook")
+            flipbook:SetDuration(1.5)
+            flipbook:SetOrder(1)
+            flipbook:SetFlipBookRows(7)
+            flipbook:SetFlipBookColumns(6)
+            flipbook:SetFlipBookFrames(42)
+            frame.restIcon, frame.restAnimation = restIcon, animation
+            combatIconFrame:HookScript("OnHide", function() animation:Stop() end)
+        end
+        restIcon:Hide()
+    end
+
     -- Create level text display (same styling as name text)
     local levelText = outerBorderFrame:CreateFontString(nil, "OVERLAY")
     levelText:SetFont("Fonts\\FRIZQT__.TTF", levelFont, "OUTLINE") -- Slightly smaller than name text
@@ -4773,18 +5030,18 @@ function UF.CreateOuterBorder(frame)
     frame.pvpIcon = pvpIcon
 
     -- Group status icons (leader / assistant / MT / MA / master looter) — opposite metadata corner
-    local function CreateStatusIcon(texturePath)
+    local function CreateStatusIcon(texturePath, atlas)
         local tex = outerBorderFrame:CreateTexture(nil, "ARTWORK", nil, 2)
         tex:SetSize(16, 16)
-        tex:SetTexture(texturePath)
+        UF.SetIndicatorArt(tex, atlas, texturePath)
         tex:SetAlpha(0.95)
         tex:Hide()
         return tex
     end
-    frame.leaderIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-LeaderIcon")
+    frame.leaderIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-LeaderIcon", "UI-HUD-UnitFrame-Player-Group-LeaderIcon")
     frame.assistantIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-AssistantIcon")
-    frame.mainTankIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-MainTankIcon")
-    frame.mainAssistIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-MainAssistIcon")
+    frame.mainTankIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-MainTankIcon", "RaidFrame-Icon-MainTank")
+    frame.mainAssistIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-MainAssistIcon", "RaidFrame-Icon-MainAssist")
     frame.masterLooterIcon = CreateStatusIcon("Interface\\GroupFrame\\UI-Group-MasterLooter")
 
     -- Name-strip labels above status/PvP art
@@ -5011,7 +5268,8 @@ local function EnsurePortraitPlate(pf)
 end
 
 function UF.SetFrameLevelIfChanged(frame, level)
-    if not frame or not level then
+    level = PublicGeometryNumber(level)
+    if not frame or level == nil then
         return
     end
     if level < 1 then
@@ -5019,9 +5277,9 @@ function UF.SetFrameLevelIfChanged(frame, level)
     elseif level > 65535 then
         level = 65535
     end
-    if frame:GetFrameLevel() ~= level then
-        frame:SetFrameLevel(level)
-    end
+    local current = PublicGeometryNumber(frame:GetFrameLevel())
+    if current ~= level then UF.SetFramePublicLevel(frame, level)
+    else frame._fluxPublicFrameLevel = level end
 end
 
 local function PortraitCombatTintEnabled()
@@ -5056,6 +5314,7 @@ local function ApplyNormalPortraitChrome(self)
     if not pf or not ns.Border then
         return
     end
+    if self._fluxPartyMember and ns.PartyFrames then ns.PartyFrames.PaintChrome(self, pf); return end
     if unit == "target" or unit == "focus" or unit == "targettarget" or unit == "focustarget" then
         local color = { r = 1, g = 1, b = 1 }
         local isPlayer = false
@@ -5139,6 +5398,11 @@ end
 
 function UF.UpdateBorderColors(self)
     if not self.unit then return end
+    if self._fluxPartyMember and ns.PartyFrames then
+        ns.PartyFrames.PaintChrome(self)
+        UF.UpdatePortraitCombatTint(self)
+        return
+    end
     
     -- Target/focus frames and their target frames use dynamic colors.
     -- Player frames retain their configured class or default color.
@@ -5252,17 +5516,7 @@ local function GetNameStripSideReserve(self)
     if self.unit == "focus" then
         reserve = reserve + 6 -- left padding (name is LEFT-justified on outer border)
     end
-    local function addIfShown(tex, pad)
-        if tex and tex:IsShown() then
-            reserve = reserve + SN(tex:GetWidth(), 0) + (pad or 2)
-        end
-    end
-    addIfShown(self.leaderIcon, 2)
-    addIfShown(self.assistantIcon, 2)
-    addIfShown(self.mainTankIcon, 2)
-    addIfShown(self.mainAssistIcon, 2)
-    addIfShown(self.masterLooterIcon, 2)
-    addIfShown(self.pvpIcon, 8)
+    -- Status icons occupy the health inset and do not consume name width.
     if self.groupText and self.groupText:IsShown() and SafeBooleanTest(UnitIsUnit(self.unit, "player")) then
         reserve = reserve + SN(self.groupText:GetStringWidth(), 0) + 10
     end
@@ -5571,21 +5825,27 @@ local function FitNameStripMetadata(self)
     end
 end
 
---- Combat beside level; resting always centered on top of the level number.
+--- Combat/rest beside level; keep the level number readable in both states.
 local function LayoutNameStripCombatIcon(self)
     local combatIcon = self.combatIcon
     if not combatIcon then return end
+    if self.levelText then self.levelText:SetAlpha(1) end
+    if self.restIcon then
+        self.restIcon:Hide()
+    end
     if self.unit ~= "player" then
         combatIcon:Hide()
         return
     end
     if FluxUnitFrames_ShouldShowCombatIcon and not FluxUnitFrames_ShouldShowCombatIcon(self.unit) then
         combatIcon:Hide()
+        if self.restAnimation then self.restAnimation:Stop() end
         return
     end
 
     local inCombat = UnitAffectingCombat("player")
     local isResting = IsResting()
+    if self.restAnimation and (inCombat or not isResting) then self.restAnimation:Stop() end
     local padding = self.outerBorderPadding or 35
     local iconSize = math.min(28, math.max(20, padding - 8))
 
@@ -5608,9 +5868,13 @@ local function LayoutNameStripCombatIcon(self)
             end
         end
     elseif isResting then
-        -- Always sit on top of the level number (visual center of the digits).
-        combatIcon:SetTexture("Interface\\CharacterFrame\\UI-StateIcon")
-        combatIcon:SetTexCoord(0, 0.5, 0.0, 0.5)
+        combatIcon:Hide()
+        combatIcon = self.restIcon or combatIcon
+        -- Resting shares the combat slot beside the level number.
+        if not self.restIcon then
+            combatIcon:SetTexture("Interface\\CharacterFrame\\UI-StateIcon")
+            combatIcon:SetTexCoord(0, 0.5, 0.0, 0.5)
+        end
         local restSize = math.min(iconSize + 4, padding - 4)
         combatIcon:SetSize(restSize, restSize)
         if combatIcon.SetDrawLayer then combatIcon:SetDrawLayer("OVERLAY", 7) end
@@ -5618,28 +5882,29 @@ local function LayoutNameStripCombatIcon(self)
         local levelFs = self.levelText
         if levelFs and levelFs:IsShown() then
             combatIcon:ClearAllPoints()
-            -- Prefer true string center so RIGHT/LEFT justify cannot offset the Zzz.
-            local sw = API.SafeGetNumber(levelFs:GetStringWidth(), 0)
-            if sw > 0 and self._fluxLevelMetaOnRight then
-                combatIcon:SetPoint("CENTER", levelFs, "RIGHT", -sw * 0.5, 0)
-            elseif sw > 0 then
-                combatIcon:SetPoint("CENTER", levelFs, "LEFT", sw * 0.5, 0)
+            if self._fluxLevelMetaOnRight then
+                combatIcon:SetPoint("RIGHT", levelFs, "LEFT", -2, 0)
             else
-                combatIcon:SetPoint("CENTER", levelFs, "CENTER", 0, 0)
+                combatIcon:SetPoint("LEFT", levelFs, "RIGHT", 2, 0)
             end
         end
+        if self.restAnimation and not self.restAnimation:IsPlaying() then self.restAnimation:Play() end
     else
         combatIcon:Hide()
     end
 end
 
 local function UnitIsMasterLooterOfGroup(unit)
-    if not unit or not GetLootMethod then return false end
-    local ok, method, partyID, raidID = pcall(GetLootMethod)
-    if not ok or method ~= "master" then return false end
+    local getMethod = C_PartyInfo and C_PartyInfo.GetLootMethod or GetLootMethod
+    if not unit or not getMethod then return false end
+    local ok, method, partyID, raidID = pcall(getMethod)
+    if not ok or (API.IsSecretValue and API.IsSecretValue(method)) then return false end
+    local masterMethod = Enum and Enum.LootMethod and Enum.LootMethod.Masterlooter or 2
+    if method ~= "master" and method ~= masterMethod then return false end
+    partyID = API.SafeGetNumber(partyID, -1)
+    raidID = API.SafeGetNumber(raidID, -1)
     if IsInRaid() then
-        local index = UnitInRaid(unit)
-        return index ~= nil and raidID ~= nil and index == raidID
+        return raidID > 0 and SafeBooleanTest(UnitIsUnit(unit, "raid" .. raidID))
     end
     if UnitIsUnit(unit, "player") then
         return partyID == 0
@@ -5729,6 +5994,7 @@ local function LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding)
 
     local hasPvp = self.pvpIcon and self.pvpIcon:IsShown()
     if not hasPvp and #statusChain == 0 then
+        self._fluxStatusClusterWidth = nil
         self._fluxStatusIconsOnRight = nil
         self._fluxStatusIconChainEnd = nil
         return
@@ -5737,129 +6003,41 @@ local function LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding)
         return
     end
 
-    -- Class/portrait side (opposite level/type corner).
-    local onLeft = (portraitPosition ~= "RIGHT")
-    if self.unit == "focus" then
-        onLeft = true
-    end
-    self._fluxStatusIconsOnRight = not onLeft
-
-    local secondaryShown = self.petNameText and self.petNameText:IsShown()
+    -- Next to class/spec, never anchored to (or moving) name/group labels.
+    -- Two rows leave a slot for master loot when all five indicators are active.
     local classW = GetShownTexWidth(self.classIcon) + GetShownTexWidth(self.specIcon)
-    local statusW = 0
-    for i = 1, #statusChain do
-        statusW = statusW + statusSize + 1
+    local width = SN(outer:GetWidth(), 0)
+    if width < 40 then width = GetOuterBorderContentWidth(self) end
+    local chain = {}
+    if hasPvp then chain[#chain + 1] = self.pvpIcon end
+    for i = 1, #statusChain do chain[#chain + 1] = statusChain[i] end
+    local count = #chain
+    local rows = count > 2 and 2 or 1
+    local columns = math.ceil(count / rows)
+    local nameWidth = SN(self.nameText:GetStringWidth(), 0)
+    local gap = math.max(columns, (width - nameWidth) / 2 - classW - 6)
+    local size = math.min(self.unit == "focus" and 10 or 14,
+        math.max(1, (padding - 6 - (rows - 1)) / rows),
+        math.max(1, (gap - (columns - 1)) / columns))
+    local onLeft = portraitPosition ~= "RIGHT" or self.unit == "focus"
+    local direction = onLeft and 1 or -1
+    local point = onLeft and "LEFT" or "RIGHT"
+    local relative = outerBorderAlignment == "BOTTOM"
+        and (onLeft and "TOPLEFT" or "TOPRIGHT")
+        or (onLeft and "BOTTOMLEFT" or "BOTTOMRIGHT")
+    local y = GetNameStripCenterY(outerBorderAlignment, padding)
+    for i = 1, count do
+        local tex = chain[i]
+        local column, row = math.floor((i - 1) / rows), (i - 1) % rows
+        tex:SetSize(size, size)
+        tex:ClearAllPoints()
+        tex:SetPoint(point, outer, relative,
+            direction * (classW + 3 + column * (size + 1)),
+            y + ((rows - 1) / 2 - row) * (size + 1))
     end
+    self._fluxStatusIconsOnRight = nil
+    self._fluxStatusIconChainEnd = nil
 
-    -- Largest square that fits in the name strip height (never past top/bottom chrome).
-    local maxByStrip = math.max(14, padding - inset * 2)
-
-    -- When locked to the name row, measure how far the name sits from strip edges.
-    local maxByNameRow = maxByStrip
-    if not secondaryShown and self.nameText then
-        local nameFromEdge = padding / 2
-        local p, _, rp, _, oy = self.nameText:GetPoint(1)
-        oy = oy or 0
-        if outerBorderAlignment == "BOTTOM" then
-            -- Name anchored to TOP* of outer → |oy| is distance down from top.
-            if rp == "TOP" or rp == "TOPLEFT" or rp == "TOPRIGHT" then
-                nameFromEdge = math.abs(oy)
-            end
-            local maxUp = math.max(6, nameFromEdge - inset)
-            local maxDown = math.max(6, padding - nameFromEdge - inset)
-            maxByNameRow = math.max(14, math.floor(2 * math.min(maxUp, maxDown)))
-        else
-            -- Name anchored to BOTTOM* of outer → |oy| is distance up from bottom.
-            if rp == "BOTTOM" or rp == "BOTTOMLEFT" or rp == "BOTTOMRIGHT" then
-                nameFromEdge = math.abs(oy)
-            end
-            local maxDown = math.max(6, nameFromEdge - inset)
-            local maxUp = math.max(6, padding - nameFromEdge - inset)
-            maxByNameRow = math.max(14, math.floor(2 * math.min(maxUp, maxDown)))
-        end
-    end
-
-    -- Horizontal room between class cluster and the name.
-    local outerW = SN(outer:GetWidth(), 0)
-    if outerW < 40 then outerW = GetOuterBorderContentWidth(self) end
-    local nameW = SN(self.nameText:GetStringWidth(), 0)
-    local halfFree = math.max(0, (outerW - nameW) * 0.5 - classW - inset - 4)
-    if self.unit == "focus" then
-        halfFree = math.max(16, classW > 0 and 20 or 28)
-    end
-    local maxByGap = math.max(14, math.floor(halfFree - statusW - 2))
-
-    local pvpSize = math.min(maxByStrip, maxByNameRow, maxByGap, 36)
-    pvpSize = math.max(16, pvpSize)
-
-    if hasPvp then
-        self.pvpIcon:SetSize(pvpSize, pvpSize)
-        -- Crop soft halo so art does not read as past the border.
-        self.pvpIcon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
-    end
-
-    -- Place PvP (or first status) as root.
-    local root = hasPvp and self.pvpIcon or statusChain[1]
-    root:ClearAllPoints()
-
-    if secondaryShown then
-        -- Pet/ToT: keep icons strip-centered with class/spec, not on the raised name line.
-        local x = onLeft and (inset + classW + 2) or -(inset + classW + 2)
-        local y = GetNameStripCenterY(outerBorderAlignment, padding)
-        local point = onLeft and "LEFT" or "RIGHT"
-        local relative
-        if outerBorderAlignment == "BOTTOM" then
-            relative = onLeft and "TOPLEFT" or "TOPRIGHT"
-        else
-            relative = onLeft and "BOTTOMLEFT" or "BOTTOMRIGHT"
-        end
-        -- Cap size again against strip when using strip-center (already maxByStrip).
-        if hasPvp then
-            local stripSize = math.min(pvpSize, maxByStrip)
-            self.pvpIcon:SetSize(stripSize, stripSize)
-        end
-        root:SetPoint(point, outer, relative, x, y)
-    else
-        -- At the unit name: same vertical center as nameText, tucked on the class side.
-        if onLeft then
-            root:SetPoint("RIGHT", self.nameText, "LEFT", -3, 0)
-        else
-            root:SetPoint("LEFT", self.nameText, "RIGHT", 3, 0)
-        end
-        -- If class icons would overlap, sit just inside of them instead of under the name.
-        if classW > 0 and hasPvp then
-            -- Re-check: prefer name attachment; class side gap already sized. Done.
-        end
-    end
-
-    -- Chain status icons from PvP outward (PvP stays nearest the name).
-    if hasPvp then
-        local prev = root
-        for i = #statusChain, 1, -1 do
-            local tex = statusChain[i]
-            tex:ClearAllPoints()
-            if onLeft then
-                tex:SetPoint("RIGHT", prev, "LEFT", -1, 0)
-            else
-                tex:SetPoint("LEFT", prev, "RIGHT", 1, 0)
-            end
-            prev = tex
-        end
-        self._fluxStatusIconChainEnd = (#statusChain > 0) and statusChain[1] or root
-    else
-        local prev = root
-        for i = 2, #statusChain do
-            local tex = statusChain[i]
-            tex:ClearAllPoints()
-            if onLeft then
-                tex:SetPoint("RIGHT", prev, "LEFT", -1, 0)
-            else
-                tex:SetPoint("LEFT", prev, "RIGHT", 1, 0)
-            end
-            prev = tex
-        end
-        self._fluxStatusIconChainEnd = prev
-    end
 end
 
 local function ClampPvpIconInOuterBorder(self, outerBorderPadding)
@@ -6033,6 +6211,31 @@ local function FitUnitFrameSecondaryNameText(self)
     fs._fluxSecondaryFitKey = fitKey
 end
 
+-- Both player and normal party use this HP-centered marker geometry.
+function UF.UpdateRaidMarker(self)
+    local icon = self.raidIcon
+    if not icon then return end
+    if FluxUnitFrames_ShouldShowRaidIcon and not FluxUnitFrames_ShouldShowRaidIcon(self.unit) then icon:Hide(); return end
+    local index = GetRaidTargetIndex(self.unit)
+    local opaque = ValueIsSecret(index)
+    if type(index) == "nil" or (not opaque and (type(index) ~= "number" or index < 1 or index > 8)) then icon:Hide(); return end
+    if opaque and not icon.SetSpriteSheetCell then icon:Hide(); return end
+    icon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcons")
+    if icon.SetSpriteSheetCell then icon:SetSpriteSheetCell(index, 4, 4)
+    else SetRaidTargetIconTexture(icon, index) end
+    icon:Show()
+end
+
+function UF.LayoutRaidMarker(self)
+    if not self.raidIcon then return end
+    local healthAnchor = self.Health and (self.Health._fluxTextAnchor or self.Health)
+    local height = healthAnchor and healthAnchor:GetHeight() or 20
+    if ValueIsSecret(height) then return end
+    self.raidIcon:SetSize(height * .9, height * .9)
+    self.raidIcon:ClearAllPoints()
+    self.raidIcon:SetPoint("CENTER", healthAnchor, "CENTER", 0, 0)
+end
+
 function UF.UpdateOuterBorder(self)
     -- Validate this is one of our frames, not a Blizzard CompactRaidFrame
     if not IsFluxUnitFrame(self.unit) then return end
@@ -6111,7 +6314,11 @@ function UF.UpdateOuterBorder(self)
         -- Position based on alignment and padding (Protected in combat)
         if not inCombat then
             self.nameText:ClearAllPoints()
-            if self.unit == "targettarget" or self.unit == "focustarget" then
+            if self._fluxPartyNameTextAnchor then
+                self.nameText:SetPoint("CENTER", self._fluxPartyNameTextAnchor, "CENTER", 0, 0)
+            elseif self._fluxPartyPet then
+                self.nameText:Hide()
+            elseif self.unit == "targettarget" or self.unit == "focustarget" then
                 -- Target of Target / Focus Target: Lower the name text position
                 if outerBorderAlignment == "BOTTOM" then
                     -- Position lower than normal for target of target
@@ -6356,7 +6563,7 @@ function UF.UpdateOuterBorder(self)
                         self.specIcon:SetTexture(specIconPath)
 
                         -- Verify texture loaded, fallback if needed
-                        if not self.specIcon:GetTexture() and specIconPath then
+                        if not self.specIcon:GetTexture() and type(specIconPath) == "string" then
                             -- Try alternative paths or simplified names
                             local altPath = specIconPath:gsub("Interface\\Icons\\", "")
                             if altPath ~= specIconPath then
@@ -6469,28 +6676,15 @@ function UF.UpdateOuterBorder(self)
     end
 
     -- Update raid icon (call this regularly like ShadowedUnitFrames does)
-    if self.raidIcon then
+    if self.raidIcon and not self._fluxPartyMember then
         if totPos2Minimal or (FluxUnitFrames_ShouldShowRaidIcon and not FluxUnitFrames_ShouldShowRaidIcon(self.unit)) then
             self.raidIcon:Hide()
         else
         -- Size the raid icon to 90% of HP bar height
-        local healthAnchor = self.Health and (self.Health._fluxTextAnchor or self.Health)
-        local healthBarHeight = healthAnchor and healthAnchor:GetHeight() or 20
-        local iconSize = healthBarHeight * 0.9
-        self.raidIcon:SetSize(iconSize, iconSize)
-
-        -- Position at center of HP bar
-        self.raidIcon:ClearAllPoints()
-        self.raidIcon:SetPoint("CENTER", healthAnchor, "CENTER", 0, 0)
+        UF.LayoutRaidMarker(self)
 
         -- Update the raid icon state
-        local index = GetRaidTargetIndex(self.unit)
-        if index then
-            SetRaidTargetIconTexture(self.raidIcon, index)
-            self.raidIcon:Show()
-        else
-            self.raidIcon:Hide()
-        end
+        UF.UpdateRaidMarker(self)
         end
     end
 
@@ -6505,17 +6699,15 @@ function UF.UpdateOuterBorder(self)
         else
             local faction = UnitFactionGroup(self.unit)
             if UnitIsPVPFreeForAll(self.unit) then
-                self.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-FFA")
-                self.pvpIcon:SetTexCoord(0, 1, 0, 1)
+                UF.SetIndicatorArt(self.pvpIcon, "UI-HUD-UnitFrame-Player-PVP-FFAIcon", "Interface\\TargetingFrame\\UI-PVP-FFA")
                 self.pvpIcon:Show()
                 if self.pvpTimer then self.pvpTimer:Hide() end
             elseif faction and faction ~= "Neutral" and UnitIsPVP(self.unit) then
-                self.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-" .. faction)
-                self.pvpIcon:SetTexCoord(0, 1, 0, 1)
+                UF.SetIndicatorArt(self.pvpIcon, "UI-HUD-UnitFrame-Player-PVP-" .. faction .. "Icon", "Interface\\TargetingFrame\\UI-PVP-" .. faction)
                 self.pvpIcon:Show()
                 if self.pvpTimer then
                     self.pvpTimer:ClearAllPoints()
-                    self.pvpTimer:SetPoint("CENTER", self.pvpIcon, "CENTER", -10, 0)
+                    self.pvpTimer:SetPoint("CENTER", self.pvpIcon, "CENTER", 0, 0)
                 end
             else
                 self.pvpIcon:Hide()
@@ -6634,6 +6826,7 @@ function UF.UpdateOuterBorder(self)
         LayoutNameStripStatusAndPvpIcons(self, outerBorderPadding)
         LayoutNameStripCombatIcon(self)
     end
+    if (self._fluxPartyMember or self._fluxPartyPet) and ns.PartyFrames then ns.PartyFrames.StyleText(self) end
 end
 
 -- ---------------------------------------------------------------------------
@@ -6793,9 +6986,6 @@ function UF.UpdateAdditionalPower(self, unit)
             
             local mana = API.SafeUnitPower(unit, 0)
             local displayMana = UF.PowerValueForDisplay(self.AdditionalPower, mana)
-            if ns.PowerCostOverlay and ns.PowerCostOverlay.BeforePowerApplied then
-                ns.PowerCostOverlay.BeforePowerApplied(self.AdditionalPower)
-            end
             self.AdditionalPower._fluxFromPowerEvent = self._fluxPowerSpentEvent and true or false
             StatusBarSetMinMaxAndValueImmediate(self.AdditionalPower, 0, maxMana, displayMana)
 
@@ -7187,7 +7377,7 @@ local function ThreatBarRaiseGlowAboveBorder(shell)
         borderLv = (shell:GetFrameLevel() or 0) + 10
     end
     local glowLv = borderLv + 5
-    local glow = shell._ButtonGlow or shell.__LBGoverlay
+    local glow = shell._fluxThreatButtonGlow
     if glow and glow.SetFrameLevel then
         glow:SetFrameLevel(glowLv)
     end
@@ -7196,41 +7386,29 @@ local function ThreatBarRaiseGlowAboveBorder(shell)
     end
 end
 
+local function RetireLegacyThreatOverlay(overlay)
+    if not overlay then return end
+    if overlay.animIn and overlay.animIn.Stop then overlay.animIn:Stop() end
+    if overlay.animOut and overlay.animOut.Stop then overlay.animOut:Stop() end
+    if overlay.Hide then overlay:Hide() end
+end
+
 local function ThreatBarStopGlow(shell)
     if not shell then
         return
     end
-    local LCG = LibStub and LibStub("LibCustomGlow-1.0", true)
-    local LBG = LibStub and LibStub("LibButtonGlow-1.0", true)
+    local owner = ns.Flux and ns.Flux.ButtonFX and ns.Flux.ButtonFX.ThreatGlow
+    if owner and owner.ButtonGlow_Stop then pcall(owner.ButtonGlow_Stop, shell) end
     local legacyHost = shell.GlowHost
     if legacyHost then
-        if LCG and LCG.ButtonGlow_Stop then
-            pcall(LCG.ButtonGlow_Stop, legacyHost)
-        end
-        if LBG and LBG.HideOverlayGlow then
-            pcall(LBG.HideOverlayGlow, legacyHost)
-        end
         legacyHost:Hide()
     end
-    -- Always stop when asked — do not gate on _fluxThreatGlowBand (layout may clear it first).
-    if LCG and LCG.ButtonGlow_Stop then
-        pcall(LCG.ButtonGlow_Stop, shell)
-    end
-    if LBG and LBG.HideOverlayGlow then
-        pcall(LBG.HideOverlayGlow, shell)
-    end
-    local function forceHideIfStuck(overlay)
-        if not overlay or not overlay.IsShown or not overlay:IsShown() then
-            return
-        end
-        local out = overlay.animOut
-        if out and out.IsPlaying and out:IsPlaying() then
-            return
-        end
-        overlay:Hide()
-    end
-    forceHideIfStuck(shell._ButtonGlow)
-    forceHideIfStuck(shell.__LBGoverlay)
+    -- Retire only historical overlays attached to this owned threat shell.
+    -- Their shared pool may have a different current owner: never release it
+    -- through an unrelated winning library or read its native alpha.
+    RetireLegacyThreatOverlay(shell._ButtonGlow)
+    RetireLegacyThreatOverlay(shell.__LBGoverlay)
+    if legacyHost then RetireLegacyThreatOverlay(legacyHost._ButtonGlow); RetireLegacyThreatOverlay(legacyHost.__LBGoverlay) end
     shell._fluxThreatGlowBand = nil
 end
 
@@ -7238,9 +7416,8 @@ local function ThreatBarUpdateGlow(shell, color)
     if not shell then
         return
     end
-    local LCG = LibStub and LibStub("LibCustomGlow-1.0", true)
-    local LBG = LibStub and LibStub("LibButtonGlow-1.0", true)
-    if not ((LCG and LCG.ButtonGlow_Start and LCG.ButtonGlow_Stop) or (LBG and LBG.ShowOverlayGlow)) then
+    local owner = ns.Flux and ns.Flux.ButtonFX and ns.Flux.ButtonFX.ThreatGlow
+    if not (owner and owner.ButtonGlow_Start and owner.ButtonGlow_Stop) then
         return
     end
 
@@ -7250,17 +7427,16 @@ local function ThreatBarUpdateGlow(shell, color)
     end
 
     local band = ThreatBarGlowBandKey(color)
-    if shell._fluxThreatGlowBand == band and (shell._ButtonGlow or shell.__LBGoverlay) then
+    if shell._fluxThreatGlowBand == band and shell._fluxThreatButtonGlow then
         ThreatBarRaiseGlowAboveBorder(shell)
         return
     end
-    shell._fluxThreatGlowBand = band
-    -- Prefer LCG so we can tint yellow→red; frameLevel arg must clear the border (+10).
-    if LCG and LCG.ButtonGlow_Start then
-        pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
-    elseif LBG and LBG.ShowOverlayGlow then
-        pcall(LBG.ShowOverlayGlow, shell)
+    if not shell._fluxLegacyThreatRetired then
+        ThreatBarStopGlow(shell)
+        shell._fluxLegacyThreatRetired = true
     end
+    local ok, result = pcall(owner.ButtonGlow_Start, shell, color, 0.25, 16)
+    if ok and result ~= false then shell._fluxThreatGlowBand = band end
     ThreatBarRaiseGlowAboveBorder(shell)
 end
 
@@ -7477,6 +7653,9 @@ function UF.LayoutThreatBar(frame)
     if mode == "between" then
         local anchor = frame.outerBorderFrame or frame
         shell:SetHeight(THREAT_BAR_HEIGHT)
+        shell._fluxPublicHeight = THREAT_BAR_HEIGHT
+        local width = anchor.GetWidth and PublicGeometryNumber(anchor:GetWidth())
+        if width then shell._fluxPublicWidth = width end
         local threatFont = (frame.unit == "focus") and 10 or 14
         if shell.PositionText then
             shell.PositionText:SetFont("Fonts\\FRIZQT__.TTF", threatFont, "OUTLINE")
@@ -7498,6 +7677,9 @@ function UF.LayoutThreatBar(frame)
         local anchor = frame.outerBorderFrame or frame
         -- Thickness matches horizontal strip height; span full outer chrome height.
         shell:SetWidth(THREAT_BAR_HEIGHT)
+        shell._fluxPublicWidth = THREAT_BAR_HEIGHT
+        local height = anchor.GetHeight and PublicGeometryNumber(anchor:GetHeight())
+        if height then shell._fluxPublicHeight = height end
         local threatFont = (frame.unit == "focus") and 10 or 14
         if shell.PositionText then
             shell.PositionText:SetFont("Fonts\\FRIZQT__.TTF", threatFont, "OUTLINE")
@@ -7518,8 +7700,11 @@ function UF.LayoutThreatBar(frame)
         -- Portrait overlay: thinner, borderless; glow applied in UpdateThreatBar.
         local anchor = (UF.FrameUsesPortraitLayout(frame) and frame.PortraitFrame) or frame
         shell:SetHeight(THREAT_BAR_PORTRAIT_HEIGHT)
+        shell._fluxPublicHeight = THREAT_BAR_PORTRAIT_HEIGHT
         if anchor then
             local inset = (anchor == frame.PortraitFrame) and 2 or 4
+            local width = anchor.GetWidth and PublicGeometryNumber(anchor:GetWidth())
+            if width then shell._fluxPublicWidth = math.max(0, width - inset * 2) end
             shell:SetPoint("BOTTOMLEFT", anchor, "BOTTOMLEFT", inset, inset)
             shell:SetPoint("BOTTOMRIGHT", anchor, "BOTTOMRIGHT", -inset, inset)
             if not UnitExists(frame.unit) or not UnitAffectingCombat("player") then
@@ -7831,7 +8016,7 @@ function UF.UpdateFrameVisualElements(self)
                     self.specIcon:SetTexture(specIconPath)
 
                     -- Verify texture loaded, fallback if needed
-                    if not self.specIcon:GetTexture() and specIconPath then
+                    if not self.specIcon:GetTexture() and type(specIconPath) == "string" then
                         -- Try alternative paths or simplified names
                         local altPath = specIconPath:gsub("Interface\\Icons\\", "")
                         if altPath ~= specIconPath then
@@ -7903,7 +8088,7 @@ function UF.UpdateFramePartitionSeparators(self, hHeight, rHeight, padding, show
 
     local r, g, b = GetChromeSeparatorRGB(self.unit or "player")
 
-    if self.HealthPowerSeparator and showMainPower then
+    if self.HealthPowerSeparator and showMainPower and not self._fluxPartyDivider then
         self.HealthPowerSeparator:ClearAllPoints()
         local sepY = -2 - hHeight - (padding / 2)
         self.HealthPowerSeparator:SetPoint("CENTER", self, "TOP", 0, sepY)
@@ -7954,13 +8139,15 @@ function UF.UpdateFramePartition(self)
 
     -- Focus target-of-target: single health bar only (width/height match focus style); atlas border, no chrome
     if self._fluxHealthBarOnly then
-        local totalHeight = self:GetHeight()
+        local _, totalHeight = UF.GetFramePublicDimensions(self)
+        if totalHeight == nil then return end
         local barAreaLeft = self.barAreaLeft or 2
         local barAreaRight = self.barAreaRight or -2
         local topInset = 2
         local bottomInset = 2 -- pair with tighter Border bottom on focustarget (see FluxUnitFrames_FocusTarget)
         local innerHeight = totalHeight - topInset - bottomInset
         if innerHeight < 10 then innerHeight = 10 end
+        UF.SyncPublicHealthGeometry(self, innerHeight)
         if self.Health._fluxTextAnchor then self.Health._fluxTextAnchor:SetHeight(innerHeight) end
         local inCombat = InCombatLockdown()
 
@@ -8007,7 +8194,8 @@ function UF.UpdateFramePartition(self)
         return
     end
 
-    local totalHeight = self:GetHeight()
+    local _, totalHeight = UF.GetFramePublicDimensions(self)
+    if totalHeight == nil then return end
 
     local portraitPosition = self.portraitPosition or "LEFT" -- Can be "LEFT" or "RIGHT"
     local hasPortrait = UF.FrameUsesPortraitLayout(self)
@@ -8043,6 +8231,12 @@ function UF.UpdateFramePartition(self)
     if mHeight > 0 then mHeight = mHeight - (padding / 2) end
     if rHeight > 0 then rHeight = rHeight - (padding / 2) end
     hHeight = hHeight - (padding / 2)
+    if self._fluxPartyMember then
+        local factor = self._fluxPartyPowerHeightScale or .8
+        local old = rHeight
+        rHeight = rHeight * factor
+        hHeight = hHeight + old - rHeight
+    end
     local splitHealthHeight = hHeight
     if self.Health._fluxTextAnchor then
         -- A restricted maximum cannot select a layout in Lua. Keep health text
@@ -8056,6 +8250,7 @@ function UF.UpdateFramePartition(self)
     if not showMainPower or (UF.UsesHudUnitBars() and not showAdditional) then
         hHeight = innerHeight
     end
+    UF.SyncPublicHealthGeometry(self, hHeight)
 
     local inCombat = InCombatLockdown()
 
@@ -8118,6 +8313,7 @@ function UF.UpdateFramePartition(self)
     -- Position portrait if it exists (full layout — not allowed during combat lockdown)
     if hasPortrait then
         self.PortraitFrame:ClearAllPoints()
+        UF.RecordFrameDimensions(self.PortraitFrame, portraitSize, portraitSize)
         self.PortraitFrame:SetSize(portraitSize, portraitSize)
 
         if portraitPosition == "LEFT" then
@@ -8225,7 +8421,40 @@ local function DeferredTargetOfTargetChromeRefresh(totFrame, targetFrame)
     end)
 end
 
+local HEALTH_LOSS_IDENTITY_EVENTS = {
+    PLAYER_ENTERING_WORLD = true,
+    PLAYER_TARGET_CHANGED = true,
+    PLAYER_FOCUS_CHANGED = true,
+    UNIT_TARGET = true,
+    UNIT_PET = true,
+}
+
+local function ResetHealthLossForIdentityEvent(self, event, unit)
+    local loss = ns.HealthLossOverlay
+    if not loss or not loss.ResetIdentityForFrame then return end
+    local token = self.unit
+    local changed = event == "PLAYER_ENTERING_WORLD"
+        or (event == "PLAYER_TARGET_CHANGED" and (token == "target" or token == "targettarget"))
+        or (event == "PLAYER_FOCUS_CHANGED" and (token == "focus" or token == "focustarget"))
+        or (event == "UNIT_TARGET" and ((token == "targettarget" and unit == "target")
+            or (token == "focustarget" and unit == "focus")
+            or (token == "pettarget" and unit == "pet")))
+        or (event == "UNIT_PET" and unit == "player" and (token == "pet" or token == "pettarget"))
+    if changed then loss.ResetIdentityForFrame(self) end
+    -- Parent handlers refresh these children before the children's own event runs.
+    if token == "target" and (changed or (event == "UNIT_TARGET" and unit == "target")) then
+        loss.ResetIdentityForFrame(ns.TargetOfTargetFrame)
+    elseif token == "focus" and (changed or (event == "UNIT_TARGET" and unit == "focus")) then
+        loss.ResetIdentityForFrame(ns.FocusTargetFrame)
+    elseif token == "pet" and (changed or (event == "UNIT_TARGET" and unit == "pet")) then
+        loss.ResetIdentityForFrame(ns.PetTargetFrame)
+    end
+end
+
 local function OnEvent(self, event, unit, ...)
+    if HEALTH_LOSS_IDENTITY_EVENTS[event] then
+        ResetHealthLossForIdentityEvent(self, event, unit)
+    end
     -- 3D portraits need size + SetUnit refresh when UI scale or resolution changes
     if event == "UI_SCALE_CHANGED" or event == "DISPLAY_SIZE_CHANGED" then
         local function doPortraitMetrics()
@@ -8495,6 +8724,8 @@ local function OnEvent(self, event, unit, ...)
          elseif (self.unit == "target" or self.unit == "focus") and UF.UpdateThreatBar then
              UF.UpdateThreatBar(self)
          end
+    elseif event == "PLAYER_UPDATE_RESTING" and self.unit == "player" then
+         if self.UpdateOuterBorder then self:UpdateOuterBorder() end
     elseif (event == "UNIT_FACTION" and unit == self.unit) or
            (event == "PLAYER_FLAGS_CHANGED" and unit == self.unit) then
          -- PvP state may have changed - immediate update (like ShadowedUnitFrames)
@@ -8512,16 +8743,7 @@ local function OnEvent(self, event, unit, ...)
          -- Zone changes can affect PvP status - update indicators
          if self.UpdateOuterBorder then self:UpdateOuterBorder() end
     elseif event == "RAID_TARGET_UPDATE" then
-        if self.raidIcon then
-            -- Use oUF approach: SetRaidTargetIconTexture handles secret values properly
-            local index = GetRaidTargetIndex(self.unit)
-            if index then
-                SetRaidTargetIconTexture(self.raidIcon, index)
-                self.raidIcon:Show()
-            else
-                self.raidIcon:Hide()
-            end
-        end
+        UF.UpdateRaidMarker(self)
     elseif event == "UNIT_THREAT_LIST_UPDATE" then
         -- Update threat bar when threat list changes
         if (self.unit == "target" or self.unit == "focus") and UF.UpdateThreatBar then UF.UpdateThreatBar(self) end
@@ -8560,6 +8782,7 @@ local function ApplyEmulatedHorizontalSqueezeToFrame(frame)
         local g = FluxUILayoutSqueeze and FluxUILayoutSqueeze.GetEffectiveEmulatedDependentXFactorForUnitFrames
         mult = (g and g()) or 1
     end
+    UF.RecordFrameDimensions(frame, frame._fluxLayoutBaseWidth * mult)
     frame:SetWidth(frame._fluxLayoutBaseWidth * mult)
     if frame.UpdatePartition then
         frame:UpdatePartition()
@@ -8637,14 +8860,18 @@ end
 -- Base Frame Construction
 -- ---------------------------------------------------------------------------
 --- @param borderInsetY optional bottom backdrop inset for Border:ApplyTo (default 6); use 2 for minimal frames like focustarget
-function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
+function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY, options)
     -- Create SecureUnitButton for click-to-target/menu functionality
-    local frame = CreateFrame("Button", "FluxUnitFrame_"..unit, parent, "SecureUnitButtonTemplate")
-    SecureUnitButton_OnLoad(frame, unit)
+    local preview = options and options.preview
+    local frame = CreateFrame("Button", options and options.name or ("FluxUnitFrame_"..unit), parent,
+        not preview and "SecureUnitButtonTemplate" or nil)
+    frame._fluxPartyPreview = preview
+    if not preview then SecureUnitButton_OnLoad(frame, unit) end
     frame:SetAttribute("unit", unit)
     -- Above action strip / pet / stance (those sit on MEDIUM at level 5).
     frame:SetFrameStrata("MEDIUM")
     frame:SetFrameLevel(40)
+    frame._fluxPublicFrameLevel = 40
 
     -- Disable mouse on main frame - outer border handles all interaction
     frame:EnableMouse(false)
@@ -8662,6 +8889,7 @@ function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
     -- Set size (defaults if not provided)
     width = width or 250
     height = height or 100
+    UF.RecordFrameDimensions(frame, width, height)
     frame:SetSize(width, height)
     frame._fluxLayoutBaseWidth = width
     UF.RegisterEmulatedHorizontalSqueeze(frame)
@@ -8746,6 +8974,7 @@ function UF.CreateBaseFrame(unit, parent, width, height, borderInsetY)
          -- Register events for combat/resting status updates
          frame:RegisterEvent("PLAYER_REGEN_DISABLED") -- Entered combat
          frame:RegisterEvent("PLAYER_REGEN_ENABLED") -- Left combat
+         frame:RegisterEvent("PLAYER_UPDATE_RESTING")
          frame:RegisterEvent("PLAYER_FLAGS_CHANGED") -- Resting status changed
     end
 
@@ -8909,6 +9138,7 @@ do
 end
 
 function FluxUnitFrames_RefreshAppearanceChrome()
+    if ns.PartyFrames and ns.PartyFrames.RefreshChrome then ns.PartyFrames.RefreshChrome() end
     local frames = { ns.PlayerFrame, ns.TargetFrame, ns.PetFrame, ns.TargetOfTargetFrame, ns.FocusFrame, ns.FocusTargetFrame }
     for _, frame in ipairs(frames) do
         if frame and frame.UpdatePartition then

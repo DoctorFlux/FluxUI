@@ -1,0 +1,249 @@
+{
+  "id": "STANCE-AURA-TEXT-CACHE-20261106",
+  "utc": "2026-11-06T15:45:54.548672+00:00",
+  "baselineCommit": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "checkpoint": "Random-spike-finer-capture-20261106T153942Z; actual source clean before this edit; parent verified184 on-disk settings and source/history archives",
+  "normalizedSourceSHA256": {
+    "baseline": "3a4bbdc17b5ec578d9b436e46185d1507a0a248029edf6ed9dec2bdcc9be5948",
+    "candidate": "84c29a6c0e48c3ca39ccf8094f04ed0bce6f178b83f2e5d73394d634b6213578"
+  },
+  "focusedTestSHA256": "de27739e053b57ed9a3d8ea134dbc8f2568053bd455ba8e07fb62d82c09c81e4",
+  "trigger": "Existing per-frame stance/consumable aura countdown rewrites unchanged exclusively-owned FontString text.",
+  "nativeMotivation": {
+    "client": "Forever1.60.1.70790; native120-second profile provided by user/root",
+    "driverCalls": 16604,
+    "reportedDriverRateMSPerSecond": 5.7,
+    "limits": "Inclusive native profile rank motivates a narrow repeated-write check. It does not identify214ms/181ms Flux maxima or random render stalls."
+  },
+  "desktopScenario": {
+    "iterations": 100000,
+    "warmupTicks": 1000,
+    "activeButtons": 1,
+    "display": "10m for the captured simulated second",
+    "pairs": 5,
+    "order": "Alternating baseline/candidate then candidate/baseline",
+    "unit": "Owned SetText calls per100000 unchanged-display ticks",
+    "productionScope": "Actual PublicNumber and countdown helper fragments; synthetic clock, owned text and native digit/holder counters. No native frames are created or rendered.",
+    "clockScope": "Raw host Lua os.clock intervals retained. Windows timer semantics/resolution and OS scheduling are not calibrated; do not call these native CPU, FPS or hardware timings."
+  },
+  "rawSamples": [
+    {
+      "ticks": 100000,
+      "ownedSetText": 100000,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 142.0,
+      "heapBeforeKB": 100.599609,
+      "heapAfterKB": 101.875977,
+      "pair": 1,
+      "variant": "baseline",
+      "stdout": "ticks=100000 ownedSetText=100000 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=142.000000 heapBeforeKB=100.599609 heapAfterKB=101.875977"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 1,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 132.0,
+      "heapBeforeKB": 101.091797,
+      "heapAfterKB": 102.368164,
+      "pair": 1,
+      "variant": "candidate",
+      "stdout": "ticks=100000 ownedSetText=1 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=132.000000 heapBeforeKB=101.091797 heapAfterKB=102.368164"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 1,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 132.0,
+      "heapBeforeKB": 101.091797,
+      "heapAfterKB": 102.368164,
+      "pair": 2,
+      "variant": "candidate",
+      "stdout": "ticks=100000 ownedSetText=1 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=132.000000 heapBeforeKB=101.091797 heapAfterKB=102.368164"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 100000,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 136.0,
+      "heapBeforeKB": 100.599609,
+      "heapAfterKB": 101.875977,
+      "pair": 2,
+      "variant": "baseline",
+      "stdout": "ticks=100000 ownedSetText=100000 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=136.000000 heapBeforeKB=100.599609 heapAfterKB=101.875977"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 100000,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 141.0,
+      "heapBeforeKB": 100.599609,
+      "heapAfterKB": 101.875977,
+      "pair": 3,
+      "variant": "baseline",
+      "stdout": "ticks=100000 ownedSetText=100000 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=141.000000 heapBeforeKB=100.599609 heapAfterKB=101.875977"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 1,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 129.0,
+      "heapBeforeKB": 101.091797,
+      "heapAfterKB": 102.368164,
+      "pair": 3,
+      "variant": "candidate",
+      "stdout": "ticks=100000 ownedSetText=1 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=129.000000 heapBeforeKB=101.091797 heapAfterKB=102.368164"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 1,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 130.0,
+      "heapBeforeKB": 101.091797,
+      "heapAfterKB": 102.368164,
+      "pair": 4,
+      "variant": "candidate",
+      "stdout": "ticks=100000 ownedSetText=1 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=130.000000 heapBeforeKB=101.091797 heapAfterKB=102.368164"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 100000,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 137.0,
+      "heapBeforeKB": 100.599609,
+      "heapAfterKB": 101.875977,
+      "pair": 4,
+      "variant": "baseline",
+      "stdout": "ticks=100000 ownedSetText=100000 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=137.000000 heapBeforeKB=100.599609 heapAfterKB=101.875977"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 100000,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 144.0,
+      "heapBeforeKB": 100.599609,
+      "heapAfterKB": 101.875977,
+      "pair": 5,
+      "variant": "baseline",
+      "stdout": "ticks=100000 ownedSetText=100000 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=144.000000 heapBeforeKB=100.599609 heapAfterKB=101.875977"
+    },
+    {
+      "ticks": 100000,
+      "ownedSetText": 1,
+      "holderShow": 100000,
+      "digitHide": 100000,
+      "digitFont": 100000,
+      "digitColor": 100000,
+      "digitAlpha": 100000,
+      "timeReads": 100000,
+      "hostClockMilliseconds": 135.0,
+      "heapBeforeKB": 101.091797,
+      "heapAfterKB": 102.368164,
+      "pair": 5,
+      "variant": "candidate",
+      "stdout": "ticks=100000 ownedSetText=1 holderShow=100000 digitHide=100000 digitFont=100000 digitColor=100000 digitAlpha=100000 timeReads=100000 hostClockMilliseconds=135.000000 heapBeforeKB=101.091797 heapAfterKB=102.368164"
+    }
+  ],
+  "hostClockSummary": {
+    "baseline": {
+      "rawHostClockMS": [
+        142.0,
+        136.0,
+        141.0,
+        137.0,
+        144.0
+      ],
+      "minimum": 136.0,
+      "maximum": 144.0,
+      "median": 141.0,
+      "mean": 140.0,
+      "stdev": 3.391164991562634
+    },
+    "candidate": {
+      "rawHostClockMS": [
+        132.0,
+        132.0,
+        129.0,
+        130.0,
+        135.0
+      ],
+      "minimum": 129.0,
+      "maximum": 135.0,
+      "median": 132.0,
+      "mean": 131.6,
+      "stdev": 2.3021728866442674
+    }
+  },
+  "workCounts": {
+    "baselineOwnedSetText": 100000,
+    "candidateOwnedSetText": 1,
+    "unchangedPerVariant": {
+      "clockReads": 100000,
+      "holderShow": 100000,
+      "nativeDigitHide": 100000,
+      "nativeFontLookup": 100000,
+      "nativeDigitColor": 100000,
+      "nativeDigitAlpha": 100000
+    }
+  },
+  "resourceScope": "No new frame, event, timer, ticker, per-frame table or native-digit cache. One last-successful public string field per existing owned FontString. Synthetic heap samples are not allocation bytes, per-addon memory, leak proof or native resource costs.",
+  "correctness": "Focused test covers nil/empty/false, changed and cleared text, exact format/expiry boundaries, timeMod, hidden/ownership loss/reactivation, independent FontStrings, font retry, failed text-write retry, missing setter and legacy native digit reconciliation. Three mutants rejected.",
+  "changes": "Only successful writes update the private owned-text cache. Per-frame clock/remaining-time/ownership/expiry evaluation and formatter are unchanged. Native digits still reconcile on every tick.",
+  "interpretation": "PASS for eliminating identical owned text writes under the specified production-fragment scenario. Native timing/taint/pixel/cadence acceptance remains pending; no random-spike,214ms-delay or FPS fix claim.",
+  "nativeConfiguration": {
+    "profiler": "Unchanged by this candidate/desktop replay",
+    "hardware": "Not collected for this synthetic test",
+    "settingsAndAddonList": "Not exercised by desktop replay; existing user native profile has its own context"
+  },
+  "pending": [
+    "Matched native same-character/profile/client replays with unchanged settings/addons",
+    "Combat and native secure/taint behavior",
+    "Pixel and exact countdown timing acceptance",
+    "Full-addon native frame-time/allocation/memory effects",
+    "Cause of intermittent214ms/181ms Flux samples and larger rendering gaps"
+  ]
+}

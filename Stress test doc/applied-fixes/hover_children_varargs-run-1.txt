@@ -1,0 +1,6 @@
+METRIC hover branch=live cases=11 assertions_recorded=true
+METRIC hover branch=forever cases=11 assertions_recorded=true
+METRIC hover branch=classic_era cases=11 assertions_recorded=true
+METRIC hover branch=classic_anniversary cases=11 assertions_recorded=true
+METRIC hover branch=classic cases=11 assertions_recorded=true
+SUMMARY checks=55 failures=0

@@ -63,7 +63,7 @@ local UF = UF
 local function PortraitUnitExists() return state.exists end
 local function PortraitFrameIsVisuallyShown() return state.visible end
 local function PortraitShouldShowOutOfRangeMark() return state.outOfRange end
-local function ShowPortraitQuestionMark(portrait) portrait:SetModel("question"); portrait:Show() end
+local function ShowBlizzardPortraitFallback(portrait, owner) portrait:Hide(); owner.Portrait2D:Show() end
 local function BindPortraitUnit() end
 local function SetPortraitUnit(portrait) portrait:SetUnit("watched") end
 local function ApplyPortraitCamera() end
@@ -239,7 +239,7 @@ local function exercise(branch, noTimers, text)
     UF.HideEmptyUnitPortrait(f)
     check(f.Portrait.model == nil and not f.Portrait.shown, branch .. " delayed hidden model load clears again")
     s.exists = true; s.outOfRange = true; UF.UpdatePortrait(f, f.unit)
-    check(f.Portrait.model == "question" and f.Portrait.shown, branch .. " question mark preserved")
+    check(f.Portrait2D.shown and not f.Portrait.shown, branch .. " native portrait fallback preserved")
     s.exists = false; UF.HideEmptyUnitPortrait(f)
     check(f.Portrait.model == nil, branch .. " question mark clear invalidates")
     s.exists = true; s.use3D = false; UF.UpdatePortrait(f, f.unit)

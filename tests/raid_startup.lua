@@ -20,7 +20,7 @@ local function fixture(client, inCombat, enabled)
     e.UnitInRaid = function() return nil end
     e.GetRaidRosterInfo = function() end
     local timers, frames, specs = {}, {}, {}
-    local metrics = { headers = 0, hides = 0, attributes = 0, fonts = 0 }
+    local metrics = { headers = 0, hides = 0, attributes = 0, fonts = 0, drivers = 0 }
     local methods = {}
     local noop = function() end
     for name in ("SetFrameStrata SetFrameLevel SetAllPoints SetClipsChildren SetShadowOffset SetTextColor SetFont SetScale"):gmatch("%S+") do methods[name] = noop end
@@ -117,10 +117,14 @@ local function fixture(client, inCombat, enabled)
             if frame.events.PLAYER_REGEN_ENABLED and frame.scripts.OnEvent then frame.scripts.OnEvent(frame, "PLAYER_REGEN_ENABLED") end
         end
     end
+    -- Native APIs precede addon execution; exercise the captured function.
+    e.RegisterStateDriver = function() metrics.drivers = metrics.drivers + 1 end
+    local nativeDriver = e.RegisterStateDriver
     load("Blizzard/Hide.lua", e, ns)
     load("RaidFrame/FluxRaidCompat.lua", e, ns)
     load("RaidFrame/FluxRaidLayout.lua", e, ns)
     load("RaidFrame/FluxRaidFrame.lua", e, ns)
+    check(e.RegisterStateDriver == nativeDriver, "raid preserves native driver identity")
     e.FluxRaid_OnLoad(e.CreateFrame("Frame", "FluxRaidEventFrame"))
     e.metrics, e.specs = metrics, specs
     return e
@@ -164,9 +168,8 @@ check(disabled.specs.RaidFrames.OnEnable(), "disabled raid profile still initial
 check(disabled.metrics.hides == 0 and disabled.CompactRaidFrameContainer:IsShown(), "disabled saved profile never hides native raid controls")
 local partial = fixture("live", false)
 partial.FluxRaidCompat.CanUsePetBattleStateDriver = function() return true end
-local snippetReady, drivers = false, 0
+local snippetReady = false
 partial.Flux.Restricted = { Works = function() return true end, SetSnippet = function() return snippetReady end }
-partial.RegisterStateDriver = function() drivers = drivers + 1 end
 local create = partial.CreateFrame
 partial.CreateFrame = function(...)
     local f = create(...)
@@ -176,6 +179,6 @@ end
 check(partial.specs.RaidFrames.OnEnable() == false and partial.metrics.hides == 0, "failed pet-battle setup retains native fallback")
 local driver = partial.FluxRaidState.petBattleDriver
 snippetReady = true
-check(partial.specs.RaidFrames.OnEnable() and partial.FluxRaidState.petBattleDriver == driver and drivers == 1,
+check(partial.specs.RaidFrames.OnEnable() and partial.FluxRaidState.petBattleDriver == driver and partial.metrics.drivers == 1,
     "partial pet-battle setup reuses its frame and commits its driver once")
 print("Raid startup: " .. assertions .. " assertions passed across 5 mocked clients; live secure-header/taint testing pending")

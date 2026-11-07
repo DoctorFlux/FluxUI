@@ -1,0 +1,166 @@
+-- Complete real helper/function fragments with explicit opaque-value traps.
+-- Not a native secret number, taint VM, or attribution of USER-001's fade owner.
+local checks,expectedFailures,containedFailures=0,0,0
+local function check(ok,label)checks=checks+1;assert(ok,label)end
+local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
+local function fragment(path,first,last)
+    local source=read(path);local a=assert(source:find(first,1,true),first)
+    local b=assert(source:find(last,a+#first,true),last)
+    local _,lines=source:sub(1,a-1):gsub("\n","")
+    return string.rep("\n",lines)..source:sub(a,b-1)
+end
+local function loadfragment(e,path,first,last,export)
+    return assert(load(fragment(path,first,last).."\nreturn "..export,"@"..path,"t",e))()
+end
+local function environment()
+    local e=setmetatable({},{__index=_G});e._G=e
+    local s={traps=0,alphaSets=0}
+    local function trap(kind)
+        return function()s.traps=s.traps+1;error("MODELED_OPAQUE_"..kind,2)end
+    end
+    s.opaque=setmetatable({opaque=true},{__lt=trap("COMPARE"),__le=trap("COMPARE"),__add=trap("ARITHMETIC"),__sub=trap("ARITHMETIC"),__mul=trap("ARITHMETIC"),__div=trap("ARITHMETIC")})
+    e.issecretvalue=function(value)return type(value)=="table"and rawget(value,"opaque")==true end
+    e.canaccessvalue=function()return true end -- Deliberately true even for opaque.
+    local ns={Flux={Client={isRetail=true,isCamelot=true}},API={},_FluxAPICompat={issecretvalue=e.issecretvalue}}
+    e.FLUX_API={};e.WOW_VERSION={}
+    assert(loadfile("Core/API/Secrets.lua","t",e))("_FluxUI",ns)
+    assert(loadfile("Core/API/Secrets_Midnight.lua","t",e))("_FluxUI",ns)
+    assert(loadfile("Core/FluxAPI/Secrets.lua","t",e))("_FluxUI",ns)
+    e.API=ns.API;e.UF={};s.ns=ns;s.env=e
+    return s,e
+end
+local shared="UnitFrames/FluxUnitFrames_Shared.lua"
+local meter="Battlezonemap/FluxMeterSkin.lua"
+
+-- Actual secret helpers reject an opaque value even though CanAccessValue=true.
+do
+    local s,e=environment();local api=s.ns.API;local sec=s.ns.Flux.Secrets
+    check(api.CanAccessValue(s.opaque)==true,"model deliberately supplies accessible-but-secret value")
+    check(api.IsSecretValue(s.opaque)==true,"production legacy helper identifies opaque stand-in")
+    check(api.SafeGetNumber(s.opaque,7)==7 and sec.SafeGetNumber(s.opaque,8)==8,"both production number helpers reject secret before conversion")
+    check(api.KeepLastNumber(s.opaque,.4,1)==.4,"production KeepLastNumber retains prior plain alpha")
+    check(api.SafeGetNumber(.7,0)==.7 and api.SafeGetNumber(nil,.9)==.9,"readable/missing numeric helper controls")
+    check(s.traps==0,"guarded helpers never compare or calculate opaque inputs")
+    print("RESULT|secret_helper_controls|checks=6|opaque_operations=0|canaccessvalue_true_is_not_enough=true")
+end
+
+-- Full production heal-prediction painter; no handwritten duplicate branch.
+do
+    local s,e=environment();local api,uf=e.API,e.UF
+    api.isMidnight=true
+    e.ValueIsSecret=loadfragment(e,shared,"local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)","ValueIsSecret")
+    e.UpdateFillPosition=loadfragment(e,shared,"local function UpdateFillPosition(self, previousTexture, amount, offsetXPercent)","--- Hide heal and absorb overlays the options turned off.","UpdateFillPosition")
+    loadfragment(e,shared,"function UF.ApplyHealAbsorbOptionVisibility(frame)","-- AFK: safe boolean + display rules", "UF")
+    e.RefreshAbsorbShieldOverlay=loadfragment(e,shared,"local function RefreshAbsorbShieldOverlay(bar, tileSize)","local function FrameHasPositiveTotalAbsorbs(unit)","RefreshAbsorbShieldOverlay")
+    e.UnitIsDeadOrGhost=function()return false end
+    api.UnitGetDetailedHealPrediction=function()end
+    local function fixture(width)
+        local x={width=width,shows=0,hides=0,widthReads=0,sets=0}
+        local health={GetWidth=function()x.widthReads=x.widthReads+1;return x.width end,
+            GetStatusBarTexture=function()return {}end,GetMinMaxValues=function()return 0,100 end}
+        health.healCalc={GetIncomingHeals=function()return 0,0,0,false end,GetHealAbsorbs=function()return 0,false end,
+            SetDamageAbsorbClampMode=function()end,GetDamageAbsorbs=function()return 15 end}
+        local absorb={Hide=function()x.hides=x.hides+1 end,Show=function()x.shows=x.shows+1 end,
+            SetWidth=function(_,v)x.forwardedWidth=v;x.sets=x.sets+1 end,
+            SetValue=function()end,SetMinMaxValues=function()end,ClearAllPoints=function()end,SetPoint=function()end}
+        local frame={unit="player",Health=health,myHealPredictionBar={Hide=function()end},totalAbsorbBar=absorb}
+        return frame,x
+    end
+    local normal,n=fixture(120);uf.UpdateHealPrediction(normal)
+    check(n.shows==1 and n.forwardedWidth==120 and n.widthReads==1,"readable health width paints absorb normally")
+    local zero,z=fixture(0);uf.UpdateHealPrediction(zero)
+    check(z.shows==0 and z.hides==1,"zero health width hides absorb")
+    check(pcall(uf.UpdateHealPrediction,{}),"missing prediction owner exits without native getters")
+    local bad,b=fixture(s.opaque)
+    local ok,err=xpcall(function()uf.UpdateHealPrediction(bad)end,debug.traceback)
+    check(not ok and err:find("MODELED_OPAQUE_COMPARE",1,true)and err:find("FluxUnitFrames_Shared.lua:2564",1,true),"opaque native width reaches real unguarded comparison")
+    check(b.widthReads==1 and b.shows==0 and b.sets==0,"opaque width fails before absorb SetWidth/Show")
+    expectedFailures=expectedFailures+1
+    print("EXPECTED_CONDITIONAL_FAILURE|GEO-01|"..err:gsub("\n"," | "))
+    e.FluxUnitFrames_ShouldShowHealPrediction=function()return false end
+    e.FluxUnitFrames_ShouldShowAbsorbs=function()return false end
+    local disabled,d=fixture(s.opaque);uf.UpdateHealPrediction(disabled)
+    check(d.widthReads==0 and d.hides==1,"both options disabled avoid opaque width path")
+    print("RESULT|heal_prediction_width|readable_control=PASS|zero_control=PASS|missing_owner_control=PASS|disabled_control=PASS|conditional_comparison_failure=1|native_failure=NOT_OBSERVED")
+end
+
+-- Real tiled-overlay helper: arithmetic failure is caught internally, leaving
+-- previous coordinates and clearing its public geometry cache for the attempt.
+do
+    local s,e=environment()
+    e.ValueIsSecret=loadfragment(e,shared,"local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)","ValueIsSecret")
+    local refresh=loadfragment(e,shared,"local function RefreshTiledOverlayTexCoords(overlay, tileSize)","local function RefreshAbsorbShieldOverlay(bar, tileSize)","RefreshTiledOverlayTexCoords")
+    local o={width=96,height=32,writes=0,shown=true}
+    function o:IsShown()return self.shown end
+    function o:GetWidth()return self.width end
+    function o:GetHeight()return self.height end
+    function o:SetTexCoord(...)self.coords={...};self.writes=self.writes+1 end
+    refresh(o,32);check(o.writes==1 and o.coords[2]==3 and o.coords[4]==1,"plain geometry computes correct tile coordinates")
+    refresh(o,32);check(o.writes==1,"stable plain geometry skips duplicate TexCoord write")
+    local prior=o.coords;o.width=s.opaque
+    check(pcall(refresh,o,32),"opaque geometry error is contained by production pcall")
+    check(s.traps==1 and o.writes==1 and o.coords==prior,"contained opaque division leaves previous tile coordinates")
+    check(o._fluxTileWidth==nil and o._fluxTileHeight==nil and o._fluxTileSize==nil,"opaque attempt clears public dimension caches")
+    containedFailures=containedFailures+1
+    o.width=64;refresh(o,32);check(o.writes==2 and o.coords[2]==2,"later readable geometry recovers")
+    o.shown=false;o.width=s.opaque;local before=s.traps;refresh(o,32)
+    check(s.traps==before,"hidden overlay avoids geometry reads/arithmetic")
+    check(pcall(refresh,nil,32),"missing overlay exits safely")
+    print("RESULT|tiled_overlay_geometry|plain_control=PASS|stable_cache_control=PASS|hidden_control=PASS|missing_control=PASS|contained_conditional_arithmetic_failure=1|subsequent_public_recovery=PASS")
+end
+
+-- Guarded native meter paths are controls, not findings merely because an
+-- opaque alpha is stored. Production must avoid inspecting it before a sink.
+do
+    local s,e=environment()
+    e.PublicNumber=loadfragment(e,meter,"local function PublicNumber(value)","local function Scale(value)","PublicNumber")
+    e.FiniteNumber=loadfragment(e,meter,"local function FiniteNumber(value)","local function RestoreHeader(state)","FiniteNumber")
+    e.InCombat=function()return false end;e.HEADER_HEIGHT=14;e.NATIVE_SCROLL_TOP_OFFSET=2
+    local headerFns=loadfragment(e,meter,"local function RestoreHeader(state)","local function LayoutChrome(frame, state, scale, hasHeader)","{restore=RestoreHeader,style=StyleNativeHeader}")
+    local h={GetAlpha=function()return s.opaque end,SetTexture=function()end,
+        SetAlpha=function(_,v)s.lastAlpha=v;s.alphaSets=s.alphaSets+1 end,
+        GetHeight=function()return s.opaque end,SetHeight=function()error("secret height must not be applied")end}
+    local state={};headerFns.style({Header=h},state,1,true)
+    check(state.headerAlpha==s.opaque and s.lastAlpha==0 and not state.headerHeight,"header caches alpha opaquely and rejects inaccessible height")
+    check(headerFns.restore(state)and s.lastAlpha==s.opaque,"header restores same opaque alpha directly to native sink")
+    check(s.traps==0,"header never performs opaque arithmetic/comparison")
+    local missing={};headerFns.style({Header={SetTexture=function()end,SetAlpha=function()end}},missing,1,false)
+    check(missing.headerAlpha==1,"missing alpha getter uses public default")
+
+    local publicPoints=loadfragment(e,meter,"local function PublicPoints(region, emptyAllowed)","local AlignTitle, FitHeaderControls", "PublicPoints")
+    local region={GetNumPoints=function()return 1 end,GetPoint=function()return "TOPLEFT",{},"TOPLEFT",s.opaque,0 end,
+        ClearAllPoints=function()end,SetPoint=function()end}
+    check(publicPoints(region)==nil and s.traps==0,"secret anchor offset is rejected before arithmetic/comparison")
+    region.GetPoint=function()return "TOPLEFT",{},"TOPLEFT",2,3 end
+    check(publicPoints(region)[1][4]==2,"public anchor offsets are preserved")
+    check(publicPoints(nil)==nil,"missing point owner control")
+
+    e.timerOrder=0;e.Skin={};e.nativeWindows={};e.ownedPanes={}
+    local track=loadfragment(e,meter,"local function HookTimerVisibility(window, state)","function Skin:ApplyToWindow(window, scale)","TrackTimer")
+    local timer={GetAlpha=function()return s.opaque end,SetAlpha=function()end}
+    local window={GetSessionTimerFontString=function()return timer end}
+    local tracked={};track(window,tracked)
+    check(not tracked.timerTracked and s.traps==0,"secret native timer alpha is rejected by FiniteNumber")
+    timer.GetAlpha=function()return .8 end;track(window,tracked)
+    check(tracked.timerTracked and tracked.timerAlpha==.8,"public native timer alpha is tracked")
+    check(pcall(track,{},{}),"missing timer getter control")
+
+    local visible=loadfragment(e,meter,"local function SetMenuVisible(state, shown)","local function InstallMenuHover(frame, state)","SetMenuVisible")
+    local forwarded={};local menu={menuRegions={{region={SetAlpha=function(_,v)forwarded[1]=v end},alpha=s.opaque},
+        {region={SetAlpha=function(_,v)forwarded[2]=v end},alpha=.8}}}
+    visible(menu,true)
+    check(forwarded[1]==s.opaque and math.abs(forwarded[2]-.736)<1e-9 and s.traps==0,"menu scales only public alpha; opaque alpha forwarded unchanged")
+    visible(menu,false);check(forwarded[1]==0 and forwarded[2]==0,"menu hide uses public endpoints")
+    print("RESULT|meter_guard_controls|opaque_header_restore=PASS|secret_height_rejected=PASS|secret_point_rejected=PASS|secret_timer_alpha_rejected=PASS|opaque_menu_alpha_forwarded=PASS|opaque_operations=0")
+end
+
+-- Existing portrait visibility guards should not be falsely flagged by GetAlpha.
+do
+    local s,e=environment();e.IsSecretValue=e.API.IsSecretValue
+    local shown=loadfragment(e,shared,"local function PortraitFrameIsVisuallyShown(self)","-- OOR \"?\" only while the unit exists", "PortraitFrameIsVisuallyShown")
+    check(shown({unit="player",GetAlpha=function()return s.opaque end})and s.traps==0,"opaque portrait alpha avoids comparison")
+    check(not shown({unit="player",GetAlpha=function()return .005 end}),"plain transparent portrait control")
+    check(shown({unit="player"}),"missing portrait alpha getter control")
+    print("RESULT|portrait_alpha_guard_control|opaque_alpha=PASS|plain_alpha=PASS|missing_getter=PASS|opaque_operations=0")
+end
+print(("RESULT|SUMMARY|checks=%d|failed=0|conditional_failures=%d|contained_conditional_failures=%d|native_errors_observed=0"):format(checks,expectedFailures,containedFailures))

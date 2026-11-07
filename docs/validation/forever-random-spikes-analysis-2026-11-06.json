@@ -1,0 +1,325 @@
+{
+  "sourceSavedUTC": "2026-11-06T15:14:39.629827+00:00",
+  "sourceSavedSHA256": "4da3b39d80db4bfa3781bd25fa0a94e1710937f487139c553ca0e67a9997e7cc",
+  "extraction": "Only the spikeWatch literal table exported; all private settings and account paths excluded.",
+  "nativeScope": {
+    "version": "1.60.1",
+    "build": "70790",
+    "durationSeconds": 600.0050000000047,
+    "status": "expired",
+    "frameGapThresholdMs": 200,
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "coverage": {
+      "Ticker": true,
+      "Events": true,
+      "Scheduler": true
+    },
+    "observedCentralCallbacks": 86522,
+    "recordedCentralCallbacksAtLeast10ms": 0,
+    "retainedGaps": 7
+  },
+  "timingInterpretation": "C_AddOnProfiler LastTime is the nearest sampled completed tick, not an exact per-gap stack or function attribution. Rows are correlations; overlapping profiler/callback durations must not be summed.",
+  "clockInterpretation": "Stored capturedAt is a local wall clock without a zone. Derived local/UTC timestamps assume Europe/Copenhagen UTC+1 on2026-11-06, per user context; relative seconds and raw report remain primary evidence.",
+  "findings": [
+    "Two sampled gap boundaries have substantial Flux-attributed nearest tick times:214.1369ms at+177.578s (235ms application) and181.3057ms at+333.540s (244ms application). They justify further Flux-local attribution rather than exonerating Flux.",
+    "The2,667ms and1,174ms gap samples have only0.182ms and4.4358ms Flux times and0.4558ms/4.6345ms overall addon times. This capture therefore includes multiple gap patterns; no single cause is established.",
+    "Coverage is enabled for all three shared services and86,522 callbacks were observed, but none individually crossed10ms. The current implementation records frame callback maximum only after that cutoff. Numerous sub10ms callbacks and direct/private frames/timers remain unaccounted for.",
+    "BugTabs counter was0 before, after and at each of the five sampled contexts. Error storms are not evidenced in this window; unobserved errors or later sessions are not ruled out.",
+    "Mailbox and WorldMap were closed; auction frame was missing; Flux tab wasMap in all7 rows. Only the last gap was in combat. This does not rule out background inventory/auction messages or unrecorded windows.",
+    "Global Lua heap ranged from677,961KB to784,508KB across sampled boundaries. Net growth was21,794.329KB from start to end, with substantial rises and drops; these whole-client interval deltas establish neither a module allocation count nor a memory leak."
+  ],
+  "diagnosticRecordedSections": {
+    "totalMs": 573.3937026560307,
+    "peakMs": 0.2764999866485596,
+    "msPerObservedSecond": 0.9556482073583157,
+    "limit": "Excludes observer-seam and fast-callback overhead as stated in the native report; not total diagnostic CPU."
+  },
+  "globalLuaHeap": {
+    "beforeKB": 762713.8134765625,
+    "afterKB": 784508.142578125,
+    "netDeltaKB": 21794.3291015625,
+    "isLeakTest": false
+  },
+  "nextUsefulMeasurement": "Record per-frame callback count/max including sub10ms spans, with overlap caveats, and instrument selected known Flux-owned private timer/frame paths only as justified. No global C_Timer/native API replacements.",
+  "rows": [
+    {
+      "sequence": 1,
+      "relativeSeconds": 127.3260000000009,
+      "derivedClientLocalTime": "2026-11-06T16:03:55.326000+01:00",
+      "derivedUTC": "2026-11-06T15:03:55.326000+00:00",
+      "frameGapMs": 2667.00005531311,
+      "contextSampled": true,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": {
+        "applicationMs": 2667,
+        "addonMs": 0.182,
+        "overallMs": 0.4558,
+        "top": [
+          {
+            "addon": "Attune",
+            "ms": 0.1852
+          },
+          {
+            "addon": "_FluxUI",
+            "ms": 0.182
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.06910000000000001
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0165
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.003
+          }
+        ]
+      },
+      "globalHeapKB": 677961.0234375,
+      "globalHeapDeltaSincePreviousSampleKB": -84752.7900390625,
+      "errorDeltaSincePreviousSample": 0,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 2,
+      "relativeSeconds": 177.5779999999795,
+      "derivedClientLocalTime": "2026-11-06T16:04:45.578000+01:00",
+      "derivedUTC": "2026-11-06T15:04:45.578000+00:00",
+      "frameGapMs": 235.0000143051148,
+      "contextSampled": true,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": {
+        "applicationMs": 235,
+        "addonMs": 214.1369,
+        "overallMs": 220.6312,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 214.1369
+          },
+          {
+            "addon": "Syndicator",
+            "ms": 6.2491
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1564
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0646
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0141
+          }
+        ]
+      },
+      "globalHeapKB": 739828.5458984375,
+      "globalHeapDeltaSincePreviousSampleKB": 61867.5224609375,
+      "errorDeltaSincePreviousSample": 0,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 3,
+      "relativeSeconds": 177.7859999999928,
+      "derivedClientLocalTime": "2026-11-06T16:04:45.786000+01:00",
+      "derivedUTC": "2026-11-06T15:04:45.786000+00:00",
+      "frameGapMs": 208.0000042915344,
+      "contextSampled": false,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": null,
+      "globalHeapKB": null,
+      "globalHeapDeltaSincePreviousSampleKB": null,
+      "errorDeltaSincePreviousSample": null,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 4,
+      "relativeSeconds": 332.4949999999953,
+      "derivedClientLocalTime": "2026-11-06T16:07:20.495000+01:00",
+      "derivedUTC": "2026-11-06T15:07:20.495000+00:00",
+      "frameGapMs": 253.000020980835,
+      "contextSampled": true,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": {
+        "applicationMs": 253,
+        "addonMs": 13.2513,
+        "overallMs": 13.5305,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 13.2513
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.2027
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.055
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0156
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0031
+          }
+        ]
+      },
+      "globalHeapKB": 687324.3798828125,
+      "globalHeapDeltaSincePreviousSampleKB": -52504.166015625,
+      "errorDeltaSincePreviousSample": 0,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 5,
+      "relativeSeconds": 332.9389999999839,
+      "derivedClientLocalTime": "2026-11-06T16:07:20.939000+01:00",
+      "derivedUTC": "2026-11-06T15:07:20.939000+00:00",
+      "frameGapMs": 301.0000288486481,
+      "contextSampled": false,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": null,
+      "globalHeapKB": null,
+      "globalHeapDeltaSincePreviousSampleKB": null,
+      "errorDeltaSincePreviousSample": null,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 6,
+      "relativeSeconds": 333.5399999999791,
+      "derivedClientLocalTime": "2026-11-06T16:07:21.540000+01:00",
+      "derivedUTC": "2026-11-06T15:07:21.540000+00:00",
+      "frameGapMs": 244.0000176429749,
+      "contextSampled": true,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": {
+        "applicationMs": 244,
+        "addonMs": 181.3057,
+        "overallMs": 181.5125,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 181.3057
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1849
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0165
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.0036
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0018
+          }
+        ]
+      },
+      "globalHeapKB": 742848.7548828125,
+      "globalHeapDeltaSincePreviousSampleKB": 55524.375,
+      "errorDeltaSincePreviousSample": 0,
+      "combat": false,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    },
+    {
+      "sequence": 7,
+      "relativeSeconds": 522.8559999999998,
+      "derivedClientLocalTime": "2026-11-06T16:10:30.856000+01:00",
+      "derivedUTC": "2026-11-06T15:10:30.856000+00:00",
+      "frameGapMs": 1174.000024795532,
+      "contextSampled": true,
+      "observedSlowCentralCallbackMs": 0,
+      "nearestProfilerTick": {
+        "applicationMs": 1174,
+        "addonMs": 4.4358,
+        "overallMs": 4.6345,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 4.4358
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1749
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0192
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.003
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0016
+          }
+        ]
+      },
+      "globalHeapKB": 756385.0947265625,
+      "globalHeapDeltaSincePreviousSampleKB": 13536.33984375,
+      "errorDeltaSincePreviousSample": 0,
+      "combat": true,
+      "ui": {
+        "auction": "missing",
+        "combat": true,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      }
+    }
+  ]
+}

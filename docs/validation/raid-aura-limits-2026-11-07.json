@@ -1,0 +1,346 @@
+{
+  "capturedAtUTC": "2026-11-06T23:41:02.736150+00:00",
+  "changeID": "RAID-AURA-LIMITS-20261107",
+  "requirements": [
+    "REQ-RF-17",
+    "REQ-RF-27",
+    "REQ-RF-28"
+  ],
+  "userChoices": {
+    "implementation": "direct",
+    "size": "Keep icons inside; cap their size",
+    "limits": "separate buffs/debuffs1..6",
+    "dispellableOnly": "strict across every visible debuff",
+    "newScale": "User explicitly confirmed30% taller than old1.00 (11px to14.3px requested), with lower0.50 available"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261106T232208Z",
+    "sourceZIP_SHA256": "ecb232ae3e02723546f06112b60a0601a693b020fa9f41300f233418cb2576b2",
+    "actualSourceFiles": 1689,
+    "onDiskSettingsFiles": 158,
+    "historyBundleVerified": true,
+    "scope": "On-disk settings only; no live-memory/closed-client assertion"
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "2fea0fa6e3d7f7a27f1e0050ccc6046193ccc4071e29bfdf27f6f8e20f77fbea",
+    "RaidFrame/FluxRaidVisuals.lua": "0e231d99ba44d0d64db8aded91aa29c52623d174aa614b762e2a3171aec19c9e",
+    "RaidFrame/FluxRaidPreview.lua": "ea2d42794d39776bc314089d39d7a93b6ac42b887270bbc4c16d0f7ddec50bb5",
+    "AddonOptions/FluxOptionsDefaults.lua": "f67d29c0989e96c7f176a20fbef37760aea568de89a55ea43bd8e056e8c6515c",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "36c1a2cea420e1634f1d9699e48f352f79afdbdbd70cfeceb4ef50cdff8dd203"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "42b8dd9ab87a8839c50fd9bc162fff32ba5bf552405094f1e1bd1e2d15857609",
+    "RaidFrame/FluxRaidVisuals.lua": "c83803ef7b847872a733cac78ef2fd1377be936d5ccc537fc5facf809ec25325",
+    "RaidFrame/FluxRaidPreview.lua": "bf36f52c29533f3c9af6f5671827620f1082a7d8b2e76c44916a4f10e4958b0c",
+    "AddonOptions/FluxOptionsDefaults.lua": "d6c5b57fb75a089b48d3d664a3ec493929b7c0446481a10d98d3e63c10fef715",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "0c97cd91aaea154a4c57f1c04e70e63d8fd4378f4ad514bcc6cc7e203763a4a5"
+  },
+  "desktop": {
+    "scriptsPassed": 200,
+    "scriptsFailed": 0,
+    "syntaxFiles": 862,
+    "sourceDrift": {
+      "beforeCount": 862,
+      "afterCount": 862,
+      "unchanged": true,
+      "corpusSHA256": "58dd742fcc6edb450165a5dea73e182e39d8d218f735f3368d1a27ced7d1efe2"
+    },
+    "pairedRegressions": {
+      "scope": "Five alternating fresh-process functional pairs per case; no native CPU/FPS/time measurement.",
+      "sourceHashes": {
+        "auras": {
+          "baseline": "2fea0fa6e3d7f7a27f1e0050ccc6046193ccc4071e29bfdf27f6f8e20f77fbea",
+          "candidate": "42b8dd9ab87a8839c50fd9bc162fff32ba5bf552405094f1e1bd1e2d15857609"
+        },
+        "preview": {
+          "baseline": "ea2d42794d39776bc314089d39d7a93b6ac42b887270bbc4c16d0f7ddec50bb5",
+          "candidate": "bf36f52c29533f3c9af6f5671827620f1082a7d8b2e76c44916a4f10e4958b0c"
+        },
+        "layout": {
+          "baseline": "0e231d99ba44d0d64db8aded91aa29c52623d174aa614b762e2a3171aec19c9e",
+          "candidate": "c83803ef7b847872a733cac78ef2fd1377be936d5ccc537fc5facf809ec25325"
+        }
+      },
+      "pairs": [
+        {
+          "case": "auras",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: fixed clipped side blocks each fit three columns and two rows at the existing outer size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:253: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 8267 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 8267 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: fixed clipped side blocks each fit three columns and two rows at the existing outer size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:253: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: fixed clipped side blocks each fit three columns and two rows at the existing outer size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:253: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 8267 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 8267 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: fixed clipped side blocks each fit three columns and two rows at the existing outer size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:253: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: fixed clipped side blocks each fit three columns and two rows at the existing outer size\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:253: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 8267 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "preview",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: raid-aura-options-absolute-path-adapter:12: expiring auras have fitted centered outlined remaining text and retain compact corner stack counts\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:224: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura options/preview: 157 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+          }
+        },
+        {
+          "case": "preview",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura options/preview: 157 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: raid-aura-options-absolute-path-adapter:12: expiring auras have fitted centered outlined remaining text and retain compact corner stack counts\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:224: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "preview",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: raid-aura-options-absolute-path-adapter:12: expiring auras have fitted centered outlined remaining text and retain compact corner stack counts\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:224: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura options/preview: 157 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+          }
+        },
+        {
+          "case": "preview",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura options/preview: 157 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: raid-aura-options-absolute-path-adapter:12: expiring auras have fitted centered outlined remaining text and retain compact corner stack counts\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:224: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "preview",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: raid-aura-options-absolute-path-adapter:12: expiring auras have fitted centered outlined remaining text and retain compact corner stack counts\nstack traceback:\n\t[C]: in function 'assert'\n\traid-aura-options-absolute-path-adapter:12: in local 'check'\n\traid-aura-options-absolute-path-adapter:224: in main chunk\n\t...7972-8df9-fa26882e0e03\\duration_preview_pair_adapter.lua:8: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura options/preview: 157 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:18: shared aura geometry helper missing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:18: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 1683 checks; canonical startup-independent sizing, taller requested mapping, independent limits and inside-fit text/bounds; six rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 1683 checks; canonical startup-independent sizing, taller requested mapping, independent limits and inside-fit text/bounds; six rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:18: shared aura geometry helper missing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:18: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:18: shared aura geometry helper missing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:18: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 1683 checks; canonical startup-independent sizing, taller requested mapping, independent limits and inside-fit text/bounds; six rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 1683 checks; canonical startup-independent sizing, taller requested mapping, independent limits and inside-fit text/bounds; six rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:18: shared aura geometry helper missing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:18: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:18: shared aura geometry helper missing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:18: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 1683 checks; canonical startup-independent sizing, taller requested mapping, independent limits and inside-fit text/bounds; six rejected mutants; native rendering pending\n"
+          }
+        }
+      ],
+      "variation": "All15 baseline runs rejected; all15 candidate runs pass."
+    }
+  },
+  "implementation": {
+    "geometry": "Canonical10x15 with1px gap independent of startup settings; requested height11*1.30*scale (1.00=>14.3px) with0.50 minimum; shared public-container uniform scale and inside-fit cap; independent1..6 capacities default6; preview min(demo,capacity)",
+    "durationFit": "Duration font fits actual icon width/height; wider centering FontString does not permit clipped suffix glyphs beyond owned viewports",
+    "nativeGlobalLimit": "Per-group caps plus owned clipping; lazy identical second-row native owners for exact4/5 across mixed categories; no native child reads/handlers replaced",
+    "strict": "Only raw HARMFUL|RAID group enabled on original and tail owners; no own/boss/priority exceptions",
+    "combat": "Existing OOC deferral keeps old fitted geometry/counts until existing safe refresh; lazy pool creation only OOC",
+    "preview": "Same scoped aura flags/geometry/limits as live; curated synthetic dispellable examples omit Bleed, not current-class capability proof"
+  },
+  "resources": {
+    "default": "120 native icon buttons plus one border slot retained; two additional owned primary clip hosts per full cell",
+    "firstBothPartial": "At most120 additional native icon buttons, three public owners and two tail clip hosts per full cell, allocated lazily for4/5 and retained for reuse",
+    "disabled": "Unused tail owners set none+hidden; no new addon event/ticker/timer; native owners retain source-owned cadence"
+  },
+  "sourceEvidence": {
+    "pins": "docs/RAID_HEALKIT_REWORK.md#current-upstream-source-identities",
+    "globalCapAudit": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\aura-global-cap-source-manifest.json"
+  },
+  "native": {
+    "Forever": "Manual user test route retained; new inside-fit/exact4/5 display not yet tested",
+    "allFive": "Native secret VM, real clipping/scheduling, combat joins/moves, casting/taint, actual aura pixels/duration and FPS pending; source/desktop evidence only"
+  },
+  "distribution": {
+    "applied": true,
+    "existingOtherClients": 4,
+    "copiedRuntimeFiles": 20,
+    "allDestinationRawHashesMatch": true,
+    "externalBackup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-aura-limits-originals-20261106T234135Z",
+    "details": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-aura-limits-20261107\\client-installation.json",
+    "scope": "Five tested runtime files only; existing Retail working copy plus four installed clients; no game input/settings/profiler changes"
+  },
+  "finalVerification": {
+    "LuaCorpusStillMatchesTestedManifest": true,
+    "corpusSHA256": "58dd742fcc6edb450165a5dea73e182e39d8d218f735f3368d1a27ced7d1efe2",
+    "gitDiffWhitespaceCheck": "PASS",
+    "documentation": "PASS:895 classified sources;597 reachable;387 setting definitions;24 SavedVariables;14551 local links",
+    "nativeInput": "None; new native size/count/font acceptance pending"
+  }
+}

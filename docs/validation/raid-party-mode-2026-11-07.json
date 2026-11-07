@@ -1,0 +1,257 @@
+{
+  "change": "RAID-PARTY-MODE-20261107",
+  "requirements": [
+    "REQ-RF-44",
+    "REQ-RF-45",
+    "REQ-RF-46",
+    "REQ-RF-47",
+    "REQ-RF-48",
+    "REQ-RF-49",
+    "REQ-RF-50"
+  ],
+  "utc": "2026-11-07T08:19:31.942453+00:00",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T075338Z",
+    "utc": "20261107T075338Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "status": "M AddonOptions/FluxOptionsActionBars_Bar.lua\n M AddonOptions/FluxOptionsDefaults.lua\n M AddonOptions/FluxOptionsRaidFrame.lua\n M AddonOptions/FluxOptionsRender.lua\n M Bars/BadgeHost.lua\n M Bars/Effects.lua\n M Bars/ProgramFace.lua\n M Bars/SlotProgram.lua\n M Bars/Stance/Extras.lua\n M Bars/_tmp_barsmoke.lua\n M Battlezonemap/FluxBattlefieldMapProviders.lua\n M Battlezonemap/FluxBlizzardMeter.lua\n M Battlezonemap/FluxMeterLayout.lua\n M Binding/Core/Apply.lua\n M Binding/Input/FluxMouseoverKeybind.lua\n M Blizzard/Hide.lua\n M Core/API/Action.lua\n M Core/API/Name.lua\n M Core/API/Spell.lua\n M Core/ButtonFX/Glow.lua\n M Core/Engine/Events.lua\n M Core/Engine/MouseoverCast.lua\n M Core/Engine/Range.lua\n M Core/Engine/Scheduler.lua\n M Core/Engine/SpellBookChrome.lua\n M Core/Engine/Ticker.lua\n M Core/_tmp_coresmoke.lua\n M ExtraButtonSystem/Engine/Badge.lua\n M ExtraButtonSystem/Engine/Paint.lua\n M ExtraButtonSystem/FlyoutEngine/Popup.lua\n M ExtraButtonSystem/Layout.lua\n M ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua\n M FluxDefaultSettings.lua\n M Inventory/SpellReagents.lua\n M NEXT_SESSION.md\n M Other/FluxPerfCapture.lua\n M Other/FluxPerfDebug.lua\n M RaidFrame/FluxRaidCompat.lua\n M RaidFrame/FluxRaidFrame.lua\n M RaidFrame/FluxRaidFrame.xml\n M RaidFrame/FluxRaidFrame_BigDebuffs.lua\n M RaidFrame/FluxRaidLayout.lua\n M RaidFrame/FluxRaidPreview.lua\n M RaidFrame/FluxRaidUnit.lua\n M RaidFrame/FluxRaidVisuals.lua\n M RaidFrame/_tmp_raidaurassmoke.lua\n M Respec/FluxRespec_Core.lua\n M StatusBars/FluxStatusBar.lua\n M UnitFrames/FluxHealthLossOverlay.lua\n M UnitFrames/FluxPowerCostOverlay.lua\n M UnitFrames/FluxUnitFrames_Shared.lua\n M _FluxUI.toc\n M docs/11-action-bars.md\n M docs/12-extra-button-system.md\n M docs/14-unit-frames.md\n M docs/15-raid-frames.md\n M docs/16-status-bars.md\n M docs/30-source-coverage.md\n M docs/90-reference-inspirations.md\n M docs/CLIENT_MATRIX.csv\n M docs/CLIENT_VALIDATION.md\n M docs/DECISIONS.md\n M docs/FEATURE_PARITY.csv\n M docs/FOREVER_SAO_GLOW.md\n M docs/METER_STANDALONE.md\n M docs/PERFORMANCE_AUDIT.csv\n M docs/PERFORMANCE_PROTOCOL.md\n M docs/PERFORMANCE_RESULTS.csv\n M docs/REFERENCE_MANIFEST.csv\n M docs/STATUS.md\n M docs/WORK_LOG.md\n M docs/performance-driver-inventory.md\n M docs/reference/declarations.md\n M docs/reference/defaults.md\n M docs/reference/interfaces.md\n M docs/reference/inventory.json\n M docs/reference/settings-details.md\n M docs/reference/verification.json\n M tests/forever_sao_glow.lua\n M tests/native_meter_writer_provenance.lua\n M tests/raid_header_precreation.lua\n M tests/unit_power_visibility.lua\n?? RaidFrame/FluxRaidAuras.lua\n?? RaidFrame/FluxRaidHealerExtras.lua\n?? RaidFrame/FluxRaidHoTs.lua\n?? RaidFrame/FluxRaidPrediction.lua\n?? RaidFrame/FluxRaidSecure.lua\n?? docs/MAP_PROVIDER_LIFECYCLE.md\n?? docs/RAID_HEALKIT_REWORK.md\n?? docs/RANDOM_SPIKES.md\n?? docs/TACOTIP_BACKDROP.md\n?? docs/TELEPORT_REAGENT_RESTOCK.md\n?? docs/UNIT_FRAME_INDICATORS.md\n?? docs/UNIT_STATE_SECRETS.md\n?? docs/validation/ebs-glow-startup-comparison-2026-11-06.json\n?? docs/validation/ebs-glow-startup-native-2026-11-06.json\n?? docs/validation/ebs-glow-startup-saved-evidence-2026-11-06.json\n?? docs/validation/ebs-layout-coalescing-comparison-2026-11-06.json\n?? docs/validation/forever-random-spikes-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-120s-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-bugtabs-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-restoration-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-armed-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-errors-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-watch-2026-11-06.json\n?? docs/validation/forever-random-spikes-watch-2026-11-06.json\n?? docs/validation/forever-sao-badge-row-swap-2026-11-06.json\n?? docs/validation/forever-sao-face-paging-2026-11-06.json\n?? docs/validation/forever-secure-proc-glow-2026-11-06.json\n?? docs/validation/forever-talent-group-icon-2026-11-07.json\n?? docs/validation/forever-talent-group-icon-final-full-2026-11-07.json\n?? docs/validation/forever-talent-group-icon-full-2026-11-07.json\n?? docs/validation/map-provider-client-copy-2026-11-06.json\n?? docs/validation/map-provider-combat-comparison-2026-11-06.json\n?? docs/validation/map-provider-detach-comparison-2026-11-06.json\n?? docs/validation/map-provider-lifecycle-2026-11-06.json\n?? docs/validation/map-provider-native-after-2026-11-06.json\n?? docs/validation/map-provider-native-baseline-2026-11-06.json\n?? docs/validation/meter-all-options-2026-11-07.json\n?? docs/validation/meter-native-controls-2026-11-07.json\n?? docs/validation/mouseover-native-2026-11-07.json\n?? docs/validation/raid-aura-clock-fix-2026-11-06.json\n?? docs/validation/raid-aura-duration-2026-11-06.json\n?? docs/validation/raid-aura-independent-scale-2026-11-07.json\n?? docs/validation/raid-aura-limits-2026-11-07.json\n?? docs/validation/raid-aura-slider-live-2026-11-07.json\n?? docs/validation/raid-aura-text-scale-2026-11-06.json\n?? docs/validation/raid-aura-width-font-2026-11-07.json\n?? docs/validation/raid-blizzard-aura-followup-2026-11-06.json\n?? docs/validation/raid-blizzard-default-sizing-2026-11-07.json\n?? docs/validation/raid-healkit-rework-2026-11-06.json\n?? docs/validation/raid-live-width-guarded-2026-11-07.json\n?? docs/validation/raid-manager-overlay-2026-11-07.json\n?? docs/validation/raid-mt-opacity-2026-11-07.json\n?? docs/validation/raid-mt-target-2026-11-07.json\n?? docs/validation/raid-preview-parity-2026-11-07.json\n?? docs/validation/raid-screenshot-defaults-2026-11-07.json\n?? docs/validation/raid-timer-policy-2026-11-07.json\n?? docs/validation/random-spike-aura-sync-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-v2-2026-11-06.json\n?? docs/validation/random-spike-pause-2026-11-06.json\n?? docs/validation/random-spike-startup-check-2026-11-06.json\n?? docs/validation/spike-observer-comparison-2026-11-06.json\n?? docs/validation/spike-watch-comparison-2026-11-06.json\n?? docs/validation/spike-watch-v2-comparison-2026-11-06.json\n?? docs/validation/stance-aura-sync-comparison-2026-11-06.json\n?? docs/validation/stance-aura-text-cache-comparison-2026-11-06.json\n?? docs/validation/status-currency-clicks-2026-11-07.json\n?? docs/validation/tacotip-backdrop-audit-2026-11-06.json\n?? docs/validation/teleport-reagent-client-copy-2026-11-07.json\n?? docs/validation/teleport-reagent-comparison-2026-11-07.json\n?? docs/validation/teleport-reagent-safety-2026-11-07.json\n?? docs/validation/unit-indicators-2026-11-07.json\n?? docs/validation/unit-spec-talents-2026-11-07.json\n?? docs/validation/unit-spec-talents-full-2026-11-07.json\n?? docs/validation/unit-state-followup-client-copy-2026-11-06.json\n?? docs/validation/unit-state-followup-comparison-2026-11-06.json\n?? docs/validation/unit-state-followup-safety-2026-11-06.json\n?? docs/validation/unit-state-native-followup-2026-11-06.json\n?? docs/validation/unit-state-secret-client-copy-2026-11-06.json\n?? docs/validation/unit-state-secret-comparison-2026-11-06.json\n?? docs/validation/unit-state-secret-native-2026-11-06.json\n?? docs/validation/unit-state-secret-safety-2026-11-06.json\n?? tests/badge_cooldown_secrets.lua\n?? tests/ebs_glow_startup.lua\n?? tests/ebs_layout_coalescing.lua\n?? tests/forever_badge_combat_row_swap.lua\n?? tests/forever_sao_badge_preparation.lua\n?? tests/forever_sao_face_paging.lua\n?? tests/map_provider_combat.lua\n?? tests/map_provider_detach.lua\n?? tests/mouseover_native.lua\n?? tests/native_meter_all_options.lua\n?? tests/native_meter_controls.lua\n?? tests/options_dynamic_range.lua\n?? tests/perf_callback_observer.lua\n?? tests/perf_spike_watch.lua\n?? tests/player_name_secret.lua\n?? tests/power_snapshot_cleanup.lua\n?? tests/program_face_secret_names.lua\n?? tests/raid_aura_layout.lua\n?? tests/raid_aura_live_options.lua\n?? tests/raid_aura_native_filters.lua\n?? tests/raid_aura_options.lua\n?? tests/raid_big_debuff_boundary.lua\n?? tests/raid_binding_cast.lua\n?? tests/raid_blizzard_default_sizes.lua\n?? tests/raid_connected_grid.lua\n?? tests/raid_healer_auras.lua\n?? tests/raid_healer_extras.lua\n?? tests/raid_healer_hots.lua\n?? tests/raid_healer_prediction.lua\n?? tests/raid_healer_runtime.lua\n?? tests/raid_healer_secure.lua\n?? tests/raid_healer_visuals.lua\n?? tests/raid_hidden_buff_event.lua\n?? tests/raid_manager_ghost.lua\n?? tests/raid_native_member_order.lua\n?? tests/raid_native_sizing_layout.lua\n?? tests/spell_reagent_presets.lua\n?? tests/stance_aura_sync.lua\n?? tests/stance_aura_text_cache.lua\n?? tests/teleport_restock.lua\n?? tests/unit_identity_feedback.lua\n?? tests/unit_indicator_layout.lua\n?? tests/unit_overlay_secret_identity.lua\n?? tests/unit_spec_icon.lua",
+    "sourceFiles": 1728,
+    "settingsFiles": 158,
+    "zipHashVerification": "PASS",
+    "bundleVerification": "PASS",
+    "sha256": {
+      "source.zip": "720d3efa432dfacd69607b7963e68fe2926523f2136755ce4c20c22696557e0a",
+      "settings.zip": "7571dde5d78ecb0c8c55ff698164bb82bcb86f902989636daf8a61a831aa8251",
+      "history.bundle": "48b60fd1636535b812838931b00a4dd6ef682ac99cd7bf51f0e7bed8faebb9f9"
+    },
+    "scope": "On-disk settings only; game memory/closed-client state not asserted. No settings writes, profiling changes, or game input."
+  },
+  "scope": "Party player/pet display mode, unchanged compact anchors, column-first zero-gap aura grid, reported ordinary GetFrameRef failure. Meter work explicitly excluded; no meter edits by this task.",
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "before": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "d1885a7dbeefb6425b78bd729d5e5dba18caceb1f2c592a612bfdc11617e1584",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "84b6e08f29790eaf5086d50fe0b882eaf42401f14773c337a13b14476d27561f",
+    "RaidFrame/FluxRaidSecure.lua": "245e6ab229d0c9f0107b9e241f5e437fdf0979117ff09998f8c6a2b6a03f1616",
+    "RaidFrame/FluxRaidLayout.lua": "d156033baa42fa8a1f92e605df892a1cc4cad5b6afe234404a9923e0cf5e8dc9",
+    "RaidFrame/FluxRaidFrame.lua": "734af556a8fc8b52be884f5c6e5be4cd29d12e4b46054bf7191831edb99992de",
+    "RaidFrame/FluxRaidAuras.lua": "9fd6b6218c8ee5ddf7b3ca92600c1cc0ec4fe26049058dae75ff5a408b1a12e2",
+    "RaidFrame/FluxRaidVisuals.lua": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132",
+    "RaidFrame/FluxRaidPreview.lua": "0426916b19af845583f5c086ac8d449ac613da48081501d45a640313fe631e5a",
+    "AddonOptions/FluxOptionsDefaults.lua": "3b7815de09f83051f99fc9f2742fd3ce495591fccec11378d52946f7a71efea1",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "9067d3e07aafee23ec936c9019c2fbb217b15556a54f9d28f4e9f9c84741a152",
+    "_FluxUI.toc": "ed589cbab9dd9bbe14785057493ec000f501f5aefe1bf6cca30c41a89a3ef24a"
+  },
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "8c3c7ee8c41c22c747a14c1830b16cab29cdf6ab69fa4895c35e1d0eca194017",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "2d741597ca310705fad2906064e25a70cc2703e076f3188cb89a83354f93f14a",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "ab129ac1842e3fabda90e3b41bee25f6d0f450415e0b83b5577b5c1bb29e7c9e",
+    "RaidFrame/FluxRaidSecure.lua": "92f3f4baa10ee9b221c8ae4b8b92285917d0977b3f6fbddc880c854c2f6500aa",
+    "RaidFrame/FluxRaidLayout.lua": "ed040a9bb89bc8454fb669505a829255ed6e0564eb81eb13ab0308115f27f0fe",
+    "RaidFrame/FluxRaidFrame.lua": "bf552666bc44199e1a0638a8df5874d98840e40105c100a94de18ee913e829e6",
+    "RaidFrame/FluxRaidAuras.lua": "753c89e53396ef7dcc9bcc96f2d2c68d1d11e63c984b1bf4963da2de33fa3e24",
+    "RaidFrame/FluxRaidVisuals.lua": "feaa2d7eaf9443c0cd97ab3b4caec63637901c7453459753d6ec355ff63b9523",
+    "RaidFrame/FluxRaidPreview.lua": "ffca5a612587b4678f2a37125959d3388eccc587a6880143a7aa81218e27af05",
+    "AddonOptions/FluxOptionsDefaults.lua": "537bd323c5db2616068e595b7c4e4deb1bb28ad60e371d96ccbff02a155f3572",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "fa0233117b4a9cec2b640f5a90d010b503c3bf18ce85d318d979a6661a390afc",
+    "_FluxUI.toc": "0b02a257c1d65883a9da4068742cc09013d59077b68af2bbb59d388710413cef"
+  },
+  "fullSuite": {
+    "pass": 213,
+    "fail": 0,
+    "syntaxFiles": 876,
+    "sourceDrift": {},
+    "luaCorpusSha256": "a8275364d73249483f65655461448731aab569db33f98f85e1c771e74faac6ed"
+  },
+  "pairedChecks": [
+    {
+      "pair": 1,
+      "case": "baseline-grid",
+      "exit": 1,
+      "seconds": 0.030444800002442207,
+      "output": "lua: tests/raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:25: in local 'stock'\n\ttests/raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 1,
+      "case": "candidate-grid",
+      "exit": 0,
+      "seconds": 0.033658799999102484,
+      "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 1,
+      "case": "reported-cleanup-mutant",
+      "exit": 1,
+      "seconds": 0.03604959999938728,
+      "output": "lua: tests/raid_party_frames.lua:35: ordinary GetFrameRef is unavailable\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_party_frames.lua:35: in method 'GetFrameRef'\n\t...3\\raid-party-mode-20261107\\ordinary-frame-ref-mutant.lua:438: in field 'DisablePartyFrames'\n\tUnitFrames/FluxUnitFrames_Party.lua:173: in field 'ApplyOptions'\n\ttests/raid_party_frames.lua:163: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 1,
+      "case": "candidate-party",
+      "exit": 0,
+      "seconds": 0.0682987000036519,
+      "output": "Party player-style frames: 535 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 2,
+      "case": "baseline-grid",
+      "exit": 1,
+      "seconds": 0.015987399994628504,
+      "output": "lua: tests/raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:25: in local 'stock'\n\ttests/raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 2,
+      "case": "candidate-grid",
+      "exit": 0,
+      "seconds": 0.03492549999646144,
+      "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 2,
+      "case": "reported-cleanup-mutant",
+      "exit": 1,
+      "seconds": 0.024079299997538328,
+      "output": "lua: tests/raid_party_frames.lua:35: ordinary GetFrameRef is unavailable\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_party_frames.lua:35: in method 'GetFrameRef'\n\t...3\\raid-party-mode-20261107\\ordinary-frame-ref-mutant.lua:438: in field 'DisablePartyFrames'\n\tUnitFrames/FluxUnitFrames_Party.lua:173: in field 'ApplyOptions'\n\ttests/raid_party_frames.lua:163: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 2,
+      "case": "candidate-party",
+      "exit": 0,
+      "seconds": 0.08234559999982594,
+      "output": "Party player-style frames: 535 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 3,
+      "case": "baseline-grid",
+      "exit": 1,
+      "seconds": 0.015638799995940644,
+      "output": "lua: tests/raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:25: in local 'stock'\n\ttests/raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 3,
+      "case": "candidate-grid",
+      "exit": 0,
+      "seconds": 0.03489139999874169,
+      "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 3,
+      "case": "reported-cleanup-mutant",
+      "exit": 1,
+      "seconds": 0.026905599996098317,
+      "output": "lua: tests/raid_party_frames.lua:35: ordinary GetFrameRef is unavailable\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_party_frames.lua:35: in method 'GetFrameRef'\n\t...3\\raid-party-mode-20261107\\ordinary-frame-ref-mutant.lua:438: in field 'DisablePartyFrames'\n\tUnitFrames/FluxUnitFrames_Party.lua:173: in field 'ApplyOptions'\n\ttests/raid_party_frames.lua:163: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 3,
+      "case": "candidate-party",
+      "exit": 0,
+      "seconds": 0.07909060000383761,
+      "output": "Party player-style frames: 535 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 4,
+      "case": "baseline-grid",
+      "exit": 1,
+      "seconds": 0.017053299998224247,
+      "output": "lua: tests/raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:25: in local 'stock'\n\ttests/raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 4,
+      "case": "candidate-grid",
+      "exit": 0,
+      "seconds": 0.04162309999810532,
+      "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 4,
+      "case": "reported-cleanup-mutant",
+      "exit": 1,
+      "seconds": 0.03276200000254903,
+      "output": "lua: tests/raid_party_frames.lua:35: ordinary GetFrameRef is unavailable\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_party_frames.lua:35: in method 'GetFrameRef'\n\t...3\\raid-party-mode-20261107\\ordinary-frame-ref-mutant.lua:438: in field 'DisablePartyFrames'\n\tUnitFrames/FluxUnitFrames_Party.lua:173: in field 'ApplyOptions'\n\ttests/raid_party_frames.lua:163: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 4,
+      "case": "candidate-party",
+      "exit": 0,
+      "seconds": 0.08625469999969937,
+      "output": "Party player-style frames: 535 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 5,
+      "case": "baseline-grid",
+      "exit": 1,
+      "seconds": 0.017828199997893535,
+      "output": "lua: tests/raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:25: in local 'stock'\n\ttests/raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 5,
+      "case": "candidate-grid",
+      "exit": 0,
+      "seconds": 0.04109779999998864,
+      "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n",
+      "expectedPass": true
+    },
+    {
+      "pair": 5,
+      "case": "reported-cleanup-mutant",
+      "exit": 1,
+      "seconds": 0.028923300000315066,
+      "output": "lua: tests/raid_party_frames.lua:35: ordinary GetFrameRef is unavailable\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_party_frames.lua:35: in method 'GetFrameRef'\n\t...3\\raid-party-mode-20261107\\ordinary-frame-ref-mutant.lua:438: in field 'DisablePartyFrames'\n\tUnitFrames/FluxUnitFrames_Party.lua:173: in field 'ApplyOptions'\n\ttests/raid_party_frames.lua:163: in main chunk\n\t[C]: in ?\n",
+      "expectedPass": false
+    },
+    {
+      "pair": 5,
+      "case": "candidate-party",
+      "exit": 0,
+      "seconds": 0.07886880000296514,
+      "output": "Party player-style frames: 535 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+      "expectedPass": true
+    }
+  ],
+  "resources": {
+    "alternateLiveCells": 8,
+    "alternatePreviewCells": 8,
+    "nativeStateConditions": 8,
+    "newRecurringLuaRosterOrRangeDriver": false,
+    "reused": "shared UF bar/portrait/border and cast factories; raid secure hub; scoped options; native/readable aura renderer; binding registry",
+    "disabledBehavior": "Default mode allocates no alternate live cells. Hidden cells skip shared event paint, clear native aura subscriptions on hide and stop cast display; driver subscriptions removed when disabled."
+  },
+  "native": "Not run. User supplied nil-call report was diagnosed and corrected; new visual/secure input/combat/taint/FPS acceptance remains pending for each client. No game input or WTF/profiler writes. Existing cross-client mirror not modified.",
+  "installedSourceComparison": {
+    "_forever_": {},
+    "_classic_": {},
+    "_classic_era_": {},
+    "_anniversary_": {}
+  },
+  "focusedChecks": {
+    "party": 535,
+    "binding": 210,
+    "auras": 12776
+  },
+  "partyMemberSpacing": 0,
+  "bindingIntegration": "Owned party/raid marker on actual outer click rectangles; original Flux binding engine, primary/modifier mouse and keyboard/wheel routes, native secure hide cleanup.",
+  "finalOwnedSourceDrift": [],
+  "documentationValidation": "PASS:909 classified sources;598 TOC/XML reachable;399 setting definitions;24 SavedVariables;14821 local links. git diff --check PASS."
+}

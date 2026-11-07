@@ -1,0 +1,362 @@
+{
+  "changeID": "UTILITY-CHORD-ROUTING-20261107",
+  "requirement": "UTL-CHORD-13",
+  "dateUTC": "2026-11-07T13:38:27.290727+00:00",
+  "nativeReport": "User confirms no-mod works but modifiers fail. Prior source-model results did not establish native modifier acceptance.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-chord-routing-20261107",
+    "sourceZIP": "f55afd1c2d42868638c85a098109182974cd88bbf0a649671141a0a082eb5e32",
+    "sourceFiles": 2022,
+    "history": "Prior complete external history bundle verified before runtime edits; external history-verification.txt.",
+    "availableSettingsMetadataFiles": 121,
+    "settings": "Read-only inspection: saved utility slot1 Study1302508/Shift item2136; slot2 spell1460/Shift604/Ctrl1008; U/I and F7/F8 utility keys. Only public IDs/chords recorded; no WTF/profiler writes."
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "8b4f6dc27d11203f4f0c707ee16bf19853cff64f7a86565de7df3fa8b77a70ad",
+    "Core/ButtonFX/Click.lua": "09614baefe1fbbe85c7dbd006bddea25e2d278290581569d37594825ee5909ab",
+    "Core/Engine/MouseoverCast.lua": "da996eea91aaf66b16bc73fd0363b4a7773aba4d1f891539e660541272ef08a5",
+    "ExtraButtonSystem/Engine/Action.lua": "b77e290e47badeeb74ac09858cd171267564fb002cf9897d79281bdb48f9db37"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+    "Core/ButtonFX/Click.lua": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+    "Core/Engine/MouseoverCast.lua": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+    "ExtraButtonSystem/Engine/Action.lua": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+    "tests/utility_secure_input.lua": "1272d4a17df8acaad9858ce76ab071544e233b61b19d42db25275e136b6ff103"
+  },
+  "sourceContracts": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "currentSHA256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "restrictedEnvironment": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      }
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "currentSHA256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "restrictedEnvironment": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      }
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "currentSHA256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "restrictedEnvironment": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      }
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "currentSHA256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "restrictedEnvironment": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      }
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "currentSHA256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "restrictedEnvironment": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_RestrictedAddOnEnvironment\\RestrictedEnvironment.lua",
+        "sha256": "1ce2bdb7397d53c3507c8e2a1502d59d024b5f5b8a06b4bf99007d212fd8c81d"
+      }
+    }
+  ],
+  "policy": "Each ordinary utility keybind carries a chord-specific virtual button. Native wildcard-modifier spell/item/release attributes select its prepared payload independently of modifier queries during dispatch. Wrap click snippets preserve that button and existing CVar edge; nonwrap cached keyers inherit it. Mouseover uses the same encoded prefix, including the native mouseover modifier gate. Physical mouse remains on its prepared native modifier attributes. Binding installation follows action preparation in the real _DoUpdateAllSlots lifecycle. Clear removes encoded payloads and metadata.",
+  "hypothesis": "The prior key route discarded trigger-chord context and inferred it again at dispatch. A strengthened fixture models modifier queries masked during dispatch and reproduces normal-action fallback. This is a concrete regression model, not an observation of the native engine masking mechanism.",
+  "pairs": [
+    {
+      "exit": 1,
+      "wallSeconds": 0.07343,
+      "output": "lua: tests/utility_secure_input.lua:203: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:203: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "pair": 1,
+      "kind": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.54837,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "pair": 1,
+      "kind": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.02736,
+      "output": "lua: tests/utility_secure_input.lua:203: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:203: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "pair": 2,
+      "kind": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.57032,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "pair": 2,
+      "kind": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.0309,
+      "output": "lua: tests/utility_secure_input.lua:203: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:203: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "pair": 3,
+      "kind": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.60085,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "pair": 3,
+      "kind": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.02522,
+      "output": "lua: tests/utility_secure_input.lua:203: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:203: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "pair": 4,
+      "kind": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.61971,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "pair": 4,
+      "kind": "candidate"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.02786,
+      "output": "lua: tests/utility_secure_input.lua:203: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:203: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "pair": 5,
+      "kind": "baseline"
+    },
+    {
+      "exit": 0,
+      "wallSeconds": 0.60983,
+      "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+      "pair": 5,
+      "kind": "candidate"
+    }
+  ],
+  "mutants": [
+    {
+      "exit": 1,
+      "wallSeconds": 0.06374,
+      "output": "lua: tests/utility_secure_input.lua:6: first slot-update pass installs chord-specific bindings after preparing native actions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:6: in upvalue 'check'\n\ttests/utility_secure_input.lua:211: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "name": "all-keys-choose-normal",
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.0509,
+      "output": "lua: tests/utility_secure_input.lua:6: first slot-update pass installs chord-specific bindings after preparing native actions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:6: in upvalue 'check'\n\ttests/utility_secure_input.lua:211: in local 'configure'\n\ttests/utility_secure_input.lua:218: in main chunk\n\t[C]: in ?\n",
+      "name": "discard-virtual-button-in-wrap",
+      "path": "Core/ButtonFX/Click.lua"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.14236,
+      "output": "lua: tests/utility_secure_input.lua:6: encoded utility chord also selects its own mouseover target gate\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:6: in local 'check'\n\ttests/utility_secure_input.lua:443: in main chunk\n\t[C]: in ?\n",
+      "name": "mouseover-loses-trigger-chord",
+      "path": "Core/Engine/MouseoverCast.lua"
+    },
+    {
+      "exit": 1,
+      "wallSeconds": 0.15962,
+      "output": "lua: tests/utility_secure_input.lua:6: generic clear also removes encoded utility key actions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:6: in local 'check'\n\ttests/utility_secure_input.lua:524: in main chunk\n\t[C]: in ?\n",
+      "name": "stale-encoded-actions-after-clear",
+      "path": "ExtraButtonSystem/Engine/Action.lua"
+    }
+  ],
+  "coverage": "41255 source-dispatch checks across five native source trees; full update lifecycle, first assignment, configured down/up edge, masked dispatch, public saved spell/item cases, both keys/already modified keys, combat, mouseover reaction/native modifier gating, encoded action clearing.12634 face/count/CD,1473 VFX,4973 shared mouseover checks PASS.",
+  "work": "No new frames/events/timers/tickers/polling/hover drivers. Existing cached keyers retained; virtual action fields prepared outside combat. Modifier-time action writes remain0; existing320 transitions icon120/count120/usable140/checked120/duplicate0; consumable aura queries0. Process times include fixture/assertion work; native CPU/FPS not measured.",
+  "fullValidation": {
+    "evidence": "docs/validation/utility-chord-routing-full-2026-11-07.json",
+    "passed": 229,
+    "failed": 1,
+    "syntaxFiles": 894,
+    "syntaxFailures": [],
+    "failures": [
+      {
+        "path": "tests/portrait_camera.lua",
+        "exit": 1,
+        "wallSeconds": 0.0248,
+        "output": "lua: shared-portrait-camera:226: attempt to call a nil value (field 'GetFramePublicDimensions')\nstack traceback:\n\tshared-portrait-camera:226: in field 'CreatePortrait'\n\ttests\\portrait_camera.lua:59: in local 'exercise'\n\ttests\\portrait_camera.lua:99: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "postRunSourceDrift": [
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "scopedCandidatesStable": true,
+    "relevantResults": [
+      {
+        "path": "tests/extra_startup.lua",
+        "exit": 0,
+        "wallSeconds": 0.0454,
+        "output": "PASS: 348 extra-startup checks (five labelled client fixtures; real clients still require testing)\n"
+      },
+      {
+        "path": "tests/mouseover_native.lua",
+        "exit": 0,
+        "wallSeconds": 0.0613,
+        "output": "native mouseover: 4973 checks passed; native taint/visual/input/FPS pending\n"
+      },
+      {
+        "path": "tests/transmog_actions.lua",
+        "exit": 0,
+        "wallSeconds": 0.0815,
+        "output": "Transmog actions: 6485 checks; five branches, capability adapters, six negative controls passed\n"
+      },
+      {
+        "path": "tests/utility_mixed_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.0847,
+        "output": "Utility mixed faces: 12634 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+      },
+      {
+        "path": "tests/utility_modifier_vfx.lua",
+        "exit": 0,
+        "wallSeconds": 0.086,
+        "output": "Utility modifier VFX: 1473 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+      },
+      {
+        "path": "tests/utility_pet_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.0487,
+        "output": "Utility pet faces: 2584 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "wallSeconds": 0.606,
+        "output": "Utility secure input: 41255 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+      }
+    ],
+    "scope": "Full run229/230 pass; portrait_camera.lua fixture lacks GetFramePublicDimensions. Unrelated concurrent portrait work retained; no native acceptance inferred."
+  },
+  "nativeAcceptance": "No-mod success user-reported in selected client; build not resampled. Encoded modifier candidate actual mouse/key input, mouseover, combat/taint/pixels/FPS NOT RUN; no connected native client tool.",
+  "clientCopies": {
+    "_retail_": {
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+        "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+        "matchesCandidate": true
+      },
+      "Core/ButtonFX/Click.lua": {
+        "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+        "matchesCandidate": true
+      },
+      "Core/Engine/MouseoverCast.lua": {
+        "sha256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/Engine/Action.lua": {
+        "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+        "matchesCandidate": true
+      }
+    },
+    "_forever_": {
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+        "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+        "matchesCandidate": true
+      },
+      "Core/ButtonFX/Click.lua": {
+        "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+        "matchesCandidate": true
+      },
+      "Core/Engine/MouseoverCast.lua": {
+        "sha256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/Engine/Action.lua": {
+        "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+        "matchesCandidate": true
+      }
+    },
+    "_classic_": {
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+        "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+        "matchesCandidate": true
+      },
+      "Core/ButtonFX/Click.lua": {
+        "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+        "matchesCandidate": true
+      },
+      "Core/Engine/MouseoverCast.lua": {
+        "sha256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/Engine/Action.lua": {
+        "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+        "matchesCandidate": true
+      }
+    },
+    "_classic_era_": {
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+        "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+        "matchesCandidate": true
+      },
+      "Core/ButtonFX/Click.lua": {
+        "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+        "matchesCandidate": true
+      },
+      "Core/Engine/MouseoverCast.lua": {
+        "sha256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/Engine/Action.lua": {
+        "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+        "matchesCandidate": true
+      }
+    },
+    "_anniversary_": {
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+        "sha256": "46d841979af9c6a7210734b7c55ee4fe80ead39c392a1666025083bfdff2e6b4",
+        "matchesCandidate": true
+      },
+      "Core/ButtonFX/Click.lua": {
+        "sha256": "b7e774a04297d86905eaf20a72b5be5a14eb9cbe87b4f8fc8a415debb0c8017d",
+        "matchesCandidate": true
+      },
+      "Core/Engine/MouseoverCast.lua": {
+        "sha256": "f2599b4f78b9ef1d35316aa3129d68c0a93583a9d559cca8fe8dbc3a14c58531",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/Engine/Action.lua": {
+        "sha256": "3daab1f50817b31545eff92d0e1ec834e6e00c0765f9a31c14520a5d7550379c",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "documentationValidation": {
+    "status": "blocked by unrelated source churn",
+    "issues": [
+      "Stale inventory: UnitFrames/FluxUnitFrames_Pet.lua",
+      "Stale inventory: UnitFrames/FluxUnitFrames_Shared.lua",
+      "Stale inventory: UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+      "Stale inventory: tests/public_geometry_writers.lua",
+      "Stale generated reference/interfaces.md",
+      "Verification predates current UnitFrames/FluxUnitFrames_Pet.lua",
+      "Verification predates current UnitFrames/FluxUnitFrames_Shared.lua",
+      "Verification predates current UnitFrames/FluxUnitFrames_TargetOfTarget.lua"
+    ],
+    "scope": "Checker identified no utility-owner or changed utility-document errors; preserved concurrent unit-frame work; no further global reruns to chase unrelated edits."
+  },
+  "diffCheck": "PASS for changed runtime, test, continuity and ledger paths."
+}

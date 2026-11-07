@@ -1,5 +1,9 @@
 # Extra buttons, consumables, travel and flyouts
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Effective-alpha readiness tolerates a denied getter without treating it as declassified data. Classic cooldown-ring alpha uses its existing public write ownership. Ordinary utility execution and saved assignments are preserved. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 The Extra Button System provides reusable secure buttons for combat/noncombat grids, utility slots, custom categories, minimap buttons, pet/stance faces and badges. `Flux.EBS` is its implementation namespace; global `FluxBtn`/`FluxButton` facades support older consumers. [Init.lua](../ExtraButtonSystem/Init.lua) is authoritative. Older `Engine/` and `Flyout/` implementations coexist on disk but are not all TOC-loaded.
 
 ## Shared engine
@@ -38,7 +42,7 @@ Portal/login snapshots can briefly collapse. `ShouldHoldItemIdentity()` and `Kee
 |---|---|
 | [Hearthstone](../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua) | Configured hearth/toy, item 6948 fallback, owned teleport items and modifier favorites. Simple mode right-click opens Toy Box when available; multi-item mode uses right-click flyout and middle-click Toy Box. Equipment teleports can require equipping; cast/equip locks retain selected identity. |
 | [Mount](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua) | Smart ground/flying selection and optional vendor mode. Middle-click toggles smart/vendor when relevant. Collection clients use journal/companion helpers and configured selections; bag clients use `MountItems.lua`, zone eligibility and favorites. Right-click follows the collection/bag path. |
-| [TeleportPortal](../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua) | Known class teleports/portals, modifier favorites, reagent counts/restock links and flyout. Left-click casts, right-click opens flyout, middle-click toggles teleport/portal. Selection stays locked through its cast. |
+| [TeleportPortal](../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua) | Known class teleports/portals, modifier favorites, reagent counts/restock links and flyout. Left-click casts; right-click opens the flyout or edits the reagent preset target for a single destination; middle-click toggles teleport/portal. Selection stays locked through its cast. |
 | [Food](../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua) / [Water](../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua) | Best owned food/water, learned conjure/ritual alternatives, group-aware creation and counts. Food has a per-character Recuperate preference on clients supplying that spell; default remains food. |
 
 [SmartMount config](../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua) supports account/character ground/flying/multi/utility selections and vendor discovery. [SmartHearth config](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua) only loads when Toy Box capability exists; the basic hearth fallback remains usable without that editor. Their current character/account selection shares `_FluxUI_CharSavedVars.useCharacterSpecific`; the config tables themselves are separate. This scope flag is independent of Ace Action Bars scope.
@@ -80,6 +84,33 @@ Preset quantities live in `presets[name].restockTargets`. Chronoboon code also r
 
 Four utility slots use [Assign.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua) for cursor parsing, normalized modifier assignments, clearing, base/preferred fallback and snapshots. [Manager.lua](../ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua) builds macros, paints the modifier face and installs keys. Spell/item/macro/mount/battlepet/toy/outfit support follows available cursor/client APIs. Native outfit ID `0` represents the draggable clear action; outfit variants use exact modifier attributes to prevent unintended clears. Assignments are per character; snapshot helpers support Respec and legacy spellbook-slot conversion. Empty slots are exposed for assignment/binding workflows as needed. See [transmog actions](48-transmog-actions.md) for clear-first flyouts, EBS dragging and validation.
 
+Utility spell/item modifier combinations prepare native spell/item attributes for
+all eight exact modifier chords outside combat. Spell/item actions use the native
+secure handlers; macro-text execution and hidden click delegates are removed
+from this ordinary path. Exact saved IDs drive icons, tooltips, counts, cooldowns
+and VFX, including ranks whose names cannot be reverse-resolved. Utility items
+show their actual item cooldown; consumable aura timers remain on the dedicated
+consumables button. Counts update live and combat release restores the base face.
+Both keys include assigned modifiers. Each ordinary utility key carries its
+triggering chord in a distinct native virtual button, so dispatch does not
+re-infer it from the current modifier queries. Mouseover uses the same encoded
+prefix. Binding installation follows action preparation; clear retires every
+virtual payload. Already modified primary/secondary keys keep their full chord.
+Existing AnyDown parent-inheriting keyers
+serve clients without KeyBind remapping; other clients retain CVar timing.
+
+Enabled mouseover uses the shared service's secure click-time target picker,
+with each modifier action's helpful/harmful classification and native modifier
+gate. Ineligible/missing mouseovers retain normal targeting; the temporary unit
+clears after clicking. Range shares the selected reaction during existing hover
+cadence. No hover driver or polling is added. Forever uses the existing repaired
+VM probe for these target wrappers; a failed probe or partial installation is
+not mouseover acceptance. Special macro/pet/mount/toy/outfit routes remain.
+Clearing removes all native modifier actions; dropping an assignment suppresses
+the old native action. Shared cast/reticle/finish/interrupt/proc effects follow
+the current identity and clear when it departs.
+[Regression and native limits](UTILITY_MIXED_FACES.md).
+
 [ExtraButtons/Core.lua](../ExtraButtonSystem/ExtraButtons/Core.lua) stores category/button entries at account/class/realm/character scope and tracks display order. Categories can be created, deleted, reordered, collapsed and moved between scopes. [Categories](../ExtraButtonSystem/ExtraButtons/Categories.lua), [Buttons](../ExtraButtonSystem/ExtraButtons/Buttons.lua) and [UI](../ExtraButtonSystem/ExtraButtons/UI.lua) pool frames, render palettes, handle cursor drops/deletion controls and embed into the Flux Window **Buttons** tab. Saved entries are separate from pooled runtime frames. The minimap's 3×5 strip is another EBS consumer; see [minimap](18-minimap-and-trackers.md).
 
 ## Flyouts and trinkets
@@ -112,3 +143,7 @@ notification, so better consumables and last-use depletion reach selection.
 Utility pet assignments now display the selected Pet Journal icon and GUID
 tooltip, including modifiers and late journal metadata. The secure summon
 macro and saved assignments stay intact. [Regression/native checks](UTILITY_PET_FACES.md).
+
+Spell reagents, including class travel runes, appear in Preset restock; Soul Shards
+are excluded from automatic reagent targets. Saved quantities and flags remain.
+See [travel reagent controls](TELEPORT_REAGENT_RESTOCK.md).

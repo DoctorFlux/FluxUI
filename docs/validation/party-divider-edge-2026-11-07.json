@@ -1,0 +1,120 @@
+{
+  "changeID": "PARTY-DIVIDER-EDGE-20261107",
+  "requirement": "REQ-RF-72",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-divider-20261107T104605Z\\checkpoint.json",
+  "existingHistorySettings": "Raid-rewrite-20261107T082357Z complete external recovery retained and available; no game/WTF/profiler writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "1509740e638e5ee0a701ba8fd9ffdaae4784af8e6194deaafb571e857ec8340e",
+    "tests/party_divider_boundary.lua": "96c2d8e18af2625d556375fb4fff1e493691ba276dc8ea60e8ac3a20c81cf8b1",
+    "tests/raid_party_frames.lua": "de95a812455c413feb536fc80e7073641c00b782bfbb5dd9d5188a482c8796d5"
+  },
+  "partitionDependency": {
+    "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+    "sha256": "de27025d35171ba9468761ccb886f44920880c93621b1497f1c2e6eee11e7300"
+  },
+  "cause": "HUD Health.height expands to innerHeight behind the fixed resource layer; Health bottom is not the HP/resource boundary. Former divider was anchored there.",
+  "fix": "Existing divider is anchored LEFT/RIGHT to Power TOPLEFT/TOPRIGHT, offset+1 to match the shared two-unit partition gap midpoint;3-unit height, color/alpha/layer unchanged.",
+  "tests": {
+    "focused": 54,
+    "party": 840,
+    "whole": "221/221 scripts PASS; 884 syntax files/0 failures.",
+    "pairs": [
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02358749999984866,
+          "output": "lua: tests/party_divider_boundary.lua:13: party divider must meet the real shared HP/resource seam, including extended HUD fill\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:13: in local 'check'\n\ttests/party_divider_boundary.lua:37: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.019214799998735543,
+          "output": "Party divider boundary: 54 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.018408899995847605,
+          "output": "Party divider boundary: 54 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.017409299995051697,
+          "output": "lua: tests/party_divider_boundary.lua:13: party divider must meet the real shared HP/resource seam, including extended HUD fill\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:13: in local 'check'\n\ttests/party_divider_boundary.lua:37: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02021670000249287,
+          "output": "lua: tests/party_divider_boundary.lua:13: party divider must meet the real shared HP/resource seam, including extended HUD fill\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:13: in local 'check'\n\ttests/party_divider_boundary.lua:37: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.022709999997459818,
+          "output": "Party divider boundary: 54 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.03213300000061281,
+          "output": "Party divider boundary: 54 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.022309200001473073,
+          "output": "lua: tests/party_divider_boundary.lua:13: party divider must meet the real shared HP/resource seam, including extended HUD fill\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:13: in local 'check'\n\ttests/party_divider_boundary.lua:37: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02304290000029141,
+          "output": "lua: tests/party_divider_boundary.lua:13: party divider must meet the real shared HP/resource seam, including extended HUD fill\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:13: in local 'check'\n\ttests/party_divider_boundary.lua:37: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.019645200001832563,
+          "output": "Party divider boundary: 54 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      }
+    ],
+    "failures": [],
+    "corpusDrift": [
+      "tests/bank_restock_icon.lua"
+    ]
+  },
+  "resources": "Two anchor-target changes only; same texture, no new frame/event/hook/timer/ticker/driver/refresh work; native anchors follow resource geometry.",
+  "nativePending": "Actual in-game seam visibility/pixels/combat/taint/FPS on each client; numeric desktop geometry does not establish native rendering.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "finalOwnedDrift": [],
+  "laterWholeCorpusDrift": [
+    "Core/ButtonFX/Cast.lua",
+    "ExtraButtonSystem/Engine/Action.lua",
+    "ExtraButtonSystem/Engine/Paint.lua",
+    "tests/bank_restock_icon.lua"
+  ],
+  "documentationCheck": "Documentation validation FAILED:\n- Recorded verification predates current source: Core/ButtonFX/Cast.lua\n- Recorded verification predates current source: ExtraButtonSystem/Engine/Action.lua\n- Recorded verification predates current source: ExtraButtonSystem/Engine/Paint.lua\n3 issue(s); checker made no edits.\n"
+}

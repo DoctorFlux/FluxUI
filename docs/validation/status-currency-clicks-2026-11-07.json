@@ -1,0 +1,139 @@
+{
+  "changeID": "STATUS-CURRENCY-20261107",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T064041Z",
+    "utc": "20261107T064041Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1708,
+    "settingsFiles": 158,
+    "sha256": {
+      "source.zip": "516b42848a35f049fbb325f63f3a27e4a2a1cdd07131896d88459a7d25b9fb0f",
+      "settings.zip": "c7c5cc7901fd2c5b86529f573412708533dd4cbe79e186226e60aa3161453a46",
+      "history.bundle": "500b0554df47f7d20b99d92a2c54eb9c1bf10521e0f9d493466dbb248d7c4de4"
+    },
+    "verification": "All three archive SHA256 values match; git bundle verify PASS; archived FluxStatusBar.lua matches pre-edit source."
+  },
+  "checkpointSourceMatchesBaseline": true,
+  "baseline": "f38b765da532aadabf77794d4c11470f0bad60123e35ddd7b38279cd154ae996",
+  "settings": {
+    "readOnlyFilesObserved": 7,
+    "totalBytes": 197957,
+    "latestWriteUtc": "2026-11-07T06:48:16.543456Z",
+    "scope": "Available on-disk Retail/Forever settings; no closed-client or in-memory assertion; no writes"
+  },
+  "sources": {
+    "retail": {
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "paths": [
+        "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Mainline.toc",
+        "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CharacterFrame.lua",
+        "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/CharacterFrame.xml",
+        "Interface/AddOns/Blizzard_TokenUI/Blizzard_TokenUI.toc"
+      ]
+    },
+    "forever": {
+      "sha": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "version": "1.60.1.70862",
+      "paths": [
+        "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+        "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/CharacterFrameConstants.lua",
+        "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/CharacterFrame.lua",
+        "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/CharacterFrame.xml",
+        "Interface/AddOns/Blizzard_TokenUI/Blizzard_TokenUI.toc",
+        "Interface/AddOns/Blizzard_TokenUI/Camelot/Blizzard_TokenUI.xml"
+      ]
+    }
+  },
+  "clickChecks": {
+    "baseline": {
+      "exit": 1,
+      "output": "FAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL combat preserves capability fallback\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL combat preserves capability fallback\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL combat preserves capability fallback\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL forever native panel availability\nFAIL fallback only without currency panel\nFAIL native toggle semantics\nFAIL combat preserves capability fallback\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nFAIL combat does not invoke native panel\nCurrency click checks: 648, failures: 44\n"
+    },
+    "candidate": {
+      "exit": 0,
+      "output": "Currency click checks: 640, failures: 0\n"
+    }
+  },
+  "candidate": "f02653c4a8b509ca9d898168dc51dd1288bf3f970bcb8b01e97c2092eb1785fd",
+  "behavior": "Currency strip left-click selects TokenFrame on clients advertising the native currency tab, including Forever; native toggle is skipped in combat. Right-click opens FluxUI Status Bars settings. Missing native currency support retains the existing settings fallback. Item drop and tracked-item clear actions remain.",
+  "scope": "Retail and Forever requested; shared no-currency fallback retained for other clients. No appearance, saved-data, layout or cadence changes.",
+  "sourceContract": "Both load TokenFrame and expose ToggleCharacter(tab, onlyShow); native currency callbacks use TokenFrame. Existing Flux capability reads CHARACTERFRAME_SUBFRAMES. Source verification does not prove native gamepad/taint behavior; previous reputation probe establishes only that earlier native operation.",
+  "native": "Not run. No Witchcraft or computer-use tools exposed. Leave game in background; no input/reload/settings/profiler changes. User can verify both clicks after reload outside combat; test native panel states, gamepad and taint separately.",
+  "mockup": "No visual design change; existing bar/tooltip appearance retained.",
+  "resources": "No new frame, event, hook, timer, ticker, polling or recurring work. No FPS or native latency claim.",
+  "clientCopies": {
+    "_retail_": {
+      "exists": true,
+      "matches": true
+    },
+    "_forever_": {
+      "exists": true,
+      "matches": true
+    },
+    "scope": "Both currency runtime files match; observed existing mirror output only, no manual write to other clients."
+  },
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4c2-94f0-7a83-9844-da06532098cd\\currency-status-20261107",
+  "desktop": {
+    "pass": 208,
+    "fail": 0,
+    "syntaxFiles": 870,
+    "syntaxFailures": [],
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4c2-94f0-7a83-9844-da06532098cd\\currency-status-20261107\\validation-final.json",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified.",
+    "manifestDriftAfterRun": [],
+    "sourceDuringRun": "Whole-suite result applies to the observed workspace; concurrent unit/Respec edits occurred during initial run. No frozen whole-corpus claim."
+  },
+  "formerRestriction": "Removed the currency-only Forever exclusion that defended CharacterFrame OnShow secret-health comparisons and protected gamepad bindings. The existing reputation bar already uses direct ToggleCharacter after a user native probe; that probe does not certify currency or gamepad safety. Keep those native checks pending; do not replace native handlers or suppress errors.",
+  "focusedRegression": "640 currency checks PASS;180 existing reputation checks PASS; Core smoke PASS in full run. The preceding currency source fails44 assertions.",
+  "sourceFileHashes": {
+    "forever-Blizzard_TokenUI.toc": "5e48dc33d396c0cd5a84fa153ef89db9b2a57eb27131ef86c819521e9ef4d080",
+    "forever-Blizzard_TokenUI.xml": "8a36663e786dbea388539b0c8bf87037ecb0757a3343e8cbabe93c48989b03ac",
+    "forever-Blizzard_UIPanels_Game.toc": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1",
+    "forever-CharacterFrame.lua": "69bcdd2a851622ff97d059600b1a2fbb6573ecb7faf73749da80b6d68bf94f15",
+    "forever-CharacterFrame.xml": "f77cd7bffa101a36876b21f2e2192e6ddad04cc5403e2c7515c4e3c0998f9c2e",
+    "forever-CharacterFrameConstants.lua": "ed07fb5807d1b154da6d930f303870d90fd4feddb8ac7acb0aee5768f0f6e546",
+    "forever-version.txt": "40632cd2240c025fafc7bb8343593d2f8bde74c1196bc678cbdaeb807c9eb6c2",
+    "retail-Blizzard_TokenUI.toc": "0b1f71bf94bd9f7c05033152375ced5580f47bed68652ef3e9a191975ebb266f",
+    "retail-Blizzard_UIPanels_Game_Mainline.toc": "4fca499dddce93c9291f948e9e86204050d1d1b22a2dbcfdff1b6584d31976bf",
+    "retail-CharacterFrame.lua": "6f747e421a44207dc731c4bd0e2f1e0cf9085dd7d96b6c6291c4a84ee0014984",
+    "retail-CharacterFrame.xml": "bcb58063993e26f5cee3429ef65a59ac474d3dfcd8f0b530b139bbd057dd9135",
+    "retail-version.txt": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b"
+  },
+  "initialDesktop": {
+    "pass": 206,
+    "fail": 1,
+    "syntaxFiles": 869,
+    "syntaxFailures": [
+      {
+        "path": "tests/unit_indicator_layout.lua",
+        "output": "luac: tests\\unit_indicator_layout.lua:21: unexpected symbol near 'local'\n"
+      }
+    ],
+    "failedTests": [
+      {
+        "path": "tests/unit_indicator_layout.lua",
+        "exit": 1,
+        "wallSeconds": 0.0186,
+        "output": "lua: tests\\unit_indicator_layout.lua:21: unexpected symbol near 'local'\n"
+      }
+    ],
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4c2-94f0-7a83-9844-da06532098cd\\currency-status-20261107\\validation.json",
+    "scope": "Desktop Lua mocks/source checks only; native secure VM, real secret values, rendering and client performance unverified."
+  },
+  "documentationValidation": {
+    "result": "FAILED due to concurrent unrelated source edits",
+    "issues": 12,
+    "affected": [
+      "UnitFrames/FluxUnitFrames_Shared.lua",
+      "tests/unit_indicator_layout.lua",
+      "tests/unit_spec_icon.lua",
+      "RaidFrame/FluxRaidPreview.lua",
+      "RaidFrame/FluxRaidUnit.lua",
+      "RaidFrame/FluxRaidVisuals.lua",
+      "docs/reference/interfaces.md"
+    ],
+    "scope": "Generated inventory/verification changed after snapshots; checker made no edits. Do not overwrite concurrent owner work or call final whole tree frozen."
+  },
+  "finalCandidateHashVerified": true
+}

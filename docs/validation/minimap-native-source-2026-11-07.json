@@ -1,0 +1,58 @@
+{
+  "target": "forever",
+  "version": "1.60.1.70862",
+  "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+  "observed": "2026-11-07",
+  "sources": [
+    {
+      "path": "version.txt",
+      "blobSHA": "e02268eacf9b586ec969cf13403a15b8dd136ae8",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/version.txt"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc",
+      "blobSHA": "1819e0f2f2642bee95e4b6d94357692d122b1627",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Blizzard_Minimap.toc"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/MinimapMailFrameTemplate.xml",
+      "blobSHA": "26af101b2b84b97093870a7f05ee611e99e66d4f",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Camelot/MinimapMailFrameTemplate.xml"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/MinimapIndicatorFrameTemplate.xml",
+      "blobSHA": "29aeb428243c92be09cff5a27539415b7d023913",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Camelot/MinimapIndicatorFrameTemplate.xml"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/GameTimeFrame.lua",
+      "blobSHA": "40880275a324ea757d0d0bc0cd5ff678866a148d",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Camelot/GameTimeFrame.lua"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Camelot/GameTimeFrameTemplate.xml",
+      "blobSHA": "829d58793311e99a08616d89a0c9c631664b687c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Camelot/GameTimeFrameTemplate.xml"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/GameTime.xml",
+      "blobSHA": "2f49915997ed4f79d42de9afaa62a987b7b0d6c7",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Mainline/GameTime.xml"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Minimap/Mainline/GameTime.lua",
+      "blobSHA": "6f4a74def02fb08becb15e4ffc4d11ddf6c9b6d3",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Minimap/Mainline/GameTime.lua"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Calendar/Blizzard_Calendar.toc",
+      "blobSHA": "2f7b22fe5a1a3350046593534f3e02dbe22d9456",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Calendar/Blizzard_Calendar.toc"
+    },
+    {
+      "path": "Interface/AddOns/Blizzard_Calendar/Blizzard_Calendar_Bootstrap.lua",
+      "blobSHA": "93261025bc9d07edf9f7d511539a96edb2bd659a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Calendar/Blizzard_Calendar_Bootstrap.lua"
+    }
+  ]
+}

@@ -84,10 +84,17 @@ function FluxRaid_ApplyOptionsFromDB()
         if type(d) == "table" then db = d end
     end
     FluxRaidVisuals.ApplyRaidFrameTunables(db)
+    if FluxRaidHealerExtras then FluxRaidHealerExtras.RefreshLayout() end
     if FluxRaid_EnsureRangePoll then
         FluxRaid_EnsureRangePoll()
     end
     if not FluxRaid_IsFluxRaidEnabled() then
+        if ns.PartyFrames then ns.PartyFrames.ApplyOptions() end
+        if FluxRaidSecure then
+            for _,header in pairs(State.raidHeaders) do FluxRaidSecure.DisableHeader(header) end
+            if State.mtmaHeader then FluxRaidSecure.DisableHeader(State.mtmaHeader) end
+            State.secureRosterPrepared=false
+        end
         if State.containerFrame then State.containerFrame:Hide() end
         if FluxRaid_RestoreBlizzardRaidFrames then
             FluxRaid_RestoreBlizzardRaidFrames()
@@ -201,6 +208,37 @@ function EventHandlers:PLAYER_REGEN_ENABLED()
     if FluxRaid_RunPendingCombatWork then
         FluxRaid_RunPendingCombatWork()
     end
+    if FluxRaid_ForEachHeaderChild then
+        FluxRaid_ForEachHeaderChild(function(frame)
+            if frame.unit and not frame._fluxRaidMini then FluxRaid_UpdateAuras(frame) end
+        end)
+    end
+end
+
+function EventHandlers:PLAYER_REGEN_DISABLED()
+    if FluxRaid_ForEachHeaderChild then
+        FluxRaid_ForEachHeaderChild(function(frame)
+            if frame.unit and not frame._fluxRaidMini then FluxRaid_UpdateAuras(frame) end
+        end)
+    end
+end
+
+function EventHandlers:SPELLS_CHANGED()
+    if InCombatLockdown() then
+        FluxRaid_QueueWork(FluxRaid_ApplyOptionsFromDB)
+    else FluxRaid_ApplyOptionsFromDB() end
+end
+
+function EventHandlers:HIDDEN_GROUP_BUFFS_CHANGED()
+    if FluxRaidAuras and FluxRaidAuras.OnHiddenGroupBuffsChanged then
+        FluxRaidAuras.OnHiddenGroupBuffsChanged()
+    end
+    if not State.isInitialized or not FluxRaid_IsFluxRaidEnabled() then return end
+    if FluxRaid_ForEachHeaderChild and FluxRaid_UpdateAuras then
+        FluxRaid_ForEachHeaderChild(function(frame)
+            if frame.unit and not frame._fluxRaidMini then FluxRaid_UpdateAuras(frame) end
+        end)
+    end
 end
 
 function EventHandlers:PET_BATTLE_CLOSE()
@@ -261,6 +299,9 @@ function EventHandlers:RAID_TARGET_UPDATE()
     end
 end
 
+EventHandlers.PARTY_LEADER_CHANGED=EventHandlers.RAID_TARGET_UPDATE
+EventHandlers.PARTY_LOOT_METHOD_CHANGED=EventHandlers.RAID_TARGET_UPDATE
+
 function FluxRaid_OnLoad(self)
     State.eventFrame = self
     local events = {
@@ -269,6 +310,8 @@ function FluxRaid_OnLoad(self)
         "PARTY_MEMBERS_CHANGED",
         "CVAR_UPDATE",
         "PLAYER_REGEN_ENABLED",
+        "PLAYER_REGEN_DISABLED",
+        "SPELLS_CHANGED",
         "COMPACT_UNIT_FRAME_PROFILES_LOADED",
         "DISPLAY_SIZE_CHANGED",
         "UI_SCALE_CHANGED",
@@ -278,7 +321,12 @@ function FluxRaid_OnLoad(self)
         "READY_CHECK_CONFIRM",
         "READY_CHECK_FINISHED",
         "RAID_TARGET_UPDATE",
+        "PARTY_LEADER_CHANGED",
+        "PARTY_LOOT_METHOD_CHANGED",
     }
+    if C_UnitAuras and C_UnitAuras.GetHiddenGroupBuffs then
+        events[#events + 1] = "HIDDEN_GROUP_BUFFS_CHANGED"
+    end
     if FluxRaidCompat.CanUsePetBattleStateDriver and FluxRaidCompat.CanUsePetBattleStateDriver() then
         events[#events + 1] = "PET_BATTLE_CLOSE"
     end

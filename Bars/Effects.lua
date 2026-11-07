@@ -314,6 +314,19 @@ local function FaceSpell(face)
 	if not btn then
 		return nil
 	end
+	-- Conditional reverse badges publish their displayed spell on each hop.
+	-- Their old SpellId may still be cached while the bar face has changed.
+	local Identity = Flux.Identity
+	if face.badge and Identity and Identity.Get and Identity.BadgeKey
+		and btn._fluxBadgeSlot and btn._fluxBadgeWantIndex then
+		local kind, id = Identity.Get(Identity.BadgeKey(
+			btn._fluxBadgeSlot, btn._fluxBadgeWantIndex))
+		if kind == "spell" then
+			return tonumber(id) or id
+		elseif kind then
+			return nil
+		end
+	end
 	local FX = Flux.ButtonFX
 	if FX and FX.SpellIdFromEBS then
 		return FX.SpellIdFromEBS(btn)
@@ -355,6 +368,64 @@ end
 
 -- Reused per SyncColumn call; never retained past the exclusivity pass.
 local goldScratch = {}
+local secureCandidateEpoch = 1
+local securePreparedEpoch = {}
+
+function Effects.InvalidateSecureAuraCandidates()
+	secureCandidateEpoch = secureCandidateEpoch + 1
+	if not (InCombatLockdown and InCombatLockdown()) then
+		Effects.RefreshAll()
+	end
+end
+
+local function PrepareSecureColumn(G, column)
+	if not (G and G.MayShowSecureAuraSlot and G.EnsureSecureAura
+		and G.CanPrepareSecureAura)
+		or (InCombatLockdown and InCombatLockdown())
+		or securePreparedEpoch[column] == secureCandidateEpoch
+		or not G.CanPrepareSecureAura() then
+		return
+	end
+	securePreparedEpoch[column] = secureCandidateEpoch
+	local state = Bars.State
+	if not state then
+		return
+	end
+	local found = false
+	local BH = Bars.BadgeHost
+	local function CheckSlot(slot)
+		if not G.MayShowSecureAuraSlot(slot) then
+			return
+		end
+		found = true
+		if BH and BH.PrepareSecureAuraForSlot then
+			BH.PrepareSecureAuraForSlot(slot)
+		end
+	end
+	if state.GetSecondarySlot then
+		CheckSlot(state.GetSecondarySlot(column))
+	end
+	if state.GetTertiarySlot then
+		CheckSlot(state.GetTertiarySlot(column))
+	end
+	if state.GetMainSlot then
+		for page = 0, 18 do
+			if page ~= 1 then
+				CheckSlot(state.GetMainSlot(column, page))
+			end
+		end
+	end
+	if found then
+		local main, sec, tert = Rows(column)
+		local rows = { main, sec, tert }
+		for i = 1, 3 do
+			local host = rows[i]
+			if host and host.widget then
+				G.EnsureSecureAura(host.widget, true)
+			end
+		end
+	end
+end
 
 function Effects.SyncColumn(column)
 	column = tonumber(column)
@@ -365,6 +436,15 @@ function Effects.SyncColumn(column)
 	local G = Glow()
 	local faces = ColumnFaces(column)
 	if G then
+		PrepareSecureColumn(G, column)
+		if G.SyncSecureAura then
+			for i = 1, #faces do
+				local face = faces[i]
+				local widget = face.widget
+				G.SyncSecureAura(widget, FaceSpell(face),
+					not widget._fluxParked and not widget._fluxBadgeCombatVisHidden)
+			end
+		end
 		local liveFace
 		local wantFace
 		local wantSpell
@@ -582,6 +662,10 @@ function Effects.Start()
 	end
 	if G and G.OnChange then
 		G.OnChange(function(reason)
+			if reason == "sao.ready" then
+				Effects.InvalidateSecureAuraCandidates()
+				return
+			end
 			-- SAO has already shown or begun hiding its screen overlay. Match
 			-- its buttons in this same combat callback; other edges stay batched.
 			if Flux.Client and Flux.Client.isForever
@@ -657,12 +741,17 @@ function Effects.Start()
 			Ev.Register("UPDATE_SHAPESHIFT_FORM", Effects.RefreshAll)
 		end
 		Ev.Register("SPELL_UPDATE_ICON", Effects.RefreshAll)
-		Ev.Register("UPDATE_MACROS", Effects.RefreshAll)
+		Ev.Register("UPDATE_MACROS", Effects.InvalidateSecureAuraCandidates)
+		Ev.Register("ACTIONBAR_SLOT_CHANGED", Effects.InvalidateSecureAuraCandidates)
+		Ev.Register("SPELLS_CHANGED", Effects.InvalidateSecureAuraCandidates)
 		Ev.Register("PLAYER_TARGET_CHANGED", OnContextedHop)
 		Ev.Register("PLAYER_FOCUS_CHANGED", OnContextedHop)
 		Ev.Register("MODIFIER_STATE_CHANGED", OnContextedHop)
 		Ev.Register("PLAYER_REGEN_DISABLED", OnContextedHop)
-		Ev.Register("PLAYER_REGEN_ENABLED", OnContextedHop)
+		Ev.Register("PLAYER_REGEN_ENABLED", function()
+			Effects.InvalidateSecureAuraCandidates()
+			OnContextedHop()
+		end)
 		Ev.Register("PLAYER_EQUIPMENT_CHANGED", Effects.RefreshAll)
 	end
 	Effects.RefreshAll()

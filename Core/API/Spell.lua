@@ -247,7 +247,7 @@ function Spell.GetCooldown(spellId)
 		local ok, cd = pcall(C_Spell.GetSpellCooldown, spellId)
 		if ok and cd then
 			if type(cd) == "table" then
-				return cd.startTime, cd.duration, cd.isEnabled, cd.modRate, cd.isActive
+				return cd.startTime, cd.duration, cd.isEnabled, cd.modRate, cd.isActive, cd.isOnGCD
 			end
 			return cd
 		end
@@ -256,7 +256,10 @@ function Spell.GetCooldown(spellId)
 		local ok, a, b, c, d = pcall(GetSpellCooldown, spellId)
 		if ok and a ~= nil then
 			if type(a) == "table" then
-				return a.startTime or a.start, a.duration, a.isEnabled or a.enable, a.modRate, a.isActive
+				local start, enabled = a.startTime, a.isEnabled
+				if type(start) == "nil" then start = a.start end
+				if type(enabled) == "nil" then enabled = a.enable end
+				return start, a.duration, enabled, a.modRate, a.isActive, a.isOnGCD
 			end
 			return a, b, c, d
 		end
@@ -297,6 +300,13 @@ function Spell.GetCount(spellId)
 			end
 			return tonumber(n) or 0
 		end
+	end
+	-- Utility slots historically supported this optional Classic reagent
+	-- provider when neither native count API exists. Keep that fallback in
+	-- the shared service now that their digits use the shared painter.
+	local reagentCounts = LibStub and LibStub("LibClassicSpellActionCount-1.0", true)
+	if reagentCounts and reagentCounts.GetSpellReagentCount then
+		return reagentCounts:GetSpellReagentCount(spellId) or 0
 	end
 	return 0
 end
@@ -912,6 +922,9 @@ function Spell.GetFlyoutInfo(flyoutId)
 	if a == nil and C_Spell and C_Spell.GetFlyoutInfo then
 		a, b, c, d = CallFlyoutApi(C_Spell.GetFlyoutInfo, flyoutId)
 	end
+	if a == nil and C_Flyout and C_Flyout.GetFlyoutInfo then
+		a, b, c, d = CallFlyoutApi(C_Flyout.GetFlyoutInfo, flyoutId)
+	end
 	if type(a) == "table" then
 		local info = a
 		return info.name, info.description, info.numSlots or info.slotCount or 0, info.isKnown
@@ -927,13 +940,16 @@ function Spell.GetFlyoutSlotInfo(flyoutId, slotIndex)
 	if a == nil and C_Spell and C_Spell.GetFlyoutSlotInfo then
 		a, b, c, d, e = CallFlyoutApi(C_Spell.GetFlyoutSlotInfo, flyoutId, slotIndex)
 	end
+	if a == nil and C_Flyout and C_Flyout.GetFlyoutSlotInfo then
+		a, b, c, d, e = CallFlyoutApi(C_Flyout.GetFlyoutSlotInfo, flyoutId, slotIndex)
+	end
 	if type(a) == "table" then
 		local info = a
 		a = info.spellID or info.flyoutSpellID
 		b = info.overrideSpellID
 		c = info.isKnown
 		d = info.spellName or info.name
-		e = info.slotSpecID
+		e = info.slotSpecID or info.specID
 	end
 	local flyoutSpellID = PositiveSpellId(a)
 	local overrideSpellID = PositiveSpellId(b)

@@ -1,0 +1,286 @@
+{
+  "spikeCount": 7,
+  "durationLimit": 600,
+  "callbacks": {},
+  "thresholdMs": 200,
+  "heapAfterKB": 784508.142578125,
+  "maxFPSBk": "30",
+  "status": "expired",
+  "mode": "spike-watch",
+  "capturedAt": "2026-11-06 16:01:48",
+  "build": "70790",
+  "coverage": {
+    "Ticker": true,
+    "Events": true,
+    "Scheduler": true
+  },
+  "seconds": 600.0050000000047,
+  "scriptProfile": "0",
+  "spikes": [
+    {
+      "sequence": 1,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 2667,
+        "addonMs": 0.182,
+        "overallMs": 0.4558,
+        "top": [
+          {
+            "addon": "Attune",
+            "ms": 0.1852
+          },
+          {
+            "addon": "_FluxUI",
+            "ms": 0.182
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.06910000000000001
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0165
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.003
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 2667.00005531311,
+      "at": 127.3260000000009,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "callbackMs": 0,
+      "heapDeltaKB": -84752.7900390625,
+      "heapKB": 677961.0234375,
+      "errorDelta": 0
+    },
+    {
+      "sequence": 2,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 235,
+        "addonMs": 214.1369,
+        "overallMs": 220.6312,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 214.1369
+          },
+          {
+            "addon": "Syndicator",
+            "ms": 6.2491
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1564
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0646
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0141
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 235.0000143051148,
+      "at": 177.5779999999795,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "callbackMs": 0,
+      "heapDeltaKB": 61867.5224609375,
+      "heapKB": 739828.5458984375,
+      "errorDelta": 0
+    },
+    {
+      "at": 177.7859999999928,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "sequence": 3,
+      "callbackMs": 0,
+      "contextSampled": false,
+      "gapMs": 208.0000042915344
+    },
+    {
+      "sequence": 4,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 253,
+        "addonMs": 13.2513,
+        "overallMs": 13.5305,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 13.2513
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.2027
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.055
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0156
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0031
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 253.000020980835,
+      "at": 332.4949999999953,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "callbackMs": 0,
+      "heapDeltaKB": -52504.166015625,
+      "heapKB": 687324.3798828125,
+      "errorDelta": 0
+    },
+    {
+      "at": 332.9389999999839,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "sequence": 5,
+      "callbackMs": 0,
+      "contextSampled": false,
+      "gapMs": 301.0000288486481
+    },
+    {
+      "sequence": 6,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 244,
+        "addonMs": 181.3057,
+        "overallMs": 181.5125,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 181.3057
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1849
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0165
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.0036
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0018
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 244.0000176429749,
+      "at": 333.5399999999791,
+      "ui": {
+        "auction": "missing",
+        "combat": false,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "callbackMs": 0,
+      "heapDeltaKB": 55524.375,
+      "heapKB": 742848.7548828125,
+      "errorDelta": 0
+    },
+    {
+      "sequence": 7,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 1174,
+        "addonMs": 4.4358,
+        "overallMs": 4.6345,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 4.4358
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1749
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.0192
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.003
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0016
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 1174.000024795532,
+      "at": 522.8559999999998,
+      "ui": {
+        "auction": "missing",
+        "combat": true,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Map",
+        "mail": "shown=false/visible=false"
+      },
+      "callbackMs": 0,
+      "heapDeltaKB": 13536.33984375,
+      "heapKB": 756385.0947265625,
+      "errorDelta": 0
+    }
+  ],
+  "diagnosticMs": 573.3937026560307,
+  "errorsAfter": 0,
+  "frameCount": 89932,
+  "maxFPS": "120",
+  "interpretation": "Gaps include loading/background/rendering; callback spans are inclusive and may overlap. Nearest profiler tick is not exact gap attribution. Heap is global Lua KB, not addon allocations or a leak test. Error deltas span sampled boundaries. Unit callback failures and work outside observed Flux services are not timed. Diagnostic timings cover recorded sections only, excluding observer seam and fast callback overhead.",
+  "peakFrameMs": 2667.00005531311,
+  "version": "1.60.1",
+  "observedCallbacks": 86522,
+  "diagnosticPeakMs": 0.2764999866485596,
+  "errorsBefore": 0,
+  "heapBeforeKB": 762713.8134765625,
+  "callbackCount": 0
+}

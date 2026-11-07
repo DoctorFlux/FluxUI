@@ -1,0 +1,63 @@
+{
+  "checkpoint": "../checkpoint.json",
+  "files": [
+    {
+      "path": "Bars/Blizzard.lua",
+      "before_sha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+      "after_sha256": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+      "patch": "Bars__Blizzard.lua.patch"
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "before_sha256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "after_sha256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+      "patch": "Bars__BadgeHost.lua.patch"
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "before_sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "after_sha256": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+      "patch": "Core__ButtonFX__Cast.lua.patch"
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "before_sha256": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+      "after_sha256": "7911a8cde0f2e8855a0f22a3a6bc791f4f5cf391354e978405774bed974e1df3",
+      "patch": "Core__ButtonFX__Charges.lua.patch"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "before_sha256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+      "after_sha256": "e209f9794ce1e48cd2841bd7b5eed3e0cb679c08646004dc3e37771083c4cc27",
+      "patch": "ExtraButtonSystem__Engine__Button.lua.patch"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Style.lua",
+      "before_sha256": "0e9af662ccc436ba60e04c02b152bd4d8e57ab98be537852ff0c688b8c82ad04",
+      "after_sha256": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+      "patch": "ExtraButtonSystem__Engine__Style.lua.patch"
+    },
+    {
+      "path": "Core/ButtonFX/ThreatGlow.lua",
+      "before_sha256": null,
+      "after_sha256": "9e08ba85e8eaf5868bbf14b2403097d4aedf3bbef6181369b64d9eb47a5ec4e1",
+      "patch": "Core__ButtonFX__ThreatGlow.lua.patch"
+    },
+    {
+      "path": "tests/alpha_reader_safety.lua",
+      "before_sha256": null,
+      "after_sha256": "8ea11a384e3d587881f739f6b7a76f368d5f4d1e9f9d0fe92b76db9d3d3723a3",
+      "patch": "tests__alpha_reader_safety.lua.patch"
+    },
+    {
+      "path": "tests/fixtures/alpha_reader_before.txt",
+      "before_sha256": null,
+      "after_sha256": "d96a31e00981f337303da5937359a5043925614f999fa897e4f4b62303009489",
+      "patch": "tests__fixtures__alpha_reader_before.txt.patch"
+    }
+  ],
+  "shared_LibCustomGlow_unchanged": true,
+  "private_renderer_key": "_fluxThreatButtonGlow",
+  "TOC_owner": "root; insert afterClick beforeGlow",
+  "Shared_caller_owner": "performance_audit agent; service selector/private key/public geometry capture"
+}

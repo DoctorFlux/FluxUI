@@ -1,0 +1,67 @@
+{
+  "changeID": "PARTY-INDICATORS-20261107",
+  "sources": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "nativeCompactUnitFrameBlob": "bf81a55c61228133a80394b7f0547bf2758c364e",
+  "sourceContract": "Forever CompactUnitFrame at 9dc84f0d3bbae1768ac3405b3716000bd93eda06; existing Flux raid ready/center-status helpers reused.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-indicators-20261107T095420Z\\checkpoint.json",
+  "fullSourceHistorySettingsCheckpoint": "Raid-rewrite-20261107T082357Z; source/history/settings verified in preceding task; preserved externally, no WTF writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "3340c718d015e4ac8c3145cdea08f71e405bfdbbd24a894ce903007b5f3ef4db",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "35cce68f38f14626513b814236a7cbb0aaf7d520bbb8152d9f8588fc432bd7db",
+    "RaidFrame/FluxRaidSecure.lua": "faf1ec840bde3174cb4c936a76e3fef2015a527d5bda3174241d5e5c5dba752f",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "89c1a9621da4145376dfa3edaec24062d9ed7b0d62975ab1a90c4fe3915b31c9",
+    "tests/raid_party_frames.lua": "7f3ac4e2ce04f9f469dec278c8e9229b64d28df7b2979befdaf790c84ddfb39e"
+  },
+  "checks": {
+    "party": 800,
+    "nativeRestricted": 78,
+    "binding": 310,
+    "indicatorLayout": 59,
+    "whole": {
+      "passed": 218,
+      "failed": 0,
+      "scripts": 218,
+      "syntax": 881,
+      "syntaxFailures": [],
+      "drift": [],
+      "failures": []
+    }
+  },
+  "resources": "Reuse class/spec/PVP/leader/assist/MT/MA/loot/raid textures and cast/secure text services; 3 indicator textures plus1 divider per member; no new frame/ticker/timer or secure condition.",
+  "intentionalChanges": [
+    "Restore class icon; dedicated portrait corners for class/spec/PVP/role/raid marker; compact 3-column metadata strip and readable reserved level corner",
+    "Cast shell overlays header at owner+110, above text+70 and metadata+80; shared cast engine/toggle retained",
+    "Symmetric pet text margins keep single percentage on whole-frame X center; secure native $parent anchors retained",
+    "Raid helper events provide ready check/resurrection/incoming summon/leader/master-loot/raid marker; native role atlas; ready finish hides without a new fade timer",
+    "Owned three-unit divider at bottom of Health stays visible independently of HUD resource fill alpha; no power-fill policy change"
+  ],
+  "nativePending": "Actual small-frame appearance/casting, combat/secret/taint/hardware input/FPS on every client; no native acceptance inferred from desktop mocks.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

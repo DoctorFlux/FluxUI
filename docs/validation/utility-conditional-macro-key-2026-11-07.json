@@ -1,0 +1,214 @@
+{
+  "changeID": "UTILITY-CONDITIONAL-MACRO-KEY-20261107",
+  "dateUTC": "2026-11-07T11:17:44.914543+00:00",
+  "requirement": "UTL-MACRO-08",
+  "nativeReport": "User rejects prior keybind behavior: no-mod spell attempted with Shift item selected. Prior desktop passes did not certify this native route.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-macro-key-20261107",
+    "sourceFiles": 1775,
+    "sourceZIP": "79ef89040f06dd0e2a150e4eee6222094295b1b8d27de502b94ab63c72e74600",
+    "history": "Prior external Utility-mixed-20261107 history.bundle verified before edits",
+    "settings": "121 available on-disk metadata files preserved externally; read-only slot1 spell1302508/Shift item2136 and utility native key U observed; no WTF/profiler writes or settings reset"
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.07187,
+      "output": "lua: tests/utility_secure_input.lua:5: one executable conditional macro body\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:150: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.37573,
+      "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02777,
+      "output": "lua: tests/utility_secure_input.lua:5: one executable conditional macro body\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:150: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.32365,
+      "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02853,
+      "output": "lua: tests/utility_secure_input.lua:5: one executable conditional macro body\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:150: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.35377,
+      "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.03297,
+      "output": "lua: tests/utility_secure_input.lua:5: one executable conditional macro body\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:150: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.56374,
+      "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.03499,
+      "output": "lua: tests/utility_secure_input.lua:5: one executable conditional macro body\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:150: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.33644,
+      "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    }
+  ],
+  "isolatedKeyupFailure": {
+    "exit": 1,
+    "output": "lua: tests/utility_secure_input.lua:5: modifier item executes on key-down before Shift can be released\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:210: in main chunk\n\t[C]: in ?\n",
+    "scope": "Compiled macro alone still fails no-wrap key-down test. Existing visible AnyUp route samples modifiers after Shift can be released; this is a desktop reproduction, not a direct observation of the user key-release order."
+  },
+  "mutations": [
+    {
+      "name": "visible-keyup-route",
+      "exit": 1,
+      "output": "lua: tests/utility_secure_input.lua:5: modifier item executes on key-down before Shift can be released\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:210: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "separate-spell-item-lines",
+      "exit": 1,
+      "output": "lua: tests/utility_secure_input.lua:5: spell/item modifier macro contains one selected-action command\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:153: in local 'configure'\n\ttests/utility_secure_input.lua:159: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no-keydown",
+      "exit": 1,
+      "output": "lua: tests/utility_secure_input.lua:5: forever one action per press/release primary \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:178: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sourceContracts": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a"
+    },
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "730e612cc460c50420dd7783a374e876249915730bb0986691db52529d9c1a6f"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "6e32cb60340f2808912bdc393223fa3340af45cf02b16c2e8b0cfe023764eb3f"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "becc39780849b82d071c331980c3ccf4d218d67b278e05720c76e54cf6c88a8b"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\SlashCommands.lua",
+      "sha256": "7294b6ae2eb7b9613713f0817d273a86d42ee547a85adbbcbf0b88a5bb565631"
+    }
+  ],
+  "implementation": "Plain spell/item slots execute one compact conditional /cast macro (pure item /use); explicit item:ID selects native item handler. One stable left-button macro body on existing hidden delegate replaces per-modifier action branches. Nonwrap utility keys use a cached AnyDown SecureActionButton inheriting prepared host attrs through native useparent lookup; at most one per bound utility, max4; no modifier-time rebuild or new timer/event/ticker. Mouse cadence and wrap-client CVar paths retained. Named macros/pet/outfit routes unchanged.",
+  "testScope": "Actual five native SecureTemplates dispatchers plus actual CAST/USE slash handlers replayed. Both keys/all8 chords/combat/CVar edges; saved Study/Shift-water key scenario; early Shift release before key-up; cold item metadata cannot fall back to spell. Rendering, engine taint, native hardware remain modeled/pending.",
+  "native": "No Witchcraft/background-safe native control tool; no game input/foreground/mouse/keyboard/clipboard action; user reload/reproduction required for native acceptance.",
+  "fullValidation": {
+    "report": "docs/validation/utility-conditional-macro-key-full-2026-11-07.json",
+    "syntaxFiles": 885,
+    "pass": 222,
+    "fail": 0,
+    "postRunDrift": []
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "sha256": "3b14c0156cc6e8d4446078e0b8c906f56239b7fe3818dc6256791cb7c2ec8dd9",
+      "matches": true
+    }
+  ],
+  "documentationValidation": "PASS:918 classified sources;598 TOC/XML reachable;415 setting definitions;24 SavedVariables;15121 local links; source inventory/evidence current",
+  "finalAudit": "Current utility manager and complete tested Lua corpus unchanged; all five installed manager copies match; no manual copy or game/WTF/profiler input."
+}

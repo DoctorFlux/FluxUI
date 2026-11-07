@@ -1,5 +1,1083 @@
 # Decisions
 
+7 November publication batch: current local addon updates and audit/test records
+are prepared for the user-requested upload to main. Fresh validation passes all
+232 scripts and 896 Lua syntax files with unchanged Lua hashes. External recovery
+checkpoint GitHub-publication-20261107T135245Z preserves 2,039 actual source files,
+179 on-disk settings and all-ref Git history; archives are outside AddOns.
+Publication author/committer is DoctorFlux, with no automated co-author trailers.
+An older author attribution needs a published-history correction; the standing
+no-force-push rule remains until the user explicitly approves that exception.
+Native combat/taint, visual and performance checks retain their recorded pending
+status. This publication changes no runtime behavior or game/profiler settings.
+[Fresh validation](validation/github-publication-2026-11-07.json).
+
+<!-- STRESS-FIXES-20261107 -->
+7 November stress fixes (STRESS-FIXES-20261107): the user authorized implementation after the audit/proposal phase. Applied public fade ownership, secret-safe alpha/geometry handling, local Forever driver adapters, accurate/cancellable Respec completion, input invalidation, mutation-safe event delivery, retained FIFO scheduler work, bounded combat drains, raid/nameplate work reduction, hidden-watch suspension, bounded range freshness and auction retry churn. Settings, saved roots, commands, artwork and foreign library ownership are preserved. Combined desktop validation: 232/232 scripts and 896 Lua syntax files PASS; post-suite Lua hashes match. No game input, WTF/profiler writes, commit, push or manual cross-install copy was performed. USER-001 actual failing frame/first taint source, native taint, pixels and CPU/FPS remain pending. Visible character-button polling and coherent auction publication after quiet are intentional safety limits, not claimed eliminated costs. [Applied changes and evidence](../Stress%20test%20doc/applied-fixes/README.md).
+<!-- /STRESS-FIXES-20261107 -->
+
+7 November modifier key routing (UTL-CHORD-13): user confirms no-mod works
+but modifiers fail. Ordinary utility key overrides now carry their triggering
+chord as a distinct virtual button. Wildcard-modifier native payloads and
+release types preserve that selection independently of live modifier queries
+during dispatch. Click wrappers retain the virtual button and CVar edge;
+cached nonwrap keyers inherit its fields. Mouseover uses the same encoded
+prefix and retains its native modifier gate. Physical mouse attributes stay
+prepared for each chord. Bindings now install after action preparation in
+the real slot-update lifecycle; clearing removes all encoded actions.
+A masked-dispatch fixture reproduces the prior normal-action fallback;
+the engine masking mechanism itself is unobserved. Five baselines fail and
+five candidates pass41255 checks; four mutations rejected.12634 face/count/CD,
+1473 VFX and4973 mouseover checks PASS; existing320-transition paint budget
+unchanged. No new frame/event/timer/ticker/poll. Actual new modifier input/
+mouseover/combat/taint/pixels/FPS acceptance remains NOT RUN.
+Full run:894 syntax PASS;229/230 scripts PASS. The sole failure is the
+unrelated portrait_camera.lua fixture missing GetFramePublicDimensions;
+concurrent portrait work is preserved. Utility source owners/tests remain
+at their recorded hashes; all five installed copies match via the existing
+mirror. Native modifier acceptance is still pending.
+[Evidence](validation/utility-chord-routing-2026-11-07.json).
+
+7 November party auras over portrait indicators (PARTY-AURA-PORTRAIT-LAYER-20261107; REQ-RF-75):
+normal party aura host was owner+60 below portrait indicators+80. It now uses+90
+in the shared live/preview factory, above portrait icons and below cast header+110.
+Native and readable rows, cooldowns and duration text inherit that host. Existing
+positions/sizing, filters/limits, strict dispels, timer policy and opacity remain.
+This changes draw order only; no new frame/event/hook/timer/ticker/recurring work.
+
+865 party checks include live ordering above indicators/below casts and matching
+preview ordering on five source models;12776 aura-renderer checks PASS. 228/229 scripts PASS; 893 syntax files/0 failures.
+Native overlap/opacity, combat/taint/FPS checks pending per client; no native
+performance claim or benchmark for this low-impact change. External dated
+source/history/settings retained; no game input/WTF/profiler write, manual sync,
+branch or push. [Evidence](validation/party-aura-portrait-layer-2026-11-07.json).
+Later unrelated corpus drift: Respec/FluxRespec_Consumables.lua, Respec/FluxRespec_PresetBundle.lua, tests/hover_children_varargs.lua, tests/prediction_public_geometry.lua, UnitFrames/FluxUnitFrames_Shared.lua.
+
+7 November utility execution rework (UTL-EXEC-11; UTL-MO-12): user rejects the
+ranked-spell attempt as still nonfunctional. Ordinary spell/item utilities now
+prepare native secure action attributes for every exact modifier chord before
+combat, removing macro-text/delegate execution. Saved IDs directly drive
+icon/count/cooldown/VFX; rank names are used only as native spell cast tokens.
+Both keys, base/preferred fallback, combat release, clearing and cursor drops
+are covered; special macro/pet/mount/toy/outfit assignments retain their route.
+Mouseover follows the existing setting/modifier through shared click-time
+target wrappers, using the selected action help/harm gate and clearing unit
+afterward. Range follows the same reaction during existing hover cadence.
+Forever target wrappers require the existing repaired-VM probe; failed probe
+or partial installation retains normal native targeting and is not a
+mouseover pass. Existing combat setting deferral remains. No new event,
+timer, ticker, OnUpdate or hover driver; existing320-transition paint budget
+is unchanged.26962 input,10234 face/count/CD,1033 VFX and4973 mouseover checks
+PASS; five old-contract rejections/five candidates and three mutations.
+Full222 scripts/885 syntax PASS; tested Lua corpus unchanged; all five installed
+client copies match the six runtime owners through the existing mirror.
+Actual native casts, mouseover probe, combat/taint/visual/FPS remain NOT RUN.
+[Evidence](validation/utility-native-actions-2026-11-07.json).
+
+7 November utility ranked spells (UTL-RANK-10): user reports Arcane Intellect
+and other utility spells fail. Read-only saved assignments include Arcane
+Intellect(Rank 2). Native CAST prechecks the full ranked string; USE sends a
+nonitem string directly to the protected cast function. Ranked/subtext utility
+spells now use USE, retaining their exact rank; bare spells retain CAST priority
+over same-name items. Mixed ranked/bare slots keep a single stable hidden macro
+with mutually exclusive exact-chord lines. Item modifiers, both keys, release
+and special assignments remain. No new events/timers/frames/polling or combat
+action writes. Five baseline rejections and five candidate15491-check passes
+exercise a ranked-lookup miss through five dated native dispatcher/handler
+sources. This is a desktop failure model, not confirmation of the native root
+cause or spell cast success. Full222 scripts/885 syntax PASS; corpus unchanged;
+all five manager copies match. Existing6894 modifier/488 VFX checks PASS.
+Native reload/target/mouseover/input/combat/taint/
+visual/FPS acceptance is pending. [Evidence](validation/utility-ranked-spells-2026-11-07.json).
+
+7 November utility item cooldown correction (UTL-CD-09): utility slots no longer
+claim consumable buff durations as cooldowns. Clear already latched aura fields
+before cooldown dispatch, including combat modifier release back to a spell.
+The dedicated consumables button keeps its supplied aura countdown; existing
+nonutility potion and food/water policy remains. No new timers, events, frames,
+polling or protected action writes. Five paired desktop runs reproduce 30
+baseline failures and pass 6894 candidate checks each; utility aura lookups
+drop from five to zero per run. Full validation: 222 scripts and 885 Lua syntax
+files PASS; post-run corpus unchanged. Native cooldown/input/combat/taint/visual/FPS
+acceptance remains pending. [Evidence](validation/utility-item-cooldown-2026-11-07.json).
+
+7 November utility conditional macro key fix (UTL-MACRO-08): user reports
+Shift item keypress still attempts the normal spell; prior input acceptance is
+REJECTED for that native report. Ordinary spell/item slots now execute one
+compact conditional macro command with explicit item:ID tokens; native /cast
+handles both. The same body supplies display identity. Modifier-specific action
+attributes no longer choose the execution branch for these slots. Named macro/
+pet/outfit paths retain their prior route. Nonwrap keys now use one cached
+AnyDown proxy per bound utility (max4), inheriting prepared host attributes;
+visible mouse timing and wrap-client CVar policy remain. This fixes the tested
+AnyUp release-order gap: Shift item executes on key-down before Shift is released,
+and key-up cannot then run the normal spell. No modifier-time secure rewrites
+or new event/timer/ticker/poll. Both keys and explicit modifier chords remain.
+Read-only saved slot1 Study/Shift-water and native U binding verified. Actual
+five-client SecureTemplates plus CAST/USE handlers replay 11114 checks; saved
+setup, cold item no-fallback and early Shift-release cases pass. Five old-source
+contract rejections/five candidate passes; isolated pre-proxy timing rejection;
+three mutations rejected.6609 count/modifier and488 VFX checks pass; prior
+count-paint budgets retained. Full222 scripts/885 syntax PASS; tested
+corpus unchanged; all5 manager copies match through existing mirror. No game input,
+WTF/profiler writes or settings reset. Native reload/input/combat/taint/FPS
+acceptance remains pending; no connected Witchcraft/native input tool.
+[Evidence](validation/utility-conditional-macro-key-2026-11-07.json).
+
+7 November target-style party separator (PARTY-TARGET-SEPARATOR-20261107; REQ-RF-74):
+user screenshot rejects the flat party line; user selects the bottom-right target
+as reference. Party now calls the exact target/player CreateSeparator factory via
+UF.CreateBarSeparator: same battlefieldminimap-border-top atlas, or same legacy
+texture/crop, and17 logical height including transparent artwork padding. Tint
+uses SetVertexColor so recoloring cannot replace artwork with a solid fill. The
+underlying shared health/power separator hides when the owned party divider exists
+to avoid a doubled/shiny edge. Resource-top seam and existing bar-height controls
+remain. Reference screenshot retained externally with hash; new native comparison
+is pending. This supersedes RF73's solid four-unit divider appearance.
+
+144 checks compare the actual party construction with the target constructor
+across atlas/fallback, HUD/legacy and multiple heights/resource scales; verify
+seam coordinates, no bar resizing and no duplicate separator. Five alternating
+checkpoint/candidate pairs reject the former flat artwork and pass current code.
+840 party checks PASS. 222/222 scripts PASS; 885 syntax files/0 failures. No new frame/event/hook/timer/ticker/driver;
+no native CPU/FPS claim. Native pixels/combat/taint pending per client. External
+source/history/settings retained; no game input/WTF/profiler write, manual sync,
+branch or push. [Evidence](validation/party-target-separator-2026-11-07.json).
+Later unrelated corpus drift: ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua.
+
+7 November party divider thickness/tint (PARTY-DIVIDER-STYLE-20261107; REQ-RF-73):
+user confirms RF72 divider is visible and requests it slightly thicker with the
+same color as the other borders. Height increases3 to4; resource-top anchors,
+bar/frame dimensions and opacity stay. Divider and outer borders now use the
+same appearance accent or party member class override through Party.PaintChrome.
+Existing global appearance refresh repaints live and preview party chrome, so
+changing accent/class choices cannot leave the divider at its old hardcoded tint.
+No new frame/event/hook/timer/ticker/recurring driver; bounded appearance repaint.
+
+Existing54 real-partition/840 party/59 indicator checks PASS; expectations updated
+for height4. 222/222 scripts PASS; 885 syntax files/0 failures. This small visual change adds no new tests/benchmark
+that mirror its implementation; no native performance claim. User acceptance is
+prior divider presence only; new thickness/tint native visual/combat/taint/FPS
+checks remain pending. External source/history/settings retained; no game input,
+WTF/profiler write, manual sync, branch or push.
+[Evidence](validation/party-divider-style-2026-11-07.json).
+
+7 November utility modifier VFX (UTL-VFX-07): utility face changes now
+settle cast/channel/empower/reticle/finish/interrupt through the existing Cast
+and Overlay owners. A departed face clears its paint and player owner-bag
+membership; returning matching faces resume via existing progress/window
+helpers. Context refreshes with unchanged identity skip this work. Macro item
+faces resolve their use-spell proc without comparing item art to spell art;
+cleared utility slots drop stale proc/cast effects. Existing strip/pet ownership
+and pre-DF VFX preference remain. No new event/frame/timer/ticker/poll or secure
+action writes; hold/release and prior count work budgets stay unchanged.
+578 focused VFX checks across five models,7329 modifier/count checks and11015
+native-source input checks PASS; five baseline rejects/five candidate passes;
+four mutations rejected. Full222 scripts/885 syntax PASS; tested
+corpus unchanged; all15 installed runtime copies match via existing mirror. Native pixels/input/
+combat/taint/FPS remain pending; actual drawing and unit data are modeled.
+External source/history/settings metadata verified; no game/WTF/profiler/input
+control or manual client sync.
+[Evidence](validation/utility-modifier-vfx-2026-11-07.json).
+
+7 November party HP/resource divider edge (PARTY-DIVIDER-EDGE-20261107; REQ-RF-72):
+user reports divider absent; prior RF67 desktop checks did not validate the HUD seam.
+HUD health fills extend behind resource; its bottom is not the seam. The existing
+party divider now anchors to Power top with+1 offset, matching the shared two-unit
+gap midpoint. Height3, bronze color, opacity, raised layer, bar dimensions, frame
+size and existing range/visibility ownership remain unchanged. No new resource
+owner/event/hook/timer/ticker or refresh loop; native anchors track resource.
+
+54 checks execute the real shared partition function and production divider
+creation across HUD/legacy,35/85/150 height and0.5/0.8/1.5 resource scale. They
+resolve divider coordinates against the actual shared separator, and assert no
+bar resize. Five alternating checkpoint/candidate runs reject the old HUD edge
+and pass current code;840 party checks PASS. 221/221 scripts PASS; 884 syntax files/0 failures. Native seam pixels,
+combat/taint/FPS pending per client; no native performance claim. External dated
+source/history/settings retained; no game input, WTF/profiler write, manual sync,
+branch or push. [Evidence](validation/party-divider-edge-2026-11-07.json).
+Later unrelated corpus drift: tests/bank_restock_icon.lua.
+
+7 November default Blizzard bank direct UI lifecycle (BANK-NATIVE-06): user
+renews the no-Baganator close/layering fix. Source audit proves a missed path:
+restock inventory fireCloseIfGone suppresses its private close callback while
+Bank.IsOpen stays true. Earlier tests always delivered that callback. The bank
+button now uses BANKFRAME_OPENED/CLOSED directly through the existing shared
+Flux.Events dispatcher for native UI, independent of that inventory latch. A raw
+close hides immediately, invalidates delayed attaches and blocks manual/stale
+inventory-open resurrection until the next real open. Private callbacks remain
+for Baganator and as fallback if direct registration is unavailable. Two native
+subscriptions, no new frame/timer/ticker/polling or native-script hook.
+Native layering now uses at least HIGH and the highest parent/search/panel/close/
+NineSlice strata; level clears those children as well as the root. Native parent
+and left-of-search position remain. GetControl exposes the actual owned widget
+for diagnostics; no command/settings change. Baganator footer remains intact.
+Full221 scripts/884 Lua syntax PASS; final bank1780 checks rechecked after a
+baseline-fixture refinement. Later unrelated Cast/EBS source drift recorded; no current whole-addon PASS
+claimed. Bank runtime owner remains at its tested hash.
+All5 installed bank owner hashes match via existing mirror; no manual sync.
+Two production mutations (missed close and low strata) rejected.
+1780 production checks across five clients/both owners/cold-warm merchant/direct-
+events-fallback modes PASS. Includes suppressed inventory close, stale shown
+flags, stale open callbacks, HIGH/DIALOG children and reopen. Native ownership168,
+visible Baganator260 and combined33 per Era/Anniversary PASS. Prior checkpoint
+rejects. Fresh Gethe Forever9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862)
+verifies close function/events/search owner. Native visuals/open-close/purchase/
+combat/taint/FPS remain pending; actual hovered-frame evidence still unavailable.
+Fresh external source/history/45 on-disk settings metadata verified. No game,
+foreground, WTF/profiler or manual-sync operation.
+[Evidence](validation/bank-direct-lifecycle-2026-11-07.json).
+
+7 November native bank owner investigation (BANK-NATIVE-05): user confirms
+Forever after /reload still shows the control behind/detached from the window
+and not disappearing on close. BANK-NATIVE-04 native acceptance is REJECTED;
+its desktop checks do not establish actual-client behavior. No further runtime
+layout change made yet. Read-only host enumeration confirms two running
+_forever_/Wow.exe clients; installed bank source matches current workspace hash.
+Available saved BugTabs has no bank/restock error entry, but is not live state.
+The current source already parents its native control to BankFrame, making the
+actual hovered frame/owner identity necessary before another speculative fix.
+User requested to type /fstack, hover the visible restock control and provide
+frame names, then disable /fstack. Await this evidence. No connected Witchcraft,
+UIForever or computer-use tool exists; no foreground/mouse/keyboard/clipboard
+control, game input or WTF/profiler writes. Fresh source/history checkpoint and
+45 settings metadata entries verified outside AddOns. Native placement/layering/
+hide/taint remain unresolved; preserve the Baganator footer and newer party work.
+
+7 November party cast name/level coverage (PARTY-CAST-COVER-20261107; REQ-RF-71):
+latest user correction keeps player-style cast art/icon but requires it over the
+party name and level. This supersedes RF68's unmodified cast placement. Shared
+cast dimensions/lifecycle remain; shell now anchors across the prepared party
+header at owner+110, above name+70 and metadata+80. Name/level alpha conceals
+underlying glyphs during casts/holds and restores previous public alpha on hide
+or disable. Metadata repaint cannot raise the level over the cast. Show/Hide
+callbacks change text alpha only; existing OOC layout prepares geometry.
+
+Party / Raid > Party frames > Show party cast bars retains partyShowCastBar and
+combat deferral. Disabling hides an active cast immediately outside combat;
+enabling refreshes the current cast through existing CB.RefreshCastForUnit.
+840 party/310 binding/379 timer/2730 marker checks PASS; five fresh alternating
+baseline/candidate harnesses reject the prior lower/unplaced cast shell and pass
+current code. 220/220 scripts PASS; 883 syntax files/0 failures. Markers remain fixed by RF70. No new frame/event/
+ticker/timer/secure condition; four layout wrappers and Show/Hide coverage hooks.
+Native pixels/toggle/combat/taint/FPS pending per client; no performance claim.
+External source/history/settings retained; no game input/WTF/profiler write,
+manual sync, branch or push. [Evidence](validation/party-cast-cover-2026-11-07.json).
+
+7 November native bank attachment (BANK-NATIVE-04): user reports the no-Baganator
+button below the window and detached during opening/closing. Forever's control
+was deliberately a UIParent sibling; it now uses the native BankFrame parent and
+existing inside left-of-search anchor, inheriting visibility, movement and scale.
+This supersedes the earlier UIParent parent restriction for this owned control.
+Native scripts, purchases, mover and item decoration exclusions remain. Visible
+ancestor checks hide stale/unattached controls on all clients. Existing two open
+retries keep their cadence but use a close/reopen generation token, so stale
+callbacks cannot resurrect a closed control. No new frame/event/hook/timer/ticker.
+Baganator's full-size inside footer and existing settings/commands are retained.
+Full runner:219 scripts PASS,1 unrelated raid_party_frames cast-layout failure;
+883 syntax/0 failures. No current whole-addon PASS claimed. Final bank828 checks
+rechecked after the hidden-ancestor test extension. All5 installed runtime hashes
+match through existing mirror; no manual client copy.
+828 production checks across5 clients/both owners/cold+warm merchants PASS,
+including parent hide/show without callbacks, close/reopen retries, explicit
+hidden-bank attachment and a shown frame under a hidden owner. Prior checkpoint
+rejects; current code passes. Native ownership168/visibleBaganator260/combined33
+per Era/Anniversary PASS. Fresh dated source/history/45 settings metadata entries
+verified externally; no game/WTF/profiler/manual-sync operation. Existing pinned
+Gethe9dc84f0d3bbae1768ac3405b3716000bd93eda06 source retains search/template evidence.
+Native candidate placement/open-close/purchase/combat/taint/FPS remain pending;
+no connected native tool.
+[Evidence](validation/bank-native-attachment-2026-11-07.json).
+
+7 November raid-target marker rendering (RAID-MARKER-RENDER-20261107; REQ-RF-70):
+raid/normal-party icons hid every secret GetRaidTargetIndex return. Raid textures
+also lacked a base sprite sheet: native SetRaidTargetIconTexture sets coordinates,
+not the image. Both are fixed. Retail/Forever opaque indices pass directly to
+the AllowedWhenTainted native SetSpriteSheetCell sink; no private comparison or
+UV arithmetic. Readable markers retain legacy fallback. Sheet is explicitly set;
+nil/invalid/removal hides stale icons. Ordinary player/target/focus marker state
+uses the same guarded approach instead of index truth tests. Existing player/party
+HP-centered geometry, settings, textures and events stay; no new frame/driver.
+
+2730 checks exercise all eight markers, replacement/removal, readable/restricted
+indices, six unit tokens, native and legacy paths across five client models.
+Five alternating checkpoint/candidate pairs reject the prior missing-sheet path
+and pass current code. Existing428 raid runtime/810 party/59 indicator checks PASS.
+220/220 scripts PASS; 883 syntax files/0 failures. No native pixels/combat/taint/FPS certification. External dated
+source/history/settings retained; no game input/WTF/profiler write, manual sync,
+branch or push. [Evidence](validation/raid-marker-render-2026-11-07.json).
+Later unrelated source drift: Inventory/Restock/Bank/FluxBankRestockButton.lua, tests/bank_restock_icon.lua.
+
+7 November Baganator full-size inside action row (BANK-ICON-03): user rejects
+the22px toolbar button and explicitly requires a location inside the window.
+Existing restock control is now36x36 at scale1 in an owned48px bottom row, with
+Bank Restock label and full-size auto checkbox. Native tab, currency/reagent/
+purchase controls and item layout sit above that row. Existing completed-layout
+wrapper releases owned geometry before native sizing; repeated attachment never
+accumulates height. Tall windows reuse/shorten their existing scroll viewport;
+owned heights restore on hide, locked tab or native/combined handoff. No native
+bank placement changes; Forever remains left of search. No settings migration,
+new frame/event/hook/timer/ticker; one lazy FontString and transient footer state.
+Full220 scripts/883 Lua syntax PASS; current Lua corpus unchanged.
+All10 runtime owners across5 installed copies match via existing mirror.
+668 production checks cover five clients, both bag owners, cold/warm merchant,
+full-size geometry, viewport bounds, exact native completion ordering, repeated
+refresh, lock and handoff. Ownership168/visibleBaganator260/combined33 per Era
+and Anniversary PASS. Native candidate visuals/input/taint/FPS remain pending;
+user reproduction route retained. Baganator843 interfaces inspected read-only;
+rights retained, no implementation/art copied. Dated external source/history and
+45 on-disk settings metadata verified. No game input/WTF/profiler/manual sync.
+[Evidence](validation/bank-restock-footer-2026-11-07.json).
+
+7 November cast timer synchronization (CAST-TIMER-SYNC-20261107; REQ-RF-69):
+party/focus/target text could prefer stale cached value/maxValue while the fill
+used its StatusBar or engine DurationObject. Restricted duration also selected
+a guessed wall clock for text. Shared countdown now reads the bound engine
+remaining duration, or actual bar current/max values for readable/manual casts
+and channels. This follows all five native CastingBarMixin timer formulas.
+Opaque engine remaining duration forwards unchanged to the native formatted-text
+sink; font widths are secret-guarded. Unavailable timing clears stale text rather
+than estimating. Cast fill, geometry, lifecycle, options and0.05s paint cadence
+stay unchanged; no new frame/event/hook/ticker/timer. Player and pet share the fix.
+
+379 focused checks cover five source families, party1/party4/target/focus/player,
+casts/channels/delays/replacement, stale caches, engine duration, restricted text
+and font geometry. Full production start/update/delay events replay on each
+family, including Retail/Forever engine-owned opaque countdowns. Five alternating
+checkpoint/candidate pairs reject old code and pass current; three timer mutants
+rejected.13942 existing cast theme checks PASS. 219/219 scripts PASS; 882 syntax files/0 failures.
+Native rendering/secret sink/combat/taint/FPS remain pending per client; desktop
+models do not certify them. Dated external source/history/settings recovery
+retained. No game input, settings/profiler write, manual sync, branch or push.
+[Evidence](validation/cast-timer-sync-2026-11-07.json).
+
+7 November bank restock slot follow-up (BANK-ICON-02): user rejects the first
+icon-only fix and the Forever outside-window placement. Baganator843's toolbar
+uses32x22 buttons; resizing only the hit rectangle left fixed64px merchant slot
+art at its36px design size. The whole36px control now scales uniformly to the
+shorter toolbar edge, including icon, frame, highlight/push and auto toggle.
+Native/combined handoff resets scale1. Transfer/Sort/Customise references work.
+Forever remains an addon-owned UIParent child but is visually inside BankFrame,
+RIGHT of button to LEFT of BankItemSearchBox,4px gap, vertically centered; this
+supersedes the previous external TOPRIGHT placement. Native bank hierarchy,
+scripts/purchase/movement/decorations stay untouched. Fresh Gethe Forever source
+9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862) verifies Mainline template
+and Camelot loading/search owner. Baganator read-only reference retains rights.
+Full219 scripts/882 syntax PASS; no current Lua corpus drift.
+All five installed bank runtime hashes match via existing mirror; no manual sync.
+358 production geometry/lifecycle checks PASS across5 clients/both bag owners/
+cold+warm merchant; prior checkpoint rejects. Native ownership168 and combined33
+per Era/Anniversary PASS. Native candidate pixels/input/taint/FPS remain pending;
+user screenshot reproductions retained; no connected client tool or game input.
+External fresh source/history verified;45 on-disk settings metadata read-only.
+No new frame/event/hook/timer/ticker. Existing bounded retries/click/drop/tooltip/
+auto settings retained.
+[Evidence](validation/bank-restock-slot-2026-11-07.json).
+
+7 November player-layout parity for normal party (PARTY-PLAYER-LAYOUT-20261107; REQ-RF-68):
+user supersedes the prior portrait-corner class/spec/raid marker layout and
+header-overlay cast variant. Class/spec now retain the shared player factory's
+anchors, size, borders and visibility; no forced class show or party reparenting.
+Party casts use the unwrapped player cast layout including spell icon. The party
+cast toggle remains. Player and party share UF.LayoutRaidMarker: center of HP,
+90 percent of HP/text-anchor height; party retains secret-guarded marker updates.
+Leader/assistant/MT/MA/loot move onto portrait so class/spec header slots are free.
+Spec data availability follows the existing provider; no fabricated spec.
+
+810 party and78 restricted checks pass; 218/218 scripts pass; 881 syntax files/0 failures.
+No new frame/event/timer/ticker/condition. Four cast wrappers and OnShow hooks
+removed. Native pixels/casting/combat/taint/FPS pending on each client. External
+source/history/settings recovery retained; no game input/WTF/profiler write,
+manual sync, branch or push. [Evidence](validation/party-player-layout-2026-11-07.json).
+
+7 November compact normal-party indicators (PARTY-INDICATORS-20261107, REQ-RF-63..67):
+restored class icon; class/spec/PVP/role/raid marker have dedicated portrait corners,
+leader/assistant/MT/MA/master loot use a compact header grid, and level has its own
+readable corner. Casts cover the header above both text and metadata, with the
+existing Party member cast bars toggle; shared cast lifecycle retained. Pet text
+hosts use symmetric left/right margins so percentage-only labels center on X.
+Party reuses raid ready-check/center-status helpers for ready, resurrection,
+incoming summon, leader/loot/raid markers, plus native role atlas. Ready finish
+hides without a new timer. A dedicated divider restores the HP/resource seam
+independently of the HUD fill's alpha. Party raid markers bypass the older shared
+marker truth-test and use the existing secret-guarded raid helper.
+
+800 party,78 restricted-contract,310 binding and59 indicator checks pass on the
+existing source models. Whole run: 218/218 scripts pass; 881 Lua syntax files, 0 failures. No native visuals/combat/taint/FPS certification.
+Four textures/member, no new frame/ticker/timer/secure condition. External dated
+source/history/settings retained; no game input, settings/profiler write, manual
+sync, branch or push. [Evidence](validation/party-indicators-2026-11-07.json).
+
+7 November bank restock icon (BANK-ICON-01): user supplied Forever screenshot
+showing a small icon and requested all clients with/without Baganator. The bank
+icon now fills its own button with a one-pixel inset, following native/combined
+and Baganator toolbar sizing instead of copied merchant icon dimensions. The
+requested no-Baganator Forever route restores an addon-owned UIParent button
+beside BankFrame; no native bank child, script, mover or item decoration changes.
+This intentionally supersedes only the prior native-restock suppression. Existing
+bounded open retries, close cleanup, click/drop/tooltip/auto settings remain.
+312 production-module geometry/lifecycle checks cover five clients, both bag
+owners and cold/warm merchant icons; prior checkpoint rejects, candidate passes.
+Ownership168, combined33 per Era/Anniversary, charge12 and click784 checks pass.
+Full run reports218 scripts/881 Lua syntax PASS at its captured snapshot.
+Three unrelated raid/party Lua files subsequently drifted; bank runtime/test
+owners remain stable, so no whole-addon PASS is claimed for the changing tree.
+All five installed bank runtime copies match through the existing mirror;
+no manual client copy performed. Source/history checkpoint and45 on-disk Flux settings metadata entries verified
+outside AddOns. No game input, WTF/profiler writes or new recurring driver.
+Native candidate pixels/input/taint/FPS remain pending; no connected client tool.
+[Evidence](validation/bank-restock-icon-2026-11-07.json).
+
+7 November utility combat release/optimization (UTL-REL-05;UTL-PERF-06):
+normal spell/item action, icon and latest count restore on every modifier
+release while combat remains active. Partial/full release, counts changed
+while held, zero/blank digits and50 repeated cycles are covered. Native input
+continues through prepared modifier attributes without visual callbacks or
+secure rewrites. Utility display now uses one loop and shared translator paint;
+unchanged selected faces and duplicate chord events skip repeated work. Special
+pet/outfit cleanup remains; bag/charge updates stay independent. Actual shared
+Modifier bus + painter regression passes7329 checks; five-source native input
+replay passes11015. Five paired desktop measurements:320 transitions reduce
+icon320->120, count640->120, usable660->140, checked640->120; duplicate paints
+1120->0. These are scoped callback work counts, not native CPU/FPS measurements.
+Prior behavior restored correctly; optimization removes duplicate work. Two
+mutations rejected. Full217 scripts/880 syntax PASS at snapshot;
+subsequent unrelated native-bank test drift recorded. Utility runtime and all5
+installed copies match tested hashes; docs check pending2 bank-test inventory/
+verification issues. No whole-current-tree acceptance claimed. Existing events/cadence/
+settings unchanged; one transient chord memo; no new recurring driver. Native
+input/taint/pixels/FPS remain pending; no game/WTF/profiler/input control.
+[Evidence](validation/utility-modifier-release-2026-11-07.json).
+
+7 November utility secure use/cast follow-up (UTL-USE-04): user requires
+universal execution as well as the displayed spell/item, including combat.
+Exact macro actions now stay on the existing hidden EBS delegate; visible
+modifier attributes forward clicks there. The long visual body cannot execute
+through an unmapped/right button. Nonwrap clients bind native LeftButton;
+wrap clients retain KeyBind. Both assigned keys gain each explicit utility
+modifier override, including items, while unassigned bindings stay available.
+8135 actual Blizzard-dispatcher desktop checks across5 source trees cover
+mouse/two keys/all8 chords/both CVar edges/combat and deferred edits;5 baseline
+rejections/5 candidate passes and3 rejected mutations. Prior face/count/pet/
+transmog regressions pass. The old bars fixture incorrectly forbade native
+LeftButton universally; corrected to follow wrap capability. Full217 scripts/880 Lua syntax PASS; tested corpus unchanged at audit. No new frame/event/timer/ticker owner; existing pool and
+bindings owner reused. Actual native secure combat input/taint/pixels/FPS
+remain pending: no Witchcraft tool available. No game/WTF/profiler input.
+[Evidence](validation/utility-secure-input-2026-11-07.json).
+
+7 November normal-party follow-up (PARTY-NATIVE-FOLLOWUP-20261107,
+REQ-RF-51 through REQ-RF-62): fixed native visibility with prepared fixed-token
+buttons and Blizzard's built-in state-visibility driver. User confirms player-style
+frames appear and preview works. Four fixed rows keep the full stack within the
+current raid-column height, with zero gap; the fourth slot retains the old full
+party corner. This supersedes the earlier partial-roster last-member relocation.
+Pet/target existence changes use native secure drivers; option edits defer.
+
+Party HP/resource text is 15 percent larger with independent name fitting;
+pet offset no longer consumes name-header space. Metadata occupies separate
+portrait-side slots and a level corner. HP-only 60x28 pets show only percentage;
+HP text moves into a top band with a pet and centers without one. Resource height
+defaults to 80 percent. Independent values/percent/both/hidden modes default to
+HP values and resource percentage. Bigger party auras have their own 1.50 factor;
+portrait-side harmful auras preserve strict filters, limits, packed flow and clocks.
+HP/resource fills gray for dead/ghost/AFK/offline and recover on status return.
+All portrait surfaces inherit alpha; missing 3D models use native SetPortraitTexture
+and recover on model loading. Optional player-class HP colors cover own pet target,
+party targets and focus target; NPCs retain their normal color. Party class chrome
+remains independent of HP. Threat uses only an owned transparent border overlay
+with native warning/dead/status rules and GetThreatStatusColor, guarding secrets.
+
+Actual restricted-method regressions cover underscore attributes and inherited
+parent handles; $parent fixes invalid relative handles. The secret-alpha portrait
+comparison is removed. 760 party, 310 binding, 78 native-contract and 255903 secure
+checks pass across five source models, plus existing aura/clock checks. Five fresh
+alternating pairs reject the checkpoint alpha branch and pass current code.
+Final217 scripts/880 Lua syntax PASS at the tested snapshot. Party runtime
+owners remain unchanged; later unrelated utility/runtime-test edits cause global
+corpus drift and retain their separate validation. All65 party runtime file
+comparisons across five installed copies match through existing sync. No duplicate
+copy, new recurring party driver, game input, profiler/WTF write, branch or push.
+Dated external source/history and 158 on-disk settings verified. Final visuals,
+combat/input/secret/taint/FPS acceptance remains pending separately on each client.
+Meter work stays excluded. [Evidence](validation/party-native-followup-2026-11-07.json).
+
+7 November utility spell/item modifier faces (UTL-MIX-01 through UTL-MIX-03):
+exact held chords select one action and matching icon/tooltip/cooldown/range,
+with the existing preferred-base fallback. Native modifier attributes prepare
+outside combat. Utility counts use shared EBS live rules for stacks, item
+charges, reagents and spell charges; bag changes repaint during combat without
+protected writes. Existing settings/layout/cadence remain; no new recurring
+driver. 3269 focused checks, five baseline-rejecting pairs and three rejected
+mutations; full215 scripts/878 syntax PASS at the tested snapshot. A later
+unrelated UnitFrames/FluxUnitFrames_Party.lua edit causes global corpus drift;
+both utility runtime owners remain at their tested hashes. Preserve that work.
+Later party-test edits also drift; docs check has5 unrelated party inventory/
+view/verification issues and no utility source errors.
+All five installed manager copies match through the existing mirror. External
+source/history/settings recovery verified; fresh source/history checkpoint and
+settings metadata captured. Fresh upstream lookup unavailable; packaged/local
+contracts recorded. Native input/pixels/combat/taint/secrets/FPS pending; no
+Witchcraft tool available. No game input or WTF/profiler writes.
+[Evidence](validation/utility-mixed-faces-2026-11-07.json).
+
+7 November split aura timer policy (UF-AURA-02): user rejected separate
+Target/Focus controls, then narrowed the all-frame suggestion to two families.
+Unit Frames > General controls normal party + target + focus via the scoped
+unitFrames.auraTimersUnderMinute key (default off). Party / Raid independently
+controls raid + compact party using its existing key/default. Normal party had
+shared raid's formatter; it now binds a separate formatter at native creation
+and refresh. Plain clocks and previews choose the same family. At>=60 only text
+blanks; icons/swipes/stacks remain. Target/focus native formatter and legacy
+sweep also follow General; ms-to-seconds fix retained. Existing combat deferral
+and cadence/resources remain; no new event/ticker/timer.36 focused checks plus
+1696 raid-option/12776 renderer checks PASS; five paired regressions PASS.
+Final 214 scripts/877 syntax PASS; tested corpus unchanged. All nine feature
+files match across all five client copies through existing sync; no duplicate
+copy performed. Final native visuals/secret/combat/taint/FPS remain pending.
+[Evidence](validation/unit-aura-minute-split-2026-11-07.json).
+
+7 November meter menu/tab routes (METER-WINDOW-ROUTES-20261107): fixed the
+remaining geometry-only routes in FluxWindow's active Meter-tab cycle and
+preset setter. Explicit native tab entry now commits the requested types and
+Current; FluxUI options choices switch from Map before committing, so an old
+runtime layout cannot be applied instead. Details retains its existing immediate
+quiet re-embed path and eleven-preset wrap. No visual/layout/type list change.
+If native UI is not ready, one explicit apply intent reuses existing readiness
+Embed/retries. The latest working layout wins, it consumes once, and Hide/Cleanup
+cancel it. Startup without that explicit intent still does no native type/session
+configuration. No new frame/event/hook/timer/ticker; one transient boolean only.
+User reloaded and confirmed both routes configure panes and Current automatically
+without the setup-pane click. Native acceptance is selected Forever UI/function;
+combat/secret/taint/gamepad/other-client/FPS remain pending. Exact source,
+paired/focused/full results and source/history/settings recovery are in evidence.
+Final focused validation:12 meter/window scripts PASS;404 control checks,
+448 per pinned menu replay; five paired baseline rejects/candidate passes and
+four rejected mutations. All15 installed runtime hashes match through the
+existing mirror. Whole run:876 syntax PASS,212 scripts PASS and1 unrelated
+concurrent party-frame fixture failure; global source drift, meter owners stable.
+Preserve the unrelated work; no whole-addon PASS is claimed.
+Documentation check reports5 unrelated raid/party inventory/verification
+issues and no meter-source errors.
+
+No foreground/input control, direct WTF/profiler writes or manual client sync.
+[Evidence](validation/meter-window-routes-2026-11-07.json).
+
+7 November Current segment default (METER-LAYOUT-CURRENT-20261107):
+explicit FluxUI layout/type/setup choices now default every displayed native
+pane to Current through its original Blizzard session-menu radio entry. Native
+stored {type=Current,sessionID=nil} data/responders remain untouched; no private
+session setter or history reset is called. Already-Current panes skip selection.
+All ten presets, unchanged types, Overall/history, same-layout reselection,
+manual overrides and historical-ID clearing have focused coverage. Geometry,
+menu opening and background events preserve later manual segment choices;
+the next layout choice restores Current. Threat remains independent.
+User reloaded and confirmed: all native panes switch to Current on layout choice.
+Acceptance is selected Forever UI/function only; native combat/secret/taint,
+gamepad, other-client execution and FPS remain pending. No new frame/event/hook/
+timer/recurring driver, direct WTF writes, profiler change or game input.
+Fresh source pins and external source/history/settings recovery verified.
+Final validation:212 scripts/875 Lua syntax files PASS with unchanged corpus;
+all5 installed backend/layout pairs match. No duplicate sync performed.
+Exact paired/focused/full results and source identities are in the evidence.
+[Evidence](validation/meter-layout-current-2026-11-07.json).
+
+7 November party mode and aura columns (REQ-RF-44 through REQ-RF-50):
+Party / Raid keeps compact mode as default and adds smaller player-style party
+frames, portraits/casts, optional player-pet-style companions and scale controls.
+Four other members and four pets use shared UF factories; actual outer hit
+rectangles register with Flux bindings. The new final member matches the old
+compact party bottom-right at every roster count. Existing raid/compact anchors
+stay unchanged. Prepared native state conditions handle combat joins/leaves,
+raid conversion and pet existence; option edits defer. Preview party uses the
+same visual factory and shared aura sample renderer with isolated non-secure
+cells. Aura grids fill columns first (top then bottom), debuffs left, buffs
+mirrored right. Uniform glyph/slot sizes remove former boss-slot gaps; limits,
+strict dispellable-only, X scale, duration and opacity remain supported.
+Reported Secure.lua:445 nil call fixed: ordinary cleanup uses owned references;
+GetFrameRef remains inside restricted snippets. Five native secure-handler
+models reject ordinary getter access. 535 focused party checks, 210 actual binding checks, 12776 aura
+checks and full 213-script/876-syntax suite PASS with unchanged tested corpus.
+Five fresh alternating pairs reject the prior grid, and five reject the reported
+cleanup mutant. Default mode creates no extra live cells; alternate mode uses
+8 cells/8 state conditions and existing active-cast work, no new recurring Lua
+roster/range driver. Native visuals/input/combat/taint/FPS remain pending on each
+client. External dated source/history and158 on-disk settings files verified;
+no game input, WTF/profiler writes, manual sync, branch or push. Meter work was
+explicitly excluded and no meter files were edited by this task.
+Follow-up: zero spacing between new party members; actual outer buttons reuse
+the owned party/raid primary/modifier mouse path and existing hover engine.
+Final documentation validation and whitespace checks PASS; all12 feature files
+match across all5 installed clients through the existing mirror. Native checks
+retain the pending scope above.
+[Evidence](validation/raid-party-mode-2026-11-07.json).
+
+7 November native meter controls/presets (METER-NATIVE-CONTROLS-20261107):
+the previous picker changed only a layout request. Native type rows now come
+from Blizzard's actual menu descriptions and use their public Pick selection
+API with untouched responders/data. Explicit type/setup/preset/custom/structure
+clicks use native menu entries; missing panes use the original New Window entry.
+Preset clicks apply every requested native type immediately. Startup, geometry
+repair and combat events never select types/create native windows. Existing
+session/history and Save controls remain; no private native setter calls return.
+Native responses update both the runtime snapshot and matching active editor
+slot, with stale layout/type guards. Absorbs is removed from the catalog and
+builtin5 now uses HPS. Legacy unavailable requests normalize in working views/
+previews only; untouched saved custom layouts retain their original requests
+until explicit Save. New builtin10 is Threat/Damage over Interrupts/Healing.
+Threat remains a separate owned Content child and consumes zero native windows.
+User confirmed native menu/type/Flux-label changes, direct Dispels pane creation,
+and finally both Dispels and new Interrupts four-pane presets work immediately.
+Acceptance is selected Forever UI/function only; native combat/secret/taint,
+gamepad, other-client execution and FPS remain pending. Fresh pinned source,
+paired desktop/mutation/full results and exact identities are in the evidence.
+Final meter checks: all11 focused meter/threat scripts PASS;220 native-control
+checks,256 checks per pinned client menu replay, five baseline-rejecting pairs
+and five rejected mutations. All5 installed backend/layout pairs match the final
+tested hashes through the existing mirror. The final whole run has874 syntax
+PASS,205 scripts PASS and6 unrelated concurrent raid-test failures; global corpus
+drift prevents a whole-addon PASS. Meter owners stayed unchanged; preserve the
+unrelated raid work. Documentation validation reports19 unrelated unit/raid
+inventory/verification issues and no meter-source errors. Native acceptance
+remains selected-client UI/function only.
+Source/history recovery and available on-disk settings verified; no foreground
+control, direct WTF writes, profiler changes or manual client copy operation.
+[Evidence](validation/meter-native-controls-2026-11-07.json).
+
+7 November mouseover casting (MOUSEOVER-NATIVE-20261107): the toggle remains
+directly in the spellbook. Retail/Forever use Blizzard's actual Click Casting
+checkbox with its original click/tooltip handlers; it returns to its original
+owner/anchors when Click Casting opens or the book closes. Native state and
+modifier are authoritative; unsupported clients retain the custom toggle and
+saved preference. Defaults and binding saves no longer reset native state or
+modifier. Native slot targeting stays prepared through combat; standalone
+spell/item adapters on wrap clients follow the same setting/modifier with the
+existing combat deferral. Reuses the shared observer; no new recurring driver.
+388 focused checks pass, including actual pinned Blizzard click/target methods;
+five baseline rejections/five candidate passes. Final whole-addon run: 211 scripts
+and 873 Lua syntax files PASS; complete tested Lua corpus unchanged. Native visuals/input/gamepad/
+taint/FPS remain pending. All five installed source sets match through the
+existing mirror; no manual copy, game input, WTF/profiler writes or push.
+External source/history recovery and settings archive verified before edits.
+[Evidence](validation/mouseover-native-2026-11-07.json).
+
+7 November screenshot default preset (REQ-RF-43): user chose member width
+0.70, height0.95, power1.00, aura scale1.82, aura X0.50, timer font1.72,
+manager1.20 and enabled under-one-minute timers as the default. Both saved
+scopes now use these values. Reset sizes copies these eight fields from the
+default table, preserving counts/filters/opacity/positions and unrelated data.
+Full raid reset uses the same preset; existing explicit custom values are
+not migrated. Scale units/rendering remain unchanged, including manager
+1.00=70percent native; new default1.20 is effective0.84. Screenshot preserved
+externally with hash. Actual scoped reset/refresh checks verify69x42 cells
+and10.01x20.02 normal aura geometry; combat changes still defer.
+209 scripts/871 syntax PASS with unchanged corpus; five
+fresh alternating pairs reject the old all-one default/reset behavior. Eight
+other-client files already match; no duplicate copy. No new resource owners
+or recurring driver. Separate new native reset check not performed; prior
+native renderer acceptances retain their original scope.
+[Evidence](validation/raid-screenshot-defaults-2026-11-07.json).
+
+7 November native meter presets (METER-ALL-OPTIONS-20261107): fixed blank
+slots when a requested type/window does not already exist in Blizzard's native
+configuration. Reserve all exact matches first, then keep unused native panes
+accessible for type selection. Mismatched rows have an explicit setup cover;
+uncreated slots use the same shared artwork/title/font/color/scale as Damage
+and Healing. A native type choice or new-window action triggers one coalesced
+layout repair; combat changes defer to the existing regeneration path.
+The user chose to keep native meters and configure extra windows once using
+Blizzard's menus. No custom renderer, automatic native configuration/creation,
+session reset or new recurring driver. Already configured Absorbs and all eleven
+enum types skin normally; pinned Retail/Forever native menus omit Absorbs, so
+that unavailable selection remains explicitly disclosed. The earlier screenshot
+showed the pre-shared-skin setup pane; final native visual/interaction/combat/
+taint/FPS acceptance remains pending. 128 focused checks and five alternating
+baseline/candidate pairs pass; baseline fails the missing-pane case. Final whole
+suite: 209 scripts/871 syntax PASS with unchanged Lua corpus; documentation
+validation PASS. Exact identities are in the evidence record. External dated
+source/history recovery and existing settings archive verified; fresh settings
+metadata only. No game input, settings/profiler writes or manual client sync.
+[Evidence](validation/meter-all-options-2026-11-07.json).
+
+7 November Forever talent-group icon (UF-SPEC-03): user's native dump returned
+Mage/spec1482/class icon626001/zero points with no dual spec. Forever's loaded
+Camelot talent UI uses trait group headers, not Classic specialization tabs.
+Resolver now reads active spec group's combat config, tree group display icons
+and matching group currency spent; largest investment wins. No profile or
+nonmatching profile uses that icon; matching Respec override stays first. No
+class placeholder is fabricated for zero/missing data. Single spec works.
+59 focused checks; five old-source rejects/five candidate passes. Existing
+geometry, events, debounce, settings and other-client policy remain. Native
+candidate visual/combat/taint/FPS acceptance pending.
+Final rerun: 209/209 scripts and 871 Lua syntax files PASS. The earlier run
+caught a concurrent meter-source/test transition; its focused rerun and this
+complete rerun pass. The tested unit-frame runtime is unchanged and all five
+installed copies match. Native icon/combat/taint/FPS acceptance remains pending.
+
+[Group-icon evidence](validation/forever-talent-group-icon-2026-11-07.json).
+
+7 November MT target opacity (REQ-RF-42): in-range target minis now use
+the configured base opacity directly, without the extra member in-range
+dimming factor. Unavailable or opaque checkedRange also keeps base opacity
+instead of treating an enemy target as far away. A genuinely checked far
+result still uses configured out-of-range alpha. Secret checks precede every
+checkedRange comparison. Normal member/pet fading and user base transparency
+remain. Preview target strip uses the same base opacity. No new range call,
+frame/pool/event/ticker/timer. User reloaded: Yes, opacity looks right.
+208 scripts/870 syntax PASS, unchanged final corpus; five
+fresh alternating pairs reject the previous in-range mini fade. Eight other
+client files already match. Earlier manager/highlight and HP-only target
+checks remain accepted. Native acceptance is selected-client visual/function
+only; broader native combat/taint/other-client/FPS checks remain pending.
+[Evidence](validation/raid-mt-opacity-2026-11-07.json).
+
+7 November talent spec-icon follow-up (UF-SPEC-02): fixed client flags lookup
+from nonexistent ns.Client to the actual ns.Flux.Client export. The prior mock
+supplied the same invented namespace and missed the skipped Forever/Classic
+committed-points path. Fixtures now execute Core/Client.lua before resolving
+icons, including live point changes and matching/no/nonmatching profile states.
+38 checks PASS; five alternating pairs reject all five old-source runs and pass
+all five candidates. Existing icon geometry, profile matching, refresh debounce,
+events/timers and settings remain. Full 208 scripts/870 syntax PASS, tested runtime hash unchanged. All five
+installed runtime copies match; no duplicate sync performed. Native icon
+acceptance is still pending.
+[Spec evidence](validation/unit-spec-talents-2026-11-07.json).
+
+7 November MT target HP strip (REQ-RF-41): target minis now show only the
+target name left and plain HP percent right on one centered row, with no
+resource bar and the full strip available to HP. Target percent is separate
+from the main member health-text preference and contains no role prefix.
+Power events cannot re-enable the target resource bar or query its power.
+Pets/full members retain their policies; secure target routing/casts and
+reserved mini height remain. The MT preview now includes a pooled target
+strip using the same chrome; reused roster samples retire old target strips.
+Preview minis skip aura construction. User reloaded: Yes, looks right.
+208 scripts/870 syntax PASS with unchanged final corpus;
+ten fresh alternating unit/chrome pairs reject the old behavior. Sixteen
+other-client files already match. No new event/ticker/timer; at most one
+reusable plain target preview per displayed MT owner. Source/history/settings
+checkpoint verified with these four runtime owners unchanged despite other
+workspace edits during collection. Manager/highlight fixes remain accepted.
+Native acceptance is selected-client visual/function; broader combat/taint/
+other-client/FPS checks remain pending.
+[Evidence](validation/raid-mt-target-2026-11-07.json).
+
+7 November unit indicators/spec: player/target/focus share a fitted grid above
+health beside class/spec, including native enum master loot. User rejected moved
+raid-group labels, shortened names and the health-inset prototype; final grid
+reserves no name width and keeps name-relative group placement. ZZZ animates
+beside the visible level with static fallback. Matching Respec profile overrides
+live spec; No profile/nonmatching uses the most-invested committed tree on
+Era/Anniversary/Forever, then active specialization where available. Fixed the
+forward-local resolver and current namespace fields. User Forever loot dump
+2,0,1 confirms master loot/ownership API; candidate visual acceptance pending.
+Desktop evidence and native pending scope: [unit indicators](UNIT_FRAME_INDICATORS.md).
+208 scripts/870 syntax PASS; tested runtime hashes unchanged. All five installed
+Shared.lua copies match through the existing mirror; no duplicate copy. Native
+visual/combat/taint/FPS acceptance remains pending.
+No game input/settings/profiler changes; preserve unrelated main work.
+
+7 November currency clicks (STATUS-CURRENCY-20261107): left-click opens/toggles
+native Currency where supported, including Retail and Forever, outside combat.
+Right-click opens FluxUI Status Bars settings. Existing no-tab fallback and
+item drag/clear actions remain. Verified pinned loaded sources: Retail 297d7aaa
+(12.1.5.70783), Forever 9dc84f0d (1.60.1.70862). External source/history/settings
+recovery verified; fresh settings metadata read only. 640 currency checks and
+180 reputation checks pass; preceding currency source fails 44 checks.
+Validation run: 208 scripts and 870 Lua syntax files pass. Later concurrent
+unit/raid edits leave documentation inventory/verification stale (12 issues);
+currency source still matches its tested hash. The initial run
+caught a concurrent unrelated unit-indicator test syntax error, since corrected
+by its owner. Existing mirror delivered matching Retail/Forever currency files.
+No new recurring resources or performance claim. Native clicks/gamepad/taint
+remain pending; no game input, settings/profiler writes or manual client sync.
+[Evidence](validation/status-currency-clicks-2026-11-07.json).
+
+7 November manager/hidden native highlights (REQ-RF-39/40): manager1.00
+now uses a70percent native baseline, as explicitly requested; saved values
+and physical vertical alignment/native X/collapse behavior remain. Hidden
+selection/ready-check layers now inherit ancestor opacity, including when
+their own alpha is opaque. Original flags/known alphas restore on disable.
+Two secure post-hooks catch late native setup/selection updates, including
+anonymous pooled children. Unprotected alpha/inheritance changes suppress
+late combat highlights; structural changes still defer. Native events,
+scripts, parents, visibility, profiles and restricted aura subtrees remain.
+206 scripts/868 syntax PASS with unchanged final corpus;
+ten fresh alternating pairs reject the previous size/ghost behavior. Twelve
+other-client files already match. No new pool/frame/ticker/event or polling.
+Five fresh pinned API sources verify the display methods are unprotected.
+User reloaded and confirmed: Both fixed. Native acceptance is selected-client
+visual/function only; broader native combat/taint/FPS checks remain pending.
+[Evidence](validation/raid-manager-overlay-2026-11-07.json).
+
+7 November final live aura width (REQ-RF-38): native width now follows the
+slider through scoped refresh. Stored initializer metadata supplies sizes;
+out-of-combat styling first checks canaccesstable for all native buttons and
+labels. No native size/unit/visibility is read. If native access is denied,
+keep the existing icons and geometry and mark pendingWidth for later safe
+refresh. Public group layout updates the flow widths. Native source uses
+DenyTaintedAccessWhenAurasAreSecret, correcting the earlier blanket assumption
+that every styling change needs reload. The external display-sibling attempt
+failed native visibility and was rolled back; rejected source/logs remain
+external. The guarded replacement was accepted: Live icons resize correctly.
+User also accepted preview parity, live timer font, zero-gap side grids,
+black outline/shadow and below-one-minute timer policy in earlier checks.
+206 scripts/868 syntax PASS, unchanged final corpus; five
+fresh alternating pairs reject the old preview-only width callback. Eight
+other-client runtime files match; no duplicate copy. Metadata only, no new
+frame/pool/event/ticker/timer. Native acceptance is selected-client visual
+behavior; other-client/combat/taint/FPS checks remain pending.
+[Evidence](validation/raid-live-width-guarded-2026-11-07.json).
+
+7 November live timer/grid/policy (REQ-RF-35..37): timer-font slider now
+updates a shared public Font inherited by already registered native labels,
+instead of a size captured at reload. Combat changes defer; X width still
+requires reload. Buffs remain right and debuffs left, up to three columns
+and two rows with zero icon/row gaps. User reloaded and confirmed: Both work.
+Added black OUTLINE plus black shadow, and an optional Show aura timers only
+below 1 minute toggle (default off in both scopes). One shared numeric
+formatter blanks60seconds and above, retaining icons/swipes/stacks without
+reading restricted durations. Native bindings and preview/readable clocks
+share that formatter. User also confirmed shadow/threshold behavior: Yes, all work.
+206 scripts/868 syntax PASS with unchanged final corpus;
+ten alternating pairs reject the earlier grid/options behavior. All20
+other-client files match; no duplicate copy. One shared Font/formatter,
+no new native aura family or addon event/ticker/timer. Other-client native
+combat/taint/FPS checks remain pending.
+[Evidence](validation/raid-timer-policy-2026-11-07.json).
+
+7 November preview/live parity (REQ-RF-34): user reported differences in
+both frames and auras. Live and preview now inherit one visual XML template
+with separate secure/plain behavior. Shared owned-health aura bounds and
+canonical duration-font projection remove independent sizing rules; preview
+side hosts clip like live rows. All health-text modes use one formatter;
+offline colors, center host/layer/size, overflow atlas/geometry and prediction
+sample colors/order now match live. Readable large aura X scale is corrected.
+Positions, joins, ordering, bindings, saved scopes, filters/counts/opacity and
+swipes remain. X/font native changes still require the documented reload.
+206 scripts/868 syntax checks PASS; unchanged final Lua corpus.
+Five fresh alternating pairs reject the old preview. All20 other-client
+files already match; no duplicate copy. Two public clip hosts per preview,
+no new addon event/ticker/timer. User reloaded and confirmed: Looks consistent
+now. Acceptance is selected-client visual/function only; other-client native
+combat/taint/FPS checks remain pending.
+[Evidence](validation/raid-preview-parity-2026-11-07.json).
+
+7 November aura width/font controls (REQ-RF-33): added Aura width (X) and
+Aura duration text size, both 0.50..2.50 with default/reset 1.00 in both
+scopes. Preview updates immediately. Live native glyph/text dimensions are
+prepared only by their one-time initializer, so these controls explicitly
+require /reload; ordinary refresh retains the loaded native width. Normal
+and large glyph widths/slots scale together, height stays unchanged, and
+duration font size multiplies the fitted text size. Existing overall size,
+filters, counts, opacity, swipes and combat deferral remain.
+206 scripts/868 syntax checks PASS with unchanged sources;
+five alternating baseline/candidate pairs reject missing X scaling. All20
+other-client files already match; no duplicate copy performed. No new
+pools/events/tickers/timers. Native visuals/combat/CPU/FPS remain pending.
+[Evidence](validation/raid-aura-width-font-2026-11-07.json).
+
+7 November aura-only scaling: user explicitly chose to resize only auras,
+keeping frame size fixed and permitting larger blocks outside the frame.
+Removed the hidden inside-fit cap from actual geometry and the slider;
+0.50..2.50 now applies directly, with Blizzard 11px/16.5px at 1.00.
+Counts, filters, opacity, swipes, fitted fonts and combat deferral remain.
+206 scripts/868 Lua syntax PASS with unchanged sources;
+five fresh alternating baseline/candidate pairs reject the old cap. Eight
+other-client files already match; no duplicate copy performed. No recurring
+resources added. New native visual/combat checks remain pending.
+[RAID-AURA-INDEPENDENT-SCALE-20261107](validation/raid-aura-independent-scale-2026-11-07.json).
+
+7 November final native-size contract: user chose all Blizzard default sizes,
+then explicitly required no toggle and1.00 as every size slider's native baseline.
+Frame/power/aura/manager scales now use source defaults without the earlier1.3,
+power0.8 or manager0.85/MT0.9 multipliers. Reset sizes changes only five size keys;
+full defaults also1. Existing stored requests remain until reset. Fonts, normal11
+and boss/role16.5 squares, insets/bars/indicators follow pinned native equations;
+one-pixel joins and half-height minis preserve the native body. Counts/strict
+RAID filters/class buffs/Flux casts/visible fitted timers and bronze theme remain.
+The screenshot's oversized Offline/health label reproduced cumulative FontString
+scaling; absolute Font-object baselines now pass50-refresh/locale regressions.
+User reloaded, used Reset sizes and confirmed: Yes, sizing and fonts look right.
+206 scripts/868 Lua syntax PASS with unchanged corpus;20 baseline/20candidate pairs and
+five font-specific pairs reject the old failures. All five client folders match;
+36 other-copy file hashes verified with no duplicate overwrite. Native acceptance
+is limited to the selected test client; other-client/combat/taint/FPS checks remain.
+Latest Forever source is5987a8e (70840); other four pins unchanged. Preserve all
+unrelated main work and preferences; no agent game input/commit/push/WTF writes.
+[Native-size record](validation/raid-blizzard-default-sizing-2026-11-07.json).
+
+7 November reagent ownership: actual spell reagent evidence controls Preset
+classification. Preserve the existing shared target store, quantities and flags;
+no separate preset database or destructive migration. Explicit rune names may
+resolve item IDs before cache load; never infer a cost from the spell ID or
+unreadable text. Identify Soul Shards by item identity, not the summoning spell's
+name. Travel uses the existing reagent index and shared inline editor. Keep
+flyout/cast/modifier behavior; single-destination right-click owns target editing.
+Include known spellbook flyout children via the existing Core.Spell adapter,
+select active overrides and deduplicate; retain legacy routes and add C_Flyout
+table fallbacks without replacing any global API.
+[Case](TELEPORT_REAGENT_RESTOCK.md).
+
+7 November live aura slider follow-up: user rejected the previous slider
+display and clarified that the main frames must be30% taller too. A user-owned
+probe at1.45 showed capped12.1px icons; forcing0.50 through the actual scoped
+refresh returned public scale0.4767 and the user confirmed normal icons shrank.
+That proves prior native scale propagation. New UI exposes the responsive fitted
+range with0.01 steps/current dimensions, preserves stored requests until selection,
+and refreshes cached bounds without synthetic saved writes. Main heights now
+multiply saved scale by1.3 (default43->56; saved1.0:36->47); width remains.
+Canonical normal icons10x19.5 fit that height; duration fit and strict1â€“6 limits
+remain. Mini targets stay within their18px reservation. 203 scripts/865 Lua syntax PASS,
+with all runtime/aura/renderer sources stable during both complete runs;
+20 matched baseline runs rejected/20 candidate runs pass. An unrelated teleport
+test changed during both runs, and its runtime owner changed that subsystem
+afterward. Both raw manifests remain; the global corpus is not called frozen.
+All five delivered feature files match the tested manifest; unrelated work stays.
+Final new UI/height/native combat/taint/pixels/FPS acceptance is pending all5.
+No agent game input, WTF writes, profiler change, commit or push. The user probe
+set aura scale0.50; choose the desired new value after reload.
+[Live slider record](validation/raid-aura-slider-live-2026-11-07.json).
+
+7 November aura size/count correction: user chose to keep icons inside and
+cap their size. Canonical10x15 native creation removes startup-dependent sizing;
+live/readable/preview share uniform fitted geometry. User's later x1.30 request
+uses the confirmed30%-taller choice:1.00 requests14.3px height vs old11px;
+minimum0.50 permits shrinking; inside-fit cap remains. Duration fonts fit the
+actual icon rectangle, including m/h/d suffixes at partial clip edges.
+New scoped maxBuffs and
+maxDebuffs1â€“6 default6; demo counts remain separate. Strict mode retains only
+HARMFUL|RAID on every original/tail owner. Exact4/5 across mixed categories uses
+lazy clipped native row copies; no native child inspection or handler replacement.
+Default native icon pools stay120/cell; both partial sides can add120 once, reused
+and unbound while inactive. No new addon recurring work. 200 scripts/862 syntax PASS,
+unchanged Lua corpus; five alternating regression pairs per aura/layout/preview
+reject15 baseline runs and pass15 candidate runs. Native pixels, logical-visible
+clip scheduling, combat/taint/casts and FPS remain pending on all5 clients.
+Preserve unrelated work and profiler preferences; no commit/push or game input.
+[Size/count record](validation/raid-aura-limits-2026-11-07.json).
+
+7 November badge cooldowns: preserve existing scalar rules and return positions;
+append public GCD metadata and use it only when timing is restricted. Unknown
+restricted state keeps the badge visible. Do not read charge state or change
+bindings, swaps, alpha/layout or proc art. Remove only the proven unused power
+snapshot chain; live ghost feedback and its shared anchor helper remain.
+Native probes use the original strict background guard; the attempted helper
+change for other-app switching was rejected by automatic approval review and
+was not executed. No approval bypass or foreground input.
+[Case](UNIT_STATE_SECRETS.md#follow-up-badges-and-unused-power-snapshots).
+
+6 November unit identity: test readability before branching, comparing or
+formatting API values; cache readable GUIDs only. Keep prior public identity
+through restricted samples, using existing identity events to invalidate swaps.
+Power-cost watcher owns cast restoration, including pet replacement; Shared
+resets health-loss before child paints. Do not add broad error suppression,
+replace native APIs, reset settings or remove feedback. Unknown aliases never
+select player-only surname behavior. Desktop safety models do not certify
+native secret VM or explain the earlier random freezes.
+[Case](UNIT_STATE_SECRETS.md).
+
+6 November TacoTip ownership: fix the owning tooltip renderer rather than
+adding a shared Backdrop/API workaround to FluxUI. External installed TacoTip
+remains read-only by explicit user choice. No third-party edits are planned;
+a SetBackdrop-only guard is incomplete because native resize still runs.
+[Finding](TACOTIP_BACKDROP.md).
+
+6 November aura text scaling: user returned the native owned-clock probe.
+It confirms automatic positive/zero visibility and plain59/1m/30m formatting
+for that isolated widget. Known59 measured15.2 inside12px; the previous6px
+font floor was insufficient. Duration text now uses proportional SetTextScale
+against public sample width/height, before native registration. Text shrinks
+below the old floor and grows with larger icons; cached measuring owner,
+layout, opacity, swipes and aura filters remain.193 scripts/855 syntax PASS
+with unchanged source; five alternating pairs/case reject the old code.
+These are logic/source contracts; actual fitted aura pixels, combat/taint/FPS
+and other-client execution remain pending. Preserve unrelated work/preferences.
+[Text scaling record](validation/raid-aura-text-scale-2026-11-06.json).
+
+6 November aura clock correction: the user rejected the previous display:
+duration showed ... and short buffs/debuffs had no swipe. New text uses plain
+seconds then m/h/d, with7px preferred/6px fitted font from public sample
+measurements on a separate hidden widget. The native cooldown starts visible
+before sink registration; an explicit opaque base texture removes inherited
+tint alpha. Existing transparency,3Ã—2 layout and aura filters remain.
+193 desktop scripts/855 Lua syntax PASS with unchanged corpus; five alternating
+pairs/case reject old source and pass the candidate. These are logic/style
+contracts, not native glyph or swipe rendering proof. User was given an OOC
+owned-widget diagnostic; actual C-widget result and corrected display acceptance
+remain pending. Preserve all unrelated map/glow/spike-watch work/preferences.
+[Clock correction record](validation/raid-aura-clock-fix-2026-11-06.json).
+
+6 November aura duration follow-up: user confirmed a cooldown swipe over each
+buff/debuff with remaining duration text above it. Raised intrinsic swipe
+alpha0.3â†’0.75; centered9px outlined/shadowed timers; native labels use one
+owned compact formatter when available. Readable timer text now sits above
+the swipe and clears on timedâ†’permanent reuse. Alpha settings, icon sizes,
+3Ã—2 blocks, eligibility and strict dispel filtering remain. No new frame,
+ticker or timer owner; one cached native formatter object.
+Final193 desktop scripts/855 Lua syntax PASS with all source hashes and
+membership unchanged. Five alternating pairs/case reject the old display
+and pass the candidate; raw outputs retained, no native CPU/FPS claim.
+New native appearance/combat/taint checks remain pending. Reload and check
+a timed buff/debuff plus a permanent buff; preserve the optional spike
+watch/profiler preferences and all unrelated map/glow work.
+[Duration record](validation/raid-aura-duration-2026-11-06.json).
+
+6 November map ownership: clean up only discarded Flux provider owners;
+retain native WorldMap owners and all available provider categories. Native
+shared mixins and AcquirePin remain untouched. On canvases with protected
+passthrough acquisition, defer only owned RefreshAllData, delayed bonus/quest
+and ping work; use the existing Combat service with bounded latest ping args.
+Refresh completion precedes ping replay; one failed owner reports normally
+without dropping other queued providers. [Case](MAP_PROVIDER_LIFECYCLE.md).
+
+6 November resumed at the user's request. Verified fresh external source,
+all-ref history and on-disk settings checkpoint Random-spike-resume-20261106T170042Z
+(1,660 actual files /190 settings, ZIPs and bundle verified). New Forever process
+and exact window were verified; no active watch and live scriptProfile=0.
+Normal Map tab activation changed shared native pin methods from secure to
+_FluxUI tainted. Meter tab restored; no FPS or causal freeze claim. Fixing
+owned-provider detach leaks first, then reviewing restricted pin ownership.
+[Native baseline](validation/map-provider-native-baseline-2026-11-06.json).
+
+6 November pause boundary: honor the user's pause; preserve local main,
+all concurrent changes, native evidence and profiler preferences. Resume the
+map ownership audit before changing its AcquirePin guard. Do not suppress
+protected calls, mute native methods, discard pins, or claim that a nearby
+map error caused the earlier gap. No map runtime patch has been accepted.
+
+6 November Forever badge combat paging: prepare proc aura slots on every
+badge position of a proc-capable bar slot even when the saved reverse badge
+does not name that spell. Let prepared Retail alert art extend beyond the
+corner SlotFrame. On badge show/hide, mask or reveal that art from the
+published face. Dormant-row badges are visual only; in combat, fill their
+spell/item paint fields directly and leave protected action attributes alone.
+[Case](FOREVER_SAO_GLOW.md#badge-handoff-and-combat-row-icon-follow-up-current).
+
+6 November random-spike attribution: retain the normal event/ticker/scheduler
+owners and attach optional bounded timing observers only while watching.
+Preserve existing traces and diagnostics; do not replace global APIs, force GC,
+suppress reporters, or equate nearest profiler ticks with exact causality.
+Count bursts of small callbacks without summing overlapping inclusive spans.
+Global Lua heap changes alone cannot establish a leak. Preserve the user's
+choice to leave automatic native Current selection blocked. See
+[RANDOM_SPIKES.md](RANDOM_SPIKES.md).
+
+6 November Forever SAO face paging: keep Blizzard's secure aura slot on every
+potential main/mini/badge destination prepared outside combat. The existing
+column and Extra Button face owner controls only container alpha so the Retail
+art follows the displayed Arcane Missiles action during a modifier or reverse
+badge swap. Invalidate candidate scans when action slots or programs change;
+do not set unit, parent or shown state in combat. Native handoff pending.
+[Case](FOREVER_SAO_GLOW.md#mainmini-and-badge-handoff-follow-up-newest).
+
+6 November Forever SAO combat glow: use Blizzard's secure AuraContainer
+`AddAuraShownAnimation` to drive the Retail alert flipbook for SAO's 400589
+effect, which has no Forever button entry. Resolve button identity and create
+the filtered slot outside combat; keep other SAO/native proc paths. Suppress
+the old readable 400589 fallback after slot preparation so it cannot leave
+post-combat art behind. Native acceptance remains pending.
+[Case](FOREVER_SAO_GLOW.md#secure-auracontainer-button-animation-candidate-latest).
+
 6 November consumable follow-up: retain public helpful aura additions by
 instance ID so an aura event can change the selected item even when a wrapper
 declines the readable index scan. Remove observations on explicit removal or
@@ -13,11 +1091,61 @@ when a player aura changes the preferred displayed item. Retain coalescing for
 unchanged selection and defer protected writes in combat. Fall back to ordinary
 `UNIT_AURA` registration when unit-scoped registration fails on older clients.
 
+6 November aura follow-up: the user reported low aura layering and requested
+Blizzard raid-frame aura selection. Complete icons, swipes, durations and
+counts now sit above names/trim/highlights, with leader/loot/status above
+them. Blizzard classifications and priority replace duration/shield rules;
+helpful boss/role auras can occupy the debuff side. Public hidden-buff
+preferences refresh without protected layout work. The requested strict
+six-slot dispel policy and aura transparency remain. Explicit OOC present
+class buffs override native hidden-group preferences. The user returned
+a Forever stage-b diagnostic showing valid active native binding with15
+hidden buff types after reporting no buffs. Stage-c corrects the OOC
+class exclusion interaction. The user returned its diagnostic and then
+confirmed that it works fully on Forever. This accepts observed aura
+behavior only, not combat/taint/FPS or all-client execution. Native owners
+still reject ProcessAura.None before supplemental filtering; the126-case
+desktop model omits that gate, so complete native assignment is not proven.
+Restricted private hideOnPartyFrames parity remains an API limitation.
+Final 181 desktop scripts / 843 Lua syntax files pass; source hashes/membership
+are unchanged across the run. Five alternating functional pairs per case
+reject the old filters/layers and pass the candidate; no native FPS claim.
+Native icon pools increase80â†’120 per full cell for native category ordering;
+refresh remains bounded. Other clients and native taint/combat/performance
+acceptance remain pending. No further runtime changes follow acceptance.
+[Exact follow-up source/check record](validation/raid-blizzard-aura-followup-2026-11-06.json).
+
 6 November Well Fed follow-up: preserve the existing buff-equivalence and
 refresh-threshold rule. Use a direct helpful-aura index lookup only when the
 shared wrapper declines a readable aura, and reuse a discovered public spell
 ID. Keep secret aura durations unnumbered; do not invent an expiry. Native
 validation remains required for each installed client.
+
+Final border preference: the user requested the same textured bronze as
+HealKit after rejecting the plain matte candidate. The final renderer uses
+original Blizzard8036209 gold bands at0.85 brightness with normal blending,
+excluding dark padding. Rounded caps appear only on exterior grid corners;
+shared separators have one owner. Earlier matte validation is historical.
+The latest full validation fingerprints cover this native-art implementation;
+native visual/secure-input/taint/performance acceptance remains pending.
+
+6 November party/raid rewrite: the HealKit-style candidate retains outer dimensions,
+chat docking, reverse group columns and Flux Binding, with the user's later
+connected HealKit-style bronze borders,4px vertical overlap, horizontal0 gap,3Ã—2 buffs right /
+debuffs left, visible timers/swipes,70% aura transparency and scoped0â€“100% control.
+Names are10px; role12px precedes percentage; leadership/loot/marks have their
+own layer. Power base isÃ—0.8. Members follow native INDEX/ASC order. Native
+headers prepare80 cells and handle combat joins/leaves/subgroup moves;40 shared
+conditions manage actual MT target visibility. Strict dispellable-only covers
+all six slots; present class buffs show OOC, missing reminders remain off.
+The manager is15% smaller, retains native X and uses one invariant full-panel Y
+above the grid in collapsed/expanded/hidden/shown states. Native selection and
+both ready-check ghost layers suppress/restore without replacing handlers.
+Final desktop checks pass 179 scripts / 841 Lua syntax files; complete Lua membership/hashes are unchanged
+across the run. Earlier user screenshots and the13:01:05 secret-mouse stack are
+rejected-stage evidence. Final native pixels, casts, taint and performance remain
+pending. No game input, profiler change, settings reset or other-client sync ran.
+[Requirements and limits](RAID_HEALKIT_REWORK.md), [exact source/check record](validation/raid-healkit-rework-2026-11-06.json).
 
 6 November explicit user decision: preserve every native feature and leave
 automatic Current blocked. Freeze the Current implementation; do not add a
@@ -249,7 +1377,7 @@ real client checks. [Evidence and native steps](METER_COMBAT_VISIBILITY.md).
 
 5 November minimap mail ownership: reuse the existing named Flux fallback after
 the two existing native-frame choices. Do not adopt/reparent Forever's different
-32×24 native indicator or alter the accepted 20×15 fallback, anchors, tooltip,
+32Ã—24 native indicator or alter the accepted 20Ã—15 fallback, anchors, tooltip,
 events or timing. The defect is resource ownership: repeated layouts and mail
 events created more frames and listeners. A normal reload retires old instances;
 the new lookup prevents their recreation. This correction is independent of
@@ -926,7 +2054,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 
 - Continue the full template on first account setup. Once per native binding
   scope, seed only missing Flux commands into free target keys; allow stock
-  action buttons 6–8 to yield to the existing grid defaults. Preserve custom
+  action buttons 6â€“8 to yield to the existing grid defaults. Preserve custom
   target actions and commands already bound elsewhere.
 - Save the active account/character set and refresh secure button overrides.
   Defer through the existing combat and bulk-binding lifecycle. Persist a
@@ -957,7 +2085,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - Desktop string checks do not establish native texture rendering; verify in-game
   chat on each client when background-safe access is available.
 
-## 2026-10-30 — portrait and strip scale correction
+## 2026-10-30 â€” portrait and strip scale correction
 
 - Treat `SetPoint` offsets as frame-local. Do not multiply portrait center
   offset by the frame scale again. Normalize chat/aura positions by effective
@@ -968,7 +2096,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - Refresh a 3D portrait after an actual scale change through the existing
   display-metrics helper. [Evidence](UNIT_FRAME_SCALE.md).
 
-## 2026-10-30 — whole unit-frame scale
+## 2026-10-30 â€” whole unit-frame scale
 
 - Give player and target one multiplier, and focus a separate multiplier, in
   their existing Unit Frames tabs and account/character scope. Keep saved
@@ -980,7 +2108,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - Use existing combat-deferred sizing refresh. [Behavior and pending native
   checks](UNIT_FRAME_SCALE.md).
 
-## 2026-10-30 — vehicle seat corner and scale
+## 2026-10-30 â€” vehicle seat corner and scale
 
 - Reserve a seat-width slot to the left of equipment durability. When the
   visible micro menu or status strip occupies the top-left, keep the chrome
@@ -991,7 +2119,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - Existing combat deferral and the status owner's anchor refresh continue to
   apply. Focused desktop layout checks pass; native pixels, clicks and taint are pending.
 
-## 2026-10-30 — empty unit resource bars
+## 2026-10-30 â€” empty unit resource bars
 
 - Use maximum power, never current power, to classify an absent main resource.
   Compare only nonsecret numeric values. On Live/Forever, layer resource over
@@ -1010,7 +2138,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - [Desktop evidence and native limits](UNIT_POWER_VISIBILITY.md). Earlier main
   branch holds below are historical; 29 October main-only authorization applies.
 
-## 2026-10-29 — teleport counts/interrupted casts
+## 2026-10-29 â€” teleport counts/interrupted casts
 
 - User confirms Retail. Native display text, including empty, owns this preset's
   count. Inaccessible tooltip text cannot establish Classic rune costs.
@@ -1060,7 +2188,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   Ready handoff, native item identity APIs, `/fluxui bliz`). Preserve unresolved
   product differences/defaults until a focused decision or reproduced defect.
 
-## 2026-10-29 continuation — deferred provider work
+## 2026-10-29 continuation â€” deferred provider work
 
 - Followed the next-step event audit rather than assuming a historical finding was
   an active gameplay bug. Production dispatch reproduces skipped callbacks during
@@ -1084,7 +2212,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   recipient; clear the pending operation and its subscriptions. Keep this separate
   from scan cancellation, with its own checkpoint, baseline and regression.
 
-## 2026-10-29 continuation — disabled Windows lifecycle
+## 2026-10-29 continuation â€” disabled Windows lifecycle
 
 - User explicitly deferred auction, guild-bank and void-storage callback audits.
   Redirected independent inspection to the documented WindowMover disable behavior.
@@ -1102,7 +2230,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   edits. Matched desktop counters establish removed work; native input/pixels/taint/
   performance remain pending.
 
-## 2026-10-29 — editorial maintenance
+## 2026-10-29 â€” editorial maintenance
 
 - Use conventional contribution guidelines and development tasks instead of editor
   workflow files. Archive original prompts/templates, planning Word file, old handoffs,
@@ -1114,7 +2242,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   original records in the verified checkpoint and omit optional branch metadata.
 - Do not rewrite Git history or alter main as part of a working-tree cleanup.
 
-## 2026-10-29 — queued merchant purchase identity
+## 2026-10-29 â€” queued merchant purchase identity
 
 - BUG-005 is an active queue correctness issue: production replay buys a replacement
   merchant item or submits an empty slot after listings change. Index refresh alone
@@ -1129,7 +2257,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   No native performance improvement is claimed. Unchanged-ID price/stock changes
   and purchase acknowledgement are separate unmeasured candidates.
 
-## 2026-10-29 — finite merchant stock budget
+## 2026-10-29 â€” finite merchant stock budget
 
 - BUG-006 reproduces two related capacity defects: zero availability was uncapped,
   and repeated tasks reused the same finite snapshot count. Treat zero as a cap and
@@ -1143,7 +2271,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
 - Exact read-only Blizzard source hashes support API shape/zero-stock interpretation;
   the 12.1.0.69283 snapshot predates installed clients and does not advance native rows.
 
-## 2026-10-29 — vendor-open availability work
+## 2026-10-29 â€” vendor-open availability work
 
 - Prioritize the user's idle vendor-open hitch, reported only on Era so far. Do not
   assume first-open/repeated-open behavior or automation settings, and do not claim
@@ -1161,7 +2289,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   settings or generic cache service. Native query overhead, CPU/frame times and the
   remaining classification/index/Already Known/layout candidates need live evidence.
 
-## 2026-10-29 — Quick Join anchor ownership
+## 2026-10-29 â€” Quick Join anchor ownership
 
 - Prioritize the user's concrete native SetPoint error. The column already anchors
   Channels to Quick Join; the old social callback reverses that edge. Existing
@@ -1177,7 +2305,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   reaches that deferral and reuses one waiter; it does not add a new runtime frame
   service. Native geometry, input/taint and performance remain pending.
 
-## 2026-10-29 — repeated vendor tier candidates
+## 2026-10-29 â€” repeated vendor tier candidates
 
 - User confirms Era spikes on every same-vendor reopening. Read-only hashes showed
   the preceding junk/buyer/chat fixes already installed; do not assume a stale copy.
@@ -1195,7 +2323,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   precedes level rejection, so cold tooltip cost can differ and needs native checks.
   Service call reductions are not native cache-miss, CPU, latency or FPS results.
 
-## 2026-10-29 — native tier count attribution
+## 2026-10-29 â€” native tier count attribution
 
 - The clean Era 1.15.9.70576 four-reopen pilot reproduces a 333 ms UI interval;
   GetRestockTargetItems spends about 320 ms per call. Inclusive bag/bank count and
@@ -1216,7 +2344,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   security/taint and other clients remain pending. Keep auction, guild-bank and
   void-storage callbacks deferred. [Evidence](TIER_COUNT_WORK.md).
 
-## 2026-10-29 — whole-addon Retail resource audit
+## 2026-10-29 â€” whole-addon Retail resource audit
 
 - Cover all 26 loaded source domains through current ownership/recurring-driver
   maps. Native idle execution does not exercise every lifecycle or prove leak-free
@@ -1238,7 +2366,7 @@ investigation leads, not proven major hotspots. See [evidence](AUCTION_PURCHASE_
   of the new runtime commits and record actual-file identities separately from HEAD.
   Main and excluded auction/guild-bank/void callbacks remain untouched.
 
-## 2026-10-29 — common Social offset and dock ownership
+## 2026-10-29 â€” common Social offset and dock ownership
 
 - User-authorized intentional position correction: one eight-unit inset from the
   tab/menu top across client paths, preserving other layout/feature behavior.

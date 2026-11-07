@@ -4,6 +4,11 @@
 FluxSalvage = FluxSalvage or {}
 local S = FluxSalvage
 
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = (_G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterAttributeDriver = (useFluxDrivers and FluxDrivers.RegisterAttributeDriver) or RegisterAttributeDriver
+
 local ERR_COLOR = CreateColor(1, 32 / 255, 32 / 255)
 local MACRO_SALVAGE = "/run C_TradeSkillUI.CraftSalvage(%d, 1, ItemLocation:CreateFromBagAndSlot(%d, %d))"
 local MACRO_TRADE = "/cast %s\n/run ClickTargetTradeButton(7)"

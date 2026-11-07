@@ -341,6 +341,14 @@ local function ApplyExtraScripts(self)
 			return
 		end
 		if GetCursorInfo and GetCursorInfo() then
+			if w._fluxUtilityNative then
+				local prefix = SecureButton_GetModifierPrefix(w)
+				w._fluxUtilityDropPrefix = prefix
+				w._fluxUtilityDropType = w:GetAttribute(prefix .. "type1")
+				w._fluxUtilityDropRelease = w:GetAttribute(prefix .. "typerelease1")
+				w:SetAttribute(prefix .. "type1", "")
+				w:SetAttribute(prefix .. "typerelease1", "")
+			end
 			w._backupType = w:GetAttribute("type")
 			w._backupTypeRelease = w:GetAttribute("typerelease")
 			w:SetAttribute("type", "")
@@ -350,6 +358,12 @@ local function ApplyExtraScripts(self)
 	end)
 	widget:SetScript("PostClick", function(w, _, down)
 		if WrapClicks() and w._hasCursorItem and not down then
+			if w._fluxUtilityDropPrefix ~= nil then
+				local prefix = w._fluxUtilityDropPrefix
+				w:SetAttribute(prefix .. "type1", w._fluxUtilityDropType)
+				w:SetAttribute(prefix .. "typerelease1", w._fluxUtilityDropRelease)
+				w._fluxUtilityDropPrefix, w._fluxUtilityDropType, w._fluxUtilityDropRelease = nil, nil, nil
+			end
 			if w._backupType then
 				w:SetAttribute("type", w._backupType)
 				w:SetAttribute("typerelease", w._backupTypeRelease or w._backupType)

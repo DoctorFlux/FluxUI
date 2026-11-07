@@ -5,8 +5,8 @@
     Features:
     - Class-agnostic: detects teleport/portal spells by name, not by player class
     - Middle-click: Toggle between Teleport and Portal modes (if both types learned)
-    - Right-click: Cast favorite spell for current modifier
-    - Left-click: Open flyout with all known spells of current mode
+    - Left-click: Cast the selected spell for the current modifier
+    - Right-click: Open flyout, or edit a single destination's reagent restock target
     - Synced favorites: Teleport: X favorites sync with Portal: X
     - Cast locking: Button locks to casting spell during cast (like Mount button)
     - Column priority: 1, Order: 3
@@ -307,109 +307,81 @@ local function TooltipLineText(fontString)
     return raw
 end
 
--- Check if a spell requires reagents by scanning its tooltip
-local function SpellRequiresReagentsFromTooltip(spellId)
-    if not spellId then return false end
-
-    local tip = EnsureSpellTooltipScanner()
-    tip:ClearLines()
-
-    local success = pcall(function()
-        tip:SetSpellByID(spellId)
-    end)
-
-    if not success then return false end
-
-    -- Scan tooltip lines for reagent mentions
-    local numLines = tip:NumLines() or 0
-    for i = 1, numLines do
-        local left = _G["FluxNCTeleportPortalSpellScannerTextLeft" .. i]
-        if left then
-            local line = TooltipLineText(left)
-            if line then
-                local lowerLine = string.lower(line)
-                if lowerLine:find("rune of teleportation", 1, true) or
-                   lowerLine:find("rune of portal", 1, true) then
-                    return true
-                end
-            end
-        end
+local function RuneFromTooltipLine(line)
+    for itemID in line:gmatch("item:(%d+)") do
+        local id = tonumber(itemID)
+        if id == RUNE_OF_TELEPORTATION or id == RUNE_OF_PORTAL then return id end
     end
-
-    -- Inaccessible text is not evidence of a reagent cost.
-    return false
-end
-
--- Get reagent item IDs that are required for spells in a given mode (tooltip names → live resolve).
-local function ResolveReagentNameToItemID(itemName)
-    if not itemName or itemName == "" then
-        return nil
-    end
-    if C_Item and C_Item.GetItemInfoByName then
-        local id = tonumber(C_Item.GetItemInfoByName(itemName))
-        if id then
-            return id
-        end
-    end
-    if GetItemInfo then
-        local _, link = GetItemInfo(itemName)
-        if link then
-            local id = tonumber(link:match("item:(%d+)"))
-            if id then
+    local lower = line:lower()
+    if lower:find("rune of teleportation", 1, true) then return RUNE_OF_TELEPORTATION end
+    if lower:find("rune of portal", 1, true) then return RUNE_OF_PORTAL end
+    -- A localized item name is evidence too; an uncached name never implies a cost.
+    local getInfo = (C_Item and C_Item.GetItemInfo) or GetItemInfo
+    if getInfo then
+        for _, id in ipairs({ RUNE_OF_TELEPORTATION, RUNE_OF_PORTAL }) do
+            local name = getInfo(id)
+            local S = _G.Flux and _G.Flux.Secrets
+            if S and S.SafeAccessibleString then name = S.SafeAccessibleString(name) end
+            if type(name) == "string" and name ~= "" and lower:find(name:lower(), 1, true) then
                 return id
             end
         end
     end
-    if GetMerchantNumItems and GetMerchantItemLink then
-        local lower = itemName:lower()
-        for i = 1, GetMerchantNumItems() or 0 do
-            local name = GetMerchantItemInfo and GetMerchantItemInfo(i)
-            if name and name:lower() == lower then
-                local link = GetMerchantItemLink(i)
-                local id = link and tonumber(link:match("item:(%d+)"))
-                if id then
-                    return id
-                end
-            end
-        end
-    end
-    return nil
 end
 
-local function GetRequiredReagentsForMode(mode)
+-- Only a reagent section establishes a rune cost; flavor text does not.
+local function ScanRuneReagents(spellId)
+    local found = {}
+    if not spellId then return found end
+    local tip = EnsureSpellTooltipScanner()
+    tip:ClearLines()
+    if not pcall(tip.SetSpellByID, tip, spellId) then return found end
+    local label = (REAGENTS or "Reagents"):lower()
+    local inSection = false
+    for i = 1, tip:NumLines() or 0 do
+        local line = TooltipLineText(_G["FluxNCTeleportPortalSpellScannerTextLeft" .. i])
+        if line then
+            line = line:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):match("^%s*(.-)%s*$")
+            local lower = line:lower()
+            local header = lower:find(label, 1, true) == 1
+                or lower:find("reagents", 1, true) == 1
+                or lower:find("requires reagents", 1, true) == 1
+            local id = RuneFromTooltipLine(line)
+            if header then inSection = true
+            elseif line ~= "" and not id then inSection = false end
+            if inSection and id then found[id] = true end
+        end
+    end
+    return found
+end
+
+local function SpellRequiresReagentsFromTooltip(spellId)
+    return next(ScanRuneReagents(spellId)) ~= nil
+end
+
+local function GetRequiredReagentsForMode(mode, onlySpellID)
     local spells = (mode == Module.MODE_TELEPORT) and Module.GetKnownTeleportSpells() or Module.GetKnownPortalSpells()
     local requiredReagents = {}
 
+    local S = _G.FluxInv and _G.FluxInv.Spells
+    local function add(itemID, name)
+        itemID = tonumber(itemID)
+        if not itemID or itemID == 6265 then return end -- Soul Shards are not vendor restock items.
+        if S and S.IsBlacklistedReagent and S.IsBlacklistedReagent(itemID) then return end
+        NoteReagentItemID(itemID)
+        requiredReagents[itemID] = name or (GetItemInfo and GetItemInfo(itemID)) or ("item:" .. itemID)
+    end
     for _, spell in ipairs(spells) do
-        if spell.spellID and SpellRequiresReagentsFromTooltip(spell.spellID) then
-            local tip = EnsureSpellTooltipScanner()
-            tip:ClearLines()
-            pcall(function() tip:SetSpellByID(spell.spellID) end)
-
-            local numLines = tip:NumLines() or 0
-            local reagentLabel = (REAGENTS or "Reagents"):lower()
-            for i = 1, numLines do
-                local left = _G["FluxNCTeleportPortalSpellScannerTextLeft" .. i]
-                if left then
-                    local line = TooltipLineText(left)
-                    if line then
-                        local lowerLine = string.lower(line)
-                        local itemID = tonumber(line:match("item:(%d+)"))
-                        if itemID then
-                            local name = line:match("%[(.-)%]") or line
-                            requiredReagents[itemID] = name
-                        elseif lowerLine:find(reagentLabel, 1, true) or lowerLine:find("rune of", 1, true) then
-                            local itemsPart = line:gsub("^[Rr]eagents?[:%s]*", "")
-                            itemsPart = itemsPart:match("^%d+%s+(.+)$") or itemsPart
-                            itemsPart = itemsPart:match("^%s*(.-)%s*$") or itemsPart
-                            if itemsPart ~= "" then
-                                local id = ResolveReagentNameToItemID(itemsPart)
-                                if id then
-                                    requiredReagents[id] = itemsPart
-                                end
-                            end
-                        end
-                    end
+        if spell.spellID and (not onlySpellID or spell.spellID == onlySpellID) then
+            local list = S and S.GetReagents and S.GetReagents(spell.spellID)
+            if type(list) == "table" and #list > 0 then
+                for _, r in ipairs(list) do
+                    if r then add(r.itemID, r.name) end
+                end
+            else
+                for id in pairs(ScanRuneReagents(spell.spellID)) do
+                    add(id, (GetItemInfo and GetItemInfo(id))
+                        or (id == RUNE_OF_TELEPORTATION and "Rune of Teleportation" or "Rune of Portals"))
                 end
             end
         end
@@ -470,7 +442,7 @@ function Module.GetVendorOptionReagentSummary()
         end
         local reagents = GetRequiredReagentsForMode(modeKey)
         if not reagents or not next(reagents) then
-            lines[#lines + 1] = title .. ": no reagent items (retail / no rune cost on tooltip)."
+            lines[#lines + 1] = title .. ": no vendor-restock reagent items detected."
             return
         end
         local perCast = nil
@@ -1144,26 +1116,6 @@ function Module.BuildReagentActions(mode)
     -- Always prefer spells in *this* mode (teleport vs portal); never use the
     -- global spellbook reagent list here — that shows every reagent on the character.
     local requiredReagents = GetRequiredReagentsForMode(mode)
-
-    -- If tooltip name→ID could not resolve yet, ask FluxInv for reagents on this mode's spells.
-    if not next(requiredReagents) then
-        local spells = (mode == Module.MODE_TELEPORT) and Module.GetKnownTeleportSpells() or Module.GetKnownPortalSpells()
-        local S = _G.FluxInv and _G.FluxInv.Spells
-        if S and S.GetReagents and type(spells) == "table" then
-            for _, spell in ipairs(spells) do
-                local list = spell.spellID and S.GetReagents(spell.spellID)
-                if type(list) == "table" then
-                    for i = 1, #list do
-                        local r = list[i]
-                        local id = r and tonumber(r.itemID)
-                        if id then
-                            requiredReagents[id] = r.name or GetItemInfo(id) or ("item:" .. id)
-                        end
-                    end
-                end
-            end
-        end
-    end
 
     for itemId, reagentName in pairs(requiredReagents) do
         if not seenReagents[itemId] then
@@ -1920,7 +1872,23 @@ function Module.SetupIconProtection(btn)
     btn.WIcon._fluxTeleportIconHooked = true
 end
 
--- Right-click opens the flyout; middle-click toggles teleport/portal.
+function Module.GetRightClickReagentItemID()
+    if Module.HasTeleportFlyout() then return nil end
+    local spell = Module.GetSpellForModifier(GetCurrentHeldModKey())
+    if not spell or not spell.spellID then return nil end
+    local reagents = GetRequiredReagentsForMode(Module.GetMode(), spell.spellID)
+    local rune = Module.GetMode() == Module.MODE_PORTAL and RUNE_OF_PORTAL or RUNE_OF_TELEPORTATION
+    if reagents[rune] then return rune end
+    local otherRune = rune == RUNE_OF_PORTAL and RUNE_OF_TELEPORTATION or RUNE_OF_PORTAL
+    if reagents[otherRune] then return otherRune end
+    local chosen
+    for id in pairs(reagents) do
+        if not chosen or id < chosen then chosen = id end
+    end
+    return chosen
+end
+
+-- Right-click opens the flyout or edits the single destination's reagent target.
 -- type2/type3 swallow those clicks so they do not cast the left-click spell.
 function Module.SetupClickHandlers(btn)
     if not btn or not btn.Widget then return end
@@ -1931,12 +1899,21 @@ function Module.SetupClickHandlers(btn)
 
     local w = btn.Widget
     local hasFlyout = Module.HasTeleportFlyout()
+    local reagentItemID = not hasFlyout and Module.GetRightClickReagentItemID()
+    if w.editBox and w.editBox:IsShown() and w._reagentItemId ~= reagentItemID then
+        local F = _G.Flux
+        local popup = F and F.EBS and F.EBS.Flyout and F.EBS.Flyout.Popup
+        if popup and popup.CloseReagentRestockEdit then popup.CloseReagentRestockEdit(w) end
+    end
+    btn._fluxTeleportRestockItemID = reagentItemID
 
-    if hasFlyout then
+    if hasFlyout or reagentItemID then
         w:SetAttribute("type2", "macro")
-        w:SetAttribute("macrotext2", "/")
+        w:SetAttribute("typerelease2", "macro")
+        w:SetAttribute("macrotext2", hasFlyout and "/" or "/stopmacro")
     else
         w:SetAttribute("type2", nil)
+        w:SetAttribute("typerelease2", nil)
         w:SetAttribute("macrotext2", nil)
     end
 
@@ -1958,6 +1935,13 @@ function Module.SetupClickHandlers(btn)
             if button == "RightButton" then
                 if Module.HasTeleportFlyout() then
                     Module.ShowFlyout()
+                elseif not InCombatLockdown() and btn._fluxTeleportRestockItemID then
+                    local F = _G.Flux
+                    local popup = F and F.EBS and F.EBS.Flyout and F.EBS.Flyout.Popup
+                    if popup and popup.ToggleReagentRestockEdit then
+                        w._fluxRestockCountOwner = btn
+                        popup.ToggleReagentRestockEdit(w, btn._fluxTeleportRestockItemID)
+                    end
                 end
                 Module.ClearCheckedVisual()
             elseif button == "MiddleButton" then
@@ -2282,6 +2266,8 @@ function Module.ShowTooltip()
     GameTooltip:AddLine("Left-click: Cast", 0.5, 0.8, 1)
     if Module.HasTeleportFlyout() then
         GameTooltip:AddLine("Right-click: Open flyout", 0.5, 0.8, 1)
+    elseif Module._button and Module._button._fluxTeleportRestockItemID then
+        GameTooltip:AddLine("Right-click: Set preset restock target", 0.5, 0.8, 1)
     end
     if hasBoth then
         local label = "Middle-click: Toggle " .. mode .. "/" .. 
@@ -2623,6 +2609,7 @@ local function CheckModifierState()
         -- No sticky behavior - always shows current modifier's spell
         local currentModKey = GetCurrentHeldModKey()
         Module.UpdateIcon(currentModKey)
+        Module.SetupClickHandlers(Module._button)
     end
 
     if tooltipShowing then
@@ -3107,11 +3094,11 @@ if _G.FluxInv and _G.FluxInv.RegisterListener and not Module._fluxInvListenerReg
     Module._fluxInvListenerRegistered = true
     _G.FluxInv.RegisterListener("NCTeleportPortal", function(ctx)
         local changed = ctx and ctx.changedItemIDs
-        if changed and not AnyReagentMoved(changed) then
+        if changed and not (ctx.regions and ctx.regions.spells) and not AnyReagentMoved(changed) then
             return
         end
-        Module.RefreshReagentCounts()
-    end, { tier = "instant", regions = { "bags" }, sync = true })
+        Module.RefreshReagentCounts(ctx and ctx.regions and ctx.regions.spells)
+    end, { tier = "instant", regions = { "bags", "spells" }, sync = true })
 end
 
 -- Check if a spell is a teleport or portal spell
@@ -3154,8 +3141,15 @@ Module.GetRequiredReagentsForMode = GetRequiredReagentsForMode
 Module.GetRestockTarget = Module.GetRestockTarget
 Module.SetRestockTarget = Module.SetRestockTarget
 
-function Module.RefreshReagentCounts()
+function Module.RefreshReagentCounts(refreshRestock)
     local btn = Module._button
+    if btn and refreshRestock then
+        if InCombatLockdown() then
+            Module._pendingUpdate = true
+        else
+            Module.SetupClickHandlers(btn)
+        end
+    end
     if btn and btn.TranslateMacro then
         btn:TranslateMacro()
     end

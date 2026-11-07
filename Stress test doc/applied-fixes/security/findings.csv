@@ -1,0 +1,4 @@
+id,status,primary_location,acceptance,baseline_control,native_status
+SEC-01,applied simulated regression passes,Core/Engine/Restricted.lua:430,tests/restricted_driver_ownership.lua 264 checks,native global identity rejection,native manager integration and taint pending
+SEC-02,applied simulated regression passes,Respec/FluxRespec_Apply.lua:728,bars320 and section200 checks across five client models,profile false success and bars/utility bundle false return rejection,native protected action API acceptance pending
+SEC-03,applied simulated regression passes,Respec/FluxRespec_ActionBars.lua:597,detached owned cancellable bars/utility requests and stale/reentrant callback controls,premature completion mutable snapshot and post-cancel write rejection,native combat transitions pending

@@ -1,0 +1,71 @@
+--- baseline/UnitFrames/FluxUnitFrames_Shared.lua
++++ REJECTED-native-span/UnitFrames/FluxUnitFrames_Shared.lua
+@@ -2507,10 +2507,10 @@
+ 
+     if API.isMidnight then
+         -- ---------------------------------------------------------------
+-        -- 12.0+ Path: All numeric values may be secret.
+-        -- Arithmetic on secrets produces secrets (safe); only comparisons
+-        -- (>, <, ==) error.  Wrap comparisons in pcall; pass secrets
+-        -- directly to widget APIs (SetValue, SetMinMaxValues, SetPoint).
++        -- Native numeric getters may return values addon Lua cannot inspect.
++        -- Access is operation-specific; pcall does not make a value readable.
++        -- Keep opaque health/absorb amounts on permitted StatusBar sinks and
++        -- use native anchors with public offsets for their presentation.
+         -- ---------------------------------------------------------------
+         if not frame.Health.healCalc then
+             frame.Health.healCalc = API.CreateUnitHealPredictionCalculator()
+@@ -2560,8 +2560,9 @@
+             local dead = UnitIsDeadOrGhost(frame.unit)
+             local healthBar = frame.Health
+             local barWidth = healthBar:GetWidth()
+-
+-            if not dead and barWidth > 0 then
++            local publicWidth = not ValueIsSecret(barWidth) and type(barWidth) == "number"
++
++            if not dead and (not publicWidth or barWidth > 0) then
+                 local healthTex = healthBar:GetStatusBarTexture()
+                 local _, maxHP = healthBar:GetMinMaxValues()
+ 
+@@ -2575,9 +2576,19 @@
+                     local bar = frame.totalAbsorbBar
+                     bar:ClearAllPoints()
+                     bar:SetPoint("TOPLEFT", healthTex, "TOPRIGHT", 0, 0)
+-                    bar:SetPoint("BOTTOMLEFT", healthTex, "BOTTOMRIGHT", 0, 0)
+-                    bar:SetWidth(barWidth)
+-                    pcall(bar.SetMinMaxValues, bar, 0, maxHP)
++                    if publicWidth and type(healCalc.GetMissingHealth) ~= "function" then
++                        -- Preserve the existing public-geometry path on older calculators.
++                        bar:SetPoint("BOTTOMLEFT", healthTex, "BOTTOMRIGHT", 0, 0)
++                        bar:SetWidth(barWidth)
++                        pcall(bar.SetMinMaxValues, bar, 0, maxHP)
++                    else
++                        bar:SetPoint("BOTTOMRIGHT", healthBar, "BOTTOMRIGHT", 0, 0)
++                        -- The native span is missing-health pixels. Normalizing by
++                        -- native missing health preserves the former full-width fill
++                        -- without forwarding secret geometry to SetWidth.
++                        local missingHealth = healCalc:GetMissingHealth()
++                        pcall(bar.SetMinMaxValues, bar, 0, missingHealth)
++                    end
+                     pcall(bar.SetValue, bar, clampedAbsorb)
+                     bar:Show()
+                     RefreshAbsorbShieldOverlay(bar, SHIELD_OVERLAY_TILE)
+@@ -7294,13 +7305,14 @@
+         ThreatBarRaiseGlowAboveBorder(shell)
+         return
+     end
+-    shell._fluxThreatGlowBand = band
+     -- Prefer LCG so we can tint yellow→red; frameLevel arg must clear the border (+10).
++    local applied = false
+     if LCG and LCG.ButtonGlow_Start then
+-        pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
++        applied = pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
+     elseif LBG and LBG.ShowOverlayGlow then
+-        pcall(LBG.ShowOverlayGlow, shell)
+-    end
++        applied = pcall(LBG.ShowOverlayGlow, shell)
++    end
++    if applied then shell._fluxThreatGlowBand = band end
+     ThreatBarRaiseGlowAboveBorder(shell)
+ end
+ 

@@ -14,25 +14,36 @@ local START_DELAY = 0.1
 local POSTPONE_DELAY = 0.05
 local SECRET_EASE_HIDE = 0.6
 
+local function CanRead(value)
+    if API and API.IsSecretValue and API.IsSecretValue(value) then return false end
+    return not (API and API.CanAccessValue) or API.CanAccessValue(value)
+end
+
+local function ReadableNumber(value)
+    if not CanRead(value) or type(value) ~= "number" then return nil end
+    if value ~= value or value <= -math.huge or value >= math.huge then return nil end
+    return value
+end
+
+local function ReadableGUID(unit)
+    local guid = unit and UnitGUID and UnitGUID(unit)
+    if not CanRead(guid) or type(guid) ~= "string" then return nil end
+    return guid
+end
+
 local function TryLayoutWidth(region)
-    if not region then return nil end
-    local ok, w = pcall(function()
-        local x = region:GetWidth()
-        return math.min(math.max(x + 0, 0), 100000)
-    end)
-    if ok and type(w) == "number" and w == w and w > 0 then
-        return w
+    if not region or not region.GetWidth then return nil end
+    local w = ReadableNumber(region:GetWidth())
+    if w and w > 0 then
+        return math.min(w, 100000)
     end
     return nil
 end
 
 local function GetHealthFillWidth(healthBar)
-    local ok, w = pcall(function()
-        local f = healthBar:GetStatusBarTexture()
-        if not f then return nil end
-        return (f:GetWidth() + 0)
-    end)
-    if ok and type(w) == "number" and w == w and w >= 0 then
+    local fill = healthBar:GetStatusBarTexture()
+    local w = fill and ReadableNumber(fill:GetWidth())
+    if w and w >= 0 then
         return w
     end
     return nil
@@ -269,7 +280,9 @@ function HLO.DisableForHealthBar(healthBar)
     healthBar._fluxLossSecretSeq = (healthBar._fluxLossSecretSeq or 0) + 1
     healthBar._fluxLossPrimed = nil
     healthBar._fluxLossGUID = nil
+    healthBar._fluxLossSampleUnit = nil
     healthBar._fluxLossPrevHealth = nil
+    healthBar._fluxLossPrevFillW = nil
     HideClassicLoss(healthBar)
     local loss = healthBar.AnimatedLossBar
     if loss then
@@ -282,20 +295,32 @@ function HLO.DisableForHealthBar(healthBar)
     end
 end
 
+-- Existing unit-frame identity events reset opaque target swaps. Resetting on
+-- every inaccessible GUID sample would suppress the health-loss trail.
+function HLO.ResetIdentityForFrame(frame)
+    local bar = frame and frame.Health
+    if not bar or not bar._fluxHealthLossUnderlay then return end
+    bar._fluxLossPrimed = nil
+    bar._fluxLossGUID = nil
+    bar._fluxLossSampleUnit = nil
+    bar._fluxLossPrevHealth = nil
+    bar._fluxLossPrevFillW = nil
+    bar._fluxLossSecretSeq = (bar._fluxLossSecretSeq or 0) + 1
+    bar._fluxLossSecretPending = false
+    HideClassicLoss(bar)
+    local loss = bar.AnimatedLossBar
+    if loss then
+        loss:Hide()
+        loss.animationStartTime = nil
+        loss.animationCompletePercent = nil
+        if loss._pixelDriver then loss._pixelDriver:Hide() end
+    end
+end
+
 local function ReadableHealth(unit)
     if not unit then return nil, nil end
-    local h, m = UnitHealth(unit), UnitHealthMax(unit)
-    if type(h) ~= "number" or type(m) ~= "number" then
-        local ok, hn, mn = pcall(function()
-            return h + 0, m + 0
-        end)
-        if ok and type(hn) == "number" and type(mn) == "number" then
-            h, m = hn, mn
-        else
-            return nil, nil
-        end
-    end
-    if m <= 0 then return nil, nil end
+    local h, m = ReadableNumber(UnitHealth(unit)), ReadableNumber(UnitHealthMax(unit))
+    if not h or not m or m <= 0 then return nil, nil end
     return h, m
 end
 
@@ -312,9 +337,14 @@ function HLO.OnAfterHealthValueSet(healthBar)
     end
 
     local unit = healthBar._fluxHealthLossUnit
-    local guid = unit and UnitGUID and UnitGUID(unit) or nil
-    if guid ~= healthBar._fluxLossGUID or not healthBar._fluxLossPrimed then
+    local guid = ReadableGUID(unit)
+    -- Keep the last plain GUID through restricted samples. Public identity
+    -- events reset opaque unit swaps without dropping the first combat hit.
+    if not CanRead(healthBar._fluxLossGUID)
+        or (guid and healthBar._fluxLossGUID and guid ~= healthBar._fluxLossGUID)
+        or unit ~= healthBar._fluxLossSampleUnit or not healthBar._fluxLossPrimed then
         healthBar._fluxLossGUID = guid
+        healthBar._fluxLossSampleUnit = unit
         healthBar._fluxLossPrimed = true
         healthBar._fluxLossPrevFillW = nil
         healthBar._fluxLossSecretSeq = (healthBar._fluxLossSecretSeq or 0) + 1
@@ -326,8 +356,9 @@ function HLO.OnAfterHealthValueSet(healthBar)
         SyncLossImmediate(healthBar)
         return
     end
+    if guid then healthBar._fluxLossGUID = guid end
 
-    local oldW = healthBar._fluxLossPrevFillW
+    local oldW = ReadableNumber(healthBar._fluxLossPrevFillW)
     healthBar._fluxLossPrevFillW = nil
     local newW = GetHealthFillWidth(healthBar)
 
@@ -335,7 +366,7 @@ function HLO.OnAfterHealthValueSet(healthBar)
         -- UnitHealth is already the new value before OnBefore runs, so the
         -- previous sample is the one saved at the end of the last update.
         local h, m = ReadableHealth(unit)
-        local prevH = healthBar._fluxLossPrevHealth
+        local prevH = ReadableNumber(healthBar._fluxLossPrevHealth)
         local bw = TryLayoutWidth(healthBar)
         if type(prevH) == "number" and type(h) == "number" and type(m) == "number" and bw and bw > 0 then
             DriveClassicLoss(healthBar, (prevH / m) * bw, (h / m) * bw)
@@ -368,8 +399,7 @@ function HLO.Initialize(frame)
     frame.Health._fluxHealthLossUnderlay = true
     frame.Health._fluxUseHealthLossOverlay = true
     frame.Health._fluxHealthLossUnit = frame.unit
-    frame.Health._fluxLossPrimed = nil
-    frame.Health._fluxLossGUID = nil
+    HLO.ResetIdentityForFrame(frame)
     local loss = frame.Health.AnimatedLossBar
     if loss then
         loss.unit = frame.unit

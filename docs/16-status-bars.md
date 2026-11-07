@@ -6,6 +6,17 @@ not select a panel. [Fix evidence](FOREVER_REPUTATION_CLICK.md).
 
 Flux's status system has six loaded components: XP/reputation/gold-strip composition, account gold ledger, item-currency tracking, Info Frame, legacy PvP tracking and PvP objective placement. They share layout/chrome but own different data. [FluxStatusBar.lua](../StatusBars/FluxStatusBar.lua) creates the bar container and reconciles active cells.
 
+Currency-strip left-click opens/toggles the native Currency tab (`TokenFrame`)
+where available, including Retail and Forever, outside combat. Right-click opens
+FluxUI **Status Bars** settings; clients without a native currency tab retain the
+settings fallback on either click. Money/suffix hit regions forward these clicks;
+tracked-item icons retain their explicit right-click clear and item-drop actions.
+[Source and desktop evidence](validation/status-currency-clicks-2026-11-07.json).
+The earlier Forever exclusion defended secret-health/gamepad paths during native
+CharacterFrame opening. This route follows the existing reputation-bar call;
+its prior user probe does not certify currency clicks or gamepad/taint safety.
+Native panel/gamepad/taint acceptance remains pending.
+
 ## Strip composition and updates
 
 XP displays progress/rested/predicted quest progress where supported; reputation reads the watched faction through modern/legacy adapters, including available friendship/standing presentation. The gold/currency strip displays money and supported tracked currencies/items. XP can hide at max level; the currency bar is separately toggleable. Defaults clamp bar height to 10–40px, initially 18px. HUD atlas art vs Classic vertex colors is selected by capabilities.

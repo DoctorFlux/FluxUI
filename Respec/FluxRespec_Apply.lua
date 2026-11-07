@@ -116,6 +116,10 @@ end
 local function ClearApplyState(preserveRunes)
     local state = Apply._state
     Apply._state = nil
+    if state then state.utilitySnapshot, state.utilityCallback = nil, nil end
+    if state and state.barsCallback and R.ActionBars and R.ActionBars.CancelPendingApply then
+        pcall(R.ActionBars.CancelPendingApply, state.barsCallback)
+    end
     if state and state.bindingCallback and _G.FluxSpellBindings_CancelPendingApply then
         pcall(_G.FluxSpellBindings_CancelPendingApply, state.bindingCallback)
     end
@@ -246,6 +250,7 @@ local function ResolveProfileUtilitySnap(profile)
 end
 
 local function UtilityMatches(snap)
+    if type(snap) ~= "table" or type(snap.slots) ~= "table" then return false end
     if _G.FluxNCUtilitySlots_MatchesSnapshot then
         return _G.FluxNCUtilitySlots_MatchesSnapshot(snap)
     end
@@ -285,18 +290,17 @@ local function ProfileAlreadyFullyApplied(profile)
             return false
         end
     end
-    if SectionOn(profile, "bars") and profile.bars and R.ActionBars and R.ActionBars.MatchesSnapshot then
-        if not R.ActionBars.MatchesSnapshot(profile.bars) then
+    if SectionOn(profile, "bars") and profile.bars then
+        if not R.ActionBars or not R.ActionBars.MatchesSnapshot or not R.ActionBars.MatchesSnapshot(profile.bars) then
             return false
         end
     end
-    if SectionOn(profile, "consumables") and profile.consumables and R.Consumables and R.Consumables.IsDifferent then
-        if R.Consumables.IsDifferent(profile.consumables) then
+    if SectionOn(profile, "consumables") and profile.consumables then
+        if not R.Consumables or not R.Consumables.IsDifferent or R.Consumables.IsDifferent(profile.consumables) then
             return false
         end
     end
-    if SectionOn(profile, "utilitySlots") and ResolveProfileUtilitySnap(profile)
-        and (_G.FluxNCUtilitySlots_MatchesSnapshot or _G.FluxSpellBookSlots_MatchesSnapshot) then
+    if SectionOn(profile, "utilitySlots") and ResolveProfileUtilitySnap(profile) then
         local snap = ResolveProfileUtilitySnap(profile)
         if not UtilityMatches(snap) then
             return false
@@ -735,22 +739,33 @@ StepBars = function()
         StepConsumables()
         return
     end
-    -- Retail: Blizzard loadouts own action slots; still apply Flux stance order/hidden.
-    if SkipBarsOnRetail() then
-        SetStatus("Updating stance bar layout…")
-        if R.ActionBars and R.ActionBars.ApplyStanceLayout then
-            pcall(R.ActionBars.ApplyStanceLayout, profile.bars)
-        elseif R.ActionBars and R.ActionBars.Apply then
-            pcall(R.ActionBars.Apply, profile.bars)
+    SetStatus(SkipBarsOnRetail() and "Updating stance bar layout…" or "Updating action bar slots that differ from this profile…")
+    local function afterBars(ok, reason)
+        if Apply._state ~= state or not state.waitingForBars then return end
+        state.waitingForBars = nil
+        if ok then
+            StepConsumables()
+        else
+            R.Warn("Action bars: " .. tostring(reason or "ACTION_BARS_FAILED"))
+            SetStatus("Load failed. Action bars can be retried.")
+            AbortPipeline(reason or "ACTION_BARS_FAILED", true)
         end
-        StepConsumables()
+    end
+    state.barsCallback = afterBars
+    state.waitingForBars = true
+    if not R.ActionBars or not R.ActionBars.Apply then
+        afterBars(false, "ACTION_BARS_API_UNAVAILABLE")
         return
     end
-    SetStatus("Updating action bar slots that differ from this profile…")
-    if R.ActionBars and R.ActionBars.Apply then
-        pcall(R.ActionBars.Apply, profile.bars)
+    -- ActionBars owns slot/stance completion, including the combat queue. Later
+    -- profile steps must not finish while an action-bar request is still pending.
+    local called, ok, reason = pcall(R.ActionBars.Apply, profile.bars, afterBars)
+    if Apply._state ~= state or not state.waitingForBars then return end
+    if not called then
+        afterBars(false, "ACTION_BARS_FAILED")
+    elseif not ok and reason ~= "IN_COMBAT" then
+        afterBars(false, reason)
     end
-    StepConsumables()
 end
 
 StepSpellBookSlots = function()
@@ -763,18 +778,44 @@ StepSpellBookSlots = function()
         return
     end
     local snap = ResolveProfileUtilitySnap(profile)
-    if snap and (_G.FluxNCUtilitySlots_ApplySnapshot or _G.FluxSpellBookSlots_ApplySnapshot) then
-        if UtilityMatches(snap) then
-            SetStatus("Utility slots already match.")
-        else
-            SetStatus("Applying utility slot assignments…")
-            local ok, reason = UtilityApply(snap)
-            if not ok and reason then
-                R.Warn("Utility slots: " .. tostring(reason))
+    if not snap then StepSpellBindings(); return end
+    if UtilityMatches(snap) then
+        SetStatus("Utility slots already match.")
+        StepSpellBindings()
+        return
+    end
+    if R.SetLoadCheckpoint and state.name then R.SetLoadCheckpoint(state.name, "spellbook") end
+    local function failUtility(reason)
+        if Apply._state ~= state then return end
+        state.utilitySnapshot, state.utilityCallback = nil, nil
+        R.Warn("Utility slots: " .. tostring(reason or "UTILITY_SLOTS_FAILED"))
+        AbortPipeline(reason or "UTILITY_SLOTS_FAILED", true)
+    end
+    if not (Compat and Compat.DeepCopy) then failUtility("UTILITY_SLOTS_COPY_UNAVAILABLE"); return end
+    state.utilitySnapshot = Compat.DeepCopy(snap)
+    local tryUtility
+    tryUtility = function()
+        if Apply._state ~= state or state.utilityCallback ~= tryUtility then return end
+        SetStatus("Applying utility slot assignments…")
+        local called, ok, reason = pcall(UtilityApply, state.utilitySnapshot)
+        if Apply._state ~= state then return end
+        if not called then failUtility("UTILITY_SLOTS_FAILED"); return end
+        if not ok and reason == "IN_COMBAT" then
+            local flux = _G.Flux
+            local combat = flux and flux.Combat
+            if combat and combat.Defer and combat.InLockdown and combat.InLockdown() then
+                -- Existing named combat queue, owned by this Apply state. A
+                -- cancelled/replaced state cannot execute its saved snapshot.
+                combat.Defer("respec.utilitySlots", tryUtility)
+                return
             end
         end
+        if not ok then failUtility(reason); return end
+        state.utilitySnapshot, state.utilityCallback = nil, nil
+        StepSpellBindings()
     end
-    StepSpellBindings()
+    state.utilityCallback = tryUtility
+    tryUtility()
 end
 
 StepSpellBindings = function()
@@ -848,17 +889,30 @@ StepSpellBindings = function()
     end
 end
 
+local function ApplyConsumables(state, snapshot)
+    if R.SetLoadCheckpoint and state.name then R.SetLoadCheckpoint(state.name, "consumables") end
+    local called, ok, reason = false, false, "UNAVAILABLE"
+    if R.Consumables and R.Consumables.Apply then called, ok, reason = pcall(R.Consumables.Apply, snapshot) end
+    if Apply._state ~= state then return false end
+    if not called or not ok then
+        R.Warn("Consumables: " .. tostring(called and reason or "CONSUMABLES_FAILED"))
+        AbortPipeline((called and reason) or "CONSUMABLES_FAILED", true)
+        return false
+    end
+    return true
+end
+
 StepConsumables = function()
     local state = Apply._state
     if not state then return end
     state.phase = "consumables"
     local profile = state.profile
-    if SectionOn(profile, "consumables") and profile.consumables and R.Consumables and R.Consumables.Apply then
-        if R.Consumables.IsDifferent and not R.Consumables.IsDifferent(profile.consumables) then
+    if SectionOn(profile, "consumables") and profile.consumables then
+        if R.Consumables and R.Consumables.IsDifferent and not R.Consumables.IsDifferent(profile.consumables) then
             SetStatus("Consumables preset already matches.")
         else
             SetStatus("Switching consumables preset...")
-            pcall(R.Consumables.Apply, profile.consumables)
+            if not ApplyConsumables(state, profile.consumables) then return end
         end
     end
     StepSpellBookSlots()
@@ -939,8 +993,8 @@ function Apply.Run(name)
 
     -- FluxNC consumables config: switch active preset to match this profile on the first apply click
     -- (same saved vars as the Consumables UI). StepConsumables still runs at the end if anything differs.
-    if SectionOn(profile, "consumables") and profile.consumables and R.Consumables and R.Consumables.Apply then
-        pcall(R.Consumables.Apply, profile.consumables)
+    if SectionOn(profile, "consumables") and profile.consumables then
+        if not ApplyConsumables(Apply._state, profile.consumables) then return true end
     end
 
     if ProfileAlreadyFullyApplied(profile) then

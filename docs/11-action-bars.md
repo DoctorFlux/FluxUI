@@ -1,5 +1,9 @@
 # Action bars
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Quiet-grid, cast/badge and bling alpha readers avoid secret comparisons and handle denied getters with feature-specific public-write or retained-state policies. Native secure driver/watch globals retain their identities; Forever adapters are selected locally by Flux callers. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 `Flux.Bars` owns the bottom strip, secure click surfaces, pet/stance bars and hover-to-bind mode. Blizzard action slots store content; Flux-owned widgets provide presentation and clicks. [Init.lua](../Bars/Init.lua) is the entrypoint. Current TOC loading, rather than older engine terminology in comments, establishes the implementation.
 
 ## Structure and startup
@@ -103,3 +107,48 @@ and full FPS remain pending. [Audit and exact evidence](ACTION_AURA_WORK.md).
 Attached stance placement follows the Flux player-frame whole scale; detached
 placement restores its normal scale. Existing combat deferral is retained.
 [Scope and regression checks](UNIT_FRAME_SCALE.md#attached-stance-bar-scale--30-october-2026).
+
+## Native mouseover toggle — 7 November 2026
+
+The spellbook keeps a directly clickable mouseover toggle. On clients where
+Blizzard's `IsMouseoverCastSupported()` returns true and `enableMouseoverCast`
+exists, it is the actual `ClickBindingFrame.EnableMouseoverCastCheckbox`.
+Flux leaves its native scripts, label, tooltip and CVar ownership intact.
+The shared spellbook layout borrows it while the book is visible, then restores
+the original parent, anchors, scale, strata and level for Click Casting or a
+closed book. The same existing observer handles both panels without native
+OnShow/OnHide/method hooks. Parent changes defer in combat. Click Casting is
+loaded lazily on first spellbook use, not at login.
+
+The native CVar is the source of truth even when a scoped Flux preference
+disagrees. The saved custom preference remains available on unsupported clients;
+there is no migration or forced reset. Flux's option shows native state and opens
+Click Casting. Default/reset/binding-save paths preserve both the native CVar
+and `MOUSEOVERCAST` modifier. Native change events leave Blizzard's synchronous
+callback stack before coalesced Flux refresh. Native action-slot checks stay
+prepared even while off, allowing Blizzard to apply its own combat changes.
+Explicit user macro targets remain explicit. Automatic factory mouseover tails
+are omitted on native clients so they cannot bypass the native modifier.
+
+Blizzard's native helper classifies an action slot, so standalone spell/item
+buttons retain their existing click-time adapter on clients supporting wraps,
+now gated by the same native preference/modifier. Those attribute changes keep
+existing combat deferral. Forever's previous native spell/item policy remains;
+its actual operation, like native taint/gamepad/input, is not certified by mocks.
+
+Regression: `lua tests/mouseover_native.lua` executes the addon and the pinned
+Blizzard checkbox/target resolver, including support-false/missing-CVar clients,
+native off/on, modifiers, both panels, close/reopen, ownership restoration,
+combat deferral, source defaults, scoped-data preservation and standalone inputs.
+388 checks pass; five fresh alternating baseline/candidate pairs reject the old
+source and pass the candidate. These are functional replays, not CPU/FPS trials.
+
+Native acceptance pending: reload; open the spellbook and verify the checkbox
+remains visible; toggle it there and confirm the same state in native Combat /
+Click Casting; change the native control and verify the spellbook on reopening;
+open/close Click Casting beside the book; select a mouseover modifier and test
+native bar keys, standalone spell/item buttons, unit-frame hover, gamepad and
+combat transitions. Check Lua/taint logs separately and restore diagnostic
+preferences after any user-selected capture.
+
+[Source identities and evidence](validation/mouseover-native-2026-11-07.json).

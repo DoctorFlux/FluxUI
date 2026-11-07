@@ -1,7 +1,7 @@
 --[[
     Restock/Bank/FluxBankRestockButton.lua
 
-    Bank restock button anchored to the bottom-left of the bank frame.
+    Bank restock button follows the active bank window.
     Uses the same merchant-style chrome as the vendor Restock button.
     Withdraw-only: dragging an item onto the button sets a withdraw target
     for it, there is no stash/deposit affordance here.
@@ -21,6 +21,14 @@ local btn
 local autoToggle
 local editBox
 local lastClickFailReason
+local baganatorFooter
+local footerLabel
+local BAGANATOR_FOOTER_HEIGHT = 48
+local bankAttachGeneration = 0
+local nativeBankClosed = false
+local nativeBankEventsRegistered = false
+local STRATA_ORDER = { BACKGROUND = 1, LOW = 2, MEDIUM = 3, HIGH = 4,
+    DIALOG = 5, FULLSCREEN = 6, FULLSCREEN_DIALOG = 7, TOOLTIP = 8 }
 
 -- ---------------------------------------------------------------------------
 -- SETTINGS HELPERS
@@ -328,6 +336,9 @@ local function MatchRepairButtonSize(targetBtn)
     if not targetBtn then
         return
     end
+    if Button.ReleaseBaganatorFooter then Button.ReleaseBaganatorFooter() end
+    if footerLabel then footerLabel:Hide() end
+    targetBtn:SetScale(1)
     local ref = _G.MerchantRepairAllButton or _G.MerchantRepairItemButton
     if ref and ref.GetSize then
         local w, h = ref:GetSize()
@@ -359,6 +370,14 @@ local function EnsureButton()
     btn:SetFrameStrata("HIGH")
     MatchRepairButtonSize(btn)
 
+    -- Merchant icons can have fixed dimensions/anchors from another client UI.
+    -- Follow this button instead, including Baganator's later toolbar resize.
+    if btn.Icon then
+        btn.Icon:ClearAllPoints()
+        btn.Icon:SetPoint("TOPLEFT", btn, "TOPLEFT", 1, -1)
+        btn.Icon:SetPoint("BOTTOMRIGHT", btn, "BOTTOMRIGHT", -1, 1)
+    end
+
     btn:RegisterForClicks("LeftButtonUp")
     btn:RegisterForDrag("LeftButton")
     btn:SetScript("OnClick", HandleClick)
@@ -382,6 +401,10 @@ local function EnsureButton()
 
     EnsureAutoToggle()
     btn:Hide()
+    return btn
+end
+
+function Button.GetControl()
     return btn
 end
 
@@ -616,6 +639,84 @@ local function GetPreDFButtonPlacement(bankFrame)
     }
 end
 
+-- Baganator resets the outer frame to currentTab:GetSize() on tab completion.
+-- Keep an owned footer below that tab, restoring only geometry still ours.
+function Button.ReleaseBaganatorFooter(bankView)
+    local state = baganatorFooter
+    if not state or (bankView and state.view ~= bankView) then return end
+    baganatorFooter = nil
+    if state.tab and state.tab:GetHeight() == state.tabApplied then
+        state.tab:SetHeight(state.tabHeight)
+    end
+    if state.tabWidth and state.tab:GetWidth() == state.tabWidthApplied then
+        state.tab:SetWidth(state.tabWidth)
+    end
+    if state.scroll and state.scroll:GetHeight() == state.scrollApplied then
+        state.scroll:SetHeight(state.scrollHeight)
+        if state.scroll.FullUpdate and ScrollBoxConstants then
+            state.scroll:FullUpdate(ScrollBoxConstants.UpdateImmediately)
+        end
+    end
+    if state.view:GetHeight() == state.appliedHeight then
+        state.view:SetHeight(state.height)
+    end
+    if state.width and state.view:GetWidth() == state.widthApplied then
+        state.view:SetWidth(state.width)
+    end
+end
+
+local function ReserveBaganatorFooter(bankView)
+    Button.ReleaseBaganatorFooter()
+    local tab = bankView.currentTab
+    local height = (tab and tab.GetHeight and tab:GetHeight()) or bankView:GetHeight()
+    if not height or height <= 0 then return end
+    local state = { view = bankView, height = height }
+    local available = UIParent:GetHeight() / bankView:GetScale()
+    -- Preserve the room Baganator reserves for exterior bank bag slots/tabs.
+    local tabs = bankView.Tabs
+    if tabs and tabs[1] and tabs[1]:IsShown() then
+        local bottom, tabBottom = bankView:GetBottom(), tabs[1]:GetBottom()
+        if bottom and tabBottom then available = available - math.max(0, bottom - tabBottom + 5) end
+    end
+    local bagSlots = tab and tab.BagSlots
+    if bagSlots and bagSlots:GetHeight() > 0 then
+        local top, slotTop = tab:GetTop(), bagSlots:GetTop()
+        if top and slotTop then available = available - math.max(0, slotTop - top) end
+    end
+    local overflow = math.max(0, height + BAGANATOR_FOOTER_HEIGHT - available)
+    local scroll = tab and tab.ScrollBox
+    if overflow > 0 and tab and scroll then
+        -- Use the existing viewport: content and native footer stay separate
+        -- even when the bank already fills the screen. No item is reparented.
+        overflow = math.min(overflow, math.max(0, scroll:GetHeight() - 1))
+        state.tab, state.tabHeight = tab, height
+        state.tabApplied = height - overflow
+        state.scroll, state.scrollHeight = scroll, scroll:GetHeight()
+        state.scrollApplied = state.scrollHeight - overflow
+        tab:SetHeight(state.tabApplied)
+        scroll:SetHeight(state.scrollApplied)
+        if scroll.FullUpdate and ScrollBoxConstants then
+            scroll:FullUpdate(ScrollBoxConstants.UpdateImmediately)
+        end
+        local bar = tab.ScrollBar
+        if bar and bar:IsShown() then
+            local right, tabRight = bar:GetRight(), tab:GetRight()
+            local spill = right and tabRight and math.max(0, right - tabRight + 8) or 0
+            if spill > 0 then
+                state.tabWidth, state.width = tab:GetWidth(), bankView:GetWidth()
+                state.tabWidthApplied = state.tabWidth + spill
+                state.widthApplied = math.max(state.width, state.tabWidthApplied)
+                tab:SetWidth(state.tabWidthApplied)
+                bankView:SetWidth(state.widthApplied)
+            end
+        end
+        height = state.tabApplied
+    end
+    state.appliedHeight = height + BAGANATOR_FOOTER_HEIGHT
+    bankView:SetHeight(state.appliedHeight)
+    baganatorFooter = state
+end
+
 function Button.AttachToBaganatorBank(bankView)
     EnsureButton()
     if not bankView then
@@ -627,6 +728,7 @@ function Button.AttachToBaganatorBank(bankView)
 
     local tab = bankView.currentTab
     if tab and tab.isLocked then
+        Button.ReleaseBaganatorFooter(bankView)
         if btn:GetParent() == bankView then
             btn:Hide()
         end
@@ -640,30 +742,16 @@ function Button.AttachToBaganatorBank(bankView)
     btn:SetFrameStrata(bankView:GetFrameStrata() or "HIGH")
     btn:SetFrameLevel((anchorLevel.GetFrameLevel and anchorLevel:GetFrameLevel() or 700) + 5)
     btn:ClearAllPoints()
-
-    -- Prefer visible anchors. Baganator Alt-hide reparents Transfer/Sort to a
-    -- hidden parent; IsVisible() catches that so we fall back to Customise.
-    if IsVisibleFrame(transfer) then
-        btn:SetPoint("RIGHT", transfer, "LEFT", -4, 0)
-    elseif IsVisibleFrame(bankView.SortButton) then
-        btn:SetPoint("RIGHT", bankView.SortButton, "LEFT", -4, 0)
-    elseif IsVisibleFrame(bankView.CustomiseButton) then
-        btn:SetPoint("RIGHT", bankView.CustomiseButton, "LEFT", -4, 0)
-    else
-        btn:SetPoint("TOPRIGHT", bankView, "TOPRIGHT", -120, -4)
+    ReserveBaganatorFooter(bankView)
+    btn:SetPoint("BOTTOMRIGHT", bankView, "BOTTOMRIGHT", -14, 8)
+    btn:SetSize(36, 36)
+    btn:SetScale(1)
+    if not footerLabel then
+        footerLabel = btn:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        footerLabel:SetPoint("RIGHT", btn, "LEFT", -10, 0)
+        footerLabel:SetText("Bank Restock")
     end
-
-    local sized = false
-    if transfer and transfer.GetSize then
-        local w, h = transfer:GetSize()
-        if w and h and w > 0 and h > 0 then
-            btn:SetSize(w, h)
-            sized = true
-        end
-    end
-    if not sized then
-        MatchRepairButtonSize(btn)
-    end
+    footerLabel:Show()
 
     btn:Show()
     if autoToggle then
@@ -682,12 +770,30 @@ end
 
 local function AttachToBlizzardBank(anchor)
     local api = _G.FLUX_API
-    if api and (api.isCamelot or api.isForever) then return false end
-    if not anchor then
+    if not IsVisibleFrame(anchor) then
+        btn:Hide()
         return false
     end
+    local function ApplyNativeLayer(parent, reference)
+        local strata = "HIGH"
+        local level = (parent:GetFrameLevel() or 1) + 20
+        local function Above(frame)
+            if frame and frame.GetFrameLevel then level = math.max(level, frame:GetFrameLevel() + 5) end
+            local layer = frame and frame.GetFrameStrata and frame:GetFrameStrata()
+            if (STRATA_ORDER[layer] or 0) > STRATA_ORDER[strata] then strata = layer end
+        end
+        Above(parent)
+        Above(reference)
+        Above(parent.BankPanel)
+        Above(parent.CloseButton)
+        Above(parent.NineSlice)
+        btn:SetFrameStrata(strata)
+        btn:SetFrameLevel(level)
+    end
     local placement
-    if UsesPlayerBagsInBank() then
+    -- Native ownership supplies visibility, scale and movement along with the
+    -- search-box anchor. A UIParent sibling can outlive the bank window.
+    if (api and (api.isCamelot or api.isForever)) or UsesPlayerBagsInBank() then
         placement = GetBagsInBankButtonPlacement(anchor)
     elseif UsesPreDFBankButtonLayout() then
         placement = GetPreDFButtonPlacement(anchor)
@@ -695,8 +801,7 @@ local function AttachToBlizzardBank(anchor)
     if placement then
         local parent = placement.parent or anchor
         btn:SetParent(parent)
-        btn:SetFrameStrata(parent:GetFrameStrata() or "HIGH")
-        btn:SetFrameLevel((parent:GetFrameLevel() or 1) + 20)
+        ApplyNativeLayer(parent, placement.relativeTo)
         btn:ClearAllPoints()
         btn:SetPoint(
             placement.point or "BOTTOMLEFT",
@@ -707,8 +812,7 @@ local function AttachToBlizzardBank(anchor)
         )
     else
         btn:SetParent(anchor)
-        btn:SetFrameStrata(anchor:GetFrameStrata() or "HIGH")
-        btn:SetFrameLevel((anchor:GetFrameLevel() or 1) + 20)
+        ApplyNativeLayer(anchor)
         btn:ClearAllPoints()
         btn:SetPoint("BOTTOMLEFT", anchor, "BOTTOMLEFT", 14, 14)
     end
@@ -721,7 +825,7 @@ local function AttachToBlizzardBank(anchor)
 end
 
 local function AttachToCombinedBank(anchor)
-    if not anchor or not anchor.IsShown or not anchor:IsShown() then
+    if not IsVisibleFrame(anchor) then
         return false
     end
     btn:SetParent(anchor)
@@ -740,6 +844,12 @@ end
 
 function Button.AttachToBank()
     EnsureButton()
+    -- A bank-close event is authoritative for native chrome even if inventory
+    -- latches or the frame's own shown flag have not caught up yet.
+    if nativeBankClosed and not UsesAlternativeBagUI() then
+        btn:Hide()
+        return
+    end
     if UsesAlternativeBagUI() then
         local baganatorView = GetBaganatorBankView()
         if baganatorView and Button.AttachToBaganatorBank(baganatorView) then
@@ -760,6 +870,8 @@ function Button.AttachToBank()
         if IsVisibleFrame(hiddenDefault) then
             AttachToBlizzardBank(hiddenDefault)
             Button.RefreshIdle()
+        else
+            btn:Hide()
         end
         return
     end
@@ -771,7 +883,8 @@ function Button.AttachToBank()
     end
 
     local anchor = _G.BankFrame
-    if not anchor or not anchor.IsShown or not anchor:IsShown() then
+    if not IsVisibleFrame(anchor) then
+        btn:Hide()
         return
     end
     AttachToBlizzardBank(anchor)
@@ -783,24 +896,31 @@ end
 -- ---------------------------------------------------------------------------
 
 local function OnBankOpen()
-    local api = _G.FLUX_API
-    if api and (api.isCamelot or api.isForever) and not UsesAlternativeBagUI() then return end
+    nativeBankClosed = false
+    bankAttachGeneration = bankAttachGeneration + 1
+    local generation = bankAttachGeneration
+    local function AttachIfCurrent()
+        if generation == bankAttachGeneration then Button.AttachToBank() end
+    end
     -- Backup: two delayed attaches. Extra BANKFRAME/PIM/OnShow hooks plus
     -- RefreshIfOpen on every attach re-scanned the bank and froze the client.
     local After = (FluxAPICompat and FluxAPICompat.After) or (C_Timer and C_Timer.After)
     if After then
-        After(0.2, Button.AttachToBank)
-        After(0.6, Button.AttachToBank)
+        After(0.2, AttachIfCurrent)
+        After(0.6, AttachIfCurrent)
     else
         Button.AttachToBank()
     end
 end
 
 local function OnBankClose()
+    nativeBankClosed = true
+    bankAttachGeneration = bankAttachGeneration + 1
     local Inv = _G.Flux and _G.Flux.Inventory
-    if Inv and Inv.IsBaganatorBankViewShown and Inv.IsBaganatorBankViewShown() then
+    if UsesAlternativeBagUI() and Inv and Inv.IsBaganatorBankViewShown and Inv.IsBaganatorBankViewShown() then
         return
     end
+    Button.ReleaseBaganatorFooter()
     HideEditBox()
     lastClickFailReason = nil
     if btn then
@@ -810,13 +930,39 @@ end
 
 EnsureButton()
 
+-- UI lifetime must not depend on the inventory adapter's open latch. Its close
+-- notification can intentionally wait for cached/live inventory owners to settle.
+-- Reuse the shared dispatcher; never hook Blizzard's protected panel scripts.
+do
+    local events = _G.Flux and _G.Flux.Events
+    if events and events.Register then
+        local function OpenNative()
+            if not UsesAlternativeBagUI() then OnBankOpen() end
+        end
+        local function CloseNative()
+            if not UsesAlternativeBagUI() then OnBankClose() end
+        end
+        local opened = events.Register("BANKFRAME_OPENED", OpenNative)
+        local closed = events.Register("BANKFRAME_CLOSED", CloseNative)
+        nativeBankEventsRegistered = opened == true and closed == true
+        if not nativeBankEventsRegistered and events.Unregister then
+            if opened then events.Unregister("BANKFRAME_OPENED", OpenNative) end
+            if closed then events.Unregister("BANKFRAME_CLOSED", CloseNative) end
+        end
+    end
+end
+
 local function RegisterBankCallbacks()
     local bank = Bank()
     if not bank or not bank.RegisterBankOpen then
         return false
     end
-    bank.RegisterBankOpen("FluxBankRestockButton", OnBankOpen)
-    bank.RegisterBankClose("FluxBankRestockButton", OnBankClose)
+    bank.RegisterBankOpen("FluxBankRestockButton", function()
+        if not nativeBankEventsRegistered or UsesAlternativeBagUI() then OnBankOpen() end
+    end)
+    bank.RegisterBankClose("FluxBankRestockButton", function()
+        if not nativeBankEventsRegistered or UsesAlternativeBagUI() then OnBankClose() end
+    end)
     return true
 end
 

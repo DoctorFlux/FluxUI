@@ -1,5 +1,9 @@
 # Conditional binding system
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Pending full Context invalidations survive later narrow mouseover requests. Hover fallback consumes all GetChildren varargs with no per-scan child table allocation. Local driver aliases preserve foreign native API provenance. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 Flux Binding configures target rules, forms, load conditions, cast flags, shared-key alternatives, multi-cast and corner previews. It differs from LibKeyBound's simple hover-and-press assignment mode. Binding documents compile to secure macro behavior; the editor does not execute combat decisions itself.
 
 ## Authoritative document

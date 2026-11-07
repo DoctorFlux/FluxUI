@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-07",
+  "requirement": "BANK-NATIVE-06: default Blizzard bank must hide on close and draw restock above native chrome; renewed user request",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-direct-lifecycle\\checkpoint.json",
+  "sources": {
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "baseline": "e3dea98284fdebadbf376deff454f221ef789f0642f3cf5f728dcf2363895a5d",
+      "candidate": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8"
+    }
+  },
+  "upstream": {
+    "repository": "Gethe/wow-ui-source",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "version": "1.60.1.70862",
+    "contract": "BankDocumentation declares BANKFRAME_OPENED/CLOSED. BankFrameBaseMixin:OnHide invokes C_Bank.CloseBankFrame. Mainline BankFrameTemplate owns BankItemSearchBox; Camelot inherits native template. Fresh ref resolved this turn; primary source captures outside AddOns.",
+    "captures": {
+      "upstream-Blizzard_APIDocumentationGenerated-BankDocumentation.lua": "11b0f4599afd92a4ffbfc38f5fa418963de63ab339de784ad6136325aba04250",
+      "upstream-Mainline-BankFrameTemplates.lua": "6a7ea01d9bf7caa903db01eec7b61defe5e543f867ab5ec676ee9deaa507cbf8",
+      "upstream-Mainline-BankFrameTemplates.xml": "2e4f68260d12ad2bdac2c66d692c82be1d0b081a5d6c99093bdd63af942aa528"
+    }
+  },
+  "rootCauseBoundary": "Existing inventory fireCloseIfGone returns without bankCloseCallbacks when Bank.IsOpen is still true. Prior UI tests always invoked private close callback and used ideal layer levels; actual user rejection was valid. This proves a missed source path, not that actual current hovered frame has been observed.",
+  "native": "Candidate actual visuals/open-close/purchase/combat/taint/FPS pending; no live tool. No fstack result received; implementation proceeds from verified missed lifecycle/layer paths. No foreground/game input/settings/profiler/manual sync.",
+  "comparison": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: native control draws above high-level bank chrome and content\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:202: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "output": "bank restock icon: 1780 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+    }
+  ],
+  "mutations": [
+    {
+      "name": "miss_native_close",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: cancelled delayed open retries cannot resurrect button after close\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:215: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "inherit_low_strata",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: native control draws above high-level bank chrome and content\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:202: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "fullValidation": {
+    "scriptsPass": 221,
+    "scriptsFail": 0,
+    "syntaxFiles": 884,
+    "syntaxFailures": [],
+    "currentCorpusDrift": [
+      "Core/ButtonFX/Cast.lua",
+      "ExtraButtonSystem/Engine/Action.lua",
+      "ExtraButtonSystem/Engine/Paint.lua"
+    ],
+    "finalFocusedRecheck": "bank restock icon: 1780 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "documentationValidation": {
+    "exit": 1,
+    "issues": 3,
+    "scope": "Only unrelated later Cast.lua/EBS Action.lua/Paint.lua verification drift; bank inventory/source/evidence current. Whitespace PASS."
+  },
+  "bankOwnerStillMatchesTestedHash": true
+}

@@ -29,6 +29,11 @@ _G.FluxBinding = FluxBinding
 -- ---------------------------------------------------------------------------
 
 local function MouseoverCastEnabled()
+    local MC = ns.Flux and ns.Flux.MouseoverCast
+    if MC and MC.UsesNativeCVar and MC.UsesNativeCVar() then
+        return false -- Blizzard owns targeting and its modifier, not baked macro tails.
+    end
+    if MC and MC.IsEnabled then return MC.IsEnabled() end
     local fo = _G.FluxOptions
     if fo and fo.GetActionbarsDB then
         local t = fo:GetActionbarsDB()

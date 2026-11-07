@@ -1,0 +1,13 @@
+REJECTION ALPHA-01 baseline=false candidate=true
+REJECTION ALPHA-03 baseline=false candidate=true
+REJECTION ALPHA-04-cast baseline=false candidate=true
+REJECTION ALPHA-04-badge baseline=false candidate=true
+REJECTION ALPHA-05-numeric baseline=false candidate=true
+REJECTION ALPHA-05-duration baseline=false candidate=true
+READINESS_GATE getter_call_denied=grid unresolved=true
+READINESS_GATE getter_call_denied=bling unresolved=true
+READINESS_GATE getter_call_denied=extra-numeric unresolved=true
+READINESS_GATE getter_call_denied=extra-duration unresolved=true
+METRIC grid rounds=100 requests_per_round=1000 public_zero_reads=3600 public_zero_writes=0 opaque_reads=3600 opaque_writes=3600 excluded_stance_alpha=1
+METRIC glow cycles=10 snapshots=80 baseline_public_reads=120 candidate_reads=0 frames_created=1 pool_releases=20 owned_ledger_tables=1 ledger_entries=6
+SUMMARY checks=619 failures=0 baseline_rejections=7

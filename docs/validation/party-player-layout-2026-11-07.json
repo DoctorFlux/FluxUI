@@ -1,0 +1,49 @@
+{
+  "changeID": "PARTY-PLAYER-LAYOUT-20261107",
+  "requirement": "REQ-RF-68",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-player-layout-20261107T101040Z\\checkpoint.json",
+  "existingHistoryAndSettings": "Raid-rewrite-20261107T082357Z external complete history/settings checkpoint retained and available; no live settings write",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "9cd17ee139fe4b29cba8cba8c25a4f5c51bef5eb3c4cc8e9a0338f9749aec492",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "26162158e96cc093e28e96a30ecf5f424626297d3d64fa743852e02a4d7022c1",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "117353e645bbc826274a888cb1a90e87087845da96a0600f17c32b45e63517ba",
+    "tests/raid_party_frames.lua": "31f83103f930c475e2bffa8e98fac605c530eda2a0229d9f6c592c8baa240c20"
+  },
+  "implementation": [
+    "Removed party class/spec corner overrides and reparenting; native shared player factory retains anchors, size, visibility, borders and available spec texture",
+    "Removed party cast shell layout and OnShow wrapper; unmodified shared CreateCastBar/UpdateLayout used with same player spell icon and cast lifecycle; existing party toggle retained",
+    "Player and party call UF.LayoutRaidMarker: 90 percent HP/text-anchor height, centered on HP; party keeps secret-guarded raid marker state adapter",
+    "Moved compact leader/assistant/MT/MA/loot grid onto portrait so it does not occupy restored class/spec header slots"
+  ],
+  "tests": {
+    "party": 810,
+    "restrictedContracts": 78,
+    "whole": "218/218 scripts pass; 881 syntax files/0 failures.",
+    "failures": [],
+    "corpusDrift": []
+  },
+  "resources": "Removed one cast layout wrapper and OnShow hook per member; no new event/frame/timer/ticker/secure condition; no native timing claim",
+  "nativePending": "Actual player/party visual comparison, cast interaction/combat/secret/taint/FPS on each client; spec icon depends on existing provider availability",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ]
+}

@@ -286,10 +286,26 @@ function Badge.Layout(badge, host, stackIndex)
 	end
 	SuppressBadgeChrome(badge)
 	if slot and slot.SetClipsChildren then
-		pcall(slot.SetClipsChildren, slot, true)
+		pcall(slot.SetClipsChildren, slot, not widget._fluxSecureMissileGlow)
 	end
 	Badge.SyncFrameLevel(badge, badge._fluxBadgeIndex)
 	Badge.SyncCountFont(badge)
+end
+
+local function ShownSecureSpell(badge)
+	local Identity = Flux.Identity
+	if Identity and Identity.Get and Identity.BadgeKey
+		and badge._fluxBadgeSlot and badge._fluxBadgeWantIndex then
+		local kind, id = Identity.Get(Identity.BadgeKey(
+			badge._fluxBadgeSlot, badge._fluxBadgeWantIndex))
+		if kind == "spell" then
+			return id
+		elseif kind then
+			return nil
+		end
+	end
+	local FX = Flux.ButtonFX
+	return FX and FX.SpellIdFromEBS and FX.SpellIdFromEBS(badge)
 end
 
 function Badge.ShowVisual(badge)
@@ -300,6 +316,10 @@ function Badge.ShowVisual(badge)
 	local wasParked = widget._fluxBadgeCombatVisHidden
 	widget._fluxBadgeCombatVisHidden = nil
 	widget:SetAlpha(badge._fluxBadgeAlpha or Badge.DEFAULT_ALPHA)
+	local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+	if widget._fluxSecureMissileGlow and G and G.SyncSecureAura then
+		G.SyncSecureAura(widget, ShownSecureSpell(badge), true)
+	end
 	-- Paint sweeps skip an alpha-0 badge, so a returning one is stale.
 	if wasParked and EBS.Paint and EBS.Paint.RequestShown then
 		EBS.Paint.RequestShown(badge)
@@ -321,6 +341,10 @@ function Badge.HideVisual(badge)
 	local widget = badge.Widget
 	widget:SetAlpha(0)
 	widget._fluxBadgeCombatVisHidden = true
+	local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+	if widget._fluxSecureMissileGlow and G and G.SyncSecureAura then
+		G.SyncSecureAura(widget, nil, false)
+	end
 	widget._fluxPaintChecked = false
 	if widget.SetChecked then
 		widget._fluxCheckedFromPaint = true

@@ -807,6 +807,12 @@ SlashCmdList["FLUXPERF"] = function(msg)
     local command, arg = msg:match("^(%S+)%s*(.-)$")
     local capture = _G.Flux and _G.Flux.PerfCapture
     if capture then
+        if command == "watch" then
+            if arg == "off" or arg == "stop" then capture.StopWatch("stopped")
+            else local seconds, threshold = arg:match("^(%S*)%s*(%S*)$"); capture.StartWatch(seconds, threshold) end
+            return
+        end
+        if command == "spikes" then capture.PrintSpikes() return end
         if command == "capture" then capture.Start(arg) return end
         if command == "last" then capture.Print() return end
         if command == "cancel" then capture.Cancel() return end
@@ -821,6 +827,7 @@ SlashCmdList["FLUXPERF"] = function(msg)
         return
     end
     if msg == "help" then
+        print(PREFIX, "watch [seconds] [gap-ms]: bounded random-spike watch (default 600s/200ms); watch off: stop; spikes: report")
         print(PREFIX, "capture [seconds]: measured CPU/FPS deltas; last: print saved capture; cancel: stop capture")
         print(PREFIX, "burst: timed passes of the last shapeshift / page / bag-drag burst (per inventory listener)")
         print(PREFIX, "Usage: /fluxperf [report|reset|probe|combat|regen|spells|burst|help]")

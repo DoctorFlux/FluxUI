@@ -1,0 +1,121 @@
+{
+  "spikeCount": 1,
+  "durationLimit": 600,
+  "callbacks": [
+    {
+      "at": 121.2699999999895,
+      "tokens": "bars.dirty",
+      "sequence": 1,
+      "label": "Scheduler:eval.listener:unmapped",
+      "ms": 10.27869999408722,
+      "kind": "Scheduler",
+      "failed": false,
+      "key": "eval.listener"
+    }
+  ],
+  "periodicHeapSamples": 234,
+  "diagnosticVersion": 2,
+  "heapAfterKB": 659081.224609375,
+  "errorsAfter": 12,
+  "maxFPSBk": "30",
+  "status": "logout",
+  "mode": "spike-watch",
+  "capturedAt": "2026-11-06 17:29:29",
+  "build": "70790",
+  "coverage": {
+    "Ticker": true,
+    "Events": true,
+    "Scheduler": true
+  },
+  "seconds": 239.5160000000033,
+  "scriptProfile": "0",
+  "spikes": [
+    {
+      "sequence": 1,
+      "errors": 0,
+      "profiler": {
+        "applicationMs": 3185.0002,
+        "addonMs": 2.2509,
+        "overallMs": 2.4681,
+        "top": [
+          {
+            "addon": "_FluxUI",
+            "ms": 2.2509
+          },
+          {
+            "addon": "Attune",
+            "ms": 0.1931
+          },
+          {
+            "addon": "SpellActivationOverlay",
+            "ms": 0.0123
+          },
+          {
+            "addon": "Questie",
+            "ms": 0.009000000000000001
+          },
+          {
+            "addon": "QuestieTrace",
+            "ms": 0.0028
+          }
+        ]
+      },
+      "contextSampled": true,
+      "gapMs": 3185.00018119812,
+      "busyKeys": [
+        {
+          "callbacks": 9,
+          "kind": "Events",
+          "key": "UNIT_FLAGS"
+        },
+        {
+          "callbacks": 6,
+          "kind": "Events",
+          "key": "UNIT_TARGET"
+        },
+        {
+          "callbacks": 2,
+          "kind": "Events",
+          "key": "SPELL_UPDATE_USABLE"
+        },
+        {
+          "callbacks": 1,
+          "kind": "Events",
+          "key": "PET_BAR_UPDATE_USABLE"
+        }
+      ],
+      "preHeapKB": 690971.3388671875,
+      "keyOverflow": 0,
+      "callbackKind": "Ticker",
+      "callbackKey": "flux.range",
+      "ui": {
+        "auction": "missing",
+        "combat": true,
+        "worldMap": "shown=false/visible=false",
+        "fluxTab": "Meter",
+        "mail": "shown=false/visible=false"
+      },
+      "errorDelta": 0,
+      "intervalCallbacks": 20,
+      "shortHeapDeltaKB": 1753.98046875,
+      "heapDeltaKB": 55313.591796875,
+      "callbackLabel": "Ticker:flux.range:unmapped",
+      "callbackMs": 0.4898000061511993,
+      "preHeapAgeSeconds": 4.098999999987427,
+      "heapKB": 692725.3193359375,
+      "at": 78.34799999999814
+    }
+  ],
+  "diagnosticMs": 372.9658003747463,
+  "peakFrameMs": 3185.00018119812,
+  "frameCount": 32449,
+  "errorsBefore": 0,
+  "interpretation": "Gaps include loading/background/rendering; callback spans are inclusive and may overlap. Nearest profiler tick is not exact gap attribution. Heap is global Lua KB, not addon allocations or a leak test. Error deltas span sampled boundaries. Unit callback failures and work outside observed Flux services are not timed. Diagnostic timings cover recorded sections only, excluding observer seam and fast callback overhead.",
+  "observedCallbacks": 19983,
+  "version": "1.60.1",
+  "thresholdMs": 200,
+  "diagnosticPeakMs": 0.3622000217437744,
+  "heapBeforeKB": 637411.7275390625,
+  "maxFPS": "120",
+  "callbackCount": 1
+}

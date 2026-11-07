@@ -1,0 +1,3 @@
+METRIC mouseover branch=live selection_steps=65536 combinations=64 per_combat_state=32768
+METRIC mouseover branch=forever selection_steps=65536 combinations=64 per_combat_state=32768
+native mouseover: 262534 checks passed; native taint/visual/input/FPS pending

@@ -1,0 +1,189 @@
+{
+  "changeID": "PARTY-NATIVE-FOLLOWUP-20261107",
+  "dateUTC": "2026-11-07T09:50:31.721921+00:00",
+  "scope": "Normal party mode, shared portrait fallback, optional player class HP for pet/party/focus targets. Meter work excluded.",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T082357Z",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1733,
+    "settingsFiles": 158,
+    "settingsStillAvailableOnDisk": 158,
+    "historyVerification": "complete history bundle verified",
+    "sha256": {
+      "source.zip": "e95d2c448e123443e6ec49e8f6f69ce13b6dc3e062cef5c6861edf300b4acad4",
+      "settings.zip": "e10717b731d6320497deec277c1724df2e83227da967498bf009f0dcc836124d",
+      "history.bundle": "1fcfffd5b288b04609dc250e0917f3ad0c34c1be9ab5e3b2cf21413024318d82"
+    },
+    "limitations": "On-disk settings only; no unsaved client state, game input, WTF write, profiler change, manual sync, branch, commit or push."
+  },
+  "before": {
+    "AddonOptions/FluxOptionsDefaults.lua": "537bd323c5db2616068e595b7c4e4deb1bb28ad60e371d96ccbff02a155f3572",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "fa0233117b4a9cec2b640f5a90d010b503c3bf18ce85d318d979a6661a390afc",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "508ea963bfdc6f69347b876ce95b90c9be0f66a994ac37769c7017c263a35747",
+    "RaidFrame/FluxRaidSecure.lua": "92f3f4baa10ee9b221c8ae4b8b92285917d0977b3f6fbddc880c854c2f6500aa",
+    "RaidFrame/FluxRaidPreview.lua": "ffca5a612587b4678f2a37125959d3388eccc587a6880143a7aa81218e27af05",
+    "RaidFrame/FluxRaidAuras.lua": "753c89e53396ef7dcc9bcc96f2d2c68d1d11e63c984b1bf4963da2de33fa3e24",
+    "RaidFrame/FluxRaidVisuals.lua": "feaa2d7eaf9443c0cd97ab3b4caec63637901c7453459753d6ec355ff63b9523",
+    "RaidFrame/FluxRaidCompat.lua": "c048bb1d1dab2c11281e2f2270c94093364f55196561976566b08352ed063c48",
+    "RaidFrame/FluxRaidUnit.lua": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95",
+    "UnitFrames/FluxUnitFrames_Party.lua": "8c3c7ee8c41c22c747a14c1830b16cab29cdf6ab69fa4895c35e1d0eca194017",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "2d741597ca310705fad2906064e25a70cc2703e076f3188cb89a83354f93f14a",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "ab129ac1842e3fabda90e3b41bee25f6d0f450415e0b83b5577b5c1bb29e7c9e",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "454ec79dceaba8e54f24b248d2db9ef8295ddbd229b375435e2acc20db0c0f57"
+  },
+  "after": {
+    "AddonOptions/FluxOptionsDefaults.lua": "6b72f3bfbf1a3a2fbd617de7ae26849efcf67b9e08681fd90d7e5d4f13f75b22",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "31a0967c2b290e6e971c35408feee05c2f9ac9ea850d03b26ec8832f143dfa4a",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "3d88eecbe5350d06efaac32b319bc934abd836682fc19fdd7deab788ddbaa82f",
+    "RaidFrame/FluxRaidSecure.lua": "b08648b701c2979094690ab2189565da77c57cb1503a9093856aefa431ef3c85",
+    "RaidFrame/FluxRaidPreview.lua": "cb1da55ba6c80c7505cd7d28a1db227a760de4d90abc6a78771fade1ff593923",
+    "RaidFrame/FluxRaidAuras.lua": "8dd0a67b8044057019d6b7cd1174aad3de9263111b00594f99e11f8d0e48516d",
+    "RaidFrame/FluxRaidVisuals.lua": "a5158bdea9ed9e9abae0c833296f02b2d0156029f2578bcad46cca87bd52ed27",
+    "RaidFrame/FluxRaidCompat.lua": "86c1b541a8787f587191b7d44621073a1d715dd3b562afbe7d92b3ebd05e8a66",
+    "RaidFrame/FluxRaidUnit.lua": "ea4cd2164858d4d302af1531601433abf560f9063a8a389c2fb705d3bb9c38b0",
+    "UnitFrames/FluxUnitFrames_Party.lua": "81f108e936c3159ece56ec0d9fc81f5999d2d85bc3d3a219c9124c88b4c7d14c",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "8b4e03c3969ffdfa45c381dbd0d9f3f26bbf134d3ac36a97661330e7ece29278",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "b5015b92103f48ed3c190e037b724522661dc80e2dc1b5a7c7113e9dcca5e844",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "51c968e82e879fa3735c7578abb1654aa6805ab8e0b8d610dde9309d736d4660"
+  },
+  "sources": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "contracts": [
+    "SecureStateDriver native state-visibility owns actual fixed-token member/pet/target visibility, including combat existence changes.",
+    "RestrictedFrames.GetAttribute rejects private underscore attributes; public roster-layout-ready is readable.",
+    "RestrictedFrames.SetPoint rejects inherited-only relative handles; $parent resolves the actual parent without that invalid handle.",
+    "Native UnitFramePortrait_Update delegates portrait caching/unavailability to SetPortraitTexture. Flux falls back to this engine sink; async model completion restores 3D.",
+    "Native UnitFrame_UpdateThreatIndicator uses threat-warning enable/dead/status and GetThreatStatusColor. Flux guards opaque results and applies only an owned transparent border overlay."
+  ],
+  "requirements": [
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62
+  ],
+  "desktop": {
+    "partyChecks": 760,
+    "bindingChecks": 310,
+    "nativeContractChecks": 78,
+    "secureChecks": 255903,
+    "auraChecks": 12776,
+    "liveAuraOptionsChecks": 1696,
+    "independentTimerPolicyChecks": 36,
+    "full": {
+      "scripts": 217,
+      "pass": 217,
+      "fail": 0,
+      "syntaxFiles": 880,
+      "syntaxFailures": [],
+      "corpusDrift": [
+        "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "tests/utility_mixed_faces.lua"
+      ],
+      "failures": []
+    },
+    "pairedContracts": {
+      "trials": 5,
+      "baselineRejected": 5,
+      "candidatePassed": 5,
+      "outcomeVariation": 0,
+      "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-native-followup-20261107\\paired-contracts.json",
+      "baselineWallSeconds": [
+        0.06289649999962421,
+        0.03892370000539813,
+        0.04058980000263546,
+        0.039949199999682605,
+        0.04026249999878928
+      ],
+      "candidateWallSeconds": [
+        0.042278500004613306,
+        0.04131280000001425,
+        0.04204349999781698,
+        0.03868839999631746,
+        0.04314110000268556
+      ],
+      "interpretation": "Functional regression only. Baseline fails the actual secret-alpha branch; candidate additionally checks inherited-handle rejection and $parent success on five upstream sources. No native CPU/FPS comparison."
+    }
+  },
+  "resources": {
+    "liveLogicalCells": 12,
+    "members": 4,
+    "pets": 4,
+    "verticalTargets": 4,
+    "nativeVisibilityConditions": 12,
+    "nativePetTextConditions": 12,
+    "defaultCompactModeCreatesAlternateCells": false,
+    "newRecurringLuaDrivers": 0,
+    "range": "Existing native range events with existing shared fallback ticker; no party-only ticker.",
+    "threat": "Four noninteractive owned transparent border overlays in alternate mode; native threat events, no flash animation."
+  },
+  "nativeUserEvidence": [
+    {
+      "client": "Forever (user selected)",
+      "result": "Preview works",
+      "scope": "Preview show/hide only"
+    },
+    {
+      "client": "Forever (user selected)",
+      "result": "Player-style frames appear",
+      "scope": "Native fixed-token visibility replacement only"
+    }
+  ],
+  "nativePending": "Final visual comparison for enlarged text/name fitting, status colors, 3D opacity/cache fallback, aura geometry and threat border; live input/combat joins/leaves/pets/targets/taint/secret restrictions and FPS on each client. Desktop contracts do not certify native taint safety.",
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "files": 13,
+      "mismatches": []
+    }
+  ],
+  "regressionsResolved": [
+    "Native hidden party buttons despite show driver",
+    "Invalid relative frame handle from inherited-protection StatusBar parent",
+    "Direct table creation in obsolete restricted snippet",
+    "Private readiness attributes unreadable from restricted handles",
+    "Secret-alpha comparison in portrait visibility",
+    "Party preview button could only show",
+    "Resource percentage alignment lost after power tick",
+    "Pet offset incorrectly consumed name-header space",
+    "Failed SetUnit signatures now report failure and select engine texture fallback instead of race/generic-human models",
+    "Opaque portrait GUID never enters equality comparison",
+    "Status word replaces HP numbers and restores chosen text mode on recovery"
+  ],
+  "intermediateValidation": "A concurrent utility KeyBind/LeftButton source-contract mismatch appeared in an intermediate whole run. Separate utility work corrected that capability fixture. No utility/meter files edited by this party task; final current result above is authoritative.",
+  "finalPartyRuntimeDrift": [],
+  "documentationCheck": "Documentation validation FAILED:\n- Recorded verification predates current source: ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua\n- Recorded verification predates current source: tests/utility_mixed_faces.lua\n- Recorded verification predates current source: tests/utility_secure_input.lua\n3 issue(s); checker made no edits.\n",
+  "whitespaceCheck": "PASS git diff --check with repository line-ending configuration"
+}

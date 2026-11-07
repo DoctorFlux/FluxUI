@@ -126,19 +126,8 @@ local function IsClassicClient()
     return isLegacyClient
 end
 
---- Forever opens Character Info only through a secure click. ToggleCharacter
---- from these bars runs CharacterFrame:OnShow as addon code (secret health
---- compare; protected gamepad bindings).
-local function IsForeverClient()
-    local client = Flux and Flux.Client
-    if client then
-        return client.isCamelot == true
-    end
-    return FLUX_API and FLUX_API.isCamelot == true or false
-end
-
 local function CanOpenCurrencyTab()
-    return FLUX_API and FLUX_API.hasCharacterCurrencyTab and ToggleCharacter and not IsForeverClient()
+    return FLUX_API and FLUX_API.hasCharacterCurrencyTab and type(ToggleCharacter) == "function"
 end
 
 local function HasHudExperienceAtlas()
@@ -1674,7 +1663,9 @@ GoldBar:SetScript("OnMouseUp", function(self, button)
             return
         end
         if CanOpenCurrencyTab() then
-            pcall(ToggleCharacter, "TokenFrame")
+            if not InCombatLockdown() then
+                ToggleCharacter("TokenFrame")
+            end
         elseif FluxOptions and FluxOptions.OpenToStatusBarsTab then
             FluxOptions:OpenToStatusBarsTab()
         end

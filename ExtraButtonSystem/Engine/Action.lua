@@ -254,6 +254,22 @@ local function ClearAttributes(widget)
 		return
 	end
 	ParkExtraClicker(widget)
+	if widget._fluxUtilityNative then
+		for _, prefix in ipairs({ "", "shift-", "ctrl-", "alt-", "ctrl-shift-", "alt-shift-", "alt-ctrl-", "alt-ctrl-shift-" }) do
+			for _, key in ipairs({ "type1", "typerelease1", "spell1", "item1", "unit1", "IsEmpowerSpell1" }) do
+				widget:SetAttribute(prefix .. key, nil)
+			end
+		end
+		widget._fluxUtilityNative = nil
+		for _, chord in ipairs({ "NONE", "SHIFT", "CTRL", "ALT", "SHIFTCTRL", "SHIFTALT", "CTRLALT", "SHIFTCTRLALT" }) do
+			local button = "FluxUtility" .. chord
+			for _, key in ipairs({ "type", "typerelease", "spell", "item" }) do
+				widget:SetAttribute("*" .. key .. "-" .. button, nil)
+			end
+			widget:SetAttribute("flux-utility-key-" .. button, nil)
+		end
+		widget:SetAttribute("flux-utility-native", nil)
+	end
 	for i = 1, #ATTR_KEYS do
 		widget:SetAttribute(ATTR_KEYS[i], nil)
 	end
@@ -825,6 +841,7 @@ function Action.ClearEnv(btn)
 		return
 	end
 	Action.ClearAssistant(btn)
+	btn._fluxUtilityGetEntry = nil
 	btn.ActionType = nil
 	btn.ActionValue = nil
 	btn.SpellId = nil
@@ -1628,7 +1645,7 @@ local function CacheValuesEqual(a, b)
 	return ok and same or false
 end
 
-local function PaintMacroButton(btn)
+local function PaintMacroButton(btn, utilityFaceChanged)
 	if not btn or not EBS.Paint then
 		return
 	end
@@ -1656,15 +1673,37 @@ local function PaintMacroButton(btn)
 	if EBS.Paint.UpdateGlow then
 		EBS.Paint.UpdateGlow(btn)
 	end
+	local Cast = Flux.ButtonFX and Flux.ButtonFX.Cast
+	if utilityFaceChanged and Cast and Cast.FollowExtra then
+		Cast.FollowExtra(btn.Widget)
+	end
 	if btn.tooltipHovering and Action.UpdateTooltip then
 		Action.UpdateTooltip(btn)
 	end
 end
 
 function Action.TranslateMacro(btn)
+	-- Utility spell/item faces have exact saved IDs. Their secure attributes
+	-- execute independently; never reverse-resolve a ranked/localized macro name.
+	if btn and btn._fluxUtilityGetEntry then
+		local entry = btn._fluxUtilityGetEntry(btn)
+		local kind, id = entry and entry.type, entry and entry.id
+		if kind == btn.MacroMode and id == (kind == "spell" and btn.SpellId or btn.ItemId) then return end
+		btn.MacroMode = kind or ""
+		btn.SpellId = kind == "spell" and id or nil
+		btn.ItemId = kind == "item" and id or nil
+		btn.MacroTarget = nil
+		btn.SpellName, btn.SpellNameRank = nil, nil
+		if btn.SpellId then NoteSpellName(btn, btn.SpellId) end
+		btn.needsRange = kind == "spell" or kind == "item"
+		if EBS.Range and EBS.Range.RefreshButton then EBS.Range.RefreshButton(btn) end
+		PaintMacroButton(btn, true)
+		return
+	end
 	if not btn or (btn.ActionType ~= "macro" and btn.ActionType ~= "macrotext") then
 		return
 	end
+	local previousMode, previousSpell, previousItem = btn.MacroMode, btn.SpellId, btn.ItemId
 	local swapKey
 	if btn._fluxCombatSwapBody then
 		swapKey = tostring(btn.MacroMode) .. "\0" .. tostring(btn.ItemId) .. "\0" .. tostring(btn.SpellId)
@@ -1784,7 +1823,9 @@ function Action.TranslateMacro(btn)
 	if rangeChanged and EBS.Range and EBS.Range.Sync then
 		EBS.Range.Sync()
 	end
-	PaintMacroButton(btn)
+	local utilityFaceChanged = btn.IsUtilitySlotButton
+		and (previousMode ~= btn.MacroMode or previousSpell ~= btn.SpellId or previousItem ~= btn.ItemId)
+	PaintMacroButton(btn, utilityFaceChanged)
 	if swapKey then
 		local now = tostring(btn.MacroMode) .. "\0" .. tostring(btn.ItemId) .. "\0" .. tostring(btn.SpellId)
 		return now ~= swapKey
@@ -2357,6 +2398,8 @@ function Action.Clear(btn)
 	if EBS.Paint and EBS.Paint.Update then
 		EBS.Paint.Update(btn)
 	end
+	local Cast = Flux.ButtonFX and Flux.ButtonFX.Cast
+	if btn.IsUtilitySlotButton and Cast and Cast.FollowExtra then Cast.FollowExtra(btn.Widget) end
 	if EBS.Range and EBS.Range.Sync then
 		EBS.Range.Sync()
 	end

@@ -1,6 +1,14 @@
 -- UnitFrames/FluxUnitFrames_PetTarget.lua
 -- Minimal vertical HP bar for the pet's target (pettarget), no text.
 local addonName, ns = ...
+
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterStateDriver = (useFluxDrivers and FluxDrivers.RegisterStateDriver) or RegisterStateDriver
+local UnregisterStateDriver = (useFluxDrivers and FluxDrivers.UnregisterStateDriver) or UnregisterStateDriver
+local UnregisterUnitWatch = (useFluxDrivers and FluxDrivers.UnregisterUnitWatch) or UnregisterUnitWatch
+local UnitWatchRegistered = (useFluxDrivers and FluxDrivers.UnitWatchRegistered) or UnitWatchRegistered
 local API = ns.API
 local Border = ns.Border
 local UF = ns.UnitFrames
@@ -72,6 +80,7 @@ local function InitializePetTargetFrame()
     frame:EnableMouse(true)
 
     local barW = GetPetTargetBarWidth()
+    if UF.RecordFrameDimensions then UF.RecordFrameDimensions(frame, barW, FALLBACK_PET_HEIGHT) end
     frame:SetSize(barW, FALLBACK_PET_HEIGHT)
     frame._fluxLayoutBaseWidth = barW
     if UF and UF.RegisterEmulatedHorizontalSqueeze then
@@ -109,18 +118,23 @@ local function InitializePetTargetFrame()
     frame.mouseoverHighlight = UF.CreateMouseoverHighlight(frame, { left = 3, top = 3, right = 3, bottom = 3, outH = 0, outV = 0 }, 11)
 
     local function UpdateHealth()
-        if not UnitExists("pettarget") then
+        local exists = UnitExists("pettarget")
+        if not (API and API.IsSecretValue and API.IsSecretValue(exists)) and not exists then
             return
         end
         local cur, maxH = GetHealthValues("pettarget")
         bar:SetMinMaxValues(0, maxH)
         bar:SetValue(cur)
-        if not UnitIsConnected("pettarget") then
+        local connected = UnitIsConnected("pettarget")
+        if not (API and API.IsSecretValue and API.IsSecretValue(connected)) and connected == false then
             bar:SetStatusBarColor(0.5, 0.5, 0.5)
         else
-            bar:SetStatusBarColor(0, 1, 0)
+            local r, g, b
+            if FluxUnitFrames_GetTargetClassHealthColor then r, g, b = FluxUnitFrames_GetTargetClassHealthColor("pettarget") end
+            if r then bar:SetStatusBarColor(r, g, b) else bar:SetStatusBarColor(0, 1, 0) end
         end
     end
+    frame._fluxRefreshHealth = UpdateHealth
 
     local function UpdatePosition()
         if not ns.PetFrame then
@@ -135,14 +149,20 @@ local function InitializePetTargetFrame()
         end
         frame.needsPositionUpdate = false
 
-        local h = ns.PetFrame:GetHeight()
+        local h, ignoredWidth
+        if UF.GetFramePublicDimensions then ignoredWidth, h = UF.GetFramePublicDimensions(ns.PetFrame)
+        else h = ns.PetFrame:GetHeight() end
+        if API.IsSecretValue and API.IsSecretValue(h) then h = nil end
         if h and h > 0 then
+            if UF.RecordFrameDimensions then UF.RecordFrameDimensions(frame, nil, h) end
             frame:SetHeight(h)
         end
         if UF and UF.ApplyEmulatedHorizontalSqueezeForFrame then
             UF.ApplyEmulatedHorizontalSqueezeForFrame(frame)
         else
-            frame:SetWidth(GetPetTargetBarWidth())
+            local width = GetPetTargetBarWidth()
+            if UF.RecordFrameDimensions then UF.RecordFrameDimensions(frame, width) end
+            frame:SetWidth(width)
         end
 
         if frame:GetParent() ~= ns.PetFrame then

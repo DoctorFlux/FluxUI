@@ -1,5 +1,9 @@
 # Inventory: sources, snapshots, ledgers, and item knowledge
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Inventory callback tails use a cursor, retaining nested callback/token/reason requests without quadratic old-tail copying. After two cancelled auction scans, retry waits for the existing quiet interval; final snapshots remain atomic and publish after quiet. Guild-bank/void callbacks are unchanged. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 Current built-in [mail](BUILTIN_MAIL_PUBLICATION.md) and
 [auction](BUILTIN_AUCTION_PUBLICATION.md) scans prepare completed generations
 within their existing budgets and publish their internal maps atomically.

@@ -1,0 +1,66 @@
+{
+  "capturedUTC": "2026-11-07T13:31:51.535120+00:00",
+  "scope": "Independent desktop production-module control-flow review; native secure/secret/rendered timing/FPS acceptance pending.",
+  "hashNormalization": "CRLF to LF only",
+  "sources": [
+    {
+      "path": "Core/Engine/Events.lua",
+      "sha256": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "sha256": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11"
+    },
+    {
+      "path": "Core/Engine/Combat.lua",
+      "sha256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "sha256": "f9035ada5900185e94a890f558e2eda546dbf1d33fd091a21ae9b73d1d521ea6"
+    },
+    {
+      "path": "Core/Engine/Ticker.lua",
+      "sha256": "5f60091407bdc9b77c4257c50f3aecc344e4c81f8ae7915b235b8fac71726881"
+    },
+    {
+      "path": "Stress test doc/applied-fixes/security/shared-service-review.lua.txt",
+      "sha256": "742b75eb9e8b7753c42501fec273cd34d5ce669b97b7f76685313077408ff4a9"
+    },
+    {
+      "path": "Stress test doc/applied-fixes/security/shared-service-last-callback.lua.txt",
+      "sha256": "06cd1d94dee7126c66455fc31ec86b4ae5a45ce9cfb5988db11636b637c58743"
+    },
+    {
+      "path": "tests/shared_service_integrity.lua",
+      "sha256": "e198bbc67080a94cce9e9d7437d60fef29dcedd9a161c6f0e24bd2a09fb9a17d"
+    }
+  ],
+  "tests": [
+    {
+      "command": [
+        "lua",
+        "Stress test doc/applied-fixes/security/shared-service-review.lua.txt"
+      ],
+      "exit": 0,
+      "output": "REVIEW inventory regen wake: before=8 outstanding timers=2 callbacks next frame=8\nREVIEW structural reentry order=old1,old2,new\nREVIEW mixed-tier stress: 200 scenarios, callbacks=6199, checks=7459, FIFO/no lost or duplicate jobs\n"
+    },
+    {
+      "command": [
+        "lua",
+        "Stress test doc/applied-fixes/security/shared-service-last-callback.lua.txt"
+      ],
+      "exit": 0,
+      "output": "AFTER resume-last callback: order=old1,old2 locked=true schedPending=true combatPending=true timers=0\nAFTER next regen: order=old1,old2,new schedPending=false combatPending=false timers=0\n"
+    },
+    {
+      "command": [
+        "lua",
+        "tests/shared_service_integrity.lua"
+      ],
+      "exit": 0,
+      "output": "Shared service integrity: 23237 checks; actual production modules; native taint/FPS pending\n"
+    }
+  ],
+  "allPass": true
+}

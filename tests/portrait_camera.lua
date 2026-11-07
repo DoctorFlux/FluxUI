@@ -8,6 +8,8 @@ local function slice(s, first, last)
 end
 local source = slice(read("UnitFrames/FluxUnitFrames_Shared.lua"), "local function IsCamelotPortraitClient()",
     "--- True when layout should reserve horizontal space")
+local geometry = slice(read("UnitFrames/FluxUnitFrames_Shared.lua"), "local function ValueIsSecret(value)",
+    "local function PlayerDeadOrGhost(unit)")
 local compat = slice(read("Core/FluxAPI/UI.lua"), "function FluxSetupPortraitModel(model, unit)", "function FluxNeedsPortraitCompat()")
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
@@ -20,6 +22,7 @@ local function exercise(branch, body)
     } }
     env.FLUX_API = { isPostDF = modern, isForever = branch == "forever" }
     env.IsSecretValue = function(v) return v == state.secret end
+    ns.API = { IsSecretValue = env.IsSecretValue }
     env.C_Timer = { After = function(_, fn) timers[#timers + 1] = fn end }
     env.FluxSafeRegisterUnitEvent = function() end
     env.UnitExists, env.UnitIsVisible, env.UnitIsConnected = function() return true end, function() return true end, function() return true end
@@ -51,7 +54,7 @@ local function exercise(branch, body)
     env.CreateFrame = function(kind, _, parent)
         return setmetatable({ kind = kind, parent = parent, scripts = {} }, { __index = methods })
     end
-    local apply, schedule, setUnit = assert(load("local _, ns = ...; local UF = ns.UnitFrames\n" .. (body or source)
+    local apply, schedule, setUnit = assert(load("local _, ns = ...; local UF, API = ns.UnitFrames, ns.API\n" .. geometry .. (body or source)
         .. "\nreturn ApplyPortraitCamera, SchedulePortraitCameraRefresh, SetPortraitUnit", "@shared-portrait-camera", "t", env))("_FluxUI", ns)
     local model
     for _, unit in ipairs({ "player", "target", "targettarget", "focus", "focustarget", "pet" }) do

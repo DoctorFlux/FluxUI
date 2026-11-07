@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-07",
+  "state": "Investigation awaiting actual hovered-frame identity; no runtime change",
+  "priorNativeAcceptance": "BANK-NATIVE-04 rejected by user after Forever reload",
+  "runtime": "Host confirms2 Forever Wow.exe processes using expected path; bank source hashes match installed Forever copy",
+  "pending": "User fstack hovered button and owner names",
+  "checkpoint": "C:/Users/mario/.codex/visualizations/2026/11/07/01a1b56a-52d3-7b42-9f20-a029dcfe3bde/bank-native-owner-trace/checkpoint.json",
+  "gameInput": "none"
+}

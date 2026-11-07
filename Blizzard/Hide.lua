@@ -17,6 +17,7 @@ local hidden = setmetatable({}, { __mode = "k" })
 local originalParent = setmetatable({}, { __mode = "k" })
 local keepEvents = setmetatable({}, { __mode = "k" })
 local keepParent = setmetatable({}, { __mode = "k" })
+local skipMouseChild = setmetatable({}, { __mode = "k" })
 local originalAlpha = setmetatable({}, { __mode = "k" })
 local hooked = setmetatable({}, { __mode = "k" })
 local pending = setmetatable({}, { __mode = "k" })
@@ -69,7 +70,7 @@ local function ApplyHidden(frame)
 		-- Native compact-frame setup reads ancestor visibility during Edit Mode.
 		-- Keep that state and all native scripts untouched, including OnShow.
 		if frame.SetAlpha then frame:SetAlpha(0) end
-		Blizz.SetMouseSuppressed(frame, true)
+        Blizz.SetMouseSuppressed(frame, true, skipMouseChild[frame])
 	elseif frame:GetParent() ~= hiddenParent then
 		pcall(frame.SetParent, frame, hiddenParent)
 	end
@@ -94,7 +95,7 @@ local function ApplyShown(frame)
 	if keepParent[frame] then
 		if frame.SetAlpha then frame:SetAlpha(originalAlpha[frame] or 1) end
 		Blizz.SetMouseSuppressed(frame, false)
-		keepParent[frame], originalAlpha[frame] = nil, nil
+        keepParent[frame], originalAlpha[frame], skipMouseChild[frame] = nil, nil, nil
 		return
 	end
 	if frame:GetParent() == hiddenParent then
@@ -243,6 +244,7 @@ end
 --- Hide a Blizzard frame by reparenting it under a hidden Flux frame.
 --- opts.keepEvents: leave the frame's events registered so Unhide restores it fully.
 --- opts.keepParent: hide artwork/input in place; preserve native Edit Mode state.
+--- opts.skipMouseChild: preserve restricted or independently owned subtrees.
 function Blizz.Hide(frame, opts)
 	if type(frame) ~= "table" or not frame.SetParent or not frame.GetParent then
 		return false
@@ -259,6 +261,7 @@ function Blizz.Hide(frame, opts)
 	end
 	hidden[frame] = true
 	keepEvents[frame] = opts and opts.keepEvents and true or nil
+    skipMouseChild[frame] = opts and opts.skipMouseChild or nil
 	ApplyHidden(frame)
 	if not keepParent[frame] and not hooked[frame] and frame.HookScript then
 		hooked[frame] = true

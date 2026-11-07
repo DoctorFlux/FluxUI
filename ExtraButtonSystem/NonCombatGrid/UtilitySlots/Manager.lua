@@ -72,14 +72,12 @@ local function ClearModMacroAttrs(w)
         w:SetAttribute(p .. "typerelease1", nil)
         w:SetAttribute(p .. "macro1", nil)
         w:SetAttribute(p .. "macrotext1", nil)
+        w:SetAttribute(p .. "clickbutton1", nil)
+        w:SetAttribute(p .. "spell1", nil)
+        w:SetAttribute(p .. "item1", nil)
+        w:SetAttribute(p .. "unit1", nil)
+        w:SetAttribute(p .. "IsEmpowerSpell1", nil)
     end
-end
-
-local function AttrPrefixForMod(modKey)
-    if not modKey or modKey == "" then
-        return ""
-    end
-    return string.lower(modKey):gsub("-", "-") .. "-"
 end
 
 local function FormatSpellCast(spellId)
@@ -130,7 +128,11 @@ local function ActionToken(entry)
                 name = GetSpellInfo(spellId)
             end
         end
-        return "cast", name or ("spell:" .. tostring(entry.id))
+        -- CAST's spell-info precheck can reject Name(Rank N)/Name(subtext)
+        -- before reaching CastSpellByName. USE passes the exact ranked name
+        -- to that native cast function when it is not an item.
+        local token = name or ("spell:" .. tostring(entry.id))
+        return token:find("(", 1, true) and "use" or "cast", token
     end
     if t == "item" or t == "toy" then
         return "use", "item:" .. tostring(entry.id)
@@ -148,7 +150,16 @@ local function ActionToken(entry)
     return nil, nil
 end
 
-local function CondPrefix(modKey)
+local function CondPrefix(modKey, exact)
+    if exact then
+        local parts = {}
+        for _, key in ipairs({ "SHIFT", "CTRL", "ALT" }) do
+            local held = ("-" .. (modKey or "") .. "-"):find("-" .. key .. "-", 1, true)
+            parts[#parts + 1] = (held and "mod:" or "nomod:") .. key:lower()
+        end
+        local cond = table.concat(parts, ",")
+        return "[" .. cond .. ",@mouseover,exists,nodead][" .. cond .. "]"
+    end
     if not modKey or modKey == "" then
         return "[@mouseover,exists,nodead][]"
     end
@@ -156,28 +167,45 @@ local function CondPrefix(modKey)
     return "[mod:" .. condMod .. ",@mouseover,exists,nodead][mod:" .. condMod .. "]"
 end
 
+-- Keep one command where native dispatch allows it. Ranked cast strings use
+-- USE's spell fallback; bare spells retain CAST priority over same-name items.
+local function SingleCastCommand(slotData)
+    if type(slotData) ~= "table" then return nil end
+    local spell, ranked, item = false, false, false
+    for _, entry in pairs(slotData) do
+        if type(entry) == "table" and entry.type and entry.id ~= nil then
+            if entry.type == "spell" then
+                if ActionToken(entry) == "use" then ranked = true else spell = true end
+            elseif entry.type == "item" then item = true
+            else return nil end
+        end
+    end
+    if spell and ranked then return nil, true end
+    local command = spell and "cast" or ((ranked or item) and "use" or nil)
+    return command, command ~= nil
+end
+
 function Manager.BuildMacroText(slotData)
     if type(slotData) ~= "table" then
         return nil
     end
     local castParts, useParts, petParts, outfitParts = {}, {}, {}, {}
+    local singleCommand = SingleCastCommand(slotData)
 
-    local modKeys = {}
+    local hasModifiers = false
     for k, v in pairs(slotData) do
         if k ~= "" and type(v) == "table" and v.type and v.type ~= "macro" then
-            modKeys[#modKeys + 1] = k
+            hasModifiers = true
         end
     end
-    table.sort(modKeys, function(a, b)
-        return #a > #b
-    end)
 
-    local function addEntry(modKey, entry)
+    local function addEntry(modKey, entry, exact)
         local slash, token = ActionToken(entry)
         if not slash or not token then
             return
         end
-        local prefix = CondPrefix(modKey)
+        if singleCommand then slash = singleCommand end
+        local prefix = CondPrefix(modKey, exact)
         local frag = prefix .. " " .. token
         if slash == "cast" then
             castParts[#castParts + 1] = frag
@@ -190,14 +218,8 @@ function Manager.BuildMacroText(slotData)
         end
     end
 
-    for i = 1, #modKeys do
-        addEntry(modKeys[i], slotData[modKeys[i]])
-    end
-
     local base = slotData[""]
-    if type(base) == "table" and base.type and base.type ~= "macro" then
-        addEntry("", base)
-    else
+    if not (type(base) == "table" and base.type) then
         -- Nomod empty: mirror SHIFT > CTRL > ALT > combos (same order as Assign).
         local A = Assign()
         local order = A and A.GetMirrorPrefOrder and A.GetMirrorPrefOrder()
@@ -205,10 +227,31 @@ function Manager.BuildMacroText(slotData)
         for i = 1, #order do
             local v = slotData[order[i]]
             if type(v) == "table" and v.type and v.type ~= "macro" and v.id ~= nil then
-                addEntry("", v)
+                base = v
                 break
             end
         end
+    end
+
+    -- /cast and /use are separate commands. An unconditional base /cast
+    -- otherwise wins the display parser and also executes under a /use mod.
+    -- Resolve every exact chord just like ResolveDisplayEntry, including
+    -- unassigned combinations falling back to the preferred base.
+    if singleCommand then
+        -- Explicit exact modifiers first, one normal fallback last. This is
+        -- the executable modifier macro as well as the visual parser source.
+        for _, chord in ipairs({ "SHIFT", "CTRL", "ALT", "SHIFT-CTRL",
+            "SHIFT-ALT", "CTRL-ALT", "SHIFT-CTRL-ALT" }) do
+            if slotData[chord] then addEntry(chord, slotData[chord], true) end
+        end
+        addEntry("", base)
+    elseif hasModifiers then
+        for _, chord in ipairs({ "", "SHIFT", "CTRL", "ALT", "SHIFT-CTRL",
+            "SHIFT-ALT", "CTRL-ALT", "SHIFT-CTRL-ALT" }) do
+            addEntry(chord, slotData[chord] or base, true)
+        end
+    else
+        addEntry("", base)
     end
 
     local lines = { "#showtooltip" }
@@ -234,189 +277,55 @@ local function ApplyMacroAttributes(btn, slotData)
         return
     end
     ClearModMacroAttrs(w)
+    -- SetAction routes mouseover bodies through the existing hidden secure
+    -- delegate. Keep that route: visible macro overrides would bypass it.
+    local delegate = w:GetAttribute("type") == "click" and w:GetAttribute("clickbutton") or nil
+    local previous = btn._fluxUtilityDelegate
+    if previous then ClearModMacroAttrs(previous) end
+    if delegate and delegate ~= previous then ClearModMacroAttrs(delegate) end
+    btn._fluxUtilityDelegate = delegate
     if type(slotData) ~= "table" then
         return
     end
-    -- Outfit clear has an empty /outfit argument. Bind each exact chord to its
-    -- chosen action so a different modifier cannot fall through and clear gear.
-    local hasOutfit = false
-    for _, entry in pairs(slotData) do
-        if type(entry) == "table" and entry.type == "outfit" then hasOutfit = true; break end
+    -- Prepare all chords before combat. The visible host forwards the native
+    -- button name; the delegate selects the same exact chord at click time.
+    local target = delegate or w
+    if delegate then
+        -- Only prepared left-button actions execute. Do not fall through to
+        -- the long visual compiler body for an unmapped virtual/right button.
+        delegate:SetAttribute("macrotext", "")
     end
-    if hasOutfit then
-        local A = Assign()
-        local base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData)) or slotData[""]
-        local chords = {
-            { "", "" }, { "SHIFT", "shift-" }, { "CTRL", "ctrl-" }, { "ALT", "alt-" },
-            { "SHIFT-CTRL", "ctrl-shift-" }, { "SHIFT-ALT", "alt-shift-" },
-            { "CTRL-ALT", "alt-ctrl-" }, { "SHIFT-CTRL-ALT", "alt-ctrl-shift-" },
-        }
-        for _, chord in ipairs(chords) do
-            local entry, prefix = slotData[chord[1]] or base, chord[2]
-            w:SetAttribute(prefix .. "type1", "macro")
-            w:SetAttribute(prefix .. "typerelease1", "macro")
-            if entry and entry.type == "macro" then
-                w:SetAttribute(prefix .. "macro1", entry.name or entry.id)
-            else
-                w:SetAttribute(prefix .. "macrotext1", entry and Manager.BuildMacroText({ [""] = entry }) or "")
-            end
+    local A = Assign()
+    local base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData)) or slotData[""]
+    local chords = {
+        { "", "" }, { "SHIFT", "shift-" }, { "CTRL", "ctrl-" }, { "ALT", "alt-" },
+        { "SHIFT-CTRL", "ctrl-shift-" }, { "SHIFT-ALT", "alt-shift-" },
+        { "CTRL-ALT", "alt-ctrl-" }, { "SHIFT-CTRL-ALT", "alt-ctrl-shift-" },
+    }
+    for _, chord in ipairs(chords) do
+        local entry, prefix = slotData[chord[1]] or base, chord[2]
+        target:SetAttribute(prefix .. "type1", "macro")
+        target:SetAttribute(prefix .. "typerelease1", "macro")
+        if entry and entry.type == "macro" then
+            target:SetAttribute(prefix .. "macro1", entry.name or entry.id)
+        else
+            target:SetAttribute(prefix .. "macrotext1", entry and Manager.BuildMacroText({ [""] = entry }) or "")
         end
-        local Click = _G.Flux and _G.Flux.ButtonFX and _G.Flux.ButtonFX.Click
-        if Click and Click.MirrorTypeRelease then Click.MirrorTypeRelease(w) end
-        return
-    end
-    for modKey, entry in pairs(slotData) do
-        if type(entry) == "table" and entry.type == "macro" then
-            local prefix = AttrPrefixForMod(modKey)
-            local macroId = entry.name or entry.id
-            w:SetAttribute(prefix .. "type1", "macro")
-            w:SetAttribute(prefix .. "typerelease1", "macro")
-            w:SetAttribute(prefix .. "macro1", macroId)
-        end
-    end
-    -- Nomod empty: mirror first preferred mod macro onto base attributes.
-    local nomod = slotData[""]
-    if not (type(nomod) == "table" and nomod.type == "macro") then
-        local A = Assign()
-        local mirrored = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData))
-        if type(mirrored) == "table" and mirrored.type == "macro" then
-            local macroId = mirrored.name or mirrored.id
-            w:SetAttribute("type1", "macro")
-            w:SetAttribute("typerelease1", "macro")
-            w:SetAttribute("macro1", macroId)
+        if delegate then
+            w:SetAttribute(prefix .. "type1", "click")
+            w:SetAttribute(prefix .. "typerelease1", "click")
+            w:SetAttribute(prefix .. "clickbutton1", delegate)
         end
     end
     local Click = _G.Flux and _G.Flux.ButtonFX and _G.Flux.ButtonFX.Click
-    if Click and Click.MirrorTypeRelease then
-        Click.MirrorTypeRelease(w)
-    end
+    if Click and Click.MirrorTypeRelease then Click.MirrorTypeRelease(w) end
 end
 
---- Midnight cast/charge numbers are secret while this addon is tainted.
---- issecretvalue before any ~= / > compare; secrets go to SetText as-is.
-local function ValueIsSecret(value)
-    if value == nil then
-        return false
-    end
-    local S = _G.Flux and _G.Flux.Secrets
-    if S and S.IsSecretValue then
-        local ok, secret = pcall(S.IsSecretValue, value)
-        if ok then
-            return secret and true or false
-        end
-    end
-    if issecretvalue then
-        local ok, secret = pcall(issecretvalue, value)
-        return ok and secret and true or false
-    end
-    return false
-end
-
-local function SafeNotEqual(a, b)
-    if a == nil or ValueIsSecret(a) or ValueIsSecret(b) then
-        return nil
-    end
-    local S = _G.Flux and _G.Flux.Secrets
-    if S and S.SafeCompare then
-        return S.SafeCompare(a, b, "~=")
-    end
-    local ok, cmp = pcall(function()
-        return a ~= b
-    end)
-    if ok then
-        return cmp
-    end
-    return nil
-end
-
---- Spell reagent / cast count (teleports, rituals) then multi-charges — same rules as FluxButton.
-local function GetSpellDisplayCount(spellId)
-    spellId = tonumber(spellId) or spellId
-    if not spellId then
-        return nil
-    end
-
-    local Flux = _G.Flux
-    if Flux and Flux.Spell and Flux.Spell.GetDisplayCount then
-        local display = Flux.Spell.GetDisplayCount(spellId)
-        if not (display == nil) then
-            if ValueIsSecret(display) then
-                return display
-            end
-            if display ~= "" then
-                return display
-            end
-        end
-    elseif C_Spell and C_Spell.GetSpellDisplayCount then
-        local ok, display = pcall(C_Spell.GetSpellDisplayCount, spellId)
-        if ok and not (display == nil) then
-            if ValueIsSecret(display) then
-                return display
-            end
-            if display ~= "" then
-                return display
-            end
-        end
-    end
-
-    local count
-    if C_Spell and C_Spell.GetSpellCastCount then
-        local ok, c = pcall(C_Spell.GetSpellCastCount, spellId)
-        if ok then
-            count = c
-        end
-    end
-    if count == nil and GetSpellCount then
-        local ok, c = pcall(GetSpellCount, spellId)
-        if ok then
-            count = c
-        end
-    end
-    if count == nil then
-        local LCSAC = LibStub and LibStub("LibClassicSpellActionCount-1.0", true)
-        if LCSAC and LCSAC.GetSpellReagentCount then
-            count = LCSAC:GetSpellReagentCount(spellId)
-        end
-    end
-
-    if not (count == nil) and ValueIsSecret(count) then
-        return count
-    end
-
-    local isConsumable = false
-    if C_Spell and C_Spell.IsConsumableSpell then
-        local ok, v = pcall(C_Spell.IsConsumableSpell, spellId)
-        if ok and not (v == nil) and not ValueIsSecret(v) then
-            isConsumable = v and true or false
-        end
-    elseif IsConsumableSpell then
-        local ok, v = pcall(IsConsumableSpell, spellId)
-        if ok and not (v == nil) and not ValueIsSecret(v) then
-            isConsumable = v and true or false
-        end
-    end
-    if SafeNotEqual(count, 0) or isConsumable then
-        return count or 0
-    end
-
-    if C_Spell and C_Spell.GetSpellCharges then
-        local ok, chargesInfo = pcall(C_Spell.GetSpellCharges, spellId)
-        if ok and chargesInfo then
-            local maxCharges = chargesInfo.maxCharges
-            if not (maxCharges == nil) and (ValueIsSecret(maxCharges) or ValueIsSecret(chargesInfo.currentCharges) or SafeNotEqual(maxCharges, 1)) then
-                return chargesInfo.currentCharges
-            end
-        end
-    elseif GetSpellCharges then
-        local ok, cur, maxCharges = pcall(GetSpellCharges, spellId)
-        if ok and not (maxCharges == nil) and (ValueIsSecret(maxCharges) or ValueIsSecret(cur) or SafeNotEqual(maxCharges, 1)) then
-            return cur
-        end
-    end
-    return nil
-end
-
+--- Midnight cast/charge counts use the shared painter's secret-safe setter.
 local function ClearForcedCount(btn)
+    if btn._forcedCount == nil and not btn._forcedCountLive and not btn._liveCountItemId then
+        return
+    end
     if btn.SetCount then
         btn:SetCount(nil)
     elseif btn.WCount then
@@ -642,72 +551,13 @@ local function RefreshItemCount(btn, slotData)
         return
     end
 
-    -- Spells: reagent/cast count or multi-charges (utility slots use macrotext, so FluxButton auto-count won't see them).
-    if entry.type == "spell" then
-        local spellCount = GetSpellDisplayCount(entry.id)
-        if spellCount == nil then
-            ClearForcedCount(btn)
-            return
-        end
-        if btn.SetCount then
-            btn:SetCount(spellCount)
-        elseif btn.WCount then
-            btn.WCount:SetText(tostring(spellCount))
-            btn.WCount:Show()
-        end
-        return
-    end
-
-    -- Stackable items only.
-    if entry.type ~= "item" then
-        ClearForcedCount(btn)
-        return
-    end
-
-    local itemID = tonumber(entry.id)
-    if not itemID then
-        ClearForcedCount(btn)
-        return
-    end
-
-    local maxStack = 1
-    local Best = _G.FluxConsumableBest
-    if Best and Best.Score and Best.Score.GetMaxStack then
-        maxStack = Best.Score.GetMaxStack(itemID) or 1
-    elseif C_Item and C_Item.GetItemMaxStackSizeByID then
-        local ok, n = pcall(C_Item.GetItemMaxStackSizeByID, itemID)
-        if ok and type(n) == "number" then
-            maxStack = n
-        end
-    end
-    if maxStack <= 1 then
-        ClearForcedCount(btn)
-        return
-    end
-
-    local count = 0
-    local inv = _G.FluxInv
-    if inv and inv.Bags and inv.Bags.GetCount then
-        count = inv.Bags.GetCount(itemID) or 0
-    elseif inv and inv.GetCount then
-        count = inv.GetCount(itemID, {
-            bags = true,
-            bank = false,
-            warband = false,
-            equipped = false,
-            includeBank = false,
-        }) or 0
-    end
-    if btn.SetCount then
-        btn:SetCount(count, { live = true, itemId = itemID })
-    elseif btn.WCount then
-        if count > 1 then
-            btn.WCount:Show()
-            btn.WCount:SetText(tostring(count))
-        else
-            btn.WCount:Show()
-            btn.WCount:SetText("")
-        end
+    -- Macro translation owns the selected spell/item identity. Reuse EBS's
+    -- live count rules instead of latching a second count that survives a
+    -- modifier swap or a bag/charge event (including during combat).
+    ClearForcedCount(btn)
+    local Paint = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint
+    if Paint and Paint.UpdateCount then
+        Paint.UpdateCount(btn)
     end
 end
 
@@ -777,6 +627,72 @@ function Manager.UpdateHotkeys(btn)
     end
 end
 
+local function UtilityDisplayEntry(btn)
+    return select(1, ResolveDisplayEntry(Assign(), btn.slotIndex, btn.SlotData))
+end
+
+local function UtilityKeyButton(chord)
+    return "FluxUtility" .. (chord == "" and "NONE" or chord:gsub("-", ""))
+end
+
+local function NativeUtilitySlots(slotData)
+    if type(slotData) ~= "table" then return false end
+    local any = false
+    for _, entry in pairs(slotData) do
+        if type(entry) == "table" and entry.type and entry.id ~= nil then
+            if entry.type ~= "spell" and entry.type ~= "item" then return false end
+            any = true
+        end
+    end
+    return any
+end
+
+local function ApplyNativeUtility(btn, slotData)
+    local w = btn.Widget
+    -- SetAction clears/parks a former macro delegate without creating one.
+    -- This empty macro is display bookkeeping only; every executable type is
+    -- replaced below with a native spell/item action before returning.
+    btn:SetAction("macrotext", "")
+    ClearModMacroAttrs(w)
+    for _, key in ipairs({ "type", "typerelease" }) do w:SetAttribute(key, "") end
+    for _, key in ipairs({ "macro", "macrotext", "clickbutton", "spell", "item", "unit" }) do
+        w:SetAttribute(key, nil)
+    end
+    w:SetAttribute("checkmouseovercast", false)
+    local A = Assign()
+    local base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData)) or slotData[""]
+    for _, chord in ipairs({ { "", "" }, { "SHIFT", "shift-" }, { "CTRL", "ctrl-" }, { "ALT", "alt-" },
+        { "SHIFT-CTRL", "ctrl-shift-" }, { "SHIFT-ALT", "alt-shift-" },
+        { "CTRL-ALT", "alt-ctrl-" }, { "SHIFT-CTRL-ALT", "alt-ctrl-shift-" } }) do
+        local entry, prefix = slotData[chord[1]] or base, chord[2]
+        local kind = entry and entry.type or ""
+        local keyButton = UtilityKeyButton(chord[1])
+        local suffix = "-" .. keyButton
+        w:SetAttribute("flux-utility-key-" .. keyButton, prefix)
+        w:SetAttribute("*type" .. suffix, kind)
+        w:SetAttribute("*typerelease" .. suffix, kind)
+        w:SetAttribute("*spell" .. suffix, nil)
+        w:SetAttribute("*item" .. suffix, nil)
+        w:SetAttribute(prefix .. "type1", kind)
+        w:SetAttribute(prefix .. "typerelease1", kind)
+        if kind == "spell" then
+            w:SetAttribute(prefix .. "spell1", FormatSpellCast(entry.id) or tonumber(entry.id))
+            w:SetAttribute("*spell" .. suffix, FormatSpellCast(entry.id) or tonumber(entry.id))
+        elseif kind == "item" then
+            w:SetAttribute(prefix .. "item1", "item:" .. tostring(entry.id))
+            w:SetAttribute("*item" .. suffix, "item:" .. tostring(entry.id))
+        end
+    end
+    w._fluxUtilityNative = true
+    w:SetAttribute("flux-utility-native", true)
+    local MC = _G.Flux and _G.Flux.MouseoverCast
+    if MC and MC.ConfigureUtility then MC.ConfigureUtility(w, slotData, base) end
+    btn._fluxUtilityGetEntry = UtilityDisplayEntry
+    btn.ShowTooltip = true
+    local Action = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Action
+    if Action and Action.TranslateMacro then Action.TranslateMacro(btn) end
+end
+
 function Manager.UpdateButton(btn, slotData)
     if not btn then
         return
@@ -785,40 +701,46 @@ function Manager.UpdateButton(btn, slotData)
         Manager._pendingUpdate = true
         return
     end
+    btn._fluxUtilityGetEntry = nil
     btn.SlotData = slotData
-    local macroText = Manager.BuildMacroText(slotData)
-    local anyNonMacro, anyMacro = false, false
-    if type(slotData) == "table" then
-        for _, e in pairs(slotData) do
-            if type(e) == "table" then
-                if e.type == "macro" then
-                    anyMacro = true
-                else
-                    anyNonMacro = true
+    local native = NativeUtilitySlots(slotData) and btn.SetAction
+    if native then
+        ApplyNativeUtility(btn, slotData)
+    else
+        local macroText = Manager.BuildMacroText(slotData)
+        local anyNonMacro, anyMacro = false, false
+        if type(slotData) == "table" then
+            for _, e in pairs(slotData) do
+                if type(e) == "table" then
+                    if e.type == "macro" then
+                        anyMacro = true
+                    else
+                        anyNonMacro = true
+                    end
                 end
             end
         end
-    end
-    local hasMacroOnly = anyMacro and not anyNonMacro
+        local hasMacroOnly = anyMacro and not anyNonMacro
 
-    if macroText and btn.SetAction then
-        btn:SetAction("macrotext", macroText)
-    elseif hasMacroOnly then
-        local base = slotData[""]
-        if not (type(base) == "table" and base.type == "macro") then
-            local A = Assign()
-            base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData))
-        end
-        if type(base) == "table" and base.type == "macro" and btn.SetAction then
-            btn:SetAction("macro", base.name or base.id)
+        if macroText and btn.SetAction then
+            btn:SetAction("macrotext", macroText)
+        elseif hasMacroOnly then
+            local base = slotData[""]
+            if not (type(base) == "table" and base.type == "macro") then
+                local A = Assign()
+                base = A and A.ResolveNomodEntry and select(1, A.ResolveNomodEntry(slotData))
+            end
+            if type(base) == "table" and base.type == "macro" and btn.SetAction then
+                btn:SetAction("macro", base.name or base.id)
+            elseif btn.ClearAction then
+                btn:ClearAction()
+            end
         elseif btn.ClearAction then
             btn:ClearAction()
         end
-    elseif btn.ClearAction then
-        btn:ClearAction()
-    end
 
-    ApplyMacroAttributes(btn, slotData)
+        ApplyMacroAttributes(btn, slotData)
+    end
     RefreshItemCount(btn, slotData)
     RefreshChecked(btn, slotData)
 
@@ -1084,7 +1006,6 @@ function Manager._DoUpdateAllSlots()
         return
     end
     Manager.EnsureButtons()
-    Manager.UpdateBindings()
 
     local A = Assign()
     local slots = A and A.GetSlots and A.GetSlots() or {}
@@ -1129,6 +1050,7 @@ function Manager._DoUpdateAllSlots()
             end
         end
     end
+    Manager.UpdateBindings()
     RequestRelayout()
 end
 
@@ -1147,12 +1069,43 @@ function Manager.UpdateAllSlots()
     end)
 end
 
+-- Forever's visible CheckButton fires on mouse-up. A utility key must sample
+-- modifiers on key-down, before releasing Shift can select the normal action.
+-- Inherit the prepared host attributes through Blizzard's native parent lookup.
+local function EnsureUtilityKeyer(btn)
+    if btn._fluxUtilityKeyer then return btn._fluxUtilityKeyer end
+    local w = btn.Widget
+    local keyer = CreateFrame("Button", w:GetName() .. "_Key", w, "SecureActionButtonTemplate")
+    keyer:Hide()
+    keyer:SetSize(1, 1)
+    if keyer.EnableMouse then keyer:EnableMouse(false) end
+    keyer:RegisterForClicks("AnyDown")
+    keyer:SetAttribute("useOnKeyDown", true)
+    keyer:SetAttribute("pressAndHoldAction", false)
+    for _, attribute in ipairs({ "type", "typerelease", "macro", "macrotext", "clickbutton",
+        "spell", "item", "unit", "checkselfcast", "checkfocuscast", "checkmouseovercast" }) do
+        keyer:SetAttribute("useparent-" .. attribute, true)
+    end
+    btn._fluxUtilityKeyer = keyer
+    local MC = _G.Flux and _G.Flux.MouseoverCast
+    if MC and MC.AttachUtilityKeyer then MC.AttachUtilityKeyer(keyer) end
+    return keyer
+end
+
 function Manager.UpdateBindings()
     if InCombatLockdown and InCombatLockdown() then
         Manager._pendingBindings = true
         return
     end
     Manager._pendingBindings = nil
+    local Click = _G.Flux and _G.Flux.ButtonFX and _G.Flux.ButtonFX.Click
+    -- Forever has no KeyBind-to-LeftButton wrap. Its hidden keyer fires down;
+    -- mouse clicks retain the existing visible-host release timing.
+    local wraps = not Click or not Click.UsesWrap or Click.UsesWrap()
+    local clickButton = not wraps and "LeftButton" or "KeyBind"
+    local A = Assign()
+    local slots = A and A.GetSlots and A.GetSlots() or {}
+    local CM = _G.FluxBindingChordMap3
     for slotIndex = 1, MAX_SLOTS do
         local btn = Manager.buttons[slotIndex]
         local secureBtn = btn and btn.Widget
@@ -1160,11 +1113,37 @@ function Manager.UpdateBindings()
             ClearOverrideBindings(secureBtn)
             local bindingName = BINDING_PREFIX .. slotIndex
             local key1, key2 = GetBindingKey(bindingName)
-            if key1 then
-                SetOverrideBindingClick(secureBtn, true, key1, secureBtn:GetName(), "KeyBind")
+            local clickTarget = not wraps and (key1 or key2) and EnsureUtilityKeyer(btn) or secureBtn
+            local keys, seen = { key1, key2 }, {}
+            local function bind(key, chord)
+                if key and key ~= "" and not seen[key] then
+                    seen[key] = true
+                    local button = secureBtn._fluxUtilityNative and UtilityKeyButton(chord or "") or clickButton
+                    SetOverrideBindingClick(secureBtn, true, key, clickTarget:GetName(), button)
+                end
             end
-            if key2 then
-                SetOverrideBindingClick(secureBtn, true, key2, secureBtn:GetName(), "KeyBind")
+            for i = 1, 2 do
+                local key = keys[i]
+                local mod = ""
+                if key and CM and CM.Parse then
+                    local _, bits = CM.Parse(key)
+                    mod = (bits.shift and "SHIFT-" or "") .. (bits.ctrl and "CTRL-" or "") .. (bits.alt and "ALT-" or "")
+                    mod = mod:gsub("-$", "")
+                end
+                bind(key, mod)
+                -- An item assignment has no spell-strip implicit binding.
+                -- Give every explicitly assigned utility modifier its own
+                -- override, while leaving unrelated unassigned chords alone.
+                if key and CM and CM.Normalize then
+                    for mod, entry in pairs(slots[slotIndex] or {}) do
+                        if mod ~= "" and type(entry) == "table" and entry.type and entry.id ~= nil then
+                            local combined = CM.Normalize(mod .. "-" .. key)
+                            local _, bits = CM.Parse(combined)
+                            local chord = (bits.shift and "SHIFT-" or "") .. (bits.ctrl and "CTRL-" or "") .. (bits.alt and "ALT-" or "")
+                            bind(combined, chord:gsub("-$", ""))
+                        end
+                    end
+                end
             end
             Manager.UpdateHotkeys(btn)
         end
@@ -1352,9 +1331,7 @@ local function RegisterInvListener()
     end
     Manager._invHooked = true
     inv.RegisterListener("FluxNCUtilitySlots", function()
-        if InCombatLockdown and InCombatLockdown() then
-            return
-        end
+        -- Visual counts are safe in combat; protected assignments still defer.
         for i = 1, MAX_SLOTS do
             local btn = Manager.buttons[i]
             if btn and btn.SlotData then
@@ -1375,32 +1352,44 @@ local function RegisterModifierListener()
     end
     Manager._modHooked = true
     MT.Register("FluxNCUtilitySlots", function()
+        local A = Assign()
+        local chord = A and A.GetCurrentModKey and A.GetCurrentModKey() or ""
+        if Manager._lastModifierChord == chord then return end
+        Manager._lastModifierChord = chord
         for i = 1, MAX_SLOTS do
             local btn = Manager.buttons[i]
             if btn and btn.SlotData then
-                if btn.TranslateMacro then
-                    btn:TranslateMacro()
-                elseif _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Action and _G.Flux.EBS.Action.TranslateMacro then
-                    _G.Flux.EBS.Action.TranslateMacro(btn)
+                local entry = select(1, ResolveDisplayEntry(A, btn.slotIndex, btn.SlotData))
+                local plain = entry and (entry.type == "spell" or entry.type == "item")
+                    and not btn._fluxUtilityPetGUID and btn._fluxUtilityOutfitID == nil
+                    and btn._forcedCount == nil and not btn._forcedCountLive
+                local shown = plain and btn.MacroMode == entry.type
+                    and (entry.type == "spell" and btn.SpellId or btn.ItemId) == entry.id
+                if not shown then
+                    if btn.TranslateMacro then
+                        btn:TranslateMacro()
+                    elseif _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Action and _G.Flux.EBS.Action.TranslateMacro then
+                        _G.Flux.EBS.Action.TranslateMacro(btn)
+                    end
                 end
-            end
-        end
-        RefreshAllItemCounts()
-        RefreshAllChecked()
-        for i = 1, MAX_SLOTS do
-            local btn = Manager.buttons[i]
-            if btn and btn.SlotData then
-                local entry = select(1, ResolveDisplayEntry(Assign(), btn.slotIndex, btn.SlotData))
-                local SRM = _G.FluxSpellRankManager or _G.FluxSpellRankManagerModule
-                if entry and entry.type == "spell" and entry.id and SRM and SRM.ApplyRankDesaturation then
-                    SRM:ApplyRankDesaturation(btn, entry.id)
-                elseif btn.SpellId and SRM and SRM.ApplyRankDesaturation then
-                    SRM:ApplyRankDesaturation(btn, btn.SpellId)
-                end
-                if btn.UpdateUsable then
-                    btn:UpdateUsable()
-                elseif _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint and _G.Flux.EBS.Paint.UpdateUsable then
-                    _G.Flux.EBS.Paint.UpdateUsable(btn)
+                -- TranslateMacro already paints icon/count/CD/range/usable/
+                -- checked/glow for a changed spell/item face. Do not paint
+                -- those lanes again. Same-face fallback chords need no work;
+                -- bag and charge events retain their independent live updates.
+                if not plain then
+                    RefreshItemCount(btn, btn.SlotData)
+                    RefreshChecked(btn, btn.SlotData)
+                    local SRM = _G.FluxSpellRankManager or _G.FluxSpellRankManagerModule
+                    if entry and entry.type == "spell" and entry.id and SRM and SRM.ApplyRankDesaturation then
+                        SRM:ApplyRankDesaturation(btn, entry.id)
+                    elseif btn.SpellId and SRM and SRM.ApplyRankDesaturation then
+                        SRM:ApplyRankDesaturation(btn, btn.SpellId)
+                    end
+                    if btn.UpdateUsable then
+                        btn:UpdateUsable()
+                    elseif _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Paint and _G.Flux.EBS.Paint.UpdateUsable then
+                        _G.Flux.EBS.Paint.UpdateUsable(btn)
+                    end
                 end
             end
         end

@@ -160,6 +160,10 @@ local function WrapBankView(bankView)
     if bankView.OnTabFinished then
         local origOnTabFinished = bankView.OnTabFinished
         bankView.OnTabFinished = function(self, ...)
+            local button = GetRestockButton()
+            if button and button.ReleaseBaganatorFooter then
+                button.ReleaseBaganatorFooter(self)
+            end
             if origOnTabFinished then
                 origOnTabFinished(self, ...)
             end
@@ -172,6 +176,10 @@ local function WrapBankView(bankView)
             Compat.AttachBankRestockButton(bankView)
         end)
         bankView:HookScript("OnHide", function()
+            local button = GetRestockButton()
+            if button and button.ReleaseBaganatorFooter then
+                button.ReleaseBaganatorFooter(bankView)
+            end
             if C_Timer and C_Timer.After then
                 C_Timer.After(0, Compat.SyncBaganatorBankLive)
             else

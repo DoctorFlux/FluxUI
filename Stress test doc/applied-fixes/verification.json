@@ -1,0 +1,27 @@
+{
+  "capturedUTC": "2026-11-07T13:48:46.524260+00:00",
+  "status": "APPLIED_DESKTOP_VALIDATED_NATIVE_PENDING",
+  "scriptsPassed": 232,
+  "scriptsFailed": 0,
+  "luaSyntaxFiles": 896,
+  "syntaxFailures": [],
+  "postSuiteLuaDrift": [],
+  "postRecordsFileDrift": [],
+  "documentationValidation": {
+    "exit": 0,
+    "classifiedSources": 929,
+    "reachableTOCXML": 599,
+    "settingDefinitions": 415,
+    "savedVariables": 24,
+    "localLinks": 15201
+  },
+  "stressArtifactValidation": "PASS; see ../evidence/audit-validation.json",
+  "gitDiffCheckExit": 0,
+  "gitDiffCheckNote": "Only existing line-ending conversion warnings; no whitespace errors",
+  "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+  "branch": "main",
+  "artChanges": [],
+  "tocMetadataUnchanged": true,
+  "nativeAcceptance": "Not run; simulation-only instruction. Actual USER-001 frame/first taint cause and recurrence, secure VM, pixels and native CPU/FPS remain pending.",
+  "operations": "Source/test/document edits only; no game input, settings/profiler write, commit/push or manual client copy."
+}

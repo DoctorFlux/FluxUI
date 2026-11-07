@@ -1,0 +1,6 @@
+lua: Stress test doc/fix-proposals/fades/verify.lua.txt:6: candidate cast fade never reads native alpha
+stack traceback:
+	[C]: in function 'assert'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:6: in local 'check'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:157: in main chunk
+	[C]: in ?

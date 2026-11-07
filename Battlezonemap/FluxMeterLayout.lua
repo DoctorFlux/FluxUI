@@ -14,7 +14,7 @@ local MAX_COLS = 3
 local BLIZZARD_MAX_PANES = 3 -- Blizzard_DamageMeter MAX_DAMAGE_METER_SESSION_WINDOWS
 local DETAILS_BUILTIN_COUNT = 11
 local BLIZZARD_BUILTIN_COUNT = 6
-local BLIZZARD_THREAT_BUILTIN_COUNT = 9
+local BLIZZARD_THREAT_BUILTIN_COUNT = 10
 
 local METER_TOPROW_MIN = 0.25
 local METER_TOPROW_MAX = 0.75
@@ -80,11 +80,12 @@ local BLIZZARD_BUILTIN_LABELS = {
     [2] = "Damage only (full)",
     [3] = "Interrupts|Damage, Healing",
     [4] = "Damage, Dispels|Healing",
-    [5] = "Damage | Healing, Absorbs",
+    [5] = "Damage | Healing, HPS",
     [6] = "DamageTaken | Damage, Healing",
     [7] = "Threat|Damage, Healing",
     [8] = "Threat|Damage, Dispels|Healing",
     [9] = "Threat only (full)",
+    [10] = "Threat|Damage, Interrupts|Healing",
 }
 
 -- Compat: older callers read BUILTIN_LABELS directly (Details labels).
@@ -327,7 +328,7 @@ local function BlizzardBuiltinPresetToLayout(presetId)
         [5] = {
             name = BLIZZARD_BUILTIN_LABELS[5],
             topSlots = { BlizzardSlot(T.DamageDone) },
-            bottomSlots = { BlizzardSlot(T.HealingDone), BlizzardSlot(T.Absorbs) },
+            bottomSlots = { BlizzardSlot(T.HealingDone), BlizzardSlot(T.Hps) },
             topColFracs = { 1 }, bottomColFracs = { 0.55, 0.45 }, topRowFrac = 0.60,
         },
         [6] = {
@@ -353,6 +354,12 @@ local function BlizzardBuiltinPresetToLayout(presetId)
         name = BLIZZARD_BUILTIN_LABELS[9],
         topSlots = { { kind = "plugin", plugin = FLUX_THREAT_PLUGIN } }, bottomSlots = {},
         topColFracs = { 1 }, bottomColFracs = { 1 }, topRowFrac = 0.60,
+    }
+    presets[10] = {
+        name = BLIZZARD_BUILTIN_LABELS[10],
+        topSlots = { { kind = "plugin", plugin = FLUX_THREAT_PLUGIN }, BlizzardSlot(T.DamageDone) },
+        bottomSlots = { BlizzardSlot(T.Interrupts), BlizzardSlot(T.HealingDone) },
+        topColFracs = { 0.45, 0.55 }, bottomColFracs = { 0.45, 0.55 }, topRowFrac = 0.60,
     }
     local p = presets[presetId] or presets[1]
     return p
@@ -501,6 +508,31 @@ local function NewBlankLayout(name)
         bottomColFracs = { 1 },
         topRowFrac = 0.60,
     })
+end
+
+local function NativeSelectableType(meterType)
+    local T = Enum and Enum.DamageMeterType
+    if not T or type(meterType) ~= "number" then return false end
+    -- Current pinned native menus; Absorbs is an enum/renderer capability, not
+    -- an offered native selection. Do not advertise it as a working option.
+    for _, name in ipairs({"DamageDone","Dps","HealingDone","Hps","Interrupts","Dispels",
+        "DamageTaken","AvoidableDamageTaken","Deaths","EnemyDamageTaken"}) do
+        if T[name] == meterType then return true end
+    end
+    return false
+end
+
+local function SanitizeNativeWorkingLayout(layout)
+    if not layout or not FluxMeterLayout.IsBlizzardBackend() then return layout end
+    local T = Enum and Enum.DamageMeterType
+    for _, slots in ipairs({layout.topSlots or {},layout.bottomSlots or {}}) do
+        for i,slot in ipairs(slots) do
+            if slot.kind == "blizzard" and not NativeSelectableType(slot.damageMeterType) then
+                slots[i] = BlizzardSlot(T and slot.damageMeterType == T.Absorbs and T.Hps or DefaultDamageMeterType())
+            end
+        end
+    end
+    return layout
 end
 
 local function ClampLayoutToMaxPanes(layout)
@@ -688,6 +720,7 @@ local function LoadLibrary()
         workingLayout = BuiltinPresetToLayout(n)
         activeLayoutId = "builtin:" .. n
     end
+    SanitizeNativeWorkingLayout(workingLayout)
     loadedBackend = backend
 end
 
@@ -714,6 +747,7 @@ end
 
 function FluxMeterLayout.GetWorkingLayout()
     LoadLibrary()
+    SanitizeNativeWorkingLayout(workingLayout)
     return CopyLayout(workingLayout)
 end
 
@@ -747,7 +781,7 @@ end
 function FluxMeterLayout.LoadUser(layoutId)
     for _, lay in ipairs(userLayouts) do
         if lay.id == layoutId then
-            workingLayout = CopyLayout(lay)
+            workingLayout = SanitizeNativeWorkingLayout(CopyLayout(lay))
             activeLayoutId = layoutId
             SaveLibrary()
             return workingLayout
@@ -899,6 +933,7 @@ function FluxMeterLayout.SetSlot(row, index, slot)
     local list = (row == "top") and workingLayout.topSlots or workingLayout.bottomSlots
     if not list or index < 1 or index > #list then return end
     local s = DeepCopySlot(slot)
+    if FluxMeterLayout.IsBlizzardBackend() and s.kind == "blizzard" and not NativeSelectableType(s.damageMeterType) then return false end
     if FluxMeterLayout.IsBlizzardBackend() and not FluxMeterLayout.IsThreatSlot(s)
         and FluxMeterLayout.IsThreatSlot(list[index])
         and #(workingLayout.topSlots or {}) + #(workingLayout.bottomSlots or {}) > BLIZZARD_MAX_PANES then
@@ -1049,8 +1084,7 @@ local function BuildBlizzardCatalog()
         {
             label = healingName,
             icon = "Interface\\Icons\\Spell_Holy_FlashHeal",
-            -- Absorbs is in the API/enum even though Blizzard's own dropdown omits it.
-            items = itemsFor({ T.HealingDone, T.Hps, T.Absorbs }),
+            items = itemsFor({ T.HealingDone, T.Hps }),
         },
         {
             label = actionsName,
@@ -1305,6 +1339,103 @@ function FluxMeterLayout.ScheduleReembed()
     ScheduleReembed()
 end
 
+-- Native choices edit the current layout like the existing type picker. The
+-- existing Save buttons retain responsibility for saving custom layout edits.
+function FluxMeterLayout.OnNativeMeterTypeChanged(layout, row, index, meterType, previousType)
+    -- GetWorkingLayout exports a copy. Match its active identity and old slot
+    -- before adopting a native response, so a stale menu cannot overwrite a
+    -- newer layout/type request in the editor.
+    if not workingLayout or not layout or not layout.id or layout.id ~= workingLayout.id then return end
+    if row then
+        local slots = row == "top" and workingLayout.topSlots or row == "bottom" and workingLayout.bottomSlots
+        local slot = slots and slots[index]
+        if slot and slot.kind == "blizzard" and slot.damageMeterType == previousType then
+            slots[index] = {kind = "blizzard", damageMeterType = meterType}
+        end
+        return
+    end
+    if editorFrame and editorFrame.Refresh and not editorFrame._dragging then
+        editorFrame:Refresh()
+    end
+end
+
+function FluxMeterLayout.OpenNativeMenu(row, index, kind)
+    if InCombatLockdown and InCombatLockdown() then return false, "Meter settings are available outside combat." end
+    if not FluxMeterLayout.IsBlizzardBackend() or not FluxBlizzardMeter or not FluxBlizzardMeter.OpenNativeMenu then
+        return false, "Blizzard meter settings are unavailable."
+    end
+    if FluxWindowFrame and FluxWindowFrame.GetActiveTab and FluxWindowFrame.SwitchToTab
+        and FluxWindowFrame:GetActiveTab() ~= "Meter" then FluxWindowFrame:SwitchToTab("Meter") end
+    FluxMeterLayout.CancelPendingWork()
+    ReembedQuiet()
+    return FluxBlizzardMeter:OpenNativeMenu(row, index, kind)
+end
+
+function FluxMeterLayout.SelectNativeType(row, index, meterType, buttonName)
+    if InCombatLockdown and InCombatLockdown() then return false, "Meter settings are available outside combat." end
+    if not FluxMeterLayout.IsBlizzardBackend() or not FluxBlizzardMeter or not FluxBlizzardMeter.SelectNativeType then
+        return false, "Blizzard meter settings are unavailable."
+    end
+    if FluxWindowFrame and FluxWindowFrame.GetActiveTab and FluxWindowFrame.SwitchToTab
+        and FluxWindowFrame:GetActiveTab() ~= "Meter" then FluxWindowFrame:SwitchToTab("Meter") end
+    FluxMeterLayout.CancelPendingWork()
+    ReembedQuiet()
+    local ok, reason = FluxBlizzardMeter:SelectNativeType(row, index, meterType, buttonName)
+    if not ok then return false, reason end
+    return FluxBlizzardMeter:ApplyCurrentSegments()
+end
+
+function FluxMeterLayout.CommitUserLayout()
+    if not FluxMeterLayout.IsBlizzardBackend() then ScheduleReembed(); return true end
+    if InCombatLockdown and InCombatLockdown() then return false, "Meter layout choices are available outside combat." end
+    if not FluxBlizzardMeter or not FluxBlizzardMeter.ApplyRequestedTypes then return false, "Blizzard meter settings are unavailable." end
+    FluxMeterLayout.CancelPendingWork()
+    local waiting = FluxBlizzardMeter.IsMeterReady and not FluxBlizzardMeter:IsMeterReady()
+    if waiting and FluxBlizzardMeter.QueueUserLayoutApply then FluxBlizzardMeter:QueueUserLayoutApply() end
+    if FluxWindowFrame and FluxWindowFrame.GetActiveTab and FluxWindowFrame.SwitchToTab
+        and FluxWindowFrame:GetActiveTab() ~= "Meter" then FluxWindowFrame:SwitchToTab("Meter") end
+    ReembedQuiet()
+    if waiting then return true end -- The existing native readiness retry consumes the explicit choice.
+    local ok, reason = FluxBlizzardMeter:ApplyRequestedTypes()
+    if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
+    return ok, reason
+end
+
+function FluxMeterLayout.GetPickerGroups(row, index)
+    local groups = FluxMeterLayout.BuildCatalog()
+    if not FluxMeterLayout.IsBlizzardBackend() then return groups end
+    local layout = FluxMeterLayout.GetWorkingLayout()
+    local list = row == "bottom" and layout.bottomSlots or layout.topSlots
+    local selected = list and list[index or 1]
+    local nativeGroups = {}
+    if selected and not FluxMeterLayout.IsThreatSlot(selected) then
+        local choices = FluxBlizzardMeter and FluxBlizzardMeter.GetNativeTypeChoices
+            and FluxBlizzardMeter:GetNativeTypeChoices(row or "top", index or 1) or {}
+        for _, group in ipairs(choices) do
+            for _, item in ipairs(group.items) do item.icon = BlizzardTypeIcon(item.nativeType) end
+            nativeGroups[#nativeGroups + 1] = group
+        end
+        nativeGroups[#nativeGroups + 1] = { label = "Window options", items = {
+            { label = "Combat session...", nativeMenu = "session" },
+            { label = "Window settings...", nativeMenu = "settings" },
+        } }
+    end
+    for _, group in ipairs(groups) do
+        local plugins = {}
+        for _, item in ipairs(group.items or {}) do
+            if FluxMeterLayout.IsThreatSlot(item.slot) then plugins[#plugins + 1] = item end
+        end
+        if #plugins > 0 then nativeGroups[#nativeGroups + 1] = { label = "FluxUI", items = plugins } end
+    end
+    if FluxMeterLayout.IsThreatSlot(selected) then
+        local canReplace = #(layout.topSlots or {}) + #(layout.bottomSlots or {}) <= BLIZZARD_MAX_PANES
+        nativeGroups[#nativeGroups + 1] = { label = "Blizzard meter", items = canReplace and {
+            { label = "Use native meter", slot = BlizzardSlot(DefaultDamageMeterType()) },
+        } or {}, emptyHint = "Blizzard supports three windows." }
+    end
+    return nativeGroups
+end
+
 local function ExitEditor()
     if editorFrame and editorFrame._embedHost then
         return
@@ -1326,6 +1457,7 @@ local function PaintMiniPreview(host, layout, withIcons)
     host._cells = host._cells or {}
     for _, c in ipairs(host._cells) do c:Hide() end
     if not layout then return end
+    if FluxMeterLayout.IsBlizzardBackend() then layout = SanitizeNativeWorkingLayout(CopyLayout(layout)) end
 
     local w = host:GetWidth() or host._w or 64
     local h = host:GetHeight() or host._h or 44
@@ -1573,7 +1705,7 @@ local function EnsureEditor()
     newBtn:SetScript("OnClick", function()
         FluxMeterLayout.SaveWorkingAsNew("Layout " .. (#userLayouts + 1))
         f.libTab = "user"
-        ScheduleReembed()
+        FluxMeterLayout.CommitUserLayout()
         f:Refresh()
     end)
     saveBtn:SetScript("OnClick", function()
@@ -1616,7 +1748,7 @@ local function EnsureEditor()
     end)
     delBtn:SetScript("OnClick", function()
         if FluxMeterLayout.DeleteActive() then
-            ScheduleReembed()
+            FluxMeterLayout.CommitUserLayout()
             f:Refresh()
         end
     end)
@@ -1686,30 +1818,30 @@ local function EnsureEditor()
 
     t1:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetTopColCount and not FluxMeterLayout.CanSetTopColCount(1) then return end
-        FluxMeterLayout.SetTopColCount(1); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetTopColCount(1); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     t2:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetTopColCount and not FluxMeterLayout.CanSetTopColCount(2) then return end
-        FluxMeterLayout.SetTopColCount(2); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetTopColCount(2); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     t3:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetTopColCount and not FluxMeterLayout.CanSetTopColCount(3) then return end
-        FluxMeterLayout.SetTopColCount(3); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetTopColCount(3); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     b0:SetScript("OnClick", function()
-        FluxMeterLayout.SetBottomColCount(0); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetBottomColCount(0); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     b1:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetBottomColCount and not FluxMeterLayout.CanSetBottomColCount(1) then return end
-        FluxMeterLayout.SetBottomColCount(1); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetBottomColCount(1); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     b2:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetBottomColCount and not FluxMeterLayout.CanSetBottomColCount(2) then return end
-        FluxMeterLayout.SetBottomColCount(2); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetBottomColCount(2); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
     b3:SetScript("OnClick", function()
         if FluxMeterLayout.CanSetBottomColCount and not FluxMeterLayout.CanSetBottomColCount(3) then return end
-        FluxMeterLayout.SetBottomColCount(3); ScheduleReembed(); f:Refresh()
+        FluxMeterLayout.SetBottomColCount(3); FluxMeterLayout.CommitUserLayout(); f:Refresh()
     end)
 
     local bigPreview = CreateFrame("Frame", nil, canvas, "BackdropTemplate")
@@ -1935,7 +2067,7 @@ local function EnsureEditor()
     function f:RefreshPicker()
         local child = self.pickerChild
         child._rows = child._rows or {}
-        local groups = FluxMeterLayout.BuildCatalog()
+        local groups = FluxMeterLayout.GetPickerGroups(self.selectedRow, self.selectedIndex)
         local yOff, rowIdx = 0, 0
         local function takeRow(h)
             rowIdx = rowIdx + 1
@@ -1994,10 +2126,18 @@ local function EnsureEditor()
                     end
                     row.label:SetText(item.label)
                     row.label:SetTextColor(0.92, 0.92, 0.92)
-                    row:SetScript("OnClick", function()
-                        FluxMeterLayout.SetSlot(self.selectedRow or "top", self.selectedIndex or 1, item.slot)
-                        ScheduleReembed()
-                        self:Refresh()
+                    row:SetScript("OnClick", function(_, buttonName)
+                        if item.disabled then return end
+                        if item.nativeType ~= nil then
+                            local ok, reason = FluxMeterLayout.SelectNativeType(self.selectedRow or "top", self.selectedIndex or 1, item.nativeType, buttonName)
+                            if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
+                        elseif item.nativeMenu then
+                            local ok, reason = FluxMeterLayout.OpenNativeMenu(self.selectedRow or "top", self.selectedIndex or 1, item.nativeMenu)
+                            if not ok and reason then print("|cff00ffff[FluxUI]|r " .. reason) end
+                        elseif FluxMeterLayout.SetSlot(self.selectedRow or "top", self.selectedIndex or 1, item.slot) ~= false then
+                            FluxMeterLayout.CommitUserLayout()
+                            self:Refresh()
+                        end
                     end)
                     row:SetScript("OnEnter", function(selfBtn)
                         selfBtn:SetBackdropBorderColor(0.95, 0.75, 0.25, 1)
@@ -2087,7 +2227,7 @@ local function EnsureEditor()
                 local id = lay.id
                 addBtn(lay.name or id, id == activeLayoutId, function()
                     FluxMeterLayout.LoadUser(id)
-                    ScheduleReembed()
+                    FluxMeterLayout.CommitUserLayout()
                     f:Refresh()
                 end, lay)
             end
@@ -2101,7 +2241,7 @@ local function EnsureEditor()
                 local idx = i
                 addBtn((labels and labels[idx]) or ("Preset " .. idx), selected, function()
                     FluxMeterLayout.ApplyBuiltin(idx)
-                    ScheduleReembed()
+                    FluxMeterLayout.CommitUserLayout()
                     f:Refresh()
                 end, preset)
             end

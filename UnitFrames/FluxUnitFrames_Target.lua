@@ -1,5 +1,11 @@
 -- UnitFrames/FluxUnitFrames_Target.lua
 local addonName, ns = ...
+
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterUnitWatch = (useFluxDrivers and FluxDrivers.RegisterUnitWatch) or RegisterUnitWatch
+local UnregisterUnitWatch = (useFluxDrivers and FluxDrivers.UnregisterUnitWatch) or UnregisterUnitWatch
 local UF = ns.UnitFrames
 local CB = ns.CastBar
 

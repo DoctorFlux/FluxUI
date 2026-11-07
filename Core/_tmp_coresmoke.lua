@@ -885,7 +885,10 @@ has(restrictedSrc, "function Restricted.Execute(", "Restricted.Execute")
 has(restrictedSrc, "function Restricted.WrapScript(", "Restricted.WrapScript")
 has(restrictedSrc, "function Restricted.SetSnippet(", "Restricted.SetSnippet")
 has(restrictedSrc, "function Restricted.RegisterUnitWatch(", "Restricted.RegisterUnitWatch")
-has(restrictedSrc, "RegisterUnitWatch = function", "camelot replaces RegisterUnitWatch global")
+has(restrictedSrc, "function Restricted.RegisterUnitWatch", "camelot keeps an addon-local unit-watch adapter")
+if restrictedSrc:find("RegisterUnitWatch = function", 1, true) then
+	failures[#failures + 1] = "Restricted must preserve Blizzard driver globals"
+end
 has(restrictedSrc, "Keep the button shown so combat can still alpha-toggle", "camelot unit watch stays shown in combat")
 has(restrictedSrc, "UnitFrames.SyncWatchedUnitFrameVisibility owns hide via alpha", "camelot defers hide to unit-frame alpha")
 if restrictedSrc:find("frame:Execute(", 1, true) and not restrictedSrc:find("Do not probe", 1, true) then
@@ -1522,7 +1525,7 @@ end
 
 local statusSrc = read("../StatusBars/FluxStatusBar.lua")
 has(statusSrc, "local function CanOpenCurrencyTab()", "gold bar currency shortcut is gated")
-has(statusSrc, "and not IsForeverClient()", "Forever gold bar never calls ToggleCharacter")
+has(statusSrc, 'type(ToggleCharacter) == "function"', "gold bar checks native currency toggle availability")
 local dropdownSrc = read("FluxBlizzardDropdown.lua")
 has(dropdownSrc, "function DD.WantsGamepadMenu", "Flux dropdowns can request Blizzard's gamepad menu off Forever gamepad")
 if dropdownSrc:find("TreatAsCore", 1, true) or dropdownSrc:find("function PromptedBindingFooterMixin:RefreshBindingGroup", 1, true) then

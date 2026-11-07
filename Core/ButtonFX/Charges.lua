@@ -123,16 +123,27 @@ local function SetBling(cd, on)
 	end
 	if not on then
 		cd:SetDrawBling(false)
+		cd._fxBlingDeferred = nil
 		return
 	end
+	-- Missing legacy getter keeps its established compatibility policy.
+	-- An existing but unreadable getter is unknown, not forced to 0 or 1.
 	local alpha = 1
 	if cd.GetEffectiveAlpha then
-		local a = cd:GetEffectiveAlpha()
-		if type(a) == "number" then
-			alpha = a
-		end
+		local ok, value = pcall(cd.GetEffectiveAlpha, cd)
+		if not ok then cd._fxBlingDeferred = true; return end
+		alpha = value
+	end
+	local S = Flux.Secrets
+	local secret = (S and S.IsSecretValue) or issecretvalue
+	local access = (S and S.CanAccessValue) or canaccessvalue
+	if (secret and secret(alpha)) or (access and not access(alpha))
+		or type(alpha) ~= "number" then
+		cd._fxBlingDeferred = true
+		return
 	end
 	cd:SetDrawBling(alpha > 0.4)
+	cd._fxBlingDeferred = nil
 end
 
 -- ButtonForge Classic: keep the cooldown frame shown when idle. Hide() drops
@@ -255,6 +266,9 @@ local function CachedSetCD(cd, start, duration, enable, drawEdge, durationObject
 		and cd._fxSigRate == modRate
 		and cd._fxSigExp == expirationTime
 	then
+		-- Retry only a deferred appearance decision. Do not restart an
+		-- unchanged native timer merely because its alpha was restricted.
+		if cd._fxBlingDeferred then SetBling(cd, cd._fxSigShown == true) end
 		return cd._fxSigShown, false
 	end
 	local shown = SetCD(cd, start, duration, enable, drawEdge, durationObject, modRate, expirationTime)

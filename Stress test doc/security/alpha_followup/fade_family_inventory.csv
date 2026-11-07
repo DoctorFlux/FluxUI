@@ -1,0 +1,24 @@
+path,line,text
+NamePlates/ComboPoints.lua,38,if UIFrameFadeRemoveFrame then
+NamePlates/ComboPoints.lua,39,UIFrameFadeRemoveFrame(point.Highlight)
+NamePlates/ComboPoints.lua,40,UIFrameFadeRemoveFrame(point.Shine)
+NamePlates/ComboPoints.lua,81,if UIFrameFade and ComboPointShineFadeIn then
+NamePlates/ComboPoints.lua,82,"UIFrameFade(point.Highlight, {"
+UnitFrames/FluxCastBar.lua,1226,UIFrameFadeRemoveFrame(self)
+UnitFrames/FluxCastBar.lua,1261,UIFrameFadeRemoveFrame(self)
+UnitFrames/FluxCastBar.lua,1284,UIFrameFadeRemoveFrame(self)
+UnitFrames/FluxCastBar.lua,1291,"UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)"
+UnitFrames/FluxCastBar.lua,1806,UIFrameFadeRemoveFrame(castBar)
+UnitFrames/FluxCastBar.lua,1931,UIFrameFadeRemoveFrame(self) -- Remove any UIFrameFade effects
+UnitFrames/FluxLegacyComboPoints.lua,78,if UIFrameFadeRemoveFrame then
+UnitFrames/FluxLegacyComboPoints.lua,79,if point.Highlight then UIFrameFadeRemoveFrame(point.Highlight) end
+UnitFrames/FluxLegacyComboPoints.lua,80,if point.Shine then UIFrameFadeRemoveFrame(point.Shine) end
+UnitFrames/FluxLegacyComboPoints.lua,103,if UIFrameFadeIn then
+UnitFrames/FluxLegacyComboPoints.lua,104,"UIFrameFadeIn(playerComboHost, FADE_IN)"
+UnitFrames/FluxLegacyComboPoints.lua,114,if i > prevLast and cp.Highlight and cp.Shine and UIFrameFade and ComboPointShineFadeIn then
+UnitFrames/FluxLegacyComboPoints.lua,120,"UIFrameFade(cp.Highlight, fadeInfo)"
+UnitFrames/FluxSwingTimer.lua,1139,UIFrameFadeRemoveFrame(swingFrame)
+UnitFrames/FluxSwingTimer.lua,1150,UIFrameFadeRemoveFrame(swingFrame)
+UnitFrames/FluxSwingTimer.lua,1165,UIFrameFadeRemoveFrame(swingFrame)
+UnitFrames/FluxSwingTimer.lua,1167,"UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, swingFrame:GetAlpha(), 0)"
+UnitFrames/FluxSwingTimer.lua,1206,UIFrameFadeRemoveFrame(swingFrame)

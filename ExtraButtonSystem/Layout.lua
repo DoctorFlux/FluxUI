@@ -340,8 +340,21 @@ function Layout.AttachButton(host, btn, extra)
 	return slot
 end
 
+local layoutQueued = false
+
+local function FlushQueuedLayout()
+	layoutQueued = false
+	Layout.Flush()
+end
+
 function Layout.Request(reason)
-	Flux.Scheduler.Request("layout", "ebs", Layout.Flush, reason or "ebs.layout")
+	local callback
+	if not layoutQueued then
+		layoutQueued = true
+		callback = FlushQueuedLayout
+	end
+	-- Merge every reason, but enqueue only one full refresh before the frame.
+	Flux.Scheduler.Request("layout", "ebs", callback, reason or "ebs.layout")
 end
 
 function Layout.Flush()

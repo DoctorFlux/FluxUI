@@ -1,0 +1,40 @@
+-- Extend the existing real-source mouseover test without editing it.
+-- Native controls and secure target selection execute as Lua in a desktop model.
+local function read(path)
+    local f = assert(io.open(path, "rb")); local s = f:read("*a"); f:close()
+    return s:gsub("\r\n", "\n")
+end
+local fixture = read("tests/mouseover_native.lua")
+local marker = "    -- Combat changes read the new native CVar without protected attribute writes.\n"
+local at = assert(fixture:find(marker, 1, true), "fixture anchor changed")
+assert(not fixture:find(marker, at + #marker, true), "fixture anchor ambiguous")
+local injection = [=[
+    do
+        local steps, writesBefore = 0, f.parentWrites
+        local beforeFrames, beforeWraps = #f.frames, f.wrapCount
+        for _, combat in ipairs({ false, true }) do
+            f.combat = combat
+            for step = 0, 32767 do
+                -- Six binary axes cover every combination 512 times per combat state.
+                f.mouseover = step % 2 == 0
+                f.friendly = math.floor(step / 2) % 2 == 0
+                f.helpful = math.floor(step / 4) % 2 == 0
+                f.held = math.floor(step / 8) % 2 == 0
+                f.value = math.floor(step / 16) % 2 == 0 and "1" or "0"
+                local right = math.floor(step / 32) % 2 == 0
+                local button = right and "RightButton" or "LeftButton"
+                local expected = f.mouseover and f.held and f.value == "1" and f.friendly == f.helpful
+                local got = e.SecureButton_GetModifiedUnit(w, button)
+                check((got == "mouseover") == expected, branch .. " rapid native cursor/modifier/reaction selection")
+                check(w.attrs.unit == nil, branch .. " native cursor churn leaves no unit attribute")
+                steps = steps + 1
+            end
+        end
+        check(#f.frames == beforeFrames and f.wrapCount == beforeWraps and f.parentWrites == writesBefore,
+            branch .. " cursor churn adds no frames/wraps/parent writes")
+        print(("METRIC mouseover branch=%s selection_steps=%d combinations=64 per_combat_state=32768")
+            :format(branch, steps))
+        f.combat = false; f.value = "1"; f.mouseover, f.friendly, f.helpful, f.held = true, true, true, true
+    end
+]=]
+assert(load(fixture:sub(1, at - 1) .. injection .. fixture:sub(at), "@extended-mouseover-native", "t", _G))()

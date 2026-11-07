@@ -1,0 +1,295 @@
+{
+  "changeID": "RAID-MT-TARGET-HP-20261107",
+  "requirements": [
+    "REQ-RF-41"
+  ],
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T065258Z",
+    "capturedAtUTC": "2026-11-07T06:54:47.679106+00:00",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1712,
+    "availableOnDiskSettings": 158,
+    "zipHashVerification": "PASS",
+    "bundleVerification": "PASS",
+    "scope": "Full working tree changed during collection due concurrent edits; four MT target runtime owners verified unchanged against archive. On-disk settings only; no settings writes or native input.",
+    "scopedFiles": [
+      "RaidFrame/FluxRaidUnit.lua",
+      "RaidFrame/FluxRaidVisuals.lua",
+      "RaidFrame/FluxRaidPreview.lua",
+      "RaidFrame/FluxRaidFrame.xml"
+    ],
+    "sha256": {
+      "source.zip": "c979803444fe22cedcef4585f420de109b1b86366cafa50decb62da411c10d55",
+      "settings.zip": "1e548bc98b1d597fa3a6ecbf1980c6412738e338e13dffa21beedb15e343456f",
+      "history.bundle": "23b3957a93b4aa3de10c5415613faa561b72e6b987cf3556848cabc4458dc04a"
+    }
+  },
+  "baseline": {
+    "RaidFrame/FluxRaidUnit.lua": "48b70c3b14622f1cbe6be10a774629ad8f5c4bf1524dd3e72b2d06b844db176c",
+    "RaidFrame/FluxRaidVisuals.lua": "09ab1335c20c325019d9823d771ce5030f32b92bffae840c21edbdee64b92d05",
+    "RaidFrame/FluxRaidPreview.lua": "0423fedf4a43510b920399bbca7322a0da094c031b3943c9a679016fe8c9b403",
+    "RaidFrame/FluxRaidFrame.xml": "9834ee8053e353a6bc1add061aca8d39302eee7d90203b3d3b70c1dbe13f8826"
+  },
+  "candidate": {
+    "RaidFrame/FluxRaidUnit.lua": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95",
+    "RaidFrame/FluxRaidVisuals.lua": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132",
+    "RaidFrame/FluxRaidPreview.lua": "1f81e73306527521826c7d7e7b0f23722899891fcfb0fc9984143f4e8459c636",
+    "RaidFrame/FluxRaidFrame.xml": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581"
+  },
+  "behavior": "MT/MA target minis show the target name left and plain HP percent right on one centered row; HP fills the resource-free strip. No role prefix. Parent member health-text/resource settings cannot re-enable target resources or replace target percent. Pet minis and full members retain their policies.",
+  "implementation": "Mini non-pet check in power visibility, power paint and status format; mini chrome forces no power and reserves separate name/percent bounds using native small-font size. Native mini height remains the reserved half-height and falls back to existing Compat size. Preview includes a pooled plain mini target per displayed MT owner, sharing cell chrome, without aura widgets; reuse retires old target samples. Secure target unit routing/visibility/casts remain unchanged.",
+  "source": "Existing five pinned client templates/unit/health APIs retained; no new Blizzard API. Mini preview inherits the existing non-secure shared cell template; no native frame/profiles changed.",
+  "desktop": {
+    "pass": 208,
+    "fail": 0,
+    "syntaxFiles": 870,
+    "drift": {
+      "beforeCount": 870,
+      "afterCount": 870,
+      "unchanged": true,
+      "corpusSHA256": "56dc6255571d3f24a7c5695a8d68ce23281671236dc616fb3054abae02151c4b"
+    }
+  },
+  "pairs": [
+    {
+      "case": "unit",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: live: MT target always shows plain health percent instead of the parent health mode\nstack traceback:\n\t[C]: in function 'assert'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: in upvalue 'check'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:281: in local 'exercise'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:304: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid healer runtime: 404 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      }
+    },
+    {
+      "case": "unit",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid healer runtime: 404 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: live: MT target always shows plain health percent instead of the parent health mode\nstack traceback:\n\t[C]: in function 'assert'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: in upvalue 'check'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:281: in local 'exercise'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:304: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "unit",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: live: MT target always shows plain health percent instead of the parent health mode\nstack traceback:\n\t[C]: in function 'assert'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: in upvalue 'check'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:281: in local 'exercise'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:304: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid healer runtime: 404 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      }
+    },
+    {
+      "case": "unit",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid healer runtime: 404 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: live: MT target always shows plain health percent instead of the parent health mode\nstack traceback:\n\t[C]: in function 'assert'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: in upvalue 'check'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:281: in local 'exercise'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:304: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "unit",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: ...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: live: MT target always shows plain health percent instead of the parent health mode\nstack traceback:\n\t[C]: in function 'assert'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:8: in upvalue 'check'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:281: in local 'exercise'\n\t...-fa26882e0e03\\raid-mt-target-20261107\\runtime-replay.lua:304: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid healer runtime: 404 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      }
+    },
+    {
+      "case": "chrome",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_healer_visuals.lua:5: target preview reserves separate space for name and plain percentage\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:259: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "raid healer visuals: 673 checks passed (desktop only)\n"
+      }
+    },
+    {
+      "case": "chrome",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "raid healer visuals: 673 checks passed (desktop only)\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_healer_visuals.lua:5: target preview reserves separate space for name and plain percentage\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:259: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "chrome",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_healer_visuals.lua:5: target preview reserves separate space for name and plain percentage\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:259: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "raid healer visuals: 673 checks passed (desktop only)\n"
+      }
+    },
+    {
+      "case": "chrome",
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "raid healer visuals: 673 checks passed (desktop only)\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_healer_visuals.lua:5: target preview reserves separate space for name and plain percentage\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:259: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "case": "chrome",
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_healer_visuals.lua:5: target preview reserves separate space for name and plain percentage\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:259: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "raid healer visuals: 673 checks passed (desktop only)\n"
+      }
+    }
+  ],
+  "copies": [
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95"
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132"
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "sha256": "1f81e73306527521826c7d7e7b0f23722899891fcfb0fc9984143f4e8459c636"
+    },
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidFrame.xml",
+      "sha256": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "sha256": "1f81e73306527521826c7d7e7b0f23722899891fcfb0fc9984143f4e8459c636"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidFrame.xml",
+      "sha256": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "sha256": "1f81e73306527521826c7d7e7b0f23722899891fcfb0fc9984143f4e8459c636"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidFrame.xml",
+      "sha256": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidUnit.lua",
+      "sha256": "c934dc08e1988f10f2910e7366fb99346c3a41ccccf506ad1062a77c32184e95"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "sha256": "b9a010bde955501e8365e6db69cfc90407aa24e39cadc0decbeec7e576e73132"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "sha256": "1f81e73306527521826c7d7e7b0f23722899891fcfb0fc9984143f4e8459c636"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidFrame.xml",
+      "sha256": "cf6a0a9e116ef361260918ebab77812a740b497170292d1a9a79ef8f29185581"
+    }
+  ],
+  "native": {
+    "answer": "Yes, looks right",
+    "scenario": "User manually reloaded outside combat and checked an MT target: target name and HP percent visible, no resource bar or overlap.",
+    "scope": "Selected test client visual/function acceptance only; no independent build/window resample or other-client/native combat/taint/FPS claim."
+  },
+  "preserved": "Manager70percent baseline at1.00 and hidden native highlights remain accepted and passing; aura controls, threshold/shadow, grids, saved settings, owner MT resources and Flux casts preserved.",
+  "resources": "At most one reusable non-secure target preview per pooled MT owner; mini preview skips all12 synthetic aura widgets. No new addon event/ticker/timer. Target resource events stop before unit-power queries. No native CPU/FPS improvement claimed.",
+  "latestFollowupEvidence": "raid-mt-opacity-2026-11-07.json"
+}

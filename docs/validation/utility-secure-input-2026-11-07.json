@@ -1,0 +1,185 @@
+{
+  "changeID": "UTILITY-SECURE-INPUT-20261107",
+  "dateUTC": "2026-11-07T09:43:06.361648+00:00",
+  "requirement": "UTL-USE-04",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-input-20261107",
+    "sourceFiles": 1744,
+    "sourceZIP": "4ddb0ad9423c6fd0511fea8b6baa6d8c6e5b385dc70b2563b90099c1af8f643f",
+    "history": "Prior dated external Utility-mixed-20261107 history.bundle verified again before edits",
+    "settings": "121 current on-disk metadata files; prior external settings recovery verified previously; no direct WTF/profiler writes"
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "635a9a9e71ddd55cbcef773e79a237608389390af2d8de725bd446fbe46d2fb7"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.04988,
+      "output": "ility_secure_input.lua:5: utility does not execute mouseover macro on visible host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.16512,
+      "output": "Utility secure input: 8135 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02282,
+      "output": "ility_secure_input.lua:5: utility does not execute mouseover macro on visible host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.15301,
+      "output": "Utility secure input: 8135 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02322,
+      "output": "ility_secure_input.lua:5: utility does not execute mouseover macro on visible host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.15726,
+      "output": "Utility secure input: 8135 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.0236,
+      "output": "ility_secure_input.lua:5: utility does not execute mouseover macro on visible host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.15138,
+      "output": "Utility secure input: 8135 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02302,
+      "output": "ility_secure_input.lua:5: utility does not execute mouseover macro on visible host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.15657,
+      "output": "Utility secure input: 8135 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+    }
+  ],
+  "mutations": [
+    {
+      "name": "visible-body-bypass",
+      "exit": 1,
+      "output": "nput.lua:5: in upvalue 'check'\n\ttests/utility_secure_input.lua:94: in field 'RunMacroText'\n\tutility-native-input:458: in local 'handler'\n\tutility-native-input:755: in upvalue 'PerformAction'\n\tutility-native-input:792: in upvalue 'OnActionButtonPressAndHoldRelease'\n\tutility-native-input:824: in field 'SecureActionButton_OnClick'\n\ttests/utility_secure_input.lua:80: in method 'Click'\n\ttests/utility_secure_input.lua:126: in local 'press'\n\ttests/utility_secure_input.lua:150: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "fake-key-button",
+      "exit": 1,
+      "output": "lua: tests/utility_secure_input.lua:5: forever one action per press/release primary \nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:157: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing-modifier-bind",
+      "exit": 1,
+      "output": "lua: tests/utility_secure_input.lua:5: explicit item/spell modifier binding SHIFT-Q\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/utility_secure_input.lua:5: in local 'check'\n\ttests/utility_secure_input.lua:154: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "nativeSources": [
+    {
+      "branch": "live",
+      "version": "12.1.0.69283",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "5fd1efcbfc20b4d426187f55dbee52542d37befd1ef52082db1f466f1049929a",
+      "scope": "Actual source dispatcher replayed in desktop model; engine taint/real hardware unverified"
+    },
+    {
+      "branch": "forever",
+      "version": "1.60.1.70425",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23",
+      "scope": "Actual source dispatcher replayed in desktop model; engine taint/real hardware unverified"
+    },
+    {
+      "branch": "classic",
+      "version": "5.5.4.69155",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "8bc0c7f6cac0340a00bec729253a6768b1ff4baa7879b70a4fdb6f4f3b287fde",
+      "scope": "Actual source dispatcher replayed in desktop model; engine taint/real hardware unverified"
+    },
+    {
+      "branch": "classic_era",
+      "version": "1.15.9.68808",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_era\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "1c3b956e03752ab9f3bffd62ff7b5b545d57de8d8026f242c69d843cdbe32400",
+      "scope": "Actual source dispatcher replayed in desktop model; engine taint/real hardware unverified"
+    },
+    {
+      "branch": "classic_anniversary",
+      "version": "2.5.6.68775",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic_anniversary\\Interface\\AddOns\\Blizzard_FrameXML\\SecureTemplates.lua",
+      "sha256": "45a0e3164c63070f265e22028a829717c262cabecad21a4d090d2b663c22addf",
+      "scope": "Actual source dispatcher replayed in desktop model; engine taint/real hardware unverified"
+    }
+  ],
+  "focused": "8135 secure dispatch checks;3509 mixed face/count checks;1752 pet checks;6037 transmog checks",
+  "ownership": "Existing pooled hidden macro delegate reused; exact modifier actions there; visible host forwards type/typerelease+clickbutton; bare compiler macro cleared on delegate; existing bindings owner adds only explicitly assigned chords; nonwrap clients LeftButton; no new event/timer/ticker/frame owner",
+  "native": "Not run: no Witchcraft tool or background-safe native input capability. No foreground/mouse/keyboard/clipboard/gameplay actions. Actual secure combat input/taint/pixels/FPS remain pending per client. Desktop macro executor and access constraints are models.",
+  "sourceFreshness": "Existing dated on-disk FrameXML snapshots and previous source pins retained; no fresh upstream commit resolution claimed.",
+  "fullValidation": {
+    "report": "docs/validation/utility-secure-input-full-2026-11-07.json",
+    "syntaxFiles": 880,
+    "pass": 217,
+    "fail": 0,
+    "postRunDrift": []
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "sha256": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "sha256": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "sha256": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "sha256": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "sha256": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6",
+      "matches": true
+    }
+  ],
+  "initialRegression": "Initial full run rejected one obsolete bars source fixture forbidding LeftButton on all clients. Corrected to capability policy and actual native-source input replay; final full run passes.",
+  "documentationValidation": "PASS:913 classified sources;598 TOC/XML reachable;415 setting definitions;24 SavedVariables;14999 local links; inventory/evidence current",
+  "finalAudit": "Utility runtime identity and complete tested Lua corpus unchanged; all five installed manager copies match; no manual sync or game input."
+}

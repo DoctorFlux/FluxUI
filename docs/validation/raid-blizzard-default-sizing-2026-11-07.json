@@ -1,0 +1,792 @@
+{
+  "capturedAtUTC": "2026-11-07T01:00:31.806012+00:00",
+  "changeID": "RAID-BLIZZARD-SIZES-20261107",
+  "requirements": [
+    "REQ-RF-30",
+    "REQ-RF-31"
+  ],
+  "userContract": {
+    "outerSizes": "Match all Blizzard default sizes",
+    "scales": "No toggle; all size sliders1.00 use Blizzard sizing; resetting sizes returns1.00",
+    "fontFailure": "Screenshot showed oversized Offline/health text; final user accepted correction",
+    "preserved": "Flux dock/reverse member ordering, connected theme, bindings, visible timers/swipes, strict dispellable filter, class buffs,1..6 limits and transparency"
+  },
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T001240Z",
+    "sourceFiles": 1698,
+    "availableOnDiskSettingsFiles": 158,
+    "sourceZIP_SHA256": "c762530390f098f2d7d74fa15bf9e8bf82a16e5a3d81f945e3be97df1e44e62a",
+    "ZIPAndHistoryVerified": true,
+    "scope": "On-disk only; closed-client/live-memory state not asserted"
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidVisuals.lua": "80f809bfb42be2280ebbdb2fa921d17fe08d5f356ebc3493c71c7ea3e3fefc93",
+    "RaidFrame/FluxRaidAuras.lua": "d1677bb07472af4fa0b0a0bfda72892e5d96f9dc20586f42b9a998b31ace8567",
+    "RaidFrame/FluxRaidUnit.lua": "2be1133afeeb993ae6973428ba4f0decc91689d82c3153e2d5dc1d028ac36bd4",
+    "RaidFrame/FluxRaidLayout.lua": "6c85eeedef74f2310b45ca74073d7b37dac0898c3cdd6ffec9bf9a614199937c",
+    "RaidFrame/FluxRaidPreview.lua": "bf36f52c29533f3c9af6f5671827620f1082a7d8b2e76c44916a4f10e4958b0c",
+    "RaidFrame/FluxRaidPrediction.lua": "807f50c4cc0cc0021debc3730fab7e5eeacfa3a2ff5a9183ce340aa805cc2057",
+    "RaidFrame/FluxRaidFrame.xml": "721f5eaf138cf4975d533236df650d16d6a4ffe080a10331f2d8dd3444fbca8b",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "f91cf4a719f2d928377fd833a43562341ba14ae0cb6ea3b27a45326607a8c06e",
+    "AddonOptions/FluxOptionsDefaults.lua": "d6c5b57fb75a089b48d3d664a3ec493929b7c0446481a10d98d3e63c10fef715"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidVisuals.lua": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+    "RaidFrame/FluxRaidAuras.lua": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f",
+    "RaidFrame/FluxRaidUnit.lua": "23b708e4f1c29968cd3894b37d230a5316d4e27f92c79805a392065e83a559ad",
+    "RaidFrame/FluxRaidLayout.lua": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+    "RaidFrame/FluxRaidPreview.lua": "2b7df1388c6e9ea05166db750010fe1f28862178a7a921f2785eb816c42d2bae",
+    "RaidFrame/FluxRaidPrediction.lua": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+    "RaidFrame/FluxRaidFrame.xml": "9d9d0730f1bc3f522947143b13e3f2fbe21718b056f4b4b48ac6176fce3f22c0",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d",
+    "AddonOptions/FluxOptionsDefaults.lua": "ab00010e072ea1508853ad3493c7356170f894ae389953522d2d3bbbe75be3e7"
+  },
+  "upstreamHeads": {
+    "verifiedAtUTC": "2026-11-07",
+    "method": "GitHub connector fetch_commit using each branch ref; pinned sha retained",
+    "branches": [
+      {
+        "branch": "live",
+        "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "title": "12.1.5 (70783)",
+        "url": "https://github.com/Gethe/wow-ui-source/commit/297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "date": "2026-11-04T00:46:01Z"
+      },
+      {
+        "branch": "forever",
+        "sha": "5987a8e2304c1331346dc861d5ccacf4c510cf0f",
+        "title": "1.60.1 (70840)",
+        "url": "https://github.com/Gethe/wow-ui-source/commit/5987a8e2304c1331346dc861d5ccacf4c510cf0f",
+        "date": "2026-11-06T23:31:24Z"
+      },
+      {
+        "branch": "classic",
+        "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "title": "5.5.4 (70631)",
+        "url": "https://github.com/Gethe/wow-ui-source/commit/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "date": "2026-10-27T14:16:09Z"
+      },
+      {
+        "branch": "classic_era",
+        "sha": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "title": "1.15.9 (70576)",
+        "url": "https://github.com/Gethe/wow-ui-source/commit/4192ac60067fc55566182291bc67c85dd9b6794d",
+        "date": "2026-10-26T23:16:08Z"
+      },
+      {
+        "branch": "classic_anniversary",
+        "sha": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "title": "2.5.6 (70577)",
+        "url": "https://github.com/Gethe/wow-ui-source/commit/68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "date": "2026-10-26T23:16:20Z"
+      }
+    ]
+  },
+  "primarySourceArtifacts": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-native-default-size-20261107\\outer-default-size-findings.json",
+      "SHA256": "2e6da58dd88f03fa347a8e56995152ef6526899b4d86a2999a5705399eb7986d"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-native-default-size-20261107\\aura-sizing-source-manifest.json",
+      "SHA256": "3ef7fa3fb595aed881113810b255ac15aa246428737c4bc26336362644bbb591"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-native-default-size-20261107\\status-font-idempotency-pairs-20261107.json",
+      "SHA256": "4124bed7437d70fabde704191e5ba982ca04db73437ac39ae5c3deed85e2bbb0"
+    }
+  ],
+  "sizing": {
+    "sourceDefaults": "Public EditMode DEFAULT preset manager plus source display conversion; never active saved profiles. SourceModern98x44; native Classic preset72x36 where selected; explicit98x44 source fallback if managers unavailable.",
+    "relativeScales": "Frame/default width and height times stored member scales; power8xscale; normal11-square and boss/role16.5-square times aura scale; all defaults/fallbacks1. Manager applies requested scale directly with hidden0.85/MT0.9 factors removed.",
+    "nativeWidgets": "Healthinset1 both sides/bottom1/noextra divider; role17; ready20xcomponentScale; center22xcomponentScale; component=min(actualHeight/36,actualWidth/72); locale nameSmall/statusGameFontDisable; countNumberFontNormal;16px overflowglows atnative±7 offsets; miniheightmain/2.",
+    "join": "One-pixel connected overlap protects full native health/power sizing; replaces previous four-pixel overlap. Header reservations/mini wrappers/preview/topology read current dimensions dynamically.",
+    "fonts": "Status baseline comes from Font object metadata, not previously resized FontString; absolute size/file/flags and TextScale1 are reapplied.50 repeated refreshes perclient/locale and component changes cannot compound size.",
+    "reset": "New scoped Reset sizes sets only memberWidthScale/frameHeightScale/powerBarHeightScale/auraIconScale/raidManagerScale to1; full reset defaults also1. No sizing toggle or migration; existing stored requests unchanged until chosen reset.",
+    "auras": "One immutable native family,11/16.5 initialized sinks, uniform large layout slots, exact3x2 caps1..6, Classic helpfulboss native size distinction; strict boss group switches toHARMFUL|RAID alongside nonbossRAID, no unfiltered exception. No native child inspection.",
+    "fitLimit": "Higher custom aura scales respect usable fit;1.00 retains true native glyph sizes even when tinycustomframes/Classic72x36 plus six large slots cannot fit. UI exposes overlap constraint; sourcebaseline is not silently distorted.",
+    "intentionalFluxDifferences": "Visible fitted timers retained although native compact UI hidesduration; fonts use native base metadata. Flux extra leader/loot/raid-mark indicators have no nativecompactcounterpart and retain11px. Bronze theme, side blocks, counts, colors and opacity remain requested Flux features."
+  },
+  "desktop": {
+    "pass": 206,
+    "fail": 0,
+    "syntaxFiles": 868,
+    "sourceDrift": {
+      "beforeCount": 868,
+      "afterCount": 868,
+      "unchanged": true,
+      "corpusSHA256": "3309661cfc1f0bb5672d08736dcc757d0aef751c09197eb25dac616578da805b"
+    },
+    "pairedRegressions": {
+      "scope": "Five alternating fresh-process functional pairs per case; source/desktop checks, no native CPU/FPS timing.",
+      "sourceHashes": {
+        "native-defaults": {
+          "baseline": "80f809bfb42be2280ebbdb2fa921d17fe08d5f356ebc3493c71c7ea3e3fefc93",
+          "candidate": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f"
+        },
+        "auras": {
+          "baseline": "d1677bb07472af4fa0b0a0bfda72892e5d96f9dc20586f42b9a998b31ace8567",
+          "candidate": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f"
+        },
+        "options": {
+          "baseline": "f91cf4a719f2d928377fd833a43562341ba14ae0cb6ea3b27a45326607a8c06e",
+          "candidate": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d"
+        },
+        "prediction": {
+          "baseline": "807f50c4cc0cc0021debc3730fab7e5eeacfa3a2ff5a9183ce340aa805cc2057",
+          "candidate": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba"
+        }
+      },
+      "pairs": [
+        {
+          "case": "native-defaults",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_blizzard_default_sizes.lua:119: attempt to call a nil value (field 'GetBlizzardDefaultSizing')\nstack traceback:\n\ttests/raid_blizzard_default_sizes.lua:119: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "native-defaults",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_blizzard_default_sizes.lua:119: attempt to call a nil value (field 'GetBlizzardDefaultSizing')\nstack traceback:\n\ttests/raid_blizzard_default_sizes.lua:119: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "native-defaults",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_blizzard_default_sizes.lua:119: attempt to call a nil value (field 'GetBlizzardDefaultSizing')\nstack traceback:\n\ttests/raid_blizzard_default_sizes.lua:119: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "native-defaults",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_blizzard_default_sizes.lua:119: attempt to call a nil value (field 'GetBlizzardDefaultSizing')\nstack traceback:\n\ttests/raid_blizzard_default_sizes.lua:119: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "native-defaults",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_blizzard_default_sizes.lua:119: attempt to call a nil value (field 'GetBlizzardDefaultSizing')\nstack traceback:\n\ttests/raid_blizzard_default_sizes.lua:119: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: native flow wraps after three icons and grows down\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:281: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 12770 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 12770 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:293: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:293: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 12770 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 12770 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:293: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:293: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 12770 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "options",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:184: attempt to index a nil value (field 'resetSizes')\nstack traceback:\n\ttests/raid_aura_live_options.lua:184: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 415 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "options",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 415 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:184: attempt to index a nil value (field 'resetSizes')\nstack traceback:\n\ttests/raid_aura_live_options.lua:184: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "options",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:184: attempt to index a nil value (field 'resetSizes')\nstack traceback:\n\ttests/raid_aura_live_options.lua:184: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 415 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "options",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 415 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:184: attempt to index a nil value (field 'resetSizes')\nstack traceback:\n\ttests/raid_aura_live_options.lua:184: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "options",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:184: attempt to index a nil value (field 'resetSizes')\nstack traceback:\n\ttests/raid_aura_live_options.lua:184: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 415 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "prediction",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_prediction.lua:4: overflow indicators use Blizzard's sixteen-pixel sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_prediction.lua:4: in local 'check'\n\ttests/raid_healer_prediction.lua:135: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+          }
+        },
+        {
+          "case": "prediction",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_prediction.lua:4: overflow indicators use Blizzard's sixteen-pixel sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_prediction.lua:4: in local 'check'\n\ttests/raid_healer_prediction.lua:135: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "prediction",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_prediction.lua:4: overflow indicators use Blizzard's sixteen-pixel sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_prediction.lua:4: in local 'check'\n\ttests/raid_healer_prediction.lua:135: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+          }
+        },
+        {
+          "case": "prediction",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_prediction.lua:4: overflow indicators use Blizzard's sixteen-pixel sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_prediction.lua:4: in local 'check'\n\ttests/raid_healer_prediction.lua:135: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "prediction",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_prediction.lua:4: overflow indicators use Blizzard's sixteen-pixel sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_prediction.lua:4: in local 'check'\n\ttests/raid_healer_prediction.lua:135: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+          }
+        }
+      ],
+      "variation": "All20 baseline runs rejected; all20 candidate runs pass."
+    },
+    "fontRegressionPairs": {
+      "scope": "Fresh-process matched functional regressions only; no native rendering, taint, input or FPS claim.",
+      "lua": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE",
+      "test": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua",
+      "testSHA256": "407b33a076614f425c46c7aef9ee39f298b31365ea917a0befa5a4c0a0784a80",
+      "sources": {
+        "baseline": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\raid-native-default-size-20261107\\font-fix-baseline-FluxRaidVisuals.lua",
+          "sha256": "ece8969031279277f1725259929c25b04acb66d34c5e12170b9cf9a59e9f1237"
+        },
+        "candidate": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\RaidFrame\\FluxRaidVisuals.lua",
+          "sha256": "90640b55ee80bd5b7e2be14cfe57e7034790390e207901bed67a32372af96428"
+        }
+      },
+      "samples": [
+        {
+          "pair": 1,
+          "case": "baseline",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE: ...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: live: repeated status refresh reads the Font baseline and resets local text scaling\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:142: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "case": "candidate",
+          "returncode": 0,
+          "stdout": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n",
+          "stderr": ""
+        },
+        {
+          "pair": 2,
+          "case": "baseline",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE: ...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: live: repeated status refresh reads the Font baseline and resets local text scaling\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:142: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "case": "candidate",
+          "returncode": 0,
+          "stdout": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n",
+          "stderr": ""
+        },
+        {
+          "pair": 3,
+          "case": "baseline",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE: ...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: live: repeated status refresh reads the Font baseline and resets local text scaling\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:142: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "case": "candidate",
+          "returncode": 0,
+          "stdout": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n",
+          "stderr": ""
+        },
+        {
+          "pair": 4,
+          "case": "baseline",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE: ...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: live: repeated status refresh reads the Font baseline and resets local text scaling\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:142: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 4,
+          "case": "candidate",
+          "returncode": 0,
+          "stdout": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n",
+          "stderr": ""
+        },
+        {
+          "pair": 5,
+          "case": "baseline",
+          "returncode": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.EXE: ...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: live: repeated status refresh reads the Font baseline and resets local text scaling\nstack traceback:\n\t[C]: in function 'assert'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\t...ace\\AddOns\\_FluxUI\\tests\\raid_blizzard_default_sizes.lua:142: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 5,
+          "case": "candidate",
+          "returncode": 0,
+          "stdout": "Blizzard default raid sizes: 976 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "focus": "976 source/native-font/default checks;2936geometry;12770auras;659visual;135options/preview;415actualoptionsbridge;380unit;218prediction;3758manager;34joins;7layout. Mutation controls retained."
+  },
+  "native": {
+    "finalUserAnswer": "Yes, sizing and fonts look right",
+    "scenario": "User manually reloaded out of combat and clicked Party/Raid Reset sizes; question covered Offline/health text, allsize values1.00 and no sizing toggle.",
+    "scope": "Visual/function acceptance in selected test client; build/window not independently resampled in this check. Other-client native execution, exhaustive combat/taint/casts and FPS remain pending."
+  },
+  "distribution": {
+    "allFiveClientFoldersMatch": true,
+    "otherClientFilesVerified": 36,
+    "files": [
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidVisuals.lua",
+        "normalizedSHA256": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidAuras.lua",
+        "normalizedSHA256": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "normalizedSHA256": "23b708e4f1c29968cd3894b37d230a5316d4e27f92c79805a392065e83a559ad",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidLayout.lua",
+        "normalizedSHA256": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "normalizedSHA256": "2b7df1388c6e9ea05166db750010fe1f28862178a7a921f2785eb816c42d2bae",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidPrediction.lua",
+        "normalizedSHA256": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "RaidFrame/FluxRaidFrame.xml",
+        "normalizedSHA256": "9d9d0730f1bc3f522947143b13e3f2fbe21718b056f4b4b48ac6176fce3f22c0",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "normalizedSHA256": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_forever_",
+        "path": "AddonOptions/FluxOptionsDefaults.lua",
+        "normalizedSHA256": "ab00010e072ea1508853ad3493c7356170f894ae389953522d2d3bbbe75be3e7",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidVisuals.lua",
+        "normalizedSHA256": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidAuras.lua",
+        "normalizedSHA256": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "normalizedSHA256": "23b708e4f1c29968cd3894b37d230a5316d4e27f92c79805a392065e83a559ad",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidLayout.lua",
+        "normalizedSHA256": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "normalizedSHA256": "2b7df1388c6e9ea05166db750010fe1f28862178a7a921f2785eb816c42d2bae",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidPrediction.lua",
+        "normalizedSHA256": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "RaidFrame/FluxRaidFrame.xml",
+        "normalizedSHA256": "9d9d0730f1bc3f522947143b13e3f2fbe21718b056f4b4b48ac6176fce3f22c0",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "normalizedSHA256": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_era_",
+        "path": "AddonOptions/FluxOptionsDefaults.lua",
+        "normalizedSHA256": "ab00010e072ea1508853ad3493c7356170f894ae389953522d2d3bbbe75be3e7",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidVisuals.lua",
+        "normalizedSHA256": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidAuras.lua",
+        "normalizedSHA256": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "normalizedSHA256": "23b708e4f1c29968cd3894b37d230a5316d4e27f92c79805a392065e83a559ad",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidLayout.lua",
+        "normalizedSHA256": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "normalizedSHA256": "2b7df1388c6e9ea05166db750010fe1f28862178a7a921f2785eb816c42d2bae",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidPrediction.lua",
+        "normalizedSHA256": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "RaidFrame/FluxRaidFrame.xml",
+        "normalizedSHA256": "9d9d0730f1bc3f522947143b13e3f2fbe21718b056f4b4b48ac6176fce3f22c0",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "normalizedSHA256": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_anniversary_",
+        "path": "AddonOptions/FluxOptionsDefaults.lua",
+        "normalizedSHA256": "ab00010e072ea1508853ad3493c7356170f894ae389953522d2d3bbbe75be3e7",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidVisuals.lua",
+        "normalizedSHA256": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidAuras.lua",
+        "normalizedSHA256": "e44c9acda789aede34c4587b87fd959d9143de3752665e56a0be01549c76011f",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "normalizedSHA256": "23b708e4f1c29968cd3894b37d230a5316d4e27f92c79805a392065e83a559ad",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidLayout.lua",
+        "normalizedSHA256": "2decfbad757b032c07ab1e028c7694e6943e4662eb20d0817658c60ddc9b6c2b",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "normalizedSHA256": "2b7df1388c6e9ea05166db750010fe1f28862178a7a921f2785eb816c42d2bae",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidPrediction.lua",
+        "normalizedSHA256": "802d328312c5cb9eb9793a7b0ce0b04c17a96b0c70874acac7dc4ca0fd936bba",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "RaidFrame/FluxRaidFrame.xml",
+        "normalizedSHA256": "9d9d0730f1bc3f522947143b13e3f2fbe21718b056f4b4b48ac6176fce3f22c0",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "normalizedSHA256": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d",
+        "rawBytesEqualWorkingSource": true
+      },
+      {
+        "client": "_classic_",
+        "path": "AddonOptions/FluxOptionsDefaults.lua",
+        "normalizedSHA256": "ab00010e072ea1508853ad3493c7356170f894ae389953522d2d3bbbe75be3e7",
+        "rawBytesEqualWorkingSource": true
+      }
+    ],
+    "scope": "Four other copies already held the exact tested candidates when checked; no duplicate overwrite/copy performed by this task. Nine current working files match tested Lua manifest; XML checked by full tests and docs load graph."
+  },
+  "resources": "No sizing mode/framework or second native family. Same120 native icon buttons+1border per fullcell; partial4/5 can add120 once thenreuse; no new addon events/tickers/timers. Font assignment adds no recurring driver. Functional/source tests are not native CPU/FPS measurements.",
+  "workspace": "Main preserved; unrelated teleport/reagent/unit/map/glow work retained; no agent commit/push, foreground input, profiler change or direct WTF write.",
+  "finalVerification": {
+    "checkedAtUTC": "2026-11-07T01:04:01.926415+00:00",
+    "documentationGeneration": "PASS: 901 sources; 597 TOC/XML reachable; 388 setting definitions; 534 literal defaults",
+    "documentationValidation": "PASS: 901 classified sources; 24 SavedVariables; 14594 local links; source inventory/evidence current",
+    "productionHashAudit": "PASS: all nine production hashes and all 36 other-client copies match the tested candidates",
+    "gitWhitespaceCheck": "PASS: git -c core.whitespace=cr-at-eol diff --check, exit 0",
+    "nativeAcceptance": "User confirmed sizing and fonts look right after manual reload and Reset sizes; selected test client only"
+  }
+}

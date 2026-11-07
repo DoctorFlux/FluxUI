@@ -1,8 +1,8 @@
-## Interface: 120100, 16001, 11509, 20506, 50504
+## Interface: 120105, 120100, 16001, 11509, 20506, 50504
 ## Title: _FLUXUI
 ## Version: 0.0.1
 ## Notes: UI overhaul (Retail Midnight, Forever, Classic Era, Anniversary, MoP Classic)
-## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames
+## OptionalDeps: Blizzard_UnitFrame, Blizzard_CompactRaidFrames, Blizzard_AuraContainer
 ## Dep: Blizzard_CombatLog [AllowLoadGameType camelot]
 ## SavedVariables: FluxUI_DB, FluxUI_Options, FluxNonCombatGridDB, FluxFlyoutFavorites_Data, FluxUIGoldLedger, FluxSalvageDB, FluxInvDB, FluxUIInventoryDB, FluxPerfCaptureDB, FluxMailDB
 ## SavedVariablesPerCharacter: _FluxUI_CharSavedVars, FluxSpellBookSlotsDB, FluxNCUtilitySlotsDB, FluxSpellBindingProfilesDB, FluxSpellDirectBindDB, FluxSpellProfileBindingsDB, FluxBindingProfilesPerStateDB, FluxBindingDBv2, FluxBindingDB3, FluxTradeSkillScannerDB, TrinketMenuOptions, TrinketMenuPerOptions, TrinketMenuQueue, FluxNCFlyoutCharDB
@@ -39,6 +39,7 @@ Core\API\Threat.lua
 Core\API\Name.lua
 Core\ButtonFX\Charges.lua
 Core\ButtonFX\Click.lua
+Core\ButtonFX\ThreatGlow.lua
 Core\ButtonFX\Glow.lua
 Core\ButtonFX\Flash.lua
 Core\ButtonFX\Overlay.lua
@@ -355,6 +356,7 @@ UnitFrames\FluxUnitFrames_TargetOfTarget.lua
 UnitFrames\FluxUnitFrames_Pet.lua
 UnitFrames\FluxUnitFrames_PetAuraTooltip.lua
 UnitFrames\FluxUnitFrames_PetTarget.lua
+UnitFrames\FluxUnitFrames_Party.lua
 UnitFrames\FluxUnitFrames_FluxVsBlizzardRuntime.lua
 UnitFrames\FluxUnitFrames_BigDebuffs.lua
 UnitFrames\FluxForeverComboPoints.lua

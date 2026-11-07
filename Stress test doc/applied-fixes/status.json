@@ -1,0 +1,183 @@
+{
+  "change": "STRESS-FIXES-20261107",
+  "findings": {
+    "SEC-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "SEC-02": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "SEC-03": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "INPUT-001": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "INPUT-002": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "LOGIC-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "LOGIC-02": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-02": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-03": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-05": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-06": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "PERF-SEC-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-02": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-03": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-04": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-05": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "ALPHA-06": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "GEO-01": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "GEO-02": {
+      "status": "APPLIED; desktop regression PASS; native acceptance pending"
+    },
+    "USER-001": {
+      "status": "APPLIED public cast/swing fade ownership; model regression PASS; actual native failing owner and recurrence pending"
+    },
+    "PERF-04": {
+      "status": "APPLIED hidden-watch suspension; visible native-state polling retained to preserve input behavior; native cost pending"
+    },
+    "PERF-07": {
+      "status": "APPLIED bounded retry churn; coherent final publication after quiet retained; continuous native-list mutation has no safe freshness guarantee"
+    }
+  },
+  "additionalFindings": [
+    {
+      "id": "ALPHA-01",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "Bars/Blizzard.lua",
+      "line": 1023,
+      "title": "Secret quiet-grid alpha comparison",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Public zero skips writes; opaque/denied getters retain the previous repair write",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "ALPHA-02",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "UnitFrames/FluxSwingTimer.lua",
+      "line": 939,
+      "title": "Redundant cast-priority alpha comparison",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Remove getter while preserving every priority return",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "ALPHA-03",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "Core/ButtonFX/Charges.lua",
+      "line": 120,
+      "title": "Secret bling alpha comparison",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Keep public threshold policy; opaque/denied getter retains prior appearance and retries on normal paints while timer/clear lifecycle continues",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "ALPHA-04",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "Core/ButtonFX/Cast.lua",
+      "line": 497,
+      "title": "Secret cast/badge visibility alpha comparison",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Treat unreadable alpha as unknown/possibly visible after shown checks",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "ALPHA-05",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "ExtraButtonSystem/Engine/Button.lua",
+      "line": 2258,
+      "title": "Restricted effective-alpha readiness checks",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Narrowly contain denied getter and retain existing animation readiness",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "ALPHA-06",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P1",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "Core/ButtonFX/ThreatGlow.lua",
+      "line": 48,
+      "title": "Shared winning glow library and threat alpha arithmetic",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Private MIT-attributed owned renderer/public state; foreign shared libraries and overlays untouched",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "GEO-01",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P2",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "line": 889,
+      "title": "Secret health width comparison and prediction arithmetic",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Owned public dimensions and original full-width/max-health normalization; positive-heal/antiheal path included",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    },
+    {
+      "id": "GEO-02",
+      "classification": "conditional desktop secret-value failure",
+      "priority": "P2",
+      "clientScope": "Capability-specific shared paths; native secret behavior not emulated",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "line": 2393,
+      "title": "Secret fill-size striped texture arithmetic",
+      "observation": "Historical conditional reproducer and guarded controls retained in security follow-up reports",
+      "futureFix": "Owned clipping canvases preserve physical 32px phase without deriving dimensions from opaque native fill widths",
+      "regression": "Applied focused regressions plus combined canonical suite",
+      "report": "applied-fixes/README.md"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "change": "UF-AURA-MINUTE-20261107",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4be-c7d4-7bc0-947c-623d7ec53e3d\\unit-aura-minute",
+  "settings": "auraTarget.timersUnderMinute and auraFocus.timersUnderMinute, false default in account/character scopes",
+  "policy": "Blank text at remaining>=60 seconds, return below60; icons/stacks/swipes unchanged; existing combat deferral; one owned formatter per native aura container",
+  "intentionalFix": "Legacy GetCooldownTimes milliseconds converted to seconds before GetTime/threshold arithmetic",
+  "checkpoint": "raid-mt-target-2026-11-07 checkpoint all archive hashes verified; git bundle verify PASS; 2 existing on-disk Retail settings files; fresh affected source copies external",
+  "baselineSHA256": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "8db435e70b80b4bf1625f12ac65167d116a29e820042817cd63ab1ce04286f9e",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "249052607883d9bff3000880096b9e59cc9ad80e9d1ff1bfad800998f30560e0",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "25621441193d864f85f36655b76e2de13d680e1b4cbc46518da4f96272f0a1e8",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "508ea963bfdc6f69347b876ce95b90c9be0f66a994ac37769c7017c263a35747",
+    "AddonOptions/FluxOptionsDefaults.lua": "b942347161d307ba4903943e566184fc5050acd7dfc78bb8abd47385bdc1517e"
+  },
+  "candidateSHA256": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "390d024be8832e7482175393f6567cdf3d660bfe895894faba823495dee0cdb0",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "a50b0f178baeabe6ea527c24f1fca83dc3724b6377fa55116426003546be5e56",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "6b24bb9c0c5d5328cc80e9b223671bef8f274eac4bf15579052767e95f5ca3f7",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "6b24f342c29c24a9c3e82be8c55065cf74991acd3b6742952b7752a8c38485b5",
+    "AddonOptions/FluxOptionsDefaults.lua": "310f1613b7ff5fe308b1af3b8eadd0619c8eaab9d26e3ba94a45879d3e9b86df"
+  },
+  "trials": [
+    {
+      "pair": 1,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.021129600005224347,
+      "output": "lua: tests/unit_aura_timer_policy.lua:9: existing/missing saved keys retain all timers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:9: in local 'check'\n\ttests/unit_aura_timer_policy.lua:18: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.025202099997841287,
+      "output": "PASS 29 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 2,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019463500000711065,
+      "output": "lua: tests/unit_aura_timer_policy.lua:9: existing/missing saved keys retain all timers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:9: in local 'check'\n\ttests/unit_aura_timer_policy.lua:18: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.021366800006944686,
+      "output": "PASS 29 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 3,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019664899999042973,
+      "output": "lua: tests/unit_aura_timer_policy.lua:9: existing/missing saved keys retain all timers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:9: in local 'check'\n\ttests/unit_aura_timer_policy.lua:18: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.022771899995859712,
+      "output": "PASS 29 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 4,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01984410000295611,
+      "output": "lua: tests/unit_aura_timer_policy.lua:9: existing/missing saved keys retain all timers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:9: in local 'check'\n\ttests/unit_aura_timer_policy.lua:18: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.01858169999468373,
+      "output": "PASS 29 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 5,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02228389999800129,
+      "output": "lua: tests/unit_aura_timer_policy.lua:9: existing/missing saved keys retain all timers\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:9: in local 'check'\n\ttests/unit_aura_timer_policy.lua:18: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.026192600002104882,
+      "output": "PASS 29 unit aura minute-policy checks; native rendering pending\n"
+    }
+  ],
+  "scope": "Desktop state/rule/callback contracts only; native duration formatting/taint/combat/pixels/FPS pending all clients. No game input/settings/profiler changes."
+}

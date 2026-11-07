@@ -1,0 +1,93 @@
+{
+  "captured_at_utc": "2026-11-07T11:23:14.785017+00:00",
+  "command": "python \"Stress test doc/security/run_security.py\"",
+  "lua_version": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "evidence_scope": "Production Lua executed with mocked frames/APIs. No native taint VM, secure input, secret values, client CPU/FPS, rendering, or instance restrictions certified.",
+  "status": "COMPLETED_WITH_EXPECTED_DEFECT_REPRODUCTIONS",
+  "expected_assertions_per_sample": 121,
+  "expected_observations_per_sample": 21,
+  "clients": [
+    "Retail live model",
+    "Forever model",
+    "Classic Era model",
+    "Classic Anniversary model",
+    "Classic progression extra model"
+  ],
+  "combat_queue_requests_per_sample": 600000,
+  "combat_queue_completed_jobs_per_sample": 100005,
+  "findings": [
+    "SEC-01",
+    "SEC-02",
+    "SEC-03"
+  ],
+  "hash_algorithm": "SHA-256 raw file bytes",
+  "hashes_before": {
+    "Core/Engine/Combat.lua": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+    "Core/Engine/Restricted.lua": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+    "Core/Capabilities.lua": "180eb60c917bb1ca6394f85fae524f61f3fe0cd86bf4f148132167352c6abd1d",
+    "Core/SecureClickProxy.lua": "ae28af2b46cf8edd588f9e14cdd3dd59567d0e66ac455ed062b0f97691f34b94",
+    "Binding/Core/Apply.lua": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a",
+    "Binding/Input/FluxMouseoverKeybind.lua": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb",
+    "Blizzard/Hide.lua": "5458bf43b51428892b380d6fc70bfbd06172500ee59a8323145d368ccea2245b",
+    "Respec/FluxRespec_Apply.lua": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+    "Respec/FluxRespec_ActionBars.lua": "608d64a449ba3110fef900a563edbfe0d470a12faf2039e463f089eae47ae533",
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "NamePlates/Core.lua": "e9fe0c01da0b8c5ddc99277d8cafeac5ed37f790be31f839c69c894d8fe9ba6b",
+    "../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+    "Stress test doc/security/security_stress.lua.txt": "42d022daa9d8903d2758d8be946368e97874e9ca89f23929b5d6359810239abf"
+  },
+  "hashes_after": {
+    "Core/Engine/Combat.lua": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+    "Core/Engine/Restricted.lua": "ee811112e2be9a9f65f91856ea124f22652d8ada552867b966e44c12c3a7cc44",
+    "Core/Capabilities.lua": "180eb60c917bb1ca6394f85fae524f61f3fe0cd86bf4f148132167352c6abd1d",
+    "Core/SecureClickProxy.lua": "ae28af2b46cf8edd588f9e14cdd3dd59567d0e66ac455ed062b0f97691f34b94",
+    "Binding/Core/Apply.lua": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a",
+    "Binding/Input/FluxMouseoverKeybind.lua": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb",
+    "Blizzard/Hide.lua": "5458bf43b51428892b380d6fc70bfbd06172500ee59a8323145d368ccea2245b",
+    "Respec/FluxRespec_Apply.lua": "16916f21c5b5d91c037b63c2f48b38f57f71a9e2a75e1af14be563b106205a09",
+    "Respec/FluxRespec_ActionBars.lua": "608d64a449ba3110fef900a563edbfe0d470a12faf2039e463f089eae47ae533",
+    "Respec/FluxRespec_Compat.lua": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+    "NamePlates/Core.lua": "e9fe0c01da0b8c5ddc99277d8cafeac5ed37f790be31f839c69c894d8fe9ba6b",
+    "../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+    "Stress test doc/security/security_stress.lua.txt": "42d022daa9d8903d2758d8be946368e97874e9ca89f23929b5d6359810239abf"
+  },
+  "changed_sources": [],
+  "samples": [
+    {
+      "sample": 1,
+      "exit": 0,
+      "wall_seconds_desktop_only": 0.310498,
+      "stdout": "OBSERVED SEC-01 forever foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls\nCOMBAT live requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT forever requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_era requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_anniversary requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nOBSERVED SEC-02 live mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 forever mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_era mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_era cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic_anniversary mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_anniversary mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_anniversary cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-03 classic_era actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic_anniversary actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic actual running cancellation still leaves queued action-slot write on regen\nSECURITY EXPERIMENTS COMPLETE assertions=121 observations=21; expected defects reproduced; native taint not tested\n",
+      "stderr": ""
+    },
+    {
+      "sample": 2,
+      "exit": 0,
+      "wall_seconds_desktop_only": 0.271882,
+      "stdout": "OBSERVED SEC-01 forever foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls\nCOMBAT live requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT forever requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_era requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_anniversary requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nOBSERVED SEC-02 live mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 forever mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_era mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_era cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic_anniversary mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_anniversary mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_anniversary cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-03 classic_era actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic_anniversary actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic actual running cancellation still leaves queued action-slot write on regen\nSECURITY EXPERIMENTS COMPLETE assertions=121 observations=21; expected defects reproduced; native taint not tested\n",
+      "stderr": ""
+    },
+    {
+      "sample": 3,
+      "exit": 0,
+      "wall_seconds_desktop_only": 0.386644,
+      "stdout": "OBSERVED SEC-01 forever foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls\nCOMBAT live requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT forever requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_era requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_anniversary requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nOBSERVED SEC-02 live mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 forever mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_era mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_era cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic_anniversary mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_anniversary mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_anniversary cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-03 classic_era actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic_anniversary actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic actual running cancellation still leaves queued action-slot write on regen\nSECURITY EXPERIMENTS COMPLETE assertions=121 observations=21; expected defects reproduced; native taint not tested\n",
+      "stderr": ""
+    },
+    {
+      "sample": 4,
+      "exit": 0,
+      "wall_seconds_desktop_only": 0.320692,
+      "stdout": "OBSERVED SEC-01 forever foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls\nCOMBAT live requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT forever requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_era requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_anniversary requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nOBSERVED SEC-02 live mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 forever mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_era mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_era cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic_anniversary mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_anniversary mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_anniversary cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-03 classic_era actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic_anniversary actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic actual running cancellation still leaves queued action-slot write on regen\nSECURITY EXPERIMENTS COMPLETE assertions=121 observations=21; expected defects reproduced; native taint not tested\n",
+      "stderr": ""
+    },
+    {
+      "sample": 5,
+      "exit": 0,
+      "wall_seconds_desktop_only": 0.291649,
+      "stdout": "OBSERVED SEC-01 forever foreign named state/unit and unnamed state requests: 3 rejected, 0 original calls\nCOMBAT live requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT forever requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_era requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic_anniversary requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nCOMBAT classic requests=120000 sameKeyRuns=1 uniqueRuns=10000 regenJobsInOneFrame=10000\nOBSERVED SEC-02 live mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 forever mode=throw APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_era mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_era mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_era cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic_anniversary mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic_anniversary mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic_anniversary mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic_anniversary cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-02 classic mode=throw APPLY_DONE=true checkpoint=cleared placements=1\nOBSERVED SEC-02 classic mode=pickup APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=place APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-02 classic mode=combat APPLY_DONE=true checkpoint=cleared placements=0\nOBSERVED SEC-03 classic cancelled/completed pending bars still restore mutated snapshot 116 on regen\nOBSERVED SEC-03 classic_era actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic_anniversary actual running cancellation still leaves queued action-slot write on regen\nOBSERVED SEC-03 classic actual running cancellation still leaves queued action-slot write on regen\nSECURITY EXPERIMENTS COMPLETE assertions=121 observations=21; expected defects reproduced; native taint not tested\n",
+      "stderr": ""
+    }
+  ],
+  "native_checks": "NOT RUN, per user simulation-only request"
+}

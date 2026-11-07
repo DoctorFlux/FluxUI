@@ -116,6 +116,23 @@ local function SafeMember(membername, option, root, path, ...)
     return unpack(results, 2, 5)
 end
 
+local function ConfigureRange(row, option, root, path)
+    local minV = SafeMember("softMin", option, root, path)
+    if minV == nil then minV = SafeMember("min", option, root, path) end
+    local maxV = SafeMember("softMax", option, root, path)
+    if maxV == nil then maxV = SafeMember("max", option, root, path) end
+    local step = SafeMember("bigStep", option, root, path)
+    if step == nil then step = SafeMember("step", option, root, path) end
+    minV, maxV, step = tonumber(minV) or 0, tonumber(maxV) or 100, tonumber(step) or 0
+    -- Updating native bounds can emit OnValueChanged when the old displayed
+    -- value is clamped. A page refresh must never save that synthetic change.
+    local wasSetting = row._setting
+    row._setting = true
+    row:Configure(minV, maxV, step, SafeMember("isPercent", option, root, path))
+    row._setting = wasSetting
+    return minV
+end
+
 local function TextOf(option, root, path, field)
     local value = SafeMember(field, option, root, path)
     if type(value) == "string" then
@@ -567,10 +584,7 @@ local function AddControlRow(page, entry, parent)
         end)
     elseif option.type == "range" then
         row = W.CreateSlider(parent)
-        local minV = option.softMin or option.min or 0
-        local maxV = option.softMax or option.max or 100
-        local step = option.bigStep or option.step or 0
-        row:Configure(minV, maxV, step, option.isPercent)
+        ConfigureRange(row, option, root, path)
         row:SetOnChange(function(value)
             option._fluxSkipRefresh = true
             InvokeSetter(option, root, path, value)
@@ -637,7 +651,12 @@ local function AddControlRow(page, entry, parent)
         elseif option.type == "select" then
             self:SetValue(ReadGet(option, root, path))
         elseif option.type == "range" then
-            self:SetValue(ReadGet(option, root, path) or option.min or 0)
+            local value = ReadGet(option, root, path)
+            local description = TextOf(option, root, path, "desc")
+            local minV = ConfigureRange(self, option, root, path)
+            if self.SetDescription then self:SetDescription(description) end
+            self.searchText = SearchBlob(name, description)
+            self:SetValue(value or minV)
         elseif option.type == "color" then
             local r, g, b, a = ReadGet(option, root, path)
             self:SetValue(r, g, b, a)

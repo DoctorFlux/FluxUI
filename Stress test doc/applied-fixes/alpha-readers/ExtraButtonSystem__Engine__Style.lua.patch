@@ -1,0 +1,17 @@
+--- checkpoint/ExtraButtonSystem/Engine/Style.lua
++++ applied/ExtraButtonSystem/Engine/Style.lua
+@@ -275,8 +275,12 @@
+ 		return false
+ 	end
+ 	if tex.GetAlpha then
+-		local a = tex:GetAlpha()
+-		if type(a) == "number" and a < 0.01 then
++		local ok, a = pcall(tex.GetAlpha, tex)
++		local S = Flux.Secrets
++		local secret = (S and S.IsSecretValue) or issecretvalue
++		local access = (S and S.CanAccessValue) or canaccessvalue
++		if ok and not (secret and secret(a)) and (not access or access(a))
++			and type(a) == "number" and a < 0.01 then
+ 			return false
+ 		end
+ 	end

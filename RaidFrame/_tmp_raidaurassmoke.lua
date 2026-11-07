@@ -1,7 +1,8 @@
 -- lua RaidFrame/_tmp_raidaurassmoke.lua
--- Uses each supplied client's original CUF private-aura methods and original
--- restricted-container registration handlers. Engine registration is mocked;
--- WoW's protected execution and taint propagation still require an in-game check.
+-- Retained private-anchor ADAPTER contract only, using each supplied client's
+-- original CUF methods and restricted-container handlers. Production healer
+-- aura categories are tested separately; this does not load the unit renderer.
+-- Engine registration is mocked. Native taint/secure behavior remains pending.
 local root = (arg[0]:match("^(.*)[/\\]") or ".") .. "/../"
 local refs = root .. "../__AddonsForRef/"
 local function Load(path, env, ns)
@@ -68,6 +69,10 @@ local function Scenario(family, missingAPI)
         function w:IsShown() return self.shown end
         function w:SetShown(value) self.shown = value end
         function w:SetSize(width, height) self.width, self.height = width, height end
+        function w:SetWidth(width) self.width = width end
+        function w:SetHeight(height) self.height = height end
+        function w:SetGradient() end
+        function w:SetGradientAlpha() end
         function w:GetWidth() return self.width or 72 end
         function w:GetHeight() return self.height or 43 end
         function w:SetAllPoints(target) self.allPoints = target end
@@ -172,38 +177,29 @@ local function Scenario(family, missingAPI)
     if missingAPI == "remove" then env.C_UnitAuras.RemovePrivateAuraAnchor = nil end
     Load(root .. "RaidFrame/FluxRaidCompat.lua", env, ns)
     Load(root .. "RaidFrame/FluxRaidVisuals.lua", env, ns)
-    Load(root .. "RaidFrame/FluxRaidUnit.lua", env, ns)
+    local function RefreshAdapter(frame)
+        if frame._fluxPrivateAuraMixed then env.FluxRaidVisuals.UpdatePrivateAuraUnit(frame) end
+    end
     local button = Widget()
     button.auraHost = Widget(button)
-    env.FluxRaidUnit_OnLoad(button)
-    local buttonHandler = assert(button:GetScript("OnAttributeChanged"), "missing Flux unit attribute hook")
+    env.FluxRaidVisuals.ApplyCellChrome(button)
+    local configured = env.FluxRaidVisuals.ConfigurePrivateAuras(button)
+    -- Model a consumer's unit-change callback; this is not the production unit
+    -- binder and does not assert its current integration behavior.
+    local function buttonHandler(self, attribute, unit)
+        if attribute ~= "unit" then return end
+        self.unit, self.displayedUnit = unit, unit
+        RefreshAdapter(self)
+    end
+    button:SetScript("OnAttributeChanged", buttonHandler)
     if missingAPI then
-        assert(not button._fluxPrivateAuraMixed, "mixed native private-aura methods without API support")
-        auraData.HARMFUL = { { icon = 100, spellId = 1 }, { spellId = 2 }, { icon = 102, spellId = 3 } }
-        env.FluxRaid_BindUnit(button, "raid1")
-        assert(button._fluxAuraButtons and #button.buffFrames > 0, "missing classic aura fallback")
-        assert(button.debuffFrames[1]:IsShown() and button.debuffFrames[1].icon.texture == 100)
-        assert(button.debuffFrames[2]:IsShown() and button.debuffFrames[2].icon.texture == 102, "rejected aura consumed visible fallback slot")
-        db.displayOnlyDispellableDebuffs = true
-        -- Native HARMFUL|RAID membership is the capability check. These native
-        -- aura payloads deliberately omit canActivePlayerDispel.
-        auraData["HARMFUL|RAID"] = { { spellId = 3 }, { icon = 201, spellId = 4 }, { icon = 202, spellId = 5 } }
-        env.FluxRaidVisuals.PushAuraDisplayToFrame(button)
-        env.FluxRaid_UpdateAuras(button)
-        assert(auraReads["HARMFUL|RAID"], "fallback did not query native player-dispellable filter")
-        assert(button.debuffFrames[1]:IsShown() and button.debuffFrames[1].icon.texture == 201, "native dispellable aura was not displayed")
-        assert(button.debuffFrames[2]:IsShown() and button.debuffFrames[2].icon.texture == 202)
-        assert(not button.debuffFrames[3]:IsShown(), "stale non-dispellable fallback icon remained")
-        db.displayOnlyDispellableDebuffs = false
-        env.FluxRaidVisuals.PushAuraDisplayToFrame(button)
-        env.FluxRaid_UpdateAuras(button)
-        assert(button.debuffFrames[1].icon.texture == 100, "disabling filter did not restore ordinary fallback debuffs")
+        assert(configured == false and not button._fluxPrivateAuraMixed, "adapter mixed private methods without both registration APIs")
         assert(adds == 0 and #violations == 0)
-        print(family .. " missing " .. missingAPI .. " private API: aura fallback and native dispellable filtering OK")
+        print(family .. " missing " .. missingAPI .. " private API: retained adapter declines unsupported binding")
         return
     end
     local host = assert(button._fluxPrivateAuraHost or button.auraHost)
-    assert(host ~= button and host:GetParent() == button, "private-aura container must be a dedicated child")
+    assert(host ~= button and host:GetParent() == button._fluxTextLayer and button._fluxTextLayer:GetParent() == button._fluxContent, "private-aura container must be a dedicated child of the visual content")
     assert(button.SetPrivateAuraAnchorUnit == nil and button.IsContainer == nil, "native methods were mixed onto unit button")
     assert(button:GetScript("OnAttributeChanged") == buttonHandler)
     button:SetAttribute("unit", "raid1")
@@ -214,7 +210,7 @@ local function Scenario(family, missingAPI)
     assert(host:GetAttribute("max-buffs") == 3 and host:GetAttribute("max-debuffs") == 5)
     assert(host:GetAttribute("group-type") == env.CompactRaidGroupTypeEnum.Raid)
     assert(not button._fluxAuraButtons, "private-aura frames created duplicate Lua aura buttons")
-    env.FluxRaid_UpdateAuras(button)
+    RefreshAdapter(button)
     assert(host.anchorID == firstID and adds == 1 and removes == 0, "repeated paint churned anchor")
 
     db.auraFocusMode, db.displayBuffs = "buff", false
@@ -259,7 +255,7 @@ local function Scenario(family, missingAPI)
     assert(host:GetAttribute("ignore-debuffs") == false and host:GetAttribute("max-debuffs") == 3, "combat wrote deferred native settings")
     assert(button._fluxNeedsPrivateAuraSync, "same-unit combat settings update was not queued")
     combat = false
-    env.FluxRaid_UpdateAuras(button)
+    RefreshAdapter(button)
     assert(host:GetAttribute("ignore-debuffs") == true and host:GetAttribute("max-debuffs") == 5, "first post-combat paint lost deferred native settings")
     assert(host.anchorID == secondID and adds == settingsAdds and removes == settingsRemoves, "same-unit deferred settings rebuilt anchor")
     assert(not button._fluxNeedsPrivateAuraSync, "same-unit deferred settings retained dirty flag")
@@ -271,7 +267,7 @@ local function Scenario(family, missingAPI)
     assert(adds == combatAdds and removes == combatRemoves and host.anchorID == secondID, "combat modified anchor")
     assert(button._fluxNeedsPrivateAuraSync and queues > 0, "combat aura change was not queued")
     combat = false
-    env.FluxRaid_UpdateAuras(button)
+    RefreshAdapter(button)
     local thirdID = assert(host.anchorID)
     assert(thirdID ~= secondID and not anchors[secondID] and anchors[thirdID].unitToken == "raid3", "deferred combat rebind not applied")
     assert(not button._fluxNeedsPrivateAuraSync, "aura dirty flag not cleared after retry")
@@ -285,7 +281,7 @@ local function Scenario(family, missingAPI)
     button:SetAttribute("unit", nil)
     assert(host.anchorID == fourthID and button._fluxNeedsPrivateAuraSync, "combat unbind did not defer cleanup")
     combat = false
-    env.FluxRaid_UpdateAuras(button)
+    RefreshAdapter(button)
     assert(not host.anchorID and not anchors[fourthID], "deferred unbind left stale anchor")
 
     -- Native binding writes privateAuraUnit before engine registration. Retrying
@@ -293,13 +289,13 @@ local function Scenario(family, missingAPI)
     failNextAdd = true
     button:SetAttribute("unit", "raid5")
     assert(not host.anchorID and host.privateAuraUnit == "raid5" and button._fluxNeedsPrivateAuraSync, "failed initial anchor did not remain retryable")
-    env.FluxRaid_UpdateAuras(button)
+    RefreshAdapter(button)
     assert(host.anchorID and anchors[host.anchorID].unitToken == "raid5" and not button._fluxNeedsPrivateAuraSync, "same-unit retry did not recover failed anchor creation")
 
     local mini, previousAdds = Widget(), adds
     mini._fluxRaidMini = true
     assert(env.FluxRaidVisuals.ConfigurePrivateAuras(mini) == false)
-    env.FluxRaid_UpdateAuras(mini)
+    RefreshAdapter(mini)
     assert(not mini._fluxPrivateAuraMixed and not mini._fluxAuraButtons and adds == previousAdds, "mini acquired aura infrastructure")
     for k, fn in pairs(nativeContainer) do assert(env.ContainerPrivateAuraBehaviorMixin[k] == fn, "replaced native container method " .. k) end
     for k, fn in pairs(nativeIndividual) do assert(env.CompactUnitIndividualPrivateAuraAnchorMixin[k] == fn, "replaced native individual-anchor method " .. k) end
@@ -312,4 +308,4 @@ for _, family in ipairs({ "forever", "live", "classic_era", "classic_anniversary
     Scenario(family, "add")
     Scenario(family, "remove")
 end
-print("Raid aura smoke OK (4 supplied clients, native methods retained; engine taint requires in-game validation)")
+print("Retained private-anchor adapter smoke OK (4 source snapshots; production category integration and engine taint require separate validation)")

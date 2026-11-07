@@ -1,5 +1,12 @@
 # Dependencies, ports and reference provenance
 
+6 November healer-frame reference: HealKit0.65.0 was inspected read-only under
+its all-rights-reserved license. The rewrite is independently authored; no
+HealKit implementation or custom art was copied. Original Blizzard art8036209
+was inspected as reference, while the final connected border references the original Blizzard bronze
+texture through native APIs, with owned fallback colors. Current per-client Gethe pins, reference identities and scope
+are in [the rewrite record](RAID_HEALKIT_REWORK.md).
+
 Runtime dependencies, embedded libraries, explicit ports and design references are different relationships. Local comments establish attribution/intent, not a complete historical or license audit. See [assets](34-assets.md), [source coverage](30-source-coverage.md) and [integrations](29-integrations.md).
 
 ## Runtime companions and embedded libraries

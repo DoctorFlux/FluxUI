@@ -50,6 +50,7 @@ local function object(name, parent)
 	function value:SetFrameStrata() end
 	function value:GetFrameStrata() return "HIGH" end
 	function value:SetScale(scale) self.scale = scale end
+	function value:GetScale() return self.scale or 1 end
 	function value:GetSize() return self.width or 36, self.height or 36 end
 	function value:SetClampedToScreen() end
 	function value:SetMovable() end

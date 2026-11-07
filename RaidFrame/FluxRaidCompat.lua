@@ -14,7 +14,7 @@ local pcall = pcall
 local pairs = pairs
 
 local GROUP_COUNT = 8
-local GRP_SPACING = 2
+local GRP_SPACING = 0
 local MTMA_UNITS_PER_COLUMN = 4
 
 FluxRaidCompat.GROUP_COUNT = GROUP_COUNT
@@ -24,10 +24,12 @@ FluxRaidCompat.CHAT_TAB_LIFT = 28
 FluxRaidCompat.UNITS_PER_COLUMN = 5
 FluxRaidCompat.GROUP_LABEL_EXTRA = 14
 FluxRaidCompat.MTMA_TARGET_HEIGHT = 18
-FluxRaidCompat.MTMA_TARGET_GAP = 2
+FluxRaidCompat.MTMA_TARGET_GAP = -4
 FluxRaidCompat.MTMA_MAX_COLUMNS = 10
 FluxRaidCompat.MTMA_EXTRA_Y_FOR_FOUR_PLUS = 60
-FluxRaidCompat.HEADER_UNIT_YOFFSET = -1
+-- Positive native yOffset moves the next TOP up toward the previous BOTTOM.
+-- The user's requested physical spacing is -4px (four pixels of overlap).
+FluxRaidCompat.HEADER_UNIT_YOFFSET = 4
 
 FluxRaidState = FluxRaidState or {
     pendingCombatWork = {},
@@ -45,9 +47,8 @@ local function FluxAPI()
 end
 
 local function IsSecretValue(v)
-    if v == nil then
-        return false
-    end
+    local native = rawget(_G, "issecretvalue") or rawget(_G, "IsSecretValue")
+    if native then return native(v) end
     local a = API()
     if a.IsSecretValue then
         local ok, res = pcall(a.IsSecretValue, v)
@@ -220,32 +221,55 @@ function FluxRaidCompat.ApplyRangeAlpha(frame)
     if not frame or not frame.SetAlpha then
         return
     end
-    local opt = frame.optionTable
-    if not opt or not opt.fadeOutOfRange then
-        return
+    local target = frame._fluxContent or frame
+    local function SetAlpha(alpha)
+        target:SetAlpha(alpha)
+        for _, mirror in pairs(frame._fluxRangeMirrors or {}) do mirror:SetAlpha(alpha) end
     end
+    local function SetAlphaFromBoolean(value, inAlpha, outAlpha)
+        target:SetAlphaFromBoolean(value, inAlpha, outAlpha)
+        for _, mirror in pairs(frame._fluxRangeMirrors or {}) do
+            if mirror.SetAlphaFromBoolean then mirror:SetAlphaFromBoolean(value, inAlpha, outAlpha)
+            elseif not IsSecretValue(value) then mirror:SetAlpha(value and inAlpha or outAlpha) end
+        end
+    end
+    local opt = frame.optionTable
+    local visuals = rawget(_G, "FluxRaidVisuals") or {}
+    local base = visuals.FRAME_BASE_ALPHA or 1
+    if not opt or not opt.fadeOutOfRange then SetAlpha(base); return end
     local unit = frame.displayedUnit or frame.unit
     if not FluxRaidCompat.UnitTokenValid(unit) then
         return
     end
-    local visuals = rawget(_G, "FluxRaidVisuals") or {}
-    local base = visuals.FRAME_BASE_ALPHA or 1
-    local inAlpha = base * (visuals.RANGE_ALPHA_IN_RANGE or 0.9)
+    local targetMini=frame._fluxRaidMini and not frame._fluxExtraPet
+    local inAlpha = targetMini and base or base * (visuals.RANGE_ALPHA_IN_RANGE or 0.9)
     local outAlpha = base * (visuals.RANGE_ALPHA_OUT_OF_RANGE or 0.44)
-    local inRange = ReadUnitInRange(unit)
+    local connected = UnitIsConnected and UnitIsConnected(unit)
+    if not IsSecretValue(connected) and connected == false then
+        SetAlpha(base)
+        return
+    end
+    local inRange, checked = ReadUnitInRange(unit)
+    -- Group range checks are often unavailable for an enemy MT target.
+    -- Unknown range must not look like a confirmed far-away target.
+    if targetMini and (IsSecretValue(checked) or checked~=true) then
+        SetAlpha(base)
+        frame.outOfRange=false
+        return
+    end
     -- issecretvalue first so a later nil check never touches a secret boolean.
-    if frame.SetAlphaFromBoolean then
+    if target.SetAlphaFromBoolean then
         if IsSecretValue(inRange) or inRange ~= nil then
-            pcall(frame.SetAlphaFromBoolean, frame, inRange, inAlpha, outAlpha)
+            SetAlphaFromBoolean(inRange, inAlpha, outAlpha)
         else
-            frame:SetAlpha(inAlpha)
+            SetAlpha(inAlpha)
         end
         return
     end
     if FluxRaidCompat.GetOutOfRange(frame) then
-        frame:SetAlpha(outAlpha)
+        SetAlpha(outAlpha)
     else
-        frame:SetAlpha(inAlpha)
+        SetAlpha(inAlpha)
     end
 end
 
@@ -334,7 +358,8 @@ function FluxRaidCompat.HasPrivateAuraContainer()
 end
 
 function FluxRaidCompat.HasRangeAlphaBoolean(frame)
-    return frame and type(frame.SetAlphaFromBoolean) == "function"
+    local target = frame and (frame._fluxContent or frame)
+    return target and type(target.SetAlphaFromBoolean) == "function"
 end
 
 --- 0–100 health for StatusBar:SetValue. Secret values are returned untouched.
@@ -346,13 +371,13 @@ function FluxRaidCompat.GetHealthPercent(unit)
     local a = API()
     if a.GetHealthPercent100 then
         local ok, v = pcall(a.GetHealthPercent100, unit)
-        if ok and v ~= nil then
+        if ok and (IsSecretValue(v) or v ~= nil) then
             return v
         end
     end
     if GetHealthPercent100 then
         local ok, v = pcall(GetHealthPercent100, unit)
-        if ok and v ~= nil then
+        if ok and (IsSecretValue(v) or v ~= nil) then
             return v
         end
     end
@@ -383,13 +408,13 @@ function FluxRaidCompat.GetPowerPercent(unit, powerType)
     local a = API()
     if a.GetPowerPercent100 then
         local ok, v = pcall(a.GetPowerPercent100, unit, powerType)
-        if ok and v ~= nil then
+        if ok and (IsSecretValue(v) or v ~= nil) then
             return v
         end
     end
     if GetPowerPercent100 then
         local ok, v = pcall(GetPowerPercent100, unit, powerType)
-        if ok and v ~= nil then
+        if ok and (IsSecretValue(v) or v ~= nil) then
             return v
         end
     end

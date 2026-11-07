@@ -5,6 +5,7 @@
 local addonName, ns = ...
 local Flux = ns.Flux
 local Bars = Flux.Bars
+local isSecretValue = issecretvalue or IsSecretValue
 
 local ProgramFace = {}
 Bars.ProgramFace = ProgramFace
@@ -663,7 +664,8 @@ local function UnitNameSafe(unit)
 		return nil
 	end
 	local ok, name = pcall(UnitName, unit)
-	if ok and type(name) == "string" and name ~= "" then
+	if ok and not (isSecretValue and isSecretValue(name))
+		and type(name) == "string" and name ~= "" then
 		return name
 	end
 	return nil
@@ -737,7 +739,8 @@ local function ChannelBit()
 		return "0"
 	end
 	local ok, name = pcall(UnitChannelInfo, "player")
-	return (ok and type(name) == "string" and name ~= "") and "1" or "0"
+	return (ok and not (isSecretValue and isSecretValue(name))
+		and type(name) == "string" and name ~= "") and "1" or "0"
 end
 
 -- Snapshots, not names: two enemies (or two friends) are the same [harm]/[help]

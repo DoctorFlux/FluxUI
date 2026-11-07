@@ -1,0 +1,68 @@
+{
+  "changeID": "PARTY-AURA-PORTRAIT-LAYER-20261107",
+  "requirement": "REQ-RF-75",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-aura-layer-20261107T132214Z\\checkpoint.json",
+  "existingRecovery": "Raid-rewrite-20261107T082357Z external complete history/settings retained and available; no live settings writes",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+    "tests/raid_party_frames.lua": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411"
+  },
+  "beforeOrdering": {
+    "auras": 60,
+    "portraitIndicators": 80,
+    "cast": 110
+  },
+  "afterOrdering": {
+    "auras": 90,
+    "portraitIndicators": 80,
+    "cast": 110
+  },
+  "scope": "Normal party live/preview shared factory; native and readable aura rows inherit raised host. No compact raid styling change.",
+  "preserved": "Aura geometry, limits, strict dispellable filters, cooldown swipe/time fonts, opacity, tooltip/binding behavior, unit frame geometry and cast header priority",
+  "tests": {
+    "party": 865,
+    "auraRenderer": 12776,
+    "whole": "228/229 scripts PASS; 893 syntax files/0 failures.",
+    "failures": [
+      {
+        "path": "tests/idle_unit_geometry.lua",
+        "exit": 1,
+        "wallSeconds": 0.0219,
+        "output": "lua: unit-owned-geometry-live:320: attempt to call a nil value (global 'PredictionGeometry')\nstack traceback:\n\tunit-owned-geometry-live:320: in field 'UpdateHealPrediction'\n\ttests\\idle_unit_geometry.lua:127: in method 'paint'\n\ttests\\idle_unit_geometry.lua:148: in local 'both'\n\ttests\\idle_unit_geometry.lua:152: in local 'exercise'\n\ttests\\idle_unit_geometry.lua:232: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "corpusDrift": [
+      "Respec/FluxRespec_Consumables.lua",
+      "Respec/FluxRespec_PresetBundle.lua",
+      "tests/hover_children_varargs.lua",
+      "tests/prediction_public_geometry.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ]
+  },
+  "resources": "One initial host frame-level offset change; existing layers reused; no new frame/event/hook/timer/ticker/recurring work. No native timing benchmark for low-impact ordering change.",
+  "nativePending": "Native portrait/aura overlap and opacity visual confirmation, combat/taint/FPS per client; desktop source/mock layer assertions are not native rendering certification.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "finalFocusedRerun": "865 party and12776 aura checks PASS after unrelated Shared source updates",
+  "documentationCheck": "Documentation validation FAILED:\n- Recorded verification predates current source: Respec/FluxRespec_Consumables.lua\n- Recorded verification predates current source: Respec/FluxRespec_PresetBundle.lua\n- Recorded verification predates current source: tests/hover_children_varargs.lua\n- Recorded verification predates current source: tests/prediction_public_geometry.lua\n- Recorded verification predates current source: UnitFrames/FluxUnitFrames_Shared.lua\n5 issue(s); checker made no edits.\n"
+}

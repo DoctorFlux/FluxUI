@@ -877,8 +877,13 @@ local function AuraCountdownSetText(fs, text)
 	if not fs._fluxFontReady then
 		ApplyAuraCountdownFont(fs, 30)
 	end
-	if fs._fluxFontReady and fs.SetText then
-		pcall(fs.SetText, fs, text or "")
+	-- This text is owned here; native countdown digits reconcile separately.
+	text = text or ""
+	if fs._fluxFontReady and fs.SetText and fs._fluxStanceAuraLastText ~= text then
+		local ok = pcall(fs.SetText, fs, text)
+		if ok then
+			fs._fluxStanceAuraLastText = text
+		end
 	end
 end
 
@@ -1016,36 +1021,48 @@ function Stance.EnsureAuraCountdown(btn)
 	return fs
 end
 
+local function UpdateAuraCountdown(btn, now)
+	local fs = btn._fluxStanceAuraText
+	local holder = btn._fluxStanceAuraHolder
+	local widget = btn.Widget
+	local shown = widget and (not widget.IsShown or widget:IsShown())
+	local cd = btn.WCooldown or (widget and (widget.cooldown or widget.Cooldown))
+	local rem = AuraRemainSeconds(btn, cd, now)
+	local hasTimer = PublicNumber(btn.StanceBuffExpirationTime)
+		or (PublicNumber(btn.StanceBuffCooldownStart) and PublicNumber(btn.StanceBuffCooldownDuration))
+	if not fs or not shown or not ExtraAuraTimerOwned(btn) or not hasTimer or rem <= 0.05 then
+		auraCountdownActive[btn] = nil
+		AuraCountdownSetText(fs, "")
+		if holder then
+			holder:Hide()
+		end
+		return false
+	end
+	HideBlizzardAuraDigits(cd)
+	AuraCountdownSetText(fs, FormatAuraRemain(rem))
+	if holder then
+		holder:Show()
+	end
+	return true
+end
+
+local function StopAuraCountdownDriver()
+	if auraCountdownDriver then
+		auraCountdownDriver:SetScript("OnUpdate", nil)
+		auraCountdownDriver:Hide()
+	end
+end
+
 local function AuraCountdownTick()
 	local now = (GetTime and GetTime()) or 0
 	local any = false
 	for btn in pairs(auraCountdownActive) do
-		local fs = btn._fluxStanceAuraText
-		local holder = btn._fluxStanceAuraHolder
-		local widget = btn.Widget
-		local shown = widget and (not widget.IsShown or widget:IsShown())
-		local cd = btn.WCooldown or (widget and (widget.cooldown or widget.Cooldown))
-		local rem = AuraRemainSeconds(btn, cd, now)
-		local hasTimer = PublicNumber(btn.StanceBuffExpirationTime)
-			or (PublicNumber(btn.StanceBuffCooldownStart) and PublicNumber(btn.StanceBuffCooldownDuration))
-		if not fs or not shown or not ExtraAuraTimerOwned(btn) or not hasTimer or rem <= 0.05 then
-			auraCountdownActive[btn] = nil
-			AuraCountdownSetText(fs, "")
-			if holder then
-				holder:Hide()
-			end
-		else
+		if UpdateAuraCountdown(btn, now) then
 			any = true
-			HideBlizzardAuraDigits(cd)
-			AuraCountdownSetText(fs, FormatAuraRemain(rem))
-			if holder then
-				holder:Show()
-			end
 		end
 	end
-	if not any and auraCountdownDriver then
-		auraCountdownDriver:SetScript("OnUpdate", nil)
-		auraCountdownDriver:Hide()
+	if not any then
+		StopAuraCountdownDriver()
 	end
 end
 
@@ -1109,7 +1126,11 @@ function Stance.SyncAuraCountdown(btn)
 	end
 	auraCountdownActive[btn] = true
 	EnsureAuraCountdownDriver()
-	AuraCountdownTick()
+	-- Paint this changed button now; the frame driver reconciles the full set.
+	UpdateAuraCountdown(btn, (GetTime and GetTime()) or 0)
+	if not next(auraCountdownActive) then
+		StopAuraCountdownDriver()
+	end
 end
 
 local function FormArmorIsActive(btn)

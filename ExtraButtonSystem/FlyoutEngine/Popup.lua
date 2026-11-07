@@ -239,10 +239,17 @@ local function CommitRestockTarget(itemId, value)
 end
 
 local function CountFont(kid)
+	local owner = kid._fluxRestockCountOwner
+	if owner then return owner.WCount end
 	return kid.WCount or kid.Count or (kid.GetName and _G[kid:GetName() .. "Count"])
 end
 
 local function PaintReagentCount(kid, def)
+	local owner = kid._fluxRestockCountOwner
+	if owner then
+		if owner.UpdateTextCount then owner:UpdateTextCount() end
+		return
+	end
 	local fs = CountFont(kid)
 	if not fs then
 		return
@@ -285,6 +292,11 @@ local function HideRestockEdit(kid)
 	if fs then
 		fs:Show()
 	end
+end
+
+function Popup.CloseReagentRestockEdit(kid)
+	HideRestockEdit(kid)
+	if kid then PaintReagentCount(kid, kid._fluxFlyoutDef) end
 end
 
 local function EnsureRestockEdit(kid)
@@ -356,24 +368,27 @@ local function EnsureRestockEdit(kid)
 	return editBox
 end
 
-local function ToggleRestockEdit(kid)
-	if not kid then
+local function ToggleRestockEdit(kid, itemId)
+	if not kid or (InCombatLockdown and InCombatLockdown()) then
 		return
 	end
 	local def = kid._fluxFlyoutDef
-	if not IsReagentDef(def) then
+	if not itemId and not IsReagentDef(def) then
 		return
 	end
+	itemId = tonumber(itemId) or ReagentItemId(kid, def)
+	if not itemId or itemId <= 0 then return end
+	local previousItem = kid._reagentItemId
 	local box = EnsureRestockEdit(kid)
 	if not box then
 		return
 	end
-	if box:IsShown() then
+	if box:IsShown() and previousItem == itemId then
 		HideRestockEdit(kid)
 		PaintReagentCount(kid, def)
 		return
 	end
-	local itemId = ReagentItemId(kid, def)
+	if box:IsShown() then HideRestockEdit(kid) end
 	kid._reagentItemId = itemId
 	box._fluxRestockEnterCommit = nil
 	box._fluxRestockEscapeCancel = nil
@@ -386,6 +401,9 @@ local function ToggleRestockEdit(kid)
 		fs:Hide()
 	end
 end
+
+-- A single-destination travel host uses the same item editor as reagent rows.
+Popup.ToggleReagentRestockEdit = ToggleRestockEdit
 
 local function SpellAttr(spell)
 	if spell == nil then

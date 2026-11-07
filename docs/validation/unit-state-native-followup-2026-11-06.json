@@ -1,0 +1,86 @@
+{
+  "captureUTC": "2026-11-06T22:51:05.1548189Z",
+  "scope": "Actual Forever background-window read-only probes. No native combat/secret-value reproduction, pixel parity or FPS claim.",
+  "client": {
+    "pid": 24848,
+    "window": 133690,
+    "directory": "_forever_",
+    "version": "1.60.1",
+    "build": "Awaiting separate explicit build probe"
+  },
+  "sourceStage": "Earlier unit-state five-file fix copied22:20UTC; live HLO+PCO reset functions both present. New badge/dead-snapshot follow-up not yet installed.",
+  "observed": {
+    "scriptProfile": "0",
+    "HLOResetIdentityForFrame": "function",
+    "PCOResetIdentityForFrame": "function",
+    "BugTabsBefore": 0,
+    "BugTabsAfterNames": 0,
+    "nameCalls": {
+      "player": {
+        "isPlayer": true,
+        "displaySecret": false
+      },
+      "target": {
+        "isPlayer": false,
+        "displaySecret": false
+      },
+      "focus": {
+        "isPlayer": false,
+        "displaySecret": false
+      }
+    },
+    "loaded": {
+      "_FluxUI": true,
+      "TacoTip": false,
+      "Syndicator": true,
+      "Baganator": true
+    },
+    "scenario": "Character on existing flight path; no target/focus combat performed by agent"
+  },
+  "inputBoundary": {
+    "commands": 3,
+    "foregroundUnchanged": true,
+    "foregroundWasGame": false,
+    "activationOrPhysicalInput": false,
+    "privateScreenshot": "unit-followup-wait.png retained outside repository"
+  },
+  "interpretation": "No errors observed in this bounded out-of-combat read. Does not certify combat, restricted alias paths, other clients or random-freeze resolution.",
+  "laterErrorSample": {
+    "UTC": "2026-11-06T22:58:05.3332858Z",
+    "BugTabsSessionCount": 0,
+    "stage": "Before new batch install22:58:43UTC",
+    "scenario": "Read-only count after user auction/mail/casting messages appeared in capture; no latency measurement",
+    "backgroundForegroundUnchanged": true
+  },
+  "newBatch": {
+    "sourceManifest": "unit-state-followup-safety-2026-11-06.json",
+    "copyEvidence": "unit-state-followup-client-copy-2026-11-06.json",
+    "nativeAcceptance": "PASS narrow loaded cleanup marker and zero reported session errors after observed user combat. Direct secret-state flags, cooldown-only badge transitions, badge-swap acceptance, matched pixels/FPS and other native clients remain pending.",
+    "diskSaveObservedUTC": "2026-11-06T23:04:36Z",
+    "diskSaveInterpretation": "Disk save observed after user agreed to reload; loaded marker and subsequent error count still required.",
+    "loadedMarker": {
+      "UTC": "2026-11-06T23:09:18.3548520Z",
+      "PCOBeforePowerAppliedType": "nil",
+      "BugTabsSessionCount": 0,
+      "backgroundForegroundUnchanged": true,
+      "privateScreenshot": "unit-after-combat-stage.png retained externally"
+    }
+  },
+  "automationReview": {
+    "action": "Modified helper permitting switches between non-game apps",
+    "result": "Rejected; did not execute",
+    "reason": "Review identified risk of removing the WoW-not-foreground guard",
+    "response": "Original strict helper retained; no bypass or foreground/physical input"
+  },
+  "userCombatObservation": {
+    "UTC": "2026-11-06T23:08:10.4575124Z",
+    "input": "None; read-only verified-window capture while user played",
+    "visible": "Player/target/target-of-target health and power, action strip with cooldowns, combat nameplates and an owned Threat row rendered.",
+    "limits": "No matched pixel comparison, badge-swap confirmation or native secret/taint acceptance from a screenshot; current-session error probe pending.",
+    "privateScreenshot": "unit-user-fight-observation.png retained externally"
+  },
+  "additionalAdapterOwnerProbe": {
+    "result": "NOT RUN; strict background guard refused before input because WoW was foreground",
+    "settingsChanged": false
+  }
+}

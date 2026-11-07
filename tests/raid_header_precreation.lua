@@ -12,14 +12,15 @@ local function loadModule(path, env, ns)
 end
 local noop = function() end
 
-local function fixture(client, raid, enabled, ancestorVisible, containerShown)
+local function fixture(client, raid, enabled, ancestorVisible, containerShown, secureRoster)
     local e = setmetatable({}, { __index = _G }); e._G = e
     local s = { combat = false, raid = raid, enabled = enabled, roster = 1,
         mtma = 1, children = 0, blocked = 0, timers = {}, headers = {}, frames = {}, writes = 0,
-        nativeHidden = false, timersCreated = 0, headerShows = 0, nativeStateCallbacks = 0 }
+        nativeHidden = false, timersCreated = 0, headerShows = 0, nativeStateCallbacks = 0,
+        group = true, secureSupported = true, secureLayoutSupported = true, secureCalls = {}, secureChildren = {}, secureLayoutCalls = 0, secureDisables = 0 }
     e.InCombatLockdown = function() return s.combat end
     e.IsInRaid = function() return s.raid end
-    e.IsInGroup = function() return true end
+    e.IsInGroup = function() return s.group end
     e.UnitInRaid = function() return s.raid and 1 or nil end
     e.UnitExists = function(unit) return tonumber(unit:match("%d+")) == 1 end
     e.GetRaidRosterInfo = function(index)
@@ -58,7 +59,7 @@ local function fixture(client, raid, enabled, ancestorVisible, containerShown)
         if s.raid and attrs.showRaid then
             count = attrs.groupFilter == "MAINTANK,MAINASSIST" and s.mtma
                 or (attrs.groupFilter == "1" and s.roster or 0)
-        elseif not s.raid and attrs.showParty then count = s.roster end
+        elseif not s.raid and s.group and attrs.showParty then count = s.roster end
         local capacity = (attrs.unitsPerColumn or math.max(count, 1)) * (attrs.maxColumns or 1)
         -- Negative startingIndex deliberately makes native blank slots allocate.
         local needed = math.max(1, math.min(capacity, count - (attrs.startingIndex or 1) + 1))
@@ -106,6 +107,14 @@ local function fixture(client, raid, enabled, ancestorVisible, containerShown)
     function methods:GetBottom() return 200 end
     function methods:GetPoint() return "TOPLEFT", self.parent, "TOPLEFT", 0, 0 end
     for name in ("SetClipsChildren SetPoint ClearAllPoints SetSize SetWidth SetHeight SetFrameStrata SetFrameLevel SetText SetTextColor SetShadowOffset SetFont"):gmatch("%S+") do methods[name] = noop end
+    if secureRoster then
+        function methods:SetPoint(...) self.point = { ... } end
+        function methods:ClearAllPoints() self.point = nil end
+        function methods:SetSize(w,h) self.width,self.height = w,h end
+        function methods:SetWidth(value) self.width = value end
+        function methods:SetHeight(value) self.height = value end
+        function methods:SetAlpha(value) self.alpha = value end
+    end
     local function frame(name, parent)
         local f = setmetatable({ name = name, parent = parent, shown = false, attributes = {}, hooks = {},
             scripts = {}, references = {}, events = {} }, { __index = methods })
@@ -129,9 +138,59 @@ local function fixture(client, raid, enabled, ancestorVisible, containerShown)
     e.FluxRaidContainer.shown = containerShown or false
     e.CompactRaidFrameContainer = frame("CompactRaidFrameContainer", e.UIParent)
     e.CompactRaidFrameContainer.shown = true
+    if secureRoster then
+        -- Dependency contract only. The separate secure module suite executes
+        -- its actual wrappers and supplied native source. This fixture proves
+        -- production Layout prepares/calls that service in the right order.
+        e.FluxRaidSecure = {
+            ConfigureHeader = function(header,index,isMTMA)
+                assert(not s.combat, "secure header installation must defer in combat")
+                if not s.secureSupported or s.secureFailIndex==index then header._fluxSecureRosterDriver=nil;header:Hide();return false end
+                s.secureCalls[header] = { index=index, isMTMA=isMTMA }
+                header:SetAttribute("showRaid",true)
+                header:SetAttribute("showParty",not isMTMA and index==1)
+                header:SetAttribute("showPlayer",true)
+                header:SetAttribute("showSolo",false)
+                header:SetAttribute("groupFilter",isMTMA and "MAINTANK,MAINASSIST" or tostring(index))
+                header._fluxSecureRosterDriver = true
+                if s.raid or (s.group and not isMTMA and index==1) then header:Show() else header:Hide() end
+                return true
+            end,
+            AttachHeaderChild = function(child)
+                assert(not s.combat,"secure child installation must defer in combat")
+                if not s.secureSupported then return false end
+                s.secureChildren[child] = true
+                return true
+            end,
+            RefreshRosterLayout = function(container,groups,mt,options)
+                assert(not s.combat,"secure roster layout installation must defer in combat")
+                s.secureLayoutCalls = s.secureLayoutCalls+1
+                if not s.secureLayoutSupported then return false end
+                s.secureLayout = {container=container,groups=groups,mt=mt,options=options}
+                return true
+            end,
+            DisableHeader = function(header)
+                assert(not s.combat,"secure header disable must defer in combat")
+                s.secureDisables = s.secureDisables+1
+                header._fluxSecureRosterDriver = nil
+                header:Hide()
+                return true
+            end,
+        }
+    end
+    -- Native driver functions exist before addons load and may be captured in
+    -- module locals. Pet-battle availability is toggled separately below.
+    e.RegisterStateDriver = function(driver)
+        s.driver = driver
+        driver.attributes["state-groupupdate"] = "hide"
+        for _, header in ipairs(s.headers) do header.shown = false end
+        synchronizeVisibility()
+    end
+    local nativeDriver = e.RegisterStateDriver
     loadModule("RaidFrame/FluxRaidCompat.lua", e, ns)
     loadModule("RaidFrame/FluxRaidLayout.lua", e, ns)
     loadModule("RaidFrame/FluxRaidFrame.lua", e, ns)
+    check(e.RegisterStateDriver == nativeDriver, "raid modules preserve native state-driver identity")
     e.FluxRaid_InitLayoutFrames()
     e.FluxRaidState.isInitialized = true
     function s:configure() e.FluxRaid_ApplyOptionsFromDB() end
@@ -158,12 +217,6 @@ local function fixture(client, raid, enabled, ancestorVisible, containerShown)
     end
     function s:installPetBattle()
         e.C_PetBattles, e.SecureHandlerStateTemplate = {}, {}
-        e.RegisterStateDriver = function(driver)
-            self.driver = driver
-            driver.attributes["state-groupupdate"] = "hide"
-            for _, header in ipairs(self.headers) do header.shown = false end
-            synchronizeVisibility()
-        end
         assert(e.FluxRaid_InstallPetBattleDriver())
         self:registerEvents()
     end
@@ -319,6 +372,96 @@ for _, client in ipairs({ "retail", "forever", "era", "anniversary", "mists" }) 
     check(not off.FluxRaidState.secureConfigured and os.children == 0 and os.headerShows == 0
         and not os.nativeHidden and os.timersCreated == timerCount,
         "disabled profile remains off through battle-close and native-state delivery")
+end
+
+-- Universal roster ownership: production Layout plus the secure service's
+-- explicit dependency contract. All earlier fallback cases remain unchanged.
+for _,client in ipairs({"retail","forever","era","anniversary","mists"}) do
+    for _,mode in ipairs({"raid","party","solo"}) do
+        local e,s=fixture(client,mode=="raid",true,true,false,true)
+        s.group=mode~="solo"
+        s:configure();s:flush();s:flush()
+        check(e.FluxRaidState.secureConfigured and s.children==80,
+            client.." "..mode..": all forty member and forty MT/MA children prepare OOC")
+        check(e.FluxRaidContainer:IsShown(),client.." "..mode..": enabled parent remains shown for secure future roster transitions")
+        local attached=0
+        for _ in pairs(s.secureChildren) do attached=attached+1 end
+        check(attached==80,client.." "..mode..": every allocated child joins secure roster updates")
+        for index=1,8 do
+            local header=e.FluxRaidState.raidHeaders[index]
+            local call=s.secureCalls[header]
+            check(call and call.index==index and not call.isMTMA,
+                client.." "..mode..": secure group controller receives stable group identity")
+            check(header:GetAttribute("child5") and not header:GetAttribute("child6"),"universal member columns retain five-cell capacity")
+            check(header:GetAttribute("showRaid")==true and header:GetAttribute("showParty")== (index==1)
+                and header:GetAttribute("showPlayer")==true and header:GetAttribute("showSolo")==false,
+                "all group roster modes are prepared without later Lua rewrites")
+            check(header:GetAttribute("groupFilter")==tostring(index)
+                and header:GetAttribute("unitsPerColumn")==5 and header:GetAttribute("maxColumns")==1
+                and header:GetAttribute("sortMethod")=="INDEX" and header:GetAttribute("sortDir")=="ASC"
+                and header:GetAttribute("minWidth")==72 and header:GetAttribute("yOffset")==4,
+                "secure ownership preserves grouping/order/size and applies requested four-pixel member overlap")
+            check(header._fluxSecureRosterDriver==true,"ordinary visibility refresh preserves secure controller ownership")
+        end
+        local mt=e.FluxRaidState.mtmaHeader
+        check(s.secureCalls[mt]and s.secureCalls[mt].isMTMA and mt:GetAttribute("child40")and not mt:GetAttribute("child41"),
+            "MT/MA controller owns its full forty-cell pool in every startup roster mode")
+        check(mt:GetAttribute("unitsPerColumn")==4 and mt:GetAttribute("maxColumns")==10
+            and mt:GetAttribute("yOffset")==-10 and mt:GetAttribute("groupFilter")=="MAINTANK,MAINASSIST"
+            and mt._fluxSecureRosterDriver==true,"MT/MA geometry and controller ownership survive normal refresh")
+        local layout=s.secureLayout
+        check(layout and layout.container==e.FluxRaidContainer and layout.groups==e.FluxRaidState.raidHeaders and layout.mt==mt,
+            "production integration passes the existing container and all real headers to secure layout")
+        if layout and layout.options then
+            check(layout.options.colStep==72 and layout.options.columnHeight==199 and layout.options.mtChildStep==53,
+                "secure layout receives requested overlap while retaining current member and target heights")
+        end
+        local reverse=e.FluxRaidCompat.BuildVisibleGroupsReverse(function(g)return g==1 or g==4 or g==8 end)
+        local geometry=e.FluxRaidCompat.ComputeReverseColumnLayout(reverse,true,5,74)
+        check(reverse[1]==8 and reverse[2]==4 and reverse[3]==1 and geometry.groupX[1]>geometry.groupX[4]
+            and geometry.groupX[4]>geometry.groupX[8] and geometry.xMT<geometry.groupX[8],
+            "universal ownership retains reverse group columns and MT/MA placement")
+        local initial=s.children
+        s:configure();s:flush()
+        check(s.children==initial and e.FluxRaidContainer:IsShown(),"reconfiguration reuses the universal pool and preserves the active parent")
+        local writes=s.writes
+        s:growInCombat();s:configure();s:flush()
+        check(s.children==initial and s.blocked==0 and s.writes==writes,
+            "combat roster/configuration growth neither allocates nor rewrites protected header attributes")
+        s.combat=false;s.enabled=false;s:configure();s:flush()
+        local active=0
+        for _,header in ipairs(s.headers) do if header._fluxSecureRosterDriver or header:IsShown()then active=active+1 end end
+        check(s.children==initial and active==0 and not e.FluxRaidContainer:IsShown()and s.secureDisables>=9,
+            "disabling Flux retires every secure header controller and preserves allocated pools")
+    end
+    local off,os=fixture(client,true,false,true,false,true)
+    os:configure();os:flush()
+    check(os.children==0 and next(os.secureCalls)==nil and os.secureLayoutCalls==0 and not off.FluxRaidContainer:IsShown(),
+        client..": disabled startup installs no secure roster ownership or child pools")
+    local unsupported,us=fixture(client,false,true,true,false,true)
+    us.secureSupported=false;us:configure();us:flush();us:flush()
+    local visible=0
+    for _,header in ipairs(us.headers)do if header._fluxSecureRosterDriver or header:IsShown()then visible=visible+1 end end
+    check(not unsupported.FluxRaidState.secureRosterPrepared and not unsupported.FluxRaidState.secureConfigured
+        and not us.nativeHidden and visible==0,
+        client..": unavailable secure service retains native fallback and hides unowned headers")
+    local prepared=us.children
+    us.secureSupported=true;us:configure();us:flush();us:flush()
+    check(unsupported.FluxRaidState.secureRosterPrepared and unsupported.FluxRaidState.secureConfigured
+        and us.nativeHidden and us.children==prepared,
+        client..": OOC capability recovery installs controllers without reallocating prepared pools")
+    local partial,fs=fixture(client,false,true,true,false,true)
+    fs.secureFailIndex=8;fs:configure();fs:flush();fs:flush()
+    local armed=0
+    for _,header in ipairs(fs.headers)do if header._fluxSecureRosterDriver then armed=armed+1 end end
+    check(not partial.FluxRaidState.secureConfigured and not fs.nativeHidden and armed==0,
+        client..": partial controller failure retires successful peers before retaining native fallback")
+    local noLayout,ns=fixture(client,false,true,true,false,true)
+    ns.secureLayoutSupported=false;ns:configure();ns:flush();ns:flush()
+    armed=0
+    for _,header in ipairs(ns.headers)do if header._fluxSecureRosterDriver then armed=armed+1 end end
+    check(ns.secureLayoutCalls>0 and not noLayout.FluxRaidState.secureConfigured and not ns.nativeHidden and armed==0,
+        client..": failed secure roster layout cannot claim readiness or replace native UI")
 end
 print(string.format("raid header precreation: %d checks, %d failures", checks, failures))
 if failures > 0 then os.exit(1) end

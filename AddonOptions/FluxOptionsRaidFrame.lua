@@ -8,6 +8,24 @@ local function GetRaidDB()
     return FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
 end
 
+local function AuraScaleMaximum()
+    local limit = FluxRaidVisuals and FluxRaidVisuals.GetAuraScaleLimit
+        and FluxRaidVisuals.GetAuraScaleLimit(nil, nil, GetRaidDB()) or 2.5
+    limit = tonumber(limit) or 2.5
+    return max(0.5, floor(min(2.5, limit) * 100 + 0.000001) / 100), limit
+end
+
+local function AuraScaleDescription(maximum, limit)
+    local text = "1.00 uses Blizzard's default aura size. Resize only the auras from 0.50 to 2.50; frame size stays fixed."
+    if FluxRaidVisuals and FluxRaidVisuals.GetAuraLayout then
+        local layout = FluxRaidVisuals.GetAuraLayout(nil, nil, GetRaidDB())
+        text = text .. string.format(" Current icons: %.1f x %.1f px.", layout.buffs.width, layout.buffs.height)
+        if layout.overlap then text = text .. " Aura blocks extend beyond the available frame space." end
+    end
+    if limit < 0.5 then text = text .. " Icons are already capped to fit at the minimum setting." end
+    return text
+end
+
 local AfterRaidChange
 
 local function RaidFlag(key, defaultOn)
@@ -31,6 +49,34 @@ AfterRaidChange = function()
     end
 end
 
+local function BuildAuraScaleOption()
+    local option
+    local function SyncLimit()
+        local maximum, limit = AuraScaleMaximum()
+        option.max = maximum
+        return maximum, limit
+    end
+    option = {
+        type = "range",
+        name = "Aura icon scale",
+        desc = function() return AuraScaleDescription(SyncLimit()) end,
+        order = 23,
+        min = 0.5, max = 2.5, step = 0.01,
+        width = "full",
+        get = function()
+            local maximum = SyncLimit()
+            return max(0.5, min(maximum, tonumber(GetRaidDB().auraIconScale) or 1))
+        end,
+        set = function(_, val)
+            local maximum = SyncLimit()
+            GetRaidDB().auraIconScale = max(0.5, min(maximum, tonumber(val) or 1))
+            AfterRaidChange()
+        end,
+    }
+    SyncLimit()
+    return option
+end
+
 local function AfterPreviewChange()
     if FluxRaidPreview and FluxRaidPreview.RefreshFromOptions then
         FluxRaidPreview.RefreshFromOptions()
@@ -50,6 +96,145 @@ function ns.FluxOptionsBuildPartyRaidTab()
     type = "group",
     order = 5,
     args = {
+        partyStyle = {
+            type = "group", name = "Party frames", inline = true, order = 0,
+            args = {
+                partyAsRaid = {
+                    type = "toggle", name = "Show party as raid frames", order = 1, width = "full",
+                    desc = "Use the compact raid layout for parties. Turn off for smaller Flux player-style frames. Raids always keep the raid layout. Both styles share the last member's bottom-right anchor.",
+                    get = function() return RaidFlag("partyAsRaid", true) end,
+                    set = function(_, value) SetRaidFlag("partyAsRaid", value) end,
+                },
+                scale = {
+                    type = "range", name = "Party member scale", order = 2, min = 0.35, max = 1.5, step = 0.01,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyFrameScale) or 0.55 end,
+                    set = function(_, value) GetRaidDB().partyFrameScale = value; AfterRaidChange() end,
+                },
+                portraits = {
+                    type = "toggle", name = "Party portraits", order = 3,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyShowPortrait", true) end,
+                    set = function(_, value) SetRaidFlag("partyShowPortrait", value) end,
+                },
+                casts = {
+                    type = "toggle", name = "Show party cast bars", order = 4, width = "full",
+                    desc = "Show player-style casts and spell icons over each party member's name and level. Disabling hides an active cast; enabling refreshes the current cast. Changes apply outside combat.",
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyShowCastBar", true) end,
+                    set = function(_, value) SetRaidFlag("partyShowCastBar", value) end,
+                },
+                pets = {
+                    type = "toggle", name = "Party pets", order = 5,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyShowPets", true) end,
+                    set = function(_, value) SetRaidFlag("partyShowPets", value) end,
+                },
+                petScale = {
+                    type = "range", name = "Party pet scale", order = 6, min = 0.35, max = 1.5, step = 0.01,
+                    disabled = function() return RaidFlag("partyAsRaid", true) or not RaidFlag("partyShowPets", true) end,
+                    get = function() return tonumber(GetRaidDB().partyPetScale) or 1 end,
+                    set = function(_, value) GetRaidDB().partyPetScale = value; AfterRaidChange() end,
+                },
+                preview = {
+                    type = "execute", name = function()
+                        return FluxRaidPreview and FluxRaidPreview.IsPartyShown and FluxRaidPreview.IsPartyShown()
+                            and "Hide party preview" or "Show party preview"
+                    end, order = 20,
+                    func = function()
+                        if FluxRaidPreview and FluxRaidPreview.ToggleParty then FluxRaidPreview.ToggleParty() end
+                    end,
+                },
+                classColor = {
+                    type = "toggle", name = "Class-colored party borders and backdrop", order = 7, width = "full",
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyClassColor", false) end,
+                    set = function(_, value) SetRaidFlag("partyClassColor", value) end,
+                },
+                targets = {
+                    type = "toggle", name = "Party member targets", order = 8,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyShowTargets", true) end,
+                    set = function(_, value) SetRaidFlag("partyShowTargets", value) end,
+                },
+                width = {
+                    type = "range", name = "Party member width", order = 9, min = .35, max = 1.5, step = .01,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyWidthScale) or .8 end,
+                    set = function(_, value) GetRaidDB().partyWidthScale = value; AfterRaidChange() end,
+                },
+                height = {
+                    type = "range", name = "Party member height", order = 10, min = .35, max = 1.5, step = .01,
+                    desc = "Four rows always fit within the current raid column. Member size stays constant as the roster changes.",
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyHeightScale) or .85 end,
+                    set = function(_, value) GetRaidDB().partyHeightScale = value; AfterRaidChange() end,
+                },
+                targetWidth = {
+                    type = "range", name = "Party target width", order = 11, min = 12, max = 60, step = 1,
+                    disabled = function() return RaidFlag("partyAsRaid", true) or not RaidFlag("partyShowTargets", true) end,
+                    get = function() return tonumber(GetRaidDB().partyTargetWidth) or 30 end,
+                    set = function(_, value) GetRaidDB().partyTargetWidth = value; AfterRaidChange() end,
+                },
+                auraScale = {
+                    type = "range", name = "Party aura size", order = 12, min = .5, max = 2.5, step = .01,
+                    desc = "Extra size for player-style party auras. The default 1.50 is fifty percent larger than the same raid aura settings.",
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyAuraScale) or 1.5 end,
+                    set = function(_, value) GetRaidDB().partyAuraScale = value; AfterRaidChange() end,
+                },
+                textScale = {
+                    type = "range", name = "Party text size", order = 13, min = .5, max = 1.5, step = .01,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyTextScale) or 1 end,
+                    set = function(_, value) GetRaidDB().partyTextScale = value; AfterRaidChange() end,
+                },
+                threat = {
+                    type = "toggle", name = "Party threat highlight", order = 14,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyThreatHighlight", true) end,
+                    set = function(_, value) SetRaidFlag("partyThreatHighlight", value) end,
+                },
+                reset = {
+                    -- Keep appearance/visibility choices when resetting sizes.
+                    type = "execute", name = "Reset party sizes", order = 19,
+                    func = function()
+                        local defaults = FluxOptionsDefaults.profile.raidFrames
+                        for _, key in ipairs({"partyFrameScale", "partyWidthScale", "partyHeightScale", "partyPetScale", "partyTargetWidth", "partyAuraScale", "partyTextScale", "partyPowerHeightScale"}) do
+                            GetRaidDB()[key] = defaults[key]
+                        end
+                        AfterRaidChange()
+                    end,
+                },
+                powerHeight = {
+                    type = "range", name = "Party resource height", order = 15, min = .5, max = 1.5, step = .01,
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return tonumber(GetRaidDB().partyPowerHeightScale) or .8 end,
+                    set = function(_, value) GetRaidDB().partyPowerHeightScale = value; AfterRaidChange() end,
+                },
+                healthText = {
+                    type = "select", name = "Party HP text", order = 16,
+                    values = {values = "Values", percent = "Percent", both = "Values and percent", none = "Hidden"},
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return GetRaidDB().partyHealthText or "values" end,
+                    set = function(_, value) GetRaidDB().partyHealthText = value; AfterRaidChange() end,
+                },
+                powerText = {
+                    type = "select", name = "Party resource text", order = 17,
+                    values = {values = "Values", percent = "Percent", both = "Values and percent", none = "Hidden"},
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return GetRaidDB().partyPowerText or "percent" end,
+                    set = function(_, value) GetRaidDB().partyPowerText = value; AfterRaidChange() end,
+                },
+                targetClassColor = {
+                    type = "toggle", name = "Class-colored party target HP", order = 18,
+                    desc = "Use class color only when the party member's target is a player. NPC targets keep their usual color.",
+                    disabled = function() return RaidFlag("partyAsRaid", true) end,
+                    get = function() return RaidFlag("partyTargetClassColor", false) end,
+                    set = function(_, value) SetRaidFlag("partyTargetClassColor", value) end,
+                },
+            },
+        },
         masterHeader = {
             type = "header",
             name = "Names",
@@ -216,7 +401,7 @@ function ns.FluxOptionsBuildPartyRaidTab()
         memberWidthScale = {
             type = "range",
             name = "Member frame width scale",
-            desc = "1 = default width (~72px).",
+            desc = "1.00 uses Blizzard's default unit-frame width.",
             order = 21,
             min = 0.6, max = 1.4, step = 0.05,
             width = "full",
@@ -231,12 +416,12 @@ function ns.FluxOptionsBuildPartyRaidTab()
         frameHeightScale = {
             type = "range",
             name = "Member frame height scale",
-            desc = "1.2 matches the built-in default row height.",
+            desc = "1.00 uses Blizzard's default unit-frame height.",
             order = 22,
             min = 0.8, max = 1.6, step = 0.05,
             width = "full",
             get = function()
-                return GetRaidDB().frameHeightScale or 1.2
+                return GetRaidDB().frameHeightScale or 1
             end,
             set = function(_, val)
                 GetRaidDB().frameHeightScale = val
@@ -246,7 +431,7 @@ function ns.FluxOptionsBuildPartyRaidTab()
         powerBarHeightScale = {
             type = "range",
             name = "Power bar height scale",
-            desc = "Scales only the resource strip at the bottom (independent of member frame height). 1 = default strip size.",
+            desc = "1.00 uses Blizzard's default resource-strip height. Scales independently of member frame height.",
             order = 22.5,
             min = 0.5, max = 2.5, step = 0.05,
             width = "full",
@@ -258,32 +443,54 @@ function ns.FluxOptionsBuildPartyRaidTab()
                 AfterRaidChange()
             end,
         },
-        auraIconScale = {
-            type = "range",
-            name = "Aura icon scale",
-            order = 23,
-            min = 1, max = 2.5, step = 0.05,
-            width = "full",
-            get = function()
-                return GetRaidDB().auraIconScale or 1.4
-            end,
-            set = function(_, val)
-                GetRaidDB().auraIconScale = val
-                AfterRaidChange()
-            end,
+        auraIconScale = BuildAuraScaleOption(),
+        auraWidthScale = {
+            type = "range", name = "Aura width (X)", order = 23.1,
+            desc = "Changes aura width independently of height. 1.00 is Blizzard's width. Updates live icons out of combat when native configuration is allowed; otherwise the change waits until safe.",
+            min = 0.5, max = 2.5, step = 0.01, width = "full",
+            get = function() return GetRaidDB().auraWidthScale or 1 end,
+            set = function(_, value) GetRaidDB().auraWidthScale = max(0.5, min(2.5, tonumber(value) or 1)); AfterRaidChange() end,
+        },
+        auraDurationFontScale = {
+            type = "range", name = "Aura duration text size", order = 23.2,
+            desc = "Scales the fitted duration font independently of icon size. 1.00 keeps the default font size. Updates preview and live aura timers out of combat; combat changes apply when combat ends.",
+            min = 0.5, max = 2.5, step = 0.01, width = "full",
+            get = function() return GetRaidDB().auraDurationFontScale or 1 end,
+            set = function(_, value) GetRaidDB().auraDurationFontScale = max(0.5, min(2.5, tonumber(value) or 1)); AfterRaidChange() end,
+        },
+        auraTimersUnderMinute = {
+            type = "toggle", name = "Show aura timers only below 1 minute", order = 23.3, width = "full",
+            desc = "Applies to raid and party shown as raid frames. Show numbers only below 60 seconds; icons, swipes and stacks remain. Normal party, target and focus use Unit Frames > General.",
+            get = function() return RaidFlag("auraTimersUnderMinute", true) end,
+            set = function(_, value) SetRaidFlag("auraTimersUnderMinute", value) end,
         },
         raidManagerScale = {
             type = "range",
             name = "Raid manager strip scale",
-            desc = "Left raid tools / markers strip (when present).",
+            desc = "Left raid tools / markers strip. 1.00 uses a compact baseline that is 30% smaller than Blizzard's manager.",
             order = 24,
             min = 0.5, max = 1.2, step = 0.05,
             width = "full",
             get = function()
-                return GetRaidDB().raidManagerScale or 0.9
+                return GetRaidDB().raidManagerScale or 1
             end,
             set = function(_, val)
                 GetRaidDB().raidManagerScale = val
+                AfterRaidChange()
+            end,
+        },
+        resetSizes = {
+            type = "execute",
+            name = "Reset sizes",
+            desc = "Restores the default sizing preset and under-one-minute aura timer display. Aura filters, counts and transparency stay configured.",
+            order = 24.5,
+            func = function()
+                local db = GetRaidDB()
+                local defaults = FluxOptionsDefaults.profile.raidFrames
+                for _, key in ipairs({ "memberWidthScale", "frameHeightScale", "powerBarHeightScale", "auraIconScale",
+                    "auraWidthScale", "auraDurationFontScale", "raidManagerScale", "auraTimersUnderMinute" }) do
+                    db[key] = defaults[key]
+                end
                 AfterRaidChange()
             end,
         },
@@ -298,7 +505,7 @@ function ns.FluxOptionsBuildPartyRaidTab()
         },
         transparencyDesc = {
             type = "description",
-            name = "Frame opacity applies to each unit button. In-range and out-of-range multipliers apply when Fade out of range is on. Aura opacity multiplies buff and debuff icons on top of the frame alpha.\n",
+            name = "Frame opacity applies to the visible cell content. In-range and out-of-range multipliers apply when Fade out of range is on. Aura transparency adjusts buffs, debuffs and their timers.\n",
             order = 25.5,
             fontSize = "small",
         },
@@ -348,16 +555,19 @@ function ns.FluxOptionsBuildPartyRaidTab()
         },
         auraIconAlpha = {
             type = "range",
-            name = "Buff / debuff icon opacity",
-            desc = "Multiplies aura button alpha (stacks with frame opacity).",
+            name = "Aura transparency",
+            desc = "Transparency of buff/debuff icons, duration text and cooldown overlays. 0% is fully visible; 100% is invisible. The starting value is 70%.",
             order = 29,
-            min = 0.2, max = 1, step = 0.05,
+            min = 0, max = 100, step = 1,
             width = "full",
             get = function()
-                return tonumber(GetRaidDB().auraIconAlpha) or 1
+                local db=GetRaidDB()
+                local value=tonumber(db.auraTransparency)
+                if value==nil then value=100*(1-max(0.1,min(1,tonumber(db.auraIconAlpha) or 1))*0.3) end
+                return max(0,min(100,value))
             end,
             set = function(_, val)
-                GetRaidDB().auraIconAlpha = val
+                GetRaidDB().auraTransparency = max(0,min(100,tonumber(val) or 70))
                 AfterRaidChange()
             end,
         },
@@ -435,6 +645,51 @@ function ns.FluxOptionsBuildPartyRaidTab()
             get = function() return RaidFlag("showRangeFade", true) end,
             set = function(_, val) SetRaidFlag("showRangeFade", val) end,
         },
+        showClassBuffs = {
+            type = "toggle",
+            name = "Class buffs out of combat",
+            desc = "Shows buffs currently present on party/raid members while out of combat, including long-duration class buffs.",
+            order = 37.9,
+            get = function() return RaidFlag("showClassBuffs", true) end,
+            set = function(_, val) SetRaidFlag("showClassBuffs", val) end,
+        },
+        showMissingClassBuffs = {
+            type = "toggle",
+            name = "Missing class buffs",
+            desc = "Out of combat, show up to three dim icons for learned class buffs missing from a member. Restricted or unavailable aura data shows no missing-buff claim.",
+            order = 38,
+            get = function() return RaidFlag("showMissingClassBuffs", false) end,
+            set = function(_, val) SetRaidFlag("showMissingClassBuffs", val) end,
+        },
+        showPets = {
+            type = "toggle",
+            name = "Party / raid pets",
+            desc = "Adds half-height pet cells beside the existing grid. Requires working secure visibility support. Existing member positions and sizes stay the same.",
+            order = 38.1,
+            get = function() return RaidFlag("showPets", false) end,
+            set = function(_, val) SetRaidFlag("showPets", val) end,
+        },
+        showFriendlyTarget = {
+            type = "toggle",
+            name = "Friendly target",
+            desc = "Adds a friendly-target cell beside the party/raid grid, above optional pets. Hostile or missing targets hide securely. Existing member positions stay the same.",
+            order = 38.2,
+            get = function() return RaidFlag("showFriendlyTarget", false) end,
+            set = function(_, val) SetRaidFlag("showFriendlyTarget", val) end,
+        },
+        showEstimatedHoTs = {
+            type = "toggle",
+            name = "Estimate my remaining HoT healing (Forever)",
+            desc = "Optional estimate from your own successful casts and readable learned English spell descriptions. It cannot detect every dispel, refresh or modifier and does not replace native heal prediction. Unavailable or restricted data shows no estimate.",
+            order = 38.3,
+            disabled = function()
+                if FluxRaidHoTs and FluxRaidHoTs.IsSupported then return not FluxRaidHoTs.IsSupported() end
+                local client = ns.Flux and ns.Flux.Client
+                return not (client and (client.isForever or client.isCamelot))
+            end,
+            get = function() return RaidFlag("showEstimatedHoTs", false) end,
+            set = function(_, val) SetRaidFlag("showEstimatedHoTs", val) end,
+        },
 
         displayHeader = {
             type = "header",
@@ -497,6 +752,30 @@ function ns.FluxOptionsBuildPartyRaidTab()
             order = 44.6,
             get = function() return RaidFlag("displayDebuffs", true) end,
             set = function(_, val) SetRaidFlag("displayDebuffs", val) end,
+        },
+        maxBuffs = {
+            type = "range",
+            name = "Maximum buffs",
+            desc = "Maximum buff icons per party or raid member.",
+            order = 44.55,
+            min = 1, max = 6, step = 1,
+            get = function() return max(1, min(6, floor(tonumber(GetRaidDB().maxBuffs) or 6))) end,
+            set = function(_, val)
+                GetRaidDB().maxBuffs = max(1, min(6, floor(tonumber(val) or 6)))
+                AfterRaidChange()
+            end,
+        },
+        maxDebuffs = {
+            type = "range",
+            name = "Maximum debuffs",
+            desc = "Maximum debuff icons per party or raid member.",
+            order = 44.65,
+            min = 1, max = 6, step = 1,
+            get = function() return max(1, min(6, floor(tonumber(GetRaidDB().maxDebuffs) or 6))) end,
+            set = function(_, val)
+                GetRaidDB().maxDebuffs = max(1, min(6, floor(tonumber(val) or 6)))
+                AfterRaidChange()
+            end,
         },
         auraFocusMode = {
             type = "select",

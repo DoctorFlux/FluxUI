@@ -1,0 +1,476 @@
+{
+  "capturedUTC": "2026-11-07T13:45:02.543810+00:00",
+  "scope": "Actual production factories, painters, public layout owners, helpers and finite camera logic in desktop API/rectangle mocks. Artificial opaque traps; no native secret VM, taint provenance, rendering, FPS or native profiling certification.",
+  "baselinePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "baselineMatchesFreshCheckpointSHA256": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+  "findings": {
+    "GEO-01": "APPLIED; public owned dimensions retain full-width/maxHP normalization; native validation pending",
+    "GEO-02": "APPLIED; native fill clips public 32px canvas; native pixels/taint validation pending"
+  },
+  "resourceCostPerHealthFrame": {
+    "modernClipFrames": 3,
+    "classicClipFrames": 2,
+    "recurringDrivers": 0,
+    "newEventsTimers": 0
+  },
+  "focusedAssertionsPerRepetition": {
+    "predictionGeometry": 8460,
+    "publicWriterRoutes": 80,
+    "portraitGeometry": 1547,
+    "portraitCamera": 1191,
+    "lifecycle": 373
+  },
+  "drawOrder": "Clip exact bar frame level/inherited strata; original textures reused; ARTWORK sublevel1 shield/2 antiheal, existing edgeglow owner+4 and text owner+30 remain above owner+3 stripes.",
+  "phase": "Full public canvas UV W/32,H/32 cropped natively at fill. Visible coordinate at distance x from physical fill left is x/32, including reverse overflow fill. No snapshot-dependent normalization.",
+  "unknownGeometry": "All owned constructors capture public dimensions before first prediction; compatibility getters are gated. If neither owned public dimensions nor readable fallback exists, no opaque geometry setter or fabricated zero is used; that external incomplete owner is explicitly unsupported until public layout becomes available.",
+  "retiredProposal": "Remaining-health-span normalization remains rejected:250px drawn60%, calc40%, absorb20% yields33.3333px versus required50px. Not applied.",
+  "boundaryPairs": [
+    {
+      "command": [
+        "lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\applied-fixes\\geometry\\boundary_pair.lua.txt",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\UnitFrames\\FluxUnitFrames_Shared.lua",
+        "baseline"
+      ],
+      "exitCode": 0,
+      "stdout": "RESULT|GEO-01|applied=false|opaque_operations=1|visible=false\nRESULT|GEO-02|applied=false|opaque_operations=1|uv_writes=1\nPAIR_CHECKS|8\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Stress test doc\\applied-fixes\\geometry\\boundary_pair.lua.txt",
+        "UnitFrames/FluxUnitFrames_Shared.lua",
+        "applied"
+      ],
+      "exitCode": 0,
+      "stdout": "RESULT|GEO-01|applied=true|opaque_operations=0|visible=true\nRESULT|GEO-02|applied=true|opaque_operations=0|uv_writes=2\nPAIR_CHECKS|8\n",
+      "stderr": ""
+    }
+  ],
+  "samples": [
+    {
+      "repetition": 1,
+      "tests": [
+        {
+          "command": [
+            "lua",
+            "tests/prediction_public_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/public_geometry_writers.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Public geometry writers: 80 checks; four clients; squeeze/focus/pet-target/party/options; native getters inaccessible\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/idle_unit_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "idle unit geometry: 1547 portrait checks; five clients; 300 unchanged size writes 3000 -> 10; prediction clip/UV checks separate\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/portrait_camera.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_power_visibility.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit power visibility: main split, combat, secret and raid checks passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_frame_whole_scale.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit frame whole scale: 28 checks\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unitframes_lifecycle_spec.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/raid_party_frames.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Party player-style frames: 865 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "repetition": 2,
+      "tests": [
+        {
+          "command": [
+            "lua",
+            "tests/prediction_public_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/public_geometry_writers.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Public geometry writers: 80 checks; four clients; squeeze/focus/pet-target/party/options; native getters inaccessible\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/idle_unit_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "idle unit geometry: 1547 portrait checks; five clients; 300 unchanged size writes 3000 -> 10; prediction clip/UV checks separate\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/portrait_camera.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_power_visibility.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit power visibility: main split, combat, secret and raid checks passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_frame_whole_scale.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit frame whole scale: 28 checks\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unitframes_lifecycle_spec.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/raid_party_frames.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Party player-style frames: 865 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "repetition": 3,
+      "tests": [
+        {
+          "command": [
+            "lua",
+            "tests/prediction_public_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Prediction public geometry: 8460 checks; modern clips=12 classic clips=8; all layers, first paint, scale dimensions, native clipping/32px math; native pixels/taint pending\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/public_geometry_writers.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Public geometry writers: 80 checks; four clients; squeeze/focus/pet-target/party/options; native getters inaccessible\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/idle_unit_geometry.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "idle unit geometry: 1547 portrait checks; five clients; 300 unchanged size writes 3000 -> 10; prediction clip/UV checks separate\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/portrait_camera.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Portrait camera: 1191 checks; five client models; three negative controls passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_power_visibility.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit power visibility: main split, combat, secret and raid checks passed\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unit_frame_whole_scale.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "unit frame whole scale: 28 checks\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/unitframes_lifecycle_spec.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "lua",
+            "tests/raid_party_frames.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Party player-style frames: 865 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "syntax": [
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_Shared.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_Party.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_PetTarget.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_FocusTarget.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_Pet.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "UnitFrames/FluxUnitFrames_TargetOfTarget.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/prediction_public_geometry.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/public_geometry_writers.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/idle_unit_geometry.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/portrait_camera.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/unit_power_visibility.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/unit_frame_whole_scale.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/unitframes_lifecycle_spec.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "luac",
+        "-p",
+        "tests/raid_party_frames.lua"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "sourcesBefore": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "548965891c6e235e3ee79905b8b7d4988bc148b3a7c050349898dc31654b757b",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "575aa948b5ae1f66473425464b5b313672ceda70e05813ca08a75284b3217457",
+    "UnitFrames/FluxUnitFrames_Pet.lua": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+    "tests/prediction_public_geometry.lua": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+    "tests/public_geometry_writers.lua": "958bafc5e8d9017a3455032279d3b7ee14f7a8330ac3d2aa43451d376faa8494",
+    "tests/idle_unit_geometry.lua": "867f4caa440ee23cc298f31a4c698953439c7a701c23741bf90493775c9b4ff4",
+    "tests/portrait_camera.lua": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+    "tests/unit_power_visibility.lua": "f82d47da5c113c06ac986dfc233b0b8b22d991370cbfa57ea16439f2283b6beb",
+    "tests/unit_frame_whole_scale.lua": "c40a3e259fba871efec93fac4712675a524fe9671400b1c4c8ca2c746ed3e733",
+    "tests/unitframes_lifecycle_spec.lua": "97e65ade9a8c4ab549c6a00b8dfbf6833aad8d1799e985b5aa0ae45e88ddf3a7",
+    "tests/raid_party_frames.lua": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411",
+    "Stress test doc\\applied-fixes\\geometry\\boundary_pair.lua.txt": "dc8b85fda01a783dd2c29b6ff211106c8ed68532ac17a50c7b5f11cc34396e0c",
+    "Stress test doc\\applied-fixes\\geometry\\run_geometry.py": "be24f69016aa542814c257da028e7fcb2a1288168fab1f80f974174ed662ba53"
+  },
+  "sourcesAfter": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": "8453242b58b9f2261e117a94d83bc8d9eedc76900ceab7b87f14331c43b65db1",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "548965891c6e235e3ee79905b8b7d4988bc148b3a7c050349898dc31654b757b",
+    "UnitFrames/FluxUnitFrames_Party.lua": "ffbf502561fdbc94924563689d33a87700f116ee84e2fbcc16236e9639fb4568",
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": "49dcc47fc6d6f93073c8f06d182f8a981657573e5bbeece29b6434276099bb7c",
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": "575aa948b5ae1f66473425464b5b313672ceda70e05813ca08a75284b3217457",
+    "UnitFrames/FluxUnitFrames_Pet.lua": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f",
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+    "tests/prediction_public_geometry.lua": "2ee9cb6c1544d18359015f8c09d7ad0556f6c62eb9cc4c56e36e0ae998bc5d87",
+    "tests/public_geometry_writers.lua": "958bafc5e8d9017a3455032279d3b7ee14f7a8330ac3d2aa43451d376faa8494",
+    "tests/idle_unit_geometry.lua": "867f4caa440ee23cc298f31a4c698953439c7a701c23741bf90493775c9b4ff4",
+    "tests/portrait_camera.lua": "e813ab2748ab3cac8fd9d0ce1d83aac7e2bb0a300635b60810ca5678a96f28e8",
+    "tests/unit_power_visibility.lua": "f82d47da5c113c06ac986dfc233b0b8b22d991370cbfa57ea16439f2283b6beb",
+    "tests/unit_frame_whole_scale.lua": "c40a3e259fba871efec93fac4712675a524fe9671400b1c4c8ca2c746ed3e733",
+    "tests/unitframes_lifecycle_spec.lua": "97e65ade9a8c4ab549c6a00b8dfbf6833aad8d1799e985b5aa0ae45e88ddf3a7",
+    "tests/raid_party_frames.lua": "0bcaff1bf094aec318612c6243c3e86144318c4d8eb090956d4c0ed695da9411",
+    "Stress test doc\\applied-fixes\\geometry\\boundary_pair.lua.txt": "dc8b85fda01a783dd2c29b6ff211106c8ed68532ac17a50c7b5f11cc34396e0c",
+    "Stress test doc\\applied-fixes\\geometry\\run_geometry.py": "be24f69016aa542814c257da028e7fcb2a1288168fab1f80f974174ed662ba53"
+  },
+  "consumedSourceDrift": [],
+  "allPassed": true
+}

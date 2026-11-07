@@ -1,0 +1,12 @@
+-- Route only the two proposal files while running frozen existing fixtures.
+local candidateRoot,test,refs,live=assert(arg[1]),assert(arg[2]),assert(arg[3]),assert(arg[4])
+local originalLoadfile,originalOpen=loadfile,io.open
+local function mapped(path)
+ if path=="UnitFrames/FluxCastBar.lua" or path=="UnitFrames/FluxSwingTimer.lua" then return candidateRoot.."/"..path end
+ if path:sub(1,18)=="../__AddonsForRef/" then return refs.."/"..path:sub(19)end
+ if path:sub(1,8)=="Texture/" then return live.."/"..path end
+ return path
+end
+loadfile=function(path,...)return originalLoadfile(mapped(path),...)end
+io.open=function(path,...)return originalOpen(mapped(path),...)end
+assert(originalLoadfile(test))()

@@ -1,5 +1,236 @@
 # Native meter skin and standalone threat pane
 
+## FluxUI menu and Meter-tab routes — 7 November 2026
+
+7 November meter menu/tab routes (METER-WINDOW-ROUTES-20261107): fixed the
+remaining geometry-only routes in FluxWindow's active Meter-tab cycle and
+preset setter. Explicit native tab entry now commits the requested types and
+Current; FluxUI options choices switch from Map before committing, so an old
+runtime layout cannot be applied instead. Details retains its existing immediate
+quiet re-embed path and eleven-preset wrap. No visual/layout/type list change.
+If native UI is not ready, one explicit apply intent reuses existing readiness
+Embed/retries. The latest working layout wins, it consumes once, and Hide/Cleanup
+cancel it. Startup without that explicit intent still does no native type/session
+configuration. No new frame/event/hook/timer/ticker; one transient boolean only.
+User reloaded and confirmed both routes configure panes and Current automatically
+without the setup-pane click. Native acceptance is selected Forever UI/function;
+combat/secret/taint/gamepad/other-client/FPS remain pending. Exact source,
+paired/focused/full results and source/history/settings recovery are in evidence.
+Final focused validation:12 meter/window scripts PASS;404 control checks,
+448 per pinned menu replay; five paired baseline rejects/candidate passes and
+four rejected mutations. All15 installed runtime hashes match through the
+existing mirror. Whole run:876 syntax PASS,212 scripts PASS and1 unrelated
+concurrent party-frame fixture failure; global source drift, meter owners stable.
+Preserve the unrelated work; no whole-addon PASS is claimed.
+Documentation check reports5 unrelated raid/party inventory/verification
+issues and no meter-source errors.
+
+No foreground/input control, direct WTF/profiler writes or manual client sync.
+
+| ID | Requirement | Acceptance |
+| --- | --- | --- |
+| METER-WINDOW-ROUTES-01 | Native layout cycle and preset setter apply types/Current rather than geometry alone | Actual production handlers replayed; user confirms automatic Meter-tab cycling |
+| METER-WINDOW-ROUTES-02 | FluxUI choice made while Map is active applies the new layout | Switch to Meter before commit; user confirms both routes |
+| METER-WINDOW-ROUTES-03 | First explicit Meter-tab entry applies the current request | Actual inactive-tab OnClick replay; native-ready and delayed-ready cases |
+| METER-WINDOW-ROUTES-04 | Delayed explicit choice completes without a later setup click | Existing Embed/retry consumes latest one-shot intent; cancellation and no-background-write cases pass |
+
+The screenshot's HPS header and Damage Taken prompt came from the old tab cycle
+calling `ReembedQuiet` after changing the preset. The full type/Current commit
+was previously wired only to the editor. The shared explicit-choice helper now
+routes native cycle/setter calls to `CommitUserLayout`, while Details keeps its
+original immediate `ReembedQuiet` behavior. The first physical Meter-tab entry
+also commits; ordinary programmatic startup/show/resize does not impose new
+native data defaults. A planning-only `SetMeterPresetIndex(..., false)` remains
+planning-only until an explicit apply/tab choice.
+
+The native application mechanism is unchanged: original menu descriptions/data/
+responders and public native Pick. The pending flag records only user intent;
+no private setters or polling are introduced. A delayed first click uses the
+latest layout supplied to the existing readiness Embed, then clears its flag
+before native application. Later ordinary embeds preserve manual segment
+overrides. Hide/Cleanup retire pending intent, and tab OnClick remains combat
+blocked. No reset/history deletion is added.
+
+Desktop tests execute the actual production cycle/setter/OnClick source with the
+existing real layout/backend fixtures. They reproduce HPS-to-Damage Taken cycling,
+options on Map, inactive tab entry, planning-only setter, delayed latest-wins
+application, one-shot consumption/cancellation and unchanged Details routing.
+Pinned native menu replay and native ownership/provenance/startup/window tests
+retain their stated scope; no secure-VM, native performance or pixel claim.
+
+[Evidence](validation/meter-window-routes-2026-11-07.json).
+
+## Current segment on layout choice — 7 November 2026
+
+7 November Current segment default (METER-LAYOUT-CURRENT-20261107):
+explicit FluxUI layout/type/setup choices now default every displayed native
+pane to Current through its original Blizzard session-menu radio entry. Native
+stored {type=Current,sessionID=nil} data/responders remain untouched; no private
+session setter or history reset is called. Already-Current panes skip selection.
+All ten presets, unchanged types, Overall/history, same-layout reselection,
+manual overrides and historical-ID clearing have focused coverage. Geometry,
+menu opening and background events preserve later manual segment choices;
+the next layout choice restores Current. Threat remains independent.
+User reloaded and confirmed: all native panes switch to Current on layout choice.
+Acceptance is selected Forever UI/function only; native combat/secret/taint,
+gamepad, other-client execution and FPS remain pending. No new frame/event/hook/
+timer/recurring driver, direct WTF writes, profiler change or game input.
+Fresh source pins and external source/history/settings recovery verified.
+Final validation:212 scripts/875 Lua syntax files PASS with unchanged corpus;
+all5 installed backend/layout pairs match. No duplicate sync performed.
+Exact paired/focused/full results and source identities are in the evidence.
+
+| ID | Behavior | Acceptance |
+| --- | --- | --- |
+| METER-LAYOUT-CURRENT-01 | Every mapped native pane becomes Current after preset/custom/structure/type/setup choice | Implemented; user confirms selected Forever UI/function |
+| METER-LAYOUT-CURRENT-02 | Original native session data, history and manual controls retained | Original menu entry Pick; no private setter/reset; manual override lasts until next layout choice |
+
+This supersedes prior instructions that every new native pane must be manually
+set to Current after choosing a layout. It uses the working native menu-selection
+path rather than the rejected private-setter/securecallmethod experiment. The
+legacy `/fbm currenttest` diagnostics remain read-only UNSUPPORTED for that old
+experiment. Startup/background/resize do not impose a segment policy; the native
+window's saved Current choice persists normally and Blizzard owns fight rollover.
+
+Pinned [Forever session menu](https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L396)
+and [Retail session menu](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua#L396)
+create the Current radio with native `{type=Enum.DamageMeterSessionType.Current,
+sessionID=nil}` metadata. Flux finds that original entry and uses the existing
+public menu Pick helper. It compares no combat duration/value, never edits the
+entry/data/responder, and excludes owned Threat/unused native windows. Current
+panes with nil IDs do not regenerate their session menu or select again. A pane
+reporting Current with a historical ID still selects the canonical native entry.
+
+Desktop scope:352 control checks,388 per pinned client menu replay,11 focused
+meter/threat scripts; five alternating baseline/candidate pairs and four negative
+mutations. All ten presets start with mixed Overall/history and verify every
+displayed native pane becomes Current. Later manual Overall survives geometry,
+and reselecting the same layout restores Current with only one needed selection.
+Native user confirmation covers the UI/function result; secure VM/combat/taint,
+gamepad, native performance and other-client execution remain pending.
+
+[Evidence](validation/meter-layout-current-2026-11-07.json).
+
+## Direct native choices and one-click presets — 7 November 2026
+
+7 November native meter controls/presets (METER-NATIVE-CONTROLS-20261107):
+the previous picker changed only a layout request. Native type rows now come
+from Blizzard's actual menu descriptions and use their public Pick selection
+API with untouched responders/data. Explicit type/setup/preset/custom/structure
+clicks use native menu entries; missing panes use the original New Window entry.
+Preset clicks apply every requested native type immediately. Startup, geometry
+repair and combat events never select types/create native windows. Existing
+session/history and Save controls remain; no private native setter calls return.
+Native responses update both the runtime snapshot and matching active editor
+slot, with stale layout/type guards. Absorbs is removed from the catalog and
+builtin5 now uses HPS. Legacy unavailable requests normalize in working views/
+previews only; untouched saved custom layouts retain their original requests
+until explicit Save. New builtin10 is Threat/Damage over Interrupts/Healing.
+Threat remains a separate owned Content child and consumes zero native windows.
+User confirmed native menu/type/Flux-label changes, direct Dispels pane creation,
+and finally both Dispels and new Interrupts four-pane presets work immediately.
+Acceptance is selected Forever UI/function only; native combat/secret/taint,
+gamepad, other-client execution and FPS remain pending. Fresh pinned source,
+paired desktop/mutation/full results and exact identities are in the evidence.
+Final meter checks: all11 focused meter/threat scripts PASS;220 native-control
+checks,256 checks per pinned client menu replay, five baseline-rejecting pairs
+and five rejected mutations. All5 installed backend/layout pairs match the final
+tested hashes through the existing mirror. The final whole run has874 syntax
+PASS,205 scripts PASS and6 unrelated concurrent raid-test failures; global corpus
+drift prevents a whole-addon PASS. Meter owners stayed unchanged; preserve the
+unrelated raid work. Documentation validation reports19 unrelated unit/raid
+inventory/verification issues and no meter-source errors. Native acceptance
+remains selected-client UI/function only.
+Source/history recovery and available on-disk settings verified; no foreground
+control, direct WTF writes, profiler changes or manual client copy operation.
+
+| ID | Requirement | Final behavior/evidence |
+| --- | --- | --- |
+| METER-NATIVE-CONTROLS-01 | Choose each native type directly in FluxUI | Enumerated original native radio entries; direct Pick; user confirms type/pane/label update |
+| METER-NATIVE-CONTROLS-02 | Preset/custom layout applies all native windows without setup clicks | At most three copied desired slots applied once per explicit user choice; user confirms both four-pane presets immediately work |
+| METER-NATIVE-CONTROLS-03 | Offer only supported native types | Current ten native types; no Absorbs catalog/preset; builtin5 HPS; saved unavailable requests repaired in working/preview only |
+| METER-NATIVE-CONTROLS-04 | Threat/Damage above Interrupts/Healing | New stable builtin10; original IDs retained; user confirms native result |
+| METER-THREAT-ISOLATION-01 | Threat does not consume a native meter window | Existing independent owned pane retained; mixed-layout routing fixture and user native Max3/Current2 output |
+
+This supersedes the earlier manual-only setup/launcher instructions below.
+The private type/session/row/default configuration boundary remains: no direct
+native setters, copied responders, replacement native functions, secret-value
+comparisons or automatic startup/combat configuration are introduced. Instead,
+the documented native menu API explicitly accounts for custom implementations:
+[Pick in Menu.lua](https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Menu/Menu.lua#L903)
+and [native radio input](https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_Menu/MenuTemplates.lua#L137).
+Each click re-resolves the actual window/entry. Native stored menu data remains
+the responder's input; Flux does not supply an enum to a native private setter.
+Matching panes skip redundant selection. Native new windows retain their native
+default session, and existing Current/Overall/history preferences are retained.
+
+The earlier skinned placeholder and three menu-launcher stage were insufficient
+for the requested direct choices. User verified the launcher menu and native type
+response, then clarified that individual type rows and immediate complete preset
+application were required. Both are implemented and functionally confirmed in
+Forever 1.60.1.70862 (executable metadata); no fresh GetBuildInfo probe. User read-
+only `/fbm api` returned native Max3/Current2 before third-pane activation. That
+does not indicate Threat used a native slot. A host read-only process/window
+check verified the running Forever path; no focus/input/clipboard operation.
+
+Desktop evidence executes the actual picker OnClick handlers, backend and pinned
+native dropdown/Pick methods in ordinary widget/proxy mocks. It checks all offered
+presets, direct choices, selected row/column, native creation, maximum capacity,
+stale responses, combat deferral, handoff/cleanup and legacy serialized-data
+preservation. Paired process times are not native performance; the failing
+baseline exits earlier. A separate production Threat fixture verifies all three
+native menus route correctly around the fourth owned pane. No new frames/events/
+hooks/tickers are added relative to the setup candidate; its Frame becomes a
+Button, and native changes reuse the existing two root hooks/geometry coalescer.
+
+[Final evidence](validation/meter-native-controls-2026-11-07.json).
+
+## All native types and preset setup — 7 November 2026
+
+7 November native meter presets (METER-ALL-OPTIONS-20261107): fixed blank
+slots when a requested type/window does not already exist in Blizzard's native
+configuration. Reserve all exact matches first, then keep unused native panes
+accessible for type selection. Mismatched rows have an explicit setup cover;
+uncreated slots use the same shared artwork/title/font/color/scale as Damage
+and Healing. A native type choice or new-window action triggers one coalesced
+layout repair; combat changes defer to the existing regeneration path.
+The user chose to keep native meters and configure extra windows once using
+Blizzard's menus. No custom renderer, automatic native configuration/creation,
+session reset or new recurring driver. Already configured Absorbs and all eleven
+enum types skin normally; pinned Retail/Forever native menus omit Absorbs, so
+that unavailable selection remains explicitly disclosed. The earlier screenshot
+showed the pre-shared-skin setup pane; final native visual/interaction/combat/
+taint/FPS acceptance remains pending. 128 focused checks and five alternating
+baseline/candidate pairs pass; baseline fails the missing-pane case. Final whole
+suite: 209 scripts/871 syntax PASS with unchanged Lua corpus; documentation
+validation PASS. Exact identities are in the evidence record. External dated
+source/history recovery and existing settings archive verified; fresh settings
+metadata only. No game input, settings/profiler writes or manual client sync.
+
+For the one-time setup, open an existing native meter's settings menu and choose
+its new-window action, then use that window's title/type menu to choose the
+missing view (Interrupts, Dispels, Damage Taken, etc.). FluxUI docks it without
+reopening the Meter tab. Repeat type selection when changing a preset's requested
+types; Blizzard owns each window's saved type. There are at most three native
+windows. FluxUI does not label another type's values as the requested type.
+
+Native Current/Overall/history, source drilldowns, row configuration, values,
+cadence and existing skin remain native. Public status distinguishes requested
+and actual types and counts setup panes. Setup chrome is pooled (at most three
+frames, each with a background/text and shared skin pieces when no native window
+exists); it hides on match and releases skin membership on cleanup. Two permanent
+guarded root posthooks reuse the existing geometry timer; stable refreshes create
+no frames/timers and do not walk rows or write native configuration.
+
+Fresh pinned sources: [Retail 297d7aaa](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua)
+and [Forever 9dc84f0d](https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_DamageMeter/DamageMeterSessionWindow.lua).
+Their `DAMAGE_METER_CATEGORIES` omit Absorbs although the enum/native renderer
+contains it. Existing Absorbs windows are supported; automatic creation/selection
+of an unavailable native option is not claimed. Earlier exact-match-only setup
+instructions below are historical; the visible in-place setup flow supersedes them.
+
+[Evidence](validation/meter-all-options-2026-11-07.json).
+
 The requested behavior is Blizzard damage/healing meters with the familiar
 Flux Details appearance and a standalone Forever threat pane. The current art
 request references optional installed Details files without loading its code;

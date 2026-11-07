@@ -1,5 +1,98 @@
 # Vendor, junk, tier targets, and bank restock
 
+7 November default Blizzard bank direct UI lifecycle (BANK-NATIVE-06): user
+renews the no-Baganator close/layering fix. Source audit proves a missed path:
+restock inventory fireCloseIfGone suppresses its private close callback while
+Bank.IsOpen stays true. Earlier tests always delivered that callback. The bank
+button now uses BANKFRAME_OPENED/CLOSED directly through the existing shared
+Flux.Events dispatcher for native UI, independent of that inventory latch. A raw
+close hides immediately, invalidates delayed attaches and blocks manual/stale
+inventory-open resurrection until the next real open. Private callbacks remain
+for Baganator and as fallback if direct registration is unavailable. Two native
+subscriptions, no new frame/timer/ticker/polling or native-script hook.
+Native layering now uses at least HIGH and the highest parent/search/panel/close/
+NineSlice strata; level clears those children as well as the root. Native parent
+and left-of-search position remain. GetControl exposes the actual owned widget
+for diagnostics; no command/settings change. Baganator footer remains intact.
+1780 production checks across five clients/both owners/cold-warm merchant/direct-
+events-fallback modes PASS. Includes suppressed inventory close, stale shown
+flags, stale open callbacks, HIGH/DIALOG children and reopen. Native ownership168,
+visible Baganator260 and combined33 per Era/Anniversary PASS. Prior checkpoint
+rejects. Fresh Gethe Forever9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862)
+verifies close function/events/search owner. Native visuals/open-close/purchase/
+combat/taint/FPS remain pending; actual hovered-frame evidence still unavailable.
+Fresh external source/history/45 on-disk settings metadata verified. No game,
+foreground, WTF/profiler or manual-sync operation.
+[Evidence](validation/bank-direct-lifecycle-2026-11-07.json).
+
+7 November native bank attachment (BANK-NATIVE-04): user reports the no-Baganator
+button below the window and detached during opening/closing. Forever's control
+was deliberately a UIParent sibling; it now uses the native BankFrame parent and
+existing inside left-of-search anchor, inheriting visibility, movement and scale.
+This supersedes the earlier UIParent parent restriction for this owned control.
+Native scripts, purchases, mover and item decoration exclusions remain. Visible
+ancestor checks hide stale/unattached controls on all clients. Existing two open
+retries keep their cadence but use a close/reopen generation token, so stale
+callbacks cannot resurrect a closed control. No new frame/event/hook/timer/ticker.
+Baganator's full-size inside footer and existing settings/commands are retained.
+828 production checks across5 clients/both owners/cold+warm merchants PASS,
+including parent hide/show without callbacks, close/reopen retries, explicit
+hidden-bank attachment and a shown frame under a hidden owner. Prior checkpoint
+rejects; current code passes. Native ownership168/visibleBaganator260/combined33
+per Era/Anniversary PASS. Fresh dated source/history/45 settings metadata entries
+verified externally; no game/WTF/profiler/manual-sync operation. Existing pinned
+Gethe9dc84f0d3bbae1768ac3405b3716000bd93eda06 source retains search/template evidence.
+Native candidate placement/open-close/purchase/combat/taint/FPS remain pending;
+no connected native tool.
+[Evidence](validation/bank-native-attachment-2026-11-07.json).
+
+7 November Baganator full-size inside action row (BANK-ICON-03): user rejects
+the22px toolbar button and explicitly requires a location inside the window.
+Existing restock control is now36x36 at scale1 in an owned48px bottom row, with
+Bank Restock label and full-size auto checkbox. Native tab, currency/reagent/
+purchase controls and item layout sit above that row. Existing completed-layout
+wrapper releases owned geometry before native sizing; repeated attachment never
+accumulates height. Tall windows reuse/shorten their existing scroll viewport;
+owned heights restore on hide, locked tab or native/combined handoff. No native
+bank placement changes; Forever remains left of search. No settings migration,
+new frame/event/hook/timer/ticker; one lazy FontString and transient footer state.
+668 production checks cover five clients, both bag owners, cold/warm merchant,
+full-size geometry, viewport bounds, exact native completion ordering, repeated
+refresh, lock and handoff. Ownership168/visibleBaganator260/combined33 per Era
+and Anniversary PASS. Native candidate visuals/input/taint/FPS remain pending;
+user reproduction route retained. Baganator843 interfaces inspected read-only;
+rights retained, no implementation/art copied. Dated external source/history and
+45 on-disk settings metadata verified. No game input/WTF/profiler/manual sync.
+[Evidence](validation/bank-restock-footer-2026-11-07.json).
+
+7 November bank restock slot follow-up (BANK-ICON-02): user rejects the first
+icon-only fix and the Forever outside-window placement. Baganator843's toolbar
+uses32x22 buttons; resizing only the hit rectangle left fixed64px merchant slot
+art at its36px design size. The whole36px control now scales uniformly to the
+shorter toolbar edge, including icon, frame, highlight/push and auto toggle.
+Native/combined handoff resets scale1. Transfer/Sort/Customise references work.
+Forever remains an addon-owned UIParent child but is visually inside BankFrame,
+RIGHT of button to LEFT of BankItemSearchBox,4px gap, vertically centered; this
+supersedes the previous external TOPRIGHT placement. Native bank hierarchy,
+scripts/purchase/movement/decorations stay untouched. Fresh Gethe Forever source
+9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862) verifies Mainline template
+and Camelot loading/search owner. Baganator read-only reference retains rights.
+358 production geometry/lifecycle checks PASS across5 clients/both bag owners/
+cold+warm merchant; prior checkpoint rejects. Native ownership168 and combined33
+per Era/Anniversary PASS. Native candidate pixels/input/taint/FPS remain pending;
+user screenshot reproductions retained; no connected client tool or game input.
+External fresh source/history verified;45 on-disk settings metadata read-only.
+No new frame/event/hook/timer/ticker. Existing bounded retries/click/drop/tooltip/
+auto settings retained.
+[Evidence](validation/bank-restock-slot-2026-11-07.json).
+
+7 November bank icon fix: restock artwork fills the bank button with a one-pixel
+inset and follows toolbar resizing on all supported clients. Forever without
+Baganator uses an addon-owned button beside Blizzard's bank, outside the native
+child hierarchy. Existing click/drop/auto settings remain. Desktop checks pass;
+native visuals/input/taint remain pending.
+[Evidence](validation/bank-restock-icon-2026-11-07.json).
+
 FluxUI extends merchant and bank windows with repairs, junk classification/selling, target-based purchases/withdrawals, Already Known tinting, and bulk buying. Current options live under **Inventory**; Vendor & Restock and Salvage are related controls within that page rather than separate top-level tools. Behavior is shared with combat/noncombat consumable buttons, Respec gear protection, Blizzard bags, and Baganator.
 
 ## State, entry points, and defaults

@@ -1,0 +1,16 @@
+{
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\geometry\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "baseline_raw_sha256": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+  "candidate_raw_sha256": "4ccc5fe4059984cd130b34c37143f658efd64981aa37f7aabea29d8fa90540c8",
+  "selected_status": "GATED_WITH_PATCHED_WINNING_LCG_NOT_FOR_INDEPENDENT_APPLICATION",
+  "edits": [
+    "GEO-01/access-contract-comment",
+    "ALPHA-06/commit-glow-cache-after-success"
+  ],
+  "GEO-01": "HELD. Native-span experiment rejected for stale health fill versus calculator epoch mismatch; selected candidate has no geometric change.",
+  "rejected_experiment": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\experiments\\geometry-native-span\\UnitFrames\\FluxUnitFrames_Shared.lua",
+  "rejected_experiment_sha256": "9fabb80db04aa999802d9e11c749f8fcf69ac725a33222607f0bf7fff4dddeb6",
+  "GEO-02": "No source change: exact native tiling frequency/appearance unresolved.",
+  "ALPHA-06": "Threat cache commit hunk supplied by alpha-reader agent; application is gated on the matching patched winning LCG ownership/readiness. An unpatched higher-version winner could produce more repeated failing starts."
+}

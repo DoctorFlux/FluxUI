@@ -1,0 +1,159 @@
+{
+  "change": "UF-AURA-02-20261107",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4be-c7d4-7bc0-947c-623d7ec53e3d\\unit-aura-minute",
+  "supersedes": "UF-AURA-01 per-target/focus prototype rejected by user; all-aura scope suggestion narrowed by later explicit split",
+  "scope": "Two controls: Unit Frames > General covers normal player-style party+target+focus; Party/Raid covers raid+compact party. Player top-right and pet-tooltip not included after latest scope correction.",
+  "settings": "unitFrames.auraTimersUnderMinute false default via existing account/character unit-frame scope; independent raidFrames.auraTimersUnderMinute unchanged",
+  "nativePolicy": "Distinct normal-party and raid formatter handles; native normal-party initialization/refresh and plain clocks/previews choose owner family. Target/focus formatter lives per container. No duration reads on native paths.",
+  "intentionalFix": "Legacy GetCooldownTimes milliseconds converted to seconds before threshold arithmetic",
+  "candidateSHA256": {
+    "UnitFrames/FluxUnitFrames_Auras.lua": "390d024be8832e7482175393f6567cdf3d660bfe895894faba823495dee0cdb0",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "a50b0f178baeabe6ea527c24f1fca83dc3724b6377fa55116426003546be5e56",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "82a94a0c50276faa9ec081eb0a8c2e729ba6f73abc76ecd141938609ccba88ef",
+    "AddonOptions/FluxOptionsUnitFrames.lua": "c3f67415168513fbf5c56a13c1df50d992698f2111303f2b5539a708f2bc3b8e",
+    "AddonOptions/FluxOptionsDefaults.lua": "2a7515910904bd43456eb31a4952537730ec2ccb18f9743a0ba724eac84fc83c",
+    "RaidFrame/FluxRaidAuras.lua": "be3b9703545c97c499731f3c2ef17605f84d8e40d53b808b60f31d2d97393e07",
+    "RaidFrame/FluxRaidVisuals.lua": "3ab165b56858a79361ec7ef818c367e4551470d01ab485d05e9e55c6fe46deff",
+    "RaidFrame/FluxRaidPreview.lua": "e5894ebc5df34ccb459fdc86d24c5d17c677e339f496bb1635c4823fc006ea4c",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "45d9e5e7285089237dfbb8f49d14b6bba4ebcc13eaefaf3508715e3e6ec7aa54"
+  },
+  "trials": [
+    {
+      "pair": 1,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.026521100000536535,
+      "output": "lua: tests/unit_aura_timer_policy.lua:8: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:8: in local 'part'\n\ttests/unit_aura_timer_policy.lua:17: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.036949499997717794,
+      "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 2,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019825300005322788,
+      "output": "lua: tests/unit_aura_timer_policy.lua:8: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:8: in local 'part'\n\ttests/unit_aura_timer_policy.lua:17: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 2,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03129929999704473,
+      "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 3,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019097800002782606,
+      "output": "lua: tests/unit_aura_timer_policy.lua:8: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:8: in local 'part'\n\ttests/unit_aura_timer_policy.lua:17: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.02871709999453742,
+      "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 4,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.020015299996885005,
+      "output": "lua: tests/unit_aura_timer_policy.lua:8: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:8: in local 'part'\n\ttests/unit_aura_timer_policy.lua:17: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 4,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03925620000518393,
+      "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+    },
+    {
+      "pair": 5,
+      "source": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.021157499999389984,
+      "output": "lua: tests/unit_aura_timer_policy.lua:8: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_aura_timer_policy.lua:8: in local 'part'\n\ttests/unit_aura_timer_policy.lua:17: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "source": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.032874000004085246,
+      "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+    }
+  ],
+  "focused": "36 actual helper/callback/config and production normal-party native-sink checks; raid live-options1696 and aura renderer12776 checks PASS",
+  "native": "NOT RUN final candidate; user rejected previous scoped option; no claim of visual/taint/FPS acceptance",
+  "checkpoint": "All existing raid-mt-target checkpoint archive hashes and history bundle verified; original five sources plus current three raid owners preserved externally; no settings/profiler/game input",
+  "installedCopies": {
+    "_retail_": {
+      "UnitFrames/FluxUnitFrames_Auras.lua": true,
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+      "AddonOptions/FluxOptionsUnitFrames.lua": true,
+      "AddonOptions/FluxOptionsDefaults.lua": true,
+      "RaidFrame/FluxRaidAuras.lua": true,
+      "RaidFrame/FluxRaidVisuals.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true
+    },
+    "_forever_": {
+      "UnitFrames/FluxUnitFrames_Auras.lua": true,
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+      "AddonOptions/FluxOptionsUnitFrames.lua": true,
+      "AddonOptions/FluxOptionsDefaults.lua": true,
+      "RaidFrame/FluxRaidAuras.lua": true,
+      "RaidFrame/FluxRaidVisuals.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true
+    },
+    "_classic_": {
+      "UnitFrames/FluxUnitFrames_Auras.lua": true,
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+      "AddonOptions/FluxOptionsUnitFrames.lua": true,
+      "AddonOptions/FluxOptionsDefaults.lua": true,
+      "RaidFrame/FluxRaidAuras.lua": true,
+      "RaidFrame/FluxRaidVisuals.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true
+    },
+    "_classic_era_": {
+      "UnitFrames/FluxUnitFrames_Auras.lua": true,
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+      "AddonOptions/FluxOptionsUnitFrames.lua": true,
+      "AddonOptions/FluxOptionsDefaults.lua": true,
+      "RaidFrame/FluxRaidAuras.lua": true,
+      "RaidFrame/FluxRaidVisuals.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true
+    },
+    "_anniversary_": {
+      "UnitFrames/FluxUnitFrames_Auras.lua": true,
+      "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+      "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+      "AddonOptions/FluxOptionsUnitFrames.lua": true,
+      "AddonOptions/FluxOptionsDefaults.lua": true,
+      "RaidFrame/FluxRaidAuras.lua": true,
+      "RaidFrame/FluxRaidVisuals.lua": true,
+      "RaidFrame/FluxRaidPreview.lua": true,
+      "AddonOptions/FluxOptionsRaidFrame.lua": true
+    }
+  },
+  "finalFullValidation": {
+    "pass": 214,
+    "fail": 0,
+    "syntaxFiles": 877,
+    "syntaxFailures": []
+  },
+  "testedCorpusUnchanged": true
+}

@@ -5,6 +5,10 @@ directly on main: the user requested main only and publication of the current
 local files on 29 October 2026. Do not create other branches unless requested later.
 Preserve existing history and newer local work; do not force-push.
 
+Publication commits use DoctorFlux
+`<100806234+DoctorFlux@users.noreply.github.com>` for author and committer,
+without automated co-author trailers. Preserve third-party licenses and notices.
+
 ## Preserve behavior and data
 
 - Retain addon identity, saved-variable roots, profiles, options, defaults, commands,

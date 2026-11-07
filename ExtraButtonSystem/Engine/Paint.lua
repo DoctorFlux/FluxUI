@@ -1744,6 +1744,7 @@ end
 -- Combat-potion extras: show remaining self-buff when there is no real item lockout.
 -- Food/water extras must keep item/spell CD (eat, drink, Recuperate). Well Fed
 -- remaining belongs on the consumables extra, not the eat/drink buttons.
+-- Utility slots also always follow their selected item's actual cooldown.
 local function IsEatDrinkExtra(btn)
 	if not btn then
 		return false
@@ -1772,7 +1773,7 @@ local function ClearClaimedConsumableAura(btn)
 end
 
 local function ClaimConsumableItemAura(btn, itemId, itemDuration)
-	if not btn or btn.IsConsumableButton or IsEatDrinkExtra(btn) then
+	if not btn or btn.IsUtilitySlotButton or btn.IsConsumableButton or IsEatDrinkExtra(btn) then
 		return false
 	end
 	if not itemId then
@@ -1860,7 +1861,7 @@ function Paint.UpdateCooldown(btn)
 	if not EnsureCooldownFrame(btn) then
 		return
 	end
-	if IsEatDrinkExtra(btn) and btn.FluxConsumableAuraCooldown then
+	if (btn.IsUtilitySlotButton or IsEatDrinkExtra(btn)) and btn.FluxConsumableAuraCooldown then
 		ClearClaimedConsumableAura(btn)
 	end
 	if btn.FluxConsumableAuraCooldown and not btn.FluxStanceManagedCooldown then
@@ -3357,6 +3358,7 @@ function Paint.UpdateGlow(btn)
 		return
 	end
 	local spellId
+	local utilityItemSpell
 	local t = btn.ActionType
 	if t == "spell" then
 		spellId = ShownSpellId(btn)
@@ -3367,6 +3369,10 @@ function Paint.UpdateGlow(btn)
 		end
 	elseif IsMacroLike(btn) then
 		spellId = MacroShownSpell(btn)
+		if not spellId and btn.IsUtilitySlotButton then
+			spellId = ItemSpellIdent(MacroShownItem(btn))
+			utilityItemSpell = spellId ~= nil
+		end
 	elseif t == "pet" or t == "shapeshift" then
 		spellId = btn.SpellId
 	end
@@ -3385,7 +3391,9 @@ function Paint.UpdateGlow(btn)
 		end
 	end
 	local want = G.Want(spellId) and true or false
-	if want and shownTex and G.FaceShowsSpell and G.FaceShowsSpell(shownTex, spellId) == false then
+	-- Utility item art differs from its use spell's art. Its resolved item
+	-- identity is authoritative; do not reject that matching proc by texture.
+	if want and not utilityItemSpell and shownTex and G.FaceShowsSpell and G.FaceShowsSpell(shownTex, spellId) == false then
 		want = false
 	end
 	-- Nil spell id: keep only while the icon is still the last overlayed spell.
@@ -3393,12 +3401,21 @@ function Paint.UpdateGlow(btn)
 	if not want and not spellId then
 		local last = widget._fluxGlowSpell
 		local mode = btn.MacroMode
-		if mode == "item" or mode == "" then
+		if mode == "item" or mode == "" or (btn.IsUtilitySlotButton and not btn.ActionType) then
 			-- leave
 		elseif last and G.Want(last) and shownTex and G.FaceShowsSpell and G.FaceShowsSpell(shownTex, last) then
 			want = true
 			spellId = last
 		end
+	end
+	if G.EnsureSecureAura and not (InCombatLockdown and InCombatLockdown()) then
+		local body = btn.MacroBody or btn.ActionValue
+		local eligible = (G.IsSecureAuraSpell and G.IsSecureAuraSpell(spellId))
+			or (G.MayShowSecureAuraText and G.MayShowSecureAuraText(body))
+		G.EnsureSecureAura(widget, eligible)
+	end
+	if G.SyncSecureAura then
+		G.SyncSecureAura(widget, spellId, not widget._fluxBadgeCombatVisHidden)
 	end
 	local live = G.IsLive and G.IsLive(widget)
 	if want then

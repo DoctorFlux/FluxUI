@@ -5,6 +5,7 @@ local Flux = ns.Flux
 local Capture = {}
 Flux.PerfCapture = Capture
 local active
+local watch, watchFrame
 local PREFIX = "|cff00ccffFluxPerf|r"
 local SCRIPTS = { "OnUpdate", "OnEvent" }
 
@@ -232,6 +233,7 @@ end
 function Capture.Print()
     local r = _G.FluxPerfCaptureDB
     if not r then print(PREFIX, "No capture yet. /fluxperf capture 20") return end
+    if not PlainNumber(r.seconds) then Capture.PrintSpikes() return end
     print(PREFIX, string.format("%s %s (%s) build %s | spellRanks=%s | %.1fs | scriptProfile=%s",
         r.client, r.version or "?", r.gameType or "?", r.build, r.spellRanks or "?", r.seconds, r.scriptProfile))
     print(PREFIX, string.format("FPS samples: avg %.1f / min %.1f | Flux CPU %.2f ms/s", r.fpsAverage, r.fpsMin, r.addonMsPerSecond))
@@ -273,6 +275,7 @@ function Capture.Print()
 end
 
 function Capture.Cancel()
+    if watch then Capture.StopWatch("cancelled") end
     if not active then return end
     if active.timer then active.timer:Cancel() end
     if active.sampler then active.sampler:Cancel() end
@@ -282,6 +285,7 @@ function Capture.Cancel()
 end
 
 function Capture.Start(seconds)
+    if watch then print(PREFIX, "Spike watch is running. /fluxperf watch off") return end
     if active then print(PREFIX, "Capture already running. /fluxperf cancel") return end
     if not (GetTime and C_Timer and C_Timer.NewTimer and C_Timer.NewTicker) then
         print(PREFIX, "This client has no capture timer API.")
@@ -343,7 +347,10 @@ function Capture.Start(seconds)
             recent.applicationMs, recent.overallMs, recent.addonMs = recent.applicationMs / recent.count,
                 recent.overallMs / recent.count, recent.addonMs / recent.count
         end
+        local previous = _G.FluxPerfCaptureDB
+        local previousWatch = ReadableTable(previous) and previous.spikeWatch or nil
         _G.FluxPerfCaptureDB = {
+            spikeWatch = previousWatch,
             -- expansion + version + gameType: live Midnight and Forever both use _retail_.
             client = client.expansion or (client.isCamelot and "Forever" or (client.isRetail and "Midnight"
                 or (client.isEra and "Classic Era" or (client.isTBC and "Anniversary" or tostring(WOW_PROJECT_ID))))),
@@ -370,4 +377,322 @@ function Capture.Start(seconds)
         active = nil
         Capture.Print()
     end)
+end
+
+-- Optional bounded watch. A frame gap is not automatically addon CPU: loading,
+-- rendering, background throttling and other addons can also delay a frame.
+local WATCH_SPIKES, WATCH_CALLBACKS, WATCH_LABELS = 20, 64, 512
+
+local function WatchNumber(value)
+    return PlainNumber(value) and value == value and value >= 0 and value < math.huge
+end
+
+local function WatchRead(api, ...)
+    local value = ReadRecent(api, ...)
+    if WatchNumber(value) then return value end
+end
+
+local function PublicString(value)
+    return not (issecretvalue and issecretvalue(value)) and type(value) == "string"
+end
+
+local function WatchCVar(name)
+    local get = (C_CVar and C_CVar.GetCVar) or GetCVar
+    if type(get) ~= "function" then return "unavailable" end
+    local ok, value = pcall(get, name)
+    return ok and PublicString(value) and value or "unavailable"
+end
+
+local function HeapKB()
+    return WatchRead(collectgarbage, "count")
+end
+
+local function ErrorCount()
+    local bugs = _G.BugTabs
+    if ReadableTable(bugs) then return WatchRead(bugs.GetSessionCounts) end
+end
+
+local function PushWatchRow(rows, limit, count)
+    local index = (count - 1) % limit + 1
+    local row = rows[index]
+    if not row then row = {}; rows[index] = row end
+    for key in pairs(row) do row[key] = nil end
+    return row
+end
+
+local function FunctionLabels()
+    local labels, seen, budget, count = {}, {}, 4096, 0
+    local function Walk(tbl, path, depth)
+        if budget <= 0 or depth > 4 or not ReadableTable(tbl) or seen[tbl] then return end
+        if rawget(tbl, 0) or rawget(tbl, "GetObjectType") then return end
+        seen[tbl] = true
+        for key, value in pairs(tbl) do
+            budget = budget - 1
+            if budget < 0 then break end
+            if PublicString(key) and key:match("^[%a_][%w_]*$") then
+                local lower = key:lower()
+                if lower ~= "ns" and lower ~= "profile" and lower ~= "history"
+                    and not lower:find("saved", 1, true) and not lower:find("db", 1, true) then
+                    local name = path .. "." .. key
+                    if type(value) == "function" and not labels[value] and count < WATCH_LABELS then
+                        labels[value], count = name, count + 1
+                    elseif type(value) == "table" then Walk(value, name, depth + 1) end
+                end
+            end
+        end
+    end
+    Walk(Flux, "Flux", 0)
+    Walk(ns.UnitFrames, "UnitFrames", 0)
+    Walk(_G.FluxInv, "FluxInv", 0)
+    return labels, count
+end
+
+local function CallbackLabel(state, fn, kind, key)
+    if issecretvalue and issecretvalue(fn) then return kind .. ":unavailable" end
+    local label = state.labels[fn]
+    if label then return label end
+    -- Lua debug metadata, when supplied by the client, concerns the callback
+    -- function only. No event arguments, frame graphs or actor data are read.
+    if type(debug) == "table" and type(debug.getinfo) == "function" then
+        local ok, info = pcall(debug.getinfo, fn, "S")
+        if ok and ReadableTable(info) and PublicString(info.short_src) and PlainNumber(info.linedefined) then
+            label = info.short_src:sub(1, 180) .. ":" .. info.linedefined
+        end
+    end
+    if not label then label = kind .. ":" .. key .. ":unmapped" end
+    if state.labelCount < WATCH_LABELS then
+        state.labels[fn], state.labelCount = label, state.labelCount + 1
+    end
+    return label
+end
+
+local function ProfilerTick()
+    local api = _G.C_AddOnProfiler
+    local enums = _G.Enum
+    local metrics = ReadableTable(enums) and enums.AddOnProfilerMetric
+    local metric = ReadableTable(metrics) and metrics.LastTime
+    if not ReadableTable(api) or not PlainNumber(metric) then return end
+    local result = {
+        applicationMs = WatchRead(api.GetApplicationMetric, metric),
+        overallMs = WatchRead(api.GetOverallMetric, metric),
+        addonMs = WatchRead(api.GetAddOnMetric, addonName, metric), top = {},
+    }
+    if type(api.GetTopKAddOnsForMetric) == "function" then
+        local ok, rows = pcall(api.GetTopKAddOnsForMetric, metric, 5)
+        if ok and ReadableTable(rows) then
+            for i = 1, math.min(5, #rows) do
+                local row = rows[i]
+                if ReadableTable(row) and PublicString(row.addOnName) and WatchNumber(row.metricValue) then
+                    result.top[#result.top + 1] = { addon = row.addOnName, ms = row.metricValue }
+                end
+            end
+        end
+    end
+    if result.applicationMs or result.overallMs or result.addonMs or #result.top > 0 then return result end
+end
+
+local function WatchClock()
+    local ms = debugprofilestop and debugprofilestop()
+    if WatchNumber(ms) then return ms end
+end
+
+local function AddWatchCost(state, started)
+    local ended = WatchClock()
+    if started and ended and ended >= started then
+        local ms = ended - started
+        state.report.diagnosticMs = state.report.diagnosticMs + ms
+        state.report.diagnosticPeakMs = math.max(state.report.diagnosticPeakMs, ms)
+    end
+end
+
+local function ObserveWatch(state, kind, key, fn, ms, failed, tokens)
+    if watch ~= state or not WatchNumber(ms) then return end
+    local r = state.report
+    r.observedCallbacks = r.observedCallbacks + 1
+    state.frameCallbackCount = state.frameCallbackCount + 1
+    key = (PublicString(key) or (PlainNumber(key) and key == key and key > -math.huge and key < math.huge)) and key or "unavailable"
+    local keys = state.frameKeys[kind]
+    if keys[key] then keys[key] = keys[key] + 1
+    elseif state.frameKeyCount < 64 then
+        keys[key], state.frameKeyCount = 1, state.frameKeyCount + 1
+    else state.frameKeyOverflow = state.frameKeyOverflow + 1 end
+    local hottest = ms > state.frameCallbackMs
+    if hottest then
+        state.frameCallbackMs, state.frameCallbackFn = ms, fn
+        state.frameCallbackKey, state.frameCallbackKind = key, kind
+        state.frameCallbackTokens = nil
+    end
+    if ms < 10 then return end
+    local started = WatchClock()
+    key = PublicString(key) and key or (PlainNumber(key) and tostring(key) or "unavailable")
+    r.callbackCount = r.callbackCount + 1
+    local row = PushWatchRow(r.callbacks, WATCH_CALLBACKS, r.callbackCount)
+    row.sequence, row.at, row.kind, row.key = r.callbackCount, GetTime() - state.started, kind, key
+    row.ms, row.failed = ms, failed == true
+    row.label = CallbackLabel(state, fn, kind, key)
+    if ReadableTable(tokens) then
+        local names, visited = {}, 0
+        for token in pairs(tokens) do
+            visited = visited + 1
+            if PublicString(token) then names[#names + 1] = token:sub(1, 80) end
+            if #names == 4 or visited == 16 then break end
+        end
+        row.tokens = table.concat(names, ",")
+    end
+    if hottest then
+        state.frameCallbackTokens = row.tokens
+    end
+    AddWatchCost(state, started)
+end
+
+function Capture.StopWatch(reason)
+    local state = watch
+    if not state then return false end
+    watch = nil
+    watchFrame:SetScript("OnUpdate", nil)
+    watchFrame:SetScript("OnEvent", nil)
+    watchFrame:UnregisterEvent("PLAYER_LOGOUT")
+    watchFrame:Hide()
+    for _, release in ipairs(state.releases) do release() end
+    local r = state.report
+    r.status, r.seconds = reason or "stopped", math.max(0, GetTime() - state.started)
+    r.heapAfterKB, r.errorsAfter = HeapKB(), ErrorCount()
+    state.labels, state.releases, state.frameKeys, state.frameCallbackFn = nil, nil, nil, nil
+    local db = _G.FluxPerfCaptureDB
+    if db == nil then db = {}; _G.FluxPerfCaptureDB = db end
+    if ReadableTable(db) then db.spikeWatch = r end
+    print(PREFIX, string.format("Spike watch stopped: %d frame gaps; %d slow callbacks. /fluxperf spikes", r.spikeCount, r.callbackCount))
+    return true
+end
+
+function Capture.WatchStatus()
+    if not watch then return { active = false } end
+    return { active = true, secondsRemaining = math.max(0, watch.deadline - GetTime()),
+        spikes = watch.report.spikeCount, callbacks = watch.report.callbackCount }
+end
+
+function Capture.StartWatch(seconds, thresholdMs)
+    if watch or active then print(PREFIX, "A capture/watch is already running. /fluxperf cancel") return false end
+    if type(CreateFrame) ~= "function" or type(GetTime) ~= "function" then
+        print(PREFIX, "Spike watch is unavailable on this client.") return false
+    end
+    local db = _G.FluxPerfCaptureDB
+    if db ~= nil and not ReadableTable(db) then print(PREFIX, "Saved diagnostic data is unavailable; it was preserved.") return false end
+    seconds, thresholdMs = tonumber(seconds), tonumber(thresholdMs)
+    seconds = PlainNumber(seconds) and seconds == seconds and math.max(30, math.min(3600, seconds)) or 600
+    thresholdMs = PlainNumber(thresholdMs) and thresholdMs == thresholdMs and math.max(50, math.min(5000, thresholdMs)) or 200
+    local version, build = GetBuildInfo()
+    local state = { started = GetTime(), releases = {}, frameCallbackMs = 0,
+        frameCallbackCount = 0, frameKeyCount = 0, frameKeyOverflow = 0,
+        frameKeys = { Events = {}, Ticker = {}, Scheduler = {} },
+        report = { mode = "spike-watch", diagnosticVersion = 2, status = "watching", version = version, build = tostring(build),
+            durationLimit = seconds, thresholdMs = thresholdMs, scriptProfile = WatchCVar("scriptProfile"),
+            maxFPS = WatchCVar("maxFPS"), maxFPSBk = WatchCVar("maxFPSBk"),
+            capturedAt = date and date("%Y-%m-%d %H:%M:%S") or nil,
+            heapBeforeKB = HeapKB(), errorsBefore = ErrorCount(),
+            spikeCount = 0, callbackCount = 0, observedCallbacks = 0, frameCount = 0,
+            peakFrameMs = 0, diagnosticMs = 0, diagnosticPeakMs = 0, periodicHeapSamples = 0, spikes = {}, callbacks = {}, coverage = {},
+            interpretation = "Gaps include loading/background/rendering; callback spans are inclusive and may overlap. Nearest profiler tick is not exact gap attribution. Heap is global Lua KB, not addon allocations or a leak test. Error deltas span sampled boundaries. Unit callback failures and work outside observed Flux services are not timed. Diagnostic timings cover recorded sections only, excluding observer seam and fast callback overhead." } }
+    state.deadline, state.previousHeap, state.previousErrors = state.started + seconds, state.report.heapBeforeKB, state.report.errorsBefore
+    state.heapAttemptAt = state.started
+    state.lastHeapKB = state.report.heapBeforeKB
+    state.lastHeapAt = state.lastHeapKB and state.started or nil
+    state.labels, state.labelCount = FunctionLabels()
+    for _, kind in ipairs({ "Events", "Ticker", "Scheduler" }) do
+        local sourceKind = kind
+        local service = Flux[kind]
+        if service and type(service.ObserveTiming) == "function" then
+            local release, reason = service.ObserveTiming(function(...) ObserveWatch(state, sourceKind, ...) end)
+            if not release then
+                for _, undo in ipairs(state.releases) do undo() end
+                print(PREFIX, "Timing observer busy: " .. kind .. "; " .. tostring(reason)) return false
+            end
+            state.releases[#state.releases + 1], state.report.coverage[kind] = release, true
+        else state.report.coverage[kind] = false end
+    end
+    watch = state
+    if not watchFrame then watchFrame = CreateFrame("Frame") end
+    watchFrame:RegisterEvent("PLAYER_LOGOUT")
+    watchFrame:SetScript("OnEvent", function(_, event)
+        if event == "PLAYER_LOGOUT" and watch == state then Capture.StopWatch("logout") end
+    end)
+    watchFrame:SetScript("OnUpdate", function(_, elapsed)
+        if watch ~= state then return end
+        local started, now = WatchClock(), GetTime()
+        local r = state.report
+        r.frameCount = r.frameCount + 1
+        if state.previousTime and WatchNumber(elapsed) then
+            local gapMs = elapsed * 1000
+            r.peakFrameMs = math.max(r.peakFrameMs, gapMs)
+            if gapMs >= thresholdMs then
+                r.spikeCount = r.spikeCount + 1
+                local row = PushWatchRow(r.spikes, WATCH_SPIKES, r.spikeCount)
+                row.sequence, row.at, row.gapMs = r.spikeCount, now - state.started, gapMs
+                row.intervalCallbacks, row.callbackMs = state.frameCallbackCount, state.frameCallbackMs
+                row.callbackLabel = state.frameCallbackFn and CallbackLabel(state, state.frameCallbackFn, state.frameCallbackKind, tostring(state.frameCallbackKey)) or nil
+                row.callbackKey, row.callbackKind, row.callbackTokens = state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens
+                row.busyKeys, row.keyOverflow = {}, state.frameKeyOverflow
+                for kind, keys in pairs(state.frameKeys) do
+                    for key, count in pairs(keys) do
+                        row.busyKeys[#row.busyKeys + 1] = { kind = kind, key = tostring(key), callbacks = count }
+                    end
+                end
+                table.sort(row.busyKeys, function(a, b) return a.callbacks > b.callbacks end)
+                while #row.busyKeys > 4 do row.busyKeys[#row.busyKeys] = nil end
+                row.preHeapKB, row.preHeapAgeSeconds = state.lastHeapKB, state.lastHeapAt and now - state.lastHeapAt or nil
+                row.contextSampled = not state.contextAt or now - state.contextAt >= 1
+                if row.contextSampled then
+                    row.profiler = ProfilerTick()
+                    row.heapKB, row.errors = HeapKB(), ErrorCount()
+                    if row.heapKB and state.previousHeap then row.heapDeltaKB = row.heapKB - state.previousHeap end
+                    if row.heapKB and row.preHeapKB then row.shortHeapDeltaKB = row.heapKB - row.preHeapKB end
+                    if row.errors and state.previousErrors then row.errorDelta = math.max(0, row.errors - state.previousErrors) end
+                    state.previousHeap, state.previousErrors, state.contextAt = row.heapKB, row.errors, now
+                    state.heapAttemptAt = now
+                    if row.heapKB then state.lastHeapKB, state.lastHeapAt = row.heapKB, now end
+                end
+                row.ui = { fluxTab = Method(_G.FluxWindowFrame, "GetActiveTab"),
+                    mail = FrameState(_G.MailFrame), auction = FrameState(_G.AuctionHouseFrame or _G.AuctionFrame),
+                    worldMap = FrameState(_G.WorldMapFrame), combat = (InCombatLockdown and InCombatLockdown()) or false }
+            end
+        end
+        if now - state.heapAttemptAt >= 1 then
+            local heap = HeapKB()
+            state.heapAttemptAt, r.periodicHeapSamples = now, r.periodicHeapSamples + 1
+            if heap then state.lastHeapKB, state.lastHeapAt = heap, now end
+        end
+        state.previousTime, state.frameCallbackMs = now, 0
+        state.frameCallbackFn, state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens = nil, nil, nil, nil
+        state.frameCallbackCount, state.frameKeyCount, state.frameKeyOverflow = 0, 0, 0
+        for _, keys in pairs(state.frameKeys) do for key in pairs(keys) do keys[key] = nil end end
+        AddWatchCost(state, started)
+        if now >= state.deadline then Capture.StopWatch("expired") end
+    end)
+    watchFrame:Show()
+    if db == nil then db = {}; _G.FluxPerfCaptureDB = db end
+    db.spikeWatch = state.report
+    print(PREFIX, string.format("Watching %.0fs for frame gaps >= %.0fms and Flux callbacks >= 10ms. Play normally; no profiler setting changed.", seconds, thresholdMs))
+    return true
+end
+
+function Capture.PrintSpikes()
+    local r = watch and watch.report
+    local db = _G.FluxPerfCaptureDB
+    if not r and ReadableTable(db) then r = db.spikeWatch end
+    if not ReadableTable(r) then print(PREFIX, "No spike watch yet. /fluxperf watch") return end
+    local status = not watch and r.status == "watching" and "interrupted" or r.status
+    print(PREFIX, string.format("Spike watch %s: %d gaps (peak %.1fms); %d slow callbacks; recorded diagnostic sections %.2fms / %.2fms peak.",
+        status, r.spikeCount, r.peakFrameMs, r.callbackCount, r.diagnosticMs, r.diagnosticPeakMs))
+    for sequence = math.max(1, r.spikeCount - 7), r.spikeCount do
+        local row = r.spikes[(sequence - 1) % WATCH_SPIKES + 1]
+        print(PREFIX, string.format("  +%.1fs gap %.1fms; callbacks %s; peak callback %.1fms %s %s; error delta %s",
+            row.at, row.gapMs, tostring(row.intervalCallbacks or "unknown"), row.callbackMs or 0, row.callbackLabel or "unattributed", row.callbackTokens or "", tostring(row.errorDelta)))
+        local busy = row.busyKeys and row.busyKeys[1]
+        if busy then print(PREFIX, "    busiest " .. busy.kind .. ":" .. busy.key .. " x" .. busy.callbacks) end
+    end
+    for sequence = math.max(1, r.callbackCount - 7), r.callbackCount do
+        local row = r.callbacks[(sequence - 1) % WATCH_CALLBACKS + 1]
+        print(PREFIX, string.format("  +%.1fs callback %.1fms %s %s %s", row.at, row.ms, row.kind, row.key, row.label))
+    end
+    print(PREFIX, "Correlations only: do not sum overlapping spans or equate a frame gap with Flux CPU. /fluxperf watch off saves; /reload writes diagnostics to disk.")
 end

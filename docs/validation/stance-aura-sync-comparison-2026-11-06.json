@@ -1,0 +1,609 @@
+{
+  "checkpoint": "Aura-countdown-dispatch-20261106T163409Z (verified by parent, 1653 source files/184 settings)",
+  "sourceSHA256": {
+    "baseline": "84c29a6c0e48c3ca39ccf8094f04ed0bce6f178b83f2e5d73394d634b6213578",
+    "candidate": "26bdef971675ece8388be025c324c3a337ca108bc61ea97da142df96d725e81f",
+    "test": "a05c5d6325e05bf2ca3570ad46c604938a5b2a91daeb77c109c5395ed14ff98a"
+  },
+  "scenario": "Loaded actual countdown section (PublicNumber plus ExtraAuraTimerOwned through SyncAuraCountdown), explicit native display sinks. Counts for1/4/16/64/256 buttons. Timing16 active buttons,10 warm-up sweeps,2000 matched refresh sweeps.5 alternating pairs. No GC/profiler/settings changes.",
+  "clockLimit": "Windows host os.clock interval is uncalibrated and not claimed as native CPU/FPS. Process startup and file load excluded from hostClockMs; process wall interval includes both.",
+  "nativeAcceptance": "Pending. No claim that this fixes214/181ms spikes or native frame time. Baseline native capture must not be relabelled candidate.",
+  "regression": {
+    "candidateChecks": 26,
+    "mutantsRejected": 1,
+    "baselineExit": 1,
+    "baselineOutput": "lua: ...40df7e22b\\stance-aura-sync-20261106\\stance_aura_sync.lua:18: sync paints its own time-modified display without sweeping other buttons\nstack traceback:\n\t[C]: in function 'assert'\n\t...40df7e22b\\stance-aura-sync-20261106\\stance_aura_sync.lua:18: in upvalue 'check'\n\t...40df7e22b\\stance-aura-sync-20261106\\stance_aura_sync.lua:101: in local 'exercise'\n\t...40df7e22b\\stance-aura-sync-20261106\\stance_aura_sync.lua:193: in main chunk\n\t[C]: in ?\n"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "hostClockMs": 780.0,
+      "processWallSeconds": 0.9605096000013873,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 10,
+          "startupNativeHide": 14,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 20,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 136,
+          "startupNativeHide": 152,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 272,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 2080,
+          "startupNativeHide": 2144,
+          "resyncHolderShow": 4096,
+          "resyncNativeHide": 4160,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 32896,
+          "startupNativeHide": 33152,
+          "resyncHolderShow": 65536,
+          "resyncNativeHide": 65792,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t10\t14\t16\t20\t4\t0\t1\n16\t136\t152\t256\t272\t16\t0\t1\n64\t2080\t2144\t4096\t4160\t64\t0\t1\n256\t32896\t33152\t65536\t65792\t256\t0\t1\nHOST_CLOCK_MS\t780.0\n"
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "hostClockMs": 89.0,
+      "processWallSeconds": 0.17218880000291392,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 4,
+          "startupNativeHide": 8,
+          "resyncHolderShow": 4,
+          "resyncNativeHide": 8,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 16,
+          "startupNativeHide": 32,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 32,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 64,
+          "startupNativeHide": 128,
+          "resyncHolderShow": 64,
+          "resyncNativeHide": 128,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 256,
+          "startupNativeHide": 512,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 512,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t4\t8\t4\t8\t4\t0\t1\n16\t16\t32\t16\t32\t16\t0\t1\n64\t64\t128\t64\t128\t64\t0\t1\n256\t256\t512\t256\t512\t256\t0\t1\nHOST_CLOCK_MS\t89.0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "hostClockMs": 89.0,
+      "processWallSeconds": 0.11117620000732131,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 4,
+          "startupNativeHide": 8,
+          "resyncHolderShow": 4,
+          "resyncNativeHide": 8,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 16,
+          "startupNativeHide": 32,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 32,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 64,
+          "startupNativeHide": 128,
+          "resyncHolderShow": 64,
+          "resyncNativeHide": 128,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 256,
+          "startupNativeHide": 512,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 512,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t4\t8\t4\t8\t4\t0\t1\n16\t16\t32\t16\t32\t16\t0\t1\n64\t64\t128\t64\t128\t64\t0\t1\n256\t256\t512\t256\t512\t256\t0\t1\nHOST_CLOCK_MS\t89.0\n"
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "hostClockMs": 767.0,
+      "processWallSeconds": 0.9544030000106432,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 10,
+          "startupNativeHide": 14,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 20,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 136,
+          "startupNativeHide": 152,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 272,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 2080,
+          "startupNativeHide": 2144,
+          "resyncHolderShow": 4096,
+          "resyncNativeHide": 4160,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 32896,
+          "startupNativeHide": 33152,
+          "resyncHolderShow": 65536,
+          "resyncNativeHide": 65792,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t10\t14\t16\t20\t4\t0\t1\n16\t136\t152\t256\t272\t16\t0\t1\n64\t2080\t2144\t4096\t4160\t64\t0\t1\n256\t32896\t33152\t65536\t65792\t256\t0\t1\nHOST_CLOCK_MS\t767.0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "hostClockMs": 825.0,
+      "processWallSeconds": 1.0153431000071578,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 10,
+          "startupNativeHide": 14,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 20,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 136,
+          "startupNativeHide": 152,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 272,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 2080,
+          "startupNativeHide": 2144,
+          "resyncHolderShow": 4096,
+          "resyncNativeHide": 4160,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 32896,
+          "startupNativeHide": 33152,
+          "resyncHolderShow": 65536,
+          "resyncNativeHide": 65792,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t10\t14\t16\t20\t4\t0\t1\n16\t136\t152\t256\t272\t16\t0\t1\n64\t2080\t2144\t4096\t4160\t64\t0\t1\n256\t32896\t33152\t65536\t65792\t256\t0\t1\nHOST_CLOCK_MS\t825.0\n"
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "hostClockMs": 88.0,
+      "processWallSeconds": 0.20254329999443144,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 4,
+          "startupNativeHide": 8,
+          "resyncHolderShow": 4,
+          "resyncNativeHide": 8,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 16,
+          "startupNativeHide": 32,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 32,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 64,
+          "startupNativeHide": 128,
+          "resyncHolderShow": 64,
+          "resyncNativeHide": 128,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 256,
+          "startupNativeHide": 512,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 512,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t4\t8\t4\t8\t4\t0\t1\n16\t16\t32\t16\t32\t16\t0\t1\n64\t64\t128\t64\t128\t64\t0\t1\n256\t256\t512\t256\t512\t256\t0\t1\nHOST_CLOCK_MS\t88.0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "hostClockMs": 89.0,
+      "processWallSeconds": 0.1515654000104405,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 4,
+          "startupNativeHide": 8,
+          "resyncHolderShow": 4,
+          "resyncNativeHide": 8,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 16,
+          "startupNativeHide": 32,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 32,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 64,
+          "startupNativeHide": 128,
+          "resyncHolderShow": 64,
+          "resyncNativeHide": 128,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 256,
+          "startupNativeHide": 512,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 512,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t4\t8\t4\t8\t4\t0\t1\n16\t16\t32\t16\t32\t16\t0\t1\n64\t64\t128\t64\t128\t64\t0\t1\n256\t256\t512\t256\t512\t256\t0\t1\nHOST_CLOCK_MS\t89.0\n"
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "hostClockMs": 827.0,
+      "processWallSeconds": 1.070425800018711,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 10,
+          "startupNativeHide": 14,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 20,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 136,
+          "startupNativeHide": 152,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 272,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 2080,
+          "startupNativeHide": 2144,
+          "resyncHolderShow": 4096,
+          "resyncNativeHide": 4160,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 32896,
+          "startupNativeHide": 33152,
+          "resyncHolderShow": 65536,
+          "resyncNativeHide": 65792,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t10\t14\t16\t20\t4\t0\t1\n16\t136\t152\t256\t272\t16\t0\t1\n64\t2080\t2144\t4096\t4160\t64\t0\t1\n256\t32896\t33152\t65536\t65792\t256\t0\t1\nHOST_CLOCK_MS\t827.0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "hostClockMs": 802.0,
+      "processWallSeconds": 1.056486399989808,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 10,
+          "startupNativeHide": 14,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 20,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 136,
+          "startupNativeHide": 152,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 272,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 2080,
+          "startupNativeHide": 2144,
+          "resyncHolderShow": 4096,
+          "resyncNativeHide": 4160,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 32896,
+          "startupNativeHide": 33152,
+          "resyncHolderShow": 65536,
+          "resyncNativeHide": 65792,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t10\t14\t16\t20\t4\t0\t1\n16\t136\t152\t256\t272\t16\t0\t1\n64\t2080\t2144\t4096\t4160\t64\t0\t1\n256\t32896\t33152\t65536\t65792\t256\t0\t1\nHOST_CLOCK_MS\t802.0\n"
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "hostClockMs": 113.0,
+      "processWallSeconds": 0.15958810001029633,
+      "counts": [
+        {
+          "buttons": 1,
+          "startupHolderShow": 1,
+          "startupNativeHide": 2,
+          "resyncHolderShow": 1,
+          "resyncNativeHide": 2,
+          "resyncFont": 1,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 4,
+          "startupHolderShow": 4,
+          "startupNativeHide": 8,
+          "resyncHolderShow": 4,
+          "resyncNativeHide": 8,
+          "resyncFont": 4,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 16,
+          "startupHolderShow": 16,
+          "startupNativeHide": 32,
+          "resyncHolderShow": 16,
+          "resyncNativeHide": 32,
+          "resyncFont": 16,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 64,
+          "startupHolderShow": 64,
+          "startupNativeHide": 128,
+          "resyncHolderShow": 64,
+          "resyncNativeHide": 128,
+          "resyncFont": 64,
+          "resyncOwnedText": 0,
+          "frames": 1
+        },
+        {
+          "buttons": 256,
+          "startupHolderShow": 256,
+          "startupNativeHide": 512,
+          "resyncHolderShow": 256,
+          "resyncNativeHide": 512,
+          "resyncFont": 256,
+          "resyncOwnedText": 0,
+          "frames": 1
+        }
+      ],
+      "stdout": "1\t1\t2\t1\t2\t1\t0\t1\n4\t4\t8\t4\t8\t4\t0\t1\n16\t16\t32\t16\t32\t16\t0\t1\n64\t64\t128\t64\t128\t64\t0\t1\n256\t256\t512\t256\t512\t256\t0\t1\nHOST_CLOCK_MS\t113.0\n"
+    }
+  ]
+}

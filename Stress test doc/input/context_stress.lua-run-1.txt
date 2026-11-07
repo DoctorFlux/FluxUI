@@ -1,0 +1,36 @@
+FAIL live mixed target/mouseover burst retains target invalidation
+OBSERVATION branch=live ordering=target_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL live mixed mods/mouseover burst retains mods invalidation
+OBSERVATION branch=live ordering=mods_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL live mixed combat/mouseover burst retains combat invalidation
+OBSERVATION branch=live ordering=combat_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+METRIC branch=live modifier_events=138002 stress_frames=500 final_context_notices=505 pending_timers=0
+FAIL forever mixed target/mouseover burst retains target invalidation
+OBSERVATION branch=forever ordering=target_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL forever mixed mods/mouseover burst retains mods invalidation
+OBSERVATION branch=forever ordering=mods_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL forever mixed combat/mouseover burst retains combat invalidation
+OBSERVATION branch=forever ordering=combat_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+METRIC branch=forever modifier_events=138002 stress_frames=500 final_context_notices=505 pending_timers=0
+FAIL classic_era mixed target/mouseover burst retains target invalidation
+OBSERVATION branch=classic_era ordering=target_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic_era mixed mods/mouseover burst retains mods invalidation
+OBSERVATION branch=classic_era ordering=mods_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic_era mixed combat/mouseover burst retains combat invalidation
+OBSERVATION branch=classic_era ordering=combat_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+METRIC branch=classic_era modifier_events=138002 stress_frames=500 final_context_notices=505 pending_timers=0
+FAIL classic_anniversary mixed target/mouseover burst retains target invalidation
+OBSERVATION branch=classic_anniversary ordering=target_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic_anniversary mixed mods/mouseover burst retains mods invalidation
+OBSERVATION branch=classic_anniversary ordering=mods_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic_anniversary mixed combat/mouseover burst retains combat invalidation
+OBSERVATION branch=classic_anniversary ordering=combat_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+METRIC branch=classic_anniversary modifier_events=138002 stress_frames=500 final_context_notices=505 pending_timers=0
+FAIL classic mixed target/mouseover burst retains target invalidation
+OBSERVATION branch=classic ordering=target_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic mixed mods/mouseover burst retains mods invalidation
+OBSERVATION branch=classic ordering=mods_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+FAIL classic mixed combat/mouseover burst retains combat invalidation
+OBSERVATION branch=classic ordering=combat_then_mouseover notice=true requested_flag=false mouseoverOnly=true
+METRIC branch=classic modifier_events=138002 stress_frames=500 final_context_notices=505 pending_timers=0
+SUMMARY checks=7605 failures=15 events=690090

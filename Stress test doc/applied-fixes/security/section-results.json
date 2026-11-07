@@ -1,0 +1,135 @@
+{
+  "capturedUTC": "2026-11-07T13:32:36.512245+00:00",
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-section-baseline",
+  "scope": "Read-only production-module baseline repro; no native VM/input",
+  "sources": [
+    {
+      "path": "Core/Engine/Combat.lua",
+      "beforeSHA256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a",
+      "appliedSHA256": "f36daa512a9f778db28c272ec19a092b188d83a170270fb6fa41bcd2bd728a7a"
+    },
+    {
+      "path": "Respec/FluxRespec_Compat.lua",
+      "beforeSHA256": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32",
+      "appliedSHA256": "e6596e41c5b9541125bc5d38cf6321e6d57ce8a3dfad02737e60f3787da9db32"
+    },
+    {
+      "path": "Respec/FluxRespec_Includes.lua",
+      "beforeSHA256": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e",
+      "appliedSHA256": "338b79a197f90952fbb7aab5a466d45d56e21d892cb6674471044b7195307a0e"
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Assign.lua",
+      "beforeSHA256": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12",
+      "appliedSHA256": "a1a706068cb335050e314e092fa8ff07d7ae0dd9e88f4e6dbcf6a51dbe3f1a12"
+    },
+    {
+      "path": "Respec/FluxRespec_Consumables.lua",
+      "beforeSHA256": "f52b3ca1de1dd94bf4a3ea3012c2253d3accf753283aea2a21f491331cb36215",
+      "appliedSHA256": "a24b11f2ddddf372a61d715e9ee8676f4a697ab68cd76adc27d4bfdfd2f2c5d8"
+    },
+    {
+      "path": "Respec/FluxRespec_PresetBundle.lua",
+      "beforeSHA256": "282f940303023fbf45e6eb85bc10bd8ed2d708a4fa19d2cb5faca50aa315dbb4",
+      "appliedSHA256": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13"
+    },
+    {
+      "path": "Respec/FluxRespec_Apply.lua",
+      "beforeSHA256": "2cd07454ce2da91e12eb9dfb37982793921681fdcd6804168a442d513f877907",
+      "appliedSHA256": "891c77da3faf71d66204a47eb452dc0952c919c28beb9d63e5cb0370bed10ba3"
+    }
+  ],
+  "tests": [
+    {
+      "case": "utility",
+      "variant": "pre-section-fix",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-section-baseline",
+        "utility"
+      ],
+      "exit": 1,
+      "output": "lua: tests/respec_section_results.lua:5: combat-refused utility restore must remain pending at its checkpoint\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_section_results.lua:5: in local 'check'\n\ttests/respec_section_results.lua:68: in main chunk\n\t[C]: in ?\n",
+      "expected": "reject"
+    },
+    {
+      "case": "consumables",
+      "variant": "pre-section-fix",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-section-baseline",
+        "consumables"
+      ],
+      "exit": 1,
+      "output": "lua: tests/respec_section_results.lua:5: missing/refused/no-op/throwing consumables cannot complete the profile\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_section_results.lua:5: in local 'check'\n\ttests/respec_section_results.lua:82: in main chunk\n\t[C]: in ?\n",
+      "expected": "reject"
+    },
+    {
+      "case": "bundle",
+      "variant": "pre-section-fix",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\apply-fixes-20261107T125749Z\\security-section-baseline",
+        "bundle"
+      ],
+      "exit": 1,
+      "output": "lua: tests/respec_section_results.lua:5: preset bundle must propagate utility false result\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/respec_section_results.lua:5: in local 'check'\n\ttests/respec_section_results.lua:90: in main chunk\n\t[C]: in ?\n",
+      "expected": "reject"
+    },
+    {
+      "case": "utility",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "utility"
+      ],
+      "exit": 0,
+      "output": "respec section results: 35 checks passed; five clients; production owners, native pending\n",
+      "expected": "pass"
+    },
+    {
+      "case": "consumables",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "consumables"
+      ],
+      "exit": 0,
+      "output": "respec section results: 50 checks passed; five clients; production owners, native pending\n",
+      "expected": "pass"
+    },
+    {
+      "case": "bundle",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI",
+        "bundle"
+      ],
+      "exit": 0,
+      "output": "respec section results: 5 checks passed; five clients; production owners, native pending\n",
+      "expected": "pass"
+    },
+    {
+      "case": "all",
+      "variant": "applied",
+      "command": [
+        "lua",
+        "tests/respec_section_results.lua",
+        "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI"
+      ],
+      "exit": 0,
+      "output": "respec section results: 200 checks passed; five clients; production owners, native pending\n",
+      "expected": "pass"
+    }
+  ],
+  "harnessSHA256": "5486bd2245fb7e4ea388e99cf746ecaa368fb982be917a3c57f70b5d211dc158"
+}

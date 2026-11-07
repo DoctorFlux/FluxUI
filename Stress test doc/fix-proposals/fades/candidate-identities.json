@@ -1,0 +1,20 @@
+{
+  "baselineRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline",
+  "candidateRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\fades",
+  "files": [
+    {
+      "path": "UnitFrames/FluxCastBar.lua",
+      "baseline_sha256": "03193b8406cf145398a983e0ac2478c97549c74d4bb7e9a86a466572c528f0a6",
+      "candidate_sha256": "02bf1b0acf018ab419ac9ca11ef51f33866d37145380817b9999f1726ec0be92",
+      "baseline_bytes": 132304,
+      "candidate_bytes": 132290
+    },
+    {
+      "path": "UnitFrames/FluxSwingTimer.lua",
+      "baseline_sha256": "517529257035f41cc06ffa46086fe2b23a5ac3c3c7f41bcd3f1ae617a05b4814",
+      "candidate_sha256": "d1de753065397599bed540a6d99d739f0419c9108ec681fe7b64e3f690a92289",
+      "baseline_bytes": 91418,
+      "candidate_bytes": 92692
+    }
+  ]
+}

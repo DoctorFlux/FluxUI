@@ -1,0 +1,38 @@
+[
+  {
+    "id": "INPUT-001",
+    "priority": "P2",
+    "status": "reproduced-desktop-functional-bug",
+    "title": "Mouseover request narrows pending modifier/target/combat invalidation",
+    "path": "Core/Engine/Context.lua",
+    "line": 362,
+    "related": ["Core/Engine/Context.lua:186", "Bars/ProgramFace.lua:1410", "Bars/ProgramFace.lua:1445"],
+    "scope": "Shared client-independent production module under live/forever/classic_era/classic_anniversary/classic labels; native surface effect pending",
+    "trigger": "Full context request followed by UPDATE_MOUSEOVER_UNIT before pending refresh drains and outside unit-frame peek",
+    "expected": "Queued invalidations preserve all changed modifier/target/combat/mouseover kinds",
+    "observed": "The only notification has mouseoverOnly=true and false mods/target/combat flags",
+    "reproducer": "context_stress.lua.txt",
+    "failed_assertions_per_repeat": 15,
+    "proposed_future_fix": "Merge pending kinds monotonically; full context may not be narrowed by a later mouseover request; keep cadence, shared scheduler and feature behavior",
+    "not_proven": ["Native stale pixels", "Incorrect secure action", "Native taint", "Native FPS regression"],
+    "addon_fix_applied": false
+  },
+  {
+    "id": "INPUT-002",
+    "priority": "P2",
+    "status": "reproduced-desktop-fallback-bug",
+    "title": "Fallback hover scan treats first GetChildren vararg frame as array",
+    "path": "Binding/Input/FluxMouseoverKeybind.lua",
+    "line": 1822,
+    "scope": "Shared scan code; fallback/error-path reachability differs by client and focus/descendant capabilities",
+    "trigger": "Hovered immediate child, parent not reported hovered, modern focus route unavailable/erroring/unable to establish descendant membership",
+    "expected": "Child hover establishes registered unit-frame peek context",
+    "observed": "First child is not traversed as a frame, later child returns are discarded, context=false",
+    "reproducer": "hover_children_stress.lua.txt",
+    "failed_assertions_per_repeat": 15,
+    "controls": ["Modern GetMouseFoci descendant passes", "Parent hover passes", "No hovered frame passes"],
+    "proposed_future_fix": "Safely consume all child varargs with bounded/reusable traversal and hierarchy/forbidden guards, retaining modern route and 0.05-second cache",
+    "not_proven": ["Current clients generally lack GetMouseFoci", "Native taint", "Native FPS regression"],
+    "addon_fix_applied": false
+  }
+]

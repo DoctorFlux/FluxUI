@@ -71,23 +71,69 @@ end
 
 -- Central dispatcher. Frame created at file scope.
 local handlers = {} -- event -> { fn, ... }
+local dispatchDepth, dirtyHandlers = {}, {}
 local dispatch = CreateFrame("Frame")
 dispatch:Hide()
 local eventTrace
 local profilestop = debugprofilestop
+local timingObserver, timingToken
+
+local function Clock()
+	local value = profilestop and profilestop()
+	if type(value) == "number" and not (issecretvalue and issecretvalue(value))
+		and value == value and value ~= math.huge and value ~= -math.huge then return value end
+end
+
+-- Observe owned callbacks only. Tokens prevent an old cleanup from detaching a
+-- later owner, including a later registration of the same observer function.
+function Events.ObserveTiming(fn)
+	if type(fn) ~= "function" then return nil, "timing observer must be a function" end
+	if timingObserver then return nil, "timing observer already registered" end
+	local token = {}
+	timingObserver, timingToken = fn, token
+	return function()
+		if timingToken == token then timingObserver, timingToken = nil, nil end
+	end
+end
+
+local function NotifyTiming(observer, token, key, fn, ms, failed)
+	local ok, err = pcall(observer, key, fn, ms, failed)
+	if not ok then
+		if timingObserver == observer and timingToken == token then timingObserver, timingToken = nil, nil end
+		local geh = geterrorhandler
+		if geh then geh()(tostring(err)) end
+	end
+end
+
+local function CompactHandlers(event, list)
+	if not dirtyHandlers[event] then return end
+	dirtyHandlers[event] = nil
+	local nextIndex = 1
+	for i = 1, #list do
+		if list[i] then list[nextIndex] = list[i]; nextIndex = nextIndex + 1 end
+	end
+	for i = #list, nextIndex, -1 do list[i] = nil end
+	if nextIndex == 1 and handlers[event] == list then
+		handlers[event] = nil
+		pcall(dispatch.UnregisterEvent, dispatch, event)
+	end
+end
 
 dispatch:SetScript("OnEvent", function(_, event, ...)
 	local list = handlers[event]
 	if not list then
 		return
 	end
-	local t0
-	if eventTrace then
+	dispatchDepth[event] = (dispatchDepth[event] or 0) + 1
+	local trace, t0 = eventTrace
+	if trace then
 		t0 = profilestop and profilestop() or 0
 	end
 	for i = 1, #list do
 		local fn = list[i]
 		if fn then
+			local observer, token, began = timingObserver
+			if observer then token, began = timingToken, Clock() end
 			local ok, err = pcall(fn, event, ...)
 			if not ok then
 				local geh = geterrorhandler
@@ -95,10 +141,19 @@ dispatch:SetScript("OnEvent", function(_, event, ...)
 					geh()(tostring(err))
 				end
 			end
+			if began and observer == timingObserver and token == timingToken then
+				local ended = Clock()
+				if ended and ended >= began then NotifyTiming(observer, token, event, fn, ended - began, not ok) end
+			end
 		end
 	end
-	if eventTrace then
-		eventTrace(event, (profilestop and profilestop() or 0) - t0)
+	dispatchDepth[event] = dispatchDepth[event] - 1
+	if dispatchDepth[event] == 0 then
+		dispatchDepth[event] = nil
+		CompactHandlers(event, list)
+	end
+	if trace and trace == eventTrace then
+		trace(event, (profilestop and profilestop() or 0) - t0)
 	end
 end)
 
@@ -137,11 +192,17 @@ function Events.Unregister(eventName, fn)
 	if fn then
 		for i = #list, 1, -1 do
 			if list[i] == fn then
-				table.remove(list, i)
+				if dispatchDepth[eventName] then
+					list[i] = false
+					dirtyHandlers[eventName] = true
+				else table.remove(list, i) end
 			end
 		end
 	else
-		wipe(list)
+		if dispatchDepth[eventName] then
+			for i = 1, #list do list[i] = false end
+			dirtyHandlers[eventName] = true
+		else wipe(list) end
 	end
 	if #list == 0 then
 		handlers[eventName] = nil
@@ -164,7 +225,15 @@ function Events.RegisterUnit(eventName, unit, fn)
 		return false
 	end
 	f:SetScript("OnEvent", function(_, ev, ...)
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
+		-- Unit handlers retain their original direct error propagation. A failed
+		-- handler unwinds before observation; this is not a complete error census.
 		fn(ev, ...)
+		if began and observer == timingObserver and token == timingToken then
+			local ended = Clock()
+			if ended and ended >= began then NotifyTiming(observer, token, ev, fn, ended - began, false) end
+		end
 	end)
 	return f
 end

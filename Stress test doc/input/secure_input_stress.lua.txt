@@ -1,0 +1,53 @@
+-- Reuse the existing input fixture, inserting only extra scenarios in memory.
+-- Production code and Blizzard dispatch are loaded by the unmodified fixture.
+local function read(path)
+    local f = assert(io.open(path, "rb")); local s = f:read("*a"); f:close()
+    return s:gsub("\r\n", "\n")
+end
+local fixture = read("tests/utility_secure_input.lua")
+local marker = '    if branch == "forever" then\n'
+local at = assert(fixture:find(marker, 1, true), "fixture anchor changed")
+assert(not fixture:find(marker, at + #marker, true), "fixture anchor ambiguous")
+local injection = [=[
+    do
+        local scenarios, inputPairs = 0, 0
+        for _, keyDown in ipairs({ true, false }) do
+            s.combat = false; s.mod = ""; s.keyDown = keyDown
+            local map = configure(false)
+            flux.ButtonFX.Click.SyncCVars()
+            for _, combat in ipairs({ false, true }) do
+                s.combat = combat
+                local writes, frames, timers = s.writes, #s.frames, #s.timers
+                for cycle = 1, 128 do
+                    -- Permute chords to exercise rapid partial releases and duplicate callbacks.
+                    for pos = 1, #chords do
+                        local chord = chords[((pos + cycle) % #chords) + 1]
+                        s.mod = chord; if modifier then modifier(); modifier() end
+                        local expected = map[chord]
+                        scenarios = scenarios + 1
+                        for _, input in ipairs({ "mouse", "primary", "secondary" }) do
+                            local n = #s.actions
+                            if input == "mouse" then press(w, "LeftButton") else
+                                local key = (chord ~= "" and chord .. "-" or "") .. (input == "primary" and "Q" or "E")
+                                local binding = assert(s.overrides[env.FluxBindingChordMap3.Normalize(key)])
+                                press(env[binding[1]], binding[2])
+                            end
+                            inputPairs = inputPairs + 1
+                            local got = s.actions[#s.actions]
+                            check(#s.actions == n + 1, branch .. " stress exactly one action per pair")
+                            check(got[1] == (expected.type == "spell" and "cast" or "use")
+                                and got[2] == (expected.type == "spell" and "Spell" or "item:") .. expected.id,
+                                branch .. " stress action identity follows final chord")
+                        end
+                    end
+                end
+                check(s.writes == writes, branch .. " modifier/click storm performs no action attribute rewrites")
+                check(#s.frames == frames and #s.timers == timers, branch .. " modifier/click storm adds no driver/frame/timer")
+                s.combat = false
+            end
+        end
+        print(("METRIC utility branch=%s chord_selections=%d input_pairs=%d native_handlers=true")
+            :format(branch, scenarios, inputPairs))
+    end
+]=]
+assert(load(fixture:sub(1, at - 1) .. injection .. fixture:sub(at), "@extended-utility-secure-input", "t", _G))()

@@ -1,0 +1,15 @@
+{
+  "scope": "Artifact syntax/links/result consistency and original tested Lua identities; does not rerun gameplay",
+  "checks": {
+    "python": 27,
+    "luaHarnesses": 26,
+    "json": 64,
+    "csv": 16,
+    "localLinks": 161
+  },
+  "existingLuaIdentitiesCompared": 896,
+  "suiteEvidence": "full-suite.json",
+  "findingRows": 24,
+  "errors": [],
+  "pass": true
+}

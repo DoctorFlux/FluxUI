@@ -1,4 +1,4 @@
--- Combat.lua — lockdown queue. Flush on PLAYER_REGEN_ENABLED.
+-- Combat.lua â€” lockdown queue. Flush on PLAYER_REGEN_ENABLED.
 -- Named Defer keys replace. RegenDefer is a list (mount/teleport/ammo) drained
 -- next frame so icon scans do not pile onto the same-tick Relayout/Flush.
 local addonName, ns = ...
@@ -31,45 +31,44 @@ local function After0(fn)
 	end
 end
 
+local activeLight, activeHeavy
+local lightIndex, heavyIndex = 1, 1
+local REGEN_MAX_PER_FRAME = 16
+
 local function DrainRegenQueues()
 	drainArmed = false
-	if Combat.InLockdown() then
-		return
+	if Combat.InLockdown() then return end
+	if not activeLight then
+		activeLight, activeHeavy = lightQ, heavyQ
+		lightQ, heavyQ = {}, {}
+		lightIndex, heavyIndex = 1, 1
 	end
-	local light = lightQ
-	local heavy = heavyQ
-	lightQ = {}
-	heavyQ = {}
 	local function run()
-		for i = 1, #light do
-			if Combat.InLockdown() then
-				for j = i, #light do lightQ[#lightQ + 1] = light[j] end
-				for j = 1, #heavy do heavyQ[#heavyQ + 1] = heavy[j] end
-				return
-			end
-			Flux.Safecall(light[i])
-		end
-		for i = 1, #heavy do
-			if Combat.InLockdown() then
-				for j = i, #heavy do heavyQ[#heavyQ + 1] = heavy[j] end
-				return
-			end
-			Flux.Safecall(heavy[i])
+		local count = 0
+		while count < REGEN_MAX_PER_FRAME and not Combat.InLockdown() do
+			local fn
+			if lightIndex <= #activeLight then
+				fn = activeLight[lightIndex]; activeLight[lightIndex] = false; lightIndex = lightIndex + 1
+			elseif heavyIndex <= #activeHeavy then
+				fn = activeHeavy[heavyIndex]; activeHeavy[heavyIndex] = false; heavyIndex = heavyIndex + 1
+			else break end
+			count = count + 1
+			Flux.Safecall(fn)
 		end
 	end
 	local Regen = Flux.Perf and Flux.Perf.Regen
-	if Regen and Regen.Time then
-		Regen.Time("regen.deferDrain", run)
-	else
-		run()
+	if Regen and Regen.Time then Regen.Time("regen.deferDrain", run) else run() end
+	if lightIndex > #activeLight and heavyIndex > #activeHeavy then
+		activeLight, activeHeavy = nil, nil
 	end
+	if not Combat.InLockdown() then Combat.ScheduleRegenQueues() end
 end
 
 function Combat.ScheduleRegenQueues()
 	if drainArmed then
 		return
 	end
-	if #lightQ == 0 and #heavyQ == 0 then
+	if not activeLight and #lightQ == 0 and #heavyQ == 0 then
 		return
 	end
 	drainArmed = true

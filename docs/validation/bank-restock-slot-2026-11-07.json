@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-07",
+  "requirement": "BANK-ICON-02: whole-slot scaling for rectangular Baganator toolbar; Forever visually inside bank left of search",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b56a-52d3-7b42-9f20-a029dcfe3bde\\bank-restock-slot-followup\\checkpoint.json",
+  "upstream": {
+    "repository": "Gethe/wow-ui-source",
+    "target": "forever",
+    "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "version": "1.60.1.70862",
+    "contract": "Camelot BankFrame inherits Mainline BankFrameTemplate with BankItemSearchBox; parentKey and global search references;110x20 at top right -56,-33. Verified loaded TOC Game Camelot and Family Mainline paths. No protected operation selected."
+  },
+  "sources": {
+    "Inventory/Restock/Bank/FluxBankRestockButton.lua": {
+      "baseline": "8fe2741bcc5736ec8b398e9d7023e99b79943c262976efc258a37439d8b0656d",
+      "candidate": "46e392c2d7ebbddad6fe87d8ecbed6de52f9ad06cba40ac4ab31373a3f34e302"
+    },
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": {
+      "baseline": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da",
+      "candidate": "8ce45eb7d6550e1546d56705715852b4f48d015c54619eee3041973a48b462da"
+    }
+  },
+  "pairs": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "output": "lua: tests/bank_restock_icon.lua:4: Baganator square matches shorter toolbar edge\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/bank_restock_icon.lua:4: in local 'check'\n\ttests/bank_restock_icon.lua:110: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "output": "bank restock icon: 358 checks passed (five clients; native/Baganator; cold/warm merchant)\n"
+    }
+  ],
+  "native": "User Forever screenshots establish previous failure. Candidate pixels/input/taint/FPS pending; no Witchcraft/UIForever tool available; user reproduction route retained. No desktop control/game input/WTF/profiler changes.",
+  "baganatorReference": {
+    "version": "843",
+    "license": "All Rights Reserved; read-only interface inspection, no source/art copied",
+    "files": {
+      "Baganator.toc": "164a149c17f1ca959ab4dc8ae1c526a0a72aa97589993254bf62c49a4e6ffac1",
+      "ItemViewCommon\\Components.xml": "9e323bbe02cb92c395d066a8a8126b6cc25a4e80ac1b41e4cd9f64e33348a305",
+      "LICENSE": "8ab1f878ab363dbb42591f062190386662a0aaaae36f90cc518dcf3494bafb7d"
+    },
+    "contract": "TooltipIconButtonTemplate inherits UIPanelButtonTemplate;32x22. Preserve merchant slot36 coordinate space and scale whole button to shorter toolbar edge; same scale applies to64px fixed art/icon/checkbox; native handoff resets1."
+  },
+  "fullValidation": {
+    "scriptsPass": 219,
+    "scriptsFail": 0,
+    "syntaxFiles": 882,
+    "syntaxFailures": 0,
+    "currentCorpusDrift": []
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ],
+  "referenceCaptureHashes": {
+    "upstream-Blizzard_UIPanels_Game-Blizzard_UIPanels_Game.toc": "c4f57e9b6df5597c134f8434391e71f8019d9bd7a2f7682d87f3b893449ba7b1",
+    "upstream-Camelot-BankFrame.xml": "03dccc0850ed41d199d8d8c02cc07ba64f24d78101f18b146ef87b8077bab87f",
+    "upstream-Mainline-BankFrameTemplates.xml": "2e4f68260d12ad2bdac2c66d692c82be1d0b081a5d6c99093bdd63af942aa528"
+  },
+  "referenceLinks": [
+    "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.xml",
+    "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.xml",
+    "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc"
+  ],
+  "documentationValidation": {
+    "exit": 0,
+    "sources": 915,
+    "reachable": 598,
+    "settingDefinitions": 415,
+    "savedVariables": 24,
+    "localLinks": 15036,
+    "whitespace": "PASS"
+  }
+}

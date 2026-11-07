@@ -1,7 +1,7 @@
 -- FluxBattlefieldMapProviders.lua
 -- Adds the same Blizzard data providers the world map uses onto BattlefieldMapFrame.
--- A mixin is added only when this client actually has it. Pins stay on the map canvas,
--- so zoom uses MapCanvas OnCanvasScaleChanged. Flux does not call RefreshAllData.
+-- Available mixins keep their native pins and canvas zoom behavior. Flux adapts
+-- only its provider clones; restricted refreshes replay through the combat queue.
 
 FluxBattlefieldMapProviders = {}
 
@@ -32,6 +32,49 @@ local FRAME_LEVELS = {
 }
 
 local added = {}
+local pendingProviderRefresh = {}
+local pendingProviderPing = {}
+local FlushPendingProviderRefresh
+
+local function ProviderIsActive(provider)
+    return provider and provider._fluxBattlefieldProvider and provider.GetMap
+        and provider:GetMap() ~= nil
+end
+
+local function CanRefreshProvider(provider)
+    if not ProviderIsActive(provider) then
+        pendingProviderRefresh[provider] = nil
+        pendingProviderPing[provider] = nil
+        return false
+    end
+    -- Older Classic canvases have no protected mouse-passthrough acquisition.
+    if MapCanvasPinMixin and MapCanvasPinMixin.CheckMouseButtonPassthrough
+        and InCombatLockdown and InCombatLockdown() then
+        pendingProviderRefresh[provider] = true
+        _G.Flux.Combat.Defer("battlefield.providers", FlushPendingProviderRefresh)
+        return false
+    end
+    return true
+end
+
+local function ReplayPendingPing(provider)
+    local ping = pendingProviderPing[provider]
+    if not ping or not CanRefreshProvider(provider) then
+        return
+    end
+    pendingProviderPing[provider] = nil
+    provider:PingPin(ping.idKey, ping.id, ping.frameLevelType, ping.numLoops)
+end
+
+FlushPendingProviderRefresh = function()
+    local pending = pendingProviderRefresh
+    pendingProviderRefresh = {}
+    for provider in pairs(pending) do
+        if CanRefreshProvider(provider) then
+            _G.Flux.Safecall(provider.RefreshAllData, provider)
+        end
+    end
+end
 
 local function GetMap(mapFrame)
     if mapFrame and mapFrame.AddDataProvider then
@@ -231,115 +274,11 @@ local function InstallQuestFilters(provider)
     end
 end
 
--- Tainted AcquirePin reaches two protected calls. pcall does not stop
--- ADDON_ACTION_BLOCKED:
---   CheckMouseButtonPassthrough -> Button:SetPassThroughButtons
---   UpdateMousePropagation -> Frame:SetPropagateMouseClicks
--- CreateFromMixins copies both onto the pin mixins the frame actually searches,
--- so replacing only MapCanvasPinMixin / SuperTrackablePinMixin misses AreaPOI.
--- Skip every copy while the pin is acquired, then leave the skip on that pin so
--- a reused pool frame does not call them again. Secure acquires are left alone.
-local pinAcquireGuardDepth = 0
-local pinAcquireGuardSaved
-
-local PIN_METHOD_MIXINS = {
-    "MapCanvasPinMixin",
-    "BaseMapPoiPinMixin",
-    "SuperTrackablePinMixin",
-    "SuperTrackablePoiPinMixin",
-    "SuperTrackableVignettePinMixin",
-    "VignettePinMixin",
-    "VignettePinBaseMixin",
-    "FyrakkFlightVignettePinMixin",
-    "QuestPinMixin",
-    "QuestOfferPinMixin",
-    "BonusObjectivePinMixin",
-    "WaypointLocationPinMixin",
-    "SuperTrackWaypointPinMixin",
-    "QuestBlobPinMixin",
-    "MapPinPingMixin",
-}
-
-local GUARDED_PIN_METHODS = {
-    "CheckMouseButtonPassthrough",
-    "UpdateMousePropagation",
-}
-
-local function PinMethodNoop()
-end
-
-local function PushPinAcquireGuard()
-    if pinAcquireGuardDepth == 0 then
-        local saved = {}
-        for i = 1, #PIN_METHOD_MIXINS do
-            local mixin = _G[PIN_METHOD_MIXINS[i]]
-            if type(mixin) == "table" then
-                for j = 1, #GUARDED_PIN_METHODS do
-                    local methodName = GUARDED_PIN_METHODS[j]
-                    local method = mixin[methodName]
-                    if type(method) == "function" and method ~= PinMethodNoop then
-                        mixin[methodName] = PinMethodNoop
-                        saved[#saved + 1] = { mixin, methodName, method }
-                    end
-                end
-            end
-        end
-        pinAcquireGuardSaved = saved
-    end
-    pinAcquireGuardDepth = pinAcquireGuardDepth + 1
-end
-
-local function PopPinAcquireGuard()
-    if pinAcquireGuardDepth == 0 then
-        return
-    end
-    pinAcquireGuardDepth = pinAcquireGuardDepth - 1
-    if pinAcquireGuardDepth ~= 0 or not pinAcquireGuardSaved then
-        return
-    end
-    local saved = pinAcquireGuardSaved
-    pinAcquireGuardSaved = nil
-    for i = 1, #saved do
-        local mixin, methodName, method = saved[i][1], saved[i][2], saved[i][3]
-        if mixin[methodName] == PinMethodNoop then
-            mixin[methodName] = method
-        end
-    end
-end
-
-local function InstallAcquirePinGuard(mapFrame)
-    if not mapFrame or mapFrame._fluxPassThroughGuard or not mapFrame.AcquirePin then
-        return
-    end
-    if not MapCanvasPinMixin or not MapCanvasPinMixin.CheckMouseButtonPassthrough then
-        return
-    end
-    mapFrame._fluxPassThroughGuard = true
-    local origAcquire = mapFrame.AcquirePin
-    function mapFrame:AcquirePin(pinTemplate, ...)
-        if issecure and issecure() then
-            return origAcquire(self, pinTemplate, ...)
-        end
-        PushPinAcquireGuard()
-        local ok, pin = pcall(origAcquire, self, pinTemplate, ...)
-        PopPinAcquireGuard()
-        if not ok or not pin then
-            return nil
-        end
-        pin.CheckMouseButtonPassthrough = PinMethodNoop
-        if pin.UpdateMousePropagation ~= nil then
-            pin.UpdateMousePropagation = PinMethodNoop
-        end
-        return pin
-    end
-end
-
 local function PlaceQuestPin(provider, questID, x, y, offset, isWaypoint)
     local map = provider.GetMap and provider:GetMap()
     if not map or not map.AcquirePin or not provider.GetPinTemplate then
         return nil
     end
-    InstallAcquirePinGuard(map)
     local template = provider:GetPinTemplate()
     local acquired, pin = pcall(map.AcquirePin, map, template)
     if not acquired or not pin then
@@ -550,16 +489,24 @@ local function InstallSecretQuestRefresh(provider)
     if not HasSecretValues() then
         return
     end
+    provider._fluxSecretQuestRefresh = true
     local queued = false
     local nextAt = 0
     local function Run()
         queued = false
+        if not CanRefreshProvider(provider) then
+            return
+        end
         if provider.GetMap and provider:GetMap() then
             RefreshSecretQuests(provider)
+            ReplayPendingPing(provider)
         end
         nextAt = (GetTime and GetTime() or 0) + 0.25
     end
     function provider:RefreshAllData()
+        if not self._fluxBattlefieldProvider then
+            return
+        end
         local now = GetTime and GetTime() or 0
         if now >= nextAt then
             Run()
@@ -800,6 +747,74 @@ local function StartProvider(mapFrame, name, provider)
     CallMethod(provider, "OnMapChanged")
 end
 
+local function ReleaseProviderCallbacks(mapFrame, provider)
+    provider._fluxBattlefieldProvider = nil
+    pendingProviderRefresh[provider] = nil
+    pendingProviderPing[provider] = nil
+    local name = provider._fluxMixinName
+    if EventRegistry and EventRegistry.UnregisterCallback then
+        if name == "QuestDataProviderMixin" or name == "VignetteDataProviderMixin"
+            or name == "DungeonEntranceDataProviderMixin" then
+            EventRegistry:UnregisterCallback("Supertracking.OnChanged", provider)
+        elseif name == "WaypointLocationDataProviderMixin" then
+            EventRegistry:UnregisterCallback("MapCanvas.PingWaypointLocation", provider)
+        end
+    end
+    -- Native waypoint providers normally live as long as their map. Our clones
+    -- are discarded on detach, so release the two handlers OnRemoved retains.
+    if name == "WaypointLocationDataProviderMixin" and mapFrame then
+        if mapFrame.UnregisterCallback then
+            mapFrame:UnregisterCallback("WaypointLocationToggleUpdate", provider)
+        end
+        if provider.onCanvasClickHandler and mapFrame.RemoveCanvasClickHandler then
+            mapFrame:RemoveCanvasClickHandler(provider.onCanvasClickHandler)
+        end
+        if provider.onPinMouseActionHandler and mapFrame.RemoveGlobalPinMouseActionHandler then
+            mapFrame:RemoveGlobalPinMouseActionHandler(provider.onPinMouseActionHandler)
+        end
+    end
+end
+
+local function GuardOwnedProvider(provider)
+    local refresh = provider.RefreshAllData
+    if refresh then
+        function provider:RefreshAllData(...)
+            if not CanRefreshProvider(self) then
+                return
+            end
+            refresh(self, ...)
+            if not self._fluxSecretQuestRefresh then
+                ReplayPendingPing(self)
+            end
+        end
+    end
+    local ping = provider.PingPin
+    if ping then
+        function provider:PingPin(idKey, id, frameLevelType, numLoops)
+            if not CanRefreshProvider(self) then
+                if ProviderIsActive(self) then
+                    pendingProviderPing[self] = {
+                        idKey = idKey, id = id, frameLevelType = frameLevelType, numLoops = numLoops,
+                    }
+                end
+                return false
+            end
+            return ping(self, idKey, id, frameLevelType, numLoops)
+        end
+    end
+    -- Bonus objectives acquire inside a later quest-data callback, after their
+    -- RefreshAllData returned. Its caller checks this template before acquiring.
+    local taskTemplate = provider.GetPinTemplateFromTask
+    if provider._fluxMixinName == "BonusObjectiveDataProviderMixin" and taskTemplate then
+        function provider:GetPinTemplateFromTask(...)
+            if not CanRefreshProvider(self) then
+                return nil
+            end
+            return taskTemplate(self, ...)
+        end
+    end
+end
+
 local function TryAdd(mapFrame, name)
     local mixin = _G[name]
     if type(mixin) ~= "table" or not CreateFromMixins or not mapFrame.AddDataProvider then
@@ -812,8 +827,10 @@ local function TryAdd(mapFrame, name)
     provider._fluxSourceMixin = mixin
     SetupProvider(name, provider)
     provider._fluxBattlefieldProvider = true
+    GuardOwnedProvider(provider)
     local ok = pcall(mapFrame.AddDataProvider, mapFrame, provider)
     if not ok then
+        ReleaseProviderCallbacks(mapFrame, provider)
         if mapFrame.RemoveDataProvider then
             pcall(mapFrame.RemoveDataProvider, mapFrame, provider)
         end
@@ -1106,7 +1123,6 @@ function FluxBattlefieldMapProviders:Attach(mapFrame)
     if not mapFrame or not mapFrame.AddDataProvider then
         return false
     end
-    InstallAcquirePinGuard(mapFrame)
     if #added == 0 then
         InstallFocusForward()
         RegisterFrameLevels(mapFrame)
@@ -1132,6 +1148,7 @@ function FluxBattlefieldMapProviders:Detach(mapFrame)
     if mapFrame and mapFrame.RemoveDataProvider then
         for i = 1, #added do
             local provider = added[i]
+            ReleaseProviderCallbacks(mapFrame, provider)
             if provider.OnHide then
                 pcall(provider.OnHide, provider)
             end

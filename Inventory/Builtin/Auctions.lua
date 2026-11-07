@@ -13,6 +13,7 @@ local started = false
 local houseOpen = false
 local queryAttempted = false
 local scanFrame, scan, scanAt, firstQueued, lastList
+local cancelledScans = 0
 
 local function Request()
 	Auctions.Refresh()
@@ -124,6 +125,7 @@ local function StepScan(self)
 	-- Readiness can transfer ownership while this scan waits or spans frames.
 	if Store.UsesSyndicator() then
 		scan, scanAt, firstQueued = nil, nil, nil
+		cancelledScans = 0
 		self:SetScript("OnUpdate", nil)
 		return
 	end
@@ -142,6 +144,7 @@ local function StepScan(self)
 		if scan ~= job then return end
 		if Store.UsesSyndicator() then
 			scan, scanAt, firstQueued = nil, nil, nil
+			cancelledScans = 0
 			self:SetScript("OnUpdate", nil)
 			return
 		end
@@ -156,6 +159,7 @@ local function StepScan(self)
 		if scan ~= job then return end
 		if Store.UsesSyndicator() then
 			scan, scanAt, firstQueued = nil, nil, nil
+			cancelledScans = 0
 			self:SetScript("OnUpdate", nil)
 			return
 		end
@@ -165,12 +169,14 @@ local function StepScan(self)
 	end
 	if job.index <= job.n then return end
 	scan = nil
+	cancelledScans = 0
 	self:SetScript("OnUpdate", nil)
 	if ApplyList(job) then Inv.Notify({ auctions = true }) end
 end
 
 local function Close()
 	houseOpen, queryAttempted, scan, firstQueued = false, false, nil, nil
+	cancelledScans = 0
 	if scanFrame then scanFrame:SetScript("OnUpdate", nil) end
 end
 
@@ -199,8 +205,12 @@ function Auctions.Refresh()
 		return
 	end
 	local now = Now()
+	if scan then cancelledScans = cancelledScans + 1 end
 	firstQueued = firstQueued or now
-	scanAt = math.min(now + 0.15, firstQueued + 0.6)
+	-- Repeated genuine list mutations cannot safely publish a mixed generation.
+	-- After two aborted scans wait for the existing quiet window instead of
+	-- discarding another staged prefix every maximum-debounce interval.
+	scanAt = cancelledScans >= 2 and (now + 0.15) or math.min(now + 0.15, firstQueued + 0.6)
 	scan = nil
 	scanFrame = scanFrame or CreateFrame("Frame")
 	scanFrame:SetScript("OnUpdate", StepScan)

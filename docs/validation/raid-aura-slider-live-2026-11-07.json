@@ -1,0 +1,526 @@
+{
+  "capturedAtUTC": "2026-11-07T00:07:54.987304+00:00",
+  "changeID": "RAID-AURA-LIVE-SLIDER-20261107",
+  "requirements": [
+    "REQ-RF-17",
+    "REQ-RF-28",
+    "REQ-RF-29"
+  ],
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261106T234530Z",
+    "sourceFiles": 1691,
+    "onDiskSettingsFiles": 158,
+    "sourceZIP_SHA256": "e75b94ac6926ed0dc40f4a6567a65f6f68603551c3f08d9d83768e24400d4213",
+    "ZIPAndHistoryVerification": "PASS",
+    "scope": "On-disk only; live memory/closed client not asserted"
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidVisuals.lua": "c83803ef7b847872a733cac78ef2fd1377be936d5ccc537fc5facf809ec25325",
+    "RaidFrame/FluxRaidAuras.lua": "42b8dd9ab87a8839c50fd9bc162fff32ba5bf552405094f1e1bd1e2d15857609",
+    "RaidFrame/FluxRaidUnit.lua": "16c1def734cfc320130e0d3bf2ed8a628d72d989eecacc6690ec250ff82961c7",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "0c97cd91aaea154a4c57f1c04e70e63d8fd4378f4ad514bcc6cc7e203763a4a5",
+    "AddonOptions/FluxOptionsRender.lua": "0fc9ddd3cde4062dfce032046c02aa562b638844c8f6c4d3b04aa3f98b7e949e"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidVisuals.lua": "80f809bfb42be2280ebbdb2fa921d17fe08d5f356ebc3493c71c7ea3e3fefc93",
+    "RaidFrame/FluxRaidAuras.lua": "d1677bb07472af4fa0b0a0bfda72892e5d96f9dc20586f42b9a998b31ace8567",
+    "RaidFrame/FluxRaidUnit.lua": "2be1133afeeb993ae6973428ba4f0decc91689d82c3153e2d5dc1d028ac36bd4",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "f91cf4a719f2d928377fd833a43562341ba14ae0cb6ea3b27a45326607a8c06e",
+    "AddonOptions/FluxOptionsRender.lua": "2bc7b26ff270ac174cfa2c5f0bdb32aca7f69fefa778bbd4d66e57c19ab6c2c1"
+  },
+  "userFeedback": {
+    "previousUI": "After reload normal icons appeared unchanged while CC/BigDebuffs resized; also requested main unit frame height itself30% taller",
+    "ownedLayoutProbe": "Aura 1.4500000476837 0.8064516744306 12.096775116459 true",
+    "directSettingProbe": "User set auraIconScale=.5 and called actual RefreshRaidFrameScopedModules; public container scale0.47666665911674; explicitly confirmed normal icons visibly shrank",
+    "scope": "User manual probe in previously selected Forever route; current build/window not independently resampled; proves prior native normal-icon scale propagation only, not final UI/new-height acceptance",
+    "preference": "User probe sets active aura scale0.50; no agent WTF/profile writes; user may choose desired new scale after reload"
+  },
+  "findings": {
+    "normalRenderer": "No missing production setter/refresh bridge or native scale reset found; direct native update demonstrably resizes icons",
+    "deadRange": "Old slider offered0.5..2.5 although full blocks capped near1.05 or below on compact cells, so most movement was visually flat",
+    "cachedUI": "Custom renderer configured numeric bounds only on construction; cached range rows did not refresh bounds or descriptions",
+    "frameHeight": "Prior change increased requested icon height but omitted the subsequently clarified main-frame30% height increase"
+  },
+  "implementation": {
+    "frames": "round(36*saved frameHeightScale*1.3); width/scales/settings retained; normal default43->56, saved1.0:36->47; MT target strips remain reserved18px",
+    "icons": "Canonical native/readable base10x19.5 with1px gap; requested height11*1.3*auraIconScale; public-container scaling; inside-fit clip hosts; fonts fit actual icon bounds",
+    "slider": "Numeric Ace-compatible max syncs via getter/description; min.5,step.01,max=floor(min2.5,scope-aware physical fit)*100/100 bounded atmin; higher stored requests preserved until user selects a value",
+    "renderer": "Reconfigure cached range after getter/description; suppress synthetic SetMinMaxValues clamp callbacks while refreshing; update current size hint; actual user drag/commit retains setters",
+    "preserved": "Independent1..6 caps; strictHARMFUL|RAID on all original/tail owners; durations/swipes/opacity/Flux Binding and native handlers; no native child probes or speculative ignore-parent overrides"
+  },
+  "desktop": {
+    "pass": 203,
+    "fail": 0,
+    "syntaxFiles": 865,
+    "sourceDrift": {
+      "beforeCount": 865,
+      "afterCount": 865,
+      "unchanged": false,
+      "corpusSHA256": "f26291321737a691133711e0ffd2d8af3a9aaaee5715aeda2dbfa803b884d317"
+    },
+    "pairedRegressions": {
+      "scope": "Five alternating fresh-process functional pairs/case; desktop only, no native time/FPS measurement.",
+      "sourceHashes": {
+        "auras": {
+          "baseline": "42b8dd9ab87a8839c50fd9bc162fff32ba5bf552405094f1e1bd1e2d15857609",
+          "candidate": "d1677bb07472af4fa0b0a0bfda72892e5d96f9dc20586f42b9a998b31ace8567"
+        },
+        "layout": {
+          "baseline": "c83803ef7b847872a733cac78ef2fd1377be936d5ccc537fc5facf809ec25325",
+          "candidate": "80f809bfb42be2280ebbdb2fa921d17fe08d5f356ebc3493c71c7ea3e3fefc93"
+        },
+        "live-options": {
+          "baseline": "0c97cd91aaea154a4c57f1c04e70e63d8fd4378f4ad514bcc6cc7e203763a4a5",
+          "candidate": "f91cf4a719f2d928377fd833a43562341ba14ae0cb6ea3b27a45326607a8c06e"
+        },
+        "renderer": {
+          "baseline": "0fc9ddd3cde4062dfce032046c02aa562b638844c8f6c4d3b04aa3f98b7e949e",
+          "candidate": "2bc7b26ff270ac174cfa2c5f0bdb32aca7f69fefa778bbd4d66e57c19ab6c2c1"
+        }
+      },
+      "pairs": [
+        {
+          "case": "auras",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: each native category has six rectangular slots\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:278: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 10789 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 10789 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: each native category has six rectangular slots\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:278: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: each native category has six rectangular slots\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:278: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 10789 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 10789 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: each native category has six rectangular slots\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:278: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "auras",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_healer_auras.lua:4: each native category has six rectangular slots\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:278: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid healer auras: 10789 checks; actual native owner/flow projection, global one-to-six limits, strict filters, stable slider sizing and cooldown sinks; seven rejected negative controls; client visuals/scheduling pending\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:7: default main cells gain thirty percent height without changing width or the stored scale baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:7: in local 'check'\n\ttests/raid_aura_layout.lua:19: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 2779 checks; taller frame/icons, scope-aware slider bounds, startup-independent sizing and inside-fit text/bounds; eight rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 2779 checks; taller frame/icons, scope-aware slider bounds, startup-independent sizing and inside-fit text/bounds; eight rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:7: default main cells gain thirty percent height without changing width or the stored scale baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:7: in local 'check'\n\ttests/raid_aura_layout.lua:19: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:7: default main cells gain thirty percent height without changing width or the stored scale baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:7: in local 'check'\n\ttests/raid_aura_layout.lua:19: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 2779 checks; taller frame/icons, scope-aware slider bounds, startup-independent sizing and inside-fit text/bounds; eight rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 2779 checks; taller frame/icons, scope-aware slider bounds, startup-independent sizing and inside-fit text/bounds; eight rejected mutants; native rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:7: default main cells gain thirty percent height without changing width or the stored scale baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:7: in local 'check'\n\ttests/raid_aura_layout.lua:19: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "layout",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_layout.lua:7: default main cells gain thirty percent height without changing width or the stored scale baseline\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:7: in local 'check'\n\ttests/raid_aura_layout.lua:19: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura layout: 2779 checks; taller frame/icons, scope-aware slider bounds, startup-independent sizing and inside-fit text/bounds; eight rejected mutants; native rendering pending\n"
+          }
+        },
+        {
+          "case": "live-options",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:18: live every selectable aura-slider step visibly grows the normal-aura geometry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_live_options.lua:18: in upvalue 'check'\n\ttests/raid_aura_live_options.lua:123: in local 'resizingCase'\n\ttests/raid_aura_live_options.lua:142: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 480 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "live-options",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 480 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:18: live every selectable aura-slider step visibly grows the normal-aura geometry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_live_options.lua:18: in upvalue 'check'\n\ttests/raid_aura_live_options.lua:123: in local 'resizingCase'\n\ttests/raid_aura_live_options.lua:142: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "live-options",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:18: live every selectable aura-slider step visibly grows the normal-aura geometry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_live_options.lua:18: in upvalue 'check'\n\ttests/raid_aura_live_options.lua:123: in local 'resizingCase'\n\ttests/raid_aura_live_options.lua:142: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 480 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "live-options",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 480 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:18: live every selectable aura-slider step visibly grows the normal-aura geometry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_live_options.lua:18: in upvalue 'check'\n\ttests/raid_aura_live_options.lua:123: in local 'resizingCase'\n\ttests/raid_aura_live_options.lua:142: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "live-options",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/raid_aura_live_options.lua:18: live every selectable aura-slider step visibly grows the normal-aura geometry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_live_options.lua:18: in upvalue 'check'\n\ttests/raid_aura_live_options.lua:123: in local 'resizingCase'\n\ttests/raid_aura_live_options.lua:142: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Raid aura live options: 480 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+          }
+        },
+        {
+          "case": "renderer",
+          "trial": 1,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/options_dynamic_range.lua:9: live: cached range reads getter-updated numeric bounds before configuring the widget\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_dynamic_range.lua:9: in upvalue 'check'\n\ttests/options_dynamic_range.lua:163: in local 'numericMetadata'\n\ttests/options_dynamic_range.lua:176: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+          }
+        },
+        {
+          "case": "renderer",
+          "trial": 2,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/options_dynamic_range.lua:9: live: cached range reads getter-updated numeric bounds before configuring the widget\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_dynamic_range.lua:9: in upvalue 'check'\n\ttests/options_dynamic_range.lua:163: in local 'numericMetadata'\n\ttests/options_dynamic_range.lua:176: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "renderer",
+          "trial": 3,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/options_dynamic_range.lua:9: live: cached range reads getter-updated numeric bounds before configuring the widget\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_dynamic_range.lua:9: in upvalue 'check'\n\ttests/options_dynamic_range.lua:163: in local 'numericMetadata'\n\ttests/options_dynamic_range.lua:176: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+          }
+        },
+        {
+          "case": "renderer",
+          "trial": 4,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "exit": 0,
+            "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+          },
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/options_dynamic_range.lua:9: live: cached range reads getter-updated numeric bounds before configuring the widget\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_dynamic_range.lua:9: in upvalue 'check'\n\ttests/options_dynamic_range.lua:163: in local 'numericMetadata'\n\ttests/options_dynamic_range.lua:176: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "case": "renderer",
+          "trial": 5,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "exit": 1,
+            "output": "lua: tests/options_dynamic_range.lua:9: live: cached range reads getter-updated numeric bounds before configuring the widget\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/options_dynamic_range.lua:9: in upvalue 'check'\n\ttests/options_dynamic_range.lua:163: in local 'numericMetadata'\n\ttests/options_dynamic_range.lua:176: in main chunk\n\t[C]: in ?\n"
+          },
+          "candidate": {
+            "exit": 0,
+            "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+          }
+        }
+      ],
+      "variation": "All20 baseline runs rejected; all20 candidate runs pass."
+    },
+    "acceptanceScope": "Both complete runs pass. All runtime and all aura/renderer test sources were unchanged throughout both runs. Only the unrelated teleport test changed during the runs; its owner also edited TeleportPortal after the second run. The complete global corpus is not called frozen. All five current feature files exactly match the tested full-run manifest.",
+    "focused": "480 production options/orchestrator/unit/aura bridge;298 actual renderer/widgets;161 options/preview;2779 geometry;10789 auras;365 Unit/mini;659 visual; mutation controls retained",
+    "earlierAttempt": "All203 tests passed but tests/teleport_restock.lua changed concurrently; both raw runs/drift manifests preserved; no global frozen-corpus claim"
+  },
+  "resources": "No new native icon pool, native owner, addon event/ticker/timer; same bounded pools/cadence. Options page reevaluates bounds/description while open; no inactive recurring work added. Functional comparisons, no native FPS/CPU claim.",
+  "nativeFinal": {
+    "userAcceptance": "Yes, height and normal auras work",
+    "scenario": "User reloaded outside combat and tested Party/Raid Aura icon scale from0.50 toward its new fitting maximum; question included taller frames and normal buff/debuff duration text scaling",
+    "acceptedScope": "User confirmed visible main-frame height and normal aura/text resize in selected test client; no automatic foreground input or secret child probe",
+    "currentBuild": "Not independently resampled during this manual check; prior selected Forever route",
+    "stillPending": "Other client execution; matched pixel parity; all native combat roster/binding/filter cases; taint and FPS measurements"
+  },
+  "distribution": {
+    "verifiedExistingCandidate": true,
+    "existingOtherClients": 4,
+    "filesVerified": 20,
+    "matchesTestedFeatureManifest": true,
+    "files": [
+      {
+        "client": "_forever_",
+        "name": "RaidFrame/FluxRaidVisuals.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_forever_",
+        "name": "RaidFrame/FluxRaidAuras.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_forever_",
+        "name": "RaidFrame/FluxRaidUnit.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_forever_",
+        "name": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_forever_",
+        "name": "AddonOptions/FluxOptionsRender.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_era_",
+        "name": "RaidFrame/FluxRaidVisuals.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_era_",
+        "name": "RaidFrame/FluxRaidAuras.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_era_",
+        "name": "RaidFrame/FluxRaidUnit.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_era_",
+        "name": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_era_",
+        "name": "AddonOptions/FluxOptionsRender.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_anniversary_",
+        "name": "RaidFrame/FluxRaidVisuals.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_anniversary_",
+        "name": "RaidFrame/FluxRaidAuras.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_anniversary_",
+        "name": "RaidFrame/FluxRaidUnit.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_anniversary_",
+        "name": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_anniversary_",
+        "name": "AddonOptions/FluxOptionsRender.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_",
+        "name": "RaidFrame/FluxRaidVisuals.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_",
+        "name": "RaidFrame/FluxRaidAuras.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_",
+        "name": "RaidFrame/FluxRaidUnit.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_",
+        "name": "AddonOptions/FluxOptionsRaidFrame.lua",
+        "matchesTestedSHA256": true
+      },
+      {
+        "client": "_classic_",
+        "name": "AddonOptions/FluxOptionsRender.lua",
+        "matchesTestedSHA256": true
+      }
+    ],
+    "scope": "All four other client copies already held the exact tested candidate when guarded installation was checked; no overwrite or duplicate copy was performed by this task. Retail working source matches too. Earlier external source/history/settings checkpoint retained."
+  }
+}

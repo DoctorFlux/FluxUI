@@ -1,0 +1,37 @@
+{
+  "capturedUTC": "2026-11-07T12:12:35.089459+00:00",
+  "scope": "Actual existing helper/backend with mocked access predicates and opaque operation trap; no native taint/secret permission claim",
+  "runs": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "stdout": "CONTROL client=retail policy=secret-denied opaque_operations=0\nCONTROL client=retail policy=secret-access-true opaque_operations=0\nCONTROL client=retail policy=access-denied opaque_operations=0\nCONTROL client=retail policy=predicate-error opaque_operations=0\nCONTROL client=forever policy=secret-denied opaque_operations=0\nCONTROL client=forever policy=secret-access-true opaque_operations=0\nCONTROL client=forever policy=access-denied opaque_operations=0\nCONTROL client=forever policy=predicate-error opaque_operations=0\nSUMMARY checks=80 failures=0; actual Core helpers; native secrets/taint NOT RUN\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "stdout": "CONTROL client=retail policy=secret-denied opaque_operations=0\nCONTROL client=retail policy=secret-access-true opaque_operations=0\nCONTROL client=retail policy=access-denied opaque_operations=0\nCONTROL client=retail policy=predicate-error opaque_operations=0\nCONTROL client=forever policy=secret-denied opaque_operations=0\nCONTROL client=forever policy=secret-access-true opaque_operations=0\nCONTROL client=forever policy=access-denied opaque_operations=0\nCONTROL client=forever policy=predicate-error opaque_operations=0\nSUMMARY checks=80 failures=0; actual Core helpers; native secrets/taint NOT RUN\n",
+      "stderr": ""
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "stdout": "CONTROL client=retail policy=secret-denied opaque_operations=0\nCONTROL client=retail policy=secret-access-true opaque_operations=0\nCONTROL client=retail policy=access-denied opaque_operations=0\nCONTROL client=retail policy=predicate-error opaque_operations=0\nCONTROL client=forever policy=secret-denied opaque_operations=0\nCONTROL client=forever policy=secret-access-true opaque_operations=0\nCONTROL client=forever policy=access-denied opaque_operations=0\nCONTROL client=forever policy=predicate-error opaque_operations=0\nSUMMARY checks=80 failures=0; actual Core helpers; native secrets/taint NOT RUN\n",
+      "stderr": ""
+    }
+  ],
+  "before": {
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Core/API/Secrets_Midnight.lua": "346563ff74f64ff32da99561cb6130bcf61bfea08a6a193ac90814bd850b303a",
+    "Stress test doc/security/secret-value-followup/guard_controls.lua.txt": "67a5b49c414de3edad224f615204bd92ec392a6bb54c37d252c9909b7b54dbfa"
+  },
+  "after": {
+    "Core/API/Secrets.lua": "471a54aeb783e922ed7dccbe64d3a10c679a27e27a15bdaf3db4697400afccce",
+    "Core/API/Secrets_Midnight.lua": "346563ff74f64ff32da99561cb6130bcf61bfea08a6a193ac90814bd850b303a",
+    "Stress test doc/security/secret-value-followup/guard_controls.lua.txt": "67a5b49c414de3edad224f615204bd92ec392a6bb54c37d252c9909b7b54dbfa"
+  },
+  "consumedSourceDrift": [],
+  "syntaxExit": 0,
+  "pass": true
+}

@@ -315,7 +315,8 @@ function Context.Request(force, opts)
 		lastContextFp = nil
 		refreshMouseoverOnly = false
 	elseif opts.mouseoverOnly then
-		refreshMouseoverOnly = true
+		-- A later narrow request cannot replace an already queued full refresh.
+		if not refreshScheduled then refreshMouseoverOnly = true end
 	else
 		refreshMouseoverOnly = false
 	end
@@ -359,7 +360,7 @@ function Context.RequestMouseover()
 	local now = GetTime and GetTime() or 0
 	local interval = MouseoverCoalesceInterval()
 	mouseoverAt = now + interval
-	refreshMouseoverOnly = true
+	if not refreshScheduled then refreshMouseoverOnly = true end
 	if mouseoverScheduled or refreshScheduled then
 		stats.mouseoverCoalesced = stats.mouseoverCoalesced + 1
 		return

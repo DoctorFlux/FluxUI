@@ -117,11 +117,14 @@ end
 
 local function CaptureSlot(slot)
     if not GetActionInfo then
-        return { empty = true }
+        return { empty = true }, false
     end
     local ok, actionType, id, subType = pcall(GetActionInfo, slot)
-    if not ok or not actionType or actionType == "" then
-        return { empty = true }
+    if not ok then
+        return { empty = true }, false
+    end
+    if not actionType or actionType == "" then
+        return { empty = true }, true
     end
     local entry = {
         type = actionType,
@@ -150,7 +153,7 @@ local function CaptureSlot(slot)
             entry.text = text
         end
     end
-    return entry
+    return entry, true
 end
 
 local function EntriesMatch(a, b)
@@ -382,7 +385,7 @@ function ActionBars.ApplyStanceLayout(snap)
         return false
     end
     if snap.stanceSlotOrder and Stance.SetSavedOrder then
-        Stance.SetSavedOrder(CopyTable(snap.stanceSlotOrder))
+        if Stance.SetSavedOrder(CopyTable(snap.stanceSlotOrder)) == false then return false end
     end
     if type(snap.stanceHiddenSlots) == "table" then
         local cab
@@ -395,11 +398,11 @@ function ActionBars.ApplyStanceLayout(snap)
         elseif Stance.SetSlotHidden then
             local current = Stance.GetHiddenSlots and Stance.GetHiddenSlots() or {}
             for key in pairs(current) do
-                Stance.SetSlotHidden(key, false)
+                if Stance.SetSlotHidden(key, false) == false then return false end
             end
             for key, hidden in pairs(snap.stanceHiddenSlots) do
                 if hidden then
-                    Stance.SetSlotHidden(key, true)
+                    if Stance.SetSlotHidden(key, true) == false then return false end
                 end
             end
         end
@@ -409,10 +412,10 @@ function ActionBars.ApplyStanceLayout(snap)
         if type(list) ~= "table" then
             list = {}
         end
-        Stance.SetSavedCustomSlots(CopyTable(list) or {})
+        if Stance.SetSavedCustomSlots(CopyTable(list) or {}) == false then return false end
     end
     if Stance.RequestLayout then
-        Stance.RequestLayout("respec")
+        if Stance.RequestLayout("respec") == false then return false end
     end
     return true
 end
@@ -435,6 +438,11 @@ function ActionBars.Capture()
     }
 end
 
+local function Pickup(fn, ...)
+    local called, result = pcall(fn, ...)
+    return called and result ~= false
+end
+
 local function PickupForEntry(entry)
     if not entry or entry.empty or not entry.type then
         return false
@@ -443,31 +451,31 @@ local function PickupForEntry(entry)
     local id = entry.id
     if t == "spell" then
         if _G.C_Spell and _G.C_Spell.PickupSpell and id then
-            return pcall(_G.C_Spell.PickupSpell, id)
+            return Pickup(_G.C_Spell.PickupSpell, id)
         end
         if _G.PickupSpell and id then
-            return pcall(_G.PickupSpell, id)
+            return Pickup(_G.PickupSpell, id)
         end
     elseif t == "item" then
         if _G.C_Item and _G.C_Item.PickupItem and id then
-            return pcall(_G.C_Item.PickupItem, id)
+            return Pickup(_G.C_Item.PickupItem, id)
         end
         if _G.PickupItem and id then
-            return pcall(_G.PickupItem, id)
+            return Pickup(_G.PickupItem, id)
         end
     elseif t == "macro" then
         local name = entry.name
         if name and _G.GetMacroIndexByName then
             local idx = _G.GetMacroIndexByName(name)
             if idx and idx > 0 and _G.PickupMacro then
-                return pcall(_G.PickupMacro, idx)
+                return Pickup(_G.PickupMacro, idx)
             end
         end
         if name and _G.PickupMacro then
-            return pcall(_G.PickupMacro, name)
+            return Pickup(_G.PickupMacro, name)
         end
         if id and _G.PickupMacro then
-            return pcall(_G.PickupMacro, id)
+            return Pickup(_G.PickupMacro, id)
         end
     elseif t == "equipmentset" then
         local setID = id
@@ -475,108 +483,155 @@ local function PickupForEntry(entry)
             setID = C_EquipmentSet.GetEquipmentSetID(entry.name)
         end
         if setID and C_EquipmentSet and C_EquipmentSet.PickupEquipmentSet then
-            return pcall(C_EquipmentSet.PickupEquipmentSet, setID)
+            return Pickup(C_EquipmentSet.PickupEquipmentSet, setID)
         end
     elseif t == "mount" and id then
         if _G.C_MountJournal and _G.C_MountJournal.Pickup then
-            return pcall(_G.C_MountJournal.Pickup, id)
+            return Pickup(_G.C_MountJournal.Pickup, id)
         end
     elseif t == "companion" and id then
         if _G.PickupCompanion then
-            return pcall(_G.PickupCompanion, entry.subType or "MOUNT", id)
+            return Pickup(_G.PickupCompanion, entry.subType or "MOUNT", id)
         end
     elseif t == "flyout" and id and _G.PickupSpell then
-        return pcall(_G.PickupSpell, id)
+        return Pickup(_G.PickupSpell, id)
     elseif t == "summonpet" or t == "battlepet" then
         if _G.C_PetJournal and _G.C_PetJournal.PickupPet and id then
-            return pcall(_G.C_PetJournal.PickupPet, id)
+            return Pickup(_G.C_PetJournal.PickupPet, id)
         end
     end
     return false
 end
 
+-- Slot APIs do not report completion through a return value. Check the public
+-- slot state after each operation instead of treating a successful pcall as a
+-- restored action. A partial restore is retryable through the load checkpoint.
 local function ClearSlot(slot)
     if not PickupAction or not ClearCursor then
-        return
+        return false, "ACTION_BARS_API_UNAVAILABLE"
     end
-    pcall(PickupAction, slot)
-    pcall(ClearCursor)
+    local ok = pcall(PickupAction, slot)
+    local cleared = pcall(ClearCursor)
+    if not ok or not cleared then return false, "ACTION_BARS_CLEAR_FAILED" end
+    local live, readable = CaptureSlot(slot)
+    return readable and live.empty == true, "ACTION_BARS_CLEAR_FAILED"
 end
 
 local function PlaceEntryOnSlot(slot, entry)
+    local live, readable = CaptureSlot(slot)
+    if not readable then return false, "ACTION_BARS_READ_FAILED" end
+    if EntriesMatch(live, entry) then return true end
     if not entry or entry.empty or not entry.type then
-        local live = CaptureSlot(slot)
-        if not live.empty then
-            ClearSlot(slot)
-        end
-        return true
+        return ClearSlot(slot)
     end
-    local live = CaptureSlot(slot)
-    if EntriesMatch(live, entry) then
-        return true
+    if not PlaceAction or not ClearCursor then
+        return false, "ACTION_BARS_API_UNAVAILABLE"
     end
-    if CursorHasItem and CursorHasItem() or (GetCursorInfo and GetCursorInfo()) then
-        pcall(ClearCursor)
+    if (CursorHasItem and CursorHasItem()) or (GetCursorInfo and GetCursorInfo()) then
+        if not pcall(ClearCursor) then return false, "ACTION_BARS_CURSOR_FAILED" end
     end
     if not PickupForEntry(entry) then
         pcall(ClearCursor)
-        return false
+        return false, "ACTION_BARS_PICKUP_FAILED"
     end
-    if PlaceAction then
-        pcall(PlaceAction, slot)
+    local placed = pcall(PlaceAction, slot)
+    local cleared = pcall(ClearCursor)
+    if not placed or not cleared then return false, "ACTION_BARS_PLACE_FAILED" end
+    live, readable = CaptureSlot(slot)
+    if not readable or not EntriesMatch(live, entry) then
+        return false, "ACTION_BARS_VERIFY_FAILED"
     end
-    pcall(ClearCursor)
     return true
 end
 
-local pendingSnap
+local pendingApply
+local latestApply
 local combatWatcher
 
-local function ApplySlotsNow(snap)
-    if type(snap) ~= "table" or type(snap.slots) ~= "table" then
-        ActionBars.ApplyStanceLayout(snap)
-        return true
-    end
-    if InLockdown() then
-        pendingSnap = snap
-        if not combatWatcher then
-            combatWatcher = CreateFrame("Frame")
-            combatWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
-            combatWatcher:SetScript("OnEvent", function(self)
-                local s = pendingSnap
-                pendingSnap = nil
-                self:UnregisterAllEvents()
-                self:SetScript("OnEvent", nil)
-                combatWatcher = nil
-                if s then
-                    ApplySlotsNow(s)
-                end
-            end)
-        end
-        if R.Print then
-            R.Print("In combat: action bars will apply when combat ends.")
-        end
-        return false
-    end
-    local slots = snap.slots
-    local order = SortedSlots(slots)
-    for i = 1, #order do
-        local slot = order[i]
-        pcall(PlaceEntryOnSlot, slot, slots[slot])
-    end
-    ActionBars.ApplyStanceLayout(snap)
+local function StopCombatWatcher()
+    if not combatWatcher then return end
+    combatWatcher:UnregisterAllEvents()
+    combatWatcher:SetScript("OnEvent", nil)
+end
+
+local function Complete(request, ok, reason)
+    if request.completed then return end
+    request.completed = true
+    if latestApply == request then latestApply = nil end
+    if request.callback then request.callback(ok, reason) end
+end
+
+-- A callback is also the request's owner, just as with deferred spell bindings.
+-- Cancelling one profile must not remove another caller's pending restore.
+function ActionBars.CancelPendingApply(callback)
+    local request = pendingApply
+    if not request or (callback and request.callback ~= callback) then return false end
+    pendingApply = nil
+    StopCombatWatcher()
+    Complete(request, false, "CANCELLED")
     return true
 end
 
-function ActionBars.Apply(snap)
-    if type(snap) ~= "table" then
-        return false
-    end
+local function ApplyNow(snap)
     local skipSlots = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
-    if skipSlots or snap.slots == nil then
-        return ActionBars.ApplyStanceLayout(snap)
+    if not skipSlots and type(snap.slots) == "table" then
+        local order = SortedSlots(snap.slots)
+        for i = 1, #order do
+            local slot = order[i]
+            local called, ok, reason = pcall(PlaceEntryOnSlot, slot, snap.slots[slot])
+            if not called then return false, "ACTION_BARS_SLOT_FAILED" end
+            if not ok then return false, reason end
+        end
     end
-    return ApplySlotsNow(snap)
+    local called, ok = pcall(ActionBars.ApplyStanceLayout, snap)
+    if not called or not ok then return false, "ACTION_BARS_STANCE_FAILED" end
+    return true
+end
+
+local function RunRequest(request)
+    local ok, reason = ApplyNow(request.snapshot)
+    Complete(request, ok, reason)
+    return ok, reason
+end
+
+function ActionBars.Apply(snap, callback)
+    if type(snap) ~= "table" then
+        if callback then callback(false, "ACTION_BARS_INVALID_SNAPSHOT") end
+        return false, "ACTION_BARS_INVALID_SNAPSHOT"
+    end
+    -- Detach nested slots/order/custom entries from the editable saved profile.
+    local request = { snapshot = CopyTable(snap), callback = callback }
+    latestApply = request
+    if pendingApply then
+        local previous = pendingApply
+        pendingApply = nil
+        StopCombatWatcher()
+        Complete(previous, false, "SUPERSEDED")
+    end
+    -- A superseded caller can synchronously issue a newer request from its
+    -- completion callback. That newer request retains ownership of the queue.
+    if latestApply ~= request then
+        Complete(request, false, "SUPERSEDED")
+        return false, "SUPERSEDED"
+    end
+    if InLockdown() then
+        pendingApply = request
+        -- WoW frames cannot be destroyed. Reuse one dormant watcher across
+        -- cancelled/repeated loads instead of allocating one per request.
+        combatWatcher = combatWatcher or CreateFrame("Frame")
+        combatWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
+        combatWatcher:SetScript("OnEvent", function()
+            if pendingApply ~= request then return end -- a cancelled/superseded event owns no work
+            if InLockdown() then return end
+            local pending = pendingApply
+            pendingApply = nil
+            StopCombatWatcher()
+            if pending then RunRequest(pending) end
+        end)
+        if R.Print then R.Print("In combat: action bars will apply when combat ends.") end
+        return false, "IN_COMBAT"
+    end
+    return RunRequest(request)
 end
 
 function ActionBars.MatchesSnapshot(snap)
@@ -586,8 +641,8 @@ function ActionBars.MatchesSnapshot(snap)
     local skipSlots = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
     if not skipSlots and type(snap.slots) == "table" then
         for slot, want in pairs(snap.slots) do
-            local live = CaptureSlot(slot)
-            if not EntriesMatch(live, want) then
+            local live, readable = CaptureSlot(slot)
+            if not readable or not EntriesMatch(live, want) then
                 return false
             end
         end

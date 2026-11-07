@@ -32,6 +32,10 @@ local diagnostics = { notify = 0, screenShow = 0, screenHide = 0,
 	nativeScreenShow = 0, nativeScreenHide = 0, nativeScreenID = 0,
 	containerHooks = 0, containerShows = 0, containerHides = 0,
 	registrySeen = 0, registrySlots = 0, registryMatches = 0 }
+diagnostics.secureReady = 0
+diagnostics.secureFailed = 0
+diagnostics.secureAlphaFailed = 0
+local foreverSecureAuraReady = false
 
 local function Notify(reason)
 	diagnostics.notify = diagnostics.notify + 1
@@ -899,6 +903,15 @@ local function ForeverAuraButton(spellId)
 	if not (Flux.Client and Flux.Client.isForever) then
 		return false
 	end
+	-- A secure aura slot owns this effect once installed. The readable OOC
+	-- fallback would otherwise paint a second glow after combat and retain it.
+	if foreverSecureAuraReady then
+		local base = foreverAuraButtons[spellId]
+		local missileName = SpellName(5143)
+		if base == 400589 or (missileName and SpellName(spellId) == missileName) then
+			return false
+		end
+	end
 	if not (_G.SpellActivationOverlayAddonFrame or _G.SpellActivationOverlayLABBinder) then
 		return false
 	end
@@ -1205,6 +1218,8 @@ function Glow.Diagnostics()
 		.. diagnostics.containerShows .. "/" .. diagnostics.containerHides
 		.. " registry=" .. diagnostics.registrySeen .. "/"
 		.. diagnostics.registrySlots .. "/" .. diagnostics.registryMatches
+		.. " secure=" .. diagnostics.secureReady .. "/" .. diagnostics.secureFailed
+		.. "/" .. diagnostics.secureAlphaFailed
 end
 
 function Glow.DiagnosticsWanted()
@@ -1683,6 +1698,182 @@ local function PrepareForeverSaoGlow(frame)
 	end
 end
 
+-- Forever's SAO effect 400589 has screen art but no button association.
+-- The aura is secret in combat: its public OnShow hook and aura reads cannot
+-- supply a reliable Lua boolean. Let Blizzard's secure AuraContainer drive the
+-- exact Retail proc flipbook through AddAuraShownAnimation instead.
+local function IsMissileSpell(spellID)
+	if issecretvalue and issecretvalue(spellID) then
+		return false
+	end
+	if type(spellID) ~= "number" then
+		return false
+	end
+	if spellID == 5143 then
+		return true
+	end
+	local name = SpellName(5143)
+	return name and SpellName(spellID) == name or false
+end
+
+function Glow.IsSecureAuraSpell(spellID)
+	return Flux.Client and Flux.Client.isForever and IsMissileSpell(spellID) or false
+end
+
+function Glow.CanPrepareSecureAura()
+	local settings = _G.SpellActivationOverlayDB
+	return Flux.Client and Flux.Client.isForever
+		and CommunitySaoLoaded()
+		and C_Secrets and C_Secrets.GetSpellAuraSecrecy
+		and not (settings and settings.glow and settings.glow.enabled == false)
+		and AtlasExists("UI-HUD-ActionBar-Proc-Loop-Flipbook") and true or false
+end
+
+function Glow.MayShowSecureAuraText(body)
+	if not (Flux.Client and Flux.Client.isForever) or type(body) ~= "string" then
+		return false
+	end
+	local name = SpellName(5143)
+	return body:find("5143", 1, true) ~= nil
+		or (name and body:lower():find(name:lower(), 1, true) ~= nil) or false
+end
+
+function Glow.MayShowSecureAuraSlot(slot)
+	if not (Flux.Client and Flux.Client.isForever) or type(slot) ~= "number" then
+		return false
+	end
+	local FX = Flux.ButtonFX
+	if FX and FX.SpellIdFromAction and IsMissileSpell(FX.SpellIdFromAction(slot)) then
+		return true
+	end
+	local SP = Flux.Bars and Flux.Bars.SlotProgram
+	if SP then
+		if (SP.Get and Glow.MayShowSecureAuraText(SP.Get(slot)))
+			or (SP.GetIdle and Glow.MayShowSecureAuraText(SP.GetIdle(slot)))
+			or (SP.GetHover and Glow.MayShowSecureAuraText(SP.GetHover(slot))) then
+			return true
+		end
+	end
+	if GetActionInfo then
+		local ok, actionType, id = pcall(GetActionInfo, slot)
+		if ok and actionType == "spell" and IsMissileSpell(id) then
+			return true
+		end
+		if ok and actionType == "macro" and GetMacroInfo then
+			local okBody, _, _, body = pcall(GetMacroInfo, id)
+			return okBody and Glow.MayShowSecureAuraText(body) or false
+		end
+	end
+	return false
+end
+
+function Glow.SyncSecureAura(widget, spellID, visible)
+	local box = widget and widget._fluxSecureMissileGlow
+	if not box then
+		return false
+	end
+	local settings = _G.SpellActivationOverlayDB
+	local enabled = not (settings and settings.glow and settings.glow.enabled == false)
+	local show = visible and enabled and IsMissileSpell(spellID) and true or false
+	if widget._fluxSecureMissileShown ~= show then
+		if pcall(box.SetAlpha, box, show and 1 or 0) then
+			widget._fluxSecureMissileShown = show
+		else
+			diagnostics.secureAlphaFailed = diagnostics.secureAlphaFailed + 1
+		end
+	end
+	return true
+end
+
+local function PrepareForeverSecureAuraGlow(widget, eligible)
+	if not (Flux.Client and Flux.Client.isForever) or InLockdown() then
+		return
+	end
+	local spellID = ResolveGlowSpell(widget)
+	local settings = _G.SpellActivationOverlayDB
+	local glowEnabled = not (settings and settings.glow
+		and settings.glow.enabled == false)
+	local matching = IsMissileSpell(spellID)
+	if widget._fluxSecureMissileGlow then
+		if widget._fluxSecureMissileEnabled ~= glowEnabled then
+			local box = widget._fluxSecureMissileGlow
+			box:SetUnit(glowEnabled and "player" or "none")
+			box:SetShown(glowEnabled)
+			widget._fluxSecureMissileEnabled = glowEnabled
+		end
+		if not widget._fluxHost and not widget._fluxBadgeHost then
+			Glow.SyncSecureAura(widget, spellID,
+				not widget._fluxParked and not widget._fluxBadgeCombatVisHidden)
+		end
+		return
+	end
+	if not (eligible or matching) or not glowEnabled or not CommunitySaoLoaded() then
+		return
+	end
+	if not (C_Secrets and C_Secrets.GetSpellAuraSecrecy
+		and AtlasExists("UI-HUD-ActionBar-Proc-Loop-Flipbook")) then
+		return
+	end
+	if not (C_AddOns and C_AddOns.IsAddOnLoaded
+		and C_AddOns.IsAddOnLoaded("Blizzard_AuraContainer"))
+		and LoadAddOn then
+		LoadAddOn("Blizzard_AuraContainer")
+	end
+	local initialized = false
+	local ok, container = pcall(CreateFrame, "AuraContainer", nil, widget,
+		"CustomAuraContainerTemplate")
+	if not ok or not container then
+		diagnostics.secureFailed = diagnostics.secureFailed + 1
+		return
+	end
+	local configured = pcall(function()
+		container:SetAllPoints(widget)
+		container:EnableMouse(false)
+		container:SetAlpha(0)
+		if container.SetEditModePreviewEnabled then
+			container:SetEditModePreviewEnabled(false)
+		end
+		container:AddAuraSlot("missileBarrage", "HELPFUL", {
+			candidateFilters = { includeSpellIDs = { [400589] = true } },
+			initializeFrame = function(auraButton)
+				auraButton:SetAllPoints(widget)
+				auraButton:EnableMouse(false)
+				local alert = CreateFrame("Frame", nil, auraButton,
+					"ActionButtonSpellAlertTemplate")
+				local width, height = widget:GetSize()
+				alert:SetSize(width * 1.4, height * 1.4)
+				alert:SetPoint("CENTER", widget, "CENTER")
+				alert:Show()
+				auraButton:AddAuraShownAnimation(alert.ProcLoop)
+				initialized = true
+			end,
+		})
+		container:SetUnit("player")
+		container:SetEnabled(true)
+	end)
+	if not configured or not initialized then
+		container:SetUnit("none")
+		container:Hide()
+		diagnostics.secureFailed = diagnostics.secureFailed + 1
+		return
+	end
+	widget._fluxSecureMissileGlow = container
+	widget._fluxSecureMissileEnabled = true
+	widget._fluxSecureMissileShown = false
+	foreverSecureAuraReady = true
+	diagnostics.secureReady = diagnostics.secureReady + 1
+	if not widget._fluxHost and not widget._fluxBadgeHost then
+		Glow.SyncSecureAura(widget, spellID,
+			not widget._fluxParked and not widget._fluxBadgeCombatVisHidden)
+	end
+end
+
+function Glow.EnsureSecureAura(widget, eligible)
+	if widget then
+		PrepareForeverSecureAuraGlow(widget, eligible)
+	end
+end
+
 --- SAO __sao: membership + owner settle only. Flux owns glow paint.
 function Glow.InstallSAO(frame)
 	if not frame then
@@ -1716,6 +1907,7 @@ function Glow.InstallSAO(frame)
 	if not PrepareForeverModernGlow(frame) then
 		PrepareForeverSaoGlow(frame)
 	end
+	PrepareForeverSecureAuraGlow(frame)
 end
 
 function Glow.NotifySAO(frame)
@@ -1799,7 +1991,7 @@ function Glow.Start()
 		Ev.Register("ADDON_LOADED", function(_, name)
 			if name == "SpellActivationOverlay" then
 				TryBind()
-				Notify()
+				Notify("sao.ready")
 			end
 		end)
 		Ev.Register("PLAYER_LOGIN", function()

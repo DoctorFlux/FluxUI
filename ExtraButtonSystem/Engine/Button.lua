@@ -2255,6 +2255,19 @@ function FluxButton:ClearCooldownVisual()
     self._lastCooldownIsCharge = nil
 end
 
+local function PublicCooldownAlpha(cd)
+    if not cd.GetEffectiveAlpha then return 1 end -- established legacy policy
+    local ok, alpha = pcall(cd.GetEffectiveAlpha, cd)
+    if not ok then return nil end
+    local Flux = _G.Flux
+    local S = (Flux and Flux.Secrets) or (FluxAPICompat and FluxAPICompat.API)
+    local secret = (S and S.IsSecretValue) or issecretvalue
+    local access = (S and S.CanAccessValue) or canaccessvalue
+    if (secret and secret(alpha)) or (access and not access(alpha))
+        or type(alpha) ~= "number" then return nil end
+    return alpha
+end
+
 --- Paint via Midnight duration object when available; otherwise numeric SetCooldown.
 function FluxButton:CooldownFrame_SetFromDurationObject(durationObject, isCharge)
     if not self.WCooldown then return end
@@ -2263,14 +2276,18 @@ function FluxButton:CooldownFrame_SetFromDurationObject(durationObject, isCharge
         self:ClearCooldownVisual()
         return
     end
-    local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
-    if cd.SetSwipeColor then pcall(cd.SetSwipeColor, cd, 0, 0, 0, alpha) end
-    if alpha > 0.4 then
-        if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, true) end
-        if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, isCharge and true or false) end
-    else
-        if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, false) end
-        if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, false) end
+    local alpha = PublicCooldownAlpha(cd)
+    -- Retain existing appearance when private; duration lifecycle continues.
+    -- The existing next paint retries, without a new timer or forced alpha.
+    if alpha ~= nil then
+        if cd.SetSwipeColor then pcall(cd.SetSwipeColor, cd, 0, 0, 0, alpha) end
+        if alpha > 0.4 then
+            if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, true) end
+            if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, isCharge and true or false) end
+        else
+            if cd.SetDrawBling then pcall(cd.SetDrawBling, cd, false) end
+            if cd.SetDrawEdge then pcall(cd.SetDrawEdge, cd, false) end
+        end
     end
     if cd.SetDrawSwipe then pcall(cd.SetDrawSwipe, cd, not isCharge) end
     if cd.SetCooldownFromDurationObject then
@@ -2606,15 +2623,16 @@ function FluxButton:CooldownFrame_SetTimer(start, duration, isEnabled, charges, 
                 end
             end
 
-            local alpha = (cd.GetEffectiveAlpha and cd:GetEffectiveAlpha()) or 1
-            if cd.SetSwipeColor then cd:SetSwipeColor(0, 0, 0, alpha) end
-
-            if alpha > 0.4 then
-                if cd.SetDrawEdge then cd:SetDrawEdge(drawEdge or forceShowDrawEdge) end
-                if cd.SetDrawBling then cd:SetDrawBling(true) end
-            else
-                if cd.SetDrawEdge then cd:SetDrawEdge(false) end
-                if cd.SetDrawBling then cd:SetDrawBling(false) end
+            local alpha = PublicCooldownAlpha(cd)
+            if alpha ~= nil then
+                if cd.SetSwipeColor then cd:SetSwipeColor(0, 0, 0, alpha) end
+                if alpha > 0.4 then
+                    if cd.SetDrawEdge then cd:SetDrawEdge(drawEdge or forceShowDrawEdge) end
+                    if cd.SetDrawBling then cd:SetDrawBling(true) end
+                else
+                    if cd.SetDrawEdge then cd:SetDrawEdge(false) end
+                    if cd.SetDrawBling then cd:SetDrawBling(false) end
+                end
             end
             if cd.SetDrawSwipe then cd:SetDrawSwipe(not drawEdge) end
 

@@ -1,0 +1,24 @@
+{
+  "sourceSavedUTC": "2026-11-06T16:33:29.330250+00:00",
+  "saveHistory": true,
+  "recordCount": 1,
+  "repeatTotal": 12,
+  "records": [
+    {
+      "addon": "_FluxUI",
+      "count": 12,
+      "timestamp": "17:33:14",
+      "message": "ADDON BLOCKED: Button:SetPassThroughButtons()",
+      "stack": "[C]: in function 'SetPassThroughButtons'\n[Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua]:290: in function 'CheckMouseButtonPassthrough'\n[Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua]:331: in function 'AcquirePin'\n[Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua]:194: in function 'AddQuest'\n[Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua]:134: in function 'CheckAddQuest'\n[Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua]:141: in function 'RefreshAllData'\n[Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua]:39: in function <...lizzard_SharedMapDataProviders/QuestDataProvider.lua:39>\n[C]: ?\n[Interface/AddOns/Blizzard_SharedXMLBase/CallbackRegistry.lua]:210: in function <...e/AddOns/Blizzard_SharedXMLBase/CallbackRegistry.lua:209>\n[C]: ?\n[Interface/AddOns/Blizzard_SharedXMLBase/CallbackRegistry.lua]:213: in function 'TriggerEvent'\n[Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Blizzard_QuestSuperTracking.lua]:59: in function 'CacheCurrentSuperTrackInfo'\n[Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/Blizzard_QuestSuperTracking.lua]:17: in function <...rameXMLUtil/Mainline/Blizzard_QuestSuperTracking.lua:15>"
+    }
+  ],
+  "correlation": {
+    "watchErrorsBefore": 0,
+    "watchErrorsAtRecordedGap": 0,
+    "watchErrorsAfter": 12,
+    "reportedLocalTimestamp": "17:33:14",
+    "scope": "Saved12repeats match the watch end count. They occurredlater than the recorded gap; no claim they caused that gap."
+  },
+  "interpretation": "Native quest-map pin refresh attempted a forbidden/protected SetPassThroughButtons call while tainted by _FluxUI. The stack establishes the failure path, not where the original taint entered or a safe fix. Preserve native restrictions; do not extend global patches or suppress errors.",
+  "privacy": "All raw locals, private account paths and other saved roots excluded. No saved Lua executed."
+}

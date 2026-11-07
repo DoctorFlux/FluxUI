@@ -1,0 +1,31 @@
+--- baseline/Core/ButtonFX/Cast.lua
++++ candidate/Core/ButtonFX/Cast.lua
+@@ -487,6 +487,13 @@
+ 	return nil
+ end
+ 
++local function ReadableAlpha(value)
++	local S = Flux.Secrets
++	local secret = (S and S.IsSecretValue) or issecretvalue
++	local access = (S and S.CanAccessValue) or canaccessvalue
++	return not (secret and secret(value)) and (not access or access(value))
++end
++
+ local function WidgetShown(widget)
+ 	if not widget or widget._fluxParked then
+ 		return false
+@@ -496,7 +503,13 @@
+ 	end
+ 	if widget.GetAlpha then
+ 		local ok, a = pcall(widget.GetAlpha, widget)
+-		if ok and type(a) == "number" and a <= 0 then
++		if not ok or not ReadableAlpha(a) then
++			-- Badge alpha is configured by its owner; no alpha is inferred for
++			-- other restricted widgets. Parked/hidden/IsShown still prune them.
++			local owner = widget.FluxButton
++			a = owner and owner._fluxBadgeAlpha
++		end
++		if ReadableAlpha(a) and type(a) == "number" and a <= 0 then
+ 			return false
+ 		end
+ 	end

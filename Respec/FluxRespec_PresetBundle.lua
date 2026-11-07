@@ -99,13 +99,11 @@ end
 
 local function ApplyUtilitySnap(snap)
     if not snap then return false end
-    if _G.FluxNCUtilitySlots_ApplySnapshot then
-        return pcall(_G.FluxNCUtilitySlots_ApplySnapshot, snap) == true
-    end
-    if _G.FluxSpellBookSlots_ApplySnapshot then
-        return pcall(_G.FluxSpellBookSlots_ApplySnapshot, snap) == true
-    end
-    return false
+    local apply = _G.FluxNCUtilitySlots_ApplySnapshot or _G.FluxSpellBookSlots_ApplySnapshot
+    if not apply then return false, "NO_API" end
+    local called, ok, reason = pcall(apply, snap)
+    if not called then return false, "UTILITY_SLOTS_FAILED" end
+    return ok == true, reason
 end
 
 local function ResolveUtilitySnapForGroup(preset, group)
@@ -250,7 +248,9 @@ end
 function Bundle.ApplyBarsSnapshot(bars)
     if type(bars) ~= "table" then return false end
     if R.ActionBars and R.ActionBars.Apply then
-        return pcall(R.ActionBars.Apply, bars) == true
+        local called, ok, reason = pcall(R.ActionBars.Apply, bars)
+        if not called then return false, "ACTION_BARS_FAILED" end
+        return ok == true, reason
     end
     return false
 end

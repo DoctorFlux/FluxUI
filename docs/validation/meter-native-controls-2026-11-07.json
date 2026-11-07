@@ -1,0 +1,305 @@
+{
+  "changeID": "METER-NATIVE-CONTROLS-20261107",
+  "dateUTC": "2026-11-07T08:02:07.496238+00:00",
+  "checkpoint": {
+    "capturedAtUTC": "2026-11-07T07:26:48.983629+00:00",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1718,
+    "sha256": {
+      "source.zip": "51a46f4c07103a9f4e85d5508b0fb82f8af9eb7efd91b8fb369a3775c6b80175",
+      "history.bundle": "3e0d41aece88e79097060ccebdd2cf2acd5b3de86ae9c50205964aeb6d428361"
+    },
+    "settingsScope": "Existing recovery settings.zip rehashed; fresh available settings metadata only. No settings reads into Git or writes; WoW remains in background.",
+    "availableSettingsCount": 53
+  },
+  "pins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "8456f1e2808fd2986c82dcee75e70d1921abf3fea7974ff5f9750b6762efd5e3",
+    "Battlezonemap/FluxMeterLayout.lua": "11e03a12e33b90a35b01909343e4db08621781357e9efd81505aa879930ef896"
+  },
+  "candidateSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+    "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa",
+    "tests/native_meter_controls.lua": "6c7790cdf8721a419a2abd68d3bf30cac736247e2bec7d45a89b166b031028ab",
+    "tests/native_meter_all_options.lua": "c3ffcc9a8d0dc9cf1cf23507e5f9525c6f8d1587af7ebd49fd5fc6d35150d92b",
+    "tests/native_threat_layout.lua": "935e9176e54d08bb02b56f22a6315997205d92bf8aff010eaafe3510269fdbbf"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.021283999994921032,
+      "output": "lua: tests/native_meter_controls.lua:10: Flux native controls must be available\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.045753999998851214,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03991249999671709,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018783400002575945,
+      "output": "lua: tests/native_meter_controls.lua:10: Flux native controls must be available\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.01962959999946179,
+      "output": "lua: tests/native_meter_controls.lua:10: Flux native controls must be available\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.03694099999847822,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.0364320000007865,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018862700002500787,
+      "output": "lua: tests/native_meter_controls.lua:10: Flux native controls must be available\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.018623799995111767,
+      "output": "lua: tests/native_meter_controls.lua:10: Flux native controls must be available\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:136: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.040551300000515766,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    }
+  ],
+  "pinnedDropdownReplays": {
+    "live": {
+      "exit": 0,
+      "wallSeconds": 0.041079499998886604,
+      "output": "native meter controls: 256 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    "forever": {
+      "exit": 0,
+      "wallSeconds": 0.04900389999966137,
+      "output": "native meter controls: 256 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    }
+  },
+  "rejectedMutations": [
+    {
+      "name": "menu-opener-removed",
+      "sha256": "761e87b41a174f447a8331cc73f9615606429e08dd1d48a8dc3c4d2f64e62062",
+      "exit": 1,
+      "wallSeconds": 0.023407599997881334,
+      "output": "lua: tests/native_meter_controls.lua:172: attempt to index a nil value (field '?')\nstack traceback:\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "missing-slot-opens-session",
+      "sha256": "bdde0a4024512b5b7e4e2f2f979564ae55069a7b5594bef91e2e68a9eb827b35",
+      "exit": 1,
+      "wallSeconds": 0.024672200001077726,
+      "output": "lua: tests/native_meter_controls.lua:10: an uncreated slot opens New Window settings instead of another native window's session menu\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:214: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "response-edits-first-column",
+      "sha256": "0e1e8620a5e8f062e886446464e5d4e8fee74ddf7edabc5e57b52a6d1b234646",
+      "exit": 1,
+      "wallSeconds": 0.023875700004282407,
+      "output": "lua: tests/native_meter_controls.lua:10: docked native windows agree with both edited columns\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:237: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-response-overwrites-new-slot",
+      "sha256": "54cd6f98a98bf37cc81d58dadf160528d0c497b74adf43a6bfebb4b72446a3a7",
+      "exit": 1,
+      "wallSeconds": 0.024561300000641495,
+      "output": "lua: tests/native_meter_controls.lua:10: stale native menu cannot replace a newer Flux slot request\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:202: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "stale-response-overwrites-new-layout",
+      "sha256": "fe6edda3defdbd0c51db79bcafe9159bb9e307c542d7bff425e2002a073cb2a5",
+      "exit": 1,
+      "wallSeconds": 0.02581310000095982,
+      "output": "lua: tests/native_meter_controls.lua:10: stale menu cannot edit a newly selected layout\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:205: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "sourceEvidenceSHA256": {
+    "forever-DamageMeter.lua": "68f8ded358c242ab6bacd79731d55252cd0c3e93e15756a6d55406a9e663dbde",
+    "forever-DamageMeterSessionWindow.lua": "b8eef129e3c614f9d0292d2b4645b6b58df6fe76283c92e10031eeae1dc87ece",
+    "forever-DropdownButton.lua": "dc68e281eb03d7f1c558ab3faad429686a4db8f4e87a52f8d7bab99cbd1b7116",
+    "forever-Menu.lua": "2611f8e009e07a5c6a1d5db35dd1672466d601f1787dca90adaf86f74354af1c",
+    "forever-MenuTemplates.lua": "a26c548ae8d3c90c298c61ac27a3ce4c7533d934c3004f61359d61e944fc81a2",
+    "forever-MenuUtil.lua": "0d57d398766892cc5f66c046edea8f1c9a9c646d47b253db3ac30ca7c61e765c",
+    "live-DamageMeter.lua": "68f8ded358c242ab6bacd79731d55252cd0c3e93e15756a6d55406a9e663dbde",
+    "live-DamageMeterSessionWindow.lua": "e7be1eb40f059ad25ae73d16f4f6dc5f0782035a77c6b3c7005ebb50e8d7ffa2",
+    "live-DropdownButton.lua": "3700afff438469414654a0293c0f18aef52f5e4bca11e0c12ee1d9a4a8dc55d6",
+    "live-Menu.lua": "25d5bf5e7e53c2963ffa9ecebc323a27dfd07f4b3901379668a438ccfa14738d",
+    "live-MenuTemplates.lua": "d0652abb1342716477922694891fde3fa4c7fa523a699e8dfe4c3e436749d447"
+  },
+  "full": {
+    "exit": 1,
+    "pass": 205,
+    "fail": 6,
+    "syntaxFiles": 874,
+    "syntaxFailures": [],
+    "unchangedLuaCorpus": false,
+    "corpusSHA256": "2e96304ee3997f1afed84220ecc0a299ba12527e53a536b506794d8b6b6c2013"
+  },
+  "testedOwnersUnchanged": true,
+  "native": "User Forever 1.60.1.70862 UI/function acceptance: native menu opens; native type and Flux label change; direct Dispels selection creates missing native pane; final Dispels and new Interrupts four-pane presets both work immediately without an extra setup click. Native combat/secret/taint/gamepad/other-client/FPS remain pending.",
+  "scope": "Production picker OnClick + backend with widget mocks and pinned native OpenMenu replay only; does not emulate secure VM. Pair wall times are process measurements, not native performance; baseline aborts earlier.",
+  "implementation": "Native type rows enumerate original native menu descriptions and use public native MenuElementDescriptionProxyMixin.Pick with untouched native data/responders. Explicit type/setup/preset clicks may use original New Window entry, then native type entries. Preset/custom/structure clicks apply all requested native types once; startup/geometry/events never apply types. Native responses update runtime snapshot and guarded matching editor slot. Absorbs removed from catalog; builtin5 uses HPS; legacy unsupported requests normalize working/preview only, serialized custom layouts retained until Save. Added builtin10 Threat/Damage over Interrupts/Healing.",
+  "resources": "No new frame, event, hook, timer or recurring driver relative to previous candidate. Existing setup Frame becomes Button. Native response and creation use existing two root hooks and geometry coalescer. Native menus allocate their normal resources on user action.",
+  "limitations": "Blizzard owns menu entries, maximum3 native windows and saved selections; Threat is separate. Absorbs is not advertised because native menus omit it. Native combat/secret/taint/gamepad/FPS checks pending.",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4d3-ff99-76f1-9caf-21bb64aa5e39\\meter-native-controls",
+  "finalFocusedTests": [
+    {
+      "path": "tests/native_meter_all_options.lua",
+      "exit": 0,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "path": "tests/native_meter_controls.lua",
+      "exit": 0,
+      "output": "native meter controls: 220 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "path": "tests/native_meter_docking.lua",
+      "exit": 0,
+      "output": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4048 pinnedNative=false\n"
+    },
+    {
+      "path": "tests/native_meter_grid_parity.lua",
+      "exit": 0,
+      "output": "native grid parity: 28992 checks, 0 failures; actual Details layouts=4920; native pixels/taint unverified\n"
+    },
+    {
+      "path": "tests/native_meter_ownership.lua",
+      "exit": 0,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "path": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "path": "tests/native_meter_startup.lua",
+      "exit": 0,
+      "output": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n"
+    },
+    {
+      "path": "tests/native_meter_writer_provenance.lua",
+      "exit": 0,
+      "output": "native writer provenance: 126 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "path": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "path": "tests/threat_meter_sample.lua",
+      "exit": 0,
+      "output": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n"
+    },
+    {
+      "path": "tests/native_threat_layout.lua",
+      "exit": 0,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    }
+  ],
+  "nativeWindowCountUserProbe": {
+    "max": 3,
+    "current": 2,
+    "scope": "Before direct native Dispels creation; read-only /fbm api supplied by user."
+  },
+  "hostIdentity": {
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "fileVersion": "1.60.1.70862",
+    "windowTitle": "World of Warcraft",
+    "scope": "Host read-only process/window/file metadata; no focus/input."
+  },
+  "installedCopySHA256": {
+    "_retail_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+      "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+    },
+    "_forever_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+      "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+    },
+    "_classic_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+      "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+    },
+    "_classic_era_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+      "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+    },
+    "_anniversary_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+      "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+    }
+  },
+  "copyScope": "All5 already match through existing mirror; no manual copy.",
+  "unrelatedWholeSuiteFailures": [
+    {
+      "path": "tests/raid_aura_layout.lua",
+      "output": "lua: tests\\raid_aura_layout.lua:25: zero-gap blocks do not fit\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_aura_layout.lua:25: in local 'stock'\n\ttests\\raid_aura_layout.lua:35: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "path": "tests/raid_aura_live_options.lua",
+      "output": "lua: tests\\raid_aura_live_options.lua:99: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_aura_live_options.lua:99: in local 'snapshot'\n\ttests\\raid_aura_live_options.lua:115: in local 'resizingCase'\n\ttests\\raid_aura_live_options.lua:143: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "path": "tests/raid_aura_native_filters.lua",
+      "output": "FAIL live native own shield: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native own long buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native own permanent buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native foreign spec-visible buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native self-only buff excluded: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native uncastable own buff excluded: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native custom-hidden own buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native custom mine-visible pet buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native long other-caster debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native permanent ordinary debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native custom-hidden short debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native boss helpful aura on debuff side: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native role helpful aura on debuff side: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native native gameplay priority: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native default buff caster-priority-applicability: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native own shield: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native own long buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native own permanent buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native foreign spec-visible buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native self-only buff excluded: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native uncastable own buff excluded: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native custom-hidden own buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native custom mine-visible pet buff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native long other-caster debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native permanent ordinary debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native custom-hidden short debuff: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native boss helpful aura on debuff side: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native role helpful aura on debuff side: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native native gameplay priority: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native default buff caster-priority-applicability: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live explicit OOC class buffs survive native hidden group-buff settings: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live native intrinsic owners begin enabled: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL live hidden group-buff changes update native and readable owners: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever explicit OOC class buffs survive native hidden group-buff settings: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever native intrinsic owners begin enabled: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nFAIL forever hidden group-buff changes update native and readable owners: tests\\raid_aura_native_filters.lua:55: attempt to index a nil value (local 'box')\nRaid native aura policy: 90 passed, 36 failed; five pinned client policies, public native predicates; native VM/rendering pending\nlua: tests\\raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "path": "tests/raid_aura_options.lua",
+      "output": "lua: tests\\raid_aura_options.lua:11: normal squares and three-by-two positions match source default sizing\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_aura_options.lua:11: in local 'check'\n\ttests\\raid_aura_options.lua:202: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "path": "tests/raid_blizzard_default_sizes.lua",
+      "output": "lua: tests\\raid_blizzard_default_sizes.lua:9: live: native icon and large-slot sizes resist custom scaling\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_blizzard_default_sizes.lua:9: in local 'check'\n\ttests\\raid_blizzard_default_sizes.lua:163: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "path": "tests/raid_healer_auras.lua",
+      "output": "lua: tests\\raid_healer_auras.lua:4: three native icon containers and one unclipped native border owner\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\raid_healer_auras.lua:4: in local 'check'\n\ttests\\raid_healer_auras.lua:263: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "wholeSuiteScope": "All874 Lua syntax files pass;205 scripts pass and6 concurrent unrelated raid scripts fail. Corpus changed during run; all5 meter owners remained unchanged. Earlier211/873 pass belongs to launcher stage and is not final whole-suite acceptance.",
+  "finalOwnersUnchanged": true,
+  "completedAtUTC": "2026-11-07T08:05:45.904024+00:00",
+  "documentationValidation": {
+    "status": "BLOCKED_BY_UNRELATED_CHANGES",
+    "issues": 19,
+    "scope": "No meter-source validation errors. Concurrent unit/raid source inventory, generated interfaces and verification are stale; checker made no edits."
+  }
+}

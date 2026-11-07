@@ -8,6 +8,9 @@ Read [status](docs/STATUS.md), [decisions](docs/DECISIONS.md),
   2026 the user requested main only and publication of the current local files.
   Do not create other branches unless requested later. Preserve history and newer
   user changes; never force-push or replace local work with an older checkout.
+- Publication commits use DoctorFlux
+  `<100806234+DoctorFlux@users.noreply.github.com>` for author and committer;
+  do not add automated co-author trailers. Preserve third-party licenses.
 - Before runtime changes, verify a dated external source/history checkpoint and
   available on-disk settings. Never place backup archives or private settings in AddOns.
 - Preserve features, appearance, cadence, commands, integrations and saved data.

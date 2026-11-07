@@ -1,0 +1,59 @@
+-- Reuse the existing fixture factory with explicit legacy-client configurations.
+-- Pre/PostClick strings execute in a modeled secure context; no native taint proof.
+local function read(path)
+    local f = assert(io.open(path, "rb")); local s = f:read("*a"); f:close()
+    return s:gsub("\r\n", "\n")
+end
+local body = read("tests/mouseover_native.lua")
+local at = assert(body:find('for _, branch in ipairs({ "live", "forever" }) do', 1, true))
+local factory, check, count = assert(load(body:sub(1, at - 1)
+    .. "\nreturn fixture, check, function() return checks end", "@legacy-mouseover-fixture", "t", _G))()
+for _, branch in ipairs({ "classic_era", "classic_anniversary", "classic" }) do
+    local f = factory(false, "1", true)
+    local mc, e = f.mc, f.env
+    mc.Start(); mc.SetEnabled(true)
+    e.UnitExists = function(unit)
+        if unit == "mouseover" then return f.mouseover end
+        if unit == "target" then return f.target end
+        return false
+    end
+    local steps, secureWrites = 0, 0
+    for _, kind in ipairs({ "action", "spell", "item", "macro", "click", "macrotext" }) do
+        f.combat = false
+        local w = f.frame(); w.attrs.type = kind
+        mc.AttachHost(w)
+        check(type(w.scripts.PreClick) == "string" and type(w.scripts.PostClick) == "string", branch .. " prepared snippet pair " .. kind)
+        local pre = assert(load(w.scripts.PreClick, "@production-legacy-preclick", "t", e))
+        local post = assert(load(w.scripts.PostClick, "@production-legacy-postclick", "t", e))
+        function w:SetAttribute(key, value)
+            check(not f.combat or (f.secureDepth or 0) > 0, branch .. " simulated combat writes require snippet context")
+            self.attrs[key] = value; secureWrites = secureWrites + 1
+        end
+        local beforeFrames, beforeTimers = #f.frames, #f.queue
+        for _, combat in ipairs({ false, true }) do
+            f.combat = combat
+            for step = 0, 8191 do
+                f.mouseover = step % 2 == 0
+                f.target = math.floor(step / 2) % 2 == 0
+                f.held = math.floor(step / 4) % 2 == 0
+                local button = ({ "LeftButton", "RightButton", "MiddleButton", "ConjureBind" })[math.floor(step / 8) % 4 + 1]
+                e.self, e.button = w, button
+                local overlay = kind == "macro" or kind == "click" or kind == "macrotext"
+                local expected
+                if button == "LeftButton" and not overlay then
+                    if f.mouseover then expected = "mouseover" elseif f.target then expected = "target" end
+                end
+                f.secureDepth = 1; pre(); f.secureDepth = 0
+                check(w.attrs.unit == expected, branch .. " legacy cursor/fallback/button identity " .. kind)
+                f.secureDepth = 1; post(); f.secureDepth = 0
+                check(w.attrs.unit == nil, branch .. " every legacy click clears transient unit " .. kind)
+                steps = steps + 1
+            end
+        end
+        f.combat = false
+        check(#f.frames == beforeFrames and #f.queue == beforeTimers, branch .. " legacy click storm adds no frames/timers")
+    end
+    print(("METRIC legacy_mouseover branch=%s snippet_pairs=%d secure_attribute_writes=%d kinds=6 combat_states=2")
+        :format(branch, steps, secureWrites))
+end
+print(("SUMMARY checks=%d failures=0"):format(count()))

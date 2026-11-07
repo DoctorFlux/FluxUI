@@ -1,14 +1,21 @@
 local addonName, ns = ...
 
--- World preview of Flux raid layout (non-secure). Sizing matches live headers; demo auras are simple icons.
+-- Non-secure sample data, rendered with the live cell template and visual rules.
 
 local max = math.max
 local min = math.min
 local floor = math.floor
+local function IsSecret(value)
+    return issecretvalue and issecretvalue(value) or false
+end
+local function PreviewUnitExists(unit)
+    if type(unit) ~= "string" then return false end
+    local exists = UnitExists(unit)
+    return not IsSecret(exists) and exists and true or false
+end
 
 local GROUP_COUNT = 8
-local GRP_SPACING = 2
-local HEADER_UNIT_YOFFSET = -1
+local GRP_SPACING = 0
 local UNITS_PER_COLUMN = 5
 local GROUP_LABEL_EXTRA = 14
 local MTMA_UNITS_PER_COLUMN = 4
@@ -63,22 +70,25 @@ local FAKE_ROSTER = {
     { name = "Nolan", class = "MAGE", role = "DAMAGER", power = 0 },
 }
 
-local ROLE_ATLAS = {
-    TANK = "roleicon-tiny-tank",
-    HEALER = "roleicon-tiny-healer",
-    DAMAGER = "roleicon-tiny-dps",
-}
 
 local DEMO_DEBUFFS = {
-    { spellId = 589, name = "Shadow Word: Pain" },
-    { spellId = 172, name = "Corruption" },
-    { spellId = 55095, name = "Frost Fever" },
-    { spellId = 3409, name = "Crippling Poison" },
-    { spellId = 1079, name = "Rip" },
+    { spellId = 589, name = "Shadow Word: Pain", dispelType = "Magic", previewDispellable = true },
+    { spellId = 172, name = "Corruption", dispelType = "Magic", previewDispellable = true },
+    { spellId = 55095, name = "Frost Fever", dispelType = "Disease", previewDispellable = true },
+    { spellId = 3409, name = "Crippling Poison", dispelType = "Poison", previewDispellable = true },
+    { spellId = 1079, name = "Rip", dispelType = "Bleed", previewDispellable = false },
+    -- Synthetic sizing category; this does not classify a live spell as boss.
+    { spellId = 589, name = "Large role debuff (preview)", previewBossOrRole = true },
 }
+-- These are curated synthetic examples, not a claim about the player's spells
+-- or any member's actual auras. Strict demos never include the bleed example.
+local DISPELLABLE_DEMO_DEBUFFS = {}
+for _, example in ipairs(DEMO_DEBUFFS) do
+    if example.previewDispellable then DISPELLABLE_DEMO_DEBUFFS[#DISPELLABLE_DEMO_DEBUFFS + 1] = example end
+end
 local DEMO_BUFFS = {
-    { spellId = 21562, name = "Power Word: Fortitude" },
-    { spellId = 1459, name = "Arcane Intellect" },
+    { spellId = 139, name = "Renew" },
+    { spellId = 10060, name = "Power Infusion" },
     { spellId = 774, name = "Rejuvenation" },
 }
 
@@ -100,134 +110,145 @@ local function GetClassColor(classFile)
     return 0.6, 0.6, 0.6
 end
 
-local function ApplyPreviewVisualLayout(frame)
-    if FluxRaidVisuals.ApplyCellChrome then
-        FluxRaidVisuals.ApplyCellChrome(frame, { showPower = true })
-    end
-    local fw = FluxRaidVisuals.FRAME_WIDTH
-    local fh = FluxRaidVisuals.FRAME_HEIGHT
-    local pbh = tonumber(FluxRaidVisuals.POWER_BAR_HEIGHT) or 6
-    frame:SetSize(fw, fh)
-    if frame.background then
-        frame.background:SetColorTexture(0.1, 0.1, 0.12, 1)
-    end
-    if frame.healthBar then
-        frame.healthBar:ClearAllPoints()
-        frame.healthBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 1, -1)
-        frame.healthBar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -1, 1 + pbh)
-        if frame.healthBar.SetStatusBarTexture then
-            pcall(frame.healthBar.SetStatusBarTexture, frame.healthBar, "Interface\\RaidFrame\\Raid-Bar-Hp-Fill")
-        end
-        if frame.healthBar.background then
-            frame.healthBar.background:SetColorTexture(0.15, 0.15, 0.17, 1)
-        end
-    end
-    if frame.powerBar then
-        frame.powerBar:ClearAllPoints()
-        frame.powerBar:SetPoint("TOPLEFT", frame.healthBar, "BOTTOMLEFT", 0, 0)
-        frame.powerBar:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -1, 1)
-        frame.powerBar:SetHeight(pbh)
-        if frame.powerBar.SetStatusBarTexture then
-            pcall(frame.powerBar.SetStatusBarTexture, frame.powerBar, "Interface\\RaidFrame\\Raid-Bar-Resource-Fill")
-        end
-    end
-    if frame.name then
-        frame.name:ClearAllPoints()
-        frame.name:SetPoint("TOPLEFT", frame, "TOPLEFT", 3, -2)
-        frame.name:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -3, -2)
-        frame.name:SetJustifyH("LEFT")
-    end
-    if frame.statusText then
-        frame.statusText:ClearAllPoints()
-        frame.statusText:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 3, fh / 3 - 2)
-        frame.statusText:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -3, fh / 3 - 2)
-    end
-    if frame.roleIcon then
-        frame.roleIcon:ClearAllPoints()
-        frame.roleIcon:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -2, -2)
-        frame.roleIcon:SetSize(FluxRaidVisuals.ROLE_ICON_SIZE or 14, FluxRaidVisuals.ROLE_ICON_SIZE or 14)
-    end
-    if frame.selectionHighlight then
-        pcall(frame.selectionHighlight.SetAtlas, frame.selectionHighlight, "RaidFrame-TargetFrame")
-    end
-    if frame.mouseOverHighlight then
-        pcall(frame.mouseOverHighlight.SetAtlas, frame.mouseOverHighlight, "RaidFrame-TargetFrame")
-    end
-    if FluxRaidVisuals.ApplyRaidHighlightVertexColors then
-        FluxRaidVisuals.ApplyRaidHighlightVertexColors(frame)
-    end
+local function ApplyPreviewVisualLayout(frame, showPower)
+    local height=frame._fluxRaidMini and FluxRaidVisuals.MINI_FRAME_HEIGHT or FluxRaidVisuals.FRAME_HEIGHT
+    frame:SetSize(FluxRaidVisuals.FRAME_WIDTH,height)
+    FluxRaidVisuals.ApplyCellChrome(frame, { showPower = showPower, height = height })
 end
 
 local function EnsurePreviewAuraIcons(frame)
+    if frame._fluxRaidMini then return end
     if frame._fluxPreviewAuras then return end
     frame._fluxPreviewAuras = true
-    frame._fluxAuraBuff = {}
-    frame._fluxAuraDebuff = {}
-    local root = CreateFrame("Frame", nil, frame)
-    root:SetAllPoints()
-    root:SetFrameLevel((frame:GetFrameLevel() or 0) + 20)
+    frame._fluxAuraBuff, frame._fluxAuraDebuff = {}, {}
+    local root = CreateFrame("Frame", nil, frame._fluxAuraLayer or frame._fluxTextLayer or frame._fluxContent or frame)
+    root:SetAllPoints(frame._fluxAuraLayer or frame._fluxTextLayer or frame._fluxContent or frame)
+    root:SetFrameLevel((frame:GetFrameLevel() or 0) + (FluxRaidVisuals.AURA_LAYER_OFFSET or 32))
     frame._fluxAuraRoot = root
-    local aw = FluxRaidVisuals.AURA_ICON_WIDTH or 10
-    local ah = FluxRaidVisuals.AURA_ICON_HEIGHT or 15
+    frame._fluxPreviewAuraRows = {}
+    for _, key in ipairs({"buffs", "debuffs"}) do
+        local row = CreateFrame("Frame", nil, root)
+        row:EnableMouse(false); row:SetClipsChildren(true)
+        frame._fluxPreviewAuraRows[key] = row
+    end
     for i = 1, PREVIEW_AURA_SLOTS do
-        local function make(isDebuff)
-            local b = CreateFrame("Frame", nil, root)
-            b:SetSize(aw, ah)
-            local icon = b:CreateTexture(nil, "ARTWORK")
-            icon:SetAllPoints()
-            b.icon = icon
-            b:Hide()
-            return b
+        local function make(side)
+            local button = CreateFrame("Frame", nil, frame._fluxPreviewAuraRows[side])
+            local icon = button:CreateTexture(nil, "ARTWORK")
+            local backing = button:CreateTexture(nil, "BACKGROUND")
+            backing:SetAllPoints(button); backing:SetColorTexture(.05, .04, .03, 1)
+            icon:SetAllPoints(button)
+            icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+            button.icon = icon
+            local clock = CreateFrame("Cooldown", nil, button, "CooldownFrameTemplate")
+            clock:SetAllPoints(button)
+            if clock.EnableMouse then clock:EnableMouse(false) end
+            if clock.SetDrawSwipe then clock:SetDrawSwipe(true) end
+            if clock.SetSwipeTexture then clock:SetSwipeTexture("Interface\\Buttons\\WHITE8X8",0,0,0,1) end
+            if clock.SetSwipeColor then clock:SetSwipeColor(0, 0, 0, FluxRaidVisuals.AURA_SWIPE_ALPHA or 0.75) end
+            if clock.SetDrawEdge then clock:SetDrawEdge(false) end
+            if clock.SetDrawBling then clock:SetDrawBling(false) end
+            if clock.SetReverse then clock:SetReverse(true) end
+            button.clock = clock
+            local textLayer = CreateFrame("Frame", nil, button)
+            textLayer:SetAllPoints(button)
+            textLayer:EnableMouse(false)
+            textLayer:SetFrameLevel(clock:GetFrameLevel() + 2)
+            button.textLayer = textLayer
+            local count = textLayer:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
+            count:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
+            button.count = count
+            button:Hide()
+            return button
         end
-        frame._fluxAuraDebuff[i] = make(true)
-        frame._fluxAuraBuff[i] = make(false)
+        frame._fluxAuraDebuff[i], frame._fluxAuraBuff[i] = make("debuffs"), make("buffs")
     end
 end
 
 local function LayoutPreviewAuraIcons(frame)
-    local aw = FluxRaidVisuals.AURA_ICON_WIDTH or 10
-    local ah = FluxRaidVisuals.AURA_ICON_HEIGHT or 15
-    local gap = 1
-    local focus = (FluxRaidVisuals and FluxRaidVisuals.GetAuraFocusMode and FluxRaidVisuals.GetAuraFocusMode()) or "debuff"
-    for i = 1, PREVIEW_AURA_SLOTS do
-        local row = floor((i - 1) / 3)
-        local col = (i - 1) % 3
-        local d = frame._fluxAuraDebuff[i]
-        local b = frame._fluxAuraBuff[i]
-        if d then
-            d:SetSize(aw, ah)
-            d:ClearAllPoints()
-            if focus == "buff" then
-                -- BuffsTopDebuffsBottom: debuffs bottom-right
-                d:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -(col * (aw + gap) + 1), row * (ah + gap) + 2)
-            else
-                -- Legacy debuff-focused: debuffs bottom-left
-                d:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", col * (aw + gap) + 1, row * (ah + gap) + 2)
-            end
-        end
-        if b then
-            b:SetSize(aw, ah)
-            b:ClearAllPoints()
-            if focus == "buff" then
-                -- Buffs along top-right
-                b:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -(col * (aw + gap) + 1), -(row * (ah + gap) + 2))
-            else
-                -- Legacy: buffs bottom-right
-                b:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -(col * (aw + gap) + 1), row * (ah + gap) + 2)
-            end
+    local visual = FluxRaidVisuals
+    local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
+    local layout = visual.GetFrameAuraLayout(frame, db)
+    local health = frame.healthBar or frame
+    frame._fluxPreviewAuraMetrics = {
+        width = layout.buffs.width, height = layout.buffs.height, gap = layout.buffs.gap,
+        columns = layout.buffs.columns, rows = layout.buffs.rows,
+        scale = layout.scale, requestedScale = layout.requestedScale,
+        buffs = layout.buffs, debuffs = layout.debuffs,
+        nativeDefaults = layout.nativeDefaults, largeIconSize = layout.largeIconSize,
+    }
+    for sideIndex = 1, 2 do
+        local right = sideIndex == 1
+        local side = right and layout.buffs or layout.debuffs
+        local icons = right and frame._fluxAuraBuff or frame._fluxAuraDebuff
+        local rowHost = frame._fluxPreviewAuraRows[right and "buffs" or "debuffs"]
+        local auraParent, rowAnchor = visual.GetFrameAuraAnchor(frame, right)
+        rowHost:ClearAllPoints(); rowHost:SetPoint(rowAnchor, auraParent, rowAnchor, 0, 0)
+        rowHost:SetSize(side.blockWidth, side.blockHeight)
+        for i = 1, PREVIEW_AURA_SLOTS do
+            local button = icons[i]
+            local index = min(i, side.count) - 1
+            local column, row = floor(index / side.rows), index % side.rows
+            local anchor = rowAnchor
+            button:SetSize(side.width, side.height)
+            button._fluxAuraRenderScale = layout.scale
+            local count = button.count
+            count:ClearAllPoints()
+            if count.SetFontObject and NumberFontNormal then count:SetFontObject(NumberFontNormal)
+            elseif count.SetFont then count:SetFont("Fonts\\ARIALN.TTF", 14, "") end
+            if count.SetTextScale then count:SetTextScale(layout.scale) end
+            count:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2 * layout.scale, 2 * layout.scale)
+            button:ClearAllPoints()
+            button:SetPoint(anchor, rowHost, anchor, (anchor=="TOPRIGHT" and -1 or 1) * column * ((side.slotWidth or side.width) + side.gap), -row * ((side.slotHeight or side.height) + side.gap))
+            if i > side.count then button:Hide() end
         end
     end
+    return layout
+end
+
+local function DemoAuraDuration(button, index, member, frame)
+    local duration = 9 + ((index * 7 + (member or 1) * 3) % 35)
+    local clock = button.clock
+    if clock.SetCountdownFormatter and FluxRaidVisuals.GetAuraDurationFormatter then clock:SetCountdownFormatter(FluxRaidVisuals.GetAuraDurationFormatter(nil, frame)) end
+    if clock.SetCooldown then clock:SetCooldown(GetTime and GetTime() or 0, duration) end
+    local text = clock.GetCountdownFontString and clock:GetCountdownFontString()
+    if clock.SetHideCountdownNumbers then clock:SetHideCountdownNumbers(not text) end
+    if not text then
+        -- A plain synthetic label remains useful on a client lacking that native
+        -- countdown accessor; the game still owns its visible cooldown swipe.
+        if not button.duration then button.duration = button.textLayer:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall") end
+        text = button.duration
+        text:SetText(tostring(duration))
+    end
+    button.duration = text
+    if text.SetParent and not button._fluxDurationLifted then
+        text:SetParent(button.textLayer)
+        button._fluxDurationLifted = true
+    end
+    local textWidth = (button.GetWidth and button:GetWidth() or 10) + 2
+    local textHeight = button.GetHeight and button:GetHeight() or 15
+    FluxRaidVisuals.StyleAuraDuration(text, textWidth - 2, textHeight, button._fluxAuraRenderScale or 1)
+    text:ClearAllPoints()
+    text:SetPoint("CENTER", button, "CENTER")
+    button._fluxPreviewDuration = duration
+    local applications = 1 + ((index + (member or 1)) % 3)
+    button.count:SetText(applications > 1 and tostring(applications) or "")
+    clock:Show()
 end
 
 local function GetPreviewAuraSettings()
     local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
+    local flags = FluxRaidVisuals.GetFluxRaidOptionTable and FluxRaidVisuals.GetFluxRaidOptionTable() or db
     local focus = (FluxRaidVisuals and FluxRaidVisuals.GetAuraFocusMode and FluxRaidVisuals.GetAuraFocusMode())
         or db.auraFocusMode or "debuff"
-    local defaultBuff = (focus == "buff") and 6 or 3
-    local defaultDebuff = (focus == "buff") and 3 or 5
+    local defaultBuff = 6
+    local defaultDebuff = 6
     return {
         demoBuffs = db.previewDemoBuffsEnabled ~= false,
         demoDebuffs = db.previewDemoDebuffsEnabled ~= false,
+        displayBuffs = flags.displayBuffs ~= false,
+        displayDebuffs = flags.displayDebuffs ~= false,
+        onlyDispellable = flags.displayOnlyDispellableDebuffs == true,
         nBuff = max(0, min(tonumber(db.previewBuffCount) or defaultBuff, 6)),
         nDebuff = max(0, min(tonumber(db.previewDebuffCount) or defaultDebuff, 6)),
         focus = focus,
@@ -249,24 +270,27 @@ local function PreviewRaidSetting(optionKey, cvar, fallback)
 end
 
 local function ApplyDemoAuras(frame, idx)
+    if frame._fluxRaidMini then return end
     EnsurePreviewAuraIcons(frame)
-    LayoutPreviewAuraIcons(frame)
+    local layout = LayoutPreviewAuraIcons(frame)
     local aur = GetPreviewAuraSettings()
     local alpha = FluxRaidVisuals.AURA_ICON_ALPHA or 1
     for i = 1, PREVIEW_AURA_SLOTS do
         if frame._fluxAuraDebuff[i] then frame._fluxAuraDebuff[i]:Hide() end
         if frame._fluxAuraBuff[i] then frame._fluxAuraBuff[i]:Hide() end
     end
-    local showDebuffs = aur.demoDebuffs and aur.nDebuff > 0
-        and PreviewRaidSetting("displayDebuffs", "raidFramesDisplayDebuffs", true)
-    local showBuffs = aur.demoBuffs and aur.nBuff > 0
-        and PreviewRaidSetting("displayBuffs", "raidFramesDisplayBuffs", true)
+    local showDebuffs = aur.demoDebuffs and aur.nDebuff > 0 and aur.displayDebuffs
+    local showBuffs = aur.demoBuffs and aur.nBuff > 0 and aur.displayBuffs
     if showDebuffs then
-        for i = 1, min(PREVIEW_AURA_SLOTS, aur.nDebuff) do
-            local d = DEMO_DEBUFFS[((i - 1) % #DEMO_DEBUFFS) + 1]
+        local examples = aur.onlyDispellable and DISPELLABLE_DEMO_DEBUFFS or DEMO_DEBUFFS
+        for i = 1, min(layout.debuffs.count, aur.nDebuff) do
+            local d = examples[((i - 1) % #examples) + 1]
             local btn = frame._fluxAuraDebuff[i]
             if btn then
+                local size = layout.largeRoleEnabled and d.previewBossOrRole and layout.largeIconSize
+                btn:SetSize(size and size * (layout.base.widthScale or 1) or layout.debuffs.width, size or layout.debuffs.height)
                 btn.icon:SetTexture(GetSpellIcon(d.spellId))
+                DemoAuraDuration(btn, i, idx, frame)
                 btn:SetAlpha(alpha)
                 btn:Show()
             end
@@ -274,11 +298,12 @@ local function ApplyDemoAuras(frame, idx)
     end
     if showBuffs then
         local rot = (idx or 1) * 2
-        for i = 1, min(PREVIEW_AURA_SLOTS, aur.nBuff) do
+        for i = 1, min(layout.buffs.count, aur.nBuff) do
             local b = DEMO_BUFFS[((i - 1 + rot) % #DEMO_BUFFS) + 1]
             local btn = frame._fluxAuraBuff[i]
             if btn then
                 btn.icon:SetTexture(GetSpellIcon(b.spellId))
+                DemoAuraDuration(btn, i, idx, frame)
                 btn:SetAlpha(alpha)
                 btn:Show()
             end
@@ -288,10 +313,13 @@ end
 
 local function ApplyPreviewAlpha(frame, outOfRange)
     local base = FluxRaidVisuals.FRAME_BASE_ALPHA or 1
+    if frame._fluxRaidMini and not frame._fluxExtraPet then (frame._fluxContent or frame):SetAlpha(base);return end
+    local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+    if db and db.showRangeFade == false then outOfRange = false end
     if outOfRange then
-        frame:SetAlpha(base * (FluxRaidVisuals.RANGE_ALPHA_OUT_OF_RANGE or 0.44))
+        (frame._fluxContent or frame):SetAlpha(base * (FluxRaidVisuals.RANGE_ALPHA_OUT_OF_RANGE or 0.44))
     else
-        frame:SetAlpha(base * (FluxRaidVisuals.RANGE_ALPHA_IN_RANGE or 0.9))
+        (frame._fluxContent or frame):SetAlpha(base * (FluxRaidVisuals.RANGE_ALPHA_IN_RANGE or 0.9))
     end
 end
 
@@ -311,6 +339,7 @@ local function AcquireUnit(i)
         unitPool[i] = f
     end
     f:SetParent(previewContainer)
+    if f._fluxPreviewTarget then f._fluxPreviewTarget:Hide() end
     return f
 end
 
@@ -342,7 +371,7 @@ local function BuildPreviewRealUnitList()
     if IsInRaid() then
         for i = 1, 40 do
             local name = GetRaidRosterInfo(i)
-            if name and name ~= "" then
+            if IsSecret(name) or name and name ~= "" then
                 list[#list + 1] = "raid" .. i
             end
         end
@@ -358,15 +387,22 @@ end
 local function SyncPreviewTargetHighlight(frame)
     if not frame or not frame.selectionHighlight then return end
     local unit = frame._previewUnit
-    if not unit or not UnitExists(unit) or not UnitExists("target") then
-        frame.selectionHighlight:Hide()
+    if not unit or not PreviewUnitExists(unit) or not PreviewUnitExists("target") then
+        frame.selectionHighlight:SetShown(not unit and frame._fluxPreviewState == 2
+            and PreviewRaidSetting("showTargetHighlight", "raidFramesDisplayTargetHighlight", true) or false)
         return
     end
     local show = false
     if UnitIsUnit then
         local ok, v = pcall(UnitIsUnit, unit, "target")
+        if ok and IsSecret(v) then
+            frame.selectionHighlight:Show()
+            if frame.selectionHighlight.SetAlphaFromBoolean then frame.selectionHighlight:SetAlphaFromBoolean(v, 1, 0) end
+            return
+        end
         show = ok and v
     end
+    frame.selectionHighlight:SetAlpha(1)
     frame.selectionHighlight:SetShown(show)
 end
 
@@ -387,14 +423,18 @@ function FluxRaidPreview_ApplyIdleHighlights(frame)
 end
 
 local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, powerPct, role, idx, outOfRange)
-    ApplyPreviewVisualLayout(frame)
+    local showPower = PreviewRaidSetting("displayPowerBar", "raidFramesDisplayPowerBars", true)
+    if frame._fluxRaidMini then showPower=false end
+    ApplyPreviewVisualLayout(frame, showPower)
     local classColor = PreviewRaidSetting("useClassColors", "raidFramesDisplayClassColor", true)
     local r, g, b = 0, 1, 0
     if classColor and classFile then
         r, g, b = GetClassColor(classFile)
     end
     if frame.name then
-        frame.name:SetText(nameText or "")
+        if not PreviewRaidSetting("showRoleIcon", "raidFramesDisplayRoleIcons", true) then role = nil end
+        frame._fluxRole = role
+        FluxRaidVisuals.SetUnitName(frame, nameText, role)
         if FluxRaid_ShouldClassColorNames and FluxRaid_ShouldClassColorNames() and classFile then
             local nr, ng, nb = GetClassColor(classFile)
             frame.name:SetVertexColor(nr, ng, nb)
@@ -405,19 +445,11 @@ local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, p
     if frame.healthBar then
         frame.healthBar:SetMinMaxValues(0, 100)
         frame.healthBar:SetValue((hpPct or 1) * 100)
-        frame.healthBar:SetStatusBarColor(r, g, b)
+        local dim = FluxRaidVisuals.CLASS_FILL_BRIGHTNESS or 0.72
+        frame.healthBar:SetStatusBarColor(r * dim, g * dim, b * dim)
     end
     local ht = PreviewRaidSetting("healthText", "raidFramesHealthText", "perc")
-    if frame.statusText then
-        if ht == "none" then
-            frame.statusText:SetText("")
-            frame.statusText:Hide()
-        else
-            frame.statusText:Show()
-            frame.statusText:SetText(string.format("%.0f%%", (hpPct or 1) * 100))
-        end
-    end
-    local showPower = PreviewRaidSetting("displayPowerBar", "raidFramesDisplayPowerBars", true)
+    FluxRaidVisuals.SetHealthStatus(frame, ht, math.floor((hpPct or 1)*100000), 100000, (hpPct or 1)*100, true, false)
     local pc = FluxRaidVisuals.POWER_COLORS and FluxRaidVisuals.POWER_COLORS[powerType or 0]
     if frame.powerBar then
         if showPower and pc then
@@ -429,61 +461,155 @@ local function ApplyCommonStatus(frame, classFile, nameText, hpPct, powerType, p
             frame.powerBar:Hide()
         end
     end
-    local atlas = role and ROLE_ATLAS[role]
-    if frame.roleIcon then
-        if atlas then
-            frame.roleIcon:Show()
-            pcall(frame.roleIcon.SetAtlas, frame.roleIcon, atlas)
-        else
-            frame.roleIcon:Hide()
-        end
-    end
     ApplyPreviewAlpha(frame, outOfRange)
     ApplyDemoAuras(frame, idx)
     FluxRaidPreview_ApplyIdleHighlights(frame)
 end
 
+local function ClearDetailSamples(frame)
+    if frame._fluxPreviewPrediction then
+        for _, bar in pairs(frame._fluxPreviewPrediction) do bar:SetValue(0) bar:Hide() end
+    end
+    if frame._fluxPreviewCenter then frame._fluxPreviewCenter:Hide() end
+    if frame._fluxPreviewDispel then frame._fluxPreviewDispel:Hide() end
+    if frame._fluxPreviewOverflow then frame._fluxPreviewOverflow:Hide() end
+    if frame.aggroHighlight then frame.aggroHighlight:Hide() end
+end
+
+local function EnsureDetailSamples(frame)
+    if frame._fluxPreviewPrediction then return end
+    local bars, health = {}, frame.healthBar
+    local previous = health
+    for _, spec in ipairs({ { "incoming", 0.35, 1, 0.35, 0.55 }, { "hot", 0.35, 1, 0.35, 0.55 }, { "absorb", 0.8, 0.9, 1, 0.8 } }) do
+        local bar = CreateFrame("StatusBar", nil, health)
+        bar:SetStatusBarTexture(spec[1] == "absorb" and "Interface\\RaidFrame\\Shield-Fill" or "Interface\\Buttons\\WHITE8X8")
+        bar:SetStatusBarColor(spec[2], spec[3], spec[4], spec[5])
+        bar:SetMinMaxValues(0, 100)
+        bar:SetPoint("TOPLEFT", previous:GetStatusBarTexture(), "TOPRIGHT")
+        bar:SetPoint("BOTTOMLEFT", previous:GetStatusBarTexture(), "BOTTOMRIGHT")
+        bars[spec[1]], previous = bar, bar
+    end
+    local stripes = bars.absorb:CreateTexture(nil, "ARTWORK")
+    stripes:SetAllPoints(bars.absorb:GetStatusBarTexture())
+    stripes:SetTexture("Interface\\RaidFrame\\Shield-Overlay")
+    if stripes.SetHorizTile then stripes:SetHorizTile(true) end
+    if stripes.SetVertTile then stripes:SetVertTile(true) end
+    if health.SetClipsChildren then health:SetClipsChildren(true) end
+    frame._fluxPreviewPrediction = bars
+    local root = frame._fluxTextLayer or frame._fluxContent or frame
+    local centerHost = frame.centerStatusIcon or root
+    local center = centerHost.texture or centerHost:CreateTexture(nil, "OVERLAY")
+    center:ClearAllPoints()
+    center:SetPoint("CENTER", frame._fluxContent or frame, "CENTER")
+    center:SetSize(22 * (FluxRaidVisuals.COMPONENT_SCALE or 1), 22 * (FluxRaidVisuals.COMPONENT_SCALE or 1))
+    if center.SetIgnoreParentAlpha then center:SetIgnoreParentAlpha(true) end
+    frame._fluxPreviewCenter = center
+    local dispel = CreateFrame("Frame", nil, root)
+    dispel:SetPoint("BOTTOMLEFT", health, "BOTTOMLEFT", 1, 1)
+    dispel.icon = dispel:CreateTexture(nil, "ARTWORK")
+    dispel.icon:SetAllPoints()
+    dispel.icon:SetTexture("Interface\\Icons\\Spell_Frost_FrostNova")
+    dispel.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    frame._fluxPreviewDispel = dispel
+    local overflow = root:CreateTexture(nil, "OVERLAY")
+    overflow:SetPoint("TOPRIGHT", health, "TOPRIGHT")
+    overflow:SetPoint("BOTTOMRIGHT", health, "BOTTOMRIGHT")
+    overflow:ClearAllPoints()
+    overflow:SetPoint("TOPLEFT", health, "TOPRIGHT", -7, 0)
+    overflow:SetPoint("BOTTOMLEFT", health, "BOTTOMRIGHT", -7, 0)
+    overflow:SetWidth(16)
+    if overflow.SetAtlas then overflow:SetAtlas("RaidFrame-Shield-Overshield", false) end
+    if overflow.SetBlendMode then overflow:SetBlendMode("ADD") end
+    frame._fluxPreviewOverflow = overflow
+end
+
 local function ApplyPreviewUnitFromToken(frame, unit, idx)
-    if not frame or not unit or not UnitExists(unit) then return end
-    frame._previewHover = false
-    frame._previewUnit = unit
-    frame._previewIsPlayer = UnitIsUnit(unit, "player") and true or nil
+    if not frame or not PreviewUnitExists(unit) then return end
+    ClearDetailSamples(frame)
+    frame._fluxPreviewState = nil
+    frame._previewHover, frame._previewUnit = false, unit
+    local same = UnitIsUnit(unit, "player")
+    frame._previewIsPlayer = not IsSecret(same) and same or nil
     local _, classFile = UnitClass(unit)
-    local hpMax = max(1, UnitHealthMax(unit))
-    local hp = UnitHealth(unit)
-    local out = false
-    local a = ns and ns.API
-    if a and a.UnitInRangeSafe then
-        local inRange, checked = a.UnitInRangeSafe(unit)
-        out = checked and (inRange == false)
-    elseif FluxRaidCompat and FluxRaidCompat.GetOutOfRange then
-        -- Frame-shaped probe for shared helper
-        local probe = { unit = unit, displayedUnit = unit, optionTable = { fadeOutOfRange = true } }
-        out = FluxRaidCompat.GetOutOfRange(probe)
-    elseif UnitInRange then
-        local ok, inRange, checked = pcall(UnitInRange, unit)
-        out = ok and checked and (inRange == false)
-    end
-    local powerType = UnitPowerType and UnitPowerType(unit) or 0
-    local cur = UnitPower(unit) or 0
-    local maxp = max(1, UnitPowerMax(unit) or 1)
+    if IsSecret(classFile) then classFile = nil end
+    local hp, hpMax = UnitHealth(unit), UnitHealthMax(unit)
+    local hpPct = 1
+    if not IsSecret(hp) and not IsSecret(hpMax) and type(hp) == "number" and type(hpMax) == "number" and hpMax > 0 then hpPct = hp / hpMax end
+    local powerType = UnitPowerType(unit)
+    if IsSecret(powerType) then powerType = 0 end
+    local cur, maximum = UnitPower(unit), UnitPowerMax(unit)
+    local powerPct = 0
+    if not IsSecret(cur) and not IsSecret(maximum) and type(cur) == "number" and type(maximum) == "number" and maximum > 0 then powerPct = cur / maximum end
     local role = UnitGroupRolesAssigned and UnitGroupRolesAssigned(unit)
+    if IsSecret(role) then role = nil end
     local previewName = UnitName(unit)
-    local PN = _G.Flux and _G.Flux.PlayerName
-    if PN and PN.GetDisplayName then
-        previewName = PN.GetDisplayName(unit, true) or previewName
+    local out = false
+    if FluxRaidCompat and FluxRaidCompat.GetOutOfRange then
+        out = FluxRaidCompat.GetOutOfRange({ unit = unit, displayedUnit = unit, optionTable = { fadeOutOfRange = true } })
+        if IsSecret(out) then out = false end
     end
-    ApplyCommonStatus(frame, classFile, previewName, hp / hpMax, powerType, cur / maxp, role, idx, out)
+    ApplyCommonStatus(frame, classFile, previewName, hpPct, powerType, powerPct, role, idx, out)
+    -- When values are opaque, the real widgets still consume them directly.
+    frame.healthBar:SetMinMaxValues(0, hpMax)
+    frame.healthBar:SetValue(hp)
+    frame.powerBar:SetMinMaxValues(0, maximum)
+    frame.powerBar:SetValue(cur)
+    local connected = UnitIsConnected and UnitIsConnected(unit)
+    local dead = UnitIsDeadOrGhost and UnitIsDeadOrGhost(unit)
+    FluxRaidVisuals.SetHealthStatus(frame, PreviewRaidSetting("healthText", "raidFramesHealthText", "perc"), hp, hpMax,
+        FluxRaidCompat and FluxRaidCompat.GetHealthPercent and FluxRaidCompat.GetHealthPercent(unit),
+        connected, dead)
+    if not IsSecret(connected) and connected == false then
+        frame.name:SetTextColor(.55, .55, .55)
+        frame.powerBar:SetStatusBarColor(.4, .4, .4)
+    end
+    if not IsSecret(connected) and connected == false or not IsSecret(dead) and dead then
+        frame.healthBar:SetStatusBarColor(.22, .22, .22)
+    end
 end
 
 local function ApplyFakeUnit(frame, data, idx)
     if not frame or not data then return end
-    frame._previewUnit = nil
-    frame._previewIsPlayer = nil
-    frame._previewHover = false
-    local pct = 0.55 + (idx % 7) * 0.06
-    local out = (idx % 9 == 0)
-    ApplyCommonStatus(frame, data.class, data.name .. "-" .. (idx or 1), pct, data.power or 0, 0.4 + (idx % 5) * 0.1, data.role, idx, out)
+    frame._previewUnit, frame._previewIsPlayer, frame._previewHover = nil, nil, false
+    local state = ((idx or 1) - 1) % 10 + 1
+    local pct = 0.42 + (idx % 5) * 0.10
+    if state == 6 or state == 8 then pct = 0 end
+    ApplyCommonStatus(frame, data.class, data.name .. "-" .. (idx or 1), pct, data.power or 0,
+        0.4 + (idx % 5) * 0.1, data.role, idx, state == 5)
+    EnsureDetailSamples(frame)
+    ClearDetailSamples(frame)
+    frame._fluxPreviewState = state
+    local enabledPrediction = PreviewRaidSetting("showHealPrediction", "raidFramesDisplayHealPrediction", true)
+    local samples = frame._fluxPreviewPrediction
+    for _, bar in pairs(samples) do bar:SetWidth(FluxRaidVisuals.FRAME_WIDTH - 2 * FluxRaidVisuals.CELL_INSET) end
+    if enabledPrediction and state == 1 then samples.incoming:SetValue(22) samples.incoming:Show() end
+    if enabledPrediction and state == 2 then samples.hot:SetValue(18) samples.hot:Show() end
+    if enabledPrediction and state == 3 then samples.absorb:SetValue(15) samples.absorb:Show() frame._fluxPreviewOverflow:Show() end
+    if enabledPrediction and state == 10 then
+        samples.incoming:SetValue(80) samples.incoming:Show()
+        frame._fluxPreviewOverflow:SetVertexColor(1, 1, 1, 1)
+        frame._fluxPreviewOverflow:Show()
+    else
+        frame._fluxPreviewOverflow:SetVertexColor(1, 1, 1, 1)
+    end
+    if state == 1 and frame.aggroHighlight and PreviewRaidSetting("showAggroHighlight", "raidFramesDisplayAggroHighlight", true) then frame.aggroHighlight:Show() end
+    if state == 2 and frame.selectionHighlight and PreviewRaidSetting("showTargetHighlight", "raidFramesDisplayTargetHighlight", true) then frame.selectionHighlight:Show() end
+    if state == 4 and GetPreviewAuraSettings().displayDebuffs then
+        local side = frame._fluxPreviewAuraMetrics.debuffs
+        frame._fluxPreviewDispel:SetSize(side.width, side.height)
+        frame._fluxPreviewDispel:Show()
+    end
+    if state == 6 or state == 8 then frame.statusText:SetText(DEAD or "Dead") frame.statusText:Show() end
+    if state == 7 then
+        frame.statusText:SetText(PLAYER_OFFLINE or "Offline") frame.statusText:Show()
+        frame.healthBar:SetStatusBarColor(0.22, 0.22, 0.22)
+        frame.powerBar:SetStatusBarColor(.4, .4, .4)
+        frame.name:SetTextColor(0.55, 0.55, 0.55)
+    end
+    if state == 8 or state == 9 then
+        frame._fluxPreviewCenter:SetTexture(state == 8 and "Interface\\RaidFrame\\Raid-Icon-Rez" or "Interface\\RaidFrame\\Raid-Icon-SummonPending")
+        frame._fluxPreviewCenter:Show()
+    end
 end
 
 local function EnsureContainer()
@@ -583,6 +709,17 @@ local function LayoutPreview(n, showMT, mainTankCount)
             local yCell = yAlignMT - row * FluxRaid_GetMTMAChildStep()
             fr:SetPoint("TOPLEFT", previewContainer, "TOPLEFT", xCell, yCell)
             ApplyFakeUnit(fr, { name = "MT" .. m, class = "WARRIOR", role = "TANK", power = 1 }, m)
+            FluxRaidVisuals.SetJoinedEdges(fr, { bottom = false, right = true })
+            local target=fr._fluxPreviewTarget
+            if not target then
+                target=CreateFrame("Button",nil,fr,"FluxRaidMiniPreviewTemplate")
+                fr._fluxPreviewTarget=target
+            end
+            target:ClearAllPoints()
+            target:SetPoint("TOPLEFT",fr,"BOTTOMLEFT",0,FluxRaidVisuals.CELL_JOIN_OVERLAP or 1)
+            ApplyCommonStatus(target,nil,"Target "..m,.55+m*.03,0,0,nil,m,false)
+            FluxRaidVisuals.SetJoinedEdges(target,{exteriorTop=false,exteriorLeft=true,bottom=m==mtCount or row==3,right=true})
+            target:Show()
             fr:Show()
         end
         lb = lb + 1
@@ -614,7 +751,7 @@ local function LayoutPreview(n, showMT, mainTankCount)
                 u = u + 1
                 local fr = AcquireUnit(u)
                 fr:ClearAllPoints()
-                local y = -((row - 1) * (fh + HEADER_UNIT_YOFFSET))
+                local y = -((row - 1) * (fh - (FluxRaidVisuals.CELL_JOIN_OVERLAP or FluxRaidCompat.HEADER_UNIT_YOFFSET or 4)))
                 fr:SetPoint("TOPLEFT", previewContainer, "TOPLEFT", x, y)
                 local idx = 0
                 for gg = 1, gi - 1 do
@@ -624,11 +761,24 @@ local function LayoutPreview(n, showMT, mainTankCount)
                 local data = FAKE_ROSTER[((idx - 1) % #FAKE_ROSTER) + 1]
                 groupSlot = groupSlot + 1
                 local tok = realUnits[groupSlot]
-                if tok and UnitExists(tok) then
+                if tok and PreviewUnitExists(tok) then
                     ApplyPreviewUnitFromToken(fr, tok, idx)
                 else
                     ApplyFakeUnit(fr, data, idx)
                 end
+                local rightGroup, leftGroup
+                for previous = gi - 1, 1, -1 do
+                    if counts[previous] > 0 then rightGroup = previous break end
+                end
+                for following = gi + 1, GROUP_COUNT do
+                    if counts[following] > 0 then leftGroup = following break end
+                end
+                FluxRaidVisuals.SetJoinedEdges(fr, {
+                    exteriorTop = row == 1,
+                    exteriorLeft = not (leftGroup and counts[leftGroup] >= row),
+                    bottom = row == cnt,
+                    right = not (rightGroup and counts[rightGroup] >= row),
+                })
                 fr:Show()
             end
         end
@@ -653,6 +803,11 @@ function FluxRaidPreview_RefreshLayout()
     local n = tonumber(db.previewRosterSize) or 40
     n = max(5, min(40, floor(n / 5) * 5))
     db.previewRosterSize = n
+    if ns.PartyFrames and ns.PartyFrames.RefreshPreview then
+        local party = db.partyAsRaid == false and n == 5
+        ns.PartyFrames.RefreshPreview(party)
+        if party then previewContainer:Hide(); return end
+    end
     local showMT = db.previewShowMTColumn ~= false
     local mtN = tonumber(db.previewMainTankCount)
     if not mtN or mtN < 1 then mtN = 2 end
@@ -671,6 +826,11 @@ end
 
 FluxRaidPreview = FluxRaidPreview or {}
 
+function FluxRaidPreview.PaintPartyAuras(frame, index)
+    EnsurePreviewAuraIcons(frame)
+    ApplyDemoAuras(frame, index)
+end
+
 function FluxRaidPreview.Show()
     EnsureContainer()
     if InCombatLockdown() then
@@ -683,6 +843,7 @@ end
 
 function FluxRaidPreview.Hide()
     previewSessionVisible = false
+    if ns.PartyFrames and ns.PartyFrames.RefreshPreview then ns.PartyFrames.RefreshPreview(false) end
     if previewContainer then
         previewContainer:Hide()
     end
@@ -694,6 +855,18 @@ function FluxRaidPreview.Toggle()
     else
         FluxRaidPreview.Show()
     end
+end
+
+function FluxRaidPreview.IsPartyShown()
+    local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+    return previewSessionVisible and db and tonumber(db.previewRosterSize) == 5 or false
+end
+
+function FluxRaidPreview.ToggleParty()
+    if FluxRaidPreview.IsPartyShown() then FluxRaidPreview.Hide(); return end
+    local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+    if db then db.previewRosterSize = 5 end
+    FluxRaidPreview.Show()
 end
 
 function FluxRaidPreview.RefreshFromOptions()
@@ -711,7 +884,7 @@ function FluxRaidPreviewUnit_OnEnter(self)
         self.mouseOverHighlight:Show()
         self.mouseOverHighlight:SetAlpha(1)
     end
-    if self._previewUnit and UnitExists(self._previewUnit) then
+    if self._previewUnit and PreviewUnitExists(self._previewUnit) then
         GameTooltip_SetDefaultAnchor(GameTooltip, self)
         GameTooltip:SetUnit(self._previewUnit)
         GameTooltip:Show()
@@ -730,9 +903,9 @@ local previewCvarListener = CreateFrame("Frame")
 previewCvarListener:RegisterEvent("CVAR_UPDATE")
 previewCvarListener:SetScript("OnEvent", function(_, _, cvarName)
     if not cvarName or type(cvarName) ~= "string" then return end
-    if not previewContainer or not previewContainer:IsShown() then return end
+    if not previewSessionVisible then return end
     if cvarName:match("^raidFrames") or cvarName:match("^raidOption") then
-        -- Defer past Blizzard CUF CVar → ApplyCurrentSettings (same CVAR_UPDATE wave).
+        -- Defer past Blizzard CUF CVar â†’ ApplyCurrentSettings (same CVAR_UPDATE wave).
         if C_Timer and C_Timer.After then
             C_Timer.After(0, function()
                 if previewContainer and previewContainer:IsShown() then
@@ -747,10 +920,14 @@ end)
 
 local previewSessionListener = CreateFrame("Frame")
 previewSessionListener:RegisterEvent("PLAYER_LOGIN")
+previewSessionListener:RegisterEvent("PLAYER_REGEN_DISABLED")
 previewSessionListener:RegisterEvent("PLAYER_TARGET_CHANGED")
 previewSessionListener:RegisterEvent("GROUP_ROSTER_UPDATE")
 previewSessionListener:SetScript("OnEvent", function(_, ev)
-    if ev == "PLAYER_LOGIN" then
+    if ev == "PLAYER_REGEN_DISABLED" then
+        FluxRaidPreview.Hide()
+    elseif ev == "PLAYER_LOGIN" then
+        FluxRaidPreview.Hide()
         previewSessionVisible = false
         if previewContainer then previewContainer:Hide() end
         local d = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()

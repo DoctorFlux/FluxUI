@@ -1,0 +1,31 @@
+{
+  "scope": "One authorized changed runtime file copied to existing configured addon copies; no deletions, folder creation in AddOns, preferences or other files changed. Prior files archived externally.",
+  "sourceSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578",
+  "rows": [
+    {
+      "client": "_classic_",
+      "beforeSHA256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+      "status": "copied-one-file",
+      "afterSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578"
+    },
+    {
+      "client": "_anniversary_",
+      "beforeSHA256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+      "status": "copied-one-file",
+      "afterSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578"
+    },
+    {
+      "client": "_classic_era_",
+      "beforeSHA256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+      "status": "copied-one-file",
+      "afterSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578"
+    },
+    {
+      "client": "_forever_",
+      "beforeSHA256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+      "status": "copied-one-file",
+      "afterSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578"
+    }
+  ],
+  "backupIntegrity": "PASS"
+}

@@ -30,6 +30,7 @@ local accum = 0
 local extraAccum = 0
 local lastTargetReaction = nil
 local lastMoAt = 0
+local sweepDeferredAt
 
 local function ClampInterval(sec, lo, hi, fallback)
 	sec = tonumber(sec)
@@ -112,6 +113,7 @@ end
 
 local function MouseoverCastOn()
 	local MC = Flux.MouseoverCast
+	if MC and MC.IsActive then return MC.IsActive() end
 	return MC and MC.IsEnabled and MC.IsEnabled() and true or false
 end
 
@@ -161,6 +163,8 @@ function Range.ResolveUnit(widget, macroUnit)
 	-- 3D world hop storms — flipping all 57 buttons on world mouseover is the Paint hitch.
 	local peeking = Flux.Context and Flux.Context.IsUfPeek and Flux.Context.IsUfPeek()
 	if widget and MouseoverCastOn() and peeking and not Range.IsHopBurst() and UnitExistsSafe("mouseover") then
+		local MC = Flux.MouseoverCast
+		if widget._fluxUtilityNative and MC and MC.UtilityRangeUnit then return MC.UtilityRangeUnit(widget) or "target" end
 		return "mouseover"
 	end
 	return "target"
@@ -315,12 +319,18 @@ end
 local function OnTick(elapsed)
 	-- Every client: do not walk strip+Extra+badges while the cursor is hopping.
 	local now = (GetTime and GetTime()) or 0
-	if lastMoAt > 0 and (now - lastMoAt) < MOUSEOVER_BURST then
-		return
-	end
 	elapsed = elapsed or 0
 	accum = accum + elapsed
 	extraAccum = extraAccum + elapsed
+	if lastMoAt > 0 and (now - lastMoAt) < MOUSEOVER_BURST then
+		sweepDeferredAt = sweepDeferredAt or now
+		-- A continuous hover stream must not freeze visible range forever.
+		-- Normal cadence is unchanged; hostile bursts receive a bounded settle.
+		if now - sweepDeferredAt < math.max(0.5, INTERVAL, extraInterval) then return end
+		sweepDeferredAt = now
+	else
+		sweepDeferredAt = nil
+	end
 	local barsDue = accum >= INTERVAL
 	local extraDue = extraAccum >= extraInterval
 	if not barsDue and not extraDue then
@@ -354,6 +364,7 @@ function Range.Sync()
 	elseif (not need) and armed then
 		armed = false
 		accum = 0
+		sweepDeferredAt = nil
 		if Flux.Ticker and Flux.Ticker.Remove then
 			Flux.Ticker.Remove(TICKER_KEY)
 		end

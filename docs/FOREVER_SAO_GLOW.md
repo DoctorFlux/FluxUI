@@ -1,5 +1,122 @@
 # Forever SpellActivationOverlay button glow — 6 November 2026
 
+## Badge handoff and combat row icon follow-up (current)
+
+The user retested the prior candidate: the Retail proc art follows main↔mini
+modifier paging in combat, but bar→badge lost the glow. A badge attached to a
+bar action also lost its icon and other paint when that action moved between
+main and mini rows in combat. After this follow-up was installed, the user
+confirmed that the modern glow follows bar↔badge in both directions and clears
+when Missile Barrage ends. The badge icon, count and cooldown also follow the
+action's main↔mini combat swap.
+
+Two separate paths caused these failures. A reverse badge may inherit the
+bar's Arcane Missiles spell without naming it in its saved badge spell or
+macro, so the previous candidate did not prepare its secure aura slot.
+The corner SlotFrame also clipped the Retail alert beyond the icon edge.
+For the missing icon, dormant-row badges were created out of combat but not
+given an action face; `SetAction` is unavailable when they first become
+visible in combat, and the icon paint erased their temporary texture.
+
+The candidate now prepares every reusable badge position for a proc-capable
+bar slot before combat, keeps the Retail alert border unclipped on those
+badges, and uses the badge's published current identity when it changes face.
+The badge's own show/hide path reveals or masks its prepared secure art in
+either swap direction. For any spell or item badge that first appears on a
+dormant row in combat, the paint face fields are filled directly without
+changing secure click attributes; icon, count and cooldown can then repaint.
+
+External source/history checkpoint:
+`FluxUI-forever-badge-handoff-20261106` at main
+`75cf2bcba83adfea0501934f4eeb2a980c46fdf8`; the on-disk SAO glow setting
+was present. Candidate SHA-256 identities: `Bars/Effects.lua`
+`7157f719602a74eb3912077c0b63ed6e4e1eb8f8892dc857e214983968bf286e`,
+`Bars/BadgeHost.lua`
+`f6472f1113f315c2ed45c8965cfb3a58884c0aa5a080f0ca90afdb9dbeb3ee6c`,
+and `ExtraButtonSystem/Engine/Badge.lua`
+`713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c`.
+The old BadgeHost fails the loaded combat row-swap fixture at the
+missing mini badge icon and lacks the new reverse badge preparation call.
+Candidate tests pass 11 face paging, 25 badge preparation, 7 combat row swap,
+and 77 glow checks. Full desktop validation passes 190 scripts and 852 Lua
+syntax files with zero failures:
+[manifest](validation/forever-sao-badge-row-swap-2026-11-06.json).
+Those native checks accept the observed Forever behavior for this proc and
+badge configuration. Other SAO spells, combat taint, pixel comparison, matched
+frame time and other clients remain unverified.
+
+## Main/mini and badge handoff follow-up (newest)
+
+The user confirmed that the preceding secure AuraContainer candidate now
+shows the Retail proc art during Missile Barrage combat. The same native check
+found that moving Arcane Missiles between main and mini rows with a modifier,
+or between a badge and its action bar, does not follow the displayed face
+properly. Proc-end clearing, taint, pixels and frame time were not separately
+confirmed. This is a partial native acceptance for combat start only.
+
+Cause: the first secure slot was created only on a widget whose *current*
+out-of-combat spell was Arcane Missiles. A combat modifier can move that spell
+to a mini or badge with no prepared slot. The old widget's slot remains bound
+to the aura even after it displays another action. The ordinary `Glow.Want`
+transfer path cannot repair this because the combat aura is secret.
+
+The follow-up prewarms main and both mini widgets of any column with a
+potential Arcane Missiles action slot or conditional macro, and all reusable
+badges of a configured slot that may show the spell. It keeps each secure aura
+slot subscribed to the player while SAO glow is enabled. Existing column and
+Extra Button paint passes reveal the art with container alpha only on the
+widget currently displaying Arcane Missiles; the previous face is masked in
+the same pass. Badge alpha additionally hides a parked badge. Slot/drive
+program changes invalidate the out-of-combat candidate scan; a normal combat
+swap creates no frame, changes no unit, and calls no protected `Show`.
+
+External checkpoint: `FluxUI-forever-secure-proc-paging-20261106`, main HEAD
+`75cf2bcba83adfea0501934f4eeb2a980c46fdf8`. The focused paging model
+rejects the saved baseline at its first three-row preparation assertion and
+passes 9 candidate checks. The glow model passes 77 checks. The full desktop
+runner passes 187 scripts and 849 Lua syntax files with zero failures;
+[manifest](validation/forever-sao-face-paging-2026-11-06.json). This follow-up
+still needs native modifier and badge handoff checks, proc-end clearing,
+combat taint, pixel comparison and matched frame-time measurement.
+
+## Secure AuraContainer button animation candidate (latest)
+
+The user retested the preceding screen, event, and SAO slot hooks: the button
+still glows only after combat. The in-combat readouts never reached
+`modernShow`, and the latest reported `want5143=0`. The installed SAO Forever
+Missile Barrage effect (400589) defines screen art but no button entry; its
+SoD/Wrath counterparts associate Arcane Missiles (5143). Retail and Forever
+Blizzard action buttons use `ActionButtonSpellAlertTemplate`, with the
+`UI-HUD-ActionBar-Proc-Loop-Flipbook` atlas. Forever's secret aura button uses
+`CustomAuraButtonPrivateMixin:ApplyVisibility`, which sets shown state from a
+secret value and starts/stops registered `auraShownAnimations` securely.
+
+Flux now prepares a `CustomAuraContainerTemplate` slot on each resolved Arcane
+Missiles bar, Extra Button, or badge widget outside combat. Its static helpful
+filter is aura 400589; the slot's child is the Retail alert template, and its
+`ProcLoop` is registered through `AddAuraShownAnimation`. The secure aura
+assignment starts and stops that loop in combat without Flux reading the aura
+or calling `Show` on a protected child. The former readable 400589 fallback is
+suppressed once a secure slot is ready, preventing duplicate post-combat art.
+Changing a widget to another spell outside combat disables its slot; changing
+back reenables it. Existing generic native/SAO glow paths remain for other
+procs. The SAO glow-enabled preference gates this bridge. No SAO or saved
+settings files were changed.
+
+Checkpoint: external `FluxUI-forever-secure-proc-20261106`, source HEAD
+`75cf2bcba83adfea0501934f4eeb2a980c46fdf8`, pre-edit Glow.lua SHA-256
+`443a49339391f907cbd2368380a94a49ab493be369547e4af8ebded38534d17e`.
+Installed SAO AuraContainer source SHA-256
+`58565be48ee5ee36202315405fa9818bda9c5a1d0623e7b4f6491779ef1912ce`;
+Forever Blizzard CustomAuraButton source SHA-256
+`e583c0306774cb209a7a4d1b4c29a96f39dab0761da965af173b843ef61704c5`.
+Installed SAO saved glow setting was read as enabled. The focused glow test
+passes 69 checks and the full desktop runner passes 186 scripts / 848 Lua
+syntax files, 0 failures; [manifest](validation/forever-secure-proc-glow-2026-11-06.json).
+This is a source-backed candidate. Native Forever combat rendering, proc-end
+clearing, action paging, taint, pixel appearance, and frame time remain pending.
+The new diagnostic suffix is `secure=ready/failed`.
+
 ## Retail-style combat callback candidate
 
 The user tested the prepared Classic LBG candidate after `/reload` and again

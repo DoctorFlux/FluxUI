@@ -216,8 +216,7 @@ local FLUX_DEFAULTS = {
     -- Sticky Targeting is displayed through NegateBoolean on this native CVar.
     ["deselectOnClick"] = "1",
     ["combinedBags"] = "1",
-    -- Blizzard mouseover cast stays off. Flux's own mouseover does not turn this CVar on.
-    ["enableMouseoverCast"] = "0",
+    -- Native mouseover casting and its modifier remain user-owned.
     
     -- Mouse
     ["ClipCursor"] = "0",
@@ -1559,7 +1558,7 @@ function FluxDefaultSettings.ApplyChatSettings()
     
 end
 
---- Self Cast = Auto, Focus Cast = None, Mouseover Cast = Off + None,
+--- Self Cast = Auto, Focus Cast = None; preserve native Mouseover Cast,
 --- Empowered = Press and Tap, Target of Target = On.
 --- Writes CVars + SetModifiedClick; refreshes Options via Settings.NotifyUpdate (not SetValue).
 function FluxDefaultSettings.ApplySelfCastAndFocusCastDefaults()
@@ -1607,8 +1606,6 @@ function FluxDefaultSettings.ApplyCombatDefaultsPack(force)
     end
 
     setCVar("showTargetOfTarget", "1")
-    -- Blizzard mouseover cast stays off on every client. Modifier stays None.
-    setCVar("enableMouseoverCast", "0")
     setCVar("autoSelfCast", "1")
     setCVar("empowerTapControls", "1") -- Press and Tap
     setCVar("doNotFlashLowHealthWarning", "0")
@@ -1646,7 +1643,6 @@ function FluxDefaultSettings.ApplyCombatDefaultsPack(force)
         end
         SetModifiedClick("SELFCAST", "NONE")
         SetModifiedClick("FOCUSCAST", "NONE")
-        SetModifiedClick("MOUSEOVERCAST", "NONE")
         -- PLAYER_LOGIN can run before native bindings are loaded. Saving here
         -- can replace the account binding cache with only modified-click rows.
         -- The first-account keyboard pass persists these clicks with its final
@@ -1660,11 +1656,9 @@ function FluxDefaultSettings.ApplyCombatDefaultsPack(force)
 
     local Write = BlizzardSettings.Write
     local auto = (SELF_CAST_SETTING_VALUES and SELF_CAST_SETTING_VALUES.AUTO) or 2
-    Write.SetShownValue("enableMouseoverCast", false)
     Write.SetShownValue("PROXY_SELF_CAST", auto)
     Write.SetShownValue("SELFCAST", "NONE")
     Write.SetShownValue("FOCUSCAST", "NONE")
-    Write.SetShownValue("MOUSEOVERCAST", "NONE")
     Write.SetShownValue("showTargetOfTarget", true)
     Write.SetShownValue("occludedSilhouettePlayer", true)
     Write.SetShownValue("assistedCombatHighlight", false)
@@ -1674,8 +1668,6 @@ function FluxDefaultSettings.ApplyCombatDefaultsPack(force)
     -- Refresh Combat Options UI from live values (avoid Settings.SetValue softTarget path).
     local combatShown = {
         "showTargetOfTarget",
-        "enableMouseoverCast",
-        "MOUSEOVERCAST",
         "PROXY_SELF_CAST",
         "SELFCAST",
         "FOCUSCAST",
@@ -2153,7 +2145,6 @@ function FluxDefaultSettings.ApplyKeybinds(onComplete, quiet)
         if FluxDefaultSettings._pendingModifiedClickSave and SetModifiedClick then
             pcall(SetModifiedClick, "SELFCAST", "NONE")
             pcall(SetModifiedClick, "FOCUSCAST", "NONE")
-            pcall(SetModifiedClick, "MOUSEOVERCAST", "NONE")
         end
         local saveOK, saved = pcall(SaveBindings, bindingSet)
         if not saveOK or saved == false then

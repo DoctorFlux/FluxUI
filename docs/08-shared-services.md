@@ -1,5 +1,9 @@
 # Shared APIs, refresh services and button feedback
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Events preserve listener delivery during removal; Scheduler retains nested FIFO callbacks and older paused structural batches, invalidates stale timers, and budgets inventory at 8 callbacks per scheduled flush. Combat RegenDefer budgets 16 distinct jobs per frame with combat reentry pause. Sustained mouseover can no longer starve shared range sweeps indefinitely. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 The newer shared layer is under `Core/API`, `Core/Engine` and `Core/ButtonFX`. Older HUD code still uses `Core/FluxAPI` and global helper functions. This chapter explains the contracts and data flow; [33-api-and-events.md](33-api-and-events.md) provides a lookup index.
 
 ## Adapter contracts

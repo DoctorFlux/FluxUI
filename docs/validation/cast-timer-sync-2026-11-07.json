@@ -1,0 +1,156 @@
+{
+  "changeID": "CAST-TIMER-SYNC-20261107",
+  "requirement": "REQ-RF-69",
+  "scope": "Shared player/party/target/focus/pet casting timer; modern engine, manual and legacy paths; no cast geometry/fill policy change",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\cast-timer-20261107T101625Z\\checkpoint.json",
+  "priorCompleteSourceHistorySettings": "Raid-rewrite-20261107T082357Z external dated full recovery retained; no WTF/profiler writes",
+  "before": "8d105f70652583b179603caa65424eca0a5c381abd51ba00c6ee759b0ea635c2",
+  "after": {
+    "UnitFrames/FluxCastBar.lua": "69ab422aed8325f3cb0be9818594bc3265cc73c00521edb3aba124129aeda9e7",
+    "tests/castbar_timer_sync.lua": "08eccc6d211d4da5e60eede8b318bc4b9b73bf930b517c740099144fef13ddb9"
+  },
+  "sources": {
+    "live": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "blob": "6648bf2520d05266952b71fe4cd5a13b68b6d9d9",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+    },
+    "forever": {
+      "commit": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+      "blob": "763660ff16fd063bf36c37ac87f7d2e93ab4a3a8",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "blob": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+    },
+    "classic_era": {
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "blob": "3b125d12414582877dc78dfe403c16ab95e1fe08",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+    },
+    "classic_anniversary": {
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "blob": "4e283109eb28524109dbece41d4171fdd80898ee",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Shared/CastingBarFrame.lua"
+    }
+  },
+  "nativeContracts": [
+    "All five pinned CastingBarMixin.UpdateCastTimeText implementations use actual widget min/max/current: cast=max-current; channel=current.",
+    "Retail/Forever DurationObject.GetRemainingDuration provides the same engine clock used by SetTimerDuration; opaque numbers passed directly to FontString.SetFormattedText.",
+    "Retail/Forever generated SimpleFontString.SetFormattedText declares SecretArguments AllowedWhenTainted and text aspect; secret font geometry never enters Lua width comparisons.",
+    "Unavailable engine/widget countdown clears text rather than consulting stale caches or fabricated wall-clock estimates."
+  ],
+  "desktop": {
+    "focused": 379,
+    "schoolThemes": 13942,
+    "pairs": [
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.02308709999488201,
+          "output": "lua: tests/castbar_timer_sync.lua:5: live player follows displayed bar across cast/channel/delay/replacement\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:34: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.08979279999766732,
+          "output": "Cast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.0962507000003825,
+          "output": "Cast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.01899540000158595,
+          "output": "lua: tests/castbar_timer_sync.lua:5: live player follows displayed bar across cast/channel/delay/replacement\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:34: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.01848249999602558,
+          "output": "lua: tests/castbar_timer_sync.lua:5: live player follows displayed bar across cast/channel/delay/replacement\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:34: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.15288929999951506,
+          "output": "Cast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.10252500000206055,
+          "output": "Cast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.017197000001033302,
+          "output": "lua: tests/castbar_timer_sync.lua:5: live player follows displayed bar across cast/channel/delay/replacement\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:34: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.016196600001421757,
+          "output": "lua: tests/castbar_timer_sync.lua:5: live player follows displayed bar across cast/channel/delay/replacement\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:34: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.09380439999949886,
+          "output": "Cast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        }
+      }
+    ],
+    "mutants": {
+      "ignore-engine-duration": {
+        "exit": 1,
+        "wallSeconds": 0.031500199998845346,
+        "output": "lua: tests/castbar_timer_sync.lua:5: engine countdown takes precedence over stale duration/value caches\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:40: in main chunk\n\t[C]: in ?\n"
+      },
+      "opaque-countdown-clamp": {
+        "exit": 1,
+        "wallSeconds": 0.031899900001008064,
+        "output": "lua: tests/castbar_timer_sync.lua:9: opaque comparison\nstack traceback:\n\t[C]: in function 'error'\n\ttests/castbar_timer_sync.lua:9: in metamethod 'lt'\n\tcast-timer:43: in local 'paint'\n\ttests/castbar_timer_sync.lua:44: in main chunk\n\t[C]: in ?\n"
+      },
+      "stale-unavailable-label": {
+        "exit": 1,
+        "wallSeconds": 0.03086559999792371,
+        "output": "lua: tests/castbar_timer_sync.lua:5: unavailable bar clock clears stale text instead of inventing wall-clock time\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_timer_sync.lua:5: in local 'check'\n\ttests/castbar_timer_sync.lua:46: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    "whole": "219/219 scripts PASS; 882 syntax files/0 failures.",
+    "syntaxFailures": [],
+    "wholeFailures": [],
+    "corpusDrift": []
+  },
+  "performance": "Existing active-cast OnUpdate and 0.05s timer-text cadence unchanged; no new frame/event/hook/timer/ticker. Timer text now reads widget/engine source per existing paint. Desktop wall samples are functional regressions only; no native CPU/FPS claim.",
+  "nativePending": "Actual Retail/Forever and other-client pixels, secret font sink operation, cast/channel delay/target switch, combat/taint/input and FPS not exercised in native client.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "matches": true
+    }
+  ]
+}

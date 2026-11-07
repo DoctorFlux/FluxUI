@@ -1,5 +1,13 @@
 -- UnitFrames/FluxUnitFrames_Pet.lua
 local addonName, ns = ...
+
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterStateDriver = (useFluxDrivers and FluxDrivers.RegisterStateDriver) or RegisterStateDriver
+local UnregisterStateDriver = (useFluxDrivers and FluxDrivers.UnregisterStateDriver) or UnregisterStateDriver
+local UnregisterUnitWatch = (useFluxDrivers and FluxDrivers.UnregisterUnitWatch) or UnregisterUnitWatch
+local UnitWatchRegistered = (useFluxDrivers and FluxDrivers.UnitWatchRegistered) or UnitWatchRegistered
 local UF = ns.UnitFrames
 local CB = ns.CastBar
 
@@ -56,7 +64,8 @@ local function InitializePetFrame()
     
     -- Ensure it's layered ABOVE the player frame
     if ns.PlayerFrame then
-        frame:SetFrameLevel(ns.PlayerFrame:GetFrameLevel() + 30)
+        local level = UF.GetFramePublicLevel(ns.PlayerFrame)
+        if level ~= nil then UF.SetFramePublicLevel(frame, level + 30) end
     end
 
     -- Configure portrait position (can be "LEFT" or "RIGHT")
@@ -73,8 +82,9 @@ local function InitializePetFrame()
     local function UpdatePosition()
         if ns.PlayerFrame and not InCombatLockdown() then
             frame:ClearAllPoints()
-            local ph = ns.PlayerFrame:GetHeight() or 100
-            local petH = frame:GetHeight() or 50
+            local _, ph = UF.GetFramePublicDimensions(ns.PlayerFrame)
+            local _, petH = UF.GetFramePublicDimensions(frame)
+            if ph == nil or petH == nil then return false end
             local inset = 8
             local innerH = math.max(10, ph - inset)
             local centerFromTop = 2 + innerH / 2
@@ -84,7 +94,8 @@ local function InitializePetFrame()
             -- Ensure parent is correct if it was created before PlayerFrame
             if frame:GetParent() ~= ns.PlayerFrame then
                 frame:SetParent(ns.PlayerFrame)
-                frame:SetFrameLevel(ns.PlayerFrame:GetFrameLevel() + 30)
+                local level = UF.GetFramePublicLevel(ns.PlayerFrame)
+                if level ~= nil then UF.SetFramePublicLevel(frame, level + 30) end
             end
             return true
         end

@@ -1,0 +1,36 @@
+--- baseline/UnitFrames/FluxUnitFrames_Shared.lua
++++ candidate/UnitFrames/FluxUnitFrames_Shared.lua
+@@ -2507,10 +2507,10 @@
+ 
+     if API.isMidnight then
+         -- ---------------------------------------------------------------
+-        -- 12.0+ Path: All numeric values may be secret.
+-        -- Arithmetic on secrets produces secrets (safe); only comparisons
+-        -- (>, <, ==) error.  Wrap comparisons in pcall; pass secrets
+-        -- directly to widget APIs (SetValue, SetMinMaxValues, SetPoint).
++        -- Native numeric getters may return values addon Lua cannot inspect.
++        -- Access is operation-specific; pcall does not make a value readable.
++        -- Keep opaque health/absorb amounts on permitted StatusBar sinks and
++        -- use native anchors with public offsets for their presentation.
+         -- ---------------------------------------------------------------
+         if not frame.Health.healCalc then
+             frame.Health.healCalc = API.CreateUnitHealPredictionCalculator()
+@@ -7294,13 +7294,14 @@
+         ThreatBarRaiseGlowAboveBorder(shell)
+         return
+     end
+-    shell._fluxThreatGlowBand = band
+     -- Prefer LCG so we can tint yellow→red; frameLevel arg must clear the border (+10).
++    local applied = false
+     if LCG and LCG.ButtonGlow_Start then
+-        pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
++        applied = pcall(LCG.ButtonGlow_Start, shell, color, 0.25, 16)
+     elseif LBG and LBG.ShowOverlayGlow then
+-        pcall(LBG.ShowOverlayGlow, shell)
+-    end
++        applied = pcall(LBG.ShowOverlayGlow, shell)
++    end
++    if applied then shell._fluxThreatGlowBand = band end
+     ThreatBarRaiseGlowAboveBorder(shell)
+ end
+ 

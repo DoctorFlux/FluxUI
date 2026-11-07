@@ -114,6 +114,16 @@ local function GetMeterPresetCount()
     return 11
 end
 
+-- Explicit layout/tab choices must apply native types and Current, in addition
+-- to positioning the panes. Quiet re-embedding is reserved for presentation.
+local function CommitMeterLayoutChoice()
+    if not FluxMeterLayout then return end
+    if ResolveMeterSystem() == "BlizzardMeter" and FluxMeterLayout.CommitUserLayout then
+        return FluxMeterLayout.CommitUserLayout()
+    end
+    if FluxMeterLayout.ReembedQuiet then return FluxMeterLayout.ReembedQuiet() end
+end
+
 local function ApplyMeterCycleLayout()
     if not FluxMeterLayout then return end
     local id = FluxMeterLayout.GetActiveLayoutId and FluxMeterLayout.GetActiveLayoutId() or 'builtin:1'
@@ -121,9 +131,7 @@ local function ApplyMeterCycleLayout()
     local count = GetMeterPresetCount()
     n = (n % count) + 1
     FluxMeterLayout.ApplyBuiltin(n)
-    if FluxMeterLayout.ReembedQuiet then
-        FluxMeterLayout.ReembedQuiet()
-    end
+    CommitMeterLayoutChoice()
 end
 
 --- Save tab state per character
@@ -770,6 +778,7 @@ function FluxWindowFrame:AddTab(name, onShow, onHide, tooltipText)
                 ApplyMeterCycleLayout()
             else
                 FluxWindowFrame:SwitchToTab("Meter")
+                if ResolveMeterSystem() == "BlizzardMeter" then CommitMeterLayoutChoice() end
             end
         else
             -- Normal tab switching for other tabs
@@ -1242,9 +1251,7 @@ end
 function FluxWindowFrame:SetMeterPresetIndex(index, reembed)
     if not FluxMeterLayout then return end
     FluxMeterLayout.ApplyBuiltin(index)
-    if reembed and FluxMeterLayout.ReembedQuiet then
-        FluxMeterLayout.ReembedQuiet()
-    end
+    if reembed then CommitMeterLayoutChoice() end
 end
 
 -------------------------------------------------------------------------------

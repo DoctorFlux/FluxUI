@@ -1,5 +1,14 @@
 # Baseline protocol and currency evidence
 
+6 November party/raid rewrite: five alternating baseline/candidate process pairs
+replay700 unit events through the actual dispatcher. Health/power/aura/threat/
+range callbacks fall100→1 per category; prediction300→1; synchronous health
+writes100→0. All five variants have zero counter variation. These are narrow
+mocked-painter work counts, not FPS/CPU measurements. Native resource costs and
+all raw samples/source hashes remain explicit in the [feature record](validation/raid-healkit-rework-2026-11-06.json).
+Final 179 scripts / 841 Lua syntax files pass with unchanged Lua source hashes/membership; native matched
+performance captures remain pending. Profiling was not enabled or changed.
+
 6 November native failure is decisive, not a benchmark: the guarded Current
 experiment changed native provenance and later ordinary secret comparisons
 failed. The entire operative call/preflight path is removed.126 no-operation/

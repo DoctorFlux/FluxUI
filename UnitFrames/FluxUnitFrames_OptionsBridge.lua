@@ -2,6 +2,38 @@
 -- Options DB access for per-unit Flux vs Blizzard and optional feature toggles.
 local addonName, ns = ...
 
+local function PartyOptions(unit)
+    if type(unit) == "string" and (unit:match("^party[1-4]$") or unit:match("^partypet[1-4]$")) then
+        return FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB() or {}
+    end
+end
+
+function FluxUnitFrames_GetTargetClassHealthColor(unit)
+    local enabled
+    if unit == "pettarget" or unit == "focustarget" then
+        local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+        enabled = db and db[unit == "pettarget" and "classColorPetTargetHP" or "classColorFocusTargetHP"] == true
+    elseif type(unit) == "string" and unit:match("^party[1-4]target$") then
+        local db = FluxOptions and FluxOptions.GetRaidFrameDB and FluxOptions:GetRaidFrameDB()
+        enabled = db and db.partyTargetClassColor == true
+    end
+    if not enabled or not UnitIsPlayer or not UnitClass then return end
+    local function secret(value)
+        return ns.API and ns.API.IsSecretValue and ns.API.IsSecretValue(value) or issecretvalue and issecretvalue(value)
+    end
+    local player = UnitIsPlayer(unit)
+    if secret(player) or not player then return end
+    local _, class = UnitClass(unit)
+    if secret(class) or type(class) ~= "string" then return end
+    local color = RAID_CLASS_COLORS and RAID_CLASS_COLORS[class]
+    if color then return color.r, color.g, color.b end
+end
+
+function FluxUnitFrames_RefreshTargetHealthColors()
+    if ns.PetTargetFrame and ns.PetTargetFrame._fluxRefreshHealth then ns.PetTargetFrame._fluxRefreshHealth() end
+    if ns.FocusTargetFrame and ns.UnitFrames and ns.UnitFrames.UpdateHealthColor then ns.UnitFrames.UpdateHealthColor(ns.FocusTargetFrame, "focustarget") end
+end
+
 --- True when this character should use the Flux replacement for `unit` (player, target, pet, ...).
 function FluxUnitFrames_ShouldUseFlux(unit)
     local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
@@ -78,6 +110,8 @@ end
 
 --- Per-unit side portrait strip (player / target / focus / pet). When false, layout uses bar width only (centered anchor for player/target; pet re-anchors to the player frame). 3D vs flat rendering is FluxUnitFrames_ShouldUse3DPortrait / General → Features.
 function FluxUnitFrames_ShouldShowPortrait(unit)
+    local party = PartyOptions(unit)
+    if party then return unit:match("^party[1-4]$") ~= nil and party.partyShowPortrait ~= false end
     local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
     if not db then
         return true
@@ -99,6 +133,7 @@ end
 
 local function FluxUnitFrames_DisplayRow(unit)
     local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
+    if PartyOptions(unit) then unit = unit:match("^partypet") and "pet" or "player" end
     return db and db.display and db.display[unit]
 end
 
@@ -112,6 +147,13 @@ function FluxUnitFrames_DisplayEnabled(unit, key)
 end
 
 function FluxUnitFrames_GetHealthTextMode(unit)
+    if type(unit) == "string" and unit:match("^partypet[1-4]$") then return "percent" end
+    if type(unit) == "string" and unit:match("^party[1-4]$") then
+        local party = PartyOptions(unit)
+        local mode = party and party.partyHealthText
+        if mode == "both" or mode == "percent" or mode == "none" then return mode end
+        return "values"
+    end
     local row = FluxUnitFrames_DisplayRow(unit)
     local mode = row and row.healthText
     if mode == "both" or mode == "percent" or mode == "values" or mode == "none" then
@@ -128,6 +170,8 @@ function FluxUnitFrames_ShouldShowCastTime(unit)
 end
 
 function FluxUnitFrames_ShouldShowPowerText(unit)
+    local party = PartyOptions(unit)
+    if party then return not unit:match("^partypet") and party.partyPowerText ~= "none" end
     return FluxUnitFrames_DisplayEnabled(unit, "powerText")
 end
 
@@ -190,6 +234,8 @@ end
 
 --- Per-unit cast bar. Pet defaults off (`showCastBarPet == true` required).
 function FluxUnitFrames_ShouldShowCastBar(unit)
+    local party = PartyOptions(unit)
+    if party then return unit:match("^party[1-4]$") ~= nil and party.partyShowCastBar ~= false end
     if unit == "pet" then
         local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
         return db and db.showCastBarPet == true
@@ -690,12 +736,14 @@ function FluxUnitFrames_GetAuraConfigTables(unit)
         perRow = DEFAULT_BUFFS_PER_ROW,
         spacing = buffSpacing,
         minAuraPx = minAuraPx,
+        timersUnderMinute = db and db.auraTimersUnderMinute == true or false,
     }, {
         size = debuffSize,
         max = maxDebuffs,
         perRow = DEFAULT_DEBUFFS_PER_ROW,
         spacing = debuffSpacing,
         minAuraPx = minAuraPx,
+        timersUnderMinute = db and db.auraTimersUnderMinute == true or false,
         lockOwnDebuffSize = lockOwnDebuffSize and true or false,
         ownDebuffMinScale = ownDebuffMinScale,
     }
@@ -711,6 +759,10 @@ function FluxUnitFrames_ApplyAuraLayoutFromDB()
     local UF = ns.UnitFrames
     if not UF or not UF.ApplyAuraOptionsToFrame then
         return
+    end
+    -- Normal party frames share this policy, including already-bound preview clocks.
+    if FluxRaidVisuals and FluxRaidVisuals.GetAuraDurationFormatter then
+        FluxRaidVisuals.GetAuraDurationFormatter(nil, { _fluxPartyMember = true })
     end
     local function AuraShown(unit, flag)
         local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
@@ -1109,6 +1161,7 @@ local DEFAULT_HEALTH_PARTITION = 0.60
 --- @param unit string player|target|targettarget|focus|pet (and any frame with a standard HP/power column)
 function FluxUnitFrames_GetHealthPartitionPct(unit)
     unit = unit or "player"
+    if PartyOptions(unit) then unit = unit:match("^partypet") and "pet" or "player" end
     local db = FluxOptions and FluxOptions.GetUnitFrameDB and FluxOptions:GetUnitFrameDB()
     local p
     if db and db.healthPartitions and db.healthPartitions[unit] ~= nil then
@@ -1227,10 +1280,12 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
             return
         end
         fr._fluxLayoutBaseWidth = w
+        if UFm and UFm.RecordFrameDimensions then UFm.RecordFrameDimensions(fr, nil, h) end
         fr:SetHeight(h)
         if UFm and UFm.ApplyEmulatedHorizontalSqueezeForFrame then
             UFm.ApplyEmulatedHorizontalSqueezeForFrame(fr)
         else
+            if UFm and UFm.RecordFrameDimensions then UFm.RecordFrameDimensions(fr, w) end
             fr:SetWidth(w)
         end
         afterSize(fr)
@@ -1265,6 +1320,7 @@ function FluxUnitFrames_ApplyFrameSizesFromDB()
     if ns.PetTargetFrame and FluxUnitFrames_ShouldUseFlux("pettarget") then
         local pw = FluxUnitFrames_GetConfiguredPetTargetBarWidth()
         ns.PetTargetFrame._fluxLayoutBaseWidth = pw
+        if UFm and UFm.RecordFrameDimensions then UFm.RecordFrameDimensions(ns.PetTargetFrame, pw) end
         ns.PetTargetFrame:SetWidth(pw)
         if UFm and UFm.ApplyEmulatedHorizontalSqueezeForFrame then
             UFm.ApplyEmulatedHorizontalSqueezeForFrame(ns.PetTargetFrame)

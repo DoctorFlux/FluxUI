@@ -1,5 +1,96 @@
 # Forever Blizzard bank ownership
 
+7 November default Blizzard bank direct UI lifecycle (BANK-NATIVE-06): user
+renews the no-Baganator close/layering fix. Source audit proves a missed path:
+restock inventory fireCloseIfGone suppresses its private close callback while
+Bank.IsOpen stays true. Earlier tests always delivered that callback. The bank
+button now uses BANKFRAME_OPENED/CLOSED directly through the existing shared
+Flux.Events dispatcher for native UI, independent of that inventory latch. A raw
+close hides immediately, invalidates delayed attaches and blocks manual/stale
+inventory-open resurrection until the next real open. Private callbacks remain
+for Baganator and as fallback if direct registration is unavailable. Two native
+subscriptions, no new frame/timer/ticker/polling or native-script hook.
+Native layering now uses at least HIGH and the highest parent/search/panel/close/
+NineSlice strata; level clears those children as well as the root. Native parent
+and left-of-search position remain. GetControl exposes the actual owned widget
+for diagnostics; no command/settings change. Baganator footer remains intact.
+1780 production checks across five clients/both owners/cold-warm merchant/direct-
+events-fallback modes PASS. Includes suppressed inventory close, stale shown
+flags, stale open callbacks, HIGH/DIALOG children and reopen. Native ownership168,
+visible Baganator260 and combined33 per Era/Anniversary PASS. Prior checkpoint
+rejects. Fresh Gethe Forever9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862)
+verifies close function/events/search owner. Native visuals/open-close/purchase/
+combat/taint/FPS remain pending; actual hovered-frame evidence still unavailable.
+Fresh external source/history/45 on-disk settings metadata verified. No game,
+foreground, WTF/profiler or manual-sync operation.
+[Evidence](validation/bank-direct-lifecycle-2026-11-07.json).
+
+7 November native bank owner investigation (BANK-NATIVE-05): user confirms
+Forever after /reload still shows the control behind/detached from the window
+and not disappearing on close. BANK-NATIVE-04 native acceptance is REJECTED;
+its desktop checks do not establish actual-client behavior. No further runtime
+layout change made yet. Read-only host enumeration confirms two running
+_forever_/Wow.exe clients; installed bank source matches current workspace hash.
+Available saved BugTabs has no bank/restock error entry, but is not live state.
+The current source already parents its native control to BankFrame, making the
+actual hovered frame/owner identity necessary before another speculative fix.
+User requested to type /fstack, hover the visible restock control and provide
+frame names, then disable /fstack. Await this evidence. No connected Witchcraft,
+UIForever or computer-use tool exists; no foreground/mouse/keyboard/clipboard
+control, game input or WTF/profiler writes. Fresh source/history checkpoint and
+45 settings metadata entries verified outside AddOns. Native placement/layering/
+hide/taint remain unresolved; preserve the Baganator footer and newer party work.
+
+7 November native bank attachment (BANK-NATIVE-04): user reports the no-Baganator
+button below the window and detached during opening/closing. Forever's control
+was deliberately a UIParent sibling; it now uses the native BankFrame parent and
+existing inside left-of-search anchor, inheriting visibility, movement and scale.
+This supersedes the earlier UIParent parent restriction for this owned control.
+Native scripts, purchases, mover and item decoration exclusions remain. Visible
+ancestor checks hide stale/unattached controls on all clients. Existing two open
+retries keep their cadence but use a close/reopen generation token, so stale
+callbacks cannot resurrect a closed control. No new frame/event/hook/timer/ticker.
+Baganator's full-size inside footer and existing settings/commands are retained.
+828 production checks across5 clients/both owners/cold+warm merchants PASS,
+including parent hide/show without callbacks, close/reopen retries, explicit
+hidden-bank attachment and a shown frame under a hidden owner. Prior checkpoint
+rejects; current code passes. Native ownership168/visibleBaganator260/combined33
+per Era/Anniversary PASS. Fresh dated source/history/45 settings metadata entries
+verified externally; no game/WTF/profiler/manual-sync operation. Existing pinned
+Gethe9dc84f0d3bbae1768ac3405b3716000bd93eda06 source retains search/template evidence.
+Native candidate placement/open-close/purchase/combat/taint/FPS remain pending;
+no connected native tool.
+[Evidence](validation/bank-native-attachment-2026-11-07.json).
+
+7 November bank restock slot follow-up (BANK-ICON-02): user rejects the first
+icon-only fix and the Forever outside-window placement. Baganator843's toolbar
+uses32x22 buttons; resizing only the hit rectangle left fixed64px merchant slot
+art at its36px design size. The whole36px control now scales uniformly to the
+shorter toolbar edge, including icon, frame, highlight/push and auto toggle.
+Native/combined handoff resets scale1. Transfer/Sort/Customise references work.
+Forever remains an addon-owned UIParent child but is visually inside BankFrame,
+RIGHT of button to LEFT of BankItemSearchBox,4px gap, vertically centered; this
+supersedes the previous external TOPRIGHT placement. Native bank hierarchy,
+scripts/purchase/movement/decorations stay untouched. Fresh Gethe Forever source
+9dc84f0d3bbae1768ac3405b3716000bd93eda06 (1.60.1.70862) verifies Mainline template
+and Camelot loading/search owner. Baganator read-only reference retains rights.
+358 production geometry/lifecycle checks PASS across5 clients/both bag owners/
+cold+warm merchant; prior checkpoint rejects. Native ownership168 and combined33
+per Era/Anniversary PASS. Native candidate pixels/input/taint/FPS remain pending;
+user screenshot reproductions retained; no connected client tool or game input.
+External fresh source/history verified;45 on-disk settings metadata read-only.
+No new frame/event/hook/timer/ticker. Existing bounded retries/click/drop/tooltip/
+auto settings retained.
+[Evidence](validation/bank-restock-slot-2026-11-07.json).
+
+7 November update: the user now requests the bank restock button on every client
+with and without Baganator. The restock control is available beside the native
+Forever bank as an addon-owned UIParent child anchored outside its controls.
+Only the previous restock suppression/retry exclusion below is superseded;
+native BankFrame parenting, scripts, movement, purchase and decoration exclusions
+remain. Candidate native visual/input/taint verification is pending. See
+[bank icon evidence](validation/bank-restock-icon-2026-11-07.json).
+
 The user supplied a repeated ADDON FORBIDDEN PurchaseBankTab stack and requested
 that Forever use Blizzard's bank. Camelot BankFrame.SetTab invokes PurchaseFirstSlot
 on opening: the native function purchases a free first character tab when available.

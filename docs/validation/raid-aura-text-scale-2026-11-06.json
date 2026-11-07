@@ -1,0 +1,361 @@
+{
+  "date": "2026-11-06",
+  "capturedUTC": "2026-11-06T20:09:29.774703+00:00",
+  "requirement": "REQ-RF-27: user requests font scaling with buff/debuff icons after native literal59 measured15.2 wide inside12px.",
+  "checkpoint": {
+    "name": "Raid-rewrite-20261106T195927Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1671,
+    "settingsFiles": 156,
+    "sourceZipSHA256": "a3ae97829a461fff204da1db80da7c6505a2796da5e98ab2eaa56f0a37fa7e82",
+    "verification": "ZIP entries/history PASS; settings are on-disk only"
+  },
+  "userNativeProbe": {
+    "raw": "aura-clock-probe1: show=0/1/0/1 seeded=1/0/1 numeric=0/1 style=1/1 fmt=59,1m,30m font=7w12 fit=9:10.1/0,59:15.2/1,30s:19.3/1",
+    "scope": "Separate owned public cooldown, literal times and known font samples. No actual aura children/durations queried.",
+    "interpretation": [
+      "Own duration-object and numeric setters show positive clocks and clear zero clocks automatically; previous hidden-template hypothesis is not confirmed.",
+      "Native formatter produced59,1m,30m for plain inputs; this is not a claim of actual aura rendering.",
+      "Known59 width15.2 and30s width19.3 exceed fixed12px; fixed7->6 font floor cannot prove fit."
+    ]
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "5fcd4b40692c18730700b08059942247021de3c56025d30ad24813f358cd2eba",
+    "RaidFrame/FluxRaidVisuals.lua": "82fda29ab2ece8c5fde0db797c59ad5e34ec945647185998adfbe2475d31b459",
+    "RaidFrame/FluxRaidPreview.lua": "52e520db659a922654bb4e84b88ab860a1901edfa39fc51d08b200a794d2105e"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "2fea0fa6e3d7f7a27f1e0050ccc6046193ccc4071e29bfdf27f6f8e20f77fbea",
+    "RaidFrame/FluxRaidVisuals.lua": "0e231d99ba44d0d64db8aded91aa29c52623d174aa614b762e2a3171aec19c9e",
+    "RaidFrame/FluxRaidPreview.lua": "ea2d42794d39776bc314089d39d7a93b6ac42b887270bbc4c16d0f7ddec50bb5"
+  },
+  "implementation": [
+    "Keep base font7 but apply proportional SetTextScale before native sink registration.",
+    "One separate public unanchored measuring FontString resets textScale1 and measures static59/59m/23h/99d width and height.",
+    "Scale=.95*min(availableWidth/maxMeasuredWidth,availableHeight/maxMeasuredHeight); permits growth>1, no6px floor.",
+    "Cache includes font/base/width/height; legacy readable final sizing and preview apply the same scaler.",
+    "Existing swipe, transparency, native categories, duration owner and3x2 icon layout remain unchanged."
+  ],
+  "fullDesktop": {
+    "scripts": 193,
+    "failures": 0,
+    "syntaxFiles": 855,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "sourceDrift": {
+      "beforeCount": 855,
+      "afterCount": 855,
+      "unchanged": true,
+      "corpusSHA256": "9e696b495917b52ae056b63287a436e2394141e2e5dd5fede46bd097c99dbf16"
+    }
+  },
+  "focusedResults": [
+    {
+      "path": "tests/raid_aura_native_filters.lua",
+      "exit": 0,
+      "wallSeconds": 0.352,
+      "output": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n"
+    },
+    {
+      "path": "tests/raid_aura_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.0275,
+      "output": "Raid aura options/preview: 99 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+    },
+    {
+      "path": "tests/raid_healer_auras.lua",
+      "exit": 0,
+      "wallSeconds": 0.1117,
+      "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+    },
+    {
+      "path": "tests/raid_healer_visuals.lua",
+      "exit": 0,
+      "wallSeconds": 0.0489,
+      "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+    }
+  ],
+  "pairedFunctionalRegressions": {
+    "scope": "Five alternating fresh-process functional pairs per case; no native CPU/FPS/time measurement.",
+    "sourceHashes": {
+      "auras": {
+        "baseline": "5fcd4b40692c18730700b08059942247021de3c56025d30ad24813f358cd2eba",
+        "candidate": "2fea0fa6e3d7f7a27f1e0050ccc6046193ccc4071e29bfdf27f6f8e20f77fbea"
+      },
+      "visuals": {
+        "baseline": "82fda29ab2ece8c5fde0db797c59ad5e34ec945647185998adfbe2475d31b459",
+        "candidate": "0e231d99ba44d0d64db8aded91aa29c52623d174aa614b762e2a3171aec19c9e"
+      }
+    },
+    "pairs": [
+      {
+        "case": "auras",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:245: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:245: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:245: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:245: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "auras",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_auras.lua:4: bounded outlined native duration is centered above the icon with a dark shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:245: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "Raid healer auras: 4221 checks; bounded three-by-two side blocks, strict filters, centered duration sinks and full-icon cooldown swipe; seven rejected negative controls; client visuals pending\n"
+        }
+      },
+      {
+        "case": "visuals",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_visuals.lua:130: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:130: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+        }
+      },
+      {
+        "case": "visuals",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_visuals.lua:130: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:130: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "visuals",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_visuals.lua:130: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:130: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+        }
+      },
+      {
+        "case": "visuals",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+        },
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_visuals.lua:130: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:130: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "visuals",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "output": "lua: tests/raid_healer_visuals.lua:130: assertion failed!\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:130: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "output": "raid healer visuals: 659 checks passed (desktop only)\n"
+        }
+      }
+    ],
+    "variation": "All10 baseline runs rejected; all10 candidate runs pass."
+  },
+  "sourceEvidence": [
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "156e370421081e6a8ec78afdee8e4306686cecc99f0d2163c1b62ce9a5ddbe96",
+      "bytes": 13725
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "sha256": "ddb7fe58535a3e2ad5081e0813741bf089c77f568aa113ad8476ca9160a98231",
+      "bytes": 4645
+    },
+    {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_SubscriptionInterstitialUI/Blizzard_SubscriptionInterstitialUI.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SubscriptionInterstitialUI/Blizzard_SubscriptionInterstitialUI.lua",
+      "sha256": "553ddab0ee04b2f8c77af0692c2bb1fafd4e920df9f1e08c2dd084d15376f43f",
+      "bytes": 4944
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "156e370421081e6a8ec78afdee8e4306686cecc99f0d2163c1b62ce9a5ddbe96",
+      "bytes": 13725
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "sha256": "ddb7fe58535a3e2ad5081e0813741bf089c77f568aa113ad8476ca9160a98231",
+      "bytes": 4645
+    },
+    {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "path": "Interface/AddOns/Blizzard_SubscriptionInterstitialUI/Blizzard_SubscriptionInterstitialUI.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_SubscriptionInterstitialUI/Blizzard_SubscriptionInterstitialUI.lua",
+      "sha256": "992d225dec764cdda0b4d8bafeda9b2ca36862cb36a23620666b476dfad032db",
+      "bytes": 6441
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "8329490f7a79eddbb7d7f6898603bd11ddc334182f3a7ba97912228afdb0b4e7",
+      "bytes": 11361
+    },
+    {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "sha256": "ddb7fe58535a3e2ad5081e0813741bf089c77f568aa113ad8476ca9160a98231",
+      "bytes": 4645
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "8329490f7a79eddbb7d7f6898603bd11ddc334182f3a7ba97912228afdb0b4e7",
+      "bytes": 11361
+    },
+    {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "sha256": "ddb7fe58535a3e2ad5081e0813741bf089c77f568aa113ad8476ca9160a98231",
+      "bytes": 4645
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFontStringAPIDocumentation.lua",
+      "sha256": "8329490f7a79eddbb7d7f6898603bd11ddc334182f3a7ba97912228afdb0b4e7",
+      "bytes": 11361
+    },
+    {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "path": "Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_SharedXML/SecureUtil.lua",
+      "sha256": "1760c308e6c2a6a1b214f8fa510b2b9afbb518a8f2c607c3b85c6e27f38ef3e8",
+      "bytes": 4784
+    }
+  ],
+  "resources": "Existing single cached measuring owner reused; no new frame/timer/ticker or secret aura getter.",
+  "nativeAcceptance": "Provided own-widget probe accepted for its exact scope. Newly fitted actual aura glyphs/swipe remain pending user check; other clients/combat/taint/FPS unverified.",
+  "clientCopies": {
+    "clients": 4,
+    "files": 12,
+    "backupName": "Raid-text-scale-originals-20261106T201045Z",
+    "hashVerification": "PASS",
+    "scope": "Only three tested Lua files per existing client; guarded originals; no XML/TOC/settings/profiler/input changes."
+  }
+}

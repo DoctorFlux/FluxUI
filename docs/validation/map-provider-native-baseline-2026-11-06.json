@@ -1,0 +1,79 @@
+{
+  "scope": "Actual Forever read-only provenance observations around normal Flux Map tab activation. This is not FPS, leak, combat or all-client acceptance.",
+  "client": {
+    "version": "1.60.1",
+    "build": 70790,
+    "pid": 24848,
+    "window": 133690
+  },
+  "source": {
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "actualCheckpoint": "Random-spike-resume-20261106T170042Z",
+    "ProvidersSHA256": "94df2a8c65e5cc76b98b0f2f53084f74df498d7dd958c7ccfe3683c329862913",
+    "identityNote": "Baseline bytes taken from verified pre-edit external source archive, not potentially changing current files. Native loaded bytes not directly fingerprinted."
+  },
+  "before": {
+    "utc": "2026-11-06T17:02:29.2598971Z",
+    "tab": "Meter",
+    "MapCanvasPinMixin.CheckMouseButtonPassthrough": [
+      true,
+      null
+    ],
+    "QuestPinMixin.CheckMouseButtonPassthrough": [
+      true,
+      null
+    ],
+    "BaseMapPoiPinMixin.CheckMouseButtonPassthrough": [
+      true,
+      null
+    ],
+    "BattlefieldMapFrame.AcquirePin": [
+      true,
+      null
+    ],
+    "WorldMapFrame.AcquirePin": [
+      true,
+      null
+    ],
+    "watchActive": false,
+    "scriptProfile": 0,
+    "inCombat": false
+  },
+  "trigger": {
+    "command": "/fw tab Map",
+    "mode": "Existing normal slash command; no direct native writer diagnostic"
+  },
+  "after": {
+    "utc": "2026-11-06T17:06:47.1118680Z",
+    "tab": "Map",
+    "MapCanvasPinMixin.CheckMouseButtonPassthrough": [
+      false,
+      "_FluxUI"
+    ],
+    "QuestPinMixin.CheckMouseButtonPassthrough": [
+      false,
+      "_FluxUI"
+    ],
+    "BaseMapPoiPinMixin.CheckMouseButtonPassthrough": [
+      false,
+      "_FluxUI"
+    ],
+    "BattlefieldMapFrame.AcquirePin": [
+      false,
+      "_FluxUI"
+    ],
+    "providerAttached": true
+  },
+  "restore": {
+    "utc": "2026-11-06T17:07:08.5502242Z",
+    "command": "/fw tab Meter",
+    "note": "Restores selected tab, not taint. Reload is required to obtain fresh native fields; no claim that restored function values restore provenance."
+  },
+  "interpretation": "Map activation demonstrably taints shared native pin methods and its AcquirePin field. The native acquisition wrapper is the source-verified writer. This is a separate concrete defect; it does not establish the cause of the earlier3185ms frame gap.",
+  "screenshots": {
+    "map-metadata-resume-baseline.png": "bfd44f804f39a05e279871f6b9d12b7c3f41ee8a3174116dbf8b80d86a30bb76",
+    "map-tab-baseline-before.png": "531538f37f86afd850200b7079c59e7b2294bf48c3b06a14526cab427768d7a4",
+    "meter-tab-baseline-restore.png": "5e57ddfad31e359e49677997e3ccdfe65ff2f3f5bea8d43aceb958e75f68ebbd"
+  },
+  "input": "Verified client/window, stable non-game foreground throughout messages; no activation, physical mouse/keyboard or clipboard control."
+}

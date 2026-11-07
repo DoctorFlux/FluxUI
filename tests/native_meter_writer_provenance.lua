@@ -165,8 +165,9 @@ for _, gamepad in ipairs({ false, true }) do
             bottomSlots = {{ kind = "blizzard", damageMeterType = 4 }} }
         meter:Embed(s.host, missing)
         local status = meter:GetLayoutStatus()
-        check(status.configurationRequired and #status.missingTypes == 2 and status.visibleNativePanes == 0,
-            "missing types request native UI configuration instead of displaying the wrong data")
+        check(status.configurationRequired and #status.missingTypes == 2 and status.visibleNativePanes == 2
+            and status.setupPanes == 2,
+            "missing types keep native menus accessible with explicit setup panes instead of wrong data")
         check(s.windows[1].meterType == 0 and s.windows[2].meterType == 2 and #s.windows == 2,
             "missing types never create or repurpose native windows")
         local messages = #s.messages

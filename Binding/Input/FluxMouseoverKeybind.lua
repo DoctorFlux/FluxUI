@@ -24,6 +24,10 @@
 -- so the redirected /click automatically targets the hovered unit.
 
 local addonName, ns = ...
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterAttributeDriver = (useFluxDrivers and FluxDrivers.RegisterAttributeDriver) or RegisterAttributeDriver
+local UnregisterAttributeDriver = (useFluxDrivers and FluxDrivers.UnregisterAttributeDriver) or UnregisterAttributeDriver
 
 if not FLUX_API then
     return
@@ -71,6 +75,7 @@ local pendingHoverRoutingFlush = false
 local ufHoverCount = 0
 local pendingDriverPark = false
 local SyncHoverRoutingLifecycle
+local WrapHovercastEnterLeave -- forward (also used by native wrap-only reapply)
 local WrapHovercastMouseChildren -- forward (used by ReapplyAllRegisteredFrames)
 local NoteUfHoverEnter -- forward
 
@@ -136,6 +141,9 @@ local spellHoverMouseButtons = {}
 --- Parallel to spellHoverKeys: true when the chord is a real mouse BUTTON (3/4/5), not wheel/keyboard.
 --- Classic clients cast mouse buttons via frame typeN attrs, so they must skip the header SetBindingClick.
 local spellHoverIsButton = {}
+-- Left/right healer clicks stay on owned raid cells. Never turn them into
+-- global hover overrides that could consume native targeting or menus.
+local spellHoverIsPrimary = {}
 --- Parallel hovercast macro bodies (Clicked-style: inline `macrotext` on UF, not `/click` indirection).
 local spellHoverMacroTexts = {}
 --- Normalized chords in expanded `spellHoverKeys`; bar scan / UF attrs skip these (spell bind wins on UF).
@@ -209,6 +217,21 @@ local function ClassifyMouseKeybind(keybind)
     return nil
 end
 
+local function PrimaryRaidMouseChord(keybind)
+    local prefix, baseKey = ParseKeybind(string.upper(keybind))
+    local index = tonumber(baseKey:match("^BUTTON([12])$"))
+    if not index then return nil end
+    -- META has no ordinary SecureUnitButton modifier prefix. Do not silently
+    -- reinterpret a Command chord as an unmodified healer click.
+    if string.upper(keybind):find("META%-") or string.upper(keybind):find("CMD%-") then return nil end
+    -- Match SecureButton_GetModifierPrefix's native ALT/CTRL/SHIFT order.
+    local nativePrefix = ""
+    if prefix:find("alt%-") then nativePrefix = nativePrefix .. "alt-" end
+    if prefix:find("ctrl%-") then nativePrefix = nativePrefix .. "ctrl-" end
+    if prefix:find("shift%-") then nativePrefix = nativePrefix .. "shift-" end
+    return index, nativePrefix
+end
+
 --- _HC has no ButtonFX KeyBind remap. LeftButton hits type / type1 + macrotext1.
 local function SpellHoverVirtualMouseButton(_chord)
     return "LeftButton"
@@ -247,6 +270,8 @@ local function IndexSpellHoverRow(chord, btn)
     spellHoverMouseButtons[#spellHoverMouseButtons + 1] = SpellHoverVirtualMouseButton(chord)
     local kind = ClassifyMouseKeybind(chord)
     spellHoverIsButton[#spellHoverKeys] = (kind == "button")
+    local _, baseKey = ParseKeybind(string.upper(chord))
+    spellHoverIsPrimary[#spellHoverKeys] = baseKey == "BUTTON1" or baseKey == "BUTTON2"
     spellHoverChordSet[nk] = true
     local col = FindChordColumn(nk)
     if col then
@@ -261,6 +286,7 @@ local function RebuildSpellHoverChordSet()
     wipe(spellHoverBtns)
     wipe(spellHoverMouseButtons)
     wipe(spellHoverIsButton)
+    wipe(spellHoverIsPrimary)
     wipe(spellHoverMacroTexts)
 
     if spellHoverPrebuiltFromDirectBind then
@@ -552,6 +578,44 @@ local function SyncSpellHoverMacroTexts(passedBodies)
     end
 end
 
+local function ClearPrimaryRaidClickAttributes(frame)
+    local previous = frame.__fluxPrimaryRaidClickAttrs
+    if not previous then return end
+    for key, state in pairs(previous) do
+        -- Another integration may have taken ownership since our last apply.
+        if frame:GetAttribute(key) == state.applied then
+            frame:SetAttribute(key, state.previous)
+        end
+    end
+    frame.__fluxPrimaryRaidClickAttrs = nil
+end
+
+local function ApplyPrimaryRaidClickAttributes(frame)
+    ClearPrimaryRaidClickAttributes(frame)
+    if not frame._fluxRaidUnit then return end
+    local previous = {}
+    local function set(key, value)
+        if not previous[key] then previous[key] = { previous = frame:GetAttribute(key) } end
+        previous[key].applied = value
+        frame:SetAttribute(key, value)
+    end
+    for i = 1, #spellHoverKeys do
+        local index, prefix = PrimaryRaidMouseChord(spellHoverKeys[i])
+        local body = spellHoverMacroTexts[i]
+        if type(body) ~= "string" or body == "" then
+            body = ResolveSpellHoverMacrotextFromFrame(spellHoverBtns[i])
+        end
+        if index and type(body) == "string" and body ~= "" and not body:match("^%s*/click%s") then
+            -- These are existing explicit Flux hover programs; retain target
+            -- conditions, ranks and profile policy rather than inventing binds.
+            set(prefix .. "type" .. index, "macro")
+            set(prefix .. "macro" .. index, nil)
+            set(prefix .. "macrotext" .. index, body)
+        end
+    end
+    if next(previous) then frame.__fluxPrimaryRaidClickAttrs = previous end
+end
+
 --- Clicked-style UF attrs: spell-hover mouse chords fire hovercast macro on the UF frame.
 --- Classic: inline `macrotext` with [@mouseover] clauses (not `/click` _HC — unreliable on legacy clients).
 --- Bare `BUTTONn` uses `typeN` only (not `*typeN`) so SHIFT/CTRL mini-row chords stay on the bar.
@@ -619,6 +683,7 @@ local function ApplyKeybindAttributes(frame)
     ApplySpellHoverKeybindAttributes(frame, tracked)
     ApplyBarModifierPassthroughAttrs(frame, tracked, buttonMap, buttonDefaults)
     frame.__fluxKeybindAttrs = tracked
+    ApplyPrimaryRaidClickAttributes(frame)
 end
 
 -- ---------------------------------------------------------------------------
@@ -723,6 +788,7 @@ local function ApplyEditModeSpellHoverFrameSetup(frame)
             frame:SetPassThroughButtons()
         end
     end
+    ApplyPrimaryRaidClickAttributes(frame)
 end
 
 -- Build the full list of override binding keys and target frame names for
@@ -854,6 +920,7 @@ local function UpdateSecureBindingData()
         spellHoverBtnNames          = %s
         spellHoverMouseButtons      = %s
         spellHoverIsButton          = %s
+        spellHoverIsPrimary         = %s
         allowMouseButtonBindingClick = %s
     ]],
         FormatNewtable(wheelKeys),
@@ -865,6 +932,7 @@ local function UpdateSecureBindingData()
         FormatNewtable(spellHoverBtns),
         FormatNewtable(spellHoverMouseButtons),
         FormatNewtableBool(spellHoverIsButton, #spellHoverKeys),
+        FormatNewtableBool(spellHoverIsPrimary, #spellHoverKeys),
         isEditModeClient and "true" or "false"
     )
     if not HeaderExecute(command) then
@@ -903,6 +971,7 @@ local function CreateHeader()
         spellHoverBtnNames          = newtable()
         spellHoverMouseButtons      = newtable()
         spellHoverIsButton          = newtable()
+        spellHoverIsPrimary         = newtable()
         allowMouseButtonBindingClick = false
         currentButton               = nil
     ]])
@@ -938,7 +1007,7 @@ local function CreateHeader()
                 -- Classic (no Edit Mode): mouse buttons fire via the frame's own typeN
                 -- attrs. An override binding would capture the button globally and block
                 -- the frame click, so skip SetBindingClick for real mouse buttons here.
-                if not (isBtn and not allowMouseButtonBindingClick) then
+                if not spellHoverIsPrimary[i] and not (isBtn and not allowMouseButtonBindingClick) then
                     self:SetBindingClick(true, key, btnName, mbtn or "LeftButton")
                 end
             end
@@ -961,7 +1030,7 @@ local function CreateHeader()
             local key   = spellHoverKeys[i]
             local isBtn = spellHoverIsButton[i]
             -- Mirror setup-bindings: only clear what we actually bound.
-            if key and not (isBtn and not allowMouseButtonBindingClick) then
+            if key and not spellHoverIsPrimary[i] and not (isBtn and not allowMouseButtonBindingClick) then
                 self:ClearBinding(key)
             end
         end
@@ -1052,8 +1121,19 @@ local function HookUfHoverDriver(frame)
         return
     end
     frame._fluxUfHoverDriverHooked = true
-    pcall(frame.HookScript, frame, "OnEnter", NoteUfHoverEnter)
-    pcall(frame.HookScript, frame, "OnLeave", NoteUfHoverLeave)
+    local entered = false
+    pcall(frame.HookScript, frame, "OnEnter", function()
+        if entered then return end
+        entered = true
+        NoteUfHoverEnter()
+    end)
+    local function leave()
+        if not entered then return end
+        entered = false
+        NoteUfHoverLeave()
+    end
+    pcall(frame.HookScript, frame, "OnLeave", leave)
+    pcall(frame.HookScript, frame, "OnHide", leave)
 end
 
 -- ---------------------------------------------------------------------------
@@ -1073,7 +1153,7 @@ local LEAVE_SNIPPET = [[
     end
 ]]
 
-local function WrapHovercastEnterLeave(frame)
+WrapHovercastEnterLeave = function(frame)
     if not header or not frame then return false end
     if frame.__fluxHovercastWrapped then return false end
     if frame.IsForbidden and frame:IsForbidden() then return false end
@@ -1083,14 +1163,16 @@ local function WrapHovercastEnterLeave(frame)
         if R and R.WrapScript then
             local enterOk = R.WrapScript(header, frame, "OnEnter", ENTER_SNIPPET)
             local leaveOk = R.WrapScript(header, frame, "OnLeave", LEAVE_SNIPPET)
-            wrapped = enterOk and leaveOk and true or false
+            local hideOk = R.WrapScript(header, frame, "OnHide", LEAVE_SNIPPET)
+            wrapped = enterOk and leaveOk and hideOk and true or false
         end
     elseif header.WrapScript then
         -- Camelot Restricted.WrapScript no-ops. Call the header directly so UF
         -- OnEnter can SetBindingClick. Other Restricted callers stay gated.
         local enterOk = pcall(header.WrapScript, header, frame, "OnEnter", ENTER_SNIPPET)
         local leaveOk = pcall(header.WrapScript, header, frame, "OnLeave", LEAVE_SNIPPET)
-        wrapped = enterOk and leaveOk and true or false
+        local hideOk = pcall(header.WrapScript, header, frame, "OnHide", LEAVE_SNIPPET)
+        wrapped = enterOk and leaveOk and hideOk and true or false
     end
     if not wrapped then
         return false
@@ -1111,28 +1193,64 @@ local function UnwrapHovercastEnterLeave(frame)
         if R and R.UnwrapScript then
             R.UnwrapScript(header, frame, "OnEnter")
             R.UnwrapScript(header, frame, "OnLeave")
+            R.UnwrapScript(header, frame, "OnHide")
         end
     elseif header.UnwrapScript then
         pcall(header.UnwrapScript, header, frame, "OnEnter")
         pcall(header.UnwrapScript, header, frame, "OnLeave")
+        pcall(header.UnwrapScript, header, frame, "OnHide")
     end
     frame.__fluxHovercastWrapped = nil
     frame.__fluxHovercastOwner = nil
 end
 
+local function OpaqueMouseValue(value)
+    local secrets = Flux and Flux.Secrets
+    local predicate = secrets and secrets.IsSecretValue or _G.issecretvalue
+    return predicate and predicate(value) or false
+end
+
+local function NativeAuraChild(child, owner)
+    -- These references are addon-owned. Do not call even getters on native
+    -- AuraContainer/AuraButton objects or walk into their restricted subtrees.
+    if child == owner._fluxPrivateAuraHost then return true end
+    for _, container in pairs(owner._fluxAuraContainers or {}) do
+        if child == container then return true end
+    end
+    for _, button in ipairs(owner._fluxNativeAuraButtons or {}) do
+        if child == button then return true end
+    end
+    return false
+end
+
 local function ShouldWrapHovercastChild(child, owner)
-    if not child or child == owner then return false end
-    if child.IsForbidden and child:IsForbidden() then return false end
-    if child.__fluxHovercastWrapped then return false end
-    if registeredLookup[child] then return false end
-    if child.IsMouseEnabled and not child:IsMouseEnabled() then return false end
-    -- Need a scriptable frame (Button/Frame), not a Texture/FontString.
-    if not child.SetScript and not child.HookScript then return false end
-    -- WrapScript on Blizzard StatusBars taints UnitFrameHealthBar_Update / mana updates.
-    if child.IsObjectType and child:IsObjectType("StatusBar") then return false end
-    if child == owner.healthbar or child == owner.manabar then return false end
-    if child == owner.HealthBar or child == owner.PowerBar then return false end
-    return true
+    if not child or child == owner or NativeAuraChild(child, owner) then return false, false end
+    if child.IsForbidden then
+        local forbidden = child:IsForbidden()
+        if OpaqueMouseValue(forbidden) or forbidden then return false, false end
+    end
+    -- Check structural exclusions before mouse getters. StatusBars may expose
+    -- opaque mouse state and must never acquire binding wrappers.
+    if child == owner.healthbar or child == owner.manabar
+        or child == owner.HealthBar or child == owner.PowerBar
+        or child == owner.healthBar or child == owner.powerBar then return false, false end
+    if child.GetObjectType then
+        local kind = child:GetObjectType()
+        if OpaqueMouseValue(kind) or kind == "AuraContainer" or kind == "AuraButton" or kind == "StatusBar" then return false, false end
+    elseif child.IsObjectType then
+        local statusBar = child:IsObjectType("StatusBar")
+        if OpaqueMouseValue(statusBar) or statusBar then return false, false end
+    end
+    if not child.SetScript and not child.HookScript then return false, false end
+    if child.IsMouseEnabled then
+        local enabled = child:IsMouseEnabled()
+        -- The 13:01:05 native failure returned a secret here. An unknown
+        -- value establishes neither mouse ownership nor permission to recurse.
+        if OpaqueMouseValue(enabled) then return false, false end
+        if not enabled then return false, true end
+    end
+    if child.__fluxHovercastWrapped or registeredLookup[child] then return false, true end
+    return true, true
 end
 
 --- Aura buttons / spec / transmog catchers steal OnEnter from FluxUnitFrameOuter.
@@ -1157,7 +1275,8 @@ WrapHovercastMouseChildren = function(owner)
         for i = 1, #children do
             if count >= MAX_HOVERCAST_WRAP_CHILDREN then return end
             local child = children[i]
-            if ShouldWrapHovercastChild(child, owner) then
+            local wrap, descend = ShouldWrapHovercastChild(child, owner)
+            if wrap then
                 if WrapHovercastEnterLeave(child) then
                     child.__fluxHovercastOwner = owner
                     HookUfHoverDriver(child)
@@ -1166,7 +1285,7 @@ WrapHovercastMouseChildren = function(owner)
                 end
             end
             -- Descend even when child itself was not wrapped (mouse-disabled parent of auras).
-            if child and child.GetChildren and depth < MAX_HOVERCAST_WRAP_DEPTH then
+            if descend and child.GetChildren and depth < MAX_HOVERCAST_WRAP_DEPTH then
                 walk(child, depth + 1)
             end
         end
@@ -1347,20 +1466,27 @@ local function RegisterFrame(frame)
     -- a registered unit frame (UPDATE_MOUSEOVER_UNIT alone is unreliable).
     if not frame._fluxMacrotextPeekHooked and frame.HookScript then
         frame._fluxMacrotextPeekHooked = true
+        local entered = false
         pcall(frame.HookScript, frame, "OnEnter", function()
+            if entered then return end
+            entered = true
             local PP = _G.FluxBindingPushPress
             if PP and PP.WakeUfHoverFromUnitFrame then
                 pcall(PP.WakeUfHoverFromUnitFrame)
             end
             RequestHoverPeek()
         end)
-        pcall(frame.HookScript, frame, "OnLeave", function()
+        local function leave()
+            if not entered then return end
+            entered = false
             local PP = _G.FluxBindingPushPress
             if PP and PP.ParkUfHoverFromUnitFrame then
                 pcall(PP.ParkUfHoverFromUnitFrame)
             end
             RequestHoverPeek()
-        end)
+        end
+        pcall(frame.HookScript, frame, "OnLeave", leave)
+        pcall(frame.HookScript, frame, "OnHide", leave)
     end
 
     table.insert(registeredFrames, frame)
@@ -1388,6 +1514,8 @@ local function UnregisterFrame(frame)
             frame.__fluxKeybindAttrs = nil
         end
     end
+
+    if not frame._fluxBlizzardSecureWrapOnly then ClearPrimaryRaidClickAttributes(frame) end
 
     UnwrapHovercastMouseChildren(frame)
     UnwrapHovercastEnterLeave(frame)
@@ -1675,6 +1803,17 @@ local function RegisteredFrameContainsRegion(frame, region)
     return false
 end
 
+local function AnyChildUnderMouse(...)
+    for i = 1, select("#", ...) do
+        if FrameUnderMouse(select(i, ...)) then return true end
+    end
+    return false
+end
+
+local function ChildrenUnderMouse(frame)
+    return AnyChildUnderMouse(frame:GetChildren())
+end
+
 local function _PerformHoverContextScan()
     if GetMouseFoci then
         local ok, foci = pcall(GetMouseFoci)
@@ -1695,14 +1834,8 @@ local function _PerformHoverContextScan()
             return true
         end
         if f and f.GetChildren then
-            local ok, children = pcall(f.GetChildren, f)
-            if ok and type(children) == "table" then
-                for ci = 1, #children do
-                    if FrameUnderMouse(children[ci]) then
-                        return true
-                    end
-                end
-            end
+            local ok, hovered = pcall(ChildrenUnderMouse, f)
+            if ok and hovered then return true end
         end
     end
     return false

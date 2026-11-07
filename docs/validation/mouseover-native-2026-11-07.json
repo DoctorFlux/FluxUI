@@ -1,0 +1,192 @@
+{
+  "changeID": "MOUSEOVER-NATIVE-20261107",
+  "dateUTC": "2026-11-07T07:44:31.675375+00:00",
+  "checkpoint": {
+    "capturedUTC": "2026-11-07T07:29:46.1574936Z",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceSHA256": "868df435a163c8d206150694845cfcb76cd90b52c55f1a2bd70e974bf66a4317",
+    "historySHA256": "ae160da84af755167efb8b189958f4ef87fe06bccac3be1aa76917023fa2ff06",
+    "historyVerification": "git bundle verify PASS before edits; complete main history",
+    "settingsArchiveSHA256": "52dec7de57b2368ecfeb7776673d6c4a03823c88cb4546260834b28c95192e12",
+    "availableSettingsMetadata": 50,
+    "settingsScope": "Existing external recovery archive verified; fresh metadata only; no WTF/profiler writes."
+  },
+  "pins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "upstream": [
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "sha256": "97627da5a92f66291becc986d4124bcc70f4926156b451249919c612955caa62",
+      "normalization": "CRLF to LF; terminal newlines removed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "live",
+      "path": "Interface/AddOns/Blizzard_ClickBindingUI/Blizzard_ClickBindingUI.lua",
+      "sha256": "8b08f0d69451962a771ddc360d6a6e936413f80258c22a4c6fda85d258d82c04",
+      "normalization": "CRLF to LF; terminal newlines removed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ClickBindingUI/Blizzard_ClickBindingUI.lua"
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua",
+      "sha256": "ca0bdafb4329045bfc6019e2979dedb34b858e22352c542adf2951f996c2a4b9",
+      "normalization": "CRLF to LF; terminal newlines removed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua"
+    },
+    {
+      "branch": "forever",
+      "path": "Interface/AddOns/Blizzard_ClickBindingUI/Blizzard_ClickBindingUI.lua",
+      "sha256": "8b08f0d69451962a771ddc360d6a6e936413f80258c22a4c6fda85d258d82c04",
+      "normalization": "CRLF to LF; terminal newlines removed",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/9dc84f0d3bbae1768ac3405b3716000bd93eda06/Interface/AddOns/Blizzard_ClickBindingUI/Blizzard_ClickBindingUI.lua"
+    }
+  ],
+  "baselineSHA256": {
+    "Core/Engine/MouseoverCast.lua": "8c8c9344283502599c58f53ea5f26f302727937e30bb393d044c3b9fe49c3311",
+    "Core/Engine/Range.lua": "10e2efc0b97b9bb9a744ee5e9556718504ff5a486c1100f6a4d1bbfa7960f16c",
+    "Core/Engine/SpellBookChrome.lua": "3c401a72525511bd748aaefad98733d75ff5264643774472ccc413fbe54855f5",
+    "Binding/Core/Apply.lua": "ec55e39d113d36513767cf2efde099557e362d92aadd4ba76fa5e310d1ac4ce1",
+    "AddonOptions/FluxOptionsActionBars_Bar.lua": "3c648b55eb705672853672c395084e3433d52c6c9958bbd149732f3fe7342a4e",
+    "FluxDefaultSettings.lua": "cf42c23c388fbfd0dce36261d3c2be11b0446eb58228a6e305a31c304e181590",
+    "Bars/_tmp_barsmoke.lua": "5f600e94f03c26f73a74766309b6d876f629200d5ea5a7f6ab2c616061078291"
+  },
+  "candidateSHA256": {
+    "Core/Engine/MouseoverCast.lua": "c7cce425aa459a8bd4334b16f5a9e027c2d3d3d97c6723161245468abee5cac8",
+    "Core/Engine/Range.lua": "c07a42fced1f513c334eaa7be5ed9e3562ee4e8b67162837f2e881bed17fd714",
+    "Core/Engine/SpellBookChrome.lua": "71027cca57997d61a43a628c6d105afd2a424f1bb92ec0eff44ec8bb36524983",
+    "Binding/Core/Apply.lua": "311a9bd42f833c7c6ba63762427de45ab99db664ce008a6afda576d64b431c5a",
+    "AddonOptions/FluxOptionsActionBars_Bar.lua": "14a69c07fbd5507f95f2c127623f947019aca2bef5c20bf8d3fcafb040b37a8d",
+    "FluxDefaultSettings.lua": "fc824353f1ad1e415d6dcbb9fbf4b400d70a4ce32ab63d2f92bb195e6c672844",
+    "Bars/_tmp_barsmoke.lua": "dcf1cc79d643602db0d95819879e429dab14c0395082d956e161240b4a7fe946",
+    "tests/mouseover_native.lua": "1a036a3aef7f65224b781d63b4ce5b31aae3a9fe45060abbcb1da47fd680678a"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.016011,
+      "output": "lua: tests/mouseover_native.lua:3: live native detection supports the global CVar getter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/mouseover_native.lua:3: in local 'check'\n\ttests/mouseover_native.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.025772,
+      "output": "native mouseover: 388 checks passed; native taint/visual/input/FPS pending\n"
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.023007,
+      "output": "native mouseover: 388 checks passed; native taint/visual/input/FPS pending\n"
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.014152,
+      "output": "lua: tests/mouseover_native.lua:3: live native detection supports the global CVar getter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/mouseover_native.lua:3: in local 'check'\n\ttests/mouseover_native.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.015725,
+      "output": "lua: tests/mouseover_native.lua:3: live native detection supports the global CVar getter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/mouseover_native.lua:3: in local 'check'\n\ttests/mouseover_native.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.027967,
+      "output": "native mouseover: 388 checks passed; native taint/visual/input/FPS pending\n"
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.02508,
+      "output": "native mouseover: 388 checks passed; native taint/visual/input/FPS pending\n"
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.013891,
+      "output": "lua: tests/mouseover_native.lua:3: live native detection supports the global CVar getter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/mouseover_native.lua:3: in local 'check'\n\ttests/mouseover_native.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.015066,
+      "output": "lua: tests/mouseover_native.lua:3: live native detection supports the global CVar getter\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/mouseover_native.lua:3: in local 'check'\n\ttests/mouseover_native.lua:124: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.027129,
+      "output": "native mouseover: 388 checks passed; native taint/visual/input/FPS pending\n"
+    }
+  ],
+  "sourceContract": {
+    "native": "IsMouseoverCastSupported()==true and existing enableMouseoverCast CVar",
+    "supported": "Retail and Forever; Classic progression/Era/Anniversary keep custom preference",
+    "control": "Actual ClickBindingFrame.EnableMouseoverCastCheckbox borrowed into spellbook; native scripts untouched; original parent/anchors/scale/strata/level restored for Click Casting or closed book",
+    "fallback": "Standalone spell/item click adapter retained on wrap clients; native setting/modifier authoritative. Forever native spell/item type policy retained; native operation pending.",
+    "savedData": "Native state read directly; saved custom account/character preferences retained; no migration/reset",
+    "defaults": "No enableMouseoverCast or MOUSEOVERCAST writes, including reset/first login/binding persistence"
+  },
+  "resources": "Reuse spellbook 0.1s observer; optional owner check each existing pass, parent/layout writes only at ownership transitions or page refresh. One UPDATE_BINDINGS subscription; one coalesced zero-delay refresh on changed native setting/modifier. Lazy native ClickBindingUI load at first spellbook use. No new recurring frame/ticker.",
+  "clientCopies": [
+    {
+      "client": "_retail_",
+      "runtimeFiles": 6,
+      "matched": true,
+      "manualCopy": false
+    },
+    {
+      "client": "_forever_",
+      "runtimeFiles": 6,
+      "matched": true,
+      "manualCopy": false
+    },
+    {
+      "client": "_classic_",
+      "runtimeFiles": 6,
+      "matched": true,
+      "manualCopy": false
+    },
+    {
+      "client": "_classic_era_",
+      "runtimeFiles": 6,
+      "matched": true,
+      "manualCopy": false
+    },
+    {
+      "client": "_anniversary_",
+      "runtimeFiles": 6,
+      "matched": true,
+      "manualCopy": false
+    }
+  ],
+  "native": "NOT RUN: actual visuals, hardware input, native secure/taint VM, gamepad, CPU/FPS and per-client reload acceptance pending. No foreground/input/clipboard/profiler control.",
+  "fullValidation": {
+    "pass": 211,
+    "fail": 0,
+    "syntaxFiles": 873,
+    "syntaxFailures": 0,
+    "sourceDrift": []
+  },
+  "documentationValidation": "PASS:906 classified sources;597 TOC/XML reachable;391 settings;24 SavedVariables;14732 local links;source inventory/evidence current"
+}

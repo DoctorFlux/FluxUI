@@ -1,0 +1,127 @@
+{
+  "changeID": "PARTY-TARGET-SEPARATOR-20261107",
+  "requirement": "REQ-RF-74",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\party-divider-target-art-20261107T110451Z\\checkpoint.json",
+  "existingHistorySettings": "Raid-rewrite-20261107T082357Z complete external recovery retained; no game/WTF/profiler writes",
+  "reference": {
+    "sha256": "d958e442ea9c40f5b16ac0f5424ee34e2157d02378006bfa50caa103c9d50395",
+    "reference": "User screenshot; target frame bottom right; selected by user reply target match that one",
+    "nativeAcceptance": "Reference only; new party separator comparison pending"
+  },
+  "userDirection": "Target match that one: bottom-right target frame is reference. Work matches separator artwork; existing bar-height settings retained.",
+  "after": {
+    "UnitFrames/FluxUnitFrames_Party.lua": "8e2cba88cd9a23979fc198a754d01494f3b124023a79465dee942b236c2e21aa",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "79d1d123ee4c628b706b6c8e6f0a102ebe0a87084e0908501f95d493042cb20f",
+    "tests/party_divider_boundary.lua": "ba7fd2774ff1a9b731f2a0eb187d210131029298da5cc140372ee2da2748ba6e",
+    "tests/raid_party_frames.lua": "4127db055042fe56a687dd3d3c053c558e040d8deee9417204f8156a57c0764a"
+  },
+  "implementation": [
+    "Expose existing local CreateSeparator as UF.CreateBarSeparator without changing target/player call sites",
+    "Party calls the same constructor: battlefieldminimap-border-top atlas or BattlefieldMinimap.tga and matching crop, logical height17 including artwork padding",
+    "Tint via SetVertexColor retains artwork; SetColorTexture no longer replaces it with a solid color",
+    "Hide underlying shared HealthPowerSeparator when the owned party divider exists, preventing double-painted bright edges",
+    "Keep fixed resource-top gap midpoint and existing bar/frame dimensions/settings"
+  ],
+  "tests": {
+    "boundaryAndArt": 144,
+    "party": 840,
+    "whole": "222/222 scripts PASS; 885 syntax files/0 failures.",
+    "pairs": [
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.046624399998108856,
+          "output": "lua: tests/party_divider_boundary.lua:18: party uses target separator artwork, crop and height\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:18: in local 'check'\n\ttests/party_divider_boundary.lua:51: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.023333400007686578,
+          "output": "Party divider boundary: 144 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.02303379999648314,
+          "output": "Party divider boundary: 144 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.022108000004664063,
+          "output": "lua: tests/party_divider_boundary.lua:18: party uses target separator artwork, crop and height\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:18: in local 'check'\n\ttests/party_divider_boundary.lua:51: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.023977999997441657,
+          "output": "lua: tests/party_divider_boundary.lua:18: party uses target separator artwork, crop and height\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:18: in local 'check'\n\ttests/party_divider_boundary.lua:51: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.02308699999412056,
+          "output": "Party divider boundary: 144 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      },
+      {
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.022848099994007498,
+          "output": "Party divider boundary: 144 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        },
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.024004999999306165,
+          "output": "lua: tests/party_divider_boundary.lua:18: party uses target separator artwork, crop and height\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:18: in local 'check'\n\ttests/party_divider_boundary.lua:51: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "before": {
+          "exit": 1,
+          "wallSeconds": 0.033748499990906566,
+          "output": "lua: tests/party_divider_boundary.lua:18: party uses target separator artwork, crop and height\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/party_divider_boundary.lua:18: in local 'check'\n\ttests/party_divider_boundary.lua:51: in main chunk\n\t[C]: in ?\n"
+        },
+        "after": {
+          "exit": 0,
+          "wallSeconds": 0.02187729999423027,
+          "output": "Party divider boundary: 144 checks; actual shared HUD/legacy partitions; native pixels/combat pending\n"
+        }
+      }
+    ],
+    "failures": [],
+    "corpusDrift": [
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua"
+    ]
+  },
+  "resources": "Same party texture; shared factory alias; no new frame/event/hook/timer/ticker/driver; one underlying duplicate texture hidden. Desktop pair wall times are functional evidence only.",
+  "nativePending": "Actual screenshot parity with selected target reference, combat/taint/FPS on every client. Source/factory equality does not certify native pixels.",
+  "copies": [
+    {
+      "client": "_retail_",
+      "mismatches": []
+    },
+    {
+      "client": "_forever_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_",
+      "mismatches": []
+    },
+    {
+      "client": "_classic_era_",
+      "mismatches": []
+    },
+    {
+      "client": "_anniversary_",
+      "mismatches": []
+    }
+  ],
+  "finalOwnedDrift": [],
+  "laterWholeCorpusDrift": [
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+    "tests/utility_mixed_faces.lua",
+    "tests/utility_secure_input.lua"
+  ],
+  "documentationCheck": "Documentation validation FAILED:\n- Recorded verification predates current source: ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua\n- Recorded verification predates current source: tests/utility_mixed_faces.lua\n- Recorded verification predates current source: tests/utility_secure_input.lua\n3 issue(s); checker made no edits.\n"
+}

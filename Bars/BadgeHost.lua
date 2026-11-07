@@ -105,16 +105,36 @@ local function SlotHasAction(slot)
 	return has and true or false
 end
 
+local function CanRead(value)
+	local S = Flux.Secrets
+	local isSecret = (S and S.IsSecretValue) or issecretvalue or IsSecretValue
+	if isSecret and isSecret(value) then return false end
+	local canAccess = (S and S.CanAccessValue) or canaccessvalue
+	return not canAccess or canAccess(value)
+end
+
+local function CooldownRunning(start, duration, enabled, active, onGCD)
+	local readable = CanRead(start) and CanRead(duration)
+	if readable then
+		start, duration = tonumber(start) or 0, tonumber(duration) or 0
+		return duration > 1.5 and start > 0
+	end
+	if CanRead(enabled) and (enabled == false or enabled == 0) then return false end
+	if CanRead(active) and active == false then return false end
+	if CanRead(onGCD) and onGCD == true then return false end
+	-- Public activity/GCD flags describe opaque modern timers. If unavailable,
+	-- keep the corner visible rather than treating a restricted timer as ready.
+	return true
+end
+
 local function SlotOnCooldown(slot)
 	if not slot then
 		return false
 	end
 	local A = Flux.Action
 	if A and A.GetCooldown then
-		local start, duration = A.GetCooldown(slot)
-		start = tonumber(start) or 0
-		duration = tonumber(duration) or 0
-		return duration > 1.5 and start > 0
+		local start, duration, enabled, active, _, onGCD = A.GetCooldown(slot)
+		return CooldownRunning(start, duration, enabled, active, onGCD)
 	end
 	return false
 end
@@ -270,8 +290,8 @@ local function ShouldShow(host, slot, want, index)
 	if want.hiddenUnlessCd and not SlotOnCooldown(slot) then
 		local cd = false
 		if want.spellId and Flux.Spell and Flux.Spell.GetCooldown then
-			local start, duration = Flux.Spell.GetCooldown(want.spellId)
-			cd = (tonumber(duration) or 0) > 1.5 and (tonumber(start) or 0) > 0
+			local start, duration, enabled, _, active, onGCD = Flux.Spell.GetCooldown(want.spellId)
+			cd = CooldownRunning(start, duration, enabled, active, onGCD)
 		end
 		if not cd then
 			return false
@@ -487,7 +507,8 @@ local function ApplyWant(badge, want)
 	if not kind then
 		return false
 	end
-	if not InLockdown() and badge.SetAction then
+	local locked = InLockdown()
+	if not locked and badge.SetAction then
 		local sig = tostring(kind) .. ":" .. tostring(id)
 		if badge._fluxAppliedFace ~= sig then
 			if kind == "spell" then
@@ -496,6 +517,18 @@ local function ApplyWant(badge, want)
 				badge:SetAction("item", id)
 			end
 			badge._fluxAppliedFace = sig
+		end
+	else
+		-- Corners on a dormant row have never had SetAction. They are visual
+		-- only, so publish the new paint face without touching secure attributes.
+		local changed = badge.ActionType ~= kind or badge.ActionValue ~= id
+		badge.ActionType, badge.ActionValue = kind, id
+		badge.SpellId = kind == "spell" and id or nil
+		badge.ItemId = kind == "item" and id or nil
+		badge.MacroMode, badge.MacroTexture = nil, nil
+		badge.IconOverrideTexture = nil
+		if changed and EBS and EBS.Paint and EBS.Paint.ClearCache then
+			EBS.Paint.ClearCache(badge)
 		end
 	end
 	PublishBadgeIdentity(badge, want)
@@ -595,6 +628,48 @@ local function CompactHostCooldown(host, visibleCount)
 	end
 end
 
+local function PrepareSecureBadgeSet(set)
+	local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+	if not (G and G.EnsureSecureAura and G.CanPrepareSecureAura
+		and G.CanPrepareSecureAura()) then
+		return
+	end
+	for i = 1, MAX_BADGES do
+		local badge = set and set[i]
+		local widget = badge and badge.Widget
+		if widget then
+			G.EnsureSecureAura(widget, true)
+			-- The Retail proc loop extends past the corner icon. A clipped
+			-- SlotFrame cuts off the border of its animation.
+			local slot = badge.SlotFrame
+			if widget._fluxSecureMissileGlow and slot and slot.SetClipsChildren then
+				pcall(slot.SetClipsChildren, slot, false)
+			end
+		end
+	end
+end
+
+-- A reverse badge can show the bar's spell even when its saved badge spell
+-- and macro text do not name it. Prepare every badge face for this slot OOC.
+function BadgeHost.PrepareSecureAuraForSlot(slot)
+	slot = tonumber(slot)
+	if not slot or not slotBadges[slot] or InLockdown() then
+		return
+	end
+	local col = LocateColumn(slot)
+	local rec = col and HostsForColumn(col)
+	if not rec then
+		return
+	end
+	local rows = { rec.main, rec.sec, rec.tert }
+	for i = 1, 3 do
+		local host = rows[i]
+		if host then
+			PrepareSecureBadgeSet(EnsureStack(host, slot))
+		end
+	end
+end
+
 -- full: EnsureStack + SetAction + Layout (OOC apply / combat flush only).
 -- visual: alpha show/hide on stacks that already exist. Never SetParent/SetPoint.
 local function PaintCorners(host, slot, set, layout)
@@ -603,6 +678,27 @@ local function PaintCorners(host, slot, set, layout)
 		HideSet(set)
 		CompactHostCooldown(host, 0)
 		return
+	end
+	-- A reverse badge may be hidden until the modifier swap happens in combat.
+	-- Prepare all three reusable badge faces while their slot list is readable.
+	if not InLockdown() then
+		local G = Flux.ButtonFX and Flux.ButtonFX.Glow
+		if G and G.EnsureSecureAura and G.IsSecureAuraSpell then
+			local eligible = false
+			for i = 1, #list do
+				local want = list[i]
+				if want and (G.IsSecureAuraSpell(want.spellId)
+					or (G.MayShowSecureAuraText and
+						(G.MayShowSecureAuraText(want.macrotext)
+						or G.MayShowSecureAuraText(want.hoverMacrotext)))) then
+					eligible = true
+					break
+				end
+			end
+			if eligible then
+				PrepareSecureBadgeSet(set)
+			end
+		end
 	end
 	local shown = 0
 	local EBS = Flux.EBS
@@ -1131,7 +1227,10 @@ function BadgeHost.GetVisibleBadgesForButton(button)
 					local alphaOk = true
 					if w and w.GetAlpha then
 						local ok, a = pcall(w.GetAlpha, w)
-						if ok and type(a) == "number" and a <= 0 then
+						-- The configured owned badge alpha is public even when its
+						-- widget getter is restricted. Hidden/parked flags above win.
+						if not ok or not CanRead(a) then a = badge._fluxBadgeAlpha end
+						if CanRead(a) and type(a) == "number" and a <= 0 then
 							alphaOk = false
 						end
 					end

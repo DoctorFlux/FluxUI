@@ -16,6 +16,13 @@ local wipe = wipe or function(t)
 end
 
 local SOUL_SHARD_NAME = "soul shard"
+-- Resolve explicit rune names on a reagent line even before item info loads.
+-- These identify items; they never assign reagent costs to a spell.
+local RUNE_NAME_IDS = {
+    ["rune of teleportation"] = 17031,
+    ["rune of portals"] = 17032,
+    ["rune of portal"] = 17032,
+}
 local REAGENT_SCAN_CAP = 6
 local REAGENT_SCAN_INTERVAL = 0.05
 
@@ -117,28 +124,6 @@ local function RankScore(spellID)
     return GetSpellRankNumber(spellID) * 1000000 + spellID
 end
 
-local function IsSoulCurrencySpellName(spellName)
-    if type(spellName) ~= "string" then
-        return false
-    end
-    local lower = spellName:lower()
-    return lower:find("healthstone", 1, true)
-        or lower:find("soulstone", 1, true)
-        or lower:find("firestone", 1, true)
-        or lower:find("spellstone", 1, true)
-        or lower:find("soulwell", 1, true)
-        or lower:find("ritual of souls", 1, true)
-        or lower:find("ritual of summoning", 1, true)
-        or lower:find("summon voidwalker", 1, true)
-        or lower:find("summon succubus", 1, true)
-        or lower:find("summon felhunter", 1, true)
-        or lower:find("summon felguard", 1, true)
-        or lower:find("summon incubus", 1, true)
-        or lower:find("enslave demon", 1, true)
-        or lower:find("shadowburn", 1, true)
-        or lower:find("soul fire", 1, true)
-end
-
 local blacklistedReagentNames = {
     [SOUL_SHARD_NAME] = true,
 }
@@ -158,6 +143,10 @@ local function IsBlacklistedReagent(itemID, name)
         return true
     end
     itemID = tonumber(itemID)
+    if itemID == 6265 then
+        RememberBlacklistedReagentName(name)
+        return true
+    end
     if not itemID then
         return false
     end
@@ -274,6 +263,11 @@ local function GetItemIDFromName(itemName)
         return nil
     end
     local key = trimmed:lower()
+    local runeID = RUNE_NAME_IDS[key]
+    if runeID then
+        RememberItemName(runeID, trimmed)
+        return runeID
+    end
     local cached = nameToItemID[key]
     if cached and not IsBlacklistedReagent(cached, trimmed) then
         return cached
@@ -495,6 +489,30 @@ local function CollectReagentsFromTooltip(spellID)
 end
 
 local function ForEachKnownPlayerSpell(callback)
+    local seen, flyouts = {}, {}
+    local function emit(spellID)
+        if spellID and spellID > 0 and not seen[spellID] then
+            seen[spellID] = true
+            callback(spellID)
+        end
+    end
+    local function visitFlyout(flyoutID)
+        if flyouts[flyoutID] then return end
+        flyouts[flyoutID] = true
+        local api = Flux and Flux.Spell
+        local info = (api and api.GetFlyoutInfo) or GetFlyoutInfo
+        local slot = (api and api.GetFlyoutSlotInfo) or GetFlyoutSlotInfo
+        if not info or not slot then return end
+        local _, _, count, known = info(flyoutID)
+        if known == false then return end
+        for i = 1, count or 0 do
+            local spellID, overrideID, isKnown = slot(flyoutID, i)
+            if isKnown then
+                if overrideID == 0 then overrideID = nil end
+                emit(overrideID or spellID)
+            end
+        end
+    end
     if C_SpellBook and C_SpellBook.GetNumSpellBookSkillLines then
         for i = 1, C_SpellBook.GetNumSpellBookSkillLines() do
             local skillLineInfo = C_SpellBook.GetSpellBookSkillLineInfo(i)
@@ -509,7 +527,10 @@ local function ForEachKnownPlayerSpell(callback)
                             isSpell = (itemType == Enum.SpellBookItemType.Spell)
                         end
                         if isSpell then
-                            callback(spellInfo.actionID)
+                            emit(spellInfo.actionID)
+                        elseif Enum and Enum.SpellBookItemType
+                            and itemType == Enum.SpellBookItemType.Flyout then
+                            visitFlyout(spellInfo.actionID)
                         end
                     end
                 end
@@ -523,7 +544,9 @@ local function ForEachKnownPlayerSpell(callback)
             for slotIndex = offset + 1, offset + numSlots do
                 local spellType, spellID = GetSpellBookItemInfo(slotIndex, "spell")
                 if spellType == "SPELL" and spellID then
-                    callback(spellID)
+                    emit(spellID)
+                elseif spellType == "FLYOUT" and spellID then
+                    visitFlyout(spellID)
                 end
             end
         end
@@ -535,12 +558,7 @@ local function IngestReagents(spellID, reagents)
         return
     end
     reagentBySpell[spellID] = reagents
-    local spellName = SpellName(spellID)
-    local learnSoulShard = IsSoulCurrencySpellName(spellName)
     for _, r in ipairs(reagents) do
-        if learnSoulShard and r.name then
-            RememberBlacklistedReagentName(r.name)
-        end
         if r.itemID and not IsBlacklistedReagent(r.itemID, r.name) then
             allReagentItemIDs[r.itemID] = true
             spellsUsingReagent[r.itemID] = spellsUsingReagent[r.itemID] or {}
@@ -548,7 +566,7 @@ local function IngestReagents(spellID, reagents)
             if r.name then
                 RememberItemName(r.itemID, r.name)
             end
-        elseif r.name and not r.itemID and not learnSoulShard then
+        elseif r.name and not r.itemID and not IsSoulShardName(r.name) then
             pendingReagentNames[r.name:lower()] = true
         end
     end

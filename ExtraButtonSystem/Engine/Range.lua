@@ -20,7 +20,9 @@ end
 local function RangeUnit(btn)
 	local macroUnit
 	local widget
-	if btn.ActionType == "macro" or btn.ActionType == "macrotext" then
+	if btn._fluxUtilityGetEntry then
+		widget = btn.Widget
+	elseif btn.ActionType == "macro" or btn.ActionType == "macrotext" then
 		macroUnit = btn.MacroTarget
 	else
 		widget = btn.Widget

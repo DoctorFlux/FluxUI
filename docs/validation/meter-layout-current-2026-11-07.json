@@ -1,0 +1,252 @@
+{
+  "changeID": "METER-LAYOUT-CURRENT-20261107",
+  "dateUTC": "2026-11-07T08:15:27.803424+00:00",
+  "checkpoint": {
+    "capturedAtUTC": "2026-11-07T08:10:15.217682+00:00",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1725,
+    "sha256": {
+      "source.zip": "751397aa9714e01d804cbcbd1398859b97a4e28436f0481604e6883fccd93052",
+      "history.bundle": "4d24ed0ac84aee6ba9d265245338ac3f75769f15746157eac5eab57f3b790f93"
+    },
+    "settingsScope": "Existing recovery settings.zip rehashed; fresh available settings metadata only. No settings reads into Git or writes; WoW remains in background.",
+    "availableSettingsCount": 53
+  },
+  "pins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "05eb9b89f38765cf34d92c8750af7dfc569adeaf6fd79ffebff53f0a65c72084",
+    "Battlezonemap/FluxMeterLayout.lua": "bdba3e8de94174bd86c0efb290f37862fbeaeec5fa8fd98d2bac15594d4ca3aa"
+  },
+  "candidateSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+    "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b",
+    "tests/native_meter_controls.lua": "75cc7c075712554d0bf19b3dd4b81bd6b7aa937171b8d1dc66162ceb51e3f324"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.04542240000591846,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.04127560000051744,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.04018270000233315,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02497899999434594,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.019132000001263805,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.0410868000035407,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.046470199995383155,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.021258799999486655,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.021843800001079217,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.043077599999378435,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    }
+  ],
+  "pinnedNativeMenuReplays": {
+    "live": {
+      "exit": 0,
+      "wallSeconds": 0.04244000000471715,
+      "output": "native meter controls: 388 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    "forever": {
+      "exit": 0,
+      "wallSeconds": 0.04556089999823598,
+      "output": "native meter controls: 388 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    }
+  },
+  "mutants": [
+    {
+      "name": "no-layout-current",
+      "exit": 1,
+      "wallSeconds": 0.024749899996095337,
+      "output": "lua: tests/native_meter_controls.lua:10: each layout defaults every displayed native pane to Current, including unchanged types and historical selections\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:280: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "select-overall",
+      "exit": 1,
+      "wallSeconds": 0.02172759999666596,
+      "output": "lua: tests/native_meter_controls.lua:10: one setup click creates the third native pane and selects Interrupts/Current through original menu entries\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:225: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "keep-historical-id",
+      "exit": 1,
+      "wallSeconds": 0.026196200000413228,
+      "output": "lua: tests/native_meter_controls.lua:10: each layout defaults every displayed native pane to Current, including unchanged types and historical selections\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:280: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "first-native-pane-only",
+      "exit": 1,
+      "wallSeconds": 0.022265200001129415,
+      "output": "lua: tests/native_meter_controls.lua:10: actual Flux Dispels row selects native stored entry without a type-menu launcher\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:10: in local 'check'\n\ttests/native_meter_controls.lua:172: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "focused": [
+    {
+      "path": "tests/native_meter_all_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.028199500004120637,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "path": "tests/native_meter_controls.lua",
+      "exit": 0,
+      "wallSeconds": 0.0424226000031922,
+      "output": "native meter controls: 352 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "path": "tests/native_meter_docking.lua",
+      "exit": 0,
+      "wallSeconds": 0.02381460000469815,
+      "output": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4048 pinnedNative=false\n"
+    },
+    {
+      "path": "tests/native_meter_grid_parity.lua",
+      "exit": 0,
+      "wallSeconds": 0.5204655999987153,
+      "output": "native grid parity: 28992 checks, 0 failures; actual Details layouts=4920; native pixels/taint unverified\n"
+    },
+    {
+      "path": "tests/native_meter_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.24381310000171652,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "path": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.10083909999957541,
+      "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "path": "tests/native_meter_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.04347480000433279,
+      "output": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n"
+    },
+    {
+      "path": "tests/native_meter_writer_provenance.lua",
+      "exit": 0,
+      "wallSeconds": 0.06402919999527512,
+      "output": "native writer provenance: 126 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "path": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.255685700001777,
+      "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "path": "tests/threat_meter_sample.lua",
+      "exit": 0,
+      "wallSeconds": 0.018839800002751872,
+      "output": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n"
+    },
+    {
+      "path": "tests/native_threat_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.10666520000086166,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    }
+  ],
+  "full": {
+    "exit": 0,
+    "pass": 212,
+    "fail": 0,
+    "syntaxFiles": 875,
+    "syntaxFailures": [],
+    "unchangedLuaCorpus": true,
+    "corpusSHA256": "e96ee2df1ed16a08b46963f952281a4cddf6ef09a6182879363779e704091b70"
+  },
+  "fullFailures": [],
+  "ownersUnchanged": true,
+  "native": "User confirmed after reload: all native panes switch from Overall/history to Current on layout choice. Selected Forever UI/function acceptance only; combat/secret/taint/gamepad/other-client/FPS pending.",
+  "implementation": "After explicit layout/type/setup choices, enumerate each mapped native SessionDropdown and Pick its original Current radio description with its untouched native {type,sessionID=nil}. Skip already-Current/nil-ID panes. No private setter, history reset, new event/frame/hook/timer/driver. Geometry/menu opening preserves later manual overrides; next layout choice restores Current. Threat remains separate.",
+  "scope": "Desktop widget/proxy/source replay; not a native secure VM or performance benchmark. Five alternating fresh-process pairs; baseline aborts earlier so wall times are not comparable native metrics.",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4d3-ff99-76f1-9caf-21bb64aa5e39\\meter-current-layout",
+  "installedCopies": {
+    "_retail_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+      "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b"
+    },
+    "_forever_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+      "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b"
+    },
+    "_classic_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+      "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b"
+    },
+    "_classic_era_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+      "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b"
+    },
+    "_anniversary_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+      "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b"
+    }
+  },
+  "copyScope": "All5 already match through existing mirror; no manual copy.",
+  "documentationValidation": {
+    "status": "PASS",
+    "classifiedSources": 908,
+    "reachable": 598,
+    "settings": 399,
+    "savedVariables": 24,
+    "localLinks": 14819
+  }
+}

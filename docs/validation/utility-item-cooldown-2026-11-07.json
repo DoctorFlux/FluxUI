@@ -1,0 +1,202 @@
+{
+  "changeID": "UTILITY-ITEM-COOLDOWN-20261107",
+  "requirement": "UTL-CD-09",
+  "dateUTC": "2026-11-07T11:30:10.124610+00:00",
+  "scope": "Desktop production-code regression with five client capability models; no native secure VM/rendering/taint/FPS acceptance.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-item-cooldown-20261107",
+    "sourceZIP": "51f68b6a74b8edf12e6e50781545ae1c8b201e1aed2db7201b871d8cfcfe6519",
+    "sourceFiles": 1835,
+    "history": "External Utility-mixed-20261107/history.bundle verified complete before edits; reverified after edits.",
+    "availableSettingsMetadataFiles": 121,
+    "settings": "Metadata inspected read-only externally; no WTF or profiler writes."
+  },
+  "baseline": {
+    "ExtraButtonSystem/Engine/Paint.lua": "896f65547ecedfac7342d16de6d773369a927875c18f6068a6825e2ed7a542bc"
+  },
+  "candidate": {
+    "ExtraButtonSystem/Engine/Paint.lua": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4",
+    "tests/utility_mixed_faces.lua": "115a564869d1c847cd646493d32dad09c6fb8748a574620fd3806b79470fb35b"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.10274,
+      "output": "FAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nUtility mixed faces: 6894 checks, 30 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 5\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.10273,
+      "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.10193,
+      "output": "FAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nUtility mixed faces: 6894 checks, 30 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 5\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.11055,
+      "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.11097,
+      "output": "FAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nUtility mixed faces: 6894 checks, 30 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 5\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.10575,
+      "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.09776,
+      "output": "FAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nUtility mixed faces: 6894 checks, 30 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 5\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.11505,
+      "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.13113,
+      "output": "FAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nFAIL utility consumable shows short item cooldown while buff is active\nFAIL ready utility consumable stays ready while buff is active\nFAIL utility cooldown skips consumable aura lookups\nFAIL utility clears all stale consumable aura fields during combat\nFAIL clearing stale aura immediately restores item cooldown\nFAIL combat modifier release restores spell cooldown despite stale item aura\nUtility mixed faces: 6894 checks, 30 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 5\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.11899,
+      "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+    }
+  ],
+  "clientCopies": {
+    "_retail_": {
+      "exists": true,
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4"
+    },
+    "_forever_": {
+      "exists": true,
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4"
+    },
+    "_classic_": {
+      "exists": true,
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4"
+    },
+    "_classic_era_": {
+      "exists": true,
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4"
+    },
+    "_anniversary_": {
+      "exists": true,
+      "sha256": "afb48689d07cd9b315894e984c0217a524e55ed056319d374e58c24c2038ffd4"
+    }
+  },
+  "policy": "Utility selected items retain native item cooldowns; never claim consumable aura timers; clear stale claims before cooldown dispatch, including modifier release in combat. Dedicated consumables supplied aura countdown retained. Existing nonutility potion and food/water behavior preserved.",
+  "work": "No new events/timers/tickers/frames/polling/protected action writes. Aura lookups in matched consumable regression: baseline5 candidate0. Existing320 modifier transitions: icon120 count120 usable140 checked120 duplicate0 in both.",
+  "fullValidation": {
+    "evidence": "docs/validation/utility-item-cooldown-full-2026-11-07.json",
+    "pass": 222,
+    "fail": 0,
+    "syntaxFiles": 885,
+    "syntaxFailures": [],
+    "postRunSourceDrift": [],
+    "relevantResults": [
+      {
+        "path": "tests/consumable_aura_advance.lua",
+        "exit": 0,
+        "wallSeconds": 0.0451,
+        "output": "Consumable aura advance: 66 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_config_visibility.lua",
+        "exit": 0,
+        "wallSeconds": 0.0234,
+        "output": "Consumable config visibility: 8 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_refresh_timer.lua",
+        "exit": 0,
+        "wallSeconds": 0.0329,
+        "output": "Consumable refresh timer: 35 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_restock_clicks.lua",
+        "exit": 0,
+        "wallSeconds": 0.1024,
+        "output": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n"
+      },
+      {
+        "path": "tests/consumable_weapon_targets.lua",
+        "exit": 0,
+        "wallSeconds": 0.0291,
+        "output": "Consumable weapon targets: 30 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_zero_reset.lua",
+        "exit": 0,
+        "wallSeconds": 0.4931,
+        "output": "Consumable zero reset: 375 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/syndicator_consumable_updates.lua",
+        "exit": 0,
+        "wallSeconds": 0.5483,
+        "output": "Syndicator consumable updates: 400 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/transmog_actions.lua",
+        "exit": 0,
+        "wallSeconds": 0.0773,
+        "output": "Transmog actions: 6037 checks; five branches, capability adapters, six negative controls passed\n"
+      },
+      {
+        "path": "tests/utility_mixed_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.1025,
+        "output": "Utility mixed faces: 6894 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\nUtility consumable aura queries: 0\n"
+      },
+      {
+        "path": "tests/utility_modifier_vfx.lua",
+        "exit": 0,
+        "wallSeconds": 0.1034,
+        "output": "Utility modifier VFX: 488 checks; five clients; cast/channel/empower/reticle/burst/interrupt/proc lifecycle PASS\n"
+      },
+      {
+        "path": "tests/utility_pet_faces.lua",
+        "exit": 0,
+        "wallSeconds": 0.0474,
+        "output": "Utility pet faces: 1752 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "wallSeconds": 0.2766,
+        "output": "Utility secure input: 11114 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+      }
+    ]
+  },
+  "nativeAcceptance": "Pending: reload; active consumable buff on utility; item lockout then ready; Shift item/no-mod spell and reverse; partial/full release during combat; dedicated consumables aura countdown; no taint/input regression.",
+  "documentationValidation": "PASS:918 classified sources;598 TOC/XML reachable;415 setting definitions;24 SavedVariables;15126 local links; source inventory/evidence current.",
+  "diffCheck": "PASS for touched runtime/test/continuity/ledger/generated documentation paths."
+}

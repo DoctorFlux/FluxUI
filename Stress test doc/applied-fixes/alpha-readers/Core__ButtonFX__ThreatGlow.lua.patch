@@ -1,0 +1,410 @@
+--- checkpoint/Core/ButtonFX/ThreatGlow.lua
++++ applied/Core/ButtonFX/ThreatGlow.lua
+@@ -0,0 +1,407 @@
++--[[
++Addon-owned threat glow, adapted from the vendored LibCustomGlow-1.0 minor20.
++Original source byte SHA256 e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6.
++Retains Hendrick "nevcairiel" Leppkes attribution and existing art/animation.
++https://www.wowace.com/projects/libbuttonglow-1-0
++
++MIT License
++
++Copyright (c) 2022 Benjamin Staneck
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
++
++]]
++
++local addonName, ns = ...
++local Flux = ns.Flux
++Flux.ButtonFX = Flux.ButtonFX or {}
++if Flux.ButtonFX.ThreatGlow then return end -- retain an existing owner's pool/frames
++local lib = {}
++Flux.ButtonFX.ThreatGlow = lib
++local GlowParent = UIParent
++local Masque = LibStub and LibStub("Masque", true)
++
++local function PublicPositive(value)
++    local S = Flux.Secrets
++    local secret = (S and S.IsSecretValue) or issecretvalue
++    local access = (S and S.CanAccessValue) or canaccessvalue
++    if (secret and secret(value)) or (access and not access(value)) then return false end
++    return type(value) == "number" and value == value and value > 0 and value < math.huge
++end
++
++local function OwnerSize(shell)
++    local width, height = shell._fluxPublicWidth, shell._fluxPublicHeight
++    if PublicPositive(width) and PublicPositive(height) then return width, height end
++    if shell.GetSize then
++        local ok, w, h = pcall(shell.GetSize, shell)
++        if ok and PublicPositive(w) and PublicPositive(h) then return w, h end
++    end
++    local glow = shell._fluxThreatButtonGlow
++    if glow and PublicPositive(glow._fluxOwnerWidth) and PublicPositive(glow._fluxOwnerHeight) then
++        return glow._fluxOwnerWidth, glow._fluxOwnerHeight
++    end
++end
++
++local function SetGlowSize(glow, width, height)
++    local w, h = width * 1.4, height * 1.4
++    glow:SetSize(w, h)
++    glow._fluxGlowWidth, glow._fluxGlowHeight = w, h
++    glow._fluxOwnerWidth, glow._fluxOwnerHeight = width, height
++end
++
++local function ButtonGlowResetter(framePool,frame)
++    frame:SetScript("OnUpdate",nil)
++    local parent = frame:GetParent()
++    if parent._fluxThreatButtonGlow then
++        parent._fluxThreatButtonGlow = nil
++    end
++    frame:Hide()
++    frame:ClearAllPoints()
++end
++local ButtonGlowPool = CreateFramePool("Frame",GlowParent,nil,ButtonGlowResetter)
++lib.ButtonGlowPool = ButtonGlowPool
++
++local function CreateScaleAnim(group, target, order, duration, x, y, delay)
++    local scale = group:CreateAnimation("Scale")
++    scale:SetChildKey(target)
++    scale:SetOrder(order)
++    scale:SetDuration(duration)
++    scale:SetScale(x, y)
++
++    if delay then
++        scale:SetStartDelay(delay)
++    end
++end
++
++local function CreateAlphaAnim(group, target, order, duration, fromAlpha, toAlpha, delay, appear)
++    local alpha = group:CreateAnimation("Alpha")
++    alpha:SetChildKey(target)
++    alpha:SetOrder(order)
++    alpha:SetDuration(duration)
++    alpha:SetFromAlpha(fromAlpha)
++    alpha:SetToAlpha(toAlpha)
++    if delay then
++        alpha:SetStartDelay(delay)
++    end
++    if appear then
++        table.insert(group.appear, alpha)
++    else
++        table.insert(group.fade, alpha)
++    end
++end
++
++-- Record only this renderer owner's explicit base-alpha
++-- writes. Native animation parameters stay on their existing groups.
++-- No global hook, secret read or arbitrary shared-library minor bump.
++local function SetButtonGlowAlpha(frame, texture, alpha)
++    frame[texture]:SetAlpha(alpha)
++    frame._lCGTextureAlpha = frame._lCGTextureAlpha or {}
++    frame._lCGTextureAlpha[texture] = alpha
++end
++
++local function AnimIn_OnPlay(group)
++    local frame = group:GetParent()
++    local frameWidth, frameHeight = frame._fluxGlowWidth, frame._fluxGlowHeight
++    frame.spark:SetSize(frameWidth, frameHeight)
++    SetButtonGlowAlpha(frame, "spark", not(frame.color) and 1.0 or 0.3*frame.color[4])
++    frame.innerGlow:SetSize(frameWidth / 2, frameHeight / 2)
++    SetButtonGlowAlpha(frame, "innerGlow", not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "innerGlowOver", not(frame.color) and 1.0 or frame.color[4])
++    frame.outerGlow:SetSize(frameWidth * 2, frameHeight * 2)
++    SetButtonGlowAlpha(frame, "outerGlow", not(frame.color) and 1.0 or frame.color[4])
++    SetButtonGlowAlpha(frame, "outerGlowOver", not(frame.color) and 1.0 or frame.color[4])
++    frame.ants:SetSize(frameWidth * 0.85, frameHeight * 0.85)
++    SetButtonGlowAlpha(frame, "ants", 0)
++    frame:Show()
++end
++
++local function AnimIn_OnFinished(group)
++    local frame = group:GetParent()
++    local frameWidth, frameHeight = frame._fluxGlowWidth, frame._fluxGlowHeight
++    SetButtonGlowAlpha(frame, "spark", 0)
++    SetButtonGlowAlpha(frame, "innerGlow", 0)
++    frame.innerGlow:SetSize(frameWidth, frameHeight)
++    SetButtonGlowAlpha(frame, "innerGlowOver", 0.0)
++    frame.outerGlow:SetSize(frameWidth, frameHeight)
++    SetButtonGlowAlpha(frame, "outerGlowOver", 0.0)
++    frame.outerGlowOver:SetSize(frameWidth, frameHeight)
++    SetButtonGlowAlpha(frame, "ants", not(frame.color) and 1.0 or frame.color[4])
++end
++
++local function AnimIn_OnStop(group)
++    local frame = group:GetParent()
++    SetButtonGlowAlpha(frame, "spark", 0)
++    SetButtonGlowAlpha(frame, "innerGlow", 0)
++    SetButtonGlowAlpha(frame, "innerGlowOver", 0.0)
++    SetButtonGlowAlpha(frame, "outerGlowOver", 0.0)
++end
++
++local function bgHide(self)
++    if self.animOut:IsPlaying() then
++        self.animOut:Stop()
++        ButtonGlowPool:Release(self)
++    end
++end
++
++-- Midnight removed FrameXML AnimateTexCoords. Keep ants animating locally.
++local AnimateTexCoords = _G.AnimateTexCoords
++if not AnimateTexCoords then
++    local floor, ceil = math.floor, math.ceil
++    AnimateTexCoords = function(texture, textureWidth, textureHeight, frameWidth, frameHeight, numFrames, elapsed, throttle)
++        if not texture then
++            return
++        end
++        texture.frame = texture.frame or 1
++        texture.throttleAcc = (texture.throttleAcc or 0) + (elapsed or 0)
++        throttle = throttle or 0.1
++        if texture.throttleAcc < throttle then
++            return
++        end
++        local framesToAdvance = floor(texture.throttleAcc / throttle)
++        texture.throttleAcc = texture.throttleAcc - framesToAdvance * throttle
++        local frame = texture.frame + framesToAdvance
++        while frame > numFrames do
++            frame = frame - numFrames
++        end
++        if frame < 1 then
++            frame = 1
++        end
++        texture.frame = frame
++        local numColumns = floor(textureWidth / frameWidth)
++        if numColumns < 1 then
++            return
++        end
++        local columnWidth = frameWidth / textureWidth
++        local rowHeight = frameHeight / textureHeight
++        local left = ((frame - 1) % numColumns) * columnWidth
++        local right = left + columnWidth
++        local bottom = ceil(frame / numColumns) * rowHeight
++        local top = bottom - rowHeight
++        texture:SetTexCoord(left, right, top, bottom)
++    end
++end
++
++local function bgUpdate(self, elapsed)
++    AnimateTexCoords(self.ants, 256, 256, 48, 48, 22, elapsed, self.throttle);
++    -- Threat shells have no action cooldown; the renderer owns glow opacity.
++    self:SetAlpha(1.0);
++end
++
++local function configureButtonGlow(f,alpha)
++    f.spark = f:CreateTexture(nil, "BACKGROUND")
++    f.spark:SetPoint("CENTER")
++    SetButtonGlowAlpha(f, "spark", 0)
++    f.spark:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
++    f.spark:SetTexCoord(0.00781250, 0.61718750, 0.00390625, 0.26953125)
++
++    -- inner glow
++    f.innerGlow = f:CreateTexture(nil, "ARTWORK")
++    f.innerGlow:SetPoint("CENTER")
++    SetButtonGlowAlpha(f, "innerGlow", 0)
++    f.innerGlow:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
++    f.innerGlow:SetTexCoord(0.00781250, 0.50781250, 0.27734375, 0.52734375)
++
++    -- inner glow over
++    f.innerGlowOver = f:CreateTexture(nil, "ARTWORK")
++    f.innerGlowOver:SetPoint("TOPLEFT", f.innerGlow, "TOPLEFT")
++    f.innerGlowOver:SetPoint("BOTTOMRIGHT", f.innerGlow, "BOTTOMRIGHT")
++    SetButtonGlowAlpha(f, "innerGlowOver", 0)
++    f.innerGlowOver:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
++    f.innerGlowOver:SetTexCoord(0.00781250, 0.50781250, 0.53515625, 0.78515625)
++
++    -- outer glow
++    f.outerGlow = f:CreateTexture(nil, "ARTWORK")
++    f.outerGlow:SetPoint("CENTER")
++    SetButtonGlowAlpha(f, "outerGlow", 0)
++    f.outerGlow:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
++    f.outerGlow:SetTexCoord(0.00781250, 0.50781250, 0.27734375, 0.52734375)
++
++    -- outer glow over
++    f.outerGlowOver = f:CreateTexture(nil, "ARTWORK")
++    f.outerGlowOver:SetPoint("TOPLEFT", f.outerGlow, "TOPLEFT")
++    f.outerGlowOver:SetPoint("BOTTOMRIGHT", f.outerGlow, "BOTTOMRIGHT")
++    SetButtonGlowAlpha(f, "outerGlowOver", 0)
++    f.outerGlowOver:SetTexture([[Interface\SpellActivationOverlay\IconAlert]])
++    f.outerGlowOver:SetTexCoord(0.00781250, 0.50781250, 0.53515625, 0.78515625)
++
++    -- ants
++    f.ants = f:CreateTexture(nil, "OVERLAY")
++    f.ants:SetPoint("CENTER")
++    SetButtonGlowAlpha(f, "ants", 0)
++    f.ants:SetTexture([[Interface\SpellActivationOverlay\IconAlertAnts]])
++
++    f.animIn = f:CreateAnimationGroup()
++    f.animIn.appear = {}
++    f.animIn.fade = {}
++    CreateScaleAnim(f.animIn, "spark",          1, 0.2, 1.5, 1.5)
++    CreateAlphaAnim(f.animIn, "spark",          1, 0.2, 0, alpha, nil, true)
++    CreateScaleAnim(f.animIn, "innerGlow",      1, 0.3, 2, 2)
++    CreateScaleAnim(f.animIn, "innerGlowOver",  1, 0.3, 2, 2)
++    CreateAlphaAnim(f.animIn, "innerGlowOver",  1, 0.3, alpha, 0, nil, false)
++    CreateScaleAnim(f.animIn, "outerGlow",      1, 0.3, 0.5, 0.5)
++    CreateScaleAnim(f.animIn, "outerGlowOver",  1, 0.3, 0.5, 0.5)
++    CreateAlphaAnim(f.animIn, "outerGlowOver",  1, 0.3, alpha, 0, nil, false)
++    CreateScaleAnim(f.animIn, "spark",          1, 0.2, 2/3, 2/3, 0.2)
++    CreateAlphaAnim(f.animIn, "spark",          1, 0.2, alpha, 0, 0.2, false)
++    CreateAlphaAnim(f.animIn, "innerGlow",      1, 0.2, alpha, 0, 0.3, false)
++    CreateAlphaAnim(f.animIn, "ants",           1, 0.2, 0, alpha, 0.3, true)
++    f.animIn:SetScript("OnPlay", AnimIn_OnPlay)
++    f.animIn:SetScript("OnStop", AnimIn_OnStop)
++    f.animIn:SetScript("OnFinished", AnimIn_OnFinished)
++
++    f.animOut = f:CreateAnimationGroup()
++    f.animOut.appear = {}
++    f.animOut.fade = {}
++    CreateAlphaAnim(f.animOut, "outerGlowOver", 1, 0.2, 0, alpha, nil, true)
++    CreateAlphaAnim(f.animOut, "ants",          1, 0.2, alpha, 0, nil, false)
++    CreateAlphaAnim(f.animOut, "outerGlowOver", 2, 0.2, alpha, 0, nil, false)
++    CreateAlphaAnim(f.animOut, "outerGlow",     2, 0.2, alpha, 0, nil, false)
++    f.animOut:SetScript("OnFinished", function(self) ButtonGlowPool:Release(self:GetParent())  end)
++
++    f:SetScript("OnHide", bgHide)
++end
++
++local function updateAlphaAnim(f,alpha)
++    for _,anim in pairs(f.animIn.appear) do
++        anim:SetToAlpha(alpha)
++    end
++    for _,anim in pairs(f.animIn.fade) do
++        anim:SetFromAlpha(alpha)
++    end
++    for _,anim in pairs(f.animOut.appear) do
++        anim:SetToAlpha(alpha)
++    end
++    for _,anim in pairs(f.animOut.fade) do
++        anim:SetFromAlpha(alpha)
++    end
++end
++
++local ButtonGlowTextures = {["spark"] = true,["innerGlow"] = true,["innerGlowOver"] = true,["outerGlow"] = true,["outerGlowOver"] = true,["ants"] = true}
++
++local function noZero(num)
++    if num == 0 then
++        return 0.001
++    else
++        return num
++    end
++end
++
++function lib.ButtonGlow_Start(r,color,frequency,frameLevel)
++    if not r then
++        return
++    end
++    local width, height = OwnerSize(r)
++    if not width then return false end -- no private geometry or fabricated fallback
++	frameLevel = frameLevel or 8;
++    local throttle
++    if frequency and frequency > 0 then
++        throttle = 0.25/frequency*0.01
++    else
++        throttle = 0.01
++    end
++    if r._fluxThreatButtonGlow then
++        local f = r._fluxThreatButtonGlow
++        f:SetFrameLevel(r:GetFrameLevel()+frameLevel)
++        SetGlowSize(f, width, height)
++        f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
++        f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
++        f.ants:SetSize(width*1.4*0.85, height*1.4*0.85)
++		AnimIn_OnFinished(f.animIn)
++		if f.animOut:IsPlaying() then
++            f.animOut:Stop()
++            f.animIn:Play()
++        end
++
++        if not(color) then
++            for texture in pairs(ButtonGlowTextures) do
++                f[texture]:SetDesaturated(nil)
++                f[texture]:SetVertexColor(1,1,1)
++                local alpha = math.min(f._lCGTextureAlpha[texture]/noZero(f.color and f.color[4] or 1), 1)
++                SetButtonGlowAlpha(f, texture, alpha)
++                updateAlphaAnim(f, 1)
++            end
++            f.color = false
++        else
++            for texture in pairs(ButtonGlowTextures) do
++                f[texture]:SetDesaturated(1)
++                f[texture]:SetVertexColor(color[1],color[2],color[3])
++                local alpha = math.min(f._lCGTextureAlpha[texture]/noZero(f.color and f.color[4] or 1)*color[4], 1)
++                SetButtonGlowAlpha(f, texture, alpha)
++                updateAlphaAnim(f,color and color[4] or 1)
++            end
++            f.color = color
++        end
++        f.throttle = throttle
++    else
++        local f, new = ButtonGlowPool:Acquire()
++        if new then
++            configureButtonGlow(f,color and color[4] or 1)
++        else
++            updateAlphaAnim(f,color and color[4] or 1)
++        end
++        r._fluxThreatButtonGlow = f
++        f:SetParent(r)
++        f:SetFrameLevel(r:GetFrameLevel()+frameLevel)
++        SetGlowSize(f, width, height)
++        f:SetPoint("TOPLEFT", r, "TOPLEFT", -width * 0.2, height * 0.2)
++        f:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", width * 0.2, -height * 0.2)
++        if not(color) then
++            f.color = false
++            for texture in pairs(ButtonGlowTextures) do
++                f[texture]:SetDesaturated(nil)
++                f[texture]:SetVertexColor(1,1,1)
++            end
++        else
++            f.color = color
++            for texture in pairs(ButtonGlowTextures) do
++                f[texture]:SetDesaturated(1)
++                f[texture]:SetVertexColor(color[1],color[2],color[3])
++            end
++        end
++        f.throttle = throttle
++        f:SetScript("OnUpdate", bgUpdate)
++
++        f.animIn:Play()
++
++        if Masque and Masque.UpdateSpellAlert and (not r.overlay or not issecurevariable(r, "overlay")) then
++            local old_overlay = r.overlay
++            r.overlay = f
++            Masque:UpdateSpellAlert(r)
++            r.overlay = old_overlay
++        end
++    end
++end
++
++function lib.ButtonGlow_Stop(r)
++    if r._fluxThreatButtonGlow then
++        if r._fluxThreatButtonGlow.animIn:IsPlaying() then
++            r._fluxThreatButtonGlow.animIn:Stop()
++            ButtonGlowPool:Release(r._fluxThreatButtonGlow)
++        elseif r:IsVisible() then
++            r._fluxThreatButtonGlow.animOut:Play()
++        else
++            ButtonGlowPool:Release(r._fluxThreatButtonGlow)
++        end
++    end
++end
++
++
++function lib.GetFrame(shell)
++    return shell and shell._fluxThreatButtonGlow
++end

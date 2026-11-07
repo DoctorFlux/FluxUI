@@ -45,6 +45,8 @@ UF.FrameUsesPortraitLayout = function() return false end
 UF.UpdateAtlasBorder = function() end
 UF.UpdateOuterBorder = function() end
 UF.LayoutThreatBar = function() end
+assert(load(slice(shared, "local function ValueIsSecret(value)", "local function PlayerDeadOrGhost(unit)"),
+    "@shared:public-geometry", "t", env))()
 assert(load(slice(shared, "function UF.UpdatePower(self, unit)", "function UF.CreatePowerBar(frame)"), "@shared:power", "t", env))()
 assert(load(slice(shared, "function UF.UpdateFramePartitionSeparators(self", "function UF.GetFluxStylePartitionHealthHeight"), "@shared:separators", "t", env))()
 assert(load(slice(shared, "function UF.UpdateFramePartition(self)", "-- Event Handling"), "@shared:partition", "t", env))()
@@ -173,7 +175,7 @@ textFrame._fluxHasMainPower = false
 healthUF.UpdateHealth(textFrame, "targettarget")
 assert(hp.Percent.point == "CENTER" and hp.Percent.relative == hp._fluxTextAnchor)
 
-local raidSource = slice(read("RaidFrame/FluxRaidUnit.lua"), "local addonName, ns = ...", "local function FeedOverlayBar")
+local raidSource = slice(read("RaidFrame/FluxRaidUnit.lua"), "local addonName, ns = ...", "function FluxRaid_UpdateHealPrediction")
 local raidMaximum, raidCurrent = 0, 0
 local raidVisuals = { POWER_BAR_HEIGHT = 8, ApplyCellChrome = function(f, opts)
     f.powerBarUsedHeight = opts.showPower and 8 or 0
@@ -202,7 +204,7 @@ raidEnv.FluxRaid_UpdatePower(raid)
 assert(raid.powerBar.shown and raid.powerBarUsedHeight == 8)
 raidMaximum = secret
 raidEnv.FluxRaid_UpdatePower(raid)
-assert(raid.powerBar.shown and raid.powerBar.alpha == secret)
+assert(raid.powerBar.shown and raid.powerBar.alpha ~= secret, "opaque maximum must never become raid bar opacity")
 combat, raidMaximum = true, 0
 raidEnv.FluxRaid_UpdatePower(raid)
 assert(not raid.powerBar.shown and raid.powerBarUsedHeight == 8)

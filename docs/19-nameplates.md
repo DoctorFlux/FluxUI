@@ -1,5 +1,9 @@
 # Nameplate overlays and chrome
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Public native alpha/anchor/visibility comparisons suppress stable repeated writes. Opaque/unknown cases retain repair writes; no unsafe native hook or permanent assumption about native state is added. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 `Flux.NamePlates` adds threat/level/combo/countdown and casting-school presentation around existing Blizzard nameplates. It does not create a replacement nameplate suite. Current behavior is defined by [Core.lua](../NamePlates/Core.lua), [Threat.lua](../NamePlates/Threat.lua), [Level.lua](../NamePlates/Level.lua), [Countdown.lua](../NamePlates/Countdown.lua), [ComboPoints.lua](../NamePlates/ComboPoints.lua) and [CastBarSchools.lua](../NamePlates/CastBarSchools.lua).
 
 ## Lifecycle and ownership

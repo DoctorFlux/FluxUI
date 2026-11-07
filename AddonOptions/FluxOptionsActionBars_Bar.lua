@@ -3,10 +3,6 @@ local addonName, ns = ...
 local Flux = ns.Flux
 local AB = ns.FluxOptionsActionBars
 
-local function NativeMouseoverCast()
-	return C_CVar and C_CVar.GetCVar and C_CVar.GetCVar("enableMouseoverCast") ~= nil
-end
-
 local function UsesNativeCVar()
 	local MC = AB.MouseoverCast and AB.MouseoverCast()
 	if MC and MC.UsesNativeCVar then
@@ -150,9 +146,10 @@ function AB.GetBarGroup()
 			mouseoverCast = {
 				type = "toggle",
 				name = "Mouseover cast",
-				desc = "Cast on the unit under your cursor. On Forever this drives Blizzard's enableMouseoverCast CVar. On other clients, plain action slots use click-time targeting and Flux keybind macros get an [@mouseover] clause baked into their macro text.\n\nA keybind that already picks its own target (Targets tab in the binding editor) keeps that target and ignores this.",
+				desc = "Cast on the unit under your cursor. Plain action slots use click-time targeting and Flux keybind macros get an [@mouseover] clause. A keybind that already picks its own target keeps that target.",
 				order = 11.3,
 				width = "full",
+				hidden = UsesNativeCVar,
 				get = function()
 					local MC = AB.MouseoverCast()
 					if MC and MC.IsEnabled then
@@ -177,18 +174,24 @@ function AB.GetBarGroup()
 				end,
 			},
 			mouseoverCastNative = {
-				type = "description",
-				name = "Flux mouseover-cast uses click-time targeting. Blizzard's enableMouseoverCast CVar stays off so world nameplate sweeps do not retarget every action slot.",
+				type = "execute",
+				name = function()
+					local MC = AB.MouseoverCast()
+					return "Mouseover cast: " .. ((MC and MC.IsEnabled()) and "On" or "Off") .. "..."
+				end,
+				desc = "Open Blizzard's Click Casting panel to change mouseover casting and its modifier key.",
 				order = 11.32,
-				fontSize = "small",
 				width = "full",
-				hidden = function()
-					return not NativeMouseoverCast() or UsesNativeCVar()
+				hidden = function() return not UsesNativeCVar() end,
+				disabled = function() return InCombatLockdown and InCombatLockdown() end,
+				func = function()
+					local MC = AB.MouseoverCast()
+					if MC and MC.OpenNativeOptions then MC.OpenNativeOptions() end
 				end,
 			},
 			mouseoverCastNativeForever = {
 				type = "description",
-				name = "This client uses Blizzard mouseover-cast. The Action Bars toggle drives enableMouseoverCast.",
+				name = "This client uses Blizzard mouseover-cast. Change it in Click Casting from the spellbook, or use the button above. Flux follows the same setting and modifier key.",
 				order = 11.321,
 				fontSize = "small",
 				width = "full",

@@ -1,0 +1,50 @@
+{
+  "captured_at_utc": "2026-11-07T11:32:47.549916+00:00",
+  "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+  "scope": "Full production Conditions module with explicit instance/zone/spec return models; no native secure VM, macro execution, event validity or client performance acceptance",
+  "production_source": "Binding/Core/Conditions.lua",
+  "sha256_before": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+  "sha256_after": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+  "source_unchanged": true,
+  "harness_sha256": "37677e0e02741d0b9096d851a1c82d1a2b2e69e3d5d99b7e4899697d9ac500cd",
+  "syntax_exit": 0,
+  "runs": [
+    {
+      "repeat": 1,
+      "exit": 0,
+      "log": "instance-gates-run-1.txt",
+      "log_sha256": "97e446d259690bd9af57a2e69439cc6e2028165a10178f9c8104e213cd676eac",
+      "output": "METRIC branch=live instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=forever instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_era instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_anniversary instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nSUMMARY checks=37905 failures=0 instance_load_cases=12480 transitions=12480\n"
+    },
+    {
+      "repeat": 2,
+      "exit": 0,
+      "log": "instance-gates-run-2.txt",
+      "log_sha256": "97e446d259690bd9af57a2e69439cc6e2028165a10178f9c8104e213cd676eac",
+      "output": "METRIC branch=live instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=forever instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_era instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_anniversary instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nSUMMARY checks=37905 failures=0 instance_load_cases=12480 transitions=12480\n"
+    },
+    {
+      "repeat": 3,
+      "exit": 0,
+      "log": "instance-gates-run-3.txt",
+      "log_sha256": "97e446d259690bd9af57a2e69439cc6e2028165a10178f9c8104e213cd676eac",
+      "output": "METRIC branch=live instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=forever instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_era instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic_anniversary instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nMETRIC branch=classic instance_load_cases=2496 actual_zone_transitions=2496 event_frames=2 physical_state_reads=0\nSUMMARY checks=37905 failures=0 instance_load_cases=12480 transitions=12480\n"
+    }
+  ],
+  "deterministic_output": true,
+  "per_repetition": {
+    "assertions": 37905,
+    "failed": 0,
+    "instance_gate_evaluations": 12480,
+    "modeled_zone_event_notifications": 12480,
+    "client_models": 5,
+    "instance_types": 6
+  },
+  "three_repetition_totals": {
+    "assertions": 113715,
+    "failed": 0,
+    "instance_gate_evaluations": 37440,
+    "modeled_zone_event_notifications": 37440
+  },
+  "counting_note": "Same scenario definitions repeat3 times. Actual six instance values are consumed by production load branches; combat/modifier axes verify generated token and Lua-load independence. Separate from prior input5-harness15-run totals."
+}

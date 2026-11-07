@@ -1,0 +1,26 @@
+{
+  "scope": "Actual Paint/Glow modules plus real CombatGrid/GridManager and NonCombatGrid/GridInit startup owners; explicit inventory, geometry and native API fixtures. No native rendering, taint, timing or FPS claim. Current reported nil call is not reproduced by current source.",
+  "checks": 237,
+  "normalizedSHA256": {
+    "ExtraButtonSystem/Engine/Paint.lua": "2755d01c2bfcc13d05e4b1e5cfe97f0335f177b6a1e45475e7c45bcb9add6c12",
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "tests/ebs_glow_startup.lua": "147b249c07b226b2399935032b12c28b65a531185e3e4bbdcf4d67358f193b8b"
+  },
+  "mutants": [
+    {
+      "name": "unguarded-optional-ensure",
+      "exit": 1,
+      "output": "lua: ...\\ebs-glow-startup-20261106\\unguarded-optional-ensure.lua:3407: attempt to call a nil value (field 'EnsureSecureAura')\nstack traceback:\n\t...\\ebs-glow-startup-20261106\\unguarded-optional-ensure.lua:3407: in field 'UpdateGlow'\n\t...ail_\\Interface\\AddOns\\_FluxUI\\tests\\ebs_glow_startup.lua:264: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "name": "unguarded-combat-api",
+      "exit": 1,
+      "output": "lua: ...7e22b\\ebs-glow-startup-20261106\\unguarded-combat-api.lua:3403: attempt to call a nil value (global 'InCombatLockdown')\nstack traceback:\n\t...7e22b\\ebs-glow-startup-20261106\\unguarded-combat-api.lua:3403: in field 'UpdateGlow'\n\t...ail_\\Interface\\AddOns\\_FluxUI\\tests\\ebs_glow_startup.lua:272: in main chunk\n\t[C]: in ?"
+    },
+    {
+      "name": "missing-glow-local-helper",
+      "exit": 1,
+      "output": "lua: ...\\ebs-glow-startup-20261106\\missing-glow-local-helper.lua:1873: attempt to call a nil value (global 'UnavailableSecureAuraHelper')\nstack traceback:\n\t...\\ebs-glow-startup-20261106\\missing-glow-local-helper.lua:1873: in field 'EnsureSecureAura'\n\t...a1-9cdc-8e340df7e22b\\ebs-glow-startup-20261106\\Paint.lua:3407: in field 'UpdateGlow'\n\t...ail_\\Interface\\AddOns\\_FluxUI\\tests\\ebs_glow_startup.lua:187: in main chunk\n\t[C]: in ?"
+    }
+  ]
+}

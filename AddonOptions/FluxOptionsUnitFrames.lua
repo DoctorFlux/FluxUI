@@ -396,6 +396,17 @@ local function AttachMergedFrameOptions(options)
 
     general.scopeDesc.name = "Unit frame scope applies to Player, Pet, Target, and Focus. Party / raid scope applies to the Party / Raid tab. Character-specific data is not copied with Profiles.\n"
 
+    general.auraTimersUnderMinute = {
+        type = "toggle", name = "Show aura timers only below 1 minute", order = 9, width = "full",
+        desc = "Applies to normal party frames, target and focus. Hide countdown text at 60 seconds or more; icons, stacks and swipes remain. Raid and compact party use the separate Party / Raid setting.",
+        get = function() return GetDB().auraTimersUnderMinute == true end,
+        set = function(_, value)
+            GetDB().auraTimersUnderMinute = value and true or false
+            AfterAuraOptionsChange()
+            if FluxPartyFrames and FluxPartyFrames.ApplyOptions then FluxPartyFrames.ApplyOptions() end
+        end,
+    }
+
     general.raidSettingsScope = {
         type = "select",
         name = "Party / raid settings scope",
@@ -586,6 +597,16 @@ local function AttachMergedFrameOptions(options)
     })
     focus.focustargetMouseover = FlagToggle("focustarget", "mouseover", "Mouseover highlight", nil, 71)
     focus.focustargetRaidIcon = FlagToggle("focustarget", "raidIcon", "Raid marker", nil, 71.1)
+    focus.focustargetClassHP = {
+        type = "toggle", name = "Class-colored focus target HP", order = 71.2,
+        desc = "Use class color when the focus target is a player. NPC targets keep their usual color.",
+        get = function() return GetDB().classColorFocusTargetHP == true end,
+        set = function(_, value)
+            GetDB().classColorFocusTargetHP = value and true or false
+            if FluxUnitFrames_RefreshTargetHealthColors then FluxUnitFrames_RefreshTargetHealthColors() end
+            AfterPerUnitChange()
+        end,
+    }
 
     AddTextAndBars(pet, "pet", 20, {
         castTime = true,
@@ -607,6 +628,16 @@ local function AttachMergedFrameOptions(options)
             absorb = true,
         })
         petTarget.args.pettargetMouseover = FlagToggle("pettarget", "mouseover", "Mouseover highlight", nil, 16)
+        petTarget.args.pettargetClassHP = {
+            type = "toggle", name = "Class-colored pet target HP", order = 17,
+            desc = "Use class color when your pet's target is a player. NPC targets keep their usual color.",
+            get = function() return GetDB().classColorPetTargetHP == true end,
+            set = function(_, value)
+                GetDB().classColorPetTargetHP = value and true or false
+                if FluxUnitFrames_RefreshTargetHealthColors then FluxUnitFrames_RefreshTargetHealthColors() end
+                AfterPerUnitChange()
+            end,
+        }
     end
 
     if ns.FluxOptionsBuildPartyRaidTab then

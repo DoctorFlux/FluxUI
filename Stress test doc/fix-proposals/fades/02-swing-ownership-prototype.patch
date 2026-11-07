@@ -1,0 +1,139 @@
+--- a/UnitFrames/FluxSwingTimer.lua
++++ b/UnitFrames/FluxSwingTimer.lua
+@@ -161,6 +161,36 @@
+ -- Wand "Shoot": brief hold at full bar when timer hits ready (while still autorepeating).
+ local SWING_HOLD_WAND_SHOOT_READY = 1.0
+ local SWING_FADE_DURATION = 1.0    -- match FluxCastBar CastStop fade
++
++-- Public alpha belongs to this private overlay. Native GetAlpha can be secret.
++-- FrameUtil's public record gives the exact elapsed value of its last paint.
++-- A new owner write retires that fade, including zero-elapsed repaint races.
++local swingAlpha = 0
++local swingFadeInfo
++
++local function SetSwingAlpha(alpha)
++    if swingFadeOut then
++        if swingFadeTimer then swingFadeTimer:Cancel(); swingFadeTimer = nil end
++        if swingFrame then UIFrameFadeRemoveFrame(swingFrame) end
++        swingFadeOut = false
++        swingFadeInfo = nil
++    end
++    swingAlpha = alpha
++    if swingFrame then swingFrame:SetAlpha(alpha) end
++end
++
++local function CurrentSwingAlpha()
++    local info = swingFadeInfo
++    if info then
++        local timer = info.fadeTimer or 0
++        if timer < info.timeToFade then
++            return ((info.timeToFade - timer) / info.timeToFade)
++                * (info.startAlpha - info.endAlpha) + info.endAlpha
++        end
++        return info.endAlpha
++    end
++    return swingAlpha
++end
+ 
+ -- After STOP_AUTOREPEAT: keep ranged bar visible this long (timer keeps counting from preserved anchor), or until FluxCastBar needs the slot.
+ local SWING_RANGED_LINGER_AFTER_STOP = 5.0
+@@ -1048,7 +1078,7 @@
+         return
+     end
+     local oor = nativeShownTypeOutOfRange == true
+-    swingFrame:SetAlpha(oor and NATIVE_SWING_OOR_ALPHA or 1)
++    SetSwingAlpha(oor and NATIVE_SWING_OOR_ALPHA or 1)
+     local r, g, b = 1, 1, 1
+     if oor then
+         r, g, b = NativeOORTextColor()
+@@ -1133,19 +1163,21 @@
+     end
+     if swingFrame and swingFadeOut then
+         UIFrameFadeRemoveFrame(swingFrame)
+-        swingFrame:SetAlpha(1)
++        swingFadeInfo = nil
+         swingFadeOut = false
++        SetSwingAlpha(1)
+     end
+ end
+ 
+ local function FinishSwingFade()
+     swingFadeOut = false
+     swingFadeTimer = nil
++    swingFadeInfo = nil
+     swingVisible = false
+     if swingFrame then
+         UIFrameFadeRemoveFrame(swingFrame)
+         -- Flux perf T2.4: Hide() stops OnUpdate; alpha reset for the next show.
+-        swingFrame:SetAlpha(0)
++        SetSwingAlpha(0)
+         swingFrame:Hide()
+     end
+     if swingText then swingText:Hide() end
+@@ -1158,11 +1190,17 @@
+         swingFadeTimer:Cancel()
+         swingFadeTimer = nil
+     end
++    local startAlpha = CurrentSwingAlpha()
+     UIFrameFadeRemoveFrame(swingFrame)
+     swingFadeOut = true
+-    UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, swingFrame:GetAlpha(), 0)
++    UIFrameFadeOut(swingFrame, SWING_FADE_DURATION, startAlpha, 0)
++    -- This is the public record just created by our call above, not alpha
++    -- recovered from the native frame. FrameUtil only advances its fadeTimer.
++    local fadeInfo = swingFrame.fadeInfo
++    swingFadeInfo = fadeInfo
++    swingAlpha = startAlpha
+     swingFadeTimer = C_Timer.NewTimer(SWING_FADE_DURATION, function()
+-        if swingFadeOut then
++        if swingFadeOut and swingFadeInfo == fadeInfo then
+             FinishSwingFade()
+         end
+     end)
+@@ -1175,7 +1213,7 @@
+     swingVisible = true
+     SyncSwingFrameLevel()
+     -- Flux perf T2.4: ensure Show() so OnUpdate resumes if previously hidden.
+-    swingFrame:SetAlpha(1)
++    SetSwingAlpha(1)
+     if not swingFrame:IsShown() then
+         swingFrame:Show()
+     end
+@@ -1201,7 +1239,7 @@
+     if swingFrame then
+         UIFrameFadeRemoveFrame(swingFrame)
+         -- Flux perf T2.4: Hide() stops the OnUpdate ticker.
+-        swingFrame:SetAlpha(0)
++        SetSwingAlpha(0)
+         swingFrame:Hide()
+     end
+     if swingText then swingText:Hide() end
+@@ -2422,7 +2460,7 @@
+     -- Draw below the cast bar so cast textures win if both were visible same slot.
+     SyncSwingFrameLevel()
+     swingFrame:SetAllPoints(castBar)
+-    swingFrame:SetAlpha(0)
++    SetSwingAlpha(0)
+     swingFrame:Hide()
+ 
+     -- Status bars
+@@ -2523,8 +2561,9 @@
+             end
+         else
+             -- Flux perf T2.4: stay Hide()d; ShowSwing from the next swing event re-Shows the frame.
++            SetSwingAlpha(0)
++            swingVisible = false
+             swingFrame:Hide()
+-            swingFrame:SetAlpha(0)
+         end
+         UpdateNativeRangeCheckRegistration()
+     else
+@@ -2534,6 +2573,8 @@
+         SetNativeRangeCheck("ranged", types and types.Ranged, false)
+         SetNativeShownOutOfRange(false)
+         if swingFrame then
++            SetSwingAlpha(0)
++            swingVisible = false
+             swingFrame:Hide()
+         end
+     end

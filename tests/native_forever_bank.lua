@@ -64,17 +64,21 @@ for _,family in ipairs({"forever","camelot","retail","era","anniversary","mists"
     local buttonSource=read("Inventory/Restock/Bank/FluxBankRestockButton.lua")
     env.UsesPlayerBagsInBank=function()return false end;env.UsesPreDFBankButtonLayout=function()return false end
     env.MatchRepairButtonSize=function()end;env.UsesAlternativeBagUI=function()return false end
-    env.btn={SetParent=function()s.writes=s.writes+1 end,SetFrameStrata=function()end,SetFrameLevel=function()end,
+    env.GetBagsInBankButtonPlacement=function(anchor)return {point="RIGHT",relativeTo=anchor,relativePoint="LEFT",x=-4,y=0}end
+    env.IsVisibleFrame=function(frame)return frame and frame:IsShown()end
+    env.STRATA_ORDER={HIGH=4}
+    env.btn={SetParent=function(_,parent)s.writes=s.writes+1;s.parent=parent end,SetFrameStrata=function()end,SetFrameLevel=function()end,
         ClearAllPoints=function()end,SetPoint=function()end,Show=function()end}
     env.BankFrame.GetFrameStrata=function()return "HIGH" end;env.BankFrame.GetFrameLevel=function()return 1 end
     local attach=slice(buttonSource,"local function AttachToBlizzardBank(anchor)","local function AttachToCombinedBank(anchor)")
     local fn=assert(load(attach.."\nreturn AttachToBlizzardBank","restock attach","t",env))()
-    check(fn(env.BankFrame)==not native,"restock does not attach to native Forever bank")
-    check(s.writes==(native and 0 or 1),"no new child parent on native bank")
+    check(fn(env.BankFrame)==true,"restock available for every client")
+    check(s.writes==1 and s.parent==env.BankFrame,"native bank owns restock visibility/scale/movement on every client")
     env.Button={AttachToBank=function()end}
+    env.bankAttachGeneration=0
     local open=slice(buttonSource,"local function OnBankOpen()","local function OnBankClose()")
     local onOpen=assert(load(open.."\nreturn OnBankOpen","restock open","t",env))()
-    s.timers=0;onOpen();check(s.timers==(native and 0 or 2),"native bank restock attach timers stop")
+    s.timers=0;onOpen();check(s.timers==2,"bounded bank restock attach retries retained")
  end
 end
 print(string.format("native Forever bank: %d checks, %d failures",checks,failed));if failed>0 then os.exit(1) end

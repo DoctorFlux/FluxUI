@@ -18,10 +18,36 @@ local count = 0
 local ticks = 0
 local traceFn
 local profilestop = debugprofilestop
+local timingObserver, timingToken
+
+local function Clock()
+	local value = profilestop and profilestop()
+	if type(value) == "number" and not (issecretvalue and issecretvalue(value))
+		and value == value and value ~= math.huge and value ~= -math.huge then return value end
+end
+
+function Ticker.ObserveTiming(fn)
+	if type(fn) ~= "function" then return nil, "timing observer must be a function" end
+	if timingObserver then return nil, "timing observer already registered" end
+	local token = {}
+	timingObserver, timingToken = fn, token
+	return function()
+		if timingToken == token then timingObserver, timingToken = nil, nil end
+	end
+end
+
+local function NotifyTiming(observer, token, key, fn, ms, failed)
+	local ok, err = pcall(observer, key, fn, ms, failed)
+	if not ok then
+		if timingObserver == observer and timingToken == token then timingObserver, timingToken = nil, nil end
+		local geh = geterrorhandler
+		if geh then geh()(tostring(err)) end
+	end
+end
 
 frame:SetScript("OnUpdate", function(_, elapsed)
-	local t0
-	if traceFn then
+	local trace, t0 = traceFn
+	if trace then
 		t0 = profilestop and profilestop() or 0
 	end
 	ticks = ticks + 1
@@ -29,6 +55,8 @@ frame:SetScript("OnUpdate", function(_, elapsed)
 	while i <= count do
 		local key = keys[i]
 		local fn = fns[i]
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
 		local ok, err = pcall(fn, elapsed)
 		if not ok then
 			local geh = geterrorhandler
@@ -36,13 +64,17 @@ frame:SetScript("OnUpdate", function(_, elapsed)
 				geh()(tostring(err))
 			end
 		end
+		if began and observer == timingObserver and token == timingToken then
+			local ended = Clock()
+			if ended and ended >= began then NotifyTiming(observer, token, key, fn, ended - began, not ok) end
+		end
 		-- Subscriber may Remove itself (swap-remove). Re-test this slot.
 		if keys[i] == key then
 			i = i + 1
 		end
 	end
-	if traceFn then
-		traceFn((profilestop and profilestop() or 0) - t0, count)
+	if trace and trace == traceFn then
+		trace((profilestop and profilestop() or 0) - t0, count)
 	end
 end)
 

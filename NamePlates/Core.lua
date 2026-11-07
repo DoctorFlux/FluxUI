@@ -607,11 +607,37 @@ local function OptionsOpen()
 	return SettingsPanel and SettingsPanel.IsShown and SettingsPanel:IsShown()
 end
 
+-- Reassert native layout only when it differs. These objects can have secret
+-- alpha/anchors: an unknown result never enters a Lua comparison and retains
+-- the original write path instead of claiming that cached artwork stayed put.
+local function HasPublicPoint(region, point, relative, relativePoint, x, y)
+	if not (region.GetNumPoints and region.GetPoint) then return false end
+	local ok, count = pcall(region.GetNumPoints, region)
+	if not ok or not NP.IsUsable(count) or type(count) ~= "number" or count < 0 or count > 8 then return false end
+	for i = 1, count do
+		local got, p, r, rp, px, py = pcall(region.GetPoint, region, i)
+		if not got or not NP.IsUsable(p) or not NP.IsUsable(r) or not NP.IsUsable(rp)
+			or not NP.IsUsable(px) or not NP.IsUsable(py) then return false end
+		if p == point then return r == relative and rp == relativePoint and px == x and py == y end
+	end
+	return false
+end
+
+local function EnsurePublicPoint(region, point, relative, relativePoint, x, y)
+	if region and region.SetPoint and not HasPublicPoint(region, point, relative, relativePoint, x, y) then
+		pcall(region.SetPoint, region, point, relative, relativePoint, x, y)
+	end
+end
+
 local function FadeArtwork(region)
 	if not region then
 		return
 	end
 	if region.SetAlpha then
+		if region.GetAlpha then
+			local ok, alpha = pcall(region.GetAlpha, region)
+			if ok and NP.IsUsable(alpha) and type(alpha) == "number" and alpha == 0 then return end
+		end
 		region:SetAlpha(0)
 	end
 end
@@ -642,10 +668,10 @@ local function PullRightAuras(uf, health)
 	local cc = auras.CrowdControlListFrame
 	local loc = auras.LossOfControlFrame
 	if cc and cc.SetPoint then
-		pcall(cc.SetPoint, cc, "LEFT", health, "RIGHT", RIGHT_AURA_GAP, 0)
+		EnsurePublicPoint(cc, "LEFT", health, "RIGHT", RIGHT_AURA_GAP, 0)
 	end
 	if loc and loc.SetPoint then
-		pcall(loc.SetPoint, loc, "LEFT", health, "RIGHT", RIGHT_AURA_GAP, 0)
+		EnsurePublicPoint(loc, "LEFT", health, "RIGHT", RIGHT_AURA_GAP, 0)
 	end
 end
 
@@ -657,12 +683,12 @@ local function StretchHealthBar(uf)
 		return
 	end
 	local spacing = (setup and setup.castBarToHealthBarSpacing) or 2
-	pcall(health.SetPoint, health, "BOTTOMRIGHT", cast, "TOPRIGHT", 0, spacing)
+	EnsurePublicPoint(health, "BOTTOMRIGHT", cast, "TOPRIGHT", 0, spacing)
 	local bar = health.healthBar
 	if bar and setup and setup.useClassicHealthBar then
 		local scale = setup.horizontalScale or 1
 		local y = 0.5 * (setup.verticalScale or 1)
-		pcall(bar.SetPoint, bar, "BOTTOMRIGHT", health, "BOTTOMRIGHT", -4 * scale, y)
+		EnsurePublicPoint(bar, "BOTTOMRIGHT", health, "BOTTOMRIGHT", -4 * scale, y)
 	end
 	PullRightAuras(uf, health)
 end
@@ -807,15 +833,24 @@ local function IsLiveClient()
 	return NP.IsLiveClient()
 end
 
+local function HideLiveLevelRegion(frame)
+	if not (frame and frame.Hide) then return end
+	if frame.IsShown then
+		local ok, shown = pcall(frame.IsShown, frame)
+		if ok and NP.IsUsable(shown) and shown == false then return end
+	end
+	frame:Hide()
+end
+
 local function HideLiveLevel(uf)
 	if not uf or uf.unit == NP.PREVIEW_UNIT or uf.unit == "preview" then
 		return
 	end
 	if uf.LevelFrame and uf.LevelFrame.Hide then
-		uf.LevelFrame:Hide()
+		HideLiveLevelRegion(uf.LevelFrame)
 	end
 	if uf.PlayerLevelDiffFrame and uf.PlayerLevelDiffFrame.Hide then
-		uf.PlayerLevelDiffFrame:Hide()
+		HideLiveLevelRegion(uf.PlayerLevelDiffFrame)
 	end
 end
 

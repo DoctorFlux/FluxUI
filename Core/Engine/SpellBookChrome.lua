@@ -18,8 +18,8 @@ local COMPACT_GAP, COMPACT_HEIGHT = 12, 18
 -- one independent, throttled driver; never wrap the native book/filter methods.
 local observers = {}
 local observerFrame
-function Chrome.Observe(owner, onShow, onHide, onUpdate)
-	observers[owner] = { onShow=onShow, onHide=onHide, onUpdate=onUpdate }
+function Chrome.Observe(owner, onShow, onHide, onUpdate, onPoll)
+	observers[owner] = { onShow=onShow, onHide=onHide, onUpdate=onUpdate, onPoll=onPoll }
 	if observerFrame then return end
 	observerFrame=CreateFrame("Frame")
 	local elapsed=0
@@ -51,6 +51,7 @@ function Chrome.Observe(owner, onShow, onHide, onUpdate)
 				if shown and observer.onShow then observer.onShow()
 				elseif was and observer.onHide then observer.onHide() end
 			elseif shown and pageChanged and observer.onUpdate then observer.onUpdate() end
+			if observer.onPoll then observer.onPoll() end
 		end
 	end)
 end
@@ -173,6 +174,7 @@ local function RightAnchor(widget)
 	if widget.label then
 		return widget.label, "RIGHT"
 	end
+	if widget.Label then return widget.Label, "RIGHT" end
 	local name = widget.GetName and widget:GetName()
 	if type(name) == "string" and name ~= "" then
 		local text = _G[name .. "Text"]
@@ -258,7 +260,14 @@ end
 function Chrome.Layout(opts)
 	opts = opts or {}
 	local host, kind = Chrome.GetHost()
-	local mouseover = opts.mouseover or _G.FluxMouseoverCastCheckbox
+	local MC = Flux.MouseoverCast
+	local nativeOrCustom = MC and MC.GetSpellBookCheckbox and MC.GetSpellBookCheckbox()
+	local mouseover = opts.mouseover or nativeOrCustom or _G.FluxMouseoverCastCheckbox
+	if MC and MC.UsesNativeCVar and MC.UsesNativeCVar() then
+		local obsolete = _G.FluxMouseoverCastCheckbox
+		if obsolete and obsolete ~= nativeOrCustom then obsolete:Hide() end
+		if mouseover and mouseover ~= nativeOrCustom then mouseover:Hide(); mouseover = nil end
+	end
 	local autoRank = opts.autoRank or _G.FluxAutoRankUpCheckbox
 	local rankUp = opts.rankUp or _G.FluxRankUpAllButton
 	local editor = opts.editor or _G.FluxSpellBookBindingEditorBtn

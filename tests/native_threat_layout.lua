@@ -75,9 +75,9 @@ end
 local e, s, owned, skin = boot(true, false)
 local lib, meter = e.FluxMeterLayout, e.FluxBlizzardMeter
 check(lib.GetActiveLayoutId() == "builtin:1", "original active default remains builtin1")
-check(lib.GetMaxPanes() == 4 and lib.GetBuiltinCount() == 9, "available owned pane adds one slot and appended presets")
+check(lib.GetMaxPanes() == 4 and lib.GetBuiltinCount() == 10, "available owned pane adds one slot and appended presets")
 local expected = {
-    {{0}, {2}}, {{0}, {}}, {{5, 0}, {2}}, {{0}, {6, 2}}, {{0}, {2, 4}}, {{7}, {0, 2}},
+    {{0}, {2}}, {{0}, {}}, {{5, 0}, {2}}, {{0}, {6, 2}}, {{0}, {2, 3}}, {{7}, {0, 2}},
 }
 for id, rows in ipairs(expected) do
     local lay = lib.ApplyBuiltin(id)

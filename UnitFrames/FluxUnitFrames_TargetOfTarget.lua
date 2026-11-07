@@ -1,5 +1,11 @@
 -- UnitFrames/FluxUnitFrames_TargetOfTarget.lua
 local addonName, ns = ...
+
+-- Keep the Forever compatibility fallback local to Flux-owned frames.
+local FluxDrivers = ((ns and ns.Flux) or _G.Flux or {}).Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local RegisterUnitWatch = (useFluxDrivers and FluxDrivers.RegisterUnitWatch) or RegisterUnitWatch
+local UnregisterUnitWatch = (useFluxDrivers and FluxDrivers.UnregisterUnitWatch) or UnregisterUnitWatch
 local UF = ns.UnitFrames
 local CB = ns.CastBar
 
@@ -42,7 +48,7 @@ local function InitializeTargetOfTargetFrame()
     end
 
     local frame = UF.CreateBaseFrame("targettarget", UIParent, frameWidth, frameHeight)
-    local originalFrameLevel = frame:GetFrameLevel()
+    local originalFrameLevel = UF.GetFramePublicLevel(frame)
     frame.barAreaLeft = -2
     frame.barAreaRight = -6
 
@@ -82,8 +88,9 @@ local function InitializeTargetOfTargetFrame()
 
         frame:ClearAllPoints()
         if sideBySide then
-            local ph = tf:GetHeight() or 100
-            local totH = frame:GetHeight() or 60
+            local _, ph = UF.GetFramePublicDimensions(tf)
+            local _, totH = UF.GetFramePublicDimensions(frame)
+            if ph == nil or totH == nil then return false end
             local inset = 8
             local innerH = math.max(10, ph - inset)
             local centerFromTop = 2 + innerH / 2
@@ -91,13 +98,14 @@ local function InitializeTargetOfTargetFrame()
             if frame:GetParent() ~= tf then
                 frame:SetParent(tf)
             end
-            frame:SetFrameLevel((tf:GetFrameLevel() or 0) + 30)
+            local level = UF.GetFramePublicLevel(tf)
+            if level ~= nil then UF.SetFramePublicLevel(frame, level + 30) end
             frame:SetPoint("TOPRIGHT", tf, "TOPRIGHT", 0, yOff)
         else
             if frame:GetParent() ~= UIParent then
                 frame:SetParent(UIParent)
             end
-            frame:SetFrameLevel(originalFrameLevel)
+            UF.SetFramePublicLevel(frame, originalFrameLevel)
             frame:SetPoint("TOPLEFT", tf.outerBorderFrame, "BOTTOMRIGHT", 0, -12)
         end
         frame:SetScale(sideBySide and 1 or (FluxUnitFrames_GetWholeFrameScale and FluxUnitFrames_GetWholeFrameScale("target") or 1))

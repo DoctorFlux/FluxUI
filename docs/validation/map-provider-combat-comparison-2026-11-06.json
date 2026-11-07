@@ -1,0 +1,193 @@
+{
+  "checkpoint": "Map-provider-combat-before-20261106T171453Z, parent verified1663files/190settings/allrefs, sourceZIP3b9d11628abdfd5e9b71dc976585ba8764bc4af9037c63de082edb5de7b9b377",
+  "sourceSHA256": {
+    "baselineAfterDetachFix": "9a66d5e6c1ff14e377c7948b0340262fb1a67f31f53bf5d37c299b30ce152718",
+    "candidate": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578",
+    "combatCore": "2eaf940e92498af507f9d4afb5b88e552b3217169d03956d091e6d025cc09092",
+    "test": "b18be0f8da875892c7a75b442663bbd3b7bc1666a4ce27e153fe76ed23f70d6b",
+    "lifecycleFixture": "b848fc4b3727df5952f4510d7c93c007aa156f65d12a82e1b70c036bb42a73fa"
+  },
+  "scope": "Full actual Providers module +actual mandatory Combat service, explicit pinned native lifecycle/API fixtures, monitored global method writes. Eleven available provider features, callback storms, pre-Add dirty capture, asyncBonus, queuedSecretRun, four-argument latestPing, exact0.25second throttle, cancelled owner and classic capability boundary. Native security/taint/pixels/CPU/FPS not modeled. Shared flush isolates/reports individual failures using the existing Safecall contract; reentrant lockdown retains remaining owners for the next regen.",
+  "regression": {
+    "checks": 36,
+    "baselineExit": 1,
+    "baselineOutput": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: native acquire and global pin mixins remain untouched\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:124: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:220: in main chunk\n\t[C]: in ?\n",
+    "mutants": [
+      {
+        "name": "global-native-write",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: native acquire and global pin mixins remain untouched\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:136: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "unguarded-refresh",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: protected native pin acquisition\nstack traceback:\n\t[C]: in function 'error'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: in method 'CheckMouseButtonPassthrough'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:45: in method 'AcquirePin'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:87: in upvalue 'refresh'\n\t...7e22b\\map-provider-combat-20261106\\unguarded-refresh.lua:782: in method 'RefreshAllData'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:146: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "unguarded-bonus-callback",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: protected native pin acquisition\nstack traceback:\n\t[C]: in function 'error'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: in method 'CheckMouseButtonPassthrough'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:45: in method 'AcquirePin'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:84: in local 'callback'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:154: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "unguarded-secret-run",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: secret refresh timer rechecks combat at execution\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:181: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "premature-ping",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: ping waits when its required refresh is still throttled\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:189: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "lost-ping-argument",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: each owner refreshes once, latest ping replays, and bonus remains asynchronous\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:162: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "shared-flush-failure",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: one failed owner cannot discard the other ten deferred refreshes\nstack traceback:\n\t[C]: in function 'assert'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:9: in upvalue 'check'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:220: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "late-wrapper",
+        "exit": 1,
+        "output": "lua: ...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: protected native pin acquisition\nstack traceback:\n\t[C]: in function 'error'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:30: in method 'CheckMouseButtonPassthrough'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:45: in method 'AcquirePin'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:87: in field 'dirtyMethod'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:149: in local 'exercise'\n\t...22b\\map-provider-combat-20261106\\map_provider_combat.lua:256: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "scenario": "Native-like out-of-combat provider workload; attach11 available providers,10warm-up full refresh sweeps,1000matched full sweeps,5alternating pairs. Bonus callback fixture cancels prior callback on refresh. No GC/profiler/settings changes.",
+  "clockLimit": "Uncalibrated Windows host Lua os.clock interval, not native CPU or FPS. Startup/file load excluded. Candidate restores real native passthrough calls rather than muting them, so timing comparisons do not measure identical native engine work.",
+  "nativeAcceptance": "Pending root fresh reload/metadata probe. Previous global field taint requires reload; no hot native restoration performed. No random spike fix claim.",
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "stdout": "COUNTS\t10110\t121320\t0\t2\t1\nHOST_CLOCK_MS\t47.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 121320,
+        "nativePassthroughChecks": 0,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 47.0
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "stdout": "COUNTS\t10110\t0\t10110\t2\t1\nHOST_CLOCK_MS\t10.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 0,
+        "nativePassthroughChecks": 10110,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 10.0
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "stdout": "COUNTS\t10110\t0\t10110\t2\t1\nHOST_CLOCK_MS\t10.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 0,
+        "nativePassthroughChecks": 10110,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 10.0
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "stdout": "COUNTS\t10110\t121320\t0\t2\t1\nHOST_CLOCK_MS\t49.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 121320,
+        "nativePassthroughChecks": 0,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 49.0
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "stdout": "COUNTS\t10110\t121320\t0\t2\t1\nHOST_CLOCK_MS\t48.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 121320,
+        "nativePassthroughChecks": 0,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 48.0
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "stdout": "COUNTS\t10110\t0\t10110\t2\t1\nHOST_CLOCK_MS\t10.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 0,
+        "nativePassthroughChecks": 10110,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 10.0
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "stdout": "COUNTS\t10110\t0\t10110\t2\t1\nHOST_CLOCK_MS\t10.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 0,
+        "nativePassthroughChecks": 10110,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 10.0
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "stdout": "COUNTS\t10110\t121320\t0\t2\t1\nHOST_CLOCK_MS\t45.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 121320,
+        "nativePassthroughChecks": 0,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 45.0
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "stdout": "COUNTS\t10110\t121320\t0\t2\t1\nHOST_CLOCK_MS\t45.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 121320,
+        "nativePassthroughChecks": 0,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 45.0
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "stdout": "COUNTS\t10110\t0\t10110\t2\t1\nHOST_CLOCK_MS\t12.0\n",
+      "counts": {
+        "acquires": 10110,
+        "globalMixinWrites": 0,
+        "nativePassthroughChecks": 10110,
+        "frames": 2,
+        "timers": 1
+      },
+      "hostClockMs": 12.0
+    }
+  ]
+}

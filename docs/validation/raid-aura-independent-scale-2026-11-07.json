@@ -1,0 +1,178 @@
+{
+  "changeID": "RAID-AURA-INDEPENDENT-SCALE-20261107",
+  "date": "2026-11-07",
+  "userContract": "1.00 matches Blizzard; resize only auras, fixed frame dimensions; larger blocks may extend outside the frame, explicitly accepted by user.",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\06\\01a1b0ac-547f-7972-8df9-fa26882e0e03\\Raid-rewrite-20261107T054522Z",
+    "utc": "20261107T054522Z",
+    "baseline": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "status": "M AddonOptions/FluxOptionsDefaults.lua\n M AddonOptions/FluxOptionsRaidFrame.lua\n M AddonOptions/FluxOptionsRender.lua\n M Bars/BadgeHost.lua\n M Bars/Effects.lua\n M Bars/ProgramFace.lua\n M Bars/SlotProgram.lua\n M Bars/Stance/Extras.lua\n M Bars/_tmp_barsmoke.lua\n M Battlezonemap/FluxBattlefieldMapProviders.lua\n M Binding/Input/FluxMouseoverKeybind.lua\n M Blizzard/Hide.lua\n M Core/API/Action.lua\n M Core/API/Name.lua\n M Core/API/Spell.lua\n M Core/ButtonFX/Glow.lua\n M Core/Engine/Events.lua\n M Core/Engine/Scheduler.lua\n M Core/Engine/Ticker.lua\n M ExtraButtonSystem/Engine/Badge.lua\n M ExtraButtonSystem/Engine/Paint.lua\n M ExtraButtonSystem/FlyoutEngine/Popup.lua\n M ExtraButtonSystem/Layout.lua\n M ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua\n M Inventory/SpellReagents.lua\n M NEXT_SESSION.md\n M Other/FluxPerfCapture.lua\n M Other/FluxPerfDebug.lua\n M RaidFrame/FluxRaidCompat.lua\n M RaidFrame/FluxRaidFrame.lua\n M RaidFrame/FluxRaidFrame.xml\n M RaidFrame/FluxRaidFrame_BigDebuffs.lua\n M RaidFrame/FluxRaidLayout.lua\n M RaidFrame/FluxRaidPreview.lua\n M RaidFrame/FluxRaidUnit.lua\n M RaidFrame/FluxRaidVisuals.lua\n M RaidFrame/_tmp_raidaurassmoke.lua\n M UnitFrames/FluxHealthLossOverlay.lua\n M UnitFrames/FluxPowerCostOverlay.lua\n M UnitFrames/FluxUnitFrames_Shared.lua\n M _FluxUI.toc\n M docs/12-extra-button-system.md\n M docs/15-raid-frames.md\n M docs/30-source-coverage.md\n M docs/90-reference-inspirations.md\n M docs/CLIENT_MATRIX.csv\n M docs/CLIENT_VALIDATION.md\n M docs/DECISIONS.md\n M docs/FEATURE_PARITY.csv\n M docs/FOREVER_SAO_GLOW.md\n M docs/PERFORMANCE_AUDIT.csv\n M docs/PERFORMANCE_PROTOCOL.md\n M docs/PERFORMANCE_RESULTS.csv\n M docs/REFERENCE_MANIFEST.csv\n M docs/STATUS.md\n M docs/WORK_LOG.md\n M docs/performance-driver-inventory.md\n M docs/reference/declarations.md\n M docs/reference/defaults.md\n M docs/reference/interfaces.md\n M docs/reference/inventory.json\n M docs/reference/settings-details.md\n M docs/reference/verification.json\n M tests/forever_sao_glow.lua\n M tests/raid_header_precreation.lua\n M tests/unit_power_visibility.lua\n?? RaidFrame/FluxRaidAuras.lua\n?? RaidFrame/FluxRaidHealerExtras.lua\n?? RaidFrame/FluxRaidHoTs.lua\n?? RaidFrame/FluxRaidPrediction.lua\n?? RaidFrame/FluxRaidSecure.lua\n?? docs/MAP_PROVIDER_LIFECYCLE.md\n?? docs/RAID_HEALKIT_REWORK.md\n?? docs/RANDOM_SPIKES.md\n?? docs/TACOTIP_BACKDROP.md\n?? docs/TELEPORT_REAGENT_RESTOCK.md\n?? docs/UNIT_STATE_SECRETS.md\n?? docs/validation/ebs-glow-startup-comparison-2026-11-06.json\n?? docs/validation/ebs-glow-startup-native-2026-11-06.json\n?? docs/validation/ebs-glow-startup-saved-evidence-2026-11-06.json\n?? docs/validation/ebs-layout-coalescing-comparison-2026-11-06.json\n?? docs/validation/forever-random-spikes-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-120s-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-bugtabs-2026-11-06.json\n?? docs/validation/forever-random-spikes-profile-restoration-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-analysis-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-armed-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-errors-2026-11-06.json\n?? docs/validation/forever-random-spikes-v2-watch-2026-11-06.json\n?? docs/validation/forever-random-spikes-watch-2026-11-06.json\n?? docs/validation/forever-sao-badge-row-swap-2026-11-06.json\n?? docs/validation/forever-sao-face-paging-2026-11-06.json\n?? docs/validation/forever-secure-proc-glow-2026-11-06.json\n?? docs/validation/map-provider-client-copy-2026-11-06.json\n?? docs/validation/map-provider-combat-comparison-2026-11-06.json\n?? docs/validation/map-provider-detach-comparison-2026-11-06.json\n?? docs/validation/map-provider-lifecycle-2026-11-06.json\n?? docs/validation/map-provider-native-after-2026-11-06.json\n?? docs/validation/map-provider-native-baseline-2026-11-06.json\n?? docs/validation/raid-aura-clock-fix-2026-11-06.json\n?? docs/validation/raid-aura-duration-2026-11-06.json\n?? docs/validation/raid-aura-limits-2026-11-07.json\n?? docs/validation/raid-aura-slider-live-2026-11-07.json\n?? docs/validation/raid-aura-text-scale-2026-11-06.json\n?? docs/validation/raid-blizzard-aura-followup-2026-11-06.json\n?? docs/validation/raid-blizzard-default-sizing-2026-11-07.json\n?? docs/validation/raid-healkit-rework-2026-11-06.json\n?? docs/validation/random-spike-aura-sync-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-2026-11-06.json\n?? docs/validation/random-spike-diagnostics-v2-2026-11-06.json\n?? docs/validation/random-spike-pause-2026-11-06.json\n?? docs/validation/random-spike-startup-check-2026-11-06.json\n?? docs/validation/spike-observer-comparison-2026-11-06.json\n?? docs/validation/spike-watch-comparison-2026-11-06.json\n?? docs/validation/spike-watch-v2-comparison-2026-11-06.json\n?? docs/validation/stance-aura-sync-comparison-2026-11-06.json\n?? docs/validation/stance-aura-text-cache-comparison-2026-11-06.json\n?? docs/validation/tacotip-backdrop-audit-2026-11-06.json\n?? docs/validation/teleport-reagent-client-copy-2026-11-07.json\n?? docs/validation/teleport-reagent-comparison-2026-11-07.json\n?? docs/validation/teleport-reagent-safety-2026-11-07.json\n?? docs/validation/unit-state-followup-client-copy-2026-11-06.json\n?? docs/validation/unit-state-followup-comparison-2026-11-06.json\n?? docs/validation/unit-state-followup-safety-2026-11-06.json\n?? docs/validation/unit-state-native-followup-2026-11-06.json\n?? docs/validation/unit-state-secret-client-copy-2026-11-06.json\n?? docs/validation/unit-state-secret-comparison-2026-11-06.json\n?? docs/validation/unit-state-secret-native-2026-11-06.json\n?? docs/validation/unit-state-secret-safety-2026-11-06.json\n?? tests/badge_cooldown_secrets.lua\n?? tests/ebs_glow_startup.lua\n?? tests/ebs_layout_coalescing.lua\n?? tests/forever_badge_combat_row_swap.lua\n?? tests/forever_sao_badge_preparation.lua\n?? tests/forever_sao_face_paging.lua\n?? tests/map_provider_combat.lua\n?? tests/map_provider_detach.lua\n?? tests/options_dynamic_range.lua\n?? tests/perf_callback_observer.lua\n?? tests/perf_spike_watch.lua\n?? tests/player_name_secret.lua\n?? tests/power_snapshot_cleanup.lua\n?? tests/program_face_secret_names.lua\n?? tests/raid_aura_layout.lua\n?? tests/raid_aura_live_options.lua\n?? tests/raid_aura_native_filters.lua\n?? tests/raid_aura_options.lua\n?? tests/raid_big_debuff_boundary.lua\n?? tests/raid_binding_cast.lua\n?? tests/raid_blizzard_default_sizes.lua\n?? tests/raid_connected_grid.lua\n?? tests/raid_healer_auras.lua\n?? tests/raid_healer_extras.lua\n?? tests/raid_healer_hots.lua\n?? tests/raid_healer_prediction.lua\n?? tests/raid_healer_runtime.lua\n?? tests/raid_healer_secure.lua\n?? tests/raid_healer_visuals.lua\n?? tests/raid_hidden_buff_event.lua\n?? tests/raid_manager_ghost.lua\n?? tests/raid_native_member_order.lua\n?? tests/raid_native_sizing_layout.lua\n?? tests/spell_reagent_presets.lua\n?? tests/stance_aura_sync.lua\n?? tests/stance_aura_text_cache.lua\n?? tests/teleport_restock.lua\n?? tests/unit_identity_feedback.lua\n?? tests/unit_overlay_secret_identity.lua",
+    "sourceFiles": 1703,
+    "settingsFiles": 158,
+    "zipHashVerification": "PASS",
+    "bundleVerification": "PASS",
+    "sha256": {
+      "source.zip": "02d59001eea2c18816e9cab0c650f6115049b9b36755d455ffe8be57f8aa25c2",
+      "settings.zip": "808510299b6ebcb85402fa9858ed742ce163670328313b8ce6b4284e1ba431e6",
+      "history.bundle": "dcedb48042d83597e4d82f9d3e4a37ba261cba0adb1725f4e0fb3cde840eddf7"
+    },
+    "scope": "On-disk settings only; game memory/closed-client state not asserted. No settings writes, profiling changes, or game input."
+  },
+  "baseline": {
+    "RaidFrame/FluxRaidVisuals.lua": "f1617a3681d2d1898f4b64cf9103182204ec3848879beda5c46bc4d69845e24f",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "ab4f91a261fb83a49a0f4ddf445fc17c7d22b43c0d7f775c1963909afcb75f2d"
+  },
+  "candidate": {
+    "RaidFrame/FluxRaidVisuals.lua": "d133a36d9a9dc1e423d92b8f6d28867c6386239f5d20938cf860685ef1701f8a",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "714e8c6e41b7ec724b4b541f2780ac098a3920e598705edeb15892c4ea410a3b"
+  },
+  "source": "Existing five pinned client source equations retained; fresh heads confirmed. Forever advanced to9dc84f0d3bbae1768ac3405b3716000bd93eda06 (70862); CUF blob bf81a55c61228133a80394b7f0547bf2758c364e confirms NATIVE_UNIT_FRAME_AURA_SIZE=11; latest commit changes gamepad/barbershop only.",
+  "otherSourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "behavior": "Normal icons11px and large16.5px at1.00. Range0.50..2.50 directly scales live/preview public owners and fitted text; fit is diagnostic only. Reset remains1.00. Counts, strict filters, swipe, opacity, frame geometry and secure deferred refresh unchanged.",
+  "desktop": {
+    "pass": 206,
+    "fail": 0,
+    "syntaxFiles": 868,
+    "drift": {
+      "beforeCount": 868,
+      "afterCount": 868,
+      "unchanged": true,
+      "corpusSHA256": "776bbb6fd607e23da2b825d929dda1d76f0722d243bf5e7a81bc7f658d68cbb9"
+    }
+  },
+  "pairedRegressions": [
+    {
+      "trial": 1,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_aura_layout.lua:6: six-plus-six enlarges past the old hidden fit cap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:6: in local 'check'\n\ttests/raid_aura_layout.lua:39: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid aura layout: 2936 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      }
+    },
+    {
+      "trial": 2,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid aura layout: 2936 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_aura_layout.lua:6: six-plus-six enlarges past the old hidden fit cap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:6: in local 'check'\n\ttests/raid_aura_layout.lua:39: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "trial": 3,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_aura_layout.lua:6: six-plus-six enlarges past the old hidden fit cap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:6: in local 'check'\n\ttests/raid_aura_layout.lua:39: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid aura layout: 2936 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      }
+    },
+    {
+      "trial": 4,
+      "order": [
+        "candidate",
+        "baseline"
+      ],
+      "candidate": {
+        "exit": 0,
+        "output": "Raid aura layout: 2936 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      },
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_aura_layout.lua:6: six-plus-six enlarges past the old hidden fit cap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:6: in local 'check'\n\ttests/raid_aura_layout.lua:39: in main chunk\n\t[C]: in ?\n"
+      }
+    },
+    {
+      "trial": 5,
+      "order": [
+        "baseline",
+        "candidate"
+      ],
+      "baseline": {
+        "exit": 1,
+        "output": "lua: tests/raid_aura_layout.lua:6: six-plus-six enlarges past the old hidden fit cap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_layout.lua:6: in local 'check'\n\ttests/raid_aura_layout.lua:39: in main chunk\n\t[C]: in ?\n"
+      },
+      "candidate": {
+        "exit": 0,
+        "output": "Raid aura layout: 2936 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      }
+    }
+  ],
+  "installedCopies": [
+    {
+      "client": "_forever_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "SHA256": "d133a36d9a9dc1e423d92b8f6d28867c6386239f5d20938cf860685ef1701f8a"
+    },
+    {
+      "client": "_forever_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "SHA256": "714e8c6e41b7ec724b4b541f2780ac098a3920e598705edeb15892c4ea410a3b"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "SHA256": "d133a36d9a9dc1e423d92b8f6d28867c6386239f5d20938cf860685ef1701f8a"
+    },
+    {
+      "client": "_classic_era_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "SHA256": "714e8c6e41b7ec724b4b541f2780ac098a3920e598705edeb15892c4ea410a3b"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "SHA256": "d133a36d9a9dc1e423d92b8f6d28867c6386239f5d20938cf860685ef1701f8a"
+    },
+    {
+      "client": "_anniversary_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "SHA256": "714e8c6e41b7ec724b4b541f2780ac098a3920e598705edeb15892c4ea410a3b"
+    },
+    {
+      "client": "_classic_",
+      "path": "RaidFrame/FluxRaidVisuals.lua",
+      "SHA256": "d133a36d9a9dc1e423d92b8f6d28867c6386239f5d20938cf860685ef1701f8a"
+    },
+    {
+      "client": "_classic_",
+      "path": "AddonOptions/FluxOptionsRaidFrame.lua",
+      "SHA256": "714e8c6e41b7ec724b4b541f2780ac098a3920e598705edeb15892c4ea410a3b"
+    }
+  ],
+  "resources": "Two existing owners changed; no new frame, event, ticker, timer or pool. No native CPU/FPS claim.",
+  "native": "New visual acceptance pending; earlier native sizing acceptance does not certify this follow-up. No game input, settings writes or profiler changes.",
+  "requirements": [
+    "REQ-RF-32"
+  ],
+  "finalVerification": {
+    "documentation": "PASS: 901 sources; 597 load-reachable; 14600 local links; evidence current",
+    "productionHashes": "Both unchanged from full passing run",
+    "whitespace": "PASS",
+    "native": "Reload and visual acceptance pending for this follow-up"
+  }
+}

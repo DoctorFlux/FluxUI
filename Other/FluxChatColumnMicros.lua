@@ -969,7 +969,10 @@ local function TrackCharacterPress(btn)
         return
     end
     btn._fluxPressTrack = true
-    local watch = CreateFrame("Frame", "FluxChatCharacterPressDriver")
+    -- This owned button controls the watch's native visibility. Hidden chat
+    -- columns receive no OnUpdate, without hooking CharacterFrame's secure
+    -- show/close path or delaying the visible button's press-state mirror.
+    local watch = CreateFrame("Frame", "FluxChatCharacterPressDriver", btn)
     watch:SetScript("OnUpdate", function()
         if not btn:IsShown() then
             return

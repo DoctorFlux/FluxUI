@@ -63,11 +63,58 @@ local stats = {
 Scheduler.stats = stats
 
 local flushScheduled = false
+local flushing = false
+local flushEpoch = 0
+local pausedStructural
 local paging = false
 local INVENTORY_MAX_PER_FLUSH = 8
+local profilestop = debugprofilestop
+local timingObserver, timingToken
+
+local function Clock()
+	local value = profilestop and profilestop()
+	if type(value) == "number" and not (issecretvalue and issecretvalue(value))
+		and value == value and value ~= math.huge and value ~= -math.huge then return value end
+end
+
+function Scheduler.ObserveTiming(fn)
+	if type(fn) ~= "function" then return nil, "timing observer must be a function" end
+	if timingObserver then return nil, "timing observer already registered" end
+	local token = {}
+	timingObserver, timingToken = fn, token
+	return function()
+		if timingToken == token then timingObserver, timingToken = nil, nil end
+	end
+end
+
+local function ObserveStop(observer, token, began, key, fn, ok, tokens)
+	if began and observer == timingObserver and token == timingToken then
+		local ended = Clock()
+		if ended and ended >= began then
+			local observed, err = pcall(observer, key, fn, ended - began, ok == false, tokens)
+			if not observed then
+				if timingObserver == observer and timingToken == token then timingObserver, timingToken = nil, nil end
+				local geh = geterrorhandler
+				if geh then geh()(tostring(err)) end
+			end
+		end
+	end
+end
 
 local function NewBucket()
 	return { tokens = {}, fns = {}, reasons = {} }
+end
+
+local function ScheduleFlush()
+	if flushScheduled then return end
+	flushScheduled = true
+	flushEpoch = flushEpoch + 1
+	local epoch = flushEpoch
+	Flux.Timer.After(0, function()
+		-- A direct combat wake can consume a scheduled bucket before this
+		-- callback runs. Its old timer must not drain the next batch as well.
+		if flushScheduled and flushEpoch == epoch then Scheduler.Flush() end
+	end)
 end
 
 local function Merge(tier, token, fn, reason)
@@ -136,14 +183,12 @@ function Scheduler.Request(tier, token, fn, reason)
 		return
 	end
 
-	if not flushScheduled then
-		flushScheduled = true
-		Flux.Timer.After(0, Scheduler.Flush)
-	end
+	ScheduleFlush()
 end
 
 function Scheduler.HasPending(tier)
-	if tier then return pending[tier] ~= nil end
+	if tier then return pending[tier] ~= nil or (tier == "structural" and pausedStructural ~= nil) end
+	if pausedStructural then return true end
 	for i = 1, #ORDER do
 		if pending[ORDER[i]] then
 			return true
@@ -155,7 +200,10 @@ end
 local RunBucket
 local function PauseStructural(tier, bucket)
 	if tier ~= "structural" or not (Flux.Combat and Flux.Combat.InLockdown()) then return false end
-	Flux.Combat.Defer("scheduler.structural.resume." .. tostring(bucket), function() RunBucket(tier, bucket) end)
+	-- Keep the detached older batch authoritative. New requests retain their
+	-- own bucket and cannot overtake it through a differently keyed wake.
+	pausedStructural = bucket
+	Flux.Combat.Defer("scheduler.structural.flush", Scheduler.Flush)
 	return true
 end
 
@@ -168,58 +216,73 @@ RunBucket = function(tier, bucket)
 	local fns = bucket.fns
 	for i = bucket.nextFn or 1, #fns do
 		if PauseStructural(tier, bucket) then return end
-		Flux.Safecall(fns[i], bucket.tokens, bucket.reasons)
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
+		local fn = fns[i]
+		local ok = Flux.Safecall(fn, bucket.tokens, bucket.reasons)
+		if observer then ObserveStop(observer, token, began, tier .. ".callback", fn, ok, bucket.tokens) end
 		if tier == "structural" then bucket.nextFn = i + 1 end
 	end
 
 	local list = listeners[tier]
 	for i = bucket.nextListener or 1, #list do
 		if PauseStructural(tier, bucket) then return end
-		Flux.Safecall(list[i], bucket.tokens, bucket.reasons)
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
+		local fn = list[i]
+		local ok = Flux.Safecall(fn, bucket.tokens, bucket.reasons)
+		if observer then ObserveStop(observer, token, began, tier .. ".listener", fn, ok, bucket.tokens) end
 		if tier == "structural" then bucket.nextListener = i + 1 end
 	end
 end
 
 local function RunInventory(bucket)
-	if not bucket then
-		return
-	end
+	if not bucket then return end
 	stats.tierFlushes.inventory = stats.tierFlushes.inventory + 1
-
-	local n = 0
 	local fns = bucket.fns
-	local remain = {}
-	for i = 1, #fns do
-		if n < INVENTORY_MAX_PER_FLUSH then
-			Flux.Safecall(fns[i], bucket.tokens, bucket.reasons)
-			n = n + 1
-		else
-			remain[#remain + 1] = fns[i]
-		end
+	local first = bucket.nextFn or 1
+	local last = math.min(#fns, first + INVENTORY_MAX_PER_FLUSH - 1)
+	for i = first, last do
+		local fn = fns[i]
+		-- Keep array shape for the cursor while releasing completed closures.
+		fns[i] = false
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
+		local ok = Flux.Safecall(fn, bucket.tokens, bucket.reasons)
+		if observer then ObserveStop(observer, token, began, "inventory.callback", fn, ok, bucket.tokens) end
 	end
+	bucket.nextFn = last + 1
 
 	local list = listeners.inventory
 	for i = 1, #list do
-		Flux.Safecall(list[i], bucket.tokens, bucket.reasons)
+		local observer, token, began = timingObserver
+		if observer then token, began = timingToken, Clock() end
+		local fn = list[i]
+		local ok = Flux.Safecall(fn, bucket.tokens, bucket.reasons)
+		if observer then ObserveStop(observer, token, began, "inventory.listener", fn, ok, bucket.tokens) end
 	end
 
-	if #remain > 0 then
-		local leftover = NewBucket()
-		leftover.tokens = bucket.tokens
-		leftover.reasons = bucket.reasons
-		leftover.fns = remain
-		pending.inventory = leftover
-		if not flushScheduled then
-			flushScheduled = true
-			Flux.Timer.After(0, Scheduler.Flush)
+	if bucket.nextFn <= #fns then
+		-- A callback/listener may have queued fresh work while this bucket was
+		-- detached. Append that work once, never overwrite it or copy old tails.
+		local incoming = pending.inventory
+		if incoming then
+			for i = incoming.nextFn or 1, #incoming.fns do fns[#fns + 1] = incoming.fns[i] end
+			for key in pairs(incoming.tokens) do bucket.tokens[key] = true end
+			for key in pairs(incoming.reasons) do bucket.reasons[key] = true end
 		end
+		pending.inventory = bucket
+		ScheduleFlush()
 		return true
 	end
 	return false
 end
 
 function Scheduler.Flush()
+	if flushing then return end
+	flushing = true
 	flushScheduled = false
+	flushEpoch = flushEpoch + 1
 	stats.flushes = stats.flushes + 1
 
 	local layout = pending.layout
@@ -240,13 +303,14 @@ function Scheduler.Flush()
 	pending.eval = nil
 	RunBucket("eval", eval)
 
-	local structural = pending.structural
+	local structural = pausedStructural or pending.structural
 	if structural then
 		if Flux.Combat and Flux.Combat.InLockdown() then
 			stats.deferredStructural = stats.deferredStructural + 1
 			Flux.Combat.Defer("scheduler.structural.flush", Scheduler.Flush)
 		else
-			pending.structural = nil
+			if structural == pausedStructural then pausedStructural = nil
+			else pending.structural = nil end
 			RunBucket("structural", structural)
 		end
 	end
@@ -255,6 +319,12 @@ function Scheduler.Flush()
 	pending.inventory = nil
 	if inventory then
 		RunInventory(inventory)
+	end
+	flushing = false
+	if pending.structural and not pausedStructural then
+		if Flux.Combat and Flux.Combat.InLockdown() then
+			Flux.Combat.Defer("scheduler.structural.flush", Scheduler.Flush)
+		else ScheduleFlush() end
 	end
 end
 

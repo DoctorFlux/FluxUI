@@ -2,6 +2,11 @@
 -- Focus target-of-target: HP bar + atlas border only (matches focus bar width & health height)
 local addonName, ns = ...
 local UF = ns.UnitFrames
+local function PublicNumber(value)
+    local api = ns.API
+    if api and api.IsSecretValue and api.IsSecretValue(value) then return nil end
+    return type(value) == "number" and value == value and value or nil
+end
 
 -- Fallback if FocusFrame is not ready yet (matches FluxUnitFrames_Focus defaults).
 local FOCUS_STYLE_WIDTH = 119
@@ -13,14 +18,16 @@ local FOCUS_TARGET_ANCHOR_Y = 6
 local function GetFocusFullVisualWidth(ff)
     if not ff then return FOCUS_STYLE_WIDTH end
     if ff.outerBorderFrame and ff.outerBorderFrame.GetWidth then
-        local ow = ff.outerBorderFrame:GetWidth()
+        local ow = PublicNumber(ff.outerBorderFrame:GetWidth())
         if ow and ow > 1 then
             return ow
         end
     end
-    local tw = ff:GetWidth() or FOCUS_STYLE_WIDTH
+    local tw, ph
+    if UF.GetFramePublicDimensions then tw, ph = UF.GetFramePublicDimensions(ff) end
+    tw = tw or PublicNumber(ff:GetWidth()) or FOCUS_STYLE_WIDTH
     if ff.PortraitFrame and ff.PortraitFrame:IsShown() then
-        local ph = ff:GetHeight() or FOCUS_STYLE_TOTAL_HEIGHT
+        ph = ph or PublicNumber(ff:GetHeight()) or FOCUS_STYLE_TOTAL_HEIGHT
         return tw + ph + 2 -- portrait square + gap (matches UpdateOuterBorder combinedWidth)
     end
     return tw
@@ -30,9 +37,12 @@ local function MatchFocusBarMetrics(frame)
     local ff = ns.FocusFrame
     if not ff or not ff.GetWidth or not ff.GetHeight then return end
     local w = GetFocusFullVisualWidth(ff)
-    local fh = ff:GetHeight() or FOCUS_STYLE_TOTAL_HEIGHT
+    local fh, ignoredWidth
+    if UF.GetFramePublicDimensions then ignoredWidth, fh = UF.GetFramePublicDimensions(ff) end
+    fh = fh or PublicNumber(ff:GetHeight()) or FOCUS_STYLE_TOTAL_HEIGHT
     local h = UF.GetFluxStylePartitionHealthHeight(fh, "focus") + 4 -- 2 top + 2 bottom border insets (CreateBaseFrame borderInsetY=2)
     if not InCombatLockdown() then
+        if UF.RecordFrameDimensions then UF.RecordFrameDimensions(frame, w, h) end
         frame:SetSize(w, h)
     end
     if frame.UpdatePartition then

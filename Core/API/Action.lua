@@ -109,9 +109,14 @@ end
 -- Classic GetActionCooldown is start, duration, enable, modRate. isActive is nil on tuples.
 function Action.UnpackCooldown(a, b, c, d, e)
 	if type(a) == "table" then
-		return a.startTime or a.start, a.duration, a.isEnabled or a.enable, a.isActive, a.modRate or a.timeMod
+		local start, enabled, rate = a.startTime, a.isEnabled, a.modRate
+		if type(start) == "nil" then start = a.start end
+		if type(enabled) == "nil" then enabled = a.enable end
+		if type(rate) == "nil" then rate = a.timeMod end
+		return start, a.duration, enabled, a.isActive, rate, a.isOnGCD
 	end
-	return a, b, c, nil, d or e
+	if type(d) == "nil" then d = e end
+	return a, b, c, nil, d
 end
 
 function Action.GetCharges(slot)

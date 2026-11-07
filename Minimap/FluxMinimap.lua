@@ -490,7 +490,6 @@ function FluxMinimap:CleanupBlizzardFrames()
         "MinimapZoneTextButton",
         "MiniMapWorldMapButton", -- Classic
         -- "MiniMapTracking",       -- Keeping Tracking
-        "GameTimeFrame",         -- Classic Clock/Calendar
         "TimeManagerClockButton", -- Retail Clock
         "MinimapBackdrop",       -- Common in Classic/TBC
         "MinimapCompassTexture",
@@ -500,6 +499,12 @@ function FluxMinimap:CleanupBlizzardFrames()
         "MinimapToggleButton",
         "HybridMinimapToggleButton",
     }
+
+    -- Keep the client's calendar button when its calendar bootstrap is present.
+    -- Older clients also use GameTimeFrame for a clock without a calendar.
+    if type(ToggleCalendar) ~= "function" then
+        framesToHide[#framesToHide + 1] = "GameTimeFrame"
+    end
 
     for _, name in pairs(framesToHide) do
         local frame = _G[name]
@@ -742,7 +747,18 @@ function FluxMinimap:PositionIndicators()
 
     -- 2. Mail Icon (Left of Tracking when visible)
     -- Check for mail frame across different clients
-    local mailFrame = MiniMapMailFrame or (Minimap and Minimap.MailFrame) or FluxMinimapMailFrame
+    local mailFrame = MiniMapMailFrame or (Minimap and Minimap.MailFrame)
+        or (MinimapCluster and MinimapCluster.IndicatorFrame and MinimapCluster.IndicatorFrame.MailFrame)
+        or FluxMinimapMailFrame
+
+    -- A late native indicator supersedes the one owned fallback and its listeners.
+    if FluxMinimapMailFrame and FluxMinimapMailFrame.fluxMailRegistered and mailFrame ~= FluxMinimapMailFrame then
+        FluxMinimapMailFrame:UnregisterEvent("UPDATE_PENDING_MAIL")
+        FluxMinimapMailFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
+        FluxMinimapMailFrame:SetScript("OnEvent", nil)
+        FluxMinimapMailFrame.fluxMailRegistered = false
+        FluxMinimapMailFrame:Hide()
+    end
 
     -- If mail frame doesn't exist, create a fallback one
     if not mailFrame and Minimap then
@@ -840,6 +856,17 @@ function FluxMinimap:PositionIndicators()
              mailFrame:HookScript("OnHide", function() FluxMinimap:PositionIndicators() end)
              mailFrame.fluxHooked = true
         end
+    end
+
+    -- Reuse native artwork, invite alerts, tooltip and click handlers. Parenting
+    -- to the minimap lets the button follow both corner and embedded visibility.
+    local calendarButton = GameTimeFrame
+    if calendarButton and type(ToggleCalendar) == "function" then
+        calendarButton:SetParent(Minimap)
+        calendarButton:ClearAllPoints()
+        calendarButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", inset, -inset)
+        calendarButton:SetFrameLevel(Minimap:GetFrameLevel() + 10)
+        calendarButton:Show()
     end
     
     -- 3. Instance Difficulty Banner (Top Right)

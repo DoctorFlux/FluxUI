@@ -1,0 +1,4 @@
+METRIC legacy_mouseover branch=classic_era snippet_pairs=98304 secure_attribute_writes=196608 kinds=6 combat_states=2
+METRIC legacy_mouseover branch=classic_anniversary snippet_pairs=98304 secure_attribute_writes=196608 kinds=6 combat_states=2
+METRIC legacy_mouseover branch=classic snippet_pairs=98304 secure_attribute_writes=196608 kinds=6 combat_states=2
+SUMMARY checks=1179804 failures=0

@@ -1,0 +1,5 @@
+client,branch,sha,version,derivedInterface,selectedTOCXMLPaths,desktopEvidence,combatOOCWorldDungeonRaidNative,nativeTaint,nativePerformance,nativePixels
+Era,classic_era,4192ac60067fc55566182291bc67c85dd9b6794d,1.15.9.70576,11509,584,Existing suite plus targeted capability/source models; not whole-client emulation,NOT RUN: user requested simulations only,NOT RUN,NOT RUN,NOT RUN
+Anniversary,classic_anniversary,68e0a2ec559d9761dfc4e7f864c3944f9d758a49,2.5.6.70577,20506,584,Existing suite plus targeted capability/source models; not whole-client emulation,NOT RUN: user requested simulations only,NOT RUN,NOT RUN,NOT RUN
+Retail live,live,297d7aaaa736f346b3e036f38ee088eaf7f8c07f,12.1.5.70783,120105,585,Existing suite plus targeted capability/source models; not whole-client emulation,NOT RUN: user requested simulations only,NOT RUN,NOT RUN,NOT RUN
+Forever,forever,9dc84f0d3bbae1768ac3405b3716000bd93eda06,1.60.1.70862,16001,583,Existing suite plus targeted capability/source models; not whole-client emulation,NOT RUN: user requested simulations only,NOT RUN,NOT RUN,NOT RUN

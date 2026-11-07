@@ -38,13 +38,62 @@ local function ShowRegion(region, shown)
 end
 
 local function SetStatusBarValue(bar, value)
-    if not bar or value == nil then return end
+    if not bar or (not IsSecret(value) and value == nil) then return end
     if IsSecret(value) or value ~= nil then
         pcall(bar.SetValue, bar, value)
     end
 end
 
+-- Shared separators belong to the cell on their right/below. Only owned
+-- textures change; protected cell rectangles and native handlers remain intact.
+function FluxRaid_RefreshJoinedBorders()
+    if not FluxRaidVisuals.SetJoinedEdges then return end
+    local overlap = FluxRaidVisuals.CELL_JOIN_OVERLAP or Compat.HEADER_UNIT_YOFFSET or 4
+    local cells={}
+    local function number(value) return not IsSecret(value) and type(value)=="number" end
+    for frame in pairs(State.frameArray) do
+        local visible=frame.IsVisible and frame:IsVisible()
+        if not IsSecret(visible) and visible and frame.GetLeft and frame.unit and frame.unitExists~=false then
+            local l,r,t,b=frame:GetLeft(),frame:GetRight(),frame:GetTop(),frame:GetBottom()
+            if number(l) and number(r) and number(t) and number(b) then
+                cells[#cells+1]={frame=frame,left=l,right=r,top=t,bottom=b}
+            end
+        end
+    end
+    for i,cell in ipairs(cells) do
+        local below,right,above,left=false,false,false,false
+        for j,other in ipairs(cells) do
+            if i~=j then
+                if math.abs(cell.left-other.left)<0.5 and math.abs(cell.right-other.right)<0.5
+                    and math.abs(cell.bottom+overlap-other.top)<0.75 then below=true end
+                if math.abs(cell.right-other.left)<0.75 and math.abs(cell.top-other.top)<0.75
+                    and math.abs(cell.bottom-other.bottom)<0.75 then right=true end
+                if math.abs(cell.left-other.left)<0.5 and math.abs(cell.right-other.right)<0.5
+                    and math.abs(other.bottom+overlap-cell.top)<0.75 then above=true end
+                if math.abs(other.right-cell.left)<0.75 and math.abs(cell.top-other.top)<0.75
+                    and math.abs(cell.bottom-other.bottom)<0.75 then left=true end
+            end
+        end
+        FluxRaidVisuals.SetJoinedEdges(cell.frame,{bottom=not below,right=not right,exteriorTop=not above,exteriorLeft=not left})
+    end
+end
+
+function FluxRaid_RequestJoinedBorderRefresh()
+    if not FluxRaidVisuals.SetJoinedEdges then return end
+    local driver=State.joinedBorderDriver
+    if not driver then driver=CreateFrame("Frame"); State.joinedBorderDriver=driver end
+    if State.joinedBorderPending then return end
+    State.joinedBorderPending=true
+    driver:SetScript("OnUpdate",function(self)
+        self:SetScript("OnUpdate",nil)
+        State.joinedBorderPending=nil
+        FluxRaid_RefreshJoinedBorders()
+    end)
+end
+
 function FluxRaid_ShouldShowPowerBar(frame)
+    if frame and frame._fluxRaidMini and not frame._fluxExtraPet then return false end
+    if frame and frame._fluxExtraPet then return false end
     local opt = frame and frame.optionTable
     if opt and opt.displayPowerBar == false then
         return false
@@ -66,7 +115,8 @@ local function ApplyPowerVisibility(frame)
         end
         frame._fluxPowerLayoutPending = nil
         frame.powerBarUsedHeight = pbh
-        FluxRaidVisuals.ApplyCellChrome(frame, { showPower = show })
+        FluxRaidVisuals.ApplyCellChrome(frame, { showPower = show,
+            height = frame._fluxRaidMini and not frame._fluxExtraPet and (FluxRaidVisuals.MINI_FRAME_HEIGHT or Compat.MTMA_TARGET_HEIGHT or 18) or nil })
     end
 end
 
@@ -93,18 +143,19 @@ function FluxRaid_UpdateHealth(frame)
     local connected = UnitIsConnected and UnitIsConnected(unit)
     local dead = UnitIsDeadOrGhost and UnitIsDeadOrGhost(unit)
     if not IsSecret(connected) and connected == false then
-        r, g, b = 0.5, 0.5, 0.5
+        r, g, b = 0.22, 0.22, 0.22
     elseif not IsSecret(dead) and dead then
-        r, g, b = 0.5, 0.5, 0.5
+        r, g, b = 0.22, 0.22, 0.22
     elseif useClass then
         local cr, cg, cb = ClassColor(unit)
-        if cr then r, g, b = cr, cg, cb end
+        if cr then r, g, b = cr * 0.72, cg * 0.72, cb * 0.72 end
     end
     pcall(bar.SetStatusBarColor, bar, r, g, b)
 end
 
 function FluxRaid_UpdatePower(frame)
     local bar = frame and frame.powerBar
+    if frame and frame._fluxRaidMini and not frame._fluxExtraPet then ApplyPowerVisibility(frame);return end
     local unit = UnitOf(frame)
     if not bar or type(unit) ~= "string" or unit == "" then return end
     local powerType, powerToken
@@ -119,12 +170,6 @@ function FluxRaid_UpdatePower(frame)
     if UnitPowerMax then
         local ok, maximum = pcall(UnitPowerMax, unit, powerType)
         if ok then
-            if ns and ns.UnitFrames and ns.UnitFrames.UsesHudUnitBars
-                and ns.UnitFrames.UsesHudUnitBars() then
-                -- SetAlpha is an allowed secret sink; zero reveals the HP
-                -- underneath without comparing a restricted maximum in Lua.
-                bar:SetAlpha(maximum)
-            end
             if not IsSecret(maximum) and type(maximum) == "number" then
                 frame._fluxNoMainPower = maximum <= 0
             end
@@ -134,12 +179,14 @@ function FluxRaid_UpdatePower(frame)
     if not bar:IsShown() then return end
     pcall(bar.SetMinMaxValues, bar, 0, 100)
     if powerType or powerToken then
-        if powerToken and PowerBarColor and PowerBarColor[powerToken] then
+        if powerType == 0 or powerToken == "MANA" then
+            bar:SetStatusBarColor(0.16, 0.33, 0.78)
+        elseif powerToken and PowerBarColor and PowerBarColor[powerToken] then
             local c = PowerBarColor[powerToken]
-            pcall(bar.SetStatusBarColor, bar, c.r, c.g, c.b)
+            pcall(bar.SetStatusBarColor, bar, c.r * 0.72, c.g * 0.72, c.b * 0.72)
         elseif powerType and FluxRaidVisuals.POWER_COLORS and FluxRaidVisuals.POWER_COLORS[powerType] then
             local c = FluxRaidVisuals.POWER_COLORS[powerType]
-            pcall(bar.SetStatusBarColor, bar, c.r, c.g, c.b)
+            pcall(bar.SetStatusBarColor, bar, c.r * 0.72, c.g * 0.72, c.b * 0.72)
         end
     end
     local connected = UnitIsConnected and UnitIsConnected(unit)
@@ -147,69 +194,14 @@ function FluxRaid_UpdatePower(frame)
         pcall(bar.SetStatusBarColor, bar, 0.4, 0.4, 0.4)
     end
     SetStatusBarValue(bar, Compat.GetPowerPercent(unit, powerType))
+    if FluxRaidPrediction and FluxRaidPrediction.UpdatePowerCost then FluxRaidPrediction.UpdatePowerCost(frame) end
 end
 
-local function FeedOverlayBar(bar, maxHealth, value, r, g, b)
-    if not bar then return end
-    if maxHealth == nil or value == nil then
-        ShowRegion(bar, false)
-        return
-    end
-    local parent = bar:GetParent()
-    bar:ClearAllPoints()
-    if parent then
-        bar:SetAllPoints(parent)
-        if bar.SetFrameLevel and parent.GetFrameLevel then
-            bar:SetFrameLevel((parent:GetFrameLevel() or 0) + 3)
-        end
-    end
-    pcall(bar.SetMinMaxValues, bar, 0, maxHealth)
-    pcall(bar.SetValue, bar, value)
-    if bar.SetStatusBarTexture then
-        pcall(bar.SetStatusBarTexture, bar, "Interface\\RaidFrame\\Raid-Bar-Hp-Fill")
-    end
-    if r and bar.SetStatusBarColor then
-        pcall(bar.SetStatusBarColor, bar, r, g, b, 0.55)
-    end
-    ShowRegion(bar, true)
-end
 
 function FluxRaid_UpdateHealPrediction(frame)
-    local unit = UnitOf(frame)
-    local health = frame and frame.healthBar
-    if not health or type(unit) ~= "string" then return end
-    local opt = frame.optionTable
-    local enabled = not opt or opt.displayHealPrediction ~= false
-    local function hideAll()
-        ShowRegion(health.myHealPrediction, false)
-        ShowRegion(health.otherHealPrediction, false)
-        ShowRegion(health.totalAbsorb, false)
-        ShowRegion(health.healAbsorb, false)
-    end
-    if not enabled or not UnitHealthMax or not UnitGetIncomingHeals then
-        hideAll()
-        return
-    end
-    local okM, maxH = pcall(UnitHealthMax, unit)
-    if not okM or maxH == nil then
-        hideAll()
-        return
-    end
-    local function read(fn, ...)
-        if not fn then return nil end
-        local ok, v = pcall(fn, ...)
-        if ok then return v end
-        return nil
-    end
-    local mine = read(UnitGetIncomingHeals, unit, "player")
-    local all = read(UnitGetIncomingHeals, unit)
-    local absorb = UnitGetTotalAbsorbs and read(UnitGetTotalAbsorbs, unit) or nil
-    local healAbsorb = UnitGetTotalHealAbsorbs and read(UnitGetTotalHealAbsorbs, unit) or nil
-    FeedOverlayBar(health.myHealPrediction, maxH, mine, 0.0, 0.65, 0.32)
-    FeedOverlayBar(health.otherHealPrediction, maxH, all, 0.0, 0.45, 0.25)
-    FeedOverlayBar(health.totalAbsorb, maxH, absorb, 0.7, 0.85, 1.0)
-    FeedOverlayBar(health.healAbsorb, maxH, healAbsorb, 0.55, 0.15, 0.15)
+    if FluxRaidPrediction then FluxRaidPrediction.Update(frame) end
 end
+
 
 function FluxRaid_UpdateName(frame)
     local fs = frame and frame.name
@@ -218,103 +210,79 @@ function FluxRaid_UpdateName(frame)
     local name
     local playerName = ns.Flux and ns.Flux.PlayerName
     if playerName and playerName.GetDisplayName then
-        local ok, v = pcall(playerName.GetDisplayName, unit)
-        if ok then name = v end
+        name = playerName.GetDisplayName(unit)
     end
-    if name == nil and GetUnitName then
-        local ok, v = pcall(GetUnitName, unit, true)
-        if ok then name = v end
+    if not IsSecret(name) and name == nil and GetUnitName then name = GetUnitName(unit, true) end
+    if not IsSecret(name) and name == nil then name = "" end
+    frame._fluxDisplayName = name
+    local role = frame.optionTable and frame.optionTable.showRoleIcon ~= false and frame._fluxRole or nil
+    if FluxRaidVisuals.SetUnitName then FluxRaidVisuals.SetUnitName(frame, name, role)
+    else fs:SetText(name) end
+    local r,g,b = 1,1,1
+    local connected = UnitIsConnected and UnitIsConnected(unit)
+    if not IsSecret(connected) and connected == false then r,g,b=.55,.55,.55
+    elseif FluxRaid_ShouldClassColorNames and FluxRaid_ShouldClassColorNames() then
+        local cr,cg,cb=ClassColor(unit)
+        if cr then r,g,b=cr,cg,cb end
     end
-    if name == nil or (not IsSecret(name) and name == "") then
-        fs:SetText("")
-        return
-    end
-    pcall(fs.SetText, fs, name)
-    local r, g, b = 1, 1, 1
-    if FluxRaid_ShouldClassColorNames and FluxRaid_ShouldClassColorNames() then
-        local cr, cg, cb = ClassColor(unit)
-        if cr then r, g, b = cr, cg, cb end
-    end
-    pcall(fs.SetTextColor, fs, r, g, b)
+    fs:SetTextColor(r,g,b)
 end
 
+
 function FluxRaid_UpdateStatusText(frame)
-    local fs = frame and frame.statusText
+    local fs=frame and frame.statusText
     if not fs then return end
-    local opt = frame.optionTable
-    local mode = (opt and (opt._fluxHealthText or opt.healthText)) or "perc"
-    if not (FluxRaidVisuals and FluxRaidVisuals.UseOwnRaidSettings
-        and FluxRaidVisuals.UseOwnRaidSettings()) and C_CVar and C_CVar.GetCVar then
-        local cv = C_CVar.GetCVar("raidFramesHealthText")
-        if type(cv) == "string" and cv ~= "" then mode = cv end
+    local opt=frame.optionTable or {}
+    local function formatted(format,...)
+        if FluxRaidVisuals.SetUnitStatus then FluxRaidVisuals.SetUnitStatus(frame,format,...)
+        else fs:SetFormattedText(format,...) end
     end
-    if mode == "none" or (opt and opt.displayStatusText == false) then
-        fs:Hide()
+    local mode=opt._fluxHealthText or opt.healthText or "perc"
+    if not (FluxRaidVisuals and FluxRaidVisuals.UseOwnRaidSettings and FluxRaidVisuals.UseOwnRaidSettings())
+        and C_CVar and C_CVar.GetCVar then
+        local cv=C_CVar.GetCVar("raidFramesHealthText")
+        if type(cv)=="string" and cv~="" then mode=cv end
+    end
+    local unit=UnitOf(frame)
+    if type(unit)~="string" or unit=="" then fs:Hide(); return end
+    if frame._fluxRaidMini and not frame._fluxExtraPet then
+        local percent=Compat.GetHealthPercent(unit)
+        if not IsSecret(percent) and percent==nil then fs:Hide();return end
+        formatted("%.0f%%",percent);fs:Show();return
+    end
+    local connected=UnitIsConnected and UnitIsConnected(unit)
+    local dead=UnitIsDeadOrGhost and UnitIsDeadOrGhost(unit)
+    if FluxRaidVisuals.SetHealthStatus then
+        FluxRaidVisuals.SetHealthStatus(frame,mode,UnitHealth and UnitHealth(unit),UnitHealthMax and UnitHealthMax(unit),
+            Compat.GetHealthPercent(unit),connected,dead)
         return
     end
-    local unit = frame.unit
-    local displayed = UnitOf(frame)
-    if type(displayed) ~= "string" then
-        fs:Hide()
-        return
-    end
-    local connected = UnitIsConnected and UnitIsConnected(unit or displayed)
-    if not IsSecret(connected) and connected == false then
-        fs:SetText(PLAYER_OFFLINE or "Offline")
-        fs:Show()
-        return
-    end
-    local dead = UnitIsDeadOrGhost and UnitIsDeadOrGhost(displayed)
-    if not IsSecret(dead) and dead then
-        fs:SetText(DEAD or "Dead")
-        fs:Show()
-        return
-    end
-    local function setPercent()
-        local perc = Compat.GetHealthPercent(displayed)
-        if perc == nil and not IsSecret(perc) then
-            fs:Hide()
-            return
-        end
-        if not pcall(fs.SetFormattedText, fs, "%.0f%%", perc) then
-            pcall(fs.SetText, fs, perc)
-        end
-        fs:Show()
-    end
-    if mode == "perc" or mode == "healthandpercent" then
-        setPercent()
-        return
-    end
-    if mode == "health" then
-        local h = UnitHealth and UnitHealth(displayed)
-        if h ~= nil then
-            pcall(fs.SetText, fs, h)
-            fs:Show()
-        else
-            fs:Hide()
-        end
-        return
-    end
-    if mode == "losthealth" then
-        local maxH = UnitHealthMax and UnitHealthMax(displayed)
-        local h = UnitHealth and UnitHealth(displayed)
-        local ok, lost, positive = pcall(function()
-            local v = maxH - h
-            return v, type(v) == "number" and v > 0
-        end)
-        if ok and not IsSecret(lost) and positive then
-            if LOST_HEALTH then
-                fs:SetFormattedText(LOST_HEALTH, lost)
-            else
-                fs:SetText("-" .. tostring(lost))
-            end
-            fs:Show()
-        else
-            setPercent()
-        end
-        return
-    end
-    fs:Hide()
+    -- Dead/offline are independent of the health-number preference.
+    if not IsSecret(connected) and connected==false then fs:SetText(PLAYER_OFFLINE or "Offline"); fs:Show(); return end
+    if not IsSecret(dead) and dead then fs:SetText(DEAD or "Dead"); fs:Show(); return end
+    if mode=="none" or opt.displayStatusText==false then fs:Hide(); return end
+    local percent=Compat.GetHealthPercent(unit)
+    if mode=="health" then
+        local health=UnitHealth and UnitHealth(unit)
+        if not IsSecret(health) and health==nil then fs:Hide(); return end
+        fs:SetText(health)
+    elseif mode=="healthandpercent" then
+        local health=UnitHealth and UnitHealth(unit)
+        if not IsSecret(percent) and percent==nil then fs:Hide(); return end
+        if not IsSecret(health) and health==nil then formatted("%.0f%%",percent)
+        else formatted("%s / %.0f%%",health,percent) end
+    elseif mode=="losthealth" then
+        local health=UnitHealth and UnitHealth(unit)
+        local maximum=UnitHealthMax and UnitHealthMax(unit)
+        if not IsSecret(health) and not IsSecret(maximum) and type(health)=="number" and type(maximum)=="number" then
+            local lost=maximum-health
+            if lost<=0 then fs:Hide(); return end
+            formatted("-%s",lost)
+        elseif IsSecret(percent) or percent~=nil then formatted("%.0f%%",percent)
+        else fs:Hide(); return end
+    elseif IsSecret(percent) or percent~=nil then formatted("%.0f%%",percent)
+    else fs:Hide(); return end
+    fs:Show()
 end
 
 function FluxRaid_UpdateSelectionHighlight(frame)
@@ -377,31 +345,17 @@ function FluxRaid_UpdateAggroHighlight(frame)
     ShowRegion(tex, true)
 end
 
+
 function FluxRaid_UpdateRoleIcon(frame)
-    local icon = frame and frame.roleIcon
-    local unit = UnitOf(frame)
-    if not icon then return end
-    local opt = frame.optionTable
-    if opt and opt.showRoleIcon == false then
-        ShowRegion(icon, false)
-        return
+    local unit=UnitOf(frame)
+    frame._fluxRole=nil
+    if type(unit)=="string" and UnitGroupRolesAssigned then
+        local role=UnitGroupRolesAssigned(unit)
+        if not IsSecret(role) and ROLE_ATLAS[role] then frame._fluxRole=role end
     end
-    if type(unit) ~= "string" or not UnitGroupRolesAssigned then
-        ShowRegion(icon, false)
-        return
-    end
-    local ok, role = pcall(UnitGroupRolesAssigned, unit)
-    if not ok or IsSecret(role) or type(role) ~= "string" then
-        ShowRegion(icon, false)
-        return
-    end
-    local atlas = ROLE_ATLAS[role]
-    if not atlas then
-        ShowRegion(icon, false)
-        return
-    end
-    local shown = pcall(icon.SetAtlas, icon, atlas)
-    ShowRegion(icon, shown and true or false)
+    if frame.roleIcon then frame.roleIcon:Hide() end
+    FluxRaid_UpdateName(frame)
+    FluxRaid_UpdateStatusText(frame)
 end
 
 local function SetCenterTexture(frame, atlas, texPath)
@@ -422,26 +376,62 @@ end
 function FluxRaid_UpdateCenterStatus(frame)
     local unit = UnitOf(frame)
     if not frame or not frame.centerStatusIcon or type(unit) ~= "string" then return end
+    -- Leader/raid markers are small independent corner indicators. A crown
+    -- must never replace the resurrection/summon icon in the middle of a cell.
+    if frame.leaderIcon then
+        local leader=UnitIsGroupLeader and UnitIsGroupLeader(unit)
+        local assist=UnitIsGroupAssistant and UnitIsGroupAssistant(unit)
+        local isLeader=not IsSecret(leader) and leader==true
+        local isAssist=not IsSecret(assist) and assist==true
+        if isLeader or isAssist then
+            frame.leaderIcon:SetTexture(isLeader and "Interface\\GroupFrame\\UI-Group-LeaderIcon" or "Interface\\GroupFrame\\UI-Group-AssistantIcon")
+        end
+        ShowRegion(frame.leaderIcon,isLeader or isAssist)
+    end
+    if frame.raidTargetIcon then
+        local index=GetRaidTargetIndex and GetRaidTargetIndex(unit)
+        local icon=frame.raidTargetIcon
+        local opaque=IsSecret(index)
+        local show=type(index)~="nil" and (opaque and icon.SetSpriteSheetCell~=nil
+            or not opaque and type(index)=="number" and index>=1 and index<=8)
+        if show then
+            icon:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcons")
+            if icon.SetSpriteSheetCell then icon:SetSpriteSheetCell(index,4,4)
+            elseif SetRaidTargetIconTexture then SetRaidTargetIconTexture(icon,index) end
+        end
+        ShowRegion(icon,show)
+    end
+    if frame.masterLooterIcon then
+        local master
+        local party=C_PartyInfo
+        if party and party.GetLootMethod then
+            local ok,_,partyID,raidID=pcall(party.GetLootMethod)
+            if ok then
+                if not IsSecret(raidID) and type(raidID)=="number" and raidID>0 then master="raid"..raidID
+                elseif not IsSecret(partyID) and type(partyID)=="number" and partyID>=0 then
+                    master=partyID==0 and "player" or "party"..partyID
+                end
+            end
+        end
+        local match=master and UnitIsUnit and UnitIsUnit(unit,master)
+        local show=not IsSecret(match) and match==true
+        if show then frame.masterLooterIcon:SetTexture("Interface\\GroupFrame\\UI-Group-MasterLooter") end
+        ShowRegion(frame.masterLooterIcon,show)
+    end
+    if C_IncomingSummon and C_IncomingSummon.HasIncomingSummon then
+        local ok,summon=pcall(C_IncomingSummon.HasIncomingSummon,unit)
+        if ok and not IsSecret(summon) and summon then
+            local status=C_IncomingSummon.IncomingSummonStatus(unit)
+            if not IsSecret(status) then
+                local atlases={[1]="RaidFrame-Icon-SummonPending",[2]="RaidFrame-Icon-SummonAccepted",[3]="RaidFrame-Icon-SummonDeclined"}
+                if atlases[status] and SetCenterTexture(frame,atlases[status]) then return end
+            end
+        end
+    end
     if UnitHasIncomingResurrection then
         local ok, inc = pcall(UnitHasIncomingResurrection, unit)
         if ok and not IsSecret(inc) and inc then
             if SetCenterTexture(frame, "Raid-Icon-Rez") then return end
-        end
-    end
-    if GetRaidTargetIndex then
-        local ok, idx = pcall(GetRaidTargetIndex, unit)
-        if ok and not IsSecret(idx) and type(idx) == "number" and idx > 0 then
-            if SetRaidTargetIconTexture and frame.centerStatusIcon.texture then
-                pcall(SetRaidTargetIconTexture, frame.centerStatusIcon.texture, idx)
-                ShowRegion(frame.centerStatusIcon, true)
-                return
-            end
-        end
-    end
-    if UnitIsGroupLeader then
-        local ok, lead = pcall(UnitIsGroupLeader, unit)
-        if ok and not IsSecret(lead) and lead then
-            if SetCenterTexture(frame, nil, "Interface\\GroupFrame\\UI-Group-LeaderIcon") then return end
         end
     end
     ShowRegion(frame.centerStatusIcon, false)
@@ -456,7 +446,7 @@ function FluxRaid_UpdateReadyCheck(frame)
         return
     end
     local ok, status = pcall(GetReadyCheckStatus, unit)
-    if not ok or IsSecret(status) or status == nil or status == "waiting" then
+    if not ok or IsSecret(status) or status == nil then
         ShowRegion(icon, false)
         return
     end
@@ -464,6 +454,8 @@ function FluxRaid_UpdateReadyCheck(frame)
     local path = (READY_CHECK_READY_TEXTURE or "Interface\\RaidFrame\\ReadyCheck-Ready")
     if status == "notready" then
         path = READY_CHECK_NOT_READY_TEXTURE or "Interface\\RaidFrame\\ReadyCheck-NotReady"
+    elseif status == "waiting" then
+        path = READY_CHECK_WAITING_TEXTURE or "Interface\\RaidFrame\\ReadyCheck-Waiting"
     end
     if tex and tex.SetTexture then
         pcall(tex.SetTexture, tex, path)
@@ -477,182 +469,15 @@ function FluxRaid_UpdateRange(frame)
     end
 end
 
-local function EnsureClassicAuraButtons(frame)
-    if frame._fluxAuraButtons or frame._fluxPrivateAuraMixed then return end
-    if FluxRaidVisuals.UsesPrivateAuras(frame) and FluxRaidVisuals.ConfigurePrivateAuras(frame) then
-        return
-    end
-    local host = frame.auraHost or frame
-    frame.buffFrames = {}
-    frame.debuffFrames = {}
-    frame.dispelDebuffFrames = {}
-    local function make(list, n)
-        for i = 1, n do
-            local b = CreateFrame("Frame", nil, host)
-            b:SetSize(FluxRaidVisuals.AURA_ICON_WIDTH or 11, FluxRaidVisuals.AURA_ICON_HEIGHT or 15)
-            local icon = b:CreateTexture(nil, "ARTWORK")
-            icon:SetAllPoints()
-            b.icon = icon
-            b:Hide()
-            list[i] = b
-        end
-    end
-    FluxRaidVisuals.EnsureAuraMaxSlots(frame)
-    make(frame.buffFrames, frame.maxBuffs or 3)
-    make(frame.debuffFrames, frame.maxDebuffs or 3)
-    make(frame.dispelDebuffFrames, frame.maxDispelDebuffs or 3)
-    frame._fluxAuraButtons = true
-end
-
-local function LayoutClassicAuras(frame)
-    if not frame._fluxAuraButtons then return end
-    local aw = FluxRaidVisuals.AURA_ICON_WIDTH or 11
-    local ah = FluxRaidVisuals.AURA_ICON_HEIGHT or 15
-    local gap = 1
-    local focus = FluxRaidVisuals.GetAuraFocusMode()
-    local function place(list, point, xSign, yBase)
-        for i = 1, #list do
-            local b = list[i]
-            local col = (i - 1) % 3
-            local row = floor((i - 1) / 3)
-            b:SetSize(aw, ah)
-            b:ClearAllPoints()
-            b:SetPoint(point, frame, point, xSign * (col * (aw + gap) + 1), yBase + row * (ah + gap))
-            b:SetAlpha(FluxRaidVisuals.AURA_ICON_ALPHA or 1)
-        end
-    end
-    if focus == "buff" then
-        place(frame.buffFrames, "TOPLEFT", 1, -1)
-        place(frame.debuffFrames, "BOTTOMRIGHT", -1, 2)
-    else
-        place(frame.debuffFrames, "BOTTOMLEFT", 1, 2)
-        place(frame.buffFrames, "BOTTOMRIGHT", -1, 2)
-    end
-    place(frame.dispelDebuffFrames, "TOPRIGHT", -1, -1)
-end
-
-local function ReadAura(unit, index, filter)
-    if C_UnitAuras and C_UnitAuras.GetAuraDataByIndex then
-        local ok, data = pcall(C_UnitAuras.GetAuraDataByIndex, unit, index, filter)
-        if ok then return data end
-        return nil
-    end
-    if not UnitAura then return nil end
-    local ok, name, icon, count, dispelType, duration, expiration, source, _, _, spellId = pcall(UnitAura, unit, index, filter)
-    if not ok or not name then return nil end
-    return {
-        name = name,
-        icon = icon,
-        applications = count,
-        dispelName = dispelType,
-        spellId = spellId,
-    }
-end
-
-local function FillAuraButton(button, aura, dispellableOnly)
-    if not button then return false end
-    if not aura or IsSecret(aura.icon) or not aura.icon then
-        button:Hide()
-        return false
-    end
-    if dispellableOnly then
-        local can = aura.canActivePlayerDispel
-        if IsSecret(can) or can == false then
-            button:Hide()
-            return false
-        end
-    end
-    pcall(button.icon.SetTexture, button.icon, aura.icon)
-    button:Show()
-    return true
-end
 
 function FluxRaid_UpdateAuras(frame)
-    if not frame or frame._fluxRaidMini then return end
-    if frame._fluxPrivateAuraMixed or (FluxRaidVisuals.ConfigurePrivateAuras and FluxRaidVisuals.ConfigurePrivateAuras(frame)) then
-        FluxRaidVisuals.UpdatePrivateAuraUnit(frame)
-        return
-    end
-    EnsureClassicAuraButtons(frame)
-    LayoutClassicAuras(frame)
-    local unit = UnitOf(frame)
-    if type(unit) ~= "string" then return end
-    local opt = frame.optionTable or {}
-    local dispellableOnly = opt.displayOnlyDispellableDebuffs and true or false
-    local function fill(list, filter, harmful)
-        local shown = 0
-        local maxN = list and #list or 0
-        if (filter == "HELPFUL" and opt.displayBuffs == false) or (harmful and opt.displayDebuffs == false) then
-            for i = 1, maxN do list[i]:Hide() end
-            return
-        end
-        if harmful and dispellableOnly then
-            filter = "HARMFUL|RAID"
-        end
-        for i = 1, 40 do
-            if shown >= maxN then break end
-            local aura = ReadAura(unit, i, filter)
-            if not aura then break end
-            if IsSecret(aura) then break end
-            if FillAuraButton(list[shown + 1], aura, harmful and dispellableOnly) then
-                shown = shown + 1
-            end
-        end
-        for i = shown + 1, maxN do
-            list[i]:Hide()
-        end
-    end
-    fill(frame.buffFrames, "HELPFUL", false)
-    fill(frame.debuffFrames, "HARMFUL", true)
+    if FluxRaidAuras then FluxRaidAuras.Update(frame) end
+    if FluxRaidHealerExtras then FluxRaidHealerExtras.Update(frame) end
+    if FluxRaidHoTs then FluxRaidHoTs.Update(frame) end
 end
 
 function FluxRaid_UpdateDispelHighlight(frame)
-    if not frame then return end
-    FluxRaidVisuals.EnsureFluxOverlays(frame)
-    local highlight = frame.dispelHighlight
-    if not highlight then return end
-    local function hide()
-        ShowRegion(highlight, false)
-    end
-    if not FluxRaid_IsDispelHighlightEnabled or not FluxRaid_IsDispelHighlightEnabled() then
-        hide()
-        return
-    end
-    if frame._fluxPrivateAuraMixed then
-        hide()
-        return
-    end
-    local unit = UnitOf(frame)
-    if not (Compat.UnitTokenValid and Compat.UnitTokenValid(unit)) then
-        hide()
-        return
-    end
-    local bestType
-    if AuraUtil and AuraUtil.ForEachAura then
-        pcall(function()
-            AuraUtil.ForEachAura(unit, "HARMFUL", nil, function(aura)
-                if not aura then return end
-                local name = aura.dispelName
-                local can = aura.canActivePlayerDispel
-                if IsSecret(name) or IsSecret(can) then return end
-                if name and DISPEL_TYPES[name] and can == true then
-                    bestType = name
-                    return true
-                end
-            end)
-        end)
-    end
-    if not bestType then
-        hide()
-        return
-    end
-    local fill = highlight.fill
-    local border = highlight.border or highlight
-    if AuraUtil and AuraUtil.SetAuraBorderColor then
-        if fill then pcall(AuraUtil.SetAuraBorderColor, fill, bestType) end
-        if border then pcall(AuraUtil.SetAuraBorderColor, border, bestType) end
-    end
-    ShowRegion(highlight, true)
+    if FluxRaidAuras then FluxRaidAuras.UpdateDispel(frame) end
 end
 
 function FluxRaid_PaintUnit(frame)
@@ -660,14 +485,18 @@ function FluxRaid_PaintUnit(frame)
     local unit = UnitOf(frame)
     frame.unitExists = Compat.UnitTokenValid and Compat.UnitTokenValid(unit) or false
     if not frame.unitExists then
-        FluxRaid_UpdateHealPrediction(frame)
-        ShowRegion(frame.aggroHighlight, false)
+        if FluxRaidPrediction then FluxRaidPrediction.Clear(frame) end
+        if FluxRaidAuras then FluxRaidAuras.Clear(frame) end
+        if FluxRaidHealerExtras then FluxRaidHealerExtras.Clear(frame) end
+        if FluxRaidHoTs then FluxRaidHoTs.Clear(frame) end
+        if frame.name then frame.name:SetText("") end
+        if frame.statusText then frame.statusText:Hide() end
+        for _,key in ipairs({"aggroHighlight","selectionHighlight","mouseOverHighlight",
+            "centerStatusIcon","readyCheckIcon","leaderIcon","raidTargetIcon","masterLooterIcon"}) do ShowRegion(frame[key],false) end
         return
     end
     FluxRaid_UpdateHealth(frame)
     FluxRaid_UpdatePower(frame)
-    FluxRaid_UpdateName(frame)
-    FluxRaid_UpdateStatusText(frame)
     FluxRaid_UpdateSelectionHighlight(frame)
     FluxRaid_UpdateAggroHighlight(frame)
     FluxRaid_UpdateRoleIcon(frame)
@@ -704,13 +533,59 @@ local UNIT_EVENTS = {
     "UNIT_HEAL_ABSORB_AMOUNT_CHANGED",
     "UNIT_TARGET",
     "INCOMING_RESURRECT_CHANGED",
+    "INCOMING_SUMMON_CHANGED",
     "UNIT_IN_RANGE_UPDATE",
+    "UNIT_SPELLCAST_START",
+    "UNIT_SPELLCAST_STOP",
+    "UNIT_SPELLCAST_FAILED",
+    "UNIT_SPELLCAST_INTERRUPTED",
+    "UNIT_SPELLCAST_CHANNEL_START",
+    "UNIT_SPELLCAST_CHANNEL_STOP",
 }
 
 local function RegisterUnitEvents(frame, unit)
     if not frame or not frame.RegisterUnitEvent or type(unit) ~= "string" or unit == "" then return end
     for i = 1, #UNIT_EVENTS do
-        pcall(frame.RegisterUnitEvent, frame, UNIT_EVENTS[i], unit)
+        local ok=pcall(frame.RegisterUnitEvent, frame, UNIT_EVENTS[i], unit)
+        if UNIT_EVENTS[i]=="UNIT_IN_RANGE_UPDATE" then frame._fluxRangeEventSupported=ok end
+    end
+    if frame._fluxPowerLayoutPending or frame._fluxNeedsChromeRefresh then frame:RegisterEvent("PLAYER_REGEN_ENABLED") end
+end
+
+local pendingPaint, paintDriver, paintArmed = {}, nil, false
+local function FlushPaint()
+    paintArmed = false
+    paintDriver:SetScript("OnUpdate", nil)
+    for frame, dirty in pairs(pendingPaint) do
+        pendingPaint[frame] = nil
+        if frame.unit and (not frame.IsVisible or frame:IsVisible())
+            and (not FluxRaid_IsFluxRaidEnabled or FluxRaid_IsFluxRaidEnabled()) then
+            if dirty.full then FluxRaid_PaintUnit(frame)
+            else
+                if dirty.health then FluxRaid_UpdateHealth(frame); FluxRaid_UpdateStatusText(frame) end
+                if dirty.prediction or dirty.health then FluxRaid_UpdateHealPrediction(frame) end
+                if dirty.power then FluxRaid_UpdatePower(frame) end
+                if dirty.aura then
+                    FluxRaid_UpdateAuras(frame)
+                    FluxRaid_UpdateDispelHighlight(frame)
+                    if FluxRaidFrame_BigDebuffs_TryUpdate then FluxRaidFrame_BigDebuffs_TryUpdate(frame) end
+                end
+                if dirty.threat then FluxRaid_UpdateAggroHighlight(frame) end
+                if dirty.range then FluxRaid_UpdateRange(frame) end
+                if dirty.center then FluxRaid_UpdateCenterStatus(frame) end
+            end
+        end
+    end
+end
+
+local function MarkPaint(frame, part)
+    local dirty = pendingPaint[frame]
+    if not dirty then dirty={}; pendingPaint[frame]=dirty end
+    dirty[part]=true
+    if not paintDriver then paintDriver=CreateFrame("Frame") end
+    if not paintArmed then
+        paintArmed = true
+        paintDriver:SetScript("OnUpdate",FlushPaint)
     end
 end
 
@@ -718,6 +593,7 @@ local function OnUnitEvent(self, event, arg1)
     if event == "PLAYER_REGEN_ENABLED" then
         if self.UnregisterEvent then self:UnregisterEvent("PLAYER_REGEN_ENABLED") end
         if self._fluxPowerLayoutPending then ApplyPowerVisibility(self) end
+        if self._fluxNeedsChromeRefresh then FluxRaidVisuals.ApplyCellChrome(self) end
         return
     end
     if event == "UNIT_TARGET" and self._fluxRaidUnit and not self._fluxRaidMini then
@@ -725,49 +601,44 @@ local function OnUnitEvent(self, event, arg1)
             FluxRaid_AttachOrUpdateMTMATarget(self, UnitOf(self))
         end
     end
-    if type(arg1) == "string" and arg1 ~= "" and arg1 ~= self.unit and arg1 ~= self.displayedUnit then
+    if not IsSecret(arg1) and type(arg1) == "string" and arg1 ~= "" and arg1 ~= self.unit and arg1 ~= self.displayedUnit then
         if event ~= "UNIT_TARGET" then
             return
         end
     end
     if event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" then
-        FluxRaid_UpdateHealth(self)
-        FluxRaid_UpdateStatusText(self)
-        FluxRaid_UpdateHealPrediction(self)
+        MarkPaint(self,"health")
     elseif event == "UNIT_POWER_UPDATE" or event == "UNIT_MAXPOWER" or event == "UNIT_DISPLAYPOWER" then
-        FluxRaid_UpdatePower(self)
+        MarkPaint(self,"power")
     elseif event == "UNIT_NAME_UPDATE" or event == "UNIT_CONNECTION" or event == "UNIT_FLAGS" then
-        FluxRaid_UpdateName(self)
-        FluxRaid_UpdateHealth(self)
-        FluxRaid_UpdateStatusText(self)
-        FluxRaid_UpdateCenterStatus(self)
+        MarkPaint(self,"full")
     elseif event == "UNIT_AURA" then
-        FluxRaid_UpdateAuras(self)
-        FluxRaid_UpdateDispelHighlight(self)
-        if FluxRaidFrame_BigDebuffs_TryUpdate then
-            FluxRaidFrame_BigDebuffs_TryUpdate(self)
-        end
+        MarkPaint(self,"aura")
     elseif event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
-        FluxRaid_UpdateAggroHighlight(self)
+        MarkPaint(self,"threat")
     elseif event == "UNIT_HEAL_PREDICTION" or event == "UNIT_ABSORB_AMOUNT_CHANGED" or event == "UNIT_HEAL_ABSORB_AMOUNT_CHANGED" then
-        FluxRaid_UpdateHealPrediction(self)
+        MarkPaint(self,"prediction")
     elseif event == "UNIT_IN_RANGE_UPDATE" then
-        FluxRaid_UpdateRange(self)
-    elseif event == "INCOMING_RESURRECT_CHANGED" then
-        FluxRaid_UpdateCenterStatus(self)
+        MarkPaint(self,"range")
+    elseif event == "INCOMING_RESURRECT_CHANGED" or event == "INCOMING_SUMMON_CHANGED" then
+        MarkPaint(self,"center")
     elseif event == "UNIT_TARGET" and self._fluxRaidMini then
-        FluxRaid_PaintUnit(self)
+        MarkPaint(self,"full")
+    elseif event:find("^UNIT_SPELLCAST") then
+        MarkPaint(self,"power")
     end
 end
 
 function FluxRaid_BindUnit(frame, unit)
     if not frame then return end
     if unit == "" then unit = nil end
+    pendingPaint[frame]=nil
+    if frame.UnregisterAllEvents then frame:UnregisterAllEvents() end
     frame.unit = unit
     frame.displayedUnit = unit
     if unit then
         RegisterUnitEvents(frame, unit)
-        if frame._fluxRaidMini and unit and not (InCombatLockdown and InCombatLockdown()) then
+        if frame._fluxRaidMini and not frame._fluxSecureTargetAttached and unit and not (InCombatLockdown and InCombatLockdown()) then
             pcall(frame.SetAttribute, frame, "unit", unit)
         end
         FluxRaid_PaintUnit(frame)
@@ -776,11 +647,16 @@ function FluxRaid_BindUnit(frame, unit)
             pcall(frame.UnregisterAllEvents, frame)
         end
         frame.unitExists = false
-        if frame._fluxPrivateAuraMixed then
-            FluxRaidVisuals.UpdatePrivateAuraUnit(frame)
-        end
+        if frame.name then frame.name:SetText("") end
+        if frame.statusText then frame.statusText:Hide() end
+        if FluxRaidAuras then FluxRaidAuras.Clear(frame) end
+        if FluxRaidPrediction then FluxRaidPrediction.Clear(frame) end
+        if FluxRaidHealerExtras then FluxRaidHealerExtras.Clear(frame) end
+        if FluxRaidHoTs then FluxRaidHoTs.Clear(frame) end
     end
     State.frameArray[frame] = frame
+    FluxRaid_RequestJoinedBorderRefresh()
+    if EnsureRangePoll then EnsureRangePoll(frame) end
 end
 
 function FluxRaid_OnUnitAttributeChanged(self, name, value)
@@ -814,6 +690,9 @@ function FluxRaidUnit_OnLoad(self)
     end
     self.optionTable = FluxRaidVisuals.GetFluxRaidOptionTable()
     FluxRaidVisuals.ApplyCellChrome(self, { showPower = FluxRaid_ShouldShowPowerBar(self) })
+    if FluxRaidPrediction then FluxRaidPrediction.Setup(self) end
+    if FluxRaidHealerExtras then FluxRaidHealerExtras.Setup(self) end
+    if FluxRaidHoTs then FluxRaidHoTs.Setup(self) end
     FluxRaidVisuals.ConfigurePrivateAuras(self)
     if not self._fluxAttrHooked and self.HookScript then
         self._fluxAttrHooked = true
@@ -828,11 +707,15 @@ function FluxRaidUnit_OnLoad(self)
         kb:RegisterFrame(self)
     end
     State.frameArray[self] = self
-    EnsureRangePoll(self)
+    if self.IsVisible and self:IsVisible() then EnsureRangePoll(self) end
 end
 
 function FluxRaidUnit_OnShow(self)
+    if self._fluxRaidMini and self._fluxWrap then self._fluxWrap:SetAlpha(1) end
     local unit = self:GetAttribute("unit") or self.unit
+    if unit then RegisterUnitEvents(self,unit) end
+    EnsureRangePoll(self)
+    FluxRaid_RequestJoinedBorderRefresh()
     if unit and unit ~= self.unit then
         FluxRaid_BindUnit(self, unit)
     else
@@ -841,7 +724,17 @@ function FluxRaidUnit_OnShow(self)
 end
 
 function FluxRaidUnit_OnHide(self)
+    pendingPaint[self]=nil
+    if self.UnregisterAllEvents then self:UnregisterAllEvents() end
     ShowRegion(self.aggroHighlight, false)
+    ShowRegion(self.mouseOverHighlight, false)
+    if FluxRaidAuras then FluxRaidAuras.Clear(self) end
+    if FluxRaidPrediction then FluxRaidPrediction.Clear(self) end
+    if FluxRaidHealerExtras then FluxRaidHealerExtras.Clear(self) end
+    if FluxRaidHoTs then FluxRaidHoTs.Clear(self) end
+    self.UpdateTooltip=nil
+    EnsureRangePoll()
+    FluxRaid_RequestJoinedBorderRefresh()
 end
 
 -- Flux-owned tooltip. Blizzard's UnitFrame_UpdateTooltip throws on a nil unit
@@ -928,6 +821,7 @@ function FluxRaid_SyncHeaderChildUnits()
             FluxRaid_PaintUnit(btn)
         end
     end)
+    FluxRaid_RequestJoinedBorderRefresh()
 end
 
 function FluxRaid_ApplyChromeToChildren(avoidRebuild)
@@ -943,6 +837,7 @@ function FluxRaid_ApplyChromeToChildren(avoidRebuild)
             FluxRaidVisuals.SafeSetUnitFrameSize(btn, FluxRaidVisuals.FRAME_WIDTH, FluxRaidVisuals.FRAME_HEIGHT)
         end
         FluxRaidVisuals.ApplyCellChrome(btn, { showPower = FluxRaid_ShouldShowPowerBar(btn) })
+        if FluxRaidPrediction then FluxRaidPrediction.Setup(btn) end
         FluxRaidVisuals.PushAuraDisplayToFrame(btn)
         if avoidRebuild and btn._fluxPrivateAuraMixed then
             FluxRaidVisuals.SyncPrivateAuraSettings(btn, false, true)
@@ -992,20 +887,32 @@ function FluxRaid_RefreshSelfDisplayNames()
 end
 
 EnsureRangePoll = function(frame)
-    if rangePollTicker or not C_Timer or not C_Timer.NewTicker then return end
-    if frame and Compat.HasRangeAlphaBoolean(frame) then return end
-    rangePollTicker = C_Timer.NewTicker(1.0, function()
-        if not FluxRaid_IsFluxRaidEnabled or not FluxRaid_IsFluxRaidEnabled() then return end
-        local sawBooleanAlpha = false
-        for btn in pairs(State.frameArray) do
-            if btn and Compat.HasRangeAlphaBoolean(btn) then
-                sawBooleanAlpha = true
-            elseif btn and btn.unit and btn.IsShown and btn:IsShown() then
-                FluxRaid_UpdateRange(btn)
-                FluxRaid_UpdateStatusText(btn)
+    local function NeedsPoll(btn)
+        return btn and btn.unit and btn._fluxRangeEventSupported==false
+            and btn.IsVisible and btn:IsVisible()
+            and (not FluxRaid_IsFluxRaidEnabled or FluxRaid_IsFluxRaidEnabled())
+    end
+    local function PollSet(frames, paint)
+        local any=false
+        for btn in pairs(frames or {}) do
+            if NeedsPoll(btn) then
+                any=true
+                if paint then FluxRaid_UpdateRange(btn) end
             end
         end
-        if sawBooleanAlpha and rangePollTicker then
+        return any
+    end
+    local active=NeedsPoll(frame)
+    if not active then active=PollSet(State.frameArray,false) or PollSet(State.partyRangeFrames,false) end
+    if not active then
+        if rangePollTicker then rangePollTicker:Cancel(); rangePollTicker=nil end
+        return
+    end
+    if rangePollTicker or not C_Timer or not C_Timer.NewTicker then return end
+    rangePollTicker = C_Timer.NewTicker(0.25, function()
+        local any=PollSet(State.frameArray,true)
+        if PollSet(State.partyRangeFrames,true) then any=true end
+        if not any and rangePollTicker then
             rangePollTicker:Cancel()
             rangePollTicker = nil
         end
@@ -1033,6 +940,12 @@ function FluxRaid_IsMTMAChild(btn)
 end
 
 local function MiniAlpha(tf)
+    if tf._fluxSecureTargetAttached then
+        -- The native target-existence state owns actual button visibility.
+        -- An alpha-zero wrapper must not survive a later secure reappearance.
+        if tf._fluxWrap then tf._fluxWrap:SetAlpha(1) end
+        return
+    end
     local unit = UnitOf(tf)
     local exists = Compat.UnitTokenValid and Compat.UnitTokenValid(unit)
     local alpha = exists and 1 or 0
@@ -1055,13 +968,22 @@ end
 function FluxCompactMiniFrameSetup(frame)
     if not frame then return end
     frame._fluxRaidMini = true
-    local miniH = max(10, floor((FluxRaidVisuals.FRAME_HEIGHT or 36) * (18 / 36) + 0.5))
+    -- Target wrappers and secure MT/MA spacing use the active sizing policy.
+    local miniH = FluxRaidVisuals.MINI_FRAME_HEIGHT or Compat.MTMA_TARGET_HEIGHT or 18
     FluxRaidVisuals.ApplyCellChrome(frame, {
         width = FluxRaidVisuals.FRAME_WIDTH,
         height = miniH,
         showPower = false,
     })
     if not (InCombatLockdown and InCombatLockdown()) then
+        local wrap, owner = frame._fluxWrap, frame._fluxMTMAOwner
+        if wrap and owner then
+            local gap = FluxRaidVisuals.CELL_JOIN_OVERLAP and -FluxRaidVisuals.CELL_JOIN_OVERLAP or (Compat.MTMA_TARGET_GAP or -4)
+            wrap:SetSize(FluxRaidVisuals.FRAME_WIDTH, miniH)
+            wrap:ClearAllPoints()
+            wrap:SetPoint("TOPLEFT", owner, "BOTTOMLEFT", 0, -gap)
+            wrap:SetPoint("TOPRIGHT", owner, "BOTTOMRIGHT", 0, -gap)
+        end
         pcall(frame.SetSize, frame, FluxRaidVisuals.FRAME_WIDTH, miniH)
     end
     frame.optionTable = FluxRaidVisuals.GetFluxRaidOptionTable()
@@ -1070,16 +992,17 @@ end
 local function CreateMTMATarget(parentBtn)
     local container = State.containerFrame
     local wrap = CreateFrame("Frame", nil, container or parentBtn)
-    local h = Compat.MTMA_TARGET_HEIGHT or 18
-    local gap = Compat.MTMA_TARGET_GAP or 2
+    local h = FluxRaidVisuals.MINI_FRAME_HEIGHT or Compat.MTMA_TARGET_HEIGHT or 18
+    local gap = FluxRaidVisuals.CELL_JOIN_OVERLAP and -FluxRaidVisuals.CELL_JOIN_OVERLAP or (Compat.MTMA_TARGET_GAP or -4)
     wrap:SetSize(FluxRaidVisuals.FRAME_WIDTH, h)
     wrap:SetPoint("TOPLEFT", parentBtn, "BOTTOMLEFT", 0, -gap)
     wrap:SetPoint("TOPRIGHT", parentBtn, "BOTTOMRIGHT", 0, -gap)
     wrap:SetAlpha(0)
     mtmaNameCounter = mtmaNameCounter + 1
-    local tf = CreateFrame("Button", "FluxRaidMTMATarget" .. mtmaNameCounter, wrap, "SecureUnitButtonTemplate")
+    local tf = CreateFrame("Button", "FluxRaidMTMATarget" .. mtmaNameCounter, wrap, "FluxRaidMiniUnitTemplate")
     tf:SetAllPoints(wrap)
     tf._fluxWrap = wrap
+    tf._fluxMTMAOwner = parentBtn
     tf._fluxRaidMini = true
     tf._fluxRaidUnit = true
     if not InCombatLockdown() then
@@ -1092,8 +1015,20 @@ local function CreateMTMATarget(parentBtn)
     if ClickCastFrames then
         ClickCastFrames[tf] = true
     end
+    local kb=ns and ns.FluxMouseoverKeybind
+    if kb and kb.RegisterFrame then kb:RegisterFrame(tf) end
+    if FluxRaidPrediction then FluxRaidPrediction.Setup(tf) end
+    tf:SetScript("OnEnter", FluxRaidUnit_OnEnter)
+    tf:SetScript("OnLeave", FluxRaidUnit_OnLeave)
+    tf:SetScript("OnHide", FluxRaidUnit_OnHide)
+    tf:SetScript("OnShow", FluxRaidUnit_OnShow)
+    if tf.HookScript and not tf._fluxAttrHooked then
+        tf._fluxAttrHooked=true
+        tf:HookScript("OnAttributeChanged",FluxRaid_OnUnitAttributeChanged)
+    end
     parentBtn._fluxMTMATarget = tf
     State.frameArray[tf] = tf
+    if FluxRaidSecure then FluxRaidSecure.AttachTarget(parentBtn,tf) end
     return tf
 end
 
@@ -1115,6 +1050,13 @@ function FluxRaid_AttachOrUpdateMTMATarget(btn, unit)
             return
         end
         tf = CreateMTMATarget(btn)
+    end
+    if tf._fluxSecureTargetUnsupported then return end
+    if tf._fluxSecureTargetAttached then
+        local token=tf:GetAttribute("unit")
+        if token~=tf.unit then FluxRaid_BindUnit(tf,token) end
+        if token then MiniAlpha(tf) end
+        return
     end
     local token = (type(unit) == "string" and unit ~= "") and (unit .. "target") or nil
     if token ~= tf.unit then

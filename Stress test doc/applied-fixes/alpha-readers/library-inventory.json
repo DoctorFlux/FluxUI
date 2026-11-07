@@ -1,0 +1,124 @@
+{
+  "scope": "Read-only public library-file/header inventory, excluding reference/backup addon roots. Installed/loaded enablement and actual LibStub winner are not inferred.",
+  "libraries": [
+    {
+      "client_directory": "_retail_",
+      "addon": "_FluxUI",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_forever_",
+      "addon": "_FluxUI",
+      "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_era_",
+      "addon": "BigWigs_Plugins",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\BigWigs_Plugins\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 25,
+      "sha256": "d7ddb97f9cfa649f654c93d15150d8e6f881c79c22bb90856d7715188ce47d2e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_era_",
+      "addon": "Gargul",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\Gargul\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 21,
+      "sha256": "84bb6620519db3b2baf981db3fef674aed106d73c3176e93830cc3716ccd1fad",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_era_",
+      "addon": "LootReserve",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\LootReserve\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 19,
+      "sha256": "b9edf8a146b358fd4d9e92ef0f393db3854004f0f2c57ee621119e11bb3f534e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_era_",
+      "addon": "WeakAuras",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\WeakAuras\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 25,
+      "sha256": "d7ddb97f9cfa649f654c93d15150d8e6f881c79c22bb90856d7715188ce47d2e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_era_",
+      "addon": "_FluxUI",
+      "path": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_anniversary_",
+      "addon": "BigWigs_Plugins",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\BigWigs_Plugins\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 25,
+      "sha256": "d7ddb97f9cfa649f654c93d15150d8e6f881c79c22bb90856d7715188ce47d2e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_anniversary_",
+      "addon": "Gargul",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\Gargul\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 21,
+      "sha256": "84bb6620519db3b2baf981db3fef674aed106d73c3176e93830cc3716ccd1fad",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_anniversary_",
+      "addon": "WeakAuras",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\WeakAuras\\Libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 25,
+      "sha256": "d7ddb97f9cfa649f654c93d15150d8e6f881c79c22bb90856d7715188ce47d2e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_anniversary_",
+      "addon": "_FluxUI",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_anniversary_",
+      "addon": "_FluxUI2",
+      "path": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI2\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 19,
+      "sha256": "b9edf8a146b358fd4d9e92ef0f393db3854004f0f2c57ee621119e11bb3f534e",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_",
+      "addon": "FluxUI",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    },
+    {
+      "client_directory": "_classic_",
+      "addon": "_FluxUI",
+      "path": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\libs\\LibCustomGlow-1.0\\LibCustomGlow-1.0.lua",
+      "minor_header": 20,
+      "sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "source_only_not_loaded_winner": true
+    }
+  ],
+  "private_renderer": "Core/ButtonFX/ThreatGlow.lua",
+  "runtime_dependency": "Private threat renderer does not query shared LibCustomGlow; shared version/load-order independence is tested with actual LibStub. Core proc effects retain existing shared ProcGlow path.",
+  "consumers": [
+    "UnitFrames/FluxUnitFrames_Shared.lua: threat private service via parent change",
+    "Core/ButtonFX/Glow.lua: existing shared ProcGlow only, unchanged"
+  ],
+  "toc_contract": "Core/ButtonFX/ThreatGlow.lua after Charges/Click and before Core/ButtonFX/Glow.lua"
+}

@@ -1624,16 +1624,12 @@ has(mo, "CLASSIFY_DEBOUNCE = 0.15", "spellbook classification is debounced")
 has(mo, "function MouseoverCast.UsesNativeCVar", "Forever native CVar path is gated")
 has(mo, "function MouseoverCast.ApplyNativeCheck", "native checkmouseovercast is stamped from the engine")
 has(mo, "hasRestrictedClosures == false", "native CVar path requires missing WrapScript")
-has(mo, 'SetCVar, "enableMouseoverCast", "0"', "wrap clients keep native CVar off")
+has(mo, "IsMouseoverCastSupported() == true", "native support follows Blizzard's client gate")
 do
-	local i = mo:find("local function SyncCVar", 1, true)
-	local j = i and mo:find("local function CVarIsOn", i, true)
-	local body = (i and j and mo:sub(i, j - 1)) or ""
-	has(body, "UsesNativeCVar", "SyncCVar Forever branch is gated")
-	if body:find('MouseoverCast.IsEnabled() and "1" or "0"', 1, true) then
-		failures[#failures + 1] = "Forever must not SetCVar enableMouseoverCast (gamepad UseAction taint)"
+	if mo:find('SetCVar, "enableMouseoverCast"', 1, true) then
+		failures[#failures + 1] = "Blizzard owns native mouseover CVar writes (gamepad UseAction taint)"
 	end
-	has(body, 'SetCVar, "enableMouseoverCast", "0"', "wrap clients still force CVar off")
+	has(mo, "OpenNativeOptions", "native clients open Blizzard's own control")
 end
 has(mo, "CVAR_UPDATE", "Forever Combat checkbox stays in lockstep with the Flux toggle")
 has(mo, "nativeCVar=", "/fluxbars mo reports whether native CVar is in use")
@@ -1746,7 +1742,12 @@ do
 	local i = defaults:find("function FluxDefaultSettings.ApplyCombatDefaultsPack", 1, true)
 	local j = i and defaults:find("function FluxDefaultSettings.", i + 10, true)
 	local body = (i and j and defaults:sub(i, j - 1)) or ""
-	has(body, 'setCVar("enableMouseoverCast", "0")', "defaults keep Blizzard mouseover-cast off on every client")
+	if defaults:find('["enableMouseoverCast"] =', 1, true)
+		or body:find('setCVar("enableMouseoverCast"', 1, true)
+		or defaults:find('SetModifiedClick, "MOUSEOVERCAST"', 1, true)
+		or defaults:find('SetModifiedClick("MOUSEOVERCAST"', 1, true) then
+		failures[#failures + 1] = "defaults must preserve native mouseover casting and its modifier"
+	end
 	if body:find("UsesNativeCVar", 1, true) or body:find('on and "1" or "0"', 1, true) then
 		failures[#failures + 1] = "combat pack must not follow the Action Bars mouseover toggle"
 	end
@@ -1755,7 +1756,7 @@ do
 	local abBar = read("../AddonOptions/FluxOptionsActionBars_Bar.lua")
 	has(abBar, "UsesNativeCVar", "options copy splits Forever native CVar from wrap clients")
 	has(abBar, "This client uses Blizzard mouseover-cast", "Forever options text names the native CVar path")
-	has(abBar, "CVar stays off so world nameplate sweeps", "wrap-client options text keeps the hitch note")
+	has(abBar, "OpenNativeOptions", "native options route to Blizzard's control")
 end
 do
 	local extraAction = read("../ExtraButtonSystem/Engine/Action.lua")
@@ -2371,7 +2372,7 @@ do
 	end
 end
 
--- Raid / Edit Mode / class power: hide Blizzard frames by reparenting, never by writing them.
+-- Native frame parents, event handlers and data remain owned by Blizzard.
 do
 	local raidLayout = read("../RaidFrame/FluxRaidLayout.lua")
 	for _, needle in ipairs({ ".TryUpdate = ", ".RefreshMembers = ", ':SetScript("OnEvent"', "frame.unit = nil", "SetRaidProfileOption(profile, \"autoActivate" }) do
@@ -2379,7 +2380,11 @@ do
 			failures[#failures + 1] = "FluxRaidLayout must not write Blizzard compact frames: " .. needle
 		end
 	end
-	has(raidLayout, "Blizz.Hide(frame, { keepEvents = true, keepParent = true })", "Blizzard raid grid preserves native parents and events")
+	local nativeHide=raidLayout:match("Blizz%.Hide%(frame,%s*{(.-)}%)")
+	if not nativeHide or not nativeHide:match("keepEvents%s*=%s*true")
+		or not nativeHide:match("keepParent%s*=%s*true") then
+		failures[#failures + 1] = "Blizzard raid grid must retain native parents and events"
+	end
 	if read("../RaidFrame/FluxRaidCompat.lua"):find("_G.UnitFrame_UpdateTooltip =", 1, true) then
 		failures[#failures + 1] = "must not replace UnitFrame_UpdateTooltip"
 	end
@@ -4430,12 +4435,10 @@ has(ncUtilAssign, "AssignFromCursor", "utility assign accepts cursor drops")
 if ncUtilMgr:find('RegisterForClicks("AnyUp")', 1, true) then
 	failures[#failures + 1] = "utility slots must not reset clicks to AnyUp (undoes Extra wrap)"
 end
-if ncUtilMgr:find('"LeftButton")', 1, true) and ncUtilMgr:find("SetOverrideBindingClick", 1, true) then
-	local i = ncUtilMgr:find("function Manager.UpdateBindings", 1, true)
-	local body = i and ncUtilMgr:sub(i, i + 800) or ""
-	if body:find('"LeftButton"', 1, true) then
-		failures[#failures + 1] = "utility slot keybinds must use KeyBind, not LeftButton"
-	end
+-- Wrap clients remap KeyBind; Forever needs the native LeftButton suffix.
+-- tests/utility_secure_input.lua exercises both through Blizzard dispatch.
+if not ncUtilMgr:find('not wraps and "LeftButton" or "KeyBind"', 1, true) then
+	failures[#failures + 1] = "utility keybind button must follow the click-wrap capability"
 end
 if ncUtilMgr:find("FluxButtonCore.FormatSpellCastAttribute", 1, true) then
 	failures[#failures + 1] = "utility slots must not call unloaded FluxButtonCore"

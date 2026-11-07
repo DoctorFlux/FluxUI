@@ -1,5 +1,9 @@
 # Respec: profiles, presets, apply orchestration, and protection
 
+<!-- STRESS-FIXES-20261107 -->
+7 November applied stress fixes: Profile completion awaits synchronous action-slot verification and successful stance saved-state/layout-request acceptance, retaining the recovery checkpoint on failure. Existing deferred UI layout cadence remains; visual completion is not acknowledged here. Queued snapshots detach nested data, support owned cancellation/replacement and ignore stale regen callbacks; one watcher is reused during supersession storms. Native loadout-owned slots remain untouched on Retail/Forever. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+<!-- /STRESS-FIXES-20261107 -->
+
 `FluxRespec` saves and loads a character's gear, talents/loadout, runes where supported, bar/stance configuration, consumable preset link, utility slots, bindings, and Info preferences. It hosts its UI in the Flux Window's **Respec** tab. This is separate from Ace configuration profiles: changing an Ace profile is not the same action as loading a Respec gameplay profile.
 
 ## Runtime ownership and stored model

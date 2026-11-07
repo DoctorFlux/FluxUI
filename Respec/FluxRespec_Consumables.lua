@@ -24,17 +24,17 @@ function Consumables.Capture()
     return nil
 end
 
---- Apply a preset by name. No-op if FluxNCConsumables not loaded or the
---- preset doesn't exist anymore.
+--- Apply a preset by name. Captured missing/unavailable presets report failure;
+--- uncaptured or disabled sections are skipped by the profile orchestrator.
 function Consumables.Apply(presetName)
     if type(presetName) ~= "string" or presetName == "" then
         R.Fire("CONSUMABLES_APPLIED", true, "NOOP")
-        return true
+        return true, "NOOP"
     end
     local nc = NC()
     if not nc or not nc.SetActivePreset then
         R.Fire("CONSUMABLES_APPLIED", false, "UNAVAILABLE")
-        return false
+        return false, "UNAVAILABLE"
     end
 
     -- Verify preset exists before attempting to switch.
@@ -57,12 +57,18 @@ function Consumables.Apply(presetName)
     if not exists then
         R.Warn(("Consumables preset '%s' no longer exists."):format(presetName))
         R.Fire("CONSUMABLES_APPLIED", false, "MISSING")
-        return false
+        return false, "MISSING"
     end
 
-    local ok = pcall(nc.SetActivePreset, presetName)
-    R.Fire("CONSUMABLES_APPLIED", ok, ok and "DONE" or "ERROR")
-    return ok
+    local called, result = pcall(nc.SetActivePreset, presetName)
+    local ok = called and result ~= false
+    local reason = ok and "DONE" or "ERROR"
+    if ok and nc.GetActivePreset then
+        local readable, active = pcall(nc.GetActivePreset)
+        if not readable or active ~= presetName then ok, reason = false, "VERIFY_FAILED" end
+    end
+    R.Fire("CONSUMABLES_APPLIED", ok, reason)
+    return ok, reason
 end
 
 --- Does the active preset differ from the snapshot?

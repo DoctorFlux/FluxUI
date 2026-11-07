@@ -1,0 +1,444 @@
+{
+  "date": "2026-11-06",
+  "capturedUTC": "2026-11-06T13:45:46.986424+00:00",
+  "baseline": "582d868e23c2513ef63251dd0b294df073cfd5c5",
+  "candidate": "main working tree; exact normalized feature and Lua corpus hashes below",
+  "checkpoint": {
+    "name": "Raid-rewrite-20261106T114645Z",
+    "sourceFiles": 1596,
+    "settingsFiles": 143,
+    "zipAndHistoryVerification": "PASS",
+    "sourceZipSHA256": "ece77a7fe0bd41b076ed89241cbd641436eab978b8478cae2626a59f7201e005",
+    "settingsScope": "on-disk only; no closed-client or unsaved-memory claim"
+  },
+  "targets": {
+    "Retail": {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "sourceBuild": "12.1.5.70783",
+      "interface": "120105",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Forever": {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "sourceBuild": "1.60.1.70790",
+      "interface": "16001",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Classic": {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "sourceBuild": "5.5.4.70631",
+      "interface": "50504",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Era": {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "sourceBuild": "1.15.9.70576",
+      "interface": "11509",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Anniversary": {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "sourceBuild": "2.5.6.70577",
+      "interface": "20506",
+      "nativeResult": "NOT RUN for final candidate"
+    }
+  },
+  "requirements": "docs/RAID_HEALKIT_REWORK.md",
+  "featureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "ba1b4c0b915aef64a7e7f0ff0f6c7e5fe483c4fae33537f7ad4f0f7da9cb4a0c",
+    "RaidFrame/FluxRaidCompat.lua": "f24a305728503ffd496fe19a0a3ca0d35b06e2751687db035bcf4256b562ec34",
+    "RaidFrame/FluxRaidFrame.lua": "940f0787172d98b381f96fe8445d35879f13fed2d3065b2d03024616fe96a25a",
+    "RaidFrame/FluxRaidFrame_BigDebuffs.lua": "4f2a9e8e409e0871a4967d909a9de18cc74299cd482ee0d1dffab53691d6b8b2",
+    "RaidFrame/FluxRaidHealerExtras.lua": "a2c7c68e9c7cfff5f6f707adb629dd9891978e1ec1c1bbb1eee3eb860457e9c0",
+    "RaidFrame/FluxRaidHoTs.lua": "b37435ac2520fa0bfeb67a2883e0d913ee667528fd293af31aa4402d7677da6d",
+    "RaidFrame/FluxRaidLayout.lua": "6c85eeedef74f2310b45ca74073d7b37dac0898c3cdd6ffec9bf9a614199937c",
+    "RaidFrame/FluxRaidPrediction.lua": "807f50c4cc0cc0021debc3730fab7e5eeacfa3a2ff5a9183ce340aa805cc2057",
+    "RaidFrame/FluxRaidPreview.lua": "80bc1027cee8356168bcdd31145f8068facd36bcba83242151f39bf6418648d1",
+    "RaidFrame/FluxRaidSecure.lua": "245e6ab229d0c9f0107b9e241f5e437fdf0979117ff09998f8c6a2b6a03f1616",
+    "RaidFrame/FluxRaidUnit.lua": "16c1def734cfc320130e0d3bf2ed8a628d72d989eecacc6690ec250ff82961c7",
+    "RaidFrame/FluxRaidVisuals.lua": "0ca1d35218266db2910759196a91dc582dd83e02af747a8f7644833a8d26c397",
+    "RaidFrame/_tmp_raidaurassmoke.lua": "5100291a0a5f3140fcdda263611a247d32be88f96f1976b8c3daddcaa55d3250",
+    "RaidFrame/FluxRaidFrame.xml": "1b96458a6d32e0429189d7295dde5511b277b914d0a3e7bade3db394fc500811",
+    "Binding/Input/FluxMouseoverKeybind.lua": "74c5614f71f18e14e3d050a12691a3ff2c725b325928d2c73e333784754314cb",
+    "Blizzard/Hide.lua": "5458bf43b51428892b380d6fc70bfbd06172500ee59a8323145d368ccea2245b",
+    "AddonOptions/FluxOptionsRaidFrame.lua": "36c1a2cea420e1634f1d9699e48f352f79afdbdbd70cfeceb4ef50cdff8dd203",
+    "_FluxUI.toc": "ed589cbab9dd9bbe14785057493ec000f501f5aefe1bf6cca30c41a89a3ef24a"
+  },
+  "fullDesktop": {
+    "scripts": 179,
+    "failures": 0,
+    "syntaxFiles": 841,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "sourceDrift": {
+      "beforeCount": 841,
+      "afterCount": 841,
+      "unchanged": true,
+      "corpusSHA256": "c29f0057c2207dc98f6c2518f5d063201a7648e8c901e12a2a6d31be83dbc886"
+    }
+  },
+  "focusedResults": [
+    {
+      "path": "RaidFrame/_tmp_raidaurassmoke.lua",
+      "exit": 0,
+      "output": "forever: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nforever missing add private API: retained adapter declines unsupported binding\nforever missing remove private API: retained adapter declines unsupported binding\nlive: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nlive missing add private API: retained adapter declines unsupported binding\nlive missing remove private API: retained adapter declines unsupported binding\nclassic_era: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_era missing add private API: retained adapter declines unsupported binding\nclassic_era missing remove private API: retained adapter declines unsupported binding\nclassic_anniversary: native private-aura ownership, dispellable filtering, settings, rebind/unbind, combat retry and minis OK\nclassic_anniversary missing add private API: retained adapter declines unsupported binding\nclassic_anniversary missing remove private API: retained adapter declines unsupported binding\nRetained private-anchor adapter smoke OK (4 source snapshots; production category integration and engine taint require separate validation)\n"
+    },
+    {
+      "path": "tests/raid_aura_options.lua",
+      "exit": 0,
+      "output": "Raid aura options/preview: 62 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+    },
+    {
+      "path": "tests/raid_big_debuff_boundary.lua",
+      "exit": 0,
+      "output": "Raid BigDebuffs boundary: 8 checks; native owners, late optional addon, readable compatibility and one rejected control\n"
+    },
+    {
+      "path": "tests/raid_binding_cast.lua",
+      "exit": 0,
+      "output": "Raid binding casting: 182 checks; five native source handlers; four rejected negative controls\n"
+    },
+    {
+      "path": "tests/raid_connected_grid.lua",
+      "exit": 0,
+      "output": "Raid connected grid: 17 checks; shared seams, partial groups, minis, opacity guards and one rejected negative control\n"
+    },
+    {
+      "path": "tests/raid_header_precreation.lua",
+      "exit": 0,
+      "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1080 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/raid_healer_auras.lua",
+      "exit": 0,
+      "output": "Raid healer auras: 2720 checks; bounded three-by-two side blocks, strict filters, native duration sinks and faint cooldown swipe; five rejected negative controls; client visuals pending\n"
+    },
+    {
+      "path": "tests/raid_healer_extras.lua",
+      "exit": 0,
+      "output": "Raid healer adjuncts: 511 checks; five client contracts; two rejected negative controls\n"
+    },
+    {
+      "path": "tests/raid_healer_hots.lua",
+      "exit": 0,
+      "output": "Raid healer HoT estimates: 355 checks; optional Forever own casts, strict descriptions, secret guards, expiry and inactive cleanup\n"
+    },
+    {
+      "path": "tests/raid_healer_prediction.lua",
+      "exit": 0,
+      "output": "Raid healer prediction: 198 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+    },
+    {
+      "path": "tests/raid_healer_runtime.lua",
+      "exit": 0,
+      "output": "Raid healer runtime: 298 checks; complete Compat/Unit modules; two rejected negative controls\n"
+    },
+    {
+      "path": "tests/raid_healer_secure.lua",
+      "exit": 0,
+      "output": "Raid healer secure: 255903 checks; five native wrap/state/roster/click source implementations; desktop only\n"
+    },
+    {
+      "path": "tests/raid_healer_visuals.lua",
+      "exit": 0,
+      "output": "raid healer visuals: 194 checks passed (desktop only)\n"
+    },
+    {
+      "path": "tests/raid_manager_ghost.lua",
+      "exit": 0,
+      "output": "Raid manager/ghost: 3718 checks; five actual native handlers; four rejected negative controls; pinned source cache\n"
+    },
+    {
+      "path": "tests/raid_nameplate_defaults.lua",
+      "exit": 0,
+      "output": "raid and nameplate defaults: 15 checks passed\n"
+    },
+    {
+      "path": "tests/raid_native_member_order.lua",
+      "exit": 0,
+      "output": "Raid native member order: 58 checks; five native discrete/party ordering implementations, alphabetical negative control; desktop source execution only\n"
+    },
+    {
+      "path": "tests/raid_owned_settings.lua",
+      "exit": 0,
+      "output": "raid owned settings: 9 checks passed\n"
+    },
+    {
+      "path": "tests/raid_startup.lua",
+      "exit": 0,
+      "output": "Raid startup: 2073 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+    }
+  ],
+  "pairedDispatchEvidence": {
+    "baseline": "582d868e23c2513ef63251dd0b294df073cfd5c5",
+    "probeSHA256": "a69b2ab2c01db20bb9f611860096fe0b69f8196156f85d99570ffa42824ed8cf",
+    "scope": "Desktop production event-dispatch callbacks only. Narrow fixture painter counters; no native frame time, CPU, FPS, taint, renderer or real secret validation.",
+    "sourceHashes": {
+      "baseline": {
+        "RaidFrame/FluxRaidCompat.lua": "17e490b662719c27302a891b2c347119fdf6ba8ef7c9961511295a55fd869aa9",
+        "RaidFrame/FluxRaidUnit.lua": "3783ce13f258c6b1e9766e68e2c401288baba6c77a5f96faa6db7b170a4c797a"
+      },
+      "candidate": {
+        "RaidFrame/FluxRaidCompat.lua": "f24a305728503ffd496fe19a0a3ca0d35b06e2751687db035bcf4256b562ec34",
+        "RaidFrame/FluxRaidUnit.lua": "16c1def734cfc320130e0d3bf2ed8a628d72d989eecacc6690ec250ff82961c7"
+      }
+    },
+    "samples": [
+      {
+        "pair": 1,
+        "variant": "baseline",
+        "exit": 0,
+        "wallSeconds": 0.038882299995748326,
+        "raw": "{\"events\":700,\"health\":100,\"power\":100,\"prediction\":300,\"aura\":100,\"dispel\":100,\"threat\":100,\"range\":100,\"status\":100,\"big\":100,\"synchronousHealth\":100,\"dispatchers\":0}",
+        "metrics": {
+          "events": 700,
+          "health": 100,
+          "power": 100,
+          "prediction": 300,
+          "aura": 100,
+          "dispel": 100,
+          "threat": 100,
+          "range": 100,
+          "status": 100,
+          "big": 100,
+          "synchronousHealth": 100,
+          "dispatchers": 0
+        }
+      },
+      {
+        "pair": 1,
+        "variant": "candidate",
+        "exit": 0,
+        "wallSeconds": 0.018577399983769283,
+        "raw": "{\"events\":700,\"health\":1,\"power\":1,\"prediction\":1,\"aura\":1,\"dispel\":1,\"threat\":1,\"range\":1,\"status\":1,\"big\":1,\"synchronousHealth\":0,\"dispatchers\":1}",
+        "metrics": {
+          "events": 700,
+          "health": 1,
+          "power": 1,
+          "prediction": 1,
+          "aura": 1,
+          "dispel": 1,
+          "threat": 1,
+          "range": 1,
+          "status": 1,
+          "big": 1,
+          "synchronousHealth": 0,
+          "dispatchers": 1
+        }
+      },
+      {
+        "pair": 2,
+        "variant": "candidate",
+        "exit": 0,
+        "wallSeconds": 0.01860300000407733,
+        "raw": "{\"events\":700,\"health\":1,\"power\":1,\"prediction\":1,\"aura\":1,\"dispel\":1,\"threat\":1,\"range\":1,\"status\":1,\"big\":1,\"synchronousHealth\":0,\"dispatchers\":1}",
+        "metrics": {
+          "events": 700,
+          "health": 1,
+          "power": 1,
+          "prediction": 1,
+          "aura": 1,
+          "dispel": 1,
+          "threat": 1,
+          "range": 1,
+          "status": 1,
+          "big": 1,
+          "synchronousHealth": 0,
+          "dispatchers": 1
+        }
+      },
+      {
+        "pair": 2,
+        "variant": "baseline",
+        "exit": 0,
+        "wallSeconds": 0.018231599999126047,
+        "raw": "{\"events\":700,\"health\":100,\"power\":100,\"prediction\":300,\"aura\":100,\"dispel\":100,\"threat\":100,\"range\":100,\"status\":100,\"big\":100,\"synchronousHealth\":100,\"dispatchers\":0}",
+        "metrics": {
+          "events": 700,
+          "health": 100,
+          "power": 100,
+          "prediction": 300,
+          "aura": 100,
+          "dispel": 100,
+          "threat": 100,
+          "range": 100,
+          "status": 100,
+          "big": 100,
+          "synchronousHealth": 100,
+          "dispatchers": 0
+        }
+      },
+      {
+        "pair": 3,
+        "variant": "baseline",
+        "exit": 0,
+        "wallSeconds": 0.01832609999109991,
+        "raw": "{\"events\":700,\"health\":100,\"power\":100,\"prediction\":300,\"aura\":100,\"dispel\":100,\"threat\":100,\"range\":100,\"status\":100,\"big\":100,\"synchronousHealth\":100,\"dispatchers\":0}",
+        "metrics": {
+          "events": 700,
+          "health": 100,
+          "power": 100,
+          "prediction": 300,
+          "aura": 100,
+          "dispel": 100,
+          "threat": 100,
+          "range": 100,
+          "status": 100,
+          "big": 100,
+          "synchronousHealth": 100,
+          "dispatchers": 0
+        }
+      },
+      {
+        "pair": 3,
+        "variant": "candidate",
+        "exit": 0,
+        "wallSeconds": 0.017198200017446652,
+        "raw": "{\"events\":700,\"health\":1,\"power\":1,\"prediction\":1,\"aura\":1,\"dispel\":1,\"threat\":1,\"range\":1,\"status\":1,\"big\":1,\"synchronousHealth\":0,\"dispatchers\":1}",
+        "metrics": {
+          "events": 700,
+          "health": 1,
+          "power": 1,
+          "prediction": 1,
+          "aura": 1,
+          "dispel": 1,
+          "threat": 1,
+          "range": 1,
+          "status": 1,
+          "big": 1,
+          "synchronousHealth": 0,
+          "dispatchers": 1
+        }
+      },
+      {
+        "pair": 4,
+        "variant": "candidate",
+        "exit": 0,
+        "wallSeconds": 0.016903200012166053,
+        "raw": "{\"events\":700,\"health\":1,\"power\":1,\"prediction\":1,\"aura\":1,\"dispel\":1,\"threat\":1,\"range\":1,\"status\":1,\"big\":1,\"synchronousHealth\":0,\"dispatchers\":1}",
+        "metrics": {
+          "events": 700,
+          "health": 1,
+          "power": 1,
+          "prediction": 1,
+          "aura": 1,
+          "dispel": 1,
+          "threat": 1,
+          "range": 1,
+          "status": 1,
+          "big": 1,
+          "synchronousHealth": 0,
+          "dispatchers": 1
+        }
+      },
+      {
+        "pair": 4,
+        "variant": "baseline",
+        "exit": 0,
+        "wallSeconds": 0.01646519999485463,
+        "raw": "{\"events\":700,\"health\":100,\"power\":100,\"prediction\":300,\"aura\":100,\"dispel\":100,\"threat\":100,\"range\":100,\"status\":100,\"big\":100,\"synchronousHealth\":100,\"dispatchers\":0}",
+        "metrics": {
+          "events": 700,
+          "health": 100,
+          "power": 100,
+          "prediction": 300,
+          "aura": 100,
+          "dispel": 100,
+          "threat": 100,
+          "range": 100,
+          "status": 100,
+          "big": 100,
+          "synchronousHealth": 100,
+          "dispatchers": 0
+        }
+      },
+      {
+        "pair": 5,
+        "variant": "baseline",
+        "exit": 0,
+        "wallSeconds": 0.01878209999995306,
+        "raw": "{\"events\":700,\"health\":100,\"power\":100,\"prediction\":300,\"aura\":100,\"dispel\":100,\"threat\":100,\"range\":100,\"status\":100,\"big\":100,\"synchronousHealth\":100,\"dispatchers\":0}",
+        "metrics": {
+          "events": 700,
+          "health": 100,
+          "power": 100,
+          "prediction": 300,
+          "aura": 100,
+          "dispel": 100,
+          "threat": 100,
+          "range": 100,
+          "status": 100,
+          "big": 100,
+          "synchronousHealth": 100,
+          "dispatchers": 0
+        }
+      },
+      {
+        "pair": 5,
+        "variant": "candidate",
+        "exit": 0,
+        "wallSeconds": 0.017332099989289418,
+        "raw": "{\"events\":700,\"health\":1,\"power\":1,\"prediction\":1,\"aura\":1,\"dispel\":1,\"threat\":1,\"range\":1,\"status\":1,\"big\":1,\"synchronousHealth\":0,\"dispatchers\":1}",
+        "metrics": {
+          "events": 700,
+          "health": 1,
+          "power": 1,
+          "prediction": 1,
+          "aura": 1,
+          "dispel": 1,
+          "threat": 1,
+          "range": 1,
+          "status": 1,
+          "big": 1,
+          "synchronousHealth": 0,
+          "dispatchers": 1
+        }
+      }
+    ]
+  },
+  "validationHistory": [
+    "Initial full run: 177/178 scripts passed, all840 syntax files passed; one old smoke test required an exact Hide call string and was updated to check keepParent/keepEvents independently of the new skip predicate.",
+    "Pre-BigDebuffs full run:178/178 scripts and840 syntax passed; final review added a native-aura integration boundary and its regression.",
+    "Final full run is the fullDesktop record; hashes unchanged across that run.",
+    "The user then restored HealKit-style textured bronze as the final border requirement. The fullDesktop record now refers to that native-art shared-border source, not the earlier passing matte candidate."
+  ],
+  "nativeEvidence": "User13:01:05 secret-mouse stack and earlier screenshots rejected earlier candidates. Their loaded source identities were not independently captured; no final native pixel/combat/taint acceptance inferred.",
+  "notRun": [
+    "Native hardware casts and protected VM",
+    "Final native screenshots/pixel comparison",
+    "Taint acceptance on all five clients",
+    "Matched native frame-time/FPS captures",
+    "UIForever simulator session"
+  ],
+  "limitations": [
+    "Optional Forever HoT estimate is off by default; readable supported English descriptions and cast identity only; no hidden early-removal/haste inference.",
+    "META/CMD primary-click chords are unavailable; Shift/Ctrl/Alt primary casts are supported.",
+    "Initially opaque native highlight alpha is left unchanged until readable, rather than inventing restoration state.",
+    "Native icon scale is bounded by the fixed six-slot footprint; no forbidden descendant resizing or repeated pool allocation."
+  ],
+  "resourceChanges": [
+    "80 prepared group/MT cells even from solo;40 shared target-existence conditions, released when disabled.",
+    "Native aura pools allocate batches beyond the12 visible icons; eight icon groups plus one fixed native dispel slot per main cell.",
+    "Four incoming-heal calculators supply four overheal thresholds; three extra snapshots per active prediction update.",
+    "Desktop dispatcher counters are not CPU, frame-time or FPS measurements."
+  ],
+  "provenance": {
+    "reference": "HealKit0.65.0 by Ozwald",
+    "tocSHA256": "a03dec3457881489010a082955015b3cc4f998a8db2b4dbbf1e9068cac7750d4",
+    "licenseSHA256": "c1a4998006ee1b80b9f2fc6a4f70ea1262a2513428798e33463364572fb930a5",
+    "implementation": "Independently authored; no HealKit Lua/custom art copied or required. Final connected borders reference original Blizzard8036209 gold bands with texel-center cropping; native BLEND at0.85; no additive shine. Owned bronze fallback remains if the native asset is unavailable."
+  },
+  "visualDesign": {
+    "outerSize": "existing saved width/height unchanged",
+    "spacing": "horizontal0; vertical overlap4px",
+    "borders": "original Blizzard/HealKit-reference bronze; one owner per shared seam; rounded arcs only on outer grid corners",
+    "auras": "buffs right; debuffs left; max3columns x2rows each; duration7px and faint cooldown swipes;70% transparency with0\u2013100% scoped setting",
+    "text": "name10px; role12px immediately left of numeric status",
+    "manager": "base saved scale x0.85; original native X; invariant full-panel Y above the prepared or active grid in collapsed/expanded/hidden/shown states"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "extractedAtUTC": "2026-11-06T16:22:26.488045+00:00",
+  "parser": "Literal-only saved-table parsing; no saved Lua executed. No game input or settings writes.",
+  "savedBugTabsUTC": [
+    "2026-11-06T16:20:31.922396+00:00"
+  ],
+  "selectedErrorRecordCount": 3,
+  "selectedErrorRepeatTotal": 38,
+  "errors": [
+    {
+      "addon": "_FluxUI",
+      "count": 30,
+      "lastReportedLocalTime": "17:13:33",
+      "message": "...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua:3403: attempt to call a nil value",
+      "stack": "[Interface/AddOns/_FluxUI/Core/Flux.lua]:43: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:35>\n[tail call]: ?\n[Interface/AddOns/_FluxUI/Core/Module.lua]:108: in function 'Enable'\n[Interface/AddOns/_FluxUI/Core/Module.lua]:143: in function 'EnableEligible'\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:135: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:128>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:162: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:157>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:233: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:187>",
+      "locals": "ok = false\nerr = \"...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua:3403: attempt to call a nil value\""
+    },
+    {
+      "addon": "_FluxUI",
+      "count": 4,
+      "lastReportedLocalTime": "17:13:28",
+      "message": "..._FluxUI/ExtraButtonSystem/NonCombatGrid/GridInit.lua:103: ...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua:3403: attempt to call a nil value",
+      "stack": "[Interface/AddOns/_FluxUI/Core/Flux.lua]:43: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:35>\n[tail call]: ?\n[Interface/AddOns/_FluxUI/Core/Module.lua]:108: in function 'Enable'\n[Interface/AddOns/_FluxUI/Core/Module.lua]:143: in function 'EnableEligible'\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:135: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:128>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:162: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:157>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:233: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:187>",
+      "locals": "ok = false\nerr = \"..._FluxUI/ExtraButtonSystem/NonCombatGrid/GridInit.lua:103: ...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua..."
+    },
+    {
+      "addon": "_FluxUI",
+      "count": 4,
+      "lastReportedLocalTime": "17:13:28",
+      "message": "..._FluxUI/ExtraButtonSystem/CombatGrid/GridManager.lua:50: ...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua:3403: attempt to call a nil value",
+      "stack": "[Interface/AddOns/_FluxUI/Core/Flux.lua]:43: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:35>\n[tail call]: ?\n[Interface/AddOns/_FluxUI/Core/Module.lua]:108: in function 'Enable'\n[Interface/AddOns/_FluxUI/Core/Module.lua]:143: in function 'EnableEligible'\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:135: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:128>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:162: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:157>\n[Interface/AddOns/_FluxUI/Core/Flux.lua]:233: in function <Interface/AddOns/_FluxUI/Core/Flux.lua:187>",
+      "locals": "ok = false\nerr = \"..._FluxUI/ExtraButtonSystem/CombatGrid/GridManager.lua:50: ...ce/AddOns/_FluxUI/ExtraButtonSystem/Engine/Paint.lua:..."
+    }
+  ],
+  "diskSourceParity": {
+    "ExtraButtonSystem/Engine/Paint.lua": {
+      "retailModifiedUTC": "2026-11-06T16:15:17.891043+00:00",
+      "foreverModifiedUTC": "2026-11-06T16:15:17.891043+00:00",
+      "rawBytesEqual": true,
+      "normalizedSHA256": "2755d01c2bfcc13d05e4b1e5cfe97f0335f177b6a1e45475e7c45bcb9add6c12"
+    },
+    "Core/ButtonFX/Glow.lua": {
+      "retailModifiedUTC": "2026-11-06T16:12:23.995106+00:00",
+      "foreverModifiedUTC": "2026-11-06T16:12:23.995106+00:00",
+      "rawBytesEqual": true,
+      "normalizedSHA256": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57"
+    },
+    "Other/FluxPerfCapture.lua": {
+      "retailModifiedUTC": "2026-11-06T15:45:56.750414+00:00",
+      "foreverModifiedUTC": "2026-11-06T15:45:56.750414+00:00",
+      "rawBytesEqual": true,
+      "normalizedSHA256": "c9deea4aaee79e0bfe60e2344200fa238e6cc021f37169d26678d3fd1bf320e0"
+    }
+  },
+  "retainedDiagnostics": {
+    "sourceSavedUTC": "2026-11-06T16:20:31.971010+00:00",
+    "normalReportScriptProfile": "1",
+    "normalReportSeconds": 120.002999999997,
+    "normalCapturedAtLocal": "2026-11-06 16:25:27",
+    "watch": {
+      "diagnosticVersion": null,
+      "status": "expired",
+      "capturedAt": "2026-11-06 16:01:48",
+      "seconds": 600.0050000000047,
+      "frameCount": 89932,
+      "spikeCount": 7,
+      "callbackCount": 0,
+      "observedCallbacks": 86522
+    }
+  },
+  "configMetadata": {
+    "savedUTC": "2026-11-06T16:20:31.828636+00:00",
+    "storedScriptProfile": null,
+    "interpretation": "Absent key does not independently prove current live0."
+  },
+  "interpretation": [
+    "Reported17:13:28/33local failures predate the current Paint.lua correction at16:15:17UTC(17:15:17Copenhagen). Saved history remains evidence of the earlier failure, not proof that the corrected file still fails.",
+    "Saved locals contain only error-wrapper ok=false and error text. They do not name the original nil callee.",
+    "SavedVariables save at16:15:23UTC is consistent with a reload/logout boundary after the correction. Current on-disk parity proves the corrected file is available in Forever but does not fingerprint what code a particular Lua VM loaded.",
+    "Retained normal120s scriptProfile1 report and expired original7-gap watch are historical samples, not current profiling preferences or proof of a running v2 watch.",
+    "Current-session BugTabs.GetSessionCounts excludes persisted history and is the suitable read-only post-reload check."
+  ]
+}

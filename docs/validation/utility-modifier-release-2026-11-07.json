@@ -1,0 +1,175 @@
+{
+  "changeID": "UTILITY-MODIFIER-RELEASE-20261107",
+  "dateUTC": "2026-11-07T09:52:07.454151+00:00",
+  "requirements": [
+    "UTL-REL-05",
+    "UTL-PERF-06"
+  ],
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b54c-d8ad-7fb2-8983-8450144d40ed\\Utility-release-20261107",
+    "sourceFiles": 1748,
+    "sourceZIP": "8dd1f6db68cc6cc4d07b2883f5b885981b001cc6eadc2678cf2deafbbdd90599",
+    "history": "Existing Utility-mixed-20261107 history.bundle verified before edits",
+    "settings": "121 current on-disk metadata files preserved externally; prior recovery remains; no WTF/profiler writes"
+  },
+  "baseline": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "c5f8ae26cb6f90908d3500d3f4ad2bb3619b4787805762e60d309d1b34dcaac6"
+  },
+  "candidate": {
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76"
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "kind": "baseline",
+      "exit": 0,
+      "wallSeconds": 0.18605,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+    },
+    {
+      "pair": 1,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.14791,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\n"
+    },
+    {
+      "pair": 2,
+      "kind": "baseline",
+      "exit": 0,
+      "wallSeconds": 0.18296,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+    },
+    {
+      "pair": 2,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.16266,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\n"
+    },
+    {
+      "pair": 3,
+      "kind": "baseline",
+      "exit": 0,
+      "wallSeconds": 0.19375,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+    },
+    {
+      "pair": 3,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.14968,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\n"
+    },
+    {
+      "pair": 4,
+      "kind": "baseline",
+      "exit": 0,
+      "wallSeconds": 0.18334,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+    },
+    {
+      "pair": 4,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.1569,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\n"
+    },
+    {
+      "pair": 5,
+      "kind": "baseline",
+      "exit": 0,
+      "wallSeconds": 0.18625,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+    },
+    {
+      "pair": 5,
+      "kind": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.1472,
+      "output": "Utility mixed faces: 5889 checks, 0 failures\nModifier work: transitions=320 icon=120 count=120 usable=140 checked=120 duplicate=0\n"
+    }
+  ],
+  "oldBudgetRegression": {
+    "exit": 1,
+    "output": "red Count passes per modifier transition\nFAIL bounded shared Checked passes per modifier transition\nFAIL bounded shared Count passes per modifier transition\nFAIL bounded shared Checked passes per modifier transition\nFAIL unchanged chord has no repeated visual work\nUtility mixed faces: 7329 checks, 820 failures\nModifier work: transitions=320 icon=320 count=640 usable=660 checked=640 duplicate=1120\n"
+  },
+  "mutations": [
+    {
+      "name": "stuck-release",
+      "exit": 1,
+      "output": "L combat release restores normal count\nFAIL release restores base\nFAIL item depletion does not latch onto spell\nFAIL single charged item exhausts in combat\nFAIL full combat release restores latest normal item icon/count\nFAIL combat release restores normal item depletion\nUtility mixed faces: 7329 checks, 245 failures\nModifier work: transitions=320 icon=90 count=90 usable=110 checked=90 duplicate=0\n"
+    },
+    {
+      "name": "duplicate-paint",
+      "exit": 1,
+      "output": "cked passes per modifier transition\nFAIL bounded shared Count passes per modifier transition\nFAIL bounded shared Checked passes per modifier transition\nFAIL bounded shared Count passes per modifier transition\nFAIL bounded shared Checked passes per modifier transition\nUtility mixed faces: 7329 checks, 260 failures\nModifier work: transitions=320 icon=120 count=405 usable=425 checked=405 duplicate=0\n"
+    }
+  ],
+  "nativeSourceReplay": "Utility secure input: 11015 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n",
+  "measurementScope": "Utility modifier callback only: actual shared Modifier bus, macro translator and painter; independent expected identities/counts; native FrameXML input replay separately; no native CPU/FPS/engine-taint claim",
+  "measuredWork": {
+    "transitions": 320,
+    "icon": {
+      "before": 320,
+      "after": 120
+    },
+    "count": {
+      "before": 640,
+      "after": 120
+    },
+    "usable": {
+      "before": 660,
+      "after": 140
+    },
+    "checked": {
+      "before": 640,
+      "after": 120
+    },
+    "unchangedChordPaints": {
+      "before": 1120,
+      "after": 0
+    }
+  },
+  "behavior": "Release already used prepared secure attrs; strengthened actual-bus tests now verify normal kind/identity/icon/count after every chord in combat, partial/full release, live counts changed while held, zero/blank counts,50 repeated cycles; no secure rewrite/binding/frame/timer growth. One utility pass uses shared translator paint; same-face fallback and duplicate chord events skip; special pet/outfit path retained.",
+  "sourceEvidence": "Same five native FrameXML identities as docs/validation/utility-secure-input-2026-11-07.json; no new native API; no source refresh or installed-plugin edits.",
+  "native": "Actual game input/combat/taint/pixels/FPS not run; no Witchcraft tool available; no foreground/input control.",
+  "fullValidation": {
+    "report": "docs/validation/utility-modifier-release-full-2026-11-07.json",
+    "syntaxFiles": 880,
+    "pass": 217,
+    "fail": 0,
+    "postRunDrift": [
+      "tests/native_forever_bank.lua"
+    ]
+  },
+  "installedCopies": [
+    {
+      "client": "_retail_",
+      "sha256": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "sha256": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "sha256": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "sha256": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "sha256": "ef62b98d10651ff10b428dfe480670b0f43d98c1bda74b5c2f14199e68803c76",
+      "matches": true
+    }
+  ],
+  "utilityRuntimeStable": true,
+  "documentationValidation": "Pending2 unrelated concurrent tests/native_forever_bank.lua inventory/verification issues; no utility errors; checker made no edits."
+}

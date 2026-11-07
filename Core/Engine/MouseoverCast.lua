@@ -6,11 +6,11 @@
 --   display — type=action click + ephemeral face (native tails / hover_only)
 --
 -- This file owns click-time unit for plain type=action / spell / item only.
--- Wrap clients (live / classic): a secure PreClick wrap writes unit=mouseover
+-- Clients without native mouseover casting: a secure PreClick wrap writes unit=mouseover
 -- when that unit exists, else target when that unit exists, else nil.
--- Forever has no WrapScript (hasRestrictedClosures=false) but ships Blizzard's
--- enableMouseoverCast CVar; the Action Bars toggle drives that CVar plus
--- checkmouseovercast on plain action/spell/item widgets.
+-- Native clients use Blizzard's enableMouseoverCast and MOUSEOVERCAST modifier.
+-- Blizzard owns their control and CVar writes; Flux only observes the setting
+-- and stamps checkmouseovercast on plain action/spell/item widgets.
 -- Stamping a missing unit makes SecureActionButton_OnClick return before the
 -- action (all flavours). Overlay hosts (macro / click / macrotext) clear
 -- leftover unit and skip the pick — targeting lives in the body. A static
@@ -20,6 +20,9 @@
 -- RegisterStateDriver is parked leftover only.
 local addonName, ns = ...
 local Flux = ns.Flux
+local FluxDrivers = Flux.Restricted
+local useFluxDrivers = FluxDrivers and FluxDrivers.Works and not FluxDrivers.Works()
+local UnregisterStateDriver = (useFluxDrivers and FluxDrivers.UnregisterStateDriver) or UnregisterStateDriver
 
 local MouseoverCast = {}
 Flux.MouseoverCast = MouseoverCast
@@ -45,6 +48,11 @@ local UNIT_PRECLICK = [[
 	if not self:GetAttribute("smarttarget") and not self:GetAttribute("flux-smart") then
 		return
 	end
+	local nativeModifier = self:GetAttribute("flux-mo-native-modifier")
+	if nativeModifier and nativeModifier ~= "NONE" and not IsModifiedClick("MOUSEOVERCAST") then
+		self:SetAttribute("unit", nil)
+		return
+	end
 	if UnitExists("mouseover") then
 		self:SetAttribute("unit", "mouseover")
 	elseif UnitExists("target") then
@@ -68,6 +76,30 @@ local UNIT_POSTCLICK = [[
 	end
 	self:SetAttribute("unit", nil)
 ]]
+
+-- Utility hosts prepare exact modifier actions. Pick their target only on a
+-- hardware click, using the matching action's helpful/harmful classification.
+-- Key proxies read the same host configuration; no hover driver or polling.
+local UTILITY_PRECLICK = [[
+	if self:GetAttribute("unit") then self:SetAttribute("unit", nil) end
+	local owner = self
+	if self:GetAttribute("flux-utility-owner-parent") then owner = self:GetParent() end
+	if not owner:GetAttribute("flux-utility-native") or not owner:GetAttribute("flux-utility-mo-enabled") then return end
+	local prefix = button and owner:GetAttribute("flux-utility-key-" .. button)
+	local modifier = owner:GetAttribute("flux-utility-mo-modifier")
+	if modifier and modifier ~= "NONE" and not IsModifiedClick("MOUSEOVERCAST") then
+		if not prefix or not prefix:find(modifier:lower() .. "-", 1, true) then return end
+	end
+	if prefix == nil then
+		prefix = ""
+		if IsShiftKeyDown() then prefix = "shift-" .. prefix end
+		if IsControlKeyDown() then prefix = "ctrl-" .. prefix end
+		if IsAltKeyDown() then prefix = "alt-" .. prefix end
+	end
+	local condition = owner:GetAttribute(prefix .. "flux-utility-mo")
+	if condition and SecureCmdOptionParse(condition) == "mouseover" then self:SetAttribute("unit", "mouseover") end
+]]
+local UTILITY_POSTCLICK = [[ if self:GetAttribute("unit") then self:SetAttribute("unit", nil) end ]]
 
 local hub = nil
 local headers = {}
@@ -120,7 +152,24 @@ local function OptionsTable()
 	return nil
 end
 
+-- Match Blizzard's Combat settings gate, not CVar existence alone: Classic
+-- progression ships the shared CVar/UI code but explicitly returns false.
+function MouseoverCast.UsesNativeCVar()
+	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
+	return type(IsMouseoverCastSupported) == "function" and IsMouseoverCastSupported() == true
+		and get ~= nil and get("enableMouseoverCast") ~= nil or false
+end
+
+local function CVarIsOn()
+	local get = (C_CVar and C_CVar.GetCVar) or GetCVar
+	local v = get and get("enableMouseoverCast")
+	return v == "1" or v == 1 or v == true
+end
+
 function MouseoverCast.IsEnabled()
+	if MouseoverCast.UsesNativeCVar() then
+		return CVarIsOn()
+	end
 	local t = OptionsTable()
 	if t and t.mouseoverCast ~= nil then
 		return t.mouseoverCast == true
@@ -131,14 +180,26 @@ function MouseoverCast.IsEnabled()
 	return true
 end
 
---- Forever: CVar exists and WrapScript does not. Live/classic keep PreClick
---- and leave the CVar off so world hops do not retarget slots.
-function MouseoverCast.UsesNativeCVar()
-	local Cap = Flux.Cap
-	if not (Cap and Cap.hasRestrictedClosures == false) then
-		return false
+-- Range follows the native modifier; automatic macro tails must not bypass it.
+function MouseoverCast.IsActive()
+	if not MouseoverCast.IsEnabled() then return false end
+	if MouseoverCast.UsesNativeCVar() then
+		return GetModifiedClick and (GetModifiedClick("MOUSEOVERCAST") == "NONE"
+			or (IsModifiedClick and IsModifiedClick("MOUSEOVERCAST"))) and true or false
 	end
-	return C_CVar and C_CVar.GetCVar and C_CVar.GetCVar("enableMouseoverCast") ~= nil
+	return true
+end
+
+-- Opening the real control preserves Blizzard's secure script ownership.
+-- Calling its OnClick/Settings.SetValue from addon Lua would still taint the
+-- native CVar read in SecureActionButton_OnClick (including gamepad UseAction).
+function MouseoverCast.OpenNativeOptions()
+	if not MouseoverCast.UsesNativeCVar() or InLockdown() then return false end
+	if ToggleClickBindingFrame then
+		ToggleClickBindingFrame()
+		return true
+	end
+	return false
 end
 
 local NATIVE_CHECK_TYPES = {
@@ -147,64 +208,66 @@ local NATIVE_CHECK_TYPES = {
 	item = true,
 }
 
---- Forever native path: checkmouseovercast on plain action/spell/item only.
+-- Blizzard's native helper classifies CalculateAction(), so it cannot classify
+-- an arbitrary standalone spell/item from its own attributes. Preserve the
+-- existing click-time adapter on wrap clients; its toggle/modifier are native.
+local function UsesNativeButtonAdapter(widget)
+	local t = widget and widget.GetAttribute and widget:GetAttribute("type")
+	return MouseoverCast.UsesNativeCVar() and not (Flux.Cap and Flux.Cap.hasRestrictedClosures == false)
+		and (t == "spell" or t == "item")
+end
+
+-- Native path: checkmouseovercast on plain action/spell/item only, even while
+-- disabled, so Blizzard can change the CVar/modifier during combat itself.
 --- Overlay macro/click/macrotext keep it off (targeting is in the body).
 function MouseoverCast.ApplyNativeCheck(widget)
 	if not widget or not widget.SetAttribute then
 		return
 	end
+	if widget:GetAttribute("flux-utility-native") then
+		widget:SetAttribute("flux-utility-mo-enabled", MouseoverCast.IsEnabled())
+		widget:SetAttribute("flux-utility-mo-modifier", MouseoverCast.UsesNativeCVar() and GetModifiedClick and GetModifiedClick("MOUSEOVERCAST") or nil)
+		widget:SetAttribute("checkmouseovercast", false)
+		return
+	end
 	local t = widget.GetAttribute and widget:GetAttribute("type")
-	if MouseoverCast.UsesNativeCVar() and MouseoverCast.IsEnabled()
-		and t and NATIVE_CHECK_TYPES[t] then
+	local adapter = UsesNativeButtonAdapter(widget)
+	widget:SetAttribute("flux-mo-native-modifier", adapter and GetModifiedClick and GetModifiedClick("MOUSEOVERCAST") or nil)
+	if adapter then widget:SetAttribute("flux-smart", MouseoverCast.IsEnabled() and 3 or nil) end
+	if MouseoverCast.UsesNativeCVar()
+		and not adapter and t and NATIVE_CHECK_TYPES[t] then
 		widget:SetAttribute("checkmouseovercast", true)
 	else
 		widget:SetAttribute("checkmouseovercast", false)
 	end
 end
 
-local syncingCVar = false
+local lastNativeEnabled
+local lastNativeModifier
+local nativeRefreshQueued = false
 
---- Wrap clients: CVar stays off (PreClick covers click). Forever must not
---- SetCVar either: gamepad buttons set checkmouseovercast and read
---- enableMouseoverCast inside SecureActionButton_OnClick. An addon write
---- taints that read and UseAction() is forbidden. The Blizzard checkbox owns
---- the CVar; ApplyNativeCheck still stamps Flux widgets.
-local function SyncCVar()
-	if not SetCVar then
-		return
-	end
-	if MouseoverCast.UsesNativeCVar() then
-		return
-	end
-	syncingCVar = true
-	pcall(SetCVar, "enableMouseoverCast", "0")
-	syncingCVar = false
-end
-
-local function CVarIsOn()
-	if GetCVarBool then
-		return GetCVarBool("enableMouseoverCast") and true or false
-	end
-	local v = GetCVar and GetCVar("enableMouseoverCast")
-	return v == "1" or v == 1 or v == true
-end
-
---- Blizzard Combat checkbox writes the same CVar. Keep AceDB in lockstep.
+-- Blizzard's checkbox is authoritative. Retain the saved custom preference for
+-- clients without the native feature; neither scope switches nor reload push it.
 local function OnCVarUpdate(_, name)
-	if syncingCVar then
-		return
-	end
-	if name ~= "enableMouseoverCast" and name ~= "ENABLE_MOUSEOVER_CAST" then
+	if name ~= "enableMouseoverCast" and name ~= "ENABLE_MOUSEOVER_CAST" and name ~= "MOUSEOVERCAST" then
 		return
 	end
 	if not MouseoverCast.UsesNativeCVar() then
 		return
 	end
 	local on = CVarIsOn()
-	if on == MouseoverCast.IsEnabled() then
+	local modifier = GetModifiedClick and GetModifiedClick("MOUSEOVERCAST")
+	if on == lastNativeEnabled and modifier == lastNativeModifier then
 		return
 	end
-	MouseoverCast.SetEnabled(on)
+	-- CVAR_UPDATE is synchronous. Leave Blizzard's checkbox/Settings stack
+	-- before touching our protected attributes or invoking option listeners.
+	if nativeRefreshQueued then return end
+	nativeRefreshQueued = true
+	if not After(0, function()
+		nativeRefreshQueued = false
+		MouseoverCast.RefreshSetting()
+	end) then nativeRefreshQueued = false end
 end
 
 -- ---------------------------------------------------------------------------
@@ -392,7 +455,7 @@ local function Classify()
 		return
 	end
 	ClearSmartAttrs()
-	if not MouseoverCast.IsEnabled() then
+	if MouseoverCast.UsesNativeCVar() or not MouseoverCast.IsEnabled() then
 		return
 	end
 
@@ -500,9 +563,30 @@ local function WrapUnitPick(widget)
 		return
 	end
 	local Restricted = Flux.Restricted
+	if widget:GetAttribute("flux-utility-native") or widget:GetAttribute("flux-utility-owner-parent") then
+		-- Reuse the existing repaired-VM probe on Forever while retaining its
+		-- established AnyUp mouse / AnyDown key policy.
+		local works = not (Flux.Cap and Flux.Cap.hasRestrictedClosures == false)
+		if Restricted and Restricted.PagingWorks then works = Restricted.PagingWorks() end
+		if not works or not hub.WrapScript or not hub.UnwrapScript then widget._fluxUtilityMouseoverReady = false; return end
+		if hub.UnwrapScript then
+			pcall(hub.UnwrapScript, hub, widget, "PreClick")
+			pcall(hub.UnwrapScript, hub, widget, "PostClick")
+		end
+		local pre = pcall(hub.WrapScript, hub, widget, "PreClick", UTILITY_PRECLICK)
+		local post = pcall(hub.WrapScript, hub, widget, "PostClick", UTILITY_POSTCLICK)
+		widget._fluxUtilityMouseoverReady = pre and post
+		if not widget._fluxUtilityMouseoverReady then
+			pcall(hub.UnwrapScript, hub, widget, "PreClick")
+			pcall(hub.UnwrapScript, hub, widget, "PostClick")
+			widget:SetAttribute("unit", nil)
+		end
+		return
+	end
 	if Restricted then
 		Restricted.UnwrapScript(hub, widget, "PreClick")
 		Restricted.UnwrapScript(hub, widget, "PostClick")
+		if MouseoverCast.UsesNativeCVar() and not UsesNativeButtonAdapter(widget) then return end
 		Restricted.WrapScript(hub, widget, "PreClick", UNIT_PRECLICK)
 		Restricted.WrapScript(hub, widget, "PostClick", UNIT_POSTCLICK)
 		return
@@ -514,6 +598,7 @@ local function WrapUnitPick(widget)
 		pcall(hub.UnwrapScript, hub, widget, "PreClick")
 		pcall(hub.UnwrapScript, hub, widget, "PostClick")
 	end
+	if MouseoverCast.UsesNativeCVar() and not UsesNativeButtonAdapter(widget) then return end
 	if hub.WrapScript then
 		pcall(hub.WrapScript, hub, widget, "PreClick", UNIT_PRECLICK)
 		pcall(hub.WrapScript, hub, widget, "PostClick", UNIT_POSTCLICK)
@@ -597,7 +682,7 @@ function MouseoverCast.AttachHost(widget)
 	widget:SetAttribute("_childupdate-target-help", nil)
 	widget:SetAttribute("_childupdate-target-harm", nil)
 	widget:SetAttribute("_childupdate-target-all", nil)
-	widget:SetAttribute("smarttarget", MouseoverCast.IsEnabled() or nil)
+	widget:SetAttribute("smarttarget", (not MouseoverCast.UsesNativeCVar() and MouseoverCast.IsEnabled()) or nil)
 	WrapUnitPick(widget)
 	MouseoverCast.ApplyNativeCheck(widget)
 	if MouseoverCast.IsEnabled() then
@@ -630,6 +715,7 @@ local function ApplyButtonTargetType(widget, tt)
 		-- Click wrap writes mouseover/target only when that unit exists.
 		widget:SetAttribute("unit", nil)
 	end
+	if MouseoverCast.UsesNativeCVar() then WrapUnitPick(widget) end
 	MouseoverCast.ApplyNativeCheck(widget)
 end
 
@@ -639,7 +725,7 @@ function MouseoverCast.SetButtonSpell(widget, spellId)
 		return
 	end
 	local tt
-	if spellId and MouseoverCast.IsEnabled() then
+	if spellId and not MouseoverCast.UsesNativeCVar() and MouseoverCast.IsEnabled() then
 		-- Prefer the spellbook walk: on clients without C_Spell.IsSpellHelpful
 		-- the per-id query cannot answer, but the book pass already did.
 		if hub then
@@ -661,10 +747,45 @@ function MouseoverCast.SetButtonItem(widget, itemId)
 		return
 	end
 	local tt
-	if itemId and MouseoverCast.IsEnabled() then
+	if itemId and not MouseoverCast.UsesNativeCVar() and MouseoverCast.IsEnabled() then
 		tt = ClassifyItem(itemId)
 	end
 	ApplyButtonTargetType(widget, tt)
+end
+
+-- Called only while assignments/bindings are prepared outside combat.
+function MouseoverCast.ConfigureUtility(widget, slots, base)
+	if not widget or InLockdown() then return false end
+	for _, chord in ipairs({ { "", "" }, { "SHIFT", "shift-" }, { "CTRL", "ctrl-" }, { "ALT", "alt-" },
+		{ "SHIFT-CTRL", "ctrl-shift-" }, { "SHIFT-ALT", "alt-shift-" },
+		{ "CTRL-ALT", "alt-ctrl-" }, { "SHIFT-CTRL-ALT", "alt-ctrl-shift-" } }) do
+		local entry = slots[chord[1]] or base
+		local kind
+		if entry and entry.type == "spell" then
+			kind = (hub and hub:GetAttribute("flux-mo-tt-" .. tostring(entry.id))) or ClassifySpell(nil, nil, entry.id)
+		elseif entry then
+			kind = ClassifyItem(entry.id)
+		end
+		local gate = kind == 1 and "help" or kind == 2 and "harm" or "exists"
+		widget:SetAttribute(chord[2] .. "flux-utility-mo", "[@mouseover," .. gate .. "] mouseover")
+	end
+	MouseoverCast.RegisterButton(widget)
+	MouseoverCast.ApplyNativeCheck(widget)
+	WrapUnitPick(widget)
+	return widget._fluxUtilityMouseoverReady == true
+end
+
+function MouseoverCast.AttachUtilityKeyer(widget)
+	if not widget or InLockdown() or not EnsureHub() then return false end
+	widget:SetAttribute("flux-utility-owner-parent", true)
+	WrapUnitPick(widget)
+	return widget._fluxUtilityMouseoverReady == true
+end
+
+function MouseoverCast.UtilityRangeUnit(widget)
+	if not widget or not widget:GetAttribute("flux-utility-native") or widget._fluxUtilityMouseoverReady == false or not MouseoverCast.IsActive() then return nil end
+	local condition = widget:GetAttribute(SecureButton_GetModifierPrefix(widget) .. "flux-utility-mo")
+	return condition and SecureCmdOptionParse(condition) or nil
 end
 
 -- ---------------------------------------------------------------------------
@@ -684,6 +805,7 @@ local function ClearAll()
 		frame:SetAttribute("flux-smart", nil)
 		frame:SetAttribute("unit", nil)
 		frame:SetAttribute("checkmouseovercast", false)
+		if frame:GetAttribute("flux-utility-native") then MouseoverCast.ApplyNativeCheck(frame) end
 	end
 	for i = 1, #hosts do
 		strip(hosts[i])
@@ -694,6 +816,10 @@ local function ClearAll()
 end
 
 function MouseoverCast.Apply()
+	if MouseoverCast.UsesNativeCVar() then
+		lastNativeEnabled = CVarIsOn()
+		lastNativeModifier = GetModifiedClick and GetModifiedClick("MOUSEOVERCAST")
+	end
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("mouseovercast.apply", MouseoverCast.Apply)
@@ -703,7 +829,19 @@ function MouseoverCast.Apply()
 	if not EnsureHub() then
 		return
 	end
-	SyncCVar()
+	if MouseoverCast.UsesNativeCVar() then
+		ParkLegacyDrivers()
+		driversLive = false
+		ClearSmartAttrs()
+		ClearAll()
+		for _, list in ipairs({ hosts, buttons }) do
+			for i = 1, #list do
+				WrapUnitPick(list[i])
+				MouseoverCast.ApplyNativeCheck(list[i])
+			end
+		end
+		return
+	end
 	if not MouseoverCast.IsEnabled() then
 		ParkLegacyDrivers()
 		driversLive = false
@@ -728,15 +866,7 @@ function MouseoverCast.Apply()
 	MouseoverCast.SyncDrivers()
 end
 
-function MouseoverCast.SetEnabled(on)
-	on = on == true
-	local t = OptionsTable()
-	if t then
-		t.mouseoverCast = on
-	end
-	if _FluxUI_CharSavedVars then
-		_FluxUI_CharSavedVars.mouseoverCast = on
-	end
+function MouseoverCast.RefreshSetting()
 	MouseoverCast.Apply()
 	-- Slot macros bake their own [@mouseover] tail, so the Binding plan has to
 	-- be recompiled or the two layers disagree about what the key does.
@@ -769,6 +899,17 @@ function MouseoverCast.SetEnabled(on)
 	if ACR and ACR.NotifyChange then
 		pcall(ACR.NotifyChange, ACR, "FluxUI")
 	end
+end
+
+function MouseoverCast.SetEnabled(on)
+	if MouseoverCast.UsesNativeCVar() then
+		return MouseoverCast.OpenNativeOptions()
+	end
+	on = on == true
+	local t = OptionsTable()
+	if t then t.mouseoverCast = on end
+	if _FluxUI_CharSavedVars then _FluxUI_CharSavedVars.mouseoverCast = on end
+	MouseoverCast.RefreshSetting()
 end
 
 function MouseoverCast.GetStats()
@@ -836,10 +977,53 @@ MouseoverCast.GetEnabled = MouseoverCast.IsEnabled
 -- ---------------------------------------------------------------------------
 
 local spellBookCheckbox
+local nativeSpellBookCheckbox
+local nativeCheckboxHome
+local nativeCheckboxBorrowed = false
 local spellBookHooked = false
 local PositionSpellBookCheckbox
+local unpackPoints = unpack or table.unpack
+
+local function RestoreNativeCheckbox()
+	if not nativeCheckboxBorrowed or not nativeSpellBookCheckbox or not nativeCheckboxHome then return end
+	local checkbox, home = nativeSpellBookCheckbox, nativeCheckboxHome
+	checkbox:SetParent(home.parent)
+	checkbox:ClearAllPoints()
+	for i = 1, #home.points do checkbox:SetPoint(unpackPoints(home.points[i], 1, 5)) end
+	checkbox:SetScale(home.scale)
+	checkbox:SetFrameStrata(home.strata)
+	checkbox:SetFrameLevel(home.level)
+	nativeCheckboxBorrowed = false
+end
+
+local function AcquireNativeCheckbox()
+	if nativeSpellBookCheckbox then return nativeSpellBookCheckbox end
+	-- Load only on spellbook use. Keep the actual native OnClick/tooltip scripts;
+	-- do not copy them to an addon checkbox or call native OnClick from addon Lua.
+	if ClickBindingFrame_LoadUI then ClickBindingFrame_LoadUI() end
+	local checkbox = ClickBindingFrame and ClickBindingFrame.EnableMouseoverCastCheckbox
+	if not checkbox then return nil end
+	local points = {}
+	for i = 1, checkbox:GetNumPoints() do points[i] = { checkbox:GetPoint(i) } end
+	nativeCheckboxHome = { parent = checkbox:GetParent(), points = points,
+		scale = checkbox:GetScale(), strata = checkbox:GetFrameStrata(), level = checkbox:GetFrameLevel() }
+	nativeSpellBookCheckbox = checkbox
+	return checkbox
+end
+
+function MouseoverCast.GetSpellBookCheckbox()
+	if MouseoverCast.UsesNativeCVar() then
+		return nativeCheckboxBorrowed and nativeSpellBookCheckbox or nil
+	end
+	return spellBookCheckbox
+end
 
 function MouseoverCast.RefreshSpellBookCheckbox()
+	if MouseoverCast.UsesNativeCVar() then
+		if spellBookCheckbox then spellBookCheckbox:Hide() end
+		PositionSpellBookCheckbox()
+		return
+	end
 	if spellBookCheckbox then
 		spellBookCheckbox:SetChecked(MouseoverCast.IsEnabled())
 		PositionSpellBookCheckbox()
@@ -847,6 +1031,7 @@ function MouseoverCast.RefreshSpellBookCheckbox()
 end
 
 local function CreateSpellBookCheckbox()
+	if MouseoverCast.UsesNativeCVar() then return end
 	if spellBookCheckbox then
 		return
 	end
@@ -886,9 +1071,29 @@ local function CreateSpellBookCheckbox()
 end
 
 function PositionSpellBookCheckbox()
-	if not spellBookCheckbox then
+	if MouseoverCast.UsesNativeCVar() then
+		if InLockdown() then
+			if Flux.Combat and Flux.Combat.Defer then
+				Flux.Combat.Defer("mouseovercast.spellbook", PositionSpellBookCheckbox)
+			end
+			return
+		end
+		local Chrome = Flux.SpellBookChrome
+		local host = Chrome and Chrome.GetHost and Chrome.GetHost()
+		local shown = host and ((host.IsVisible and host:IsVisible()) or (not host.IsVisible and host:IsShown()))
+		if not shown or (ClickBindingFrame and ClickBindingFrame:IsShown()) then
+			RestoreNativeCheckbox()
+			return
+		end
+		local checkbox = AcquireNativeCheckbox()
+		if checkbox and Chrome.Layout then
+			nativeCheckboxBorrowed = true
+			Chrome.Layout({ mouseover = checkbox })
+			checkbox:SetChecked(MouseoverCast.IsEnabled())
+		end
 		return
 	end
+	if not spellBookCheckbox then return end
 	local Chrome = Flux.SpellBookChrome
 	if Chrome and Chrome.Layout then
 		Chrome.Layout({ mouseover = spellBookCheckbox })
@@ -901,14 +1106,37 @@ function PositionSpellBookCheckbox()
 end
 
 local function OnSpellbookShow()
+	if MouseoverCast.UsesNativeCVar() then
+		MouseoverCast.RefreshSpellBookCheckbox()
+		return
+	end
 	CreateSpellBookCheckbox()
 	PositionSpellBookCheckbox()
 end
 
 local function OnSpellbookHide()
+	if nativeCheckboxBorrowed then
+		if InLockdown() then
+			if Flux.Combat and Flux.Combat.Defer then
+				Flux.Combat.Defer("mouseovercast.spellbook", PositionSpellBookCheckbox)
+			end
+		else RestoreNativeCheckbox() end
+	end
 	if spellBookCheckbox then
 		spellBookCheckbox:Hide()
 	end
+end
+
+-- The shared 0.1s spellbook observer also handles opening/closing Click Casting
+-- beside a still-visible book. Move only on ownership changes; no native hooks.
+local function PollNativeCheckboxOwner()
+	if not nativeSpellBookCheckbox then return end
+	local Chrome = Flux.SpellBookChrome
+	local host = Chrome and Chrome.GetHost and Chrome.GetHost()
+	local bookShown = host and ((host.IsVisible and host:IsVisible()) or (not host.IsVisible and host:IsShown()))
+	local nativeShown = ClickBindingFrame and ClickBindingFrame:IsShown()
+	local shouldBorrow = bookShown and not nativeShown and true or false
+	if shouldBorrow ~= nativeCheckboxBorrowed then PositionSpellBookCheckbox() end
 end
 
 local function BindSpellBookUI()
@@ -919,7 +1147,7 @@ local function BindSpellBookUI()
 	local client = Flux.Client
 	local Chrome=Flux.SpellBookChrome
 	if Chrome and Chrome.Observe and client and (client.isRetail or client.isCamelot or client.isForever) then
-		Chrome.Observe("mouseover",OnSpellbookShow,OnSpellbookHide)
+		Chrome.Observe("mouseover",OnSpellbookShow,OnSpellbookHide,PositionSpellBookCheckbox,PollNativeCheckboxOwner)
 		return
 	end
 	if client and (client.isCamelot or client.isForever) then
@@ -988,6 +1216,7 @@ function MouseoverCast.Start()
 		end)
 		Ev.Register("PLAYER_ENTERING_WORLD", MouseoverCast.Apply)
 		Ev.Register("CVAR_UPDATE", OnCVarUpdate)
+		Ev.Register("UPDATE_BINDINGS", function() OnCVarUpdate(nil, "MOUSEOVERCAST") end)
 		if Ev.RegisterLearnedSpell then
 			Ev.RegisterLearnedSpell(QueueClassify)
 		else

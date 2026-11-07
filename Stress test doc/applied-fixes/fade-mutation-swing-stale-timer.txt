@@ -1,0 +1,6 @@
+lua: Stress test doc/fix-proposals/fades/verify.lua.txt:6: stale historical timer hides replacement; candidate fade identity rejects it
+stack traceback:
+	[C]: in function 'assert'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:6: in local 'check'
+	Stress test doc/fix-proposals/fades/verify.lua.txt:134: in main chunk
+	[C]: in ?

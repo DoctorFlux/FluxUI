@@ -487,6 +487,13 @@ local function SpellName(spellId)
 	return nil
 end
 
+local function ReadableAlpha(value)
+	local S = Flux.Secrets
+	local secret = (S and S.IsSecretValue) or issecretvalue
+	local access = (S and S.CanAccessValue) or canaccessvalue
+	return not (secret and secret(value)) and (not access or access(value))
+end
+
 local function WidgetShown(widget)
 	if not widget or widget._fluxParked then
 		return false
@@ -496,7 +503,13 @@ local function WidgetShown(widget)
 	end
 	if widget.GetAlpha then
 		local ok, a = pcall(widget.GetAlpha, widget)
-		if ok and type(a) == "number" and a <= 0 then
+		if not ok or not ReadableAlpha(a) then
+			-- Badge alpha is configured by its owner; no alpha is inferred for
+			-- other restricted widgets. Parked/hidden/IsShown still prune them.
+			local owner = widget.FluxButton
+			a = owner and owner._fluxBadgeAlpha
+		end
+		if ReadableAlpha(a) and type(a) == "number" and a <= 0 then
 			return false
 		end
 	end
@@ -1704,6 +1717,56 @@ function Cast.FollowColumn(column)
 	if lag then
 		ScheduleFollowRetry(column)
 	end
+end
+
+--- Utility faces have no strip column. Settle only this registered Extra
+--- against the existing live cast/reticle/finish/interrupt state on a face flip.
+function Cast.FollowExtra(widget)
+	local entry = EntryOf(widget)
+	if not entry or entry.rank ~= Cast.RANK_EBS or EntryUnit(entry) ~= UNIT_PLAYER then return end
+	local ov = FXOverlay()
+	if not ov then return end
+	local inflight, kind, phase = ResolveInflight(ov, widget)
+	local face = SpellOf(entry)
+	local ok, matches = false, false
+	if face and inflight and WidgetShown(widget) and Cast.IsSpellCastVFXEnabled() then
+		ok, matches = pcall(ButtonFX.SpellIdsMatch, face, inflight)
+	end
+	if ok and matches then
+		if phase == "cast" then
+			RewriteFollow(nil, widget)
+		elseif phase == "reticle" then
+			Cast._reticleOwners = Cast._reticleOwners or {}
+			local found = false
+			for i = 1, #Cast._reticleOwners do
+				if Cast._reticleOwners[i] == widget then found = true; break end
+			end
+			if not found then Cast._reticleOwners[#Cast._reticleOwners + 1] = widget end
+			activeReticle = activeReticle or widget
+		end
+		PaintPhase(ov, widget, inflight, kind, phase)
+		return
+	end
+	local painted = HasCastPaint(ov, widget)
+	if not painted and not widget._fluxCastSpell and not widget._fluxInterruptFace
+		and not widget._fluxCastLockSpellId then return end
+	if painted then
+		if ov.ForceClear then ov.ForceClear(widget) end
+		if ov.ClearReticle then ov.ClearReticle(widget) end
+	end
+	-- Remove this face from event-owner bags so a later STOP/interrupt cannot
+	-- replay the old spell's effect on its replacement item or empty face.
+	activeCasts = RewriteOwners(activeCasts, widget, nil)
+	if Cast._reticleOwners then
+		Cast._reticleOwners = RewriteOwners(Cast._reticleOwners, widget, nil)
+	end
+	if activeReticle == widget then activeReticle = nil end
+	if lastOwner == widget then lastOwner = nil end
+	widget._fluxCastSpell = nil
+	widget._fluxInterruptSpell = nil
+	widget._fluxInterruptFace = nil
+	widget._fluxCastLockSpellId = nil
+	widget._fluxCastMigrateUntil = nil
 end
 
 local function StopList(ov, list, interrupted)

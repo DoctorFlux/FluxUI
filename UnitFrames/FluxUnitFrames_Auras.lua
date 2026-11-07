@@ -104,11 +104,17 @@ local function UpdateCooldownDurationText(cooldown)
     if not textRegion then return end
 
     local startTime, durationTime = cooldown:GetCooldownTimes()
-    local safeStartTime = ns.API.SafeGetNumber(startTime, 0)
-    local safeDurationTime = ns.API.SafeGetNumber(durationTime, 0)
+    -- Cooldown widget times are milliseconds; GetTime and the policy use seconds.
+    local safeStartTime = ns.API.SafeGetNumber(startTime, 0) / 1000
+    local safeDurationTime = ns.API.SafeGetNumber(durationTime, 0) / 1000
     if safeStartTime > 0 and safeDurationTime > 0 then
         local remaining = (safeStartTime + safeDurationTime) - GetTime()
         if remaining > 0 then
+            local container = cooldown._fluxAuraContainer
+            if container and container._fluxAuraTimersUnderMinute and remaining >= 60 then
+                textRegion:Hide()
+                return
+            end
             if remaining >= 3600 then
                 textRegion:SetText(string.format("%.0fh", remaining / 3600))
             elseif remaining >= 60 then
@@ -763,6 +769,7 @@ local function CreateAuraButton(parent, index)
 
     -- Cooldown frame (for duration)
     button.Cooldown = CreateFrame("Cooldown", "$parentCooldown", button, "CooldownFrameTemplate")
+    button.Cooldown._fluxAuraContainer = parent
     button.Cooldown:SetAllPoints()
     button.Cooldown:SetDrawEdge(false)
     button.Cooldown:SetReverse(true)
@@ -1696,6 +1703,7 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
     container._fluxLockOwnDebuffSize = extra.lockOwnDebuffSize
     container._fluxOwnDebuffMinScale = extra.ownDebuffMinScale
     container._fluxAuraMinPx = extra.minAuraPx
+    container._fluxAuraTimersUnderMinute = extra.timersUnderMinute == true
 
     -- Create border frame (battlefield style) - exactly like old version
     local borderFrame = CreateFrame("Frame", containerName .. "Border", container)
@@ -1969,6 +1977,7 @@ function UF.EnableAuras(frame, enableBuffs, enableDebuffs, buffConfig, debuffCon
                 growUpward = auraFrameAbove,
                 lockOwnDebuffSize = false,
                 minAuraPx = buffConfig.minAuraPx or DEFAULT_MIN_AURA_PX,
+                timersUnderMinute = buffConfig.timersUnderMinute == true,
             })
             if auraFrameAbove then
                 -- Flush to threat strip when between-mode; else nest into outer chrome
@@ -1978,6 +1987,7 @@ function UF.EnableAuras(frame, enableBuffs, enableDebuffs, buffConfig, debuffCon
             end
         end
         if frame.BuffContainer then
+            frame.BuffContainer._fluxAuraTimersUnderMinute = buffConfig.timersUnderMinute == true
             frame.BuffContainer._fluxAuraGrowUpward = auraFrameAbove
             local n = #frame.BuffContainer.buttons
             if n > 0 then
@@ -2016,6 +2026,7 @@ function UF.EnableAuras(frame, enableBuffs, enableDebuffs, buffConfig, debuffCon
                 lockOwnDebuffSize = lockOwnDebuffSize,
                 ownDebuffMinScale = ownDebuffMinScale,
                 minAuraPx = debuffConfig.minAuraPx or DEFAULT_MIN_AURA_PX,
+                timersUnderMinute = debuffConfig.timersUnderMinute == true,
             })
             if auraFrameAbove then
                 frame.DebuffContainer:SetPoint("BOTTOMRIGHT", auraAnchor, "TOPRIGHT", 0, -nestY)
@@ -2024,6 +2035,7 @@ function UF.EnableAuras(frame, enableBuffs, enableDebuffs, buffConfig, debuffCon
             end
         end
         if frame.DebuffContainer then
+            frame.DebuffContainer._fluxAuraTimersUnderMinute = debuffConfig.timersUnderMinute == true
             frame.DebuffContainer._fluxAuraGrowUpward = auraFrameAbove
             local n = #frame.DebuffContainer.buttons
             if n > 0 then

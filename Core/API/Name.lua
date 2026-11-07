@@ -12,15 +12,28 @@ Flux.API.PlayerName = PlayerName
 local REALMLESS_TOKEN = "Forever"
 local DEFAULT_SEP = "-"
 
-local function SafeStr(value)
+local function Accessible(value)
 	local S = Flux.Secrets
-	if S and S.SafeAccessibleString then
-		return S.SafeAccessibleString(value)
+	local isSecret = (S and S.IsSecretValue) or issecretvalue or IsSecretValue
+	if isSecret and isSecret(value) then
+		return false
 	end
-	if type(value) ~= "string" or value == "" then
+	local canAccess = (S and S.CanAccessValue) or canaccessvalue
+	return not canAccess or canAccess(value)
+end
+
+local function SafeStr(value)
+	if not Accessible(value) or type(value) ~= "string" or value == "" then
 		return nil
 	end
 	return value
+end
+
+local function PCallBool(fn, ...)
+	local ok, value = pcall(fn, ...)
+	if ok and Accessible(value) and type(value) == "boolean" then
+		return value
+	end
 end
 
 local function PCallStr(fn, ...)
@@ -47,8 +60,7 @@ function PlayerName.UsesRegionalUniqueNames()
 	if type(RegionalUniqueNamesEnabled) ~= "function" then
 		return false
 	end
-	local ok, enabled = pcall(RegionalUniqueNamesEnabled)
-	return ok and enabled and true or false
+	return PCallBool(RegionalUniqueNamesEnabled) == true
 end
 
 local function SplitOnSep(full, sep)
@@ -134,20 +146,20 @@ function PlayerName.ShouldDisplaySurname()
 	end
 	local info = C_PlayerInfo
 	if info and type(info.ShouldDisplaySurname) == "function" then
-		local ok, display = pcall(info.ShouldDisplaySurname)
-		if ok and type(display) == "boolean" then
+		local display = PCallBool(info.ShouldDisplaySurname)
+		if display ~= nil then
 			return display
 		end
 	end
 	if C_CVar and type(C_CVar.GetCVarBool) == "function" then
-		local ok, display = pcall(C_CVar.GetCVarBool, PlayerName.SURNAME_OWN_CVAR)
-		if ok and type(display) == "boolean" then
+		local display = PCallBool(C_CVar.GetCVarBool, PlayerName.SURNAME_OWN_CVAR)
+		if display ~= nil then
 			return display
 		end
 	end
 	if type(GetCVarBool) == "function" then
-		local ok, display = pcall(GetCVarBool, PlayerName.SURNAME_OWN_CVAR)
-		if ok and type(display) == "boolean" then
+		local display = PCallBool(GetCVarBool, PlayerName.SURNAME_OWN_CVAR)
+		if display ~= nil then
 			return display
 		end
 	end
@@ -172,11 +184,8 @@ end
 function PlayerName.GetDisplayName(unit, showRealm)
 	unit = unit or "player"
 	if PlayerName.UsesRegionalUniqueNames() then
-		if UnitIsUnit then
-			local okSame, isMe = pcall(UnitIsUnit, unit, "player")
-			if okSame and isMe and PlayerName.ShouldDisplaySurname() == false then
-				return PlayerName.GetFirstName(unit) or PlayerName.GetFullName(unit)
-			end
+		if PlayerName.IsUnitPlayer(unit) and PlayerName.ShouldDisplaySurname() == false then
+			return PlayerName.GetFirstName(unit) or PlayerName.GetFullName(unit)
 		end
 		local util = rawget(_G, "NameUtil")
 		if util and type(util.FormatUnitNameForDisplay) == "function" then
@@ -328,11 +337,17 @@ function PlayerName.NamesEqual(a, b)
 end
 
 function PlayerName.IsUnitPlayer(unit)
-	if type(unit) ~= "string" or unit == "" or not UnitIsUnit then
+	if not Accessible(unit) or type(unit) ~= "string" or unit == "" then
 		return false
 	end
-	local ok, same = pcall(UnitIsUnit, unit, "player")
-	return ok and same and true or false
+	-- This token identifies the player without inspecting a restricted alias.
+	if unit == "player" then
+		return true
+	end
+	if not UnitIsUnit then
+		return false
+	end
+	return PCallBool(UnitIsUnit, unit, "player") == true
 end
 
 function PlayerName.MigrateKeyedTable(tbl, oldKey, newKey)

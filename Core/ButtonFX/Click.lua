@@ -39,7 +39,8 @@ local wrapFrame
 -- spell on a mini row against whatever sat on the main row. Widgets without the
 -- prefixed twins (Extra window, grids) fall back to the bare attribute.
 local CLICK_SNIPPET = [[
-	if (button == "KeyBind") then
+	local utility = button and button ~= "LeftButton" and button ~= "RightButton" and self:GetAttribute("flux-utility-key-" .. button)
+	if (button == "KeyBind" or utility) then
 		local IsEmpowerSpell
 		if (IsShiftKeyDown()) then
 			IsEmpowerSpell = self:GetAttribute("shift-IsEmpowerSpell*")
@@ -53,13 +54,13 @@ local CLICK_SNIPPET = [[
 		end
 		if (down) then
 			if (ActionButtonUseKeyDown or IsEmpowerSpell) then
-				return "LeftButton"
+				return utility and button or "LeftButton"
 			else
 				return false
 			end
 		else
 			if ((not ActionButtonUseKeyDown and not IsEmpowerSpell) or (IsEmpowerSpell and not empowerTapControls)) then
-				return "LeftButton"
+				return utility and button or "LeftButton"
 			else
 				return false
 			end
@@ -85,7 +86,8 @@ local CLICK_SNIPPET = [[
 ]]
 
 local CLICK_SNIPPET_ON_DOWN = [[
-	if (button == "KeyBind") then
+	local utility = button and button ~= "LeftButton" and button ~= "RightButton" and self:GetAttribute("flux-utility-key-" .. button)
+	if (button == "KeyBind" or utility) then
 		local IsEmpowerSpell
 		if (IsShiftKeyDown()) then
 			IsEmpowerSpell = self:GetAttribute("shift-IsEmpowerSpell*")
@@ -99,13 +101,13 @@ local CLICK_SNIPPET_ON_DOWN = [[
 		end
 		if (down) then
 			if (ActionButtonUseKeyDown or IsEmpowerSpell) then
-				return "LeftButton"
+				return utility and button or "LeftButton"
 			else
 				return false
 			end
 		else
 			if ((not ActionButtonUseKeyDown and not IsEmpowerSpell) or (IsEmpowerSpell and not empowerTapControls)) then
-				return "LeftButton"
+				return utility and button or "LeftButton"
 			else
 				return false
 			end

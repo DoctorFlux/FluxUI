@@ -1,0 +1,38 @@
+{
+  "scope": "Native Forever current-session startup observations only; original nil callee not identified; no native pixel/FPS or all-client certification.",
+  "client": "Forever 1.60.1 build70790",
+  "captureUTC": "2026-11-06T16:27:04.6661644Z",
+  "processID": 37088,
+  "input": "Verified client/window; guarded target-window messages; foreground394470 preserved; no activation/mouse/physical keyboard/clipboard.",
+  "chatObserved": {
+    "FXGRID": "true function 0 false",
+    "FXMODULES": "true true true 0 false",
+    "FXGRID_ERRORS": 0
+  },
+  "interpretation": {
+    "EBSStarted": true,
+    "glowSecureHelper": "function",
+    "ExtraButtonsEnabled": true,
+    "CombatGridEnabled": true,
+    "NonCombatGridEnabled": true,
+    "scriptProfile": 0,
+    "inCombat": false,
+    "currentSessionErrors": 0,
+    "historicalErrorDiscarded": false
+  },
+  "originalErrors": "38 historical repetitions at17:13:28-33local; before current Paint17:15:17local. Saved counts and disk parity separately retained.",
+  "loadedSourceIdentity": "Native source content not fingerprinted; both helper presence and full module enabled state observed. Repository/Forever disk equality recorded in saved evidence.",
+  "limitations": [
+    "A prior probe used unavailable debug.getinfo and caused a separate diagnostic failure; corrected commands avoid it. Subsequent observed current session has zero errors.",
+    "No additional runtime correction was introduced in this startup verification; current files contain concurrent glow changes.",
+    "Both grid startup paths are exercised by a new desktop integration fixture; native long-run/combat/pixels remain pending."
+  ],
+  "capture": {
+    "name": "grid-modules-loaded.png",
+    "sha256": "458d7b90786921d0b09194fd834bbd054633c4341fa97c50264807ce1509fb9d"
+  },
+  "diskSources": {
+    "Core/ButtonFX/Glow.lua": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+    "ExtraButtonSystem/Engine/Paint.lua": "2755d01c2bfcc13d05e4b1e5cfe97f0335f177b6a1e45475e7c45bcb9add6c12"
+  }
+}

@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-06",
+  "capturedUTC": "2026-11-06T14:37:10.112682+00:00",
+  "request": "Raise buff/debuff content and show the kinds of auras Blizzard raid frames would show.",
+  "checkpoint": {
+    "name": "Raid-rewrite-20261106T140517Z",
+    "sourceFiles": 1616,
+    "settingsFiles": 151,
+    "sourceZipSHA256": "9afe09e3853b7f59eee28a93749c2fc316afad4146e87d3d54eed65d09a63ece",
+    "zipAndHistoryVerification": "PASS",
+    "settingsScope": "On-disk only; no closed-client or unsaved-memory claim"
+  },
+  "targets": {
+    "Retail": {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "sourceBuild": "12.1.5.70783",
+      "interface": "120105",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Forever": {
+      "branch": "forever",
+      "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+      "sourceBuild": "1.60.1.70790",
+      "interface": "16001",
+      "nativeResult": "User confirmed current aura behavior works fully after stage-c diagnostic; combat/taint/FPS and other feature acceptance remain pending."
+    },
+    "Classic": {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "sourceBuild": "5.5.4.70631",
+      "interface": "50504",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Era": {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "sourceBuild": "1.15.9.70576",
+      "interface": "11509",
+      "nativeResult": "NOT RUN for final candidate"
+    },
+    "Anniversary": {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "sourceBuild": "2.5.6.70577",
+      "interface": "20506",
+      "nativeResult": "NOT RUN for final candidate"
+    }
+  },
+  "baselineFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "ba1b4c0b915aef64a7e7f0ff0f6c7e5fe483c4fae33537f7ad4f0f7da9cb4a0c",
+    "RaidFrame/FluxRaidVisuals.lua": "0ca1d35218266db2910759196a91dc582dd83e02af747a8f7644833a8d26c397",
+    "RaidFrame/FluxRaidPreview.lua": "80bc1027cee8356168bcdd31145f8068facd36bcba83242151f39bf6418648d1",
+    "RaidFrame/FluxRaidFrame.lua": "940f0787172d98b381f96fe8445d35879f13fed2d3065b2d03024616fe96a25a",
+    "RaidFrame/FluxRaidFrame.xml": "1b96458a6d32e0429189d7295dde5511b277b914d0a3e7bade3db394fc500811"
+  },
+  "candidateFeatureHashes": {
+    "RaidFrame/FluxRaidAuras.lua": "cad84289267be01559ff179062d41c73573bf1b1044700fa115b0a3580326173",
+    "RaidFrame/FluxRaidVisuals.lua": "867feafa8bfa04b5574d4dd6ed35e7a7162bbe47bd468e5b932ddeb6e85bd7d6",
+    "RaidFrame/FluxRaidPreview.lua": "841c06c835d01eb7c92b0e06cb32de400cf4e37ba8feab690a60e798e33d894b",
+    "RaidFrame/FluxRaidFrame.lua": "734af556a8fc8b52be884f5c6e5be4cd29d12e4b46054bf7191831edb99992de",
+    "RaidFrame/FluxRaidFrame.xml": "e395c5bf5c58c68018aa0e476317278c064316e09f197e97ec73bb5f53f855d3"
+  },
+  "changes": [
+    "Aura layer32 is above names12/trim20/focus24; native icon/timer descendants stay below indicators48/status50/ready51.",
+    "One-time text hosts keep counts and durations above child cooldown swipes; native descendants remain untouched after ownership.",
+    "Native ProcessAura buff eligibility replaces duration60/shield exclusions; readable paths use the same client classifier and comparators.",
+    "Debuff groups follow boss harmful, boss/role helpful, priority, raid-dispel and ordinary categories in native order.",
+    "Public hidden group-buff IDs update through one cached map and one capability-gated event; combat refresh performs no layout work.",
+    "Six3x2 slots per side, durations/swipes, opacity and strict only-dispellable across all6 remain.",
+    "The explicitly enabled OOC present-class-buff supplement overrides hidden-group configuration; normal native raid buffs still honor it.",
+    "Native provider initializer failures are caught inside the owned callback because securecallfunction otherwise suppresses propagation; setup retains the exact error and does not silently succeed.",
+    "Legacy UnitAura-only records normalize proven query type/RAID context and use local query-order tie breaks without fabricated aura identities."
+  ],
+  "knownLimits": [
+    "Retail/Forever custom aura candidate filters cannot enforce the private hideOnPartyFrames flag; readable clients honor exposed flags.",
+    "Native aura-group owners reject ProcessAura.None before candidate filtering. The OOC class supplement overrides hidden-ID exclusions, but cannot bypass all native self-only/custom-hidden classifications.",
+    "The126 native-policy cases execute client classifiers/comparators and public candidate predicates; they omit the native owner None-prefilter. This limits assignment coverage and is a follow-up test gap, not native execution proof.",
+    "The factual class-family ID table is bounded; read-only review found missing higher-rank Mage armor IDs. Expanding that table was left outside the accepted source follow-up.",
+    "Private aura anchors cover that flag but conflict with the retained rectangular shape, timer styling and layout; no new owner or silent presentation change.",
+    "Blizzard native strict mode admits certain boss/priority exceptions; earlier explicit user all-six only-dispellable preference remains stricter.",
+    "Public native group providers use fixed batches10. Five disjoint debuff categories raise initialized native icon buttons80 to120 per full cell; unchanged full-frame dispel slot is separate.",
+    "No final native pixel, live aura, combat casting, secure VM, taint or FPS acceptance is inferred from desktop checks."
+  ],
+  "fullDesktop": {
+    "scripts": 181,
+    "failures": 0,
+    "syntaxFiles": 843,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "sourceDrift": {
+      "beforeCount": 843,
+      "afterCount": 843,
+      "unchanged": true,
+      "corpusSHA256": "041cd3bc54a6ef030603d370ef62b809634823a6155ce61e56a5f4f2ce47f9f5"
+    }
+  },
+  "focusedResults": [
+    {
+      "path": "tests/raid_aura_native_filters.lua",
+      "exit": 0,
+      "wallSeconds": 0.3839,
+      "output": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n"
+    },
+    {
+      "path": "tests/raid_aura_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.0491,
+      "output": "Raid aura options/preview: 74 checks; actual scoped callbacks and synthetic widget geometry; desktop only\n"
+    },
+    {
+      "path": "tests/raid_header_precreation.lua",
+      "exit": 0,
+      "wallSeconds": 0.2331,
+      "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1080 checks, 0 failures\n"
+    },
+    {
+      "path": "tests/raid_healer_auras.lua",
+      "exit": 0,
+      "wallSeconds": 0.0963,
+      "output": "Raid healer auras: 3557 checks; bounded three-by-two side blocks, strict filters, native duration sinks and faint cooldown swipe; five rejected negative controls; client visuals pending\n"
+    },
+    {
+      "path": "tests/raid_healer_visuals.lua",
+      "exit": 0,
+      "wallSeconds": 0.0403,
+      "output": "raid healer visuals: 598 checks passed (desktop only)\n"
+    },
+    {
+      "path": "tests/raid_hidden_buff_event.lua",
+      "exit": 0,
+      "wallSeconds": 0.0177,
+      "output": "Raid hidden-buff event: 5 checks; actual dispatcher, combat aura-only refresh and inactive guards\n"
+    }
+  ],
+  "pairedFunctionalRegressions": {
+    "capturedUTC": "2026-11-06T14:30:42.807566+00:00",
+    "scope": "Five alternating fresh-process functional regression pairs per case; no native CPU, FPS or timing claim.",
+    "sourceHashes": {
+      "layers": {
+        "baseline": "0ca1d35218266db2910759196a91dc582dd83e02af747a8f7644833a8d26c397",
+        "candidate": "867feafa8bfa04b5574d4dd6ed35e7a7162bbe47bd468e5b932ddeb6e85bd7d6"
+      },
+      "eligibility": {
+        "baseline": "ba1b4c0b915aef64a7e7f0ff0f6c7e5fe483c4fae33537f7ad4f0f7da9cb4a0c",
+        "candidate": "cad84289267be01559ff179062d41c73573bf1b1044700fa115b0a3580326173"
+      }
+    },
+    "pairs": [
+      {
+        "case": "layers",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/raid_healer_visuals.lua:5: complete aura content is above bars, names, borders and highlights while indicators keep headroom\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:110: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "raid healer visuals: 598 checks passed (desktop only)\n",
+          "stderr": ""
+        }
+      },
+      {
+        "case": "layers",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "stdout": "raid healer visuals: 598 checks passed (desktop only)\n",
+          "stderr": ""
+        },
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/raid_healer_visuals.lua:5: complete aura content is above bars, names, borders and highlights while indicators keep headroom\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:110: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "layers",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/raid_healer_visuals.lua:5: complete aura content is above bars, names, borders and highlights while indicators keep headroom\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:110: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "raid healer visuals: 598 checks passed (desktop only)\n",
+          "stderr": ""
+        }
+      },
+      {
+        "case": "layers",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "stdout": "raid healer visuals: 598 checks passed (desktop only)\n",
+          "stderr": ""
+        },
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/raid_healer_visuals.lua:5: complete aura content is above bars, names, borders and highlights while indicators keep headroom\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:110: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "layers",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "",
+          "stderr": "lua: tests/raid_healer_visuals.lua:5: complete aura content is above bars, names, borders and highlights while indicators keep headroom\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_visuals.lua:5: in local 'check'\n\ttests/raid_healer_visuals.lua:110: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "raid healer visuals: 598 checks passed (desktop only)\n",
+          "stderr": ""
+        }
+      },
+      {
+        "case": "eligibility",
+        "trial": 1,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "FAIL live readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL live readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL live readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL forever readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL forever readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL forever readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_era readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_era readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_era readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_anniversary readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_anniversary readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL live native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL live hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nFAIL forever native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL forever hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nRaid native aura policy: 11 passed, 115 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": "lua: tests/raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": ""
+        }
+      },
+      {
+        "case": "eligibility",
+        "trial": 2,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "stdout": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": ""
+        },
+        "baseline": {
+          "exit": 1,
+          "stdout": "FAIL live readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL live readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL live readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL forever readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL forever readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL forever readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_era readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_era readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_era readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_anniversary readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_anniversary readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL live native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL live hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nFAIL forever native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL forever hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nRaid native aura policy: 11 passed, 115 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": "lua: tests/raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "eligibility",
+        "trial": 3,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "FAIL live readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL live readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL live readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL forever readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL forever readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL forever readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_era readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_era readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_era readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_anniversary readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_anniversary readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL live native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL live hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nFAIL forever native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL forever hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nRaid native aura policy: 11 passed, 115 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": "lua: tests/raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": ""
+        }
+      },
+      {
+        "case": "eligibility",
+        "trial": 4,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "exit": 0,
+          "stdout": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": ""
+        },
+        "baseline": {
+          "exit": 1,
+          "stdout": "FAIL live readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL live readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL live readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL forever readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL forever readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL forever readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_era readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_era readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_era readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_anniversary readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_anniversary readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL live native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL live hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nFAIL forever native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL forever hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nRaid native aura policy: 11 passed, 115 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": "lua: tests/raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+        }
+      },
+      {
+        "case": "eligibility",
+        "trial": 5,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "exit": 1,
+          "stdout": "FAIL live readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL live native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL live readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL live native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL live strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL live readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL live readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL forever readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own shield: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own long buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native own permanent buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native foreign spec-visible buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native self-only buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native uncastable own buff excluded: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native custom-hidden own buff: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native long other-caster debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native permanent ordinary debuff: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native role helpful aura on debuff side: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL forever native native gameplay priority: tests/raid_aura_native_filters.lua:111: public native debuff groups diverge from native priority\nFAIL forever readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL forever native default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:110: public native buff groups diverge from native policy\nFAIL forever strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL forever readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL forever readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_era readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_era readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_era strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_era readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_era readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL classic_anniversary readable own shield: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own long buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable own permanent buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable foreign spec-visible buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable self-only buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable uncastable own buff excluded: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden own buff: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable long other-caster debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable permanent ordinary debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable custom-hidden short debuff: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable boss helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable role helpful aura on debuff side: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable native gameplay priority: tests/raid_aura_native_filters.lua:106: debuff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary readable default buff caster-priority-applicability: tests/raid_aura_native_filters.lua:105: buff eligibility/order diverges from pinned native policy\nFAIL classic_anniversary strict raw raid membership bypasses custom visibility safely: tests/raid_aura_native_filters.lua:121: opaque comparator field reached readable sorting\nFAIL classic_anniversary readable party-hidden aura excluded: tests/raid_aura_native_filters.lua:127: assertion failed!\nFAIL classic_anniversary readable UnitAura-only records preserve known query context: tests/raid_aura_native_filters.lua:139: legacy buffs lost without modern instance IDs\nFAIL live native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL live hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nFAIL forever native intrinsic owners begin enabled: tests/raid_aura_native_filters.lua:164: valid enabled owner is silent\nFAIL forever hidden group-buff changes update native and readable owners: tests/raid_aura_native_filters.lua:174: attempt to call a nil value (field 'OnHiddenGroupBuffsChanged')\nRaid native aura policy: 11 passed, 115 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": "lua: tests/raid_aura_native_filters.lua:180: native aura policy regressions\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_aura_native_filters.lua:180: in main chunk\n\t[C]: in ?\n"
+        },
+        "candidate": {
+          "exit": 0,
+          "stdout": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n",
+          "stderr": ""
+        }
+      }
+    ],
+    "variation": "All baseline outcomes fail and all candidate outcomes pass; full raw process output retained."
+  },
+  "sourceEvidence": {
+    "fetchedAtUTC": "2026-11-06",
+    "repository": "Gethe/wow-ui-source",
+    "sources": [
+      {
+        "client": "live",
+        "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "blobSHA": "bd730b33237b8467164bde252474ad6c6516b7cf",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "C273C6BE5D4BFCE92C54510F5A1729F84BF9762DED0A4A9C523363D713B5F909"
+      },
+      {
+        "client": "live",
+        "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "blobSHA": "5bef54952bb4607796fe77c7d65a7e3d3e668227",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "746B9E6AE8C4DDD9102FAAB8ADC3B14A020D39B52067CEEC3CF3E427DB1F6E4B"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "blobSHA": "bd730b33237b8467164bde252474ad6c6516b7cf",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "C273C6BE5D4BFCE92C54510F5A1729F84BF9762DED0A4A9C523363D713B5F909"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "blobSHA": "5bef54952bb4607796fe77c7d65a7e3d3e668227",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "746B9E6AE8C4DDD9102FAAB8ADC3B14A020D39B52067CEEC3CF3E427DB1F6E4B"
+      },
+      {
+        "client": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "blobSHA": "309c7111c48129687c6001dd8707582569582bfb",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "C386FF2182365CFEEC735560319634D07DD97D5E6FE5FE1A09887E277C79457F"
+      },
+      {
+        "client": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "blobSHA": null,
+        "url": null,
+        "available": false,
+        "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#get-repository-content\",\"status\":\"404\"}"
+      },
+      {
+        "client": "classic_era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "blobSHA": "309c7111c48129687c6001dd8707582569582bfb",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "C386FF2182365CFEEC735560319634D07DD97D5E6FE5FE1A09887E277C79457F"
+      },
+      {
+        "client": "classic_era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "blobSHA": null,
+        "url": null,
+        "available": false,
+        "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#get-repository-content\",\"status\":\"404\"}"
+      },
+      {
+        "client": "classic_anniversary",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "blobSHA": "36b3d8f6c184713e996e0a9a973baf83acb5255d",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/AuraUtil.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "C386FF2182365CFEEC735560319634D07DD97D5E6FE5FE1A09887E277C79457F"
+      },
+      {
+        "client": "classic_anniversary",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Mainline/AuraUtil.lua",
+        "blobSHA": null,
+        "url": null,
+        "available": false,
+        "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#get-repository-content\",\"status\":\"404\"}"
+      },
+      {
+        "client": "live",
+        "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "blobSHA": "0d47a5dbaff745b1a9ca7af8ceebcbdcaa02b6ea",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "603C1C3FD8EA4DE8718369F55E979ECD1CA26A6001D1CBE72EE58C69D6232CBC"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "blobSHA": "58dab621df5bdbd2a3658122587b31914c4c2abd",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "7B1C963A676395448DF3A2C8D37A51A00AD44F5A0592C68B8F01CDD4E39522B6"
+      },
+      {
+        "client": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "blobSHA": "5ab24b460a835d7b37e253d5d0d45814587380b7",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "7AC4B5D2008B7B659FB28077F5C4614F211A08DF9ACE8BB5810AB149FF56D92A"
+      },
+      {
+        "client": "classic_era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "blobSHA": "cf95b9915e155780c0c6d2b216d21ab4c441c097",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "1A0572E1A56403BA1E416A1F805627AA1CC355E23F4777FE106A60651C0B29D2"
+      },
+      {
+        "client": "classic_anniversary",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "blobSHA": "23222b1582d8dfb73d1e5de31a88dae9d2ebff68",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_PrivateAurasUI/Blizzard_PrivateAurasUI.lua",
+        "available": true,
+        "error": null,
+        "localSHA256": "1A0572E1A56403BA1E416A1F805627AA1CC355E23F4777FE106A60651C0B29D2"
+      },
+      {
+        "client": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "blobSHA": "9971749d1521edd08ff2d676f59573f34de02120",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "available": true,
+        "localSHA256": "2BA3EDAC39F70465874CC9DF38386381EC60FE59BD00117ED92AC29C1420E3EA"
+      },
+      {
+        "client": "classic_era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "blobSHA": "9971749d1521edd08ff2d676f59573f34de02120",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "available": true,
+        "localSHA256": "2BA3EDAC39F70465874CC9DF38386381EC60FE59BD00117ED92AC29C1420E3EA"
+      },
+      {
+        "client": "classic_anniversary",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "blobSHA": "8361cb1411d393dd02100dc6cbef7eef09afe9e0",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_FrameXMLUtil/Classic/AuraUtil.lua",
+        "available": true,
+        "localSHA256": "2BA3EDAC39F70465874CC9DF38386381EC60FE59BD00117ED92AC29C1420E3EA"
+      },
+      {
+        "client": "live",
+        "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "blobSHA": "16ed37f4a4d187e8656c8b85b07db943e70d774d",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "available": true,
+        "localSHA256": "1ED5F39843D60AB1B4BA8842D60C753BA8FF066BE1ABE8451F9008A216DE1846"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "blobSHA": "a4535a55bb32a9106a40f2a84753c4c0bf2d6494",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "available": true,
+        "localSHA256": "E9D4EBBEA36DA0D990FC1E7F7318DCF0DB9F408212BB82AC87160759AE783849"
+      },
+      {
+        "client": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "blobSHA": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "available": true,
+        "localSHA256": "214ED1A3CB0F570051A090434102AD4A21FCC9F0A644BD7043AB66ED8DFFC2CE"
+      },
+      {
+        "client": "classic_era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "blobSHA": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "available": true,
+        "localSHA256": "214ED1A3CB0F570051A090434102AD4A21FCC9F0A644BD7043AB66ED8DFFC2CE"
+      },
+      {
+        "client": "classic_anniversary",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "blobSHA": "3ea8c147b890ca43a1d48985de5b4b80898b70e4",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitAuraDocumentation.lua",
+        "available": true,
+        "localSHA256": "214ED1A3CB0F570051A090434102AD4A21FCC9F0A644BD7043AB66ED8DFFC2CE"
+      }
+    ],
+    "cacheTextNormalization": "Files added during this audit normalize CRLF to LF; blobSHA records the original pinned upstream Git blob; localSHA256 hashes cached bytes."
+  },
+  "additionalSourceEvidence": {
+    "aura-flow-source-manifest.json": [
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_SharedXMLBase/AnchorUtil.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXMLBase/AnchorUtil.lua",
+        "sha256": "db276f479952a5d075b0862f4d578f87e6f0d64fdadef61389d055d4b8d0c86d",
+        "bytes": 26710
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "sha256": "a31f6e6c79a2166fabdcdb945bb44abf0cf8854dcc39221a9271e7c9eb907363",
+        "bytes": 22600
+      },
+      {
+        "branch": "live",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "sha256": "21f62505285d105cb17cf13aece975212b7a18b7223632165b97e3ebf1f400ba",
+        "bytes": 19982
+      },
+      {
+        "branch": "forever",
+        "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_SharedXMLBase/AnchorUtil.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_SharedXMLBase/AnchorUtil.lua",
+        "sha256": "db276f479952a5d075b0862f4d578f87e6f0d64fdadef61389d055d4b8d0c86d",
+        "bytes": 26710
+      },
+      {
+        "branch": "forever",
+        "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "sha256": "a31f6e6c79a2166fabdcdb945bb44abf0cf8854dcc39221a9271e7c9eb907363",
+        "bytes": 22600
+      },
+      {
+        "branch": "forever",
+        "commit": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "url": "https://raw.githubusercontent.com/Gethe/wow-ui-source/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "sha256": "21f62505285d105cb17cf13aece975212b7a18b7223632165b97e3ebf1f400ba",
+        "bytes": 19982
+      }
+    ],
+    "aura-graph-source-manifest.json": [
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+        "blobSHA": "c8c3a7853aca3391d52ddd7bac6b628a5cbbc3cf",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.toc",
+        "available": true,
+        "localSHA256": "F85F071058AA5D96E9190E8DC036592779D0DD07470CA7AE13CF7822A27ACCDB"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+        "blobSHA": "25abd3b8128872cc7dca92d3685d2ab2c55a1668",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFrameProviders.lua",
+        "available": true,
+        "localSHA256": "2D1E3F6486636B7A285978AA6EE240205AACB38A5C255C23CFB294987192925E"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "blobSHA": "3a3d6a7415e0c07e58d6223cf45169fe967941e1",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerGroups.lua",
+        "available": true,
+        "localSHA256": "21F62505285D105CB17CF13AECE975212B7A18B7223632165B97E3EBF1F400BA"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "blobSHA": "6edc22e31848aa27cf0a4c0e8787e4c3fa0d1881",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_ManagedAuraContainer.lua",
+        "available": true,
+        "localSHA256": "A31F6E6C79A2166FABDCDB945BB44ABF0CF8854DCC39221A9271E7C9EB907363"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.lua",
+        "blobSHA": "3c66bd72a78f8ef0dd8ed49bc5b53dbbae43046c",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.lua",
+        "available": true,
+        "localSHA256": "2B42F37F9CA22718EC4C35088D4723CBD8BBE1338FB4F78D2F57C8B5F949B8AA"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+        "blobSHA": "10cb45503c3f38435dcff7c3c6f24510a21fe69c",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.lua",
+        "available": true,
+        "localSHA256": "D5BBFEF83112027F9A6F55AA2382D3C48F17E79CC45ACD4E8214AB4BD9FBD681"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+        "blobSHA": "380e34c925445dbd0dc48ae3d67febf7a78de3da",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerShared.lua",
+        "available": true,
+        "localSHA256": "9EDA989A81824D6084E3B652282761D563C70FD11ED60E42753C96EA988FD245"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerSources.lua",
+        "blobSHA": "491f6ee57070dd94eba1e9f6f94cd90e7d394756",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerSources.lua",
+        "available": true,
+        "localSHA256": "0F27D8724EECC8134FAF44696520B996D47D2905CD26AB4A0A965226090749B4"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+        "blobSHA": "eae93b11c72f81b334adb7c3d575f0417401b42c",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerInbound.lua",
+        "available": true,
+        "localSHA256": "82198F2D69E86F692B163F2224C40DDC475EC4A84A3FD929077446F9935B60F4"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFlowLayout.lua",
+        "blobSHA": "14b7736b436c5cc4a1e72d0134acc5558c4ab511",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainerFlowLayout.lua",
+        "available": true,
+        "localSHA256": "7C877E09DD34108B8C03928A0C256538AF15646FFC765599AB9FEB2C421CD9C0"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.xml",
+        "blobSHA": "5a87bec3c1c158d4089b9889e492ee5602ae8a45",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraContainer.xml",
+        "available": true,
+        "localSHA256": "30702F50CA210FDDC2EB1AB341EA5230A037D10A5FBFE25C9D0C076181A37665"
+      },
+      {
+        "client": "forever",
+        "pin": "eac30af597e5aaa43a60f6675ef5fdcea100375f",
+        "path": "Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.xml",
+        "blobSHA": "c1ec32ea569f4a2cb8e378f8bf939f17a702119d",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/eac30af597e5aaa43a60f6675ef5fdcea100375f/Interface/AddOns/Blizzard_AuraContainer/Blizzard_AuraButton.xml",
+        "available": true,
+        "localSHA256": "2D9BD1F01A89469BD1BD040BEAF4C1FC63D44F6A7D0A7BB3C1B24FFEA811F661"
+      }
+    ]
+  },
+  "nativeObservation": {
+    "client": "Forever",
+    "userReport": "No buffs appeared during the aura follow-up.",
+    "diagnostic": "aura-policy-20261106b: native=true ready=true buffs=true class=default normalGroup=true classGroup=true classOOC=true hidden=15 alpha=0.3 row=true bound=player error=default",
+    "scope": "User-returned owned state; confirms parent/configuration/bind flags, not native icon rendering or an exact whole-source fingerprint.",
+    "correction": "OOC class-buff supplement no longer applies hidden-group exclusions; stage c adds class-ID/hidden-class counts; actual missing spell IDs were not supplied.",
+    "retestDiagnostic": "aura-policy-20261106c: native=true ready=true buffs=true class=default normalGroup=true classGroup=true classOOC=true hidden=15 classIDs=11 hiddenClass=6 alpha=0.3 row=true bound=player error=default",
+    "retest": "User subsequently confirmed: it works now fully. This accepts the observed Forever aura result; it is not an all-client combat/taint/performance certification."
+  },
+  "nativeAcceptance": "User-confirmed observed Forever aura result. Other clients, combat/taint/FPS and complete native/private assignment remain pending. No game input, setting reset, profiler changes or client sync command performed by this agent.",
+  "concurrentSharedValidation": {
+    "scripts": 182,
+    "syntaxFiles": 844,
+    "failures": 0,
+    "sourceDrift": {
+      "beforeCount": 844,
+      "afterCount": 844,
+      "unchanged": false,
+      "corpusSHA256": "e76568e702bdd628b16cd7541f20945bbf3abe971f320ba4ecbb0b911b881ccf"
+    },
+    "changedPaths": [
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+      "tests/consumable_aura_advance.lua"
+    ],
+    "scope": "Subsequent shared run passed all executions but unrelated concurrent consumable source/test edits changed during the run. This is not frozen-corpus acceptance. The earlier181/843 frozen stage and accepted aura feature hashes above remain authoritative for this task."
+  },
+  "documentationValidation": {
+    "result": "PENDING shared verification freshness",
+    "lastAttempt": "Source inventory and links checked; verification predates unrelated concurrent ExtraButtonSystem/Layout.lua edit. Earlier attempt identified concurrent Consumables.lua drift. Accepted aura runtime hashes remain unchanged.",
+    "scope": "Do not overwrite concurrent work or claim a frozen complete shared corpus;181/843 accepted aura-stage full check is retained."
+  }
+}

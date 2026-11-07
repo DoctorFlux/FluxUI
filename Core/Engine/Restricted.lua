@@ -3,13 +3,13 @@
 -- Execute / WrapScript / _onstate snippets failed on early builds. Keep the
 -- legacy policy for existing callers; PagingWorks probes the repaired engine
 -- separately for bars so their established input behavior does not change.
--- Existing callers retain their state/unit-driver shims; bars register through
+-- Existing callers use addon-local state/unit-driver adapters; bars register through
 -- the captured native attribute-driver functions after a successful probe.
 local addonName, ns = ...
 local Flux = ns.Flux
 
 local Restricted = {}
--- Retain Blizzard's entry points before the legacy Forever shims below.
+-- Keep Blizzard's entry points intact for native UI and other addons.
 local nativeAttributeDriver = RegisterAttributeDriver
 local nativeUnregisterAttributeDriver = UnregisterAttributeDriver
 Flux.Restricted = Restricted
@@ -427,26 +427,5 @@ function Restricted.UnitWatchRegistered(frame)
 	return unitWatchers[frame] ~= nil
 end
 
-if not Works() then
-	RegisterAttributeDriver = function(frame, attribute, values)
-		return Restricted.RegisterAttributeDriver(frame, attribute, values)
-	end
-	UnregisterAttributeDriver = function(frame, attribute)
-		return Restricted.UnregisterAttributeDriver(frame, attribute)
-	end
-	RegisterStateDriver = function(frame, state, values)
-		return Restricted.RegisterStateDriver(frame, state, values)
-	end
-	UnregisterStateDriver = function(frame, state)
-		return Restricted.UnregisterStateDriver(frame, state)
-	end
-	RegisterUnitWatch = function(frame, asState)
-		return Restricted.RegisterUnitWatch(frame, asState)
-	end
-	UnregisterUnitWatch = function(frame)
-		return Restricted.UnregisterUnitWatch(frame)
-	end
-	UnitWatchRegistered = function(frame)
-		return Restricted.UnitWatchRegistered(frame)
-	end
-end
+-- Forever's legacy fallback belongs only to Flux callers. Replacing these
+-- globals also intercepted Blizzard and unrelated addons' driver registrations.

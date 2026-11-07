@@ -22,6 +22,31 @@ local function IsSecretValue(value)
     return API and API.IsSecretValue and API.IsSecretValue(value)
 end
 
+local function CanRead(value)
+    if IsSecretValue(value) then return false end
+    return not (API and API.CanAccessValue) or API.CanAccessValue(value)
+end
+
+local function ReadableNumber(value)
+    if not CanRead(value) or type(value) ~= "number" then return nil end
+    if value ~= value or value <= -math.huge or value >= math.huge then return nil end
+    return value
+end
+
+local function ReadableGUID(unit)
+    local guid = unit and UnitGUID and UnitGUID(unit)
+    if not CanRead(guid) or type(guid) ~= "string" then return nil end
+    return guid
+end
+
+local function CastMatchesUnit(bar, unit, guid)
+    local cached = bar._fluxCastUnitGUID
+    if not CanRead(cached) then return false end
+    if guid and cached then return cached == guid end
+    -- Unit-identity events clear this token before restoring a new cast.
+    return bar._fluxCastUnit == unit
+end
+
 local _issecrettable = issecrettable
 
 local function SafeCostTableLength(t)
@@ -33,31 +58,24 @@ local function SafeCostTableLength(t)
 end
 
 local function SafeNumber(value)
-    if API.CoerceNumberLoose then
-        return API.CoerceNumberLoose(value, 0)
-    end
+    if not CanRead(value) then return 0 end
     return API.SafeGetNumber(value, 0)
 end
 
 local function TryLayoutWidth(region)
-    if not region then return nil end
-    local ok, w = pcall(function()
-        local x = region:GetWidth()
-        return math.min(math.max(x + 0, 0), 100000)
-    end)
-    if ok and type(w) == "number" and w == w and w > 0 then
-        return w
+    if not region or not region.GetWidth then return nil end
+    local w = ReadableNumber(region:GetWidth())
+    if w and w > 0 then
+        return math.min(w, 100000)
     end
     return nil
 end
 
 local function TryLayoutHeight(region)
-    if not region then return 1 end
-    local ok, h = pcall(function()
-        return math.max(1, region:GetHeight() + 0)
-    end)
-    if ok and type(h) == "number" and h > 0 then
-        return h
+    if not region or not region.GetHeight then return 1 end
+    local h = ReadableNumber(region:GetHeight())
+    if h and h > 0 then
+        return math.max(1, h)
     end
     return 1
 end
@@ -167,7 +185,7 @@ function PCO.UpdateOverlayColor(powerBar, r, g, b)
 end
 
 local function CostActive(cost)
-    if cost == nil then return false end
+    if type(cost) == "nil" then return false end
     if IsSecretValue(cost) then return true end
     return type(cost) == "number" and cost > 0
 end
@@ -216,7 +234,7 @@ local function CommitPowerGhost(bar)
     local ghost = EnsurePowerGhost(bar)
     local value = bar._fluxGhostValue
     local maxValue = bar._fluxGhostMax
-    if value == nil or maxValue == nil then return end
+    if type(value) == "nil" or type(maxValue) == "nil" then return end
     MatchGhostArt(bar, ghost)
     ghost:Show()
     pcall(function()
@@ -253,6 +271,21 @@ local function StopBarFeedback(bar)
     f:Hide()
 end
 
+function PCO.ResetIdentityForFrame(frame)
+    if not frame then return end
+    local function reset(bar)
+        if not bar then return end
+        StopBarFeedback(bar)
+        bar._fluxGhostPrimed = nil
+        bar._fluxFeedbackGUID = nil
+        bar._fluxFeedbackUnit = nil
+        bar._fluxCastUnitGUID = nil
+        bar._fluxCastUnit = nil
+    end
+    reset(frame.Power)
+    reset(frame.AdditionalPower)
+end
+
 local function HideSegment(bar)
     if bar and bar.CostOverlay then
         bar.CostOverlay:Hide()
@@ -266,7 +299,8 @@ end
 local function ClampCostWidth(bar, fill, width, shortened)
     local bw = TryLayoutWidth(bar)
     local fw = TryLayoutWidth(fill)
-    if type(width) ~= "number" or width ~= width or width <= 0 then
+    width = ReadableNumber(width)
+    if not width or width <= 0 then
         return nil
     end
     local cap = width
@@ -309,7 +343,7 @@ function PCO.RefreshPrediction(bar)
     if not seg then return end
     local cost = bar._fluxPredictedCost
     local maxPower = bar._fluxPredictMax
-    if not CostActive(cost) or maxPower == nil then
+    if not CostActive(cost) or type(maxPower) == "nil" then
         seg:Hide()
         return
     end
@@ -319,7 +353,7 @@ function PCO.RefreshPrediction(bar)
         return
     end
 
-    if not UsesHud() or type(cost) == "number" then
+    if CanRead(cost) and CanRead(maxPower) then
         local costN = (type(cost) == "number") and cost or SafeNumber(cost)
         local maxN = (type(maxPower) == "number") and maxPower or SafeNumber(maxPower)
         local bw = TryLayoutWidth(bar)
@@ -358,7 +392,7 @@ function PCO.RefreshPrediction(bar)
         else
             meter:SetValue(cost)
         end
-        width = meter:GetStatusBarTexture():GetWidth() + 0
+        width = ReadableNumber(meter:GetStatusBarTexture():GetWidth())
     end)
     if not sized or type(width) ~= "number" then
         seg:Hide()
@@ -547,49 +581,6 @@ local function AnchorSecretSlice(tex, fill, anchor)
     tex:SetPoint("RIGHT", anchor, "RIGHT", 0, 0)
 end
 
-local function ShowSecretSpend(bar)
-    if not CVarEnabled("showSpenderFeedback") then return end
-    local fill = bar:GetStatusBarTexture()
-    local anchor = bar._fluxSpendAnchor
-    if not fill or not anchor or not bar._fluxSpendSnapOK then return end
-
-    local f = EnsureFeedback(bar)
-    StopSecretGlow(f)
-    f.updatingGain = false
-    f.updatingLoss = false
-    SyncFeedbackArt(bar, f)
-    f.LossGlowTexture:SetTexture(TEXTURE_GLOW)
-    f.LossGlowTexture:SetBlendMode("ADD")
-    AnchorSecretSlice(f.LossGlowTexture, fill, anchor)
-    AnchorSecretSlice(f.BarTexture, fill, anchor)
-    f.LossGlowTexture:SetAlpha(0)
-    f.BarTexture:SetAlpha(1)
-    f.LossGlowTexture:Show()
-    f.BarTexture:Show()
-    f.secretPlaying = true
-    f:Show()
-    EnsureSecretAnims(f)
-    f.SecretLossAnim:Play()
-    f.SecretBarAnim:Play()
-end
-
-function PCO.BeforePowerApplied(bar)
-    if not bar or bar.isStaggerBar then return end
-    local fill = bar.GetStatusBarTexture and bar:GetStatusBarTexture()
-    if not fill then return end
-    if not bar._fluxSpendAnchor then
-        local anchor = CreateFrame("Frame", nil, bar)
-        anchor:SetPoint("TOPLEFT", bar, "TOPLEFT", 0, 0)
-        anchor:SetPoint("BOTTOMLEFT", bar, "BOTTOMLEFT", 0, 0)
-        anchor:SetWidth(1)
-        bar._fluxSpendAnchor = anchor
-    end
-    local ok = pcall(function()
-        bar._fluxSpendAnchor:SetWidth(fill:GetWidth())
-    end)
-    bar._fluxSpendSnapOK = ok and true or false
-end
-
 local function StartFeedback(bar, oldW, newW, force, unit)
     local bw = TryLayoutWidth(bar)
     if not bw or bw <= 0 then return end
@@ -687,27 +678,36 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
         return
     end
 
-    if displayValue ~= nil then
+    if type(displayValue) ~= "nil" then
         bar._fluxGhostValue = displayValue
     end
-    if maxValue ~= nil then
+    if type(maxValue) ~= "nil" then
         bar._fluxGhostMax = maxValue
     end
 
-    if unit and UnitGUID then
-        local guid = UnitGUID(unit)
-        if bar._fluxFeedbackGUID ~= guid then
+    local guid = ReadableGUID(unit)
+    -- Losing GUID readability is not a unit swap; retain the last plain GUID.
+    if unit then
+        if not CanRead(bar._fluxFeedbackGUID)
+            or (guid and bar._fluxFeedbackGUID and bar._fluxFeedbackGUID ~= guid)
+            or (bar._fluxFeedbackUnit and bar._fluxFeedbackUnit ~= unit) then
             bar._fluxFeedbackGUID = guid
             bar._fluxPrevFillW = nil
             bar._fluxGhostPrimed = nil
-            bar._fluxCastFinish = nil
-            bar._fluxCastUnitGUID = nil
-            bar._fluxGhostSeq = (bar._fluxGhostSeq or 0) + 1
+            local sameCast = CastMatchesUnit(bar, unit, guid)
+            local finished = sameCast and bar._fluxCastFinish
             StopBarFeedback(bar)
+            if not sameCast then
+                bar._fluxCastUnitGUID = nil
+                bar._fluxCastUnit = nil
+            end
+            bar._fluxCastFinish = finished
         end
+        if guid then bar._fluxFeedbackGUID = guid end
+        bar._fluxFeedbackUnit = unit
     end
 
-    local castFinish = bar._fluxCastFinish and bar._fluxCastUnitGUID == (unit and UnitGUID and UnitGUID(unit) or nil)
+    local castFinish = bar._fluxCastFinish and CastMatchesUnit(bar, unit, guid)
     bar._fluxCastFinish = nil
 
     if not bar._fluxGhostPrimed then
@@ -718,16 +718,13 @@ function PCO.AfterPowerApplied(bar, unit, displayValue, maxValue)
     end
 
     local fillW
-    local okW, w = pcall(function()
-        local fill = bar:GetStatusBarTexture()
-        if not fill then return nil end
-        return fill:GetWidth() + 0
-    end)
-    if okW and type(w) == "number" and w == w and w >= 0 then
+    local fill = bar:GetStatusBarTexture()
+    local w = fill and ReadableNumber(fill:GetWidth())
+    if w and w >= 0 then
         fillW = w
     end
 
-    local prev = bar._fluxPrevFillW
+    local prev = ReadableNumber(bar._fluxPrevFillW)
     bar._fluxPrevFillW = fillW
     local readable = type(prev) == "number" and type(fillW) == "number"
     local bw = readable and TryLayoutWidth(bar) or nil
@@ -801,13 +798,12 @@ function PCO.DisableForFrame(frame)
         frame.PowerCostWatcher.unit = nil
         frame.PowerCostWatcher.parentFrame = nil
     end
+    PCO.ResetIdentityForFrame(frame)
     local function hideBar(bar)
         if not bar then return end
         HideSegment(bar)
         -- Invalidate queued ghost commits/holds as well as stopping the visible
         -- animation. Otherwise a callback can show the ghost after disable.
-        StopBarFeedback(bar)
-        bar._fluxGhostPrimed = nil
         if bar.PowerGhost then bar.PowerGhost:Hide() end
         if bar._fluxCostMeter then bar._fluxCostMeter:Hide() end
     end
@@ -833,6 +829,7 @@ function PCO.Initialize(frame)
     -- the old event frame; retain it across rebinds and feature toggles instead
     -- of accumulating unregistered frames for the rest of the session.
     local watcher = frame.PowerCostWatcher
+    if watcher and watcher.unit ~= unit then PCO.ResetIdentityForFrame(frame) end
     if not watcher then
         watcher = CreateFrame("Frame")
         frame.PowerCostWatcher = watcher
@@ -921,7 +918,8 @@ function PCO.Initialize(frame)
         end
         target._fluxPredictedCost = cost
         target._fluxPredictMax = maxPower
-        target._fluxCastUnitGUID = UnitGUID and UnitGUID(whichUnit) or nil
+        target._fluxCastUnitGUID = ReadableGUID(whichUnit)
+        target._fluxCastUnit = whichUnit
         PCO.ApplySegmentArt(target)
 
         if UF.UpdatePower and whichFrame.Power then UF.UpdatePower(whichFrame, whichUnit) end
@@ -956,6 +954,9 @@ function PCO.Initialize(frame)
     if unit == "focustarget" then
         SafeRegisterUnit(watcher, "UNIT_TARGET", "focus")
     end
+    if unit == "pet" then
+        SafeRegisterUnit(watcher, "UNIT_PET", "player")
+    end
 
     local function FrameForUnit(name)
         if name == "player" then return ns.PlayerFrame end
@@ -963,15 +964,13 @@ function PCO.Initialize(frame)
         if name == "targettarget" then return ns.TargetOfTargetFrame end
         if name == "focus" then return ns.FocusFrame end
         if name == "focustarget" then return ns.FocusTargetFrame end
+        if name == "pet" then return ns.PetFrame end
     end
 
     local function SyncNamedUnit(name)
         local fr = FrameForUnit(name)
         if not fr then return end
-        StopBarFeedback(fr.Power)
-        if fr.AdditionalPower then
-            StopBarFeedback(fr.AdditionalPower)
-        end
+        PCO.ResetIdentityForFrame(fr)
         local sid = CurrentCastSpell(name)
         if sid then
             ApplyCost(sid, fr, name)
@@ -1012,6 +1011,10 @@ function PCO.Initialize(frame)
             end
             return
         end
+        if event == "UNIT_PET" then
+            if unit == "pet" and eventUnit == "player" then SyncNamedUnit("pet") end
+            return
+        end
 
         if eventUnit ~= unit then return end
 
@@ -1029,9 +1032,9 @@ function PCO.Initialize(frame)
             ApplyCost(spellID)
         elseif event == "UNIT_SPELLCAST_STOP" or event == "UNIT_SPELLCAST_SUCCEEDED"
             or event == "UNIT_SPELLCAST_CHANNEL_STOP" or event == "UNIT_SPELLCAST_EMPOWER_STOP" then
-            local nowGUID = UnitGUID and UnitGUID(unit) or nil
+            local nowGUID = ReadableGUID(unit)
             local function markFinish(bar)
-                if bar and bar._fluxCastUnitGUID and bar._fluxCastUnitGUID == nowGUID then
+                if bar and CastMatchesUnit(bar, unit, nowGUID) then
                     bar._fluxCastFinish = true
                 end
             end

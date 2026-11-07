@@ -1,0 +1,46 @@
+{
+  "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\baseline",
+  "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b5b8-1789-7050-b49c-88d0a742e874\\fix-proposals-20261107T122821Z\\candidates\\alpha-readers",
+  "files": [
+    {
+      "path": "Bars/Blizzard.lua",
+      "baseline_sha256": "afea5e7b59d545a6790f1b7520684a05290a5e961369a6d3c7a652f2fa9bbff6",
+      "candidate_sha256": "2d32f3636f773d0d824fad0bfda6f76d42fd6d788b1ff63121f7ee84b1b44e94",
+      "diff": "Bars__Blizzard.lua.patch"
+    },
+    {
+      "path": "Bars/BadgeHost.lua",
+      "baseline_sha256": "414f79c0c635503bc0491f77fd1fe4731f93c5e551c4c30b40ad834e882aa6bf",
+      "candidate_sha256": "c4fc487f45cda62e8a93932777f5478d08a9543658c456a5c6a67fb76bcf4616",
+      "diff": "Bars__BadgeHost.lua.patch"
+    },
+    {
+      "path": "Core/ButtonFX/Cast.lua",
+      "baseline_sha256": "77e189a80d832523145c464164db894155573388affa6dec8045f9966e50fbc1",
+      "candidate_sha256": "ea8f5cc521d734e2010ea807c7ac1abc002a8938e4dcf00d0dae8f05c75d819b",
+      "diff": "Core__ButtonFX__Cast.lua.patch"
+    },
+    {
+      "path": "Core/ButtonFX/Charges.lua",
+      "baseline_sha256": "b8b89cbb8cae5b273d369ebefd4e826c5cc455d2245b26f917088f4096fc1cdd",
+      "candidate_sha256": "e72a658b8a63c2b4a8f6064cd574383af9256d2635dac1dfe84a2b9984ad4f85",
+      "diff": "Core__ButtonFX__Charges.lua.patch"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Button.lua",
+      "baseline_sha256": "dcba48373be3b5675c25aa3a5671f2364660137951bdf559b0524589f58667ca",
+      "candidate_sha256": "240f0d8136454dbd1a72647571b98372495cffcd2622e6dc835b38361ba5b796",
+      "diff": "ExtraButtonSystem__Engine__Button.lua.patch"
+    },
+    {
+      "path": "libs/LibCustomGlow-1.0/LibCustomGlow-1.0.lua",
+      "baseline_sha256": "e5ed4d1f3b5ab4bda75772cda846562cde0b929c8a3f302e91e4c5c47db91bb6",
+      "candidate_sha256": "36cf701f99bb2ed2c0313605fd4b006eb3640fd53cfe8cd383bbe314b4a0b952",
+      "diff": "libs__LibCustomGlow-1.0__LibCustomGlow-1.0.lua.patch"
+    }
+  ],
+  "live_runtime_writes": false,
+  "library_minor_bumped": false,
+  "library_load_gate": "Only the patched embedded source winning LibStub selection is covered; external winning versions remain unpatched and not accepted",
+  "unknown_effective_alpha_policy": "Continue/clear timer, retain previous appearance while private, retry on existing paint; exact opaque-alpha appearance parity remains pending"
+}

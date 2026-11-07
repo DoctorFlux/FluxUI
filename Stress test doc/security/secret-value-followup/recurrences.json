@@ -1,0 +1,51 @@
+{
+  "id": "USER-001",
+  "client": "Forever, previously confirmed by user",
+  "date": "2026-11-07",
+  "displayedTimestamps": [
+    {
+      "time": "12:31:53",
+      "reportedOccurrences": 2,
+      "report": "original intake"
+    },
+    {
+      "time": "12:32:26",
+      "reportedOccurrences": 1,
+      "report": "follow-up intake"
+    },
+    {
+      "time": "13:05:58",
+      "reportedOccurrences": 2,
+      "report": "follow-up intake; re-pasted in later message"
+    },
+    {
+      "time": "13:09:17",
+      "reportedOccurrences": 2,
+      "report": "second follow-up intake"
+    },
+    {
+      "time": "13:17:27",
+      "reportedOccurrences": 2,
+      "report": "third follow-up intake"
+    },
+    {
+      "time": "13:19:19",
+      "reportedOccurrences": 2,
+      "report": "fourth follow-up intake"
+    },
+    {
+      "time": "13:21:18",
+      "reportedOccurrences": 2,
+      "report": "fifth follow-up intake"
+    }
+  ],
+  "totalConsolidatedReportedOccurrences": 13,
+  "uniqueDisplayedTimestamps": 7,
+  "deduplication": "Repeated pasted timestamps/signatures consolidated using the largest per-message count at each displayed timestamp; this does not prove unique frames or event identities",
+  "nativeSink": "Blizzard_SharedXMLBase/FrameUtil.lua:427; callback begins410",
+  "message": "attempt to perform arithmetic on field 'startAlpha' (a secret number value, while execution tainted by '_FluxUI')",
+  "precedingAction": "Unknown; user previously answered dont know",
+  "frameCombatInstanceRuntimeBuild": "Unknown",
+  "inferenceLimit": "Repeated same signature; not thirteen distinct bugs/frames and not proof of continuous failure between timestamps",
+  "auditAction": "Read-only code/source investigation and standalone simulations; no addon fix or game control"
+}

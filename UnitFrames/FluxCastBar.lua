@@ -324,54 +324,28 @@ local function ApplyClientCastTiming(self, startTime, endTime, isChannel)
     return true
 end
 
--- Remaining-seconds countdown like Forever CastingBarMixin:UpdateCastTimeText.
--- Prefer cached value/maxValue; fall back to GetValue, then wall-clock from CastStart.
+-- Read the same clock that drives the displayed bar. DurationObject numbers may
+-- remain opaque: forward remaining duration to the native font sink unchanged.
 local function AccessibleRemainingSeconds(self)
-    if not self then
-        return nil
-    end
-    local value, maxValue
-    if self.value ~= nil and not IsSecretValue(self.value) then
-        value = tonumber(self.value)
-    end
-    if self.maxValue ~= nil and not IsSecretValue(self.maxValue) then
-        maxValue = tonumber(self.maxValue)
-    end
-    if value == nil or maxValue == nil then
-        local ok, cur, maxV = pcall(function()
-            local c = self.GetValue and self:GetValue()
-            local _, m = self:GetMinMaxValues()
-            return c, m
-        end)
-        if ok then
-            if value == nil and cur ~= nil and not IsSecretValue(cur) then
-                value = tonumber(cur)
-            end
-            if maxValue == nil and maxV ~= nil and not IsSecretValue(maxV) then
-                maxValue = tonumber(maxV)
+    if not self then return nil end
+    if self._fluxUsedTimerDuration and self.GetTimerDuration then
+        local ok, duration = pcall(self.GetTimerDuration, self)
+        if ok and duration and duration.GetRemainingDuration then
+            local valid, remaining = pcall(duration.GetRemainingDuration, duration)
+            if valid then
+                if IsSecretValue(remaining) then return remaining end
+                if type(remaining) == "number" then return math.max(0, remaining) end
             end
         end
     end
-    if (maxValue == nil or maxValue <= 0) and self._fluxCastWallMax ~= nil
-        and not IsSecretValue(self._fluxCastWallMax) then
-        maxValue = tonumber(self._fluxCastWallMax)
-    end
-    if value ~= nil and maxValue ~= nil and maxValue > 0 then
-        local rem = self.channeling and value or (maxValue - value)
-        if rem < 0 then
-            rem = 0
-        end
-        return rem
-    end
-    local start = self._fluxCastWallStart
-    if start and maxValue and maxValue > 0 then
-        local rem = maxValue - (GetTime() - start)
-        if rem < 0 then
-            rem = 0
-        end
-        return rem
-    end
-    return nil
+    if not self.GetValue or not self.GetMinMaxValues then return nil end
+    local ok, value, maximum = pcall(function()
+        local _, maxValue = self:GetMinMaxValues()
+        return self:GetValue(), maxValue
+    end)
+    if not ok or IsSecretValue(value) or IsSecretValue(maximum) then return nil end
+    if type(value) ~= "number" or type(maximum) ~= "number" or maximum <= 0 then return nil end
+    return math.max(0, self.channeling and value or (maximum - value))
 end
 
 local function PaintCastBarRemainingTime(self)
@@ -388,18 +362,24 @@ local function PaintCastBarRemainingTime(self)
         return
     end
     local rem = AccessibleRemainingSeconds(self)
-    if rem == nil then
+    local opaque = IsSecretValue(rem)
+    if not opaque and rem == nil then
+        self.Time:SetText("")
         self.Time:Show()
         return
     end
-    if rem < 0.05 then
+    if not opaque and rem < 0.05 then
         rem = 0
     end
     self.Time:SetFormattedText("%.1f", rem)
     self.Time:Show()
     if self.Text and self.Text:IsShown() then
-        local barW = (self.TimerBar and self.TimerBar:GetWidth()) or self:GetWidth() or 0
-        local timeW = self.Time:GetStringWidth() or 0
+        local barW
+        if self.TimerBar then barW = self.TimerBar:GetWidth() else barW = self:GetWidth() end
+        local timeW = self.Time:GetStringWidth()
+        if IsSecretValue(barW) then return end
+        barW = tonumber(barW) or 0
+        if IsSecretValue(timeW) then timeW = 28 else timeW = tonumber(timeW) or 0 end
         if timeW < 28 then
             timeW = 28
         end
@@ -1308,7 +1288,7 @@ local function StartCastBarFadeOut(self)
         self:Show()
     end
     local fadeDur = self.interrupted and FLUX_CASTBAR_FADE_INTERRUPT or FLUX_CASTBAR_FADE_DURATION
-    UIFrameFadeOut(self, fadeDur, self:GetAlpha(), 0)
+    UIFrameFadeOut(self, fadeDur, 1, 0)
     self.fadeTimer = C_Timer.NewTimer(fadeDur, function()
         if self.fadeOut and not self.casting and not self.channeling and not self.customTimer then
             FinishCastBarFade(self)

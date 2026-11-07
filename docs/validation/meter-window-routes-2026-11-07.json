@@ -1,0 +1,271 @@
+{
+  "changeID": "METER-WINDOW-ROUTES-20261107",
+  "dateUTC": "2026-11-07T08:37:06.700323+00:00",
+  "checkpoint": {
+    "capturedAtUTC": "2026-11-07T08:30:00.485352+00:00",
+    "head": "75cf2bcba83adfea0501934f4eeb2a980c46fdf8",
+    "sourceFiles": 1728,
+    "sha256": {
+      "source.zip": "290ce4adfba431314777b6847828e545f665ffd4fea7d4163a5b3577f9cf29cb",
+      "history.bundle": "44f250a2abd422e036629b2e16bf9b4912a980ba1557be84e8e728aa7716bb61"
+    },
+    "settingsScope": "Existing recovery settings.zip rehashed; fresh available settings metadata only. No settings reads into Git or writes; WoW remains in background.",
+    "availableSettingsCount": 53
+  },
+  "pins": {
+    "forever": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f"
+  },
+  "baselineSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "e6a136031f7360efc94c0b83ca88c4913aa2e386bbb94ea00756c7689efb926d",
+    "Battlezonemap/FluxMeterLayout.lua": "cbbd44ca66b85419f3cb2b4571b7443bc0233544bdfac2288eab8aafcaa8536b",
+    "Battlezonemap/FluxWindowFrame.lua": "221d4c52f0727d4e20d768b11c140270075ded0777725c3f27719d4b80d37d2b"
+  },
+  "candidateSHA256": {
+    "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+    "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+    "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158",
+    "tests/native_meter_controls.lua": "a89ead4119967b4738cd56aa2978360d6afcfde1417827a806c4027d4cf76ecf"
+  },
+  "samples": [
+    {
+      "pair": 1,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02708139999595005,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 1,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.04496439999638824,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    {
+      "pair": 2,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.04296949999843491,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.02560290000110399,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.024592999994638376,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 3,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.045417100001941435,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    {
+      "pair": 4,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.045859600002586376,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.027311999998346437,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "exit": 1,
+      "wallSeconds": 0.027094299999589566,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "pair": 5,
+      "mode": "candidate",
+      "exit": 0,
+      "wallSeconds": 0.04570310000417521,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    }
+  ],
+  "pinnedReplays": {
+    "live": {
+      "exit": 0,
+      "wallSeconds": 0.045705399999860674,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    },
+    "forever": {
+      "exit": 0,
+      "wallSeconds": 0.0445079999990412,
+      "output": "native meter controls: 448 checks; native input/taint/pixels pending; pinned dropdown=true\n"
+    }
+  },
+  "rejectedMutations": [
+    {
+      "name": "cycle-quiet-only",
+      "exit": 1,
+      "wallSeconds": 0.027991200004180428,
+      "output": "lua: tests/native_meter_controls.lua:11: actual active Meter-tab click changes HPS to Damage Taken and Current without a pane click\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "setter-quiet-only",
+      "exit": 1,
+      "wallSeconds": 0.028455399995436892,
+      "output": "lua: tests/native_meter_controls.lua:11: actual FluxWindow preset setter applies Dispels layout completely\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:328: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "no-pending-consume",
+      "exit": 1,
+      "wallSeconds": 0.02893190000031609,
+      "output": "lua: tests/native_meter_controls.lua:11: existing readiness embed consumes the latest explicit choice and selects native type/Current\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:354: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "hide-keeps-intent",
+      "exit": 1,
+      "wallSeconds": 0.0295683000003919,
+      "output": "lua: tests/native_meter_controls.lua:11: leaving or cleaning up cancels the delayed native apply intent\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/native_meter_controls.lua:11: in local 'check'\n\ttests/native_meter_controls.lua:365: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "focused": [
+    {
+      "path": "tests/native_meter_all_options.lua",
+      "exit": 0,
+      "wallSeconds": 0.027624600006674882,
+      "output": "native meter all options: 128 checks; native pixels/taint/FPS pending\n"
+    },
+    {
+      "path": "tests/native_meter_controls.lua",
+      "exit": 0,
+      "wallSeconds": 0.0453985999993165,
+      "output": "native meter controls: 412 checks; native input/taint/pixels pending; pinned dropdown=false\n"
+    },
+    {
+      "path": "tests/native_meter_docking.lua",
+      "exit": 0,
+      "wallSeconds": 0.023531399994681124,
+      "output": "native docking: 60 checks, 0 failures; 500burstTimers=2 frames=4 addonSnapWrites=0 nativeSnapWrites=4048 pinnedNative=false\n"
+    },
+    {
+      "path": "tests/native_meter_grid_parity.lua",
+      "exit": 0,
+      "wallSeconds": 0.5210650000008172,
+      "output": "native grid parity: 28992 checks, 0 failures; actual Details layouts=4920; native pixels/taint unverified\n"
+    },
+    {
+      "path": "tests/native_meter_ownership.lua",
+      "exit": 0,
+      "wallSeconds": 0.26899869999760995,
+      "output": "meter visibility: policyWrites=0 setterCalls=0 nativeEvents=4032 timerDispatches=4032 repeatedAddonRootShows=0 timerWrites=8064 pinnedNative=false\nnative backgrounds: updates=2000 skinCalls=2052\nmeter tab transitions: cycles=4000 threatResurrections=0 rootResurrections=0\nnative meter ownership: 561 checks, 0 failures; geometry typeCalls=0 sessionCalls=0 entryWalks=0 gamepadPatchTimers=0\n"
+    },
+    {
+      "path": "tests/native_meter_skin.lua",
+      "exit": 0,
+      "wallSeconds": 0.1250008000060916,
+      "output": "native meter skin: 172 checks, 0 failures; no native secrets/rendering/taint emulated\n"
+    },
+    {
+      "path": "tests/native_meter_startup.lua",
+      "exit": 0,
+      "wallSeconds": 0.05993270000180928,
+      "output": "native meter startup: 64 checks, 0 failures; pre-embed ownership, explicit cleanup and deferred startup mocked\n"
+    },
+    {
+      "path": "tests/native_meter_writer_provenance.lua",
+      "exit": 0,
+      "wallSeconds": 0.08051269999850774,
+      "output": "native writer provenance: 126 checks, 0 failures; explicit model, native secure VM unverified\n"
+    },
+    {
+      "path": "tests/standalone_threat_meter.lua",
+      "exit": 0,
+      "wallSeconds": 2.4664426000017556,
+      "output": "standalone threat meter: 87 checks passed; 500-event scans=1; raid facts=80; retained rows=80\n"
+    },
+    {
+      "path": "tests/threat_meter_sample.lua",
+      "exit": 0,
+      "wallSeconds": 0.017262000001210254,
+      "output": "threat meter sample: 510 checks, 0 failures; Forever queries per500=500\n"
+    },
+    {
+      "path": "tests/native_threat_layout.lua",
+      "exit": 0,
+      "wallSeconds": 0.09567260000039823,
+      "output": "native threat layout: 71 checks, 0 failures; nativeMax=3 ownedFrames=1 permanentEntryHooks=1\n"
+    },
+    {
+      "path": "tests/window_runtime_spec.lua",
+      "exit": 0,
+      "wallSeconds": 0.024149400000169408,
+      "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
+    }
+  ],
+  "full": {
+    "exit": 1,
+    "pass": 212,
+    "fail": 1,
+    "syntaxFiles": 876,
+    "syntaxFailures": [],
+    "unchangedLuaCorpus": false,
+    "corpusSHA256": "147ff729fd1c0f33f054eb9bd7b28b05ccc014e34597129d67fb76735e8e2a0d"
+  },
+  "failures": [
+    {
+      "path": "tests/raid_party_frames.lua",
+      "exit": 1,
+      "wallSeconds": 0.0291,
+      "output": "lua: UnitFrames/FluxUnitFrames_Party.lua:125: attempt to call a nil value (global 'SecureUnitButton_OnLoad')\nstack traceback:\n\tUnitFrames/FluxUnitFrames_Party.lua:125: in upvalue 'BuildTarget'\n\tUnitFrames/FluxUnitFrames_Party.lua:361: in field 'ApplyOptions'\n\ttests\\raid_party_frames.lua:107: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "ownersUnchanged": true,
+  "native": "User confirms after reload: Meter-tab cycling and FluxUI layout choice while Map is active both configure panes and Current automatically without pane clicks. Selected Forever UI/function only; native combat/secret/taint/gamepad/FPS/other-client scope pending.",
+  "implementation": "Active tab cycle and preset setter call native CommitUserLayout; first explicit Meter-tab entry commits after switching. Options commit switches from Map before applying. One pending explicit intent uses existing readiness Embed/retries; latest working layout wins; consume once; Hide/Cleanup cancel. No startup intent means no native data configuration. Details retains immediate quiet reembed. Original native menu entries/Pick and Current path retained.",
+  "resources": "One boolean; no new event/frame/hook/timer/ticker. Existing initialization retry/Embed and native menu pools reused.",
+  "scope": "Actual production cycle/setter/OnClick plus backend/widget/proxy and pinned native menu source replays. Not native secure VM or performance measurements; baseline aborts earlier.",
+  "externalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\07\\01a1b4d3-ff99-76f1-9caf-21bb64aa5e39\\meter-window-routes",
+  "installedCopies": {
+    "_retail_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+      "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+      "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158"
+    },
+    "_forever_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+      "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+      "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158"
+    },
+    "_classic_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+      "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+      "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158"
+    },
+    "_classic_era_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+      "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+      "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158"
+    },
+    "_anniversary_": {
+      "Battlezonemap/FluxBlizzardMeter.lua": "835bd0386c3e4eb3cec6964112f4293b7dc215756259759b915d2c3b10071bc7",
+      "Battlezonemap/FluxMeterLayout.lua": "f0baa87efe98f2b3c3690f1dbbeb1504559641808c1cbe59f895946764f47b89",
+      "Battlezonemap/FluxWindowFrame.lua": "2fc3c03209cbac3d02bd1708230546c32babc0ac3786afcb117a745650025158"
+    }
+  },
+  "copyScope": "15 installed runtime hashes already match through existing mirror; no manual writes.",
+  "fullScope": "All876 syntax files pass;212 scripts pass and1 concurrently changed unrelated party-frame fixture fails. Global source changed during run; four meter owners stayed unchanged. No whole-addon pass claimed.",
+  "documentationValidation": {
+    "status": "BLOCKED_BY_UNRELATED_CHANGES",
+    "issues": 5,
+    "scope": "Concurrent RaidFrame/FluxRaidSecure.lua and UnitFrames/FluxUnitFrames_Party.lua source inventory/verification plus generated interfaces; no meter-source errors. Checker made no edits."
+  }
+}

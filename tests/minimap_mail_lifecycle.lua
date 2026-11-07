@@ -11,7 +11,7 @@ local function check(ok, label)
     checks = checks + 1
     if not ok then failures = failures + 1; if not measure then print("FAIL " .. label) end end
 end
-local function boot(shape, provider, tracking)
+local function boot(shape, provider, tracking, calendar)
     local e = setmetatable({}, { __index = _G }); e._G = e
     local h = { frames = 0, textures = 0, registrations = 0, hooks = 0,
         calls = 0, deliveries = 0, newMail = true, events = {}, tooltipCalls = 0,
@@ -32,6 +32,13 @@ local function boot(shape, provider, tracking)
             self.registered[k] = true
             local list = h.events[k] or {}; h.events[k] = list
             h.registrations = h.registrations + 1; list[#list + 1] = self
+        end
+        function w:UnregisterEvent(k)
+            if not self.registered[k] then return end
+            self.registered[k] = nil
+            for i, entry in ipairs(h.events[k] or {}) do
+                if entry == self then table.remove(h.events[k], i); break end
+            end
         end
         function w:IsShown() return self.shown end
         function w:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
@@ -95,10 +102,11 @@ local function boot(shape, provider, tracking)
     cluster.IndicatorFrame = widget("IndicatorFrame", cluster)
     local native = widget("NativeMail", cluster.IndicatorFrame)
     native.width, native.height = 32, 24
-    native.MailIcon = { Show = noop }
+    native.MailIcon = { Show = noop, atlas = "ui-hud-minimap-mail-icon" }
     local nativeHide = function() h.nativeHides = (h.nativeHides or 0) + 1 end
     native:SetScript("OnHide", nativeHide)
-    cluster.IndicatorFrame.MailFrame = native
+    cluster.IndicatorFrame.MailFrame = shape ~= "missing" and native or nil
+    e.NativeMail = native
     e.MinimapCluster = cluster
     if shape == "global" then e.MiniMapMailFrame = native
     elseif shape == "minimap" then e.Minimap.MailFrame = native
@@ -107,7 +115,24 @@ local function boot(shape, provider, tracking)
         e.Minimap.MailFrame = widget("OtherNative", e.Minimap)
     end
     e.FluxMinimap = { PositionQueueStatusEye = noop }
-    local text = "local embeddedState = { isEmbedded = false }\n" .. block
+    e.ToggleCalendar = nil
+    if calendar then
+        e.GameTimeFrame = widget("GameTimeFrame", cluster)
+        e.GameTimeFrame:SetSize(23, 23)
+        e.GameTimeFrame.StateTexture = { atlas = "ui-hud-minimap-calendar-button" }
+        e.GameTimeFrame.enabled = false -- Native rule/kiosk disable must survive.
+        for _, script in ipairs({ "OnClick", "OnEnter", "OnLeave", "OnEvent", "OnUpdate", "OnShow" }) do
+            e.GameTimeFrame:SetScript(script, function() h[script] = (h[script] or 0) + 1 end)
+        end
+        if calendar == "available" then
+            e.ToggleCalendar = function() h.calendarToggles = (h.calendarToggles or 0) + 1 end
+            e.GameTimeFrame:SetScript("OnClick", e.ToggleCalendar)
+        end
+    end
+    e.FluxMinimapHiddenFrame = widget("Hidden", e.UIParent)
+    e.FluxMinimapHiddenFrame:Hide()
+    local cleanup = assert(source:match("(function FluxMinimap:CleanupBlizzardFrames%(%)%s.-)\nfunction FluxMinimap:CleanupTimeManager"))
+    local text = "local embeddedState = { isEmbedded = false }\n" .. cleanup .. "\n" .. block
     local chunk
     if loadstring then chunk = assert(loadstring(text)); setfenv(chunk, e)
     else chunk = assert(load(text, "@actual PositionIndicators", "t", e)) end
@@ -115,7 +140,8 @@ local function boot(shape, provider, tracking)
     local actual = e.FluxMinimap.PositionIndicators
     e.FluxMinimap.PositionIndicators = function(self) h.calls = h.calls + 1; return actual(self) end
     function h:position() e.FluxMinimap:PositionIndicators() end
-    function h:mailFrame() return e.MiniMapMailFrame or e.Minimap.MailFrame or e.FluxMinimapMailFrame end
+    function h:mailFrame() return e.MiniMapMailFrame or e.Minimap.MailFrame
+        or e.MinimapCluster.IndicatorFrame.MailFrame or e.FluxMinimapMailFrame end
     function h:event(name)
         -- Conservative snapshot: a new registration receives the next event.
         -- Native same-dispatch registration semantics are not assumed.
@@ -128,7 +154,7 @@ local function boot(shape, provider, tracking)
 end
 
 for _, provider in ipairs({ false, true }) do
-    for _, shape in ipairs({ "cluster", "global", "minimap" }) do
+    for _, shape in ipairs({ "cluster", "global", "minimap", "missing" }) do
         for _, n in ipairs({ 10, 100, 500 }) do
             for _, kind in ipairs({ "layout", "unchanged", "toggle" }) do
                 local h = boot(shape, provider)
@@ -146,7 +172,7 @@ for _, provider in ipairs({ false, true }) do
                 end)
                 local label = string.format("provider=%s shape=%s %s n=%d", tostring(provider), shape, kind, n)
                 check(ok and completed == n, label .. " completes")
-                check(h.frames == (shape == "cluster" and 1 or 0), label .. " one owned fallback at most")
+                check(h.frames == (shape == "missing" and 1 or 0), label .. " one owned fallback at most")
                 check(h.textures == h.frames, label .. " texture lifetime matches fallback")
                 check(h.registrations == 2 and h.hooks == 2, label .. " registrations and hooks remain bounded")
                 check(#(h.events.UPDATE_PENDING_MAIL or {}) == 1, label .. " one mail listener")
@@ -163,9 +189,9 @@ for _, provider in ipairs({ false, true }) do
     end
 end
 
-local h, e, native = boot("cluster", false)
+local h, e, native = boot("missing", false)
 h:position(); local mail = h:mailFrame()
-check(mail ~= native and mail.width == 20 and mail.height == 15, "Forever keeps the existing fallback size")
+check(mail ~= native and mail.width == 20 and mail.height == 15, "clients without a native indicator keep the fallback size")
 check(mail.MailIcon.atlas == "ui-hud-minimap-mail-up" and mail.MailIcon.allPoints, "fallback artwork is unchanged")
 check(mail.parent == e.Minimap and mail.point[1] == "RIGHT" and mail.point[2] == e.MinimapCluster.Tracking
     and mail.point[3] == "LEFT" and mail.point[4] == -2 and mail.point[5] == 0, "tracking-relative geometry is unchanged")
@@ -187,16 +213,19 @@ check(not mail:IsShown() and h.frames == 1, "mail visibility still responds duri
 h.combat = false; e.Minimap:Show(); h:position()
 check(h.frames == 1 and h:mailFrame() == oldFrame, "combat recovery retains the same mail frame")
 
-local cold, ce = boot("cluster", false)
+local cold, ce = boot("missing", false)
 cold.newMail, cold.combat = false, true; cold:position()
 check(cold.frames == 0 and cold.registrations == 0, "cold combat entry creates no indicator")
 cold.combat = false; cold:position()
 check(cold.frames == 1 and not cold:mailFrame():IsShown(), "cold no-mail initialization stays hidden")
 local fallback = cold:mailFrame()
-ce.MiniMapMailFrame = ce.MinimapCluster.IndicatorFrame.MailFrame; cold:position()
+ce.MiniMapMailFrame = ce.NativeMail; cold:position()
 check(cold:mailFrame() == ce.MiniMapMailFrame and fallback ~= ce.MiniMapMailFrame
     and cold.frames == 1 and ce.MiniMapMailFrame.fluxMailRegistered,
     "late native global retains existing preference")
+check(not fallback:IsShown() and not fallback:GetScript("OnEvent")
+    and not fallback.fluxMailRegistered and #(cold.events.UPDATE_PENDING_MAIL or {}) == 1,
+    "late native handoff retires the fallback and its listeners")
 
 local legacy, le, ln, nativeHide = boot("both", false)
 legacy:position()
@@ -209,5 +238,48 @@ check(legacy.nativeHides == 1 and legacy.frames == 0, "native hide still runs on
 local noTrack, ne = boot("cluster", false, false); noTrack:position(); local nt = noTrack:mailFrame()
 check(nt.point[1] == "BOTTOMRIGHT" and nt.point[2] == ne.Minimap and nt.point[3] == "BOTTOMRIGHT"
     and nt.point[4] == 0 and nt.point[5] == 0, "no-tracking fallback geometry is unchanged")
+-- Native Forever art is reused without creating or resizing its controls.
+for _, shape in ipairs({ "cluster", "global", "minimap" }) do
+    local nh, env, nm, hide = boot(shape, false, true, "available")
+    local cal = env.GameTimeFrame
+    local scripts = {}; for k, v in pairs(cal.scripts) do scripts[k] = v end
+    env.MinimapCluster:Hide()
+    env.FluxMinimap:CleanupBlizzardFrames()
+    nh:position()
+    check(nh:mailFrame() == nm and nh.frames == 0 and nh.textures == 0,
+        shape .. " reuses native mail without a fallback")
+    check(nm.width == 32 and nm.height == 24 and nm.MailIcon.atlas == "ui-hud-minimap-mail-icon"
+        and nm:GetScript("OnHide") == hide, shape .. " retains native mail art/size/hide owner")
+    check(cal.parent == env.Minimap and cal:IsVisible() and not cal.fluxHooked,
+        shape .. " calendar survives cleanup and hidden cluster")
+    check(cal.point[1] == "TOPLEFT" and cal.point[2] == env.Minimap and cal.point[3] == "TOPLEFT"
+        and cal.point[4] == 4 and cal.point[5] == -4, shape .. " calendar has its own corner")
+    check(cal.width == 23 and cal.height == 23 and cal.StateTexture.atlas == "ui-hud-minimap-calendar-button"
+        and not cal.enabled, shape .. " native calendar artwork/size/disable state retained")
+    cal.scripts.OnClick(cal)
+    check(nh.calendarToggles == 1, shape .. " native click reaches calendar bootstrap")
+    for _ = 1, 100 do env.FluxMinimap:CleanupBlizzardFrames(); nh:position() end
+    for k, v in pairs(scripts) do check(cal.scripts[k] == v, shape .. " preserves " .. k) end
+    check(nh.frames == 0 and nh.registrations == 2 and nh.hooks == 2,
+        shape .. " repeated calendar layout adds no resources")
+    env.Minimap:Hide(); nh:event("UPDATE_PENDING_MAIL")
+    check(not cal:IsVisible() and not nm:IsVisible(), shape .. " indicators follow hidden embedded map")
+    env.Minimap:Show(); nh.combat = true
+    cal.point = nil; nh:position()
+    check(cal.point == nil, shape .. " calendar geometry defers in combat")
+    nh.combat = false; nh:position()
+    check(cal.point and cal:IsVisible(), shape .. " calendar geometry recovers after combat")
+end
+local unsupported, ue = boot("missing", false, false, "clock")
+ue.FluxMinimap:CleanupBlizzardFrames(); unsupported:position()
+check(not ue.GameTimeFrame:IsVisible() and ue.GameTimeFrame.parent == ue.FluxMinimapHiddenFrame,
+    "clock-only client keeps its existing cleanup without a calendar substitute")
+local late, lateEnv = boot("missing", false)
+late:position(); local retired = late:mailFrame()
+lateEnv.MinimapCluster.IndicatorFrame.MailFrame = lateEnv.NativeMail
+late:position(); late.newMail = false; late:event("UPDATE_PENDING_MAIL")
+check(late:mailFrame() == lateEnv.NativeMail and not retired:IsShown()
+    and #(late.events.UPDATE_PENDING_MAIL or {}) == 1 and not lateEnv.NativeMail:IsShown(),
+    "late cluster native mail becomes the sole active indicator")
 print(string.format("minimap mail lifecycle: %d checks, %d failures; desktop production-function replay only", checks, failures))
 if not measure then assert(failures == 0, "minimap mail lifecycle regressions") end
