@@ -6,12 +6,20 @@ Flux reshapes Blizzard's minimap and relocates surrounding widgets. It can embed
 
 Initial configuration is a 190px square with a white square mask near the upper-right corner. Style/cleanup repositions supported indicators, queue-status eye, mail, tracking and difficulty controls, removes unwanted stock chrome and supplies a bordered info bar. Mouse wheel zooms; mouse-up hooks preserve Blizzard's native ping handler before adding Flux behavior. Zone text has fit/scroll/tooltip handling; clock and info-bar click targets are separate.
 
-Mail positioning reuses `FluxMinimapMailFrame` after checking the existing native
-frame locations. Without that final lookup, clients using the fallback created
-another frame and listener on each layout/mail update. The shared correction
-retains the current 20×15 icon, anchors, tooltip and visibility cadence. Reload
-after syncing it to discard old accumulated frames. Native minimap flicker and
-transaction acceptance remain pending. [Lifecycle evidence](MINIMAP_MAIL_LIFECYCLE.md).
+Mail positioning searches legacy global/Minimap keys, then the native
+`MinimapCluster.IndicatorFrame.MailFrame`, and finally the owned fallback. This
+intentionally restores Forever's native 32x24 `ui-hud-minimap-mail-icon` artwork.
+Clients without a native frame keep the 20x15 fallback; a late native frame retires
+that fallback and its listeners. Tracking-relative anchors, unread-mail policy,
+tooltip cadence and native hide cleanup remain.
+[Native indicators](MINIMAP_NATIVE_INDICATORS.md) supersede the artwork choice in
+[the earlier lifetime fix](MINIMAP_MAIL_LIFECYCLE.md).
+
+When both `GameTimeFrame` and `ToggleCalendar` exist, the native calendar button
+sits inside the minimap top-left. It retains native artwork, size, clicks, invite
+alerts, tooltip and update handler. Both indicators follow minimap visibility
+through embedding; positioning defers in combat. Clock-only clients retain their
+previous cleanup. Native rendering/input acceptance remains pending.
 
 Map right-click opens the tracking menu on the Retail path or available calendar on the older path. Info-bar/zone left-click toggles World Map and right-click opens calendar when supported. Clock-area left-click opens calendar; right-click invokes available TimeManager/stopwatch helpers. The comment suggesting Shift-left stopwatch is not an implemented Shift branch.
 

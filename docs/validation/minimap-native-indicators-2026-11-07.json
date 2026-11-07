@@ -43,5 +43,13 @@
   },
   "installedRuntimeCopies": "All five installed owner hashes match via existing mirror; no manual copy performed.",
   "resourceChange": "Native cluster mail replaces one fallback frame/texture on modern layouts. Two existing mail registrations/hooks retained. Calendar reuses native frame/scripts, including its existing OnUpdate; no new addon frame/event/timer/ticker/poll driver.",
-  "nativeResult": "NOT RUN: visuals, actual calendar click/invites/mail delivery, combat/taint, CPU/FPS. No performance improvement claimed."
+  "nativeResult": "NOT RUN: visuals, actual calendar click/invites/mail delivery, combat/taint, CPU/FPS. No performance improvement claimed.",
+  "documentationValidation": {
+    "status": "PASS",
+    "classifiedSources": 929,
+    "reachableSources": 599,
+    "settingDefinitions": 415,
+    "savedVariables": 24,
+    "localLinks": 15213
+  }
 }

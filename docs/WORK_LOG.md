@@ -1,7 +1,23 @@
 # Work log
 
+7 November native minimap indicators (MINIMAP-NATIVE-20261107): user chose direct
+implementation and UIForever testing. Reuse Forever's native 32x24 cluster mail
+frame/art before the retained fallback; retire late-superseded fallback listeners.
+Keep native GameTimeFrame at minimap top-left when ToggleCalendar exists, retaining
+size/art, scripts, alerts and disable state. Clock-only clients retain cleanup.
+Calendar resumes its native OnUpdate; no new addon driver/event/timer/ticker.
+717 focused checks PASS; pre-edit source rejects. Full 232 scripts / 896 Lua syntax
+PASS; post-suite Lua hashes unchanged. All five installed owner copies match via
+the existing mirror. Gethe Forever 1.60.1.70862, pin 9dc84f0d3bbae1768ac3405b3716000bd93eda06.
+External dated source/history checkpoint verified; 16 on-disk settings metadata
+entries inspected read-only. UIForever NOT RUN: browser automation unavailable;
+clean import ZIP and steps prepared. Native visuals/input/mail/invites/combat/taint
+and CPU/FPS pending. No game input/settings write, commit, push or manual sync.
+[Evidence](validation/minimap-native-indicators-2026-11-07.json).
+
 7 November publication batch: current local addon updates and audit/test records
-are prepared for the user-requested upload to main. Fresh validation passes all
+were uploaded to main in 7d35d33 with a normal fast-forward push. The newer minimap
+records are included in the following documentation commit. Fresh validation passes all
 232 scripts and 896 Lua syntax files with unchanged Lua hashes. External recovery
 checkpoint GitHub-publication-20261107T135245Z preserves 2,039 actual source files,
 179 on-disk settings and all-ref Git history; archives are outside AddOns.

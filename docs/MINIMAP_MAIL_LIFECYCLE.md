@@ -1,5 +1,10 @@
 # Minimap mail indicator lifetime
 
+7 November follow-up: [native indicators](MINIMAP_NATIVE_INDICATORS.md) now reuse
+Forever's native cluster mail frame and artwork as requested. The fallback
+lifetime fix remains for clients without native mail. Results below retain their
+historical source/appearance scope.
+
 5 November 2026: the user reports minimap flickering/disappearing when mail
 changes and increasing Buy/Cancel lag. `PositionIndicators` searched two native
 mail-frame locations but omitted its own named fallback. On Forever's source

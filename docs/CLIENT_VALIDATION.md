@@ -1,5 +1,20 @@
 # Client and reference validation — 29 October 2026
 
+7 November native minimap indicators (MINIMAP-NATIVE-20261107): user chose direct
+implementation and UIForever testing. Reuse Forever's native 32x24 cluster mail
+frame/art before the retained fallback; retire late-superseded fallback listeners.
+Keep native GameTimeFrame at minimap top-left when ToggleCalendar exists, retaining
+size/art, scripts, alerts and disable state. Clock-only clients retain cleanup.
+Calendar resumes its native OnUpdate; no new addon driver/event/timer/ticker.
+717 focused checks PASS; pre-edit source rejects. Full 232 scripts / 896 Lua syntax
+PASS; post-suite Lua hashes unchanged. All five installed owner copies match via
+the existing mirror. Gethe Forever 1.60.1.70862, pin 9dc84f0d3bbae1768ac3405b3716000bd93eda06.
+External dated source/history checkpoint verified; 16 on-disk settings metadata
+entries inspected read-only. UIForever NOT RUN: browser automation unavailable;
+clean import ZIP and steps prepared. Native visuals/input/mail/invites/combat/taint
+and CPU/FPS pending. No game input/settings write, commit, push or manual sync.
+[Evidence](validation/minimap-native-indicators-2026-11-07.json).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November stress fixes (STRESS-FIXES-20261107): the user authorized implementation after the audit/proposal phase. Applied public fade ownership, secret-safe alpha/geometry handling, local Forever driver adapters, accurate/cancellable Respec completion, input invalidation, mutation-safe event delivery, retained FIFO scheduler work, bounded combat drains, raid/nameplate work reduction, hidden-watch suspension, bounded range freshness and auction retry churn. Settings, saved roots, commands, artwork and foreign library ownership are preserved. Combined desktop validation: 232/232 scripts and 896 Lua syntax files PASS; post-suite Lua hashes match. No game input, WTF/profiler writes, commit, push or manual cross-install copy was performed. USER-001 actual failing frame/first taint source, native taint, pixels and CPU/FPS remain pending. Visible character-button polling and coherent auction publication after quiet are intentional safety limits, not claimed eliminated costs. [Applied changes and evidence](../Stress%20test%20doc/applied-fixes/README.md).
 <!-- /STRESS-FIXES-20261107 -->
