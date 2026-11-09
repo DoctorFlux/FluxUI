@@ -1,0 +1,73 @@
+{
+  "requestDate": "2026-11-09",
+  "operation": "Explicitly requested repository deletion/recreation and current local snapshot publication",
+  "repository": "https://github.com/DoctorFlux/FluxUI",
+  "oldRepositoryID": 1416752820,
+  "newRepositoryID": 1451123700,
+  "createdAtUTC": "2026-11-09T08:42:39Z",
+  "defaultBranch": "main",
+  "branches": [
+    "main"
+  ],
+  "snapshotCommit": "be90cdcc2f14e9cf5067618cc1bae157718015ad",
+  "snapshotTree": "20bb1f4e53642cc693bd940c9b6ce55cfad7e3c4",
+  "snapshotFiles": 2344,
+  "snapshotParents": [],
+  "author": {
+    "name": "DoctorFlux",
+    "email": "100806234+DoctorFlux@users.noreply.github.com"
+  },
+  "committer": {
+    "name": "DoctorFlux",
+    "email": "100806234+DoctorFlux@users.noreply.github.com"
+  },
+  "coauthorTrailers": [],
+  "forcePush": false,
+  "contributorsAtSnapshot": [
+    {
+      "login": "DoctorFlux",
+      "contributions": 1
+    }
+  ],
+  "initialWorkflow": {
+    "id": 42587961744,
+    "name": "Publication identity",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/DoctorFlux/FluxUI/actions/runs/42587961744"
+  },
+  "recovery": {
+    "checkpointUTC": "20261109T082549Z",
+    "sourceFiles": 2340,
+    "onDiskSettingsFiles": 166,
+    "sha256": {
+      "source.zip": "1b8636fdfaba886f55d53feebc12640f5b7fdefdc4c29e3ff782e44435a22bb1",
+      "settings.zip": "e2923087262caf1a686b042b5298ef27f17e0fb8c89bf6775f0c7a3e42b11e0e",
+      "history.bundle": "7db67c0e592ddbb9690b106f9db2d3b5133c50168f1fcf073684226c70572f4d"
+    },
+    "integrity": "ZIP and all-ref bundle verification PASS",
+    "originalIndexConfigAndPatches": "Preserved externally",
+    "remoteMetadata": "Exported; zero issues/pulls/releases/tags/forks",
+    "scope": "External recovery only; no private settings or archives published; unsaved game memory excluded"
+  },
+  "validation": {
+    "policyRegressionTestsPassed": 5,
+    "installedHookRejectedAutomatedAuthor": true,
+    "luaManifestDrift": 0,
+    "existingFullLuaScriptsPassed": 263,
+    "existingSyntaxFilesPassed": 930,
+    "documentation": "PASS;963classified sources;602TOC/XML reachable;15629links before completion record",
+    "runtimeSettingsUIChanges": "None; existing native acceptance limitations unchanged",
+    "completionDocumentation": "PASS;963classified sources;602TOC/XML reachable;15630links"
+  },
+  "policy": {
+    "localHooksPath": ".githooks",
+    "approvedAuthorAndCommitterOnly": true,
+    "coauthorTrailersRejected": true,
+    "mainOnlyPushGuard": true,
+    "reachableAncestryChecked": true,
+    "readOnlyCIPostPushDetection": true,
+    "limitations": "GitHub has no contributor blacklist. Administrators can bypass local controls; do not claim an unconditional platform ban. Contributor graph caching is outside local control."
+  },
+  "verifiedUTC": "2026-11-09T08:45:39.714559+00:00"
+}

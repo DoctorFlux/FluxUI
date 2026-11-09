@@ -1,5 +1,12 @@
 # Repository publication
 
+Replacement completed on 9 November 2026: old repository ID `1416752820` was
+deleted; new ID `1451123700` uses the same address and main only. Snapshot root
+`be90cdcc2f14e9cf5067618cc1bae157718015ad` contains 2,344 files, has no parents,
+and uses the approved DoctorFlux author/committer. The contributor API returns
+only DoctorFlux and the initial identity workflow passed.
+[Recovery and validation evidence](validation/repository-publication-2026-11-09.json).
+
 The 9 November 2026 user request authorizes replacing `DoctorFlux/FluxUI` on
 GitHub with a new repository at the same address, containing the current local
 addon snapshot on main. Continue working in the existing `_FluxUI` folder.

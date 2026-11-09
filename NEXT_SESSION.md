@@ -1,12 +1,13 @@
 # Next session
 
-9 November repository replacement is being prepared at the user's explicit
-request. Existing local source/history/index/settings and remote metadata are
-backed up externally; no remote issue/release/fork content to migrate. Keep the
-same DoctorFlux/FluxUI URL, one fresh main snapshot, and DoctorFlux author plus
-committer with no co-author trailers. Hooks are active; never bypass them. Remote
-deletion/recreation and upload are not yet complete. Verify recorded repository
-ID/state before retrying any destructive step. [Publication policy](docs/PUBLICATION.md).
+9 November repository replacement completed. DoctorFlux/FluxUI now has new ID
+1451123700 at the same URL; old1416752820 was deleted. Root be90cdcc2f14 contains
+the current addon snapshot, no old parents, DoctorFlux author/committer and no
+co-author trailers. Sole main and exact remote tree verified; only DoctorFlux in
+contributor API; initial identity workflow passed. Old source/history/index and
+settings are externally recoverable; do not republish old refs. Hooks are active;
+never bypass them. Future uploads: policy test, identity check, normal main push.
+No more repository deletion is needed. [Publication policy](docs/PUBLICATION.md).
 
 9 November focus fix is implemented and loaded on Forever70862. Background
 native focus/clear shows then truly hides its mouse region; BugTabs0. User

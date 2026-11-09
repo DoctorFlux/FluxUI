@@ -1,14 +1,20 @@
 # Work log
 
-9 November repository replacement preparation: verified2,340-file source ZIP,
-166-file on-disk settings ZIP and all-ref bundle outside AddOns; preserved index,
-config and working/staged patches. Exported current remote metadata; zero issues,
-pull requests/releases/tags/forks. Existing source author metadata was already
-DoctorFlux; cached graph was the user's remaining concern. Added/activated strict
-publication metadata hooks and read-only workflow. Five policy tests and direct
-pending-author rejection pass. Runtime Lua unchanged; current263/930 results
-remain subject to exact manifest check before upload. Remote replacement/upload
-pending. [Publication policy](PUBLICATION.md).
+9 November repository replacement completed per explicit request. Verified
+2,340-file source ZIP,166-file on-disk settings ZIP and all-ref bundle externally;
+preserved original index/config and both patches. Exported remote metadata;
+zero issues/pulls/releases/tags/forks. GitHub device authorization completed for
+the required deletion scope. Deleted old1416752820, created new1451123700 at the
+same URL, and pushed fresh main root be90cdcc2f14 with2,344 files. Verified exact
+remote tree, no parents, DoctorFlux author/committer and sole main branch; only
+DoctorFlux in contributor API. Local main adopted that verified snapshot without
+changing working files. Identity workflow42587961744 succeeded; five policy tests
+and actual hook rejection pass. Lua manifest unchanged from263/930 PASS;
+docs963sources/602reachable/15630links PASS. No runtime/settings changes or force
+push. The CLI unexpectedly copied its device code despite no clipboard flag;
+reported promptly. Later browser opening was explicitly authorized by the user.
+Completion records are a normal follow-up publication commit.
+[Evidence](validation/repository-publication-2026-11-09.json).
 
 9 November FOCUS-SECURE-VISIBILITY-20261109: preserved actual-file/history/settings
 checkpoint before three runtime-owner edits. Replaced focus alpha-only watch

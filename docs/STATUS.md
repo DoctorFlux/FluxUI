@@ -1,14 +1,16 @@
 # Development status
 
-9 November publication replacement prepared: user explicitly requests deleting
-and recreating DoctorFlux/FluxUI from current local files. External verified
-checkpoint preserves2,340 actual files,166 accessible settings files, all-ref
-history and the original index/config. Remote metadata exported; no issues,
-pull requests, releases, tags or forks to migrate. Approved identity and
-versioned commit/message/push hooks activated; five policy regressions pass,
-including forbidden author and old-history rejection. GitHub has no contributor
-blacklist; the guard controls this publication process. Remote deletion/new
-snapshot upload are not yet complete. [Policy](PUBLICATION.md).
+9 November publication replacement completed: old repository1416752820 deleted;
+new DoctorFlux/FluxUI1451123700 created at the same URL, with main only. Current
+2,344-file snapshot root be90cdcc2f14 uses DoctorFlux author/committer, no parents
+or co-author trailers; its exact remote tree verified. GitHub contributor API
+returns only DoctorFlux and publication workflow42587961744 passed. External
+verified checkpoint retains2,340 prior actual files,166 on-disk settings files,
+old history/index/config and metadata. Hooks active; five policy tests pass.
+Current Lua corpus unchanged from263-script/930-syntax PASS. No runtime/settings
+changes or force push. GitHub has no contributor blacklist; local hooks and
+read-only CI enforce/detect this process's metadata policy.
+[Publication evidence](validation/repository-publication-2026-11-09.json).
 
 9 November focus visibility/menu correction (FOCUS-SECURE-VISIBILITY-20261109):
 native visibility now hides the whole focus hit region, including combat and

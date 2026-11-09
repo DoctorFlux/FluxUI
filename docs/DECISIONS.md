@@ -9,6 +9,11 @@ Install local metadata hooks plus read-only CI detection; do not promise a
 GitHub account blacklist or protection against administrator bypass. Normal
 future updates use main and never bypass the guard. [Policy](PUBLICATION.md).
 
+Replacement verified: old repository ID1416752820, new ID1451123700; initial root
+be90cdcc2f14 with no old parents and sole main. Contributor API returns DoctorFlux
+only; initial identity workflow passed. The local old history remains recoverable
+externally. Do not restore/push old refs or replace current files from that backup.
+
 9 November focus input ownership: use the existing Restricted service's tested
 native visibility route for focus/focus-target, keeping protected Show/Hide and
 click regions under Blizzard during combat. Use native `togglemenu` for ordinary
